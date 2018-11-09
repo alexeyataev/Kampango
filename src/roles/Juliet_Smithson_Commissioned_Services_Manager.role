@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Juliet Smithson Commissioned Services Manager</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Juliet Smithson Commissioned Services Manager</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>Head_of_Service_Operations_P_T</parentRole>
+</Role>

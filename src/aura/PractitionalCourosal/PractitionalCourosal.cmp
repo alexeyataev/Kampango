@@ -1,0 +1,33 @@
+<aura:component implements="lightning:availableForFlowScreens,forceCommunity:availableForAllPageTypes" access="global">
+	<ltng:require styles="{!$Resource.SLDS +'/styles/salesforce-lightning-design-system.min.css'}" />
+    <lightning:layout horizontalAlign="center" pullToBoundary="small" >
+    <lightning:carousel class="slds-m-bottom_large slds-p-around_xx-large slds-container_center slds-theme_shade slds-card slds-card_boundary slds-align_absolute-center slds-carousel__image carousel" disableAutoScroll="false" disableAutoRefresh="false" scrollDuration = "3">
+	
+	<!--</lightning:carousel> 
+    <lightning:carousel disableAutoScroll="false" disableAutoRefresh="false" scrollDuration = "3" >-->
+        
+        <lightning:carouselImage  src="{!$Resource.BrandGuidelines}"
+                              header="Brand Guidelines">
+                              <!--description="This is Brand Guidelines Image"
+                              alternativeText="Reload Image"> -->
+		</lightning:carouselImage>
+        <lightning:carouselImage src="{!$Resource.ColourTints}"
+                              header="Colour Tints">
+                              <!--description="This is Colour tints image"
+                              alternativeText="Reload Image"> -->
+     	</lightning:carouselImage>
+        <lightning:carouselImage src="{!$Resource.GraphicElements}"
+                              header="Graphic Elements">
+                              <!--description="Here is Graphic Element Image"
+                              alternativeText="Cann't load this image."> -->
+     	</lightning:carouselImage>
+        <lightning:carouselImage src="{!$Resource.OurPersonality}"
+                              header="Our personality">
+                              <!--description="Here is Personality Image"
+                              alternativeText="Cann't load this image."> -->
+     	</lightning:carouselImage>
+        
+  </lightning:carousel>
+    </lightning:layout>
+    
+</aura:component>

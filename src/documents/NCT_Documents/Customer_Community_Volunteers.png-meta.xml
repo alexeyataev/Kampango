@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Customer community Volunteers for customer community with PSA Link Profile with Mary Sheeba  as a contact</description>
+    <internalUseOnly>false</internalUseOnly>
+    <name>Customer Community Volunteers</name>
+    <public>true</public>
+</Document>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Liz Bromiley Senior Enquiries and Customer Services Advisor</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Liz Bromiley</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>Enquiries_Customer_Services_Manager</parentRole>
+</Role>

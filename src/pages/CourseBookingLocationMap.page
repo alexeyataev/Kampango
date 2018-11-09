@@ -1,0 +1,55 @@
+<!-- Google Maps Integration: Used in Course Booking Location details section under Course Booking detail page .
+    **
+    * Author        : Ujwal Theja
+    * Created Date  : 19-07-2018
+    * (c) Copyright by CSS Corp.
+    **
+-->
+<apex:page standardController="Booking__c"  sidebar="false" showHeader="false">
+<!-- Google Maps API Version -2 -->
+<!-- Please don't change the below api congiguration. If any one want to change the api, please make below
+API in comments -->
+<script src="https://maps.google.com/maps?file=api&key=AIzaSyCpz4RjMF0WsJQtlWab4KBZFK7xtCIHPTg">
+</script>
+
+<script type="text/javascript">
+
+var map = null;
+var geocoder = null;
+ 
+var address = "{!Booking__c.Venue_Address__c}";
+
+function initialize() {
+if(GBrowserIsCompatible())
+{
+  map = new GMap2(document.getElementById('MyMap'));
+  map.addControl(new GMapTypeControl());
+  map.addControl(new GLargeMapControl3D());
+  
+  geocoder = new GClientGeocoder();
+  geocoder.getLatLng(
+    address,
+    function(point) {
+      if (!point) {
+        document.getElementById('MyMap').innerHTML = address + " not found (or) Please Enter Address details in the CourseBooking record";
+      } else {
+        map.setCenter(point, 13);
+        var marker = new GMarker(point);
+        map.addOverlay(marker);
+          //marker.openInfoWindow(document.createTextNode(address));
+          marker.bindInfoWindowHtml("<b> Course Name : </b><i>{!Booking__c.Course__r.Course_Name__c} </i>  <br/><b> Address :</b> "+address);
+          
+      }
+    }
+  );
+}
+}
+</script>
+
+<!-- Page configuration -->
+<div id="MyMap" style="width:100%;height:200px"></div>
+<script>
+    initialize() ;
+</script>
+
+</apex:page>

@@ -1,0 +1,80 @@
+<apex:page >
+<apex:slds />
+<head>
+<style>
+body {
+    font-family: Arial;
+    background-color:lightblue;
+    }
+p{
+    vertical-align: top;
+}
+.p1 {
+    vertical-align: bottom;
+}
+.split {
+    height: 10%;
+    width: 20%;
+    position: fixed;
+    z-index: 1;
+    overflow-y:hidden
+    padding-top: 20px;
+    top:30px;
+    margin:auto;
+}
+.split1{
+    display:block;
+    height: 10%;
+    width: 80%;
+    z-index: 1;
+    overflow-y:hidden
+    padding-top: 20px;
+    position:absolute;
+    
+}
+
+.left {
+    left: 0;
+    background-color:megenta;
+}
+
+.right {
+    right: 0;
+    
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.centered img {
+    width: 150px;
+    border-radius: 50%;
+}
+</style>
+</head>
+<body>
+
+<div class="split left">
+  <div class="centered p1">
+      <apex:image id="theImage" value="{!$Resource.NCTcommunitylogo}" width="100" height="100" />
+  </div>
+</div>
+
+<div class="split1 right">
+  <div align="center">
+    <p><font face="lato" size="5" color="black">
+                    <b>NCT</b>
+                </font></p>
+                <font face="lato" size="4" color="black"><marquee width="100%">National Childbirth Trust (NCT)
+ </marquee></font>
+  </div>
+</div>
+     
+</body>
+
+</apex:page>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowMembersToFlag>false</allowMembersToFlag>
+    <branding>
+        <loginFooterText>salesforce.com</loginFooterText>
+        <loginLogo>Communities_Shared_Document_Folder/Snip1_png.png</loginLogo>
+        <pageHeader>Communities_Shared_Document_Folder/Nct_Snip_Branding.png</pageHeader>
+        <primaryColor>#83B93A</primaryColor>
+        <primaryComplementColor>#222222</primaryComplementColor>
+        <quaternaryColor>#E6FFF7</quaternaryColor>
+        <quaternaryComplementColor>#222222</quaternaryComplementColor>
+        <secondaryColor>#D0EBA6</secondaryColor>
+        <tertiaryColor>#EFEFEF</tertiaryColor>
+        <tertiaryComplementColor>#222222</tertiaryComplementColor>
+        <zeronaryColor>#E6FFF7</zeronaryColor>
+        <zeronaryComplementColor>#222222</zeronaryComplementColor>
+    </branding>
+    <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
+    <description>PSA Link Profile with Customer Community Login License Customer Volunteer Community</description>
+    <emailSenderAddress>swathi.kota@csscorp.com</emailSenderAddress>
+    <emailSenderName>NCT Customer Community With PSA Link Profile Contact of Mary Sheeba</emailSenderName>
+    <enableGuestChatter>false</enableGuestChatter>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>true</enableKnowledgeable>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enablePrivateMessages>false</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <enableSiteAsContainer>true</enableSiteAsContainer>
+    <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
+    <navigationLinkSet>
+        <navigationMenuItem>
+            <label>Support</label>
+            <position>1</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>/contactsupport</target>
+            <type>InternalLink</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
+            <defaultListViewId>AllOpenCases</defaultListViewId>
+            <label>Cases</label>
+            <position>2</position>
+            <publiclyAvailable>true</publiclyAvailable>
+            <target>Case</target>
+            <type>SalesforceObject</type>
+        </navigationMenuItem>
+    </navigationLinkSet>
+    <networkMemberGroups>
+        <profile>Admin</profile>
+        <profile>PSA link</profile>
+    </networkMemberGroups>
+    <picassoSite>NCT_Volunteer_Community_C</picassoSite>
+    <selfRegProfile>psa link</selfRegProfile>
+    <selfRegistration>true</selfRegistration>
+    <sendWelcomeEmail>false</sendWelcomeEmail>
+    <site>NCT_Volunteer_Community</site>
+    <status>DownForMaintenance</status>
+    <tabs>
+        <customTab>Booking__c</customTab>
+        <customTab>Membership__c</customTab>
+        <defaultTab>home</defaultTab>
+        <standardTab>home</standardTab>
+        <standardTab>Chatter</standardTab>
+        <standardTab>Case</standardTab>
+    </tabs>
+    <urlPathPrefix>VolunteerCommunity</urlPathPrefix>
+    <welcomeTemplate>unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>
+</Network>

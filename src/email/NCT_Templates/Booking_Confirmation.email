@@ -1,0 +1,7 @@
+Hello {!Contact.FirstName},
+
+Your place on {!Course__c.Description__c} starting on {!Course__c.Start_Date__c} is now confirmed.
+
+Thanks,
+
+NCT

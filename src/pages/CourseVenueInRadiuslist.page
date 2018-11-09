@@ -1,0 +1,28 @@
+<apex:page controller="CourseVenueInRadiusController">
+    <apex:form >
+    	<apex:pageBlock >
+            <b>Select Miles:   </b>
+            <apex:pageBlockSection >
+            	<apex:selectList value="{!miles}" size="1">
+                    <apex:selectoption itemLabel="Within 1 Mile" itemValue="1"></apex:selectoption>
+                    <apex:selectoption itemLabel="Within 5 Mile" itemValue="5"></apex:selectoption>
+                    <apex:selectoption itemLabel="Within 10 Mile" itemValue="10"></apex:selectoption>
+                    <apex:selectoption itemLabel="Within 20 Mile" itemValue="20"></apex:selectoption>
+                </apex:selectList>
+                <apex:commandButton value="Go" reRender="list" action="{!CourseList}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection >
+                <apex:outputPanel id="list">
+                <apex:pageBlockTable value="{!Courses}" var="c">
+                    <apex:column >
+                        <apex:facet name="header">Course ID</apex:facet>
+                        <apex:outputLink value="/{!c.Id}">{!c.Id}</apex:outputLink>
+                    </apex:column>
+                    <apex:column value="{!c.Name}"/>
+                    <apex:column value="{!c.Course_Name__c}"/>
+                </apex:pageBlockTable>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

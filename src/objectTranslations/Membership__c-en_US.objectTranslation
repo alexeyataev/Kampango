@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Membership</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Membership</value>
+    </caseValues>
+    <fields>
+        <label><!-- Activated Date --></label>
+        <name>Activated_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cancellation Date --></label>
+        <name>Cancellation_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cancellation Reason --></label>
+        <name>Cancellation_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Network issues</masterLabel>
+            <translation><!-- Network issues --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>other</masterLabel>
+            <translation><!-- other --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Cancelled By --></label>
+        <name>Cancelled_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- ContactKey --></label>
+        <name>ContactKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Term End Date --></label>
+        <name>Current_Term_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Term Start Date --></label>
+        <name>Current_Term__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days to Lapse --></label>
+        <name>Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Direct Debit --></label>
+        <name>Direct_Debit__c</name>
+        <relationshipLabel><!-- Membership --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Enable Auto Renew --></label>
+        <name>Enable_Auto_Renew__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expired Date --></label>
+        <name>Expired_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Contact --></label>
+        <name>First_Contact__c</name>
+        <relationshipLabel><!-- Membership (First Contact) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Grace Period End Date --></label>
+        <name>Grace_Period_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- In Grace Period --></label>
+        <name>In_Grace__c</name>
+    </fields>
+    <fields>
+        <label><!-- Include --></label>
+        <name>Include__c</name>
+    </fields>
+    <fields>
+        <label><!-- Joined --></label>
+        <name>Joined__c</name>
+    </fields>
+    <fields>
+        <label><!-- Membership Key --></label>
+        <name>Membership_Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Frequency --></label>
+        <name>Payment_Frequency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Method --></label>
+        <name>Payment__c</name>
+        <picklistValues>
+            <masterLabel>Credit/Debit Card(£57)</masterLabel>
+            <translation><!-- Credit/Debit Card(£57) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit/Debit card(£10)</masterLabel>
+            <translation><!-- Credit/Debit card(£10) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit/Debit card(£120)</masterLabel>
+            <translation><!-- Credit/Debit card(£120) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit/Debit card(£48)</masterLabel>
+            <translation><!-- Credit/Debit card(£48) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£ 10)</masterLabel>
+            <translation><!-- Direct Debit(£ 10) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£ 2.50 per quarter)</masterLabel>
+            <translation><!-- Direct Debit(£ 2.50 per quarter) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£12 per quarter)</masterLabel>
+            <translation><!-- Direct Debit(£12 per quarter) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£120)</masterLabel>
+            <translation><!-- Direct Debit(£120) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£48)</masterLabel>
+            <translation><!-- Direct Debit(£48) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£57)</masterLabel>
+            <translation><!-- Direct Debit(£57) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£9.50 per quarter)</masterLabel>
+            <translation><!-- Direct Debit(£9.50 per quarter) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Renewal Date --></label>
+        <name>Renewal_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Second Contact --></label>
+        <name>Second_Contact__c</name>
+        <relationshipLabel><!-- Membership (Second Contact) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Source --></label>
+        <name>Source__c</name>
+        <picklistValues>
+            <masterLabel>offline</masterLabel>
+            <translation><!-- offline --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>online</masterLabel>
+            <translation><!-- online --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Active</masterLabel>
+            <translation><!-- In Active --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Subscription Due Total --></label>
+        <name>Subscription_Due_Total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Membership Term --></label>
+        <name>Term__c</name>
+    </fields>
+    <fields>
+        <label><!-- Membership Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>12 Month Membership</masterLabel>
+            <translation><!-- 12 Month Membership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>18 Month Membership</masterLabel>
+            <translation><!-- 18 Month Membership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Four year Membership</masterLabel>
+            <translation><!-- Four year Membership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reduced 12 Month Membership</masterLabel>
+            <translation><!-- Reduced 12 Month Membership --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Subscription Plan --></label>
+        <name>subscription_plan__c</name>
+        <picklistValues>
+            <masterLabel>12 Month Plan</masterLabel>
+            <translation><!-- 12 Month Plan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 Month Plan</masterLabel>
+            <translation><!-- 3 Month Plan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6 Month Plan</masterLabel>
+            <translation><!-- 6 Month Plan --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Membership Layout</layout>
+        <sections>
+            <label><!-- Auto Renew --></label>
+            <section>Auto Renew</section>
+        </sections>
+        <sections>
+            <label><!-- Current Term --></label>
+            <section>Current Term</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,14 @@
+Hello  {!User.Name}
+
+
+Welcome to NCT...!
+
+Your Case has successfully created with following details
+
+Case Name: {!User.Name} 
+Case Number: {!Case.CaseNumber}
+Case Subject: {!Case.Subject}
+
+
+Thanks & Regards,
+NCT Team

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Managing Group</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Managing Group</value>
+    </caseValues>
+    <fields>
+        <label><!-- Branch/Region/Area --></label>
+        <name>Branch__c</name>
+        <relationshipLabel><!-- Managing Group --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Dormant Date --></label>
+        <name>Dormant_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dormant --></label>
+        <name>Dormant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Managing Group Type --></label>
+        <name>Managing_Group_Type__c</name>
+        <picklistValues>
+            <masterLabel>Facilitating group</masterLabel>
+            <translation><!-- Facilitating group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent support group</masterLabel>
+            <translation><!-- Parent support group --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- PSA --></label>
+        <name>PSA__c</name>
+        <relationshipLabel><!-- Managing Group --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Parent Managing Group --></label>
+        <name>Parent_Managing_Group__c</name>
+        <relationshipLabel><!-- Managing Group --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Managing Group Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

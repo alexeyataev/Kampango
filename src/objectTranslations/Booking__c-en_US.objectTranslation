@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Course Booking</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Course Booking</value>
+    </caseValues>
+    <fields>
+        <label><!-- Alternative Phone Number --></label>
+        <name>Alternative_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Account Number --></label>
+        <name>Bank_Account_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Sort Code --></label>
+        <name>Bank_Sort_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Best Phone Number --></label>
+        <name>Best_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- BookingKey --></label>
+        <name>BookingKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- Booking Date --></label>
+        <name>Booking_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Booking Identifier --></label>
+        <name>Booking_Identifier__c</name>
+    </fields>
+    <fields>
+        <label><!-- Client Gift Aid --></label>
+        <name>Client_Gift_Aid__c</name>
+    </fields>
+    <fields>
+        <label><!-- Client Name --></label>
+        <name>Client_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Client__c</name>
+        <relationshipLabel><!-- Course Booking --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Companion --></label>
+        <name>Companion__c</name>
+        <relationshipLabel><!-- Course Booking (Companion) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Confirm DD Authorisation --></label>
+        <name>Confirm_DD_Authorisation__c</name>
+    </fields>
+    <fields>
+        <label><!-- ContactKey --></label>
+        <name>ContactKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cost --></label>
+        <name>Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- CourseKey --></label>
+        <name>CourseKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Payment Method --></label>
+        <name>Course_Payment_Method__c</name>
+        <picklistValues>
+            <masterLabel>I wish to pay for the course fees by credit or debit card</masterLabel>
+            <translation><!-- I wish to pay for the course fees by credit or debit card --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>I wish to pay for the course fees in 2 monthly installments by Direct Debit</masterLabel>
+            <translation><!-- I wish to pay for the course fees in 2 monthly installments by Direct Debit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>I wish to pay for the course fees in 3 monthly installments by Direct Debit</masterLabel>
+            <translation><!-- I wish to pay for the course fees in 3 monthly installments by Direct Debit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>I wish to pay for the course fees in 4 monthly installments by Direct Debit</masterLabel>
+            <translation><!-- I wish to pay for the course fees in 4 monthly installments by Direct Debit --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Course --></label>
+        <name>Course__c</name>
+        <relationshipLabel><!-- Course Booking --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Direct Debit --></label>
+        <name>Direct_Debit__c</name>
+        <relationshipLabel><!-- Course Booking --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Do Not Include on Class List --></label>
+        <name>Do_Not_Include_on_Class_List__c</name>
+    </fields>
+    <fields>
+        <label><!-- Do Not Send Further Information --></label>
+        <name>Do_Not_Send_Further_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date --></label>
+        <name>Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Baby --></label>
+        <name>First_Baby__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Contact --></label>
+        <name>First_Contact__c</name>
+        <relationshipLabel><!-- Course Booking (First Contact) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- First Heard --></label>
+        <name>First_Heard__c</name>
+        <picklistValues>
+            <masterLabel>Friends and Family</masterLabel>
+            <translation><!-- Friends and Family --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Newspaper</masterLabel>
+            <translation><!-- Newspaper --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Website</masterLabel>
+            <translation><!-- Website --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- How heared --></label>
+        <name>How_heared__c</name>
+        <picklistValues>
+            <masterLabel>FACEBOOK</masterLabel>
+            <translation><!-- FACEBOOK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GOOGLE</masterLabel>
+            <translation><!-- GOOGLE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LINKEDIN</masterLabel>
+            <translation><!-- LINKEDIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TWITTER</masterLabel>
+            <translation><!-- TWITTER --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Include --></label>
+        <name>Include__c</name>
+    </fields>
+    <fields>
+        <label><!-- Membership Choice --></label>
+        <name>Membership_Choice__c</name>
+    </fields>
+    <fields>
+        <label><!-- Membership_Payment_Method --></label>
+        <name>Membership_Payment_Method__c</name>
+        <picklistValues>
+            <masterLabel>I wish to pay my membership by Direct Debit</masterLabel>
+            <translation><!-- I wish to pay my membership by Direct Debit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>I wish to pay my membership by credit or debit card</masterLabel>
+            <translation><!-- I wish to pay my membership by credit or debit card --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Nct may contact --></label>
+        <name>Nct_may_contact__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- No 3rd Party Mailings --></label>
+        <name>No_3rd_Party_Mailings__c</name>
+    </fields>
+    <fields>
+        <label><!-- Offer Email Sent --></label>
+        <name>Offer_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Outstanding Amount --></label>
+        <name>Outstanding_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partner Gift Aid --></label>
+        <name>Partner_Gift_Aid__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partner Membership --></label>
+        <name>Partner_Membership__c</name>
+        <picklistValues>
+            <masterLabel>Individual membership just for you</masterLabel>
+            <translation><!-- Individual membership just for you --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Joint membership for you and your partner</masterLabel>
+            <translation><!-- Joint membership for you and your partner --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Payment Date --></label>
+        <name>Payment_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Frequency --></label>
+        <name>Payment_Frequency__c</name>
+        <picklistValues>
+            <masterLabel>Monthly</masterLabel>
+            <translation><!-- Monthly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quarterly</masterLabel>
+            <translation><!-- Quarterly --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Payment Method --></label>
+        <name>Payment_Method__c</name>
+        <picklistValues>
+            <masterLabel>Credit/Debit Card(£57)</masterLabel>
+            <translation><!-- Credit/Debit Card(£57) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit/Debit card(£10)</masterLabel>
+            <translation><!-- Credit/Debit card(£10) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit/Debit card(£120)</masterLabel>
+            <translation><!-- Credit/Debit card(£120) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit/Debit card(£48)</masterLabel>
+            <translation><!-- Credit/Debit card(£48) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£ 10)</masterLabel>
+            <translation><!-- Direct Debit(£ 10) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£ 2.50 per quarter)</masterLabel>
+            <translation><!-- Direct Debit(£ 2.50 per quarter) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£12 per quarter)</masterLabel>
+            <translation><!-- Direct Debit(£12 per quarter) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£120)</masterLabel>
+            <translation><!-- Direct Debit(£120) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£48)</masterLabel>
+            <translation><!-- Direct Debit(£48) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£57)</masterLabel>
+            <translation><!-- Direct Debit(£57) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Debit(£9.50 per quarter)</masterLabel>
+            <translation><!-- Direct Debit(£9.50 per quarter) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Postcode --></label>
+        <name>Postcode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Preferred Payment Date --></label>
+        <name>Preferred_Payment_Date__c</name>
+        <picklistValues>
+            <masterLabel>20th</masterLabel>
+            <translation><!-- 20th --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3rd</masterLabel>
+            <translation><!-- 3rd --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Picklist demo --></help>
+        <label><!-- Salesdemo --></label>
+        <name>Salesdemo__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Second Contact --></label>
+        <name>Second_Contact__c</name>
+        <relationshipLabel><!-- Course Booking (Contact) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Booking Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Confirmed</masterLabel>
+            <translation><!-- Confirmed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enquiry</masterLabel>
+            <translation><!-- Enquiry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reserved</masterLabel>
+            <translation><!-- Reserved --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Third party may contact --></label>
+        <name>Third_party_may_contact__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Town --></label>
+        <name>Town__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twins or more --></label>
+        <name>Twins_or_more__c</name>
+    </fields>
+    <fields>
+        <label><!-- Under 18 --></label>
+        <name>Under_18__c</name>
+    </fields>
+    <fields>
+        <label><!-- Venue Address --></label>
+        <name>Venue_Address__c</name>
+    </fields>
+    <layouts>
+        <layout>Booking Layout</layout>
+        <sections>
+            <label><!-- Booking Details --></label>
+            <section>Booking Details</section>
+        </sections>
+        <sections>
+            <label><!-- Course Booking Location Map --></label>
+            <section>Course Booking Location Map</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Details --></label>
+            <section>Payment Details</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

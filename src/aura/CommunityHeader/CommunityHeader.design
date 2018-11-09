@@ -1,0 +1,5 @@
+<design:component>
+    <design:attribute name="Header" label="HeaderMessage" description="NCT is here to support you"/>
+    
+    
+</design:component>

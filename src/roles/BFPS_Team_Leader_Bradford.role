@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>BFPS Team Leader Bradford</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>BFPS Team Leader Bradford</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>Service_Delivery_Manager_Bradford</parentRole>
+</Role>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PostCode Allocation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>PostCode Allocation </value>
+    </caseValues>
+    <fields>
+        <label><!-- AccountKey --></label>
+        <name>Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Branch --></label>
+        <name>Branch__c</name>
+        <relationshipLabel><!-- PostCode Allocation --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Capacity PSA --></label>
+        <name>Capacity_PSA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enquiry PSA --></label>
+        <name>Enquiry_PSA__c</name>
+    </fields>
+    <fields>
+        <label><!-- PSA Roles --></label>
+        <name>PSA_Roles__c</name>
+        <picklistValues>
+            <masterLabel>Capacity PSA</masterLabel>
+            <translation><!-- Capacity PSA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enquiry PSA</masterLabel>
+            <translation><!-- Enquiry PSA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- PSA --></label>
+        <name>PSA__c</name>
+        <relationshipLabel><!-- PostCode Allocation  --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>PostCode Allocation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Postcode should not be assigned to more than one Enquiry and Capacity PSA --></errorMessage>
+        <name>Postcode_Assignment_To_PSA_Roles</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,261 @@
+<apex:page id="communitiesSelfRegPage" showHeader="false" controller="CommunitiesSelfRegController"  title="{!$Label.site.user_registration}" standardStylesheets="false" applyHtmlTag="true" docType="html-5.0">
+    
+     <apex:define name="body">  
+      <center>
+<body>
+    
+          
+<apex:form id="theForm" forceSSL="true" style="border-style:bold;background-color:#E6FFF7">   
+<style>
+    body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 2px solid #02846b;
+}
+h7 {
+    <!-- #00b300  #48ffff #2424ff  -->
+     color:#0D8563;
+     text-align: center;    
+} 
+    #col1{width:20%; display:inline-block;background-color:#E6FFF7} <!-- #a5d867-->
+    #col2{width:40%; display:inline-block;background-color:#E6FFF7}
+    #col3{width:40%; display:inline-block;background-color:#E6FFF7}  
+    #row1{height:5%; background-color:#E6FFF7; display for logo}
+    #row2{height:20%; width:100%;  background-color:#E6FFF7; display for Form name}  
+    #row3{height:72%; width:100%; background-color:#E6FFF7; display for Content}
+    #row4{height:3%; width:100%; background-color:#E6FFF7; display for footer}
+
+   
+</style>
+
+    <div style="height:50px; width:20px;padding-top: 20px; padding-left: 20px;float:left; background-color:#E6FFF7" id="row1,col1" >
+                            <apex:image value="{!$Resource.NCTHeader1}" width="100" height="75" />                       
+    </div>
+
+    <div id= "row2, col2" style="height:100px;padding-top: 100px; background-color:#E6FFF7 float:left"  >
+    <h7 style="text-align:center;font-size:26px;color:#0D8563;"><b>NCT Parents – Registration Form</b></h7><br/>
+ 
+     <div id= "row3, col2" style="height:300px;padding-top: 50px; padding-left: 200px; float:left"  >
+                            <apex:image value="{!$Resource.NCTsidepanel}" width="450" height="300" />  
+      <!--<apex:pageBlock title="Login Registration" mode="edit" >
+            <apex:pageBlockSection >
+                <apex:pageBlockSection >
+                    <apex:image value="{!$Resource.vounter}" />
+                </apex:pageBlockSection>
+                                                </apex:pageBlockSection>
+    </apex:pageBlock> -->
+       <!-- <br/><br/><br/><br/><br/><br/><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        All rights reserved by National Childbirth Trust. Copyright © 2018 -->
+    </div>
+  <div style="height:80px;float:right;padding-top: 10px;background-color:#E6FFF7" id="row3,col3">     <!-- #a5d867 green background  -->
+
+<!--<h7 style="text-align:center;font-size:26px;color:#0D8563;"><b>NCT Parents – Registration Form</b></h7><br/> -->
+                    <apex:pageMessages id="error"/>
+                    <apex:panelGrid columns="2" style="margin-top:1cm;padding-top: 10px;padding-right: 5px;"> 
+                  
+<style> 
+input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #33BEFF;
+    border-radius: 42px;
+    font-size: 16px;
+    background-color: #D1F2EB;
+    background-image: url('smiley.gif');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+}
+    
+</style>
+                        
+                            
+                       
+                        <apex:outputLabel value=""></apex:outputLabel>
+         <apex:outputLabel value="First Name" for="firstName" style="font-style:Lato;font-size:15px;color:#0D8563;"  /> 
+         <apex:inputText required="true" id="firstName" value="{!firstName}" label="firstName" style="font-size:15px;width: 90%;
+                    box-sizing: border-box;
+                    border: 0.6px solid #0D8563;
+                    border-radius: 5px;                                                                                  
+                    font-size: 14px;                                                                             
+                    background-color: #D1F2EB;
+                    background-image: url('smiley.gif');
+                    background-position: 10px 10px; 
+                    background-repeat: no-repeat;                                                                                  
+                    padding: 0px 20px 12px 15px;"/> 
+                   
+                              
+                  <apex:outputLabel value="Last Name *" for="lastName" style="font-style:Lato;font-size:15px;color:#0D8563;"/>
+                  <apex:inputText required="true" id="lastName" value="{!lastName}" label="Last Name" style="font-size:15px;width: 90%;
+    box-sizing: border-box;
+    border: 0.6px solid #0D8563;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #D1F2EB;
+    background-image: url('smiley.gif');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 0px 20px 12px 15px;"/>   
+                         
+                      <!-- <apex:outputLabel value="Username" for="Username" rendered="true" style="font-style:bold;font-size:15px;color:#0D8563;"/>
+                        <apex:inputText required="true" id="Username" value="{!Username}" label="Username" style="width: 90%;
+    box-sizing: border-box;
+    border: 0.6px solid #0D8563;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #D1F2EB;
+    background-image: url('smiley.gif');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 0px 20px 12px 15px;"/> -->
+                      <apex:outputLabel value="{!$Label.site.community_nickname}" for="communityNickname" style="font-style:bold;font-size:15px;color:#0D8563;"/>
+                      <apex:inputText required="true" id="communityNickname" value="{!communityNickname}" label="{!$Label.site.community_nickname}" style="font-size:15px;width: 90%;
+    box-sizing: border-box;
+    border: 0.6px solid #0D8563;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #D1F2EB;
+    background-image: url('smiley.gif');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 0px 20px 12px 15px;"/>
+                        <apex:outputLabel value="Mobile" for="Mobile" rendered="true" style="font-style:bold;font-size:15px;color:#0D8563;"/>
+                        <apex:inputText required="true" id="Phone" value="{!Phone}" label="Phone" style="width: 90%;
+    box-sizing: border-box;
+    border: 0.6px solid #0D8563;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #D1F2EB;
+    background-image: url('smiley.gif');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 0px 20px 12px 15px;"/>
+                        
+                      <apex:outputLabel value="{!$Label.site.email} *" for="email" style="font-style:bold;font-size:15px;color:#0D8563;"/>
+                      <apex:inputText required="true" id="email" value="{!email}" label="{!$Label.site.email}" style="font-size:15px;width: 90%;
+    box-sizing: border-box;
+    border: 0.6px solid #0D8563;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #D1F2EB;
+    background-image: url('smiley.gif');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 0px 20px 12px 15px;" />
+                      <apex:outputLabel value="{!$Label.site.password} *" for="password" style="font-style:bold;font-size:15px;color:#0D8563;"/>
+                      <apex:inputSecret id="password" value="{!password}" required="True" style="font-size:15px;width: 90%;
+    box-sizing: border-box;
+    border: 0.6px solid #0D8563;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #D1F2EB;
+    background-image: url('smiley.gif');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 0px 20px 12px 15px;"/>
+      
+                      <apex:outputLabel value="{!$Label.site.confirm_password}" for="confirmPassword" style="font-style:bold;font-size:15px;color:#0D8563;"/>
+                      <apex:inputSecret id="confirmPassword" value="{!confirmPassword}" style="font-size:15px;width: 90%;
+    box-sizing: border-box;
+    border: 0.6px solid #0D8563;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #D1F2EB;
+    background-image: url('smiley.gif');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 0px 20px 12px 15px;"/>
+                       </apex:panelGrid> 
+                        <apex:outputLabel value=""></apex:outputLabel><br/>
+                        <apex:outputLabel value=""></apex:outputLabel>
+                        <apex:outputLabel value=""></apex:outputLabel>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<apex:commandButton action="{!registerUser}" value="{!$Label.site.submit}" id="submit" style="font-size:25px;font-weight:bold
+                                           position:fixed;                                                                                                                                
+                                           bottom:30px;
+                                           right:0px;
+                                           padding:10px 10px;
+                                           padding-left: 40px;
+                                           padding-right: 40px;                                                                                 
+                                           color:white;
+                                           border-color:#6C8049;
+                                           background:#0D8563;
+                                           font-weight:bold;
+                                           font-size:23px;
+                                           
+                                           line-height:28px;"/> 
+                     
+                       <!--START<apex:outputLabel value="{!$Label.site.community_nickname}" for="communityNickname" style="font-style:bold;font-size:20px;color:#0D8563;"/>
+                      <apex:inputText required="true" id="communityNickname" value="{!communityNickname}" label="{!$Label.site.community_nickname}" style="font-size:15px;"/>
+                      <apex:outputLabel value="Phone" for="Phone" rendered="true" style="font-style:bold;font-size:20px;color:#0D8563;"/>
+                      <apex:inputText required="true" id="Phone" value="{!Phone}" label="Phone" style="font-size:15px;"/>
+                      <apex:outputLabel value="Mobile" for="Mobile" rendered="true" style="font-style:bold;font-size:20px;color:#0D8563;"/>
+                      <apex:inputText required="true" id="Mobile" value="{!Mobile}" label="Mobile" style="font-size:15px;"/>     
+                      <apex:outputLabel value="{!$Label.site.email} *" for="email" style="font-style:bold;font-size:20px;color:#0D8563;"/>
+                      <apex:inputText required="true" id="email" value="{!email}" label="{!$Label.site.email}" style="font-size:15px;" />
+                    <!--  <apex:outputLabel value="Address" for="Address" rendered="true" style="font-style:bold;font-size:25px;"/> END--> 
+                     <!-- START <apex:inputText required="true" id="Address" value="{!MailingAddress}" label="Address" style="font-size:20px;"/>  
+                        <apex:outputLabel value="Address" for="Address" rendered="true" style="font-style:bold;font-size:20px;color:#0D8563;"/> 
+                       <textarea cols="27" id="con19street" maxlength="255" name="con19street" rows="2" tabindex="27" type="text" wrap="soft" style="margin: 0px; width: 388px; height: 121px;"></textarea> -->
+                     <!-- START <apex:outputLabel value="{!$Label.site.password} *" for="password" style="font-style:bold;font-size:20px;color:#0D8563;"/>
+                      <apex:inputSecret id="password" value="{!password}" required="True" style="font-size:15px;"/>
+                      <apex:outputLabel value="{!$Label.site.confirm_password}" for="confirmPassword" style="font-style:bold;font-size:20px;color:#0D8563;"/>
+                      <apex:inputSecret id="confirmPassword" value="{!confirmPassword}" style="font-size:15px;"/>
+                      <apex:outputText value=""/> END-->
+                       <!-- <apex:outputLabel value="Contact Preferences" for="contactpreferences" rendered="true" style="font-style:bold;font-size:25px;"/> -->
+                        
+                       <!-- <c:multiselectcontrollervfcomponent></c:multiselectcontrollervfcomponent>  -->
+                  <!-- St@rt <apex:commandButton action="{!registerUser}" value="{!$Label.site.submit}" id="submit" style="font-size:25px;background:red;font-weight:bold
+                                           position:fixed;
+                                           bottom:30px;
+                                          right:0px;
+                                           padding:10px 10px;
+                                           color:white;
+                                           border-color:#6C8049;
+                                           background:#0D8563;
+                                           font-weight:bold;
+                                           font-size:23px;
+                                           
+                                           line-height:28px;"/>  END-->
+                               <!-- <div style="height:170px;width:170px;float:right">
+                        <apex:image value="{!$Resource.SubmitButton}" action="{!registerUser}" width="150" height="70" /> 
+                        </div> -->
+      <br/><br/><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<apex:outputLink value="https://www.salesforce.com" id="theLink" target="_blank">
+     <apex:image url="{!$Resource.NCTFacebooklogo}" width="50" height="50">
+      </apex:image>
+</apex:outputLink>
+                        <apex:outputLink value="https://www.salesforce.com" id="theLink1" target="_blank">
+     <apex:image url="{!$Resource.NCTTwitterlogo}" width="50" height="50">
+      </apex:image>
+</apex:outputLink>
+                        <apex:outputLink value="https://www.salesforce.com" id="theLink2" target="_blank">
+     <apex:image url="{!$Resource.NCTLinkedinlogo}" width="50" height="50">
+      </apex:image>
+</apex:outputLink>
+                        <apex:outputLink value="https://www.salesforce.com" id="theLink3" target="_blank">
+     <apex:image url="{!$Resource.NCTGoogleplusLogo}" width="50" height="50">
+      </apex:image>
+</apex:outputLink>
+    
+      
+                  <br/>
+    </div>
+     <div id= "row4, col2" style="text-align:center; height:500px; padding-top: 450px float:bottom; background-color:#E6FFF7" / >       
+     All rights reserved by National Childbirth Trust. Copyright © 2018  
+    </div>
+    
+</apex:form>
+    </body>
+     </center>
+      <br/>
+   
+    </apex:define>
+
+</apex:page>

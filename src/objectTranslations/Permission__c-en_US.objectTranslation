@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Permission</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Permission</value>
+    </caseValues>
+    <fields>
+        <label><!-- ContactKey --></label>
+        <name>ContactKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Permission --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Permission Answer --></label>
+        <name>Permission_Answer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permission Date --></label>
+        <name>Permission_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permission Question --></label>
+        <name>Permission_Question__c</name>
+        <relationshipLabel><!-- Permission --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Permission Questions Key --></label>
+        <name>Permission_Questions_Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Permission --></label>
+        <name>Permission__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source --></label>
+        <name>Source__c</name>
+        <picklistValues>
+            <masterLabel>other</masterLabel>
+            <translation><!-- other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>web</masterLabel>
+            <translation><!-- web --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Permission Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

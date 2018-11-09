@@ -1,0 +1,21 @@
+<apex:page id="communitiesSelfRegPage" showHeader="false" controller="CommunitiesSelfRegController"  title="{!$Label.site.user_registration}" standardStylesheets="false" applyHtmlTag="true" docType="html-5.0">
+
+This is SITE page
+    <p>
+         User Information:
+    </p>
+    <apex:form >
+    <apex:outputLabel value="First Name *"></apex:outputLabel>
+        <apex:inputText required="true" id="FirstName" value="{!FirstName}" label="First Name" /> <br/>
+        <apex:outputLabel value="Last Name *"></apex:outputLabel>
+<apex:inputText required="true" id="lastName" value="{!lastName}" label="Last Name" /><br/>
+        <apex:outputLabel value="Phone *"></apex:outputLabel>
+<apex:inputText required="true" id="Phone" value="{!phone}" label="Phone" /><br/>
+        <apex:outputLabel value="Email *"></apex:outputLabel>
+<apex:inputText required="true" id="Email" value="{!Email}" label="Email" /><br/>
+                                <apex:commandButton action="{!registerUser}" value="{!$Label.site.submit}" id="submit" /> 
+
+    
+    
+    </apex:form>
+</apex:page>

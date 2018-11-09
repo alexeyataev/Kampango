@@ -1,0 +1,7 @@
+Hello {!Contact.FirstName}, 
+
+Your plan {!Membership__c.Type__c} has selected {!Membership__c.Payment_Method__c}
+
+
+Thanks, 
+NCT Team
