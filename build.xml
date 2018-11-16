@@ -22,7 +22,7 @@
 
   <!-- Test out deploy and retrieve verbs for package 'mypkg' -->
     <target name="processBuildProperties">
-      <echo>username ravi kura :${sf.username}</echo>
+      <echo>username ravi kura :${env.username}</echo>
     </target>
 
 
