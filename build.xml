@@ -7,7 +7,7 @@
          so unset values are treated as empty. Without this, ant expressions such as ${env.username}
          will be treated literally.
     -->
-    <condition property="sf.username" value=""> <not> <isset property="${env.username}"/> </not> </condition>
+    <condition property="sf.username" value=""> <not> <isset property="${sf.username}"/> </not> </condition>
     <condition property="sf.password" value=""> <not> <isset property="sf.password"/> </not> </condition>
     <condition property="sf.sessionId" value=""> <not> <isset property="sf.sessionId"/> </not> </condition>
 
@@ -17,14 +17,6 @@
         </classpath>
     </taskdef>
 	
-
-
-
-  <!-- Test out deploy and retrieve verbs for package 'mypkg' -->
-    <target name="processBuildProperties">
-      <echo>username ravi kura :${env.username}</echo>
-    </target>
-
 
     <!-- Test out deploy and retrieve verbs for package 'mypkg' -->
     <target name="test">
