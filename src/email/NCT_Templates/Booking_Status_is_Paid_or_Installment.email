@@ -1,0 +1,65 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>NCT</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body class="courses-screen">
+        <!-- header start here -->
+        <header style=" padding: 12px 10px 8px;">
+            <div style="text-align:center;color:green;">
+               <img class="img-responsive" src="https://nct.org.uk/sites/default/files/nct-landscape-logo-green-grey.png" alt="Home">
+            </div>
+        </header>
+        <!-- header end here -->
+        <section>
+           <!-- Current Course details start here -->
+           <div style="background-color:white;letter-spacing: 0; border-top:4px solid green;">
+                <div class="container">
+                    <div style="padding-top:20px;">
+                        <div class="">
+                          <div class="user_info" style="padding:0px  10px;">
+                                <h2>Dear {!Booking__c.First_Contact__c}</h2>
+
+<div>
+This is to let you know that you have been confirmed to attend the {!Course__c.Course_Name__c} on the {!Course__c.Start_Date__c} at {!Course__c.Venue__c}
+</div>
+
+<p>Please arrive in good time.</p>
+<p>P.S</p>
+This course will be might be subjected to cancellation, for T&C please see www.nct.org.uk for more details
+
+
+<h4>Regards,</h4>
+                                <h4>NCT Team</h4>
+                          </div>
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- footer start here -->
+        <footer style="width:100%;background-color: rgb(242, 242, 244);">
+            <div style="background-color:#52514c;margin: 0;padding: 4px 0 10px;">
+              <div style="text-align: center;">
+                        <div class="footer_subscribe">
+                            <h6 style="color: #c3c5c7;padding:0px">Unsubscribe</h6>
+                            <p style="padding: 0;margin: 0;font-size: 12px;color: #c3c5c7;letter-spacing: 0;">&copy; 2018 NCT, 30 Euston Square,London, NW12FB. </p>
+                            <p style="padding: 0;margin: 0;font-size: 12px;color: #c3c5c7;letter-spacing: 0;">Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</p>
+                        </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer end here -->
+
+    </body>
+</html>

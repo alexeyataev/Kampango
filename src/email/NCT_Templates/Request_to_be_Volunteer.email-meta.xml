@@ -7,4 +7,5 @@
     <style>none</style>
     <subject>Parent want to be volunteer</subject>
     <type>text</type>
+    <uiType>Aloha</uiType>
 </EmailTemplate>

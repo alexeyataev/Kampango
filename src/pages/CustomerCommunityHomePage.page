@@ -1,0 +1,361 @@
+<apex:page applyHtmlTag="true" docType="html-5.0" showHeader="false">  
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />
+    <apex:includeScript value="https://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.min.js"/> 
+     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
+    
+    
+<head>
+    <meta charset="utf-8"/>
+    <title>NCT</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/assets/nct_logo.jpg')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
+    <style>
+       .bg-color{
+background-color:#f1f1f1;
+}
+.border_bottom{
+    border-bottom: 1px solid #eee;
+}
+.parent-home-right-sect{
+    padding-top:10px;
+}
+
+        </style>
+        
+
+</head>
+
+
+<body class="parent-home-screen">
+     <!-- header start here -->
+     <header class="courses-screen-header">
+        
+        <div class="row" >
+          <div class="col-lg-3 header-social-icons">
+              <span>
+                  <a class="header-search-icon"><i class="fa fa-search text-green" aria-hidden="true"></i></a>
+                  <a><i class="fa fa-facebook color-grey" aria-hidden="true"></i></a>
+                  <a><i class="fa fa-twitter color-grey" aria-hidden="true"></i></a>
+                  <a><i class="fa fa-instagram color-grey" aria-hidden="true"></i></a>
+                  <a><i class="fa fa-linkedin color-grey" aria-hidden="true"></i></a>
+              </span>
+          </div>
+          <div class="text-center text-green logo col-lg-6">
+              <image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo2_opt.png')}"  />
+             
+          </div>
+          <div class="col-lg-3 header-right-icons text-right">
+              <span>
+                  <a class="cart-icon"><i class="fa fa-shopping-cart text-green" aria-hidden="true"></i></a>
+                  <a class="user-icon" href="{!$Site.BaseUrl}/apex/UserHome"><i class="fa fa-user text-green" aria-hidden="true"></i></a>
+                  <a class="register-login-btn">Register / Login</a>
+              </span>
+          </div>
+        </div>
+      </header>
+      <!-- header end here -->
+      <!-- nav start here -->
+      <nav class="border_bottom">
+          <ul>
+              <li>
+                  Pregnancy
+              </li>
+              <li>
+                  Labour &amp; birth
+              </li>
+              <li>
+                  Baby &amp; toddler
+              </li>
+              <li>
+                  Life as a parent
+              </li>
+              <li>
+                  Courses &amp; Workshop
+              </li>
+              <li>
+                  Local activites &amp; meet-ups
+              </li>
+              <li>
+                  Get Involved <i class="fa fa-caret-down nav-arrow-down text-green" aria-hidden="true"></i>
+              </li>
+              <li>
+                  About us <i class="fa fa-caret-down nav-arrow-down text-green" aria-hidden="true"></i>
+              </li>
+
+          </ul>
+      </nav>
+      <!-- nav end here -->
+    <section>
+        <div class="container-fluid">
+            <div class="row nomargin ">
+               
+                <div class="col-md-12 col-12 parent-home-right-sect">
+                    <div class="parent-top-img bg-color">
+                         <image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/baby_care.jpg')}" class="img-100percent" />
+                   
+                        <div class="image-content">
+                            <h5>Our Mission</h5>
+                            <h3>Your Dream Home</h3>
+                            <p>Experting a baby </p>
+                            <button class="btn btn-succuss border-radius btn-color"> NCT here to help us</button>
+                            <button class="btn btn-succuss border-radius btn-color"> Contact us</button>
+                        </div>
+                    </div>
+                    <div class="parent-four-imgs bg-color">
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="image_gallery">
+                                   
+                                    <image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/mom-hug.jpg')}" class="img-100percent" />
+                                    <div class="imge_header">
+                                        <p>Antenatal Courses</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="image_gallery">
+                                     <image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/mom_lap.jpg')}" class="img-100percent" />
+                                   
+                                    <div class="imge_header">
+                                        <p>Postnatal Courses</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="image_gallery">
+                                     <image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/mom_kiss.jpg')}" class="img-100percent" />
+                                    
+                                    <div class="imge_header">
+                                        <p>Membership</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="image_gallery">
+                                     <image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/mother_care.jpg')}" class="img-100percent" />
+                                    
+                                    <div class="imge_header">
+                                        <p>AlterNative Service</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <!-- upcoming Course details start here -->
+                        <div class="upcoming-course">
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-8 col-12">
+                                        <h2 class="upcoming-courses-text">Upcoming courses</h2>
+                                        <div class="course-title-details">
+                                            <h5 class="upcoming-course-sbititle">Signature Antenatal course Beverly</h5>
+                                            <div class="upcoming-course-location">at The Church Hall (20th November- 17th December)</div>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                                Ipsum has been the industry's standard dummy text ever since the 1500s, when
+                                                an unknown printer took a galley </p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-12 location-schedule-box">
+                                                <div>
+                                                    <h5>Location</h5>
+                                                    <div>
+                                                        <b>Bright Days Nursery</b> (5 of 7 sessions)
+                                                        <div>Quaker Lane, Woodlands, Beverly, HU178BY</div>
+                                                    </div>
+                                                    <div class="paddingtop40px">
+                                                        <b>Church Hall</b> (2 of sessions)
+                                                        <div>Roos High Road, E Yorks, HU19 2DP</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12 location-schedule-box">
+                                                <div>
+                                                    <h5>Schedule</h5>
+                                                    <ul class="schedule-details">
+                                                        <li>
+                                                            <span class="schedule-number">1</span>
+                                                            <span class="schedule-day">Mon</span>
+                                                            <span class="schedule-date">20 November</span>
+                                                            <span>7:30pm - 9:30pm</span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="schedule-number">2</span>
+                                                            <span class="schedule-day">Mon</span>
+                                                            <span class="schedule-date">27 November</span>
+                                                            <span>7:30pm - 9:30pm</span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="schedule-number">3</span>
+                                                            <span class="schedule-day">Mon</span>
+                                                            <span class="schedule-date">4 December</span>
+                                                            <span>7:30pm - 9:30pm</span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="schedule-number">4</span>
+                                                            <span class="schedule-day">Sat</span>
+                                                            <span class="schedule-date">9 December</span>
+                                                            <span>7:30pm - 9:30pm</span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="schedule-number">5</span>
+                                                            <span class="schedule-day">Mon</span>
+                                                            <span class="schedule-date">11 December</span>
+                                                            <span>7:30pm - 9:30pm</span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="schedule-number">6</span>
+                                                            <span class="schedule-day">Mon</span>
+                                                            <span class="schedule-date">17 December</span>
+                                                            <span>7:30pm - 9:30pm</span>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="happening-nearby courses-border-box marginbottom30px">
+                                            <h5>Happening Nearby</h5>
+                                            <div>
+                                                <ul>
+                                                    <li>
+                                                        <div>13th November</div>
+                                                        <div>Breastfeeding session</div>
+                                                    </li>
+                                                    <li>
+                                                        <div>15th November</div>
+                                                        <div>Nearly New Sale</div>
+                                                    </li>
+                                                    <li>
+                                                        <div>17th November</div>
+                                                        <div>What happens in labour</div>
+                                                    </li>
+                                                </ul>
+                                                <button class="btn btn-succuss border-radius btn-color" onClick="{!$Site.BaseUrl}/apex/CourseBookingSearch"> Search NearBy Courses</button>
+                                            </div>
+                                        </div>
+                                        <div class="courses-intersted courses-border-box">
+                                            <h5>Courses you might be interested in</h5>
+                                            <div>
+                                                <ul>
+                                                    <li>
+                                                        <div class="clearfix">
+                                                            <span>yoga for mums-to-be</span>
+                                                            <span class="pull-right">$10 per class</span>
+                                                        </div>
+                                                        <div>Bright Days Nursery HU17 8BY</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="clearfix">
+                                                            <span>Waterbirth workshop</span>
+                                                            <span class="pull-right">$80 per class</span>
+                                                        </div>
+                                                        <div>Bright Days Nursery HU17 8BY</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- upcoming Course details end here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- footer start here -->
+    <footer>
+        <div class="footer-padding container">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <h6  class="footer-header">Enquires and Feeding Helpline</h6>
+                            <div class="footer-content">
+                                <h6 class="num_color">0300 330 0700 </h6>
+                                <p>For practical and emotional Support in all areas of pregnancy.birth  and parentehood including help with feeding  </p>
+                                <a href="/" class="link-color">See all Costs</a>
+                            </div>
+                        </div>
+        
+                        <div class="col-lg-2">
+                            <h6 class="footer-header">About</h6>
+                            <ul class="footer-List">
+                                <li> <a href="">First 1,000 Days</a> </li>
+                                <li><a href="">Vission, Mission &amp; goal</a> </li>
+                                <li> <a href="">Trustees</a></li>
+                                <li><a href="">Careers</a> </li>
+                                <li><a href="">Contact us</a></li>
+                            </ul>
+                        </div>  
+                        <div class="col-lg-2">
+                            <h6  class="footer-header">News and Views</h6>
+                            <ul class="footer-List">
+                                    <li> <a href="">News</a> </li>
+                                    <li><a href="">Blogs</a> </li>
+                                    <li> <a href="">Forums</a></li>
+                            </ul>
+                        </div>  
+                        <div class="col-lg-2">
+                            <h6  class="footer-header">Support us</h6>
+                            <ul class="footer-List">
+                                    <li> <a href="">Membership</a> </li>
+                                    <li><a href="">Partnership</a> </li>
+                                    <li> <a href="">Fundraising activities </a></li>
+                            </ul>
+                        </div>  
+                        <div class="col-lg-3">
+                            <h6  class="footer-header">Professionals</h6>
+                            <ul class="footer-List">
+                                    <li> <a href="">Breastfeeding peer support training </a> </li>
+                                    <li><a href="">Preparation for birth and beyond antenatal course </a> </li>
+                                    <li> <a href="">training for professionals </a></li>
+                                    <li> <a href="">Diversity and access </a></li>
+                            </ul>
+                        </div>  
+                    </div>
+        </div>
+        <div class="footer_links">
+          <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-12 nopadding">
+                    <ul>
+                        <li> <a href="">Research</a> </li>
+                        <li><a href="">Media</a> </li>
+                        <li> <a href="">Privacy and Cookies </a></li>
+                        <li><a href="">Contact us</a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="footer_address">
+                        <p>&copy; 2018 NCT, 30 Euston Square,London, NW12FB. </p>
+                        <p>Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </footer>
+    <!-- footer end here -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
+</apex:page>

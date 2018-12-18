@@ -9,4 +9,5 @@
     <subject>Alert from Volunteer to De-Registration</subject>
     <textOnly>de-registration from an volunteer</textOnly>
     <type>html</type>
+    <uiType>Aloha</uiType>
 </EmailTemplate>

@@ -106,7 +106,7 @@
         <description>All Events</description>
         <externalId>false</externalId>
         <label>Event Name</label>
-        <referenceTo>Events__c</referenceTo>
+        <referenceTo>Event__c</referenceTo>
         <relationshipName>Events_Bookings</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
@@ -130,14 +130,17 @@
                 <value>
                     <fullName>Platinum -£750</fullName>
                     <default>false</default>
+                    <label>Platinum -£750</label>
                 </value>
                 <value>
                     <fullName>Gold -£500</fullName>
                     <default>false</default>
+                    <label>Gold -£500</label>
                 </value>
                 <value>
                     <fullName>Silver -£350</fullName>
                     <default>false</default>
+                    <label>Silver -£350</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -170,18 +173,22 @@
                 <value>
                     <fullName>Debit/Credit Card</fullName>
                     <default>false</default>
+                    <label>Debit/Credit Card</label>
                 </value>
                 <value>
                     <fullName>Net Banking</fullName>
                     <default>false</default>
+                    <label>Net Banking</label>
                 </value>
                 <value>
                     <fullName>Cash</fullName>
                     <default>false</default>
+                    <label>Cash</label>
                 </value>
                 <value>
                     <fullName>Cheque</fullName>
                     <default>false</default>
+                    <label>Cheque</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -207,4 +214,5 @@
     <pluralLabel>Event Booking</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

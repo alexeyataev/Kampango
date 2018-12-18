@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Contact_Type__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Contact Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Individual</fullName>
+                    <default>false</default>
+                    <label>Individual</label>
+                </value>
+                <value>
+                    <fullName>Joint</fullName>
+                    <default>false</default>
+                    <label>Joint</label>
+                </value>
+                <value>
+                    <fullName>Practitioner</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Practitioner</label>
+                </value>
+                <value>
+                    <fullName>Volunteer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Volunteer</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ET_Specific__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>ET Specific</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Eligible_for_Gift_Aid__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Eligible for Gift Aid</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>GiftAid_Acquisition_Method__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>GiftAid Acquisition Method</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Oral</fullName>
+                    <default>false</default>
+                    <label>Oral</label>
+                </value>
+                <value>
+                    <fullName>Digital</fullName>
+                    <default>false</default>
+                    <label>Digital</label>
+                </value>
+                <value>
+                    <fullName>Written</fullName>
+                    <default>false</default>
+                    <label>Written</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>GiftAid_Processor__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>GiftAid Processor</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>PaymentHub-GiftAid</fullName>
+                    <default>false</default>
+                    <label>PaymentHub-GiftAid</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>GiftAid_Target__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>GiftAid Target</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>NCT Giftaid</fullName>
+                    <default>false</default>
+                    <label>NCT Giftaid</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>GiftAid_Type__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>GiftAid Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Ongoing</fullName>
+                    <default>false</default>
+                    <label>Ongoing</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Installment_Amount__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Installment Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Installment_Period__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Installment Period</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Monthly</fullName>
+                    <default>false</default>
+                    <label>Monthly</label>
+                </value>
+                <value>
+                    <fullName>Quarterly</fullName>
+                    <default>false</default>
+                    <label>Quarterly</label>
+                </value>
+                <value>
+                    <fullName>Yearly</fullName>
+                    <default>false</default>
+                    <label>Yearly</label>
+                </value>
+                <value>
+                    <fullName>Weekly</fullName>
+                    <default>false</default>
+                    <label>Weekly</label>
+                </value>
+                <value>
+                    <fullName>1st and 15th</fullName>
+                    <default>false</default>
+                    <label>1st and 15th</label>
+                </value>
+                <value>
+                    <fullName>99 Years</fullName>
+                    <default>false</default>
+                    <label>99 Years</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Membership__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Membership</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>18 month membership</fullName>
+                    <default>false</default>
+                    <label>18 month membership</label>
+                </value>
+                <value>
+                    <fullName>12 month membership</fullName>
+                    <default>false</default>
+                    <label>12 month membership</label>
+                </value>
+                <value>
+                    <fullName>Reduced 12 month membership</fullName>
+                    <default>false</default>
+                    <label>Reduced 12 month membership</label>
+                </value>
+                <value>
+                    <fullName>4 year membership</fullName>
+                    <default>false</default>
+                    <label>4 year membership</label>
+                </value>
+                <value>
+                    <fullName>10 year membership</fullName>
+                    <default>false</default>
+                    <label>10 year membership</label>
+                </value>
+                <value>
+                    <fullName>Life Membership</fullName>
+                    <default>false</default>
+                    <label>Life Membership</label>
+                </value>
+                <value>
+                    <fullName>Staff Membership</fullName>
+                    <default>false</default>
+                    <label>Staff Membership</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>No_of_Installments__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>No. of Installments</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Payment_Method__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Payment Method</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Credit/Debit Card</fullName>
+                    <default>false</default>
+                    <label>Credit/Debit Card</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit</fullName>
+                    <default>false</default>
+                    <label>Direct Debit</label>
+                </value>
+                <value>
+                    <fullName>GiftAid</fullName>
+                    <default>false</default>
+                    <label>GiftAid</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Payment_Processor__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Payment Processor</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>PaymentHub-BACS</fullName>
+                    <default>false</default>
+                    <label>PaymentHub-BACS</label>
+                </value>
+                <value>
+                    <fullName>PaymentHub-Stripe</fullName>
+                    <default>false</default>
+                    <label>PaymentHub-Stripe</label>
+                </value>
+                <value>
+                    <fullName>PaymentHub-WorldPay</fullName>
+                    <default>false</default>
+                    <label>PaymentHub-WorldPay</label>
+                </value>
+                <value>
+                    <fullName>PaymentHub-GiftAid</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>PaymentHub-GiftAid</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Payment_Target__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Payment Target</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>NCT Membership Collections - S18</fullName>
+                    <default>false</default>
+                    <label>NCT Membership Collections - S18</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Payment_Type__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Payment Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Credit/Debit Card (£57)</fullName>
+                    <default>false</default>
+                    <label>Credit/Debit Card (£57)</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit (£9.50 per quarter)</fullName>
+                    <default>false</default>
+                    <label>Direct Debit (£9.50 per quarter)</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit (£57)</fullName>
+                    <default>false</default>
+                    <label>Direct Debit (£57)</label>
+                </value>
+                <value>
+                    <fullName>Credit/Debit Card (£48)</fullName>
+                    <default>false</default>
+                    <label>Credit/Debit Card (£48)</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit (£12 per quarter)</fullName>
+                    <default>false</default>
+                    <label>Direct Debit (£12 per quarter)</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit (£48)</fullName>
+                    <default>false</default>
+                    <label>Direct Debit (£48)</label>
+                </value>
+                <value>
+                    <fullName>Credit/Debit Card (£10)</fullName>
+                    <default>false</default>
+                    <label>Credit/Debit Card (£10)</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit (£2.50 per quarter)</fullName>
+                    <default>false</default>
+                    <label>Direct Debit (£2.50 per quarter)</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit (£10)</fullName>
+                    <default>false</default>
+                    <label>Direct Debit (£10)</label>
+                </value>
+                <value>
+                    <fullName>Credit/Debit Card (£120)</fullName>
+                    <default>false</default>
+                    <label>Credit/Debit Card (£120)</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit (£120)</fullName>
+                    <default>false</default>
+                    <label>Direct Debit (£120)</label>
+                </value>
+                <value>
+                    <fullName>Credit/Debit Card (£250)</fullName>
+                    <default>false</default>
+                    <label>Credit/Debit Card (£250)</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit (£250)</fullName>
+                    <default>false</default>
+                    <label>Direct Debit (£250)</label>
+                </value>
+                <value>
+                    <fullName>Credit/Debit Card (£26)</fullName>
+                    <default>false</default>
+                    <label>Credit/Debit Card (£26)</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit (£26)</fullName>
+                    <default>false</default>
+                    <label>Direct Debit (£26)</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit (£6.50 per quarter)</fullName>
+                    <default>false</default>
+                    <label>Direct Debit (£6.50 per quarter)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Recursive__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Recursive</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Target_Customer__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Target Customer</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Volunteer/Practitioner</fullName>
+                    <default>false</default>
+                    <label>Volunteer/Practitioner</label>
+                </value>
+                <value>
+                    <fullName>Parent on benefits</fullName>
+                    <default>false</default>
+                    <label>Parent on benefits</label>
+                </value>
+                <value>
+                    <fullName>Staff only</fullName>
+                    <default>false</default>
+                    <label>Staff only</label>
+                </value>
+                <value>
+                    <fullName>Parent</fullName>
+                    <default>false</default>
+                    <label>Parent</label>
+                </value>
+                <value>
+                    <fullName>Parent, Companion</fullName>
+                    <default>false</default>
+                    <label>Parent, Companion</label>
+                </value>
+                <value>
+                    <fullName>Volunteer</fullName>
+                    <default>false</default>
+                    <label>Volunteer</label>
+                </value>
+                <value>
+                    <fullName>Practitioner</fullName>
+                    <default>false</default>
+                    <label>Practitioner</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Total_Amount__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Total Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Membership Type</label>
+    <pluralLabel>Membership Types</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

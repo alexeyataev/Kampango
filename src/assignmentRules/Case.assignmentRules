@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <assignmentRule>
-        <fullName>Request to be a volunteer</fullName>
+        <fullName>Enquiries Team</fullName>
         <active>true</active>
         <ruleEntry>
-            <assignedTo>Branch_Queue</assignedTo>
-            <assignedToType>Queue</assignedToType>
-            <criteriaItems>
-                <field>Case.Subject</field>
-                <operation>notEqual</operation>
-                <value>null</value>
-            </criteriaItems>
-            <template>NCT_Templates/Request_to_be_Volunteer</template>
-        </ruleEntry>
-    </assignmentRule>
-    <assignmentRule>
-        <fullName>Volunteer raise for de-registration</fullName>
-        <active>false</active>
-        <ruleEntry>
-            <assignedTo>Branch_Queue</assignedTo>
+            <assignedTo>Booking_Enquiry</assignedTo>
             <assignedToType>Queue</assignedToType>
             <criteriaItems>
                 <field>Case.Reason</field>
                 <operation>equals</operation>
-                <value>Volunteer De-Registration</value>
+                <value>Enquiry</value>
             </criteriaItems>
-            <template>GW_Volunteers__Volunteers_Email_Templates/Volunteer_de_register</template>
+            <template>NCT_Templates/Booking_Enquiry_Case_Queue_Confirmation</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Enquiries_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <template>NCT_Templates/Case</template>
         </ruleEntry>
     </assignmentRule>
 </AssignmentRules>

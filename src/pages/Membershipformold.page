@@ -1,0 +1,638 @@
+<apex:page >
+
+<head>
+    <meta charset="utf-8" />
+    <title>NCT</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--<link rel="icon" type="image/png" href="assets/nct_logo.jpg" />-->
+        <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
+</head>
+
+<body class="membership-details-screen">
+    <!-- header start here -->
+    
+    <header class="courses-screen-header">
+        <div class="row">
+            <div class="col-lg-3 header-social-icons">
+                <span>
+                    <a class="header-search-icon">
+                        <i class="fa fa-search text-green" aria-hidden="true"></i>
+                    </a>
+                    <a>
+                        <i class="fa fa-facebook color-grey" aria-hidden="true"></i>
+                    </a>
+                    <a>
+                        <i class="fa fa-twitter color-grey" aria-hidden="true"></i>
+                    </a>
+                    <a>
+                        <i class="fa fa-instagram color-grey" aria-hidden="true"></i>
+                    </a>
+                    <a>
+                        <i class="fa fa-linkedin color-grey" aria-hidden="true"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="text-center text-green logo col-lg-6">
+                 <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo2_opt.png')}" />
+                <!--<img src="nct-app/assets/nct_logo2_opt.png" />-->
+            </div>
+            <div class="col-lg-3 header-right-icons text-right">
+                <span>
+                    <a class="cart-icon">
+                        <i class="fa fa-shopping-cart text-green" aria-hidden="true"></i>
+                    </a>
+                    <a class="user-icon">
+                        <i class="fa fa-user text-green" aria-hidden="true"></i>
+                    </a>
+                    <a class="register-login-btn">Register / Login</a>
+                </span>
+            </div>
+        </div>
+    </header>
+    <!-- header end here -->
+    <!-- nav start here -->
+    <nav>
+        <ul>
+            <li>
+                Pregnancy
+            </li>
+            <li>
+                Labour &amp; birth
+            </li>
+            <li>
+                Baby &amp; toddler
+            </li>
+            <li>
+                Life as a parent
+            </li>
+            <li>
+                Courses &amp; Workshop
+            </li>
+            <li>
+                Local activites &amp; meet-ups
+            </li>
+            <li>
+                Get Involved
+                <i class="fa fa-caret-down nav-arrow-down text-green" aria-hidden="true"></i>
+            </li>
+            <li>
+                About us
+                <i class="fa fa-caret-down nav-arrow-down text-green" aria-hidden="true"></i>
+            </li>
+        </ul>
+    </nav>
+    <!-- nav end here -->
+    <section>
+
+        <div class="membership-added-box">
+            <div class="container">
+                12 months NCT membership has been added to your basket
+            </div>
+        </div>
+        <div class="membership-details container">
+            <div class="row"> 
+                <div class="col-12">
+                    <div id="tabs">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a data-toggle="tab" href="#register">1. Register</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#your-basket">2. Your basket</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#payment">3. Payment</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#confirmation">4. Confirmation</a>
+                            </li>
+                        </ul>
+                        <form>
+                        <div class="tab-content">
+                            <div id="register" class="tab-pane fade in active show">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                    <h3>Membership details</h3>
+                                    <p>Membership covers up to two people at one address.</p>
+                                    <p>Please confirm the personal details for the membership below.</p>
+                                    <!-- Membership person 1 details start here-->
+                                    <div class="membership-line"></div>
+                                    <div class="membership-person-details">
+                                        <h5>Person One</h5>
+                                        <div class="light-orange-color required-fields-text">*Required fields </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div><label><sup class="light-orange-color">*</sup>Title</label></div>
+                                                <select class="form-fields membership-fields">
+                                                    <option>Mrs</option>
+                                                    <option>Mr</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div><label><sup class="light-orange-color">*</sup>First Name</label></div>
+                                                <input type="text" class="form-fields membership-fields" placeholder="First Name" />
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div><label><sup class="light-orange-color">*</sup>Last Name</label></div>
+                                                <input type="text" class="form-fields membership-fields" placeholder="Last Name" />
+                                            </div>
+                                        </div>
+                                        <div class="row paddingbot10px">
+                                            <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your Gender</label></div>
+                                            <div class="col-md-3">
+                                                <span class="checkbox-span">
+                                                    <div class="squaredThree" style="margin-left:10px;">
+                                                        <input value="female" type="radio" class="radio" name="gender" />
+                                                        <label for="female"></label><span class="span-label">Female</span>
+                                                    </div>
+                                                 </span>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <span class="checkbox-span">
+                                                    <div class="squaredThree" style="margin-left:10px;">
+                                                        <input value="male" type="radio" class="radio" name="gender" />
+                                                        <label for="male"></label><span class="span-label">Male</span>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row">   
+                                                <div class="col-md-12 col-12">
+                                                    <div><label><sup class="light-orange-color">*</sup>Email Address</label></div>
+                                                    <input type="email" class="form-fields membership-fields" placeholder="Email address" />
+                                                </div>
+                                            </div>
+                                        <div class="row">   
+                                            <div class="col-md-12 col-12">
+                                                <div><label><sup class="light-orange-color">*</sup>Phone Number</label></div>
+                                                <input type="number" class="form-fields membership-fields" placeholder="Phone number" />
+                                            </div>
+                                        </div>
+                                        <div class="row">   
+                                            <div class="col-12"><label><sup class="light-orange-color">*</sup>Postcode</label></div>
+                                            <div class="col-md-8 col-12">
+                                                <!--<input type="number"class="form-fields membership-fields" placeholder="Postcode"/> -->
+                                            </div>
+                                            <div class="col-md-4 col-12">
+                                                <button type="button" class="green-button nomargin form-fields">Find address</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Membership person 1 details end here-->
+                                    <div class="membership-line"></div>
+                                    <!-- Membership person 2 details start here-->
+                                    <div class="membership-person-details">
+                                            <h5>
+                                                Person Two <a class="remove text-light-green">(Remove)</a>
+                                                <a class="clear text-light-green">(Clear)</a>
+                                            </h5>
+                                            <div class="light-orange-color required-fields-text">*Required fields </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div><label><sup class="light-orange-color">*</sup>Title</label></div>
+                                                    <select class="form-fields membership-fields">
+                                                        <option>Mrs</option>
+                                                        <option>Mr</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div><label><sup class="light-orange-color">*</sup>First Name</label></div>
+                                                    <input type="text" class="form-fields membership-fields" placeholder="First Name" />
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div><label><sup class="light-orange-color">*</sup>Last Name</label></div>
+                                                    <input type="text" class="form-fields membership-fields" placeholder="Last Name" />
+                                                </div>
+                                            </div>
+                                            <div class="row">   
+                                                    <div class="col-md-12 col-12">
+                                                        <div><label><sup class="light-orange-color">*</sup>Email Address</label></div>
+                                                        <input type="email" class="form-fields membership-fields" placeholder="Email address" />
+                                                    </div>
+                                                </div>
+                                            <div class="row">   
+                                                <div class="col-md-12 col-12">
+                                                    <div><label><sup class="light-orange-color">*</sup>Phone Number</label></div>
+                                                    <input type="number" class="form-fields membership-fields" placeholder="Phone number" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5 col-12">
+                                                    <button type="button" class="green-button nomargin form-fields">Confirm Membership details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- Membership person2 details end here -->
+                                    </div>
+                                    <div class="col-md-1 col-12"></div>
+                                    <div class="col-md-3 col-12">
+                                        <div class="happening-nearby courses-border-box">
+                                            <h5>Your Basket</h5>
+                                            <div>
+                                                <ul>
+                                                    <li>
+                                                        <div>antenatal course Beverly</div>
+                                                        <h6>&#163;367</h6>
+                                                        <div>
+                                                            <a class="remove text-light-green text-decoration-none">Remove</a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div>12 month membership</div>
+                                                        <h6>&#163;48</h6>
+                                                        <div>
+                                                            <a class="remove text-light-green text-decoration-none">Remove</a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <h5>&#163;415</h5>
+                                                        <h6>&#163;367</h6>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="your-basket" class="tab-pane fade">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="course-title-details">
+                                            <h5 class="clearfix">Antenatal course Beverly <span class="pull-right">&#163;367</span></h5>
+                                            <div class="upcoming-course-location">at The Church Hall (21st May - 5th July)</div>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                                                    when an unknown printer took a galley </p>
+                                            <div>
+                                                <a class="remove text-light-green text-decoration-none">Remove</a>
+                                            </div>
+                                        </div>
+                                        <div class="membership-line"></div>
+                                        <div class="course-title-details">
+                                            <h5 class="clearfix">NCT membership<span class="pull-right">&#163;48</span></h5>
+                                            <div class="upcoming-course-location">12 months</div>
+                                            <div>
+                                                <a class="remove text-light-green text-decoration-none">Remove</a>
+                                            </div>
+                                        </div>
+                                        <div class="membership-line"></div>
+                                        <div>
+                                            <h2 class="clearfix basket-total-row">
+                                                <span class="pull-left">Total</span>
+                                                <span class="pull-right">&#163;415</span>
+                                            </h2>
+                                        </div>
+                                        <div class="text-right clearfix row nomargin">
+                                            <span class="col-md-3"></span>
+                                            <span class="col-md-5">Enter promotional code</span>
+                                            <span class="col-md-4 nopadding"><input type="text" class="form-fields membership-fields" /></span>
+                                        </div>
+                                        <div class="row nomargin">
+                                            <div class="col-md-9"></div>
+                                            <button class="green-button form-fields col-md-3">Pay Now</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1 col-12"></div>
+                                    <div class="col-md-3 col-12">
+                                        <div class="happening-nearby courses-border-box">
+                                            <h5>People also attend</h5>
+                                            <div>
+                                                <ul>
+                                                    <li>
+                                                        <div>Yoga for mums-to-be</div>
+                                                        <h6>&#163;10 per class</h6>
+                                                        <div>
+                                                            <a class="remove text-light-green text-decoration-none">Add</a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div>Waterbirth workshop</div>
+                                                        <h6>&#163;80</h6>
+                                                        <div>
+                                                            <a class="remove text-light-green text-decoration-none">Add</a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="payment" class="tab-pane fade">
+                                <div class="row">
+                                        <div class="col-md-7">
+                                            <div class="paddingtop20px paddingbot20px">
+                                                <h2>Payment details</h2>
+                                            </div>
+                                            <div class="membership-line"></div>
+                                            <div class="paddingtop20px paddingbot20px">
+                                                <p>(Card details)</p>
+                                                <p>(Billing Details)</p>
+                                            </div>
+                                            <div class="membership-line"></div>
+                                            <div class="paddingtop20px paddingbot20px">
+                                                <h5>Would you like to add Gift Aid?</h5>
+                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                                                 when an unknown printer took a galley </p>
+                                            </div>
+                                            <div>
+                                                <span class="checkbox-span">
+                                                    <div class="squaredThree" style="margin-left:10px;">
+                                                        <input value="male" type="radio" class="radio" name="gender" />
+                                                        <label for="male"></label><span class="span-label"><b>Yes, add Gift Aid</b></span>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                            <div class="row nomargin">
+                                                <button class="green-button form-fields col-md-3">Pay now</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 col-12"></div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="happening-nearby courses-border-box">
+                                                <h5>Summary</h5>
+                                                <div>
+                                                    <ul>
+                                                        <li>
+                                                            <div>antenatal course Beverly</div>
+                                                            <h6>&#163;367</h6>
+                                                            <div>
+                                                                <a class="remove text-light-green text-decoration-none">Remove</a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div>12 month membership</div>
+                                                            <h6>&#163;48</h6>
+                                                            <div>
+                                                                <a class="remove text-light-green text-decoration-none">Remove</a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <h5>Total</h5>
+                                                            <h6>&#163;367</h6>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div id="confirmation" class="tab-pane fade">
+                                <div class="row">
+                                    <div class="col-md-7 col-12">
+                                        <h2 class="paddingtop20px">Congratulations,</h2>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                                        when an unknown printer took a galley </p>
+                                        <p>Complete your account set up by creating a password below:</p>
+                                        <div class="row">
+                                            <div class="col-md-4">Create Password</div>
+                                            <div class="col-md-6 nopadding">
+                                                <input type="password" class="form-fields membership-fields" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">Confirm Password</div>
+                                            <div class="col-md-6 nopadding">
+                                                <input type="password" class="form-fields membership-fields" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6"></div>
+                                            <button class="green-button form-fields col-md-4">Create Password</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1 col-12"></div>
+                                    <div class="col-md-4 col-12">
+                                        <h2>Your Purchases</h2>
+                                        <h5>Antenatal course Beverly</h5>
+                                        <div class="paddingbot20px">at The Church Hall (21st May - 5th July)</div>
+                                        <h5 class="paddingtop20px">NCT Membership</h5>
+                                        <div class="paddingbot20px">12 months</div>
+                                        <div>
+                                            <hr/>
+                                        </div>
+                                        <h5>Share with friends</h5>
+                                        <div class="membership-social-icons">
+                                            <a><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                                            <a><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                            <a><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                            <a><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                            <a><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- singup form fields start here -->
+    <section>
+    <div>
+        <form>
+            <div class="singup-form-fields">
+                <div class="container">
+                    <div class="text-center signup-title-text">Sign up now for NCT's exclusive Pregnancy &amp; Baby Guide</div>
+                    <div class="row">
+                        <div class="col-md-3 col-12">
+                            <input type="text" class="form-field" placeholder="First Name..." />
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <input type="text" class="form-field" placeholder="Last Name..." />
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <input type="email" class="form-field" placeholder="Email..." />
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <input type="number" class="form-field" placeholder="Mobile..." />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-12">
+                            <input type="password" class="form-field" placeholder="Password..." />
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <input type="password" class="form-field" placeholder="Confirm Password..." />
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <input type="number" class="form-field" placeholder="Postal Code..." />
+                        </div>
+                    </div>
+                    <div class="row radio-fields-row">
+                        <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
+                        <div class="col-12 radio-fields-col">
+                            <span>
+                                <input type="checkbox" name="contact" value="email" />Email</span>
+                            <span>
+                                <input type="checkbox" name="contact" value="sms" />SMS Text</span>
+                            <span>
+                                <input type="checkbox" name="contact" value="post" />Post</span>
+                            <span>
+                                <input type="checkbox" name="contact" value="telephone" />Telephone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- privacy statement start here -->
+            <div class="privacy-statement">
+                <div class="container">
+                    <div class="privacy-statement-title">
+                        Privacy statement
+                    </div>
+                    <p>NCT would like to keep in touch with you about our services, support, events, campaings and fundraising.
+                        We'll only contact you in the ways you want, and we'll keep your information safe. Our priuvacy policy
+                        has full details of how we use personal data
+                        <a href="https://www.nct.org.uk/privacy" class="underlink" target="_open">https://www.nct.org.uk/privacy</a>
+                    </p>
+                    <div class="agree-statement-row">
+                        <input type="checkbox" /> I have read and unserdstand/agree with our websites Terms and Conditions.
+                    </div>
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <!-- privacy statement end here -->
+        </form>
+    </div>
+    <!-- singup form fields end here -->
+    </section>
+    <!-- footer start here -->
+    <footer>
+        <div class="footer-padding container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h6 class="footer-header">Enquires and Feeding Helpline</h6>
+                    <div class="footer-content">
+                        <h6 class="num_color">0300 330 0700 </h6>
+                        <p>For practical and emotional Support in all areas of pregnancy.birth and parentehood including help
+                            with feeding </p>
+                        <a href="/" class="link-color">See all Costs</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <h6 class="footer-header">About</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="">First 1,000 Days</a>
+                        </li>
+                        <li>
+                            <a href="">Vission, Mission &amp; goal</a>
+                        </li>
+                        <li>
+                            <a href="">Trustees</a>
+                        </li>
+                        <li>
+                            <a href="">Careers</a>
+                        </li>
+                        <li>
+                            <a href="">Contact us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="footer-header">News and Views</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="">News</a>
+                        </li>
+                        <li>
+                            <a href="">Blogs</a>
+                        </li>
+                        <li>
+                            <a href="">Forums</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="footer-header">Support us</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="">Membership</a>
+                        </li>
+                        <li>
+                            <a href="">Partnership</a>
+                        </li>
+                        <li>
+                            <a href="">Fundraising activities </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="footer-header">Professionals</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="">Breastfeeding peer support training </a>
+                        </li>
+                        <li>
+                            <a href="">Preparation for birth and beyond antenatal course </a>
+                        </li>
+                        <li>
+                            <a href="">training for professionals </a>
+                        </li>
+                        <li>
+                            <a href="">Diversity and access </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer_links">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-12 nopadding">
+                        <ul>
+                            <li>
+                                <a href="">Research</a>
+                            </li>
+                            <li>
+                                <a href="">Media</a>
+                            </li>
+                            <li>
+                                <a href="">Privacy and Cookies </a>
+                            </li>
+                            <li>
+                                <a href="">Contact us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="footer_address">
+                            <p>&copy; 2018 NCT, 30 Euston Square,London, NW12FB. </p>
+                            <p>Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end here -->
+    <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
+    <script>
+        $(document).ready(function(){
+            $('.nav-tabs li').on('click', function(){
+                $('.nav-tabs li').removeClass('active');
+                $(this).addClass('active');
+            })
+            $(function(){
+          // You used .myCarousel here. 
+          // That's the class selector not the id selector,
+          // which is #myCarousel
+          $('#myCarousel').carousel();
+        });
+        });
+    </script>
+</body>
+
+</apex:page>

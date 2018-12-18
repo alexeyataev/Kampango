@@ -1,6 +1,6 @@
 Hello {!Contact.FirstName},
 
-We have reserved a place for you on the {!Course__c.Description__c} course starting on {!Course__c.Start_Date__c}.
+We have reserved a place for you on the {!Course__c.Description__c} course starting on {!Course__c.00N0Y00000B7Ovf}.
 
 Please click the link below to confirm and pay for your place on the course.
 

@@ -1,504 +1,261 @@
-<apex:page showHeader="false" controller="ParentCommunitySelfRegController" title="{!$Label.site.user_registration}" standardStylesheets="false" applyHtmlTag="true" docType="html-5.0">    
-    <apex:define name="body">  
-    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />
-     
-    <apex:includeScript value="https://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.min.js"/>
- 	<apex:pageMessages id="error"/>
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false" id="Parent" controller="ParentCommunitySelfRegController" title="{!$Label.site.user_registration}" applyHtmlTag="true" docType="html-5.0"> 
+    <apex:pageMessages id="error"/>
     
-   
+    <!--<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />
+    <apex:includeScript value="https://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.min.js"/> -->
     <head>
-<title>NCT Parent Registration Page</title>
         <meta charset="utf-8" />
+        <title>NCT Parent Registration Page</title>
+        <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo.jpg')}" /> -->
+        <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
+        <apex:stylesheet value="{!URLFOR('https://jqueryvalidation.org/files/demo/site-demos.css')}"/>
         
-
-<style>
-* {
-    box-sizing: border-box;
-    background-color:#E6FFF7;
-    
-}
-
-body {
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  border: 2px solid #02846b;
-}
-.error{
-    width:50%;
-    font-weight:600;
-    color:#900;
-    padding:2px;
-    z-index:1;
-    font-style:inherit;
-    font-size:12px;
-    }
-/* Style the header */
-.header {
-    /*background-color: #f1f1f1;*/
-    padding: 0.3%;
-    
-    height: 120px;
-    text-align: center;
-    border-bottom: 2px solid lightgrey;
-}
-.columnheaderleft{
-    
-    width: 20%;
-    padding: 15px;
-    align: left;
-}
-.columnheaderright{
-    float: center;
-    width: 80%;
-    padding: 15px;
-    align: center;
-}
-.errors{
-    width:100%;
-    Height:5%;
-    
-    padding-left:20px;
-}
-/* Create three equal columns that floats next to each other */
-
-.column {
-    float: left;
-    width: 50%;
-    padding: 15px;
-    /* border: 0.5px solid lightgrey;*/
-}
-
-.column1 {
-    float: left;
-    width: 50%;
-    padding: 15px;
-    /*border: 0.5px solid lightgrey;*/
-    
-}
-.column2 {
-    float: left;
-    width: 30%;
-    padding: 15px;
-    /*border: 0.5px solid lightgrey;*/
-    
-}
-
-.columnsubmit1{
-    float: left;
-    width: 40%;
-    padding: 15px;
-}
-.columnsubmit2{
-    float: left;
-    width: 60%;
-    height: 10%;
-    padding: 5px;
-    align : center;
-    
-}    
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-.textcolor{
-   color: #02846b;
-    font-color: #02846b;
-}
-.form1{
-    width:80%;
-}
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width:600px) {
-    .column .column1 .column2 .column3 .column4 .column5{
-        width: 100%;
-    }
-}
-    /* Style the footer */
-.footer {
-    /*background-color: #f1f1f1;*/
-    padding: 0px;
-    padding-top: 50px;
-    font-size: 13px;
-    padding-bottom: 1em;
-    height:130px;
-    text-align: center;
-    border-top: 2px solid lightgrey;
-}
-.overflow{
-    overflow: hidden;   
-}
-</style>
-</head>
-<body>
-    <!--<apex:pageMessages id="error"/>-->
-
-<div class="header">
-  <div class="columnheaderleft">
-    <div style="width:20px;padding-top: 0px; padding-left: 10px;float:left; background-color:#E6FFF7" id="row1,col1" >
-                            <apex:image value="{!$Resource.NCTHeader1}" width="200" height="80" />                       
-    </div>
-  </div>
-  <div class="columnheaderright" style="padding-top: 0px; background-color:#E6FFF8;">
-      
-  <h1 style="text-align:center;font-size:26px;color:#0D8563;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NCT Parent Registration Form</h1>
-    
-  </div>
-  
-</div>
-
-
-
-<div class="row">
- 
-  <!--<apex:pageMessages id="error"/>-->
-  <center>
-  <div class="column">
-    
-   
-      <apex:image value="{!$Resource.NCTsidepanel}" width="550" height="335"/>
-  </div>
-  </center>
-    
-  <div class="column1">
-    <apex:pageBlock >
-    <apex:form id="PCSP" forceSSL="true" style="border-style:bold;">
-
-    
-    <apex:panelGrid columns="2" style="margin-top:1em;padding-top: 0px;padding-right: 5px;">
-          
-                 
-        <apex:outputLabel value="First Name" for="firstName" style="font-style:normal;font-size:11px;color:#0D8563; font-weight: bold !important;width:80%;"  />
-         <apex:inputText id="FirstName" value="{!firstName}" label="firstName" size="30" style="width:80%;
-                    box-sizing: border-box;
-                    border: 0.6px solid #0D8563;
-                    border-radius: 5px;                                                                                  
-                    font-size: 11px;                                                                             
-                    background-color: #D1F2EB;
-                    background-image: url('smiley.gif');
-                    background-position: 10px 10px; 
-                    background-repeat: no-repeat;                                                                                  
-                    padding: 8px 0px 8px 10px;"/>
-                   
-                <!--<apex:outputLabel value="Address Line1" for="street" style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;padding-left:5px;width:80%;"/>
-                        <apex:inputText required="false" id="Street" value="{!street}" label="Street" style="width:80%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 11px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 8px 10px;"/>-->
-                              
-                 <apex:outputLabel value="Last Name *" for="lastName" style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;width:80%;"/>
-                  <apex:inputText id="LastName" value="{!lastName}" label="Last Name" size="30" style="width:80%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 11px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 8px 10px;"/> 
-                         
-                     
-                    <!-- <apex:outputLabel value="Address Line2" for="address" style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;padding-left:5px;width:80%;"/>
-                        <apex:inputText required="false" id="Address" value="{!address}" label="address" style="width:80%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 11px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 8px 10px;"/> -->
-                      <!--<apex:outputLabel value="Username" for="Username" rendered="true" style="font-style:bold;font-size:15px;color:#0D8563;"/>
-                        <apex:inputText required="true" id="Username" value="{!Username}" label="Username" style="width: 90%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 0px 20px 12px 15px;"/> -->
+        <style>
+        td {padding-right: 7px;}
+        .error>div{
+            position: absolute;
+            bottom: 7px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .no-border{
+            border:none !important;
+         }
+        .white-bg{
+         background:#ffffff !important;
+            }
+          .checkbox-controls label{
+            float:none !important;
+           }
+        </style>
+        
+    </head>
+    <body class="signup-screen">
+       <!--src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' -->
+       <!--src='https://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.min.js' />-->
+        <script type='text/javascript' src='https://code.jquery.com/jquery-1.11.1.min.js' />
+        
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+        <!-- header start here -->
+        <header style="height:90px;padding-top:0px;">
+          <div class="text-center text-green logo">
+            <image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo2_opt.png')}" />
+          </div>
+          <div class="header-title-text text-center text-green" style="padding-top:0px;">NCT Parent Registration Form</div>
+        </header>
+        <!-- header end here -->
+        <section>
+          <!-- singup big image start here -->
+          <div class="signup-big-image">
+              <apex:image value="{!$Resource.signupimage}" styleclass="img-100percent" style="height:400px;" />
+              <!--<image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/SignupImage.png')}" class="img-100percent"  style="height:400px;" />-->
+          </div>
+          <!-- singup big image end here -->
+          <!-- singup form fields start here -->
+          <div>
+            <apex:form id="PCSP" forceSSL="true" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }">
+              <div class="singup-form-fields">
+                <div class="container">
+                  <div class="text-center signup-title-text">Sign up now for NCT's exclusive Pregnancy &amp; Baby Guide</div>
+                  <div class="row">
+                    <div class="col-md-3 col-12">
+                        <apex:input type="text" styleClass="form-field" id="FirstName" value="{!firstName}" html-placeholder="First Name" />
+                    </div>
+                    <div class="col-md-3 col-12">
                       
-                      <!--<apex:outputLabel value="{!$Label.site.community_nickname}" for="communityNickname" style="font-style:bold;font-size:15px;color:#0D8563;"/>
-                      <apex:inputText required="true" id="communityNickname" value="{!communityNickname}" label="{!$Label.site.community_nickname}" style="font-size:15px;width: 90%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 0px 20px 12px 15px;"/> -->
-                     
-        <apex:outputLabel value="Mobile" for="Mobile" rendered="true" style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;width:80%;"/>
-                        <apex:inputText id="Phone" value="{!phone}" label="Phone" size="30" style="width:80%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 11px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 8px 10px;"/>
-       <!--<apex:outputLabel value="City" for="city" style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;padding-left:5px;width:80%;"/>
-                        <apex:inputText required="false" id="City" value="{!city}" label="City" style="width:80%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 11px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 8px 10px;"/> -->
-                                   
-        
-                      <apex:outputLabel value="{!$Label.site.email} *" for="email" style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;width:80%;"/>
-                      <apex:inputText id="Email" value="{!email}" label="{!$Label.site.email}" size="30" style="width:80%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 11px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 8px 10px;" />
-                    
-        
-            <!-- <apex:outputLabel value="State" for="state" style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;padding-left:5px;width:80%;"/>
-                        <apex:inputText required="false" id="state" value="{!state}" label="State/Province" size="30"  style="width:80%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 11px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 8px 10px;"/> -->
-
-                      <!--<apex:outputLabel value="User Name" for="userName" style="font-style:bold;font-size:15px;color:#0D8563;"/>
-                      <apex:inputText required="true" id="userName" value="{!userName}" label="User Name" style="width:100%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 5px 15px;"/> -->
-                                      
-                      
+                      <apex:input type="text" styleClass="form-field no-border white-bg" id="LastName" value="{!lastName}" html-placeholder="Last Name" required="false"/>
+                      </div>
+                    <div class="col-md-3 col-12">
+                        <apex:input type="email" styleClass="form-field no-border white-bg" id="Email" value="{!email}" html-placeholder="Email" required="false"/>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <apex:input type="tel" styleClass="form-field no-border white-bg" id="Phone" value="{!phone}" html-placeholder="Mobile" required="false"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-3 col-12">
+                          <apex:inputSecret styleClass="form-field no-border white-bg" id="Password" value="{!password}" html-placeholder="Password" required="false"/>
+                      </div>
+                      <div class="col-md-3 col-12">
+                          <apex:inputSecret styleClass="form-field no-border white-bg" id="ConfirmPassword" value="{!confirmPassword}" html-placeholder="Confirm Password"  required="false"/>&nbsp;
+                      </div>
+                      <div class="col-md-3 col-12">
+                          <apex:input type="text" styleClass="form-field no-border white-bg" id="PostalCode" value="{!postalCode}" html-placeholder="Postal Code" required="false"/>
+                      </div>
+                  </div>
+                  <div class="row radio-fields-row">
+                    <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
+                    <div class="col-12 radio-fields-col">
                         
-                      <apex:outputLabel value="{!$Label.site.password} *" for="password" style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;width:80%;"/>
-                      <apex:inputSecret id="Password" value="{!password}" size="30" style="font-size:15px;width:80%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 11px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 8px 10px;"/>
+                        <span style="text-color:white;" class="checkbox-controls"><apex:selectCheckboxes value="{!SelectedPreferences}">
+                      			<apex:selectOptions value="{!PreferenceOptions}" />
+                      			
+                      </apex:selectCheckboxes></span>
                         
-        
-        <!--<apex:outputLabel value="Postal Code" for="postalCode" style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;padding-left:5px;width:80%;"/>
-                        <apex:inputText required="false" id="PostalCode" value="{!postalCode}" label="Zip/Postal Code" size="30"  style="width:80%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 11px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 8px 10px;"/>-->
-  
-        
-                                    
-        
-                      <apex:outputLabel value="{!$Label.site.confirm_password}" for="confirmPassword" style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;width:80%;"/>
-                      <apex:inputSecret id="ConfirmPassword" value="{!confirmPassword}" size="30"  style="width:80%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 11px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 8px 10px;"/>
-        
-        <!--start <apex:outputLabel value="Country" for="country" style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;padding-left:5px;width:80%;"/> end-->
-        <!--<apex:selectList value="{!SelectedCountries}" multiselect="false" size="1" style="font-size:15px;width:90%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 8px 0px 8px 10px;">-->
-            <!--<apex:selectOptions value="{!PreferredCountries}"></apex:selectOptions>-->
-           <!-- <apex:selectOption itemValue="UK" itemLabel="UK"/>
-                           <apex:selectOption itemValue="GB" itemLabel="GB"/>
-                           <apex:selectOption itemValue="United Kingdom" itemLabel="United Kingdom"/>
-        </apex:selectList> -->            
-        <!-- start <apex:inputText required="false" id="country" value="{!country}" label="Country" size="30" style="width:80%;
-    box-sizing: border-box;
-    border: 0.6px solid #0D8563;
-    border-radius: 5px;
-    font-size: 11px;
-    background-color: #D1F2EB;
-    background-image: url('smiley.gif');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;                                                                                                           
-    padding: 8px 0px 5px 10px;"/> end-->
-        
-        <!--<apex:outputLabel style="font-style:bold;font-size:15px;color:#0D8563;font-weight: bold !important;">Contact Preferences </apex:outputLabel>-->
+                        <!-- <span><input type="checkbox" name="contact" value="email" />Email</span>
+                        <span><input type="checkbox" name="contact" value="sms" />SMS Text</span>
+                        <span><input type="checkbox" name="contact" value="post" />Post</span>
+                        <span><input type="checkbox" name="contact" value="telephone" />Telephone</span> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- privacy statement start here -->
+              <div class="privacy-statement">
+                <div class="container">
+                    <div class="privacy-statement-title">
+                      Privacy statement
+                  </div>
+                  <p>NCT would like to keep in touch with you about our services, support, events, campaings and
+                    fundraising. We'll only contact you in the ways you want, and we'll keep your information safe.
+                    Our priuvacy policy has full details of how we use personal data 
+                    <a href="https://www.nct.org.uk/privacy" class="underlink" target="_open">https://www.nct.org.uk/privacy</a>
+                  </p>
+                  <div class="agree-statement-row">
+                      <input id="agree" type="checkbox" /> I have read and unserdstand/agree with our websites Terms and Conditions.
+                  </div>
+                    <div style="padding: 10px;">
                         
-                        <!--<apex:selectCheckboxes value="{!SelectedPreferences}" style="color:#02846b">
-                            <span class="textcolor"><apex:selectOptions value="{!PreferenceOptions}"  /></span>
-                        </apex:selectCheckboxes>     --> 
-        
-        <!--<apex:outputLabel style="font-style:bold;font-size:15px;color:#0D8563;">Contact Preferences</apex:outputLabel>
-                        <apex:selectCheckboxes value="{!SelectedPreferences}" >
-                            <apex:selectOptions value="{!PreferenceOptions}"/>
-                        </apex:selectCheckboxes>-->
-                          
-                      
-                      <!--<apex:outputLabel value="Address" for="address" style="font-style:bold;font-size:15px;color:#0D8563;"/>
-                      <apex:outputText value=""/>-->
-                        
-                      
-                      
-                        
-                      <!--<apex:outputLabel style="font-style:bold;font-size:15px;color:#0D8563;">Contact Preferences </apex:outputLabel>
-                        <apex:outputLabel value=""></apex:outputLabel>
-                        <apex:outputLabel value="">
-                        <apex:selectCheckboxes value="{!SelectedPreferences}" >
-                            <span><apex:selectOptions value="{!PreferenceOptions}"/></span>
-                        </apex:selectCheckboxes> 
-                        </apex:outputLabel>-->
+                    </div>
+                  <div>
+                       <a href="{!$Site.BaseUrl}/apex/ParentCommunityHomePage">  
+                                             <!--   <apex:commandButton id="nameSubmit" styleclass="green-button nomargin form-fields" value="Enquire" action="{!save}" />  -->
+                                                        <button type="button" id="submit" name="nameSubmit" class="green-button nomargin form-fields" >submit</button>  </a>   
+              <!--         <apex:commandButton styleClass="btn btn-light" action="{!registerUser}" value="{!$Label.site.submit}" id="submit" onclick="return validateMandatoryField();" /> -->
+                  </div>
+              </div>
+              </div>
+              <!-- privacy statement end here -->
+            </apex:form>
+          </div>
+          <!-- singup form fields end here -->
+        </section>
+        <!-- footer start here -->
+        <footer>
+            <div class="footer-padding container">
+                    <div class="row">
+                            <div class="col-lg-3">
+                                <h6  class="footer-header">Enquires and Feeding Helpline</h6>
+                                <div class="footer-content">
+                                    <h6 class="num_color">0300 330 0700 </h6>
+                                    <p>For practical and emotional Support in all areas of pregnancy.birth  and parentehood including help with feeding  </p>
+                                    <a href="" class="link-color">See Call Costs</a>
+                                </div>
+                            </div>
             
-
-                      
-                      <!--<apex:outputLabel value=""></apex:outputLabel>
-                      <apex:outputLabel value=""></apex:outputLabel><br/>-->
-                      <!--<apex:outputLabel value=""></apex:outputLabel>
-                      <apex:outputLabel value=""></apex:outputLabel><br/>
-                      <apex:outputLabel value=""></apex:outputLabel>-->
-          </apex:panelGrid>
+                            <div class="col-lg-2">
+                                <h6 class="footer-header">About</h6>
+                                <ul class="footer-List">
+                                    <li> <a href="https://nct.org.uk/about-nct/first-1000-days">First 1,000 Days</a> </li>
+                                    <li><a href="https://nct.org.uk/about-nct/vision-and-strategy">Vission, Mission &amp; goal</a> </li>
+                                    <li> <a href="https://nct.org.uk/about-nct/trustees">Trustees</a></li>
+                                    <li><a href="">Careers</a> </li>
+                                    <li><a href="https://nct.org.uk/about-us/contact-us">Contact us</a></li>
+                                </ul>
+                            </div>  
+                            <div class="col-lg-2">
+                                <h6  class="footer-header">News and Views</h6>
+                                <ul class="footer-List">
+                                        <li> <a href="">News</a> </li>
+                                        <li><a href="">Blogs</a> </li>
+                                        <li> <a href="">Forums</a></li>
+                                </ul>
+                            </div>  
+                            <div class="col-lg-2">
+                                <h6  class="footer-header">Support us</h6>
+                                <ul class="footer-List">
+                                        <li> <a href="https://nct.org.uk/get-involved/membership">Membership</a> </li>
+                                        <li><a href="https://nct.org.uk/get-involved/corporate-partnerships">Partnership</a> </li>
+                                        <li> <a href="https://nct.org.uk/get-involved/fundraising-activities">Fundraising activities </a></li>
+                                </ul>
+                            </div>  
+                            <div class="col-lg-3">
+                                <h6  class="footer-header">Professionals</h6>
+                                <ul class="footer-List">
+                                        <li> <a href="">Breastfeeding peer support training </a> </li>
+                                        <li><a href="">Preparation for birth and beyond antenatal course </a> </li>
+                                        <li> <a href="">training for professionals </a></li>
+                                        <li> <a href="">Diversity and access </a></li>
+                                </ul>
+                            </div>  
+                        </div>
+            </div>
+            <div class="footer_links">
+              <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-12 nopadding">
+                        <ul>
+                            <li> <a href="">Research</a> </li>
+                            <li><a href="">Media</a> </li>
+                            <li> <a href="https://nct.org.uk/privacy">Privacy and Cookies </a></li>
+                            <li><a href="https://nct.org.uk/about-us/contact-us">Contact us</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="footer_address">
+                            <p>&copy; 2018 NCT, 30 Euston Square,London, NW12FB. </p>
+                            <p>Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </footer>
+        <!-- footer end here -->
+        <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
         
-        
-        <apex:panelGrid columns="1" style="margin-top:1em;padding-top: 0px;padding-right: 5px;padding-left:0px;">
-            <apex:outputLabel style="font-style:normal;font-size:11px;color:#0D8563;font-weight: bold !important;">Marketing Preferences 
-                        <apex:selectCheckboxes value="{!SelectedPreferences}" style="color:#02846b;align:left;">
-                            <apex:selectOptions value="{!PreferenceOptions}"  />
-                        </apex:selectCheckboxes>  
-                </apex:outputLabel>
-        </apex:panelGrid>
-        
-        <center>
-        <apex:panelGrid columns="1" style="align:center;margin-top:1em;padding-top: -50px;padding-left: 5px;">
-                        
-                        <apex:commandButton action="{!registerUser}" value="{!$Label.site.submit}" id="submit" onclick="validateMandatoryField();" style="align:center;font-size:25px;font-weight:bold
-                                           position:center;                                                                                                                                
-                                           bottom:30px;
-                                           right:20px;
-                                           padding:10px 10px;
-                                           padding-left: 15px;
-                                           padding-right: 15px;                                                                                 
-                                           color:white;
-                                           border-color:#FFFFFF;
-                                           background:#0D8563;
-                                           font-weight:bold;
-                                           font-size:20px;
-               
-                                           line-height:20px;"/> 
-                            
-             <!--<apex:outputLabel value=""></apex:outputLabel>
-                        <apex:outputLabel value=""></apex:outputLabel>
-                        <apex:outputLabel value=""></apex:outputLabel>
-            <apex:outputLink value="https://www.salesforce.com" id="theLink" target="_blank">
-                 <apex:image url="{!$Resource.NCTFacebooklogo}" width="50" height="50">
-                  </apex:image>
-            </apex:outputLink>
-                                    <apex:outputLink value="https://www.salesforce.com" id="theLink1" target="_blank">
-                 <apex:image url="{!$Resource.NCTTwitterlogo}" width="50" height="50">
-                  </apex:image>
-            </apex:outputLink>
-                                    <apex:outputLink value="https://www.salesforce.com" id="theLink2" target="_blank">
-                 <apex:image url="{!$Resource.NCTLinkedinlogo}" width="50" height="50">
-                  </apex:image>
-            </apex:outputLink>
-                                    <apex:outputLink value="https://www.salesforce.com" id="theLink3" target="_blank">
-                 <apex:image url="{!$Resource.NCTGoogleplusLogo}" width="50" height="50">
-                  </apex:image>
-            </apex:outputLink>-->
-              
-              </apex:panelGrid>
-            
-            </center>
-            
-        </apex:form>
-        </apex:pageBlock>
-  </div>
-    </div>
-         
-  <br/>
-    
-    <div class="footer" style="text-align:center; background-color:#E6FFF7">
-  <p>All rights reserved by National Childbirth Trust. Copyright © 2018</p>
-</div>
-    <script type="text/javascript">
+        <script type="text/javascript">
         var j$=jQuery.noConflict();
-        j$('[id$=PCSP]').validate();             
+        j$.validator.setDefaults({
+            debug: false,
+            success: 'valid'
+        
+        });
+        j$('[id$=PCSP]').validate(); 
+            
+              debug: false;
               errorclass: "myerrorclass";
-              
+              errorElement: "div";
                j$('[id$=LastName]').rules("add",{
                 required: true,
                 maxlength: 50,               
                 messages:{
-                  required:"<br/> This is a required field.",
-                  maxlength: jQuery.validator.format("<br/> Please enter a valid name"),
+                    required:"<div style='color:#8B0000;'><b>This is a required field.</b></div>",
+                    maxlength: jQuery.validator.format("<div style='#8B0000;'><b> Please enter a valid name </b></div>"),
                } 
                
             }); 
             
-           
+            j$('[id$=Email]').rules("add",{
+                required: true,
+                email:true,              
+                messages:{
+                    required:"<div style='color:#8B0000;'><b> This is a required field. </b></div>",
+                    email: jQuery.validator.format("<div style='color:#8B0000;'><b> Please enter a valid email id </b></div>"),
+               }                           
+            }); 
+        
             j$('[id$=Phone]').rules("add",{
                 required: true, 
                 number:true,
                 maxlength: 13,             
                 messages:{
-                  required:"<br/> This is a required field.",
-                  maxlength: jQuery.validator.format("<br/> Please enter a valid number"),
-                  number: jQuery.validator.format("<br/> Please enter a valid number"),
+                    required:"<div style='color:#8B0000;'><b> This is a required field. </b></div>",
+                    maxlength: jQuery.validator.format("<div style='color:#8B0000;'><b> Please enter a valid number</b> </div>"),
+                    number: jQuery.validator.format("<div style='color:#8B0000;'><b> Please enter a valid number </b></div>"),
                }                           
             }); 
               
-    /*j$('[id$=PostalCode]').rules("add",{
+            /*j$('[id$=PostalCode]').rules("add",{
                 required: true,
                 maxlength: 8,             
                 messages:{
@@ -507,21 +264,14 @@ body {
                   
                }                           
             }); */
-              j$('[id$=Email]').rules("add",{
-                required: true,
-                email:true,              
-                messages:{
-                  required:"<br/> This is a required field.",
-                  email: jQuery.validator.format("<br/> Please enter a valid email id"),
-               }                           
-            }); 
+              
                        
             j$('[id$=Password]').rules("add",{
                 required: true,
                 minlength: 5,
                 messages:{
-                  required:"<br/> This is a required field.",   
-                  minlength: jQuery.validator.format("<br/> Please enter a valid password"),
+                    required:"<div style='color:#8B0000;'><b>This is a required field.</b></div>",   
+                    minlength: jQuery.validator.format("<div style='color:#8B0000;'><b> Please enter a valid password</b></div>"),
                } 
             });
              
@@ -530,16 +280,28 @@ body {
                 minlength: 5,
                 equalTo: '[id$=Password]',
                 messages:{
-                  required:"<br/> This is a required field.",
-                  minlength: jQuery.validator.format("<br/> Please enter a valid password"),
-               } 
+                    required:"<div style='color:#8B0000;'><b> This is a required field.</b></div>",
+                    minlength: jQuery.validator.format("<div style='color:#8B0000;'><b> Please enter a valid password</b></div>"),
+                    
+               }
+               
+              
+               
             });      
-             
+            j$('[id$=PostalCode]').rules("add",{
+                required: true,
+                maxlength: 8,             
+                messages:{
+                    required:"<div style='color:#8B0000;'><b> This is a required field.</b></div>",
+                    maxlength: jQuery.validator.format("<div style='color:#8B0000;'><b> Please enter a valid Postcode</b></div>"),
+                  
+               }                           
+            });
+            
             /* Customised the messages*/ 
-            jQuery.validator.messages.required = "<br/> You better have entered a value.. or else!";
-            jQuery.validator.messages.equalTo = "<br/> Password Mismatch.";                                               
-
+        jQuery.validator.messages.required = "<div style='color:#8B0000;'><b> You better have entered a value.. or else!</b></div>";
+        jQuery.validator.messages.equalTo = "<div style='color:#8B0000;'><b> Password Mismatch. </b></div>";                                               
+            
         </script>
-    </body>
-        </apex:define>
+    </body>   
 </apex:page>

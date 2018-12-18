@@ -27,10 +27,6 @@
                 <behavior>Required</behavior>
                 <field>Declaration_Number__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ContactKey__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

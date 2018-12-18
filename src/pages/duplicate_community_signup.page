@@ -1,0 +1,244 @@
+<apex:page standardStylesheets="false" controller="ParentCommunitySelfRegController" title="{!$Label.site.user_registration}" applyHtmlTag="true" docType="html-5.0">
+    <apex:define name="body"> 
+    <apex:includeScript value="https://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.min.js"/>
+    <apex:pageMessages id="error"/>
+    
+    <head>
+        <meta charset="utf-8" />
+        <title>NCT Parent Registration Page</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo.jpg')}" /> -->
+        <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
+		<apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
+		<apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
+    </head>
+    <body class="signup-screen">
+        <!-- header start here -->
+        <header>
+          <div class="text-center text-green logo">
+            <image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo2_opt.png')}" />
+          </div>
+          <div class="header-title-text text-center text-green">NCT Parent Registration Form</div>
+        </header>
+        <!-- header end here -->
+        <section>
+          <!-- singup big image start here -->
+          <div class="signup-big-image">
+            <image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_opt.jpg')}" class="img-100percent" />
+          </div>
+          <!-- singup big image end here -->
+          <!-- singup form fields start here -->
+          <div>
+            <apex:form >
+              <div class="singup-form-fields">
+                <div class="container">
+                  <div class="text-center signup-title-text">Sign up now for NCT's exclusive Pregnancy &amp; Baby Guide</div>
+                  <div class="row">
+                    <div class="col-md-3 col-12">
+                        <input type="text" class="form-field" id="FirstName" value="{!firstName}" placeholder="First Name..." />
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <input type="text" class="form-field" id="LastName" value="{!lastName}" placeholder="Last Name..." />
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <input type="email" class="form-field" id="Email" value="{!email}" placeholder="Email..." />
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <input type="tel" class="form-field" id="Phone" value="{!phone}" placeholder="Mobile..." />
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-3 col-12">
+                          <input type="password" class="form-field" id="Password" value="{!password}" placeholder="Password..." />
+                      </div>
+                      <div class="col-md-3 col-12">
+                          <input type="password" class="form-field" id="ConfirmPassword" value="{!confirmPassword}" placeholder="Confirm Password..." />
+                      </div>
+                      <div class="col-md-3 col-12">
+                          <input type="text" class="form-field" id="PostalCode" value="{!postalCode}" placeholder="Postal Code..." />
+                      </div>
+                  </div>
+                  <div class="row radio-fields-row">
+                    <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
+                    <div class="col-12 radio-fields-col">
+                        <span><input type="checkbox" name="contact" value="email" />Email</span>
+                        <span><input type="checkbox" name="contact" value="sms" />SMS Text</span>
+                        <span><input type="checkbox" name="contact" value="post" />Post</span>
+                        <span><input type="checkbox" name="contact" value="telephone" />Telephone</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- privacy statement start here -->
+              <div class="privacy-statement">
+                <div class="container">
+                    <div class="privacy-statement-title">
+                      Privacy statement
+                  </div>
+                  <p>NCT would like to keep in touch with you about our services, support, events, campaings and
+                    fundraising. We'll only contact you in the ways you want, and we'll keep your information safe.
+                    Our priuvacy policy has full details of how we use personal data 
+                    <a href="https://www.nct.org.uk/privacy" class="underlink" target="_open">https://www.nct.org.uk/privacy</a>
+                  </p>
+                  <div class="agree-statement-row">
+                      <input type="checkbox" /> I have read and unserdstand/agree with our websites Terms and Conditions.
+                  </div>
+                  <div>
+                      <apex:commandButton action="{!registerUser}" value="{!$Label.site.submit}" id="submit" onclick="validateMandatoryField()"> Submit</apex:commandButton>
+                  </div>
+              </div>
+              </div>
+              <!-- privacy statement end here -->
+            </apex:form>
+          </div>
+          <!-- singup form fields end here -->
+        </section>
+        <!-- footer start here -->
+        <footer>
+            <div class="footer-padding container">
+                    <div class="row">
+                            <div class="col-lg-3">
+                                <h6  class="footer-header">Enquires and Feeding Helpline</h6>
+                                <div class="footer-content">
+                                    <h6 class="num_color">0300 330 0700 </h6>
+                                    <p>For practical and emotional Support in all areas of pregnancy.birth  and parentehood including help with feeding  </p>
+                                    <a href="/" class="link-color">See all Costs</a>
+                                </div>
+                            </div>
+            
+                            <div class="col-lg-2">
+                                <h6 class="footer-header">About</h6>
+                                <ul class="footer-List">
+                                    <li> <a href="">First 1,000 Days</a> </li>
+                                    <li><a href="">Vission, Mission &amp; goal</a> </li>
+                                    <li> <a href="">Trustees</a></li>
+                                    <li><a href="">Careers</a> </li>
+                                    <li><a href="">Contact us</a></li>
+                                </ul>
+                            </div>  
+                            <div class="col-lg-2">
+                                <h6  class="footer-header">News and Views</h6>
+                                <ul class="footer-List">
+                                        <li> <a href="">News</a> </li>
+                                        <li><a href="">Blogs</a> </li>
+                                        <li> <a href="">Forums</a></li>
+                                </ul>
+                            </div>  
+                            <div class="col-lg-2">
+                                <h6  class="footer-header">Support us</h6>
+                                <ul class="footer-List">
+                                        <li> <a href="">Membership</a> </li>
+                                        <li><a href="">Partnership</a> </li>
+                                        <li> <a href="">Fundraising activities </a></li>
+                                </ul>
+                            </div>  
+                            <div class="col-lg-3">
+                                <h6  class="footer-header">Professionals</h6>
+                                <ul class="footer-List">
+                                        <li> <a href="">Breastfeeding peer support training </a> </li>
+                                        <li><a href="">Preparation for birth and beyond antenatal course </a> </li>
+                                        <li> <a href="">training for professionals </a></li>
+                                        <li> <a href="">Diversity and access </a></li>
+                                </ul>
+                            </div>  
+                        </div>
+            </div>
+            <div class="footer_links">
+              <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-12 nopadding">
+                        <ul>
+                            <li> <a href="">Research</a> </li>
+                            <li><a href="">Media</a> </li>
+                            <li> <a href="">Privacy and Cookies </a></li>
+                            <li><a href="">Contact us</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="footer_address">
+                            <p>&copy; 2018 NCT, 30 Euston Square,London, NW12FB. </p>
+                            <p>Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </footer>
+        <!-- footer end here -->
+        <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
+        <script type="text/javascript">
+        var j$=jQuery.noConflict();
+        j$('[id$=PCSP]').validate();             
+              errorclass: "myerrorclass";
+              
+               j$('[id$=LastName]').rules("add",{
+                required: true,
+                maxlength: 50,               
+                messages:{
+                  required:"<br/> This is a required field.",
+                  maxlength: jQuery.validator.format("<br/> Please enter a valid name"),
+               } 
+               
+            }); 
+            
+           
+            j$('[id$=Phone]').rules("add",{
+                required: true, 
+                number:true,
+                maxlength: 13,             
+                messages:{
+                  required:"<br/> This is a required field.",
+                  maxlength: jQuery.validator.format("<br/> Please enter a valid number"),
+                  number: jQuery.validator.format("<br/> Please enter a valid number"),
+               }                           
+            }); 
+              
+    /*j$('[id$=PostalCode]').rules("add",{
+                required: true,
+                maxlength: 8,             
+                messages:{
+                  required:"<br/> This is a required field.",
+                    maxlength: jQuery.validator.format("<br/> Please enter a valid Postcode"),
+                  
+               }                           
+            }); */
+              j$('[id$=Email]').rules("add",{
+                required: true,
+                email:true,              
+                messages:{
+                  required:"<br/> This is a required field.",
+                  email: jQuery.validator.format("<br/> Please enter a valid email id"),
+               }                           
+            }); 
+                       
+            j$('[id$=Password]').rules("add",{
+                required: true,
+                minlength: 5,
+                messages:{
+                  required:"<br/> This is a required field.",   
+                  minlength: jQuery.validator.format("<br/> Please enter a valid password"),
+               } 
+            });
+             
+            j$('[id$=ConfirmPassword]').rules("add",{
+                required: true,
+                minlength: 5,
+                equalTo: '[id$=Password]',
+                messages:{
+                  required:"<br/> This is a required field.",
+                  minlength: jQuery.validator.format("<br/> Please enter a valid password"),
+               } 
+            });      
+             
+            /* Customised the messages*/ 
+            jQuery.validator.messages.required = "<br/> You better have entered a value.. or else!";
+            jQuery.validator.messages.equalTo = "<br/> Password Mismatch.";                                               
+
+        </script>
+
+    </body>
+    </apex:define>    
+</apex:page>

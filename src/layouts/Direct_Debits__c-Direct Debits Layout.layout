@@ -9,14 +9,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Start_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>DD_Reference__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
                 <field>Contact__c</field>
             </layoutItems>
             <layoutItems>
@@ -32,16 +24,12 @@
                 <field>Source__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ContactKey__c</field>
+                <behavior>Required</behavior>
+                <field>Start_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>BookingKey__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>DirectDebit_Key__c</field>
+                <behavior>Required</behavior>
+                <field>DD_Reference__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -85,10 +73,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <miniLayout>
-        <fields>Start_Date__c</fields>
-        <fields>DD_Reference__c</fields>
-    </miniLayout>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
@@ -127,10 +111,6 @@
         <fields>Payment_Method__c</fields>
         <fields>Status__c</fields>
         <relatedList>Membership__c.Direct_Debit__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Event_Booking__c.Direct_Debit__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

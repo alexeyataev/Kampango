@@ -12,15 +12,17 @@ public with sharing class dupOutcodeHandler {
                 for(PostCode_Allocation__c palist: outcodelist){
                     if(((palist.Branch__c!=pa.Branch__c)&&(palist.Name==pa.Name))){
                         pa.addError('Branch should not be assigned to more than one postcode');
+                        //System.debug('Branch should be assigned to more than one postcode-> As per onshore');
                     }
                     
-                    else if((palist.Id!=pa.Id)&&(palist.Branch__c==pa.Branch__c)&&(palist.Name==pa.Name) && (palist.PSA_Roles__c==pa.PSA_Roles__c)){
+                    else if((palist.Branch__c==pa.Branch__c)&&(palist.Name==pa.Name) && (palist.PSA_Roles__c==pa.PSA_Roles__c)){
                         
                         pa.addError('Postcode should not be assigned to more than one Enquiry and Capacity PSA');
                     	
                     }
-                    else if(((palist.Branch__c==pa.Branch__c)&&(palist.Name!=pa.Name))){
-                        pa.addError('Postcode should not be assigned to more than one Branch');
+                    else{ //if(((palist.Branch__c==pa.Branch__c)&&(palist.Name!=pa.Name))){
+                        //pa.addError('Postcode should not be assigned to more than one Branch');
+                        System.debug('Postcode should be assigned to more than one Branch-> As per onshore');
                     }
                 }
             }

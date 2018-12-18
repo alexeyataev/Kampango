@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Alternative_Phone_Number__c</fullName>
         <externalId>false</externalId>
@@ -8,6 +60,40 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Attended__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Attended</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Attendees__c</fullName>
+        <externalId>false</externalId>
+        <label>Attendees</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Single</fullName>
+                    <default>false</default>
+                    <label>Single</label>
+                </value>
+                <value>
+                    <fullName>Couples</fullName>
+                    <default>false</default>
+                    <label>Couples</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Bank_Account_Number__c</fullName>
@@ -57,7 +143,7 @@
         <externalId>false</externalId>
         <label>Booking Date</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -71,6 +157,106 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cancellation_Reason__c</fullName>
+        <description>Regarding course cancellation reason</description>
+        <externalId>false</externalId>
+        <label>Cancellation Reason</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Low bookings - 0 bookings</fullName>
+                    <default>false</default>
+                    <label>Low bookings - 0 bookings</label>
+                </value>
+                <value>
+                    <fullName>Low bookings - 1 booking</fullName>
+                    <default>false</default>
+                    <label>Low bookings - 1 booking</label>
+                </value>
+                <value>
+                    <fullName>Low bookings - 2 bookings</fullName>
+                    <default>false</default>
+                    <label>Low bookings - 2 bookings</label>
+                </value>
+                <value>
+                    <fullName>Low bookings - 3 bookings</fullName>
+                    <default>false</default>
+                    <label>Low bookings - 3 bookings</label>
+                </value>
+                <value>
+                    <fullName>Low bookings - 4 or more bookings</fullName>
+                    <default>false</default>
+                    <label>Low bookings - 4 or more bookings</label>
+                </value>
+                <value>
+                    <fullName>Low bookings - client not happy with small group size</fullName>
+                    <default>false</default>
+                    <label>Low bookings - client not happy with small group size</label>
+                </value>
+                <value>
+                    <fullName>Practitioner on time out - no replacement available</fullName>
+                    <default>false</default>
+                    <label>Practitioner on time out - no replacement available</label>
+                </value>
+                <value>
+                    <fullName>Practitioner resigned - no replacement available</fullName>
+                    <default>false</default>
+                    <label>Practitioner resigned - no replacement available</label>
+                </value>
+                <value>
+                    <fullName>Practitioner withdrew - no LtP</fullName>
+                    <default>false</default>
+                    <label>Practitioner withdrew - no LtP</label>
+                </value>
+                <value>
+                    <fullName>Practitioner withdrew - other</fullName>
+                    <default>false</default>
+                    <label>Practitioner withdrew - other</label>
+                </value>
+                <value>
+                    <fullName>Newly Qualified practitioner withdrew - no LtP</fullName>
+                    <default>false</default>
+                    <label>Newly Qualified practitioner withdrew - no LtP</label>
+                </value>
+                <value>
+                    <fullName>Newly Qualified practitioner withdrew - other</fullName>
+                    <default>false</default>
+                    <label>Newly Qualified practitioner withdrew - other</label>
+                </value>
+                <value>
+                    <fullName>Over capacity</fullName>
+                    <default>false</default>
+                    <label>Over capacity</label>
+                </value>
+                <value>
+                    <fullName>Service withdrawn</fullName>
+                    <default>false</default>
+                    <label>Service withdrawn</label>
+                </value>
+                <value>
+                    <fullName>Course added in error</fullName>
+                    <default>false</default>
+                    <label>Course added in error</label>
+                </value>
+                <value>
+                    <fullName>Private sessions cancelled by client</fullName>
+                    <default>false</default>
+                    <label>Private sessions cancelled by client</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Client_Gift_Aid__c</fullName>
@@ -95,17 +281,16 @@
     </fields>
     <fields>
         <fullName>Client__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Course Booking</relationshipLabel>
         <relationshipName>Bookings</relationshipName>
-        <relationshipOrder>1</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Companion__c</fullName>
@@ -147,7 +332,7 @@
         <precision>11</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -189,18 +374,22 @@
                 <value>
                     <fullName>I wish to pay for the course fees in 2 monthly installments by Direct Debit</fullName>
                     <default>false</default>
+                    <label>I wish to pay for the course fees in 2 monthly installments by Direct Debit</label>
                 </value>
                 <value>
                     <fullName>I wish to pay for the course fees in 3 monthly installments by Direct Debit</fullName>
                     <default>false</default>
+                    <label>I wish to pay for the course fees in 3 monthly installments by Direct Debit</label>
                 </value>
                 <value>
                     <fullName>I wish to pay for the course fees in 4 monthly installments by Direct Debit</fullName>
                     <default>false</default>
+                    <label>I wish to pay for the course fees in 4 monthly installments by Direct Debit</label>
                 </value>
                 <value>
                     <fullName>I wish to pay for the course fees by credit or debit card</fullName>
                     <default>false</default>
+                    <label>I wish to pay for the course fees by credit or debit card</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -214,10 +403,10 @@
         <relationshipName>Bookings</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>true</reparentableMasterDetail>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Direct_Debit__c</fullName>
@@ -231,6 +420,96 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Discount_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Discount Reason</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Under 18</fullName>
+                    <default>false</default>
+                    <label>Under 18</label>
+                </value>
+                <value>
+                    <fullName>Student (Under 22)</fullName>
+                    <default>false</default>
+                    <label>Student (Under 22)</label>
+                </value>
+                <value>
+                    <fullName>Income support</fullName>
+                    <default>false</default>
+                    <label>Income support</label>
+                </value>
+                <value>
+                    <fullName>Income-based job seekers allowance</fullName>
+                    <default>false</default>
+                    <label>Income-based job seekers allowance</label>
+                </value>
+                <value>
+                    <fullName>Income related employment and support allowance</fullName>
+                    <default>false</default>
+                    <label>Income related employment and support allowance</label>
+                </value>
+                <value>
+                    <fullName>Working tax credit</fullName>
+                    <default>false</default>
+                    <label>Working tax credit</label>
+                </value>
+                <value>
+                    <fullName>Support under part VI of the Immigration and Asylum Act 1999</fullName>
+                    <default>false</default>
+                    <label>Support under part VI of the Immigration and Asylum Act 1999</label>
+                </value>
+                <value>
+                    <fullName>Universal Credit</fullName>
+                    <default>false</default>
+                    <label>Universal Credit</label>
+                </value>
+                <value>
+                    <fullName>Household income &lt; £16.19K</fullName>
+                    <default>false</default>
+                    <label>Household income &lt; £16.19K</label>
+                </value>
+                <value>
+                    <fullName>Household income &lt; £28.19K</fullName>
+                    <default>false</default>
+                    <label>Household income &lt; £28.19K</label>
+                </value>
+                <value>
+                    <fullName>Last Minute Offer</fullName>
+                    <default>false</default>
+                    <label>Last Minute Offer</label>
+                </value>
+                <value>
+                    <fullName>Booked after start of course</fullName>
+                    <default>false</default>
+                    <label>Booked after start of course</label>
+                </value>
+                <value>
+                    <fullName>Referral - in lieu of venue hire</fullName>
+                    <default>false</default>
+                    <label>Referral - in lieu of venue hire</label>
+                </value>
+                <value>
+                    <fullName>BB Single Occupancy</fullName>
+                    <default>false</default>
+                    <label>BB Single Occupancy</label>
+                </value>
+                <value>
+                    <fullName>Other - see notes</fullName>
+                    <default>false</default>
+                    <label>Other - see notes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Do_Not_Include_on_Class_List__c</fullName>
@@ -255,7 +534,7 @@
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>true</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -270,6 +549,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FirstContactName__c</fullName>
+        <description>This field is useful in Course, for email template, related to Start Date lessthan 7 days(1week)</description>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL( Status__c , &apos;Confirmed&apos;) , First_Contact__r.LastName , &apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FirstContactName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>First_Baby__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -280,14 +572,29 @@
     </fields>
     <fields>
         <fullName>First_Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+        <deleteConstraint>Restrict</deleteConstraint>
         <externalId>false</externalId>
         <label>First Contact</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>1 OR 2</booleanFilter>
+            <filterItems>
+                <field>Contact.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Clients</value>
+            </filterItems>
+            <filterItems>
+                <field>Contact.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Parent</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Course Booking (First Contact)</relationshipLabel>
         <relationshipName>Course_Booking</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -306,14 +613,17 @@
                 <value>
                     <fullName>Friends and Family</fullName>
                     <default>false</default>
+                    <label>Friends and Family</label>
                 </value>
                 <value>
                     <fullName>Newspaper</fullName>
                     <default>false</default>
+                    <label>Newspaper</label>
                 </value>
                 <value>
                     <fullName>Website</fullName>
                     <default>false</default>
+                    <label>Website</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -333,18 +643,22 @@
                 <value>
                     <fullName>GOOGLE</fullName>
                     <default>false</default>
+                    <label>GOOGLE</label>
                 </value>
                 <value>
                     <fullName>LINKEDIN</fullName>
                     <default>false</default>
+                    <label>LINKEDIN</label>
                 </value>
                 <value>
                     <fullName>TWITTER</fullName>
                     <default>false</default>
+                    <label>TWITTER</label>
                 </value>
                 <value>
                     <fullName>FACEBOOK</fullName>
                     <default>false</default>
+                    <label>FACEBOOK</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -388,10 +702,12 @@
                 <value>
                     <fullName>I wish to pay my membership by Direct Debit</fullName>
                     <default>false</default>
+                    <label>I wish to pay my membership by Direct Debit</label>
                 </value>
                 <value>
                     <fullName>I wish to pay my membership by credit or debit card</fullName>
                     <default>false</default>
+                    <label>I wish to pay my membership by credit or debit card</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -411,10 +727,12 @@
                 <value>
                     <fullName>Yes</fullName>
                     <default>false</default>
+                    <label>Yes</label>
                 </value>
                 <value>
                     <fullName>No</fullName>
                     <default>false</default>
+                    <label>No</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -441,10 +759,10 @@
         <fullName>Outstanding_Amount__c</fullName>
         <externalId>false</externalId>
         <label>Outstanding Amount</label>
-        <precision>18</precision>
+        <precision>12</precision>
         <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
@@ -472,10 +790,12 @@
                 <value>
                     <fullName>Joint membership for you and your partner</fullName>
                     <default>false</default>
+                    <label>Joint membership for you and your partner</label>
                 </value>
                 <value>
                     <fullName>Individual membership just for you</fullName>
                     <default>false</default>
+                    <label>Individual membership just for you</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -485,7 +805,7 @@
         <externalId>false</externalId>
         <label>Payment Date</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -503,10 +823,12 @@
                 <value>
                     <fullName>Monthly</fullName>
                     <default>false</default>
+                    <label>Monthly</label>
                 </value>
                 <value>
                     <fullName>Quarterly</fullName>
                     <default>false</default>
+                    <label>Quarterly</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -516,7 +838,7 @@
         <externalId>false</externalId>
         <label>Payment Method</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -526,46 +848,57 @@
                 <value>
                     <fullName>Credit/Debit Card(£57)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit Card(£57)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£9.50 per quarter)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£9.50 per quarter)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£57)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£57)</label>
                 </value>
                 <value>
                     <fullName>Credit/Debit card(£48)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit card(£48)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£12 per quarter)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£12 per quarter)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£48)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£48)</label>
                 </value>
                 <value>
                     <fullName>Credit/Debit card(£120)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit card(£120)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£120)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£120)</label>
                 </value>
                 <value>
                     <fullName>Credit/Debit card(£10)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit card(£10)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£ 2.50 per quarter)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£ 2.50 per quarter)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£ 10)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£ 10)</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -596,10 +929,12 @@
                 <value>
                     <fullName>3rd</fullName>
                     <default>false</default>
+                    <label>3rd</label>
                 </value>
                 <value>
                     <fullName>20th</fullName>
                     <default>false</default>
+                    <label>20th</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -621,14 +956,17 @@
                 <value>
                     <fullName>Yes</fullName>
                     <default>false</default>
+                    <label>Yes</label>
                 </value>
                 <value>
                     <fullName>No</fullName>
                     <default>false</default>
+                    <label>No</label>
                 </value>
                 <value>
                     <fullName>NA</fullName>
                     <default>false</default>
+                    <label>NA</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -638,20 +976,51 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Second Contact</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>1 OR 2</booleanFilter>
+            <filterItems>
+                <field>Contact.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Companion</value>
+            </filterItems>
+            <filterItems>
+                <field>Contact.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Companion</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>Course Booking (Contact)</relationshipLabel>
         <relationshipName>Course_Booking1</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Status__c</fullName>
+        <description>Enquiry - Parent has enquired about the course
+
+Reserved - PSA has accepted the enquiry and reserves a place for the parent
+
+Installment -  Parents are paying by installments as long as the first payment / deposit is made. 
+In case of direct debits; as long as the direct debit is set up the status of booking shows confirmed even if the first payment is not taken
+
+Paid - All the payments for the course have been paid.
+
+Cancelled - Parent has cancelled their booking
+
+Transferred - Parent has transferred the booking to different course
+
+Lapsed - This is when the reserve by date for a booking has lapsed
+
+Waiting - This is when parents are added onto a waiting list when their choice of course or the most suitable one is fully booked</description>
         <externalId>false</externalId>
         <label>Booking Status</label>
         <required>true</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -659,24 +1028,60 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Cancelled</fullName>
+                    <fullName>Enquiry</fullName>
                     <default>false</default>
-                </value>
-                <value>
-                    <fullName>Confirmed</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Closed</fullName>
-                    <default>false</default>
+                    <label>Enquiry</label>
                 </value>
                 <value>
                     <fullName>Reserved</fullName>
                     <default>false</default>
+                    <label>Reserved</label>
                 </value>
                 <value>
-                    <fullName>Enquiry</fullName>
+                    <fullName>Installment</fullName>
                     <default>false</default>
+                    <label>Installment</label>
+                </value>
+                <value>
+                    <fullName>Paid</fullName>
+                    <default>false</default>
+                    <label>Paid</label>
+                </value>
+                <value>
+                    <fullName>Cancelling</fullName>
+                    <default>false</default>
+                    <label>Cancelling</label>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                    <label>Cancelled</label>
+                </value>
+                <value>
+                    <fullName>Transferred</fullName>
+                    <default>false</default>
+                    <label>Transferred</label>
+                </value>
+                <value>
+                    <fullName>Lapsed</fullName>
+                    <default>false</default>
+                    <label>Lapsed</label>
+                </value>
+                <value>
+                    <fullName>Waiting</fullName>
+                    <default>false</default>
+                    <label>Waiting</label>
+                </value>
+                <value>
+                    <fullName>Confirmed</fullName>
+                    <default>false</default>
+                    <label>Confirmed</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Closed</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -696,10 +1101,12 @@
                 <value>
                     <fullName>Yes</fullName>
                     <default>false</default>
+                    <label>Yes</label>
                 </value>
                 <value>
                     <fullName>No</fullName>
                     <default>false</default>
+                    <label>No</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -745,6 +1152,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <label>Course Booking</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
@@ -756,4 +1164,82 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <listViews>
+        <fullName>Enquiries</fullName>
+        <booleanFilter>1</booleanFilter>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:14</value>
+        </filters>
+        <label>Enquiries</label>
+        <language>en_US</language>
+    </listViews>
+    <!--<listViews>
+        <fullName>UnPaid_Courses</fullName>
+        <columns>NAME</columns>
+        <columns>Course__c</columns>
+        <columns>Status__c</columns>
+        <columns>Booking_Date__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>UnPaid Courses</label>
+        <language>en_US</language>
+    </listViews>-->
+    <nameField>
+        <displayFormat>BK-{000000}</displayFormat>
+        <label>Course Booking</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Course Booking</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Client__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Course__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Booking_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Cost__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Direct_Debit__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Outstanding_Amount__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Course__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Client__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Best_Phone_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Due_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Course_Status_has_Fully_Booked</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF( ISPICKVAL( Course__r.Status__c , &apos;Fully Booked&apos;) , true, false)</errorConditionFormula>
+        <errorMessage>Course Status has reached to Fully Booked</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Reason_Mandatory_for_Cancelled_Status</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF( AND( ISPICKVAL( Status__c , &apos;Cancelled&apos;) , ISPICKVAL( Cancellation_Reason__c, &apos;&apos; ) ) , true, false)</errorConditionFormula>
+        <errorDisplayField>Cancellation_Reason__c</errorDisplayField>
+        <errorMessage>Please provide the reason for Cancellation when Status as Cancelled</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Cancel_Booking</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Cancel Booking</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>You are requesting to cancel the course XXX, if this is past 14 days from when it payment was made you may lose your full refund, do you wish to proceed?</url>
+    </webLinks>
 </CustomObject>

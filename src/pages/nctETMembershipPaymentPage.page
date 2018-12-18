@@ -1,0 +1,1492 @@
+<apex:page applyHtmlTag="true" docType="html-5.0" controller="nctETMembershipPaymentPageController" showHeader="false" sidebar="false">
+<apex:form id="membrShpForm">
+   <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
+        <apex:param id="selValId" name="seltdName" value="" />
+   </apex:actionFunction>
+    <!--<apex:actionFunction name="thankYouPage" action="{!thankYouSec}" reRender="membershipNumber">
+   </apex:actionFunction>-->
+   <apex:actionFunction name="postCodeVal" action="{!nctBranchs}" reRender="branch_Picklist">
+        <apex:param id="postVal" name="postVal" value="" />
+   </apex:actionFunction>
+   <apex:actionFunction name="saveRecordValues" action="{!PaymentSave}" reRender="displayValues">
+      <apex:param id="accname" name="accname" value="" assignTo="{!accountName}"/>
+       <apex:param id="sortCode" name="sortCode" value="" assignTo="{!sortCode}"/>
+       <apex:param id="accNum" name="accNum" value="" assignTo="{!accountNumber}"/>
+       <apex:param id="gftAid" name="gftAid" value="" assignTo="{!isGiftAid}"/>
+    </apex:actionFunction>
+    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership">
+        <apex:param id="aname" name="chkbox" value="" assignTo="{!twomems}"/>
+        <apex:param id="firstName" name="firstName" value="" assignTo="{!firstname}"/>
+        <apex:param id="lastName" name="lastName" value="" assignTo="{!lastname}"/>
+        <apex:param id="emailVal" name="emailVal" value="" assignTo="{!email}"/>
+        <apex:param id="phoneVal" name="phoneVal" value="" assignTo="{!phone}"/>
+        <apex:param id="sfirstName" name="sfirstName" value="" assignTo="{!sfirstname}"/>
+        <apex:param id="slastName" name="slastName" value="" assignTo="{!slastname}"/>
+        <apex:param id="semailVal" name="semailVal" value="" assignTo="{!semail}"/>
+        <apex:param id="sphoneVal" name="sphoneVal" value="" assignTo="{!sphone}"/>
+        <apex:param id="postcodeval" name="postcodeval" value="" assignTo="{!postCode}"/>
+        <apex:param id="duedate" name="dueDate" value="" assignTo="{!eDate}"/> 
+        <apex:param id="selBranchVal" name="selBranchVal" value="" assignTo="{!selectBranch}"/> 
+        <apex:param id="genderVal" name="genderVal" value="" assignTo="{!genderValue}"/>
+        <apex:param id="streetVal" name="streetVal" value="" assignTo="{!streetValue}"/> 
+        <apex:param id="streetVal1" name="streetVal1" value="" assignTo="{!streetValue1}"/>
+        <apex:param id="streetVal2" name="streetVal2" value="" assignTo="{!streetValue2}"/>
+        <apex:param id="townVal" name="twonVal" value="" assignTo="{!stateValue}"/>
+        <apex:param id="countyVal" name="countyVal" value="" assignTo="{!cityValue}"/>
+    </apex:actionFunction>
+   <head>
+        <meta charset="utf-8"/>
+        <title>NCT</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="icon" type="image/png" href="assets/nct_logo.jpg"/>
+        <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>--> 
+        <style>
+            @media (min-width: 1200px){
+                .container {
+                    max-width: 1140px;
+                    padding-left: 6%;
+                    padding-right: 6%;
+                }
+            }
+            /* new styles start here */
+            #pay_now_back, #direct_pay_back{
+                background-image: url(../assets/back_button.png);
+                background-size: 94%;
+                background-repeat: no-repeat;
+                text-indent: -1000px;
+                transition: all 0.4s;
+                background-position: center;
+                height: 90px;
+            }
+            #pay_now_back:hover, #direct_pay_back:hover{
+                background-image: url(../assets/back_button_over.png);
+            }
+            .nct-mebmber-logo{
+                padding: 15px 15px;
+            }
+            .green-bg-image::after{
+                position: absolute;
+                display: block;
+                height: 0.81rem;
+                width: 100%;
+                background-image: url(../assets/header-border-bottom.png);
+                background-repeat: no-repeat;
+                -webkit-background-size: 100% 1.25rem;
+                background-size: 100% 1.25rem;
+                background-position: bottom;
+                content: "";
+                z-index: 1;
+            }
+            .back-btn{
+                background-color: #008669;
+                color: #fff;
+                width: 38px;
+                min-width: 38px;
+                height: 38px !important;
+                border-radius: 50%;
+                background-image: none !important;
+                text-indent: 0 !important;
+            }
+            .loader{
+                padding-top: 25px;
+            }
+            .loader > div{
+                padding-top: 25px;
+            }
+            .green-button{
+                background-color: #008669;
+                margin:0;
+            }
+            #scd1, #scd2, #scd3{
+                width:66px;
+            }
+            input[type=number]::-webkit-inner-spin-button, 
+             input[type=number]::-webkit-outer-spin-button { 
+                 -webkit-appearance: none; 
+                 margin: 0; 
+            }
+            .error-border{
+                border:1px solid red;
+            }
+            .membership-form-col{
+                width: 660px;
+                flex: none;
+                margin: 0 auto;
+            }
+           .tab-content .row > .col-md-7{
+                -ms-flex: 0 0 100%;
+                flex: 0 0 100%;
+                max-width: 100%;
+           }
+            .footer_links .container {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .footer-padding {
+                padding: 15px;
+                letter-spacing: 0px;
+            }
+            .footer_links li a {
+                color: #ffffff !important;
+            }
+            .footer-List li {
+                margin:0;
+            }
+            .nct-mebmber-logo img{
+                padding-left:15px;
+            }
+            #tabs {
+                padding-top: 35px;
+            }
+            #register {
+                padding-top: 20px;
+            }
+            .nav-tabs li a:after{
+                left: 97%;
+                top: 1px;
+            }
+            .nav-tabs li a:before {
+                top: -3px;
+                left: 97%;
+            }
+            .nav-tabs li.active a {
+                color: #fff !important;
+            }
+			.nav-tabs li a {
+            	margin-bottom:5px;
+                padding-top:5px;
+                font-size:16px;
+            }
+            .mrtitle{
+                padding:0 10px !important;
+            }
+			body {
+                font-size: 1rem !important;
+            }
+            html body.sfdcBody{
+            	padding: 10px 0px 0 0px;
+                font-family: "Lato", sans-serif;
+                color: #080808;
+            } 
+        </style>
+    </head>
+
+<body class="membership-details-screen">   
+    <section>   
+        <div class="green-bg-image">
+            <div class="text-center nct-mebmber-logo"><apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nctmembers-logo.png')}"/></div>
+        </div>     
+        <div class="membership-details container">
+            <div class="row">
+                <div class="col-12 membership-form-col">
+                    <div id="tabs">
+                            <ul class="nav nav-tabs">
+                                <li id="register_li" class="active">
+                                    <a data-toggle="tab">1. Register</a>
+                                </li>
+                                <li id="payment_li">
+                                    <a data-toggle="tab"> 2. Payment</a>
+                                </li>
+                                <li id="gift_li">
+                                    <a data-toggle="tab"> 3. Gift Aid</a>
+                                </li>
+                                <li id="confirmation_li">
+                                    <a data-toggle="tab">4. Confirmation</a>
+                                </li>
+                                <li id="thankyou_li">
+                                    <a data-toggle="tab">5. Thank You</a> 
+                                </li>
+                            </ul>
+                        <form id="form1">
+                            <div class="tab-content">
+                                <div id="register" class="tab-pane fade in active show">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <h3>Membership details</h3>
+                                            <p>Membership covers up to two people at one address.</p>
+                                            <p>Please confirm the personal details for the membership below.</p>
+                                            <!-- Membership person details start here-->
+                                            <div class="membership-line"></div>
+                                            <div class="membership-person-details">
+                                                <h5>Person One</h5>
+                                                <div class="light-orange-color required-fields-text">*Required fields
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div><label><sup class="light-orange-color">*</sup>Title</label></div>
+                                                        <select class="form-fields membership-fields mrtitle">
+                                                            <option>Mrs</option>
+                                                            <option>Mr</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div><label><sup class="light-orange-color">*</sup>First Name</label></div>
+                                                            <input id='textForename' name='textForename' value="{!firstname}" type="text" class="form-fields membership-fields"
+                                                            placeholder="First Name" />
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div><label><sup class="light-orange-color">*</sup>Last Name</label></div>
+                                                            <input type="text" id='textSurname' name='textSurname' value="{!lastname}" class="form-fields membership-fields"
+                                                            placeholder="Last Name" />
+                                                    </div>
+                                                </div>
+                                                <div class="row paddingbot10px errorMessage errormessage">
+                                               <!-- <p class="gender-error error-message hide">Please select gender </p> -->
+                                                    <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
+                                                            Gender</label></div>
+                                                    <div class="col-md-3">
+                                                        <span class="checkbox-span">
+                                                            <div class="squaredThree" style="margin-left:10px;">
+                                                                <input value="female" type="radio" class="radio" name="gender" />
+                                                                <label for="female"></label><span class="span-label">Female</span>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <span class="checkbox-span">
+                                                            <div class="squaredThree" style="margin-left:10px;">
+                                                                <input value="male" type="radio" class="radio" name="gender" />
+                                                                <label for="male"></label><span class="span-label">Male</span>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-12">
+                                                        <div><label><sup class="light-orange-color">*</sup>Email Address</label></div>
+                                                            <input type="email" name='textEmail' id='textEmail' value="{!email}" class="form-fields membership-fields"
+                                                            placeholder="Email address" />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-12">
+                                                        <div><label><sup class="light-orange-color">*</sup>Phone Number</label></div>
+                                                            <input type="text" id='textMobile' name='textMobile' value="{!phone}" class="form-fields membership-fields"
+                                                            placeholder="Phone number" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 radio-fields-col membership_check paddingbot20px">
+                                                    <span>
+                                                        <input type="checkbox" name="contact" id="twomem" value="{!twomem}"/>
+                                                        <!--<input type="hidden" id="hdn" value="{!twomems}" />
+                                                            <apex:actionsupport event="onclick">
+                                                            <apex:param value="{!twomem}" assignTo="{!isChecked}"/>
+                                                            </apex:actionSupport>-->
+                                                        NCT membership covers up to two people at the same address. If
+                                                        you'd like a joint membership, please tick this box.
+                                                    </span>
+                                                </div>
+
+                                                <!-- Membership person 2 details start here-->
+                                                <div class="membership-person-details padding-top" id="secondMembership">
+                                                    <h5>
+                                                        Person Two
+                                                        <a class="clear text-light-green" id="person-clear">(Clear)</a>
+                                                    </h5>
+                                                    <div class="light-orange-color required-fields-text">*Required
+                                                        fields </div>
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div><label><sup class="light-orange-color">*</sup>Title</label></div>
+                                                            <select class="form-fields membership-fields">
+                                                                <option>Mrs</option>
+                                                                <option>Mr</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div><label><sup class="light-orange-color">*</sup>First
+                                                                    Name</label></div>
+                                                            <input id='textForenamePartner' name='textForenamePartner' type="text"  class="form-fields membership-fields"
+                                                                placeholder="First Name" />
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div><label><sup class="light-orange-color">*</sup>Last
+                                                                    Name</label></div>
+                                                            <input type="text" id='textSurnamePartner' name='textSurnamePartner' class="form-fields membership-fields"
+                                                                placeholder="Last Name" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-12">
+                                                            <div><label><sup class="light-orange-color">*</sup>Email
+                                                                    Address</label></div>
+                                                            <input type="email" id='textEmailPartner' name='textEmailPartner' class="form-fields membership-fields"
+                                                                placeholder="Email address" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-12">
+                                                            <div><label><sup class="light-orange-color">*</sup>Phone
+                                                                    Number</label></div>
+                                                            <input type="text" name='textTelephoneHomePartner' id='textTelephoneHomePartner' class="form-fields membership-fields"
+                                                                placeholder="Phone number" />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Membership person2 details end here -->
+                                                <div class="row">
+                                                    <div class="col-12"><label><sup class="light-orange-color">*</sup>Postcode</label></div>
+                                                    <div class="col-md-8 col-12">
+                                                        <input type="text" class="form-fields membership-fields" placeholder="Postcode" id ="postcode" value="{!postCode}" />
+                                                    </div>
+                                                    <div class="col-md-4 col-12">
+                                                        <button type="button" class="green-button nomargin form-fields" id="postcode_checker">Find  address</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Membership person  details end here-->
+                                            <div class="membership-line"></div>
+
+                                            <!-- after postcode auto generate fields -->
+                                            <div id='pcfirst' class="padding-top">
+                                                    <div class="row paddingbot20px">
+                                                        <div class="col-5"><label class="text-center font-bold"><sup class="light-orange-color">*</sup>Building :</label></div>
+                                                        <div class="col-7">
+                                                            <select name='building' id='building' class="custom_select"><option>Check postcode above and click "Find"</option></select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-5"><label class="text-center font-bold"><sup class="light-orange-color">*</sup>Home address:</label></div>
+                                                        <div class="col-7">
+                                                            <input type="text" class="form-fields membership-fields" name="textAddress1" id="address_line_1" size="60" maxlength="35" value=""  placeholder="address line" required="true" />
+                                                            <input type="text" class="form-fields membership-fields" id="textAddress2" name="textAddress2" size="60" maxlength="35" value="" placeholder="address line2"  />
+                                                            <input type="text" class="form-fields membership-fields"  id='textAddress3' name='textAddress3' size='60' maxlength='35' value=''  placeholder="address line3"  />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                            <div class="col-5"> <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Town:</label> </div>
+                                                            <div class="col-7">
+                                                                <input type="text" class="form-fields membership-fields" name='textTown' id='town' size='35' maxlength='35' value='' placeholder="Town" required="true" />
+                                                            </div>
+                                                    </div>
+                                                    <div class="row">
+                                                            <div class="col-5"> <label class="text-center font-bold"><sup class="light-orange-color">*</sup>County:</label> </div>
+                                                            <div class="col-7">
+                                                                <input type="text" class="form-fields membership-fields"  name='textCounty' id='county' size='35' maxlength='35' value=''  placeholder="County" required="true" />
+                                                            </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-5"><label class="text-center font-bold">Due/birth date:</label></div>
+                                                        <div class="col-7">
+                                                                    <!--<apex:input type="date" value="{!eDate}"  styleClass="custom_select" id="due-Date" required="true"/>  -->                                           
+                                                                    <input type="date" value="{!eDate}" class="custom_select" id="due-Date" />
+                                                                    <span style='color:#999999; font-size:10px'>Please enter the date of birth of your youngest child, or if you are expecting, your estimated due date.
+                                                                            This information is optional, but it will help us tailor the information we provide to you.</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                                                                            
+                                                            <div class="col-5"> <label class="text-center font-bold"><sup class="light-orange-color">*</sup>NCT Branch:</label> </div>
+                                                            <div class="col-7">
+                                                                 <apex:outputPanel id="branch_Picklist"> 
+                                                                 <select name='branch' id='selectBranch' class="custom_select" >
+                                                                       <option value="" disabled="true">Nearest Branches</option>
+                                                                       <option value="" disabled="true">------------------------</option>                                       
+                                                                       <apex:repeat value="{!nearestBranchs}" var="nb">
+                                                                            <option value="{!nb.id}">{!nb.Name}</option>
+                                                                       </apex:repeat>
+                                                                       <option value="" disabled="true">------------------------</option>
+                                                                       <option value="" disabled="true">Alphabetical list below:</option>  
+                                                                       <option value="" disabled="true">------------------------</option>
+                                                                       <apex:repeat value="{!branchs}" var="b">
+                                                                            <option value="{!b.id}">{!b.Name}</option>
+                                                                       </apex:repeat>
+                                                                 </select>
+                                                                 </apex:outputPanel>                                             
+                                                            </div>
+                                                                                                            
+                                                    </div>                                                         
+                                            </div>
+                                            <!-- auto generate fields  -->
+                                            <div class="row padding-top justify-content-center">                                                
+                                                <div class=" col-lg-offset-4 col-md-5 col-12">
+                                                    <button type="button" id="nameSubmit" name="nameSubmit" class="green-button nomargin form-fields" >Confirm Membership details</button>
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </div>                                                                                                                
+                                <div id="payment" class="tab-pane fade">
+                                    <apex:outputPanel id="paymentMembership">
+                                    <div class="row">
+                                        <div class="col-md-7"> 
+                                        <div id="pay_page">
+                                            <legend>
+                                                <label>Membership Type</label>
+                                            </legend>
+
+                                            <div class="pure-control-group" id="selectMembership">
+
+
+                                                <p><b>What type of membership would you like?</b><br /><br />
+                                                <apex:outputPanel id="selMembership">                                           
+                                                <select name="selectMembership" id="selectMembership" class="form-fields membership-fields">
+                                                    <option value=""></option>                                              
+                                                    <option SELECTED="true" value="">Please select</option>
+                                                    <apex:repeat value="{!membershipTypeMap}" var="typeKey">
+                                                        <option value="{!membershipTypeMap}" style='font-weight:bold; background:#abcb63;' disabled="true">{!typeKey}</option>
+                                                        <apex:repeat value="{!membershipTypeMap[typeKey]}" var="mbrshpFee">                
+                                                            <option value="{!mbrshpFee.Id}">&nbsp; &nbsp; &nbsp; &nbsp;{!mbrshpFee.Payment_Type__c}</option>
+                                                        </apex:repeat>
+                                                    </apex:repeat>                                                   
+                                                </select>
+                                                </apex:outputPanel>
+                                                <br/>
+                                                        <div id="reduced" style="display:none">
+                                                                <strong>You are eligible for this if you receive Employment Support Allowance or tax credits (excluding child tax credits alone).</strong>
+                                                        </div>
+                                                <br />
+                                                    &nbsp; &nbsp; &nbsp; <span class="selectError">Please select your membership type</span>
+                                                </p>            
+                                            </div>
+                                            <div class="pure-control-group" id="giftaid" style="clear:both;">
+                                                <style>td {padding:5px; border:1px dotted #aaa;}</style>
+                                                <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
+                                                    <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/gift-aid.jpg')}"/>
+                                                    <!--<img src='assets/gift-aid.jpg' width='140' height='49' title='Gift Aid' align='right'/>-->
+                                                    Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra cost to you.
+                                                    This means that for every &pound;1 you give, we will receive an extra 25p from HM Revenue and Customs<br />
+                                                    <br style='clear:both;' />
+                                                    <p>
+                                                        <strong style='padding-top:10px;'>Your Gift Aid declaration</strong><br />
+                                                    </p>
+                                                    <br style='clear:both;' />
+                                                    <p>
+                                                    <div class="col-12 radio-fields-col membership_check paddingbot20px">
+                                                        <span><input type='checkbox' name='checkboxGiftAidPerson1' style='float:left' />
+                                                    I agree to the NCT claiming tax under the Gift Aid scheme on all my donations and subscriptions until I advise otherwise. I confirm that I am paying an
+                                                                    amount of UK Income and/or Capital Gains Tax which is at least equal to the amount of tax that all Charities and Community Amateur Sports Clubs (CASCs)
+                                                                    will reclaim on my donation in each tax year (6 April one year to 5 April the next).</span>
+                                                    
+                                                        <br style='clear:both;' />
+                                                    </div></p>
+                                                    <p style='font-size:11px; line-height: 13px;'>
+                                                        
+                                                            Please note: we will claim back the tax on any donations or membership subscriptions you have given us in the last 4 tax years. If you want to nominate another date,
+                                                            e.g. because you have been a non-taxpayer for some of the last four years or if you want to cancel this declaration, change your home address or no longer pay
+                                                            sufficient tax on your income, please contact our enquiries team at enquiries@nct.org.uk
+                                                        
+                                                    </p>
+                                                </div>  
+                                                    
+                                            </div>
+                                                <div class="pure-control-group">
+                                            <p>If you have any questions about your membership type, please email us at <a href="mailto:enquiries@nct.org.uk">enquiries@nct.org.uk</a>
+                                                <br />or telephone 0300 330 0700 and choose option 4.</p>
+                                            <!-- <p>You can speak to our Enquiries Agents Monday, Wednesday, Thursday, Friday 9-7pm and Tuesday 9-6pm.</p> -->
+                                            
+                                            <p>You can speak to our Enquiries Agents on Monday to Friday from 9am to 7pm and Tuesday from 9am to 6pm.</p>
+                                            
+                                            <p>We're closed on bank holidays.</p>
+                                            </div>
+                                            
+                                            <div class="pure-control-group">
+                                            </div>
+                                            <!-- 11/27/2018 changes start here -->
+                                                <div class="row nomargin">
+                                                    <div class="col-md-9"><button id="pay_now_back" class="back-btn">
+                                                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                    </button></div>
+                                                    <button class="green-button form-fields col-md-3" id="Pay_now">Pay Now</button>
+                                                </div>
+                                             <!-- 11/27/2018 changes end here -->
+                                        </div>
+                                        </div>
+                                        <div class="col-md-1 col-12"></div>
+                                        <div class="col-md-7"> 
+                                            <div id="direct_debit_block"> 
+                                            <fieldset>
+                                            <legend id="confpay">
+                                                Confirm Details and Payment Type&nbsp;&gt; Direct Debit Details
+                                            </legend>
+                                                    <fieldset>
+                                                        <div class="pure-control-group">
+                                                            
+                                                                <label for="forename">Your name:&nbsp; </label>
+                                                                <apex:outputText Id="nameDisplay" value=" {!firstname} {!lastname}" style="font-weight:bold;"></apex:outputText>
+                                                                <strong><font id="forename_Dsp"> </font></strong>
+                                                                                            
+                                                            </div>          
+                                                        <div class="pure-control-group">
+                                                            <label for="surname">Membership type:&nbsp;  </label>
+                                                             <apex:outputText Id="membershipTypeInfo" value=" {!membershipInfo.Contact_Type__c} {!membershipInfo.Membership__c}" style="font-weight:bold;"></apex:outputText>
+                                                            <strong><span id="forename_Details"> </span></strong>
+                                                        </div>
+                                                        <p>&nbsp;</p>
+                                                        
+                                                        <input type="hidden" name="account_type" value="existing" />
+
+                                                        </fieldset>
+
+                                                        <fieldset>
+                                                            <div class="pure-control-group ddinstr">
+                                                                In order to set up your Direct Debit Instructions online you will need to provide your bank sort code and account number.   If you are not the account holder or bank account requires more than one signatory then please
+                                                                ask our Enquiries team to send you a paper Direct Debit Instruction or <a href="#" title="Click here">click here</a>
+                                                                to proceed without using Direct Debit.
+                                                            </div>
+                                                            
+                                                        <div class="pure-control-group">
+                                                            <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Account name:</label>
+                                                            <span id="userData">
+                                                                <input id="accountName" class="form-fields membership-fields" type="text" value=""  name="accountName"/>
+                                                            </span>
+                                                        </div>
+                                                        
+
+                                                        <div class="pure-control-group">
+                                                            <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Sort code:</label>
+                                                            <span id="userData">
+                                                                <input id="scd1" class="form-fields-short membership-fields" type="text" name="scd1" maxlength="2" size="2" value="" />&nbsp;-&nbsp;
+                                                                <input id="scd2" class="form-fields-short membership-fields" type="text" name="scd2" maxlength="2" size="2" value=""  />&nbsp;-&nbsp;
+                                                                <input id="scd3" class="form-fields-short membership-fields" type="text" name="scd3" maxlength="2" size="2" value=""  />
+                                                            </span>
+                                                        </div>
+                                                        
+                                                        <div class="pure-control-group">
+                                                            <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Account number:</label>
+                                                            <input id="accountNumber" class="form-fields membership-fields" type="" name="accountNumber" maxlength="8" size="8" value="" />
+                                                        </div>
+                                                            
+                                                        
+                                                        <div class="pure-control-group">
+                                                            <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Payment date:</label>
+                                                            <input class="form-fields membership-fields" type="hidden" SELECTED="true" CHECKED="true" name="paymentDate" value="3rd" onChange="" />&nbsp;3rd of the month&nbsp;&nbsp;
+                                                        </div>
+                                                        <p></p>
+                                                         <div class="pure-control-group">
+                                                         <p>
+                                                            <strong>Your bank account will be debited as follows:</strong>
+                                                        </p>
+                                                        </div>
+                                                    
+                                                        <div class="pure-control-group paydates"><p>
+                                                                <span><span id='dateprocess1'><strong>&pound;<apex:outputText Id="membershipFeeInfo" value=" {!membershipInfo.Installment_Amount__c}"/><span id="pay_money"> </span></strong>
+                                                        on or after 3rd of the month and quarterly thereafter.
+                                                        </span></span>
+                                                            <br /></p>
+                                                        </div>  
+                                                        
+                                                    
+                                                    
+                                                    <div class="pure-control-group confpay">
+                                                    <div class="col-12 radio-fields-col membership_check paddingbot20px">                                                         
+                                                        <p><span>
+                                                                <input type="checkbox" style="visibility:hidden" required="true" />
+                                                                <input type="checkbox" id="checkboxConfirm" name="checkboxConfirm"/>
+                                                        
+                                                            <i>I confirm that I am authorised to debit from this account. I agree to NCT debiting my account as detailed above.
+                                                            </i><br /></span></p>
+                                                            <div class="checkbox-error error-message hide">Please Tick the Agree to Terms of Use</div>
+                                                    </div>
+                                                        
+                                                <div class='ddguaranteeblock' style='border:1px solid #333; padding:10px;'>
+                                                    <h3>The Direct Debit Guarantee</h3>
+                                                    <img src='https://www.nct.org.uk/membership-form/extras/dd_logo.gif' align='right' style='padding:8px;'/>
+                                                    <ul style='list-style:disc; margin-left:20px;'>
+                                                        <li style='list-style:disc;'>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
+                                                        <li style='list-style:disc;'>If there are any changes to the amount, date or frequency of your Direct Debit NCT will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request NCT to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
+                                                        <li style='list-style:disc;'>If an error is made in the payment of your Direct Debit, by NCT or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society.</li>
+                                                        <li style='list-style:disc;'>If you receive a refund you are not entitled to, you must pay it back when NCT asks you to.</li>
+                                                        <li style='list-style:disc;'>You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify us.</li>
+                                                    </ul>
+
+                                                </div>
+
+                                                        <br />
+                                                        <p>
+                                                            Instructions to your bank or building society to pay by Direct Debit.<br />
+                                                            If your bank account requires more than one signature, or you'd like to pay by Cheque, <br />please <a href='paperform.pdf'>download a membership form</a>.
+                                                        </p>
+                                                    </div>
+                                            <div class="pure-control-group" style="clear:both;">
+                                                        
+                                            <style>td {padding:5px; border:1px dotted #aaa;}</style>
+                                                <!-- <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
+                                                    <img src='assets/gift-aid.jpg' width='140' height='49' title='Gift Aid' align='right'/>
+                                                    Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra cost to you.
+                                                    This means that for every &pound;1 you give, we will receive an extra 25p from HM Revenue and Customs<br />
+                                                    <p>
+                                                        <strong>Your Gift Aid declaration</strong><br />
+                                                    </p>
+                                                    
+                                                    <div class="col-12 radio-fields-col membership_check paddingbot20px">
+                                                    <p>
+                                                        <span><input type='checkbox' Id="giftAidCheckbox" name='checkboxGiftAidPerson1' style='float:left' />
+                                                    I agree to the NCT claiming tax under the Gift Aid scheme on all my donations and subscriptions until I advise otherwise. I confirm that I am paying an
+                                                                    amount of UK Income and/or Capital Gains Tax which is at least equal to the amount of tax that all Charities and Community Amateur Sports Clubs (CASCs)
+                                                                    will reclaim on my donation in each tax year (6 April one year to 5 April the next).</span>
+                                                    </p>
+                                                    </div>
+                                                    <br style='clear:both;' />
+                                                    <p style='font-size:11px; line-height: 13px;'>
+                                                        
+                                                            Please note: we will claim back the tax on any donations or membership subscriptions you have given us in the last 4 tax years. If you want to nominate another date,
+                                                            e.g. because you have been a non-taxpayer for some of the last four years or if you want to cancel this declaration, change your home address or no longer pay
+                                                            sufficient tax on your income, please contact our enquiries team at enquiries@nct.org.uk
+                                                        
+                                                    </p>
+                                                </div>   -->
+                                                            
+                                                    </div>
+                                                    <div class="pure-control-group">
+                                                        
+                                                <div style='border:1px solid #333; padding:10px;'>
+                                                    <p>Should you have any queries, please contact us:<br /></p>
+                                                        <p><strong>Email:</strong> <a href='mailto:enquiries@nct.org.uk'>enquiries@nct.org.uk</a></p>
+                                                        <p><strong>Telephone:</strong> 0300 330 0700</p>
+                                                </div>
+                                                        </div>
+                                                    <div class="pure-control-group">
+                                                        <span style='font-size:9px; color:#aaa;'>I wish to become a member of the National Childbirth Trust (a company limited by guarantee).
+                                            I undertake that if, while I am a member or for one year thereafter, the company shall be wound up, I will contribute to the assets of the company (in accordance with Clause 8 of its Memorandum)
+                                            such sum as may be required not exceeding &pound;1.</span>          </div>
+                                                    
+                                                    <div class="pure-control-group">
+                                                        If you'd like a different membership payment method, please <a href="#">Go Back</a> to select a different type.<br /><br />
+                                                    </div>
+                                                                                                        
+                                          
+                                            </fieldset>
+                                            <!-- 11/27/2018 changes start here -->
+                                            <div class="row nomargin paddingtop20px">
+                                                <div class="col-md-9">
+                                                    <button id="direct_pay_back" class="back-btn">
+                                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                                <button class="green-button form-fields col-md-3" id="direct_pay_btn">Pay Now</button>
+                                            </div>
+                                            <!-- 11/27/2018 changes end here -->
+
+                                        </fieldset>
+                                        </div>
+                                        <!-- 11/27/2018 changes start here -->
+                                        <div id="gift_aid_block" >
+                                                <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
+                                                    <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/gift-aid.jpg')}"/>
+                                                    <!--<img src='assets/gift-aid.jpg' width='140' height='49' title='Gift Aid' align='right' />-->
+                                                    Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra
+                                                    cost to you.
+                                                    This means that for every &pound;1 you give, we will receive an extra 25p from HM Revenue and Customs<br />
+                                                    <p>
+                                                        <strong>Your Gift Aid declaration</strong><br/>
+                                                    </p>
+
+                                                    <div class="col-12 radio-fields-col paddingbot20px membership_check">
+                                                        <p>
+                                                        <span><input type='checkbox' id='giftAidCheckbox' name='checkboxGiftAidPerson1' style='float:left' />
+                                                                I agree to the NCT claiming tax under the Gift Aid scheme on all my donations and subscriptions
+                                                                until I advise otherwise. I confirm that I am paying an
+                                                                amount of UK Income and/or Capital Gains Tax which is at least equal to the amount of tax that all
+                                                                Charities and Community Amateur Sports Clubs (CASCs)
+                                                                will reclaim on my donation in each tax year (6 April one year to 5 April the next).</span>
+                                                        </p>
+                                                    </div>
+                                                    <br style='clear:both;'/>
+                                                    <p style='font-size:11px; line-height: 13px;'>
+
+                                                        Please note: we will claim back the tax on any donations or membership subscriptions you have given us
+                                                        in the last 4 tax years. If you want to nominate another date,
+                                                        e.g. because you have been a non-taxpayer for some of the last four years or if you want to cancel
+                                                        this declaration, change your home address or no longer pay
+                                                        sufficient tax on your income, please contact our enquiries team at enquiries@nct.org.uk
+
+                                                    </p>
+                                                </div>
+                                                <div class="row nomargin paddingtop20px">
+                                                    <div class="col-md-9">
+                                                        <button id="gift_aid_back" class="back-btn">
+                                                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                    <button class="green-button form-fields col-md-3" id="gift_aid_btn">Pay Now</button>
+                                                </div>
+                                            </div>
+                                            <!-- 11/27/2018 changes start here -->
+                                        </div>
+                                        </div>
+                                    </apex:outputpanel>
+                                </div>                               
+                                <div id="confirmation" class="tab-pane fade">
+                                    <div class="row">
+                                        <div class="col-md-7" id="credit_card_confirm">
+                                        <fieldset>
+                                            <legend>
+                                                <label>Confirm Details and Payment Type</label>
+                                            </legend>
+                                            <div class="pure-control-group">
+
+                                                <p>
+                                                    <label class="sc4">Membership type:</label>
+                                                    <span id="forename_Cc" /><strong> </strong>                         
+                                                </p>
+                                                <p>
+                                                    <label class="sc4">Total cost:</label>
+                                                    <strong><span>&pound;<span id="pay_money_cc">57</span></span></strong>
+                                                </p>
+                                            </div>
+                                            <p style="clear:left;"><strong>Note:</strong> You will be redirected to Sagepay's secure server to process your payment.</p>
+                                            <div class="pure-control-group">
+                                                <p><span style='font-size:9px; color:#aaa;'>I wish to become a member of the National Childbirth Trust (a company limited by guarantee).
+                                        I undertake that if, while I am a member or for one year thereafter, the company shall be wound up, I will contribute to the assets of the company (in accordance with Clause 8 of its Memorandum)
+                                        such sum as may be required not exceeding &pound;1.</span></p>
+                                            </div>
+                                        
+                                            
+
+                                            <p>If you'd like a different membership payment method, please <a href="#">Go Back</a> to select a different type.</p>
+
+
+                                            <br /><br />
+                                            <div class="pure-control-group">
+
+                                                
+                                            </div>
+                                            </fieldset>
+                                            <div class="row nomargin paddingtop20px">
+                                                    <!-- 11/27/2018 changes start here -->
+                                                    <div class="col-md-9">
+                                                        <button id="confirm_pay_back" class="back-btn">
+                                                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                    <button class="green-button form-fields col-md-3" id="confirm_all_pay_cc">Pay now</button>
+                                                    <!-- 11/27/2018 changes end here -->
+                                                </div>
+                                        </div>
+                                        <div class="col-md-7" id="direct_debit_confirm">
+                                        <fieldset>
+                                        <legend>Direct Debit Confirmation</legend>
+
+                                        <div class="pure-control-group">
+                                        Please check and confirm your Direct Debit Instruction.
+                                        </div>
+
+                                        <div class="pure-control-group">
+                                        <b>The bank account that will be debited is:</b>
+                                        </div>
+
+                                        <div class="pure-control-group">
+                                        <label><b>Account name:</b></label>
+                                        <font id="DD_acc_name"> </font>
+                                        </div>
+
+
+                                        <div class="pure-control-group">
+                                        <label><b>Bank sort code:</b></label>
+                                        <font id="DD_sort_code"> </font>
+                                        </div>
+
+                                        <div class="pure-control-group">
+                                        <label><b>Bank account number:</b></label>
+                                        <font id="DD_bank_acc_num"> </font>
+                                        </div>
+
+                                        <div class="pure-control-group">
+                                        <b>Your bank account will be debited as follows:</b>
+                                        </div>
+
+                                        <div class="pure-control-group">
+                                                     <!--<td colspan="2"><font id="userData">Eighteen Month by Direct Debit</font>-->
+                                                
+                                        </div>
+
+
+                                        <div class="pure-control-group">
+
+                                              <font id="userData">
+                                                        <strong>&pound;
+                                                        <span id="DD_pay_value"><apex:outputText Id="membershipFeeValue" value=" {!membershipInfo.Installment_Amount__c}"/></span></strong>
+                                                        on or after 3rd of the month and quarterly thereafter if quarterly option selected         
+                                                        .</font>
+
+                                        </div>
+
+                                        <div class="pure-control-group">
+                                        Please <a>go back</a> if you'd like to change your membership type.
+                                        </div>
+
+                                        </fieldset>
+                                        <div class="row nomargin paddingtop20px">
+                                            <!-- 11/27/2018 changes start here -->
+                                            <div class="col-md-9">
+                                                <button id="direct_debit_back" class="back-btn">
+                                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                            <button class="green-button form-fields col-md-3" id="confirm_all_pay_dd">Pay now</button>
+                                            <!-- 11/27/2018 changes end here -->
+                                        </div>
+                                        </div>                              
+                                        </div>
+                                </div>
+                                <div id="thankyou" class="tab-pane fade">
+                                    <div class="row">
+                                        <div class="col-md-7 col-12">
+                                            <apex:outputPanel Id="displayValues">
+                                            <h2 class="paddingtop20px">Congratulations,</h2> 
+                                            <p><strong><span id="forename_Dsp"> </span></strong></p>
+                                            <p><apex:outputText Id="membershipWelcomText" value="Welcome to our family..." rendered="{!displayMbrNoMessage}"/></p>
+                                            <p> <apex:outputText Id="membershipDisplayText" value="Successfully send the Payment link to the Parent !!!" rendered="{!displaySuccessMessage}"/>
+                                                <apex:outputText Id="membershipText" value="Your Membership Number is -" rendered="{!displayMbrNoMessage}"/>&nbsp;
+                                               <apex:outputText Id="membershipNumber" value="{!membershipNumber}" style="font-weight:bold;" rendered="{!displayMbrNoMessage}"/></p>
+                                               </apex:outputPanel>
+                                        <div class="col-md-1 col-12">                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- footer start here -->
+    <footer>
+        <div class="footer-padding container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h6 class="footer-header">Enquires and Feeding Helpline</h6>
+                    <div class="footer-content">
+                        <h6 class="num_color">0300 330 0700 </h6>
+                        <p>For practical and emotional Support in all areas of pregnancy.birth and parentehood
+                            including help
+                            with feeding </p>
+                        <a href="" class="link-color">See all Costs</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <h6 class="footer-header">About</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="https://nct.org.uk/about-nct/first-1000-days">First 1,000 Days</a>
+                        </li>
+                        <li>
+                            <a href="https://nct.org.uk/about-nct/vision-and-strategy">Vission, Mission &amp; goal</a>
+                        </li>
+                        <li>
+                            <a href="https://www.cloudonlinerecruitment.co.uk/nct/">Trustees</a>
+                        </li>
+                        <li>
+                            <a href="https://nct.org.uk/about-nct/trustees">Careers</a>
+                        </li>
+                        <li>
+                            <a href="https://nct.org.uk/about-us/contact-us">Contact us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="footer-header">News and Views</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="">News</a>
+                        </li>
+                        <li>
+                            <a href="">Blogs</a>
+                        </li>
+                        <li>
+                            <a href="">Forums</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="footer-header">Support us</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="https://nct.org.uk/get-involved/membership">Membership</a>
+                        </li>
+                        <li>
+                            <a href="https://nct.org.uk/get-involved/corporate-partnerships">Partnership</a>
+                        </li>
+                        <li>
+                            <a href="https://nct.org.uk/get-involved/fundraising-activities">Fundraising activities </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="footer-header">Professionals</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="">Breastfeeding peer support training </a>
+                        </li>
+                        <li>
+                            <a href="">Preparation for birth and beyond antenatal course </a>
+                        </li>
+                        <li>
+                            <a href="">training for professionals </a>
+                        </li>
+                        <li>
+                            <a href="">Diversity and access </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer_links">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-12 nopadding">
+                        <ul>
+                            <li>
+                                <a href="">Research</a>
+                            </li>
+                            <li>
+                                <a href="">Media</a>
+                            </li>
+                            <li>
+                                <a href="https://nct.org.uk/privacy">Privacy and Cookies </a>
+                            </li>
+                            <li>
+                                <a href="https://nct.org.uk/about-us/contact-us">Contact us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="footer_address">
+                            <p>&copy; 2018 NCT, 30 Euston Square,London, NW12FB. </p>
+                            <p>Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end here -->
+    <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/pca.js')}"/>
+    <script>
+        $(document).ready(function () {
+            $("#textMobile, #scd1, #scd2, #scd3, #accountNumber").keydown(function (e) {
+                    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+                        (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+                        (e.keyCode >= 35 && e.keyCode <= 40)) {
+                            return;
+                    }
+                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                        e.preventDefault();
+                    }
+                });
+            $("#secondMembership").hide();
+            $('#giftaid').hide(); // 11/27/2018 changes start here 
+            $("#direct_debit_block").hide();
+            $("#gift_aid_block").hide(); // 11/27/2018 changes start here 
+            // **************** hide the secondMember deatails ***************//
+
+                $("#twomem").change(function () {
+                    var twomem = $(this)[0].checked;
+                    console.log($(this)[0].checked);
+                    if (twomem == true) {                        
+                        $("#secondMembership").show();
+                    } 
+                    else {
+                        $("#secondMembership").hide();
+                    }
+                })
+                $('#selectBranch').change(function() {
+                    console.log("GO!");
+                    console.log($('#selectBranch :selected').val());
+                    
+                    if (($('#selectBranch :selected').val() != '')) {
+                        var selectBranch = $('#selectBranch :selected').val();
+                        
+                    }
+
+                })
+               
+                $("#postcode_checker").click(function () {
+                    console.log($('#postcode').val());
+                    postCodeVal($('#postcode').val());
+                })
+                $("#nameSubmit").click(function () {
+                    console.log($(twomem)[0].checked);
+                    console.log($(selectBranch).checked);
+                    console.log($('#address_line_1 ').val());
+                    console.log($('#textAddress2').val());
+                    console.log($('#textAddress3').val());
+                    console.log($('#town').val());
+                    console.log($('#county').val());
+                    console.log($('#due-Date').val());
+                    //SelBranchValFunction($(selBnchvalue).val());
+                    if(validateJoin() && validateGender()){
+                    afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('input[name=gender]:checked').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val()); 
+                    //var gender = $('input[name=gender]':checked).val();
+                    //console.log(gender);
+                    $('#register_li').removeClass('active');
+                    $('#payment_li').addClass('active');
+                    $('#register').removeClass('active show');
+                    $('#payment').addClass('active show');
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    
+                }
+                });
+                $("#confirm_all_pay_cc").click(function () {                    
+                    var forename_Dsp = $('#textForename').val();
+                    $('#confirmation_li').removeClass('active');
+                    $('#thankyou_li').addClass('active');
+                    $('#confirmation').removeClass('active show');
+                    $('#thankyou').addClass('active show');
+                    $('#forename_Dsp').html(forename_Dsp);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    
+                });
+                $("#confirm_all_pay_dd").click(function () {
+                    var accountName = $('#accountName').val();
+                    var sortCode1 = $('#scd1').val();
+                    var sortCode2 = $('#scd2').val();
+                    var sortCode3 = $('#scd3').val();
+                    var sortCode = sortCode1 + '-' + sortCode2 + '-' + sortCode3;
+                    var accountNumber = $('#accountNumber').val();
+                    var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
+                    console.log(giftAidCheckbox);
+                    console.log(accountName);
+                    console.log(sortCode);
+                    console.log(accountNumber);
+                    saveRecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
+                    //thankYouPage();
+                    var forename_Dsp = $('#textForename').val();
+                    $('#confirmation_li').removeClass('active');
+                    $('#thankyou_li').addClass('active');
+                    $('#confirmation').removeClass('active show');
+                    $('#thankyou').addClass('active show');
+                    $('#forename_Dsp').html(forename_Dsp);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    
+                });
+                $("#direct_pay_btn").click(function () {
+                    
+                    //saveRecordValues(accountName,sortCode,accountNumber,$('#selectMembership :selected').val());
+                    if (validatePayment()) {
+                        $('#payment_li').removeClass('active');
+                        // $('#confirmation_li').addClass('active');
+                        // $('#payment').removeClass('active show');
+                        // $('#confirmation').addClass('active show');
+                        // $('#credit_card_confirm').hide();
+                        // $('#direct_debit_confirm').show();
+                        $('#gift_li').addClass('active');
+                        $("#direct_debit_block").hide();
+                        $("#gift_aid_block").show();                        
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                    }
+                    
+                    return;
+                });
+                $('#gift_aid_btn').on('click', function(){
+                    var accountName = $('#accountName').val();
+                    var sortCode1 = $('#scd1').val();
+                    var sortCode2 = $('#scd2').val();
+                    var sortCode3 = $('#scd3').val();
+                    var sortCode = sortCode1 + '-' + sortCode2 + '-' + sortCode3;
+                    var accountNumber = $('#accountNumber').val();
+                    var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
+                    console.log(giftAidCheckbox);
+                    console.log(accountName);
+                    console.log(sortCode);
+                    console.log(accountNumber);
+                    //console.log($(giftAidCheckbox)[0].checked);
+                    //saverecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
+                    $('#payment_li, #gift_li').removeClass('active');
+                    $('#confirmation_li').addClass('active');
+                    $('#payment').removeClass('active show');
+                    $('#confirmation').addClass('active show');
+                    $('#credit_card_confirm').hide();
+                    $("#gift_aid_block").hide();
+                    $("#DD_acc_name").html(accountName);
+                    $("#DD_sort_code").html(sortCode);
+                    $("#DD_bank_acc_num").html(accountNumber);
+                });
+                $('#person-clear').on('click',function(){
+                    $('#textForenamePartner, #textSurnamePartner, #textEmailPartner, #textTelephoneHomePartner').val('');
+                }); 
+                function validatePayment() {
+                    error = "";
+                    if($('#accountName').val() == "") {
+                        error = error + "Please Enter Account Name.\n";
+                        $('#accountName').addClass('error');
+                    }
+                    if($('#scd1').val() == ""){
+                        error = error + "Please Enter Code.\n";
+                        $('#scd1').addClass('error');
+                    }
+                    if($('#scd2').val() == ""){
+                        error = error + "Please Enter Code.\n";
+                        $('#scd2').addClass('error');
+                    }
+                    if($('#scd3').val() == ""){
+                        error = error + "Please Enter Code.\n";
+                        $('#scd3').addClass('error');
+                    }
+                    if($('#accountNumber').val() == ""){
+                        error = error + "Please Enter Account Number.\n";
+                        $('#accountNumber').addClass('error');
+                    }
+                    
+                    if (!($('#checkboxConfirm').is(':checked'))) {
+                        error = error + "Please Tick the Agree to Terms of Use. \n";
+                        //$('.checkbox-error').removeClass('hide')
+                    }
+                    // else {
+                        // $('.checkbox-error').addClass('hide');
+                    // }
+        
+                    if (error != "") {
+                        alert(error);
+                        return false;
+                    } else {
+                        return true;
+                    }
+
+                }
+             // **************** hide the secondMember deatails ***************//
+        })
+    </script>
+    <script>
+    $(function() {
+        
+        console.log( "ready!" ); //branch
+        
+        $('#selectMembership').change(function() {
+            //alert("GO");
+            console.log($('#selectMembership :selected').text().includes('Credit'));
+            console.log($('#selectMembership :selected').text());
+            console.log("GO!");
+            console.log($('#selectMembership :selected').val());
+        
+            $("#Pay_now").click(function (){
+                console.log($('#selectMembership :selected').val());
+                console.log($('#selectMembership :selected').text());
+                if (($('#selectMembership :selected').val() == '' || $('#selectMembership :selected').text() == '' ||
+                    $('#selectMembership :selected').text() == 'Please select' || $('#selectMembership :selected').val() == 'Please select')){
+                    $('#selectMembership select').addClass('error-border');
+                    alert("Please select your membership type");
+                    return false;
+                }
+                else {
+                    $('#selectMembership select').removeClass('error-border');
+                }
+                if (($('#selectMembership :selected').val() != '')) {                    
+                    SelValFunction($('#selectMembership :selected').val());
+                    console.log($('#selectMembership :selected').text().includes('Credit'));
+                    if(($('#selectMembership :selected').text().includes('Credit'))){                        
+                        // $("#direct_debit_block").append( "<div class='col-md-7'><div class='loader'></div></div>" );
+                        //$("#direct_debit_block").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
+                        $('#payment_li').removeClass('active');
+                        $('#thankyou_li').addClass('active');
+                        $('#payment').removeClass('in active show');
+                        $('#thankyou').addClass('active show');
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                      }
+                    $("#direct_debit_block").show();
+                    $("#pay_page").hide();
+                    console.log($('#selectMembership :selected').text());
+                    console.log("Direct Debitpage selected");
+                    
+                    //$("#forename_Dsp").html(forename);
+                    //$("#forename_Details").html(pay_userdata);
+                    //$("#pay_money").html(pay_value);
+                    return;
+                } else {
+                    console.log($('#selectMembership :selected').val());
+                    $('#payment_li').removeClass('active');
+                    $('#confirmation_li').addClass('active');
+                    $('#payment').removeClass('in active show');
+                    $('#confirmation').addClass('in active show');
+                    $('#direct_debit_confirm').hide();
+                    $('#credit_card_confirm').show();
+                    //$("#credit_card_confirm").append( "<div class='col-md-7'><div class='loader'></div></div>" );
+                    // 11/27/2018 changes start here 
+                    // $("#credit_card_confirm").append( "<div class='col-md-7'><div class='loader'><div>Loading...</div></div></div>" );
+                    // 11/27/2018 changes end here 
+                    $("#forename_Cc").html(pay_userdata);
+                    //$("#pay_money_cc").html(pay_value);
+                    $('#accountName').prop('required',false);
+                    $('#accountNumber').prop('required',false);
+                    $('#scd1').prop('required',false);
+                    $('#scd2').prop('required',false);
+                    $('#scd3').prop('required',false);
+                    $('#checkboxConfirm').prop('required',false);
+                    return;
+                }
+            });
+        });
+            
+            
+
+    });
+    </script>
+    <script>
+        function validEmail(v) {
+            var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+            return (v.match(r) == null) ? false : true;
+        }
+        
+        function validPhone(v) {
+            //var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]");
+            var r = new RegExp("[a-zA-Z]");
+            return (v.match(r) == null) ? true : false;
+        }
+        
+        
+        function validBranch() {            
+            console.log("118:"+$('#selectBranch').val());
+            if (($('#selectBranch').val()=="Nearest first")  ||  ($('#selectBranch').val()=="--------------") || ($('#selectBranch').val()=="Alphabetical list below:") ) {
+                error = error + "Please select a branch\n";
+                $('#selectBranch').addClass('error');
+            }                       
+        }
+        
+        function validText(v) {
+            //var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]");
+            var r = new RegExp("[0-9]");
+            return (v.match(r) == null) ? true : false;
+        }
+        function validDate() {
+               var date = $("#due-Date").val();
+               if (date == "" || date == undefined) {
+                   return false
+               } else {
+                   return true;
+               }
+           }
+        function validateGender() {
+
+            var gender = $('input[name=gender]:checked').val();
+            console.log(gender);
+                    if(gender == ""|| gender == undefined) {
+                        return false
+                    }
+                    else{
+                        return true;
+            }
+        } 
+        function validateJoin() {
+                    error="";
+                    console.log("123");
+                    
+            // (validDate()) {
+            //console.log("date")
+            //} else {
+            //  error = error + 'please enter Date.\n'
+            //} 
+                    if($('#selectTitle').val() == "") {
+                        error = error +  "Please select your title.\n";
+                        $('#selectTitle').addClass('error');
+                        //return false;
+                    }
+                    if(validateGender()) {
+                        //$('.gender-error').addClass('hide');
+                    }
+                    else{
+                        //$('.gender-error').removeClass('hide');
+                        error=error+'please select gender.\n'
+                    }
+                    
+                    
+                    $('input').removeClass("error");    // clear all markup before beginning.
+                        
+                    if($('#county').val() == "") {
+                        error = error +  "Please enter your county.\n";
+                        $('#county').addClass('error');
+                        //return false;
+                    }
+                    
+                    validBranch();
+                    
+                    
+                    if($('#textForename').val() == "") {
+                        error = error +  "Please enter your forename.\n";
+                        $('#textForename').addClass('error');
+                        //return false;
+                    }
+                    
+                    if($('#textSurname').val() == "") {
+                        $('#textSurname').addClass('error');
+                        error = error + "Please enter your surname.\n";
+                        //return false;
+                    }
+                    
+                    if($('#textAddress1').val() == "") {
+                        $('#address_line_1').addClass('error');
+                        error = error + "Please enter your address.\n";
+                        //return false;
+                    }
+                    
+                
+                    if($('#textEmail').val() == "") {
+                        $('#textEmail').addClass('error');
+                        error = error + "Please enter your email address.\n";
+                        //return false;
+                    } else {
+                
+                        var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;                                         //Define email filter
+                        if (!(emailFilter.test($('#textEmail').val()))) {                               //Filter email out
+                            error = error + "Please enter a valid email address.\n";
+                            $('#textEmail').addClass('error');
+                            //return false;     
+                        }
+                        var illegalCharsForEmail= /[\(\)\<\>\,\;\:\\\"\[\]]/ ;                                  //Define illegal chars
+                        if ($('#textEmail').val().match(illegalCharsForEmail)) {                        //Check illegal chars
+                            $('#textEmail').addClass('error');
+                            error = error + "The email address contains illegal characters.\n";
+                            //return false;     
+                        }
+                        
+                    }
+                    //alert(validEmail(document.form1.textEmail.value));
+                    
+                    if($('#textTown').val() == "") {
+                        $('#town').addClass('error');                   
+                        error = error + "Please enter your town.\n";
+                        //return false;
+                    }
+                    if($('#textPostcode').val() == "") {
+                        $('#textPostcode').addClass('error');                   
+                        error = error + "Please enter your postcode.\n";
+                        //return false;
+                    }
+                                        
+                    if($('#textMobile').val() == "") {
+                        error = error + "Please enter your mobile number.\n";
+                        $('#textMobile').addClass('error');                 
+
+                        //return false;
+                    } else {
+                        // not blank, check no alpha
+                        if (!validPhone($('#textMobile').val())) {
+                            error = error + "Please enter a valid mobile number.\n";
+                        $('#textMobile').addClass('error');     
+                        }
+                        
+                    }
+                    
+                    var babyDay = $('#selectDay').val();
+                    var babyMonth = $('#selectMonth').val();
+                    var babyYear =  $('#babyYear').val();
+                    
+                    if(babyDay == "" && babyMonth == "" && babyYear == "") {
+                        //Dont do anything
+                    } else if(babyDay != "" && babyMonth != "" && babyYear != "") {
+                        //Dont do anything
+                    } else {
+                        error = error + "Either give full date or no date at all for 'Date of birth of baby'\n";
+                        //return false;
+                    }
+                
+                console.log("211");
+            
+            if ($('#twomem').attr('checked')) {
+                    if($('#selectTitlePartner').val() == "Please Select" ) {
+                        error = error +  "Please select your partner's title.\n";
+                        $('#selectTitle').addClass('error');
+                        //return false;
+                    }
+
+                
+                if ($('#textForenamePartner').val()=="") {
+                    $('#textForenamePartner').addClass('error');
+                    error = error + "Please enter your partner's first name.\n";
+                } else {
+                    if (!validText($('#textForenamePartner').val())) {
+                        error = error + "Please do not include numeric values in the name field\n";
+                        $('#textSurnamePartner').addClass('error');
+                    }                   
+                }
+                
+                if ($('#textSurnamePartner').val()=="") {
+                    $('#textSurnamePartner').addClass('error');
+                    error = error + "Please enter your partner's surname.\n";
+                }else {
+                    if (!validText($('#textSurnamePartner').val())) {
+                        error = error + "Please do not include numeric values in the surname field\n";
+                        $('#textSurnamePartner').addClass('error');
+                    }                   
+                }               
+                if($('#textEmailPartner').val() == "") {
+                    $('#textEmailPartner').addClass('error');
+                    error = error + "Please enter your partner's email address.\n";
+                    //return false;
+                } else {            
+                    var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;                                         //Define email filter
+                    if (!(emailFilter.test($('#textEmail').val()))) {                               //Filter email out
+                        error = error + "Please enter a valid email address.\n";
+                        $('#textEmailPartner').addClass('error');
+                        //return false;     
+                    }
+                    var illegalCharsForEmail= /[\(\)\<\>\,\;\:\\\"\[\]]/ ;                                  //Define illegal chars
+                    if ($('#textEmail').val().match(illegalCharsForEmail)) {                        //Check illegal chars
+                        $('#textEmailPartner').addClass('error');
+                        error = error + "The email address contains illegal characters.\n";
+                        //return false;     
+                    }                   
+                }               
+                if($('#textMobilePartner').val() == "") {
+                    error = error + "Please enter your partner's mobile number.\n";
+                    $('#textMobilePartner').addClass('error');                  
+
+                    //return false;
+                } else {
+                    // not blank, check no alpha
+                    if (!validPhone($('#textMobilePartner').val())) {
+                        error = error + "Please enter a valid mobile number.\n";
+                    $('#textMobilePartner').addClass('error');      
+                    }                   
+                }                   
+            }
+                
+                
+    
+                if (error != "") {
+                    alert(error);
+                    return false;
+                } else {
+                    return true;
+                }
+        
+        }
+    </script>
+    <!-- 11/27/2018 changes start here -->
+    <script>
+        $('#pay_now_back').on('click', function(){
+            $('#payment').removeClass('active show');
+            $('#payment_li').removeClass('active');
+            $('#register_li').addClass('active');
+            $('#register').addClass('active show');
+        });
+        $('#direct_pay_back, #go-back-payment').on('click', function(){
+            $('#direct_debit_block').css('display', 'none');
+            $('#pay_page').css('display', '');
+        });
+        $('#gift_aid_back').on('click', function(){
+            $('#direct_debit_block').show();
+            $('#gift_aid_block').hide();
+            $('#gift_li').removeClass('active');
+            $('#payment_li').addClass('active');
+        });
+       $('#direct_debit_back').on('click', function(){
+            $('#confirmation').removeClass('active show');
+            $('#confirmation_li').removeClass('active');
+            $('#gift_aid_block').show();
+            $('#gift_li').addClass('active');
+            $('#payment').addClass('active show');
+        });
+    </script>
+    <!-- 11/27/2018 changes start here -->
+</body>
+</apex:form>
+</apex:page>

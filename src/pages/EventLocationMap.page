@@ -5,7 +5,7 @@
 	* (c) Copyright by CSS Corp.
 	**
 -->
-<apex:page standardController="Events__c"  sidebar="false" showHeader="false">
+<apex:page standardController="Event__c"  sidebar="false" showHeader="false">
 <!-- Google Maps API Version -2 -->
 <!-- Please don't change the below api congiguration. If any one want to change the api, please make below
 API in comments -->
@@ -17,7 +17,7 @@ API in comments -->
 var map = null;
 var geocoder = null;
  
-var address = "{!Events__c.Event_Venue_Details__c}";
+var address = "{!Event__c.Event_Venue_Details__c}";
 
 function initialize() {
 if(GBrowserIsCompatible())
@@ -37,7 +37,7 @@ if(GBrowserIsCompatible())
         var marker = new GMarker(point);
         map.addOverlay(marker);
          marker.openInfoWindow(document.createTextNode(address));
-          //marker.bindInfoWindowHtml("<b>Event Name :</b> <i> {!Events__c.Name} </i> <br/> <b>Address : </b>"+address);
+          //marker.bindInfoWindowHtml("<b>Event Name :</b> <i> {!Event__c.Name} </i> <br/> <b>Address : </b>"+address);
           
       }
     }

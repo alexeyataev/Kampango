@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>false</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>false</enableSharing>
+    <enableStreamingApi>false</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>ContactKey__c</fullName>
         <externalId>false</externalId>
@@ -72,10 +124,12 @@
                 <value>
                     <fullName>Monthly</fullName>
                     <default>false</default>
+                    <label>Monthly</label>
                 </value>
                 <value>
                     <fullName>Quarterly</fullName>
                     <default>false</default>
+                    <label>Quarterly</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -94,14 +148,17 @@
                 <value>
                     <fullName>Silver</fullName>
                     <default>false</default>
+                    <label>Silver</label>
                 </value>
                 <value>
                     <fullName>Platinum</fullName>
                     <default>false</default>
+                    <label>Platinum</label>
                 </value>
                 <value>
                     <fullName>Gold</fullName>
                     <default>false</default>
+                    <label>Gold</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -146,10 +203,12 @@
                 <value>
                     <fullName>Success</fullName>
                     <default>false</default>
+                    <label>Success</label>
                 </value>
                 <value>
                     <fullName>Failed</fullName>
                     <default>false</default>
+                    <label>Failed</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -169,14 +228,17 @@
                 <value>
                     <fullName>Newsletter - S&amp;H</fullName>
                     <default>false</default>
+                    <label>Newsletter - S&amp;H</label>
                 </value>
                 <value>
                     <fullName>Local Services - S&amp;H</fullName>
                     <default>false</default>
+                    <label>Local Services - S&amp;H</label>
                 </value>
                 <value>
                     <fullName>Open Houses - S&amp;H</fullName>
                     <default>false</default>
+                    <label>Open Houses - S&amp;H</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -196,18 +258,22 @@
                 <value>
                     <fullName>Online</fullName>
                     <default>false</default>
+                    <label>Online</label>
                 </value>
                 <value>
                     <fullName>Offline</fullName>
                     <default>false</default>
+                    <label>Offline</label>
                 </value>
                 <value>
                     <fullName>Cheque</fullName>
                     <default>false</default>
+                    <label>Cheque</label>
                 </value>
                 <value>
                     <fullName>Cash</fullName>
                     <default>false</default>
+                    <label>Cash</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -246,18 +312,22 @@
                 <value>
                     <fullName>cash</fullName>
                     <default>false</default>
+                    <label>cash</label>
                 </value>
                 <value>
                     <fullName>cheque</fullName>
                     <default>false</default>
+                    <label>cheque</label>
                 </value>
                 <value>
                     <fullName>online</fullName>
                     <default>false</default>
+                    <label>online</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <label>Transaction</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
@@ -271,4 +341,28 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <nameField>
+        <label>Transaction Number</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Transaction</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Payment_Method__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Payment_Frequency__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Transaction_Amount__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Payment_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Transaction_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Transaction_Type__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Payment_Method__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Payment_Frequency__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Payment_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Payment_Plan__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Transaction_Amount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Transaction_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Transaction_Type__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

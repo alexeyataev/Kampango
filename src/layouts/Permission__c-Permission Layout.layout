@@ -9,14 +9,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Permission__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Source__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
                 <field>Contact__c</field>
             </layoutItems>
             <layoutItems>
@@ -28,12 +20,12 @@
                 <field>Permission_Answer__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ContactKey__c</field>
+                <behavior>Required</behavior>
+                <field>Permission__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Permission_Questions_Key__c</field>
+                <behavior>Required</behavior>
+                <field>Source__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -77,10 +69,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <miniLayout>
-        <fields>Permission__c</fields>
-        <fields>Source__c</fields>
-    </miniLayout>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>

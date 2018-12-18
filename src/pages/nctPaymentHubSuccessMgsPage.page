@@ -1,0 +1,230 @@
+<apex:page id="nctPymtHbSccMgPg" showHeader="false" sidebar="false">
+    <apex:form id="nctPymtHbSccMgFrm">
+        <head>
+            <meta charset="utf-8"/>
+            <title>The UK's largest charity for parents | NCT</title>
+            <meta name="description" content=""/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <link rel="icon" type="image/png" href="assets/favicon.ico"/>
+            <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
+            <style>
+                header{
+                position: relative;
+                }
+                header::after{
+                /* position: absolute; */
+                display: block;
+                height: 0.81rem;
+                width: calc(100% + 30px) !important;
+                background-image: url(/resource/1543388581000/nctapp/nct-app/assets/header-border-bottom.png);
+                background-repeat: no-repeat;
+                -webkit-background-size: 100% 1.25rem;
+                background-size: 100% 1.25rem;
+                background-position: bottom;
+                content: "";
+                z-index: 1000;
+                /* bottom: 72%; */
+                margin-bottom: 0px;
+                margin-left: -15px;
+                margin-top: 15px;
+                }
+                
+                .animate-bottom {
+                position: relative;
+                -webkit-animation-name: animatebottom;
+                -webkit-animation-duration: 3s;
+                animation-name: animatebottom;
+                animation-duration: 3s
+            }
+    
+            @-webkit-keyframes animatebottom {
+                0% {
+                    opacity: 0
+                }
+                100% {
+                    opacity: 1
+                }
+            }
+                
+            @keyframes animatebottom {
+                0% {
+                    opacity: 0
+                }
+                100% {
+                    opacity: 1
+                }    
+            }
+             .back-btn{
+                 background-image: none !important;
+                background-color: #008669!important;
+                color: white !important;
+                border-radius: 25px !important;
+                padding: 0px 15px !important;
+              }
+              footer li {
+                margin-left:0px;
+              }
+            </style>
+    	</head>
+        <body class="signup-screen">
+            <!-- header start here -->
+            <header>
+                <div class="text-center text-green logo">
+                    <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nctmembers-logo.png')}"/>
+                    <!--<img src="assets/logo.svg" /> -->
+                </div>
+            </header>
+            <!-- header end here -->
+            <section class="bordertopeee paddingtop30px">
+                <div class="container">
+                    <div class="thankyou-wrapper ">
+                        <h3 class="thank-you-title text-center">
+                            Thank You
+                        </h3>
+                        <div class="success-text text-center animate-bottom">
+                            <div class="text-center paddingbot20px ">
+                                <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/succ_icon.png')}"/>
+                               <!-- <img src="assets/succ_icon.png" /> --></div> 
+                            <div>Your payment was successful.</div><BR/>
+                            <div class="paddingbot20px">Thank you for making the Payment.</div>
+                            <!--<p><apex:outputText Id="membershipText" value="Your Membership Number is -"/>&nbsp;
+                               <apex:outputText Id="membershipNumber" value="{!reccDon.Membership_Number__c}" style="font-weight:bold;"/></p>-->
+                        </div>
+                        <div class="text-center text-white paddingbot20px">
+                            <button class="btn back-btn button">
+                                <a href="">Back to Home </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- footer start here -->
+            <footer>
+                <div class="footer-padding container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <h6 class="footer-header">Enquires and Feeding Helpline</h6>
+                            <div class="footer-content">
+                                <h6 class="num_color">0300 330 0700 </h6>
+                                <p>For practical and emotional Support in all areas of pregnancy.birth and parentehood including help
+                                    with feeding </p>
+                                <a class="link-color see-all-costs">See all Costs</a>
+                                <p class="all-costs-text">Calling us costs the same as any local call, however, if you have free 'inclusive' minutes on a landline
+                                    or mobile, it will be included in those.</p>
+                            </div>
+                        </div>
+        
+                        <div class="col-lg-2">
+                            <h6 class="footer-header">About</h6>
+                            <ul class="footer-List">
+                                <li>
+                                    <a href="">First 1,000 Days</a>
+                                </li>
+                                <li>
+                                    <a href="">Vission, Mission &amp; goal</a>
+                                </li>
+                                <li>
+                                    <a href="">Trustees</a>
+                                </li>
+                                <li>
+                                    <a href="">Careers</a>
+                                </li>
+                                <li>
+                                    <a href="">Contact us</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-2">
+                            <h6 class="footer-header">News and Views</h6>
+                            <ul class="footer-List">
+                                <li>
+                                    <a href="">News</a>
+                                </li>
+                                <li>
+                                    <a href="">Blogs</a>
+                                </li>
+                                <li>
+                                    <a href="">Forums</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-2">
+                            <h6 class="footer-header">Support us</h6>
+                            <ul class="footer-List">
+                                <li>
+                                    <a href="">Membership</a>
+                                </li>
+                                <li>
+                                    <a href="">Partnership</a>
+                                </li>
+                                <li>
+                                    <a href="">Fundraising activities </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3">
+                            <h6 class="footer-header">Professionals</h6>
+                            <ul class="footer-List">
+                                <li>
+                                    <a href="">Breastfeeding peer support training </a>
+                                </li>
+                                <li>
+                                    <a href="">Preparation for birth and beyond antenatal course </a>
+                                </li>
+                                <li>
+                                    <a href="">training for professionals </a>
+                                </li>
+                                <li>
+                                    <a href="">Diversity and access </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_links">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 col-12 nopadding">
+                                <ul>
+                                    <li>
+                                        <a href="">Research</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Media</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Privacy and Cookies </a>
+                                    </li>
+                                    <li>
+                                        <a href="">Contact us</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-12">
+                                <div class="footer_address">
+                                    <p>&copy; 2018 NCT, 30 Euston Square,London, NW12FB. </p>
+                                    <p>Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- footer end here -->
+            <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
+    		<apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
+            <script>
+            $(document).ready(function () {
+                $( ".all-costs-text" ).hide();
+                $( ".see-all-costs" ).click(function() {
+                	$( ".all-costs-text" ).slideToggle( "slow", function() {
+                	});
+            	});
+			})
+            </script>
+		</body>
+    </apex:form>
+</apex:page>

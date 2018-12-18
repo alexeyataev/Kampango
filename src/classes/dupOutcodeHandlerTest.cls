@@ -3,14 +3,18 @@ public class dupOutcodeHandlerTest {
 
     static testMethod Void outcodeDuplicateCap(){
         Boolean result = false;
-        //Id branch =[SELECT Id FROM Account where Name= 'Bournemouth 2'];
-        PostCode_Allocation__c firstPA = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Capacity PSA',Branch__c ='0010E00000MmsfLQAR');
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+        Account acc = new Account(Name ='Test-Trigger', RecordTypeId = recordTypeId);
+        insert acc;
+        //list<Account> branchtest = [Select Id from Account where Name = 'Test-Trigger'];
+       
+        PostCode_Allocation__c firstPA = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Capacity PSA',Branch__c = acc.id );
         insert firstPA;
         
         
         
         try{
-            PostCode_Allocation__c secPA = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Capacity PSA',Branch__c ='0010E00000MmsfLQAR');
+            PostCode_Allocation__c secPA = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Capacity PSA',Branch__c = acc.id);
             insert secPA;
             
         }
@@ -24,12 +28,14 @@ public class dupOutcodeHandlerTest {
     }
     static testMethod Void outcodeDuplicateEnq(){
     	Boolean result = false;
-        
-        PostCode_Allocation__c firstPA1 = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Enquiry PSA',Branch__c ='0010E00000MmsfLQAR');
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+        Account acc = new Account(Name ='Test-Trigger', RecordTypeId = recordTypeId);
+        insert acc;
+        PostCode_Allocation__c firstPA1 = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Enquiry PSA',Branch__c =acc.id);
         insert firstPA1;
         
         try{
-            PostCode_Allocation__c secPA1 = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Enquiry PSA',Branch__c ='0010E00000MmsfLQAR');
+            PostCode_Allocation__c secPA1 = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Enquiry PSA',Branch__c =acc.Id);
             insert secPA1;
         }
         catch(DmlException ex){
@@ -39,12 +45,16 @@ public class dupOutcodeHandlerTest {
     }
     static testMethod Void outcodeDuplicateBranch(){
     	Boolean result = false;
-        
-        PostCode_Allocation__c firstPA1 = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Enquiry PSA',Branch__c ='0010E00000MmsfLQAR');
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+        Account acc = new Account(Name ='Test-Trigger', RecordTypeId = recordTypeId);
+        insert acc;
+        Account acc1 = new Account(Name ='Test-Trigger1', RecordTypeId = recordTypeId);
+        insert acc1;
+        PostCode_Allocation__c firstPA1 = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Enquiry PSA',Branch__c =acc.id);
         insert firstPA1;
         
         try{
-            PostCode_Allocation__c secPA1 = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Enquiry PSA',Branch__c ='0010E00000MmsWOQAZ');
+            PostCode_Allocation__c secPA1 = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Enquiry PSA',Branch__c =acc1.id);
             insert secPA1;
         }
         catch(DmlException ex){
@@ -52,19 +62,21 @@ public class dupOutcodeHandlerTest {
         }
         System.assert(result);
     }
-    static testMethod Void outcodeDuplicatePostcode(){
+    /*static testMethod Void outcodeDuplicatePostcode(){
     	Boolean result = false;
-        
-        PostCode_Allocation__c firstPA1 = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Enquiry PSA',Branch__c ='0010E00000MmsfLQAR');
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+        Account acc = new Account(Name ='Test-Trigger', RecordTypeId = recordTypeId);
+        insert acc;
+        PostCode_Allocation__c firstPA1 = new PostCode_Allocation__c(Name = 'Test',PSA_Roles__c = 'Enquiry PSA',Branch__c =acc.id);
         insert firstPA1;
         
         try{
-            PostCode_Allocation__c secPA1 = new PostCode_Allocation__c(Name = 'TestPost',PSA_Roles__c = 'Enquiry PSA',Branch__c ='0010E00000MmsfLQAR');
+            PostCode_Allocation__c secPA1 = new PostCode_Allocation__c(Name = 'TestPost',PSA_Roles__c = 'Enquiry PSA',Branch__c =acc.id);
             insert secPA1;
         }
         catch(DmlException ex){
             result = true;
         }
         System.assert(result);
-    }
+    }*/
 }

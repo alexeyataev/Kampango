@@ -44,7 +44,7 @@
   <h1 style="text-align:center;">Welcome National Childbirth Trust (NCT)</h1>
   <p style="text-align:center;"></p>
   <div style="text-align:center;">
-    <a href="javascript:sforce.one.navigateToURL('https://www.nct.org.uk/');" target="_self">
+    <a href="javascript:sforce.one.navigateToURL('https://nct.org.uk/');" target="_self">
       <button type="button" class="button">Get Started Now!</button>
     </a>
   </div>

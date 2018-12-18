@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>false</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>false</enableSharing>
+    <enableStreamingApi>false</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Activated_Date__c</fullName>
         <externalId>false</externalId>
@@ -32,10 +84,12 @@
                 <value>
                     <fullName>Network issues</fullName>
                     <default>false</default>
+                    <label>Network issues</label>
                 </value>
                 <value>
                     <fullName>other</fullName>
                     <default>false</default>
+                    <label>other</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -214,46 +268,57 @@
                 <value>
                     <fullName>Credit/Debit Card(£57)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit Card(£57)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£9.50 per quarter)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£9.50 per quarter)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£57)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£57)</label>
                 </value>
                 <value>
                     <fullName>Credit/Debit card(£48)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit card(£48)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£12 per quarter)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£12 per quarter)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£48)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£48)</label>
                 </value>
                 <value>
                     <fullName>Credit/Debit card(£120)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit card(£120)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£120)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£120)</label>
                 </value>
                 <value>
                     <fullName>Credit/Debit card(£10)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit card(£10)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£ 2.50 per quarter)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£ 2.50 per quarter)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit(£ 10)</fullName>
                     <default>false</default>
+                    <label>Direct Debit(£ 10)</label>
                 </value>
             </valueSetDefinition>
             <valueSettings>
@@ -339,10 +404,12 @@
                 <value>
                     <fullName>online</fullName>
                     <default>false</default>
+                    <label>online</label>
                 </value>
                 <value>
                     <fullName>offline</fullName>
                     <default>false</default>
+                    <label>offline</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -361,10 +428,12 @@
                 <value>
                     <fullName>Active</fullName>
                     <default>true</default>
+                    <label>Active</label>
                 </value>
                 <value>
                     <fullName>In Active</fullName>
                     <default>false</default>
+                    <label>In Active</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -406,18 +475,22 @@
                 <value>
                     <fullName>18 Month Membership</fullName>
                     <default>false</default>
+                    <label>18 Month Membership</label>
                 </value>
                 <value>
                     <fullName>12 Month Membership</fullName>
                     <default>false</default>
+                    <label>12 Month Membership</label>
                 </value>
                 <value>
                     <fullName>Four year Membership</fullName>
                     <default>false</default>
+                    <label>Four year Membership</label>
                 </value>
                 <value>
                     <fullName>Reduced 12 Month Membership</fullName>
                     <default>false</default>
+                    <label>Reduced 12 Month Membership</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -436,18 +509,22 @@
                 <value>
                     <fullName>6 Month Plan</fullName>
                     <default>true</default>
+                    <label>6 Month Plan</label>
                 </value>
                 <value>
                     <fullName>12 Month Plan</fullName>
                     <default>false</default>
+                    <label>12 Month Plan</label>
                 </value>
                 <value>
                     <fullName>3 Month Plan</fullName>
                     <default>false</default>
+                    <label>3 Month Plan</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <label>Membership</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
@@ -461,4 +538,26 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <nameField>
+        <displayFormat>S-{0000}</displayFormat>
+        <label>Subscription ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Membership</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Direct_Debit__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Payment_Method__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Payment_Method__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>subscription_plan__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Term__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Activated_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Expired_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

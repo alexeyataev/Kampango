@@ -1,0 +1,30 @@
+<apex:page sidebar="false" showHeader="false">
+   
+
+    <head>
+        <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
+        <style>
+            h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
+}
+        body{
+            width:100% !important;
+            height:100% !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+        <div class="jumbotron text-xs-center">
+            <blockquote class="blockquote">
+        	<center><p>Thank You for filling details, a confirmation email has been sent to you and an NCT member will be in touch shortly</p></center>
+                <a href="https://preuat-ournct.cs102.force.com/Customer/apex/parentCOmmunityHomePage"><button type="button">Back To Home</button></a>
+        	</blockquote>
+            </div>
+        </div>
+    </body>
+   
+</apex:page>

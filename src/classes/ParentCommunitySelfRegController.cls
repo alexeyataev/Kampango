@@ -29,9 +29,9 @@ public class ParentCommunitySelfRegController {
     //public string address {get; set;}
     //public String city {get; set;}
     //public String state {get; set;}
-    //public String postalCode {get; set;}
+    public String postalCode {get; set;}
     //public String country {get; set;}
-    public String SelectedCountries {get; set;}
+    //public String SelectedCountries {get; set;}
     /*public List<String> SelectedCountries{
         get{
             if(SelectedCountries == NULL){
@@ -51,11 +51,13 @@ public class ParentCommunitySelfRegController {
     }*/
     public List<SelectOption> getPreferenceOptions() {
         List<SelectOption> Options = new List<SelectOption>();
-        Options.add(new SelectOption('Mail','Mail'));
+        /*Options.add(new SelectOption('Mail','Mail'));*/
         Options.add(new SelectOption('Post','Post'));
         Options.add(new SelectOption('Email','Email'));
-        Options.add(new SelectOption('Phone','Phone'));
-        Options.add(new SelectOption('Message','Message'));
+        Options.add(new SelectOption('SMS Text','SMS Text'));
+        Options.add(new SelectOption('Telephone','Telephone'));
+        /*Options.add(new SelectOption('Phone','Phone'));*/
+         /*Options.add(new SelectOption('Message','Message'));*/
         return Options;
     }
     
@@ -71,10 +73,10 @@ public class ParentCommunitySelfRegController {
         return password == confirmPassword;
     }
     
-    public void closePopup()
-    {       
-        displayPopup = false;   
-    }   
+    //public void closePopup()
+    //{       
+     //   displayPopup = false;   
+    //}   
     public PageReference registerUser() {
         displayPopup = true;
         /*if(email == '' || email != null ){
@@ -86,7 +88,7 @@ public class ParentCommunitySelfRegController {
                
             }
         }*/
- 
+
         
         /*if(password == '' || password != NULL){
           
@@ -155,16 +157,17 @@ public class ParentCommunitySelfRegController {
         //u.Street = str;
         //u.City = city;
         //u.State = state;
-        //u.PostalCode = postalCode;
+        u.PostalCode = postalCode;
         //u.Country = SelectedCountries;
         u.Phone = phone;
         
-       /* if(u.PostalCode == '' || u.PostalCode!=null){
+        
+        if(u.PostalCode == '' || u.PostalCode!=null){
             if(u.PostalCode.length()>=6){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please enter valid postalcode'));
                 //u.PostalCode.addError('Please enter a valid postalcode');
             }
-        }*/
+        }
         String userId;
         System.debug('Test'+userName);
         try {
@@ -173,9 +176,15 @@ public class ParentCommunitySelfRegController {
         } catch(Site.ExternalUserCreateException ex) {
             List<String> errors = ex.getDisplayMessages();
             for (String error : errors)  {
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, error));
+                //ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, error));
                  
             }
+            list<User> us =[select username from  user where username =:email];
+        
+        	if(email == us[0].username){
+            System.debug('username'+us[0].username);
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Email already exist on the system'));
+        	} 
             
             // This message is used for debugging. Do not display this in the UI to the end user.
             // It has the information around why the user creation failed.
