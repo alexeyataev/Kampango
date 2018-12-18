@@ -51,7 +51,7 @@ public with sharing class CourseSearchEnquireController {
     //list<PostCode_Allocation__c> postcodes = [SELECT Branch__r.Name FROM PostCode_Allocation__c where Name = :postCode limit 1];                         
    // public final Decimal lat =[SELECT Branch__r.Address_Latitude__c FROM PostCode_Allocation__c where Name = :postCode];
     //lon = -0.1262;
-    public Decimal miles =5;
+    public Decimal miles =20;
     public boolean Match{get; set;}
     String units ='mi';
     //Date CBDate = BDate.format('YYYY-MM-DD');
@@ -97,6 +97,7 @@ public with sharing class CourseSearchEnquireController {
             Courses.clear();
         }
         String geoAddress = currentPosition.trim();
+       // System.debug('geoAddress======>'+geoAddress);//
         
         geoAddress= EncodingUtil.urlEncode(geoAddress, 'UTF-8');
           //build and make the callout to the Geocoding API
@@ -109,6 +110,7 @@ public with sharing class CourseSearchEnquireController {
           request.setHeader('Content-Type', 'application/json');
           request.setHeader('Accept','application/json');
           request.setTimeout(60000);
+        System.debug('request=========>'+request);
           
         //make the http callout
         HttpResponse response = http.send(request);
@@ -169,7 +171,7 @@ public with sharing class CourseSearchEnquireController {
         //   'FROM Course__c Limit :PageSize offset :Offset';
         String queryString = 'SELECT Id, Name, Course_Name__c , Course_Type__c, Status__c, Start_Date__c, End_Date__c,Venue__r.Name, Venue__r.MailingCountry__c, Venue__r.MailingState__c, Venue__r.MailingCity__c, Venue__r.MailingStreet__c, Venue__r.MailingPostalCode__c, Venue__r.Venue_GeoLocation__Latitude__s, Venue__r.Venue_GeoLocation__Longitude__s ' +
         'FROM Course__c ' +
-        'WHERE (DISTANCE(Venue__r.Venue_GeoLocation__c ,GEOLOCATION('+lat+','+lon+'), \'mi\')< :miles) and ((Start_Date__c >=:BDate AND Start_Date__c <=:BDate) OR (End_Date__c >=:BDate AND End_Date__c <=:BDate) OR (Start_Date__c <=:BDate AND End_Date__c >=:BDate)) ORDER BY DISTANCE(Venue__r.Venue_GeoLocation__c,GEOLOCATION('+lat+','+lon+'), \'mi\') LIMIT :PageSize OFFSET :Offset';
+        'WHERE (DISTANCE(Venue__r.Venue_GeoLocation__c ,GEOLOCATION('+lat+','+lon+'), \'mi\')< :miles) and (Start_Date__c <=:BDate AND End_Date__c >=:BDate) ORDER BY DISTANCE(Venue__r.Venue_GeoLocation__c,GEOLOCATION('+lat+','+lon+'), \'mi\') LIMIT :PageSize OFFSET :Offset';
         
             
         System.Debug('>>>> the value of queryString is ' + queryString);

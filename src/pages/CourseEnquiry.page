@@ -18,6 +18,9 @@
             document.getElementById(hidden).value = input.value;
             //alert(document.getElementById(hidden).value);
         }
+       function enquireOnsave(){
+                   Callsave() ;                 
+           }
     </script>
     </head>
 
@@ -35,16 +38,15 @@
                 </span>-->
             </div>
             <div class="text-center text-green logo col-lg-6">
-                <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo2_opt.png')}" />
+         <!--       <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo2_opt.png')}" />  -->
                 <!--<img src="assets/nct_logo2_opt.png" />-->
             </div>
             <div class="col-lg-3 header-right-icons text-right">
-                <span>
-                    <!--<a class="cart-icon"><i class="fa fa-shopping-cart text-green" aria-hidden="true"></i></a>
+               <!-- <span>
+                    <a class="cart-icon"><i class="fa fa-shopping-cart text-green" aria-hidden="true"></i></a>
                     <a class="user-icon"><i class="fa fa-user text-green" aria-hidden="true"></i></a>
-                    <a class="register-login-btn">Register / Login</a>-->
-                    <a class="register-login-btn" href="{!$Site.Prefix}/secur/logout.jsp"><b>Logout</b></a>
-                </span>
+                    <a class="register-login-btn">Register / Login</a>
+                </span>-->
             </div>
           </div>
         </header>
@@ -52,9 +54,9 @@
         <!-- nav start here -->
         <nav>
             <ul>
-                <li>
-                    <a href="{!$Page.CourseSearchEnqire}" class="text-light-green font-bold">Course Search </a>
-                </li>
+               <!-- <li>
+                    <a href="{!$Page.CourseBookingSearchDraft}" class="text-light-green font-bold">Course Search </a>
+                </li> -->
                 <!--<li>
                     Pregnancy
                 </li>
@@ -112,9 +114,9 @@
                                     <apex:outputText value="{0,date,dd MMM hh:mm a}" >
                                                         <apex:param value="{!c.gparent.End_Date__c}" />
                                      </apex:outputText>)</div>
-                               <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley </p>-->
+                                when an unknown printer took a galley </p>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-12 location-schedule-box">
@@ -192,7 +194,7 @@
                                     <div class="row">
                                         <div class="col-md-7">
                                             <h3>Check Availbility</h3>
-                                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet pharetra mauris. Pellentesque non neque non erat porta elementum id vitae felis. Suspendisse placerat cursus arcu, eget convallis felis mollis sed. Proin semper facilisis ultricies. Nunc aliquam maximus tincidunt. Nulla velit tortor, posuere quis venenatis et, vehicula id augue. </p>-->
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet pharetra mauris. Pellentesque non neque non erat porta elementum id vitae felis. Suspendisse placerat cursus arcu, eget convallis felis mollis sed. Proin semper facilisis ultricies. Nunc aliquam maximus tincidunt. Nulla velit tortor, posuere quis venenatis et, vehicula id augue. </p>
                                             <!-- Membership person details start here-->
                                             <div class="membership-line"></div>
                                             <div class="membership-person-details">
@@ -257,7 +259,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 col-12">
-                                                        <div><label><sup class="light-orange-color">*</sup>Expected Due Date</label></div>
+                                                        <div><label><sup class="light-orange-color">*</sup>Expiry Date</label></div>
                                                         <apex:input id="exdate" type="date" value="{!expirydate}" styleClass="form-fields membership-fields" html-placeholder="Expiry Date"/>
                                                         <!--<apex:inputText id="textMobile" value="{!mobile}" styleClass="form-fields membership-fields" html-placeholder="Phone number" />-->
                                                         <!--<input type="text" id='textMobile' name='textMobile' value="{!mobile}" class="form-fields membership-fields" placeholder="Phone number" />-->
@@ -270,13 +272,15 @@
                                             <apex:inputHidden value="{!Course__c.Name}" id="theHiddenInput"/>
                                             <apex:inputHidden value="{!Course__c.Course_Type__c}" id="ct"/>
                                             <apex:inputHidden value="{!radioHidden}" id="hidValId" />
-                                            <!--<apex:inputHidden value="{!Course__c.Start_Date__c}" id="hidValId1" />
-                                            <apex:inputHidden value="{!Course__c.End_Date__c}" id="hidValId2" />-->
+                                            <!-- <apex:inputHidden value="{!Course__c.Start_Date__c}" id="hidValId1" />
+                                            <apex:inputHidden value="{!Course__c.End_Date__c}" id="hidValId2" /> -->
                                             <div class="row padding-top justify-content-center">
                                                 
                                                 <div class=" col-lg-offset-4 col-md-5 col-12">
-                                                    <apex:commandButton id="nameSubmit" styleclass="green-button nomargin form-fields" style="background-color:#1e7e34 !important;background-image:none;color:white;border-radius:20px;" value="Enquire" action="{!save}" />
-                                                    <!--<button type="button" id="nameSubmit" name="nameSubmit" class="green-button nomargin form-fields" >Enquire</button>-->
+                                                   <!-- <a href="{!$Site.BaseUrl}/apex/ThankyouPage"> -->
+                                                    <apex:actionFunction name="Callsave" action="{!save}"/> 
+                                              <!--   <apex:commandButton id="nameSubmit" styleclass="green-button nomargin form-fields" value="Enquire" action="{!save}" />  -->
+                                                        <button type="button" id="nameSubmit" name="nameSubmit" class="green-button nomargin form-fields" onclick="enquireOnsave();">Enquire</button> 
                                                 </div>
                                             </div>
 
