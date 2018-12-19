@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Practitioner Changes sessions</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Practitioner Changes sessions</name>
+    <style>none</style>
+    <subject>Practitioner Changes sessions</subject>
+    <textOnly>NCT
+
+Dear {!Course__c.Practitioner__c}
+
+Your course has successfully updated with following details
+
+Course Id : {!Course__c.Name}
+
+Course Name: {!Course__c.Course_Name__c}
+
+Course Type: {!Course__c.Course_Type__c}
+
+Session Name : {!Session__c.Name}
+
+Session Type : {!Session__c.Session_Type__c}
+
+Status : {!Session__c.Status__c}
+
+Start Date : {!Session__c.Start__c}
+
+End Date : {!Session__c.End__c}
+
+Venue : {!Session__c.Venue__c}
+
+Regarding Course Session Details Please use the Link {!Session__c.Link}
+
+Regards, NCT Team
+Unsubscribe
+
+© 2018 NCT, 30 Euston Square,London, NW12FB.
+
+Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

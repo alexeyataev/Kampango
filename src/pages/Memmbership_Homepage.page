@@ -1,0 +1,658 @@
+<apex:page >
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+
+<head>
+    <meta charset="utf-8" />
+    <title>NCT</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--<link rel="icon" type="image/png" href="assets/nct_logo.jpg" />-->
+    <!--<apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo.jpg')}" />-->
+    <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
+    <style>
+        ul li, ol li {
+        margin-left: 0px;
+        padding-left: 0;
+        }
+  
+     </style>
+    </head>
+
+<body class="courses-screen">
+    <!-- header start here -->
+    <header class="courses-screen-header">
+        <div class="row">
+            <div class="col-lg-3 header-social-icons">
+                <span>
+                    <a class="header-search-icon">
+                        <i class="fa fa-search text-green" aria-hidden="true"></i>
+                    </a>
+                    <a>
+                        <i class="fa fa-facebook color-grey" aria-hidden="true"></i>
+                    </a>
+                    <a>
+                        <i class="fa fa-twitter color-grey" aria-hidden="true"></i>
+                    </a>
+                    <a>
+                        <i class="fa fa-instagram color-grey" aria-hidden="true"></i>
+                    </a>
+                    <a>
+                        <i class="fa fa-linkedin color-grey" aria-hidden="true"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="text-center text-green logo col-lg-6">
+                <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo2_opt.png')}" />
+                <!--<img src="nct-app/assets/nct_logo2_opt.png" />-->
+            </div>
+            <div class="col-lg-3 header-right-icons text-right">
+                <span>
+                    <a class="cart-icon">
+                        <i class="fa fa-shopping-cart text-green" aria-hidden="true"></i>
+                    </a>
+                    <a class="user-icon">
+                        <i class="fa fa-user text-green" aria-hidden="true"></i>
+                    </a>
+                    <a class="register-login-btn">Register / Login</a>
+                </span>
+            </div>
+        </div>
+    </header>
+    <!-- header end here -->
+    <!-- nav start here -->
+    <nav>
+        <ul>
+            <li>
+                Pregnancy
+            </li>
+            <li>
+                Labour &amp; birth
+            </li>
+            <li>
+                Baby &amp; toddler
+            </li>
+            <li>
+                Life as a parent
+            </li>
+            <li>
+                Courses &amp; Workshop
+            </li>
+            <li>
+                Local activites &amp; meet-ups
+            </li>
+            <li>
+                Get Involved
+                <i class="fa fa-caret-down nav-arrow-down text-green" aria-hidden="true"></i>
+            </li>
+            <li>
+                About us
+                <i class="fa fa-caret-down nav-arrow-down text-green" aria-hidden="true"></i>
+            </li>
+
+        </ul>
+    </nav>
+    <!-- nav end here -->
+    <section class="membership-home-content">
+        <!-- Current Course details start here -->
+        <div class="current-course membership-course">
+            <div class="container">
+                <div class="row padding-top">
+                    <div class="col-lg-9">
+                        <div class="user_info">
+                            <h2> Membership</h2>
+                        </div>
+                        <div class="row">
+                            <div class="membership_links">
+                                <ul>
+                                    <li><a href="">HOME</a></li> 
+                                    <li><a href="">Get involved</a></li> 
+                                    <li><a href="">Membership</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="float-right">
+                            <button type="button" class="btn btn-success border-radius">Back</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="categories-header padding-top">
+                    <h6>Categories</h6>
+                    <div class="categories_links">
+                        <ul class="nopadding">
+                            <li>
+                                <a href="">Join us </a>
+                            </li>
+                            <li>
+                                <a href="">Membership offers</a>
+                            </li>
+                            <li>
+                                <a href="">Members say... </a>
+                            </li>
+                            <li>
+                                <a href="">Membership options</a>
+                            </li>
+                            <li>
+                                <a href="">FAQS</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Current Course details end here -->
+        <!-- joing eachother content goes here -->
+        <div class="container padding-top joing_eachother letter-spaceing">
+            <div class="row">
+                <div class="col-lg-9 col-12 ">
+                    <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/joineach_other.PNG')}" />
+                    <!--<img src="nct-app/assets/joineach_other.PNG" />-->
+                    <div class="join_content">
+                        <h3>join us - and each other</h3>
+                        <p>Being Uk's largest charity for parents also means we're the UK's largest community of parents. </p>
+                        <p>By becoming NCT members, thousands of parents have formed lifelong friendships and support networks.
+                            Through us, they've shared experiences, Excitment and inspiration during one of the most amazing
+                            times of their lives -and beyond.</p>
+
+                        <div class="row ">
+                            <div class="col-sm-5 col-6">
+                                <h5> Join in. Join us </h5>
+                                <button class="btn btn-success border-radius">
+                                    <a href="membership-form.html">join now </a>
+                                </button>
+                            </div>
+                            <div class="col-sm-5 col-6">
+                                <h5> Already a Member? </h5>
+                                <button class="btn btn-white border-radius">
+                                    <a href="" style="color:#00886a">ReNew now</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 border-line padding-top"></div>
+                    <div class="membership_offers padding-top">
+
+                        <h2> And that's not all that NCT memberships offers</h2>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/membership_mom.PNG')}" />
+                                <!--<img class="text-center" src="nct-app/assets/membership_mom.PNG" />-->
+                                <h5 class="text-green">You get..</h5>
+                                <p> Our
+                                    <a href="">NCT Membersship clubs</a> gives you amazing range of moneysaving rewards , discounts
+                                    and services from the weekly shop to maternity clothes, from cinema tickets to laptops
+                                    and household bills to holidays(with or without the kids). </p>
+                                <ul>
+                                    <li>Priority entry and bags of bargains at our famous NCT Nearly New Sales up and down the
+                                        country</li>
+                                    <li>a calendar full of events and new parent meetups at your local NCT branch </li>
+                                    <li>a free subscription to NCT Matters, our inspiring and informative digital magazine</li>
+                                    <li>free access to our legal adviceline if you ever need it</li>
+                                </ul>
+                            </div>
+                             <div class="col-sm-6">
+                                <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/membership_dad.PNG')}" />
+                                <!--<img src="nct-app/assets/membership_dad.PNG" />-->
+                                <h5 class="text-green">We give ..</h5>
+                                <p>With your help, we'll always be there for parents up and down the country - providing practical
+                                    information, emotional support and a strong voice in our society. </p>
+                                <p>Your membership donation helping us:</p>
+                                <ul>
+                                    <li>train the brilliant people and provide the courses so many parents rely on </li>
+                                    <li>provide support services such as our helpline and our independent, online pregnancy,birth
+                                        and parenting information centre</li>
+                                    <li>provide local outreach services across the country,helping new families in disadvantaged
+                                        communities get the start in life</li>
+                                    <li>speak up for parents, making sure their interests are always on the agendas of businesses
+                                        and policyworks</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 border-line padding-top"></div>
+                    <!-- corosol text strat here -->
+                    <div class="members_feeling padding-top">
+                        <h3> Our members say...</h3>
+
+                        <div id="membership-carousel" class="carousel slide" data-ride="carousel">
+
+                            <!-- Indicators -->
+                            <ul class="carousel-indicators">
+                                <li data-target="#membership-carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#membership-carousel" data-slide-to="1"></li>
+                                <li data-target="#membership-carousel" data-slide-to="2"></li>
+                            </ul>
+
+                            <!-- The slideshow -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="text-green">
+                                        <p>"After a fab course we decided to sign up for the membership mainly to build on the friendships we made during the antenatal
+                                        sessions but also partly to support the charity and the great work it does putting
+                                        people together. </p>
+                                        <p>We've been out and about with our closest NCT branch and have both
+                                        made some great friends, I know a good bunch of local Dads that I regularly see,
+                                        we often have a laugh over what our babies have been doing, at times it has even
+                                        helped keep my sanity through some Of the stressful times Of parenthood and possibly
+                                        even saved my relationship. I shall be renewing my membership when it comes up and
+                                        who knows there may be another little one in about the future".</p>
+                                    </div>
+                                    <h5 class="paddingtop20px">
+                                        Steven, Ealing branch
+                                    </h5>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="text-green">
+                                        <p>"After a fab course we decided to sign up for the membership mainly to build on the friendships we made during the antenatal
+                                        sessions but also partly to support the charity and the great work it does putting
+                                        people together. </p>
+                                        <p>We've been out and about with our closest NCT branch and have both
+                                        made some great friends, I know a good bunch of local Dads that I regularly see,
+                                        we often have a laugh over what our babies have been doing, at times it has even
+                                        helped keep my sanity through some Of the stressful times Of parenthood and possibly
+                                        even saved my relationship. I shall be renewing my membership when it comes up and
+                                        who knows there may be another little one in about the future".</p>
+                                    </div>
+                                    <h5 class="paddingtop20px">
+                                        Steven, Ealing branch
+                                    </h5>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="text-green">
+                                        <p>"After a fab course we decided to sign up for the membership mainly to build on the friendships we made during the antenatal
+                                        sessions but also partly to support the charity and the great work it does putting
+                                        people together. </p>
+                                        <p>We've been out and about with our closest NCT branch and have both
+                                        made some great friends, I know a good bunch of local Dads that I regularly see,
+                                        we often have a laugh over what our babies have been doing, at times it has even
+                                        helped keep my sanity through some Of the stressful times Of parenthood and possibly
+                                        even saved my relationship. I shall be renewing my membership when it comes up and
+                                        who knows there may be another little one in about the future".</p>
+                                    </div>
+                                    <h5 class="paddingtop20px">
+                                        Steven, Ealing branch
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <!-- Left and right controls -->
+                            <a class="carousel-control-prev" href="#membership-carousel" data-slide="prev">
+                                <span class="carousel-control-prev-icon"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+                            </a>
+                            <a class="carousel-control-next" href="#membership-carousel" data-slide="next">
+                                <span class="carousel-control-next-icon"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                            </a>
+
+                        </div>
+
+                    </div>
+                    <div class="col-12 border-line padding-top"></div>
+                    <!-- corosol text end here -->
+
+                    <!-- membership Options start here -->
+                    <div class="membership_options">
+                        <div class="row">
+                            <div class="col-8">
+                                <h2 class="paddingbot20px paddingtop20px">Memberships Options</h2>
+                            </div>
+                            <div class="col-4 paddingbot20px paddingtop20px">
+                                <a class="membership-down-arrow"><i class="fa fa-chevron-down text-green"></i></a>
+                            </div>
+                        </div>
+                        <div class="row memberships-options">
+                            <div class="col-sm-6 col-12">
+                                <div class="membership_content">
+                                    <h6 class="membership_header">Best Value</h6>
+                                    <div class="member_inside">
+                                        <h4>18 month membership</h4>
+                                        <p>18 months money off baby supplies,holidays, and services when you help us continue
+                                            being at the leading charity for pregnancy &amp; young families.
+                                            <h5>
+                                                <a href="">Find out More... </a>
+                                            </h5>
+                                        </p>
+                                    </div>
+                                    <div class="member_footer">
+                                        <h5 style="float:left; font-weight:600">&#163; 57</h5>
+                                        <h6 style="float:right; font-weight:600">Add to Basket</h6>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-12" style="margin-top:12px;">
+                                <div class="membership_content" style="background-color:white;border:1px solid grey;">
+                                    <h6>&nbsp;&nbsp;</h6>
+                                    <div class="member_inside">
+                                        <h4>12 month membership</h4>
+                                        <p>18 months money off baby supplies,holidays, and services when you help us continue
+                                            being at the leading charity for pregnancy &amp; young families.
+                                            <h5>
+                                                <a href="">Find out More... </a>
+                                            </h5>
+                                        </p>
+                                    </div>
+                                    <div class="member_footer">
+                                        <h5 style="float:left; font-weight:600">&#163; 48</h5>
+                                        <h6 style="float:right; font-weight:600">Add to Basket</h6>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- membership Options ends here -->
+                </div>
+                <div class="col-lg-3 col-12 padding-top_content">
+                    <!-- nct journey  -->
+                    <div class="nct_journey border-radius">
+                        <h5 class="text-center text-navy"> Your NCT Journey</h5>
+                        <p>We're here to help you make informed decisions throughout your parenting journey - starting from
+                            your child's conception.</p>
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control form_input" id="membership-postcode" placeholder="Enter Your postcode" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form_input" id="membership-calendar" placeholder="Babies due date/birthday" />
+                            </div>
+                            <div class="spilt_btn">
+                                <span class="spilt_btn_span"> is this Your first baby</span>
+                                <label class="switch" style="float:right;">
+                                    <input type="checkbox" checked ="true" />
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="spilt_btn">
+                                <span class="spilt_btn_span"> Expecting twins?</span>
+                                <label class="switch" style="float:right;">
+                                    <input type="checkbox" />
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-success border-radius btn-align">Start Your Journey</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- workshops -->
+                   <div class="padding-top">
+                        <div class="workshops border-radius ">
+                            <h5> Courses &amp; workshops</h5>
+                            <div class="row">
+                                <div class="col-3 workshopImages">
+                                    <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/baby_care.jpg')}" />
+                                    <!--<img src="nct-app/assets/baby_care.jpg" alt="" />-->
+                                </div>
+                                <div class="col-9">
+                                    <h6 class="spilt_btn_span">signature antenatal </h6>
+                                    <p>
+                                        <a class="workshoplinks" href=""> Find out more</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 workshopImages">
+                                    <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/babyfoo.PNG')}" />
+                                    <!--<img src="assets/babyfoo.PNG" alt="" /> -->
+                                </div>
+                                <div class="col-9">
+                                    <h6 class="spilt_btn_span">Essentials antenatal </h6>
+                                    <p>
+                                        <a class="workshoplinks" href=""> Find out more</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 workshopImages">
+                                    <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/babyhead.PNG')}" />
+                                    <!--<img src="assets/babyhead.PNG" alt="" /> -->
+                                </div>
+                                <div class="col-9">
+                                    <h6 class="spilt_btn_span">Refresher antenatal </h6>
+                                    <p>
+                                        <a class="workshoplinks" href=""> Find out more</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="padding-top"></div>
+                    
+                   <!-- Local activites -->
+                    <div class="activites border-radius">
+                        <h5 class=""> Local activities and meetups</h5>
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control form_input" id="membership-postcode" placeholder="Enter Your postcode" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form_input" id="membership-calendar" placeholder="Babies due date/birthday" />
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-success border-radius btn-align">Search activities</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="padding-top"></div>
+
+                    <div class="campaign form_input paddingbot20px">
+                        <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_opt.jpg')}" />
+                        <!--<img src="assets/nct_opt.jpg" alt="" />-->
+                        <div class="support_text">
+                            <h5>
+                                Support our campaign for postnatal mental health
+                            </h5>
+                            <div class="text-center">
+                                <button class="btn btn-success border-radius btn-align">Find out more</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- joing eachother content ends here-->
+        <!-- singup form fields start here -->
+        <div class=" padding-top">
+            <form>
+                <div class="singup-form-fields">
+                    <div class="container">
+                        <div class="text-center signup-title-text">Sign up now for NCT's exclusive Pregnancy &amp; Baby Guide</div>
+                        <div class="row">
+                            <div class="col-md-3 col-12">
+                                <input type="text" class="form-field" placeholder="First Name..." />
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <input type="text" class="form-field" placeholder="Last Name..." />
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <input type="email" class="form-field" placeholder="Email..." />
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <input type="number" class="form-field" placeholder="Mobile..." />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-12">
+                                <input type="password" class="form-field" placeholder="Password..." />
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <input type="password" class="form-field" placeholder="Confirm Password..." />
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <input type="number" class="form-field" placeholder="Postal Code..." />
+                            </div>
+                        </div>
+                        <div class="row radio-fields-row">
+                            <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
+                            <div class="col-12 radio-fields-col">
+                                <span>
+                                    <input type="checkbox" name="contact" value="email" />Email</span>
+                                <span>
+                                    <input type="checkbox" name="contact" value="sms" />SMS Text</span>
+                                <span>
+                                    <input type="checkbox" name="contact" value="post" />Post</span>
+                                <span>
+                                    <input type="checkbox" name="contact" value="telephone" />Telephone</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- privacy statement start here -->
+                <div class="privacy-statement">
+                    <div class="container">
+                        <div class="privacy-statement-title">
+                            Privacy statement
+                        </div>
+                        <p>NCT would like to keep in touch with you about our services, support, events, campaings and fundraising.
+                            We'll only contact you in the ways you want, and we'll keep your information safe. Our priuvacy
+                            policy has full details of how we use personal data
+                            <a href="https://www.nct.org.uk/privacy" class="underlink" target="_open">https://www.nct.org.uk/privacy</a>
+                        </p>
+                        <div class="agree-statement-row">
+                            <input type="checkbox" /> I have read and unserdstand/agree with our websites Terms and Conditions.
+                        </div>
+                        <div>
+                            <button type="submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- privacy statement end here -->
+            </form>
+        </div>
+        <!-- singup form fields end here -->
+    </section>
+    <!-- footer start here -->
+    <footer>
+        <div class="footer-padding container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 col-6">
+                    <h6 class="footer-header">Enquires and Feeding Helpline</h6>
+                    <div class="footer-content">
+                        <h6 class="num_color">0300 330 0700 </h6>
+                        <p>For practical and emotional Support in all areas of pregnancy.birth and parentehood including help
+                            with feeding </p>
+                        <a href="/" class="link-color">See all Costs</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-sm-3 col-6">
+                    <h6 class="footer-header">About</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="">First 1,000 Days</a>
+                        </li>
+                        <li>
+                            <a href="">Vission, Mission &amp; goal</a>
+                        </li>
+                        <li>
+                            <a href="">Trustees</a>
+                        </li>
+                        <li>
+                            <a href="">Careers</a>
+                        </li>
+                        <li>
+                            <a href="">Contact us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-sm-3 col-6">
+                    <h6 class="footer-header">News and Views</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="">News</a>
+                        </li>
+                        <li>
+                            <a href="">Blogs</a>
+                        </li>
+                        <li>
+                            <a href="">Forums</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-sm-4 col-6">
+                    <h6 class="footer-header">Support us</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="">Membership</a>
+                        </li>
+                        <li>
+                            <a href="">Partnership</a>
+                        </li>
+                        <li>
+                            <a href="">Fundraising activities </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-8">
+                    <h6 class="footer-header">Professionals</h6>
+                    <ul class="footer-List">
+                        <li>
+                            <a href="">Breastfeeding peer support training </a>
+                        </li>
+                        <li>
+                            <a href="">Preparation for birth and beyond antenatal course </a>
+                        </li>
+                        <li>
+                            <a href="">training for professionals </a>
+                        </li>
+                        <li>
+                            <a href="">Diversity and access </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer_links">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-12 nopadding">
+                        <ul>
+                            <li>
+                                <a href="">Research</a>
+                            </li>
+                            <li>
+                                <a href="">Media</a>
+                            </li>
+                            <li>
+                                <a href="">Privacy and Cookies </a>
+                            </li>
+                            <li>
+                                <a href="">Contact us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="footer_address">
+                            <p>&copy; 2018 NCT, 30 Euston Square,London, NW12FB. </p>
+                            <p>Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end here -->
+    <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
+    <script>
+        $(document).ready(function(){
+            $('.membership-down-arrow').on('click', function(){
+                $('.memberships-options').toggleClass('hide');
+            })
+        })
+    </script>
+</body>
+</apex:page>

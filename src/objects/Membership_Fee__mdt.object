@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Membership_Payment_Category__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Membership Payment Category</label>
+        <referenceTo>Membership_Payment_Category__mdt</referenceTo>
+        <relationshipLabel>Membership Fees</relationshipLabel>
+        <relationshipName>Membership_Fees</relationshipName>
+        <required>true</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Membership_Payment_Type__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Membership Payment Type</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Membership Fee</label>
+    <pluralLabel>Membership Fees</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

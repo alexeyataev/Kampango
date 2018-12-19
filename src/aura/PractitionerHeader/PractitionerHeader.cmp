@@ -1,0 +1,13 @@
+<aura:component  access="global" implements="lightning:availableForFlowScreens,forceCommunity:availableForAllPageTypes" >
+<ltng:require styles="{!$Resource.SLDS +'/styles/salesforce-lightning-design-system.min.css'}" />
+<div style="background-color:blue;">
+<!-- slds-card slds-card_boundary -->
+<lightning:layout class="slds-container_center  slds-align_absolute-center custom-background "  verticalAlign="center">
+    <lightning:layoutItem flexibility="grow"><img src="{!$Resource.NCTcommunitylogo}" style="width:30%;Height:50px"></img>
+    </lightning:layoutItem>
+    <lightning:layoutItem flexibility="grow">
+        <div class="slds-page-header__title slds-align_absolute-center slds-text-align_center slds-text-heading_large" style="float: left; background-color: rgb(243, 242, 242); min-width: 100px;">NCT Practitioner Community</div>
+    </lightning:layoutItem>
+</lightning:layout>
+</div>
+</aura:component>

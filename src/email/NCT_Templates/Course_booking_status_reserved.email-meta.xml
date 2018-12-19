@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>GW_Volunteers__Volunteer_Sample_Letterhead</letterhead>
+    <name>Course booking status reserved</name>
+    <style>formalLetter</style>
+    <subject>Course booking status reserved</subject>
+    <textOnly>Hello{!User.Name},
+
+
+
+Your course booking status has been Reserved
+
+Course Booking id : {!Booking__c.Name}
+Course Booking Name: {!Course__c.Course_Name__c}
+Course Booking Status: {!Booking__c.Status__c}
+
+
+
+Thanks &amp; Regards,
+NCT Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

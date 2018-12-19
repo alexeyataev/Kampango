@@ -1,0 +1,20 @@
+<apex:page standardController="Course__c" extensions="CourseExtension" docType="html-5.0">
+    <apex:pageBlock >
+    	<apex:form >
+        	<apex:pageBlockSection >
+            	<apex:outputField value="{!Course__c.Name}"/>
+                <apex:outputField value="{!Course__c.Venue__c}"/>
+                <apex:outputField value="{!Course__c.Status__c}"/>
+                <apex:outputField value="{!Course__c.Booked_Places__c}"/>
+                
+                <!--<apex:inputField value="{!bo.Name}"/>-->
+                <!--<apex:inputField value="{!bo.First_Contact__c}"/>
+                <!--<apex:inputField value="{!bo.Status__c}"/>-->
+                <!--<apex:inputField value="{!bo.Due_Date__c}"/> -->
+                <apex:input type="text" value="{!MyText}"/>
+                <apex:commandButton value="Save" Action="{!Save}"/>
+               
+            </apex:pageBlockSection>
+        </apex:form>
+    </apex:pageBlock>
+</apex:page>

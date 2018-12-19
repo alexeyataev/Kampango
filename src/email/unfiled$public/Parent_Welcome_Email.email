@@ -1,0 +1,22 @@
+<p>Hello {!User.Name}, </p>
+
+
+<p>Welcome to NCT! </p>
+
+<p>You are successfully registered as NCT Parent Community user.</p>
+
+
+<p>User Details:</p>
+
+<p>Name: {!User.Name}</p>
+
+<p>User Name : {!User.Username}</p>
+
+<p>Email Id : {!User.Email}</p>
+
+<p>Contact Preference: {!User.Contact_Preference__c}</p>
+
+
+<p>Regards,</p>
+
+<p>NCT Team.</p>

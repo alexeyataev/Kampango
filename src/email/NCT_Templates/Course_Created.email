@@ -1,0 +1,20 @@
+<p>Hi {!User.Name}, </p>
+
+
+
+<p>Welcome to NCT...! </p>
+
+
+<p>Your course has successfully created with following details </p>
+
+<p>Course id : {!Course__c.Name} </br>
+Course Name: {!Course__c.Course_Name__c} </br>
+Course Type: {!Course__c.Course_Type__c}</br>
+Venue: {!Course__c.00N0Y00000B7Ovi} </p>
+
+
+
+
+
+<p>Thanks & Regards,</br>
+NCT Team</p>

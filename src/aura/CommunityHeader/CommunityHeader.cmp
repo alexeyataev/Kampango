@@ -1,0 +1,9 @@
+<aura:component description="Header" implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="Header" type="String" default="Case Registration Form" access="global"/> 
+    <aura:attribute name="footyear" type="string" default="1st 1000 days" access="global"/>
+	<div class="grid">
+        <span> {!v.Header}</span> <br/>
+        
+    </div>
+    
+</aura:component>

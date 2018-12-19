@@ -1,0 +1,2663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>course_compact_new_layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Course_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Course_Type__c</fields>
+        <fields>Status__c</fields>
+        <label>Course Compact Layout</label>
+    </compactLayouts>
+    <compactLayouts>
+        <fullName>course_compact_new_layout</fullName>
+        <fields>Name</fields>
+        <fields>Course_Name__c</fields>
+        <fields>Course_Type__c</fields>
+        <fields>Practitioner__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_Date__c</fields>
+        <fields>Course_Risk__c</fields>
+        <label>course_compact_new_layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>AccountKey__c</fullName>
+        <externalId>false</externalId>
+        <label>AccountKey</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Additional_information__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>More information like drop in Category</inlineHelpText>
+        <label>Additional information</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Antenatal_Sessions__c</fullName>
+        <externalId>false</externalId>
+        <label>Antenatal Sessions</label>
+        <summaryFilterItems>
+            <field>Session__c.Session_Type__c</field>
+            <operation>equals</operation>
+            <value>Antenatal</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Available_Places__c</fullName>
+        <externalId>false</externalId>
+        <formula>Places__c - Booked_Places__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Available Places</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Birth_Partners_Only__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Birth Partners Only?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Booked_Places__c</fullName>
+        <externalId>false</externalId>
+        <label>Booked Places</label>
+        <summaryFilterItems>
+            <field>Booking__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Enquiry, Reserved, Confirmed</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Booking__c.Course__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Booking_Cost_Received__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_Booking_Cost__c  -  Outstanding_Booking_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Booking Cost Received</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Booking_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_Booking_Cost__c  -  Outstanding_Booking_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Booking Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Branch__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Branch</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>Please select the branch record</errorMessage>
+            <filterItems>
+                <field>Account.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>Branch</value>
+            </filterItems>
+            <filterItems>
+                <field>Account.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Branch</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Course (Branch)</relationshipLabel>
+        <relationshipName>Course</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BreakEven_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>BreakEven Cost</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Break_length__c</fullName>
+        <externalId>false</externalId>
+        <label>Break length</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Breastfeeding_Sessions__c</fullName>
+        <externalId>false</externalId>
+        <label>Breastfeeding Sessions</label>
+        <summaryFilterItems>
+            <field>Session__c.Session_Type__c</field>
+            <operation>equals</operation>
+            <value>Breastfeeding</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FAddress_Latitude__c</fullName>
+        <description>Venue__r.Address_Latitude__c</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FAddress_Latitude</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FAddress_Longitude__c</fullName>
+        <description>Venue__r.Address_Longitude__c</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FAddress_Longitude</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cancellation_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancellation Reason</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Low bookings - 0 bookings</fullName>
+                    <default>false</default>
+                    <label>Low bookings - 0 bookings</label>
+                </value>
+                <value>
+                    <fullName>Low bookings - 1 booking</fullName>
+                    <default>false</default>
+                    <label>Low bookings - 1 booking</label>
+                </value>
+                <value>
+                    <fullName>Low bookings - 2 bookings</fullName>
+                    <default>false</default>
+                    <label>Low bookings - 2 bookings</label>
+                </value>
+                <value>
+                    <fullName>Low bookings - 3 bookings</fullName>
+                    <default>false</default>
+                    <label>Low bookings - 3 bookings</label>
+                </value>
+                <value>
+                    <fullName>Low bookings - 4 or more bookings</fullName>
+                    <default>false</default>
+                    <label>Low bookings - 4 or more bookings</label>
+                </value>
+                <value>
+                    <fullName>Low bookings - client not happy with small group size</fullName>
+                    <default>false</default>
+                    <label>Low bookings - client not happy with small group size</label>
+                </value>
+                <value>
+                    <fullName>Practitioner on time out - no replacement available</fullName>
+                    <default>false</default>
+                    <label>Practitioner on time out - no replacement available</label>
+                </value>
+                <value>
+                    <fullName>Practitioner resigned - no replacement available</fullName>
+                    <default>false</default>
+                    <label>Practitioner resigned - no replacement available</label>
+                </value>
+                <value>
+                    <fullName>Practitioner withdrew - no LtP</fullName>
+                    <default>false</default>
+                    <label>Practitioner withdrew - no LtP</label>
+                </value>
+                <value>
+                    <fullName>Practitioner withdrew - other</fullName>
+                    <default>false</default>
+                    <label>Practitioner withdrew - other</label>
+                </value>
+                <value>
+                    <fullName>Newly Qualified practitioner withdrew - no LtP</fullName>
+                    <default>false</default>
+                    <label>Newly Qualified practitioner withdrew - no LtP</label>
+                </value>
+                <value>
+                    <fullName>Newly Qualified practitioner withdrew - other</fullName>
+                    <default>false</default>
+                    <label>Newly Qualified practitioner withdrew - other</label>
+                </value>
+                <value>
+                    <fullName>Over capacity</fullName>
+                    <default>false</default>
+                    <label>Over capacity</label>
+                </value>
+                <value>
+                    <fullName>Service withdrawn</fullName>
+                    <default>false</default>
+                    <label>Service withdrawn</label>
+                </value>
+                <value>
+                    <fullName>Course added in error</fullName>
+                    <default>false</default>
+                    <label>Course added in error</label>
+                </value>
+                <value>
+                    <fullName>Private sessions cancelled by client</fullName>
+                    <default>false</default>
+                    <label>Private sessions cancelled by client</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Cancelled_On__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancelled On</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ContactKey__c</fullName>
+        <externalId>false</externalId>
+        <label>ContactKey</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Couples_Allowed__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Couples Allowed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Couples_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>Couples Count</label>
+        <summaryFilterItems>
+            <field>Booking__c.Attendees__c</field>
+            <operation>equals</operation>
+            <value>Couples</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Booking__c.Course__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Course_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Category</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>NA</fullName>
+                    <default>false</default>
+                    <label>NA</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Course_Identifier__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Identifier</label>
+        <length>9</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course_Index__c</fullName>
+        <displayFormat>{0000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Course Index</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Course_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Name</label>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Antenatal</fullName>
+                    <default>false</default>
+                    <label>Antenatal</label>
+                </value>
+                <value>
+                    <fullName>Postnatal</fullName>
+                    <default>false</default>
+                    <label>Postnatal</label>
+                </value>
+                <value>
+                    <fullName>Breastfeeding</fullName>
+                    <default>false</default>
+                    <label>Breastfeeding</label>
+                </value>
+                <value>
+                    <fullName>Drop-ins</fullName>
+                    <default>false</default>
+                    <label>Drop-ins</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Course_Reference__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(PSA_Office__c) + &apos;/&apos; +  Name</formula>
+        <label>Course Reference</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course_Risk__c</fullName>
+        <description>Course is at risk when BreakEvent cost is grater than Booking cost</description>
+        <externalId>false</externalId>
+        <formula>AND(NOT(ISPICKVAL(Status__c , &quot;Draft&quot;)),BreakEven_Cost__c  &gt;  Booking_Cost_Received__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Course Risk</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Course_Sub_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Sub Category</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Course_Category__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>NA</fullName>
+                    <default>false</default>
+                    <label>NA</label>
+                </value>
+                <value>
+                    <fullName>1A</fullName>
+                    <default>false</default>
+                    <label>1A</label>
+                </value>
+                <value>
+                    <fullName>1B</fullName>
+                    <default>false</default>
+                    <label>1B</label>
+                </value>
+                <value>
+                    <fullName>1C</fullName>
+                    <default>false</default>
+                    <label>1C</label>
+                </value>
+                <value>
+                    <fullName>2A</fullName>
+                    <default>false</default>
+                    <label>2A</label>
+                </value>
+                <value>
+                    <fullName>2B</fullName>
+                    <default>false</default>
+                    <label>2B</label>
+                </value>
+                <value>
+                    <fullName>2C</fullName>
+                    <default>false</default>
+                    <label>2C</label>
+                </value>
+                <value>
+                    <fullName>3A</fullName>
+                    <default>false</default>
+                    <label>3A</label>
+                </value>
+                <value>
+                    <fullName>3B</fullName>
+                    <default>false</default>
+                    <label>3B</label>
+                </value>
+                <value>
+                    <fullName>3C</fullName>
+                    <default>false</default>
+                    <label>3C</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>NA</controllingFieldValue>
+                <valueName>NA</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>1</controllingFieldValue>
+                <valueName>1A</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>1</controllingFieldValue>
+                <valueName>1B</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>1</controllingFieldValue>
+                <valueName>1C</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>2</controllingFieldValue>
+                <valueName>2A</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>2</controllingFieldValue>
+                <valueName>2B</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>2</controllingFieldValue>
+                <valueName>2C</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>3</controllingFieldValue>
+                <valueName>3A</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>3</controllingFieldValue>
+                <valueName>3B</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>3</controllingFieldValue>
+                <valueName>3C</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Course_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Type</label>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Course_Name__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Early Days (postnatal)</fullName>
+                    <default>false</default>
+                    <label>Early Days (postnatal)</label>
+                </value>
+                <value>
+                    <fullName>NCT Signature antenatal</fullName>
+                    <default>false</default>
+                    <label>NCT Signature antenatal</label>
+                </value>
+                <value>
+                    <fullName>NCT Baby Massage</fullName>
+                    <default>false</default>
+                    <label>NCT Baby Massage</label>
+                </value>
+                <value>
+                    <fullName>NCT antenatal refresher</fullName>
+                    <default>false</default>
+                    <label>NCT antenatal refresher</label>
+                </value>
+                <value>
+                    <fullName>NCT Essentials antenatal</fullName>
+                    <default>false</default>
+                    <label>NCT Essentials antenatal</label>
+                </value>
+                <value>
+                    <fullName>Twins and Multiples Workshop</fullName>
+                    <default>false</default>
+                    <label>Twins and Multiples Workshop</label>
+                </value>
+                <value>
+                    <fullName>Yoga for Pregnancy</fullName>
+                    <default>false</default>
+                    <label>Yoga for Pregnancy</label>
+                </value>
+                <value>
+                    <fullName>Waterbirth</fullName>
+                    <default>false</default>
+                    <label>Waterbirth</label>
+                </value>
+                <value>
+                    <fullName>Introducing Solid Foods Workshop</fullName>
+                    <default>false</default>
+                    <label>Introducing Solid Foods Workshop</label>
+                </value>
+                <value>
+                    <fullName>NCT Parent</fullName>
+                    <default>false</default>
+                    <label>NCT Parent</label>
+                </value>
+                <value>
+                    <fullName>NCT Mother and Baby Yoga</fullName>
+                    <default>false</default>
+                    <label>NCT Mother and Baby Yoga</label>
+                </value>
+                <value>
+                    <fullName>Drop in</fullName>
+                    <default>false</default>
+                    <label>Drop in</label>
+                </value>
+                <value>
+                    <fullName>One to One</fullName>
+                    <default>false</default>
+                    <label>One to One</label>
+                </value>
+                <value>
+                    <fullName>Combined Antenatal and Early Days (Postnatal)</fullName>
+                    <default>false</default>
+                    <label>Combined Antenatal and Early Days (Postnatal)</label>
+                </value>
+                <value>
+                    <fullName>Mantenatal</fullName>
+                    <default>false</default>
+                    <label>Mantenatal</label>
+                </value>
+                <value>
+                    <fullName>Birth and Beyond Antenatal</fullName>
+                    <default>false</default>
+                    <label>Birth and Beyond Antenatal</label>
+                </value>
+                <value>
+                    <fullName>Early Pregnancy</fullName>
+                    <default>false</default>
+                    <label>Early Pregnancy</label>
+                </value>
+                <value>
+                    <fullName>Caesarean Workshop</fullName>
+                    <default>false</default>
+                    <label>Caesarean Workshop</label>
+                </value>
+                <value>
+                    <fullName>Homebirth Workshop</fullName>
+                    <default>false</default>
+                    <label>Homebirth Workshop</label>
+                </value>
+                <value>
+                    <fullName>Breathing and Relaxation</fullName>
+                    <default>false</default>
+                    <label>Breathing and Relaxation</label>
+                </value>
+                <value>
+                    <fullName>Breastfeeding – Antenatal</fullName>
+                    <default>false</default>
+                    <label>Breastfeeding – Antenatal</label>
+                </value>
+                <value>
+                    <fullName>Breastfeeding – Postnatal</fullName>
+                    <default>false</default>
+                    <label>Breastfeeding – Postnatal</label>
+                </value>
+                <value>
+                    <fullName>Relax, Stretch &amp; Breathe</fullName>
+                    <default>false</default>
+                    <label>Relax, Stretch &amp; Breathe</label>
+                </value>
+                <value>
+                    <fullName>Twins and Multiples</fullName>
+                    <default>false</default>
+                    <label>Twins and Multiples</label>
+                </value>
+                <value>
+                    <fullName>Introducing Solid Foods</fullName>
+                    <default>false</default>
+                    <label>Introducing Solid Foods</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>NCT Signature antenatal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>NCT antenatal refresher</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>NCT Essentials antenatal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>Twins and Multiples Workshop</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>Waterbirth</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>One to One</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>Combined Antenatal and Early Days (Postnatal)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>Mantenatal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>Birth and Beyond Antenatal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>Early Pregnancy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>Caesarean Workshop</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>Homebirth Workshop</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antenatal</controllingFieldValue>
+                <valueName>Breathing and Relaxation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Postnatal</controllingFieldValue>
+                <valueName>Early Days (postnatal)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Postnatal</controllingFieldValue>
+                <valueName>NCT Baby Massage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Postnatal</controllingFieldValue>
+                <valueName>Introducing Solid Foods Workshop</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Postnatal</controllingFieldValue>
+                <valueName>NCT Parent</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Breastfeeding</controllingFieldValue>
+                <valueName>Breastfeeding – Antenatal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Breastfeeding</controllingFieldValue>
+                <valueName>Breastfeeding – Postnatal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Drop-ins</controllingFieldValue>
+                <valueName>Yoga for Pregnancy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Drop-ins</controllingFieldValue>
+                <valueName>NCT Mother and Baby Yoga</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Drop-ins</controllingFieldValue>
+                <valueName>Relax, Stretch &amp; Breathe</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Course_key__c</fullName>
+        <externalId>false</externalId>
+        <label>CourseKey</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DayTime__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>DayTime</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Course_Type__c) + &apos; &apos; +  Target_Group__c</formula>
+        <label>Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Duration_Formatted__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(FLOOR(Duration__c)) &amp; &apos; hours &apos; &amp; IF((Duration__c - FLOOR(Duration__c)) &gt; 0, &apos;and &apos; &amp; TEXT((Duration__c - FLOOR(Duration__c)) * 60) &amp; &apos; minutes&apos;, &apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Duration Formatted</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Duration__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Hours</inlineHelpText>
+        <label>Duration</label>
+        <summarizedField>Session__c.Duration__c</summarizedField>
+        <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>End_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>End Time</label>
+        <summarizedField>Session__c.End__c</summarizedField>
+        <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
+        <summaryOperation>max</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Evening__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Evening</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Expected_Loss__c</fullName>
+        <externalId>false</externalId>
+        <label>Expected Loss</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Standard Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Individual__c</fullName>
+        <externalId>false</externalId>
+        <label>Individual fee</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Maximum_Places_Per_Course__c</fullName>
+        <externalId>false</externalId>
+        <formula>Practitioner__r.Maximum_Places_Per_Course__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Maximum Places Per Course</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Men_only__c</fullName>
+        <externalId>false</externalId>
+        <label>Men only?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>CARE N/A</fullName>
+                    <default>false</default>
+                    <label>CARE N/A</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Outstanding_Booking_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Outstanding Booking Cost</label>
+        <summarizedField>Booking__c.Outstanding_Amount__c</summarizedField>
+        <summaryForeignKey>Booking__c.Course__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>PSAOffice__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PSA Office</label>
+        <referenceTo>PSA_Office__c</referenceTo>
+        <relationshipLabel>Course (PSA Office)</relationshipLabel>
+        <relationshipName>Course1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PSA_Branch__c</fullName>
+        <externalId>false</externalId>
+        <label>PSA Branch</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>PSA_Office__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetName>PSA_Branch</valueSetName>
+            <valueSettings>
+                <controllingFieldValue>1C</controllingFieldValue>
+                <valueName>Bridport</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>1C</controllingFieldValue>
+                <valueName>Bristol</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>2A</controllingFieldValue>
+                <valueName>Brixton</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PSA_Office__c</fullName>
+        <externalId>false</externalId>
+        <label>PSA Office</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>PSA_Office</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>PlacesNew__c</fullName>
+        <externalId>false</externalId>
+        <label>Places</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Places__c</fullName>
+        <externalId>false</externalId>
+        <label>Places_old</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Postnatal_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Postnatal End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Postnatal_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Postnatal Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Practitioner__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Practitioner</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Contact.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Practitioner</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Courses</relationshipLabel>
+        <relationshipName>Courses</relationshipName>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Price</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Private__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Private</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Provisional__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Provisional</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>course_start_date__c</fullName>
+        <externalId>false</externalId>
+        <formula>MID(TEXT( Start_Date__c ), 9, 2)&amp;&quot;-&quot;&amp; MID(TEXT( Start_Date__c ), 6, 3)&amp;&quot;&quot;&amp;LEFT( TEXT( Start_Date__c ) , 4)&amp;&quot; &quot;&amp; MID(TEXT( Start_Date__c ),12, 8)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>course start date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Session_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>Session Count</label>
+        <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+        <fields>
+        <fullName>FEnd_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE( End_Date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FEnd Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FStart_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE( Start_Date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FStart Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>First_Contact_CB__c</fullName>
+        <externalId>false</externalId>
+        <label>First Contact_CB</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fully_Booked__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( People_Count__c = 22, true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fully Booked</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Maximum_People__c</fullName>
+        <defaultValue>20</defaultValue>
+        <externalId>false</externalId>
+        <label>Maximum People</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>People_Count__c</fullName>
+        <externalId>false</externalId>
+        <formula>(  Couples_Count__c  * 2 ) + Singles_Count__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>People Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Singles_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>Singles Count</label>
+        <summaryFilterItems>
+            <field>Booking__c.Attendees__c</field>
+            <operation>equals</operation>
+            <value>Single</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Booking__c.Course__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Start_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Time</label>
+        <summarizedField>Session__c.Start__c</summarizedField>
+        <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
+        <summaryOperation>min</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Draft - Course setup is in progress
+Confirmed - Course setup completed, can be shared with Website and start accepting bookings.
+In Progress - Course has been started by practitioner, hence no changes to PSA assignment allowed
+Completed - All the session of course have been completed by the practitioner.
+Closed - PSA is happy to close the course
+Cancelled - Course has been cancelled, no more updates.
+Cancelling - PSA is aware they would cancel the course but they need to complete more actions such as transferring/cancelling already existing bookings on that course and other off the system actions 
+Completed - All the session of course have been completed by the practitioner.</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Confirmed</fullName>
+                    <default>false</default>
+                    <label>Confirmed</label>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                    <label>In Progress</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+                <value>
+                    <fullName>Cancelling</fullName>
+                    <default>false</default>
+                    <label>Cancelling</label>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                    <label>Cancelled</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Target_Group__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Group</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Booking_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Booking Cost</label>
+        <summarizedField>Booking__c.Cost__c</summarizedField>
+        <summaryForeignKey>Booking__c.Course__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Venue_Address__c</fullName>
+        <description>Venue__r.BillingStreet &amp;BR()&amp;Venue__r.BillingState &amp;BR()&amp;Venue__r.BillingCity &amp;BR()&amp; Venue__r.BillingCountry</description>
+        <externalId>false</externalId>
+        <formula>NULL</formula>
+        <label>Venue Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Venue__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Venue</label>
+        <referenceTo>Venue__c</referenceTo>
+        <relationshipLabel>Course</relationshipLabel>
+        <relationshipName>Course</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Women_Only__c</fullName>
+        <externalId>false</externalId>
+        <label>Women Only?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>CARE N/A</fullName>
+                    <default>false</default>
+                    <label>CARE N/A</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Course</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Course_Name__c</columns>
+        <columns>Course_Type__c</columns>
+        <columns>Fee__c</columns>
+        <columns>Branch__c</columns>
+        <columns>Status__c</columns>
+        <columns>Venue__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Courses</fullName>
+        <columns>NAME</columns>
+        <columns>Practitioner__c</columns>
+        <columns>Venue__c</columns>
+        <columns>Course_Name__c</columns>
+        <columns>Course_Type__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>contains</operation>
+        </filters>
+        <label>My Courses</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>C{000000}</displayFormat>
+        <label>Course</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Course</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Course</fullName>
+        <active>true</active>
+        <label>Course</label>
+        <picklistValues>
+            <picklist>Cancellation_Reason__c</picklist>
+            <values>
+                <fullName>Course added in error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 0 bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 1 booking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 2 bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 3 bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 4 or more bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - client not happy with small group size</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Newly Qualified practitioner withdrew - no LtP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Newly Qualified practitioner withdrew - other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Over capacity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner on time out - no replacement available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner resigned - no replacement available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner withdrew - no LtP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner withdrew - other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private sessions cancelled by client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service withdrawn</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Category__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Name__c</picklist>
+            <values>
+                <fullName>Antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breastfeeding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drop-ins</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postnatal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Sub_Category__c</picklist>
+            <values>
+                <fullName>1A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Type__c</picklist>
+            <values>
+                <fullName>Birth and Beyond Antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breastfeeding %E2%80%93 Antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breastfeeding %E2%80%93 Postnatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breathing and Relaxation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caesarean Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Combined Antenatal and Early Days %28Postnatal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Early Days %28postnatal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Early Pregnancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Homebirth Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Introducing Solid Foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Introducing Solid Foods Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mantenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Baby Massage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Essentials antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Mother and Baby Yoga</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Parent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Signature antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT antenatal refresher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One to One</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relax%2C Stretch %26 Breathe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Twins and Multiples</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Twins and Multiples Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waterbirth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yoga for Pregnancy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Men_only__c</picklist>
+            <values>
+                <fullName>CARE N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PSA_Branch__c</picklist>
+            <values>
+                <fullName>Bridport</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bristol</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brixton</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PSA_Office__c</picklist>
+            <values>
+                <fullName>1C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4D</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirmed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Women_Only__c</picklist>
+            <values>
+                <fullName>CARE N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Course_Enquiry_PSA</fullName>
+        <active>true</active>
+        <label>Course Enquiry PSA</label>
+        <picklistValues>
+            <picklist>Cancellation_Reason__c</picklist>
+            <values>
+                <fullName>Course added in error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 0 bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 1 booking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 2 bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 3 bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 4 or more bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - client not happy with small group size</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Newly Qualified practitioner withdrew - no LtP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Newly Qualified practitioner withdrew - other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Over capacity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner on time out - no replacement available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner resigned - no replacement available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner withdrew - no LtP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner withdrew - other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private sessions cancelled by client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service withdrawn</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Category__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Name__c</picklist>
+            <values>
+                <fullName>Antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breastfeeding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drop-ins</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postnatal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Sub_Category__c</picklist>
+            <values>
+                <fullName>1A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Type__c</picklist>
+            <values>
+                <fullName>Birth and Beyond Antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breastfeeding %E2%80%93 Antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breastfeeding %E2%80%93 Postnatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breathing and Relaxation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caesarean Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Combined Antenatal and Early Days %28Postnatal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Early Days %28postnatal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Early Pregnancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Homebirth Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Introducing Solid Foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Introducing Solid Foods Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mantenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Baby Massage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Essentials antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Mother and Baby Yoga</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Parent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Signature antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT antenatal refresher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One to One</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relax%2C Stretch %26 Breathe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Twins and Multiples</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Twins and Multiples Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waterbirth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yoga for Pregnancy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Men_only__c</picklist>
+            <values>
+                <fullName>CARE N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PSA_Branch__c</picklist>
+            <values>
+                <fullName>Bridport</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bristol</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brixton</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PSA_Office__c</picklist>
+            <values>
+                <fullName>1C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4D</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirmed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Women_Only__c</picklist>
+            <values>
+                <fullName>CARE N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Venue_Notcompulsary</fullName>
+        <active>true</active>
+        <description>when capacity psa login, he need to create courses with venue which is not mandatory</description>
+        <label>New Course</label>
+        <picklistValues>
+            <picklist>Cancellation_Reason__c</picklist>
+            <values>
+                <fullName>Course added in error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 0 bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 1 booking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 2 bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 3 bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - 4 or more bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low bookings - client not happy with small group size</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Newly Qualified practitioner withdrew - no LtP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Newly Qualified practitioner withdrew - other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Over capacity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner on time out - no replacement available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner resigned - no replacement available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner withdrew - no LtP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Practitioner withdrew - other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private sessions cancelled by client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service withdrawn</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Category__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Name__c</picklist>
+            <values>
+                <fullName>Antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breastfeeding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drop-ins</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postnatal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Sub_Category__c</picklist>
+            <values>
+                <fullName>1A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Course_Type__c</picklist>
+            <values>
+                <fullName>Birth and Beyond Antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breastfeeding %E2%80%93 Antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breastfeeding %E2%80%93 Postnatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breathing and Relaxation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caesarean Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Combined Antenatal and Early Days %28Postnatal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Early Days %28postnatal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Early Pregnancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Homebirth Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Introducing Solid Foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Introducing Solid Foods Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mantenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Baby Massage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Essentials antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Mother and Baby Yoga</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Parent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT Signature antenatal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCT antenatal refresher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One to One</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relax%2C Stretch %26 Breathe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Twins and Multiples</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Twins and Multiples Workshop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waterbirth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yoga for Pregnancy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Men_only__c</picklist>
+            <values>
+                <fullName>CARE N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PSA_Branch__c</picklist>
+            <values>
+                <fullName>Bridport</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bristol</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brixton</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PSA_Office__c</picklist>
+            <values>
+                <fullName>1C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4D</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirmed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Women_Only__c</picklist>
+            <values>
+                <fullName>CARE N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Practitioner__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Available_Places__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>PSA_Office__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Course_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Course_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Venue__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Branch__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>Capacity_Psa_validation_on_Status</fullName>
+        <active>false</active>
+        <errorConditionFormula>OR(
+ISPICKVAL(Status__c, &apos;Closed&apos;),
+ISPICKVAL(Status__c, &apos;Cancelled&apos;),
+ISPICKVAL(Status__c, &apos;In Progress&apos;)
+)
+ &amp;&amp; 
+
+OR(
+ISPICKVAL(PSA_Office__c, &quot;1C&quot;),ISPICKVAL(PSA_Office__c, &quot;2A&quot;),ISPICKVAL(PSA_Office__c, &quot;4D&quot;),ISPICKVAL(PSA_Office__c, &quot;3C&quot;)
+)</errorConditionFormula>
+        <errorDisplayField>Status__c</errorDisplayField>
+        <errorMessage>PSA Assignments can not be modified for the current status.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Check_Numer_of_Places_against_Practition</fullName>
+        <active>true</active>
+        <description>Limit number of places on course to the number the practitioner is authorised to have</description>
+        <errorConditionFormula>NOT(ISBLANK(Practitioner__r.Maximum_Clients_per_Course__c)) &amp;&amp;  Places__c &gt; Practitioner__r.Maximum_Clients_per_Course__c</errorConditionFormula>
+        <errorDisplayField>Places__c</errorDisplayField>
+        <errorMessage>Too many course places for the selected practitioner</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Course_End_date</fullName>
+        <active>true</active>
+        <description>Validation rule to make sure that end date is captured for Antenatal Course</description>
+        <errorConditionFormula>AND(ISPICKVAL(Course_Name__c, &quot;Antenatal&quot;),ISNULL(End_Date__c))</errorConditionFormula>
+        <errorDisplayField>End_Date__c</errorDisplayField>
+        <errorMessage>Course End Date field cannot be left blank for Antenatal Course</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Course_Start_date</fullName>
+        <active>true</active>
+        <description>Validation rule to make sure that start date is captured for Post Natal Courses</description>
+        <errorConditionFormula>AND(ISPICKVAL(Course_Name__c, &quot;Postnatal&quot;),ISNULL(Start_Date__c))</errorConditionFormula>
+        <errorDisplayField>Start_Date__c</errorDisplayField>
+        <errorMessage>Course Start Date field cannot be left blank for Post Natal Courses</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Course_Sub_Category</fullName>
+        <active>true</active>
+        <description>Sub Category field should be dependent Picklist of Category and required if Category is selected</description>
+        <errorConditionFormula>ISPICKVAL(Course_Sub_Category__c, &apos;None&apos;) || ISPICKVAL(Course_Category__c , &apos;None&apos;)</errorConditionFormula>
+        <errorDisplayField>Course_Sub_Category__c</errorDisplayField>
+        <errorMessage>Required field is missing: Course Sub Category; Course Category</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PSA_Assignments</fullName>
+        <active>true</active>
+        <description>if course is in completed or closed status, it should not be editable</description>
+        <errorConditionFormula>OR(
+ISPICKVAL(Status__c, &apos;Closed&apos;),
+ISPICKVAL(Status__c, &apos;Completed&apos;)
+)
+ &amp;&amp; 
+OR(
+Ischanged(PSAOffice__c )
+)</errorConditionFormula>
+        <errorDisplayField>PSAOffice__c</errorDisplayField>
+        <errorMessage>PSA Office field cannot be updated when the Status is set to Closed or Completed.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Reason_Mandatory_for_Cancelled_Status</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF( AND( ISPICKVAL( Status__c , &apos;Cancelled&apos;) , ISPICKVAL( Cancellation_Reason__c, &apos;&apos; ) ) , true, false)</errorConditionFormula>
+        <errorDisplayField>Cancellation_Reason__c</errorDisplayField>
+        <errorMessage>Please provide the reason for Cancellation when Status as Cancelled</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>validation_for_Fee_field_in_Course</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISBLANK( Fee__c )</errorConditionFormula>
+        <errorDisplayField>Fee__c</errorDisplayField>
+        <errorMessage>Please fill Fee field</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

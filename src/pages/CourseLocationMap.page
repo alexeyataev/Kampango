@@ -1,0 +1,26 @@
+<!-- Google Maps Integration: Used in Course Location details section under course detail page .
+    **
+    * Author        : Ujwal Theja
+    * Created Date  : 18-07-2018
+    * (c) Copyright by CSS Corp.
+    **
+-->
+<apex:page standardController="Course__c" sidebar="false" showHeader="false">
+    <apex:pageBlock >
+	<apex:pageBlockSection id="list" title="Locations">
+            <apex:map width="250%" height="300px" center="{latitude:{!Course__c.FAddress_Latitude__c},longitude:{!Course__c.FAddress_Longitude__c}}">
+            <!-- Add markers for contacts -->
+                <apex:mapMarker title="{!Course__c.Name}"
+                                position="{latitude:{!Course__c.FAddress_Latitude__c},longitude:{!Course__c.FAddress_Longitude__c}}">
+                    <apex:mapInfoWindow >
+                        <apex:outputPanel layout="block" style="font-weight: bold;">
+                            <apex:outputLabel for="course" value="Course: ">
+                            <apex:outputText id="course" escape="false" value="{!Course__c.Name}"/></apex:outputLabel>
+                        </apex:outputPanel>
+                    </apex:mapInfoWindow>
+                </apex:mapMarker>
+             </apex:map>
+        </apex:pageBlockSection>        
+    </apex:pageBlock>
+
+</apex:page>

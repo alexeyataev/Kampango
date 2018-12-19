@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>Enquiries Team</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>Booking_Enquiry</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Reason</field>
+                <operation>equals</operation>
+                <value>Enquiry</value>
+            </criteriaItems>
+            <template>NCT_Templates/Booking_Enquiry_Case_Queue_Confirmation</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Enquiries_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <template>NCT_Templates/Case</template>
+        </ruleEntry>
+    </assignmentRule>
+</AssignmentRules>

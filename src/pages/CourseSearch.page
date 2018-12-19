@@ -1,0 +1,30 @@
+<apex:page >
+    <head>
+        <meta charset="utf-8" />
+        <title>NCT Parent Registration Page</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo.jpg')}" /> -->
+        <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
+		<apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
+		<apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
+        <style>
+        td {padding-right: 7px;}
+        </style>
+        
+    </head>
+    <body>
+        
+        <div class="singup-form-fields" style="background-color: #02856b;">
+                <div class="container">
+                  <div class="text-left signup-title-text" style="background-color: #02856b;">Courses &amp; Workshop</div>
+                  <div style="width:100%;">
+                      <a href="www.google.com" style="color:#ffffff;">Home</a>
+                      <p style="color:#ffffff;">Courses &amp; Workshop</p>
+                  </div>
+            </div>
+        </div>
+    
+    </body>
+</apex:page>

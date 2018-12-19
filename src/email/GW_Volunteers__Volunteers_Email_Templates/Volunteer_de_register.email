@@ -1,0 +1,14 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="arial" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Dear&nbsp;</font><font face="arial">{!Account.Name},</font><div><span style="font-family: &quot;Times New Roman&quot;; font-size: medium;">Welcome to NCT...!</span></div>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<div style="font-size: 12pt;"><span style="color: rgb(43, 40, 38); font-family: &quot;Salesforce Sans&quot;, Arial, sans-serif; font-size: 14px; white-space: pre-line; background-color: rgb(255, 255, 255);">This is&nbsp;</span><span style="background-color: rgb(255, 255, 255); color: rgb(43, 40, 38); font-family: &quot;Salesforce Sans&quot;, Arial, sans-serif; font-size: 14px; white-space: pre-line;">An automated email</span></div><span style="font-size: 14px; color: rgb(43, 40, 38); font-family: &quot;Salesforce Sans&quot;, Arial, sans-serif; white-space: pre-line; background-color: rgb(255, 255, 255);"><div><span style="color: rgb(43, 40, 38); font-family: &quot;Salesforce Sans&quot;, Arial, sans-serif; font-size: 14px; white-space: pre-line; background-color: rgb(255, 255, 255);"><br></span></div>Your request has been received and it will take 24hours to remove you from a volunteer</span><div style=""><p style="font-size: medium; font-family: &quot;Times New Roman&quot;;"><br></p><p style="font-size: medium; font-family: &quot;Times New Roman&quot;;"><br></p><p style="font-family: &quot;Times New Roman&quot;;">Account Name: {!Account.Name}<br>Email:&nbsp;{!Contact.Email}</p><p style="font-size: 12pt; font-family: &quot;Times New Roman&quot;;">Reason For de-registration:&nbsp;{!Case.Description}</p><p style="font-size: 12pt; font-family: &quot;Times New Roman&quot;;"><br></p><p style="font-size: medium; font-family: &quot;Times New Roman&quot;;"><br></p><p style="font-size: medium; font-family: &quot;Times New Roman&quot;;"><br></p><p style="font-size: medium; font-family: &quot;Times New Roman&quot;;">Thanks &amp; Regards,<br>NCT Team</p></div>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[]]></td>
+</tr>
+</table>

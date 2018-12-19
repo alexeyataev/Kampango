@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>NCT_Documents/NctheaderLogo_png.png</members>
+        <name>Document</name>
+    </types>	
+	<types>
+        <members>*</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Role</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Group</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Queue</name>
+    </types>
+	<types>
+        <members>*</members>
+        <name>QuickAction</name>
+    </types>
+    <types>
+        <members>Account</members>
+        <members>AccountContactRelation</members>
+        <members>Booking__c</members>
+        <members>Branch_PSA_Office__c</members>
+        
+        <members>Case</members>
+        <members>Contact</members>
+        <members>Course__c</members>
+        <members>Direct_Debits__c</members>
+		<members>Event__c</members>
+		<members>Event_Booking__c</members>
+		<members>Event_Expense__c</members>
+		<members>Event_MDF__c</members>
+		<members>Event_Registration__c</members>
+		<members>Event_Session__c</members>
+        <members>Gift_Aid__c</members>
+        <members>Membership__c</members>
+		<members>Membership_Type__mdt</members>
+        <members>Membership_Fee__mdt</members>
+        <members>Membership_Payment_Category__mdt</members>
+        <members>PSA_Office__c</members>
+        <members>Payment_Plan__c</members>
+        <members>Permission_Question__c</members>
+        <members>Permission__c</members>
+		<members>Practitioner_Role__c</members>
+		<members>Practitioner_Licence__c</members>
+        <members>PostCode_Allocation__c</members>
+        <members>Session__c</members>
+		<members>Track__c</members>
+        <members>Transaction__c</members>
+        <members>User</members>
+        <members>Venue_PSA_Office__c</members>
+        <members>Venue__c</members>
+		<members>npe03__Recurring_Donation__c</members>
+        <name>CustomObject</name>
+    </types>
+	<types>
+        <members>CaseOrigin</members>
+		<members>CasePriority</members>
+		<members>CaseReason</members>
+		<members>CaseStatus</members>
+		<members>CaseType</members>
+        <name>StandardValueSet</name>
+    </types>
+	<types>
+        <members>*</members>
+        <name>CustomMetadata</name>
+    </types>
+
+	<types>
+        <members>Account-Branches Layout</members>
+        <members>Account-Branches Layout_BV</members>
+        <members>Account-Household Lightning Layout</members>
+        <members>Account-Organization Lightning Layout</members>
+        <members>Account-Venue Layout</members>
+        <members>AccountContactRelation-Account Contact Relationship Layout</members>
+        <members>Booking__c-Booking Layout</members>
+        <members>cpm__Installment__c-cpm__Installment Layout</members>
+        <members>cpm__Installment__c-cpm__Installment Payable Layout</members>
+       <members>cpm__Payment_Profile__c-paybacs__Bank Account</members>
+         <members>npe03__Recurring_Donation__c-Membership Layout</members>
+          <members>npe03__Recurring_Donation__c-npe03__Recurring Donation Layout</members>
+           <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
+		   <members>Contact-Client Layout</members>
+		   <members>Contact-Practitioner</members>
+		   <members>Venue__c-Venue Layout</members>
+		   <members>Practitioner_Role__c-Practitioner Licence Layout</members>
+        <members>Case-CaseLayout_De_Registration</members>
+		<members>Case-Case Layout</members>
+        <members>Course__c-Course Layout</members>
+        <members>Course__c-Venue_Not_Compulsary_Capasity_PSA</members>
+        <members>Direct_Debits__c-Direct Debits Layout</members>
+        <members>Gift_Aid__c-Gift Aid Layout</members>
+        <members>Membership__c-Membership Layout</members>
+        <members>Payment_Plan__c-Payment Plan Layout</members>
+        <members>Permission_Question__c-Permission_Question Layout</members>
+        <members>Permission__c-Permission Layout</members>
+        <members>PostCode_Allocation__c-PostCode Allocation Layout</members>
+        <members>Session__c-Session Layout</members>
+        <members>Transaction__c-Transaction Layout</members>
+        <members>User-User Layout</members>
+        <members>UserAlt-User Profile Layout</members>
+        <members>Venue__c-Venue Layout</members>
+        <name>Layout</name>
+    </types>
+	<types>
+        <members>*</members>
+        <name>CustomTab</name>
+    </types>
+	<types>
+        <members>*</members>
+        <name>ValidationRule</name>
+    </types>
+	<types>
+        <members>*</members>
+        <name>CustomTab</name>
+    </types>
+	<types>
+		<members>*</members>
+		<name>AssignmentRules</name>
+	</types>
+	<types>
+        <members>*</members>
+        <name>ContentAsset</name>
+    </types>
+	<types>
+        <members>NCT</members>
+		<members>NCT_Courses</members>
+		<members>NCT_Courses_Classic</members>
+		<members>NCT_Event</members>
+		<members>NCT_General</members>
+		<members>NCT_General_Lightning</members>
+        <name>CustomApplication</name>
+    </types>
+	<types>
+        <members>NCT_Event_UtilityBar</members>
+		<members>Case_Record_Page1</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Practitioner_Changes</members>
+        <members>Practitioner_changed_in_Session</members>
+        <name>Flow</name>
+    </types>
+	<types>
+        <members>NCT_Templates/Case</members>
+        
+        <members>NCT_Templates/Course_booking_status_reserved2</members>
+        
+        
+        
+        <members>unfiled$public/Parent_Welcome_Email</members>
+		<members>GW_Volunteers__Volunteers_Email_Templates/Volunteer_de_register</members>
+        <members>NCT_Templates/Booking_Status_is_Paid_or_Installment</members>
+        <members>NCT_Templates/Booking_status_is_Cancelling_and_StartDate_is_less_than_10_days</members>
+        <members>NCT_Templates/Case_Transfer_of_Courses</members>
+        <members>NCT_Templates/Case_Transfer_of_Courses</members>
+        <members>NCT_Templates/Course_Created</members>
+        <members>NCT_Templates/Course_booking_status_Confirmed</members>
+        <members>NCT_Templates/Course_booking_status_reserved</members>
+        <members>NCT_Templates/Practitioner_Changes_Course</members>
+        <members>NCT_Templates/Practitioner_Changes_sessions</members>
+		
+		<members>NCT_Templates/Booking_Enquiry_Case_Queue_Confirmation</members>
+        <members>NCT_Templates/Request_to_be_Volunteer</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>Booking__c.Course_booking_status_reserved</members>
+        
+        
+        <members>User.Parent_Signup_Welcome_Email</members>
+		<members>Booking__c.Booking_Status_is_Paid_or_Installment_mail_to_parent</members>
+        <members>Booking__c.Course_booking_status_confirmed</members>
+        <members>Course__c.New_course_updated</members>
+        <name>WorkflowAlert</name>
+    </types>
+	<types>
+        <members>*</members>
+        <name>Workflow</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApexClass</name>
+    </types>
+	<types>
+        <members>*</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApexTrigger</name>
+    </types>
+	<types>
+        <members>CommunityFooter</members>
+        <members>CommunityHeader</members>
+        <members>PractitionalCourosal</members>
+        <members>PractitionerHeader</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+	<types>
+        <members>*</members>
+        <name>SharingRules</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Profile</name>
+    </types>
+    <version>44.0</version>
+</Package>

@@ -1,0 +1,39 @@
+<!-- Created button placed in the object 'Course'the name of the button is 'Email Attendees'  .
+    **
+    * Author        : Latha
+    * Created Date  : 13-09-2018
+    * (c) Copyright by CSS Corp.
+    **
+-->
+
+<apex:page standardcontroller="Course__c" extensions="Emailin_class"  
+           showHeader="false" sidebar="false" showQuickActionVfHeader="false" 
+           lightningStyleSheets="true" docType="html-5.0" >
+    <apex:slds />
+    <apex:form id="formid" >
+      <apex:pageMessages id="msg"/>
+        <apex:pageblock title="E-MAIl ATTENDEES" id="attid" >
+            <apex:pageblocksection columns="1" id="pageblockid" >
+               <apex:pageblocksectionitem >
+                    <apex:outputLabel value="TO" id="toid" /> 
+                    <apex:inputTextarea value="{!toaddress}" style="width: 540px;height:33px" id="toaid"/>
+               </apex:pageblocksectionitem>
+               <apex:pageblocksectionitem id="sec2id" >
+                    <apex:outputLabel value="CC" id="ccid"  />
+                    <apex:inputtext value="{!Course__c.practitioner__r.Email}" style="width: 540px;" id="emailid"/>
+                </apex:pageblocksectionitem>
+               <apex:pageblocksectionitem id="sec3id"  >
+                    <apex:outputLabel value="SUBJECT" id="subid" />
+                    <apex:inputtext value="{!Subject}" style="width: 540px;" id="subValid" />
+                </apex:pageblocksectionitem>
+                <apex:pageblocksectionitem id="sec4id"  >
+                    <apex:outputLabel value="BODY" id="formid"  />
+                    <apex:inputTextarea value="{!email_body}" style="width: 540px; height: 63px;" id="eBodyid" />
+                </apex:pageblocksectionitem>
+                <apex:pageblocksectionitem id="sec5id"  >            
+            <apex:commandButton action="{!send}" value="SEND EMAIL" style="margin-left: 198px;" id="sendid"  />
+                 </apex:pageblocksectionitem>
+            </apex:pageblocksection>            
+        </apex:pageblock>
+    </apex:form>
+</apex:page>
