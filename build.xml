@@ -137,7 +137,7 @@
     
     <pmd rulesetfiles="rulesets/apex/ruleset.xml" failOnRuleViolation="yes" > 
        <formatter type="xml" toFile="pmd.xml"/>
-            <fileset dir="${staging.dir}/src/"> 
+            <fileset dir="src/"> 
             <include name="**/*.*"/> 
         </fileset> 
     </pmd> 
