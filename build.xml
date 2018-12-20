@@ -121,4 +121,26 @@
     <target name="describeMetadata">
       <sf:describeMetadata username="${env.username}" password="${env.password}" sessionId="${sf.sessionId}" serverurl="${env.serverurl}"/>
     </target>
+	
+	<!-- ================== PMD : static analysis checks on code =================== --> 
+    <target name="pmd" depends="main, copy"> 
+
+    <property name="pmd.dir" value="/home/ubuntu/pmd-bin-6.10.0" /> 
+
+    <path id="pmd.classpath"> 
+        <fileset dir="${pmd.dir}\lib"> 
+            <include name="*.jar" /> 
+        </fileset> 
+    </path> 
+
+    <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd.classpath" /> 
+    
+    <pmd rulesetfiles="rulesets/apex/ruleset.xml" failOnRuleViolation="yes" > 
+       <formatter type="xml" toFile="pmd.xml"/>
+            <fileset dir="${staging.dir}/src/"> 
+            <include name="**/*.*"/> 
+        </fileset> 
+    </pmd> 
+
+    </target>
 </project>
