@@ -1,4 +1,4 @@
-public with sharing class Mycon {
+public with sharing class MyCon {
   public Decimal miles {get; set;}
     public String courseTypes {get; set;}
     private integer totalRecs = 0;
