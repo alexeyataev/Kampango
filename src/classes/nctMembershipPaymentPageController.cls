@@ -1,4 +1,4 @@
-public class nctMembershipPaymentPageController 
+public class Nctmembershippaymentpagecontroller 
 {
     public string twomems{get; set;}
     public Date expDate {get; set;}
@@ -40,7 +40,7 @@ public class nctMembershipPaymentPageController
     public String accountNumber {get; set;}
     public string displayValue {get;set;}
     public string counter  {get;set;}
-    public string SelValues {get;set;}
+    public string selvalues {get;set;}
     public Membership_Type__mdt membershipInfo {get;set;}
     public npe03__Recurring_Donation__c reccDon {get;set;}
     public Map<String, List<Membership_Type__mdt>> membershipTypeMap{get;set;}
@@ -51,7 +51,7 @@ public class nctMembershipPaymentPageController
     public String eDate {get; set;}
     public boolean isPractitioner {get; set;}
     
-    public nctMembershipPaymentPageController()
+    public nctmembershippaymentpagecontroller()
     {	
         contId = ApexPages.currentPage().getParameters().get('Id');
         system.debug('*$*$**$ contId  ' + contId);
@@ -196,7 +196,7 @@ public class nctMembershipPaymentPageController
             }
         }*/
     }
-    public PageReference ContactInfo()
+    public pagereference contactinfo()
     {
         feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
         PageReference redirecContUrl;
@@ -243,7 +243,7 @@ public class nctMembershipPaymentPageController
     	}
         
     }
-    public void PaymentSave()
+    public void paymentsave()
     {
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
         //system.debug(accountNumber + '   *$*#@**$*$ accountName  ' + accountName + '  &$#*#*#  ' + sortCode + '   *$*$*$ newCont ' + newCont.Id);
@@ -340,8 +340,8 @@ public class nctMembershipPaymentPageController
         } 
         //if(contId == null)
         //{
-        list<User> UserList = [select Id, Name from User where user.ContactId =: reccDonList[0].npe03__Contact__c];
-        if(UserList == null || UserList.isEmpty())
+        list<User> userlist = [select Id, Name from User where user.ContactId =: reccDonList[0].npe03__Contact__c];
+        if(userList == null || userList.isEmpty())
         {
             account accnt = new account(Id = reccDonList[0].npe03__Contact__r.AccountId);
             user etUsr = [select Id from User where profile.name = 'Enquiry PSA' limit 1];
@@ -368,7 +368,7 @@ public class nctMembershipPaymentPageController
             
         //}        
     }
-    public PageReference PaymentHubCallout()
+    public pagereference paymenthubcallout()
     {
         decimal instlmntAmt; 
         if(membershipInfo != null)

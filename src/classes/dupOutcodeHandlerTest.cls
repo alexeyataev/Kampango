@@ -1,5 +1,5 @@
 @isTest
-public class dupOutcodeHandlerTest {
+public class DupOutcodeHandlerTest {
 
     static testMethod Void outcodeDuplicateCap(){
         Boolean result = false;

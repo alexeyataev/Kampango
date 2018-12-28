@@ -1,4 +1,4 @@
-public class commnitycontactshare{
+public class Commnitycontactshare{
 
 
 @future

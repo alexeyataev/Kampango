@@ -10,7 +10,7 @@ public class attachmentsample {
         return myfile;
     }
    
-    Public Pagereference Savedoc()
+    Public Pagereference savedoc()
     {
         String accid = System.currentPagereference().getParameters().get('id');
 

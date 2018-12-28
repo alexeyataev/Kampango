@@ -1,4 +1,4 @@
-public class nctETMembershipPaymentPageController 
+public class nctetmembershippaymentpagecontroller 
 {
     public string twomems{get; set;}
     public Date expDate {get; set;}
@@ -39,7 +39,7 @@ public class nctETMembershipPaymentPageController
     public String accountNumber {get; set;}
     public string displayValue {get;set;}
     public string counter  {get;set;}
-    public string SelValues {get;set;}
+    public string selvalues {get;set;}
     public Membership_Type__mdt membershipInfo {get;set;}
     public npe03__Recurring_Donation__c reccDon {get;set;}
     public Map<String, List<Membership_Type__mdt>> membershipTypeMap{get;set;}
@@ -186,7 +186,7 @@ public class nctETMembershipPaymentPageController
             }
         }
     }
-    public void ContactInfo()
+    public void contactinfo()
     {
         feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
         PageReference redirecContUrl;
@@ -233,7 +233,7 @@ public class nctETMembershipPaymentPageController
       }
         
     }
-    public void PaymentSave()
+    public void paymentsave()
     {
         displayMbrNoMessage = true;
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
@@ -357,7 +357,7 @@ public class nctETMembershipPaymentPageController
             insert usr;            
         }            
     }
-    public void PaymentHubCallout()
+    public void paymenthubcallout()
     {
         decimal instlmntAmt; 
         if(membershipInfo != null)

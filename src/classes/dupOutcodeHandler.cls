@@ -1,6 +1,6 @@
-public with sharing class dupOutcodeHandler {
+public with sharing class DupOutcodeHandler {
 	
-    public void onBeforeInsertUpdate(List<PostCode_Allocation__c>  PCAList){
+    public void onBeforeInsertUpdate(List<PostCode_Allocation__c>  pcalist){
         
         //BypassRules__c profileCustomSetting = BypassRules__c.getInstance(UserInfo.getUserId());
         //Boolean DisableTriggers =  profileCustomSetting.Disable_Triggers__c;

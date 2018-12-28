@@ -1,5 +1,5 @@
 @isTest
-public class dupOutcodeTest {
+public class DupOutcodeTest {
 	
     static testMethod Void outcodeDuplicate(){
         Boolean result = false;

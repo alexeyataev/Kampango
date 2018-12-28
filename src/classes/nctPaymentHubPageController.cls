@@ -1,4 +1,4 @@
-public class nctPaymentHubPageController
+﻿public class nctpaymenthubpagecontroller
 {
     public Contact newCont {get;set;}
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
@@ -7,9 +7,9 @@ public class nctPaymentHubPageController
     public Booking__c corsBkng {get;set;}
     public string memberType {get;set;}
     //public boolean checkBoxVal  {get;set;}
-    public boolean PymSelSec  {get;set;}
+    public boolean pymselsec  {get;set;}
     public boolean contInfoSec  {get;set;}
-    public boolean PymtInfoSec  {get;set;}
+    public boolean pyminfosec  {get;set;}
     public boolean confmInfoSec {get;set;}
     public boolean thankYouSec {get;set;}
     public boolean feeFieldVisibility {get;set;}
@@ -20,7 +20,7 @@ public class nctPaymentHubPageController
     public Id courseId {get;set;}
     public Course__c cors;
     // added by MembershipFormController
-    public String address_line_1 {get; set;}
+    public String addressline1 {get; set;}
     public String textAddress2 {get; set;}
     public String textAddress3 {get; set;}
     public String textTown {get; set;} 
@@ -31,7 +31,7 @@ public class nctPaymentHubPageController
     public String lastName {get; set;}
     public String email {get; set;}
 
-    public nctPaymentHubPageController()
+    public nctpaymenthubpagecontroller()
     {
         courseId = ApexPages.currentPage().getParameters().get('id');
         User u = new User();
@@ -62,7 +62,7 @@ public class nctPaymentHubPageController
         }
     }
     
-    public PageReference ContactSave()
+    public PageReference contactSave()
     {
         PageReference redirecContUrl;
         /*if(courseId != null)
@@ -114,7 +114,7 @@ public class nctPaymentHubPageController
         else if(memberType.contains('Credit/Debit Card'))
         {
             system.debug('*$*$**$* memberType  ' + memberType);
-            redirectUrl = PaymentHubCallout(); 
+            redirectUrl = paymenthubcallout(); 
             if(courseId != null)
             {  
                 newCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
@@ -131,7 +131,7 @@ public class nctPaymentHubPageController
         }
         return redirectUrl;
     }
-    public void PaymentSave()
+    public void paymentsave()
     {
         feeAmount = memberType.substringBetween('(', ')');
         pymtPrfl.RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get('Bank Account').getRecordTypeId();
@@ -194,7 +194,7 @@ public class nctPaymentHubPageController
             }
         }        
     }
-    public PageReference PaymentHubCallout()
+    public pagereference paymenthubcallout()
     {
         if(memberType != '' && memberType != null)
         {

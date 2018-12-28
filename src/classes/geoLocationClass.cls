@@ -1,4 +1,4 @@
-public class geoLocationClass 
+public class Geolocationclass 
 {
 	@future (callout=true)  // future method needed to run callouts from Triggers
     static public void getLocation(set<string> postCodeSet)

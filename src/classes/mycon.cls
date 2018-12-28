@@ -1,4 +1,4 @@
-public with sharing class mycon {
+public with sharing class Mycon {
   public Decimal miles {get; set;}
     public String courseTypes {get; set;}
     private integer totalRecs = 0;
@@ -29,16 +29,16 @@ public with sharing class mycon {
         }
     }
     public list<String> postCode {get; set;}
-    public Date BDate {get; set;}
+    public Date bdate {get; set;}
     public Course__c cs{get; set;}
-    public List<Course__c> Courses {get; private set;}
+    public List<Course__c> courses {get; private set;}
     //lat = 51.5032;
     
     //list<PostCode_Allocation__c> postcodes = [SELECT Branch__r.Name FROM PostCode_Allocation__c where Name = :postCode limit 1];                         
    // public final Decimal lat =[SELECT Branch__r.Address_Latitude__c FROM PostCode_Allocation__c where Name = :postCode];
     //lon = -0.1262;
     
-    public boolean Match{get; set;}
+    public boolean match{get; set;}
     String units ='mi';
     //Date CBDate = BDate.format('YYYY-MM-DD');
     //Integer dist;
@@ -49,7 +49,7 @@ public with sharing class mycon {
    // Decimal lon = lt.Branch__r.Address_Longitude__c;
     public mycon(){
        
-        List<Course__c> Courses = new List<Course__c>();
+        List<Course__c> courses = new List<Course__c>();
         cs = new Course__c();
         miles = 0;
         //lat = 51.5032;
@@ -60,7 +60,8 @@ public with sharing class mycon {
        // Courses =[SELECT Id, Name,Course_Name__c ,Course_Type__c, Venue__c, Venue__r.BillingLatitude, Venue__r.BillingLongitude FROM Course__c WHERE DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')< 5 ORDER BY DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')];
     }
     	//Match=false;
-        Decimal lat, lon;
+        Decimal lat;
+        Decimal lon;
         
         
         // FRAGILE: You'll want a better lat/long parsing routine
@@ -74,7 +75,7 @@ public with sharing class mycon {
         //lat =51.5032;
         //lon =-0.1262;*/
         
-     public pagereference CourseLists()
+     public pagereference courselists()
     {
         //date3 = date1;
         //date4 = date2;
@@ -84,7 +85,7 @@ public with sharing class mycon {
         return pr;
         
     }
-    public void CourseList(){
+    public void courselist(){
         
         if(Courses!=Null){
             Courses.clear();
