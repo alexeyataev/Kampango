@@ -382,27 +382,27 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>commnitycontactshare</apexClass>
+        <apexClass>CommnityContactShare</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>dupOutcodeHandler</apexClass>
+        <apexClass>DupOutCodeHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>dupOutcodeHandlerTest</apexClass>
+        <apexClass>DupOutCodeHandlerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>dupOutcodeTest</apexClass>
+        <apexClass>DupOutCodeTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>geoLocationClass</apexClass>
+        <apexClass>Geolocationclass</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>mycon</apexClass>
+        <apexClass>MyCon</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
