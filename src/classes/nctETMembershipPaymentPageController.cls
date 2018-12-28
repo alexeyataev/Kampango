@@ -1,4 +1,4 @@
-public class nctetmembershippaymentpagecontroller 
+public class Nctetmembershippaymentpagecontroller 
 {
     public string twomems{get; set;}
     public Date expDate {get; set;}
@@ -377,7 +377,7 @@ public class nctetmembershippaymentpagecontroller
         tokenRequest.setTimeout(120000);    
         tokenResponse = tokenHttp.send(tokenRequest);
 
-        AcessTokenResponseVo accessTokenVo = (AcessTokenResponseVo) JSON.deserialize(tokenResponse.getBody(),AcessTokenResponseVo.class);
+        AcessTokenResponseVo accesstoken = (AcessTokenResponseVo) JSON.deserialize(tokenResponse.getBody(),AcessTokenResponseVo.class);
 
         
         PaymentRequestVo paymentReq = new PaymentRequestVo();
@@ -424,7 +424,7 @@ public class nctetmembershippaymentpagecontroller
         HttpResponse paymentHubResponse = new HttpResponse();
         Http paymentHubHttp = new Http(); 
         paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment');        
-        paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);  
+        paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.accesstoken);  
         //paymentHubRequest.setHeader('Authorization','Bearer '+ UserInfo.getSessionID()); 
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('Accept','application/json');

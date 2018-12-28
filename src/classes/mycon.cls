@@ -14,7 +14,7 @@ public with sharing class Mycon {
     //}  
     public Boolean resultsAvailable {
         get {
-            if(Courses == Null) {
+            if(courses == Null) {
                 return false;
             }
             return true;
@@ -22,7 +22,7 @@ public with sharing class Mycon {
     }
     public Boolean lstresultsAvailable {
         get {
-            if(Courses == Null) {
+            if(courses == Null) {
                 return false;
             }
             return true;
@@ -40,7 +40,7 @@ public with sharing class Mycon {
     
     public boolean match{get; set;}
     String units ='mi';
-    //Date CBDate = BDate.format('YYYY-MM-DD');
+    //Date CBDate = bDate.format('YYYY-MM-DD');
     //Integer dist;
     //lt = [SELECT Branch__r.Address_Latitude__c,Branch__r.Address_Longitude__c, Id FROM PostCode_Allocation__c where Name =:postCode limit 1];
  	
@@ -57,7 +57,7 @@ public with sharing class Mycon {
         
             //e1 = e;
         
-       // Courses =[SELECT Id, Name,Course_Name__c ,Course_Type__c, Venue__c, Venue__r.BillingLatitude, Venue__r.BillingLongitude FROM Course__c WHERE DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')< 5 ORDER BY DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')];
+       // courses =[SELECT Id, Name,Course_Name__c ,Course_Type__c, Venue__c, Venue__r.BillingLatitude, Venue__r.BillingLongitude FROM Course__c WHERE DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')< 5 ORDER BY DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')];
     }
     	//Match=false;
         Decimal lat;
@@ -87,8 +87,8 @@ public with sharing class Mycon {
     }
     public void courselist(){
         
-        if(Courses!=Null){
-            Courses.clear();
+        if(courses!=Null){
+            courses.clear();
         }
         if(currentPosition == NULL || currentPosition == ''){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error, 'Please enter a Postal Code'));
@@ -111,7 +111,7 @@ public with sharing class Mycon {
         System.Debug('>>>> the value of queryString is ' + queryString);
         // Run the query
         
-        Courses = database.query(queryString); 
+        courses = database.query(queryString); 
         }
         else{
             
@@ -122,10 +122,10 @@ public with sharing class Mycon {
       	//return null;
         //return null;
         //if(distances==20){
-        	//Courses =[SELECT Id, Name,Course_Name__c ,Course_Type__c,Status__c, Venue__c, Venue__r.BillingLatitude, Venue__r.BillingLongitude FROM Course__c WHERE (DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lt,:ln), 'mi')< :miles) and ((FEnd_Date__c  >= :BDate and FEnd_Date__c   <= :BDate)or(FStart_Date__c  >= :BDate and FStart_Date__c <= :BDate)or(FStart_Date__c  <= :BDate and FEnd_Date__c >= :BDate)) and (Course_Name__c = :courseTypes) ORDER BY DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')];
+        	//courses =[SELECT Id, Name,Course_Name__c ,Course_Type__c,Status__c, Venue__c, Venue__r.BillingLatitude, Venue__r.BillingLongitude FROM Course__c WHERE (DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lt,:ln), 'mi')< :miles) and ((FEnd_Date__c  >= :BDate and FEnd_Date__c   <= :BDate)or(FStart_Date__c  >= :BDate and FStart_Date__c <= :BDate)or(FStart_Date__c  <= :BDate and FEnd_Date__c >= :BDate)) and (Course_Name__c = :courseTypes) ORDER BY DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')];
 		//}
-        /*if(Courses.size()>0){
-            Match=true;
+        /*if(courses.size()>0){
+            match=true;
         }
         return null;*/
        

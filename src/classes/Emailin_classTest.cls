@@ -49,7 +49,7 @@ private class Emailin_classTest {
         ApexPages.StandardController sc = new ApexPages.StandardController(courseRec);
         Emailin_class ec = new Emailin_class(sc);
         ec.toaddress = 'sfdclatha@gmail.com';
-        ec.email_body= 'email_body';
+        ec.emailbody= 'emailbody';
         ec.subject='subject';
         ec.ccaddress='';
         PageReference pageReference = ec.send();

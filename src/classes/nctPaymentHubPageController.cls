@@ -1,4 +1,4 @@
-﻿public class nctpaymenthubpagecontroller
+﻿public class Nctpaymenthubpagecontroller
 {
     public Contact newCont {get;set;}
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
@@ -47,8 +47,8 @@
         //checkBoxVal = false;
         contInfoSec = true;
         feeFieldVisibility = false;
-        PymSelSec = false;
-        PymtInfoSec = false;
+        pymSelSec = false;
+        pymtInfoSec = false;
         confmInfoSec = false;
         thankYouSec = false;
         if(courseId != null)
@@ -67,7 +67,7 @@
         PageReference redirecContUrl;
         /*if(courseId != null)
         {            
-            redirecContUrl = PaymentHubCallout();   
+            redirecContUrl = paymentHubCallout();   
             newCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
             insert newCont;
             corsBkng.First_Contact__c = newCont.Id;
@@ -84,7 +84,7 @@
             newCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
             //insert newCont;
             contInfoSec = false;
-            PymSelSec = true;
+            pymSelSec = true;
             redirecContUrl = null;
         //}        
         return redirecContUrl;
@@ -93,10 +93,10 @@
     {        
         PageReference redirectUrl;
         contInfoSec = false;
-        PymSelSec = false;
+        pymSelSec = false;
         if(memberType.contains('Direct Debit'))
         {
-            PymtInfoSec = true;
+            pymtInfoSec = true;
             insert newCont;
             if(courseId != null)
             {                            
@@ -162,8 +162,8 @@
         Insert recDon;
         
         contInfoSec = false;
-        PymSelSec = false;
-        PymtInfoSec = false;
+        pymSelSec = false;
+        pymtInfoSec = false;
         confmInfoSec = true;
     }
     
@@ -253,7 +253,7 @@
         HttpResponse paymentHubResponse = new HttpResponse();
         Http paymentHubHttp = new Http(); 
         paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment');        
-        paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);  
+        paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.accesstoken);  
         //paymentHubRequest.setHeader('Authorization','Bearer '+ UserInfo.getSessionID()); 
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
 		paymentHubRequest.setHeader('Accept','application/json');
