@@ -16,13 +16,13 @@ public class ParentCommunitySelfRegController {
     public String confirmPassword {get; set { confirmPassword = value == null ? value : value.trim(); } }
     Public String phone{set;get;}
     //public String communityNickname {get; set { communityNickname = value == null ? value : value.trim(); } }
-    public List<String> SelectedPreferences {
+    public List<String> selectedPreferences {
         get{
-            if(SelectedPreferences == NULL){
+            if(selectedPreferences == NULL){
                 
-                SelectedPreferences = new List<String>();
+                selectedPreferences = new List<String>();
             }
-            return SelectedPreferences;
+            return selectedPreferences;
         }
         set;}
     //public String street {get; set;}
@@ -119,8 +119,8 @@ public class ParentCommunitySelfRegController {
         
         String Preference = '';
         Boolean Start = true;
-        if(!SelectedPreferences.isEmpty()) {           
-            for(String Str : SelectedPreferences) {
+        if(!selectedPreferences.isEmpty()) {           
+            for(String Str : selectedPreferences) {
                 if(Start) {
                     Preference = Str;
                     Start = false;

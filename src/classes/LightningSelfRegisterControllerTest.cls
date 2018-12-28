@@ -71,7 +71,7 @@ public with sharing class LightningSelfRegisterControllerTest {
  }
 
  @IsTest
- static void LightningSelfRegisterControllerInstantiation() {
+ static void lightningSelfRegisterControllerInstantiation() {
   LightningSelfRegisterController controller = new LightningSelfRegisterController();
   System.assertNotEquals(controller, null);
  }

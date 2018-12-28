@@ -2,7 +2,7 @@ public class VenueAddressGeo {
 	// static variable to determine if geocodinghas already occurred
     private static Boolean geocodingCalled = false;
     // wrapper method to prevent calling future methods from an existing future context
-    public static void DoAddressGeocode(id venueId) {
+    public static void doAddressGeocode(id venueId) {
       if(geocodingCalled || System.isFuture()) {
         //geocodingCalled = true;
         System.debug(LoggingLevel.WARN,'***Address Geocoding Future Method Already Called - Aborting...');

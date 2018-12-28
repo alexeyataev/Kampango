@@ -9,37 +9,37 @@ public with sharing class TestBookingBuilder {
 
 	public TestBookingBuilder() {}
 
-	public TestBookingBuilder WithStatus(String status)
+	public TestBookingBuilder withStatus(String status)
 	{
 		this.status = status;
 		return this;
 	}
 
-	public TestBookingBuilder WithClient(Contact client)
+	public TestBookingBuilder withClient(Contact client)
 	{
 		this.client = client;
 		return this;
 	}
 
-	public TestBookingBuilder WithCourse(Course__c course)
+	public TestBookingBuilder withCourse(Course__c course)
 	{
 		this.course = course;
 		return this;
 	}
 
-	public TestBookingBuilder WithDueDate(Date dueDate)
+	public TestBookingBuilder withDueDate(Date dueDate)
 	{
 		this.dueDate = dueDate;
 		return this;
 	}
 
-	public TestBookingBuilder InsertRecord(Boolean insertRecord)
+	public TestBookingBuilder insertRecord(Boolean insertRecord)
 	{
 		this.insertRecord = insertRecord;
 		return this;
 	}
 
-	public Booking__c Build()
+	public Booking__c build()
 	{
 		Booking__c booking = new Booking__c(Status__c = status,
 											Client__c = client.Id,

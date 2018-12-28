@@ -18,7 +18,7 @@ public with sharing class LightningForgotPasswordControllerTest {
 
  /* Verifies that LightningForgotPasswordController object is instantiated correctly. */
  @IsTest
- static void LightningForgotPasswordControllerInstantiation() {
+ static void lightningForgotPasswordControllerInstantiation() {
   LightningForgotPasswordController controller = new LightningForgotPasswordController();
   System.assertNotEquals(controller, null);
  }

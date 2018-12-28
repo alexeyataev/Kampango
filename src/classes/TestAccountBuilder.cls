@@ -6,28 +6,28 @@ public class TestAccountBuilder {
 	private String billingPostalCode;
 	private Boolean insertRecord = false;
 
-    public TestAccountBuilder WithRecordType(string recordTypeName) {
+    public TestAccountBuilder withRecordType(string recordTypeName) {
         
         recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get(recordTypeName).getRecordTypeId();
         
         return this;
     }
     
-    public TestAccountBuilder WithName(string name)
+    public TestAccountBuilder withName(string name)
     {
     	this.name = name;
     	
     	return this;
     }
     
-    public TestAccountBuilder WithBillingPostalCode(string postalCode)
+    public TestAccountBuilder withBillingPostalCode(string postalCode)
     {
     	this.billingPostalCode = postalCode;
     	
     	return this;
     }
 
-    public TestAccountBuilder InsertRecord(Boolean insertRecord)
+    public TestAccountBuilder insertRecord(Boolean insertRecord)
     {
     	this.insertRecord = insertRecord;
     	return this;
@@ -37,7 +37,7 @@ public class TestAccountBuilder {
     	
     	Account testAccount = new Account(RecordTypeId = this.recordTypeId,
     							Name = this.name,
-    							BillingPostalCode = this.billingPostalCode);
+    							billingPostalCode = this.billingPostalCode);
     	
     	if(insertRecord)
     	{

@@ -1,36 +1,36 @@
 global with sharing class PaymentRequestVo {
     
-    global String SuccessURL{get;set;}
-    global String FailureURL{get;set;}
-    global String Origin{get;set;}
-    global PayerVo Payer{get;set;}
-    global PaymentVo Payment{get;set;}
-    global PaymentMethodVo PaymentMethod{get;set;}
-    global SourceConnectorVo SourceConnector{get;set;}
+    global String successURL{get;set;}
+    global String failureURL{get;set;}
+    global String origin{get;set;}
+    global PayerVo payer{get;set;}
+    global PaymentVo payment{get;set;}
+    global PaymentMethodVo paymentMethod{get;set;}
+    global SourceConnectorVo sourceConnector{get;set;}
     
     
     	//Assessment Vo
 	global class PayerVo{
-	    global Boolean AllowDeduplication{get;set;}
+	    global Boolean allowDeduplication{get;set;}
 		global ContactVo contact{get;set;}
-		global String ContactUpdate{get;set;}
+		global String contactUpdate{get;set;}
 	}
     
 	global class PaymentVo{
-	    global Decimal Amount{get;set;}
+	    global Decimal amount{get;set;}
 	}
 
 	global class ContactVo{
-	    global String Email{get;set;}
-	    global String FirstName{get;set;}
-	    global String LastName{get;set;}
+	    global String email{get;set;}
+	    global String firstName{get;set;}
+	    global String lastName{get;set;}
 	}
 
 	global class PaymentMethodVo{
-	    global String Name{get;set;}
+	    global String name{get;set;}
 	}
 
 	global class SourceConnectorVo{
-	    global String Name{get;set;}
+	    global String name{get;set;}
 	}
 }

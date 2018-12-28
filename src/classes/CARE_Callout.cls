@@ -2,7 +2,7 @@
 global class CARE_Callout 
 {
     @Httpget
-    global static void CARE_Request()
+    global static void careRequest()
     {
         try
         {

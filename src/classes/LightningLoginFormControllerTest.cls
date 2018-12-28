@@ -7,7 +7,7 @@ public with sharing class LightningLoginFormControllerTest {
  }
 
  @IsTest
- static void LightningLoginFormControllerInstantiation() {
+ static void lightningLoginFormControllerInstantiation() {
   LightningLoginFormController controller = new LightningLoginFormController();
   System.assertNotEquals(controller, null);
  }

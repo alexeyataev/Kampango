@@ -18,7 +18,7 @@ public with sharing class CourseVenueController {
     //}  
     public Boolean resultsAvailable {
         get {
-            if(Courses == Null) {
+            if(courses == Null) {
                 return false;
             }
             return true;
@@ -26,7 +26,7 @@ public with sharing class CourseVenueController {
     }
     public Boolean lstresultsAvailable {
         get {
-            if(Courses == Null) {
+            if(courses == Null) {
                 return false;
             }
             return true;
@@ -34,18 +34,18 @@ public with sharing class CourseVenueController {
     }
     // public decimal miles=20;
     public list<String> postCode {get; set;}
-    public Date BDate {get; set;}
+    public Date bDate {get; set;}
     public Course__c cs{get; set;}
-    public List<Course__c> Courses {get; private set;}
+    public List<Course__c> courses {get; private set;}
     //lat = 51.5032;
     
     //list<PostCode_Allocation__c> postcodes = [SELECT Branch__r.Name FROM PostCode_Allocation__c where Name = :postCode limit 1];                         
    // public final Decimal lat =[SELECT Branch__r.Address_Latitude__c FROM PostCode_Allocation__c where Name = :postCode];
     //lon = -0.1262;
     
-    public boolean Match{get; set;}
+    public boolean match{get; set;}
     String units ='mi';
-    //Date CBDate = BDate.format('YYYY-MM-DD');
+    //Date CBDate = bDate.format('YYYY-MM-DD');
     //Integer dist;
     //lt = [SELECT Branch__r.Address_Latitude__c,Branch__r.Address_Longitude__c, Id FROM PostCode_Allocation__c where Name =:postCode limit 1];
  	
@@ -54,7 +54,7 @@ public with sharing class CourseVenueController {
    // Decimal lon = lt.Branch__r.Address_Longitude__c;
     public CourseVenueController(){
        
-        List<Course__c> Courses = new List<Course__c>();
+        List<Course__c> courses = new List<Course__c>();
         cs = new Course__c();
         miles = 0;
         //lat = 51.5032;
@@ -62,11 +62,12 @@ public with sharing class CourseVenueController {
         
             //e1 = e;
         
-       // Courses =[SELECT Id, Name,Course_Name__c ,Course_Type__c, Venue__c, Venue__r.BillingLatitude, Venue__r.BillingLongitude FROM Course__c WHERE DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')< 5 ORDER BY DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')];
+       // courses =[SELECT Id, Name,Course_Name__c ,Course_Type__c, Venue__c, Venue__r.BillingLatitude, Venue__r.BillingLongitude FROM Course__c WHERE DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')< 5 ORDER BY DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')];
     }
-    public void CourseList(){
-        Match=false;
-        Decimal lat, lon;
+    public void courseList(){
+        match=false;
+        Decimal lat;
+        Decimal lon;
         if(test == true){
             miles = 1;
         }
@@ -82,8 +83,8 @@ public with sharing class CourseVenueController {
         else{
             miles = 0;
         }
-        if(Courses!=Null){
-            Courses.clear();
+        if(courses!=Null){
+            courses.clear();
         }
         String geoAddress = currentPosition;
         
@@ -151,17 +152,17 @@ public with sharing class CourseVenueController {
         System.debug('lat: '+lat);
         System.debug('lon: '+lon);
 		System.debug('Test:'+miles);
-        System.debug('Test Date:'+BDate);
+        System.debug('Test Date:'+bDate);
         
          String queryString =
         'SELECT Id, Name,Course_Name__c ,Course_Type__c,Status__c,Venue__r.Name, Venue__r.Venue_GeoLocation__Latitude__s, Venue__r.Venue_GeoLocation__Longitude__s ' +
         'FROM Course__c ' +
-        'WHERE (DISTANCE(Venue__r.Venue_GeoLocation__c ,GEOLOCATION('+lat+','+lon+'), \'mi\')< :miles) and ((FEnd_Date__c  >= :BDate and FEnd_Date__c   <= :BDate)or(FStart_Date__c  >= :BDate and FStart_Date__c <= :BDate)or(FStart_Date__c  <= :BDate and FEnd_Date__c >= :BDate)) and (Course_Name__c = :courseTypes) ORDER BY DISTANCE(Venue__r.Venue_GeoLocation__c,GEOLOCATION('+lat+','+lon+'), \'mi\')';
+        'WHERE (DISTANCE(Venue__r.Venue_GeoLocation__c ,GEOLOCATION('+lat+','+lon+'), \'mi\')< :miles) and ((FEnd_Date__c  >= :bDate and FEnd_Date__c   <= :bDate)or(FStart_Date__c  >= :bDate and FStart_Date__c <= :bDate)or(FStart_Date__c  <= :bDate and FEnd_Date__c >= :bDate)) and (Course_Name__c = :courseTypes) ORDER BY DISTANCE(Venue__r.Venue_GeoLocation__c,GEOLOCATION('+lat+','+lon+'), \'mi\')';
         
         System.Debug('>>>> the value of queryString is ' + queryString);
         // Run the query
         
-        Courses = database.query(queryString); 
+        courses = database.query(queryString); 
        
     }
     

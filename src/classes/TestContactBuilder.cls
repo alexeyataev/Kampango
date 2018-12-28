@@ -9,35 +9,35 @@ public with sharing class TestContactBuilder {
 
 	public TestContactBuilder() {}
 
-	public TestContactBuilder WithRecordType(string recordTypeName) {
+	public TestContactBuilder withRecordType(string recordTypeName) {
         
         recordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordTypeName).getRecordTypeId();
         
         return this;
     }
 
-    public TestContactBuilder WithAccount(Account a) {
+    public TestContactBuilder withAccount(Account a) {
     	
     	this.account = a;
     	
     	return this;
     }
     
-    public TestContactBuilder WithFirstName(string firstName) {
+    public TestContactBuilder withFirstName(string firstName) {
     	
     	this.firstName = firstName;
     	
     	return this;
     }
     
-    public TestContactBuilder WithLastName(string lastName) {
+    public TestContactBuilder withLastName(string lastName) {
     	
     	this.lastName = lastName;
     	
     	return this;
     }
 
-    public TestContactBuilder InsertRecord(Boolean insertRecord)
+    public TestContactBuilder insertRecord(Boolean insertRecord)
     {
     	this.insertRecord = insertRecord;
     	return this;

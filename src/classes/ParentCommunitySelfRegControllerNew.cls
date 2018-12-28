@@ -16,13 +16,13 @@ public class ParentCommunitySelfRegControllerNew {
     public String confirmPassword {get; set { confirmPassword = value == null ? value : value.trim(); } }
     Public String phone{set;get;}
     //public String communityNickname {get; set { communityNickname = value == null ? value : value.trim(); } }
-    public List<String> SelectedPreferences {
+    public List<String> selectedPreferences {
         get{
-            if(SelectedPreferences == NULL){
+            if(selectedPreferences == NULL){
                 
-                SelectedPreferences = new List<String>();
+                selectedPreferences = new List<String>();
             }
-            return SelectedPreferences;
+            return selectedPreferences;
         }
         set;}
     //public String street {get; set;}
@@ -42,21 +42,21 @@ public class ParentCommunitySelfRegControllerNew {
         set;
     }*/
     
-    /*public List<SelectOption> getPreferredCountries(){
-        List<SelectOption> Options = new List<SelectOption>();
-        Options.add(new SelectOption('UK','UK'));
-        Options.add(new SelectOption('United Kingdom','United Kingdom'));
-        Options.add(new SelectOption('GB','GB'));
-        return Options;
+    /*public List<selectOption> getPreferredCountries(){
+        List<selectOption> options = new List<selectOption>();
+        options.add(new selectOption('UK','UK'));
+        options.add(new selectOption('United Kingdom','United Kingdom'));
+        options.add(new selectOption('GB','GB'));
+        return options;
     }*/
-    public List<SelectOption> getPreferenceOptions() {
-        List<SelectOption> Options = new List<SelectOption>();
-        Options.add(new SelectOption('Mail','Mail'));
-        Options.add(new SelectOption('Post','Post'));
-        Options.add(new SelectOption('Email','Email'));
-        Options.add(new SelectOption('Phone','Phone'));
-        Options.add(new SelectOption('Message','Message'));
-        return Options;
+    public List<selectOption> getPreferenceOptions() {
+        List<selectOption> options = new List<selectOption>();
+        options.add(new selectOption('Mail','Mail'));
+        options.add(new selectOption('Post','Post'));
+        options.add(new selectOption('Email','Email'));
+        options.add(new selectOption('Phone','Phone'));
+        options.add(new selectOption('Message','Message'));
+        return options;
     }
     
     public ParentCommunitySelfRegControllerNew() {
@@ -115,15 +115,15 @@ public class ParentCommunitySelfRegControllerNew {
         String roleEnum = null; // To be filled in by customer.
         String accountId = ''; // To be filled in by customer.
         
-        String Preference = '';
-        Boolean Start = true;
-        if(!SelectedPreferences.isEmpty()) {           
-            for(String Str : SelectedPreferences) {
-                if(Start) {
-                    Preference = Str;
-                    Start = false;
+        String preference = '';
+        Boolean start = true;
+        if(!selectedPreferences.isEmpty()) {           
+            for(String str : selectedPreferences) {
+                if(start) {
+                    Preference = str;
+                    start = false;
                 } else {               
-                    Preference = Preference + ';' + Str;
+                    Preference = Preference + ';' + str;
                 }
             }
         }
@@ -132,16 +132,16 @@ public class ParentCommunitySelfRegControllerNew {
         if(!SelectedCountries.isEmpty()) {           
             for(String Str : SelectedCountries) {
                 if(Start1) {
-                    Countries = Str;
+                    Countries = str;
                     Start1 = false;
                 } else {               
-                    Countries = Countries + ';' + Str;
+                    Countries = Countries + ';' + str;
                 }
             }
         }*/
         
         String userName = email;
-        //String Str = street +''+ address;
+        //String str = street +''+ address;
         String comNickname = lastName+' '+firstName;
         
         User u = new User();

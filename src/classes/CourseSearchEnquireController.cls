@@ -3,9 +3,9 @@ public with sharing class CourseSearchEnquireController {
     public Decimal lat{get; set;}
     public Decimal lon{get;set;}
     
-    public integer PageSize {get;set;}
-    public integer PageNumber {get;set;}
-    public integer RecordCount {get;set;}
+    public integer pagesize {get;set;}
+    public integer pagenumber {get;set;}
+    public integer recordcount {get;set;}
 	
     private static Boolean geocodingCalled = false;
     public String currentPosition { get; set;}
@@ -19,7 +19,7 @@ public with sharing class CourseSearchEnquireController {
     //}  
     public Boolean resultsAvailable {
         get {
-            if(Courses == Null) {
+            if(courses == Null) {
                 return false;
             }
             return true;
@@ -27,19 +27,19 @@ public with sharing class CourseSearchEnquireController {
     }
     public Boolean lstresultsAvailable {
         get {
-            if(Courses == Null) {
+            if(courses == Null) {
                return false;
             }
             return true;
         }
     }
     public list<String> postCode {get; set;}
-    public Date BDate {get; set;}
+    public Date bDate {get; set;}
     public Course__c cs{get; set;}
-    public List<Course__c> Courses {get{
+    public List<Course__c> courses {get{
         try {
             
-            return Courses;
+            return courses;
         }
         catch (QueryException e) {
             ApexPages.addMessages(e);   
@@ -52,9 +52,9 @@ public with sharing class CourseSearchEnquireController {
    // public final Decimal lat =[SELECT Branch__r.Address_Latitude__c FROM PostCode_Allocation__c where Name = :postCode];
     //lon = -0.1262;
     public Decimal miles =5;
-    public boolean Match{get; set;}
+    public boolean match{get; set;}
     String units ='mi';
-    //Date CBDate = BDate.format('YYYY-MM-DD');
+    //Date CBDate = bDate.format('YYYY-MM-DD');
     //Integer dist;
     //lt = [SELECT Branch__r.Address_Latitude__c,Branch__r.Address_Longitude__c, Id FROM PostCode_Allocation__c where Name =:postCode limit 1];
  	
@@ -62,11 +62,11 @@ public with sharing class CourseSearchEnquireController {
 	//Decimal lat = lt.Branch__r.Address_Latitude__c;
    // Decimal lon = lt.Branch__r.Address_Longitude__c;
     public CourseSearchEnquireController(){
-        PageSize = 5;
-        PageNumber = 1; 
+        pagesize = 5;
+        pagenumber = 1; 
         
-        RecordCount = [select count() from Course__c]; 
-        List<Course__c> Courses = new List<Course__c>();
+        recordcount = [select count() from Course__c]; 
+        List<Course__c> courses = new List<Course__c>();
         cs = new Course__c();
         miles = 20;
         //size=10;
@@ -75,26 +75,26 @@ public with sharing class CourseSearchEnquireController {
        
             //e1 = e;
         
-       // Courses =[SELECT Id, Name,Course_Name__c ,Course_Type__c, Venue__c, Venue__r.BillingLatitude, Venue__r.BillingLongitude FROM Course__c WHERE DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')< 5 ORDER BY DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')];
+       // courses =[SELECT Id, Name,Course_Name__c ,Course_Type__c, Venue__c, Venue__r.BillingLatitude, Venue__r.BillingLongitude FROM Course__c WHERE DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')< 5 ORDER BY DISTANCE(Venue__r.BillingAddress,GEOLOCATION(:lat,:lon), 'mi')];
     }
-    public integer PageIndex {
-        get { return (PageNumber - 1); }
+    public integer pageindex {
+        get { return (pagenumber - 1); }
     }    
       
-    public integer PageCount {
-        get { return getPageCount(); }
+    public integer pagecount {
+        get { return getpagecount(); }
     }
       
-    public integer Offset {
-        get { return (PageSize * PageIndex); }
+    public integer offset {
+        get { return (pagesize * pageindex); }
     }
     
-    public void CourseList(){
-        Match=false;
+    public void courselist(){
+        match=false;
         //Decimal lat, lon;
         
-        if(Courses!=Null){
-            Courses.clear();
+        if(courses!=Null){
+            courses.clear();
         }
         String geoAddress = currentPosition.trim();
         
@@ -162,78 +162,78 @@ public with sharing class CourseSearchEnquireController {
         System.debug('lat: '+lat);
         System.debug('lon: '+lon);
 		System.debug('Test:'+miles);
-        System.debug('Test Date:'+BDate);
+        System.debug('Test Date:'+bDate);
         if(lat != null){
         //dateTime todaysDate = dateTime.now();
 		//String queryString = 'SELECT Id, Name, Course_Name__c , Course_Type__c, Status__c, Start_Date__c, End_Date__c,Venue__r.Name, Venue__r.MailingCountry__c, Venue__r.MailingState__c, Venue__r.MailingCity__c, Venue__r.MailingStreet__c, Venue__r.MailingPostalCode__c, Venue__r.Venue_GeoLocation__Latitude__s, Venue__r.Venue_GeoLocation__Longitude__s ' +
-        //   'FROM Course__c Limit :PageSize offset :Offset';
+        //   'FROM Course__c Limit : pagesize offset : offset ';
         String queryString = 'SELECT Id, Name, Course_Name__c , Course_Type__c, Status__c, Start_Date__c, End_Date__c,Venue__r.Name, Venue__r.MailingCountry__c, Venue__r.MailingState__c, Venue__r.MailingCity__c, Venue__r.MailingStreet__c, Venue__r.MailingPostalCode__c, Venue__r.Venue_GeoLocation__Latitude__s, Venue__r.Venue_GeoLocation__Longitude__s ' +
         'FROM Course__c ' +
-        'WHERE (DISTANCE(Venue__r.Venue_GeoLocation__c ,GEOLOCATION('+lat+','+lon+'), \'mi\')< :miles) and ((Start_Date__c >=:BDate AND Start_Date__c <=:BDate) OR (End_Date__c >=:BDate AND End_Date__c <=:BDate) OR (Start_Date__c <=:BDate AND End_Date__c >=:BDate)) ORDER BY DISTANCE(Venue__r.Venue_GeoLocation__c,GEOLOCATION('+lat+','+lon+'), \'mi\') LIMIT :PageSize OFFSET :Offset';
+        'WHERE (DISTANCE(Venue__r.Venue_GeoLocation__c ,GEOLOCATION('+lat+','+lon+'), \'mi\')< :miles) and ((Start_Date__c >=:bDate AND Start_Date__c <=:bDate) OR (End_Date__c >=:bDate AND End_Date__c <=:bDate) OR (Start_Date__c <=:bDate AND End_Date__c >=:bDate)) ORDER BY DISTANCE(Venue__r.Venue_GeoLocation__c,GEOLOCATION('+lat+','+lon+'), \'mi\') LIMIT : pagesize OFFSET :offset ';
         
             
         System.Debug('>>>> the value of queryString is ' + queryString);
-            Courses = database.query(queryString); 
+            courses = database.query(queryString); 
            
          }
          else
          {
              ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error, 'Please enter a valid Postal Code'));
          }
-            //return Courses;
-       	 //RecordCount  = [SELECT count() FROM Course__c WHERE (DISTANCE(Venue__r.Venue_GeoLocation__c ,GEOLOCATION(:lat,:lon), 'mi')< :miles) and ((Start_Date__c >=:BDate AND Start_Date__c <=:BDate) OR (End_Date__c >=:BDate AND End_Date__c <=:BDate) OR (Start_Date__c <=:BDate AND End_Date__c >=:BDate)) LIMIT :PageSize OFFSET :Offset];
+            //return courses;
+       	 // recordcount  = [SELECT count() FROM Course__c WHERE (DISTANCE(Venue__r.Venue_GeoLocation__c ,GEOLOCATION(:lat,:lon), 'mi')< :miles) and ((Start_Date__c >=:bDate AND Start_Date__c <=:bDate) OR (End_Date__c >=:bDate AND End_Date__c <=:bDate) OR (Start_Date__c <=:bDate AND End_Date__c >=:bDate)) LIMIT : pagesize OFFSET : offset];
         
        
        // return setCon;
     }
     
-	public integer LNumber {
-        get { return RecordCount == 0 ? 0 : (Offset + 1); }
+	public integer lNumber {
+        get { return recordcount == 0 ? 0 : (offset + 1); }
     }
   
-    public integer UNumber {
+    public integer uNumber {
         get { 
-            integer iUNum = ((LNumber + PageSize) - 1);
-            return (iUnum > RecordCount) ? RecordCount : iUNum; 
+            integer iUNum = ((lNumber + PageSize) - 1);
+            return (iUnum > recordcount) ? recordcount : iUNum; 
         }
     }
       
-    public boolean AllowMoveNext {
-        get{ return ((PageIndex + 1) < PageCount); } } public boolean AllowMovePrev { get{ return (PageIndex > 0); }
+    public boolean allowMoveNext {
+        get{ return ((pageindex + 1) < pagecount); } } public boolean allowMovePrev { get{ return (pageindex > 0); }
     }
       
-    public void Prev() {
-        PageNumber--;
+    public void prev() {
+        pagenumber --;
   
-        if (PageNumber <= 0) { 
-            PageNumber = 1; 
+        if (pagenumber <= 0) { 
+            pagenumber = 1; 
         }
-        CourseList();
+        courselist();
     } 
-    public void Next() { 
-        PageNumber++; 
-        if (PageNumber > PageCount) {
-            PageNumber = PageCount;
+    public void next() { 
+        pagenumber++; 
+        if (pagenumber > pagecount) {
+            pagenumber = pagecount;
             
         }
-        CourseList();
+        courselist();
     }
       
-    public void Last() {
-        PageNumber = PageCount; 
-        CourseList();
+    public void last() {
+        pagenumber = pagecount; 
+        courselist();
     }
   
-    public void First() {
-        PageNumber = 1;
-        CourseList();
+    public void first() {
+        pagenumber = 1;
+        courselist();
     }
       
-    private integer getPageCount() {
+    private integer getpagecount() {
         integer iPageCount = 1;
   
-        if (RecordCount != 0 && PageSize != 0) {
-            iPageCount = (RecordCount/PageSize) + ((Math.mod(RecordCount, PageSize)) > 0 ? 1 : 0);
+        if (recordcount != 0 && pagesize != 0) {
+            iPageCount = (recordcount/PageSize) + ((Math.mod(recordcount, PageSize)) > 0 ? 1 : 0);
         }
         return iPageCount;
     }

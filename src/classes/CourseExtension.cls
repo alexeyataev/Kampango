@@ -1,6 +1,6 @@
 public with sharing class CourseExtension {
 	Course__c cou;
-    public string MyText{get; set;}
+    public string myText{get; set;}
     public Booking__c bo{get; set;}
     
     public CourseExtension(ApexPages.StandardController controller){

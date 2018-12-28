@@ -9,33 +9,33 @@ public with sharing class TestSessionBuilder {
 
 	public TestSessionBuilder() {}
 
-	public TestSessionBuilder WithCourse(Id courseId)
+	public TestSessionBuilder withCourse(Id courseId)
 	{
 		this.courseId = courseId;
 		return this;
 	}
 
-	public TestSessionBuilder WithStartTime(Datetime startTime)
+	public TestSessionBuilder withStartTime(Datetime startTime)
 	{
 		this.startTime = startTime;
 		return this;
 	}
 
-	public TestSessionBuilder WithEndTime(Datetime endTime)
+	public TestSessionBuilder withEndTime(Datetime endTime)
 	{
 		this.endTime = endTime;
 		return this;
 	}
 
 
-	public TestSessionBuilder InsertRecord(Boolean insertRecord)
+	public TestSessionBuilder insertRecord(Boolean insertRecord)
 	{
 		this.insertRecord = insertRecord;
 		return this;
 	}
 
 
-	public Session__c Build()
+	public Session__c build()
 	{
 		Session__c session = new Session__c(Course__c = courseId,
 											Start__c = startTime,

@@ -3,7 +3,7 @@
 public class Emailin_class { 
     
     public String subject{set;get;}
-    public String email_body{set;get;}
+    public String emailbody{set;get;}
     public String toaddress{set;get;}
     public string ccaddress{set;get;}
     
@@ -49,7 +49,7 @@ public class Emailin_class {
                     toIDArray[0] = toId;
                     email.setToAddresses(toIDArray);
                     email.setSubject(subject);
-                    email.setplaintextbody(email_body);
+                    email.setplaintextbody(emailbody);
                     System.debug('ccaddress :'+ccaddress);
                     // contional operator : (condition ? true : false)
                     if(null != ccaddress && !''.equals(ccaddress)) {

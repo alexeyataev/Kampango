@@ -30,7 +30,7 @@ public with sharing class PostControl {
     }
     public decimal miles=20;
     public list<String> postCode {get; set;}
-    public Date BDate {get; set;}
+    public Date bDate {get; set;}
     public Course__c cs{get; set;}
     public List<Course__c> Courses {get; private set;}
     //lat = 51.5032;
@@ -39,7 +39,7 @@ public with sharing class PostControl {
    // public final Decimal lat =[SELECT Branch__r.Address_Latitude__c FROM PostCode_Allocation__c where Name = :postCode];
     //lon = -0.1262;
     
-    public boolean Match{get; set;}
+    public boolean match{get; set;}
     String units ='mi';
     
     
@@ -49,8 +49,8 @@ public with sharing class PostControl {
     public ApexPages.StandardSetController setCon{get;set;}    
     public List<SelectOption> paginationSizeOptions{get;set;}
   //public String Name {get; set;}
-  //public DateTime BDate {get; set;}
-  //public list<Course__c> Courses {get; set;}
+  //public DateTime bDate {get; set;}
+  //public list<Course__c> courses {get; set;}
     
     public PostControl(){
          size=10; //default page size
@@ -62,7 +62,7 @@ public with sharing class PostControl {
         paginationSizeOptions.add(new SelectOption('30','30'));
     }
     
-    public pageReference Go(){
+    public pagereference Go(){
         pagereference pr = new pagereference('/apex/Post2');
         return pr;
         //listCourse();

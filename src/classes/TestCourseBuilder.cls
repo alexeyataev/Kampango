@@ -11,49 +11,49 @@ public with sharing class TestCourseBuilder {
 
 	public TestCourseBuilder() {}
 
-	public TestCourseBuilder WithPractitioner(Contact practitioner)
+	public TestCourseBuilder withPractitioner(Contact practitioner)
 	{
 		this.practitioner = practitioner;
 		return this;
 	}
 
-	public TestCourseBuilder WithPlaces(Integer places)
+	public TestCourseBuilder withPlaces(Integer places)
 	{
 		this.places = places;
 		return this;
 	}
 
-	public TestCourseBuilder WithPsaOffice(String psaOffice)
+	public TestCourseBuilder withPsaOffice(String psaOffice)
 	{
 		this.psaOffice = psaOffice;
 		return this;
 	}
 
-	public TestCourseBuilder WithPsaBranch(String psaBranch)
+	public TestCourseBuilder withPsaBranch(String psaBranch)
 	{
 		this.psaBranch = psaBranch;
 		return this;
 	}
 
-	public TestCourseBuilder WithCourseType(String courseType)
+	public TestCourseBuilder withCourseType(String courseType)
 	{
 		this.courseType = courseType;
 		return this;
 	}
 
-	public TestCourseBuilder WithFee(Decimal fee)
+	public TestCourseBuilder withFee(Decimal fee)
 	{
 		this.fee = fee;
 		return this;
 	}
 
-	public TestCourseBuilder InsertRecord(Boolean insertRecord)
+	public TestCourseBuilder insertRecord(Boolean insertRecord)
 	{
 		this.insertRecord = insertRecord;
 		return this;
 	}
 
-	public Course__c Build()
+	public Course__c build()
 	{
 		Course__c course = new Course__c(Places__c = places,
 											Practitioner__c = practitioner.Id,

@@ -19,7 +19,8 @@ public with sharing class FindNearbyController{
     }
     
     public PageReference findNearby() {
-        String lat, lon;
+        String lat;
+        String lon;
         
         // FRAGILE: You'll want a better lat/long parsing routine
         // Format: "<latitude>,<longitude>" (must have comma, but only one comma)
