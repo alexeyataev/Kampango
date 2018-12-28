@@ -1,4 +1,4 @@
-﻿public class Nctpaymenthubpagecontroller
+﻿public class NctPaymentHubPageController 
 {
     public Contact newCont {get;set;}
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
@@ -7,9 +7,9 @@
     public Booking__c corsBkng {get;set;}
     public string memberType {get;set;}
     //public boolean checkBoxVal  {get;set;}
-    public boolean pymselsec  {get;set;}
+    public boolean pymSelSec  {get;set;}
     public boolean contInfoSec  {get;set;}
-    public boolean pyminfosec  {get;set;}
+    public boolean pymtInfoSec  {get;set;}
     public boolean confmInfoSec {get;set;}
     public boolean thankYouSec {get;set;}
     public boolean feeFieldVisibility {get;set;}
@@ -114,7 +114,7 @@
         else if(memberType.contains('Credit/Debit Card'))
         {
             system.debug('*$*$**$* memberType  ' + memberType);
-            redirectUrl = paymenthubcallout(); 
+            redirectUrl = paymentHubCallout(); 
             if(courseId != null)
             {  
                 newCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
@@ -194,7 +194,7 @@
             }
         }        
     }
-    public pagereference paymenthubcallout()
+    public pagereference paymentHubCallout()
     {
         if(memberType != '' && memberType != null)
         {

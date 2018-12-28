@@ -1,4 +1,4 @@
-public class Nctetmembershippaymentpagecontroller 
+public class NctETMembershipPaymentPageController 
 {
     public string twomems{get; set;}
     public Date expDate {get; set;}
@@ -377,7 +377,7 @@ public class Nctetmembershippaymentpagecontroller
         tokenRequest.setTimeout(120000);    
         tokenResponse = tokenHttp.send(tokenRequest);
 
-        AcessTokenResponseVo accesstoken = (AcessTokenResponseVo) JSON.deserialize(tokenResponse.getBody(),AcessTokenResponseVo.class);
+        AcessTokenResponseVo accessTokenVo = (AcessTokenResponseVo) JSON.deserialize(tokenResponse.getBody(),AcessTokenResponseVo.class);
 
         
         PaymentRequestVo paymentReq = new PaymentRequestVo();
