@@ -1,4 +1,4 @@
-public with sharing class DupOutcodeHandler {
+public with sharing class DupOutCodeHandler {
 	
     public void onBeforeInsertUpdate(List<PostCode_Allocation__c>  pcalist){
         
