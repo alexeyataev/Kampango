@@ -1608,11 +1608,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.Second_Home_address__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Contact.Sort_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
