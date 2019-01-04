@@ -149,10 +149,7 @@
         <apexClass>CourseBookingSearchController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>CourseBookingSearchDraftController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+
     <classAccesses>
         <apexClass>CourseCaseEnquiryExtension</apexClass>
         <enabled>false</enabled>
