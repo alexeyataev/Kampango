@@ -9,6 +9,7 @@
 		<members>CourseRestApiForDrupalClass</members>
 		<members>Coursebookingcontroller</members>
 		<members>Emailin_classTest</members> 
+		<members>nctPaymentHubPageController</members>
         <name>ApexClass</name>
     </types>
    
