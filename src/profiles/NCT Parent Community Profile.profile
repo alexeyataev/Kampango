@@ -3052,10 +3052,7 @@
         <apexPage>CommnityHeader</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>CommunitieParentVFP</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
     <pageAccesses>
         <apexPage>CommunitiesLanding</apexPage>
         <enabled>true</enabled>
@@ -3124,10 +3121,7 @@
         <apexPage>CourseVenueInRadiuslist</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseVenueInRadiuslistDraft</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
     <pageAccesses>
         <apexPage>CustomerCommunityHomePage</apexPage>
         <enabled>false</enabled>
@@ -3140,10 +3134,7 @@
         <apexPage>EventBookingLocationMap</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>EventLocationMap</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
     <pageAccesses>
         <apexPage>ExVF</apexPage>
         <enabled>false</enabled>
