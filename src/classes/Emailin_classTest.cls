@@ -6,13 +6,13 @@ private class Emailin_classTest {
         insert acc;
         
         //Assigning a record  type for particular record.
-        Id recordTypeIdFirstContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
-        Id recordTypeIdSecondContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Companion').getRecordTypeId();
+        Id RecordTypeIdFirstContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
+        Id RecordTypeIdSecondContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Companion').getRecordTypeId();
         
-        Contact contactObj = new Contact(accountid=acc.id,lastname='test con',Email='sfdclatha@gmail.com',Prefered_First_Name__c='testcontact',RecordtypeId=recordTypeIdFirstContact);
+        Contact contactObj = new Contact(accountid=acc.id,lastname='test con',Email='sfdclatha@gmail.com',Prefered_First_Name__c='testcontact',RecordtypeId=RecordTypeIdFirstContact);
         insert contactObj;
         
-        Contact contactObj1 = new Contact(accountid=acc.id,lastname='test1 con',Email='sfdclatha1@gmail.com',Prefered_First_Name__c='testcont',RecordtypeId=recordTypeIdSecondContact);
+        Contact contactObj1 = new Contact(accountid=acc.id,lastname='test1 con',Email='sfdclatha1@gmail.com',Prefered_First_Name__c='testcont',RecordtypeId=RecordTypeIdSecondContact);
         insert contactObj1;
         
         //system.debug('contact inserted');     
@@ -49,14 +49,14 @@ private class Emailin_classTest {
         ApexPages.StandardController sc = new ApexPages.StandardController(courseRec);
         Emailin_class ec = new Emailin_class(sc);
         ec.toaddress = 'sfdclatha@gmail.com';
-        ec.emailbody= 'emailbody';
+        ec.email_body= 'email_body';
         ec.subject='subject';
         ec.ccaddress='';
-        PageReference pageReference = ec.send();
+        PageReference page_Reference = ec.send();
         //system.debug('log courseRed.id : '+cID);
         // below assertion, after sending mail business expecting to redirect to Course Obj
         // hence checking the pagRef.URL to CourseID below.
-        boolean expected = pageReference.getUrl().contains('/'+cID.substring(0,cID.length()-3));
+        boolean expected = page_Reference.getUrl().contains('/'+cID.substring(0,cID.length()-3));
         system.assertEquals(true, expected);
     }
 }
