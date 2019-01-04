@@ -3222,10 +3222,7 @@
         <apexPage>OrgChartConfig</apexPage>
         <enabled>false</enabled>
     </pageAccesses>-->
-    <pageAccesses>
-        <apexPage>Page1</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
     <pageAccesses>
         <apexPage>Page2</apexPage>
         <enabled>false</enabled>

@@ -150,10 +150,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CourseBookingSearchDraftController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CourseCaseEnquiryExtension</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3246,10 +3242,7 @@
         <apexPage>OrgChartConfig</apexPage>
         <enabled>false</enabled>
     </pageAccesses>-->
-    <pageAccesses>
-        <apexPage>Page1</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
     <pageAccesses>
         <apexPage>Page2</apexPage>
         <enabled>false</enabled>
