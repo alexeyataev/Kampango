@@ -3258,9 +3258,7 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>ParentCommunitySelfRegDraft</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
     <pageAccesses>
         <apexPage>ParentCommunitySelfRegNew</apexPage>
         <enabled>false</enabled>
