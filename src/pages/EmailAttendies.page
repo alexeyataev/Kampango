@@ -28,7 +28,7 @@
                 </apex:pageblocksectionitem>
                 <apex:pageblocksectionitem id="sec4id"  >
                     <apex:outputLabel value="BODY" id="formid"  />
-                    <apex:inputTextarea value="{!email_body}" style="width: 540px; height: 63px;" id="eBodyid" />
+                    <apex:inputTextarea value="{!emailbody}" style="width: 540px; height: 63px;" id="eBodyid" />
                 </apex:pageblocksectionitem>
                 <apex:pageblocksectionitem id="sec5id"  >            
             <apex:commandButton action="{!send}" value="SEND EMAIL" style="margin-left: 198px;" id="sendid"  />
