@@ -1,6 +1,6 @@
 global with sharing class AcessTokenResponseVo {
 
-    global String accesstoken{get;set;}
+    global String access_token{get;set;}
 
     global String instanceurl{get;set;}
 
