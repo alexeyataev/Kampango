@@ -3109,10 +3109,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>EventBookingLocationMap</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>ExVF</apexPage>
         <enabled>false</enabled>
     </pageAccesses>

@@ -3208,10 +3208,7 @@
         <apexPage>EmailAttendies</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>EventBookingLocationMap</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
 
     <pageAccesses>
         <apexPage>ExVF</apexPage>
