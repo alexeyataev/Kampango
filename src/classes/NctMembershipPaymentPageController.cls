@@ -435,7 +435,7 @@ public class NctMembershipPaymentPageController
         HttpResponse paymentHubResponse = new HttpResponse();
         Http paymentHubHttp = new Http(); 
         paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment');        
-        paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.accesstoken);  
+        paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);  
         //paymentHubRequest.setHeader('Authorization','Bearer '+ UserInfo.getSessionID()); 
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('Accept','application/json');
