@@ -3179,10 +3179,7 @@
         <apexPage>CourseBookingSearch</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseBookingSearchDraft</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
     <pageAccesses>
         <apexPage>CourseCaseEnquiry</apexPage>
         <enabled>false</enabled>
