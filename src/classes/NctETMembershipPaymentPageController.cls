@@ -1,4 +1,4 @@
-public class nctETMembershipPaymentPageController 
+public class NctETMembershipPaymentPageController 
 {
     public string twomems{get; set;}
     public Date expDate {get; set;}
