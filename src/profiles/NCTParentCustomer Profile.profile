@@ -3176,10 +3176,7 @@
         <apexPage>Membershipformold</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>Membershipformtesting</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
     <pageAccesses>
         <apexPage>Membershiphomeold</apexPage>
         <enabled>false</enabled>
