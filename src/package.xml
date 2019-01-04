@@ -35,7 +35,6 @@
         <members>Course__c</members>
         <members>Direct_Debits__c</members>
 		<members>Event__c</members>
-		<members>Event_Booking__c</members>
 		<members>Event_Expense__c</members>
 		<members>Event_MDF__c</members>
 		<members>Event_Registration__c</members>

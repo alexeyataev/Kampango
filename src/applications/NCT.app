@@ -8,6 +8,5 @@
     <tabs>standard-Account</tabs>
     <tabs>Course__c</tabs>
     <tabs>Event__c</tabs>
-    <tabs>Event_Booking__c</tabs>
     <tabs>Practitioner_Licence__c</tabs>
 </CustomApplication>
