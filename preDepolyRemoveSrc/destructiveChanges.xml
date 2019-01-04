@@ -2,7 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>codepkg</fullName>
     <types>
-        <member>DisplayCourseDetailsController</member>
+        <members>DisplayCourseDetailsController</members>
         <name>ApexClass</name>
     </types>
    
