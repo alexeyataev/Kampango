@@ -3,6 +3,7 @@
     <fullName>codepkg</fullName>
     <types>
         <members>DisplayCourseDetailsController</members>
+		<members>BookCourseControllerTest</members>
         <name>ApexClass</name>
     </types>
     <types>
