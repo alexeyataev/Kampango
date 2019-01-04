@@ -3243,10 +3243,7 @@
         <enabled>false</enabled>
     </pageAccesses>-->
 
-    <pageAccesses>
-        <apexPage>Page2</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
     <pageAccesses>
         <apexPage>Pagination</apexPage>
         <enabled>false</enabled>
