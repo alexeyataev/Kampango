@@ -3338,17 +3338,8 @@
         <apexPage>ParentCommunitySelfReg</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>        <apexPage>ParentHomePageupdated</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Post1</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Post2</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
+
     <pageAccesses>
         <apexPage>SiteLogin</apexPage>
         <enabled>true</enabled>
@@ -3385,14 +3376,7 @@
         <apexPage>UserHome</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>UserHomeDraft</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>VolunteerSelfReg</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
     <pageAccesses>
         <apexPage>duplicate_community_signup</apexPage>
         <enabled>false</enabled>
@@ -3409,10 +3393,7 @@
         <apexPage>nctPaymentHubSuccessMgsPage</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>testing</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+
     <pageAccesses>
         <apexPage>upload_proof_of_address</apexPage>
         <enabled>false</enabled>
