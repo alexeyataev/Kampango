@@ -1,0 +1,10 @@
+<apex:component controller="DisplayDdScheduleController">
+	<apex:attribute name="ddSchedule" type="Object" assignto="{!ddScheduleObject}" required="true" description="Schedule to display" />
+	<apex:attribute name="title" type="String" required="false" description="Title for schedule" />
+	<div class="slds-p-vertical--x-small">
+		<span style="font-weight: bold;">{!title}</span>
+		<apex:repeat value="{!FormattedScheduleItems}" var="payment">
+			<br />{!payment}
+		</apex:repeat>
+	</div>
+</apex:component>

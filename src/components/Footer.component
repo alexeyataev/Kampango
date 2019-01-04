@@ -1,0 +1,194 @@
+<apex:component >
+    
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <html class="no-js" lang="en">
+    <!--<![endif]-->
+    
+    <head>
+        <meta charset="utf-8" />
+        <title>The UK's largest charity for parents | NCT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="We are the National Childbirth Trust (NCT) - the UK's largest charity for parents. We're here for all parents&amp;nbsp;for their First 1,000 Days, through pregnancy, birth and beyond." />
+        <!--<link rel="icon" type="image/png" href="assets/favicon.ico">-->
+        
+        
+        <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
+        <style>
+            .footer-List li{
+            	margin-left:0px;
+            }
+            .footer-padding {
+   				 padding: 15px 59px !important;
+            }
+            .footer_links li{
+            	margin-left:0;
+            }
+            .footer-List li,.footer-content p{
+            	 font-weight: normal;
+            }
+            @media screen and (max-width:360px) {
+                .footer_links li {
+                    display: block;
+                }
+                .footer_links ul {
+                    padding-left: 14px;
+                }
+            }
+            @media screen and (max-width:768px) {
+                    .footer_address p {
+                        text-align: left;
+                    }
+            }
+            @media screen and (max-width:576px) {
+                .footer_links ul {
+                    padding-left: 0;
+                }
+                .footer_links li {
+                    display: block;
+                }
+            	.footer_links {
+                    padding: 10px 0 15px !important;
+                }
+            	.footer-padding {
+    				padding: 15px 10px !important;
+				}
+            }
+        </style>
+    </head>
+    
+    <body class="courses-screen">
+    
+        <!-- footer start here -->
+        <footer>
+            <div class="footer-padding">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <h6 class="footer-header">Enquires and Feeding Helpline</h6>
+                        <div class="footer-content">
+                            <h6 class="num_color">0300 330 0700 </h6>
+                            <p>For practical and emotional Support in all areas of pregnancy.birth and parentehood including help
+                                with feeding </p>
+                            <a class="link-color see-all-costs">See all Costs</a>
+                            <p class="all-costs-text">Calling us costs the same as any local call, however, if you have free 'inclusive' minutes on a landline
+                                or mobile, it will be included in those.</p>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-2 col-sm-6 col-12">
+                        <h6 class="footer-header">About</h6>
+                        <ul class="footer-List">
+                            <li>
+                                <a href="https://nct.org.uk/about-us/first-1000-days">First 1,000 Days</a>
+                            </li>
+                            <li>
+                                <a href="https://nct.org.uk/about-us/vision-mission-and-goal">Vission, Mission &amp; goal</a>
+                            </li>
+                            <li>
+                                <a href="https://nct.org.uk/about-us/trustees">Trustees</a>
+                            </li>
+                            <li>
+                                <a href="https://www.cloudonlinerecruitment.co.uk/nct/">Careers</a>
+                            </li>
+                            <li>
+                                <a href="https://nct.org.uk/about-us/contact-us">Contact us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-sm-6 col-12">
+                        <h6 class="footer-header">News and Views</h6>
+                        <ul class="footer-List">
+                            <li>
+                                <a href="https://stage.nct.org.uk/about-us/news-and-views/news">News</a>
+                            </li>
+                            <li>
+                                <a href="https://stage.nct.org.uk/get-involved/news-and-views">Blogs</a>
+                            </li>
+                            <li>
+                                <a href="https://healthunlocked.com/nct">Forums</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-sm-6 col-12">
+                        <h6 class="footer-header">Support us</h6>
+                        <ul class="footer-List">
+                            <li>
+                                <a href="https://nct.org.uk/get-involved/membership">Membership</a>
+                            </li>
+                            <li>
+                                <a href="https://nct.org.uk/get-involved/corporate-partnerships">Partnership</a>
+                            </li>
+                            <li>
+                                <a href="https://nct.org.uk/get-involved/fundraising-activities">Fundraising activities </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-sm-12 col-12">
+                        <h6 class="footer-header">Professionals</h6>
+                        <ul class="footer-List">
+                            <li>
+                                <a href="https://stage.nct.org.uk/about-us/professional/breastfeeding-services/breastfeeding-peer-support/breastfeeding-peer-support-training">Breastfeeding peer support training </a>
+                            </li>
+                            <li>
+                                <a href="https://stage.nct.org.uk/about-us/professional/antenatal-services-information/nct-preparation-for-birth-and-beyond-antenatal-course">Preparation for birth and beyond antenatal course </a>
+                            </li>
+                            <li>
+                                <a href="https://stage.nct.org.uk/about-us/professional-health-and-well-being-services/training-professionals">training for professionals </a>
+                            </li>
+                            <li>
+                                <a href="https://stage.nct.org.uk/about-us/professional-health-and-well-being-services/diversity-and-access">Diversity and access </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_links footer-padding">
+                <div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12 nopadding">
+                            <ul>
+                                <li>
+                                    <a href="https://stage.nct.org.uk/about-us/professional-health-and-well-being-services/research">Research</a>
+                                </li>
+                                <li>
+                                    <a href="https://stage.nct.org.uk/media">Media</a>
+                                </li>
+                                <li>
+                                    <a href="https://nct.org.uk/privacy">Privacy and Cookies </a>
+                                </li>
+                                <li>
+                                    <a href="https://stage.nct.org.uk/about-us/contact-us">Contact us</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="footer_address">
+                                <p>&copy; 2018 NCT, 30 Euston Square,London, NW12FB. </p>
+                                <p>Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer end here -->
+        <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
+    	<apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/custom.js')}"/>
+        <script>
+            $(document).ready(function () {
+                $('.membership-down-arrow').on('click', function () {
+                    $('.memberships-options').toggleClass('hide');
+                })
+            })
+        </script>
+        
+    </body>
+    
+    </html>
+</apex:component>
