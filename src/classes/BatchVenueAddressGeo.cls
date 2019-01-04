@@ -61,8 +61,7 @@ global class BatchVenueAddressGeo implements Database.Batchable<sObject>,Databas
                                
                     latitude = responseParser.getDecimalValue();
                              
-                    else if (locationText == 'longitude')
-                               
+                    else if (locationText == 'longitude')          
                     longitude = responseParser.getDecimalValue();
                         System.debug('long'+longitude);
                     }

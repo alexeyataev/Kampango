@@ -115,7 +115,7 @@ a:link {text-decoration: none; color: white}
                     </div>
                     <div class="parent-four-imgs bg-color">
                         <div class="row">
-                            <div class="col-lg-3 col-sm-6 col-12">
+                           <!-- <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="image_gallery">
                                    
                                     <image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/mom-hug.jpg')}"  class="img-100percent" />
@@ -135,14 +135,14 @@ a:link {text-decoration: none; color: white}
                                    </div>
                                 </div>
                             </div>
-
+							-->
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="image_gallery">
                                      <image src="{!URLFOR($Resource.nctapp, 'nct-app/assets/mom_kiss.jpg')}" class="img-100percent" />
                                     
                                     <div class="imge_header">
                                        <p> 
-                                        <a href=" https://nct.org.uk/" style="color:#ffffff">  Workshop</a> </p> 
+                                        <a href=" https://nct.org.uk/" style="color:#ffffff"> Courses and Workshop</a> </p> 
                                     </div>
                                 </div>
                             </div>

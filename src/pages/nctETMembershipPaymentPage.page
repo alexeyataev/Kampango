@@ -3,10 +3,11 @@
    <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
         <apex:param id="selValId" name="seltdName" value="" />
    </apex:actionFunction>
-    <!--<apex:actionFunction name="thankYouPage" action="{!thankYouSec}" reRender="membershipNumber">
-   </apex:actionFunction>-->
+    <apex:actionFunction name="thankYouPage" action="{!thankYouSec}" reRender="membershipNumber,membershipText">
+   </apex:actionFunction>
    <apex:actionFunction name="postCodeVal" action="{!nctBranchs}" reRender="branch_Picklist">
         <apex:param id="postVal" name="postVal" value="" />
+       <apex:param id="emailsVal" name="emailsVal" value=""/>
    </apex:actionFunction>
    <apex:actionFunction name="saveRecordValues" action="{!PaymentSave}" reRender="displayValues">
       <apex:param id="accname" name="accname" value="" assignTo="{!accountName}"/>
@@ -33,6 +34,7 @@
         <apex:param id="streetVal2" name="streetVal2" value="" assignTo="{!streetValue2}"/>
         <apex:param id="townVal" name="twonVal" value="" assignTo="{!stateValue}"/>
         <apex:param id="countyVal" name="countyVal" value="" assignTo="{!cityValue}"/>
+        <apex:param id="salutationVal" name="salutationVal" value="" assignTo="{!salutation}"/>
     </apex:actionFunction>
    <head>
         <meta charset="utf-8"/>
@@ -173,6 +175,136 @@
                 font-family: "Lato", sans-serif;
                 color: #080808;
             } 
+			.link-color{
+                color: rgb(56, 179, 33) !important;
+            }
+            .link-color:hover{
+                color: green;
+                text-decoration:none;
+                cursor: pointer;
+            }
+			.gift-aid-select-box{
+                min-width: 200px;
+                height: 38px;
+                padding: 0 10px;
+                border: 1px solid #ccc;
+                background-color: rgb(244, 244, 244);
+                font-style: initial;
+                border-width: 1px;
+                border-style: solid;
+                border-color: rgb(238, 238, 238);
+                border-radius: 20px;
+                margin-bottom: 20px;
+            }
+            .gender-title-select {
+                display: inline-block;
+                padding: 0 !important;
+            }
+            .gender-title-select select {
+                height: 38px;
+                border: none;
+                background-color: transparent;
+                padding: 0 10px;
+            }
+			.dynmaic-radio-fields td input[type="radio"] {
+            	opacity:1;
+                margin-right: 6px;
+            }
+			.dynmaic-radio-fields td{
+                border:none !important;
+            }
+			.newprivacy-content{
+                color:#080808;
+                padding-top:20px;
+                text-align: center;
+			}
+			.newprivacy-content input{
+            	opacity:1 !important;
+            }
+			.newprivacy-content .radio-fields-row{
+                color:#080808;
+            }
+			.newprivacy-content .privacy-statement{
+                padding: 0;
+                background-color: transparent;
+                color: #080808;
+                padding-top: 15px;
+    		}
+			.newprivacy-content .container{
+                padding:0;
+            }
+			.newprivacy-content .privacy-statement .underlink {
+                color: #35a535;
+                font-size: 15px;
+            }
+			.newprivacy-content .radio-fields-col td{
+                border:none !important;
+            }
+			.newprivacy-content .radio-fields-col table {
+                margin: 0 auto;
+            }
+			.newprivacy-content .radio-fields-col span {
+                display:block
+            }
+			@media(max-width:767px) {
+            	.nav-tabs{
+                    display: flex;
+    				justify-content: space-between;
+                }  
+                .nav-tabs li{
+                	width: 48%;
+    				margin-bottom: 10px !important
+                }
+                .nav-tabs > li:last-child a, .nav-tabs > li:first-child a {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+                .nav-tabs li a{ 
+                    width:100%;
+                    padding: 5px 10px 5px 15px;
+                }
+                .nav-tabs li a:before, .nav-tabs li a:after{
+                    display:none;
+                }
+                .custom_select {
+                    width: 100%;
+                }
+                #pcfirst > .row > div {
+            		-ms-flex: 0 0 100%;
+                    flex: 0 0 100%;
+                    max-width: 100%;
+            	}
+				#postcode_checker{
+                	margin-bottom: 20px;
+				}
+                .checkbox-span {
+                    position: relative;
+                    left: 15px;
+                }
+				#scd1, #scd2, #scd3 {
+                    width: 55px;
+                }
+                .row {
+                	margin:0;
+                }
+				.membership-form-col,.tab-content .row > .col-md-7, .tab-content .row > div{
+                    padding:0;
+				}
+				.footer_links li{
+                    display:block;
+                }
+                .footer-padding {
+                    padding: 15px 0;
+                }
+				.ddguaranteeblock ul{
+                    margin-left:0 !important;
+                }
+				.radio-fields-col.membership_check{
+                	padding-left:0;
+                }
+            }
         </style>
     </head>
 
@@ -219,10 +351,11 @@
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                         <div><label><sup class="light-orange-color">*</sup>Title</label></div>
-                                                        <select class="form-fields membership-fields mrtitle">
-                                                            <option>Mrs</option>
-                                                            <option>Mr</option>
-                                                        </select>
+                                                        <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="salutation" value="{!SelectedPreferences}" multiselect="false" size="1">
+                                                                <apex:selectOptions value="{!PreferenceOptions}" />
+                                                                
+                                                          </apex:selectList></span>
+                                                		
                                                     </div>
                                                     <div class="col-md-5">
                                                         <div><label><sup class="light-orange-color">*</sup>First Name</label></div>
@@ -236,25 +369,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="row paddingbot10px errorMessage errormessage">
-                                               <!-- <p class="gender-error error-message hide">Please select gender </p> -->
+                                                  <!-- <p class="gender-error error-message hide">Please select gender </p> -->
                                                     <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                             Gender</label></div>
-                                                    <div class="col-md-3">
-                                                        <span class="checkbox-span">
-                                                            <div class="squaredThree" style="margin-left:10px;">
-                                                                <input value="female" type="radio" class="radio" name="gender" />
-                                                                <label for="female"></label><span class="span-label">Female</span>
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <span class="checkbox-span">
-                                                            <div class="squaredThree" style="margin-left:10px;">
-                                                                <input value="male" type="radio" class="radio" name="gender" />
-                                                                <label for="male"></label><span class="span-label">Male</span>
-                                                            </div>
-                                                        </span>
-                                                    </div>
+                                                	<span class="dynmaic-radio-fields">
+                                                	<apex:selectRadio id="gender" value="{!Genders}">
+                                                                <apex:selectOptions value="{!GenderOptions}" />
+                                                     </apex:selectRadio>
+                                                	</span>
+                                                    
                                                     
                                                 </div>
                                                 <div class="row">
@@ -294,10 +417,14 @@
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div><label><sup class="light-orange-color">*</sup>Title</label></div>
-                                                            <select class="form-fields membership-fields">
+                                                            <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="ssalutation" value="{!SSelectedPreferences}" multiselect="false" size="1">
+                                                                <apex:selectOptions value="{!PreferenceOptions}" />
+                                                                
+                                                          	</apex:selectList></span>
+                                                            <!--<select class="form-fields membership-fields">
                                                                 <option>Mrs</option>
                                                                 <option>Mr</option>
-                                                            </select>
+                                                            </select>-->
                                                         </div>
                                                         <div class="col-md-5">
                                                             <div><label><sup class="light-orange-color">*</sup>First
@@ -312,6 +439,18 @@
                                                                 placeholder="Last Name" />
                                                         </div>
                                                     </div>
+                                                    <div class="row paddingbot10px errorMessage errormessage">
+                                                      <!-- <p class="gender-error error-message hide">Please select gender </p> -->
+                                                        <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
+                                                                Gender</label></div>
+                                                        <span class="dynmaic-radio-fields">
+                                                        <apex:selectRadio id="sgender" value="{!SGenders}">
+                                                                    <apex:selectOptions value="{!GenderOptions}" />
+                                                         </apex:selectRadio>
+                                                        </span>
+                                                        
+                                                        
+                                                    </div>                                                         
                                                     <div class="row">
                                                         <div class="col-md-12 col-12">
                                                             <div><label><sup class="light-orange-color">*</sup>Email
@@ -407,6 +546,40 @@
                                                                                                             
                                                     </div>                                                         
                                             </div>
+                                            <!-- newprivacy content start here -->
+                                              <div class="newprivacy-content">
+                                                <div class="row radio-fields-row">
+                                                    <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
+                                                    <div class="col-12 radio-fields-col">
+                                                        <span style="text-color:white;"><apex:selectCheckboxes value="{!ContactSelectedPreferences}">
+                                                                    <apex:selectOptions value="{!ContactPreferenceOptions}" />
+                                                                    
+                                                         </apex:selectCheckboxes></span>                                                     
+                                                        <!--<span><input type="checkbox" name="contact" value="email" />Email</span>
+                                                        <span><input type="checkbox" name="contact" value="sms" />SMS Text</span>
+                                                        <span><input type="checkbox" name="contact" value="post" />Post</span>
+                                                        <span><input type="checkbox" name="contact" value="telephone" />Telephone</span>-->
+                                                    </div>
+                                                </div>
+                                                <!-- privacy statement start here -->
+                                                <div class="privacy-statement">
+                                                    <div class="container">
+                                                        <div class="privacy-statement-title">
+                                                          Privacy statement
+                                                      </div>
+                                                      <p>NCT would like to keep in touch with you about our services, support, events, campaings and
+                                                        fundraising. We'll only contact you in the ways you want, and we'll keep your information safe.
+                                                        Our priuvacy policy has full details of how we use personal data 
+                                                        <a href="https://www.nct.org.uk/privacy" class="underlink" target="_open">https://www.nct.org.uk/privacy</a>
+                                                      </p>
+                                                      <div class="agree-statement-row">
+                                                          <input id="agree" type="checkbox" /> I have read and unserdstand/agree with our websites Terms and Conditions.
+                                                      </div>
+                                                  </div>
+                                                  </div>
+                                                  <!-- privacy statement end here -->
+                                              </div>
+                                            <!-- newprivacy content end here -->
                                             <!-- auto generate fields  -->
                                             <div class="row padding-top justify-content-center">                                                
                                                 <div class=" col-lg-offset-4 col-md-5 col-12">
@@ -452,8 +625,9 @@
                                             <div class="pure-control-group" id="giftaid" style="clear:both;">
                                                 <style>td {padding:5px; border:1px dotted #aaa;}</style>
                                                 <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
-                                                    <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/gift-aid.jpg')}"/>
-                                                    <!--<img src='assets/gift-aid.jpg' width='140' height='49' title='Gift Aid' align='right'/>-->
+                                               <!-- @1    <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/gift_aid.jpg')}"/>  -->  
+                                                    <!--<img src='assets/gift_aid.jpg' width='140' height='49' title='Gift Aid' align='right'/>-->
+                                                        <b> <h2> Would you like to add Gift Aid? </h2> </b> 
                                                     Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra cost to you.
                                                     This means that for every &pound;1 you give, we will receive an extra 25p from HM Revenue and Customs<br />
                                                     <br style='clear:both;' />
@@ -462,6 +636,14 @@
                                                     </p>
                                                     <br style='clear:both;' />
                                                     <p>
+                                                    <div class="col-12">
+                                                       <label class="font-bold">Gift Aid Acquistion Method: </label>
+                                                       <select class="gift-aid-select-box">
+                                                           <option>Verbal</option>
+                                                           <option>Written</option>
+                                                           <option>Digital</option>
+                                                       </select>
+                                                    </div>
                                                     <div class="col-12 radio-fields-col membership_check paddingbot20px">
                                                         <span><input type='checkbox' name='checkboxGiftAidPerson1' style='float:left' />
                                                     I agree to the NCT claiming tax under the Gift Aid scheme on all my donations and subscriptions until I advise otherwise. I confirm that I am paying an
@@ -494,10 +676,10 @@
                                             </div>
                                             <!-- 11/27/2018 changes start here -->
                                                 <div class="row nomargin">
-                                                    <div class="col-md-9"><button id="pay_now_back" class="back-btn">
+                                                    <div class="col-md-9 col-6"><button id="pay_now_back" class="back-btn">
                                                             <i class="fa fa-chevron-left" aria-hidden="true"></i>
                                                     </button></div>
-                                                    <button class="green-button form-fields col-md-3" id="Pay_now">Pay Now</button>
+                                                    <button class="green-button form-fields col-md-3 col-6" id="Pay_now">Sign Up</button>
                                                 </div>
                                              <!-- 11/27/2018 changes end here -->
                                         </div>
@@ -612,13 +794,20 @@
                                                         
                                             <style>td {padding:5px; border:1px dotted #aaa;}</style>
                                                 <!-- <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
-                                                    <img src='assets/gift-aid.jpg' width='140' height='49' title='Gift Aid' align='right'/>
+                                                    <img src='assets/gift_aid.jpg' width='140' height='49' title='Gift Aid' align='right'/>
                                                     Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra cost to you.
                                                     This means that for every &pound;1 you give, we will receive an extra 25p from HM Revenue and Customs<br />
                                                     <p>
                                                         <strong>Your Gift Aid declaration</strong><br />
                                                     </p>
-                                                    
+                                                    <div class="col-12">
+                                                       <label class="font-bold">Gift Aid Acquistion Method: </label>
+                                                       <select class="gift-aid-select-box">
+                                                           <option>Verbal</option>
+                                                           <option>Written</option>
+                                                           <option>Digital</option>
+                                                       </select>
+                                                    </div>
                                                     <div class="col-12 radio-fields-col membership_check paddingbot20px">
                                                     <p>
                                                         <span><input type='checkbox' Id="giftAidCheckbox" name='checkboxGiftAidPerson1' style='float:left' />
@@ -659,12 +848,12 @@
                                             </fieldset>
                                             <!-- 11/27/2018 changes start here -->
                                             <div class="row nomargin paddingtop20px">
-                                                <div class="col-md-9">
+                                                <div class="col-md-9 col-6">
                                                     <button id="direct_pay_back" class="back-btn">
                                                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
-                                                <button class="green-button form-fields col-md-3" id="direct_pay_btn">Pay Now</button>
+                                                <button class="green-button form-fields col-md-3 col-6" id="direct_pay_btn">Pay Now</button>
                                             </div>
                                             <!-- 11/27/2018 changes end here -->
 
@@ -672,16 +861,24 @@
                                         </div>
                                         <!-- 11/27/2018 changes start here -->
                                         <div id="gift_aid_block" >
-                                                <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
-                                                    <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/gift-aid.jpg')}"/>
-                                                    <!--<img src='assets/gift-aid.jpg' width='140' height='49' title='Gift Aid' align='right' />-->
+                                               <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
+                                            <!-- @2 -->    <!--     <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/gift_aid.jpg')}"/>
+                                                    <!--<img src='assets/gift_aid.jpg' width='140' height='49' title='Gift Aid' align='right' /> --> 
+                                                        <b> <h2> Would you like to add Gift Aid? </h2> </b> 
                                                     Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra
                                                     cost to you.
                                                     This means that for every &pound;1 you give, we will receive an extra 25p from HM Revenue and Customs<br />
                                                     <p>
                                                         <strong>Your Gift Aid declaration</strong><br/>
                                                     </p>
-
+													<div class="col-12">
+                                                       <label class="font-bold">Gift Aid Acquistion Method: </label>
+                                                       <select class="gift-aid-select-box">
+                                                           <option>Verbal</option>
+                                                           <option>Written</option>
+                                                           <option>Digital</option>
+                                                       </select>
+                                                    </div>
                                                     <div class="col-12 radio-fields-col paddingbot20px membership_check">
                                                         <p>
                                                         <span><input type='checkbox' id='giftAidCheckbox' name='checkboxGiftAidPerson1' style='float:left' />
@@ -704,12 +901,12 @@
                                                     </p>
                                                 </div>
                                                 <div class="row nomargin paddingtop20px">
-                                                    <div class="col-md-9">
+                                                    <div class="col-md-9 col-6">
                                                         <button id="gift_aid_back" class="back-btn">
                                                             <i class="fa fa-chevron-left" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
-                                                    <button class="green-button form-fields col-md-3" id="gift_aid_btn">Pay Now</button>
+                                                    <button class="green-button form-fields col-md-3 col-6" id="gift_aid_btn">Pay Now</button>
                                                 </div>
                                             </div>
                                             <!-- 11/27/2018 changes start here -->
@@ -755,12 +952,12 @@
                                             </fieldset>
                                             <div class="row nomargin paddingtop20px">
                                                     <!-- 11/27/2018 changes start here -->
-                                                    <div class="col-md-9">
+                                                    <div class="col-md-9 col-6">
                                                         <button id="confirm_pay_back" class="back-btn">
                                                             <i class="fa fa-chevron-left" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
-                                                    <button class="green-button form-fields col-md-3" id="confirm_all_pay_cc">Pay now</button>
+                                                    <button class="green-button form-fields col-md-3 col-6" id="confirm_all_pay_cc">Pay now</button>
                                                     <!-- 11/27/2018 changes end here -->
                                                 </div>
                                         </div>
@@ -819,12 +1016,12 @@
                                         </fieldset>
                                         <div class="row nomargin paddingtop20px">
                                             <!-- 11/27/2018 changes start here -->
-                                            <div class="col-md-9">
+                                            <div class="col-md-9 col-6">
                                                 <button id="direct_debit_back" class="back-btn">
                                                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
                                                 </button>
                                             </div>
-                                            <button class="green-button form-fields col-md-3" id="confirm_all_pay_dd">Pay now</button>
+                                            <button class="green-button form-fields col-md-3 col-6" id="confirm_all_pay_dd">Pay now</button>
                                             <!-- 11/27/2018 changes end here -->
                                         </div>
                                         </div>                              
@@ -837,7 +1034,7 @@
                                             <h2 class="paddingtop20px">Congratulations,</h2> 
                                             <p><strong><span id="forename_Dsp"> </span></strong></p>
                                             <p><apex:outputText Id="membershipWelcomText" value="Welcome to our family..." rendered="{!displayMbrNoMessage}"/></p>
-                                            <p> <apex:outputText Id="membershipDisplayText" value="Successfully send the Payment link to the Parent !!!" rendered="{!displaySuccessMessage}"/>
+                                            <p> <apex:outputText Id="membershipDisplayText" value="Successfully send the Payment link to the Parent !!!" rendered="{!displaySuccessMessage}"/><BR/><BR/>
                                                 <apex:outputText Id="membershipText" value="Your Membership Number is -" rendered="{!displayMbrNoMessage}"/>&nbsp;
                                                <apex:outputText Id="membershipNumber" value="{!membershipNumber}" style="font-weight:bold;" rendered="{!displayMbrNoMessage}"/></p>
                                                </apex:outputPanel>
@@ -858,18 +1055,19 @@
     <footer>
         <div class="footer-padding container">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <h6 class="footer-header">Enquires and Feeding Helpline</h6>
                     <div class="footer-content">
                         <h6 class="num_color">0300 330 0700 </h6>
                         <p>For practical and emotional Support in all areas of pregnancy.birth and parentehood
                             including help
                             with feeding </p>
-                        <a href="" class="link-color">See all Costs</a>
+                        <a class="link-color see-all-costs">See all Costs</a>
+						<p class="all-costs-text">Calling us costs the same as any local call, however, if you have free 'inclusive' minutes on a landline or mobile, it will be included in those.</p>
                     </div>
                 </div>
 
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-6">
                     <h6 class="footer-header">About</h6>
                     <ul class="footer-List">
                         <li>
@@ -889,7 +1087,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-6">
                     <h6 class="footer-header">News and Views</h6>
                     <ul class="footer-List">
                         <li>
@@ -903,7 +1101,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-6">
                     <h6 class="footer-header">Support us</h6>
                     <ul class="footer-List">
                         <li>
@@ -917,7 +1115,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6">
                     <h6 class="footer-header">Professionals</h6>
                     <ul class="footer-List">
                         <li>
@@ -971,6 +1169,24 @@
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/pca.js')}"/>
     <script>
         $(document).ready(function () {
+        	$('#scd1').keypress(function(e) {
+                var scd1Value = $('#scd1').val();
+                if(scd1Value.length == 2) {
+                	$('#scd2').focus();
+                }
+            });
+        	$('#scd2').keypress(function(e) {
+                var scd2Value = $('#scd2').val();
+                if(scd2Value.length == 2) {
+                	$('#scd3').focus();
+                }
+            });
+        	$('#scd3').keypress(function(e) {
+                var scd3Value = $('#scd3').val();
+                if(scd3Value.length == 2) {
+                	$('#accountNumber').focus();
+                }
+            });
             $("#textMobile, #scd1, #scd2, #scd3, #accountNumber").keydown(function (e) {
                     if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
                         (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
@@ -1007,10 +1223,19 @@
                     }
 
                 })
-               
+               	$('#salutation').change(function() {
+                    console.log("GO!");
+                    console.log($('#salutation :selected').val());
+                    
+                    if (($('#salutation :selected').val() != '')) {
+                        var salutation = $('#salutation :selected').val();
+                        
+                    }
+
+                })
                 $("#postcode_checker").click(function () {
                     console.log($('#postcode').val());
-                    postCodeVal($('#postcode').val());
+                    postCodeVal($('#postcode').val(),$('#textEmail').val());
                 })
                 $("#nameSubmit").click(function () {
                     console.log($(twomem)[0].checked);
@@ -1021,9 +1246,13 @@
                     console.log($('#town').val());
                     console.log($('#county').val());
                     console.log($('#due-Date').val());
+                    var salutation = $('#salutation :selected').text();
+                    
+                    var existContact = $('#hdn').val();
+                    console.log(existContact);//&& existContact =='false'
                     //SelBranchValFunction($(selBnchvalue).val());
-                    if(validateJoin() && validateGender()){
-                    afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('input[name=gender]:checked').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val()); 
+                    if(validateJoin() ){//&& validateGender()
+                    afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text()); 
                     //var gender = $('input[name=gender]':checked).val();
                     //console.log(gender);
                     $('#register_li').removeClass('active');
@@ -1057,7 +1286,6 @@
                     console.log(sortCode);
                     console.log(accountNumber);
                     saveRecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
-                    //thankYouPage();
                     var forename_Dsp = $('#textForename').val();
                     $('#confirmation_li').removeClass('active');
                     $('#thankyou_li').addClass('active');
@@ -1086,30 +1314,6 @@
                     }
                     
                     return;
-                });
-                $('#gift_aid_btn').on('click', function(){
-                    var accountName = $('#accountName').val();
-                    var sortCode1 = $('#scd1').val();
-                    var sortCode2 = $('#scd2').val();
-                    var sortCode3 = $('#scd3').val();
-                    var sortCode = sortCode1 + '-' + sortCode2 + '-' + sortCode3;
-                    var accountNumber = $('#accountNumber').val();
-                    var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
-                    console.log(giftAidCheckbox);
-                    console.log(accountName);
-                    console.log(sortCode);
-                    console.log(accountNumber);
-                    //console.log($(giftAidCheckbox)[0].checked);
-                    //saverecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
-                    $('#payment_li, #gift_li').removeClass('active');
-                    $('#confirmation_li').addClass('active');
-                    $('#payment').removeClass('active show');
-                    $('#confirmation').addClass('active show');
-                    $('#credit_card_confirm').hide();
-                    $("#gift_aid_block").hide();
-                    $("#DD_acc_name").html(accountName);
-                    $("#DD_sort_code").html(sortCode);
-                    $("#DD_bank_acc_num").html(accountNumber);
                 });
                 $('#person-clear').on('click',function(){
                     $('#textForenamePartner, #textSurnamePartner, #textEmailPartner, #textTelephoneHomePartner').val('');
@@ -1160,13 +1364,22 @@
     $(function() {
         
         console.log( "ready!" ); //branch
-        
+        var cardPayment = false;
         $('#selectMembership').change(function() {
             //alert("GO");
             console.log($('#selectMembership :selected').text().includes('Credit'));
             console.log($('#selectMembership :selected').text());
-            console.log("GO!");
-            console.log($('#selectMembership :selected').val());
+			console.log("GO!");
+			console.log($('#selectMembership :selected').val());
+            var paymentType = $('#selectMembership :selected').text().includes('Credit');
+            var staffPayment = $('#selectMembership :selected').text().includes('Life Membership - Free')
+            //console.log('paymenttype', paymentType);
+            if (paymentType === true || staffPayment === true){
+                $("#Pay_now, #gift_aid_btn, #direct_pay_btn, #confirm_all_pay_dd").html('Sign Up');
+            }
+            else {
+                $("#Pay_now, #gift_aid_btn, #direct_pay_btn, #confirm_all_pay_dd").html('Sign Up');
+            }
         
             $("#Pay_now").click(function (){
                 console.log($('#selectMembership :selected').val());
@@ -1183,16 +1396,35 @@
                 if (($('#selectMembership :selected').val() != '')) {                    
                     SelValFunction($('#selectMembership :selected').val());
                     console.log($('#selectMembership :selected').text().includes('Credit'));
+                    $("#direct_debit_block").show();
                     if(($('#selectMembership :selected').text().includes('Credit'))){                        
                         // $("#direct_debit_block").append( "<div class='col-md-7'><div class='loader'></div></div>" );
-                        //$("#direct_debit_block").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
+                        // $("#direct_debit_block").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                         $('#payment_li').removeClass('active');
-                        $('#thankyou_li').addClass('active');
-                        $('#payment').removeClass('in active show');
-                        $('#thankyou').addClass('active show');
+                        //$('#thankyou_li').addClass('active');
+                        //$('#payment').removeClass('in active show');
+                        //$('#thankyou').addClass('active show');
+                        $('#gift_li').addClass('active')
+                        $("#direct_debit_block").hide();
+                        $("#gift_aid_block").show();
+                        cardPayment = true;
+                        console.log(cardPayment, "cardPayment");
                         $("html, body").animate({ scrollTop: 0 }, "slow");
-                      }
-                    $("#direct_debit_block").show();
+                    }
+                    else {
+                        cardPayment = false;
+                        console.log(cardPayment, "cardPayment");
+                    }
+                    if(($('#selectMembership :selected').text().includes('Life Membership - Free'))){
+                        cardPayment = false;
+                        $('#Pay_now').html('Sign Up');
+                    	$('#payment_li').removeClass('active');
+                        $('#thankyou_li').addClass('active');
+                        $('#payment').removeClass('active show');
+                        $('#thankyou').addClass('active show');
+                        //thankYouPage();
+                    }
+                    
                     $("#pay_page").hide();
                     console.log($('#selectMembership :selected').text());
                     console.log("Direct Debitpage selected");
@@ -1226,7 +1458,74 @@
             });
         });
             
-            
+         $('#pay_now_back').on('click', function(){
+            $('#payment').removeClass('active show');
+            $('#payment_li').removeClass('active');
+            $('#register_li').addClass('active');
+            $('#register').addClass('active show');
+        });
+        $('#direct_pay_back, #go-back-payment').on('click', function(){
+            $('#direct_debit_block').css('display', 'none');
+            $('#pay_page').css('display', '');
+        });
+        $('#gift_aid_back').on('click', function(){
+            if(cardPayment === false) {
+                $('#direct_debit_block').show();
+                $('#gift_aid_block').hide();
+                $('#gift_li').removeClass('active');
+                $('#payment_li').addClass('active');
+            }
+            else {
+            	 $('#direct_debit_block').hide();
+                $('#gift_aid_block').hide();
+                $('#gift_li').removeClass('active');
+                $('#payment_li').addClass('active');
+                $('#payment').addClass('active show');
+                $('#pay_page').show();
+            }
+        });
+       $('#direct_debit_back').on('click', function(){
+            $('#confirmation').removeClass('active show');
+            $('#confirmation_li').removeClass('active');
+            $('#gift_aid_block').show();
+            $('#gift_li').addClass('active');
+            $('#payment').addClass('active show');
+        });   
+        $('#gift_aid_btn').on('click', function(){
+                    var accountName = $('#accountName').val();
+                    var sortCode1 = $('#scd1').val();
+                    var sortCode2 = $('#scd2').val();
+                    var sortCode3 = $('#scd3').val();
+                    var sortCode = sortCode1 + '-' + sortCode2 + '-' + sortCode3;
+                    var accountNumber = $('#accountNumber').val();
+                    var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
+                    console.log(giftAidCheckbox);
+                    console.log(accountName);
+                    console.log(sortCode);
+                    console.log(accountNumber);
+                    //console.log($(giftAidCheckbox)[0].checked);
+                    //saverecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
+                    $('#payment_li, #gift_li').removeClass('active');
+                    $('#confirmation_li').addClass('active');
+                    $('#payment').removeClass('active show');
+                    $('#confirmation').addClass('active show');
+                    $('#credit_card_confirm').hide();
+                    $("#gift_aid_block").hide();
+                    $("#DD_acc_name").html(accountName);
+                    $("#DD_sort_code").html(sortCode);
+                    $("#DD_bank_acc_num").html(accountNumber);
+                    if (cardPayment === true) {
+                        $('#thankyou').addClass('active show');
+                        $('#thankyou_li').addClass('active');
+                        $('#payment').removeClass('active show');
+                        $('#confirmation').removeClass('active show');
+                        $('#confirmation_li').removeClass('active');
+                        $('#payment_li').removeClass('active');
+                        $('#gift_aid_block').hide();
+            			$('#gift_li').removeClass('active');
+                        //$("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
+                    }
+                });  
 
     });
     </script>
@@ -1266,14 +1565,14 @@
            }
         function validateGender() {
 
-            var gender = $('input[name=gender]:checked').val();
+            /*var gender = $('input[name=gender]:checked').val();
             console.log(gender);
                     if(gender == ""|| gender == undefined) {
                         return false
                     }
                     else{
                         return true;
-            }
+            }*/
         } 
         function validateJoin() {
                     error="";
@@ -1289,13 +1588,13 @@
                         $('#selectTitle').addClass('error');
                         //return false;
                     }
-                    if(validateGender()) {
+            /*if(validateGender()) {
                         //$('.gender-error').addClass('hide');
                     }
                     else{
                         //$('.gender-error').removeClass('hide');
                         error=error+'please select gender.\n'
-                    }
+                    }*/
                     
                     
                     $('input').removeClass("error");    // clear all markup before beginning.
@@ -1326,7 +1625,9 @@
                         error = error + "Please enter your address.\n";
                         //return false;
                     }
-                    
+                    if($('#agree').checked != true) { 
+                        error = error + "Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy";
+                    } 
                 
                     if($('#textEmail').val() == "") {
                         $('#textEmail').addClass('error');
@@ -1460,33 +1761,44 @@
         
         }
     </script>
-    <!-- 11/27/2018 changes start here -->
-    <script>
-        $('#pay_now_back').on('click', function(){
-            $('#payment').removeClass('active show');
-            $('#payment_li').removeClass('active');
-            $('#register_li').addClass('active');
-            $('#register').addClass('active show');
+   <script>
+		$(document).ready(function () {
+        $('#edit-submit').on('click', function () {
+            $("#edit-keys").addClass('show-form-input', {
+                duration: 1000
+            });
+            $("#search-submit").removeClass('d-none');
+            $(this).addClass('d-none');
+            $('#show-close-btn').addClass('show-close-btn', {
+                duration: 1000
+            });
         });
-        $('#direct_pay_back, #go-back-payment').on('click', function(){
-            $('#direct_debit_block').css('display', 'none');
-            $('#pay_page').css('display', '');
+        $('#show-close-btn').on('click', function () {
+            $("#edit-keys").removeClass('show-form-input');
+            $("#search-submit").addClass('d-none');
+            $('#show-close-btn').removeClass('show-close-btn');
+            $('#edit-submit').removeClass('d-none');
         });
-        $('#gift_aid_back').on('click', function(){
-            $('#direct_debit_block').show();
-            $('#gift_aid_block').hide();
-            $('#gift_li').removeClass('active');
-            $('#payment_li').addClass('active');
+        $('.expand-collapse-elements, #collapse-btn').hide();
+        $('#expand-btn').on('click', function () {
+            $('.expand-collapse-elements, #collapse-btn').slideToggle( "slow", function() {
+            });
+            $('#expand-btn').slideToggle( "slow", function() {
+            });
         });
-       $('#direct_debit_back').on('click', function(){
-            $('#confirmation').removeClass('active show');
-            $('#confirmation_li').removeClass('active');
-            $('#gift_aid_block').show();
-            $('#gift_li').addClass('active');
-            $('#payment').addClass('active show');
+        $('#collapse-btn').on('click', function () {
+            $('.expand-collapse-elements, #collapse-btn').slideToggle( "slow", function() {
+            });
+            $('#expand-btn').slideToggle( "slow", function() {
+            });
         });
-    </script>
-    <!-- 11/27/2018 changes start here -->
+        $( ".all-costs-text" ).hide();
+        $( ".see-all-costs" ).click(function() {
+            $( ".all-costs-text" ).slideToggle( "slow", function() {
+            });
+        });
+    })
+	</script>
 </body>
 </apex:form>
 </apex:page>

@@ -1,30 +1,21 @@
-<apex:page applyHtmlTag="true" docType="html-5.0" controller="NctMembershipPaymentPageController" showHeader="false" sidebar="false">
-<apex:pageMessages id="error-message"/>
-<apex:outputPanel id="hiddenContact">                                                         
-    <input type="hidden" id="hdn" value="{!isContactExisting}" />
-</apex:outputPanel>
+<apex:page applyHtmlTag="true" docType="html-5.0" controller="MG_ET_PaymentLinkExpiry_Controller" showHeader="false" sidebar="false">
 <apex:form id="membrShpForm">
-    <!--<apex:outputPanel id="isExist">                                                         
-        <p>Input field:<apex:input type="text" id="isExists" value="{!isContactExisting}"/> </p>
-    </apex:outputPanel>-->
-   <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue">
+   <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
         <apex:param id="selValId" name="seltdName" value="" />
    </apex:actionFunction>
-    <!--<apex:actionFunction name="isContactExisting" action="{!existingContactChecker}" reRender="membershipNumber">
-        <apex:param id="accname" name="accname" value="" assignTo="{!accountName}"/>
-   </apex:actionFunction>-->
-   <apex:actionFunction name="postCodeVal" action="{!nctBranchs}" reRender="branch_Picklist,hiddenContact">
-        <apex:param id="postVal" name="postVal" value="" />
-        <apex:param id="emailsVal" name="emailsVal" value=""/>
+    <apex:actionFunction name="thankYouPage" action="{!thankYouSec}" reRender="membershipNumber">
    </apex:actionFunction>
-   <apex:actionFunction name="saveRecordValues" action="{!PaymentSave}" reRender="membershipNumber,error-message">
+   <apex:actionFunction name="postCodeVal" action="{!testBranch}" reRender="branch_Picklist">
+        <apex:param id="postVal" name="postVal" value="" />
+       <apex:param id="emailsVal" name="emailsVal" value=""/>
+   </apex:actionFunction>
+   <apex:actionFunction name="saveRecordValues" action="{!PaymentSave}" reRender="displayValues">
       <apex:param id="accname" name="accname" value="" assignTo="{!accountName}"/>
        <apex:param id="sortCode" name="sortCode" value="" assignTo="{!sortCode}"/>
        <apex:param id="accNum" name="accNum" value="" assignTo="{!accountNumber}"/>
        <apex:param id="gftAid" name="gftAid" value="" assignTo="{!isGiftAid}"/>
-       <apex:param id="acquistionval" name="acquistionval" value="" assignTo="{!acquistion}"/>
     </apex:actionFunction>
-    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,isExist">
+    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership">
         <apex:param id="aname" name="chkbox" value="" assignTo="{!twomems}"/>
         <apex:param id="firstName" name="firstName" value="" assignTo="{!firstname}"/>
         <apex:param id="lastName" name="lastName" value="" assignTo="{!lastname}"/>
@@ -125,7 +116,7 @@
                 border:1px solid red;
             }
             .membership-form-col{
-                width: 664px;
+                width: 660px;
                 flex: none;
                 margin: 0 auto;
             }
@@ -159,43 +150,38 @@
             }
             .nav-tabs li a:after{
                 left: 97%;
-                top: 0px;
+                top: 1px;
             }
             .nav-tabs li a:before {
-                top: -4px;
+                top: -3px;
                 left: 97%;
             }
             .nav-tabs li.active a {
                 color: #fff !important;
             }
+            .nav-tabs li a {
+                margin-bottom:5px;
+                padding-top:5px;
+                font-size:16px;
+            }
             .mrtitle{
                 padding:0 10px !important;
             }
-            .link-color{
-                color: rgb(56, 179, 33);
-            }
-            .link-color:hover{
-                color: green;
-                text-decoration:none;
-                cursor: pointer;
-            }
             body {
-                font-size: 16px !important;
+                font-size: 1rem !important;
             }
             html body.sfdcBody{
                 padding: 10px 0px 0 0px;
                 font-family: "Lato", sans-serif;
                 color: #080808;
+            } 
+            .link-color{
+                color: rgb(56, 179, 33) !important;
             }
-            .gender-title-select{ 
-                display: inline-block;
-                padding: 0 !important;
-            }
-            .gender-title-select select {
-                height:38px;
-                border:none;
-                background-color:transparent;
-                padding: 0 10px;
+            .link-color:hover{
+                color: green;
+                text-decoration:none;
+                cursor: pointer;
             }
             .gift-aid-select-box{
                 min-width: 200px;
@@ -209,66 +195,6 @@
                 border-color: rgb(238, 238, 238);
                 border-radius: 20px;
                 margin-bottom: 20px;
-            }
-            #error-message, span[id$="_error-message"],[id$="_error-message"],
-            .message td, .message{
-                font-family: "Lato", sans-serif;
-            }
-            .message td {
-                border:none;
-            }
-            .messageTable{
-                margin: 0 auto !important;
-            }
-            #error-message td, span[id$="_error-message"] td,[id$="_error-message"] td {
-                border:none;
-            }
-            .infoM3 .msgIcon, .infoMedium {
-                margin-top: 10px;
-            }
-            .message.infoM3{
-                background-color:transparent !important;
-                border:none !important;
-            }
-			.dynmaic-radio-fields td input[type="radio"] {
-            	opacity:1;
-                margin-right: 6px;
-            }
-			.dynmaic-radio-fields td{
-                border:none !important;
-            }
-			.newprivacy-content{
-                color:#080808;
-                padding-top:20px;
-                text-align: center;
-			}
-			.newprivacy-content input{
-            	opacity:1 !important;
-            }
-			.newprivacy-content .radio-fields-row{
-                color:#080808;
-            }
-			.newprivacy-content .privacy-statement{
-                padding: 0;
-                background-color: transparent;
-                color: #080808;
-                padding-top: 15px;
-    		}
-			.newprivacy-content .container{
-                padding:0;
-            }
-            .newprivacy-content .privacy-statement .underlink {
-                color: #35a535;
-                font-size: 15px;
-            }
-			.newprivacy-content .radio-fields-col td{
-                border:none !important;
-            }
-			.newprivacy-content .radio-fields-col table {
-                margin: 0 auto;
-            }
-			.newprivacy-content .radio-fields-col span {
-                display:block
             }
             @media(max-width:767px) {
                 .nav-tabs{
@@ -375,11 +301,10 @@
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                         <div><label><sup class="light-orange-color">*</sup>Title</label></div>
-                                                          <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="salutation" value="{!SelectedPreferences}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!PreferenceOptions}" />
-                                                                
-                                                          </apex:selectList></span>
-                                                     
+                                                        <select class="form-fields membership-fields mrtitle">
+                                                            <option>Mrs</option>
+                                                            <option>Mr</option>
+                                                        </select>
                                                     </div>
                                                     <div class="col-md-5">
                                                         <div><label><sup class="light-orange-color">*</sup>First Name</label></div>
@@ -393,15 +318,25 @@
                                                     </div>
                                                 </div>
                                                 <div class="row paddingbot10px errorMessage errormessage">
-                                               		<!-- <p class="gender-error error-message hide">Please select gender </p> -->
+                                               <!-- <p class="gender-error error-message hide">Please select gender </p> -->
                                                     <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                             Gender</label></div>
-                                                	<span class="dynmaic-radio-fields">
-                                                	<apex:selectRadio id="gender" value="{!Genders}">
-                                                                <apex:selectOptions value="{!GenderOptions}" />
-                                                     </apex:selectRadio>
-                                                	</span>
-                                                    
+                                                    <div class="col-md-3">
+                                                        <span class="checkbox-span">
+                                                            <div class="squaredThree" style="margin-left:10px;">
+                                                                <input value="female" type="radio" class="radio" name="gender" />
+                                                                <label for="female"></label><span class="span-label">Female</span>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <span class="checkbox-span">
+                                                            <div class="squaredThree" style="margin-left:10px;">
+                                                                <input value="male" type="radio" class="radio" name="gender" />
+                                                                <label for="male"></label><span class="span-label">Male</span>
+                                                            </div>
+                                                        </span>
+                                                    </div>
                                                     
                                                 </div>
                                                 <div class="row">
@@ -421,7 +356,10 @@
                                                 <div class="col-12 radio-fields-col membership_check paddingbot20px">
                                                     <span>
                                                         <input type="checkbox" name="contact" id="twomem" value="{!twomem}"/>
-                                                       
+                                                        <!--<input type="hidden" id="hdn" value="{!twomems}" />
+                                                            <apex:actionsupport event="onclick">
+                                                            <apex:param value="{!twomem}" assignTo="{!isChecked}"/>
+                                                            </apex:actionSupport>-->
                                                         NCT membership covers up to two people at the same address. If
                                                         you'd like a joint membership, please tick this box.
                                                     </span>
@@ -438,11 +376,10 @@
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div><label><sup class="light-orange-color">*</sup>Title</label></div>
-                                                            <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="ssalutation" value="{!SSelectedPreferences}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!PreferenceOptions}" />
-                                                                
-                                                          	</apex:selectList></span>
-                                                            
+                                                            <select class="form-fields membership-fields">
+                                                                <option>Mrs</option>
+                                                                <option>Mr</option>
+                                                            </select>
                                                         </div>
                                                         <div class="col-md-5">
                                                             <div><label><sup class="light-orange-color">*</sup>First
@@ -457,17 +394,6 @@
                                                                 placeholder="Last Name" />
                                                         </div>
                                                     </div>
-                                                    <div class="row paddingbot10px errorMessage errormessage">
-                                                        <!-- <p class="gender-error error-message hide">Please select gender </p> -->
-                                                        <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
-                                                                Gender</label></div>
-                                                        <span class="dynmaic-radio-fields">
-                                                        <apex:selectRadio id="sgender" value="{!SGenders}">
-                                                                    <apex:selectOptions value="{!GenderOptions}" />
-                                                         </apex:selectRadio>
-                                                        </span>
-                                                   
-                                              		</div>                                                         
                                                     <div class="row">
                                                         <div class="col-md-12 col-12">
                                                             <div><label><sup class="light-orange-color">*</sup>Email
@@ -492,7 +418,6 @@
                                                     <div class="col-md-8 col-12">
                                                         <input type="text" class="form-fields membership-fields" placeholder="Postcode" id ="postcode" value="{!postCode}" />
                                                     </div>
-                                                    
                                                     <div class="col-md-4 col-12">
                                                         <button type="button" class="green-button nomargin form-fields" id="postcode_checker">Find  address</button>
                                                     </div>
@@ -542,7 +467,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                                                                            
+                                                             <!-- ---Actual Code ----                                               
                                                             <div class="col-5"> <label class="text-center font-bold"><sup class="light-orange-color">*</sup>NCT Branch:</label> </div>
                                                             <div class="col-7">
                                                                  <apex:outputPanel id="branch_Picklist"> 
@@ -561,43 +486,50 @@
                                                                  </select>
                                                                  </apex:outputPanel>                                             
                                                             </div>
-                                                                                                            
+                                                             -->
+
+                                                            <!-- for test puprose of nearesh branches development -->
+                                                            <div class="col-5"> <label class="text-center font-bold"><sup class="light-orange-color">*</sup>NCT Branch:</label> </div>
+                                                            <div class="col-7">
+                                                                 <apex:outputPanel id="branch_Picklist"> 
+                                                                 <select name='branch' id='selectBranches' class="custom_select" >
+                                                                       <option value="" disabled="true">Nearest Branches</option>
+                                                                       <option value="" disabled="true">------------------------</option> 
+                                                                       <apex:repeat value="{!accountMap}" var="branchKey">
+                                                                        <option value="{!accountMap}" >{!branchKey}</option>
+                                                                                               
+                                                                       
+                                                                        <option value="" disabled="true">------------------------</option>
+                                                                       
+                                                                       <apex:repeat value="{!accountMap[branchKey]}" var="branchKey1" >
+                                                                        <option value="{!branchKey1.Id}">{!branchKey1.Name}</option> 
+                                                                        </apex:repeat> 
+                                                                        </apex:repeat> 
+                                                                       
+                                                                 </select>
+                                                                 </apex:outputPanel>                                             
+                                                            </div>
+
+                                                            <div class="col-5"> <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Test Branch:</label> </div>
+                                                            <div class="col-7">
+                                                                 <apex:outputPanel id="branch1_Picklist"> 
+                                                                 <select name='branch' id='selectBranch' class="custom_select" >
+                                                                       <option value="" disabled="true">Nearest Branches</option>
+                                                                       <option value="" disabled="true">------------------------</option> 
+                                                                       <apex:repeat value="{!accountMap}" var="nb"  >
+                                                                       <option value="{!accountMap}"  >{!nb}</option>
+                                                                       <apex:repeat value="{!accountMap[nb]}" var="nb1" >
+                                                                       <option value="{!nb1.Id}" >{!nb1.Name}</option>
+                                                                        
+                                                                       </apex:repeat>
+                                                                       </apex:repeat>
+                                                                       
+                                                                 </select>
+                                                                 </apex:outputPanel>                                             
+                                                            </div>
+                                                            <!--   ------------  -->                                                
                                                     </div>                                                         
                                             </div>
-                                            <!-- newprivacy content start here -->
-                                              <div class="newprivacy-content">
-                                                <div class="row radio-fields-row">
-                                                    <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
-                                                    <div class="col-12 radio-fields-col">
-                                                        <span style="text-color:white;"><apex:selectCheckboxes value="{!ContactSelectedPreferences}">
-                                                                    <apex:selectOptions value="{!ContactPreferenceOptions}" />
-                                                                    
-                                                         </apex:selectCheckboxes></span>                                                      
-                                                        <!--<span><input type="checkbox" name="contact" value="email" />Email</span>
-                                                        <span><input type="checkbox" name="contact" value="sms" />SMS Text</span>
-                                                        <span><input type="checkbox" name="contact" value="post" />Post</span>
-                                                        <span><input type="checkbox" name="contact" value="telephone" />Telephone</span>-->
-                                                    </div>
-                                                </div>
-                                                <!-- privacy statement start here -->
-                                                <div class="privacy-statement">
-                                                    <div class="container">
-                                                        <div class="privacy-statement-title">
-                                                          Privacy statement
-                                                      </div>
-                                                      <p>NCT would like to keep in touch with you about our services, support, events, campaings and
-                                                        fundraising. We'll only contact you in the ways you want, and we'll keep your information safe.
-                                                        Our priuvacy policy has full details of how we use personal data 
-                                                        <a href="https://www.nct.org.uk/privacy" class="underlink" target="_open">https://www.nct.org.uk/privacy</a>
-                                                      </p>
-                                                      <div class="agree-statement-row">
-                                                          <input id="agree" type="checkbox" /> I have read and unserdstand/agree with our websites Terms and Conditions.
-                                                      </div>
-                                                  </div>
-                                                  </div>
-                                                  <!-- privacy statement end here -->
-                                              </div>
-                                            <!-- newprivacy content end here -->
                                             <!-- auto generate fields  -->
                                             <div class="row padding-top justify-content-center">                                                
                                                 <div class=" col-lg-offset-4 col-md-5 col-12">
@@ -643,9 +575,9 @@
                                             <div class="pure-control-group" id="giftaid" style="clear:both;">
                                                 <style>td {padding:5px; border:1px dotted #aaa;}</style>
                                                 <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
-                                           <!-- @1         <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/gift_aid.jpg')}"/>  -->
+                                               <!-- @1    <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/gift_aid.jpg')}"/>  -->  
                                                     <!--<img src='assets/gift_aid.jpg' width='140' height='49' title='Gift Aid' align='right'/>-->
-                                                    <b> <h2> Would you like to add Gift Aid? </h2> </b>
+                                                        <b> <h2> Would you like to add Gift Aid? </h2> </b> 
                                                     Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra cost to you.
                                                     This means that for every &pound;1 you give, we will receive an extra 25p from HM Revenue and Customs<br />
                                                     <br style='clear:both;' />
@@ -654,14 +586,14 @@
                                                     </p>
                                                     <br style='clear:both;' />
                                                     <p>
-                                                    <!-- <div class="col-12">
+                                                    <div class="col-12">
                                                        <label class="font-bold">Gift Aid Acquistion Method: </label>
-                                                       <select id="acquistion" class="gift-aid-select-box">
-                                                           <option value="Verbal">Oral</option>
-                                                           <option value="Written">Written</option>
-                                                           <option value="Digital">Digital</option>
+                                                       <select class="gift-aid-select-box">
+                                                           <option>Verbal</option>
+                                                           <option>Written</option>
+                                                           <option>Digital</option>
                                                        </select>
-                                                    </div> -->
+                                                    </div>
                                                     <div class="col-12 radio-fields-col membership_check paddingbot20px">
                                                         <span><input type='checkbox' name='checkboxGiftAidPerson1' style='float:left' />
                                                     I agree to the NCT claiming tax under the Gift Aid scheme on all my donations and subscriptions until I advise otherwise. I confirm that I am paying an
@@ -812,20 +744,20 @@
                                                         
                                             <style>td {padding:5px; border:1px dotted #aaa;}</style>
                                                 <!-- <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
-                                                @2    <img src='assets/gift_aid.jpg' width='140' height='49' title='Gift Aid' align='right'/>
+                                                    <img src='assets/gift_aid.jpg' width='140' height='49' title='Gift Aid' align='right'/>
                                                     Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra cost to you.
                                                     This means that for every &pound;1 you give, we will receive an extra 25p from HM Revenue and Customs<br />
                                                     <p>
                                                         <strong>Your Gift Aid declaration</strong><br />
                                                     </p>
-                                                      <div class="col-12">
+                                                    <div class="col-12">
                                                        <label class="font-bold">Gift Aid Acquistion Method: </label>
-                                                       <select id="acquistion2" class="gift-aid-select-box">
-                                                           <option>Oral</option>
+                                                       <select class="gift-aid-select-box">
+                                                           <option>Verbal</option>
                                                            <option>Written</option>
                                                            <option>Digital</option>
                                                        </select>
-                                                    </div> 
+                                                    </div>
                                                     <div class="col-12 radio-fields-col membership_check paddingbot20px">
                                                     <p>
                                                         <span><input type='checkbox' Id="giftAidCheckbox" name='checkboxGiftAidPerson1' style='float:left' />
@@ -879,24 +811,24 @@
                                         </div>
                                         <!-- 11/27/2018 changes start here -->
                                         <div id="gift_aid_block" >
-                                                <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
-                                                  <!-- @3 <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/gift_aid.jpg')}"/>  -->
-                                                    <!--<img src='assets/gift_aid.jpg' width='140' height='49' title='Gift Aid' align='right' />-->
-                                                    <b> <h2> Would you like to add Gift Aid? </h2> </b>
+                                               <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
+                                            <!-- @2 -->    <!--     <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/gift_aid.jpg')}"/>
+                                                    <!--<img src='assets/gift_aid.jpg' width='140' height='49' title='Gift Aid' align='right' /> --> 
+                                                        <b> <h2> Would you like to add Gift Aid? </h2> </b> 
                                                     Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra
                                                     cost to you.
                                                     This means that for every &pound;1 you give, we will receive an extra 25p from HM Revenue and Customs<br />
                                                     <p>
                                                         <strong>Your Gift Aid declaration</strong><br/>
                                                     </p>
-                                                    <!-- <div class="col-12">
+                                                    <div class="col-12">
                                                        <label class="font-bold">Gift Aid Acquistion Method: </label>
-                                                       <select id="acquistion3" class="gift-aid-select-box">
-                                                           <option>Oral</option>
+                                                       <select class="gift-aid-select-box">
+                                                           <option>Verbal</option>
                                                            <option>Written</option>
                                                            <option>Digital</option>
                                                        </select>
-                                                    </div> -->
+                                                    </div>
                                                     <div class="col-12 radio-fields-col paddingbot20px membership_check">
                                                         <p>
                                                         <span><input type='checkbox' id='giftAidCheckbox' name='checkboxGiftAidPerson1' style='float:left' />
@@ -1022,7 +954,7 @@
                                               <font id="userData">
                                                         <strong>&pound;
                                                         <span id="DD_pay_value"><apex:outputText Id="membershipFeeValue" value=" {!membershipInfo.Installment_Amount__c}"/></span></strong>
-                                                        on or after 3rd of the month and quarterly thereafter if quarterly option selected          
+                                                        on or after 3rd of the month and quarterly thereafter if quarterly option selected         
                                                         .</font>
 
                                         </div>
@@ -1048,12 +980,15 @@
                                 <div id="thankyou" class="tab-pane fade">
                                     <div class="row">
                                         <div class="col-md-7 col-12">
-                                            <h2 class="paddingtop20px">Congratulations,</h2>
+                                            <apex:outputPanel Id="displayValues">
+                                            <h2 class="paddingtop20px">Congratulations,</h2> 
                                             <p><strong><span id="forename_Dsp"> </span></strong></p>
-                                            <p>Welcome to our family...</p>
-                                            <p><apex:outputText Id="membershipText" value="Your Membership Number is -"/>&nbsp;
-                                                <apex:outputText Id="membershipNumber" value="{!membershipNumber}" style="font-weight:bold;"/></p>
-                                        <div class="col-md-1 col-12">                                            
+                                            <p><apex:outputText Id="membershipWelcomText" value="Welcome to our family..." rendered="{!displayMbrNoMessage}"/></p>
+                                            <p> <apex:outputText Id="membershipDisplayText" value="Successfully send the Payment link to the Parent !!!" rendered="{!displaySuccessMessage}"/>
+                                                <apex:outputText Id="membershipText" value="Your Membership Number is -" rendered="{!displayMbrNoMessage}"/>&nbsp;
+                                               <apex:outputText Id="membershipNumber" value="{!membershipNumber}" style="font-weight:bold;" rendered="{!displayMbrNoMessage}"/></p>
+                                               </apex:outputPanel>
+                                        <div class="col-md-1 col-12">                                          
                                         </div>
                                     </div>
                                 </div>
@@ -1248,20 +1183,9 @@
                     }
 
                 })
-                $('#acquistion3').change(function() {
-                    console.log("GO!");
-                    console.log($('#acquistion3 :selected').val());
-                    
-                    if (($('#acquistion3 :selected').val() != '')) {
-                        var acquistion = $('#acquistion3 :selected').val();
-                        
-                    }
-
-                })
                 $("#postcode_checker").click(function () {
-                    console.log($('#postcode').val()); 
+                    console.log($('#postcode').val());
                     postCodeVal($('#postcode').val(),$('#textEmail').val());
-                    
                 })
                 $("#nameSubmit").click(function () {
                     console.log($(twomem)[0].checked);
@@ -1272,27 +1196,21 @@
                     console.log($('#town').val());
                     console.log($('#county').val());
                     console.log($('#due-Date').val());
-                    console.log($('#postcode').val());
                     var salutation = $('#salutation :selected').text();
                     
                     var existContact = $('#hdn').val();
                     console.log(existContact);//&& existContact =='false'
-                    
                     //SelBranchValFunction($(selBnchvalue).val());
-                    if(validateJoin() ){//&& validateGender() 
-                    afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text()); 
+                    if(validateJoin() && validateGender()){
+                    afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('input[name=gender]:checked').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text()); 
                     //var gender = $('input[name=gender]':checked).val();
                     //console.log(gender);
-                    console.log($(salutation).val());
                     $('#register_li').removeClass('active');
                     $('#payment_li').addClass('active');
                     $('#register').removeClass('active show');
                     $('#payment').addClass('active show');
                     $("html, body").animate({ scrollTop: 0 }, "slow");
                     
-                }
-                else{
-                    //alert('Contact already exist on the system');
                 }
                 });
                 $("#confirm_all_pay_cc").click(function () {                    
@@ -1313,14 +1231,11 @@
                     var sortCode = sortCode1 + '-' + sortCode2 + '-' + sortCode3;
                     var accountNumber = $('#accountNumber').val();
                     var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
-                    var acquistion = $('#acquistion :selected').val();
                     console.log(giftAidCheckbox);
                     console.log(accountName);
                     console.log(sortCode);
                     console.log(accountNumber);
-                    console.log(acquistion);
-                    saveRecordValues(accountName,sortCode,accountNumber,giftAidCheckbox,acquistion);
-                    //thankYouPage();
+                    saveRecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
                     var forename_Dsp = $('#textForename').val();
                     $('#confirmation_li').removeClass('active');
                     $('#thankyou_li').addClass('active');
@@ -1407,9 +1322,10 @@
             console.log("GO!");
             console.log($('#selectMembership :selected').val());
             var paymentType = $('#selectMembership :selected').text().includes('Credit');
+            var staffPayment = $('#selectMembership :selected').text().includes('Life Membership - Free')
             //console.log('paymenttype', paymentType);
-            if (paymentType === true){
-                $( "#Pay_now, #gift_aid_btn").html('Pay Now');
+            if (paymentType === true || staffPayment === true){
+                $("#Pay_now, #gift_aid_btn, #direct_pay_btn, #confirm_all_pay_dd").html('Sign Up');
             }
             else {
                 $("#Pay_now, #gift_aid_btn, #direct_pay_btn, #confirm_all_pay_dd").html('Sign Up');
@@ -1427,12 +1343,11 @@
                 else {
                     $('#selectMembership select').removeClass('error-border');
                 }
-                if (($('#selectMembership :selected').val() != '')) {
-                    
-                    //SelValFunction($('#selectMembership :selected').val());
+                if (($('#selectMembership :selected').val() != '')) {                    
+                    SelValFunction($('#selectMembership :selected').val());
                     console.log($('#selectMembership :selected').text().includes('Credit'));
                     $("#direct_debit_block").show();
-                    if(($('#selectMembership :selected').text().includes('Credit'))){
+                    if(($('#selectMembership :selected').text().includes('Credit'))){                        
                         // $("#direct_debit_block").append( "<div class='col-md-7'><div class='loader'></div></div>" );
                         // $("#direct_debit_block").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                         $('#payment_li').removeClass('active');
@@ -1448,8 +1363,16 @@
                     }
                     else {
                         cardPayment = false;
-                        SelValFunction($('#selectMembership :selected').val());
                         console.log(cardPayment, "cardPayment");
+                    }
+                    if(($('#selectMembership :selected').text().includes('Life Membership - Free'))){
+                        cardPayment = false;
+                        $('#Pay_now').html('Sign Up');
+                        $('#payment_li').removeClass('active');
+                        $('#thankyou_li').addClass('active');
+                        $('#payment').removeClass('active show');
+                        $('#thankyou').addClass('active show');
+                        //thankYouPage();
                     }
                     
                     $("#pay_page").hide();
@@ -1496,7 +1419,7 @@
             $('#pay_page').css('display', '');
         });
         $('#gift_aid_back').on('click', function(){
-             if(cardPayment === false) {
+            if(cardPayment === false) {
                 $('#direct_debit_block').show();
                 $('#gift_aid_block').hide();
                 $('#gift_li').removeClass('active');
@@ -1517,7 +1440,7 @@
             $('#gift_aid_block').show();
             $('#gift_li').addClass('active');
             $('#payment').addClass('active show');
-        });
+        });   
         $('#gift_aid_btn').on('click', function(){
                     var accountName = $('#accountName').val();
                     var sortCode1 = $('#scd1').val();
@@ -1541,11 +1464,18 @@
                     $("#DD_acc_name").html(accountName);
                     $("#DD_sort_code").html(sortCode);
                     $("#DD_bank_acc_num").html(accountNumber);
-                    if (cardPayment === true && $('#selectMembership :selected').val() != '') {
-                        SelValFunction($('#selectMembership :selected').val());
-                        $("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
+                    if (cardPayment === true) {
+                        $('#thankyou').addClass('active show');
+                        $('#thankyou_li').addClass('active');
+                        $('#payment').removeClass('active show');
+                        $('#confirmation').removeClass('active show');
+                        $('#confirmation_li').removeClass('active');
+                        $('#payment_li').removeClass('active');
+                        $('#gift_aid_block').hide();
+                        $('#gift_li').removeClass('active');
+                        //$("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                     }
-                });
+                });  
 
     });
     </script>
@@ -1585,14 +1515,14 @@
            }
         function validateGender() {
 
-            var gender = $('#gender').val();
-            console.log('Test gender:'+gender);
-            /*if(gender == ""|| gender == undefined) {
+            var gender = $('input[name=gender]:checked').val();
+            console.log(gender);
+                    if(gender == ""|| gender == undefined) {
                         return false
                     }
                     else{
                         return true;
-            }*/
+            }
         } 
         function validateJoin() {
                     error="";
@@ -1608,13 +1538,13 @@
                         $('#selectTitle').addClass('error');
                         //return false;
                     }
-            /*if(validateGender()) {
+                    if(validateGender()) {
                         //$('.gender-error').addClass('hide');
                     }
                     else{
                         //$('.gender-error').removeClass('hide');
                         error=error+'please select gender.\n'
-                    }*/
+                    }
                     
                     
                     $('input').removeClass("error");    // clear all markup before beginning.
@@ -1639,9 +1569,7 @@
                         error = error + "Please enter your surname.\n";
                         //return false;
                     }
-                    if($('#agree').checked != true) { 
-                        error = error + "Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy";
-                    } 
+                    
                     if($('#textAddress1').val() == "") {
                         $('#address_line_1').addClass('error');
                         error = error + "Please enter your address.\n";
@@ -1781,7 +1709,7 @@
         
         }
     </script>
-    <script>
+   <script>
         $(document).ready(function () {
         $('#edit-submit').on('click', function () {
             $("#edit-keys").addClass('show-form-input', {

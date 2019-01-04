@@ -1,16 +1,12 @@
 <apex:page docType="html-5.0" controller="CourseSearchEnquireController" sidebar="false" showHeader="false">
     <apex:pageMessages id="error" />
-<apex:form id="form">
-    
-    
-    
-                    
+<apex:form id="form">  
 <head>
     <meta charset="utf-8" />
     <title>NCT</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+    <apex:includeScript value="{!URLFOR('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js')}"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" crossorigin="anonymous"></script>
     <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
@@ -21,15 +17,6 @@
         .leftmargin ul li{
         margin-left:0px;
         }
-    .splitgrid-cols{
-        width: calc(33% - 30px);
-        flex: none;
-        margin: 0 15px 15px;
-        background-color: #ffffff;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding-bottom: 15px !important;
-    }
     </style>
     
 </head>
@@ -58,21 +45,20 @@
                     </a>
                 </span> -->
             </div>
-            <div class="text-center text-green logo col-lg-6">
+       <!--     <div class="text-center text-green logo col-lg-6">
                 <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo2_opt.png')}" />
                 
-            </div>
+            </div>  -->
             <div class="col-lg-3 header-right-icons text-right">
-                <span>
-                    <!--<a class="cart-icon">
+                <!--<span>
+                    <a class="cart-icon">
                         <i class="fa fa-shopping-cart text-green" aria-hidden="true"></i>
                     </a>
                     <a class="user-icon">
                         <i class="fa fa-user text-green" aria-hidden="true"></i>
                     </a>
-                    <a class="register-login-btn">Register / Login</a>-->
-                    <a class="register-login-btn" href="{!$Site.Prefix}/secur/logout.jsp"><b>Logout</b></a>
-                </span>
+                    <a class="register-login-btn">Register / Login</a>
+                </span>-->
             </div>
         </div>
     </header>
@@ -80,8 +66,10 @@
     <!-- nav start here -->
     <nav>
         <ul>
-            <li>
-        <a href="{!$Site.Prefix}" class="text-light-green font-bold">Course Search</a>
+            <li>  	
+         <a href="{!$Site.BaseUrl}/apex/CourseSearchEnqire" class="text-light-green font-bold">Course Search</a>    
+        <!--        <a href="{!$Page.CourseSearchEnqire}" class="text-light-green font-bold">Course Search</a>  -->
+               
             </li>
             <!--<li>
                 Pregnancy
@@ -151,6 +139,7 @@
                                     Distance
                                 </span>
                                 <div class="dropdown-menu">
+                                    
                                     <a class="dropdown-item" href="#">100Km</a>
                                     <a class="dropdown-item" href="#">200Km</a>
                                     <a class="dropdown-item" href="#">400Km</a>
@@ -162,6 +151,7 @@
                                     Date
                                 </span>
                                 <div class="dropdown-menu">
+                                    <!--<div>Test</div>-->
                                     <a class="dropdown-item" href="#">24 Oct 2018</a>
                                     <a class="dropdown-item" href="#">30 Oct 2018</a>
                                     <a class="dropdown-item" href="#">01 Nov 2018</a>
@@ -190,18 +180,21 @@
                         <div class="row">
                             <div class="col-lg-4  col-12">
                                 <div class="form-group">
+                                    <div style="padding-left:10px;padding-bottom:10px;"> Enter Your postcode: </div>
                                     <apex:input size="30" html-placeholder="Enter Your postcode" id="membership-postcode" styleClass="form-control form_input" value="{!currentPosition}" required="true"/>
                                     <!--<input type="text" class="form-control form_input" value="{!currentPosition}" id="membership-postcode" placeholder="Enter Your postcode" /> -->
                                 </div>
                             </div>
                             <div class=" col-lg-4 col-12">
                                 <div class="form-group">
-                                   <apex:input type="date" value="{!BDate}"  styleClass="form-control form_input" id="membership-calendar" required="true"/>
-                                   <!--<input type="Date" value="{!BDate}" class="form-control form_input" id="membership-calendar" placeholder="Babies due date/birthday" />-->
+                                   <div style="padding-left:10px;padding-bottom:10px;"> Babies due date/birthday: </div>
+                                   <apex:input type="date" value="{!BDate}" html-placeholder="DD/MM/YYYY" styleClass="form-control form_input" id="membership-calendar" required="true" onfocus="DatePicker.pickDate(false, this , false);"/>
+                                   <!--<input type="Date" value="{!BDate}" class="form-control form_input" id="membership-calendar" placeholder="Babies due date/birthday" required/>-->
                                 </div>
                             </div>
                             <div class="col-lg-4 col-12">
-                                <apex:commandButton status="fetchStatus" style="background-color:#1e7e34 !import;background-color:#1e7e34 !important;background-image:none;color:white;border-radius:20px;width:100px;" styleClass="btn btn-success border-radius nomargin" value="Search" action="{!CourseList}" reRender="lst,lst1,lists,error,lstn,lists1,lst1n,li"/>
+                                <div style="padding-top:33px;"></div>
+                                <apex:commandButton status="fetchStatus" style="background-color:#1e7e34 !important;background-image:none;color:white;border-radius:20px;width:100px;" styleClass="btn btn-success border-radius nomargin" value="Search" action="{!CourseList}" reRender="lst,lst1,lists,error,lstn,lists1,lst1n,li"/>
                                 
                                 <!--<button class="btn btn-success border-radius nomargin" >Search</button> -->
                             </div>
@@ -292,7 +285,7 @@
                                                                         attending one Of our Early Days courses. Getting to grips with the early
                                                                         months of motherhood can be quite a cha lenge - both practically and...
                                                                 </p>
-                <p class="nopadding"> <span class="font-bold">Venue : </span>{!c.Venue__r.MailingStreet__c} {!c.Venue__r.MailingCity__c} {!c.Venue__r.MailingState__c} {!c.Venue__r.MailingCountry__c} {!c.Venue__r.MailingPostalCode__c}</p> <br/> <br/>
+                                                                <p class="nopadding"> <span class="font-bold">Venue : </span>{!c.Venue__r.MailingStreet__c}, {!c.Venue__r.MailingCity__c}, {!c.Venue__r.MailingState__c}, {!c.Venue__r.MailingCountry__c}, {!c.Venue__r.MailingPostalCode__c}</p>   
                                                                 <a href="{!$Page.CourseEnquiry}?id={!c.id}" class="text-light-green font-bold"> Enquire today</a>
                                                             </div>
                                                           
@@ -389,10 +382,10 @@
                                                     <div id="paging_container1" class="container">
                                                         
                                                         <div class="page_navigation"></div>
-                                                    <apex:outputPanel id="lists1" styleclass="row" >
+                                                    <apex:outputPanel id="lists1" style="display:flex;">
                                                     <apex:repeat id="lst1n" value="{!Courses}" var="c" rendered="{!lstresultsAvailable}">
-                                                    <div class="col-lg-4 splitgrid-cols pull-left col-12 nopadding">
-                                                            <div class="row margin20">
+                                                    <div class="col-lg-4 col-12 nopadding">
+                                                            <div class="row cousres_Area margin20">
                                                                     <div class="col-12 nopadding grid_content">
                                                                         <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/mom_kiss.jpg')}" />
                                                                         <!--<img src="assets/mom-hug.jpg" alt=""> -->
@@ -401,14 +394,14 @@
                                                                         <div class="row nomargin">
                                                                             <div class="nopadding">
                                                                                 <p> 
-                                                                                    <apex:outputText value="{0,date,dd' 'MMMMM' 'yyyy}" >
+                                                                                    <apex:outputText value="{0,date,dd MMM hh:mm a}" >
                                                                                         <apex:param value="{!c.Start_Date__c}" />
                                                                                     </apex:outputText>
                                                                                 </p>
                                                                             </div>
                                                                             <p class="grid_header nomargin">{!c.Course_Name__c}</p><!--Parents Not returning to work -->
                                                                             
-                                                                            <p class="nopadding"> <span class="font-bold">Venue : </span>{!c.Venue__r.MailingStreet__c} {!c.Venue__r.MailingCity__c} {!c.Venue__r.MailingState__c} {!c.Venue__r.MailingCountry__c} {!c.Venue__r.MailingPostalCode__c}</p>   
+                                                                            <p class="nopadding"> <span class="font-bold">Venue : </span>{!c.Venue__r.MailingStreet__c}, {!c.Venue__r.MailingCity__c}, {!c.Venue__r.MailingState__c}, {!c.Venue__r.MailingCountry__c}, {!c.Venue__r.MailingPostalCode__c}</p>   
                                                                             <a href="{!$Page.CourseEnquiry}?id={!c.id}" class="text-light-green font-bold"> Enquire today</a> 
                                                                             <!--<apex:outputLink value="{!$Page.CourseBookingDraft}?id={!c.id}" styleClass="text-light-green font-bold"> Enquire today </apex:outputLink>-->
                                                                         </div>
@@ -668,6 +661,14 @@
             //     $(".spiltgrid_items").hide();
             //     $(".discription_grid").show()
             // })
+        });
+        $(function(){
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+        $("[id$='membership-calendar']").attr('min',today);
+       
         });
     </script>
   </body>  

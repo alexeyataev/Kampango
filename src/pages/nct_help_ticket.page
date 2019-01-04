@@ -1,0 +1,207 @@
+<apex:page controller="NCTHelpTicket">
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+    <head>
+            <meta charset="utf-8" />
+            <title>The UK's largest charity for parents | NCT</title>
+            <meta name="description" content="We are the National Childbirth Trust (NCT) - the UK's largest charity for parents. We're here for all parents&amp;nbsp;for their First 1,000 Days, through pregnancy, birth and beyond."/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <link rel="icon" type="image/png" href="assets/favicon.ico"/>
+            <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700"/>
+            <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/community_style.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
+        <style>
+            .courses-nearby-sidebars li{
+                margin-left: 0;
+            }
+        </style>
+    </head>
+
+<body>
+    <section class="help-ticket-screen">
+        <!-- BG-COLOR-SECTION START HERE -->
+        <div>
+            <div class="bg-color-section">
+                <div class="search_field">
+                    <div class="row">
+                        <div class="col-lg-5 col-12">
+                            <h4 class="page_title">Help</h4>
+                            <div class="bg-sec-tabs">
+                                <a class="page_title_links">Home</a>
+                                <a class="page_title_links">Help</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- BG-COLOR-SECTION ENDS HERE -->
+            <div class="container-fluid">
+                <div class="row nomargin ">
+                    <div class="col-md-12 col-12">
+                        <div>
+                            <!-- upcoming Course details start here -->
+                            <div class="">
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-7 col-12">
+                                            <div class="clearfix question-answer-title">
+                                                <span class="icon-before-text pull-left">
+                                                    ?
+                                                </span>
+                                                <span class="pull-left">
+                                                    <h3>Frequently asked questions</h3>
+                                                </span>
+                                            </div>
+                                            <div class="question-answer-sec">
+                                                <div class="question-answer-rows">
+                                                    <div class="question-row">
+                                                        Want to resubscribe to NCT Pregnancy and Baby emaiLs?
+                                                    </div>
+                                                    <div class="answer-row">
+                                                        You can do this via our
+                                                        <a class="new-link-color">online form.</a>
+                                                    </div>
+                                                </div>
+                                                <div class="question-answer-rows">
+                                                    <div class="question-row">
+                                                        Want to change your name, your details and your address?
+                                                    </div>
+                                                    <div class="answer-row">
+                                                        You can do this using our
+                                                        <a class="new-link-color">online registration system</a>
+                                                    </div>
+                                                </div>
+                                                <div class="question-answer-rows">
+                                                    <div class="question-row">
+                                                        Would you like to become a member of NOT?
+                                                    </div>
+                                                    <div class="answer-row">
+                                                        If you would like to become an NCT member please visit our
+                                                        <a class="new-link-color">membership page</a>
+                                                    </div>
+                                                </div>
+                                                <div class="question-answer-rows">
+                                                    <div class="question-row">
+                                                        Are you thinking about volunteering for NCT?
+                                                    </div>
+                                                    <div class="answer-row">
+                                                        If you would Like to become an NCT volunteer please contact your local branch for more information; you can find their details
+                                                        on our
+                                                        <a class="new-link-color">branch search.</a>
+                                                    </div>
+                                                </div>
+                                                <div class="question-answer-rows">
+                                                    <div class="question-row">
+                                                        Are you thinking about attending an NCT Nearly New Sale?
+                                                    </div>
+                                                    <div class="answer-row">
+                                                        If you would like to attend or to be a seller, please contact your local branch for more information. You can find their
+                                                        details using our
+                                                        <a class="new-link-color">branch search.</a>
+                                                    </div>
+                                                </div>
+                                                <div class="question-answer-rows">
+                                                    <div class="question-row">
+                                                        Are you planning to book NCT Antenatal, Postnatal or any other NCT course?
+                                                    </div>
+                                                    <div class="answer-row">
+                                                        If you would like to book an NCT course please search for available courses on our website or contact your NCT booking administrator
+                                                        directLy. You can search for details on our
+                                                        <a class="new-link-color">courses page.</a>
+                                                    </div>
+                                                </div>
+                                                <div class="question-answer-rows">
+                                                    <div class="question-row">
+                                                        Do you want to work for NOT?
+                                                    </div>
+                                                    <div class="answer-row">
+                                                        If you would like to become a part of the NCT team, please visit our
+                                                        <a class="new-link-color">jobs board.</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12 offset-md-1">
+                                            <div class="happening-nearby courses-border-box marginbottom30px">
+                                                <h5>Tickets details</h5>
+                                                <div style="{!IF(isCaseExist, '', 'display:none')}">
+                                                    please find the below created cases.
+                                                </div>
+                                                <div style="{!IF(!isCaseExist, '', 'display:none')}">
+                                                    Currently no tickets available. Please use create button to raise new tickets.
+                                                </div>
+                                                <div>
+                                                    <ul class="courses-nearby-sidebars">
+                                                        <li style="{!IF(isCaseExist, '', 'display:none')}">
+                                                            <div >Your recent ticket reference numbers are
+                                                                <!--a class="new-link-color">0002155</a-->
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <table class="table-width-100per" style="{!IF(isCaseExist, '', 'display:none')}">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div>Ticket No</div>
+                                                                        </td>
+                                                                        <td class="text-right">
+                                                                            <div>Created on</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </thead>
+                                                                
+                                                                <tbody>
+                                                                     <apex:repeat value="{!recordList}" var="record" rows="500">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div>
+                                                                                <a class="new-link-color">{!record.CaseNumber}</a>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="text-right">
+                                                                            <div><!--{!DATETIMEVALUE(record.createddate)} -->
+                                                                                {!(DAY(DATEVALUE(record.createddate)))}-{!(MONTH(DATEVALUE(record.createddate)))}-{!(YEAR(DATEVALUE(record.createddate)))}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </apex:repeat>
+                                                                </tbody>
+                                                            </table>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div>
+                                                    <a href="apex/createTicket" sidebar="false" showHeader="false"> 
+                            <button class="btn btn-succuss border-radius btn-color"> Create Ticket </button> </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- upcoming Course details end here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- footer start here -->
+    <!--<c:Footer /> -->
+    <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/custom.js')}"/>
+</body>
+
+</html>
+</apex:page>

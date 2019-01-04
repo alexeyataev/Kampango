@@ -6,5 +6,10 @@
         <minorNumber>13</minorNumber>
         <namespace>npe03</namespace>
     </packageVersions>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>41</minorNumber>
+        <namespace>npsp4hub</namespace>
+    </packageVersions>
     <status>Active</status>
 </ApexClass>
