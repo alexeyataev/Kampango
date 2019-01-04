@@ -1,10 +1,18 @@
 <apex:page applyHtmlTag="true" docType="html-5.0" controller="NctMembershipPaymentPageController" showHeader="false" sidebar="false">
 <apex:pageMessages id="error-message"/>
+<!--<apex:outputPanel id="hiddenContact">                                                         
+    <input type="hidden" id="hdn" value="{!isContactExisting}" />
+</apex:outputPanel>-->
 <apex:form id="membrShpForm">
+    <!--<apex:outputPanel id="isExist">                                                         
+        <p>Input field:<apex:input type="text" id="isExists" value="{!isContactExisting}"/> </p>
+    </apex:outputPanel>-->
    <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue">
         <apex:param id="selValId" name="seltdName" value="" />
    </apex:actionFunction>
-
+    <!--<apex:actionFunction name="isContactExisting" action="{!existingContactChecker}" reRender="membershipNumber">
+        <apex:param id="accname" name="accname" value="" assignTo="{!accountName}"/>
+   </apex:actionFunction>-->
    <apex:actionFunction name="postCodeVal" action="{!nctBranchs}" reRender="branch_Picklist,hiddenContact">
         <apex:param id="postVal" name="postVal" value="" />
         <apex:param id="emailsVal" name="emailsVal" value=""/>
@@ -431,7 +439,7 @@
                                                         <div class="col-md-2">
                                                             <div><label><sup class="light-orange-color">*</sup>Title</label></div>
                                                             <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="ssalutation" value="{!SSelectedPreferences}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!PreferenceOptions}" />
+                                                                <apex:selectOptions value="{!SPreferenceOptions}" />
                                                                 
                                                           	</apex:selectList></span>
                                                             
@@ -1059,117 +1067,7 @@
         </div>
     </section>
     <!-- footer start here -->
-    <footer>
-        <div class="footer-padding container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <h6 class="footer-header">Enquires and Feeding Helpline</h6>
-                    <div class="footer-content">
-                        <h6 class="num_color">0300 330 0700 </h6>
-                        <p>For practical and emotional Support in all areas of pregnancy.birth and parentehood
-                            including help
-                            with feeding </p>
-                        <a class="link-color see-all-costs">See all Costs</a>
-                        <p class="all-costs-text">Calling us costs the same as any local call, however, if you have free 'inclusive' minutes on a landline or mobile, it will be included in those.</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="footer-header">About</h6>
-                    <ul class="footer-List">
-                        <li>
-                            <a href="https://nct.org.uk/about-nct/first-1000-days">First 1,000 Days</a>
-                        </li>
-                        <li>
-                            <a href="https://nct.org.uk/about-nct/vision-and-strategy">Vission, Mission &amp; goal</a>
-                        </li>
-                        <li>
-                            <a href="https://www.cloudonlinerecruitment.co.uk/nct/">Trustees</a>
-                        </li>
-                        <li>
-                            <a href="https://nct.org.uk/about-nct/trustees">Careers</a>
-                        </li>
-                        <li>
-                            <a href="https://nct.org.uk/about-us/contact-us">Contact us</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="footer-header">News and Views</h6>
-                    <ul class="footer-List">
-                        <li>
-                            <a href="">News</a>
-                        </li>
-                        <li>
-                            <a href="">Blogs</a>
-                        </li>
-                        <li>
-                            <a href="">Forums</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="footer-header">Support us</h6>
-                    <ul class="footer-List">
-                        <li>
-                            <a href="https://nct.org.uk/get-involved/membership">Membership</a>
-                        </li>
-                        <li>
-                            <a href="https://nct.org.uk/get-involved/corporate-partnerships">Partnership</a>
-                        </li>
-                        <li>
-                            <a href="https://nct.org.uk/get-involved/fundraising-activities">Fundraising activities </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h6 class="footer-header">Professionals</h6>
-                    <ul class="footer-List">
-                        <li>
-                            <a href="">Breastfeeding peer support training </a>
-                        </li>
-                        <li>
-                            <a href="">Preparation for birth and beyond antenatal course </a>
-                        </li>
-                        <li>
-                            <a href="">training for professionals </a>
-                        </li>
-                        <li>
-                            <a href="">Diversity and access </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer_links">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-12 nopadding">
-                        <ul>
-                            <li>
-                                <a href="">Research</a>
-                            </li>
-                            <li>
-                                <a href="">Media</a>
-                            </li>
-                            <li>
-                                <a href="https://nct.org.uk/privacy">Privacy and Cookies </a>
-                            </li>
-                            <li>
-                                <a href="https://nct.org.uk/about-us/contact-us">Contact us</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="footer_address">
-                            <p>&copy; 2018 NCT, 30 Euston Square,London, NW12FB. </p>
-                            <p>Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+	<c:Footer />
     <!-- footer end here -->
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
@@ -1267,8 +1165,8 @@
                     console.log($('#postcode').val());
                     var salutation = $('#salutation :selected').text();
                     
-                    var existContact = $('#hdn').val();
-                    console.log(existContact);//&& existContact =='false'
+                    //var existContact = $('#hdn').val();
+                    //console.log(existContact);//&& existContact =='false'
                     
                     //SelBranchValFunction($(selBnchvalue).val());
                     if(validateJoin() ){//&& validateGender() 
@@ -1631,7 +1529,7 @@
                         error = error + "Please enter your surname.\n";
                         //return false;
                     }
-                    if($('#agree').checked != true) { 
+                    if($('#agree').is(":checked") != true) { 
                         error = error + "Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy";
                     } 
                     if($('#textAddress1').val() == "") {
