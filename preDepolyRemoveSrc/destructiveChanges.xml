@@ -5,6 +5,13 @@
         <members>DisplayCourseDetailsController</members>
         <name>ApexClass</name>
     </types>
-   
+    <types>
+        <members>DisplayCourseDetails</members>
+        <name>ApexComponent</name>
+    </types>
+	<types>
+        <members>BookCourse</members>
+        <name>ApexPage</name>
+    </types>
     <version>43.0</version>
 </Package>
