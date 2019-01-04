@@ -2,14 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>codepkg</fullName>
     <types>
-        <members>UserHomeController</members>
-		<members>UserHomeControllerTest</members>
-		<members>CommnityContactShare</members>
-		<members>CourseCaseEnquiryExtension</members>
-		<members>CourseRestApiForDrupalClass</members>
-		<members>Coursebookingcontroller</members>
-		<members>Emailin_classTest</members> 
-		<members>nctPaymentHubPageController</members>
+      
         <name>ApexClass</name>
     </types>
    
