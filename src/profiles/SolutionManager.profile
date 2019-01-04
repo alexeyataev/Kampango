@@ -274,10 +274,7 @@
         <apexClass>MassDeleteExtensionTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>MembershipFormController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+
     <classAccesses>
         <apexClass>MockHttpResponseGenerator</apexClass>
         <enabled>false</enabled>
