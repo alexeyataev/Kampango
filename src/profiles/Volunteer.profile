@@ -3230,9 +3230,7 @@
         <apexPage>ParentCommunitySelfReg</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>        <apexPage>ParentCommunitySelfRegNew</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+    <pageAccesses>
     <pageAccesses>
         <apexPage>ParentHomePageupdated</apexPage>
         <enabled>false</enabled>
