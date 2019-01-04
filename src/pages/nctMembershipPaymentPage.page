@@ -1,18 +1,10 @@
 <apex:page applyHtmlTag="true" docType="html-5.0" controller="NctMembershipPaymentPageController" showHeader="false" sidebar="false">
 <apex:pageMessages id="error-message"/>
-<apex:outputPanel id="hiddenContact">                                                         
-    <input type="hidden" id="hdn" value="{!isContactExisting}" />
-</apex:outputPanel>
 <apex:form id="membrShpForm">
-    <!--<apex:outputPanel id="isExist">                                                         
-        <p>Input field:<apex:input type="text" id="isExists" value="{!isContactExisting}"/> </p>
-    </apex:outputPanel>-->
    <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue">
         <apex:param id="selValId" name="seltdName" value="" />
    </apex:actionFunction>
-    <!--<apex:actionFunction name="isContactExisting" action="{!existingContactChecker}" reRender="membershipNumber">
-        <apex:param id="accname" name="accname" value="" assignTo="{!accountName}"/>
-   </apex:actionFunction>-->
+
    <apex:actionFunction name="postCodeVal" action="{!nctBranchs}" reRender="branch_Picklist,hiddenContact">
         <apex:param id="postVal" name="postVal" value="" />
         <apex:param id="emailsVal" name="emailsVal" value=""/>
