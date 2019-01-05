@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    <labels>
+        <fullName>Payment_Link_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Link URL</shortDescription>
+        <value>https://preuat-mynct.cs102.force.com/PaymentLinkProcessor?paymentId=</value>
+    </labels>
+    
+</CustomLabels>
