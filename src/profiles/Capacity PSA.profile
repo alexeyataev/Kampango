@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-    <applicationVisibilities>
-        <application>NCT_General_Lightning</application>
-        <default>true</default>
-        <visible>true</visible>
-    </applicationVisibilities>
     <custom>true</custom>
     <loginIpRanges>
         <endAddress>255.255.255.255</endAddress>
@@ -226,6 +221,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>SubscribeToLightningReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>TransactionalEmailSend</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

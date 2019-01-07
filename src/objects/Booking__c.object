@@ -904,18 +904,6 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Postcode__c</fullName>
-        <externalId>false</externalId>
-        <formula>Client__r.MailingPostalCode</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Postcode</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Preferred_Payment_Date__c</fullName>
         <externalId>false</externalId>
         <label>Preferred Payment Date</label>
@@ -1166,6 +1154,21 @@ Waiting - This is when parents are added onto a waiting list when their choice o
         <label>All</label>
     </listViews>
     <listViews>
+        <fullName>All_Enquiries</fullName>
+        <columns>NAME</columns>
+        <columns>Client__c</columns>
+        <columns>Course__c</columns>
+        <columns>Due_Date__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Enquiry</value>
+        </filters>
+        <label>All Enquiries</label>
+    </listViews>
+    <listViews>
         <fullName>Enquiries</fullName>
         <booleanFilter>1</booleanFilter>
         <columns>NAME</columns>
@@ -1178,16 +1181,6 @@ Waiting - This is when parents are added onto a waiting list when their choice o
         <label>Enquiries</label>
         <language>en_US</language>
     </listViews>
-    <!--<listViews>
-        <fullName>UnPaid_Courses</fullName>
-        <columns>NAME</columns>
-        <columns>Course__c</columns>
-        <columns>Status__c</columns>
-        <columns>Booking_Date__c</columns>
-        <filterScope>Mine</filterScope>
-        <label>UnPaid Courses</label>
-        <language>en_US</language>
-    </listViews>-->
     <nameField>
         <displayFormat>BK-{000000}</displayFormat>
         <label>Course Booking</label>

@@ -14,20 +14,24 @@
                 <value>
                     <fullName>Individual</fullName>
                     <default>false</default>
+                    <label>Individual</label>
                 </value>
                 <value>
                     <fullName>Joint</fullName>
                     <default>false</default>
+                    <label>Joint</label>
                 </value>
                 <value>
                     <fullName>Practitioner</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
+                    <label>Practitioner</label>
                 </value>
                 <value>
                     <fullName>Volunteer</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
+                    <label>Volunteer</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -46,14 +50,17 @@
                 <value>
                     <fullName>Salesforce</fullName>
                     <default>true</default>
+                    <label>Salesforce</label>
                 </value>
                 <value>
                     <fullName>CARE</fullName>
                     <default>false</default>
+                    <label>CARE</label>
                 </value>
                 <value>
                     <fullName>Intrabiz</fullName>
                     <default>false</default>
+                    <label>Intrabiz</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -88,14 +95,17 @@
                 <value>
                     <fullName>Oral</fullName>
                     <default>false</default>
+                    <label>Oral</label>
                 </value>
                 <value>
                     <fullName>Digital</fullName>
                     <default>false</default>
+                    <label>Digital</label>
                 </value>
                 <value>
                     <fullName>Written</fullName>
                     <default>false</default>
+                    <label>Written</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -114,6 +124,7 @@
                 <value>
                     <fullName>PaymentHub-GiftAid</fullName>
                     <default>false</default>
+                    <label>PaymentHub-GiftAid</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -132,6 +143,7 @@
                 <value>
                     <fullName>NCT Giftaid</fullName>
                     <default>false</default>
+                    <label>NCT Giftaid</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -150,6 +162,7 @@
                 <value>
                     <fullName>Ongoing</fullName>
                     <default>false</default>
+                    <label>Ongoing</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -179,26 +192,32 @@
                 <value>
                     <fullName>Monthly</fullName>
                     <default>false</default>
+                    <label>Monthly</label>
                 </value>
                 <value>
                     <fullName>Quarterly</fullName>
                     <default>false</default>
+                    <label>Quarterly</label>
                 </value>
                 <value>
                     <fullName>Yearly</fullName>
                     <default>false</default>
+                    <label>Yearly</label>
                 </value>
                 <value>
                     <fullName>Weekly</fullName>
                     <default>false</default>
+                    <label>Weekly</label>
                 </value>
                 <value>
                     <fullName>1st and 15th</fullName>
                     <default>false</default>
+                    <label>1st and 15th</label>
                 </value>
                 <value>
                     <fullName>99 Years</fullName>
                     <default>false</default>
+                    <label>99 Years</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -217,30 +236,37 @@
                 <value>
                     <fullName>18 month membership</fullName>
                     <default>false</default>
+                    <label>18 month membership</label>
                 </value>
                 <value>
                     <fullName>12 month membership</fullName>
                     <default>false</default>
+                    <label>12 month membership</label>
                 </value>
                 <value>
                     <fullName>Reduced 12 month membership</fullName>
                     <default>false</default>
+                    <label>Reduced 12 month membership</label>
                 </value>
                 <value>
                     <fullName>4 year membership</fullName>
                     <default>false</default>
+                    <label>4 year membership</label>
                 </value>
                 <value>
                     <fullName>10 year membership</fullName>
                     <default>false</default>
+                    <label>10 year membership</label>
                 </value>
                 <value>
                     <fullName>Life Membership</fullName>
                     <default>false</default>
+                    <label>Life Membership</label>
                 </value>
                 <value>
                     <fullName>Staff Membership</fullName>
                     <default>false</default>
+                    <label>Staff Membership</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -270,14 +296,17 @@
                 <value>
                     <fullName>Credit/Debit Card</fullName>
                     <default>false</default>
+                    <label>Credit/Debit Card</label>
                 </value>
                 <value>
                     <fullName>Direct Debit</fullName>
                     <default>false</default>
+                    <label>Direct Debit</label>
                 </value>
                 <value>
                     <fullName>GiftAid</fullName>
                     <default>false</default>
+                    <label>GiftAid</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -296,19 +325,23 @@
                 <value>
                     <fullName>PaymentHub-BACS</fullName>
                     <default>false</default>
+                    <label>PaymentHub-BACS</label>
                 </value>
                 <value>
                     <fullName>PaymentHub-Stripe</fullName>
                     <default>false</default>
+                    <label>PaymentHub-Stripe</label>
                 </value>
                 <value>
                     <fullName>PaymentHub-WorldPay</fullName>
                     <default>false</default>
+                    <label>PaymentHub-WorldPay</label>
                 </value>
                 <value>
                     <fullName>PaymentHub-GiftAid</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
+                    <label>PaymentHub-GiftAid</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -327,6 +360,7 @@
                 <value>
                     <fullName>NCT Membership Collections - S18</fullName>
                     <default>false</default>
+                    <label>NCT Membership Collections - S18</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -345,70 +379,87 @@
                 <value>
                     <fullName>Credit/Debit Card (£57)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit Card (£57)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit (£9.50 per quarter)</fullName>
                     <default>false</default>
+                    <label>Direct Debit (£9.50 per quarter)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit (£57)</fullName>
                     <default>false</default>
+                    <label>Direct Debit (£57)</label>
                 </value>
                 <value>
                     <fullName>Credit/Debit Card (£48)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit Card (£48)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit (£12 per quarter)</fullName>
                     <default>false</default>
+                    <label>Direct Debit (£12 per quarter)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit (£48)</fullName>
                     <default>false</default>
+                    <label>Direct Debit (£48)</label>
                 </value>
                 <value>
                     <fullName>Credit/Debit Card (£10)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit Card (£10)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit (£2.50 per quarter)</fullName>
                     <default>false</default>
+                    <label>Direct Debit (£2.50 per quarter)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit (£10)</fullName>
                     <default>false</default>
+                    <label>Direct Debit (£10)</label>
                 </value>
                 <value>
                     <fullName>Credit/Debit Card (£120)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit Card (£120)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit (£120)</fullName>
                     <default>false</default>
+                    <label>Direct Debit (£120)</label>
                 </value>
                 <value>
                     <fullName>Credit/Debit Card (£250)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit Card (£250)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit (£250)</fullName>
                     <default>false</default>
+                    <label>Direct Debit (£250)</label>
                 </value>
                 <value>
                     <fullName>Credit/Debit Card (£26)</fullName>
                     <default>false</default>
+                    <label>Credit/Debit Card (£26)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit (£26)</fullName>
                     <default>false</default>
+                    <label>Direct Debit (£26)</label>
                 </value>
                 <value>
                     <fullName>Direct Debit (£6.50 per quarter)</fullName>
                     <default>false</default>
+                    <label>Direct Debit (£6.50 per quarter)</label>
                 </value>
                 <value>
                     <fullName>Life Membership - Free</fullName>
                     <default>false</default>
+                    <label>Life Membership - Free</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -435,10 +486,12 @@
                 <value>
                     <fullName>Multiply By</fullName>
                     <default>true</default>
+                    <label>Multiply By</label>
                 </value>
                 <value>
                     <fullName>Divide By</fullName>
                     <default>false</default>
+                    <label>Divide By</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -457,30 +510,37 @@
                 <value>
                     <fullName>Volunteer/Practitioner</fullName>
                     <default>false</default>
+                    <label>Volunteer/Practitioner</label>
                 </value>
                 <value>
                     <fullName>Parent on benefits</fullName>
                     <default>false</default>
+                    <label>Parent on benefits</label>
                 </value>
                 <value>
                     <fullName>Staff only</fullName>
                     <default>false</default>
+                    <label>Staff only</label>
                 </value>
                 <value>
                     <fullName>Parent</fullName>
                     <default>false</default>
+                    <label>Parent</label>
                 </value>
                 <value>
                     <fullName>Parent, Companion</fullName>
                     <default>false</default>
+                    <label>Parent, Companion</label>
                 </value>
                 <value>
                     <fullName>Volunteer</fullName>
                     <default>false</default>
+                    <label>Volunteer</label>
                 </value>
                 <value>
                     <fullName>Practitioner</fullName>
                     <default>false</default>
+                    <label>Practitioner</label>
                 </value>
             </valueSetDefinition>
         </valueSet>

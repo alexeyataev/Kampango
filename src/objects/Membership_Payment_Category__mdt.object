@@ -14,14 +14,17 @@
                 <value>
                     <fullName>Salesforce</fullName>
                     <default>true</default>
+                    <label>Salesforce</label>
                 </value>
                 <value>
                     <fullName>CARE</fullName>
                     <default>false</default>
+                    <label>CARE</label>
                 </value>
                 <value>
                     <fullName>Intrabiz</fullName>
                     <default>false</default>
+                    <label>Intrabiz</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
