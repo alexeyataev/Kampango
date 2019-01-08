@@ -1,12 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-    
     <labels>
-        <fullName>Payment_Link_URL</fullName>
+        <fullName>API_TOKEN</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Payment Link URL</shortDescription>
-        <value>https://preuat-mynct.cs102.force.com/PaymentLinkProcessor?paymentId=</value>
+        <shortDescription>API_TOKEN</shortDescription>
+        <value>qJKBsZNzdqClIuKvGx0zIApojFpYSIBSFwDA2qalvq2BljHVIU1ktRM5KHfNciQyW9PRK4bxYgiNwxKuqokMK7zjfzcM47cj53crArfpl8siZD9vpm9u4swxg3nl75sD32BzZimaSvGnAsIBbQmwneacYkt9wSpddoxgJRJQo43esYuWTxp8SHzE8jgBv50Itvtu68wk</value>
     </labels>
-    
+    <labels>
+        <fullName>CLIENTID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CLIENTID</shortDescription>
+        <value>3MVG9llQY5kM9T6dLJQdcZnV9pOGDMM6ONAFoTiZ5jTG34DQvBCb3nGe5YogBoZ8NLt8i.NfOUDmEt00uvRsm</value>
+    </labels>
+    <labels>
+        <fullName>CLIENT_SECRET</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CLIENT_SECRET</shortDescription>
+        <value>FE86B45521682BF5B801A881D6E75AC84A6009D37D0D4C47B51E25CCB51CA0A7</value>
+    </labels>
+    <labels>
+        <fullName>ENDPOINTOAUTH</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ENDPOINTOAUTH</shortDescription>
+        <value>https://test.salesforce.com/services/oauth2/token?</value>
+    </labels>
+    <labels>
+        <fullName>ENDPOINT_PASSWORD</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ENDPOINT_PASSWORD</shortDescription>
+        <value>api@nct@123lWwQJknCS3Z9GmdRxX1OebUkN</value>
+    </labels>
+    <labels>
+        <fullName>ENDPOINT_USERNAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ENDPOINT_USERNAME</shortDescription>
+        <value>payment.api@nct.org.uk.testdeploy</value>
+    </labels>
+    <labels>
+        <fullName>PAYMENTSTATUSURL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PAYMENTSTATUSURL</shortDescription>
+        <value>https://testdeploy-mynct.cs108.force.com/nctMembershipPaymentPage</value>
+    </labels>
+    <labels>
+        <fullName>SF_INSTANCE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SF_INSTANCE</shortDescription>
+        <value>https://cs108.salesforce.com</value>
+    </labels>
 </CustomLabels>

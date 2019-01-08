@@ -23,6 +23,14 @@
                 <behavior>Edit</behavior>
                 <field>cpm__Source__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>cpm__Custom_IBAN__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>gaid__Contact_has_Active_GAD__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -67,7 +75,7 @@
                 <field>cpm__Due_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>cpm__Mandatory_payment__c</field>
             </layoutItems>
             <layoutItems>
@@ -150,10 +158,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>gaid__Eligible_for_GiftAid_formula__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>gaid__Contact_has_Active_GAD__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

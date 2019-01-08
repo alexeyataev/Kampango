@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>Request_Branch_Order_Form</customButtons>
-    <!--<customButtons>Upload_Proof_Of_Address</customButtons>-->
     <excludeButtons>AccountHierarchy</excludeButtons>
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
@@ -386,12 +385,6 @@
         <fields>npo02__TotalOppAmount__c</fields>
         <relatedList>Account.Branch__c</relatedList>
     </relatedLists>
-    <!--<relatedLists>
-        <fields>NAME</fields>
-        <fields>Event_Start_Date__c</fields>
-        <fields>Event_End_Date__c</fields>
-        <relatedList>Event__c.Branch__c</relatedList>
-    </relatedLists>-->
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>

@@ -237,11 +237,6 @@
             <actionType>StandardButton</actionType>
             <sortOrder>16</sortOrder>
         </platformActionListItems>
-        <!--<platformActionListItems>
-            <actionName>Course__c.EMail_Attendees</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>17</sortOrder>
-        </platformActionListItems>-->
     </platformActionList>
     <quickActionList>
         <quickActionListItems>
@@ -265,9 +260,6 @@
         <quickActionListItems>
             <quickActionName>FeedItem.ContentNote</quickActionName>
         </quickActionListItems>
-        <!--<quickActionListItems>
-            <quickActionName>Course__c.EMail_Attendees</quickActionName>
-        </quickActionListItems>-->
     </quickActionList>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
