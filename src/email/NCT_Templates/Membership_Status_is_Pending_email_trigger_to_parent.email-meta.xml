@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Membership Status is Pending email trigger to parent</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Membership Status is Pending email trigger to parent</name>
+    <style>none</style>
+    <subject>Membership Status is Pending email trigger to parent</subject>
+    <textOnly>NCT
+
+Hi {!npe03__Recurring_Donation__c.First_Contact__c}
+
+Your Membership Payment is Pending
+
+Membership Number : {!npe03__Recurring_Donation__c.00N1j000000VbRB}
+
+Membership Type : {!npe03__Recurring_Donation__c.Membership_type__c}
+
+Membership Status : {!npe03__Recurring_Donation__c.Membership_Status__c}
+
+Here is Detail link of your membership   {!npe03__Recurring_Donation__c.Link}
+
+Here is Direct link for Payment -  Click here to redirect  the payment Page Regards, NCT Team
+Unsubscribe
+
+© 2018 NCT, 30 Euston Square,London, NW12FB.
+
+Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>NCT membership cancelled conformation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>nctMembershipCancelled</name>
+    <style>none</style>
+    <subject>Membership cancelled notification</subject>
+    <textOnly>$title
+
+Membership cancelled
+
+View in browser
+
+Local activities &amp; meet ups
+
+Get involved
+
+About us
+
+We&apos;re sad to see you go
+
+Hi @FIRSTNAME@,
+
+
+
+This is confirmation that your membership has now been cancelled.
+
+
+
+We hope we can support you again sometime in the future.
+
+
+
+All the best,
+
+
+
+The membership team
+
+
+
+
+
+Please do not reply to this email.
+
+
+
+If you no longer wish to receive emails from NCT or wish to choose the types of email we send to you, please click here: Want to unsubscribe or change your details?
+
+
+You can resubscribe at any time by visiting our website to register your details.
+
+� 2018 NCT, 30 Euston Square, London, NW1 2FB.
+
+Reg Charity No (England and Wales): 801395, (Scotland): SC041592. Reg Company No: 2370573.
+
+
+
+Unsubscribe |  Privacy Policy</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

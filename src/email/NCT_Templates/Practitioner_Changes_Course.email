@@ -38,7 +38,9 @@
 <p>Venue Address: {!Course__c.Venue_Address__c} </p>
 <p>This session course is scheduled to start at  {!Course__c.Start_Date__c}  and end at  {!Course__c.End_Date__c}  </p>
 
+
 <p>Please see link to the course here  {!Course__c.Link}  </p>
+
 <p>For more information, please contact your capacity PSA</p>
 
 

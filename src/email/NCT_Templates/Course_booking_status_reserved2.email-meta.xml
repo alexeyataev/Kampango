@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
-    <available>true</available>
+    <available>false</available>
     <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>GW_Volunteers__Volunteer_Sample_Letterhead</letterhead>
     <name>Course booking status reserved2</name>
-    <style>none</style>
+    <style>formalLetter</style>
     <subject>Course booking status reserved</subject>
-    <textOnly>Hi Jane
+    <textOnly>Hello{!User.Name},
 
-Thank you for enquiry we are currently checking availability for  insert Course | insert start Date.
 
-we will be in touch shortly with availability and more information on the course. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley
 
-Regards, NCT Team
-You might be
-18 month membership
+Your course booking status has been Reserved
 
-18 months money off baby supplies,holidays, and services when you help us continue being at the leading charity for pregnancy &amp; young families.
+Course Booking id : {!Booking__c.Name}
+Course Booking Name: {!Course__c.Course_Name__c}
+Course Booking Status: {!Booking__c.Status__c}
 
-Find out More...
 
-£ 57 Add to Basket
-Unsubscribe
 
-© 2018 NCT, 30 Euston Square,London, NW12FB.
-
-Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</textOnly>
-    <type>custom</type>
+Thanks &amp; Regards,
+NCT Team</textOnly>
+    <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
