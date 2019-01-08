@@ -151,8 +151,7 @@
         <name>Flow</name>
     </types>
 	<types>
-        <members>NCT_Templates/Case</members>        
-        <members>NCT_Templates/Course_booking_status_reserved2</members>
+        <members>NCT_Templates/Case</members>     
         <members>unfiled$public/Parent_Welcome_Email</members>
 		<members>GW_Volunteers__Volunteers_Email_Templates/Volunteer_de_register</members>
         <members>NCT_Templates/Booking_Status_is_Paid_or_Installment</members>
