@@ -518,8 +518,8 @@ public class NctMembershipPaymentPageController
 
         
         PaymentRequestVo paymentReq = new PaymentRequestVo();
-        paymentReq.SuccessURL= System.Label.PAYMENTSUCCESSURL+'/nctPaymentHubSuccessMsgPage?contId='+ newCont.Id;//'https://preuat-mynct.cs102.force.com/nctMembershipPaymentPage/nctPaymentHubErrorMsgPage'
-        paymentReq.FailureURL= System.Label.PAYMENTSUCCESSURL+'/nctPaymentHubErrorMsgPage';
+        paymentReq.SuccessURL= System.Label.PAYMENTSTATUSURL+'/nctPaymentHubSuccessMsgPage?contId='+ newCont.Id;//'https://preuat-mynct.cs102.force.com/nctMembershipPaymentPage/nctPaymentHubErrorMsgPage'
+        paymentReq.FailureURL= System.Label.PAYMENTSTATUSURL+'/nctPaymentHubErrorMsgPage';
         paymentReq.Origin='test';
  
         PaymentRequestVo.ContactVo cvo = new PaymentRequestVo.ContactVo();
