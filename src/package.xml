@@ -178,7 +178,6 @@
         <members>NCT_Templates/Course_Created</members>
         <members>NCT_Templates/Course_booking_status_Confirmed</members>
         <members>NCT_Templates/Course_booking_status_reserved</members>
-        <members>NCT_Templates/Course_booking_status_reserved2</members>
         <members>NCT_Templates/ETPaymentLinkExpiryTemplate</members>
         <members>NCT_Templates/ETPaymentLinkExpiryTemplate</members>
         <members>NCT_Templates/Membership_Renewal_Date</members>
