@@ -76,7 +76,72 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-        <fields>
+    <fields>
+        <fullName>Branch__c</fullName>
+        <externalId>false</externalId>
+        <label>Branch</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>PostCode Allocation</relationshipLabel>
+        <relationshipName>PostCode_Allocation</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Capacity_PSA__c</fullName>
+        <description>Should be checked on pickvalue &apos;Capacity PSA&apos; under PSA Roles</description>
+        <externalId>false</externalId>
+        <formula>ISPICKVAL( PSA_Roles__c , &apos;Capacity PSA&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Capacity PSA</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+     <fields>
+        <fullName>Data_Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Source</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Salesforce</fullName>
+                    <default>true</default>
+                    <label>Salesforce</label>
+                </value>
+                <value>
+                    <fullName>CARE</fullName>
+                    <default>false</default>
+                    <label>CARE</label>
+                </value>
+                <value>
+                    <fullName>Intrabiz</fullName>
+                    <default>false</default>
+                    <label>Intrabiz</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Enquiry_PSA__c</fullName>
+        <externalId>false</externalId>
+        <formula>ISPICKVAL( PSA_Roles__c , &apos;Enquiry PSA&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Enquiry PSA</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>PLatitude__c</fullName>
         <externalId>false</externalId>
         <formula>Branch__r.Address_Latitude__c</formula>
@@ -103,41 +168,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Branch__c</fullName>
-        <externalId>false</externalId>
-        <label>Branch</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>PostCode Allocation</relationshipLabel>
-        <relationshipName>PostCode_Allocation</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields>
-    <fields>
-        <fullName>Capacity_PSA__c</fullName>
-        <description>Should be checked on pickvalue &apos;Capacity PSA&apos; under PSA Roles</description>
-        <externalId>false</externalId>
-        <formula>ISPICKVAL( PSA_Roles__c , &apos;Capacity PSA&apos;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Capacity PSA</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Enquiry_PSA__c</fullName>
-        <externalId>false</externalId>
-        <formula>ISPICKVAL( PSA_Roles__c , &apos;Enquiry PSA&apos;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Enquiry PSA</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>PSA_Roles__c</fullName>

@@ -243,36 +243,6 @@
         <type>Summary</type>
     </fields>
     <fields>
-        <fullName>FAddress_Latitude__c</fullName>
-        <description>Venue__r.Address_Latitude__c</description>
-        <externalId>false</externalId>
-        <formula>1</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>FAddress_Latitude</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>4</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FAddress_Longitude__c</fullName>
-        <description>Venue__r.Address_Longitude__c</description>
-        <externalId>false</externalId>
-        <formula>1</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>FAddress_Longitude</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>4</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Cancellation_Reason__c</fullName>
         <externalId>false</externalId>
         <label>Cancellation Reason</label>
@@ -894,6 +864,36 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+     <fields>
+        <fullName>Data_Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Source</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Salesforce</fullName>
+                    <default>true</default>
+                    <label>Salesforce</label>
+                </value>
+                <value>
+                    <fullName>CARE</fullName>
+                    <default>false</default>
+                    <label>CARE</label>
+                </value>
+                <value>
+                    <fullName>Intrabiz</fullName>
+                    <default>false</default>
+                    <label>Intrabiz</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
     <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
@@ -974,6 +974,58 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FAddress_Latitude__c</fullName>
+        <description>Venue__r.Address_Latitude__c</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FAddress_Latitude</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FAddress_Longitude__c</fullName>
+        <description>Venue__r.Address_Longitude__c</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FAddress_Longitude</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FEnd_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE( End_Date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FEnd Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FStart_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE( Start_Date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FStart Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Fee__c</fullName>
         <externalId>false</externalId>
         <label>Standard Fee</label>
@@ -986,6 +1038,28 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>First_Contact_CB__c</fullName>
+        <externalId>false</externalId>
+        <label>First Contact_CB</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fully_Booked__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( People_Count__c = 22, true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fully Booked</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Individual__c</fullName>
         <externalId>false</externalId>
         <label>Individual fee</label>
@@ -996,6 +1070,20 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Maximum_People__c</fullName>
+        <defaultValue>20</defaultValue>
+        <externalId>false</externalId>
+        <label>Maximum People</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Maximum_Places_Per_Course__c</fullName>
@@ -1118,6 +1206,20 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>People_Count__c</fullName>
+        <externalId>false</externalId>
+        <formula>(  Couples_Count__c  * 2 ) + Singles_Count__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>People Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>PlacesNew__c</fullName>
         <externalId>false</externalId>
         <label>Places</label>
@@ -1218,18 +1320,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>course_start_date__c</fullName>
-        <externalId>false</externalId>
-        <formula>MID(TEXT( Start_Date__c ), 9, 2)&amp;&quot;-&quot;&amp; MID(TEXT( Start_Date__c ), 6, 3)&amp;&quot;&quot;&amp;LEFT( TEXT( Start_Date__c ) , 4)&amp;&quot; &quot;&amp; MID(TEXT( Start_Date__c ),12, 8)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>course start date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Session_Count__c</fullName>
         <externalId>false</externalId>
         <label>Session Count</label>
@@ -1238,78 +1328,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
-    </fields>
-        <fields>
-        <fullName>FEnd_Date__c</fullName>
-        <externalId>false</externalId>
-        <formula>DATEVALUE( End_Date__c )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>FEnd Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>FStart_Date__c</fullName>
-        <externalId>false</externalId>
-        <formula>DATEVALUE( Start_Date__c )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>FStart Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>First_Contact_CB__c</fullName>
-        <externalId>false</externalId>
-        <label>First Contact_CB</label>
-        <length>80</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Fully_Booked__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF( People_Count__c = 22, true, false)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Fully Booked</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Maximum_People__c</fullName>
-        <defaultValue>20</defaultValue>
-        <externalId>false</externalId>
-        <label>Maximum People</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>People_Count__c</fullName>
-        <externalId>false</externalId>
-        <formula>(  Couples_Count__c  * 2 ) + Singles_Count__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>People Count</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Singles_Count__c</fullName>
@@ -1483,6 +1501,18 @@ Completed - All the session of course have been completed by the practitioner.</
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>course_start_date__c</fullName>
+        <externalId>false</externalId>
+        <formula>MID(TEXT( Start_Date__c ), 9, 2)&amp;&quot;-&quot;&amp; MID(TEXT( Start_Date__c ), 6, 3)&amp;&quot;&quot;&amp;LEFT( TEXT( Start_Date__c ) , 4)&amp;&quot; &quot;&amp; MID(TEXT( Start_Date__c ),12, 8)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>course start date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <label>Course</label>
     <listViews>
