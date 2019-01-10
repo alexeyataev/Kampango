@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>npsp__Manage_Household</customButtons>
-    <!--<customButtons>Upload_Proof_Of_Address</customButtons>-->
     <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
@@ -30,10 +29,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Branch_Code__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Mailing_Latitude__c</field>
             </layoutItems>
             <layoutItems>
@@ -43,6 +38,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Parking_Available__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Branch__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Branch_Code__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -69,10 +72,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Region__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Branch__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -159,11 +158,6 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>Edit</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>0</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>npsp__Manage_Household</actionName>
             <actionType>CustomButton</actionType>
             <sortOrder>1</sortOrder>
@@ -222,6 +216,11 @@
             <actionName>EmailHighlightAction</actionName>
             <actionType>ProductivityAction</actionType>
             <sortOrder>12</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Edit</actionName>
+            <actionType>StandardButton</actionType>
+            <sortOrder>0</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
@@ -344,22 +343,6 @@
         <fields>CREATED_DATE</fields>
         <relatedList>PostCode_Allocation__c.Branch__c</relatedList>
     </relatedLists>
-    <relatedLists>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>ACCOUNT.RECORDTYPE</fields>
-        <fields>ACCOUNT.TYPE</fields>
-        <fields>npe01__One2OneContact__c</fields>
-        <fields>ACCOUNT.ADDRESS1_CITY</fields>
-        <fields>ACCOUNT.PHONE1</fields>
-        <fields>npo02__TotalOppAmount__c</fields>
-        <relatedList>Account.Branch__c</relatedList>
-    </relatedLists>
-    <!--<relatedLists>
-        <fields>NAME</fields>
-        <fields>Event_Start_Date__c</fields>
-        <fields>Event_End_Date__c</fields>
-        <relatedList>Event__c.Branch__c</relatedList>
-    </relatedLists>-->
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

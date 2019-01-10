@@ -10,7 +10,7 @@
 
 Dear Psa,
 
-This is to let you know that a cancellation has been made on the  {!Course__c.Course_Type__c}
+This is to let you know that a cancellation has been made on the   {!Course__c.Course_Type__c}
 
 This cancellation is less than 10 days before the start of the course.
 

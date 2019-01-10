@@ -567,13 +567,13 @@
                                                         <div class="privacy-statement-title">
                                                           Privacy statement
                                                       </div>
-                                                      <p>NCT would like to keep in touch with you about our services, support, events, campaings and
+                                                      <p>NCT would like to keep in touch with you about our services, support, events, campaigns and
                                                         fundraising. We'll only contact you in the ways you want, and we'll keep your information safe.
-                                                        Our priuvacy policy has full details of how we use personal data 
+                                                        Our privacy policy has full details of how we use personal data 
                                                         <a href="https://www.nct.org.uk/privacy" class="underlink" target="_open">https://www.nct.org.uk/privacy</a>
                                                       </p>
                                                       <div class="agree-statement-row">
-                                                          <input id="agree" type="checkbox" /> I have read and unserdstand/agree with our websites Terms and Conditions.
+                                                          <input id="agree" type="checkbox" /> I have read and understand/agree with our websites Terms and Conditions.
                                                       </div>
                                                   </div>
                                                   </div>
@@ -1625,7 +1625,7 @@
                         error = error + "Please enter your address.\n";
                         //return false;
                     }
-                    if($('#agree').checked != true) { 
+                    if($('#agree').is(":checked") != true) { 
                         error = error + "Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy";
                     } 
                 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <!--<customButtons>Upload_Proof_Of_Address</customButtons> -->
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>DataDotComAccountInsights</excludeButtons>
     <excludeButtons>DataDotComClean</excludeButtons>
@@ -91,14 +90,14 @@
             <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>AccountAddToCampaign</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>3</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>Request_Branch_Order_Form</actionName>
             <actionType>CustomButton</actionType>
             <sortOrder>4</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>AccountAddToCampaign</actionName>
+            <actionType>StandardButton</actionType>
+            <sortOrder>3</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedContent>
@@ -124,12 +123,6 @@
         <fields>CREATED_DATE</fields>
         <relatedList>PostCode_Allocation__c.Branch__c</relatedList>
     </relatedLists>
-    <!--<relatedLists>
-        <fields>NAME</fields>
-        <fields>Event_Start_Date__c</fields>
-        <fields>Event_End_Date__c</fields>
-        <relatedList>Event__c.Branch__c</relatedList>
-    </relatedLists>-->
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

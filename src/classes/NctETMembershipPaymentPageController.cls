@@ -97,6 +97,8 @@ public class NctETMembershipPaymentPageController
     public boolean isVolunteer {get; set;}
     public boolean isStaff {get; set;}
     public string targetCustomer{get; set;}
+    public boolean isMembershipExists {get; set;}
+    
     public nctETMembershipPaymentPageController()
     {  
         contId = ApexPages.currentPage().getParameters().get('Id');
@@ -129,7 +131,8 @@ public class NctETMembershipPaymentPageController
         
         
     }
-    public void receiveInput(){
+    public PageReference  receiveInput(){
+        
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
         System.debug('Twomems :'+twomems);
         System.debug('SelectedPreferences: '+SelectedPreferences);
@@ -153,32 +156,130 @@ public class NctETMembershipPaymentPageController
         System.debug('isStaff: '+isStaff);
         isVolunteer = ContactUtilities.isVolunteerExisting(contId);
         isPractitioner = MembershipUtilties.isPractitioner(firstname, lastname, email);
-        targetCustomer =ContactUtilities.targetCustomer(isStaff,isVolunteer,isPractitioner,twomems);
+        targetCustomer = ContactUtilities.targetCustomer(isStaff,isVolunteer,isPractitioner,twomems);
+        isMembershipExists = ContactUtilities.isMembershipExists(contId, email);
         
+        
+        System.debug('isMembershipExists: '+isMembershipExists);
         System.debug('targetCustomer:'+targetCustomer);
-        if(isContactExisting == false && newCont == null){
-            if(newCont == null )
-            {
-                newCont = new Contact();
-                newCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
-                newCont.Prefered_First_Name__c = firstname;
-                newCont.LastName = lastname;
-                newCont.Email = email;
-                newCont.Phone = phone;
-                newCont.MailingPostalCode = postCode;
-                //if(eDate != null){
-                    //expDate = Date.valueOf(eDate);
-                    //newCont.Expected_Due_Date__c = expDate; 
-                //}
-                newCont.Branch__c = selectBranch; 
-                newCont.Salutation = SelectedPreferences;
-                newCont.Gender__c = Genders;
-                newCont.Contact_Prefrence__c = ContactPreference;
-                newCont.MailingStreet = streetValue+''+streetValue2+''+streetValue2;
-                newCont.MailingState = stateValue;
-                newCont.MailingCity = cityValue;
-                Database.insert(newCont, false);
+        if(isMembershipExists == true ){
+            System.debug('Test Redirect');
+            if(contId != null){
+                return membershipRedirect(contId);
+            }
+            else{
+                npe03__Recurring_Donation__c recDonList = [SELECT 
+                                                              Id, 
+                                                              Name,
+                                                              npe03__Contact__c,
+                                                              npe03__Contact__r.Email,
+                                                              Membership_Number__c 
+                                                       FROM 
+                                                              npe03__Recurring_Donation__c
+                                                       WHERE
+                                                              npe03__Contact__r.Email = :email limit 1];
+                Id conID = recDonList.npe03__Contact__r.Id;
+                System.debug('conID: '+conId);
+                return membershipRedirect(conID);
+            }
+            	
+        }
+        else{
+            if(isContactExisting == false && newCont == null){
+                if(newCont == null )
+                {
+                    newCont = new Contact();
+                    newCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
+                    newCont.Prefered_First_Name__c = firstname;
+                    newCont.LastName = lastname;
+                    newCont.Email = email;
+                    newCont.Phone = phone;
+                    newCont.MailingPostalCode = postCode;
+                    //if(eDate != null){
+                        //expDate = Date.valueOf(eDate);
+                        //newCont.Expected_Due_Date__c = expDate; 
+                    //}
+                    newCont.Branch__c = selectBranch; 
+                    newCont.Salutation = SelectedPreferences;
+                    newCont.Gender__c = Genders;
+                    newCont.Contact_Prefrence__c = ContactPreference;
+                    newCont.MailingStreet = streetValue+''+streetValue2+''+streetValue2;
+                    newCont.MailingState = stateValue;
+                    newCont.MailingCity = cityValue;
+                    Database.insert(newCont, false);
+                
+                    if(twomems == 'true' && sfirstname != null || sfirstname != '')
+                    {
+                        snewCont = new Contact();
+                        snewCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Companion').getRecordTypeId();
+                        snewCont.Prefered_First_Name__c = sfirstname;
+                        snewCont.LastName = slastname;
+                        snewCont.Email = semail;
+                        snewCont.Phone = sphone;
+                        snewCont.Parent_Contact__c = newCont.id;
+                        snewCont.MailingPostalCode = postCode;
+                        //snewCont.Contact_Prefrence__c = ContactSelectedPreferences;
+                        //snewCont.Expected_Due_Date__c = expDate;
+                        snewCont.Gender__c = SGenders;
+                        snewCont.Salutation = SSelectedPreferences;     
+                        snewCont.Branch__c = selectBranch;
+                        snewCont.MailingStreet = streetValue+''+streetValue2+''+streetValue2;
+                        snewCont.MailingState = stateValue;
+                        snewCont.MailingCity = cityValue;
+                        Database.insert(snewCont, false);
+                        membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);
+                    }
+                    else 
+                    {
+                        System.debug('twomems '+twomems);
+                        membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
+                        System.debug('membershipTypeMap '+membershipTypeMap);
+                    }
+                }
+            }
+                
+            //}
+            // Yet to define the custom metadata, once done the logic can be updated and modified accordingly, hence commenting
             
+            else if(contId != null)
+            {
+                //accntContRel =[SELECT Id,Roles FROM AccountContactRelation where contact.id=:contId limit 1];
+                
+                //isPractitioner = false;
+                System.debug('isPractitioner :'+isPractitioner);
+                //if(accntContRel.id != null || isPractitioner == true){
+                if(isVolunteer == true || isPractitioner == true){
+                    //if(isPractitioner == true){ //accntContRel.Roles == 'Volunteer' || 
+                    if(twomems == 'true')
+                    {   
+                        membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
+                    }
+                    else 
+                    {
+                        System.debug('twomems '+twomems);
+                        membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
+                        System.debug('membershipTypeMap '+membershipTypeMap);
+                    }
+                      
+                    
+                }
+             
+                else{
+                    if(twomems == 'true')
+                    {   
+                        membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
+                    }
+                    else 
+                    {
+                        System.debug('twomems '+twomems);
+                        membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
+                        System.debug('membershipTypeMap '+membershipTypeMap);
+                    }
+                }
+            }
+            else if(isContactExisting == true){
+                System.debug('Contact Exists(Next Flow Starts): '+isContactExisting);
+                newCont =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact where Email = :email limit 1];
                 if(twomems == 'true' && sfirstname != null || sfirstname != '')
                 {
                     snewCont = new Contact();
@@ -189,120 +290,51 @@ public class NctETMembershipPaymentPageController
                     snewCont.Phone = sphone;
                     snewCont.Parent_Contact__c = newCont.id;
                     snewCont.MailingPostalCode = postCode;
-                    //snewCont.Contact_Prefrence__c = ContactSelectedPreferences;
                     //snewCont.Expected_Due_Date__c = expDate;
                     snewCont.Gender__c = SGenders;
                     snewCont.Salutation = SSelectedPreferences;     
                     snewCont.Branch__c = selectBranch;
+                    //snewCont.Contact_Prefrence__c = ContactSelectedPreferences;
                     snewCont.MailingStreet = streetValue+''+streetValue2+''+streetValue2;
                     snewCont.MailingState = stateValue;
                     snewCont.MailingCity = cityValue;
                     Database.insert(snewCont, false);
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);
+                    //membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint','Parent, Companion');
+                    
                 }
-                else 
-                {
-                    System.debug('twomems '+twomems);
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
-                    System.debug('membershipTypeMap '+membershipTypeMap);
+                if(isVolunteer == true || isPractitioner == true){
+                        //if(isPractitioner == true){ //accntContRel.Roles == 'Volunteer' || 
+                    if(twomems == 'true')
+                    {   
+                        membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
+                    }
+                    else 
+                    {
+                        System.debug('twomems '+twomems);
+                        membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
+                        System.debug('membershipTypeMap '+membershipTypeMap);
+                    }
+                    
+                    
                 }
+                
+                else{
+                    if(twomems == 'true')
+                    {   
+                        membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
+                    }
+                    else 
+                    {
+                        System.debug('twomems '+twomems);
+                        membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
+                        System.debug('membershipTypeMap '+membershipTypeMap);
+                    }
+                }
+    
             }
+            return null;
         }
-            
-        //}
-        // Yet to define the custom metadata, once done the logic can be updated and modified accordingly, hence commenting
         
-        else if(contId != null)
-        {
-            //accntContRel =[SELECT Id,Roles FROM AccountContactRelation where contact.id=:contId limit 1];
-            
-            //isPractitioner = false;
-            System.debug('isPractitioner :'+isPractitioner);
-            //if(accntContRel.id != null || isPractitioner == true){
-            if(isVolunteer == true || isPractitioner == true){
-                //if(isPractitioner == true){ //accntContRel.Roles == 'Volunteer' || 
-                if(twomems == 'true')
-                {   
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
-                }
-                else 
-                {
-                    System.debug('twomems '+twomems);
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
-                    System.debug('membershipTypeMap '+membershipTypeMap);
-                }
-                  
-                
-            }
-         
-            else{
-                if(twomems == 'true')
-                {   
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
-                }
-                else 
-                {
-                    System.debug('twomems '+twomems);
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
-                    System.debug('membershipTypeMap '+membershipTypeMap);
-                }
-            }
-        }
-        else if(isContactExisting == true){
-            System.debug('Contact Exists(Next Flow Starts): '+isContactExisting);
-            newCont =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact where Email = :email limit 1];
-            if(twomems == 'true' && sfirstname != null || sfirstname != '')
-            {
-                snewCont = new Contact();
-                snewCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Companion').getRecordTypeId();
-                snewCont.Prefered_First_Name__c = sfirstname;
-                snewCont.LastName = slastname;
-                snewCont.Email = semail;
-                snewCont.Phone = sphone;
-                snewCont.Parent_Contact__c = newCont.id;
-                snewCont.MailingPostalCode = postCode;
-                //snewCont.Expected_Due_Date__c = expDate;
-                snewCont.Gender__c = SGenders;
-                snewCont.Salutation = SSelectedPreferences;     
-                snewCont.Branch__c = selectBranch;
-                //snewCont.Contact_Prefrence__c = ContactSelectedPreferences;
-                snewCont.MailingStreet = streetValue+''+streetValue2+''+streetValue2;
-                snewCont.MailingState = stateValue;
-                snewCont.MailingCity = cityValue;
-                Database.insert(snewCont, false);
-                //membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint','Parent, Companion');
-                
-            }
-            if(isVolunteer == true || isPractitioner == true){
-                    //if(isPractitioner == true){ //accntContRel.Roles == 'Volunteer' || 
-                if(twomems == 'true')
-                {   
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
-                }
-                else 
-                {
-                    System.debug('twomems '+twomems);
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
-                    System.debug('membershipTypeMap '+membershipTypeMap);
-                }
-                
-                
-            }
-            
-            else{
-                if(twomems == 'true')
-                {   
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
-                }
-                else 
-                {
-                    System.debug('twomems '+twomems);
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
-                    System.debug('membershipTypeMap '+membershipTypeMap);
-                }
-            }
-
-        }
             
     }
     public void ContactInfo()
@@ -558,12 +590,14 @@ public class NctETMembershipPaymentPageController
            instlmntAmt = membershipInfo.Installment_Amount__c; 
         }
         
+        
         string responseContent;
         
         HttpRequest tokenRequest = new HttpRequest();
         HttpResponse tokenResponse = new HttpResponse();
         Http tokenHttp = new Http();
         
+        //tokenRequest.setEndpoint(System.Label.ENDPOINTOAUTH+'client_id='+System.Label.CLIENTID+'&client_secret='+System.Label.CLIENT_SECRET+'&grant_type=password&username='+System.Label.ENDPOINT_USERNAME+'&password='+System.Label.ENDPOINT_PASSWORD);
         tokenRequest.setEndpoint('https://test.salesforce.com/services/oauth2/token?client_id=3MVG95AcBeaB55lVpFY_Rw8rGI.KUCG9dcqi1zRxbXuXhdoYYpgHOQUg01kQrJyfp_yYqnT6F.aEXC1U7n06J&client_secret=5804933462634405366&grant_type=password&username=payment.api@nct.org.uk.preuat&password=payment123rl3GtuRGUj15A1W6ysGuUAT3N');
   
         tokenRequest.setMethod('POST'); 
@@ -574,8 +608,8 @@ public class NctETMembershipPaymentPageController
 
         
         PaymentRequestVo paymentReq = new PaymentRequestVo();
-        paymentReq.SuccessURL='https://preuat-mynct.cs102.force.com/nctMembershipPaymentPage/nctPaymentHubSuccessMsgPage?contId='+ newCont.Id;
-        paymentReq.FailureURL='https://preuat-mynct.cs102.force.com/nctMembershipPaymentPage/nctPaymentHubErrorMsgPage';
+        paymentReq.SuccessURL= System.Label.PAYMENTSTATUSURL+'/nctPaymentHubSuccessMsgPage?contId='+ newCont.Id;//'https://preuat-mynct.cs102.force.com/nctMembershipPaymentPage/nctPaymentHubErrorMsgPage'
+        paymentReq.FailureURL= System.Label.PAYMENTSTATUSURL+'/nctPaymentHubErrorMsgPage';
         paymentReq.Origin='test';
  
         PaymentRequestVo.ContactVo cvo = new PaymentRequestVo.ContactVo();
@@ -616,11 +650,16 @@ public class NctETMembershipPaymentPageController
         HttpRequest paymentHubRequest = new HttpRequest();
         HttpResponse paymentHubResponse = new HttpResponse();
         Http paymentHubHttp = new Http(); 
+        
+        //paymentHubRequest.setEndpoint(System.Label.SF_INSTANCE+'/services/apexrest/cpm/v1.0/Payment'); 
+        
         paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment');        
         paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);  
         //paymentHubRequest.setHeader('Authorization','Bearer '+ UserInfo.getSessionID()); 
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('Accept','application/json');
+        
+        //paymentHubRequest.setHeader('api-token',System.Label.API_TOKEN);
         paymentHubRequest.setHeader('api-token','IPy3Yvtin0aa2GPIke79Ewp24a0YSt6Daj5HJ9v9IGq2VTDYTWWkSx5jE2Pg54u02j0uHQZ3BwHfxFh8nKfXK4fiqZSQbZuXFQtQfAE926aFrwwVoOxPOJ6MiWSFpMc8b0UrOcbUD9pdcW7x8xNu3CtI5JfukTrRZqNByghsdTnWKLb79XrKpttmtHepMmVPv3QyPZYq');
         paymentHubRequest.setBody(JSON.serialize(paymentReq));
         paymentHubRequest.setMethod('POST'); 
@@ -672,4 +711,15 @@ public class NctETMembershipPaymentPageController
         Messaging.sendEmail(new Messaging.SingleEmailMessage [] { mail});  
         */
     }
+    public PageReference membershipRedirect(Id contId){
+        if(contId != null || contId != ''){
+            PageReference pageRef = new PageReference('/apex/MembershipStatus?id='+contId);
+            System.debug('doing');
+            pageRef.setRedirect(true);
+            return pageRef;
+        }
+        return null;
+
+    }
+
 }
