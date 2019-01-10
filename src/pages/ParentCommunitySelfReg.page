@@ -1,14 +1,11 @@
 <apex:page standardStylesheets="false" showHeader="false" sidebar="false" id="Parent" controller="ParentCommunitySelfRegController" title="{!$Label.site.user_registration}" applyHtmlTag="true" docType="html-5.0"> 
     <apex:pageMessages id="error"/>
     
-    <!--<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />
-    <apex:includeScript value="https://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.min.js"/> -->
     <head>
         <meta charset="utf-8" />
         <title>NCT Parent Registration Page</title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!-- <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nct_logo.jpg')}" /> -->
         <apex:stylesheet value="{!URLFOR('https://fonts.googleapis.com/css?family=Open+Sans')}"/>
         <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/bootstrap.min.css')}"/>
         <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
@@ -16,6 +13,9 @@
         <apex:stylesheet value="{!URLFOR('https://jqueryvalidation.org/files/demo/site-demos.css')}"/>
         
         <style>
+        body{
+             font-family: "Lato", arial, sans-serif; 
+        }
         td {padding-right: 7px;}
         .error>div{
             position: absolute;
@@ -29,11 +29,17 @@
             border:none !important;
          }
         .white-bg{
-         background:#ffffff !important;
-            }
-          .checkbox-controls label{
+         	background:#ffffff !important;
+         }
+         .checkbox-controls label{
             float:none !important;
-           }
+         }
+         .checkbox-controls{
+           display:block;
+         }
+         .checkbox-controls table{
+           margin:0 auto;
+         }
         </style>
         
     </head>
@@ -114,22 +120,20 @@
                     <div class="privacy-statement-title">
                       Privacy statement
                   </div>
-                  <p>NCT would like to keep in touch with you about our services, support, events, campaings and
+                  <p>NCT would like to keep in touch with you about our services, support, events, campaigns and
                     fundraising. We'll only contact you in the ways you want, and we'll keep your information safe.
-                    Our priuvacy policy has full details of how we use personal data 
+                    Our privacy policy has full details of how we use personal data 
                     <a href="https://www.nct.org.uk/privacy" class="underlink" target="_open">https://www.nct.org.uk/privacy</a>
                   </p>
                   <div class="agree-statement-row">
-                      <input id="agree" type="checkbox" /> I have read and unserdstand/agree with our websites Terms and Conditions.
+                      <input id="agree" type="checkbox" /> I have read and understand/agree with our websites Terms and Conditions.
                   </div>
                     <div style="padding: 10px;">
                         
                     </div>
                   <div>
-                       <a href="{!$Site.BaseUrl}/apex/ParentCommunityHomePage">  
-                                             <!--   <apex:commandButton id="nameSubmit" styleclass="green-button nomargin form-fields" value="Enquire" action="{!save}" />  -->
-                                                        <button type="button" id="submit" name="nameSubmit" class="green-button nomargin form-fields" >submit</button>  </a>   
-              <!--         <apex:commandButton styleClass="btn btn-light" action="{!registerUser}" value="{!$Label.site.submit}" id="submit" onclick="return validateMandatoryField();" /> -->
+                      
+                      <apex:commandButton styleClass="btn btn-light" action="{!registerUser}" value="{!$Label.site.submit}" id="submit" onclick="return validateMandatoryField();" /> 
                   </div>
               </div>
               </div>
@@ -157,16 +161,16 @@
                                     <li> <a href="https://nct.org.uk/about-nct/first-1000-days">First 1,000 Days</a> </li>
                                     <li><a href="https://nct.org.uk/about-nct/vision-and-strategy">Vission, Mission &amp; goal</a> </li>
                                     <li> <a href="https://nct.org.uk/about-nct/trustees">Trustees</a></li>
-                                    <li><a href="">Careers</a> </li>
+                                    <li><a href="https://www.cloudonlinerecruitment.co.uk/nct/">Careers</a> </li>
                                     <li><a href="https://nct.org.uk/about-us/contact-us">Contact us</a></li>
                                 </ul>
                             </div>  
                             <div class="col-lg-2">
                                 <h6  class="footer-header">News and Views</h6>
                                 <ul class="footer-List">
-                                        <li> <a href="">News</a> </li>
-                                        <li><a href="">Blogs</a> </li>
-                                        <li> <a href="">Forums</a></li>
+                                        <li> <a href="https://nct.org.uk/about-us/news-and-views/news">News</a> </li>
+                                        <li><a href="https://nct.org.uk/get-involved/news-and-views">Blogs</a> </li>
+                                        <li> <a href="https://healthunlocked.com/nct">Forums</a></li>
                                 </ul>
                             </div>  
                             <div class="col-lg-2">
@@ -180,10 +184,10 @@
                             <div class="col-lg-3">
                                 <h6  class="footer-header">Professionals</h6>
                                 <ul class="footer-List">
-                                        <li> <a href="">Breastfeeding peer support training </a> </li>
-                                        <li><a href="">Preparation for birth and beyond antenatal course </a> </li>
-                                        <li> <a href="">training for professionals </a></li>
-                                        <li> <a href="">Diversity and access </a></li>
+                                        <li> <a href="https://stage.nct.org.uk/about-us/professional/breastfeeding-services/breastfeeding-peer-support/breastfeeding-peer-support-training">Breastfeeding peer support training </a> </li>
+                                        <li><a href="https://stage.nct.org.uk/about-us/professional/antenatal-services-information/nct-preparation-for-birth-and-beyond-antenatal-course">Preparation for birth and beyond antenatal course </a> </li>
+                                        <li> <a href="https://stage.nct.org.uk/about-us/professional-health-and-well-being-services/training-professionals">training for professionals </a></li>
+                                        <li> <a href="https://stage.nct.org.uk/about-us/professional-health-and-well-being-services/diversity-and-access">Diversity and access </a></li>
                                 </ul>
                             </div>  
                         </div>
@@ -254,17 +258,7 @@
                     number: jQuery.validator.format("<div style='color:#8B0000;'><b> Please enter a valid number </b></div>"),
                }                           
             }); 
-              
-            /*j$('[id$=PostalCode]').rules("add",{
-                required: true,
-                maxlength: 8,             
-                messages:{
-                  required:"<br/> This is a required field.",
-                    maxlength: jQuery.validator.format("<br/> Please enter a valid Postcode"),
-                  
-               }                           
-            }); */
-              
+            
                        
             j$('[id$=Password]').rules("add",{
                 required: true,

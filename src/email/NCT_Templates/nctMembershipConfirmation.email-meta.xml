@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>An Email with membership number and payment confirmation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>nctMembershipConfirmation</name>
+    <style>none</style>
+    <subject>An Email with membership number and payment confirmation</subject>
+    <textOnly>$title
+
+Preview header text here...
+
+View in browser
+
+Pregnancy  Labour &amp; birth Baby &amp; toddler
+
+Local activities &amp; meet ups
+
+Great news, your NCT membership is now confirmed.
+
+Hello @FIRSTNAME@,
+
+
+Your membership number is:@CARENUMBER@.
+
+
+You now have access to NCT Members Club, our way of giving something back to you. The money-saving discounts, rewards and services cover everything from your weekly shop to maternity clothes to shoes for toddlers, from cinema tickets to laptops, and household bills to holidays (with or without the kids). There�s even free legal advice if you need it.
+
+
+
+Over the coming year when every penny really will count, NCT Members Club will make your membership even more rewarding. Plus you also get priority entry to our famous Nearly New Sales, local newsletters and things to do in your area.
+
+
+Your membership card(s) should be with you within the next 10 days. In the meantime, if you have any questions about your membership or anything we do, take a look at our Website, call us on 0300 330 0700 (Monday-Friday, 9am-5pm) or email enquiries@nct.org.uk
+
+
+Claim your free digital issue of Mother &amp; Baby magazine
+
+More good news! As an NCT member, you can now claim your FREE issue of Mother &amp; Baby on your Apple or Android device.
+
+Your free issue of Mother &amp; Baby is packed full of pregnancy and parenting tips like a guide to having a positive labour, getting the best out of your midwife, tips for getting your baby to sleep and much more!
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+
+
+� 2018 NCT, 30 Euston Square, London, NW1 2FB.
+
+Reg Charity No (England and Wales): 801395, (Scotland): SC041592. Reg Company No: 2370573.
+
+
+
+Unsubscribe |  Privacy Policy</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

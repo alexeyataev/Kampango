@@ -29,7 +29,7 @@
                           <div class="user_info" style="padding:0px  10px;">
                                 <h2>Dear {!Course__c.Practitioner__c}</h2>
 
-<p>Your course has successfully updated with following details</p>
+<p>Your course has been successfully updated with following details</p>
 
 
 <p>Course Id : {!Course__c.Name}</p>

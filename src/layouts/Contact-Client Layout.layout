@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customButtons>Request_Payment</customButtons>
     <customButtons>npe4__Relationships_Viewer</customButtons>
     <customButtons>Add_To_Membership</customButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>

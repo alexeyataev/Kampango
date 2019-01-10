@@ -12,13 +12,7 @@ Hello {!Course__c.Practitioner__c}
 
 Your course has been successfully updated with following details
 
-You are now scheduled to be delivering the Course Name: {!Course__c.Course_Name__c}
-
-CourseType: {!Course__c.Course_Type__c}
-
-Venue:  {!Course__c.Venue__c}
-
-Venue Address: {!Course__c.Venue_Address__c}
+You are now scheduled to be delivering the Course Name  {!Course__c.Course_Name__c}    CourseType {!Course__c.Course_Type__c}  at Venue {!Course__c.Venue__c} Address {!Course__c.Venue_Address__c}
 
 This session course is scheduled to start at  {!Course__c.Start_Date__c}  and end at  {!Course__c.End_Date__c}
 

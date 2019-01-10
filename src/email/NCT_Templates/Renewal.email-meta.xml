@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>NCT Membership Renewal</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Membership Renewal</name>
+    <style>none</style>
+    <subject>Membership Renewal</subject>
+    <textOnly>Membership Renewal
+
+Thanks for your continued support
+
+View in browser
+
+Baby &amp; toddler Life as a parent Meet-ups
+
+Get involved About us
+
+Friendship  Information  Support
+
+
+Hi @Firstname@,
+
+
+
+Just a quick note from us to say a huge thanks for being an NCT member. Thanks to your support in the last year, we have: (to name a few)
+
+
+
+� Been a lifeline to over 26,000 new parents who called our support line.
+
+� Provided vital evidence based information to 4.3 million parents via our website.
+
+� Encouraged lifelong friendships through our network of over 320 local branches.
+
+
+� Supported over 100,000 parents through an NCT course.
+
+Our thank you...
+
+As an NCT member you have access to our exclusive NCT Members Club. A collection of money-saving rewards, making your money go even further at a time when you need it most.
+
+
+
+
+The year ahead promises to be full of new developments for you and your baby, so we hope you decide to renew your membership and benefit from all that NCT has to offer.
+
+Renew today and receive a free gift
+
+Renew your membership today and you can claim a FREE issue of Mother &amp; Baby magazine on your Apple or
+
+Android device.
+
+
+
+
+Your free issue is essential reading for new mums and packed full of reassuring features on parenting as well as practical tips on baby and toddler care plus authoritative health advice.
+
+Renewing today with our value option costs just 73p a week, but it goes a long way to support and inform new parents in your community and across the UK.
+
+
+
+Thank you again for your continued support � we simply couldn�t do it without you!
+
+Please do not reply to this email.
+
+If you no longer wish to receive emails from NCT or wish to choose the types of email we send to you, please click here: Want to unsubscribe or change your details?
+
+
+You can resubscribe at any time by visiting our website to register your details.
+
+
+
+� 2018 NCT, 30 Euston Square, London, NW1 2FB.
+
+Reg Charity No (England and Wales): 801395, (Scotland): SC041592. Reg Company No: 2370573.
+
+
+
+Unsubscribe |  Privacy Policy</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

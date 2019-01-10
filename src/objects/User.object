@@ -78,11 +78,6 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Mail</fullName>
-                    <default>false</default>
-                    <label>Mail</label>
-                </value>
-                <value>
                     <fullName>Post</fullName>
                     <default>false</default>
                     <label>Post</label>
@@ -93,14 +88,32 @@
                     <label>Email</label>
                 </value>
                 <value>
-                    <fullName>Phone</fullName>
+                    <fullName>SMS Text</fullName>
                     <default>false</default>
-                    <label>Phone</label>
+                    <label>SMS Text</label>
+                </value>
+                <value>
+                    <fullName>Telephone</fullName>
+                    <default>false</default>
+                    <label>Telephone</label>
+                </value>
+                <value>
+                    <fullName>Mail</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Mail</label>
                 </value>
                 <value>
                     <fullName>Message</fullName>
                     <default>false</default>
+                    <isActive>false</isActive>
                     <label>Message</label>
+                </value>
+                <value>
+                    <fullName>Phone</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Phone</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -135,6 +148,35 @@
                     <fullName>EUR</fullName>
                     <default>false</default>
                     <label>EUR</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Data_Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Source</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Salesforce</fullName>
+                    <default>true</default>
+                    <label>Salesforce</label>
+                </value>
+                <value>
+                    <fullName>CARE</fullName>
+                    <default>false</default>
+                    <label>CARE</label>
+                </value>
+                <value>
+                    <fullName>Intrabiz</fullName>
+                    <default>false</default>
+                    <label>Intrabiz</label>
                 </value>
             </valueSetDefinition>
         </valueSet>

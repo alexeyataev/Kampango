@@ -27,17 +27,35 @@
                     <div style="padding-top:20px;">
                         <div class="">
                           <div class="user_info" style="padding:0px  10px;">
-                                <h2> Dear {!Booking__c.First_Contact__c},</h2>
-                                <p> This is to confirm that you are now booked on the {!Course__c.Course_Name__c} 
- {!Course__c.Course_Type__c} that will be happening at {!Venue__c.Name} 
-{!Booking__c.Venue_Address__c} by {!Course__c.Start_Date__c}
+                                <h2>Dear {!npe03__Recurring_Donation__c.First_Contact__c} ,</h2>
 
-For more information, don't hesitate to contact us.
 
-  </p>
-                                
 
-                                <h4>Regards,</h4>
+<p> Your Membership Payment is Pending </p>
+
+
+<p>Membership Number : {!npe03__Recurring_Donation__c.Membership_Number__c} </p>
+<p>Membership Type : {!npe03__Recurring_Donation__c.Membership_type__c} </p>
+<p>Membership Status : {!npe03__Recurring_Donation__c.Membership_Status__c} </p>
+
+<p> Here is Detail link of your membership  <a  href={!npe03__Recurring_Donation__c.Link}>Click here</a></p>
+
+<p>If you haven't already joined, make sure you don't miss out on NCT membership: a great way to become part of a local community of new parents who can support and understand what's happening in your life. As well as supporting local NCT activities, getting queue-jump access to our famous Nearly New Sales and invites to social events you'll also become part of NCT Members Club.</p>
+
+<p>NCT Members Club is the home of money-saving discounts, rewards and services covering everything from your weekly shop to maternity clothes to shoes for toddlers, from cinema tickets to laptops, and household bills to holidays (with or without the kids). There's even free legal advice if you need it. Just visit our <a href="https://www.nct.org.uk/get-involved/membership"> website </a> for more details.</p>
+
+<p>Plus, because your membership is a donation it goes straight towards funding support for your local branch and our wider support services too, including our national helpline; our community outreach work; and our online pregnancy, birth and parenting information centre.</p>
+<p>Dependent on the circumstances of your reservation, you can choose to pay in one of two ways.</p>
+   <p> •Direct Debit</p>
+   <p> •Debit/Credit card</p> 
+
+
+
+<p>Here is Direct link for Payment -  <a style="color:green;cursor:pointer" href="https://preuat-mynct.cs102.force.com/apex/phstr__stripecheckout?failureRedirectURL=https%253A%252F%252Fpreuat-mynct.cs102.force.com%252FnctMembershipPaymentPage%252FnctPaymentHubErrorMsgPage&id=a2b1j00000005uXAAQ&nooverride=1&successRedirectURL=https%253A%252F%252Fpreuat-mynct.cs102.force.com%252FnctMembershipPaymentPage%252FnctPaymentHubSuccessMsgPage%253FcontId%253D0031j000004ixYpAAI "> Click here to redirect  the payment Page</a></p>
+
+
+
+<h4>Regards,</h4>
                                 <h4>NCT Team</h4>
                           </div>
                     

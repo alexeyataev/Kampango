@@ -10,7 +10,7 @@
 
 Dear {!Course__c.Practitioner__c}
 
-Your course has successfully updated with following details
+Your course has been successfully updated with following details
 
 Course Id : {!Course__c.Name}
 
