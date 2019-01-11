@@ -63,17 +63,31 @@ public with sharing class ContactUtilities {
     public static boolean isStaff(Id userId){
         
         
-        list<User> us = [Select Id ,Profile.Name from User where id = :userId];
+        list<User> us = [SELECT
+                               Id ,
+                               Profile.Name 
+                         FROM
+                         	   User 
+                         WHERE 
+                         	   id = :userId];
+        
         if(us.size()>0 && us[0].Profile.Name != null && us[0].Profile.Name == 'Office Staff'){
             System.debug('Profile Name: '+us[0].Profile.Name);
+            
             return true;
         }
         else{
+            
             return false;
         }
     }
-    
+    /* This methiod is used to fetch the targetCustomer based on the contact and user
+	 **
+	 * It returns String value of targetCustomer.
+	 **
+    */
     public static String targetCustomer(Boolean isStaff,Boolean isVolunteer,Boolean isPractitioner,String twomems){
+        
         String targetCustomer;
         if(isStaff == true){
             targetCustomer = 'Staff Only';
@@ -92,4 +106,60 @@ public with sharing class ContactUtilities {
         }
         return targetCustomer;
     }
+    
+    /* This method validates the membership is existing or not 
+     **
+	 * contId:- Get the list of membership based on the contId
+	 **
+	*/
+    public static boolean isMembershipExists(Id contId, String email){
+        if(contId != null){
+            list<npe03__Recurring_Donation__c> recDonList =[SELECT 
+                                                        		Id, 
+                                                        		Name,
+                                                        		npe03__Contact__c
+                                                        FROM 
+                                                        		npe03__Recurring_Donation__c
+                                                       	WHERE
+                                                        		npe03__Contact__c != null and
+                                                       			npe03__Contact__c = :contId];
+        
+            if(recDonList.size()>0){
+                System.debug('Recurring Donations List size: '+recDonList);
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            list<npe03__Recurring_Donation__c> recDonList =[SELECT 
+                                                        		Id, 
+                                                        		Name,
+                                                        		npe03__Contact__c
+                                                        FROM 
+                                                        		npe03__Recurring_Donation__c
+                                                       	WHERE
+                                                       			npe03__Contact__r.Email = :email];
+        
+            if(recDonList.size()>0){
+                System.debug('Recurring Donations List size: '+recDonList);
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        
+        
+    }
+    
+    public PageReference doRedirect(Id contId){
+
+    PageReference pageRef = new PageReference('/apex/MembershipStatus?id='+contId);
+    pageRef.setRedirect(true);
+    return pageRef;
+
+    }
+
 }
