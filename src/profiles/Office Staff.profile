@@ -294,10 +294,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>commnitycontactshare</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>dupOutcodeHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
