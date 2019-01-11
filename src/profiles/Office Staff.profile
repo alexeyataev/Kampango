@@ -262,18 +262,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TempMembershipUtilties</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TempMembershipVo</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TempNctMembershipPaymentPageController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>TestAccountBuilder</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -331,14 +319,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>nctETMembershipPaymentPageControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>nctPaymentHubPageController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>showHTMLPicklistPageController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
