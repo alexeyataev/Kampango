@@ -4302,10 +4302,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>NCT_Membership_Page</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>NPSP_Home</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
