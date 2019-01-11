@@ -204,7 +204,6 @@
 	<types>
         <members>Account</members>
 		<members>Lead</members>
-		<members>Opportunity</members>
         <members>AccountContactRelation</members>
         <members>Booking__c</members>
         <members>Branch_PSA_Office__c</members>
