@@ -306,10 +306,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>NctETMembershipPaymentCopyController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>NctETMembershipPaymentPageController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
