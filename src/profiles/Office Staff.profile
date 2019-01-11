@@ -4306,10 +4306,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Nct_Upd_MembershipPage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>ParentCommunityHomePage</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -4366,23 +4362,11 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>nctPaymentHubPage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>nctPaymentHubSuccessMsgPage</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>nct_help_ticket</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>parent_Page</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>samplescript</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
