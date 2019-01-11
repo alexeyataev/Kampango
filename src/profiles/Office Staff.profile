@@ -302,7 +302,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>dupOutcodeTest</apexClass>
+        <apexClass>DupOutCodeTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
