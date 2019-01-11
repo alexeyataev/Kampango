@@ -294,11 +294,11 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>dupOutcodeHandler</apexClass>
+        <apexClass>DupOutCodeHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>dupOutcodeHandlerTest</apexClass>
+        <apexClass>DupOutCodeHandlerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
