@@ -43,8 +43,6 @@
         <members>Gift_Aid__c</members>
         <members>Membership__c</members>
 		<members>Membership_Type__mdt</members>
-        <members>Membership_Fee__mdt</members>
-        <members>Membership_Payment_Category__mdt</members>
         <members>PSA_Office__c</members>
         <members>Payment_Plan__c</members>
         <members>Permission_Question__c</members>
