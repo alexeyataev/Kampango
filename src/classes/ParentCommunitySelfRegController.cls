@@ -43,22 +43,22 @@ public class ParentCommunitySelfRegController {
     }*/
     
     /*public List<SelectOption> getPreferredCountries(){
-        List<SelectOption> Options = new List<SelectOption>();
-        Options.add(new SelectOption('UK','UK'));
-        Options.add(new SelectOption('United Kingdom','United Kingdom'));
-        Options.add(new SelectOption('GB','GB'));
-        return Options;
+        List<SelectOption> options = new List<SelectOption>();
+        options.add(new SelectOption('UK','UK'));
+        options.add(new SelectOption('United Kingdom','United Kingdom'));
+        options.add(new SelectOption('GB','GB'));
+        return options;
     }*/
     public List<SelectOption> getPreferenceOptions() {
-        List<SelectOption> Options = new List<SelectOption>();
-        /*Options.add(new SelectOption('Mail','Mail'));*/
-        Options.add(new SelectOption('Post','Post'));
-        Options.add(new SelectOption('Email','Email'));
-        Options.add(new SelectOption('SMS Text','SMS Text'));
-        Options.add(new SelectOption('Telephone','Telephone'));
-        /*Options.add(new SelectOption('Phone','Phone'));*/
-         /*Options.add(new SelectOption('Message','Message'));*/
-        return Options;
+        List<SelectOption> options = new List<SelectOption>();
+        /*options.add(new SelectOption('Mail','Mail'));*/
+        options.add(new SelectOption('Post','Post'));
+        options.add(new SelectOption('Email','Email'));
+        options.add(new SelectOption('SMS Text','SMS Text'));
+        options.add(new SelectOption('Telephone','Telephone'));
+        /*options.add(new SelectOption('Phone','Phone'));*/
+         /*options.add(new SelectOption('Message','Message'));*/
+        return options;
     }
     
     public ParentCommunitySelfRegController() {
@@ -117,33 +117,33 @@ public class ParentCommunitySelfRegController {
         String roleEnum = null; // To be filled in by customer.
         String accountId = ''; // To be filled in by customer.
         
-        String Preference = '';
-        Boolean Start = true;
+        String preference = '';
+        Boolean start = true;
         if(!selectedPreferences.isEmpty()) {           
-            for(String Str : selectedPreferences) {
-                if(Start) {
-                    Preference = Str;
-                    Start = false;
+            for(String str : selectedPreferences) {
+                if(start) {
+                    preference = str;
+                    start = false;
                 } else {               
-                    Preference = Preference + ';' + Str;
+                    preference = preference + ';' + str;
                 }
             }
         }
-        /*String Countries = '';
-        Boolean Start1 = true;
+        /*String countries = '';
+        Boolean start1 = true;
         if(!SelectedCountries.isEmpty()) {           
-            for(String Str : SelectedCountries) {
-                if(Start1) {
-                    Countries = Str;
-                    Start1 = false;
+            for(String str : selectedCountries) {
+                if(start1) {
+                    countries = str;
+                    start1 = false;
                 } else {               
-                    Countries = Countries + ';' + Str;
+                    countries = countries + ';' + str;
                 }
             }
         }*/
         
         String userName = email;
-        //String Str = street +''+ address;
+        //String str = street +''+ address;
         String comNickname = lastName+' '+firstName;
         
         User u = new User();
@@ -153,7 +153,7 @@ public class ParentCommunitySelfRegController {
         u.LastName = lastName;
         u.CommunityNickname = comNickname;
         u.ProfileId = profileId;
-        u.Contact_Preference__c = Preference;
+        u.Contact_Preference__c = preference;
         //u.Street = str;
         //u.City = city;
         //u.State = state;

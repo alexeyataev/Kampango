@@ -12,7 +12,7 @@ public class UserHomeControllerTest {
     Insert sessionObj; 
     test.stopTest();
   }
-  static testMethod void test_getmainnodes_UseCase1(){
+  static testMethod void testgetmainnodesUseCase1(){
     List<Course__c> courseObj  =  [SELECT Id,Course_Name__c,Status__c,Start_Date__c,End_Date__c,Practitioner__c,Fee__c from Course__c];
     System.assertEquals(true,courseObj.size()>0);
     List<Session__c> sessionObj  =  [SELECT Id,Course__c,Name from Session__c];

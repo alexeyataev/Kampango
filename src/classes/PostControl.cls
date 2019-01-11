@@ -14,7 +14,7 @@ public with sharing class PostControl {
     //}  
     public Boolean resultsAvailable {
         get {
-            if(Courses == Null) {
+            if(courses == Null) {
                 return false;
             }
             return true;
@@ -22,7 +22,7 @@ public with sharing class PostControl {
     }
     public Boolean lstresultsAvailable {
         get {
-            if(Courses == Null) {
+            if(courses == Null) {
                 return false;
             }
             return true;
@@ -32,7 +32,7 @@ public with sharing class PostControl {
     public list<String> postCode {get; set;}
     public Date bDate {get; set;}
     public Course__c cs{get; set;}
-    public List<Course__c> Courses {get; private set;}
+    public List<Course__c> courses {get; private set;}
     //lat = 51.5032;
     
     //list<PostCode_Allocation__c> postcodes = [SELECT Branch__r.Name FROM PostCode_Allocation__c where Name = :postCode limit 1];                         
@@ -62,14 +62,14 @@ public with sharing class PostControl {
         paginationSizeOptions.add(new SelectOption('30','30'));
     }
     
-    public pagereference Go(){
+    public pagereference go(){
         pagereference pr = new pagereference('/apex/Post2');
         return pr;
         //listCourse();
     }
     public void listCourse(){
-       //Courses =[SELECT Id, Name, Course_Type__c, Course_Name__c, Venue__c, Status__c FROM Course__c];
-       //Courses=[SELECT Id, Name, Course_Type__c, Course_Name__c, Venue__c, Status__c FROM Course__c LIMIT:rec OFFSET:count];
+       //courses =[SELECT Id, Name, Course_Type__c, Course_Name__c, Venue__c, Status__c FROM Course__c];
+       //courses=[SELECT Id, Name, Course_Type__c, Course_Name__c, Venue__c, Status__c FROM Course__c LIMIT:rec OFFSET:count];
 
               //build SOQL query string
              String query='SELECT Id, Name, Course_Type__c, Course_Name__c, Venue__c, Status__c FROM Course__c';

@@ -112,8 +112,8 @@ public with sharing class ContactUtilities {
 	 * contId:- Get the list of membership based on the contId
 	 **
 	*/
-    public static boolean isMembershipExists(Id contId, String email){
-        if(contId != null){
+    public static boolean isMembershipExists(String contId, String email){
+        if(contId != null && contId != ''){
             list<npe03__Recurring_Donation__c> recDonList =[SELECT 
                                                         		Id, 
                                                         		Name,

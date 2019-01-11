@@ -36,8 +36,8 @@ public class CreateCaseTicket {
          User currentUser = [SELECT Contact.id,profile.name,id FROM User where username = :UserInfo.getUsername() limit 1];
          message=''; // message setter variable
          if(recordType == 'Cancel Membership') {
-              Id RecordTypeId = Schema.SObjectType.case.getRecordTypeInfosByName().get(recordType).getRecordTypeId();
-             cancelMembershipCaseCount = [SELECT count() FROM Case where ContactId= : currentUser.Contact.id and RecordTypeId=:RecordTypeId];
+              Id recordTypeId = Schema.SObjectType.case.getRecordTypeInfosByName().get(recordType).getRecordTypeId();
+             cancelMembershipCaseCount = [SELECT count() FROM Case where ContactId= : currentUser.Contact.id and RecordTypeId=:recordTypeId];
              if(cancelMembershipCaseCount>=1) {
              message='you already created a case for Cancel Membership';
  			// return null;               

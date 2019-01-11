@@ -1,6 +1,6 @@
-public class attachmentsample {
+public class Attachmentsample {
 
-    public attachmentsample(ApexPages.StandardController controller) {
+    public Attachmentsample(ApexPages.StandardController controller) {
 
     }
     Public Attachment myfile;

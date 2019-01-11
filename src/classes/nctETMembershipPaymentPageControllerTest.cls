@@ -1,8 +1,8 @@
 @isTest
-private class nctETMembershipPaymentPageControllerTest {
+private class NctETMembershipPaymentPageControllerTest {
     Static contact newCont;
     static Map<String, List<Membership_Type__mdt>> membershipTypeMap = new Map<String, List<Membership_Type__mdt>>();
-    @isTest static void contactId_Exists() {
+    @isTest static void contactIdExists() {
 		Account acc = new Account();
 		acc.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();       
         acc.Name ='Test Branch';
@@ -42,7 +42,7 @@ private class nctETMembershipPaymentPageControllerTest {
         Test.stopTest();
         
     }
-    @isTest static void contactId_Not_Exists(){
+    @isTest static void contactIdNotExists(){
         Contact cons = new Contact();
         
         Account acc = new Account();

@@ -6,13 +6,13 @@ private class Emailin_classTest {
         insert acc;
         
         //Assigning a record  type for particular record.
-        Id RecordTypeIdFirstContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
-        Id RecordTypeIdSecondContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Companion').getRecordTypeId();
+        Id recordTypeIdFirstContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
+        Id recordTypeIdSecondContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Companion').getRecordTypeId();
         
-        Contact contactObj = new Contact(accountid=acc.id,lastname='test con',Email='sfdclatha@gmail.com',Prefered_First_Name__c='testcontact',RecordtypeId=RecordTypeIdFirstContact);
+        Contact contactObj = new Contact(accountid=acc.id,lastname='test con',Email='sfdclatha@gmail.com',Prefered_First_Name__c='testcontact',RecordtypeId=recordTypeIdFirstContact);
         insert contactObj;
         
-        Contact contactObj1 = new Contact(accountid=acc.id,lastname='test1 con',Email='sfdclatha1@gmail.com',Prefered_First_Name__c='testcont',RecordtypeId=RecordTypeIdSecondContact);
+        Contact contactObj1 = new Contact(accountid=acc.id,lastname='test1 con',Email='sfdclatha1@gmail.com',Prefered_First_Name__c='testcont',RecordtypeId=recordTypeIdSecondContact);
         insert contactObj1;
         
         //system.debug('contact inserted');     
@@ -52,11 +52,11 @@ private class Emailin_classTest {
         ec.emailbody= 'email_body';
         ec.subject='subject';
         ec.ccaddress='';
-        PageReference page_Reference = ec.send();
+        PageReference pageReference = ec.send();
         //system.debug('log courseRed.id : '+cID);
         // below assertion, after sending mail business expecting to redirect to Course Obj
         // hence checking the pagRef.URL to CourseID below.
-        boolean expected = page_Reference.getUrl().contains('/'+cID.substring(0,cID.length()-3));
+        boolean expected = pageReference.getUrl().contains('/'+cID.substring(0,cID.length()-3));
         system.assertEquals(true, expected);
     }
 }

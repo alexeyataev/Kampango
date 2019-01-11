@@ -33,7 +33,7 @@ public class UserHomeController {
         return hierarchy;  
 
     }
-    public PageReference MemberInfo(){
+    public PageReference memberInfo(){
         user =[Select ContactId  from user where id = :userId ];
         
         recDon =[SELECT Id, npe03__Contact__c FROM npe03__Recurring_Donation__c where npe03__Contact__c = :user.ContactId limit 1];
@@ -45,9 +45,7 @@ public class UserHomeController {
             
         }
         else{
-            
-            PageReference pageRef = new PageReference(System.Label.PAYMENT_SITE_URL+'?id='+user.ContactId);
-           	//PageReference pageRef = new PageReference('https://preuat-mynct.cs102.force.com/nctMembershipPaymentPage?id='+user.ContactId);
+           	PageReference pageRef = new PageReference('https://preuat-mynct.cs102.force.com/nctMembershipPaymentPage?id='+user.ContactId);
             //pageRef.getRedirect(true);
             return pageRef;
         }
