@@ -80,6 +80,7 @@
                 <value>
                     <fullName>Mail</fullName>
                     <default>false</default>
+					<isActive>false</isActive>
                     <label>Mail</label>
                 </value>
                 <value>
@@ -93,13 +94,25 @@
                     <label>Email</label>
                 </value>
                 <value>
+                    <fullName>Telephone</fullName>
+                    <default>false</default>
+                    <label>Telephone</label>
+                </value>
+                <value>
+                    <fullName>SMS Text</fullName>
+                    <default>false</default>
+                    <label>SMS Text</label>
+                </value>
+                <value>
                     <fullName>Phone</fullName>
                     <default>false</default>
+					<isActive>false</isActive>
                     <label>Phone</label>
                 </value>
                 <value>
                     <fullName>Message</fullName>
                     <default>false</default>
+					<isActive>false</isActive>
                     <label>Message</label>
                 </value>
             </valueSetDefinition>
