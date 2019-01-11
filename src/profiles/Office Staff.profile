@@ -9,7 +9,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>nctETMembershipPaymentPageController</apexClass>
+        <apexClass>NctETMembershipPaymentPageController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
