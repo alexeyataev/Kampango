@@ -1,4 +1,4 @@
-public class Attachmentsample {
+public with sharing class Attachmentsample {
 
     public Attachmentsample(ApexPages.StandardController controller) {
 

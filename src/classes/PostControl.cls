@@ -1,17 +1,7 @@
 public with sharing class PostControl {
-    //public Decimal miles {get; set;}
-    //public String courseTypes {get; set;}
-    //private integer totalRecs = 0;
-    //private static Boolean geocodingCalled = false;
+    
     public String currentPosition { get; set;}
-        /*get {
-            if (String.isBlank(currentPosition)) {
-                currentPosition = ''; // San Francisco 51.4376,-0.0927
-            }
-            return currentPosition;
-        }
-        set; */
-    //}  
+        
     public Boolean resultsAvailable {
         get {
             if(courses == Null) {
@@ -33,11 +23,7 @@ public with sharing class PostControl {
     public Date bDate {get; set;}
     public Course__c cs{get; set;}
     public List<Course__c> courses {get; private set;}
-    //lat = 51.5032;
     
-    //list<PostCode_Allocation__c> postcodes = [SELECT Branch__r.Name FROM PostCode_Allocation__c where Name = :postCode limit 1];                         
-   // public final Decimal lat =[SELECT Branch__r.Address_Latitude__c FROM PostCode_Allocation__c where Name = :postCode];
-    //lon = -0.1262;
     
     public boolean match{get; set;}
     String units ='mi';
@@ -48,9 +34,7 @@ public with sharing class PostControl {
     public Integer size{get;set;}
     public ApexPages.StandardSetController setCon{get;set;}    
     public List<SelectOption> paginationSizeOptions{get;set;}
-  //public String Name {get; set;}
-  //public DateTime bDate {get; set;}
-  //public list<Course__c> courses {get; set;}
+  
     
     public PostControl(){
          size=10; //default page size
@@ -68,8 +52,7 @@ public with sharing class PostControl {
         //listCourse();
     }
     public void listCourse(){
-       //courses =[SELECT Id, Name, Course_Type__c, Course_Name__c, Venue__c, Status__c FROM Course__c];
-       //courses=[SELECT Id, Name, Course_Type__c, Course_Name__c, Venue__c, Status__c FROM Course__c LIMIT:rec OFFSET:count];
+      
 
               //build SOQL query string
              String query='SELECT Id, Name, Course_Type__c, Course_Name__c, Venue__c, Status__c FROM Course__c';
@@ -97,7 +80,7 @@ public with sharing class PostControl {
             {
               return null;
             }
-            //return null;
+           
         }
       
     /**

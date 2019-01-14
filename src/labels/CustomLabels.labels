@@ -77,4 +77,46 @@
         <shortDescription>PAYMENT_SITE_URL</shortDescription>
         <value>https://preuat-mynct.cs102.force.com/nctMembershipPaymentPage</value>
     </labels>
+   <labels>
+        
+      <fullName>DupOutCodeTestID</fullName>
+       
+      <language>en_US</language>
+        
+      <protected>false</protected>
+        
+      <shortDescription>DupOutCodeTestID</shortDescription>
+      
+      <value>0010E00000MmsfLQAR</value>
+   
+   </labels>
+   
+   <labels>
+        
+      <fullName>SiteRegisterControllerID</fullName>
+        
+      <language>en_US</language>
+        
+      <protected>false</protected>
+        
+      <shortDescription>SiteRegisterControllerID</shortDescription>
+       
+      <value>001x000xxx35tPN</value>
+    
+   </labels>
+   
+   <labels>
+        
+      <fullName>UserHomeControllerTestID</fullName>
+        
+      <language>en_US</language>
+        
+      <protected>false</protected>
+        
+      <shortDescription>UserHomeControllerTestID</shortDescription>
+       
+      <value>0030E00000Owx30QAB</value>
+    
+   </labels>
+
 </CustomLabels>

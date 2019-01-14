@@ -1,4 +1,4 @@
-global class DirectpaymentlinksendtoParent
+global with sharing class DirectpaymentlinksendtoParent
 {      
     public static npe03__Recurring_Donation__c recurringDonation = new npe03__Recurring_Donation__c();
     @auraenabled

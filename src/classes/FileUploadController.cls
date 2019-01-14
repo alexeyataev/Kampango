@@ -4,9 +4,10 @@ public with sharing class FileUploadController {
  
   public Document document {
     get {
-      if (document == null)
+      if (document == null){
         document = new Document();
       return document;
+	  }
     }
     set;
   }

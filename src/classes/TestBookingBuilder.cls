@@ -7,8 +7,6 @@ public with sharing class TestBookingBuilder {
 	private Date dueDate = system.today() + 120;
 	private Boolean insertRecord = false;
 
-	public TestBookingBuilder() {}
-
 	public TestBookingBuilder withStatus(String status)
 	{
 		this.status = status;

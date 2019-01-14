@@ -1,4 +1,4 @@
-public class NctMembershipPaymentPageController 
+public with sharing class NctMembershipPaymentPageController 
 {
     public string twomems{get; set;}
     public Date expDate {get; set;}
@@ -103,7 +103,7 @@ public class NctMembershipPaymentPageController
         options.add(new SelectOption('Telephone','Telephone'));
         return options;
     }
-    //public string isContactExistingVal {get; set;}
+    
     
     public nctMembershipPaymentPageController()
     {   
@@ -153,8 +153,7 @@ public class NctMembershipPaymentPageController
                 }
             }
         }
-        //Date expDate = Date.valueOf(eDate);
-       // if(contId == Null && contId == ''){
+       
         if(isContactExisting == false && newCont == null){
             if(newCont == null )
             {
@@ -166,10 +165,7 @@ public class NctMembershipPaymentPageController
                 newCont.Phone = phone;
                 newCont.MailingPostalCode = postCode;
                 newCont.Contact_Prefrence__c = contactPreference;
-                //if(eDate != null){
-                    //expDate = Date.valueOf(eDate);
-                    //newCont.Expected_Due_Date__c = expDate; 
-                //}
+                
                 newCont.Branch__c = selectBranch; 
                 newCont.Salutation = selectedPreferences;
                 newCont.Gender__c = genders;
@@ -188,7 +184,7 @@ public class NctMembershipPaymentPageController
                     snewCont.Phone = sphone;
                     snewCont.Parent_Contact__c = newCont.id;
                     snewCont.MailingPostalCode = postCode;
-                    //snewCont.Expected_Due_Date__c = expDate;
+                   
                     snewCont.Gender__c = sGenders;
                     snewCont.Salutation = sSelectedPreferences;   
                     snewCont.Branch__c = selectBranch;
@@ -212,13 +208,12 @@ public class NctMembershipPaymentPageController
         
         else if(contId != null)
         {
-            //accntContRel =[SELECT Id,Roles FROM AccountContactRelation where contact.id=:contId limit 1];
+           
             isVolunteer = ContactUtilities.isVolunteerExisting(contId);
             isPractitioner = MembershipUtilties.isPractitioner(firstname, lastname, email);
-            //isPractitioner = false;
-            //if(accntContRel.id != null || isPractitioner == true){
+            
             if(isVolunteer == true || isPractitioner == true){
-                //if(isPractitioner == true){ //accntContRel.Roles == 'Volunteer' || 
+                
                 if(twomems == 'true')
                 {   
                     membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint','Volunteer/Practitioner');            
@@ -259,7 +254,7 @@ public class NctMembershipPaymentPageController
                 snewCont.Phone = sphone;
                 snewCont.Parent_Contact__c = newCont.id;
                 snewCont.MailingPostalCode = postCode;
-                //snewCont.Expected_Due_Date__c = expDate;
+                
                 snewCont.Gender__c = sGenders;
                 snewCont.Salutation = sSelectedPreferences;   
                 snewCont.Branch__c = selectBranch;
@@ -267,11 +262,11 @@ public class NctMembershipPaymentPageController
                 snewCont.MailingState = stateValue;
                 snewCont.MailingCity = cityValue;
                 Database.insert(snewCont, false);
-                //membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint','Parent, Companion');
+                
                 
             }
             if(isVolunteer == true || isPractitioner == true){
-                    //if(isPractitioner == true){ //accntContRel.Roles == 'Volunteer' || 
+                    
                 if(twomems == 'true')
                 {   
                     membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint','Volunteer/Practitioner');            
@@ -339,7 +334,7 @@ public class NctMembershipPaymentPageController
             Decimal lattitude = latlonPostcode[0].BillingLatitude;
             Decimal longitude = latlonPostcode[0].BillingLongitude; 
  
-            //nearestBranchs =[SELECT Id,Name FROM Account where DISTANCE(BillingAddress, GEOLOCATION(lattitude ,longitude), mi) < 30];
+            
             
             String queryString = 'SELECT Id, Name '+
                 'FROM Account where (DISTANCE(BillingAddress ,GEOLOCATION('+lattitude+','+longitude+'), \'mi\')< 30) and BillingPostalCode=:postCode order by Name limit 10';
@@ -357,7 +352,7 @@ public class NctMembershipPaymentPageController
     public void paymentSave()
     {
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
-        //system.debug(accountNumber + '   *$*#@**$*$ accountName  ' + accountName + '  &$#*#*#  ' + sortCode + '   *$*$*$ newCont ' + newCont.Id);
+        
              
         if(newCont != null)//&& pymtPrfl == null && recDon == null
         {
@@ -378,7 +373,7 @@ public class NctMembershipPaymentPageController
                 gftAid.gaid__Contact__c= newCont.Id;
                 gftAid.Method__c = 'Online';
                 gftAid.gaid__Type__c = membershipInfo.GiftAid_Type__c;
-                //gftAid.gaid__Acquisition_Method__c = membershipInfo.GiftAid_Acquisition_Method__c;
+                
                 gftAid.gaid__Acquisition_Method__c = acquistion;
                 gftAid.gaid__Start_Date__c = system.today();
                 gftAid.gaid__Date_Made__c = system.today();
@@ -429,10 +424,9 @@ public class NctMembershipPaymentPageController
                 recDon.First_Contact__c = Apexpages.currentPage().getParameters().get('contId');
                 recDon.npe03__Installment_Period__c = 'Yearly';
                 recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
-                //recDon.npsp4hub__Payment_Processor__c = 'PaymentHub-BACS';
-                //recDon.npsp4hub__Target__c = 'BACS Standard 18';
+                
                 recDon.Membership_Status__c = 'Confirmed';
-                //recDon.npsp4hub__Payment_Profile__c = pymtPrfl.Id;
+                
                 Insert recDon;
             }
         }
@@ -450,8 +444,7 @@ public class NctMembershipPaymentPageController
             }            
             system.debug('RECCURRING DONATION record  ' + reccDonList);            
         } 
-        //if(contId == null)
-        //{
+        
         list<User> userList = [select Id, Name from User where user.ContactId =: reccDonList[0].npe03__Contact__c and Username =:reccDonList[0].npe03__Contact__r.Email];
         if(userList == null || userList.isEmpty())
         {
@@ -468,7 +461,7 @@ public class NctMembershipPaymentPageController
                 usr.Email = reccDonList[0].npe03__Contact__r.Email;
                 usr.FirstName = reccDonList[0].npe03__Contact__r.Prefered_First_Name__c;
                 usr.LastName = reccDonList[0].npe03__Contact__r.LastName;
-                //usr.CommunityNickname = 'comNick';
+               
                 usr.Alias = alias.substring(1, 6);
                 usr.TimeZoneSidKey = 'GMT';
                 usr.LocaleSidKey = 'en_GB';
@@ -489,7 +482,7 @@ public class NctMembershipPaymentPageController
             System.debug('User Exists: '+userList);
         }
             
-        //}        
+              
     }
     public PageReference paymentHubCallout()
     {
@@ -506,7 +499,7 @@ public class NctMembershipPaymentPageController
         HttpResponse tokenResponse = new HttpResponse();
         Http tokenHttp = new Http();
         
-        //tokenRequest.setEndpoint(System.Label.ENDPOINTOAUTH+'client_id='+System.Label.CLIENTID+'&client_secret='+System.Label.CLIENT_SECRET+'&grant_type=password&username='+System.Label.ENDPOINT_USERNAME+'&password='+System.Label.ENDPOINT_PASSWORD);
+       
         
         tokenRequest.setEndpoint('https://test.salesforce.com/services/oauth2/token?client_id=3MVG95AcBeaB55lVpFY_Rw8rGI.KUCG9dcqi1zRxbXuXhdoYYpgHOQUg01kQrJyfp_yYqnT6F.aEXC1U7n06J&client_secret=5804933462634405366&grant_type=password&username=payment.api@nct.org.uk.preuat&password=payment123rl3GtuRGUj15A1W6ysGuUAT3N');
   
@@ -564,11 +557,11 @@ public class NctMembershipPaymentPageController
         //paymentHubRequest.setEndpoint(System.Label.SF_INSTANCE+'/services/apexrest/cpm/v1.0/Payment'); 
         paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment');        
         paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);  
-        //paymentHubRequest.setHeader('Authorization','Bearer '+ UserInfo.getSessionID()); 
+        
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('Accept','application/json');
         
-        //paymentHubRequest.setHeader('api-token',System.Label.API_TOKEN);
+        
         paymentHubRequest.setHeader('api-token','IPy3Yvtin0aa2GPIke79Ewp24a0YSt6Daj5HJ9v9IGq2VTDYTWWkSx5jE2Pg54u02j0uHQZ3BwHfxFh8nKfXK4fiqZSQbZuXFQtQfAE926aFrwwVoOxPOJ6MiWSFpMc8b0UrOcbUD9pdcW7x8xNu3CtI5JfukTrRZqNByghsdTnWKLb79XrKpttmtHepMmVPv3QyPZYq');
         paymentHubRequest.setBody(JSON.serialize(paymentReq));
         paymentHubRequest.setMethod('POST'); 

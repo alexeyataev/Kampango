@@ -11,7 +11,7 @@ global class CARE_Callout
             request.setEndpoint('https://careservices.nct.org.uk:1443/AuthStaging/SFChangeLogWS.pl?date=2018-08-31&authKey=PfgAPh5XMVDkLQBS3HMbnAJe-fh4rEaZ4HUJ&pageName=Testcallfromdocumentation');
             request.setMethod('GET');
             HttpResponse response = http.send(request);
-            //Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
+            
             System.debug(response.getBody());
         }
         Catch (Exception ex)

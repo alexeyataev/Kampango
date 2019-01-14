@@ -1,4 +1,4 @@
-public class NctETMembershipPaymentPageController 
+public with sharing class NctETMembershipPaymentPageController 
 {
     public string twomems{get; set;}
     public Date expDate {get; set;}
@@ -66,7 +66,7 @@ public class NctETMembershipPaymentPageController
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
     public npe03__Recurring_Donation__c recDon {get;set;}
     public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
-    //public Booking__c corsBkng {get;set;}
+    
     public Id feeAmount {get;set;}
     public Id selectBranch {get; set;}
     public string membershipNumber {get;set;}
@@ -74,7 +74,7 @@ public class NctETMembershipPaymentPageController
     public string redirectURL {get;set;} 
     public Id contId {get;set;}
     public boolean etSpecific;
-    //public Course__c cors;
+  
     // added by MembershipFormController
     public String accountName {get; set;}
     public String sortCode {get; set;}
@@ -127,7 +127,7 @@ public class NctETMembershipPaymentPageController
         accountName='';
         sortCode='';
         accountName='';  
-        //corsBkng = new Booking__c(); 
+        
         
         
     }
@@ -195,10 +195,7 @@ public class NctETMembershipPaymentPageController
                     newCont.Email = email;
                     newCont.Phone = phone;
                     newCont.MailingPostalCode = postCode;
-                    //if(eDate != null){
-                        //expDate = Date.valueOf(eDate);
-                        //newCont.Expected_Due_Date__c = expDate; 
-                    //}
+                    
                     newCont.Branch__c = selectBranch; 
                     newCont.Salutation = selectedPreferences;
                     newCont.Gender__c = genders;
@@ -218,8 +215,7 @@ public class NctETMembershipPaymentPageController
                         snewCont.Phone = sphone;
                         snewCont.Parent_Contact__c = newCont.id;
                         snewCont.MailingPostalCode = postCode;
-                        //snewCont.Contact_Prefrence__c = contactSelectedPreferences;
-                        //snewCont.Expected_Due_Date__c = expDate;
+                        
                         snewCont.Gender__c = sGenders;
                         snewCont.Salutation = sSelectedPreferences;     
                         snewCont.Branch__c = selectBranch;
@@ -238,18 +234,16 @@ public class NctETMembershipPaymentPageController
                 }
             }
                 
-            //}
+           
             // Yet to define the custom metadata, once done the logic can be updated and modified accordingly, hence commenting
             
             else if(contId != null)
             {
-                //accntContRel =[SELECT Id,Roles FROM AccountContactRelation where contact.id=:contId limit 1];
-                
-                //isPractitioner = false;
+               
                 System.debug('isPractitioner :'+isPractitioner);
-                //if(accntContRel.id != null || isPractitioner == true){
+                
                 if(isVolunteer == true || isPractitioner == true){
-                    //if(isPractitioner == true){ //accntContRel.Roles == 'Volunteer' || 
+                    
                     if(twomems == 'true')
                     {   
                         membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
@@ -290,20 +284,20 @@ public class NctETMembershipPaymentPageController
                     snewCont.Phone = sphone;
                     snewCont.Parent_Contact__c = newCont.id;
                     snewCont.MailingPostalCode = postCode;
-                    //snewCont.Expected_Due_Date__c = expDate;
+                   
                     snewCont.Gender__c = sGenders;
                     snewCont.Salutation = sSelectedPreferences;     
                     snewCont.Branch__c = selectBranch;
-                    //snewCont.Contact_Prefrence__c = contactSelectedPreferences;
+                    
                     snewCont.MailingStreet = streetValue+''+streetValue2+''+streetValue2;
                     snewCont.MailingState = stateValue;
                     snewCont.MailingCity = cityValue;
                     Database.insert(snewCont, false);
-                    //membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint','Parent, Companion');
+                    
                     
                 }
                 if(isVolunteer == true || isPractitioner == true){
-                        //if(isPractitioner == true){ //accntContRel.Roles == 'Volunteer' || 
+                       
                     if(twomems == 'true')
                     {   
                         membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
@@ -364,10 +358,9 @@ public class NctETMembershipPaymentPageController
                 recDon.First_Contact__c = newCont.Id;
                 recDon.npe03__Installment_Period__c = 'Yearly';
                 recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
-                //recDon.npsp4hub__Payment_Processor__c = 'PaymentHub-BACS';
-                //recDon.npsp4hub__Target__c = 'BACS Standard 18';
+               
                 recDon.Membership_Status__c = 'Pending';
-                //recDon.npsp4hub__Payment_Profile__c = pymtPrfl.Id;
+               
                 Insert recDon;
                 
                 thankYouSec();
@@ -397,7 +390,7 @@ public class NctETMembershipPaymentPageController
             Decimal lattitude = latlonPostcode[0].BillingLatitude;
           Decimal longitude = latlonPostcode[0].BillingLongitude; 
  
-            //nearestBranchs =[SELECT Id,Name FROM Account where DISTANCE(BillingAddress, GEOLOCATION(lattitude ,longitude), mi) < 30];
+           
             
             String queryString = 'SELECT Id, Name '+
                 'FROM Account where (DISTANCE(BillingAddress ,GEOLOCATION('+lattitude+','+longitude+'), \'mi\')< 30) and BillingPostalCode=:postCode order by Name limit 10';
@@ -416,7 +409,7 @@ public class NctETMembershipPaymentPageController
     {
         displayMbrNoMessage = true;
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
-        //system.debug(accountNumber + '   *$*#@**$*$ accountName  ' + accountName + '  &$#*#*#  ' + sortCode + '   *$*$*$ newCont ' + newCont.Id);
+        
          
         if(newCont != null)//&& pymtPrfl == null && recDon == null
         {
@@ -432,7 +425,7 @@ public class NctETMembershipPaymentPageController
             pymtPrfl.paybacs__Sort_Code__c = sortCode;
             insert pymtPrfl; 
           System.debug('Gift Aid Check box: '+isGiftAid);
-            if(isGiftAid == 'true' ) // && gftAid == null
+            if(isGiftAid == 'true' ) 
             {
                 gftAid.gaid__Contact__c= newCont.Id;
                 gftAid.Method__c = 'Online';
@@ -447,10 +440,7 @@ public class NctETMembershipPaymentPageController
             recDon.npe03__Amount__c = membershipInfo.Installment_Amount__c;
             recDon.npe03__Installments__c = membershipInfo.No_of_Installments__c;
             recDon.npe03__Contact__c = newCont.Id;
-            //if(snewCont != null)
-            //{
-               // recDon.
-           // }
+            
             recDon.First_Contact__c = newCont.Id;
             recDon.npe03__Schedule_Type__c = membershipInfo.Schedule_Type__c;
             recDon.npe03__Installment_Period__c = membershipInfo.Installment_Period__c;
@@ -494,10 +484,9 @@ public class NctETMembershipPaymentPageController
                 recDon.First_Contact__c = Apexpages.currentPage().getParameters().get('contId');
                 recDon.npe03__Installment_Period__c = 'Yearly';
                 recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
-                //recDon.npsp4hub__Payment_Processor__c = 'PaymentHub-BACS';
-                //recDon.npsp4hub__Target__c = 'BACS Standard 18';
+                
                 recDon.Membership_Status__c = 'Pending';
-                //recDon.npsp4hub__Payment_Profile__c = pymtPrfl.Id;
+                
                 Insert recDon;
             }
         }
@@ -507,7 +496,7 @@ public class NctETMembershipPaymentPageController
                        npe03__Contact__r.LastName,npe03__Contact__r.Email,npe03__Installment_Amount__c, Membership_Status__c,
                        npe03__Date_Established__c from npe03__Recurring_Donation__c where npe03__Contact__c =:newCont.Id limit 1];   
             
-            //System.debug('else:438'+newCont.Id);
+            
             if(membershipInfo.Target_Customer__c == 'Staff Only')
             {
                 System.debug('if:441');
@@ -517,11 +506,9 @@ public class NctETMembershipPaymentPageController
                 recDon.CARE_Payment_Frequency__c = 'One Time';
                 recDon.First_Contact__c = newCont.Id;
                 recDon.npe03__Installment_Period__c = 'Yearly';
-                //recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
-                //recDon.npsp4hub__Payment_Processor__c = 'PaymentHub-BACS';
-                //recDon.npsp4hub__Target__c = 'BACS Standard 18';
+                
                 recDon.Membership_Status__c = 'Confirmed';
-                //recDon.npsp4hub__Payment_Profile__c = pymtPrfl.Id;
+                
                 Insert recDon;
             }
            
@@ -560,7 +547,7 @@ public class NctETMembershipPaymentPageController
                     usr.Email = reccDonList[0].npe03__Contact__r.Email;
                     usr.FirstName = reccDonList[0].npe03__Contact__r.Prefered_First_Name__c;
                     usr.LastName = reccDonList[0].npe03__Contact__r.LastName;
-                    //usr.CommunityNickname = 'comNick';
+                   
                     usr.Alias = alias.substring(1, 6);
                     usr.TimeZoneSidKey = 'GMT';
                     usr.LocaleSidKey = 'en_GB';
@@ -659,7 +646,7 @@ public class NctETMembershipPaymentPageController
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('Accept','application/json');
         
-        //paymentHubRequest.setHeader('api-token',System.Label.API_TOKEN);
+       
         paymentHubRequest.setHeader('api-token','IPy3Yvtin0aa2GPIke79Ewp24a0YSt6Daj5HJ9v9IGq2VTDYTWWkSx5jE2Pg54u02j0uHQZ3BwHfxFh8nKfXK4fiqZSQbZuXFQtQfAE926aFrwwVoOxPOJ6MiWSFpMc8b0UrOcbUD9pdcW7x8xNu3CtI5JfukTrRZqNByghsdTnWKLb79XrKpttmtHepMmVPv3QyPZYq');
         paymentHubRequest.setBody(JSON.serialize(paymentReq));
         paymentHubRequest.setMethod('POST'); 
@@ -675,8 +662,7 @@ public class NctETMembershipPaymentPageController
         //PageReference pageRefCrdDbt = new PageReference('https://preuat-mynct.cs102.force.com/apex/phstr__stripecheckout?failureRedirectURL=https%3A%2F%2Fournct--preuat--c.cs102.visual.force.com%2Fapex%2FnctPaymentHubErrorMsgPage&id=a2b1j000000031FAAQ&successRedirectURL=https%3A%2F%2Fournct--preuat--c.cs102.visual.force.com%2Fapex%2FnctPaymentHubSuccessMsgPage');
         //PageReference pageRefCrdDbt = new PageReference(redirectURL);
         //pageRefCrdDbt.setRedirect(true);
-        //system.debug('  *$*$*$** pageRefCrdDbt =   ' + pageRefCrdDbt);
-        //return pageRefCrdDbt;
+        
         sendPaymentLinkToParent(redirectURL);
     }
     public void sendPaymentLinkToParent(string paymentLink)
@@ -696,20 +682,7 @@ public class NctETMembershipPaymentPageController
         System.debug('Payment Link Record Created : '+'ID: '+payLink.Id+', /r/n'+payLink.Contact__c+', '+payLink.Payment_Key__c+', '+payLink.Payment_Link__c);
         // code ends  
         
-        /*     
-        system.debug('*$*$* EMail Method was called   ' + paymentLink);
-        EmailTemplate emailTemplateId = [SELECT Id,Name,Subject, Body,HtmlValue FROM EmailTemplate WHERE Name ='NctMembershipPayment'];
-        String emailBodyValue = emailTemplateId.HtmlValue;
-        String emailSubjectValue = emailTemplateId.Subject;
-        Messaging.SingleEmailMessage  mail = new Messaging.SingleEmailMessage ();
-        emailBodyValue = emailBodyValue.replace('{!npe03__Recurring_Donation__c.OwnerFirstName}{!npe03__Recurring_Donation__c.First_Contact__c}',newCont.Prefered_First_Name__c + ' ' + newCont.LastName + ',');
-        emailBodyValue = emailBodyValue.replace('href=""', 'href="' + paymentLink +'"');
-        system.debug('   *$*$* emailBodyValue   ' + emailBodyValue);
-        mail.setHtmlBody(emailBodyValue);
-        mail.setToAddresses(new String[] {newCont.Email});
-        mail.setSubject(emailSubjectValue);
-        Messaging.sendEmail(new Messaging.SingleEmailMessage [] { mail});  
-        */
+        
     }
     public PageReference membershipRedirect(Id contId){
         if(contId != null || contId != ''){

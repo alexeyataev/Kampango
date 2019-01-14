@@ -1,4 +1,4 @@
-public class NCTHelpTicket {
+public with sharing class NCTHelpTicket {
     public List<case> recordList{set;get;}
     public boolean isCaseExist{set;get;}
     public string testString{set;get;}

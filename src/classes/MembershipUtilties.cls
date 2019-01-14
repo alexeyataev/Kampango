@@ -93,7 +93,7 @@ public with sharing class MembershipUtilties {
                 
             }else{
                 membershipTypeMap.get(membershipType.Membership__c).add(membershipType);
-                //System.debug('List of Metadata Type : '+membershipTypeMap + '\n');
+                
             }
 
         }
@@ -135,10 +135,9 @@ public with sharing class MembershipUtilties {
                                     ];
 
             if(contactList.size()>0 && contactList[0].Practitioner_Role__r != null && contactList[0].Practitioner_Role__r.size() > 0){
-                //System.debug('Practitioner License is : '+contactList[0].Practitioner_Licence__r.size());
-                //if (contactList[0] != null ){//&& contactList[0].Practitioner_Licence__r != null && contactList[0].Practitioner_Licence__r.size() > 0){
+                
                     return true;
-                //}
+              
             }
             
 

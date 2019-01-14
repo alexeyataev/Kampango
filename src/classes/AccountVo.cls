@@ -1,3 +1,3 @@
-global with sharing class AccountVo {
-            global String name{get;set;}
+public with sharing class AccountVo {
+            public String name{get;set;}
     }

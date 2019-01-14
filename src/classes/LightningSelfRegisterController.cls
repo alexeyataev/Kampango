@@ -1,8 +1,5 @@
-global class LightningSelfRegisterController {
+public with sharing class LightningSelfRegisterController {
 
-    public LightningSelfRegisterController() {
-
-    }
 
     @TestVisible 
     private static boolean isValidPassword(String password, String confirmPassword) {

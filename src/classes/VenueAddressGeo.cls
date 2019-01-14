@@ -1,10 +1,10 @@
-public class VenueAddressGeo {
+public with sharing class VenueAddressGeo {
 	// static variable to determine if geocodinghas already occurred
     private static Boolean geocodingCalled = false;
     // wrapper method to prevent calling future methods from an existing future context
     public static void doAddressGeocode(id venueId) {
       if(geocodingCalled || System.isFuture()) {
-        //geocodingCalled = true;
+
         System.debug(LoggingLevel.WARN,'***Address Geocoding Future Method Already Called - Aborting...');
         return;
       }
@@ -20,24 +20,19 @@ public class VenueAddressGeo {
       String geocodingKey = 'AIzaSyD99Qme19tqrGSYJiU6edxah-7wrSUffnY';
       // get the passed in address
       	Venue__c geoVenue =[SELECT MailingStreet__c, MailingCity__c, MailingState__c, MailingCountry__c, MailingPostalCode__c, Venue_GeoLocation__Latitude__s, Venue_GeoLocation__Longitude__s FROM Venue__c WHERE id = :venueId];
-      //Account geoAccount = [SELECT BillingStreet, BillingCity, BillingState, BillingCountry,BillingPostalCode FROM Account WHERE id = :accountId];
-        
-      //check that we have enough information to geocode the address
-      //if((geoVenue.MailingStreet__c == null) || (geoVenue.MailingCity__c == null)) {
-      //  System.debug(LoggingLevel.WARN,'Insufficient Data to Geocode Address');
-      //  return;
-     // }
+      
+     
       //create a string for the address to pass to Google Geocoding API
       String geoAddress = '';
-      //if(geoVenue.MailingStreet__c != null)
+    
         geoAddress+= geoVenue.MailingStreet__c + ', ';
-      //if(geoVenue.MailingCity__c != null)
+     
         geoAddress+= geoVenue.MailingCity__c + ', ';
-      //if(geoVenue.MailingState__c != null)
+     
         geoAddress+= geoVenue.MailingState__c + ', ';
-      //if(geoVenue.MailingCountry__c != null)
+      
         geoAddress+= geoVenue.MailingCountry__c + ', ';
-      //if(geoVenue.MailingPostalCode__c != null)
+     
         geoAddress+= geoVenue.MailingPostalCode__c;
       
       //encode the string so we can pass it as part of URL
@@ -69,14 +64,15 @@ public class VenueAddressGeo {
                      
             responseParser.nextToken();
              
-            if (locationText == 'latitude')
+            if (locationText == 'latitude'){
                        
             latitude = responseParser.getDecimalValue();
-                     
-            else if (locationText == 'longitude')
+            }       
+            else if (locationText == 'longitude'){
                        
             longitude = responseParser.getDecimalValue();
                 System.debug('long'+longitude);
+			}
             }
           }
         }

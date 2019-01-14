@@ -1,4 +1,4 @@
-public class NctPaymentHubPageController
+public with sharing class NctPaymentHubPageController
 {
     public Contact newCont {get;set;}
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
@@ -6,7 +6,7 @@ public class NctPaymentHubPageController
     public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
     public Booking__c corsBkng {get;set;}
     public string memberType {get;set;}
-    //public boolean checkBoxVal  {get;set;}
+   
     public boolean pymSelSec  {get;set;}
     public boolean contInfoSec  {get;set;}
     public boolean pymtInfoSec  {get;set;}
@@ -25,7 +25,7 @@ public class NctPaymentHubPageController
     public String textAddress3 {get; set;}
     public String textTown {get; set;} 
     public String county {get; set;} 
- //   public String PostalCode__c {get; set;}   
+  
    public String postalCode {get; set;}
     public String firstName {get; set;}
     public String lastName {get; set;}
@@ -36,15 +36,13 @@ public class NctPaymentHubPageController
         courseId = ApexPages.currentPage().getParameters().get('id');
         User u = new User();
          u.PostalCode = postalCode;
-    //    u.Email = email;
-    //    u.FirstName = firstName;
-     //   u.LastName = lastName;
+    
         newCont = new Contact();
         pymtPrfl = new cpm__Payment_Profile__c();
         recDon = new npe03__Recurring_Donation__c();
         gftAid = new gaid__Gift_Aid_Declaration__c();
         corsBkng = new Booking__c();
-        //checkBoxVal = false;
+       
         contInfoSec = true;
         feeFieldVisibility = false;
         pymSelSec = false;
@@ -65,28 +63,13 @@ public class NctPaymentHubPageController
     public PageReference contactSave()
     {
         PageReference redirecContUrl;
-        /*if(courseId != null)
-        {            
-            redirecContUrl = paymentHubCallout();   
+       
             newCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
-            insert newCont;
-            corsBkng.First_Contact__c = newCont.Id;
-            corsBkng.Status__c = 'Paid';
-            corsBkng.Course__c = courseId;
-            corsBkng.Payment_Date__c = system.today();
-            corsBkng.Payment_Method__c = 'Credit/Debit Card(£57)';
-            corsBkng.Cost__c = cors.Fee__c;
-            corsBkng.Due_Date__c = system.today()-1;
-            insert corsBkng;
-        }  
-        else 
-        {*/
-            newCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
-            //insert newCont;
+           
             contInfoSec = false;
             pymSelSec = true;
             redirecContUrl = null;
-        //}        
+             
         return redirecContUrl;
     }
     public PageReference paymentSel()
@@ -139,7 +122,7 @@ public class NctPaymentHubPageController
         insert pymtPrfl;
         
         gftAid.gaid__Contact__c= newCont.Id;
-        //gftAid.Name = 'New Gift Aid' + system.now();
+       
         gftAid.Method__c = 'Online';
         gftAid.gaid__Type__c = 'Single';
         gftAid.Declaration_Number__c = 56443323;
@@ -254,7 +237,7 @@ public class NctPaymentHubPageController
         Http paymentHubHttp = new Http(); 
         paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment');        
         paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);  
-        //paymentHubRequest.setHeader('Authorization','Bearer '+ UserInfo.getSessionID()); 
+        
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('Accept','application/json');
         paymentHubRequest.setHeader('api-token','IPy3Yvtin0aa2GPIke79Ewp24a0YSt6Daj5HJ9v9IGq2VTDYTWWkSx5jE2Pg54u02j0uHQZ3BwHfxFh8nKfXK4fiqZSQbZuXFQtQfAE926aFrwwVoOxPOJ6MiWSFpMc8b0UrOcbUD9pdcW7x8xNu3CtI5JfukTrRZqNByghsdTnWKLb79XrKpttmtHepMmVPv3QyPZYq');
