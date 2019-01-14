@@ -173,7 +173,7 @@ System.debug('The following errors occurred: ' + res.getErrors());
 }
 
 return sendResult;
-}*/
+}
     //old code: public static void sendSingleMail(String address, String  firstname, String coursetype, String startdate, String enddate){
     
     // new code : 

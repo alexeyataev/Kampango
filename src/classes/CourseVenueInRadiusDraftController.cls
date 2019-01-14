@@ -58,7 +58,7 @@ public with sharing class CourseVenueInRadiusDraftController {
         lat = latlon[0].PLatitude__c;
         lon = latlon[0].PLongitude__c;
        
-       /
+       
         System.debug('lat: '+lat);
         System.debug('lon: '+lon);
 		System.debug('Test:'+miles);
@@ -74,13 +74,8 @@ public with sharing class CourseVenueInRadiusDraftController {
         
         courses = database.query(queryString); 
         }
-        else{
-            
-          
+        else{     
         
-        }
-        
-      	
-    }
-    
+        }   	
+    }  
 }

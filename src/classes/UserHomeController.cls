@@ -22,11 +22,11 @@ public with sharing class UserHomeController {
         hierarchy = new List<cNodes>();
         List<Course__c> tempparent = [SELECT Id, Name,Session_Count__c, Course_Type__c, Course_Name__c, Venue__c, Status__c,Venue__r.Name, Start_Date__c, End_Date__c, Venue__r.MailingStreet__c, Venue__r.MailingState__c, Venue__r.MailingCity__c, Venue__r.MailingCountry__c, Venue__r.MailingPostalCode__c FROM Course__c where (Session_Count__c >0) and (Start_Date__c > :date1 OR End_Date__c> :date1) limit 5];//CreatedById = :id1 and
         System.debug('Test'+tempparent);
-		Map<ID,Session__c> tempchildren = new Map<ID,Session__c>([SELECT id,Start__c, End__c FROM Session__c where Course__c= :tempparent[i].Id]);
+		
         for (Integer i =0; i< tempparent.size() ; i++)
         {
-            
-            tempchildren.values();
+            list<Session__c> tempchildren = [SELECT id,Start__c, End__c FROM Session__c where Course__c= :tempparent[i].Id];
+           
             hierarchy.add(new cNodes(tempparent[i],tempchildren));
              
         }

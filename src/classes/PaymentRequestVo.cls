@@ -32,6 +32,6 @@ public with sharing class PaymentRequestVo {
 
 	public class SourceConnectorVo{
 	    public String name{get;set;}
-	    public String name{get;set;}
+	    
 	}
 }
