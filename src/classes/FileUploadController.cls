@@ -6,8 +6,8 @@ public with sharing class FileUploadController {
     get {
       if (document == null){
         document = new document();
-      return Document;
 	  }
+      return Document;
     }
     set;
   }
