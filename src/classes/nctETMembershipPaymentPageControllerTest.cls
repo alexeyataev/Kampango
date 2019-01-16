@@ -94,4 +94,5 @@ private class NctETMembershipPaymentPageControllerTest {
         Test.stopTest();
 		system.assertEquals(1,1);
     }
+/*test*/
 }
