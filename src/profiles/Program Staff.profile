@@ -4988,7 +4988,7 @@
         <name>SubscribeToLightningReports</name>
     </userPermissions>
     <userPermissions>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
         <name>TransactionalEmailSend</name>
     </userPermissions>
     <userPermissions>
