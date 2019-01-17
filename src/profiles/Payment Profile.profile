@@ -399,7 +399,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>nctETMembershipPaymentPageControllerTest</apexClass>
+        <apexClass>NctETMembershipPaymentPageControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
