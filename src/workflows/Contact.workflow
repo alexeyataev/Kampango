@@ -44,10 +44,7 @@
             <recipient>anjineyulu.valasa@csscorp.com</recipient>
             <type>user</type>
         </recipients>
-        <recipients>
-            <recipient>rupambika.nayak@csscorp.com</recipient>
-            <type>user</type>
-        </recipients>
+        
         <senderType>CurrentUser</senderType>
         <template>GW_Volunteers__Volunteers_Email_Templates/Volunteer_de_register</template>
     </alerts>

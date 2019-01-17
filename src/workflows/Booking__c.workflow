@@ -43,6 +43,6 @@
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>NCT_Templates/Course_booking_status_reserved2</template>
+        <template>NCT_Templates/Course_booking_status_reserved</template>
     </alerts>
 </Workflow>
