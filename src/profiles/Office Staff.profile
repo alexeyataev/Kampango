@@ -290,7 +290,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>attachmentsample</apexClass>
+        <apexClass>AttachmentSample</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
