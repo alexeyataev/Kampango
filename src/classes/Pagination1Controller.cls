@@ -1,4 +1,4 @@
-public class Pagination1Controller  
+public with sharing class Pagination1Controller  
 {
     public String searchString{get;set;}
     public Boolean showResult{get;set;}

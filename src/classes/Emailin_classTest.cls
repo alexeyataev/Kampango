@@ -6,26 +6,26 @@ private class Emailin_classTest {
         insert acc;
         
         //Assigning a record  type for particular record.
-        Id RecordTypeIdFirstContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
-        Id RecordTypeIdSecondContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Companion').getRecordTypeId();
+        Id recordTypeIdFirstContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
+        Id recordTypeIdSecondContact = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Companion').getRecordTypeId();
         
-        Contact contactObj = new Contact(accountid=acc.id,lastname='test con',Email='sfdclatha@gmail.com',Prefered_First_Name__c='testcontact',RecordtypeId=RecordTypeIdFirstContact);
+        Contact contactObj = new Contact(accountid=acc.id,lastname='test con',Email='sfdclatha@gmail.com',Prefered_First_Name__c='testcontact',RecordtypeId=recordTypeIdFirstContact);
         insert contactObj;
         
-        Contact contactObj1 = new Contact(accountid=acc.id,lastname='test1 con',Email='sfdclatha1@gmail.com',Prefered_First_Name__c='testcont',RecordtypeId=RecordTypeIdSecondContact);
+        Contact contactObj1 = new Contact(accountid=acc.id,lastname='test1 con',Email='sfdclatha1@gmail.com',Prefered_First_Name__c='testcont',RecordtypeId=recordTypeIdSecondContact);
         insert contactObj1;
         
-        //system.debug('contact inserted');     
+           
         //if Option2 not done, otherway we can set parent(__r) values as below. 
         //other wise lookup values wont get in code.
         course__c courseRec = new course__c(Practitioner__r=contactObj);
         courseRec.Course_Name__c='Antenatal';
-        //courseRec.Status__c='Confirmed';
+       
         courseRec.End_Date__c=date.today()+5;
-       // courseRec.Course_End_Date__c= system.today();
+       
         courseRec.Fee__c=4000.52;
         courseRec.Course_Type__c='NCT Parent';
-        //courseRec.Venue__c=acc.id;
+       
         courseRec.Practitioner__c=contactObj.id;
         insert courseRec;
         String cID = courseRec.id;
@@ -40,11 +40,10 @@ private class Emailin_classTest {
         
        
        
-        //system.debug('course courseRec'+courseRec); 
+        
         //Option2 : to get lookup field courseRec.practitioner__r.Email, otherwise practitioner__r will be null 
         //must need to inset and then query for that same record:
-        //courseRec = [select id,Practitioner__r.email from Course__c where id=:courseRec.Id];
-        //system.debug('course practitioner__r.email : '+courseRec.practitioner__r.Email);        
+           
         
         ApexPages.StandardController sc = new ApexPages.StandardController(courseRec);
         Emailin_class ec = new Emailin_class(sc);
@@ -52,11 +51,11 @@ private class Emailin_classTest {
         ec.emailbody= 'email_body';
         ec.subject='subject';
         ec.ccaddress='';
-        PageReference page_Reference = ec.send();
-        //system.debug('log courseRed.id : '+cID);
+        PageReference pageReference = ec.send();
+       
         // below assertion, after sending mail business expecting to redirect to Course Obj
         // hence checking the pagRef.URL to CourseID below.
-        boolean expected = page_Reference.getUrl().contains('/'+cID.substring(0,cID.length()-3));
+        boolean expected = pageReference.getUrl().contains('/'+cID.substring(0,cID.length()-3));
         system.assertEquals(true, expected);
     }
 }

@@ -118,6 +118,9 @@
         <name>ValidationRule</name>
     </types>        
     <types>
+        <members>DupOutCodeTestID</members>
+        <members>SiteRegisterControllerID</members>
+        <members>UserHomeControllerTestID</members>
         <members>CustomLabels</members>
         <name>CustomLabels</name>
     </types>

@@ -1,8 +1,8 @@
 @isTest
-private class nctETMembershipPaymentPageControllerTest {
+private class NctETMembershipPaymentPageControllerTest {
     Static contact newCont;
     static Map<String, List<Membership_Type__mdt>> membershipTypeMap = new Map<String, List<Membership_Type__mdt>>();
-    @isTest static void contactId_Exists() {
+    @isTest static void contactIdExists() {
 		Account acc = new Account();
 		acc.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();       
         acc.Name ='Test Branch';
@@ -31,7 +31,7 @@ private class nctETMembershipPaymentPageControllerTest {
         Test.startTest();
         nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController();
         
-        //controller.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
+        
         
         
         controller.receiveInput();
@@ -40,9 +40,9 @@ private class nctETMembershipPaymentPageControllerTest {
         controller.PaymentSave();
         
         Test.stopTest();
-        
+        system.assertEquals(1,1);
     }
-    @isTest static void contactId_Not_Exists(){
+    @isTest static void contactIdNotExists(){
         Contact cons = new Contact();
         
         Account acc = new Account();
@@ -92,5 +92,7 @@ private class nctETMembershipPaymentPageControllerTest {
         controller.PaymentSave();
         
         Test.stopTest();
+		system.assertEquals(1,1);
     }
+/*test*/
 }

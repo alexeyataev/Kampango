@@ -8,10 +8,10 @@ public class CommunitiesSelfRegController {
     public String email {get; set;}
     public String password {get; set {password = value == null ? value : value.trim(); } }
     public String confirmPassword {get; set { confirmPassword = value == null ? value : value.trim(); } }
-    Public String Phone{set;get;}
-    Public String MailingAddress{set;get;}
-    Public String Mobile{set;get;}
-    Public String Username{set;get;}
+    Public String phone{set;get;}
+    Public String mailingAddress{set;get;}
+    Public String mobile{set;get;}
+    Public String username{set;get;}
     public String communityNickname {get; set { communityNickname = value == null ? value : value.trim(); } }
 
     public CommunitiesSelfRegController() {

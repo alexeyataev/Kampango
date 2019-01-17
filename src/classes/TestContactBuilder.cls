@@ -7,8 +7,6 @@ public with sharing class TestContactBuilder {
 	private Account account;
 	private Boolean insertRecord = false;
 
-	public TestContactBuilder() {}
-
 	public TestContactBuilder withRecordType(string recordTypeName) {
         
         recordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordTypeName).getRecordTypeId();

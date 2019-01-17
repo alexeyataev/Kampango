@@ -1033,7 +1033,7 @@
                                         <div class="col-md-7 col-12">
                                             <apex:outputPanel Id="displayValues">
                                             <h2 class="paddingtop20px">Congratulations,</h2> 
-                                            <p><strong><span id="forename_Dsp"> </span></strong></p>
+                                            <p><strong><span id="forename_Dsp"> </span></strong></p>{!displayMbrNoMessage}
                                             <p><apex:outputText Id="membershipWelcomText" value="Welcome to our family..." rendered="{!displayMbrNoMessage}"/></p>
                                             <p> <apex:outputText Id="membershipDisplayText" value="Successfully send the Payment link to the Parent !!!" rendered="{!displaySuccessMessage}"/><BR/><BR/>
                                                 <apex:outputText Id="membershipText" value="Your Membership Number is" rendered="{!displayMbrNoMessage}"/>&nbsp;

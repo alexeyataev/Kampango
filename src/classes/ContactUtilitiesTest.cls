@@ -7,7 +7,7 @@
 */
 @isTest
 private class ContactUtilitiesTest {
-	@isTest static void positive_method() {
+	@isTest static void positivemethod() {
 		// Implement test code
 		Contact con = new Contact();
         con.FirstName = 'Test FirstName';
@@ -76,7 +76,7 @@ private class ContactUtilitiesTest {
         System.assertEquals('true', twomems);
 	}
 	
-	@isTest static void negative_method() {
+	@isTest static void negativemethod() {
 		// Implement test code
 		Contact con = new Contact();
         con.FirstName = 'Test FirstName';

@@ -1,8 +1,5 @@
-global class LightningSelfRegisterController {
+public with sharing class LightningSelfRegisterController {
 
-    public LightningSelfRegisterController() {
-
-    }
 
     @TestVisible 
     private static boolean isValidPassword(String password, String confirmPassword) {
@@ -123,7 +120,7 @@ global class LightningSelfRegisterController {
     }
     
     @AuraEnabled
-    global static String setExperienceId(String expId) {
+    public static String setExperienceId(String expId) {
         // Return null if there is no error, else it will return the error message 
         try {
             if (expId != null) {

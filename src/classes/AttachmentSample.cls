@@ -1,6 +1,6 @@
-public class attachmentsample {
+public with sharing class AttachmentSample {
 
-    public attachmentsample(ApexPages.StandardController controller) {
+    public Attachmentsample(ApexPages.StandardController controller) {
 
     }
     Public Attachment myfile;
@@ -28,5 +28,5 @@ public class attachmentsample {
      ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,'File uploaded successfully'));
         return NULL;
     }   
-
+/*test*/
 }

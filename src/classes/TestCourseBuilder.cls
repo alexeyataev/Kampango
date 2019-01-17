@@ -9,8 +9,6 @@ public with sharing class TestCourseBuilder {
 	private Decimal fee = 200.00;
 	private Boolean insertRecord = false;
 
-	public TestCourseBuilder() {}
-
 	public TestCourseBuilder withPractitioner(Contact practitioner)
 	{
 		this.practitioner = practitioner;
