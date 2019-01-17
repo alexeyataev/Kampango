@@ -3705,6 +3705,7 @@
                 <value>
                     <fullName>Mail</fullName>
                     <default>false</default>
+					<isActive>false</isActive>
                     <label>Mail</label>
                 </value>
                 <value>
@@ -3718,13 +3719,25 @@
                     <label>Email</label>
                 </value>
                 <value>
+                    <fullName>Telephone</fullName>
+                    <default>false</default>
+                    <label>Telephone</label>
+                </value>
+                <value>
+                    <fullName>SMS Text</fullName>
+                    <default>false</default>
+                    <label>SMS Text</label>
+                </value>
+                <value>
                     <fullName>Phone</fullName>
                     <default>false</default>
+					<isActive>false</isActive>
                     <label>Phone</label>
                 </value>
                 <value>
                     <fullName>Message</fullName>
                     <default>false</default>
+					<isActive>false</isActive>
                     <label>Message</label>
                 </value>
             </valueSetDefinition>
@@ -5897,19 +5910,15 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Message</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Post</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6162,19 +6171,15 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Message</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Post</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6426,19 +6431,15 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Message</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Post</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6690,19 +6691,15 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Message</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Post</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
