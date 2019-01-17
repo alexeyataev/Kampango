@@ -5537,10 +5537,6 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>ModifyDataClassification</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>ModifyMetadata</name>
     </userPermissions>
     <userPermissions>
