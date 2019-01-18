@@ -177,6 +177,7 @@
         <apexClass>DisplayDdScheduleController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<classAccesses>
         <apexClass>Emailin_class</apexClass>
         <enabled>false</enabled>
     </classAccesses>
