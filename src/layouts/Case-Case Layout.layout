@@ -10,10 +10,6 @@
         </feedFilters>
         <feedFilters>
             <feedFilterType>FeedItemType</feedFilterType>
-            <feedItemType>EmailMessageEvent</feedItemType>
-        </feedFilters>
-        <feedFilters>
-            <feedFilterType>FeedItemType</feedFilterType>
             <feedItemType>CallLogPost</feedItemType>
         </feedFilters>
         <feedFilters>
@@ -160,9 +156,6 @@
         <quickActionListItems>
             <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
-        <!--<quickActionListItems>
-            <quickActionName>Case.CaseComment</quickActionName>
-        </quickActionListItems>-->
         <quickActionListItems>
             <quickActionName>Case.ChangeStatus</quickActionName>
         </quickActionListItems>
@@ -175,9 +168,6 @@
         <quickActionListItems>
             <quickActionName>FeedItem.PollPost</quickActionName>
         </quickActionListItems>
-        <!--<quickActionListItems>
-            <quickActionName>Case.SendEmail</quickActionName>
-        </quickActionListItems>-->
     </quickActionList>
     <relatedLists>
         <relatedList>RelatedCommentsList</relatedList>

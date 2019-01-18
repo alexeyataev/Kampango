@@ -139,6 +139,9 @@
         <label>Custom Links</label>
         <layoutColumns/>
         <layoutColumns/>
+        <customLabel>false</customLabel>
+        <detailHeading>false</detailHeading>
+        <editHeading>false</editHeading>
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>

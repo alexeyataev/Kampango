@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>NCT_Documents/NctheaderLogo_png.png</members>
+        <members>*</members>
         <name>Document</name>
     </types>	
 	<types>
@@ -28,8 +28,7 @@
         <members>Account</members>
         <members>AccountContactRelation</members>
         <members>Booking__c</members>
-        <members>Branch_PSA_Office__c</members>
-        
+        <members>Branch_PSA_Office__c</members>        
         <members>Case</members>
         <members>Contact</members>
 		<members>CampaignMember</members>

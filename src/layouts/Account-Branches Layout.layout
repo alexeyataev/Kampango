@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <!--<customButtons>Upload_Proof_Of_Address</customButtons>-->
     <excludeButtons>AccountHierarchy</excludeButtons>
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
@@ -175,11 +174,6 @@
             <sortOrder>9</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Edit</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>10</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>JigsawSearch</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>11</sortOrder>
@@ -254,6 +248,11 @@
             <actionType>StandardButton</actionType>
             <sortOrder>7</sortOrder>
         </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Edit</actionName>
+            <actionType>StandardButton</actionType>
+            <sortOrder>10</sortOrder>
+        </platformActionListItems>
     </platformActionList>
     <quickActionList>
         <quickActionListItems>
@@ -327,14 +326,6 @@
         <fields>npe03__Total_Paid_Installments__c</fields>
         <relatedList>npe03__Recurring_Donation__c.npe03__Organization__c</relatedList>
     </relatedLists>
-    <!--<relatedLists>
-        <fields>NAME</fields>
-        <fields>MDF_Partner_Contact__c</fields>
-        <fields>Event__c</fields>
-        <fields>MDF_Amount__c</fields>
-        <fields>Received_Payment__c</fields>
-        <relatedList>Event_MDF__c.MDF_Partner_Account__c</relatedList>
-    </relatedLists>-->
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
@@ -367,12 +358,6 @@
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
-    <!--<relatedLists>
-        <fields>NAME</fields>
-        <fields>Event_Start_Date__c</fields>
-        <fields>Event_End_Date__c</fields>
-        <relatedList>Event__c.Branch__c</relatedList>
-    </relatedLists>-->
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
