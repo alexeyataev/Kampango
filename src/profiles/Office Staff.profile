@@ -2453,6 +2453,7 @@
         <field>Direct_Debits__c.ContactKey__c</field>
         <readable>false</readable>
     </fieldPermissions>
+	<fieldPermissions>
         <editable>false</editable>
         <field>Direct_Debits__c.DirectDebit_Key__c</field>
         <readable>false</readable>
