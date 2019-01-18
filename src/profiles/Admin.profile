@@ -5605,10 +5605,6 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>SubscribeReportRolesGrps</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>SubscribeReportToOtherUsers</name>
     </userPermissions>
     <userPermissions>
