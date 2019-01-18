@@ -1,4 +1,4 @@
-<apex:page applyHtmlTag="true" docType="html-5.0" controller="NctETMembershipPaymentPageController" showHeader="false" sidebar="false">
+<apex:page applyHtmlTag="true" docType="html-5.0" controller="nctETMembershipPaymentPageController" showHeader="false" sidebar="false">
 <apex:form id="membrShpForm">
    <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
         <apex:param id="selValId" name="seltdName" value="" />
@@ -15,7 +15,7 @@
        <apex:param id="accNum" name="accNum" value="" assignTo="{!accountNumber}"/>
        <apex:param id="gftAid" name="gftAid" value="" assignTo="{!isGiftAid}"/>
     </apex:actionFunction>
-    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership">
+    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,membershipNumber,membershipText">
         <apex:param id="aname" name="chkbox" value="" assignTo="{!twomems}"/>
         <apex:param id="firstName" name="firstName" value="" assignTo="{!firstname}"/>
         <apex:param id="lastName" name="lastName" value="" assignTo="{!lastname}"/>
@@ -310,6 +310,7 @@
 
 <body class="membership-details-screen">   
     <section>   
+    	<input type="text" value="{!staffMember}" id="checkStaff" style="opacity:0;width:1px;height:1px;"/>
         <div class="green-bg-image">
             <div class="text-center nct-mebmber-logo"><apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nctmembers-logo.png')}"/></div>
         </div>     
@@ -1035,7 +1036,7 @@
                                             <p><strong><span id="forename_Dsp"> </span></strong></p>
                                             <p><apex:outputText Id="membershipWelcomText" value="Welcome to our family..." rendered="{!displayMbrNoMessage}"/></p>
                                             <p> <apex:outputText Id="membershipDisplayText" value="Successfully send the Payment link to the Parent !!!" rendered="{!displaySuccessMessage}"/><BR/><BR/>
-                                                <apex:outputText Id="membershipText" value="Your Membership Number is -" rendered="{!displayMbrNoMessage}"/>&nbsp;
+                                                <apex:outputText Id="membershipText" value="Your Membership Number is" rendered="{!displayMbrNoMessage}"/>&nbsp;
                                                <apex:outputText Id="membershipNumber" value="{!membershipNumber}" style="font-weight:bold;" rendered="{!displayMbrNoMessage}"/></p>
                                                </apex:outputPanel>
                                         <div class="col-md-1 col-12">                                          
@@ -1052,123 +1053,23 @@
         </div>
     </section>
     <!-- footer start here -->
-    <footer>
-        <div class="footer-padding container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <h6 class="footer-header">Enquires and Feeding Helpline</h6>
-                    <div class="footer-content">
-                        <h6 class="num_color">0300 330 0700 </h6>
-                        <p>For practical and emotional Support in all areas of pregnancy.birth and parentehood
-                            including help
-                            with feeding </p>
-                        <a class="link-color see-all-costs">See all Costs</a>
-						<p class="all-costs-text">Calling us costs the same as any local call, however, if you have free 'inclusive' minutes on a landline or mobile, it will be included in those.</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="footer-header">About</h6>
-                    <ul class="footer-List">
-                        <li>
-                            <a href="https://nct.org.uk/about-nct/first-1000-days">First 1,000 Days</a>
-                        </li>
-                        <li>
-                            <a href="https://nct.org.uk/about-nct/vision-and-strategy">Vission, Mission &amp; goal</a>
-                        </li>
-                        <li>
-                            <a href="https://www.cloudonlinerecruitment.co.uk/nct/">Trustees</a>
-                        </li>
-                        <li>
-                            <a href="https://nct.org.uk/about-nct/trustees">Careers</a>
-                        </li>
-                        <li>
-                            <a href="https://nct.org.uk/about-us/contact-us">Contact us</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="footer-header">News and Views</h6>
-                    <ul class="footer-List">
-                        <li>
-                            <a href="">News</a>
-                        </li>
-                        <li>
-                            <a href="">Blogs</a>
-                        </li>
-                        <li>
-                            <a href="">Forums</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h6 class="footer-header">Support us</h6>
-                    <ul class="footer-List">
-                        <li>
-                            <a href="https://nct.org.uk/get-involved/membership">Membership</a>
-                        </li>
-                        <li>
-                            <a href="https://nct.org.uk/get-involved/corporate-partnerships">Partnership</a>
-                        </li>
-                        <li>
-                            <a href="https://nct.org.uk/get-involved/fundraising-activities">Fundraising activities </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h6 class="footer-header">Professionals</h6>
-                    <ul class="footer-List">
-                        <li>
-                            <a href="">Breastfeeding peer support training </a>
-                        </li>
-                        <li>
-                            <a href="">Preparation for birth and beyond antenatal course </a>
-                        </li>
-                        <li>
-                            <a href="">training for professionals </a>
-                        </li>
-                        <li>
-                            <a href="">Diversity and access </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer_links">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-12 nopadding">
-                        <ul>
-                            <li>
-                                <a href="">Research</a>
-                            </li>
-                            <li>
-                                <a href="">Media</a>
-                            </li>
-                            <li>
-                                <a href="https://nct.org.uk/privacy">Privacy and Cookies </a>
-                            </li>
-                            <li>
-                                <a href="https://nct.org.uk/about-us/contact-us">Contact us</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="footer_address">
-                            <p>&copy; 2018 NCT, 30 Euston Square,London, NW12FB. </p>
-                            <p>Reg Charity No(England and Wales):801395,(Scotland):SC041592.Reg company No:2370573.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <c:Footer />
     <!-- footer end here -->
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/pca.js')}"/>
     <script>
         $(document).ready(function () {
+        var staffValue = $('#checkStaff').val();
+        	console.log(staffValue,'staff value');
+            if(staffValue == 'staff'){
+                $('#textForename, #textSurname, #textEmail').prop('readonly', true);
+                // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', true); 
+            }
+       		else {
+               $('#textForename, #textSurname, #textEmail').prop('readonly', false);
+                // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', false); 
+            }
         	$('#scd1').keypress(function(e) {
                 var scd1Value = $('#scd1').val();
                 if(scd1Value.length == 2) {
@@ -1251,7 +1152,8 @@
                     var existContact = $('#hdn').val();
                     console.log(existContact);//&& existContact =='false'
                     //SelBranchValFunction($(selBnchvalue).val());
-                    if(validateJoin() ){//&& validateGender()
+                    if(validateJoin()) {
+                    if(staffValue != 'staff' ){//&& validateGender()
                     afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text()); 
                     //var gender = $('input[name=gender]':checked).val();
                     //console.log(gender);
@@ -1261,7 +1163,16 @@
                     $('#payment').addClass('active show');
                     $("html, body").animate({ scrollTop: 0 }, "slow");
                     
-                }
+                	}
+                    else {
+                        afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text()); 
+                    	$('#thankyou_li').addClass('active');
+                        $('#thankyou').addClass('active show');
+                        $('#register_li').removeClass('active');
+                        $('#register').removeClass('active show');
+                        console.log($('#membershipText').val(),"staff memebership");
+                    }
+                   }
                 });
                 $("#confirm_all_pay_cc").click(function () {                    
                     var forename_Dsp = $('#textForename').val();
@@ -1625,6 +1536,7 @@
                         error = error + "Please enter your address.\n";
                         //return false;
                     }
+ 
                     if($('#agree').is(":checked") != true) { 
                         error = error + "Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy";
                     } 

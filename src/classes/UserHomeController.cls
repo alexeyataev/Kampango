@@ -45,7 +45,9 @@ public class UserHomeController {
             
         }
         else{
-           	PageReference pageRef = new PageReference('https://preuat-mynct.cs102.force.com/nctMembershipPaymentPage?id='+user.ContactId);
+            
+            PageReference pageRef = new PageReference(System.Label.PAYMENT_SITE_URL+'?id='+user.ContactId);
+           	//PageReference pageRef = new PageReference('https://preuat-mynct.cs102.force.com/nctMembershipPaymentPage?id='+user.ContactId);
             //pageRef.getRedirect(true);
             return pageRef;
         }

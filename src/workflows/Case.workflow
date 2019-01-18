@@ -100,6 +100,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>update_case_owner</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Enquiries_Team</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>update case owner</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>case_owner_field_update</fullName>
         <field>OwnerId</field>
         <lookupValue>Course_Booking_Queue</lookupValue>
@@ -129,6 +139,32 @@
         </criteriaItems>
         <description>Branch Volunteering Profile going to de-register from volunteer click the case reason  of Volunteer De-Registration Value</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Cancel Membership</fullName>
+        <actions>
+            <name>update_case_owner</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Case.Reason</field>
+            <operation>equals</operation>
+            <value>Cancel Membership</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>Request</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Cancel Membership</value>
+        </criteriaItems>
+        <description>Parent need to create a case on cancellation of Membership</description>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>When Case created always mails will send</fullName>

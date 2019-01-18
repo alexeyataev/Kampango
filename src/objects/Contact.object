@@ -3705,6 +3705,7 @@
                 <value>
                     <fullName>Mail</fullName>
                     <default>false</default>
+					<isActive>false</isActive>
                     <label>Mail</label>
                 </value>
                 <value>
@@ -3718,13 +3719,25 @@
                     <label>Email</label>
                 </value>
                 <value>
+                    <fullName>Telephone</fullName>
+                    <default>false</default>
+                    <label>Telephone</label>
+                </value>
+                <value>
+                    <fullName>SMS Text</fullName>
+                    <default>false</default>
+                    <label>SMS Text</label>
+                </value>
+                <value>
                     <fullName>Phone</fullName>
                     <default>false</default>
+					<isActive>false</isActive>
                     <label>Phone</label>
                 </value>
                 <value>
                     <fullName>Message</fullName>
                     <default>false</default>
+					<isActive>false</isActive>
                     <label>Message</label>
                 </value>
             </valueSetDefinition>
@@ -3734,6 +3747,36 @@
     <fields>
         <fullName>Department</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+     <fields>
+        <fullName>Data_Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Source</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Salesforce</fullName>
+                    <default>true</default>
+                    <label>Salesforce</label>
+                </value>
+                <value>
+                    <fullName>CARE</fullName>
+                    <default>false</default>
+                    <label>CARE</label>
+                </value>
+                <value>
+                    <fullName>Intrabiz</fullName>
+                    <default>false</default>
+                    <label>Intrabiz</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Description</fullName>
@@ -5867,19 +5910,15 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Message</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Post</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6132,19 +6171,15 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Message</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Post</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6396,19 +6431,15 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Message</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Post</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6660,19 +6691,15 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Message</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Post</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7010,6 +7037,23 @@ OR(
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
         <url>/apex/nctETMembershipPaymentPage?id={!Contact.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Request_Payment</fullName>
+        <availability>online</availability>
+        <description>Regarding Direct payment link send to parent</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Request Payment</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/38.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/38.0/apex.js&quot;)} 
+
+       var alertVal =  sforce.apex.execute(&quot;DirectpaymentlinksendtoParent&quot;,&quot;PaymentHubCallout&quot;,{
+        contId : &quot;{!Contact.Id}&quot;});
+
+alert(&apos;*$*$**$*  &apos; + alertVal);</url>
     </webLinks>
     <webLinks>
         <fullName>npe4__Relationships_Viewer</fullName>

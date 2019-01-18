@@ -31,6 +31,7 @@
         <members>Branch_PSA_Office__c</members>        
         <members>Case</members>
         <members>Contact</members>
+		<members>CampaignMember</members>
         <members>Course__c</members>
         <members>Direct_Debits__c</members>
 		<members>Event__c</members>
@@ -70,7 +71,6 @@
         <members>*</members>
         <name>CustomMetadata</name>
     </types>
-
 	<types>
         <members>Account-Branches Layout</members>
         <members>Account-Branches Layout_BV</members>
@@ -81,7 +81,7 @@
         <members>Booking__c-Booking Layout</members>
         <members>cpm__Installment__c-cpm__Installment Layout</members>
         <members>cpm__Installment__c-cpm__Installment Payable Layout</members>
-       <members>cpm__Payment_Profile__c-paybacs__Bank Account</members>
+        <members>cpm__Payment_Profile__c-paybacs__Bank Account</members>
         <members>npe03__Recurring_Donation__c-Membership Layout</members>
         <members>npe03__Recurring_Donation__c-npe03__Recurring Donation Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
@@ -96,6 +96,7 @@
         <members>Direct_Debits__c-Direct Debits Layout</members>
         <members>Gift_Aid__c-Gift Aid Layout</members>
         <members>Membership__c-Membership Layout</members>
+		<members>Membership_Type__mdt-Membership Type Layout</members>
         <members>Payment_Plan__c-Payment Plan Layout</members>
         <members>Permission_Question__c-Permission_Question Layout</members>
         <members>Permission__c-Permission Layout</members>
@@ -202,7 +203,6 @@
 	<types>
         <members>Account</members>
 		<members>Lead</members>
-		<members>Opportunity</members>
         <members>AccountContactRelation</members>
         <members>Booking__c</members>
         <members>Branch_PSA_Office__c</members>
