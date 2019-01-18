@@ -5553,10 +5553,6 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>PrivacyDataAccess</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>PublishPackaging</name>
     </userPermissions>
     <userPermissions>
