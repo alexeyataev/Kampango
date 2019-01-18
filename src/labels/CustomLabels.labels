@@ -55,6 +55,5 @@
         <protected>false</protected>
         <shortDescription>SF_INSTANCE</shortDescription>
         <value>https://cs108.salesforce.com</value>
-    </labels> 
     </labels>
 </CustomLabels>
