@@ -1115,7 +1115,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Venue_Address__c</field
+        <field>Booking__c.Venue_Address__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
