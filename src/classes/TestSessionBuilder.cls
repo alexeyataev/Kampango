@@ -7,8 +7,6 @@ public with sharing class TestSessionBuilder {
 
 	private Boolean insertRecord = false;
 
-	public TestSessionBuilder() {}
-
 	public TestSessionBuilder withCourse(Id courseId)
 	{
 		this.courseId = courseId;

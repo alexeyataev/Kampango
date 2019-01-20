@@ -1,15 +1,15 @@
-global with sharing class AcessTokenResponseVo {
+public with sharing class AcessTokenResponseVo {
 
-    global String access_token{get;set;}
+    public String access_token{get;set;}
 
-    global String instanceurl{get;set;}
+    public String instanceurl{get;set;}
 
-    global String id{get;set;}
+    public String id{get;set;}
 
-    global String tokentype{get;set;}
+    public String tokentype{get;set;}
 
-    global String issuedat{get;set;}
+    public String issuedat{get;set;}
 
-    global String signature{get;set;}
+    public String signature{get;set;}
     
 }

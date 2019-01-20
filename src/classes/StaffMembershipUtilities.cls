@@ -1,4 +1,4 @@
-public class StaffMembershipUtilities {
+public with sharing class StaffMembershipUtilities {
 	
     
     public static list<User> createStaffMembership(Id userId){

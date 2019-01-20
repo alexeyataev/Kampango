@@ -100,7 +100,7 @@ public class NctETMembershipPaymentPageController
     public boolean isMembershipExists {get; set;}
     public String staffMember {get; set;}
     
-    public NctETMembershipPaymentPageController()
+    public nctETMembershipPaymentPageController()
     {  
         contId = ApexPages.currentPage().getParameters().get('Id');
         system.debug('*$*$**$ contId  ' + contId);

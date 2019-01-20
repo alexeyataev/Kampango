@@ -11,11 +11,11 @@ public class ParentCommunitySelfRegControllerNew {
     public String firstName {get; set;}
     public String lastName {get; set;}
     public String email {get; set;}
-    //public String userName {get; set;}
+    
     public String password {get; set {password = value == null ? value : value.trim(); } }
     public String confirmPassword {get; set { confirmPassword = value == null ? value : value.trim(); } }
     Public String phone{set;get;}
-    //public String communityNickname {get; set { communityNickname = value == null ? value : value.trim(); } }
+    
     public List<String> selectedPreferences {
         get{
             if(selectedPreferences == NULL){
@@ -25,30 +25,9 @@ public class ParentCommunitySelfRegControllerNew {
             return selectedPreferences;
         }
         set;}
-    //public String street {get; set;}
-    //public string address {get; set;}
-    //public String city {get; set;}
-    //public String state {get; set;}
+   
     public String postalCode {get; set;}
-    //public String country {get; set;}
-    //public String SelectedCountries {get; set;}
-    /*public List<String> SelectedCountries{
-        get{
-            if(SelectedCountries == NULL){
-                SelectedCountries = new List<String>();
-            }
-            return SelectedCountries;
-        }
-        set;
-    }*/
     
-    /*public List<selectOption> getPreferredCountries(){
-        List<selectOption> options = new List<selectOption>();
-        options.add(new selectOption('UK','UK'));
-        options.add(new selectOption('United Kingdom','United Kingdom'));
-        options.add(new selectOption('GB','GB'));
-        return options;
-    }*/
     public List<selectOption> getPreferenceOptions() {
         List<selectOption> options = new List<selectOption>();
         options.add(new selectOption('Mail','Mail'));
@@ -71,37 +50,10 @@ public class ParentCommunitySelfRegControllerNew {
         return password == confirmPassword;
     }
     
-    //public void closePopup()
-    //{       
-     //   displayPopup = false;   
-    //}   
+     
     public PageReference registerUser() {
         displayPopup = true;
-        /*if(email == '' || email != null ){
-            String emailRegex = '^[a-zA-Z0-9._|\\\\%#~`=?&/$^*!}{+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$';
-            Pattern MyPattern = Pattern.compile(emailRegex);
-            Matcher MyMatcher = MyPattern.matcher(email);
-            if (!MyMatcher.matches()){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please enter valid email address'));
-               
-            }
-        }*/
- 
         
-        /*if(password == '' || password != NULL){
-          
-             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please enter Password'));
-             //password.addError('Please enter password');
-        }*/
-        
-        /*if(phone == '' || phone != null){
-            if(!phone.isNumeric()){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please enter valid phone number'));
-            }
-            if(phone.length()>=12){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter valid phone number'));
-            }
-        }*/
         
            // it's okay if password is null - we'll send the user a random password in that case
     
@@ -127,21 +79,10 @@ public class ParentCommunitySelfRegControllerNew {
                 }
             }
         }
-        /*String Countries = '';
-        Boolean Start1 = true;
-        if(!SelectedCountries.isEmpty()) {           
-            for(String Str : SelectedCountries) {
-                if(Start1) {
-                    Countries = str;
-                    Start1 = false;
-                } else {               
-                    Countries = Countries + ';' + str;
-                }
-            }
-        }*/
+       
         
         String userName = email;
-        //String str = street +''+ address;
+        
         String comNickname = lastName+' '+firstName;
         
         User u = new User();
@@ -152,19 +93,12 @@ public class ParentCommunitySelfRegControllerNew {
         u.CommunityNickname = comNickname;
         u.ProfileId = profileId;
         u.Contact_Preference__c = Preference;
-        //u.Street = str;
-        //u.City = city;
-        //u.State = state;
+        
         u.PostalCode = postalCode;
-        //u.Country = SelectedCountries;
+        
         u.Phone = phone;
         
-       /* if(u.PostalCode == '' || u.PostalCode!=null){
-            if(u.PostalCode.length()>=6){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please enter valid postalcode'));
-                //u.PostalCode.addError('Please enter a valid postalcode');
-            }
-        }*/
+       
         String userId;
         System.debug('Test'+userName);
         try {

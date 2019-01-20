@@ -1,4 +1,4 @@
-public class MembershipStatusController {
+public with sharing class MembershipStatusController {
 	
     public String contId {get; set;}
     public npe03__Recurring_Donation__c recDonList {get; set;}

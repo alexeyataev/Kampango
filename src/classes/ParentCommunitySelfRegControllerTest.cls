@@ -1,5 +1,5 @@
 @IsTest public with sharing class ParentCommunitySelfRegControllerTest {
-    @IsTest(SeeAllData=true) 
+    @IsTest
     public static void testCommunitiesSelfRegController() {
         list<String> pref = new list<String> {'Mail','Phone'};
         
@@ -10,7 +10,7 @@
         controller.Email = 'test@force.com';
         controller.phone = '123456789';
         controller.SelectedPreferences = pref ;
-        //controller.communityNickname = 'test';
+       
         
               
 		system.assertNotEquals(null, sel, 'The collection should be instantiated');
@@ -22,10 +22,10 @@
         controller.confirmPassword = 'abcd123';
         System.assert(controller.registerUser() == null);  
         System.assert(controller.registerUser() == null);  
-        //controller.ParentCommunitySelfReg();
+        
         
     } 
-    @IsTest(SeeAllData=true) //Wrong Password
+    @IsTest //Wrong Password
     public static void testCommunitiesSelfRegControllerWrongPassword() {
        list<String> pref = new list<String> {'Mail','Phone'};
         
@@ -36,7 +36,7 @@
         controller.Email = 'test@force.com';
         controller.phone = '123456789';
         controller.SelectedPreferences = pref ;
-        //controller.communityNickname = 'test';
+       
         
               
 		system.assertNotEquals(null, sel, 'The collection should be instantiated');
@@ -50,7 +50,7 @@
         System.assert(controller.registerUser() == null);    
         
     }    
-    @IsTest(SeeAllData=true) //Null Password
+    @IsTest //Null Password
     public static void testCommunitiesSelfRegControllerNullPassword() {
         list<String> pref = new list<String> {'Mail','Phone'};
         
@@ -61,7 +61,7 @@
         controller.Email = 'test@force.com';
         controller.phone = '123456789';
         controller.SelectedPreferences = pref ;
-        //controller.communityNickname = 'test';
+       
         
               
 		system.assertNotEquals(null, sel, 'The collection should be instantiated');
@@ -69,8 +69,7 @@
         // registerUser will always return null when the page isn't accessed as a guest user
         System.assert(controller.registerUser() == null);    
         
-        //controller.password = 'abcd1234';
-        //controller.confirmPassword = 'abcd123';
+        
         System.assert(controller.registerUser() == null);  
         System.assert(controller.registerUser() == null);    
         

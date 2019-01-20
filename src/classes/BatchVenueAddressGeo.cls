@@ -12,22 +12,26 @@ global class BatchVenueAddressGeo implements Database.Batchable<sObject>,Databas
     {
         
         // process each batch of records
-       // List<Venue__c> venue = new List<Venue__c>();
+       
         
         for (Venue__c geoVenue : scope) {
             if(geoVenue.Venue_GeoLocation__Latitude__s == null){
                       String geoAddress = '';
-              if(geoVenue.MailingStreet__c != null)
+              if(geoVenue.MailingStreet__c != null){
                 geoAddress+= geoVenue.MailingStreet__c + ', ';
-              if(geoVenue.MailingCity__c != null)
+			  }
+              if(geoVenue.MailingCity__c != null){
                 geoAddress+= geoVenue.MailingCity__c + ', ';
-              if(geoVenue.MailingState__c != null)
+			  }
+              if(geoVenue.MailingState__c != null){
                 geoAddress+= geoVenue.MailingState__c + ', ';
-              if(geoVenue.MailingCountry__c != null)
+			  }
+              if(geoVenue.MailingCountry__c != null){
                 geoAddress+= geoVenue.MailingCountry__c + ', ';
-              if(geoVenue.MailingPostalCode__c != null)
+			  }
+              if(geoVenue.MailingPostalCode__c != null){
                 geoAddress+= geoVenue.MailingPostalCode__c;
-              
+              }
               //encode the string so we can pass it as part of URL
               geoAddress= EncodingUtil.urlEncode(geoAddress, 'UTF-8');
               //build and make the callout to the Geocoding API
@@ -57,13 +61,14 @@ global class BatchVenueAddressGeo implements Database.Batchable<sObject>,Databas
                              
                     responseParser.nextToken();
                      
-                    if (locationText == 'latitude')
+                    if (locationText == 'latitude'){
                                
                     latitude = responseParser.getDecimalValue();
-                             
-                    else if (locationText == 'longitude')          
+                    }         
+                    else if(locationText == 'longitude'){         
                     longitude = responseParser.getDecimalValue();
                         System.debug('long'+longitude);
+					}
                     }
                   }
                 }
@@ -89,6 +94,6 @@ global class BatchVenueAddressGeo implements Database.Batchable<sObject>,Databas
             FROM AsyncApexJob
             WHERE Id = :bc.getJobId()];
         // call some utility to send email
-       // EmailUtils.sendMessage(a, recordsProcessed);
+    
     }    
 }

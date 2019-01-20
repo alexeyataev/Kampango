@@ -4,10 +4,7 @@
 public with sharing class SiteRegisterController {
     // PORTAL_ACCOUNT_ID is the account on which the contact will be created on and then enabled as a portal user.
     // you need to add the account owner into the role hierarchy before this will work - please see Customer Portal Setup help for more information.       
-    private static Id portalAccounId = '001x000xxx35tPN';
-    
-    public SiteRegisterController () {
-    }
+    private static Id portalAccounId = Label.SiteRegisterControllerID;
 
     public String username {get; set;}
     public String email {get; set;}

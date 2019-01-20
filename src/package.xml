@@ -117,7 +117,7 @@
         <name>ValidationRule</name>
     </types>        
     <types>
-        <members>CustomLabels</members>
+        <members>*</members>
         <name>CustomLabels</name>
     </types>
 	<types>

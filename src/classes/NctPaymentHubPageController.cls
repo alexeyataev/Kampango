@@ -1,4 +1,4 @@
-public class nctPaymentHubPageController
+public with sharing class NctPaymentHubPageController
 {
     public Contact newCont {get;set;}
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
@@ -6,10 +6,10 @@ public class nctPaymentHubPageController
     public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
     public Booking__c corsBkng {get;set;}
     public string memberType {get;set;}
-    //public boolean checkBoxVal  {get;set;}
-    public boolean PymSelSec  {get;set;}
+   
+    public boolean pymSelSec  {get;set;}
     public boolean contInfoSec  {get;set;}
-    public boolean PymtInfoSec  {get;set;}
+    public boolean pymtInfoSec  {get;set;}
     public boolean confmInfoSec {get;set;}
     public boolean thankYouSec {get;set;}
     public boolean feeFieldVisibility {get;set;}
@@ -20,35 +20,33 @@ public class nctPaymentHubPageController
     public Id courseId {get;set;}
     public Course__c cors;
     // added by MembershipFormController
-    public String address_line_1 {get; set;}
+    public String addressline1 {get; set;}
     public String textAddress2 {get; set;}
     public String textAddress3 {get; set;}
     public String textTown {get; set;} 
     public String county {get; set;} 
- //   public String PostalCode__c {get; set;}   
+  
    public String postalCode {get; set;}
     public String firstName {get; set;}
     public String lastName {get; set;}
     public String email {get; set;}
 
-    public nctPaymentHubPageController()
+    public NctPaymentHubPageController()
     {
         courseId = ApexPages.currentPage().getParameters().get('id');
         User u = new User();
          u.PostalCode = postalCode;
-    //    u.Email = email;
-    //    u.FirstName = firstName;
-     //   u.LastName = lastName;
+    
         newCont = new Contact();
         pymtPrfl = new cpm__Payment_Profile__c();
         recDon = new npe03__Recurring_Donation__c();
         gftAid = new gaid__Gift_Aid_Declaration__c();
         corsBkng = new Booking__c();
-        //checkBoxVal = false;
+       
         contInfoSec = true;
         feeFieldVisibility = false;
-        PymSelSec = false;
-        PymtInfoSec = false;
+        pymSelSec = false;
+        pymtInfoSec = false;
         confmInfoSec = false;
         thankYouSec = false;
         if(courseId != null)
@@ -62,41 +60,26 @@ public class nctPaymentHubPageController
         }
     }
     
-    public PageReference ContactSave()
+    public PageReference contactSave()
     {
         PageReference redirecContUrl;
-        /*if(courseId != null)
-        {            
-            redirecContUrl = PaymentHubCallout();   
+       
             newCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
-            insert newCont;
-            corsBkng.First_Contact__c = newCont.Id;
-            corsBkng.Status__c = 'Paid';
-            corsBkng.Course__c = courseId;
-            corsBkng.Payment_Date__c = system.today();
-            corsBkng.Payment_Method__c = 'Credit/Debit Card(£57)';
-            corsBkng.Cost__c = cors.Fee__c;
-            corsBkng.Due_Date__c = system.today()-1;
-            insert corsBkng;
-        }  
-        else 
-        {*/
-            newCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
-            //insert newCont;
+           
             contInfoSec = false;
-            PymSelSec = true;
+            pymSelSec = true;
             redirecContUrl = null;
-        //}        
+             
         return redirecContUrl;
     }
     public PageReference paymentSel()
     {        
         PageReference redirectUrl;
         contInfoSec = false;
-        PymSelSec = false;
+        pymSelSec = false;
         if(memberType.contains('Direct Debit'))
         {
-            PymtInfoSec = true;
+            pymtInfoSec = true;
             insert newCont;
             if(courseId != null)
             {                            
@@ -114,7 +97,7 @@ public class nctPaymentHubPageController
         else if(memberType.contains('Credit/Debit Card'))
         {
             system.debug('*$*$**$* memberType  ' + memberType);
-            redirectUrl = PaymentHubCallout(); 
+            redirectUrl = paymentHubCallout(); 
             if(courseId != null)
             {  
                 newCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
@@ -131,7 +114,7 @@ public class nctPaymentHubPageController
         }
         return redirectUrl;
     }
-    public void PaymentSave()
+    public void paymentSave()
     {
         feeAmount = memberType.substringBetween('(', ')');
         pymtPrfl.RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get('Bank Account').getRecordTypeId();
@@ -139,7 +122,7 @@ public class nctPaymentHubPageController
         insert pymtPrfl;
         
         gftAid.gaid__Contact__c= newCont.Id;
-        //gftAid.Name = 'New Gift Aid' + system.now();
+       
         gftAid.Method__c = 'Online';
         gftAid.gaid__Type__c = 'Single';
         gftAid.Declaration_Number__c = 56443323;
@@ -162,8 +145,8 @@ public class nctPaymentHubPageController
         Insert recDon;
         
         contInfoSec = false;
-        PymSelSec = false;
-        PymtInfoSec = false;
+        pymSelSec = false;
+        pymtInfoSec = false;
         confmInfoSec = true;
     }
     
@@ -194,7 +177,7 @@ public class nctPaymentHubPageController
             }
         }        
     }
-    public PageReference PaymentHubCallout()
+    public PageReference paymentHubCallout()
     {
         if(memberType != '' && memberType != null)
         {
@@ -254,7 +237,7 @@ public class nctPaymentHubPageController
         Http paymentHubHttp = new Http(); 
         paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment');        
         paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);  
-        //paymentHubRequest.setHeader('Authorization','Bearer '+ UserInfo.getSessionID()); 
+        
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('Accept','application/json');
         paymentHubRequest.setHeader('api-token','IPy3Yvtin0aa2GPIke79Ewp24a0YSt6Daj5HJ9v9IGq2VTDYTWWkSx5jE2Pg54u02j0uHQZ3BwHfxFh8nKfXK4fiqZSQbZuXFQtQfAE926aFrwwVoOxPOJ6MiWSFpMc8b0UrOcbUD9pdcW7x8xNu3CtI5JfukTrRZqNByghsdTnWKLb79XrKpttmtHepMmVPv3QyPZYq');
@@ -275,4 +258,5 @@ public class nctPaymentHubPageController
         system.debug('  *$*$*$** pageRefCrdDbt =   ' + pageRefCrdDbt);
         return pageRefCrdDbt;
     }
+/*test*/
 }

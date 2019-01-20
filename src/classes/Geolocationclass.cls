@@ -1,4 +1,4 @@
-public class Geolocationclass 
+public with sharing class Geolocationclass 
 {
 	@future (callout=true)  // future method needed to run callouts from Triggers
     static public void getLocation(set<string> postCodeSet)
@@ -13,16 +13,21 @@ public class Geolocationclass
             for(Venue__c vnu : vnuList)
             {
                 String address = '';
-                if (vnu.MailingStreet__c != null)
+                if (vnu.MailingStreet__c != null){
                     address += vnu.MailingStreet__c +', ';
-                if (vnu.MailingCity__c != null)
+				}
+                if (vnu.MailingCity__c != null){
                     address += vnu.MailingCity__c +', ';
-                if (vnu.MailingState__c != null)
+				}
+                if (vnu.MailingState__c != null){
                     address += vnu.MailingState__c +' ';
-                if (vnu.MailingPostalCode__c != null)
+			    }
+                if (vnu.MailingPostalCode__c != null){
                     address += vnu.MailingPostalCode__c +', ';
-                if (vnu.MailingCountry__c != null)
+			    }
+                if (vnu.MailingCountry__c != null){
                     address += vnu.MailingCountry__c;
+			    }
                 address = EncodingUtil.urlEncode(address, 'UTF-8');
                 system.debug('*$*$*$* address   ' + address);
                 Http htp = new Http();
@@ -78,11 +83,6 @@ public class Geolocationclass
             system.debug('*$*$*$* upRecords got updated');
         }
        
-        //try
-        //{
-		//} 
-		//catch (Exception e) 
-		//{
-		//}   
+        
     }
 }

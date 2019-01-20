@@ -322,7 +322,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VenueAddressGeo</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>

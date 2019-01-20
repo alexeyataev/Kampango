@@ -1,13 +1,13 @@
-global class DirectpaymentlinksendtoParent
+global with sharing class DirectpaymentlinksendtoParent
 {      
-    public static npe03__Recurring_Donation__c RecurringDonation = new npe03__Recurring_Donation__c();
+    public static npe03__Recurring_Donation__c recurringDonation = new npe03__Recurring_Donation__c();
     @auraenabled
-    webservice static void PaymentHubCallout(Id contId)
+    webservice static void paymentHubCallout(Id contId)
     {        
         string redirectURL;
         string responseContent;
         
-        RecurringDonation = [select Id, npe03__Amount__c,First_Contact__r.Email, First_Contact__r.Prefered_First_Name__c,
+        recurringDonation = [select Id, npe03__Amount__c,First_Contact__r.Email, First_Contact__r.Prefered_First_Name__c,
                              First_Contact__r.LastName from npe03__Recurring_Donation__c where First_Contact__c =: contId limit 1];
         
         HttpRequest tokenRequest = new HttpRequest();
@@ -29,11 +29,11 @@ global class DirectpaymentlinksendtoParent
         paymentReq.Origin='test';
 
         PaymentRequestVo.ContactVo cvo = new PaymentRequestVo.ContactVo();
-        if(RecurringDonation!= null)
+        if(recurringDonation!= null)
         {
-            cvo.Email = RecurringDonation.First_Contact__r.Email;        // use RecurringDonation.FirstContact.Email
-            cvo.FirstName = RecurringDonation.First_Contact__r.Prefered_First_Name__c;  // use RecurringDonation.FirstContact. Prefered_First_Name__c
-            cvo.LastName = RecurringDonation.First_Contact__r.LastName;   // use RecurringDonation.FirstContact.LastName
+            cvo.Email = recurringDonation.First_Contact__r.Email;        // use recurringDonation.FirstContact.Email
+            cvo.FirstName = recurringDonation.First_Contact__r.Prefered_First_Name__c;  // use recurringDonation.FirstContact. Prefered_First_Name__c
+            cvo.LastName = recurringDonation.First_Contact__r.LastName;   // use recurringDonation.FirstContact.LastName
         }
          
         PaymentRequestVo.PayerVo payerReq = new PaymentRequestVo.PayerVo();
@@ -43,9 +43,9 @@ global class DirectpaymentlinksendtoParent
         paymentReq.Payer = payerReq;
 
         PaymentRequestVo.PaymentVo payment = new PaymentRequestVo.PaymentVo(); 
-        if(RecurringDonation != null)
+        if(recurringDonation != null)
         {
-            payment.Amount=RecurringDonation.npe03__Amount__c; 
+            payment.Amount=recurringDonation.npe03__Amount__c; 
         }        
         paymentReq.Payment = payment;
 
@@ -85,11 +85,11 @@ public static void sendPaymentLinkToParent(string paymentLink)
         String emailBodyValue = emailTemplateId.HtmlValue;
         String emailSubjectValue = emailTemplateId.Subject;
         Messaging.SingleEmailMessage  mail = new Messaging.SingleEmailMessage ();
-        emailBodyValue = emailBodyValue.replace('{!npe03__Recurring_Donation__c.First_Contact__c}',RecurringDonation.First_Contact__r.Prefered_First_Name__c);
+        emailBodyValue = emailBodyValue.replace('{!npe03__Recurring_Donation__c.First_Contact__c}',recurringDonation.First_Contact__r.Prefered_First_Name__c);
         emailBodyValue = emailBodyValue.replace('href=""', 'href="' + paymentLink +'"');
         system.debug('   *$*$* emailBodyValue   ' + emailBodyValue);
         mail.setHtmlBody(emailBodyValue);
-        mail.setToAddresses(new String[] {RecurringDonation.First_Contact__r.Email});
+        mail.setToAddresses(new String[] {recurringDonation.First_Contact__r.Email});
         mail.setSubject(emailSubjectValue);
         Messaging.sendEmail(new Messaging.SingleEmailMessage [] {mail});  
     }
