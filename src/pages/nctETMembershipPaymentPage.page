@@ -1,4 +1,4 @@
-<apex:page applyHtmlTag="true" docType="html-5.0" controller="nctETMembershipPaymentPageController" showHeader="false" sidebar="false">
+<apex:page applyHtmlTag="true" docType="html-5.0" controller="NctETMembershipPaymentPageController" showHeader="false" sidebar="false">
 <apex:form id="membrShpForm">
    <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
         <apex:param id="selValId" name="seltdName" value="" />
@@ -1536,7 +1536,7 @@
                         error = error + "Please enter your address.\n";
                         //return false;
                     }
-            	
+ 
                     if($('#agree').is(":checked") != true) { 
                         error = error + "Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy";
                     } 

@@ -55,68 +55,26 @@
         <protected>false</protected>
         <shortDescription>SF_INSTANCE</shortDescription>
         <value>https://cs108.salesforce.com</value>
-    </labels>    
-    <labels>
-        <fullName>Payment_Link_URL</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Payment Link URL</shortDescription>
-        <value>https://preuat-mynct.cs102.force.com/PaymentLinkProcessor?paymentId=</value>
-    </labels>    
-    <labels>
-        <fullName>PAYMENT_ENCRYPTION_KEY</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>PAYMENT_ENCRYPTION_KEY</shortDescription>
-        <value>27D8E8EAAF4D49A7B66C63C67F8A9CE3</value>
-    </labels>
-    <labels>
-        <fullName>PAYMENT_SITE_URL</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>PAYMENT_SITE_URL</shortDescription>
-        <value>https://preuat-mynct.cs102.force.com/nctMembershipPaymentPage</value>
     </labels>
    <labels>
-        
       <fullName>DupOutCodeTestID</fullName>
-       
       <language>en_US</language>
-        
       <protected>false</protected>
-        
       <shortDescription>DupOutCodeTestID</shortDescription>
-      
       <value>0010E00000MmsfLQAR</value>
-   
    </labels>
-   
    <labels>
-        
       <fullName>SiteRegisterControllerID</fullName>
-        
       <language>en_US</language>
-        
       <protected>false</protected>
-        
       <shortDescription>SiteRegisterControllerID</shortDescription>
-       
       <value>001x000xxx35tPN</value>
-    
    </labels>
-   
    <labels>
-        
       <fullName>UserHomeControllerTestID</fullName>
-        
       <language>en_US</language>
-        
       <protected>false</protected>
-        
       <shortDescription>UserHomeControllerTestID</shortDescription>
-       
       <value>0030E00000Owx30QAB</value>
-    
    </labels>
-
 </CustomLabels>

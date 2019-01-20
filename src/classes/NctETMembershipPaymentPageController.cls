@@ -1,4 +1,4 @@
-public with sharing class NctETMembershipPaymentPageController 
+public class NctETMembershipPaymentPageController 
 {
     public string twomems{get; set;}
     public Date expDate {get; set;}
@@ -22,51 +22,51 @@ public with sharing class NctETMembershipPaymentPageController
     public Contact newCont {get;set;} 
     public Contact snewCont {get;set;} 
     public String salutation{get; set;}
-    public String selectedPreferences {get;set;}
-    public String sSelectedPreferences {get;set;}
+    public String SelectedPreferences {get;set;}
+    public String SSelectedPreferences {get;set;}
     
     public List<SelectOption> getPreferenceOptions() {
-        List<SelectOption> options = new List<SelectOption>();
-        options.add(new SelectOption('Mr.','Mr.'));
-        options.add(new SelectOption('Ms.','Ms.'));
-        options.add(new SelectOption('Mrs.','Mrs.'));
-        options.add(new SelectOption('Miss.','Miss.'));
-        options.add(new SelectOption('Dr.','Dr.'));
-        options.add(new SelectOption('Prof.','Prof.'));
+        List<SelectOption> Options = new List<SelectOption>();
+        Options.add(new SelectOption('Mr.','Mr.'));
+        Options.add(new SelectOption('Ms.','Ms.'));
+        Options.add(new SelectOption('Mrs.','Mrs.'));
+        Options.add(new SelectOption('Miss.','Miss.'));
+        Options.add(new SelectOption('Dr.','Dr.'));
+        Options.add(new SelectOption('Prof.','Prof.'));
          
-        return options;
+        return Options;
     }
-    public String genders {get;set;}
-    public String sGenders {get;set;}
+    public String Genders {get;set;}
+    public String SGenders {get;set;}
     public List<SelectOption> getGenderOptions() {
-        List<SelectOption> options = new List<SelectOption>();
-        options.add(new SelectOption('Male','Male'));
-        options.add(new SelectOption('Female','Female'));
-        options.add(new SelectOption('Other','Other')); 
-        return options;
+        List<SelectOption> Options = new List<SelectOption>();
+        Options.add(new SelectOption('Male','Male'));
+        Options.add(new SelectOption('Female','Female'));
+        Options.add(new SelectOption('Other','Other')); 
+        return Options;
     }
-    public list<String> contactSelectedPreferences {
+    public list<String> ContactSelectedPreferences {
         get{
-            if(contactSelectedPreferences == NULL){
+            if(ContactSelectedPreferences == NULL){
                 
-                contactSelectedPreferences = new List<String>();
+                ContactSelectedPreferences = new List<String>();
             }
-            return contactSelectedPreferences;
+            return ContactSelectedPreferences;
         }
         set;}
     public List<SelectOption> getContactPreferenceOptions() {
-        List<SelectOption> options = new List<SelectOption>();
-        options.add(new SelectOption('Post','Post'));
-        options.add(new SelectOption('Email','Email'));
-        options.add(new SelectOption('SMS Text','SMS Text'));
-        options.add(new SelectOption('Telephone','Telephone'));
-        return options;
+        List<SelectOption> Options = new List<SelectOption>();
+        Options.add(new SelectOption('Post','Post'));
+        Options.add(new SelectOption('Email','Email'));
+        Options.add(new SelectOption('SMS Text','SMS Text'));
+        Options.add(new SelectOption('Telephone','Telephone'));
+        return Options;
     }
     public AccountContactRelation accntContRel{get; set;}
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
     public npe03__Recurring_Donation__c recDon {get;set;}
     public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
-    
+    //public Booking__c corsBkng {get;set;}
     public Id feeAmount {get;set;}
     public Id selectBranch {get; set;}
     public string membershipNumber {get;set;}
@@ -74,14 +74,14 @@ public with sharing class NctETMembershipPaymentPageController
     public string redirectURL {get;set;} 
     public Id contId {get;set;}
     public boolean etSpecific;
-  
+    //public Course__c cors;
     // added by MembershipFormController
     public String accountName {get; set;}
     public String sortCode {get; set;}
     public String accountNumber {get; set;}
     public string displayValue {get;set;}
     public string counter  {get;set;}
-    public string selValues {get;set;}
+    public string SelValues {get;set;}
     public Membership_Type__mdt membershipInfo {get;set;}
     public npe03__Recurring_Donation__c reccDon {get;set;}
     public Map<String, List<Membership_Type__mdt>> membershipTypeMap{get;set;}
@@ -98,56 +98,85 @@ public with sharing class NctETMembershipPaymentPageController
     public boolean isStaff {get; set;}
     public string targetCustomer{get; set;}
     public boolean isMembershipExists {get; set;}
+    public String staffMember {get; set;}
     
     public nctETMembershipPaymentPageController()
     {  
         contId = ApexPages.currentPage().getParameters().get('Id');
         system.debug('*$*$**$ contId  ' + contId);
         etSpecific = true;
-        if(contId != null)
-        {
-            newCont = [SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
-            if(newCont != null){
-                firstname = newCont.Prefered_First_Name__c;
-                lastname = newCont.LastName;
-                email = newCont.Email;
-                phone = newCont.Phone;
-                postCode = newCont.MailingPostalCode;
-                selectedPreferences = newCont.Salutation;
-                genders = newCont.Gender__c;
+       
+       	Id userId = userinfo.getUserId();
+        isStaff = ContactUtilities.isStaff(userId);
+        if(isStaff == true){
+            
+            list<User> staffUserList = StaffMembershipUtilities.createStaffMembership(userId);
+       		staffMember ='staff';
+            if(staffUserList.size()>0){
+                firstname = staffUserList[0].FirstName;
+                lastname = staffUserList[0].LastName;
+                email = staffUserList[0].Email;
+                phone = staffUserList[0].Phone;
+                //postCode = staffUserList.MailingPostalCode;
+                //SelectedPreferences = staffUserList.Salutation;
+                //Genders = staffUserList.Gender__c;
             }
+            recDon = new npe03__Recurring_Donation__c();
+            displaySuccessMessage = false;
+            displayMbrNoMessage = true;
+            displayValue = 'none';
+            counter = '';
+            accountName='';
+            sortCode='';
+            accountName=''; 
         }
-        pymtPrfl = new cpm__Payment_Profile__c();
-        recDon = new npe03__Recurring_Donation__c();
-        gftAid = new gaid__Gift_Aid_Declaration__c();
-        displaySuccessMessage = false;
-        displayMbrNoMessage = false;
-        displayValue = 'none';
-        counter = '';
-        accountName='';
-        sortCode='';
-        accountName='';  
+        else{
+            staffMember ='no staff';
+            if(contId != null)
+            {
+                newCont = [SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
+                if(newCont != null){
+                    firstname = newCont.Prefered_First_Name__c;
+                    lastname = newCont.LastName;
+                    email = newCont.Email;
+                    phone = newCont.Phone;
+                    postCode = newCont.MailingPostalCode;
+                    SelectedPreferences = newCont.Salutation;
+                    Genders = newCont.Gender__c;
+                }
+            }
+            pymtPrfl = new cpm__Payment_Profile__c();
+            recDon = new npe03__Recurring_Donation__c();
+            gftAid = new gaid__Gift_Aid_Declaration__c();
+            displaySuccessMessage = false;
+            displayMbrNoMessage = false;
+            displayValue = 'none';
+            counter = '';
+            accountName='';
+            sortCode='';
+            accountName='';  
+        }
         
+        //corsBkng = new Booking__c(); 
         
         
     }
     public PageReference  receiveInput(){
-        
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
         System.debug('Twomems :'+twomems);
-        System.debug('SelectedPreferences: '+selectedPreferences);
-        System.debug('SSelectedPreferences: '+sSelectedPreferences);
-        System.debug('Genders: '+genders);
-        System.debug('Contact Preferences:'+contactSelectedPreferences);
-        String contactPreference = '';
-        Boolean start = true;
-        if(!contactSelectedPreferences.isEmpty()) {           
-            for(String str : contactSelectedPreferences) {
-                if(start) {
-                    contactPreference = str;
-                    start = false;
+        System.debug('SelectedPreferences: '+SelectedPreferences);
+        System.debug('SSelectedPreferences: '+SSelectedPreferences);
+        System.debug('Genders: '+Genders);
+        System.debug('Contact Preferences:'+ContactSelectedPreferences);
+        String ContactPreference = '';
+        Boolean Start = true;
+        if(!ContactSelectedPreferences.isEmpty()) {           
+            for(String Str : ContactSelectedPreferences) {
+                if(Start) {
+                    ContactPreference = Str;
+                    Start = false;
                 } else {               
-                    contactPreference = contactPreference + ';' + str;
+                    ContactPreference = ContactPreference + ';' + Str;
                 }
             }
         }
@@ -185,7 +214,7 @@ public with sharing class NctETMembershipPaymentPageController
             	
         }
         else{
-            if(isContactExisting == false && newCont == null){
+            if(isContactExisting == false){
                 if(newCont == null )
                 {
                     newCont = new Contact();
@@ -195,16 +224,18 @@ public with sharing class NctETMembershipPaymentPageController
                     newCont.Email = email;
                     newCont.Phone = phone;
                     newCont.MailingPostalCode = postCode;
-                    
+                    //if(eDate != null){
+                        //expDate = Date.valueOf(eDate);
+                        //newCont.Expected_Due_Date__c = expDate; 
+                    //}
                     newCont.Branch__c = selectBranch; 
-                    newCont.Salutation = selectedPreferences;
-                    newCont.Gender__c = genders;
-                    newCont.Contact_Prefrence__c = contactPreference;
+                    newCont.Salutation = SelectedPreferences;
+                    newCont.Gender__c = Genders;
+                    newCont.Contact_Prefrence__c = ContactPreference;
                     newCont.MailingStreet = streetValue+''+streetValue2+''+streetValue2;
                     newCont.MailingState = stateValue;
                     newCont.MailingCity = cityValue;
                     Database.insert(newCont, false);
-                
                     if(twomems == 'true' && sfirstname != null || sfirstname != '')
                     {
                         snewCont = new Contact();
@@ -215,35 +246,40 @@ public with sharing class NctETMembershipPaymentPageController
                         snewCont.Phone = sphone;
                         snewCont.Parent_Contact__c = newCont.id;
                         snewCont.MailingPostalCode = postCode;
-                        
-                        snewCont.Gender__c = sGenders;
-                        snewCont.Salutation = sSelectedPreferences;     
+                        //snewCont.Contact_Prefrence__c = ContactSelectedPreferences;
+                        //snewCont.Expected_Due_Date__c = expDate;
+                        snewCont.Gender__c = SGenders;
+                        snewCont.Salutation = SSelectedPreferences;     
                         snewCont.Branch__c = selectBranch;
-                        snewCont.MailingStreet = streetValue+''+streetValue2+''+streetValue2;
+                        snewCont.MailingStreet = streetValue+''+streetValue1+''+streetValue2;
                         snewCont.MailingState = stateValue;
                         snewCont.MailingCity = cityValue;
                         Database.insert(snewCont, false);
                         membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);
+
                     }
                     else 
                     {
                         System.debug('twomems '+twomems);
                         membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
                         System.debug('membershipTypeMap '+membershipTypeMap);
+
                     }
                 }
             }
                 
-           
+            //}
             // Yet to define the custom metadata, once done the logic can be updated and modified accordingly, hence commenting
             
             else if(contId != null)
             {
-               
-                System.debug('isPractitioner :'+isPractitioner);
+                //accntContRel =[SELECT Id,Roles FROM AccountContactRelation where contact.id=:contId limit 1];
                 
+                //isPractitioner = false;
+                System.debug('isPractitioner :'+isPractitioner);
+                //if(accntContRel.id != null || isPractitioner == true){
                 if(isVolunteer == true || isPractitioner == true){
-                    
+                    //if(isPractitioner == true){ //accntContRel.Roles == 'Volunteer' || 
                     if(twomems == 'true')
                     {   
                         membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
@@ -284,20 +320,20 @@ public with sharing class NctETMembershipPaymentPageController
                     snewCont.Phone = sphone;
                     snewCont.Parent_Contact__c = newCont.id;
                     snewCont.MailingPostalCode = postCode;
-                   
-                    snewCont.Gender__c = sGenders;
-                    snewCont.Salutation = sSelectedPreferences;     
+                    //snewCont.Expected_Due_Date__c = expDate;
+                    snewCont.Gender__c = SGenders;
+                    snewCont.Salutation = SSelectedPreferences;     
                     snewCont.Branch__c = selectBranch;
-                    
+                    //snewCont.Contact_Prefrence__c = ContactSelectedPreferences;
                     snewCont.MailingStreet = streetValue+''+streetValue2+''+streetValue2;
                     snewCont.MailingState = stateValue;
                     snewCont.MailingCity = cityValue;
                     Database.insert(snewCont, false);
-                    
+                    //membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint','Parent, Companion');
                     
                 }
                 if(isVolunteer == true || isPractitioner == true){
-                       
+                        //if(isPractitioner == true){ //accntContRel.Roles == 'Volunteer' || 
                     if(twomems == 'true')
                     {   
                         membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
@@ -326,12 +362,17 @@ public with sharing class NctETMembershipPaymentPageController
                 }
     
             }
-            return null;
+            if(isStaff == true){
+            	thankYouSec();
+                
+        	}
+            
+          	return null;
         }
         
             
     }
-    public void contactInfo()
+    public void ContactInfo()
     {
         feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
         PageReference redirecContUrl;
@@ -348,7 +389,7 @@ public with sharing class NctETMembershipPaymentPageController
             {
                 displaySuccessMessage = true;
                 
-                paymentHubCallout();
+                PaymentHubCallout();
                 
                 
                	recDon.Name = 'Credit/Debit Card Membership';
@@ -358,9 +399,10 @@ public with sharing class NctETMembershipPaymentPageController
                 recDon.First_Contact__c = newCont.Id;
                 recDon.npe03__Installment_Period__c = 'Yearly';
                 recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
-               
+                //recDon.npsp4hub__Payment_Processor__c = 'PaymentHub-BACS';
+                //recDon.npsp4hub__Target__c = 'BACS Standard 18';
                 recDon.Membership_Status__c = 'Pending';
-               
+                //recDon.npsp4hub__Payment_Profile__c = pymtPrfl.Id;
                 Insert recDon;
                 
                 thankYouSec();
@@ -390,7 +432,7 @@ public with sharing class NctETMembershipPaymentPageController
             Decimal lattitude = latlonPostcode[0].BillingLatitude;
           Decimal longitude = latlonPostcode[0].BillingLongitude; 
  
-           
+            //nearestBranchs =[SELECT Id,Name FROM Account where DISTANCE(BillingAddress, GEOLOCATION(lattitude ,longitude), mi) < 30];
             
             String queryString = 'SELECT Id, Name '+
                 'FROM Account where (DISTANCE(BillingAddress ,GEOLOCATION('+lattitude+','+longitude+'), \'mi\')< 30) and BillingPostalCode=:postCode order by Name limit 10';
@@ -405,11 +447,11 @@ public with sharing class NctETMembershipPaymentPageController
       }
         
     }
-    public void paymentSave()
+    public void PaymentSave()
     {
         displayMbrNoMessage = true;
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
-        
+        //system.debug(accountNumber + '   *$*#@**$*$ accountName  ' + accountName + '  &$#*#*#  ' + sortCode + '   *$*$*$ newCont ' + newCont.Id);
          
         if(newCont != null)//&& pymtPrfl == null && recDon == null
         {
@@ -425,7 +467,7 @@ public with sharing class NctETMembershipPaymentPageController
             pymtPrfl.paybacs__Sort_Code__c = sortCode;
             insert pymtPrfl; 
           System.debug('Gift Aid Check box: '+isGiftAid);
-            if(isGiftAid == 'true' ) 
+            if(isGiftAid == 'true' ) // && gftAid == null
             {
                 gftAid.gaid__Contact__c= newCont.Id;
                 gftAid.Method__c = 'Online';
@@ -440,7 +482,10 @@ public with sharing class NctETMembershipPaymentPageController
             recDon.npe03__Amount__c = membershipInfo.Installment_Amount__c;
             recDon.npe03__Installments__c = membershipInfo.No_of_Installments__c;
             recDon.npe03__Contact__c = newCont.Id;
-            
+            //if(snewCont != null)
+            //{
+               // recDon.
+           // }
             recDon.First_Contact__c = newCont.Id;
             recDon.npe03__Schedule_Type__c = membershipInfo.Schedule_Type__c;
             recDon.npe03__Installment_Period__c = membershipInfo.Installment_Period__c;
@@ -457,7 +502,7 @@ public with sharing class NctETMembershipPaymentPageController
     public void thankYouSec()
     {
         displayMbrNoMessage = true;
-        list<User> userList = new list<User>();
+        list<User> UserList = new list<User>();
         list<npe03__Recurring_Donation__c> reccDonList = new list<npe03__Recurring_Donation__c>();
         
         system.debug('Apexpages.currentPage().getParameters().get(contId) ---   ' + Apexpages.currentPage().getParameters().get('contId'));
@@ -484,33 +529,34 @@ public with sharing class NctETMembershipPaymentPageController
                 recDon.First_Contact__c = Apexpages.currentPage().getParameters().get('contId');
                 recDon.npe03__Installment_Period__c = 'Yearly';
                 recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
-                
+                //recDon.npsp4hub__Payment_Processor__c = 'PaymentHub-BACS';
+                //recDon.npsp4hub__Target__c = 'BACS Standard 18';
                 recDon.Membership_Status__c = 'Pending';
-                
+                //recDon.npsp4hub__Payment_Profile__c = pymtPrfl.Id;
                 Insert recDon;
             }
         }
         else{
-            reccDonList = [select Id, Membership_Number__c,npe03__Contact__c,npsp4hub__Payment_Method__c,npe03__Contact__r.AccountId,npe03__Contact__r.Phone,
-                       npe03__Amount__c,npe03__Installment_Period__c,Membership_type__c, npe03__Contact__r.Prefered_First_Name__c,
-                       npe03__Contact__r.LastName,npe03__Contact__r.Email,npe03__Installment_Amount__c, Membership_Status__c,
-                       npe03__Date_Established__c from npe03__Recurring_Donation__c where npe03__Contact__c =:newCont.Id limit 1];   
+             
             
-            
-            if(membershipInfo.Target_Customer__c == 'Staff Only')
+            //System.debug('else:438'+newCont.Id);
+            if(isStaff == true)
             {
-                System.debug('if:441');
+                System.debug('Staff flow');
                 recDon.Name = 'Staff Membership';
                 recDon.npe03__Amount__c = 0;
                 recDon.npe03__Contact__c = newCont.Id;
                 recDon.CARE_Payment_Frequency__c = 'One Time';
                 recDon.First_Contact__c = newCont.Id;
                 recDon.npe03__Installment_Period__c = 'Yearly';
-                
+                //recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
+                //recDon.npsp4hub__Payment_Processor__c = 'PaymentHub-BACS';
+                //recDon.npsp4hub__Target__c = 'BACS Standard 18';
                 recDon.Membership_Status__c = 'Confirmed';
-                
+                //recDon.npsp4hub__Payment_Profile__c = pymtPrfl.Id;
                 Insert recDon;
             }
+           
            
             
         }
@@ -525,14 +571,16 @@ public with sharing class NctETMembershipPaymentPageController
             {
                 membershipNumber = reccDonList[0].Membership_Number__c;
                 system.debug('membershipNumber  ' + membershipNumber);
-            }            
-            system.debug('RECCURRING DONATION record  ' + reccDon);            
+            } 
+            
+            system.debug('RECCURRING DONATION record  ' + reccDonList);            
         } 
         if(reccDonList != null && !reccDonList.isEmpty())
         {
-            userList = [select Id, Name from User where user.ContactId =: reccDonList[0].npe03__Contact__c and Username =:reccDonList[0].npe03__Contact__r.Email];
-                
-            if(userList == null || userList.isEmpty())
+            UserList = [select Id, Name from User where user.ContactId =: reccDonList[0].npe03__Contact__c and Username =:reccDonList[0].npe03__Contact__r.Email];
+            System.debug('User List:'+UserList);
+            System.debug('displayMbrNoMessage: '+displayMbrNoMessage);
+            if(UserList == null || UserList.isEmpty())
             {
                 try
                 {
@@ -547,7 +595,7 @@ public with sharing class NctETMembershipPaymentPageController
                     usr.Email = reccDonList[0].npe03__Contact__r.Email;
                     usr.FirstName = reccDonList[0].npe03__Contact__r.Prefered_First_Name__c;
                     usr.LastName = reccDonList[0].npe03__Contact__r.LastName;
-                   
+                    //usr.CommunityNickname = 'comNick';
                     usr.Alias = alias.substring(1, 6);
                     usr.TimeZoneSidKey = 'GMT';
                     usr.LocaleSidKey = 'en_GB';
@@ -560,16 +608,17 @@ public with sharing class NctETMembershipPaymentPageController
                 }
                 catch(DmlException e)
                 {
-                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,'Community User creadentials Exists in the System with this Username: '+reccDonList[0].npe03__Contact__r.Email));
+                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,'Community User credentials Exists in the System with this Username: '+reccDonList[0].npe03__Contact__r.Email));
                 }
             }
             else{
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,'Community User creadentials Exists in the System with this Username: '+reccDonList[0].npe03__Contact__r.Email));
-                System.debug('User Exists: '+userList);
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,'Community User credentials Exists in the System with this Username: '+reccDonList[0].npe03__Contact__r.Email));
+                System.debug('User Exists: '+UserList);
             } 
          }
+         System.debug('Membership no'+membershipNumber);
     }
-    public void paymentHubCallout()
+    public void PaymentHubCallout()
     {
         decimal instlmntAmt; 
         if(membershipInfo != null)
@@ -583,9 +632,8 @@ public with sharing class NctETMembershipPaymentPageController
         HttpRequest tokenRequest = new HttpRequest();
         HttpResponse tokenResponse = new HttpResponse();
         Http tokenHttp = new Http();
-        
-        //tokenRequest.setEndpoint(System.Label.ENDPOINTOAUTH+'client_id='+System.Label.CLIENTID+'&client_secret='+System.Label.CLIENT_SECRET+'&grant_type=password&username='+System.Label.ENDPOINT_USERNAME+'&password='+System.Label.ENDPOINT_PASSWORD);
-        tokenRequest.setEndpoint('https://test.salesforce.com/services/oauth2/token?client_id=3MVG95AcBeaB55lVpFY_Rw8rGI.KUCG9dcqi1zRxbXuXhdoYYpgHOQUg01kQrJyfp_yYqnT6F.aEXC1U7n06J&client_secret=5804933462634405366&grant_type=password&username=payment.api@nct.org.uk.preuat&password=payment123rl3GtuRGUj15A1W6ysGuUAT3N');
+        tokenRequest.setEndpoint(System.Label.ENDPOINTOAUTH+'client_id='+System.Label.CLIENTID+'&client_secret='+System.Label.CLIENT_SECRET+'&grant_type=password&username='+System.Label.ENDPOINT_USERNAME+'&password='+System.Label.ENDPOINT_PASSWORD);
+        //tokenRequest.setEndpoint('https://test.salesforce.com/services/oauth2/token?client_id=3MVG95AcBeaB55lVpFY_Rw8rGI.KUCG9dcqi1zRxbXuXhdoYYpgHOQUg01kQrJyfp_yYqnT6F.aEXC1U7n06J&client_secret=5804933462634405366&grant_type=password&username=payment.api@nct.org.uk.preuat&password=payment123rl3GtuRGUj15A1W6ysGuUAT3N');
   
         tokenRequest.setMethod('POST'); 
         tokenRequest.setTimeout(120000);    
@@ -637,17 +685,16 @@ public with sharing class NctETMembershipPaymentPageController
         HttpRequest paymentHubRequest = new HttpRequest();
         HttpResponse paymentHubResponse = new HttpResponse();
         Http paymentHubHttp = new Http(); 
+        paymentHubRequest.setEndpoint(System.Label.SF_INSTANCE+'/services/apexrest/cpm/v1.0/Payment'); 
         
-        //paymentHubRequest.setEndpoint(System.Label.SF_INSTANCE+'/services/apexrest/cpm/v1.0/Payment'); 
-        
-        paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment');        
+        //paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment'); 
         paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);  
         //paymentHubRequest.setHeader('Authorization','Bearer '+ UserInfo.getSessionID()); 
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('Accept','application/json');
-        
-       
-        paymentHubRequest.setHeader('api-token','IPy3Yvtin0aa2GPIke79Ewp24a0YSt6Daj5HJ9v9IGq2VTDYTWWkSx5jE2Pg54u02j0uHQZ3BwHfxFh8nKfXK4fiqZSQbZuXFQtQfAE926aFrwwVoOxPOJ6MiWSFpMc8b0UrOcbUD9pdcW7x8xNu3CtI5JfukTrRZqNByghsdTnWKLb79XrKpttmtHepMmVPv3QyPZYq');
+
+        paymentHubRequest.setHeader('api-token',System.Label.API_TOKEN);
+        //paymentHubRequest.setHeader('api-token','IPy3Yvtin0aa2GPIke79Ewp24a0YSt6Daj5HJ9v9IGq2VTDYTWWkSx5jE2Pg54u02j0uHQZ3BwHfxFh8nKfXK4fiqZSQbZuXFQtQfAE926aFrwwVoOxPOJ6MiWSFpMc8b0UrOcbUD9pdcW7x8xNu3CtI5JfukTrRZqNByghsdTnWKLb79XrKpttmtHepMmVPv3QyPZYq');
         paymentHubRequest.setBody(JSON.serialize(paymentReq));
         paymentHubRequest.setMethod('POST'); 
         paymentHubRequest.setTimeout(120000);    
@@ -662,7 +709,8 @@ public with sharing class NctETMembershipPaymentPageController
         //PageReference pageRefCrdDbt = new PageReference('https://preuat-mynct.cs102.force.com/apex/phstr__stripecheckout?failureRedirectURL=https%3A%2F%2Fournct--preuat--c.cs102.visual.force.com%2Fapex%2FnctPaymentHubErrorMsgPage&id=a2b1j000000031FAAQ&successRedirectURL=https%3A%2F%2Fournct--preuat--c.cs102.visual.force.com%2Fapex%2FnctPaymentHubSuccessMsgPage');
         //PageReference pageRefCrdDbt = new PageReference(redirectURL);
         //pageRefCrdDbt.setRedirect(true);
-        
+        //system.debug('  *$*$*$** pageRefCrdDbt =   ' + pageRefCrdDbt);
+        //return pageRefCrdDbt;
         sendPaymentLinkToParent(redirectURL);
     }
     public void sendPaymentLinkToParent(string paymentLink)
@@ -682,7 +730,20 @@ public with sharing class NctETMembershipPaymentPageController
         System.debug('Payment Link Record Created : '+'ID: '+payLink.Id+', /r/n'+payLink.Contact__c+', '+payLink.Payment_Key__c+', '+payLink.Payment_Link__c);
         // code ends  
         
-        
+        /*     
+        system.debug('*$*$* EMail Method was called   ' + paymentLink);
+        EmailTemplate emailTemplateId = [SELECT Id,Name,Subject, Body,HtmlValue FROM EmailTemplate WHERE Name ='NctMembershipPayment'];
+        String emailBodyValue = emailTemplateId.HtmlValue;
+        String emailSubjectValue = emailTemplateId.Subject;
+        Messaging.SingleEmailMessage  mail = new Messaging.SingleEmailMessage ();
+        emailBodyValue = emailBodyValue.replace('{!npe03__Recurring_Donation__c.OwnerFirstName}{!npe03__Recurring_Donation__c.First_Contact__c}',newCont.Prefered_First_Name__c + ' ' + newCont.LastName + ',');
+        emailBodyValue = emailBodyValue.replace('href=""', 'href="' + paymentLink +'"');
+        system.debug('   *$*$* emailBodyValue   ' + emailBodyValue);
+        mail.setHtmlBody(emailBodyValue);
+        mail.setToAddresses(new String[] {newCont.Email});
+        mail.setSubject(emailSubjectValue);
+        Messaging.sendEmail(new Messaging.SingleEmailMessage [] { mail});  
+        */
     }
     public PageReference membershipRedirect(Id contId){
         if(contId != null || contId != ''){
