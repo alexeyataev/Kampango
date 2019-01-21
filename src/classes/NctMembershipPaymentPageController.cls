@@ -1,4 +1,4 @@
-public with sharing class NctMembershipPaymentPageController 
+public without sharing class NctMembershipPaymentPageController 
 {
     public string twomems{get; set;}
     public Date expDate {get; set;}
