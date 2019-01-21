@@ -322,21 +322,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AttachmentSample</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>attachmentsample</apexClass>
+        <apexClass>NctETMembershipPaymentPageControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>nctETMembershipPaymentPageControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>nctPaymentHubPageController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <custom>true</custom>
+        <custom>true</custom>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Access_Code__c</field>

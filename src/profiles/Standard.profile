@@ -395,15 +395,11 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>attachmentsample</apexClass>
+        <apexClass>AttachmentSample</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>nctETMembershipPaymentPageControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>nctPaymentHubPageController</apexClass>
+        <apexClass>NctETMembershipPaymentPageControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>false</custom>
