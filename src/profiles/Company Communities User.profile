@@ -402,11 +402,7 @@
         <apexClass>NctETMembershipPaymentPageControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>NctPaymentHubPageController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <custom>false</custom>
+        <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.Access_Code__c</field>
