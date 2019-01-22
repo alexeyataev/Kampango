@@ -21,7 +21,7 @@ public with sharing class StaffMembershipUtilities {
                          WHERE 
                          	   id = :userId];
         
-        if(staffUserlist.size()>0 ){//&& staffUserlist[0].Profile.Name != null && staffUserlist[0].Profile.Name == 'Office Staff'
+        if(staffUserlist.size()>0 && staffUserlist[0].Profile.Name != null && staffUserlist[0].Profile.Name == 'Office Staff'){
             System.debug('Profile Name: '+staffUserlist[0].Profile.Name);
             
             return staffUserlist;
