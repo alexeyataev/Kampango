@@ -1,6 +1,6 @@
 public without sharing class NctMembershipPaymentPageController 
 {
-    public MembershipVo membershipVo{get; set;}
+    //public MembershipVo membershipVo{get; set;}
     public string twomems{get; set;}
     public Date expDate {get; set;}
     public boolean twomem{get; set;}
