@@ -1,5 +1,6 @@
-public with sharing class NctMembershipPaymentPageController 
+public without sharing class NctMembershipPaymentPageController 
 {
+    //public MembershipVo membershipVo{get; set;}
     public string twomems{get; set;}
     public Date expDate {get; set;}
     public boolean twomem{get; set;}
@@ -34,7 +35,6 @@ public with sharing class NctMembershipPaymentPageController
     public string redirectURL {get;set;} 
     public Id contId {get;set;}
     public Course__c cors;
-    // added by MembershipFormController
     public String accountName {get; set;}
     public String sortCode {get; set;}
     public String accountNumber {get; set;}
@@ -46,7 +46,7 @@ public with sharing class NctMembershipPaymentPageController
     public npe03__Recurring_Donation__c reccDon {get;set;}
     public Map<String, List<Membership_Type__mdt>> membershipTypeMap{get;set;}
     public list<Account> branchs {get; set;}
-    public list<Account> nearestBranchs {get; set;}
+    public Map<String, list<sObject>> nearestBranchs {get; set;}
     public Id branchRecordTypeId {get; set;}
     public list<Account> latlonPostcode {get; set;}
     public String eDate {get; set;} 
@@ -55,37 +55,12 @@ public with sharing class NctMembershipPaymentPageController
     public boolean isVolunteer {get; set;}
     public String selectedPreferences {get;set;}
     public String sSelectedPreferences {get;set;}
-    public List<SelectOption> getPreferenceOptions() {
-        List<SelectOption> options = new List<SelectOption>();
-        options.add(new SelectOption('Mr.','Mr.'));
-        options.add(new SelectOption('Ms.','Ms.'));
-        options.add(new SelectOption('Mrs.','Mrs.'));
-        options.add(new SelectOption('Miss.','Miss.'));
-        options.add(new SelectOption('Dr.','Dr.'));
-        options.add(new SelectOption('Prof.','Prof.'));
-         
-        return options;
-    }
-    public List<SelectOption> getSPreferenceOptions() {
-        List<SelectOption> options = new List<SelectOption>();
-        options.add(new SelectOption('Mr.','Mr.'));
-        options.add(new SelectOption('Ms.','Ms.'));
-        options.add(new SelectOption('Mrs.','Mrs.'));
-        options.add(new SelectOption('Miss.','Miss.'));
-        options.add(new SelectOption('Dr.','Dr.'));
-        options.add(new SelectOption('Prof.','Prof.'));
-         
-        return options;
-    }
+    public list<SelectOption> salutationOptions{get; set;}
+    
     public String genders {get;set;}
     public String sGenders {get;set;}
-    public List<SelectOption> getGenderOptions() {
-        List<SelectOption> options = new List<SelectOption>();
-        options.add(new SelectOption('Male','Male'));
-        options.add(new SelectOption('Female','Female'));
-        options.add(new SelectOption('Other','Other')); 
-        return options;
-    }
+    public list<SelectOption> genderOptions{get; set;}
+    
     public list<String> contactSelectedPreferences {
         get{
             if(contactSelectedPreferences == NULL){
@@ -95,20 +70,17 @@ public with sharing class NctMembershipPaymentPageController
             return contactSelectedPreferences;
         }
         set;}
-    public List<SelectOption> getContactPreferenceOptions() {
-        List<SelectOption> options = new List<SelectOption>();
-        options.add(new SelectOption('Post','Post'));
-        options.add(new SelectOption('Email','Email'));
-        options.add(new SelectOption('SMS Text','SMS Text'));
-        options.add(new SelectOption('Telephone','Telephone'));
-        return options;
-    }
+    public list<SelectOption> contactPreferenceOptions {get; set;}
+   
     
-    
-    public nctMembershipPaymentPageController()
+    public NctMembershipPaymentPageController()
     {   
         contId = ApexPages.currentPage().getParameters().get('Id');
         system.debug('*$*$**$ contId  ' + contId);
+        Contact con= new Contact();
+        salutationOptions = SObjectUtilities.getPicklistValues(con, 'salutation');
+        genderOptions = SObjectUtilities.getPicklistValues(con, 'Gender__c');
+        contactPreferenceOptions =SObjectUtilities.getPicklistValues(con, 'Contact_Prefrence__c');
         if(contId != null)
         {
             newCont = [SELECT Id,Salutation,Gender__c, LastName, FirstName, Contact_Prefrence__c, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
@@ -120,7 +92,7 @@ public with sharing class NctMembershipPaymentPageController
                 postCode = newCont.MailingPostalCode;
                 selectedPreferences = newCont.Salutation;
                 genders = newCont.Gender__c;
-                System.debug('SelectedPreferences: '+selectedPreferences);
+                System.debug('selectedPreferences: '+selectedPreferences);
             }
         }
         pymtPrfl = new cpm__Payment_Profile__c();
@@ -136,24 +108,25 @@ public with sharing class NctMembershipPaymentPageController
         
     }
     public void receiveInput(){
-        System.debug('SelectedPreferences: '+selectedPreferences);
-        System.debug('Genders: '+genders);
+        System.debug('selectedPreferences: '+selectedPreferences);
+        System.debug('genders: '+genders);
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
         System.debug('Twomems :'+twomems);
         System.debug('Salutation:'+salutation);
         String contactPreference = '';
-        Boolean start = true;
+        Boolean Start = true;
         if(!contactSelectedPreferences.isEmpty()) {           
-            for(String str : contactSelectedPreferences) {
-                if(start) {
-                    contactPreference = str;
-                    start = false;
+            for(String Str : contactSelectedPreferences) {
+                if(Start) {
+                    contactPreference = Str;
+                    Start = false;
                 } else {               
-                    contactPreference = contactPreference + ';' + str;
+                    contactPreference = contactPreference + ';' + Str;
                 }
             }
         }
-       
+        //Date expDate = Date.valueOf(eDate);
+      
         if(isContactExisting == false && newCont == null){
             if(newCont == null )
             {
@@ -165,7 +138,10 @@ public with sharing class NctMembershipPaymentPageController
                 newCont.Phone = phone;
                 newCont.MailingPostalCode = postCode;
                 newCont.Contact_Prefrence__c = contactPreference;
-                
+                //if(eDate != null){
+                    //expDate = Date.valueOf(eDate);
+                    //newCont.Expected_Due_Date__c = expDate; 
+                //}
                 newCont.Branch__c = selectBranch; 
                 newCont.Salutation = selectedPreferences;
                 newCont.Gender__c = genders;
@@ -176,6 +152,7 @@ public with sharing class NctMembershipPaymentPageController
             
                 if(twomems == 'true' && sfirstname != null || sfirstname != '')
                 {
+                    Contact con =[Select AccountId from Contact where id = :newCont.id];
                     snewCont = new Contact();
                     snewCont.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Companion').getRecordTypeId();
                     snewCont.Prefered_First_Name__c = sfirstname;
@@ -184,7 +161,9 @@ public with sharing class NctMembershipPaymentPageController
                     snewCont.Phone = sphone;
                     snewCont.Parent_Contact__c = newCont.id;
                     snewCont.MailingPostalCode = postCode;
-                   
+                    snewCont.Contact_Prefrence__c = contactPreference;
+                    snewCont.AccountId = con.AccountId;
+                    //snewCont.Expected_Due_Date__c = expDate;
                     snewCont.Gender__c = sGenders;
                     snewCont.Salutation = sSelectedPreferences;   
                     snewCont.Branch__c = selectBranch;
@@ -203,7 +182,7 @@ public with sharing class NctMembershipPaymentPageController
             }
         }
             
-        //}
+        
         // Yet to define the custom metadata, once done the logic can be updated and modified accordingly, hence commenting
         
         else if(contId != null)
@@ -211,9 +190,9 @@ public with sharing class NctMembershipPaymentPageController
            
             isVolunteer = ContactUtilities.isVolunteerExisting(contId);
             isPractitioner = MembershipUtilties.isPractitioner(firstname, lastname, email);
-            
+     
             if(isVolunteer == true || isPractitioner == true){
-                
+             
                 if(twomems == 'true')
                 {   
                     membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint','Volunteer/Practitioner');            
@@ -254,7 +233,7 @@ public with sharing class NctMembershipPaymentPageController
                 snewCont.Phone = sphone;
                 snewCont.Parent_Contact__c = newCont.id;
                 snewCont.MailingPostalCode = postCode;
-                
+                //snewCont.Expected_Due_Date__c = expDate;
                 snewCont.Gender__c = sGenders;
                 snewCont.Salutation = sSelectedPreferences;   
                 snewCont.Branch__c = selectBranch;
@@ -324,37 +303,17 @@ public with sharing class NctMembershipPaymentPageController
             System.debug('isContactExisting: '+isContactExisting);
         }
         
-        String units = 'mi';
         postCode = Apexpages.currentPage().getParameters().get('postVal');
         System.debug('postCode: '+postCode);
-        branchRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
-        branchs =[SELECT Name, Id, RecordTypeId FROM Account where RecordTypeId =:branchRecordTypeId order by Name ASC];
-        latlonPostcode =[SELECT Id, BillingPostalCode, BillingLatitude, BillingLongitude FROM Account where BillingPostalCode = :postCode and BillingLatitude != null and BillingLongitude != null limit 1];
-        if(latlonPostcode.size()>0){
-            Decimal lattitude = latlonPostcode[0].BillingLatitude;
-            Decimal longitude = latlonPostcode[0].BillingLongitude; 
- 
-            
-            
-            String queryString = 'SELECT Id, Name '+
-                'FROM Account where (DISTANCE(BillingAddress ,GEOLOCATION('+lattitude+','+longitude+'), \'mi\')< 30) and BillingPostalCode=:postCode order by Name limit 10';
-              
-            System.Debug('>>>> the value of queryString is ' + queryString);
-            try{
-                nearestBranchs = database.query(queryString);
-            }
-            catch(exception e){
-                System.debug('Error: 153 : '+e);
-            }  
-        }
+        nearestBranchs = MembershipUtilties.getBranches(postCode);
+        System.debug('branches'+nearestBranchs);
         
     }
-    public void paymentSave()
+    public void PaymentSave()
     {
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
         
-             
-        if(newCont != null)//&& pymtPrfl == null && recDon == null
+        if(newCont != null)
         {
             system.debug(' *$*$*$* Contact Account Id   ' + newCont.AccountId);
             pymtPrfl.RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get('Bank Account').getRecordTypeId();
@@ -371,9 +330,9 @@ public with sharing class NctMembershipPaymentPageController
             if(isGiftAid == 'true' ) 
             {
                 gftAid.gaid__Contact__c= newCont.Id;
-                gftAid.Method__c = 'Online';
-                gftAid.gaid__Type__c = membershipInfo.GiftAid_Type__c;
                 
+                gftAid.gaid__Type__c = membershipInfo.GiftAid_Type__c;
+               
                 gftAid.gaid__Acquisition_Method__c = acquistion;
                 gftAid.gaid__Start_Date__c = system.today();
                 gftAid.gaid__Date_Made__c = system.today();
@@ -424,9 +383,8 @@ public with sharing class NctMembershipPaymentPageController
                 recDon.First_Contact__c = Apexpages.currentPage().getParameters().get('contId');
                 recDon.npe03__Installment_Period__c = 'Yearly';
                 recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
-                
+
                 recDon.Membership_Status__c = 'Confirmed';
-                
                 Insert recDon;
             }
         }
@@ -444,7 +402,7 @@ public with sharing class NctMembershipPaymentPageController
             }            
             system.debug('RECCURRING DONATION record  ' + reccDonList);            
         } 
-        
+
         list<User> userList = [select Id, Name from User where user.ContactId =: reccDonList[0].npe03__Contact__c and Username =:reccDonList[0].npe03__Contact__r.Email];
         if(userList == null || userList.isEmpty())
         {
@@ -461,7 +419,7 @@ public with sharing class NctMembershipPaymentPageController
                 usr.Email = reccDonList[0].npe03__Contact__r.Email;
                 usr.FirstName = reccDonList[0].npe03__Contact__r.Prefered_First_Name__c;
                 usr.LastName = reccDonList[0].npe03__Contact__r.LastName;
-               
+                //usr.CommunityNickname = 'comNick';
                 usr.Alias = alias.substring(1, 6);
                 usr.TimeZoneSidKey = 'GMT';
                 usr.LocaleSidKey = 'en_GB';
@@ -481,8 +439,7 @@ public with sharing class NctMembershipPaymentPageController
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,'Community User creadentials Exists in the System with this Username: '+reccDonList[0].npe03__Contact__r.Email));
             System.debug('User Exists: '+userList);
         }
-            
-              
+       
     }
     public PageReference paymentHubCallout()
     {
@@ -498,6 +455,7 @@ public with sharing class NctMembershipPaymentPageController
         HttpRequest tokenRequest = new HttpRequest();
         HttpResponse tokenResponse = new HttpResponse();
         Http tokenHttp = new Http();
+        
         tokenRequest.setEndpoint(System.Label.ENDPOINTOAUTH+'client_id='+System.Label.CLIENTID+'&client_secret='+System.Label.CLIENT_SECRET+'&grant_type=password&username='+System.Label.ENDPOINT_USERNAME+'&password='+System.Label.ENDPOINT_PASSWORD);
         
         //tokenRequest.setEndpoint('https://test.salesforce.com/services/oauth2/token?client_id=3MVG95AcBeaB55lVpFY_Rw8rGI.KUCG9dcqi1zRxbXuXhdoYYpgHOQUg01kQrJyfp_yYqnT6F.aEXC1U7n06J&client_secret=5804933462634405366&grant_type=password&username=payment.api@nct.org.uk.preuat&password=payment123rl3GtuRGUj15A1W6ysGuUAT3N');
@@ -551,11 +509,12 @@ public with sharing class NctMembershipPaymentPageController
         
         HttpRequest paymentHubRequest = new HttpRequest();
         HttpResponse paymentHubResponse = new HttpResponse();
-        Http paymentHubHttp = new Http();
-        paymentHubRequest.setEndpoint(System.Label.SF_INSTANCE+'/services/apexrest/cpm/v1.0/Payment'); 
-        //paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment'); 
-        paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);  
+        Http paymentHubHttp = new Http(); 
         
+        paymentHubRequest.setEndpoint(System.Label.SF_INSTANCE+'/services/apexrest/cpm/v1.0/Payment'); 
+        //paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment');        
+        paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);  
+        //paymentHubRequest.setHeader('Authorization','Bearer '+ UserInfo.getSessionID()); 
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('Accept','application/json');
         
@@ -570,9 +529,8 @@ public with sharing class NctMembershipPaymentPageController
         system.debug('*$*$*$* responseContent ===   ' + responseContent);
         redirectURL = responseContent.subString(responseContent.IndexOf('PaymentHub')+28, responseContent.lastIndexOf('PaymentMethod')-3);
         system.debug('*$*$*$** redirectURL =   ' + redirectURL);
-        //PageReference pageRefCrdDbt = new PageReference('https://ournct--preuat--c.cs102.visual.force.com/apex/phstr__stripecheckout?failureRedirectURL=https%253A%252F%252Fwww.example.com%252Ferror&id=a2b1j00000002s1AAA&successRedirectURL=https%253A%252F%252Fwww.example.com%252Fsuccess');
         redirectURL += '&nooverride=1';
-        //PageReference pageRefCrdDbt = new PageReference('https://preuat-mynct.cs102.force.com/apex/phstr__stripecheckout?failureRedirectURL=https%3A%2F%2Fournct--preuat--c.cs102.visual.force.com%2Fapex%2FnctPaymentHubErrorMsgPage&id=a2b1j000000031FAAQ&successRedirectURL=https%3A%2F%2Fournct--preuat--c.cs102.visual.force.com%2Fapex%2FnctPaymentHubSuccessMsgPage');
+        
         PageReference pageRefCrdDbt = new PageReference(redirectURL);
         pageRefCrdDbt.setRedirect(true);
         system.debug('  *$*$*$** pageRefCrdDbt =   ' + pageRefCrdDbt);

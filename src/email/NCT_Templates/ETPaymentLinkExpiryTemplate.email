@@ -65,15 +65,18 @@
                 direction: ltr !important;
                 min-width: 100% !important
             }
+
             body .ee-show-on-desktop {
                 display: none !important
             }
+
             table .ee-hide-on-desktop {
                 display: table;
                 max-height: none;
                 visibility: visible;
                 width: 100% !important
             }
+
             .email-width {
                 width: 100vw !important
             }
@@ -83,12 +86,15 @@
             .row .stack-column {
                 min-width: 0 !important
             }
+
             .ee-show-on-desktop {
                 display: block !important
             }
+
             table.ee-show-on-desktop {
                 display: table !important
             }
+
             .ee_columns.ee-hide-on-desktop,
             .ee_element.ee-hide-on-desktop {
                 display: none !important
@@ -779,6 +785,7 @@
         }
 
         @media only screen and (min-device-width:768px) and (max-device-width:1024px) {
+
             /* Stop 1px gaps appearing on 2 col blocks on iPad */
             .stack-column {
                 Margin: 0 0
@@ -807,120 +814,85 @@
             <tr>
                 <td valign="top">
                     <center class="width-100">
-                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body" style="background-color: #ffffff;table-layout: auto;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body"
+                            style="background-color: #ffffff;table-layout: auto;">
                             <tbody>
                                 <tr>
                                     <td class="email-full-width margin-0-auto">
                                         <!--[if (gte mso 9)|(IE)]><table cellspacing="0" cellpadding="0" border="0" style="width:660px;" width="660" align="center"><tr><td><![endif]-->
-                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-width" style="table-layout: auto;">
+                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+                                            class="email-width" style="table-layout: auto;">
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top" width="100%" style="table-layout: auto;">
+                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top"
+                                                            width="100%" style="table-layout: auto;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="row-container">
                                                                         <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:660px;" width="660"><tr><td align="center" valign="top" style="width:660px;" width="660"><![endif]-->
                                                                         <div class="ee_dropzone">
-                                                                            <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" class="row two-cols ee_columns ee-show-on-desktop ee_element"
-                                                                                ee-type="container" data-title="Columns" style="position: relative;table-layout: auto;">
+                                                                          
+                                                                            <table width="100%" border="0" cellpadding="0"
+                                                                                cellspacing="0" class="col-font-reset ee_element ee_imageelement"
+                                                                                ee-type="element" data-title="Image"
+                                                                                style="table-layout: auto;">
                                                                                 <tbody>
                                                                                     <tr>
-                                                                                        <td align="center" valign="top" class="row-inner f-size-0 element-pad" dir="ltr" style="padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;">
-                                                                                            <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:660px;" width="660"><tr><td align="left" valign="top" style="width:330px;" width="330"><![endif]-->
-                                                                                            <!-- STACK COLUMN : BEGIN -->
-                                                                                            <div class="stack-column stack-column-width" ee-percent-width="50" style="max-width: 50%; min-width: 100%; width: 50%;">
-                                                                                                <table cellspacing="0" cellpadding="0" border="0" width="100%" style="table-layout: auto;">
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td dir="ltr" class="col-inner ee_dropzone" align="left">
-                                                                                                                <table cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_textelement" width="100%" ee-type="element" data-title="Text"
-                                                                                                                    style="table-layout: auto;">
-                                                                                                                    <tbody>
-                                                                                                                        <tr>
-                                                                                                                            <td valign="top" align="left" class="element-pad element-bord" style="padding-top: 10px;padding-right: 0px;padding-bottom: 10px;padding-left: 0px;">
-                                                                                                                                <div class="ee_editable">
-                                                                                                                                    <p style="font-size: 11px; line-height: 17px; text-align: left; color: rgb(173, 173, 173);">Membership
-                                                                                                                                        cancelled
-                                                                                                                                    </p>
-                                                                                                                                </div>
-                                                                                                                            </td>
-                                                                                                                        </tr>
-                                                                                                                    </tbody>
-                                                                                                                </table>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </div>
-                                                                                            <!-- STACK COLUMN : END -->
-                                                                                            <!--[if mso]></td><td align="left" valign="top" style="width:330px;" width="330" class="column"><![endif]-->
-                                                                                            <!-- STACK COLUMN : BEGIN -->
-                                                                                            <div class="stack-column stack-column-width" ee-percent-width="50" style="max-width: 50%; min-width: 100%; width: 50%;">
-                                                                                                <table cellspacing="0" cellpadding="0" border="0" width="100%" style="table-layout: auto;">
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td dir="ltr" class="col-inner ee_dropzone" align="left">
-                                                                                                                <table cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_textelement" width="100%" ee-type="element" data-title="Text"
-                                                                                                                    style="table-layout: auto;">
-                                                                                                                    <tbody>
-                                                                                                                        <tr>
-                                                                                                                            <td valign="top" align="left" class="element-pad element-bord" style="padding-top: 10px;padding-right: 0px;padding-bottom: 10px;padding-left: 0px;">
-                                                                                                                                <div class="ee_editable">
-                                                                                                                                    <p style="font-size: 11px; line-height: 17px; text-align: right;">
-                                                                                                                                        <a href="https://$CANTREAD$" style="text-decoration: none; color: rgb(173, 173, 173);">View
-                                                                                                                                            in
-                                                                                                                                            browser
-                                                                                                                                        </a>
-                                                                                                                                    </p>
-                                                                                                                                </div>
-                                                                                                                            </td>
-                                                                                                                        </tr>
-                                                                                                                    </tbody>
-                                                                                                                </table>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </div>
-                                                                                            <!-- STACK COLUMN : END -->
-                                                                                            <!--[if mso]></td></tr></table><![endif]-->
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_imageelement" ee-type="element"
-                                                                                data-title="Image" style="table-layout: auto;">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td class="element-pad element-bord root-element-pad" style="padding-top: 15px;padding-right: 20px;padding-bottom: 15px;padding-left: 20px;">
+                                                                                        <td class="element-pad element-bord root-element-pad"
+                                                                                            style="padding-top: 15px;padding-right: 20px;padding-bottom: 15px;padding-left: 20px;">
                                                                                             <center class="ved_ctr">
-                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249085_nct1klogogreenlandcmyk01.png" width="184" style="width: 184px; min-height: auto; max-width: 100%; display: inline-block; margin: 0px; vertical-align: bottom;"
+                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249085_nct1klogogreenlandcmyk01.png"
+                                                                                                    width="184" style="width: 184px; min-height: auto; max-width: 100%; display: inline-block; margin: 0px; vertical-align: bottom;"
                                                                                                     class="ee_editable ee_noresponsiveresize">
                                                                                             </center>
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
-                                                                            <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" class="row ee_columns three-cols ee_element"
-                                                                                ee-type="container" data-title="Columns" style="position: relative;table-layout: auto;">
+                                                                            <table border="0" cellpadding="0"
+                                                                                cellspacing="0" align="center" width="100%"
+                                                                                class="row ee_columns three-cols ee_element"
+                                                                                ee-type="container" data-title="Columns"
+                                                                                style="position: relative;table-layout: auto;">
                                                                                 <tbody>
                                                                                     <tr>
-                                                                                        <td align="center" valign="top" class="row-inner f-size-0 element-pad" dir="ltr">
+                                                                                        <td align="center" valign="top"
+                                                                                            class="row-inner f-size-0 element-pad"
+                                                                                            dir="ltr">
                                                                                             <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:640px;" width="640"><tr><td align="left" valign="top" style="width:213.9375px;" width="213.9375"><![endif]-->
-                                                                                            <div class="stack-column stack-column-width" ee-percent-width="33.3333" style="max-width: 33.43%; min-width: 100%; width: 33.43%;">
-                                                                                                <table cellspacing="0" cellpadding="0" border="0" width="100%" style="table-layout: auto;">
+                                                                                            <div class="stack-column stack-column-width"
+                                                                                                ee-percent-width="33.3333"
+                                                                                                style="max-width: 33.43%; min-width: 100%; width: 33.43%;">
+                                                                                                <table cellspacing="0"
+                                                                                                    cellpadding="0"
+                                                                                                    border="0" width="100%"
+                                                                                                    style="table-layout: auto;">
                                                                                                     <tbody>
                                                                                                         <tr>
-                                                                                                            <td dir="ltr" class="col-inner ee_dropzone" align="left">
-                                                                                                                <table cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_textelement" width="100%" ee-type="element" data-title="Text"
+                                                                                                            <td dir="ltr"
+                                                                                                                class="col-inner ee_dropzone"
+                                                                                                                align="left">
+                                                                                                                <table
+                                                                                                                    cellpadding="0"
+                                                                                                                    cellspacing="0"
+                                                                                                                    class="col-font-reset ee_element ee_textelement"
+                                                                                                                    width="100%"
+                                                                                                                    ee-type="element"
+                                                                                                                    data-title="Text"
                                                                                                                     style="table-layout: auto;">
                                                                                                                     <tbody>
                                                                                                                         <tr>
-                                                                                                                            <td valign="top" align="left" class="element-pad element-bord">
-                                                                                                                                <div class="ee_editable">
+                                                                                                                            <td
+                                                                                                                                valign="top"
+                                                                                                                                align="left"
+                                                                                                                                class="element-pad element-bord">
+                                                                                                                                <div
+                                                                                                                                    class="ee_editable">
                                                                                                                                     <p>
-                                                                                                                                        <a href="https://www.nct.org.uk/local-activities-and-meet-ups" style="color: rgb(173, 173, 173); text-decoration-line: none;">Local
+                                                                                                                                        <a
+                                                                                                                                            href="https://www.nct.org.uk/local-activities-and-meet-ups"
+                                                                                                                                            style="color: rgb(173, 173, 173); text-decoration-line: none;">Local
                                                                                                                                             activities
                                                                                                                                             &amp;
                                                                                                                                             meet
@@ -938,19 +910,39 @@
                                                                                                 </table>
                                                                                             </div>
                                                                                             <!--[if mso]></td><td align="left" valign="top" style="width:212.984375px;" width="212.984375"><![endif]-->
-                                                                                            <div class="stack-column stack-column-width" ee-percent-width="33.3333" style="max-width: 33.28%; min-width: 100%; width: 33.28%;">
-                                                                                                <table cellspacing="0" cellpadding="0" border="0" width="100%" style="table-layout: auto;">
+                                                                                            <div class="stack-column stack-column-width"
+                                                                                                ee-percent-width="33.3333"
+                                                                                                style="max-width: 33.28%; min-width: 100%; width: 33.28%;">
+                                                                                                <table cellspacing="0"
+                                                                                                    cellpadding="0"
+                                                                                                    border="0" width="100%"
+                                                                                                    style="table-layout: auto;">
                                                                                                     <tbody>
                                                                                                         <tr>
-                                                                                                            <td dir="ltr" class="col-inner ee_dropzone" align="left">
-                                                                                                                <table cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_textelement" width="100%" ee-type="element" data-title="Text"
+                                                                                                            <td dir="ltr"
+                                                                                                                class="col-inner ee_dropzone"
+                                                                                                                align="left">
+                                                                                                                <table
+                                                                                                                    cellpadding="0"
+                                                                                                                    cellspacing="0"
+                                                                                                                    class="col-font-reset ee_element ee_textelement"
+                                                                                                                    width="100%"
+                                                                                                                    ee-type="element"
+                                                                                                                    data-title="Text"
                                                                                                                     style="table-layout: auto;">
                                                                                                                     <tbody>
                                                                                                                         <tr>
-                                                                                                                            <td valign="top" align="left" class="element-pad element-bord">
-                                                                                                                                <div class="ee_editable">
-                                                                                                                                    <p style="font-size: 13px; line-height: 20px; font-family: arial, helvetica, sans-serif;">
-                                                                                                                                        <a href="https://www.nct.org.uk/get-involved" style="color: rgb(173, 173, 173); text-decoration: none;">Get
+                                                                                                                            <td
+                                                                                                                                valign="top"
+                                                                                                                                align="left"
+                                                                                                                                class="element-pad element-bord">
+                                                                                                                                <div
+                                                                                                                                    class="ee_editable">
+                                                                                                                                    <p
+                                                                                                                                        style="font-size: 13px; line-height: 20px; font-family: arial, helvetica, sans-serif;">
+                                                                                                                                        <a
+                                                                                                                                            href="https://www.nct.org.uk/get-involved"
+                                                                                                                                            style="color: rgb(173, 173, 173); text-decoration: none;">Get
                                                                                                                                             involved
                                                                                                                                         </a>
                                                                                                                                     </p>
@@ -965,19 +957,38 @@
                                                                                                 </table>
                                                                                             </div>
                                                                                             <!--[if mso]></td><td align="left" valign="top" style="width:212.984375px;" width="212.984375"><![endif]-->
-                                                                                            <div class="stack-column stack-column-width" ee-percent-width="33.333333333333336" style="max-width: 33.28%; min-width: 100%; width: 33.28%;">
-                                                                                                <table cellspacing="0" cellpadding="0" border="0" width="100%" style="table-layout: auto;">
+                                                                                            <div class="stack-column stack-column-width"
+                                                                                                ee-percent-width="33.333333333333336"
+                                                                                                style="max-width: 33.28%; min-width: 100%; width: 33.28%;">
+                                                                                                <table cellspacing="0"
+                                                                                                    cellpadding="0"
+                                                                                                    border="0" width="100%"
+                                                                                                    style="table-layout: auto;">
                                                                                                     <tbody>
                                                                                                         <tr>
-                                                                                                            <td dir="ltr" class="col-inner ee_dropzone" align="left">
-                                                                                                                <table cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_textelement" width="100%" ee-type="element" data-title="Text"
+                                                                                                            <td dir="ltr"
+                                                                                                                class="col-inner ee_dropzone"
+                                                                                                                align="left">
+                                                                                                                <table
+                                                                                                                    cellpadding="0"
+                                                                                                                    cellspacing="0"
+                                                                                                                    class="col-font-reset ee_element ee_textelement"
+                                                                                                                    width="100%"
+                                                                                                                    ee-type="element"
+                                                                                                                    data-title="Text"
                                                                                                                     style="table-layout: auto;">
                                                                                                                     <tbody>
                                                                                                                         <tr>
-                                                                                                                            <td valign="top" align="left" class="element-pad element-bord">
-                                                                                                                                <div class="ee_editable">
+                                                                                                                            <td
+                                                                                                                                valign="top"
+                                                                                                                                align="left"
+                                                                                                                                class="element-pad element-bord">
+                                                                                                                                <div
+                                                                                                                                    class="ee_editable">
                                                                                                                                     <p>
-                                                                                                                                        <a href="https://www.nct.org.uk/about-us" style="color: rgb(173, 173, 173); text-decoration: none;">About
+                                                                                                                                        <a
+                                                                                                                                            href="https://www.nct.org.uk/about-us"
+                                                                                                                                            style="color: rgb(173, 173, 173); text-decoration: none;">About
                                                                                                                                             us
                                                                                                                                         </a>
                                                                                                                                     </p>
@@ -1013,27 +1024,34 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body" style="background-color: rgb(58, 164, 59); table-layout: auto;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body"
+                            style="background-color: rgb(58, 164, 59); table-layout: auto;">
                             <tbody>
                                 <tr>
                                     <td class="email-full-width margin-0-auto">
                                         <!--[if (gte mso 9)|(IE)]><table cellspacing="0" cellpadding="0" border="0" style="width:660px;" width="660" align="center"><tr><td><![endif]-->
-                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-width" style="table-layout: auto;">
+                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+                                            class="email-width" style="table-layout: auto;">
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top" width="100%" style="table-layout: auto;">
+                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top"
+                                                            width="100%" style="table-layout: auto;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="row-container">
                                                                         <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:660px;" width="660"><tr><td align="center" valign="top" style="width:660px;" width="660"><![endif]-->
                                                                         <div class="ee_dropzone">
-                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ee_element ee_spacer col-font-reset" ee-type="element"
-                                                                                data-title="Spacer" style="table-layout: auto;">
+                                                                            <table width="100%" border="0" cellspacing="0"
+                                                                                cellpadding="0" class="ee_element ee_spacer col-font-reset"
+                                                                                ee-type="element" data-title="Spacer"
+                                                                                style="table-layout: auto;">
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td style="font-size: 1px; line-height: 1px;">
-                                                                                            <img src="https://i.emlfiles.com/cmpimg/t/s.gif" style="display: block; width: 1px; height: 7px;" alt="" class="" border="0"
+                                                                                            <img src="https://i.emlfiles.com/cmpimg/t/s.gif"
+                                                                                                style="display: block; width: 1px; height: 7px;"
+                                                                                                alt="" class="" border="0"
                                                                                                 width="1" height="7">
                                                                                         </td>
                                                                                     </tr>
@@ -1055,16 +1073,19 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body" style="background-color: #ffffff;table-layout: auto;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body"
+                            style="background-color: #ffffff;table-layout: auto;">
                             <tbody>
                                 <tr>
                                     <td class="email-full-width margin-0-auto">
                                         <!--[if (gte mso 9)|(IE)]><table cellspacing="0" cellpadding="0" border="0" style="width:660px;" width="660" align="center"><tr><td><![endif]-->
-                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-width" style="table-layout: auto;">
+                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+                                            class="email-width" style="table-layout: auto;">
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top" width="100%" style="table-layout: auto;">
+                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top"
+                                                            width="100%" style="table-layout: auto;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="row-container">
@@ -1086,89 +1107,158 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body" style="background-color: rgb(243, 243, 243); table-layout: auto;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body"
+                            style="background-color: rgb(243, 243, 243); table-layout: auto;">
                             <tbody>
                                 <tr>
                                     <td class="email-full-width margin-0-auto">
                                         <!--[if (gte mso 9)|(IE)]><table cellspacing="0" cellpadding="0" border="0" style="width:660px;" width="660" align="center"><tr><td><![endif]-->
-                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-width" style="table-layout: auto;">
+                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+                                            class="email-width" style="table-layout: auto;">
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top" width="100%" style="table-layout: auto;">
+                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top"
+                                                            width="100%" style="table-layout: auto;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="row-container">
                                                                         <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:660px;" width="660"><tr><td align="center" valign="top" style="width:660px;" width="660"><![endif]-->
                                                                         <div class="ee_dropzone">
-                                                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_imageelement" ee-type="element"
-                                                                                data-title="Image" style="table-layout: auto;">
+                                                                            <table width="100%" border="0" cellpadding="0"
+                                                                                cellspacing="0" class="col-font-reset ee_element ee_imageelement"
+                                                                                ee-type="element" data-title="Image"
+                                                                                style="table-layout: auto;">
                                                                                 <tbody>
                                                                                     <tr>
-                                                                                        <td class="element-pad element-bord root-element-pad" style="padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px; font-size: 1px; line-height: 1px;">
+                                                                                        <td class="element-pad element-bord root-element-pad"
+                                                                                            style="padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px; font-size: 1px; line-height: 1px;">
                                                                                             <center class="ved_ctr">
-                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249088_rectangle1copy132x.png" width="600" style="width: 90.91%; min-height: auto; max-width: 100%; display: inline-block; margin: 0px; vertical-align: bottom;"
+                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249088_rectangle1copy132x.png"
+                                                                                                    width="600" style="width: 90.91%; min-height: auto; max-width: 100%; display: inline-block; margin: 0px; vertical-align: bottom;"
                                                                                                     class="ee_editable">
                                                                                             </center>
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
-                                                                            <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" class="row ee_columns one-cols ee_element"
-                                                                                ee-type="container" data-title="Columns" style="position: relative; max-width: 660px;table-layout: auto;">
+                                                                            <table border="0" cellpadding="0"
+                                                                                cellspacing="0" align="center" width="100%"
+                                                                                class="row ee_columns one-cols ee_element"
+                                                                                ee-type="container" data-title="Columns"
+                                                                                style="position: relative; max-width: 660px;table-layout: auto;">
                                                                                 <tbody>
                                                                                     <tr>
-                                                                                        <td align="center" valign="top" class="row-inner f-size-0 element-pad" dir="ltr" style="padding-top: 20px;padding-right: 10px;padding-bottom: 20px;padding-left: 10px;">
+                                                                                        <td align="center" valign="top"
+                                                                                            class="row-inner f-size-0 element-pad"
+                                                                                            dir="ltr" style="padding-top: 20px;padding-right: 10px;padding-bottom: 20px;padding-left: 10px;">
                                                                                             <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:640px;" width="640"><tr><td align="left" valign="top" style="width:640px;" width="640"><![endif]-->
-                                                                                            <div class="stack-column stack-column-width" ee-percent-width="100.0000" style="max-width: 640px; min-width: 100%; width: 100%;">
-                                                                                                <table cellspacing="0" cellpadding="0" border="0" width="100%" style="table-layout: auto;">
+                                                                                            <div class="stack-column stack-column-width"
+                                                                                                ee-percent-width="100.0000"
+                                                                                                style="max-width: 640px; min-width: 100%; width: 100%;">
+                                                                                                <table cellspacing="0"
+                                                                                                    cellpadding="0"
+                                                                                                    border="0" width="100%"
+                                                                                                    style="table-layout: auto;">
                                                                                                     <tbody>
                                                                                                         <tr>
-                                                                                                            <td dir="ltr" class="col-inner ee_dropzone" align="left">
-                                                                                                                <table cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_textelement" width="100%" ee-type="element" style="table-layout: auto;"
+                                                                                                            <td dir="ltr"
+                                                                                                                class="col-inner ee_dropzone"
+                                                                                                                align="left">
+                                                                                                                <table
+                                                                                                                    cellpadding="0"
+                                                                                                                    cellspacing="0"
+                                                                                                                    class="col-font-reset ee_element ee_textelement"
+                                                                                                                    width="100%"
+                                                                                                                    ee-type="element"
+                                                                                                                    style="table-layout: auto;"
                                                                                                                     data-title="Text">
                                                                                                                     <tbody>
                                                                                                                         <tr>
-                                                                                                                            <td valign="top" align="left" class="element-pad element-bord">
-                                                                                                                                <div class="ee_editable" style="position: static;">
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">Hi {!Payment_Link__c.Contact__c},
-       
-                                                                                                                                                                                                                          
+                                                                                                                            <td
+                                                                                                                                valign="top"
+                                                                                                                                align="left"
+                                                                                                                                class="element-pad element-bord">
+                                                                                                                                <div
+                                                                                                                                    class="ee_editable"
+                                                                                                                                    style="position: static;">
+                                                                                                                                    <p
+                                                                                                                                        style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">Hi
+                                                                                                                                        {!Payment_Link__c.Contact__c},
+
+
                                                                                                                                     </p>
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
+                                                                                                                                    <p
+                                                                                                                                        style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
                                                                                                                                         <br>
                                                                                                                                     </p>
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
-                                                                                                                                        Thanks for getting in touch, we'd love to have you as a member!
+                                                                                                                                    <p
+                                                                                                                                        style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
+                                                                                                                                        Thanks
+                                                                                                                                        for
+                                                                                                                                        getting
+                                                                                                                                        in
+                                                                                                                                        touch,
+                                                                                                                                        we'd
+                                                                                                                                        love
+                                                                                                                                        to
+                                                                                                                                        have
+                                                                                                                                        you
+                                                                                                                                        as
+                                                                                                                                        a
+                                                                                                                                        member!
                                                                                                                                     </p>
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
+                                                                                                                                    <p
+                                                                                                                                        style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
                                                                                                                                         <br>
                                                                                                                                     </p>
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
-                                                                                                                                        To complete your membership, please click on the payment link below:
+                                                                                                                                    <p
+                                                                                                                                        style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
+                                                                                                                                        To
+                                                                                                                                        complete
+                                                                                                                                        your
+                                                                                                                                        membership,
+                                                                                                                                        please
+                                                                                                                                        click
+                                                                                                                                        on
+                                                                                                                                        the
+                                                                                                                                        payment
+                                                                                                                                        link
+                                                                                                                                        below:
                                                                                                                                     </p>
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
+                                                                                                                                    <p
+                                                                                                                                        style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
                                                                                                                                         <br>
                                                                                                                                     </p>
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">Payment
+                                                                                                                                    <p
+                                                                                                                                        style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">Payment
                                                                                                                                         Link
                                                                                                                                         :
-                                                                                                                                        <a href="{!$Label.Payment_Link_URL}{!Payment_Link__c.Id}" style="color:green;cursor: pointer;text-decoration: none">Click
+                                                                                                                                        <a
+                                                                                                                                            href="{!$Label.Payment_Link_URL}{!Payment_Link__c.Id}"
+                                                                                                                                            style="color:green;cursor: pointer;text-decoration: none">Click
                                                                                                                                             here
                                                                                                                                         </a>
                                                                                                                                     </p>
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
+                                                                                                                                    <p
+                                                                                                                                        style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
                                                                                                                                         <br>
                                                                                                                                     </p>
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
-                                                                                                                                        Thanks again!
+                                                                                                                                    <p
+                                                                                                                                        style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
+                                                                                                                                        Thanks
+                                                                                                                                        again!
                                                                                                                                     </p>
 
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
+                                                                                                                                    <p
+                                                                                                                                        style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
                                                                                                                                         <br>
                                                                                                                                     </p>
-                                                                                                                                    <p style="line-height: 25px; font-size: 17px; font-family: arial, helvetica, sans-serif; color: rgb(0, 0, 0);">
-                                                                                                                                        The membership team
+                                                                                                                                    <p
+                                                                                                                                        style="line-height: 25px; font-size: 17px; font-family: arial, helvetica, sans-serif; color: rgb(0, 0, 0);">
+                                                                                                                                        The
+                                                                                                                                        membership
+                                                                                                                                        team
                                                                                                                                     </p>
                                                                                                                                 </div>
                                                                                                                             </td>
@@ -1201,16 +1291,19 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body" style="background-color: #ffffff;table-layout: auto;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body"
+                            style="background-color: #ffffff;table-layout: auto;">
                             <tbody>
                                 <tr>
                                     <td class="email-full-width margin-0-auto">
                                         <!--[if (gte mso 9)|(IE)]><table cellspacing="0" cellpadding="0" border="0" style="width:660px;" width="660" align="center"><tr><td><![endif]-->
-                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-width" style="table-layout: auto;">
+                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+                                            class="email-width" style="table-layout: auto;">
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top" width="100%" style="table-layout: auto;">
+                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top"
+                                                            width="100%" style="table-layout: auto;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="row-container">
@@ -1232,28 +1325,35 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body" style="background-color: rgb(243, 243, 243); table-layout: auto;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body"
+                            style="background-color: rgb(243, 243, 243); table-layout: auto;">
                             <tbody>
                                 <tr>
                                     <td class="email-full-width margin-0-auto">
                                         <!--[if (gte mso 9)|(IE)]><table cellspacing="0" cellpadding="0" border="0" style="width:660px;" width="660" align="center"><tr><td><![endif]-->
-                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-width" style="table-layout: auto;">
+                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+                                            class="email-width" style="table-layout: auto;">
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top" width="100%" style="table-layout: auto;">
+                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top"
+                                                            width="100%" style="table-layout: auto;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="row-container">
                                                                         <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:660px;" width="660"><tr><td align="center" valign="top" style="width:660px;" width="660"><![endif]-->
                                                                         <div class="ee_dropzone">
-                                                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_imageelement" ee-type="element"
-                                                                                data-title="Image" style="table-layout: auto;">
+                                                                            <table width="100%" border="0" cellpadding="0"
+                                                                                cellspacing="0" class="col-font-reset ee_element ee_imageelement"
+                                                                                ee-type="element" data-title="Image"
+                                                                                style="table-layout: auto;">
                                                                                 <tbody>
                                                                                     <tr>
-                                                                                        <td class="element-pad element-bord root-element-pad" style="padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px; font-size: 1px; line-height: 1px;">
+                                                                                        <td class="element-pad element-bord root-element-pad"
+                                                                                            style="padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px; font-size: 1px; line-height: 1px;">
                                                                                             <center class="ved_ctr">
-                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249087_rectangle1copy122x.png" width="523" style="width: 79.24%; min-height: auto; max-width: 100%; display: inline-block; margin: 0px; vertical-align: bottom;"
+                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249087_rectangle1copy122x.png"
+                                                                                                    width="523" style="width: 79.24%; min-height: auto; max-width: 100%; display: inline-block; margin: 0px; vertical-align: bottom;"
                                                                                                     class="ee_editable">
                                                                                             </center>
                                                                                         </td>
@@ -1276,16 +1376,19 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body" style="background-color: #ffffff;table-layout: auto;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body"
+                            style="background-color: #ffffff;table-layout: auto;">
                             <tbody>
                                 <tr>
                                     <td class="email-full-width margin-0-auto">
                                         <!--[if (gte mso 9)|(IE)]><table cellspacing="0" cellpadding="0" border="0" style="width:660px;" width="660" align="center"><tr><td><![endif]-->
-                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-width" style="table-layout: auto;">
+                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+                                            class="email-width" style="table-layout: auto;">
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top" width="100%" style="table-layout: auto;">
+                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top"
+                                                            width="100%" style="table-layout: auto;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="row-container">
@@ -1307,71 +1410,118 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body" style="background-color: rgb(243, 243, 243); table-layout: auto;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body"
+                            style="background-color: rgb(243, 243, 243); table-layout: auto;">
                             <tbody>
                                 <tr>
                                     <td class="email-full-width margin-0-auto">
                                         <!--[if (gte mso 9)|(IE)]><table cellspacing="0" cellpadding="0" border="0" style="width:660px;" width="660" align="center"><tr><td><![endif]-->
-                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-width" style="table-layout: auto;">
+                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+                                            class="email-width" style="table-layout: auto;">
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top" width="100%" style="table-layout: auto;">
+                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top"
+                                                            width="100%" style="table-layout: auto;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="row-container">
                                                                         <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:660px;" width="660"><tr><td align="center" valign="top" style="width:660px;" width="660"><![endif]-->
                                                                         <div class="ee_dropzone">
-                                                                            <table cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_imageelement" width="100%" ee-type="element" style="table-layout: auto;"
+                                                                            <table cellpadding="0" cellspacing="0"
+                                                                                class="col-font-reset ee_element ee_imageelement"
+                                                                                width="100%" ee-type="element" style="table-layout: auto;"
                                                                                 data-title="Image">
                                                                                 <tbody>
                                                                                     <tr>
-                                                                                        <td valign="top" align="center" class="element-pad element-bord root-element-pad" style="padding-top: 20px;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;">
-                                                                                            <table border="0" cellpadding="0" cellspacing="0" class="ee_notfixed" style="table-layout: auto;" ee-template-version="2.4">
+                                                                                        <td valign="top" align="center"
+                                                                                            class="element-pad element-bord root-element-pad"
+                                                                                            style="padding-top: 20px;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;">
+                                                                                            <table border="0"
+                                                                                                cellpadding="0"
+                                                                                                cellspacing="0" class="ee_notfixed"
+                                                                                                style="table-layout: auto;"
+                                                                                                ee-template-version="2.4">
                                                                                                 <tbody>
                                                                                                     <tr>
-                                                                                                        <td width="35" align="center" style="">
-                                                                                                            <a href="https://www.facebook.com/nationalchildbirthtrust/?campaignkw=FB&_linkgroups=social" style="color:#FFFFFF; text-decoration:none;">
-                                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249089_shape2copy2x.png" alt="" class="ee_editable ee_noresponsiveresize ee_smallimage"
+                                                                                                        <td width="35"
+                                                                                                            align="center"
+                                                                                                            style="">
+                                                                                                            <a href="https://www.facebook.com/nationalchildbirthtrust/?campaignkw=FB&_linkgroups=social"
+                                                                                                                style="color:#FFFFFF; text-decoration:none;">
+                                                                                                                <img
+                                                                                                                    src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249089_shape2copy2x.png"
+                                                                                                                    alt=""
+                                                                                                                    class="ee_editable ee_noresponsiveresize ee_smallimage"
                                                                                                                     style="display: block; width: 35px; max-width: 100%; height: auto;"
                                                                                                                     border="0"
                                                                                                                     width="35">
                                                                                                             </a>
                                                                                                         </td>
-                                                                                                        <td width="8" style="">
-                                                                                                            <img src="https://i.emlfiles.com/cmpimg/t/s.gif" style="display: block; width: 3px; max-width: 100%; height: auto;" alt=""
+                                                                                                        <td width="8"
+                                                                                                            style="">
+                                                                                                            <img src="https://i.emlfiles.com/cmpimg/t/s.gif"
+                                                                                                                style="display: block; width: 3px; max-width: 100%; height: auto;"
+                                                                                                                alt=""
                                                                                                                 class="vedpw20 ee_smallimage ee_pnggif_image"
-                                                                                                                border="0" width="3">
+                                                                                                                border="0"
+                                                                                                                width="3">
                                                                                                         </td>
-                                                                                                        <td width="35" align="center" style="">
-                                                                                                            <a href="https://twitter.com/NCTcharity?campaignkw=TW&_linkgroups=social" style="color:#FFFFFF; text-decoration:none;">
-                                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249091_shape42x.png" alt="" style="display: block; width: 35px; height: auto; max-width: 100%;"
+                                                                                                        <td width="35"
+                                                                                                            align="center"
+                                                                                                            style="">
+                                                                                                            <a href="https://twitter.com/NCTcharity?campaignkw=TW&_linkgroups=social"
+                                                                                                                style="color:#FFFFFF; text-decoration:none;">
+                                                                                                                <img
+                                                                                                                    src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249091_shape42x.png"
+                                                                                                                    alt=""
+                                                                                                                    style="display: block; width: 35px; height: auto; max-width: 100%;"
                                                                                                                     class="ee_editable ee_noresponsiveresize ee_smallimage"
                                                                                                                     border="0"
                                                                                                                     width="35">
                                                                                                             </a>
                                                                                                         </td>
-                                                                                                        <td width="8" style="">
-                                                                                                            <img src="https://i.emlfiles.com/cmpimg/t/s.gif" style="display: block; width: 3px; max-width: 100%; height: auto;" alt=""
+                                                                                                        <td width="8"
+                                                                                                            style="">
+                                                                                                            <img src="https://i.emlfiles.com/cmpimg/t/s.gif"
+                                                                                                                style="display: block; width: 3px; max-width: 100%; height: auto;"
+                                                                                                                alt=""
                                                                                                                 class="vedpw20 ee_smallimage ee_pnggif_image"
-                                                                                                                border="0" width="3">
+                                                                                                                border="0"
+                                                                                                                width="3">
                                                                                                         </td>
-                                                                                                        <td width="35" align="center" style="">
-                                                                                                            <a href="http://www.instagram.com/nctcharity/?campaignkw=IG&_linkgroups=social" style="color:#FFFFFF; text-decoration:none;">
-                                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249090_shape32x.png" alt="" style="display: block; width: 35px; height: auto; max-width: 100%;"
+                                                                                                        <td width="35"
+                                                                                                            align="center"
+                                                                                                            style="">
+                                                                                                            <a href="http://www.instagram.com/nctcharity/?campaignkw=IG&_linkgroups=social"
+                                                                                                                style="color:#FFFFFF; text-decoration:none;">
+                                                                                                                <img
+                                                                                                                    src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249090_shape32x.png"
+                                                                                                                    alt=""
+                                                                                                                    style="display: block; width: 35px; height: auto; max-width: 100%;"
                                                                                                                     class="ee_editable ee_noresponsiveresize ee_smallimage"
                                                                                                                     border="0"
                                                                                                                     width="35">
                                                                                                             </a>
                                                                                                         </td>
-                                                                                                        <td width="8" style="">
-                                                                                                            <img src="https://i.emlfiles.com/cmpimg/t/s.gif" style="display: block; width: 3px; max-width: 100%; height: auto;" alt=""
+                                                                                                        <td width="8"
+                                                                                                            style="">
+                                                                                                            <img src="https://i.emlfiles.com/cmpimg/t/s.gif"
+                                                                                                                style="display: block; width: 3px; max-width: 100%; height: auto;"
+                                                                                                                alt=""
                                                                                                                 class="vedpw20 ee_smallimage ee_pnggif_image"
-                                                                                                                border="0" width="3">
+                                                                                                                border="0"
+                                                                                                                width="3">
                                                                                                         </td>
-                                                                                                        <td width="35" align="center" style="">
-                                                                                                            <a href="https://www.linkedin.com/company/national-childbirth-trust?campaignkw=LI&_linkgroups=social" style="color:#FFFFFF; text-decoration:none;">
-                                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249092_shape52x.png" alt="" style="display: block; width: 35px; height: auto; max-width: 100%;"
+                                                                                                        <td width="35"
+                                                                                                            align="center"
+                                                                                                            style="">
+                                                                                                            <a href="https://www.linkedin.com/company/national-childbirth-trust?campaignkw=LI&_linkgroups=social"
+                                                                                                                style="color:#FFFFFF; text-decoration:none;">
+                                                                                                                <img
+                                                                                                                    src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249092_shape52x.png"
+                                                                                                                    alt=""
+                                                                                                                    style="display: block; width: 35px; height: auto; max-width: 100%;"
                                                                                                                     class="ee_editable ee_noresponsiveresize ee_smallimage"
                                                                                                                     border="0"
                                                                                                                     width="35">
@@ -1400,27 +1550,34 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body" style="background-color: rgb(0, 136, 106); table-layout: auto;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body"
+                            style="background-color: rgb(0, 136, 106); table-layout: auto;">
                             <tbody>
                                 <tr>
                                     <td class="email-full-width margin-0-auto">
                                         <!--[if (gte mso 9)|(IE)]><table cellspacing="0" cellpadding="0" border="0" style="width:660px;" width="660" align="center"><tr><td><![endif]-->
-                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-width" style="table-layout: auto;">
+                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+                                            class="email-width" style="table-layout: auto;">
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top" width="100%" style="table-layout: auto;">
+                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top"
+                                                            width="100%" style="table-layout: auto;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="row-container">
                                                                         <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:660px;" width="660"><tr><td align="center" valign="top" style="width:660px;" width="660"><![endif]-->
                                                                         <div class="ee_dropzone">
-                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ee_element ee_spacer col-font-reset" ee-type="element"
-                                                                                data-title="Spacer" style="table-layout: auto;">
+                                                                            <table width="100%" border="0" cellspacing="0"
+                                                                                cellpadding="0" class="ee_element ee_spacer col-font-reset"
+                                                                                ee-type="element" data-title="Spacer"
+                                                                                style="table-layout: auto;">
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td style="font-size: 1px; line-height: 1px;">
-                                                                                            <img src="https://i.emlfiles.com/cmpimg/t/s.gif" style="display: block; width: 1px; height: 7px;" alt="" class="" border="0"
+                                                                                            <img src="https://i.emlfiles.com/cmpimg/t/s.gif"
+                                                                                                style="display: block; width: 1px; height: 7px;"
+                                                                                                alt="" class="" border="0"
                                                                                                 width="1" height="7">
                                                                                         </td>
                                                                                     </tr>
@@ -1442,79 +1599,109 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body" style="background-color: #ffffff;table-layout: auto;">
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-body"
+                            style="background-color: #ffffff;table-layout: auto;">
                             <tbody>
                                 <tr>
                                     <td class="email-full-width margin-0-auto">
                                         <!--[if (gte mso 9)|(IE)]><table cellspacing="0" cellpadding="0" border="0" style="width:660px;" width="660" align="center"><tr><td><![endif]-->
-                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" class="email-width" style="table-layout: auto;">
+                                        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+                                            class="email-width" style="table-layout: auto;">
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top" width="100%" style="table-layout: auto;">
+                                                        <table cellpadding="0" cellspacing="0" border="0" valign="top"
+                                                            width="100%" style="table-layout: auto;">
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="row-container">
                                                                         <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:660px;" width="660"><tr><td align="center" valign="top" style="width:660px;" width="660"><![endif]-->
                                                                         <div class="ee_dropzone">
-                                                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_imageelement" ee-type="element"
-                                                                                data-title="Image" style="table-layout: auto;">
+                                                                            <table width="100%" border="0" cellpadding="0"
+                                                                                cellspacing="0" class="col-font-reset ee_element ee_imageelement"
+                                                                                ee-type="element" data-title="Image"
+                                                                                style="table-layout: auto;">
                                                                                 <tbody>
                                                                                     <tr>
-                                                                                        <td class="element-pad element-bord root-element-pad" style="padding-top: 20px;padding-right: 20px;padding-bottom: 30px;padding-left: 20px; border-bottom: 1px solid rgb(204, 204, 204);">
+                                                                                        <td class="element-pad element-bord root-element-pad"
+                                                                                            style="padding-top: 20px;padding-right: 20px;padding-bottom: 30px;padding-left: 20px; border-bottom: 1px solid rgb(204, 204, 204);">
                                                                                             <center class="ved_ctr">
-                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249085_nct1klogogreenlandcmyk01.png" width="184" style="width: 184px; min-height: auto; max-width: 100%; display: inline-block; margin: 0px; vertical-align: bottom;"
+                                                                                                <img src="https://i.emlfiles.com/cmpimg/5/3/6/5/1/files/10249085_nct1klogogreenlandcmyk01.png"
+                                                                                                    width="184" style="width: 184px; min-height: auto; max-width: 100%; display: inline-block; margin: 0px; vertical-align: bottom;"
                                                                                                     class="ee_editable ee_noresponsiveresize">
                                                                                             </center>
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
-                                                                            <table cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_textelement" width="100%" ee-type="element" data-title="Text"
-                                                                                style="table-layout: auto;">
+                                                                            <table cellpadding="0" cellspacing="0"
+                                                                                class="col-font-reset ee_element ee_textelement"
+                                                                                width="100%" ee-type="element"
+                                                                                data-title="Text" style="table-layout: auto;">
                                                                                 <tbody>
                                                                                     <tr>
-                                                                                        <td valign="top" align="left" class="element-pad element-bord root-element-pad" style="padding-top: 30px;padding-right: 20px;padding-bottom: 30px;padding-left: 20px;">
+                                                                                        <td valign="top" align="left"
+                                                                                            class="element-pad element-bord root-element-pad"
+                                                                                            style="padding-top: 30px;padding-right: 20px;padding-bottom: 30px;padding-left: 20px;">
                                                                                             <div class="ee_editable">
                                                                                                 <p style="line-height: 17px;">
-                                                                                                    <font style="color: rgb(81, 83, 74); font-size: 11px;">Please do not reply to
+                                                                                                    <font style="color: rgb(81, 83, 74); font-size: 11px;">Please
+                                                                                                        do not reply to
                                                                                                         this email.</font>
                                                                                                 </p>
                                                                                                 <p style="line-height: 17px;">
                                                                                                     <br>
                                                                                                 </p>
                                                                                                 <p style="line-height: 17px;">
-                                                                                                    <font style="color: rgb(81, 83, 74); font-size: 11px;">If you no longer wish
-                                                                                                        to receive emails
-                                                                                                        from NCT or wish
-                                                                                                        to choose the types
-                                                                                                        of email we send
-                                                                                                        to you, please click
-                                                                                                        here: Want to unsubscribe
-                                                                                                        or change your details.</font>
+                                                                                                    <font style="color: rgb(81, 83, 74); font-size: 11px;">If
+                                                                                                        you no longer
+                                                                                                        wish
+                                                                                                        to receive
+                                                                                                        emails
+                                                                                                        from NCT or
+                                                                                                        wish
+                                                                                                        to choose the
+                                                                                                        types
+                                                                                                        of email we
+                                                                                                        send
+                                                                                                        to you, please
+                                                                                                        click
+                                                                                                        here: Want to
+                                                                                                        unsubscribe
+                                                                                                        or change your
+                                                                                                        details.</font>
                                                                                                 </p>
                                                                                                 <p style="line-height: 17px;"></p>
                                                                                                 <p style="line-height: 17px;">
-                                                                                                    <font style="color: rgb(81, 83, 74); font-size: 11px;">You can resubscribe at
-                                                                                                        any time by visiting
-                                                                                                        our website to register
+                                                                                                    <font style="color: rgb(81, 83, 74); font-size: 11px;">You
+                                                                                                        can resubscribe
+                                                                                                        at
+                                                                                                        any time by
+                                                                                                        visiting
+                                                                                                        our website to
+                                                                                                        register
                                                                                                         your details.</font>
                                                                                                 </p>
                                                                                                 <p style="line-height: 17px;">
                                                                                                     <br>
                                                                                                 </p>
-                                                                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">2018 NCT, 30 Euston Square,
+                                                                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">2018
+                                                                                                    NCT, 30 Euston
+                                                                                                    Square,
                                                                                                     London, NW1 2FB.</p>
-                                                                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">Reg Charity No (England and
-                                                                                                    Wales): 801395, (Scotland):
-                                                                                                    SC041592. Reg Company
+                                                                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">Reg
+                                                                                                    Charity No (England
+                                                                                                    and
+                                                                                                    Wales): 801395,
+                                                                                                    (Scotland):
+                                                                                                    SC041592. Reg
+                                                                                                    Company
                                                                                                     No: 2370573.</p>
                                                                                                 <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">
                                                                                                     <br>
                                                                                                 </p>
                                                                                                 <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">
-                                                                                                    <a href="https://$UNSUB$" style="text-decoration: none; color: rgb(81, 83, 74);">Unsubscribe</a>&nbsp;
-                                                                                                    |&nbsp; Privacy Policy</p>
+                                                                                                        <a href="https://www.nct.org.uk/privacy" style="text-decoration: none; color: rgb(81, 83, 74);">Privacy Policy</a></p>
                                                                                             </div>
                                                                                         </td>
                                                                                     </tr>
