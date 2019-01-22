@@ -1,4 +1,3 @@
-//Adding comments for the CI/CD demo
 public with sharing class AcessTokenResponseVo {
 
     public String access_token{get;set;}
