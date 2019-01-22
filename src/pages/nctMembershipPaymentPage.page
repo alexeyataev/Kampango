@@ -106,6 +106,16 @@
             .loader{
                 padding-top: 25px;
             }
+			#membership-loader{
+              display:none;
+            }
+            .show-loader {
+            	display:inline-block !important;
+                font-weight:bold;
+            }
+            .show-loader img {
+            	height: 100px;
+            }
             .loader > div{
                 padding-top: 25px;
             }
@@ -230,44 +240,44 @@
                 background-color:transparent !important;
                 border:none !important;
             }
-			.dynmaic-radio-fields td input[type="radio"] {
-            	opacity:1;
+            .dynmaic-radio-fields td input[type="radio"] {
+                opacity:1;
                 margin-right: 6px;
             }
-			.dynmaic-radio-fields td{
+            .dynmaic-radio-fields td{
                 border:none !important;
             }
-			.newprivacy-content{
+            .newprivacy-content{
                 color:#080808;
                 padding-top:20px;
                 text-align: center;
-			}
-			.newprivacy-content input{
-            	opacity:1 !important;
             }
-			.newprivacy-content .radio-fields-row{
+            .newprivacy-content input{
+                opacity:1 !important;
+            }
+            .newprivacy-content .radio-fields-row{
                 color:#080808;
             }
-			.newprivacy-content .privacy-statement{
+            .newprivacy-content .privacy-statement{
                 padding: 0;
                 background-color: transparent;
                 color: #080808;
                 padding-top: 15px;
-    		}
-			.newprivacy-content .container{
+            }
+            .newprivacy-content .container{
                 padding:0;
             }
             .newprivacy-content .privacy-statement .underlink {
                 color: #35a535;
                 font-size: 15px;
             }
-			.newprivacy-content .radio-fields-col td{
+            .newprivacy-content .radio-fields-col td{
                 border:none !important;
             }
-			.newprivacy-content .radio-fields-col table {
+            .newprivacy-content .radio-fields-col table {
                 margin: 0 auto;
             }
-			.newprivacy-content .radio-fields-col span {
+            .newprivacy-content .radio-fields-col span {
                 display:block
             }
             @media(max-width:767px) {
@@ -376,7 +386,7 @@
                                                     <div class="col-md-2">
                                                         <div><label><sup class="light-orange-color">*</sup>Title</label></div>
                                                           <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="salutation" value="{!SelectedPreferences}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!PreferenceOptions}" />
+                                                                <apex:selectOptions value="{!salutationOptions}" />
                                                                 
                                                           </apex:selectList></span>
                                                      
@@ -393,14 +403,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="row paddingbot10px errorMessage errormessage">
-                                               		<!-- <p class="gender-error error-message hide">Please select gender </p> -->
+                                                    <!-- <p class="gender-error error-message hide">Please select gender </p> -->
                                                     <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                             Gender</label></div>
-                                                	<span class="dynmaic-radio-fields">
-                                                	<apex:selectRadio id="gender" value="{!Genders}">
-                                                                <apex:selectOptions value="{!GenderOptions}" />
+                                                    <span class="dynmaic-radio-fields">
+                                                    <apex:selectRadio id="gender" value="{!genders}">
+                                                                <apex:selectOptions value="{!genderOptions}" />
                                                      </apex:selectRadio>
-                                                	</span>
+                                                    </span>
                                                     
                                                     
                                                 </div>
@@ -439,9 +449,9 @@
                                                         <div class="col-md-2">
                                                             <div><label><sup class="light-orange-color">*</sup>Title</label></div>
                                                             <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="ssalutation" value="{!SSelectedPreferences}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!SPreferenceOptions}" />
+                                                                <apex:selectOptions value="{!salutationOptions}" />
                                                                 
-                                                          	</apex:selectList></span>
+                                                            </apex:selectList></span>
                                                             
                                                         </div>
                                                         <div class="col-md-5">
@@ -462,12 +472,12 @@
                                                         <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                                 Gender</label></div>
                                                         <span class="dynmaic-radio-fields">
-                                                        <apex:selectRadio id="sgender" value="{!SGenders}">
-                                                                    <apex:selectOptions value="{!GenderOptions}" />
+                                                        <apex:selectRadio id="sgender" value="{!sGenders}">
+                                                                    <apex:selectOptions value="{!genderOptions}" />
                                                          </apex:selectRadio>
                                                         </span>
                                                    
-                                              		</div>                                                         
+                                                    </div>                                                         
                                                     <div class="row">
                                                         <div class="col-md-12 col-12">
                                                             <div><label><sup class="light-orange-color">*</sup>Email
@@ -480,7 +490,7 @@
                                                         <div class="col-md-12 col-12">
                                                             <div><label><sup class="light-orange-color">*</sup>Phone
                                                                     Number</label></div>
-                                                            <input type="text" name='textTelephoneHomePartner' id='textTelephoneHomePartner' class="form-fields membership-fields"
+                                                            <input type="text" name='textMobilePartner' id='textMobilePartner' class="form-fields membership-fields"
                                                                 placeholder="Phone number" />
                                                         </div>
                                                     </div>
@@ -547,7 +557,17 @@
                                                             <div class="col-7">
                                                                  <apex:outputPanel id="branch_Picklist"> 
                                                                  <select name='branch' id='selectBranch' class="custom_select" >
-                                                                       <option value="" disabled="true">Nearest Branches</option>
+                                                                       <apex:repeat value="{!nearestBranchs}" var="branchKey">
+                                                                        <option value="{!nearestBranchs}" >{!branchKey}</option>
+                                                                                               
+                                                                       
+                                                                        <option value="" disabled="true">------------------------</option>
+                                                                       
+                                                                       <apex:repeat value="{!nearestBranchs[branchKey]}" var="branchKey1" >
+                                                                        <option value="{!branchKey1.Id}">{!branchKey1.Name}</option> 
+                                                                        </apex:repeat> 
+                                                                        </apex:repeat>  
+                                                                       <!--<option value="" disabled="true">Nearest Branches</option>
                                                                        <option value="" disabled="true">------------------------</option>                                       
                                                                        <apex:repeat value="{!nearestBranchs}" var="nb">
                                                                             <option value="{!nb.id}">{!nb.Name}</option>
@@ -557,7 +577,7 @@
                                                                        <option value="" disabled="true">------------------------</option>
                                                                        <apex:repeat value="{!branchs}" var="b">
                                                                             <option value="{!b.id}">{!b.Name}</option>
-                                                                       </apex:repeat>
+                                                                       </apex:repeat>-->
                                                                  </select>
                                                                  </apex:outputPanel>                                             
                                                             </div>
@@ -570,7 +590,7 @@
                                                     <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
                                                     <div class="col-12 radio-fields-col">
                                                         <span style="text-color:white;"><apex:selectCheckboxes value="{!ContactSelectedPreferences}">
-                                                                    <apex:selectOptions value="{!ContactPreferenceOptions}" />
+                                                                    <apex:selectOptions value="{!contactPreferenceOptions}" />
                                                                     
                                                          </apex:selectCheckboxes></span>                                                      
                                                         <!--<span><input type="checkbox" name="contact" value="email" />Email</span>
@@ -859,7 +879,7 @@
                                             such sum as may be required not exceeding &pound;1.</span>          </div>
                                                     
                                                     <div class="pure-control-group">
-                                                        If you'd like a different membership payment method, please <a href="#">Go Back</a> to select a different type.<br /><br />
+                                                        If you'd like a different membership payment method, please Go Back to select a different type.<br /><br />
                                                     </div>
                                                                                                         
                                           
@@ -1052,6 +1072,9 @@
                                             <p><strong><span id="forename_Dsp"> </span></strong></p>
                                             <p>Welcome to our family...</p>
                                             <p><apex:outputText Id="membershipText" value="Your Membership Number is -"/>&nbsp;
+                                                <span id="membership-loader">
+                                                     <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
+                                                 </span>
                                                 <apex:outputText Id="membershipNumber" value="{!membershipNumber}" style="font-weight:bold;"/></p>
                                         <div class="col-md-1 col-12">                                            
                                         </div>
@@ -1067,7 +1090,7 @@
         </div>
     </section>
     <!-- footer start here -->
-	<c:Footer />
+    <c:Footer />
     <!-- footer end here -->
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
@@ -1185,7 +1208,18 @@
                     //alert('Contact already exist on the system');
                 }
                 });
-                $("#confirm_all_pay_cc").click(function () {                    
+                $("#confirm_all_pay_cc").click(function () {
+					setInterval(function(){
+                        var loaderNumber = $("span[id$='membershipNumber']").text();
+                        if( loaderNumber === '') {
+                        	$('#membership-loader').addClass('show-loader');
+                            console.log("no textttt");
+                        }
+                        else {
+                        	$('#membership-loader').removeClass('show-loader');
+                            console.log("textttt");
+                        }
+                    },500)                     
                     var forename_Dsp = $('#textForename').val();
                     $('#confirmation_li').removeClass('active');
                     $('#thankyou_li').addClass('active');
@@ -1196,6 +1230,17 @@
                     
                 });
                 $("#confirm_all_pay_dd").click(function () {
+                    setInterval(function(){
+                        var loaderNumber = $("span[id$='membershipNumber']").text();
+                        if( loaderNumber === '') {
+                        	$('#membership-loader').addClass('show-loader');
+                            console.log("no textttt");
+                        }
+                        else {
+                        	$('#membership-loader').removeClass('show-loader');
+                            console.log("textttt");
+                        }
+                    },500) 
                     var accountName = $('#accountName').val();
                     var sortCode1 = $('#scd1').val();
                     var sortCode2 = $('#scd2').val();
@@ -1241,7 +1286,7 @@
                     return;
                 });
                 $('#person-clear').on('click',function(){
-                    $('#textForenamePartner, #textSurnamePartner, #textEmailPartner, #textTelephoneHomePartner').val('');
+                    $('#textForenamePartner, #textSurnamePartner, #textEmailPartner, #textMobilePartner').val('');
                 }); 
                 function validatePayment() {
                     error = "";
@@ -1452,13 +1497,13 @@
         }
         
         
-        function validBranch() {            
+		/*function validBranch() {            
             console.log("118:"+$('#selectBranch').val());
             if (($('#selectBranch').val()=="Nearest first")  ||  ($('#selectBranch').val()=="--------------") || ($('#selectBranch').val()=="Alphabetical list below:") ) {
                 error = error + "Please select a branch\n";
                 $('#selectBranch').addClass('error');
             }                       
-        }
+        }*/
         
         function validText(v) {
             //var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]");
@@ -1515,7 +1560,7 @@
                         //return false;
                     }
                     
-                    validBranch();
+            		//validBranch();
                     
                     
                     if($('#textForename').val() == "") {
@@ -1659,7 +1704,14 @@
                     }                   
                 }                   
             }
-                
+            /*----------- validate branch ----*/ 
+            var branch = $('#selectBranch :selected').text();
+            if( branch == "All NearestBranches" || branch =="--------------" || branch == "Alphabetical list below:" ){
+                error = error + "Please select a branch. \n";
+                 $('#selectBranch').addClass('error');   
+            }
+             
+            /* ---- validate branch ----- */
                 
     
                 if (error != "") {

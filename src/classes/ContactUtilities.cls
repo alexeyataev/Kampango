@@ -112,46 +112,36 @@ public with sharing class ContactUtilities {
 	 * contId:- Get the list of membership based on the contId
 	 **
 	*/
-    public static boolean isMembershipExists(String contId, String email){
-        if(contId != null && contId != ''){
-            list<npe03__Recurring_Donation__c> recDonList =[SELECT 
-                                                        		Id, 
-                                                        		Name,
-                                                        		npe03__Contact__c
-                                                        FROM 
-                                                        		npe03__Recurring_Donation__c
-                                                       	WHERE
-                                                        		npe03__Contact__c != null and
-                                                       			npe03__Contact__c = :contId];
+    public static boolean isMembershipExists(Id contId, String email){
         
-            if(recDonList.size()>0){
-                System.debug('Recurring Donations List size: '+recDonList);
-                return true;
-            }
-            else{
-                return false;
-            }
+        list<npe03__Recurring_Donation__c> recDonList =[Select 
+                                                        Id,
+                                                        Name,
+                                                        npe03__Contact__c                   
+                                                        From
+                                                        	npe03__Recurring_Donation__c
+                                                        WHERE
+                                                        (
+                                                                npe03__Contact__c != null 
+                                                            AND
+                                                                npe03__Contact__c = :contId
+                                                        )
+                                                        OR
+                                                        (
+                                                                npe03__Contact__c != null
+                                                             AND
+                                                                npe03__Contact__r.Email = :email
+                                                        )                      
+                                                       ];
+        if(recDonList.size()>0){
+            System.debug('Recurring Donations List size: '+recDonList);
+            return true;
         }
         else{
-            list<npe03__Recurring_Donation__c> recDonList =[SELECT 
-                                                        		Id, 
-                                                        		Name,
-                                                        		npe03__Contact__c
-                                                        FROM 
-                                                        		npe03__Recurring_Donation__c
-                                                       	WHERE
-                                                       			npe03__Contact__r.Email = :email];
-        
-            if(recDonList.size()>0){
-                System.debug('Recurring Donations List size: '+recDonList);
-                return true;
-            }
-            else{
-                return false;
-            }
+            System.debug('Recurring Donation List is Empty: False');
+            return false;
         }
-        
-        
+                
     }
     
     public PageReference doRedirect(Id contId){

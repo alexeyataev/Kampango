@@ -97,6 +97,16 @@
             .loader{
                 padding-top: 25px;
             }
+			#membership-loader{
+              display:none;
+            }
+            .show-loader {
+            	display:inline-block !important;
+                font-weight:bold;
+            }
+            .show-loader img {
+            	height: 100px;
+            }
             .loader > div{
                 padding-top: 25px;
             }
@@ -353,7 +363,7 @@
                                                     <div class="col-md-2">
                                                         <div><label><sup class="light-orange-color">*</sup>Title</label></div>
                                                         <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="salutation" value="{!SelectedPreferences}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!PreferenceOptions}" />
+                                                                <apex:selectOptions value="{!salutationOptions}" />
                                                                 
                                                           </apex:selectList></span>
                                                 		
@@ -375,7 +385,7 @@
                                                             Gender</label></div>
                                                 	<span class="dynmaic-radio-fields">
                                                 	<apex:selectRadio id="gender" value="{!Genders}">
-                                                                <apex:selectOptions value="{!GenderOptions}" />
+                                                                <apex:selectOptions value="{!genderOptions}" />
                                                      </apex:selectRadio>
                                                 	</span>
                                                     
@@ -419,7 +429,7 @@
                                                         <div class="col-md-2">
                                                             <div><label><sup class="light-orange-color">*</sup>Title</label></div>
                                                             <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="ssalutation" value="{!SSelectedPreferences}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!PreferenceOptions}" />
+                                                                <apex:selectOptions value="{!salutationOptions}" />
                                                                 
                                                           	</apex:selectList></span>
                                                             <!--<select class="form-fields membership-fields">
@@ -446,7 +456,7 @@
                                                                 Gender</label></div>
                                                         <span class="dynmaic-radio-fields">
                                                         <apex:selectRadio id="sgender" value="{!SGenders}">
-                                                                    <apex:selectOptions value="{!GenderOptions}" />
+                                                                    <apex:selectOptions value="{!genderOptions}" />
                                                          </apex:selectRadio>
                                                         </span>
                                                         
@@ -530,7 +540,17 @@
                                                             <div class="col-7">
                                                                  <apex:outputPanel id="branch_Picklist"> 
                                                                  <select name='branch' id='selectBranch' class="custom_select" >
-                                                                       <option value="" disabled="true">Nearest Branches</option>
+                                                                       <apex:repeat value="{!nearestBranchs}" var="branchKey">
+                                                                        <option value="{!nearestBranchs}" >{!branchKey}</option>
+                                                                                               
+                                                                       
+                                                                        <option value="" disabled="true">------------------------</option>
+                                                                       
+                                                                       <apex:repeat value="{!nearestBranchs[branchKey]}" var="branchKey1" >
+                                                                        <option value="{!branchKey1.Id}">{!branchKey1.Name}</option> 
+                                                                        </apex:repeat> 
+                                                                        </apex:repeat>  
+                                                                       <!--<option value="" disabled="true">Nearest Branches</option>
                                                                        <option value="" disabled="true">------------------------</option>                                       
                                                                        <apex:repeat value="{!nearestBranchs}" var="nb">
                                                                             <option value="{!nb.id}">{!nb.Name}</option>
@@ -540,7 +560,7 @@
                                                                        <option value="" disabled="true">------------------------</option>
                                                                        <apex:repeat value="{!branchs}" var="b">
                                                                             <option value="{!b.id}">{!b.Name}</option>
-                                                                       </apex:repeat>
+                                                                       </apex:repeat>-->
                                                                  </select>
                                                                  </apex:outputPanel>                                             
                                                             </div>
@@ -553,7 +573,7 @@
                                                     <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
                                                     <div class="col-12 radio-fields-col">
                                                         <span style="text-color:white;"><apex:selectCheckboxes value="{!ContactSelectedPreferences}">
-                                                                    <apex:selectOptions value="{!ContactPreferenceOptions}" />
+                                                                    <apex:selectOptions value="{!contactPreferenceOptions}" />
                                                                     
                                                          </apex:selectCheckboxes></span>                                                     
                                                         <!--<span><input type="checkbox" name="contact" value="email" />Email</span>
@@ -754,7 +774,7 @@
                                                     
                                                         <div class="pure-control-group paydates"><p>
                                                                 <span><span id='dateprocess1'><strong>&pound;<apex:outputText Id="membershipFeeInfo" value=" {!membershipInfo.Installment_Amount__c}"/><span id="pay_money"> </span></strong>
-                                                        on or after 3rd of the month and quarterly thereafter.
+                                                        on or after 3rd of the month.
                                                         </span></span>
                                                             <br /></p>
                                                         </div>  
@@ -788,7 +808,7 @@
                                                         <br />
                                                         <p>
                                                             Instructions to your bank or building society to pay by Direct Debit.<br />
-                                                            If your bank account requires more than one signature, or you'd like to pay by Cheque, <br />please <a href='paperform.pdf'>download a membership form</a>.
+                                                            If your bank account requires more than one signature, or you'd like to pay by Cheque.
                                                         </p>
                                                     </div>
                                             <div class="pure-control-group" style="clear:both;">
@@ -842,7 +862,7 @@
                                             such sum as may be required not exceeding &pound;1.</span>          </div>
                                                     
                                                     <div class="pure-control-group">
-                                                        If you'd like a different membership payment method, please <a href="#">Go Back</a> to select a different type.<br /><br />
+                                                        If you'd like a different membership payment method, please Go Back to select a different type.<br /><br />
                                                     </div>
                                                                                                         
                                           
@@ -1033,10 +1053,13 @@
                                         <div class="col-md-7 col-12">
                                             <apex:outputPanel Id="displayValues">
                                             <h2 class="paddingtop20px">Congratulations,</h2> 
-                                            <p><strong><span id="forename_Dsp"> </span></strong></p>{!displayMbrNoMessage}
+                                            <p><strong><span id="forename_Dsp"> </span></strong></p>
                                             <p><apex:outputText Id="membershipWelcomText" value="Welcome to our family..." rendered="{!displayMbrNoMessage}"/></p>
                                             <p> <apex:outputText Id="membershipDisplayText" value="Successfully send the Payment link to the Parent !!!" rendered="{!displaySuccessMessage}"/><BR/><BR/>
                                                 <apex:outputText Id="membershipText" value="Your Membership Number is" rendered="{!displayMbrNoMessage}"/>&nbsp;
+                                                           <span id="membership-loader">
+                                                               <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
+                                                               </span>
                                                <apex:outputText Id="membershipNumber" value="{!membershipNumber}" style="font-weight:bold;" rendered="{!displayMbrNoMessage}"/></p>
                                                </apex:outputPanel>
                                         <div class="col-md-1 col-12">                                          
@@ -1060,6 +1083,7 @@
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/pca.js')}"/>
     <script>
         $(document).ready(function () {
+       
         var staffValue = $('#checkStaff').val();
         	console.log(staffValue,'staff value');
             if(staffValue == 'staff'){
@@ -1174,7 +1198,18 @@
                     }
                    }
                 });
-                $("#confirm_all_pay_cc").click(function () {                    
+                $("#confirm_all_pay_cc").click(function () {
+					setInterval(function(){
+                        var loaderNumber = $("span[id$='membershipNumber']").text();
+                        if( loaderNumber === '') {
+                        	$('#membership-loader').addClass('show-loader');
+                            console.log("no textttt");
+                        }
+                        else {
+                        	$('#membership-loader').removeClass('show-loader');
+                            console.log("textttt");
+                        }
+                    },500)                    
                     var forename_Dsp = $('#textForename').val();
                     $('#confirmation_li').removeClass('active');
                     $('#thankyou_li').addClass('active');
@@ -1185,6 +1220,19 @@
                     
                 });
                 $("#confirm_all_pay_dd").click(function () {
+                    
+                    setInterval(function(){
+                        console.log("ffgfgdfgdfgddf");
+                        var loaderNumber = $("span[id$='membershipNumber']").text();
+                        if( loaderNumber === '') {
+                        	$('#membership-loader').addClass('show-loader');
+                            console.log("no textttt");
+                        }
+                        else {
+                        	$('#membership-loader').removeClass('show-loader');
+                            console.log("textttt");
+                        }
+                    },500)
                     var accountName = $('#accountName').val();
                     var sortCode1 = $('#scd1').val();
                     var sortCode2 = $('#scd2').val();
@@ -1453,13 +1501,13 @@
         }
         
         
-        function validBranch() {            
+		/*function validBranch() {            
             console.log("118:"+$('#selectBranch').val());
             if (($('#selectBranch').val()=="Nearest first")  ||  ($('#selectBranch').val()=="--------------") || ($('#selectBranch').val()=="Alphabetical list below:") ) {
                 error = error + "Please select a branch\n";
                 $('#selectBranch').addClass('error');
             }                       
-        }
+        }*/
         
         function validText(v) {
             //var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]");
@@ -1516,7 +1564,7 @@
                         //return false;
                     }
                     
-                    validBranch();
+            		//validBranch();
                     
                     
                     if($('#textForename').val() == "") {
@@ -1536,7 +1584,7 @@
                         error = error + "Please enter your address.\n";
                         //return false;
                     }
- 
+            	
                     if($('#agree').is(":checked") != true) { 
                         error = error + "Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy";
                     } 
@@ -1661,7 +1709,14 @@
                     }                   
                 }                   
             }
-                
+            /*----------- validate branch ----*/ 
+            var branch = $('#selectBranch :selected').text();
+            if( branch == "All NearestBranches" || branch =="--------------" || branch == "Alphabetical list below:" ){
+                error = error + "Please select a branch. \n";
+                 $('#selectBranch').addClass('error');   
+            }
+             
+            /* ---- validate branch ----- */
                 
     
                 if (error != "") {
