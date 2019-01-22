@@ -1,3 +1,4 @@
+//Adding comments for the CI/CD demo
 public with sharing class AcessTokenResponseVo {
 
     public String access_token{get;set;}
@@ -10,6 +11,5 @@ public with sharing class AcessTokenResponseVo {
 
     public String issuedat{get;set;}
 
-    public String signature{get;set;}
-    
+    public String signature{get;set;}    
 }
