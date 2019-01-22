@@ -116,10 +116,10 @@
         <members>*</members>
         <name>ValidationRule</name>
     </types>        
-    <types>
+   <!-- <types>
         <members>*</members>
         <name>CustomLabels</name>
-    </types>
+    </types>-->
 	<types>
         <members>*</members>
         <name>CustomTab</name>
