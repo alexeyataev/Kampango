@@ -1,4 +1,4 @@
-public with sharing class SObjectUtilities {
+public without sharing class SObjectUtilities {
   
     public static list<SelectOption> getPicklistValues(SObject obj, String picklistfield){
 
