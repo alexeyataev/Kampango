@@ -106,7 +106,7 @@
             .loader{
                 padding-top: 25px;
             }
-			#membership-loader{
+			#membership-loader, #membershiptype-loader{
               display:none;
             }
             .show-loader {
@@ -640,7 +640,11 @@
 
 
                                                 <p><b>What type of membership would you like?</b><br /><br />
-                                                <apex:outputPanel id="selMembership">                                           
+                                                <apex:outputPanel id="selMembership">
+                                                <span id="membershiptype-loader" class="show-loader">
+                                                  Please wait <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
+                                                </span>
+                                                <span id="membershiptype" style="width:1px;height:1px;display:none;">{!membershipTypeMap}</span>                                           
                                                 <select name="selectMembership" id="selectMembership" class="form-fields membership-fields">
                                                     <option value=""></option>                                              
                                                     <option SELECTED="true" value="">Please select</option>
@@ -656,8 +660,7 @@
                                                         <div id="reduced" style="display:none">
                                                                 <strong>You are eligible for this if you receive Employment Support Allowance or tax credits (excluding child tax credits alone).</strong>
                                                         </div>
-                                                <br />
-                                                    &nbsp; &nbsp; &nbsp; <span class="selectError">Please select your membership type</span>
+                                                <span class="selectError">Please select your membership type</span>
                                                 </p>            
                                             </div>
                                             <div class="pure-control-group" id="giftaid" style="clear:both;">
@@ -1177,6 +1180,17 @@
                     
                 })
                 $("#nameSubmit").click(function () {
+                    setInterval(function(){
+                        var membershiptype = $("#membershiptype").text();
+                        if(membershiptype === ''){
+                            $('select#selectMembership').addClass('hide');
+                            $('#membershiptype-loader').addClass('show-loader');
+                        }
+                        else {
+                            $('select#selectMembership').removeClass('hide');
+                            $('#membershiptype-loader').removeClass('show-loader');
+                        }
+                    },100) 
                     console.log($(twomem)[0].checked);
                     console.log($(selectBranch).checked);
                     console.log($('#address_line_1 ').val());
