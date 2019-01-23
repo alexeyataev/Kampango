@@ -254,10 +254,11 @@
         <name>ApexTrigger</name>
     </types>
 	<types>
-        <members>CommunityFooter</members>
+        <!--<members>CommunityFooter</members>
         <members>CommunityHeader</members>
         <members>PractitionalCourosal</members>
-        <members>PractitionerHeader</members>
+        <members>PractitionerHeader</members>-->
+		<members>*</members>
         <name>AuraDefinitionBundle</name>
     </types>
 	<types>
