@@ -39,10 +39,6 @@
                 <behavior>Edit</behavior>
                 <field>Parking_Available__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Logo_URL__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
