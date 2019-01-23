@@ -226,9 +226,7 @@
             <actionType>StandardButton</actionType>
             <sortOrder>7</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <sortOrder>8</sortOrder>
-        </platformActionListItems>
+        
     </platformActionList>
     <quickActionList>
         <quickActionListItems>
