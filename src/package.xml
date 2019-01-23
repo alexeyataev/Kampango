@@ -87,7 +87,9 @@
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
 		<members>Contact-Client Layout</members>
 		<members>Contact-Practitioner</members>
-		<members>Venue__c-Venue Layout</members>
+          <members>Contact-Companion Layout</members>
+          <members>Contact-Volunteer Layout</members>
+          <members>Venue__c-Venue Layout</members>
 		<members>Practitioner_Role__c-Practitioner Licence Layout</members>
         <members>Case-CaseLayout_De_Registration</members>
 		<members>Case-Case Layout</members>
