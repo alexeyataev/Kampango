@@ -1,9 +1,9 @@
 <aura:component implements="force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" controller="DirectpaymentlinksendtoParent">
- 
+
     	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
         <aura:attribute name="recordId" type="Id" />
         <h6 align="center">Your request has been processing</h6><br/>
         <h5 align="center">Please Wait...!</h5>
-    
-        
+
+
 </aura:component>

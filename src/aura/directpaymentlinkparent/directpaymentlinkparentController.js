@@ -1,18 +1,18 @@
 ({
 	doInit : function(component, event,helper) {
-     
-       var action = component.get("c.PaymentHubCallout");
+
+       var action = component.get("c.paymentHubCallout");
        action.setParams({
            "contId": component.get("v.recordId") });
-       
-       
-        
+
+
+
          action.setCallback(this, function(response) {
             var state = response.getState();
-            if(state === "SUCCESS") {                
+            if(state === "SUCCESS") {
                 var wasDismissed = $A.get("e.force:closeQuickAction");
                 wasDismissed.fire();
-                 
+
                 var toastEvent = $A.get("e.force:showToast");
                  toastEvent.setParams({
                      type : 'Success',
@@ -20,10 +20,10 @@
                  "message": "Payment link sent successfully"
                 });
                 toastEvent.fire();
-            } 
-        });    
-        $A.enqueueAction(action);   
+            }
+        });
+        $A.enqueueAction(action);
     }
-    
-     
+
+
 })
