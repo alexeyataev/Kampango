@@ -7,7 +7,7 @@
 */
 
 
-public with sharing class ContactUtilities {
+public without sharing class ContactUtilities {
     
     /* This method validates the contact is existing or not 
      **

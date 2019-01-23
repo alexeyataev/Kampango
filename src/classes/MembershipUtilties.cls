@@ -7,7 +7,7 @@
 *    14/12/2018 MG W001144 - Added new Method that takes 3 parameters getMembershipType()
 **/
 
-public with sharing class MembershipUtilties {
+public without sharing class MembershipUtilties {
 
  
     /**
