@@ -227,8 +227,6 @@
             <sortOrder>7</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>MG_Test_Button</actionName>
-            <actionType>CustomButton</actionType>
             <sortOrder>8</sortOrder>
         </platformActionListItems>
     </platformActionList>
