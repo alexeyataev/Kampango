@@ -57,6 +57,7 @@
         <members>Venue__c</members>
 		<members>npe03__Recurring_Donation__c</members>
         <members>Payment_Link__c</members>
+      <members>gaid__Gift_Aid_Declaration__c</members>
         <name>CustomObject</name>
     </types>
 	<types>
