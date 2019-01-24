@@ -1486,6 +1486,15 @@
             $('#payment').addClass('active show');
         });   
         $('#gift_aid_btn').on('click', function(){
+                    setInterval(function(){
+                        var loaderNumber = $("span[id$='membershipNumber']").text();
+                        if( loaderNumber === '') {
+                        	$('#membership-loader').addClass('show-loader');
+                        }
+                        else {
+                        	$('#membership-loader').removeClass('show-loader');
+                        }
+                    },200)
                     var accountName = $('#accountName').val();
                     var sortCode1 = $('#scd1').val();
                     var sortCode2 = $('#scd2').val();
