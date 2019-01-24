@@ -1545,6 +1545,7 @@
             var r = new RegExp("[0-9]");
             return (v.match(r) == null) ? true : false;
         }
+
         function validDate() {
                var date = $("#due-Date").val();
                if (date == "" || date == undefined) {
@@ -1552,7 +1553,8 @@
                } else {
                    return true;
                }
-           }
+        }
+
         function validateGender() {
 
             var gender = $('#gender').val();
@@ -1568,11 +1570,26 @@
                     error="";
                     console.log("123");
                     
-            // (validDate()) {
-            //console.log("date")
-            //} else {
-            //  error = error + 'please enter Date.\n'
-            //} 
+                    // validate the Due date 
+                        if(!validDate()){
+                            error = error + "Please Enter Due Date .\n";
+                             $('#due-Date').css({"border":"1px solid red", "background-color":"rgba(255, 0, 0, 0.25)"});
+                        }else{
+                            var date = $("#due-Date").val();
+                            var  currentDt = new Date();
+                            var  currentYear = currentDt.getFullYear();
+                            var  d = new Date(date);
+                            var  year = d.getFullYear();
+                            var  yearLength = year.toString().length;
+                     		if(yearLength == 4 && currentYear <= year){
+                        		console.log("success")
+                         	}else{
+                             error= error +"Please Enter valid date. \n";
+                              $('#due-Date').css({"border":"1px solid red", "background-color":"rgba(255, 0, 0, 0.25)"});
+                         	} 
+                    	}
+            		// validate the duedate
+                      
                     if($('#selectTitle').val() == "") {
                         error = error +  "Please select your title.\n";
                         $('#selectTitle').addClass('error');
