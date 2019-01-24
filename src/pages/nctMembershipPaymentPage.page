@@ -660,7 +660,6 @@
                                                         <div id="reduced" style="display:none">
                                                                 <strong>You are eligible for this if you receive Employment Support Allowance or tax credits (excluding child tax credits alone).</strong>
                                                         </div>
-                                                <span class="selectError">Please select your membership type</span>
                                                 </p>            
                                             </div>
                                             <div class="pure-control-group" id="giftaid" style="clear:both;">
@@ -754,8 +753,8 @@
                                                         <fieldset>
                                                             <div class="pure-control-group ddinstr">
                                                                 In order to set up your Direct Debit Instructions online you will need to provide your bank sort code and account number.   If you are not the account holder or bank account requires more than one signatory then please
-                                                                ask our Enquiries team to send you a paper Direct Debit Instruction or <a href="#" title="Click here">click here</a>
-                                                                to proceed without using Direct Debit.
+                                                                ask our Enquiries team to send you a paper Direct Debit Instruction or <a style="color:blue;cursor:pointer"  id="pay_now_again"  title="Click here"><b>Click Here</b></a>
+                                                                 to the previous page to choose the Membership with Card Payment.
                                                             </div>
                                                             
                                                         <div class="pure-control-group">
@@ -1762,6 +1761,10 @@
     </script>
     <script>
         $(document).ready(function () {
+             $('#pay_now_again').on('click', function(){
+             $('#direct_debit_block').css('display', 'none');
+            $('#pay_page').css('display', '');
+        });
         $('#edit-submit').on('click', function () {
             $("#edit-keys").addClass('show-form-input', {
                 duration: 1000
