@@ -232,6 +232,11 @@
             <actionType>ProductivityAction</actionType>   
             <sortOrder>6</sortOrder>
         </platformActionListItems>
+     <platformActionListItems>
+            <actionName>Contact.Request_Payment</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>21</sortOrder>
+        </platformActionListItems>
     </platformActionList>
     <relatedContent>
         <relatedContentItems>
