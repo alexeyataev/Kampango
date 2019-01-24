@@ -769,9 +769,9 @@
                                                         <div class="pure-control-group">
                                                             <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Sort code:</label>
                                                             <span id="userData">
-                                                                <input id="scd1" class="form-fields-short membership-fields" type="text" name="scd1" maxlength="2" size="2" value="" />&nbsp;-&nbsp;
-                                                                <input id="scd2" class="form-fields-short membership-fields" type="text" name="scd2" maxlength="2" size="2" value=""  />&nbsp;-&nbsp;
-                                                                <input id="scd3" class="form-fields-short membership-fields" type="text" name="scd3" maxlength="2" size="2" value=""  />
+                                                                <input id="scd1" class="form-fields-short membership-fields scd" type="text" name="scd1" maxlength="2" size="2" value="" />&nbsp;-&nbsp;
+                                                                <input id="scd2" class="form-fields-short membership-fields scd" type="text" name="scd2" maxlength="2" size="2" value=""  />&nbsp;-&nbsp;
+                                                                <input id="scd3" class="form-fields-short membership-fields scd" type="text" name="scd3" maxlength="2" size="2" value=""  />
                                                             </span>
                                                         </div>
                                                         
@@ -794,7 +794,7 @@
                                                     
                                                         <div class="pure-control-group paydates"><p>
                                                                 <span><span id='dateprocess1'><strong>&pound;<apex:outputText Id="membershipFeeInfo" value=" {!membershipInfo.Installment_Amount__c}"/><span id="pay_money"> </span></strong>
-                                                        on or after 3rd of the month and quarterly thereafter.
+                                                        on or after 3rd of the month.
                                                         </span></span>
                                                             <br /></p>
                                                         </div>  
@@ -828,7 +828,7 @@
                                                         <br />
                                                         <p>
                                                             Instructions to your bank or building society to pay by Direct Debit.<br />
-                                                            If your bank account requires more than one signature, or you'd like to pay by Cheque, <br />please <a href='paperform.pdf'>download a membership form</a>.
+                                                            If your bank account requires more than one signature, or you'd like to pay by Cheque.
                                                         </p>
                                                     </div>
                                             <div class="pure-control-group" style="clear:both;">
@@ -1100,6 +1100,7 @@
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/pca.js')}"/>
     <script>
         $(document).ready(function () {
+            /*
             $('#scd1').keypress(function(e) {
                 var scd1Value = $('#scd1').val();
                 if(scd1Value.length == 2) {
@@ -1112,7 +1113,9 @@
                     $('#scd3').focus();
                 }
             });
-            $('#scd3').keypress(function(e) {
+            */
+
+            $('#scd3').keyup(function(e) {
                 var scd3Value = $('#scd3').val();
                 if(scd3Value.length == 2) {
                     $('#accountNumber').focus();
@@ -1308,6 +1311,7 @@
                         error = error + "Please Enter Account Name.\n";
                         $('#accountName').addClass('error');
                     }
+                    /*
                     if($('#scd1').val() == ""){
                         error = error + "Please Enter Code.\n";
                         $('#scd1').addClass('error');
@@ -1320,6 +1324,23 @@
                         error = error + "Please Enter Code.\n";
                         $('#scd3').addClass('error');
                     }
+                    */
+                    //  sort code tab functionality error message  --- //
+                    	var sort1 = $('#scd1').val();
+                        var sort2 =$('#scd2').val();
+                        var sort3 = $('#scd3').val();
+                        if (sort1 == "" || sort2 == "" || sort3 == "" ) {
+                            error = error + "Please Enter Sort Code .\n" ;
+                              $('#scd3, #scd2 , #scd1').addClass('error');
+                        } else{
+                            
+                            if (sort1.length != 2 || sort2.length != 2 || sort3.length != 2 ) {
+                                error = error + "Sort Code allows two digits in each field.\n" ;
+                                $('#scd3, #scd2 , #scd1').addClass('error');
+                            }
+                        }
+                    
+                    // sort code error message ends here --- // 
                     if($('#accountNumber').val() == ""){
                         error = error + "Please Enter Account Number.\n";
                         $('#accountNumber').addClass('error');
@@ -1588,9 +1609,11 @@
                         error = error + "Please enter your surname.\n";
                         //return false;
                     }
+
                     if($('#agree').is(":checked") != true) { 
-                        error = error + "Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy";
-                    } 
+                        error = error + "Please agree the Terms and Conditions.\n";
+                    }
+
                     if($('#textAddress1').val() == "") {
                         $('#address_line_1').addClass('error');
                         error = error + "Please enter your address.\n";
@@ -1775,6 +1798,21 @@
         });
     })
     </script>
+      <script>
+
+        $(document).ready(function () {
+            $('.scd').keyup(function(){
+             if(this.value.length == this.maxLength){
+                 var $next = $(this).next('.scd');
+                    if ($next.length){
+                        $(this).next('.scd').focus();
+                      }else{
+                            $(this).blur();
+                      }
+             }
+          });
+        });
+      </script>
 </body>
 </apex:form>
 </apex:page>

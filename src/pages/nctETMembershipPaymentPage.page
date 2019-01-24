@@ -1098,6 +1098,7 @@
                $('#textForename, #textSurname, #textEmail').prop('readonly', false);
                 // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', false); 
             }
+            /*
         	$('#scd1').keypress(function(e) {
                 var scd1Value = $('#scd1').val();
                 if(scd1Value.length == 2) {
@@ -1109,8 +1110,8 @@
                 if(scd2Value.length == 2) {
                 	$('#scd3').focus();
                 }
-            });
-        	$('#scd3').keypress(function(e) {
+            }); */
+        	$('#scd3').keyup(function(e) {
                 var scd3Value = $('#scd3').val();
                 if(scd3Value.length == 2) {
                 	$('#accountNumber').focus();
@@ -1298,6 +1299,7 @@
                         error = error + "Please Enter Account Name.\n";
                         $('#accountName').addClass('error');
                     }
+                    /*
                     if($('#scd1').val() == ""){
                         error = error + "Please Enter Code.\n";
                         $('#scd1').addClass('error');
@@ -1310,6 +1312,24 @@
                         error = error + "Please Enter Code.\n";
                         $('#scd3').addClass('error');
                     }
+                    */
+                      //  sort code tab functionality error message  --- //
+                    	var sort1 = $('#scd1').val();
+                        var sort2 =$('#scd2').val();
+                        var sort3 = $('#scd3').val();
+                        if (sort1 == "" || sort2 == "" || sort3 == "" ) {
+                            error = error + "Please Enter Sort Code .\n" ;
+                              $('#scd3, #scd2 , #scd1').addClass('error');
+                        } else{
+                            
+                            if (sort1.length != 2 || sort2.length != 2 || sort3.length != 2 ) {
+                                error = error + "Sort Code allows two digits in each field.\n" ;
+                                $('#scd3, #scd2 , #scd1').addClass('error');
+                            }
+                        }
+                    
+                    // sort code error message ends here --- // 
+
                     if($('#accountNumber').val() == ""){
                         error = error + "Please Enter Account Number.\n";
                         $('#accountNumber').addClass('error');
@@ -1515,14 +1535,15 @@
             return (v.match(r) == null) ? true : false;
         }
         
-        
-		/*function validBranch() {            
+		/*
+        function validBranch() {            
             console.log("118:"+$('#selectBranch').val());
             if (($('#selectBranch').val()=="Nearest first")  ||  ($('#selectBranch').val()=="--------------") || ($('#selectBranch').val()=="Alphabetical list below:") ) {
                 error = error + "Please select a branch\n";
                 $('#selectBranch').addClass('error');
             }                       
-        }*/
+        }
+        */
         
         function validText(v) {
             //var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]");
@@ -1579,7 +1600,7 @@
                         //return false;
                     }
                     
-            		//validBranch();
+            		// validBranch();
                     
                     
                     if($('#textForename').val() == "") {
@@ -1601,7 +1622,7 @@
                     }
             	
                     if($('#agree').is(":checked") != true) { 
-                        error = error + "Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy";
+                        error = error + "Please agree the Terms and Conditions.\n";
                     } 
                 
                     if($('#textEmail').val() == "") {
@@ -1724,6 +1745,7 @@
                     }                   
                 }                   
             }
+
             /*----------- validate branch ----*/ 
             var branch = $('#selectBranch :selected').text();
             if( branch == "All NearestBranches" || branch =="--------------" || branch == "Alphabetical list below:" ){
@@ -1732,7 +1754,6 @@
             }
              
             /* ---- validate branch ----- */
-                
     
                 if (error != "") {
                     alert(error);
@@ -1781,6 +1802,21 @@
         });
     })
 	</script>
+    <script>
+
+        $(document).ready(function () {
+            $('.scd').keyup(function(){
+             if(this.value.length == this.maxLength){
+                 var $next = $(this).next('.scd');
+                    if ($next.length){
+                        $(this).next('.scd').focus();
+                      }else{
+                            $(this).blur();
+                      }
+             }
+          });
+        });
+      </script>
 </body>
 </apex:form>
 </apex:page>
