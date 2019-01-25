@@ -305,8 +305,10 @@ public without sharing class NctMembershipPaymentPageController
         
         postCode = Apexpages.currentPage().getParameters().get('postVal');
         System.debug('postCode: '+postCode);
+        if(postCode != null && postCode != ''){
         nearestBranchs = MembershipUtilties.getBranches(postCode);
         System.debug('branches'+nearestBranchs);
+        }
         
     }
     public void PaymentSave()
