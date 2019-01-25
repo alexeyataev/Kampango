@@ -1539,8 +1539,10 @@
         
         function validPhone(v) {
             //var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]");
-            var r = new RegExp("[a-zA-Z]");
-            return (v.match(r) == null) ? true : false;
+            //var r = new RegExp("[a-zA-Z]");
+            //return (v.match(r) == null) ? true : false;
+             var phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+             return phoneNumberPattern.test(v);
         }
         
 		/*
@@ -1674,7 +1676,7 @@
                     } else {
                         // not blank, check no alpha
                         if (!validPhone($('#textMobile').val())) {
-                            error = error + "Please enter a valid mobile number.\n";
+                            error = error + "Mobile number should be 10 digits.\n";
                         $('#textMobile').addClass('error');     
                         }
                         
