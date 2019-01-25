@@ -263,9 +263,6 @@
         <quickActionListItems>
             <quickActionName>npe03__NewTask</quickActionName>
         </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>Cancel_Membership</quickActionName>
-        </quickActionListItems>
     </quickActionList>
     <relatedLists>
         <fields>OPPORTUNITY.NAME</fields>
