@@ -309,19 +309,22 @@
     </nameField>
     <pluralLabel>Gift Aid Declarations</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>   
     <validationRules>
         <fullName>Reason_For_Deactivation</fullName>
         <active>true</active>
-        <errorConditionFormula>AND(
-    OR(
-        NOT(ISBLANK(gaid__Reason_for_Deactivation__c)),
-        
-    	gaid__Active__c = FALSE
+        <errorConditionFormula>OR(
+AND( 
+gaid__Active__c = FALSE,
+ISBLANK(gaid__Reason_for_Deactivation__c)
+),
+AND(
+gaid__Active__c = TRUE,
+NOT(ISBLANK(gaid__Reason_for_Deactivation__c))
 )
 )</errorConditionFormula>
         <errorDisplayField>gaid__Reason_for_Deactivation__c</errorDisplayField>
-        <errorMessage>You must select Reason for Deactivation</errorMessage>
+        <errorMessage>Reason for Deactivation is entered only for Inactive Gift aid&apos;s.</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
