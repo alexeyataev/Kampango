@@ -22,6 +22,10 @@
                 <field>Second_Contact__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>npe03__Contact__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>npe03__Amount__c</field>
             </layoutItems>
@@ -47,15 +51,13 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>npe03__Contact__c</field>
+                <field>Data_Source__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>npe03__Last_Payment_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Membership_type__c</field>
+                <field>npe03__Date_Established__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -63,21 +65,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>npe03__Organization__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Renewal_Date__c</field>
+                <field>npe03__Last_Payment_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Membership_Number__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>npe03__Date_Established__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -98,6 +90,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Cancellation_Reason__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Membership_type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -173,7 +169,6 @@
     <miniLayout>
         <fields>Name</fields>
         <fields>npe03__Amount__c</fields>
-        <fields>npe03__Date_Established__c</fields>
         <fields>npe03__Installment_Period__c</fields>
     </miniLayout>
     <platformActionList>
@@ -219,6 +214,11 @@
             <sortOrder>7</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>Edit</actionName>
+            <actionType>StandardButton</actionType>
+            <sortOrder>8</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>ChangeOwnerOne</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>9</sortOrder>
@@ -243,11 +243,6 @@
             <actionType>CustomButton</actionType>
             <sortOrder>13</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Edit</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>8</sortOrder>
-        </platformActionListItems>
     </platformActionList>
     <quickActionList>
         <quickActionListItems>
@@ -267,6 +262,9 @@
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>npe03__NewTask</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>Cancel_Membership</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
