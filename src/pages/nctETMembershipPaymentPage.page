@@ -1,6 +1,6 @@
 <apex:page applyHtmlTag="true" docType="html-5.0" controller="NctETMembershipPaymentPageController" showHeader="false" sidebar="false">
 <apex:form id="membrShpForm">
-   <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
+   <apex:actionFunction name="SelValFunction" action="{!contactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
         <apex:param id="selValId" name="seltdName" value="" />
    </apex:actionFunction>
     <apex:actionFunction name="thankYouPage" action="{!thankYouSec}" reRender="membershipNumber,membershipText">
@@ -9,7 +9,7 @@
         <apex:param id="postVal" name="postVal" value="" />
        <apex:param id="emailsVal" name="emailsVal" value=""/>
    </apex:actionFunction>
-   <apex:actionFunction name="saveRecordValues" action="{!PaymentSave}" reRender="displayValues">
+   <apex:actionFunction name="saveRecordValues" action="{!paymentSave}" reRender="displayValues">
       <apex:param id="accname" name="accname" value="" assignTo="{!accountName}"/>
        <apex:param id="sortCode" name="sortCode" value="" assignTo="{!sortCode}"/>
        <apex:param id="accNum" name="accNum" value="" assignTo="{!accountNumber}"/>
@@ -362,7 +362,7 @@
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                         <div><label><sup class="light-orange-color">*</sup>Title</label></div>
-                                                        <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="salutation" value="{!SelectedPreferences}" multiselect="false" size="1">
+                                                        <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="salutation" value="{!selectedPreferences}" multiselect="false" size="1">
                                                                 <apex:selectOptions value="{!salutationOptions}" />
                                                                 
                                                           </apex:selectList></span>
@@ -384,7 +384,7 @@
                                                     <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                             Gender</label></div>
                                                 	<span class="dynmaic-radio-fields">
-                                                	<apex:selectRadio id="gender" value="{!Genders}">
+                                                	<apex:selectRadio id="gender" value="{!genders}">
                                                                 <apex:selectOptions value="{!genderOptions}" />
                                                      </apex:selectRadio>
                                                 	</span>
@@ -428,7 +428,7 @@
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div><label><sup class="light-orange-color">*</sup>Title</label></div>
-                                                            <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="ssalutation" value="{!SSelectedPreferences}" multiselect="false" size="1">
+                                                            <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="ssalutation" value="{!sSelectedPreferences}" multiselect="false" size="1">
                                                                 <apex:selectOptions value="{!salutationOptions}" />
                                                                 
                                                           	</apex:selectList></span>
@@ -455,7 +455,7 @@
                                                         <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                                 Gender</label></div>
                                                         <span class="dynmaic-radio-fields">
-                                                        <apex:selectRadio id="sgender" value="{!SGenders}">
+                                                        <apex:selectRadio id="sgender" value="{!sGenders}">
                                                                     <apex:selectOptions value="{!genderOptions}" />
                                                          </apex:selectRadio>
                                                         </span>
@@ -572,7 +572,7 @@
                                                 <div class="row radio-fields-row">
                                                     <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
                                                     <div class="col-12 radio-fields-col">
-                                                        <span style="text-color:white;"><apex:selectCheckboxes value="{!ContactSelectedPreferences}">
+                                                        <span style="text-color:white;"><apex:selectCheckboxes value="{!contactSelectedPreferences}">
                                                                     <apex:selectOptions value="{!contactPreferenceOptions}" />
                                                                     
                                                          </apex:selectCheckboxes></span>                                                     

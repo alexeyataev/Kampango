@@ -17,7 +17,7 @@
         <apex:param id="postVal" name="postVal" value="" />
         <apex:param id="emailsVal" name="emailsVal" value=""/>
    </apex:actionFunction>
-   <apex:actionFunction name="saveRecordValues" action="{!PaymentSave}" reRender="membershipNumber,error-message">
+   <apex:actionFunction name="saveRecordValues" action="{!paymentSave}" reRender="membershipNumber,error-message">
       <apex:param id="accname" name="accname" value="" assignTo="{!accountName}"/>
        <apex:param id="sortCode" name="sortCode" value="" assignTo="{!sortCode}"/>
        <apex:param id="accNum" name="accNum" value="" assignTo="{!accountNumber}"/>
