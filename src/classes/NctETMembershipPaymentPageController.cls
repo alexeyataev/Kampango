@@ -22,21 +22,21 @@ public class NctETMembershipPaymentPageController
     public Contact newCont {get;set;} 
     public Contact snewCont {get;set;} 
     public String salutation{get; set;}
-    public String SelectedPreferences {get;set;}
-    public String SSelectedPreferences {get;set;}
+    public String selectedPreferences {get;set;}
+    public String sSelectedPreferences {get;set;}
     public list<SelectOption> salutationOptions{get; set;}
    
-    public String Genders {get;set;}
-    public String SGenders {get;set;}
+    public String genders {get;set;}
+    public String sGenders {get;set;}
     public list<SelectOption> genderOptions{get; set;}
     
-    public list<String> ContactSelectedPreferences {
+    public list<String> contactSelectedPreferences {
         get{
-            if(ContactSelectedPreferences == NULL){
+            if(contactSelectedPreferences == NULL){
                 
-                ContactSelectedPreferences = new List<String>();
+                contactSelectedPreferences = new List<String>();
             }
-            return ContactSelectedPreferences;
+            return contactSelectedPreferences;
         }
         set;}
     public list<SelectOption> contactPreferenceOptions {get; set;}
@@ -59,7 +59,7 @@ public class NctETMembershipPaymentPageController
     public String accountNumber {get; set;}
     public string displayValue {get;set;}
     public string counter  {get;set;}
-    public string SelValues {get;set;}
+    public string selValues {get;set;}
     public Membership_Type__mdt membershipInfo {get;set;}
     public npe03__Recurring_Donation__c reccDon {get;set;}
     public Map<String, List<Membership_Type__mdt>> membershipTypeMap{get;set;}
@@ -121,8 +121,8 @@ public class NctETMembershipPaymentPageController
                     email = newCont.Email;
                     phone = newCont.Phone;
                     postCode = newCont.MailingPostalCode;
-                    SelectedPreferences = newCont.Salutation;
-                    Genders = newCont.Gender__c;
+                    selectedPreferences = newCont.Salutation;
+                    genders = newCont.Gender__c;
                 }
             }
             pymtPrfl = new cpm__Payment_Profile__c();
@@ -144,20 +144,20 @@ public class NctETMembershipPaymentPageController
     public PageReference  receiveInput(){
                 
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
-        System.debug('Twomems :'+twomems);
-        System.debug('SelectedPreferences: '+SelectedPreferences);
-        System.debug('SSelectedPreferences: '+SSelectedPreferences);
-        System.debug('Genders: '+Genders);
-        System.debug('Contact Preferences:'+ContactSelectedPreferences);
-        String ContactPreference = '';
-        Boolean Start = true;
-        if(!ContactSelectedPreferences.isEmpty()) {           
-            for(String Str : ContactSelectedPreferences) {
-                if(Start) {
-                    ContactPreference = Str;
+        System.debug('twomems :'+twomems);
+        System.debug('selectedPreferences: '+selectedPreferences);
+        System.debug('sSelectedPreferences: '+sSelectedPreferences);
+        System.debug('genders: '+genders);
+        System.debug('contact Preferences:'+contactSelectedPreferences);
+        String contactPreference = '';
+        Boolean start = true;
+        if(!contactSelectedPreferences.isEmpty()) {           
+            for(String str : contactSelectedPreferences) {
+                if(start) {
+                    contactPreference = str;
                     Start = false;
                 } else {               
-                    ContactPreference = ContactPreference + ';' + Str;
+                    contactPreference = contactPreference + ';' + str;
                 }
             }
         }
@@ -211,7 +211,7 @@ public class NctETMembershipPaymentPageController
                     //}
                     newCont.Branch__c = selectBranch; 
                     newCont.Salutation = SelectedPreferences;
-                    newCont.Gender__c = Genders;
+                    newCont.Gender__c = genders;
                     newCont.Contact_Prefrence__c = ContactPreference;
                     newCont.MailingStreet = streetValue+''+streetValue2+''+streetValue2;
                     newCont.MailingState = stateValue;
@@ -231,8 +231,8 @@ public class NctETMembershipPaymentPageController
                         snewCont.MailingPostalCode = postCode;
                         //snewCont.Contact_Prefrence__c = ContactSelectedPreferences;
                         //snewCont.Expected_Due_Date__c = expDate;
-                        snewCont.Gender__c = SGenders;
-                        snewCont.Salutation = SSelectedPreferences;     
+                        snewCont.Gender__c = sGenders;
+                        snewCont.Salutation = sSelectedPreferences;     
                         snewCont.Branch__c = selectBranch;
                         snewCont.MailingStreet = streetValue+''+streetValue1+''+streetValue2;
                         snewCont.MailingState = stateValue;
@@ -303,8 +303,8 @@ public class NctETMembershipPaymentPageController
                     snewCont.Parent_Contact__c = newCont.id;
                     snewCont.MailingPostalCode = postCode;
                     //snewCont.Expected_Due_Date__c = expDate;
-                    snewCont.Gender__c = SGenders;
-                    snewCont.Salutation = SSelectedPreferences;     
+                    snewCont.Gender__c = sGenders;
+                    snewCont.Salutation = sSelectedPreferences;     
                     snewCont.Branch__c = selectBranch;
                     //snewCont.Contact_Prefrence__c = ContactSelectedPreferences;
                     snewCont.MailingStreet = streetValue+''+streetValue2+''+streetValue2;
@@ -355,7 +355,7 @@ public class NctETMembershipPaymentPageController
         
             
     }
-    public void ContactInfo()
+    public void contactInfo()
     {
         feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
         PageReference redirecContUrl;
@@ -410,7 +410,7 @@ public class NctETMembershipPaymentPageController
         System.debug('branches'+nearestBranchs);
         
     }
-    public void PaymentSave()
+    public void paymentSave()
     {
         displayMbrNoMessage = true;
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
@@ -461,7 +461,7 @@ public class NctETMembershipPaymentPageController
     public void thankYouSec()
     {
         displayMbrNoMessage = true;
-        list<User> UserList = new list<User>();
+        list<User> userList = new list<User>();
         list<npe03__Recurring_Donation__c> reccDonList = new list<npe03__Recurring_Donation__c>();
         
         system.debug('Apexpages.currentPage().getParameters().get(contId) ---   ' + Apexpages.currentPage().getParameters().get('contId'));
@@ -574,7 +574,7 @@ public class NctETMembershipPaymentPageController
          }
          System.debug('Membership no'+membershipNumber);
     }
-    public void PaymentHubCallout()
+    public void paymentHubCallout()
     {
         decimal instlmntAmt; 
         if(membershipInfo != null)

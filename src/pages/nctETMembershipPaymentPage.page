@@ -1,6 +1,6 @@
 <apex:page applyHtmlTag="true" docType="html-5.0" controller="NctETMembershipPaymentPageController" showHeader="false" sidebar="false">
 <apex:form id="membrShpForm">
-   <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
+   <apex:actionFunction name="SelValFunction" action="{!contactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
         <apex:param id="selValId" name="seltdName" value="" />
    </apex:actionFunction>
     <apex:actionFunction name="thankYouPage" action="{!thankYouSec}" reRender="membershipNumber,membershipText">
@@ -9,7 +9,7 @@
         <apex:param id="postVal" name="postVal" value="" />
        <apex:param id="emailsVal" name="emailsVal" value=""/>
    </apex:actionFunction>
-   <apex:actionFunction name="saveRecordValues" action="{!PaymentSave}" reRender="displayValues">
+   <apex:actionFunction name="saveRecordValues" action="{!paymentSave}" reRender="displayValues">
       <apex:param id="accname" name="accname" value="" assignTo="{!accountName}"/>
        <apex:param id="sortCode" name="sortCode" value="" assignTo="{!sortCode}"/>
        <apex:param id="accNum" name="accNum" value="" assignTo="{!accountNumber}"/>
@@ -362,7 +362,7 @@
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                         <div><label><sup class="light-orange-color">*</sup>Title</label></div>
-                                                        <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="salutation" value="{!SelectedPreferences}" multiselect="false" size="1">
+                                                        <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="salutation" value="{!selectedPreferences}" multiselect="false" size="1">
                                                                 <apex:selectOptions value="{!salutationOptions}" />
                                                                 
                                                           </apex:selectList></span>
@@ -384,7 +384,7 @@
                                                     <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                             Gender</label></div>
                                                 	<span class="dynmaic-radio-fields">
-                                                	<apex:selectRadio id="gender" value="{!Genders}">
+                                                	<apex:selectRadio id="gender" value="{!genders}">
                                                                 <apex:selectOptions value="{!genderOptions}" />
                                                      </apex:selectRadio>
                                                 	</span>
@@ -428,7 +428,7 @@
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div><label><sup class="light-orange-color">*</sup>Title</label></div>
-                                                            <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="ssalutation" value="{!SSelectedPreferences}" multiselect="false" size="1">
+                                                            <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="ssalutation" value="{!sSelectedPreferences}" multiselect="false" size="1">
                                                                 <apex:selectOptions value="{!salutationOptions}" />
                                                                 
                                                           	</apex:selectList></span>
@@ -455,7 +455,7 @@
                                                         <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                                 Gender</label></div>
                                                         <span class="dynmaic-radio-fields">
-                                                        <apex:selectRadio id="sgender" value="{!SGenders}">
+                                                        <apex:selectRadio id="sgender" value="{!sGenders}">
                                                                     <apex:selectOptions value="{!genderOptions}" />
                                                          </apex:selectRadio>
                                                         </span>
@@ -572,7 +572,7 @@
                                                 <div class="row radio-fields-row">
                                                     <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
                                                     <div class="col-12 radio-fields-col">
-                                                        <span style="text-color:white;"><apex:selectCheckboxes value="{!ContactSelectedPreferences}">
+                                                        <span style="text-color:white;"><apex:selectCheckboxes value="{!contactSelectedPreferences}">
                                                                     <apex:selectOptions value="{!contactPreferenceOptions}" />
                                                                     
                                                          </apex:selectCheckboxes></span>                                                     
@@ -644,7 +644,6 @@
                                                                 <strong>You are eligible for this if you receive Employment Support Allowance or tax credits (excluding child tax credits alone).</strong>
                                                         </div>
                                                 <br />
-                                                    &nbsp; &nbsp; &nbsp; <span class="selectError">Please select your membership type</span>
                                                 </p>            
                                             </div>
                                             <div class="pure-control-group" id="giftaid" style="clear:both;">
@@ -738,8 +737,8 @@
                                                         <fieldset>
                                                             <div class="pure-control-group ddinstr">
                                                                 In order to set up your Direct Debit Instructions online you will need to provide your bank sort code and account number.   If you are not the account holder or bank account requires more than one signatory then please
-                                                                ask our Enquiries team to send you a paper Direct Debit Instruction or <a href="#" title="Click here">click here</a>
-                                                                to proceed without using Direct Debit.
+                                                                ask our Enquiries team to send you a paper Direct Debit Instruction or <a style="color:blue;cursor:pointer"  id="pay_now_again"  title="Click here"><b>Click Here</b></a>
+                                                                 to the previous page to choose the Membership with Card Payment.
                                                             </div>
                                                             
                                                         <div class="pure-control-group">
@@ -1540,8 +1539,10 @@
         
         function validPhone(v) {
             //var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]");
-            var r = new RegExp("[a-zA-Z]");
-            return (v.match(r) == null) ? true : false;
+            //var r = new RegExp("[a-zA-Z]");
+            //return (v.match(r) == null) ? true : false;
+             var phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+             return phoneNumberPattern.test(v);
         }
         
 		/*
@@ -1694,7 +1695,7 @@
                     } else {
                         // not blank, check no alpha
                         if (!validPhone($('#textMobile').val())) {
-                            error = error + "Please enter a valid mobile number.\n";
+                            error = error + "Mobile number should be 10 digits.\n";
                         $('#textMobile').addClass('error');     
                         }
                         
@@ -1794,6 +1795,10 @@
     </script>
    <script>
 		$(document).ready(function () {
+              $('#pay_now_again').on('click', function(){
+             $('#direct_debit_block').css('display', 'none');
+            $('#pay_page').css('display', '');
+        });
         $('#edit-submit').on('click', function () {
             $("#edit-keys").addClass('show-form-input', {
                 duration: 1000

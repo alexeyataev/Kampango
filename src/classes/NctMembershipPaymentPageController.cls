@@ -114,14 +114,14 @@ public without sharing class NctMembershipPaymentPageController
         System.debug('Twomems :'+twomems);
         System.debug('Salutation:'+salutation);
         String contactPreference = '';
-        Boolean Start = true;
+        Boolean start = true;
         if(!contactSelectedPreferences.isEmpty()) {           
-            for(String Str : contactSelectedPreferences) {
-                if(Start) {
-                    contactPreference = Str;
-                    Start = false;
+            for(String str : contactSelectedPreferences) {
+                if(start) {
+                    contactPreference = str;
+                    start = false;
                 } else {               
-                    contactPreference = contactPreference + ';' + Str;
+                    contactPreference = contactPreference + ';' + str;
                 }
             }
         }
@@ -305,11 +305,13 @@ public without sharing class NctMembershipPaymentPageController
         
         postCode = Apexpages.currentPage().getParameters().get('postVal');
         System.debug('postCode: '+postCode);
+        if(postCode != null && postCode != ''){
         nearestBranchs = MembershipUtilties.getBranches(postCode);
         System.debug('branches'+nearestBranchs);
+        }
         
     }
-    public void PaymentSave()
+    public void paymentSave()
     {
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
         
