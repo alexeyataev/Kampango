@@ -1544,7 +1544,7 @@
             // var phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
             // return phoneNumberPattern.test(v);
             var phoneNumber = $('#textMobile').val();
-            if(phoneNumber.length <=10){
+            if(phoneNumber.length <=9){
                 return false;
             }
             else {
@@ -1702,7 +1702,7 @@
                     } else {
                         // not blank, check no alpha
                         if (!validPhone($('#textMobile').val())) {
-                            error = error + "Mobile number should be minimum 11 digits or More.\n";
+                            error = error + "Mobile number should be minimum 10 digits or More.\n";
                            $('#textMobile').addClass('error');     
                         }
                         
