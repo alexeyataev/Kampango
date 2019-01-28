@@ -7,6 +7,10 @@
         <value xsi:type="xsd:string">Individual</value>
     </values>
     <values>
+        <field>Data_Source__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>ET_Specific__c</field>
         <value xsi:type="xsd:boolean">true</value>
     </values>
@@ -44,7 +48,7 @@
     </values>
     <values>
         <field>No_of_Installments__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:double">0.0</value>
     </values>
     <values>
         <field>Payment_Method__c</field>
@@ -60,11 +64,15 @@
     </values>
     <values>
         <field>Payment_Type__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">Life Membership - Free</value>
     </values>
     <values>
         <field>Recursive__c</field>
         <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Schedule_Type__c</field>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>Target_Customer__c</field>
