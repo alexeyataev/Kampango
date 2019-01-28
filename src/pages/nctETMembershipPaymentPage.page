@@ -752,9 +752,9 @@
                                                         <div class="pure-control-group">
                                                             <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Sort code:</label>
                                                             <span id="userData">
-                                                                <input id="scd1" class="form-fields-short membership-fields" type="text" name="scd1" maxlength="2" size="2" value="" />&nbsp;-&nbsp;
-                                                                <input id="scd2" class="form-fields-short membership-fields" type="text" name="scd2" maxlength="2" size="2" value=""  />&nbsp;-&nbsp;
-                                                                <input id="scd3" class="form-fields-short membership-fields" type="text" name="scd3" maxlength="2" size="2" value=""  />
+                                                                <input id="scd1" class="form-fields-short membership-fields scd" type="text" name="scd1" maxlength="2" size="2" value="" />&nbsp;-&nbsp;
+                                                                <input id="scd2" class="form-fields-short membership-fields scd" type="text" name="scd2" maxlength="2" size="2" value=""  />&nbsp;-&nbsp;
+                                                                <input id="scd3" class="form-fields-short membership-fields scd" type="text" name="scd3" maxlength="2" size="2" value=""  />
                                                             </span>
                                                         </div>
                                                         
