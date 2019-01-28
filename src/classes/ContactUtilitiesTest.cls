@@ -7,7 +7,7 @@
 */
 @isTest
 private class ContactUtilitiesTest {
-	@isTest static void positivemethod() {
+	@isTest static void positive_method() {
 		// Implement test code
 		Contact con = new Contact();
         con.FirstName = 'Test FirstName';
@@ -24,7 +24,19 @@ private class ContactUtilitiesTest {
         
         con.AccountId =a.Id;
         upsert con;
-   		
+        
+   		npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
+        recDon.Name = 'Credit/Debit Card Membership';
+        recDon.npe03__Amount__c = 60;
+        recDon.npe03__Contact__c = con.Id;
+        recDon.CARE_Payment_Frequency__c = 'One Time';
+        recDon.First_Contact__c = con.Id;
+        recDon.npe03__Installment_Period__c = 'Yearly';
+        recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
+        
+        recDon.Membership_Status__c = 'Pending';
+        
+        Insert recDon;
         
         AccountContactRelation[] acr = [Select id, roles from AccountContactRelation where ContactId = :con.id];
         list<AccountContactRelation> lstac = new list<AccountContactRelation>();
@@ -74,9 +86,12 @@ private class ContactUtilitiesTest {
         System.assertEquals(true, isVolunteer);
         System.assertEquals(true, isPractitioner);
         System.assertEquals('true', twomems);
+        
+        Boolean isMembershipExists = ContactUtilities.isMembershipExists(con.Id, con.Email);
+        System.assert(true,isMembershipExists);
 	}
 	
-	@isTest static void negativemethod() {
+	@isTest static void negative_method() {
 		// Implement test code
 		Contact con = new Contact();
         con.FirstName = 'Test FirstName';
@@ -135,5 +150,8 @@ private class ContactUtilitiesTest {
         System.assertEquals(false, isVolunteer);
         System.assertEquals(false, isPractitioner);
         System.assertEquals('false', twomemsf);
+        
+        Boolean isMembershipExists = ContactUtilities.isMembershipExists(con.id, con.Email);
+        System.assert(true,isMembershipExists);
 	}
 }
