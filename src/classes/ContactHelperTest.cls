@@ -19,18 +19,21 @@ public class ContactHelperTest {
         String lastname = 'Test';
         String email = 'test@test.com';
         String genders = 'Male';
+    	String phone = '123456789';
+    	String salutationPrim = '';
     
         String sfirstname = 'sTest';
         String slastname = 'sTest';
         String semail = 'stest@test.com';
         String sgenders = 'Female';
-        String phone = '9123456789';
+        String sphone = '9123456789';
+    	String SalutationSec = '';
     
         Id selectBranch = a.Id;
-        String sphone = '123456789';
+       
         String postCode = 'SW1234';
         String contactPreference = 'Post';
-        String selectedPreferences = '';
+        
         String streetValue = '';
         String streetValue1 = '';
         String streetValue2 = '';
@@ -40,9 +43,9 @@ public class ContactHelperTest {
         
         String recordType = 'Parent';
     
-        list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone};
-        list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone};
-        list<String> contactFieldListExt = new list<String>{phone,postCode,contactPreference,selectedPreferences,streetValue,streetValue1,streetValue2,stateValue,cityValue};
+        list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrim};
+        list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone,salutationSec};
+        list<String> contactFieldListExt = new list<String>{phone,postCode,contactPreference,streetValue,streetValue1,streetValue2,stateValue,cityValue};
         
         Contact con = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
         
@@ -66,17 +69,22 @@ public class ContactHelperTest {
         String lastname = 'Test';
         String email = 'test@test.com';
         String genders = 'Male';
-    
+    	String phone = '12123456789';
+        String salutationPrim = '';
+        
         String sfirstname = 'sTest';
         String slastname = 'sTest';
         String semail = 'stest@test.com';
         String sgenders = 'Female';
-        String phone = '9123456789';
+        String sphone = '9123456789';
+        String salutationSec = '';
+        
         Id selectBranch = a.Id;
-        String sphone = '123456789';
+        
         String postCode = 'SW1234';
         String contactPreference = 'Post';
-        String selectedPreferences = '';
+        
+        
         String streetValue = '';
         String streetValue1 = '';
         String streetValue2 = '';
@@ -86,12 +94,61 @@ public class ContactHelperTest {
         
         String recordType = 'Parent';
     
-        list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone};
-        list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone};
-        list<String> contactFieldListExt = new list<String>{postCode,contactPreference,selectedPreferences,streetValue,streetValue1,streetValue2,stateValue,cityValue};
+        list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrim};
+        list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone,salutationSec};
+        list<String> contactFieldListExt = new list<String>{postCode,contactPreference,streetValue,streetValue1,streetValue2,stateValue,cityValue};
         
         Contact con = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
         
         System.assertNotEquals(null, con != null);
+    }
+    @isTest static void negativeBlankmethod() {
+        
+        Contact newCont = new Contact();
+        newCont.FirstName = 'Test FirstName';
+        newCont.LastName = 'Test LastName';
+        newCont.Email = 'testemail@test.com';
+        insert newCont;
+        
+        Account a = new Account();
+        a.RecordTypeId =Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+        a.Name ='Test Account';
+        Insert a;
+    
+        String firstname = '';
+        String lastname = '';
+        String email = '';
+        String genders = '';
+        String phone = '';
+        String salutationPrim = '';
+    
+        String sfirstname = '';
+        String slastname = '';
+        String semail = '';
+        String sgenders = '';
+        String sphone = '';
+        String salutationSec = '';
+        
+        Id selectBranch = a.Id;
+        
+        String postCode = '';
+        String contactPreference = '';
+        
+        String streetValue = '';
+        String streetValue1 = '';
+        String streetValue2 = '';
+        String stateValue = '';
+        String cityValue = '';
+        
+        
+        String recordType = 'Parent';
+    
+        list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrim};
+        list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone,salutationPrim};
+        list<String> contactFieldListExt = new list<String>{postCode,contactPreference,streetValue,streetValue1,streetValue2,stateValue,cityValue};
+        
+        Contact con = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
+        
+        System.assertNotEquals(null, con == null);
     }
 }
