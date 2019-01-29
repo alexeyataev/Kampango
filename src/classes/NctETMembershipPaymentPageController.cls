@@ -147,8 +147,8 @@ public class NctETMembershipPaymentPageController
 
           system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
           System.debug('Twomems :'+twomems);
-          System.debug('SelectedPreferences: '+selectedPreferences);
-          System.debug('SSelectedPreferences: '+sSelectedPreferences);
+          System.debug('SelectedPreferences: '+salutationPrimary);
+          System.debug('SSelectedPreferences: '+salutationSecondary);
           System.debug('Genders: '+genders);
           System.debug('Contact Preferences:'+contactSelectedPreferences);
           String contactPreference = '';
