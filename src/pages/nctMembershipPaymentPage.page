@@ -589,7 +589,7 @@
                                                 <div class="row radio-fields-row">
                                                     <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
                                                     <div class="col-12 radio-fields-col">
-                                                        <span style="text-color:white;"><apex:selectCheckboxes value="{!ContactSelectedPreferences}">
+                                                        <span style="text-color:white;"><apex:selectCheckboxes value="{!contactSelectedPreferences}">
                                                                     <apex:selectOptions value="{!contactPreferenceOptions}" />
 
                                                          </apex:selectCheckboxes></span>
