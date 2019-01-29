@@ -4051,8 +4051,16 @@
         <recordType>Contact.Clients</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Contact-Client Layout</layout>
+        <layout>Contact-Companion Layout</layout>
         <recordType>Contact.Companion</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Practitioner</layout>
+        <recordType>Contact.Practitioner</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Volunteer Layout</layout>
+        <recordType>Contact.Volunteer</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Course__c-Course Layout</layout>
