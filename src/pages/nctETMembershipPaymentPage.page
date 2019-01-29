@@ -520,9 +520,9 @@
                                                             </div>
                                                     </div>
                                                     <div class="row">
-                                                            <div class="col-5"> <label class="text-center font-bold"><sup class="light-orange-color">*</sup>County:</label> </div>
+                                                            <div class="col-5"> <label class="text-center font-bold">County:</label> </div>
                                                             <div class="col-7">
-                                                                <input type="text" class="form-fields membership-fields"  name='textCounty' id='county' size='35' maxlength='35' value=''  placeholder="County" required="true" />
+                                                                <input type="text" class="form-fields membership-fields"  name='textCounty' id='county' size='35' maxlength='35' value=''  placeholder="County"  />
                                                             </div>
                                                     </div>
                                                     <div class="row">
@@ -811,7 +811,6 @@
                                                         <br />
                                                         <p>
                                                             Instructions to your bank or building society to pay by Direct Debit.<br />
-                                                            If your bank account requires more than one signature, or you'd like to pay by Cheque.
                                                         </p>
                                                     </div>
                                             <div class="pure-control-group" style="clear:both;">
@@ -1629,12 +1628,15 @@
 
 
                     $('input').removeClass("error");    // clear all markup before beginning.
+                        
+                   /* if($('#county').val() == "") {
 
                     if($('#county').val() == "") {
                         error = error +  "Please enter your county.\n";
                         $('#county').addClass('error');
                         //return false;
                     }
+                    */
 
             		// validBranch();
 

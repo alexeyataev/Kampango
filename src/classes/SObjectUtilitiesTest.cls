@@ -8,7 +8,7 @@
 @isTest
 private class SObjectUtilitiesTest {
      
-	@isTest static void positive_method() {
+	@isTest static void positiveMethod() {
 		
 		Contact con = new Contact();
         
@@ -19,7 +19,7 @@ private class SObjectUtilitiesTest {
 
 
     }
-	@isTest static void negative_method() {
+	@isTest static void negativeMethod() {
 		
 		Contact con = new Contact();
         

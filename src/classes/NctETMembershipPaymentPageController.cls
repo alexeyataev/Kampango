@@ -154,12 +154,12 @@ public class NctETMembershipPaymentPageController
           String contactPreference = '';
           Boolean Start = true;
           if(!contactSelectedPreferences.isEmpty()) {
-             for(String Str : contactSelectedPreferences) {
-                 if(Start) {
-                     contactPreference = Str;
+             for(String str : contactSelectedPreferences) {
+                 if(start) {
+                     contactPreference = str;
                      Start = false;
                  } else {
-                     contactPreference = contactPreference + ';' + Str;
+                     contactPreference = contactPreference + ';' + str;
                  }
              }
           }
