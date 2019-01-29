@@ -739,7 +739,7 @@
                                                                 <strong><font id="forename_Dsp"> </font></strong>
 
                                                             </div>
-                                                        <div class="pure-control-group">
+                                                        <div class="pure-control-group" id="membershipSelection">
                                                             <label for="surname">Membership type:&nbsp;  </label>
                                                              <apex:outputText Id="membershipTypeInfo" value=" {!membershipInfo.Contact_Type__c} {!membershipInfo.Membership__c}" style="font-weight:bold;"></apex:outputText>
                                                             <strong><span id="forename_Details"> </span></strong>
@@ -793,7 +793,7 @@
 
                                                         <div class="pure-control-group paydates"><p>
                                                                 <span><span id='dateprocess1'><strong>&pound;<apex:outputText Id="membershipFeeInfo" value=" {!membershipInfo.Installment_Amount__c}"/><span id="pay_money"> </span></strong>
-                                                        on or after 3rd of the month.
+                                                        on or after 3rd of the month <span class="eighteen-months-membership">and quarterly thereafter</span>.
                                                         </span></span>
                                                             <br /></p>
                                                         </div>
@@ -1386,6 +1386,15 @@
             $("#Pay_now").click(function (){
                 console.log($('#selectMembership :selected').val());
                 console.log($('#selectMembership :selected').text());
+                setInterval(function(){
+                	var membershipTypeText = $('#membershipSelection > span').text();
+                    if(membershipTypeText.includes('Individual 18 month membership')){
+                        $('.eighteen-months-membership').removeClass('hide');
+                    }
+                    else{
+                        $('.eighteen-months-membership').addClass('hide');
+                    }
+                },200);
                 if (($('#selectMembership :selected').val() == '' || $('#selectMembership :selected').text() == '' ||
                     $('#selectMembership :selected').text() == 'Please select' || $('#selectMembership :selected').val() == 'Please select')){
                     $('#selectMembership select').addClass('error-border');
