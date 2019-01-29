@@ -1530,12 +1530,13 @@
             //return (v.match(r) == null) ? true : false;
             // var phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
             // return phoneNumberPattern.test(v);
-            var phoneNumber = $('#textMobile').val();
-            if(phoneNumber.length <=9){
-                return false;
+           var phoneNumber = $('#textMobile').val();
+            console.log(phoneNumber.length, 'phoneNumber.length');
+            if(phoneNumber.length ==11 || phoneNumber.length ==13 || phoneNumber.length ==14){
+                return true;
             }
             else {
-            	return true;
+            	return false;
             }
 
 
@@ -1689,12 +1690,35 @@
                     } else {
                         // not blank, check no alpha
                         if (!validPhone($('#textMobile').val())) {
-                            error = error + "Mobile number should be minimum 10 digits or More.\n";
+                            error = error + "Mobile number should be 11 or 13 or 14 digits.\n";
                            $('#textMobile').addClass('error');
                         }
 
                     }
-
+                    if ($(twomem)[0].checked){
+                        var personPhoneNumber = $('#textTelephoneHomePartner').val();
+                        console.log(personPhoneNumber.length, 'phoneNumber.length');
+                        if(personPhoneNumber.length ==0 || personPhoneNumber.length ==11 || personPhoneNumber.length ==13 || personPhoneNumber.length ==14){
+                            $('#textTelephoneHomePartner').removeClass('error');
+                        }
+                        else {
+                            error = error + "Person two phone number should be 11 or 13 or 14 digits.\n"
+                            $('#textTelephoneHomePartner').addClass('error');
+                        }
+                        if($('#textEmailPartner').val() !='' ){
+                        	var secondEmailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;                                         //Define email filter
+                            if (!(secondEmailFilter.test($('#textEmailPartner').val()))) {                               //Filter email out
+                                error = error + "Please enter a valid email address.\n";
+                                $('#textEmailPartner').addClass('error');   
+                            }
+                            var secondIllegalCharsForEmail= /[\(\)\<\>\,\;\:\\\"\[\]]/ ;                                  //Define illegal chars
+                            if ($('#textEmailPartner').val().match(secondIllegalCharsForEmail)) {                        //Check illegal chars
+                                $('#textEmailPartner').addClass('error');
+                                error = error + "The email address contains illegal characters.\n";   
+                            }
+                        }
+                        
+                    }
                     var babyDay = $('#selectDay').val();
                     var babyMonth = $('#selectMonth').val();
                     var babyYear =  $('#babyYear').val();
