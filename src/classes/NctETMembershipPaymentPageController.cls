@@ -22,8 +22,8 @@ public class NctETMembershipPaymentPageController
     public Contact newCont {get;set;}
     public Contact snewCont {get;set;}
     public String salutation{get; set;}
-    public String selectedPreferences {get;set;}
-    public String sSelectedPreferences {get;set;}
+    public String salutationPrimary {get;set;}
+    public String salutationSecondary {get;set;}
     public list<SelectOption> salutationOptions{get; set;}
 
     public String genders {get;set;}
@@ -78,7 +78,7 @@ public class NctETMembershipPaymentPageController
     public string targetCustomer{get; set;}
     public boolean isMembershipExists {get; set;}
     public String staffMember {get; set;}
-
+    public String recordType;
     public nctETMembershipPaymentPageController()
     {
         contId = ApexPages.currentPage().getParameters().get('Id');
@@ -121,7 +121,7 @@ public class NctETMembershipPaymentPageController
                     email = newCont.Email;
                     phone = newCont.Phone;
                     postCode = newCont.MailingPostalCode;
-                    selectedPreferences = newCont.Salutation;
+                    salutationPrimary = newCont.Salutation;
                     contactSelectedPreferences = newCont.Contact_Prefrence__c.split(';',0);
                     genders = newCont.Gender__c;
                 }
@@ -147,26 +147,26 @@ public class NctETMembershipPaymentPageController
 
           system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
           System.debug('Twomems :'+twomems);
-          System.debug('SelectedPreferences: '+selectedPreferences);
-          System.debug('SSelectedPreferences: '+sSelectedPreferences);
+          System.debug('SelectedPreferences: '+salutationPrimary);
+          System.debug('SSelectedPreferences: '+salutationSecondary);
           System.debug('Genders: '+genders);
-          System.debug('Contact Preferences:'+ContactSelectedPreferences);
-          String ContactPreference = '';
+          System.debug('Contact Preferences:'+contactSelectedPreferences);
+          String contactPreference = '';
           Boolean Start = true;
-          if(!ContactSelectedPreferences.isEmpty()) {
-             for(String Str : ContactSelectedPreferences) {
+          if(!contactSelectedPreferences.isEmpty()) {
+             for(String Str : contactSelectedPreferences) {
                  if(Start) {
-                     ContactPreference = Str;
+                     contactPreference = Str;
                      Start = false;
                  } else {
-                     ContactPreference = ContactPreference + ';' + Str;
+                     contactPreference = contactPreference + ';' + Str;
                  }
              }
           }
 
-          list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone};
-          list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone};
-          list<String> contactFieldListExt = new list<String>{postCode,contactPreference,selectedPreferences,streetValue,streetValue1,streetValue2,stateValue,cityValue};
+          list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrimary};
+          list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone,salutationSecondary};
+          list<String> contactFieldListExt = new list<String>{postCode,contactPreference,streetValue,streetValue1,streetValue2,stateValue,cityValue};
 
 
           Id userId = userinfo.getUserId();
@@ -208,12 +208,12 @@ public class NctETMembershipPaymentPageController
                  {
                      recordType = 'Parent';
 
-                   newCont = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
+                     newCont = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
 
                      if(twomems == 'true' && sfirstname != null || sfirstname != '')
                      {
                          recordType = 'Companion';
-                       snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
+                         snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
 
                          membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);
 
@@ -272,7 +272,7 @@ public class NctETMembershipPaymentPageController
                  if(twomems == 'true' && sfirstname != null || sfirstname != '')
                  {
                      recordType = 'Companion';
-                   snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
+                     snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
 
 
                  }
