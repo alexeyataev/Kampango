@@ -3971,27 +3971,27 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>npe03__Recurring_Donation__c.npsp4hub__Mandate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>npe03__Recurring_Donation__c.npsp4hub__Payment_Method__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>npe03__Recurring_Donation__c.npsp4hub__Payment_Processor__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>npe03__Recurring_Donation__c.npsp4hub__Payment_Profile__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>npe03__Recurring_Donation__c.npsp4hub__Target__c</field>
         <readable>true</readable>
     </fieldPermissions>
