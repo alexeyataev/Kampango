@@ -190,8 +190,7 @@
             <actionName>Edit</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>0</sortOrder>
-        </platformActionListItems>
-                </platformActionListItems>
+        </platformActionListItems>          
         <platformActionListItems>
             <actionName>Add_To_Membership</actionName>
             <actionType>CustomButton</actionType>
