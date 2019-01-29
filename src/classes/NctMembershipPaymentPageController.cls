@@ -53,8 +53,8 @@ public without sharing class NctMembershipPaymentPageController
     public boolean isPractitioner {get; set;}
     public boolean isContactExisting {get; set;}
     public boolean isVolunteer {get; set;}
-    public String selectedPreferences {get;set;}
-    public String sSelectedPreferences {get;set;}
+    public String salutationPrimary {get;set;}
+    public String salutationSecondary {get;set;}
     public list<SelectOption> salutationOptions{get; set;}
 
     public String genders {get;set;}
@@ -90,9 +90,11 @@ public without sharing class NctMembershipPaymentPageController
                 email = newCont.Email;
                 phone = newCont.Phone;
                 postCode = newCont.MailingPostalCode;
-                selectedPreferences = newCont.Salutation;
+                salutationPrimary = newCont.Salutation;
                 genders = newCont.Gender__c;
-                System.debug('selectedPreferences: '+selectedPreferences);
+
+                contactSelectedPreferences = newCont.Contact_Prefrence__c.split(';',0);
+                System.debug('selectedPreferences: '+salutationPrimary);
             }
         }
         pymtPrfl = new cpm__Payment_Profile__c();
@@ -108,7 +110,7 @@ public without sharing class NctMembershipPaymentPageController
 
     }
     public void receiveInput(){
-        System.debug('selectedPreferences: '+selectedPreferences);
+        System.debug('selectedPreferences: '+salutationPrimary);
         System.debug('genders: '+genders);
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
         System.debug('Twomems :'+twomems);
@@ -127,9 +129,9 @@ public without sharing class NctMembershipPaymentPageController
             }
         }
 
-        list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone};
-        list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone};
-        list<String> contactFieldListExt = new list<String>{postCode,contactPreference,selectedPreferences,streetValue,streetValue1,streetValue2,stateValue,cityValue};
+        list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrimary};
+        list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone,salutationSecondary};
+        list<String> contactFieldListExt = new list<String>{postCode,contactPreference,streetValue,streetValue1,streetValue2,stateValue,cityValue};
 
         //Date expDate = Date.valueOf(eDate);
 
