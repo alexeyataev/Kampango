@@ -1693,7 +1693,7 @@
                     } else {
                         // not blank, check no alpha
                         if (!validPhone($('#textMobile').val())) {
-                            error = error + "Mobile number should be 11 or 13 or 14 digits.\n";
+                            error = error + "UK Mobile number starts with 0 and 11 digits without Access code or With Access code (+44 or 0044) 13 or 14 digits.\n";
                            $('#textMobile').addClass('error');
                         }
 
@@ -1705,7 +1705,7 @@
                             $('#textTelephoneHomePartner').removeClass('error');
                         }
                         else {
-                            error = error + "Person two phone number should be 11 or 13 or 14 digits.\n"
+                            error = error + "UK Mobile number starts with 0 and 11 digits without Access code or With Access code (+44 or 0044) 13 or 14 digits.\n"
                             $('#textTelephoneHomePartner').addClass('error');
                         }
                         if($('#textEmailPartner').val() !='' ){
