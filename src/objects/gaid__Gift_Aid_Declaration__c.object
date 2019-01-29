@@ -324,7 +324,7 @@ NOT(ISBLANK(gaid__Reason_for_Deactivation__c))
 )
 )</errorConditionFormula>
         <errorDisplayField>gaid__Reason_for_Deactivation__c</errorDisplayField>
-        <errorMessage>Reason for Deactivation is entered only for Inactive Gift aid&apos;s.</errorMessage>
+        <errorMessage>Please enter the reason for deactivation.</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
