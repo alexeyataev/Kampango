@@ -8,7 +8,7 @@
 @isTest
 public class ContactHelperTest {
     
-@isTest static void positivemethod() {
+@isTest static void positiveMethod() {
     
         Account a = new Account();
         a.RecordTypeId =Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
@@ -27,7 +27,7 @@ public class ContactHelperTest {
         String semail = 'stest@test.com';
         String sgenders = 'Female';
         String sphone = '9123456789';
-    	String SalutationSec = '';
+    	String salutationSec = '';
     
         Id selectBranch = a.Id;
        
@@ -52,7 +52,7 @@ public class ContactHelperTest {
         System.assertNotEquals(null, con != null);
     }
     
-    @isTest static void negativemethod() {
+    @isTest static void negativeMethod() {
         
         Contact newCont = new Contact();
         newCont.FirstName = 'Test FirstName';
