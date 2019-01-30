@@ -1132,7 +1132,7 @@
                                                             <tr>
                                                               <td valign="top" align="left" class="element-pad element-bord">
                                                                 <div class="ee_editable" style="position: static;">
-                                                                  <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">Hello
+                                                                  <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">Hi
                                                                     {!npe03__Recurring_Donation__c.First_Contact__c},</p>
                                                                   <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">
                                                                     &nbsp;&nbsp;</p>
