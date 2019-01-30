@@ -4344,6 +4344,14 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Phone</type>
     </fields>
+     <fields>
+        <fullName>Post_Opt_Out__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Post Opt Out</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Practitioner__c</fullName>
         <defaultValue>false</defaultValue>
@@ -4375,6 +4383,14 @@
         <fullName>ReportsToId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SMS_Opt_Out__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>SMS Opt Out</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Sort_Code__c</fullName>
