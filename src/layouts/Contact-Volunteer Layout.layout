@@ -40,10 +40,6 @@
                 <field>Title</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Prefered_First_Name__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Mail__c</field>
             </layoutItems>
