@@ -1,6 +1,6 @@
 public with sharing class AcessTokenResponseVo {
 
-    public String accesstoken{get;set;}
+    public String access_token{get;set;}
 
     public String instanceurl{get;set;}
 
