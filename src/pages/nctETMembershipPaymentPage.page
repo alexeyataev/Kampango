@@ -315,6 +315,14 @@
                 	padding-left:0;
                 }
             }
+             #MembershipalertModal .modal-header ,#MembershipalertModal .modal-footer {
+				border:none;
+			}
+            .modal_close{
+            	background-color:white !important;
+                background-image:none;
+                color:#008669;
+            }
         </style>
     </head>
 
@@ -1080,6 +1088,27 @@
     <!-- footer start here -->
     <c:Footer />
     <!-- footer end here -->
+
+     <!-- MODAL POPUP START HERE --->
+         <div class="container">
+  			<div class="modal fade" id="MembershipalertModal" role="dialog">
+    			<div class="modal-dialog">
+      				<!-- Modal content-->
+      				<div class="modal-content">
+        				<div class="modal-header">
+          					<button type="button" class="close modal_close" data-dismiss="modal">&times;</button>
+                        </div>
+        				<div class="modal-body"></div>
+        				<div class="modal-footer">
+          					<button type="button" class="green-button nomargin border-radius" data-dismiss="modal">Close</button>
+        				</div>
+      				</div>
+                    <!--MODAL CONTENT ---->
+    			</div>
+  			</div>
+		</div>
+    <!-- MODAL POPUP ENDS HERE ---->
+
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/pca.js')}"/>
@@ -1294,7 +1323,7 @@
                 function validatePayment() {
                     error = "";
                     if($('#accountName').val() == "") {
-                        error = error + "Please Enter Account Name.\n";
+                        error = error + "Please Enter Account Name.\n" + "<br>";
                         $('#accountName').addClass('error');
                     }
                     /*
@@ -1316,12 +1345,12 @@
                         var sort2 =$('#scd2').val();
                         var sort3 = $('#scd3').val();
                         if (sort1 == "" || sort2 == "" || sort3 == "" ) {
-                            error = error + "Please Enter Sort Code .\n" ;
+                            error = error + "Please Enter Sort Code .\n"  + "<br>";
                               $('#scd3, #scd2 , #scd1').addClass('error');
                         } else{
 
                             if (sort1.length != 2 || sort2.length != 2 || sort3.length != 2 ) {
-                                error = error + "Sort Code allows two digits in each field.\n" ;
+                                error = error + "Sort Code allows two digits in each field.\n"  + "<br>";
                                 $('#scd3, #scd2 , #scd1').addClass('error');
                             }
                         }
@@ -1329,12 +1358,12 @@
                     // sort code error message ends here --- //
 
                     if($('#accountNumber').val() == ""){
-                        error = error + "Please Enter Account Number.\n";
+                        error = error + "Please Enter Account Number.\n" + "<br>";
                         $('#accountNumber').addClass('error');
                     }
 
                     if (!($('#checkboxConfirm').is(':checked'))) {
-                        error = error + "Please Tick the Agree to Terms of Use. \n";
+                        error = error + "Please Tick the Agree to Terms of Use. \n" + "<br>";
                         //$('.checkbox-error').removeClass('hide')
                     }
                     // else {
@@ -1342,7 +1371,9 @@
                     // }
 
                     if (error != "") {
-                        alert(error);
+                         //alert(error);
+                        $('#MembershipalertModal').modal();
+                     	$('.modal-body').html('<div>' + error + '</div>');
                         return false;
                     } else {
                         return true;
@@ -1385,10 +1416,11 @@
                         $('.eighteen-months-membership').addClass('hide');
                     }
                 },200);
-                if (($('#selectMembership :selected').val() == '' || $('#selectMembership :selected').text() == '' ||
-                    $('#selectMembership :selected').text() == 'Please select' || $('#selectMembership :selected').val() == 'Please select')){
+                if (($('#selectMembership :selected').val() == '' ||  $('#selectMembership :selected').val() == 'Please select')){
                     $('#selectMembership select').addClass('error-border');
-                    alert("Please select your membership type");
+                     //alert("Please select your membership type");
+                    $('#MembershipalertModal').modal();
+                    $('.modal-body').html('<div>' + "Please select your membership type" + '</div>');
                     return false;
                 }
                 else {
@@ -1604,7 +1636,7 @@
                     // validate the Due date
 
                         if(!validDate()){
-                            error = error + "Please Enter Due Date .\n";
+                            error = error + "Please Enter Due Date .\n" + "<br>";
                              $('#due-Date').css({"border":"1px solid red", "background-color":"rgba(255, 0, 0, 0.25)"});
                         }else{
                             var date = $("#due-Date").val();
@@ -1616,7 +1648,7 @@
                      		if(yearLength == 4 && currentYear <= year){
                         		console.log("success")
                          	}else{
-                             error= error +"Please Enter valid date. \n";
+                             error= error +"Please Enter valid date. \n" + "<br>";
                               $('#due-Date').css({"border":"1px solid red", "background-color":"rgba(255, 0, 0, 0.25)"});
                          	}
                     	}
@@ -1624,7 +1656,7 @@
             	    // validate the duedate
 
                     if($('#selectTitle').val() == "") {
-                        error = error +  "Please select your title.\n";
+                        error = error +  "Please select your title.\n" + "<br>";
                         $('#selectTitle').addClass('error');
                         //return false;
                     }
@@ -1642,7 +1674,7 @@
                    /* if($('#county').val() == "") {
 
                     if($('#county').val() == "") {
-                        error = error +  "Please enter your county.\n";
+                        error = error +  "Please enter your county.\n" + "<br>";
                         $('#county').addClass('error');
                         //return false;
                     }
@@ -1652,43 +1684,43 @@
 
 
                     if($('#textForename').val() == "") {
-                        error = error +  "Please enter your forename.\n";
+                        error = error +  "Please enter your forename.\n" + "<br>";
                         $('#textForename').addClass('error');
                         //return false;
                     }
 
                     if($('#textSurname').val() == "") {
                         $('#textSurname').addClass('error');
-                        error = error + "Please enter your surname.\n";
+                        error = error + "Please enter your surname.\n" + "<br>";
                         //return false;
                     }
 
                     if($('#textAddress1').val() == "") {
                         $('#address_line_1').addClass('error');
-                        error = error + "Please enter your address.\n";
+                        error = error + "Please enter your address.\n" + "<br>";
                         //return false;
                     }
 
                     if($('#agree').is(":checked") != true) {
-                        error = error + "Please agree the Terms and Conditions.\n";
+                        error = error + "Please agree the Terms and Conditions.\n" + "<br>";
                     }
 
                     if($('#textEmail').val() == "") {
                         $('#textEmail').addClass('error');
-                        error = error + "Please enter your email address.\n";
+                        error = error + "Please enter your email address.\n" + "<br>";
                         //return false;
                     } else {
 
                         var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;                                         //Define email filter
                         if (!(emailFilter.test($('#textEmail').val()))) {                               //Filter email out
-                            error = error + "Please enter a valid email address.\n";
+                            error = error + "Please enter a valid email address.\n" + "<br>";
                             $('#textEmail').addClass('error');
                             //return false;
                         }
                         var illegalCharsForEmail= /[\(\)\<\>\,\;\:\\\"\[\]]/ ;                                  //Define illegal chars
                         if ($('#textEmail').val().match(illegalCharsForEmail)) {                        //Check illegal chars
                             $('#textEmail').addClass('error');
-                            error = error + "The email address contains illegal characters.\n";
+                            error = error + "The email address contains illegal characters.\n" + "<br>";
                             //return false;
                         }
 
@@ -1697,24 +1729,24 @@
 
                     if($('#textTown').val() == "") {
                         $('#town').addClass('error');
-                        error = error + "Please enter your town.\n";
+                        error = error + "Please enter your town.\n" + "<br>";
                         //return false;
                     }
                     if($('#textPostcode').val() == "") {
                         $('#textPostcode').addClass('error');
-                        error = error + "Please enter your postcode.\n";
+                        error = error + "Please enter your postcode.\n" + "<br>";
                         //return false;
                     }
 
                     if($('#textMobile').val() == "") {
-                        error = error + "Please enter your mobile number.\n";
+                        error = error + "Please enter your mobile number.\n" + "<br>";
                         $('#textMobile').addClass('error');
 
                         //return false;
                     } else {
                         // not blank, check no alpha
                         if (!validPhone($('#textMobile').val())) {
-                            error = error + "UK Mobile number starts with 0 and 11 digits without Access code or With Access code (+44 or 0044) 13 or 14 digits.\n";
+                            error = error + "UK Mobile number starts with 0 and 11 digits without Access code or With Access code (+44 or 0044) 13 or 14 digits.\n" + "<br>";
                            $('#textMobile').addClass('error');
                         }
 
@@ -1760,7 +1792,7 @@
 
             if ($('#twomem').attr('checked')) {
                     if($('#selectTitlePartner').val() == "Please Select" ) {
-                        error = error +  "Please select your partner's title.\n";
+                        error = error +  "Please select your partner's title.\n" + "<br>";
                         $('#selectTitle').addClass('error');
                         //return false;
                     }
@@ -1768,50 +1800,50 @@
 
                 if ($('#textForenamePartner').val()=="") {
                     $('#textForenamePartner').addClass('error');
-                    error = error + "Please enter your partner's first name.\n";
+                    error = error + "Please enter your partner's first name.\n" + "<br>";
                 } else {
                     if (!validText($('#textForenamePartner').val())) {
-                        error = error + "Please do not include numeric values in the name field\n";
+                        error = error + "Please do not include numeric values in the name field\n" + "<br>";
                         $('#textSurnamePartner').addClass('error');
                     }
                 }
 
                 if ($('#textSurnamePartner').val()=="") {
                     $('#textSurnamePartner').addClass('error');
-                    error = error + "Please enter your partner's surname.\n";
+                    error = error + "Please enter your partner's surname.\n" + "<br>";
                 }else {
                     if (!validText($('#textSurnamePartner').val())) {
-                        error = error + "Please do not include numeric values in the surname field\n";
+                        error = error + "Please do not include numeric values in the surname field\n" + "<br>";
                         $('#textSurnamePartner').addClass('error');
                     }
                 }
                 if($('#textEmailPartner').val() == "") {
                     $('#textEmailPartner').addClass('error');
-                    error = error + "Please enter your partner's email address.\n";
+                    error = error + "Please enter your partner's email address.\n" + "<br>";
                     //return false;
                 } else {
                     var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;                                         //Define email filter
                     if (!(emailFilter.test($('#textEmail').val()))) {                               //Filter email out
-                        error = error + "Please enter a valid email address.\n";
+                        error = error + "Please enter a valid email address.\n" + "<br>";
                         $('#textEmailPartner').addClass('error');
                         //return false;
                     }
                     var illegalCharsForEmail= /[\(\)\<\>\,\;\:\\\"\[\]]/ ;                                  //Define illegal chars
                     if ($('#textEmail').val().match(illegalCharsForEmail)) {                        //Check illegal chars
                         $('#textEmailPartner').addClass('error');
-                        error = error + "The email address contains illegal characters.\n";
+                        error = error + "The email address contains illegal characters.\n" + "<br>";
                         //return false;
                     }
                 }
                 if($('#textMobilePartner').val() == "") {
-                    error = error + "Please enter your partner's mobile number.\n";
+                    error = error + "Please enter your partner's mobile number.\n" + "<br>";
                     $('#textMobilePartner').addClass('error');
 
                     //return false;
                 } else {
                     // not blank, check no alpha
                     if (!validPhone($('#textMobilePartner').val())) {
-                        error = error + "Please enter a valid mobile number.\n";
+                        error = error + "Please enter a valid mobile number.\n" + "<br>";
                     $('#textMobilePartner').addClass('error');
                     }
                 }
@@ -1820,14 +1852,18 @@
             /*----------- validate branch ----*/
             var branch = $('#selectBranch :selected').text();
             if( branch == "All NearestBranches" || branch =="--------------" || branch == "Alphabetical list below:" ){
-                error = error + "Please select a branch. \n";
+                error = error + "Please select a branch. \n" + "<br>";
                  $('#selectBranch').addClass('error');
+            }else{
+                $('#selectBranch').removeClass('error');   
             }
 
             /* ---- validate branch ----- */
 
                 if (error != "") {
-                    alert(error);
+                    //alert(error);
+                    $('#MembershipalertModal').modal();
+                    $('.modal-body').html('<div>' + error + '</div>');
                     return false;
                 } else {
                     return true;
