@@ -1741,14 +1741,14 @@
 
                     }
                     if ($(twomem)[0].checked){
-                        var personPhoneNumber = $('#textTelephoneHomePartner').val();
+                        var personPhoneNumber = $('#textMobilePartner').val();
                         console.log(personPhoneNumber.length, 'phoneNumber.length');
                         if(personPhoneNumber.length ==0 || personPhoneNumber.length ==11 || personPhoneNumber.length ==13 || personPhoneNumber.length ==14){
-                            $('#textTelephoneHomePartner').removeClass('error');
+                            $('#textMobilePartner').removeClass('error');
                         }
                         else {
                             error = error + "UK Mobile number starts with 0 and 11 digits without Access code or With Access code (+44 or 0044) 13 or 14 digits.\n"
-                            $('#textTelephoneHomePartner').addClass('error');
+                            $('#textMobilePartner').addClass('error');
                         }
                         if($('#textEmailPartner').val() !='' ){
                         	var secondEmailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;                                         //Define email filter
