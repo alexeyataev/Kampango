@@ -114,11 +114,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Branch__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SMS_Opt_Out__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>HasOptedOutOfEmail</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Branch__c</field>
+                <field>Post_Opt_Out__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
