@@ -1,7 +1,7 @@
 @isTest
 private class MembershipVoTest {
     @isTest
-    private static void Membership(){
+    private static void membership(){
         
         MembershipVo.ContactVo contact = new MembershipVo.ContactVo();
         contact.salutation = 'Mr.';
@@ -52,7 +52,8 @@ private class MembershipVoTest {
         membership.secondaryContact = contact;
         membership.directDebitDetails = directDebit;
         membership.marketingPreference = marketingPreference;
-           
+        system.assertEquals('18 month - Individual', membership.membershipType);
+        system.assertEquals('M-40027923',membership.membershipNumber);
     }
 
 }
