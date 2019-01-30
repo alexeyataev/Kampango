@@ -114,9 +114,9 @@ public class NctETMembershipPaymentPageController
             staffMember ='no staff';
             if(contId != null)
             {
-                newCont = [SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
+                newCont = [SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,AccountId FROM Contact where id=:contId];
                 if(newCont != null){
-                    firstname = newCont.Prefered_First_Name__c;
+                    firstname = newCont.FirstName;
                     lastname = newCont.LastName;
                     email = newCont.Email;
                     phone = newCont.Phone;
@@ -268,7 +268,7 @@ public class NctETMembershipPaymentPageController
              }
              else if(isContactExisting == true){
                  System.debug('Contact Exists(Next Flow Starts): '+isContactExisting);
-                 newCont =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact where Email = :email limit 1];
+                 newCont =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,AccountId FROM Contact where Email = :email limit 1];
                  if(twomems == 'true' && sfirstname != null || sfirstname != '')
                  {
                      recordType = 'Companion';
@@ -432,7 +432,7 @@ public class NctETMembershipPaymentPageController
         {
             system.debug('Apexpages.currentPage().getParameters().get(contId) ---   ' + Apexpages.currentPage().getParameters().get('contId'));
             reccDonList = [select Id, Membership_Number__c,npe03__Contact__c,npsp4hub__Payment_Method__c,npe03__Contact__r.AccountId,npe03__Contact__r.Phone,
-                       npe03__Amount__c,npe03__Installment_Period__c,Membership_type__c, npe03__Contact__r.Prefered_First_Name__c,
+                       npe03__Amount__c,npe03__Installment_Period__c,Membership_type__c, npe03__Contact__r.FirstName,
                        npe03__Contact__r.LastName,npe03__Contact__r.Email,npe03__Installment_Amount__c, Membership_Status__c,
                        npe03__Date_Established__c from npe03__Recurring_Donation__c where npe03__Contact__c =: Apexpages.currentPage().getParameters().get('contId') limit 1];
             if(reccDonList != null && !reccDonList.isEmpty())
@@ -483,7 +483,7 @@ public class NctETMembershipPaymentPageController
         if(recDon.Id != null)
         {
             reccDonList = [select Id, Membership_Number__c,npe03__Contact__c,npsp4hub__Payment_Method__c,
-                       npe03__Amount__c,npe03__Installment_Period__c,Membership_type__c, npe03__Contact__r.Prefered_First_Name__c,
+                       npe03__Amount__c,npe03__Installment_Period__c,Membership_type__c, npe03__Contact__r.FirstName,
                        npe03__Contact__r.LastName, npe03__Contact__r.Email,npe03__Installment_Amount__c, npe03__Contact__r.Phone,
                        npe03__Date_Established__c,npe03__Contact__r.AccountId from npe03__Recurring_Donation__c where Id =: recDon.Id];
             if(reccDonList != null && !reccDonList.isEmpty())
@@ -509,10 +509,10 @@ public class NctETMembershipPaymentPageController
                     update accnt;
                     Profile portalProfile = [SELECT Id,Name FROM Profile WHERE Name ='Membership Coordinator' Limit 1];
                     User usr = new User();
-                    string alias = reccDonList[0].npe03__Contact__r.Prefered_First_Name__c + reccDonList[0].npe03__Contact__r.LastName;
+                    string alias = reccDonList[0].npe03__Contact__r.FirstName + reccDonList[0].npe03__Contact__r.LastName;
                     usr.Username = reccDonList[0].npe03__Contact__r.Email;
                     usr.Email = reccDonList[0].npe03__Contact__r.Email;
-                    usr.FirstName = reccDonList[0].npe03__Contact__r.Prefered_First_Name__c;
+                    usr.FirstName = reccDonList[0].npe03__Contact__r.FirstName;
                     usr.LastName = reccDonList[0].npe03__Contact__r.LastName;
                     //usr.CommunityNickname = 'comNick';
                     usr.Alias = alias.substring(1, 6);
@@ -571,7 +571,7 @@ public class NctETMembershipPaymentPageController
         if(newCont != null)
         {
             cvo.Email = newCont.Email;
-          cvo.FirstName = newCont.Prefered_First_Name__c;
+          cvo.FirstName = newCont.FirstName;
           cvo.LastName = newCont.LastName;
         }
         else if (newCont == null)
