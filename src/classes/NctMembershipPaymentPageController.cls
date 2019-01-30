@@ -92,8 +92,9 @@ public without sharing class NctMembershipPaymentPageController
                 postCode = newCont.MailingPostalCode;
                 salutationPrimary = newCont.Salutation;
                 genders = newCont.Gender__c;
-
-                contactSelectedPreferences = newCont.Contact_Prefrence__c.split(';',0);
+                if(newCont.Contact_Prefrence__c != null){
+                    contactSelectedPreferences = newCont.Contact_Prefrence__c.split(';',0);
+                }
                 System.debug('selectedPreferences: '+salutationPrimary);
             }
         }
