@@ -4109,7 +4109,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>npe03__Recurring_Donation__c.npsp4hub__Mandate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4124,12 +4124,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>npe03__Recurring_Donation__c.npsp4hub__Payment_Profile__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>npe03__Recurring_Donation__c.npsp4hub__Target__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5283,7 +5283,7 @@
         <name>EditPublicTemplates</name>
     </userPermissions>
     <userPermissions>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
         <name>EditReadonlyFields</name>
     </userPermissions>
     <userPermissions>
