@@ -43,10 +43,6 @@
                 <field>Gender__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Prefered_First_Name__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SMS_Opt_Out__c</field>
             </layoutItems>
@@ -86,8 +82,8 @@
                 <field>Email</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Maximum_Places_Per_Course__c</field>
+                <behavior>Edit</behavior>
+                <field>Branch__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -212,46 +208,6 @@
             <quickActionName>npsp__NewTask</quickActionName>
         </quickActionListItems>
     </quickActionList>
-    <relatedContent>
-        <relatedContentItems>
-            <layoutItem>
-                <component>wits:newsPanel</component>
-            </layoutItem>
-        </relatedContentItems>
-        <relatedContentItems>
-            <layoutItem>
-                <behavior>Readonly</behavior>
-                <field>AccountId</field>
-            </layoutItem>
-        </relatedContentItems>
-        <relatedContentItems>
-            <layoutItem>
-                <behavior>Readonly</behavior>
-                <field>npsp__Primary_Affiliation__c</field>
-            </layoutItem>
-        </relatedContentItems>
-    </relatedContent>
-    <relatedLists>
-        <fields>Course__c</fields>
-        <fields>NAME</fields>
-        <fields>Status__c</fields>
-        <relatedList>Booking__c.Client__c</relatedList>
-        <sortField>Course__c</sortField>
-        <sortOrder>Asc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Event_Start_Date__c</fields>
-        <fields>Event_End_Date__c</fields>
-        <relatedList>Event__c.Event_Facilitator__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Link_to_Event__c</fields>
-        <fields>Track__c</fields>
-        <relatedList>Event_Session__c.Session_Facilitator__c</relatedList>
-    </relatedLists>
-
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>gaid__Gift_Aid_Declaration__c.gaid__Contact__c</relatedList>
@@ -271,36 +227,6 @@
         <relatedList>Practitioner_Role__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>TASK.SUBJECT</fields>
-        <fields>TASK.WHAT_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
-        <fields>TASK.DUE_DATE</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <fields>TASK.LAST_UPDATE</fields>
-        <relatedList>RelatedHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>TASK.SUBJECT</fields>
-        <fields>TASK.WHAT_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
-        <fields>TASK.DUE_DATE</fields>
-        <fields>TASK.STATUS</fields>
-        <fields>TASK.PRIORITY</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <relatedList>RelatedActivityList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <customButtons>npe01__New_Contact_Donation</customButtons>
-        <excludeButtons>New</excludeButtons>
-        <fields>OPPORTUNITY.NAME</fields>
-        <fields>OPPORTUNITY.STAGE_NAME</fields>
-        <fields>OPPORTUNITY.AMOUNT</fields>
-        <fields>OPPORTUNITY.RECORDTYPE</fields>
-        <fields>npe01__Payments_Made__c</fields>
-        <fields>OPPORTUNITY.CLOSE_DATE</fields>
-        <relatedList>RelatedOpportunityList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
         <fields>npe03__Date_Established__c</fields>
         <fields>npe03__Last_Payment_Date__c</fields>
@@ -311,21 +237,6 @@
         <relatedList>npe03__Recurring_Donation__c.npe03__Contact__c</relatedList>
         <sortField>npe03__Next_Payment_Date__c</sortField>
         <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedNoteList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>FULL_NAME</fields>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>CONTACT.PHONE4</fields>
-        <fields>CONTACT.PHONE1</fields>
-        <fields>CONTACT.PHONE3</fields>
-        <fields>CONTACT.EMAIL</fields>
-        <fields>CONTACT.ADDRESS2_STREET</fields>
-        <fields>CONTACT.ADDRESS2_CITY</fields>
-        <fields>CONTACT.ADDRESS2_STATE</fields>
-        <relatedList>Contact.Parent_Contact__c</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
