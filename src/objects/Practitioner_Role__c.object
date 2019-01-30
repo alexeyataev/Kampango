@@ -298,5 +298,19 @@
     <pluralLabel>Practitioner Roles</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+     <validationRules>
+        <fullName>Acquisition_Date_Should_Not_Blank</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISBLANK( Acquisition_Date__c )</errorConditionFormula>
+        <errorDisplayField>Acquisition_Date__c</errorDisplayField>
+        <errorMessage>Please enter an Acquisition Date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Expiry_Date_Should_Not_Blank</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISBLANK( Expiry_Date__c )</errorConditionFormula>
+        <errorDisplayField>Expiry_Date__c</errorDisplayField>
+        <errorMessage>Please enter an Expiry Date</errorMessage>
+    </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
