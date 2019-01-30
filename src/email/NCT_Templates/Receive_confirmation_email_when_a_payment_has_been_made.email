@@ -822,73 +822,7 @@
                                                                     <td class="row-container">
                                                                         <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:660px;" width="660"><tr><td align="center" valign="top" style="width:660px;" width="660"><![endif]-->
                                                                         <div class="ee_dropzone">
-                                                                            <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" class="row two-cols ee_columns ee-show-on-desktop ee_element"
-                                                                                ee-type="container" data-title="Columns" style="position: relative;table-layout: auto;">
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td align="center" valign="top" class="row-inner f-size-0 element-pad" dir="ltr" style="padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;">
-                                                                                            <!--[if mso]><table border="0" cellspacing="0" cellpadding="0" align="center" style="width:660px;" width="660"><tr><td align="left" valign="top" style="width:330px;" width="330"><![endif]-->
-                                                                                            <!-- STACK COLUMN : BEGIN -->
-                                                                                            <div class="stack-column stack-column-width" ee-percent-width="50" style="max-width: 50%; min-width: 100%; width: 50%;">
-                                                                                                <table cellspacing="0" cellpadding="0" border="0" width="100%" style="table-layout: auto;">
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td dir="ltr" class="col-inner ee_dropzone" align="left">
-                                                                                                                <table cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_textelement" width="100%" ee-type="element" data-title="Text"
-                                                                                                                    style="table-layout: auto;">
-                                                                                                                    <tbody>
-                                                                                                                        <tr>
-                                                                                                                            <td valign="top" align="left" class="element-pad element-bord" style="padding-top: 10px;padding-right: 0px;padding-bottom: 10px;padding-left: 0px;">
-                                                                                                                                <div class="ee_editable">
-                                                                                                                                    <p style="font-size: 11px; line-height: 17px; text-align: left; color: rgb(173, 173, 173);">Membership
-                                                                                                                                        cancelled
-                                                                                                                                    </p>
-                                                                                                                                </div>
-                                                                                                                            </td>
-                                                                                                                        </tr>
-                                                                                                                    </tbody>
-                                                                                                                </table>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </div>
-                                                                                            <!-- STACK COLUMN : END -->
-                                                                                            <!--[if mso]></td><td align="left" valign="top" style="width:330px;" width="330" class="column"><![endif]-->
-                                                                                            <!-- STACK COLUMN : BEGIN -->
-                                                                                            <div class="stack-column stack-column-width" ee-percent-width="50" style="max-width: 50%; min-width: 100%; width: 50%;">
-                                                                                                <table cellspacing="0" cellpadding="0" border="0" width="100%" style="table-layout: auto;">
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td dir="ltr" class="col-inner ee_dropzone" align="left">
-                                                                                                                <table cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_textelement" width="100%" ee-type="element" data-title="Text"
-                                                                                                                    style="table-layout: auto;">
-                                                                                                                    <tbody>
-                                                                                                                        <tr>
-                                                                                                                            <td valign="top" align="left" class="element-pad element-bord" style="padding-top: 10px;padding-right: 0px;padding-bottom: 10px;padding-left: 0px;">
-                                                                                                                                <div class="ee_editable">
-                                                                                                                                    <p style="font-size: 11px; line-height: 17px; text-align: right;">
-                                                                                                                                        <a href="https://$CANTREAD$" style="text-decoration: none; color: rgb(173, 173, 173);">View
-                                                                                                                                            in
-                                                                                                                                            browser
-                                                                                                                                        </a>
-                                                                                                                                    </p>
-                                                                                                                                </div>
-                                                                                                                            </td>
-                                                                                                                        </tr>
-                                                                                                                    </tbody>
-                                                                                                                </table>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </div>
-                                                                                            <!-- STACK COLUMN : END -->
-                                                                                            <!--[if mso]></td></tr></table><![endif]-->
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
+                                                                            
                                                                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="col-font-reset ee_element ee_imageelement" ee-type="element"
                                                                                 data-title="Image" style="table-layout: auto;">
                                                                                 <tbody>
@@ -1512,8 +1446,7 @@
                                                                                                     <br>
                                                                                                 </p>
                                                                                                 <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">
-                                                                                                    <a href="https://$UNSUB$" style="text-decoration: none; color: rgb(81, 83, 74);">Unsubscribe</a>&nbsp;
-                                                                                                    |&nbsp; Privacy Policy</p>
+                                                                                                    <a href="https://www.nct.org.uk/privacy" style="text-decoration: none; color: rgb(81, 83, 74);">Privacy Policy</a></p>
                                                                                             </div>
                                                                                         </td>
                                                                                     </tr>

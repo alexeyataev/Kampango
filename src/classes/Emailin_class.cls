@@ -1,6 +1,6 @@
 /* Create a button to be placed in Course object */
 
-public class Emailin_class { 
+public with sharing class Emailin_class { 
     
     public String subject{set;get;}
     public String emailbody{set;get;}
@@ -18,9 +18,7 @@ public class Emailin_class {
         System.debug('emailrecords  :'+emailrecords);
         
         for(Booking__c b : emailrecords){
-            //System.debug('Booking-Name :'+b.Name);
-            //System.debug('Booking-b.First_Contact__r.Email :'+b.First_Contact__r.Email);
-            //System.debug('Booking-b.Second_Contact__r.Email :'+b.Second_Contact__r.Email);
+            
             if(b.First_Contact__r.Email!=null){
                 toaddress=toaddress+b.First_Contact__r.Email+';';
             }
@@ -71,8 +69,7 @@ public class Emailin_class {
             }
         }
         PageReference coursePage = new ApexPages.StandardController(courseObj).view();
-        /*ApexPages.Message msg=new ApexPages.Message(ApexPages.Severity.INFO,'Email Sent Successfully..');
-			ApexPages.addMessage(msg);*/
+        
         coursePage.setRedirect(true);
         return coursePage;
     }

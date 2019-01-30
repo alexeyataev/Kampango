@@ -36,21 +36,6 @@
         <senderType>CurrentUser</senderType>
         <template>GW_Volunteers__Volunteers_Email_Templates/Volunteer_de_register</template>
     </alerts>
-    <alerts>
-        <fullName>Volunteer_de_registration_alert_with</fullName>
-        <description>Volunteer de-registration Alert with Proper Reason</description>
-        <protected>false</protected>
-        <recipients>
-            <recipient>anjineyulu.valasa@csscorp.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>rupambika.nayak@csscorp.com</recipient>
-            <type>user</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>GW_Volunteers__Volunteers_Email_Templates/Volunteer_de_register</template>
-    </alerts>
     <fieldUpdates>
         <fullName>npe01__ContactAlternateEmailUpdate</fullName>
         <field>npe01__AlternateEmail__c</field>

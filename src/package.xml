@@ -57,6 +57,7 @@
         <members>Venue__c</members>
 		<members>npe03__Recurring_Donation__c</members>
         <members>Payment_Link__c</members>
+      <members>gaid__Gift_Aid_Declaration__c</members>
         <name>CustomObject</name>
     </types>
 	<types>
@@ -87,7 +88,9 @@
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
 		<members>Contact-Client Layout</members>
 		<members>Contact-Practitioner</members>
-		<members>Venue__c-Venue Layout</members>
+          <members>Contact-Companion Layout</members>
+          <members>Contact-Volunteer Layout</members>
+          <members>Venue__c-Venue Layout</members>
 		<members>Practitioner_Role__c-Practitioner Licence Layout</members>
         <members>Case-CaseLayout_De_Registration</members>
 		<members>Case-Case Layout</members>
@@ -116,10 +119,10 @@
         <members>*</members>
         <name>ValidationRule</name>
     </types>        
-    <types>
-        <members>CustomLabels</members>
+   <!-- <types>
+        <members>*</members>
         <name>CustomLabels</name>
-    </types>
+    </types>-->
 	<types>
         <members>*</members>
         <name>CustomTab</name>
@@ -251,10 +254,11 @@
         <name>ApexTrigger</name>
     </types>
 	<types>
-        <members>CommunityFooter</members>
+        <!--<members>CommunityFooter</members>
         <members>CommunityHeader</members>
         <members>PractitionalCourosal</members>
-        <members>PractitionerHeader</members>
+        <members>PractitionerHeader</members>-->
+		<members>*</members>
         <name>AuraDefinitionBundle</name>
     </types>
 	<types>

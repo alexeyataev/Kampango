@@ -1,8 +1,5 @@
-global class LightningForgotPasswordController {
+public class LightningForgotPasswordController {
 
-    public LightningForgotPasswordController() {
-
-    }
 
     @AuraEnabled
     public static String forgotPassword(String username, String checkEmailUrl) {
@@ -21,7 +18,7 @@ global class LightningForgotPasswordController {
     }
 
     @AuraEnabled
-    global static String setExperienceId(String expId) {    
+    public static String setExperienceId(String expId) {    
         // Return null if there is no error, else it will return the error message 
         try {
             if (expId != null) {

@@ -395,15 +395,11 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>attachmentsample</apexClass>
+        <apexClass>AttachmentSample</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>nctETMembershipPaymentPageControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>nctPaymentHubPageController</apexClass>
+        <apexClass>NctETMembershipPaymentPageControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
@@ -4201,8 +4197,16 @@
         <recordType>Contact.Clients</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Contact-Client Layout</layout>
+        <layout>Contact-Companion Layout</layout>
         <recordType>Contact.Companion</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Practitioner</layout>
+        <recordType>Contact.Practitioner</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Volunteer Layout</layout>
+        <recordType>Contact.Volunteer</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Course__c-Course Layout</layout>
@@ -5068,10 +5072,6 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>SubscribeToLightningReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>TransactionalEmailSend</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

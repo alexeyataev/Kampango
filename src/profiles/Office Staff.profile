@@ -7,7 +7,7 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>NCT_Courses_Classic</application>
-        <default>true</default
+        <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
@@ -177,6 +177,7 @@
         <apexClass>DisplayDdScheduleController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<classAccesses>
         <apexClass>Emailin_class</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -321,22 +322,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VenueAddressGeo</apexClass>
+        <apexClass>AttachmentSample</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>attachmentsample</apexClass>
+        <apexClass>NctETMembershipPaymentPageControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>nctETMembershipPaymentPageControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>nctPaymentHubPageController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <custom>true</custom>
+        <custom>true</custom>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Access_Code__c</field>
@@ -1114,7 +1107,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Venue_Address__c</field
+        <field>Booking__c.Venue_Address__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2452,6 +2445,7 @@
         <field>Direct_Debits__c.ContactKey__c</field>
         <readable>false</readable>
     </fieldPermissions>
+	<fieldPermissions>
         <editable>false</editable>
         <field>Direct_Debits__c.DirectDebit_Key__c</field>
         <readable>false</readable>
@@ -4057,8 +4051,16 @@
         <recordType>Contact.Clients</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Contact-Client Layout</layout>
+        <layout>Contact-Companion Layout</layout>
         <recordType>Contact.Companion</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Practitioner</layout>
+        <recordType>Contact.Practitioner</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Volunteer Layout</layout>
+        <recordType>Contact.Volunteer</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Course__c-Course Layout</layout>

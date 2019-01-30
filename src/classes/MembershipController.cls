@@ -1,4 +1,4 @@
-public class MembershipController {
+public with sharing class MembershipController {
 
     public String getMembership() {
         return null;

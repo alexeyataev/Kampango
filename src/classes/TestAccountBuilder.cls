@@ -33,7 +33,7 @@ public class TestAccountBuilder {
     	return this;
     }
     
-    public Account Build(){
+    public Account build(){
     	
     	Account testAccount = new Account(RecordTypeId = this.recordTypeId,
     							Name = this.name,

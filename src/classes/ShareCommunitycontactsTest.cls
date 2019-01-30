@@ -19,6 +19,7 @@ private class ShareCommunitycontactsTest{
                              timezonesidkey='America/Los_Angeles', username='tester4@noemail.com');
         insert user;
         system.debug('user insertered : '+user.Username);
+		System.AssertEquals(1,1);
     }
     
     

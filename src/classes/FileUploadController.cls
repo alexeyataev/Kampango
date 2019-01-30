@@ -2,11 +2,12 @@
 
 public with sharing class FileUploadController {
  
-  public Document document {
+  public Document document{
     get {
-      if (document == null)
-        document = new Document();
-      return document;
+      if (document == null){
+        document = new document();
+	  }
+      return Document;
     }
     set;
   }

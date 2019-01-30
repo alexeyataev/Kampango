@@ -40,10 +40,6 @@
                 <behavior>Edit</behavior>
                 <field>gaid__Date_Made__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Method__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
