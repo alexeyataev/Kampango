@@ -285,7 +285,7 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
                  <value>
                     <fullName>>Paper Form</fullName>
                     <default>false</default>
-                    <label>>Paper Form</label>
+                    <label>Paper Form</label>
                 </value>
                  <value>
                     <fullName>Phone</fullName>
