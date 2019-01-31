@@ -92,10 +92,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>HomePhone</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>MobilePhone</field>
             </layoutItems>
             <layoutItems>
@@ -194,7 +190,7 @@
             <actionName>Edit</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>0</sortOrder>
-        </platformActionListItems>          
+        </platformActionListItems>
         <platformActionListItems>
             <actionName>Add_To_Membership</actionName>
             <actionType>CustomButton</actionType>
@@ -214,7 +210,7 @@
             <actionName>LoginToPortalAsUser</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>7</sortOrder>
-        </platformActionListItems>     
+        </platformActionListItems>
     </platformActionList>
     <quickActionList>
         <quickActionListItems>

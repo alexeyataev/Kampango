@@ -88,10 +88,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>HomePhone</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>MobilePhone</field>
             </layoutItems>
             <layoutItems>
@@ -218,7 +214,7 @@
         </platformActionListItems>
        <platformActionListItems>
             <actionName>SmsHighlightAction</actionName>
-            <actionType>ProductivityAction</actionType>   
+            <actionType>ProductivityAction</actionType>
             <sortOrder>6</sortOrder>
         </platformActionListItems>
      <platformActionListItems>
