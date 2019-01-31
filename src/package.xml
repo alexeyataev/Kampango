@@ -30,10 +30,10 @@
         <members>Booking__c</members>
         <members>Branch_PSA_Office__c</members>        
         <members>Case</members>
+		<members>cpm__Payment_Profile__c</members>
         <members>Contact</members>
 		<members>CampaignMember</members>
         <members>Course__c</members>
-		<members>cpm__Payment_Profile__c</members>
         <members>Direct_Debits__c</members>
 		<members>Event__c</members>
 		<members>Event_Expense__c</members>
