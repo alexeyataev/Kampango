@@ -371,39 +371,39 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>1 year standard - Individual</fullName>
+                    <fullName>12 month membership - Individual</fullName>
                     <default>false</default>
-                    <label>1 year standard - Individual</label>
+                    <label>12 month membership - Individual</label>
                 </value>
                 <value>
-                    <fullName>1 year standard - Joint</fullName>
+                    <fullName>12 month membership - Joint</fullName>
                     <default>false</default>
-                    <label>1 year standard - Joint</label>
+                    <label>12 month membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>18 month - Individual</fullName>
+                    <fullName>18 month membership - Individual</fullName>
                     <default>false</default>
-                    <label>18 month - Individual</label>
+                    <label>18 month membership - Individual</label>
                 </value>
                 <value>
-                    <fullName>18 month - Joint</fullName>
+                    <fullName>18 month membership - Joint</fullName>
                     <default>false</default>
-                    <label>18 month - Joint</label>
+                    <label>18 month membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>4 year - Individual</fullName>
+                    <fullName>4 year membership - Individual</fullName>
                     <default>false</default>
-                    <label>4 year - Individual</label>
+                    <label>4 year membership - Individual</label>
                 </value>
                 <value>
-                    <fullName>4 year - Joint</fullName>
+                    <fullName>4 year membership - Joint</fullName>
                     <default>false</default>
-                    <label>4 year - Joint</label>
+                    <label>4 year membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>Life</fullName>
+                    <fullName>Life Membership</fullName>
                     <default>false</default>
-                    <label>Life</label>
+                    <label>Life Membership</label>
                 </value>
                 <value>
                     <fullName>Life Joint Membership</fullName>
@@ -411,14 +411,14 @@
                     <label>Life Joint Membership</label>
                 </value>
                 <value>
-                    <fullName>Reduced rate 1 year - Ind</fullName>
+                    <fullName>Reduced 12 month membership - Ind</fullName>
                     <default>false</default>
-                    <label>Reduced rate 1 year - Ind</label>
+                    <label>Reduced 12 month membership - Ind</label>
                 </value>
                 <value>
-                    <fullName>Reduced rate 1 year - Joint</fullName>
+                    <fullName>Reduced 12 month membership - Joint</fullName>
                     <default>false</default>
-                    <label>Reduced rate 1 year - Joint</label>
+                    <label>Reduced 12 month membership - Joint</label>
                 </value>
                 <value>
                     <fullName>Staff Membership - Individual</fullName>
@@ -431,24 +431,24 @@
                     <label>Staff Membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>Ten Year - Individual</fullName>
+                    <fullName>10 Year membership - Individual</fullName>
                     <default>false</default>
-                    <label>Ten Year - Individual</label>
+                    <label>10 Year membership - Individual</label>
                 </value>
                 <value>
-                    <fullName>Ten Year - Joint</fullName>
+                    <fullName>10 Year membership - Joint</fullName>
                     <default>false</default>
-                    <label>Ten Year - Joint</label>
+                    <label>10 Year membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>1 year volunteer/practitioner - Ind</fullName>
+                    <fullName>12 month membership volunteer/practitioner - Ind</fullName>
                     <default>false</default>
-                    <label>1 year volunteer/practitioner - Ind</label>
+                    <label>12 month membership volunteer/practitioner - Ind</label>
                 </value>
                 <value>
-                    <fullName>1 year volunteer/practitioner - Jnt</fullName>
+                    <fullName>12 month membership volunteer/practitioner - Jnt</fullName>
                     <default>false</default>
-                    <label>1 year volunteer/practitioner - Jnt</label>
+                    <label>12 month membership volunteer/practitioner - Jnt</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
