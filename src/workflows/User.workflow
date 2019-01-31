@@ -11,7 +11,7 @@
             <recipient>ujwal.theja@csscorp.com</recipient>
             <type>user</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>unfiled$public/Parent_Welcome_Email</template>
     </alerts>
     <rules>

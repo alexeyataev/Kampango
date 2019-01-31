@@ -16,7 +16,7 @@
             <recipient>swathi.kota@csscorp.com</recipient>
             <type>user</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>NCT_Templates/Case_Transfer_of_Courses</template>
     </alerts>
     <alerts>
