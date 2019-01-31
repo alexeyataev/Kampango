@@ -283,7 +283,7 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
                     <label>Email</label>
                 </value>
                  <value>
-                    <fullName>>Paper Form</fullName>
+                    <fullName>Paper Form</fullName>
                     <default>false</default>
                     <label>Paper Form</label>
                 </value>
