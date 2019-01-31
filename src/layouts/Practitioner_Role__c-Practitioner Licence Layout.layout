@@ -27,7 +27,7 @@
                 <field>Role_Name__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Is_Active__c</field>
             </layoutItems>
             <layoutItems>
