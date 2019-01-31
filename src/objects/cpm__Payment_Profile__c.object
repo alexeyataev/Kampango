@@ -277,6 +277,21 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
                     <default>false</default>
                     <label>None</label>
                 </value>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+                 <value>
+                    <fullName>Paper Form</fullName>
+                    <default>false</default>
+                    <label>Paper Form</label>
+                </value>
+                 <value>
+                    <fullName>Phone</fullName>
+                    <default>false</default>
+                    <label>Phone</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
