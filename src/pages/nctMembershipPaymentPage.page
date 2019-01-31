@@ -1127,6 +1127,8 @@
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/pca.js')}"/>
     <script>
         $(document).ready(function () {
+
+             dateFieldvalid = true;
             /*
             $('#scd1').keypress(function(e) {
                 var scd1Value = $('#scd1').val();
@@ -1235,7 +1237,7 @@
                     //console.log(existContact);//&& existContact =='false'
 
                     //SelBranchValFunction($(selBnchvalue).val());
-                    if(validateJoin() ){//&& validateGender()
+                    if(validateJoin() && dateFieldvalid ){//&& validateGender()
                     afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text());
                     //var gender = $('input[name=gender]':checked).val();
                     //console.log(gender);
@@ -1621,7 +1623,7 @@
                     error="";
                     console.log("123");
 
-                    // validate the Due date
+                   /* // validate the Due date
                         if(!validDate()){
                             error = error + "Please Enter Due Date .\n" + "<br>";
                              $('#due-Date').css({"border":"1px solid red", "background-color":"rgba(255, 0, 0, 0.25)"});
@@ -1640,6 +1642,7 @@
                          	}
                     	}
             		// validate the duedate
+                    */
 
                     if($('#selectTitle').val() == "") {
                         error = error +  "Please select your title.\n" + "<br>";
@@ -1928,6 +1931,47 @@
                       }
              }
           });
+
+           // date validation start
+            
+            $("#due-Date").blur(function(e){
+                
+            	 	date = e.target.value;
+                    if(date == "" || date == undefined){
+                        $('#MembershipalertModal').modal();
+                        $('.modal-body').html('<div>' + "Please Enter Valid Date"+ '</div>');
+                        $('#due-Date').addClass('error');
+                         dateFieldvalid = false;
+                        
+                     }else{
+                            var  currentDate = new Date();
+                            var  currentYear = currentDate.getFullYear();
+                            var  userDate = new Date(date);
+                            var  year = userDate.getFullYear();
+                            var  yearLength = year.toString().length;
+                            if(yearLength == 4 && (currentDate.getTime() < userDate.getTime()) ){
+                                console.log("success");
+                                dateFieldvalid = true;
+                               
+                            }else{
+                                $('#MembershipalertModal').modal();
+                                $('.modal-body').html('<div>' + "Date Must be Greater than currentDate" + '</div>');
+                                $('#due-Date').addClass('error');
+                                 dateFieldvalid = false;
+                            }
+                	}
+                
+            });
+            
+            $("#nameSubmit").click(function(){
+                 if ( dateFieldvalid == false ) {
+                    $('#MembershipalertModal').modal();
+                    $('.modal-body').html('<div>' + "Please Enter Valid Date"+ '</div>');
+                    $('#due-Date').css({"border":"1px solid red", "background-color":"rgba(255, 0, 0, 0.25)"});
+                } 
+            });
+            
+            //date validation ends here
         });
       </script>
 </body>
