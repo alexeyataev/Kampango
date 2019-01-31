@@ -273,19 +273,9 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Email</fullName>
+                    <fullName>None</fullName>
                     <default>false</default>
-                    <label>Email</label>
-                </value>
-                <value>
-                    <fullName>Phone</fullName>
-                    <default>false</default>
-                    <label>Phone</label>
-                </value>
-                <value>
-                    <fullName>Paper Form</fullName>
-                    <default>false</default>
-                    <label>Paper Form</label>
+                    <label>None</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -844,15 +834,7 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <picklistValues>
             <picklist>Source__c</picklist>
             <values>
-                <fullName>Email</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Paper Form</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1066,15 +1048,7 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <picklistValues>
             <picklist>Source__c</picklist>
             <values>
-                <fullName>Email</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Paper Form</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1288,15 +1262,7 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <picklistValues>
             <picklist>Source__c</picklist>
             <values>
-                <fullName>Email</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Paper Form</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1509,15 +1475,7 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <picklistValues>
             <picklist>Source__c</picklist>
             <values>
-                <fullName>Email</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Paper Form</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Phone</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
