@@ -68,7 +68,7 @@
     </values>
     <values>
         <field>Target_Customer__c</field>
-        <value xsi:type="xsd:string">Parent</value>
+        <value xsi:type="xsd:string">Volunteer/Practitioner</value>
     </values>
     <values>
         <field>Total_Amount__c</field>
