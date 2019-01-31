@@ -33,6 +33,7 @@
         <members>Contact</members>
 		<members>CampaignMember</members>
         <members>Course__c</members>
+		<members>cpm__Payment_Profile__c</members>
         <members>Direct_Debits__c</members>
 		<members>Event__c</members>
 		<members>Event_Expense__c</members>
