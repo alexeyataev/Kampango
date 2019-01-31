@@ -27,7 +27,7 @@
                     <div style="padding-top:20px;">
                         <div class="">
                           <div class="user_info" style="padding:0px  10px;">
-                                <h2>Dear {!npe03__Recurring_Donation__c.First_Contact__c} ,</h2>
+                                <h2>Hi {!npe03__Recurring_Donation__c.First_Contact__c} ,</h2>
 
 
 

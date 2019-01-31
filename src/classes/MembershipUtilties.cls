@@ -144,6 +144,20 @@ public without sharing class MembershipUtilties {
         return false;
     }
 
+    /**
+    *  This Method returns the Date value for the Next Donation Date 
+    *  @todaysDate : This value should be the todays Date
+    *  Story: W-001355
+    */
+    public static Date getNextDonationDate(Date todaysDate){
+        if (todaysDate.addDays(10) < Date.newInstance(todaysDate.year(), todaysDate.month()+1, 03)){
+                return Date.newInstance(todaysDate.year(), todaysDate.month()+1, 03);
+            }else{
+                return Date.newInstance(todaysDate.year(), todaysDate.month()+2, 03);
+            }
+    }
+
+    
     public static Map<String,Decimal> getGeoCodes(String postCode){
         Map<String,Decimal> geoCodes;
         
@@ -194,9 +208,13 @@ public without sharing class MembershipUtilties {
             
     }
 
-    public static Map<String, List<sObject>> getBranches(String postcode){
-
-        
+    /**
+    *  This method displays the nearest branches and all branches in alphabetical order.
+    *  @postcode : This is the postcode value.
+    *  and returns the list of nearest branches and also list of all branches in alphabetical order.
+    *  @MahanthG developed on 31/12/18 
+    */
+    public static Map<String, List<sObject>> getBranches(String postcode){ 
 
         Map<String,Decimal> geoCodes = getGeoCodes(postcode);
 
