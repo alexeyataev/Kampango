@@ -7,7 +7,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>GW_Volunteers__Volunteers_Email_Templates/GW_Volunteers__Volunteer_Signup_Notification</template>
     </alerts>
     <alerts>
@@ -33,7 +33,7 @@
             <recipient>swathi.kota@csscorp.com</recipient>
             <type>user</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>GW_Volunteers__Volunteers_Email_Templates/Volunteer_de_register</template>
     </alerts>
     <fieldUpdates>
