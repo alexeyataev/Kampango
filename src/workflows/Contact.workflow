@@ -18,7 +18,7 @@
             <field>Email</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>GW_Volunteers__Volunteers_Email_Templates/GW_Volunteers__Volunteer_Signup_Thank_You</template>
     </alerts>
     <alerts>
@@ -84,32 +84,32 @@
     <fieldUpdates>
         <fullName>npe01__ContactPreferredEmail</fullName>
         <field>Email</field>
-        <formula>CASE( 
-npe01__Preferred_Email__c , 
+        <formula>CASE(
+npe01__Preferred_Email__c ,
 
-&quot;Work&quot;, 
-if(len(npe01__WorkEmail__c)&gt;0, npe01__WorkEmail__c, 
-if(len(npe01__HomeEmail__c)&gt;0, npe01__HomeEmail__c, 
-npe01__AlternateEmail__c)), 
+&quot;Work&quot;,
+if(len(npe01__WorkEmail__c)&gt;0, npe01__WorkEmail__c,
+if(len(npe01__HomeEmail__c)&gt;0, npe01__HomeEmail__c,
+npe01__AlternateEmail__c)),
 
-&quot;Personal&quot;, 
-if(len(npe01__HomeEmail__c)&gt;0, npe01__HomeEmail__c, 
-if(len(npe01__WorkEmail__c)&gt;0, npe01__WorkEmail__c, 
-npe01__AlternateEmail__c)), 
+&quot;Personal&quot;,
+if(len(npe01__HomeEmail__c)&gt;0, npe01__HomeEmail__c,
+if(len(npe01__WorkEmail__c)&gt;0, npe01__WorkEmail__c,
+npe01__AlternateEmail__c)),
 
-&quot;Home&quot;, 
-if(len(npe01__HomeEmail__c)&gt;0, npe01__HomeEmail__c, 
-if(len(npe01__WorkEmail__c)&gt;0, npe01__WorkEmail__c, 
-npe01__AlternateEmail__c)), 
+&quot;Home&quot;,
+if(len(npe01__HomeEmail__c)&gt;0, npe01__HomeEmail__c,
+if(len(npe01__WorkEmail__c)&gt;0, npe01__WorkEmail__c,
+npe01__AlternateEmail__c)),
 
-&quot;Alternate&quot;, 
-if(len(npe01__AlternateEmail__c)&gt;0, npe01__AlternateEmail__c, 
-if(len(npe01__WorkEmail__c)&gt;0, npe01__WorkEmail__c, 
-npe01__HomeEmail__c)), 
+&quot;Alternate&quot;,
+if(len(npe01__AlternateEmail__c)&gt;0, npe01__AlternateEmail__c,
+if(len(npe01__WorkEmail__c)&gt;0, npe01__WorkEmail__c,
+npe01__HomeEmail__c)),
 
-If(LEN(npe01__WorkEmail__c)&gt;0 , npe01__WorkEmail__c , 
-if(LEN( npe01__HomeEmail__c)&gt;0, npe01__HomeEmail__c, 
-npe01__AlternateEmail__c 
+If(LEN(npe01__WorkEmail__c)&gt;0 , npe01__WorkEmail__c ,
+if(LEN( npe01__HomeEmail__c)&gt;0, npe01__HomeEmail__c,
+npe01__AlternateEmail__c
 )))</formula>
         <name>Contact.PreferredEmail</name>
         <notifyAssignee>false</notifyAssignee>
@@ -198,24 +198,24 @@ OtherPhone
         <fullName>npo02__ContactPreferredPhone_WithHousehold</fullName>
         <description>FOR USE WITH HOUSEHOLDS. Populates the standard Phone field displayed on activities based on the Preferred Phone field value.</description>
         <field>Phone</field>
-        <formula>CASE( 
-npe01__PreferredPhone__c , 
-&quot;Work&quot;, 
-npe01__WorkPhone__c , 
+        <formula>CASE(
+npe01__PreferredPhone__c ,
+&quot;Work&quot;,
+npe01__WorkPhone__c ,
 &quot;Household&quot;,
  npo02__Formula_HouseholdPhone__c ,
-&quot;Home&quot;, 
-HomePhone, 
+&quot;Home&quot;,
+HomePhone,
 &quot;Personal&quot;,
 HomePhone,
-&quot;Mobile&quot;, 
-MobilePhone, 
-&quot;Other&quot;, 
-OtherPhone, 
-If(LEN( npe01__WorkPhone__c )&gt;0 , npe01__WorkPhone__c , 
-if(LEN( HomePhone)&gt;0, HomePhone, 
-if(LEN( MobilePhone)&gt;0, MobilePhone, 
-OtherPhone 
+&quot;Mobile&quot;,
+MobilePhone,
+&quot;Other&quot;,
+OtherPhone,
+If(LEN( npe01__WorkPhone__c )&gt;0 , npe01__WorkPhone__c ,
+if(LEN( HomePhone)&gt;0, HomePhone,
+if(LEN( MobilePhone)&gt;0, MobilePhone,
+OtherPhone
 ))))</formula>
         <name>Contact.PreferredPhone_WithHousehold</name>
         <notifyAssignee>false</notifyAssignee>

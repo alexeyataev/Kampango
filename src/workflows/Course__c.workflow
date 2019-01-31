@@ -8,7 +8,7 @@
             <recipient>anjineyulu.valasa@csscorp.com</recipient>
             <type>user</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>NCT_Templates/Course_Created</template>
     </alerts>
     <alerts>

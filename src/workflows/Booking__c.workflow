@@ -8,7 +8,7 @@
             <field>First_Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>NCT_Templates/Booking_Status_is_Paid_or_Installment</template>
     </alerts>
 </Workflow>

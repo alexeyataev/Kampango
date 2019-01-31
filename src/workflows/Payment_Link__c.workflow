@@ -8,7 +8,7 @@
             <field>Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>NCT_Templates/ETPaymentLinkExpiryTemplate</template>
     </alerts>
     <rules>
