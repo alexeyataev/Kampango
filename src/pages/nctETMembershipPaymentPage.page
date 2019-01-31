@@ -1193,41 +1193,6 @@
                 $("#postcode_checker").click(function () {
                     console.log($('#postcode').val());
                     postCodeVal($('#postcode').val(),$('#textEmail').val());
-                    var branchValues = [];
-                    if($('#postcode').val().length == 0){
-                        //alert("Please enter post code");
-                      $('#MembershipalertModal').modal();
-                      $('.modal-body').html('<div>' + "Please enter a postcode." + '</div>');
-                      $('#postcode').addClass('error');
-                      return false;
-                    }
-                    if($('#postcode').val().length <= 4){
-                        //alert("Post code should be min 5 digits");
-                      $('#MembershipalertModal').modal();
-                      $('.modal-body').html('<div>' + "Post code should be min 5 digits." + '</div>');
-                      $('#postcode').addClass('error');
-                      return false;
-                    }
-                    else {
-                    	setTimeout(function(){
-                            $('#selectBranch').children().each(function(){
-                                branchValues.push($(this).text());
-                            });
-                            console.log(branchValues, 'branchValues');
-                            if(branchValues.indexOf('All NearestBranches') > -1){
-                               $('#postcode').removeClass('error');
-                               return true;
-                            }
-                            else {
-                                //alert("Please enter a valid postcode");
-                                $('#MembershipalertModal').modal();
-                                $('.modal-body').html('<div>' + "Please enter a valid postcode." + '</div>');
-                                $('#postcode').addClass('error');
-                               return false;
-                            }
-                        }, 1000);
-                    }
-                    
                 })
                 $("#nameSubmit").click(function () {
                      setInterval(function(){
@@ -1714,7 +1679,21 @@
                         //return false;
                     }
                     */
-
+                    var postecodeValue = $('#postcode').val();
+                    if($('#postcode').val().length < 1){
+                        $('#postcode').addClass('error');
+                        error = error + "Please enter a post code.\n" + "<br>";
+                    }
+                    else {
+                        if($('#postcode').val().length <=4){
+                            error = error + "Postcode should be min 5 characters.\n" + "<br>";
+                            $('#postcode').addClass('error');
+                        }
+                        else {
+                            $('#postcode').removeClass('error');  
+                        }
+                    }
+				
             		// validBranch();
 
 
