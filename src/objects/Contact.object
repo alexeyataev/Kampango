@@ -5939,6 +5939,21 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+        <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>GW_Volunteers__Volunteer_Availability__c</picklist>
             <values>
                 <fullName>Afternoon</fullName>
@@ -6197,6 +6212,21 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
             <values>
                 <fullName>Telephone</fullName>
                 <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+        <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -6460,6 +6490,21 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+        <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>GW_Volunteers__Volunteer_Availability__c</picklist>
             <values>
                 <fullName>Afternoon</fullName>
@@ -6696,6 +6741,344 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
         </picklistValues>
     </recordTypes>
     <recordTypes>
+    <fullName>Staff</fullName>
+        <active>true</active>
+        <description>All staff records should be created in this record type</description>
+        <label>Staff</label>
+        <picklistValues>
+            <picklist>Contact_Prefrence__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Post</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS Text</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>GW_Volunteers__Volunteer_Availability__c</picklist>
+            <values>
+                <fullName>Afternoon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Morning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekdays</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekends</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>GW_Volunteers__Volunteer_Skills__c</picklist>
+            <values>
+                <fullName>Computer usage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fundraising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landscaping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manual labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>GW_Volunteers__Volunteer_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Sign Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospective</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone Inquiry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Purchased List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miss%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Source__c</picklist>
+            <values>
+                <fullName>Default Appr</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enquiry pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enquiry pack GENERIC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Knowledge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz Class Bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Memb vith ant classes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Memb%2E form in branch Newslette</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Membership General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Membership by phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Membership Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pregnancy and Baby Email Signup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SS%28Stepping Stones%29 - online request form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Volunteer Registration System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website signup purple box</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>npe01__PreferredPhone__c</picklist>
+            <values>
+                <fullName>Home</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>npe01__Preferred_Email__c</picklist>
+            <values>
+                <fullName>Alternate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Personal</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Work</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>npe01__Primary_Address_Type__c</picklist>
+            <values>
+                <fullName>Home</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>npe01__Secondary_Address_Type__c</picklist>
+            <values>
+                <fullName>Home</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>npe01__SystemAccountProcessor__c</picklist>
+            <values>
+                <fullName>Individual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One-to-One</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>npo02__Naming_Exclusions__c</picklist>
+            <values>
+                <fullName>Household%5F%5Fc%2EFormal_Greeting%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Household%5F%5Fc%2EInformal_Greeting%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Household%5F%5Fc%2EName</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>npo02__SystemHouseholdProcessor__c</picklist>
+            <values>
+                <fullName>All Individual Contacts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All New or Edited Contacts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Contacts</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
         <fullName>Volunteer</fullName>
         <active>true</active>
         <description>Volunteer assigned to branches</description>
@@ -6717,6 +7100,21 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
             <values>
                 <fullName>Telephone</fullName>
                 <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+        <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>

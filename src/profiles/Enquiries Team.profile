@@ -4205,6 +4205,10 @@
         <recordType>Contact.Practitioner</recordType>
     </layoutAssignments>
     <layoutAssignments>
+    <layout>Contact-Staff Layout</layout>
+        <recordType>Contact.Staff</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Contact-Volunteer Layout</layout>
         <recordType>Contact.Volunteer</recordType>
     </layoutAssignments>
