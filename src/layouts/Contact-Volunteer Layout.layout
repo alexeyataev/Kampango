@@ -111,10 +111,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>HomePhone</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>MobilePhone</field>
             </layoutItems>
             <layoutItems>
