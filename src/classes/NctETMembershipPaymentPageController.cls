@@ -61,7 +61,7 @@ public class NctETMembershipPaymentPageController
     public String accountNumber {get; set;}
     public string displayValue {get;set;}
     public string counter  {get;set;}
-    public string SelValues {get;set;}
+    public string selValues {get;set;}
     public Membership_Type__mdt membershipInfo {get;set;}
     public npe03__Recurring_Donation__c reccDon {get;set;}
     public Map<String, List<Membership_Type__mdt>> membershipTypeMap{get;set;}
@@ -371,7 +371,7 @@ public class NctETMembershipPaymentPageController
         contactDetails.add(lastname);
         //contactDetails.add(redirectURL);
         contactDetails.sort();
-        
+       
         redirectURL = PaymentHubCalloutUtilities.PaymentHub(newCont,membershipInfo,contactDetails, recDon);
         sessionProfile = userinfo.getUserType();
         if(sessionProfile == 'Standard'){
