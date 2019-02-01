@@ -9,8 +9,8 @@ global with sharing class DirectPaymentLinkSendToParent
         recurringDonation = [select Id, npe03__Amount__c,First_Contact__r.Email, First_Contact__r.Prefered_First_Name__c,
                              First_Contact__r.LastName from npe03__Recurring_Donation__c where First_Contact__c =: contId limit 1];
         
-        PaymentHubCalloutUtilities paymentHubCallout = new PaymentHubCalloutUtilities();
-        redirectURL = paymentHubCallout.PaymentHub(null,null,null, recurringDonation);
+        
+        redirectURL = PaymentHubCalloutUtilities.PaymentHub(null,null,null, recurringDonation);
         sendPaymentLinkToParent(redirectURL);
      }
 
