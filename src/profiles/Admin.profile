@@ -4281,18 +4281,6 @@
         <apexPage>InMaintenance</apexPage>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>NPSP_Home</apexPage>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Pagination</apexPage>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>ParentCommunityHomePage</apexPage>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>ParentCommunitySelfReg</apexPage>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>PaymentLinkProcessor</apexPage>
     </pageAccesses>
     <pageAccesses>
