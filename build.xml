@@ -139,7 +139,6 @@
        <formatter type="xml" toFile="pmd.xml"/>
             <fileset dir="src/"> 
             <include name="**/*.*"/> 
-			<exclude name="**/Course*.*"/>
         </fileset> 
     </pmd> 
 	
