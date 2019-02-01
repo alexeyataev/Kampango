@@ -1,8 +1,0 @@
-<apex:page standardController="Case">
-    <script>
-    	var Decheck = "{!Case.Volunteer_de_registration__c}";
-    	if(Decheck){
-    		alert('You want to Deregister the Contact');
-        }
-    </script>
-</apex:page>

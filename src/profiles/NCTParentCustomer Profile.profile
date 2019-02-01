@@ -3984,65 +3984,6 @@
         <apexPage>CommunitiesLogin</apexPage>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>CourseBookingDraft</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseBookingLocationMap</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseBookingSearch</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseBooking_Upcoming_Courses</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseCaseEnquiry</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseEnquiry</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseLocationMap</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseLocationMapDraft</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseSearch</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseSearchEnqire</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CourseVenueInRadiuslist</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CreateTicket</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CustomerCommunityHomePage</apexPage>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>EmailAttendies</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>ExVF</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>Exception</apexPage>
     </pageAccesses>
     <pageAccesses>
@@ -4060,20 +4001,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>InMaintenance</apexPage>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>NPSP_Home</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Pagination</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>ParentCommunityHomePage</apexPage>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>ParentCommunitySelfReg</apexPage>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PaymentLinkProcessor</apexPage>
