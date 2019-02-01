@@ -1910,11 +1910,6 @@
             $('#expand-btn').slideToggle( "slow", function() {
             });
         });
-        $( ".all-costs-text" ).hide();
-        $( ".see-all-costs" ).click(function() {
-            $( ".all-costs-text" ).slideToggle( "slow", function() {
-            });
-        });
     })
     </script>
       <script>
