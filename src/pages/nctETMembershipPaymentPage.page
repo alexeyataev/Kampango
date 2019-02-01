@@ -5,7 +5,7 @@
    </apex:actionFunction>
     <apex:actionFunction name="thankYouPage" action="{!thankYouSec}" reRender="membershipNumber,membershipText">
    </apex:actionFunction>
-   <apex:actionFunction name="postCodeVal" action="{!nctBranchs}" reRender="branch_Picklist">
+   <apex:actionFunction name="postCodeVal" action="{!nctBranchs}" reRender="branch_Picklist,isMembershipExists">
         <apex:param id="postVal" name="postVal" value="" />
        <apex:param id="emailsVal" name="emailsVal" value=""/>
    </apex:actionFunction>
@@ -315,6 +315,10 @@
                 	padding-left:0;
                 }
             }
+	    .acquition{width:50%}
+	    .membershipsource select , .acquition select{
+		width:100%;
+	    }
              #MembershipalertModal .modal-header ,#MembershipalertModal .modal-footer {
 				border:none;
 			}
@@ -498,6 +502,19 @@
                                                         <button type="button" class="green-button nomargin form-fields" id="postcode_checker">Find  address</button>
                                                     </div>
                                                 </div>
+                                                <span class="memberexist" style="opacity:0">
+                                                	<apex:input value="{!isMembershipExists}" id="isMembershipExists"/>
+                                                 </span>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-12">
+                                                        <div><label><sup class="light-orange-color">*</sup>Source</label></div>
+                                                            <span style="text-color:white;width:100%;" class="form-fields membership-fields gender-title-select membershipsource custom_select">
+                                                              <apex:selectList id="membershipSource" value="{!membershipSource}" multiselect="false" size="1">
+                                                                <apex:selectOptions value="{!membershipSourceOptions}" />
+                                                                
+                                                          </apex:selectList></span>
+                                                    </div>
+                                                </div>  
                                             </div>
 
                                             <!-- Membership person  details end here-->
@@ -636,7 +653,7 @@
                                                   Please wait <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
                                                 </span>
                                                 <span id="membershiptype" style="width:1px;height:1px;display:none;">{!membershipTypeMap}</span>
-                                                <select name="selectMembership" id="selectMembership" class="form-fields membership-fields">
+                                                <select style="margin-bottom:0;" name="selectMembership" id="selectMembership" class="form-fields membership-fields">
                                                     <option value=""></option>
                                                     <option SELECTED="true" value="">Please select</option>
                                                     <apex:repeat value="{!membershipTypeMap}" var="typeKey">
@@ -647,11 +664,9 @@
                                                     </apex:repeat>
                                                 </select>
                                                 </apex:outputPanel>
-                                                <br/>
-                                                        <div id="reduced" style="display:none">
-                                                                <strong>You are eligible for this if you receive Employment Support Allowance or tax credits (excluding child tax credits alone).</strong>
-                                                        </div>
-                                                <br />
+                                                <div id="reduced" style="display:none">
+                                                    <strong>You are eligible for this if you receive Employment Support Allowance or tax credits (excluding child tax credits alone).</strong>
+                                                </div>
                                                 </p>
                                             </div>
                                             <div class="pure-control-group" id="giftaid" style="clear:both;">
@@ -904,11 +919,15 @@
                                                     </p>
 													<div class="col-12">
                                                        <label class="font-bold">Gift Aid Acquistion Method: </label>
-                                                       <select class="gift-aid-select-box">
+<span class="gift-aid-select-box form-fields membership-fields gender-title-select acquition">
+                                                           <apex:selectList id="acquistion" value="{!acquistion}" multiselect="false" size="1">
+                                                           <apex:selectOptions value="{!acquistionOptions}" />
+                                                       </apex:selectList></span>
+                                                      <!-- <select class="gift-aid-select-box">
                                                            <option>Verbal</option>
                                                            <option>Written</option>
                                                            <option>Digital</option>
-                                                       </select>
+                                                       </select> -->
                                                     </div>
                                                     <div class="col-12 radio-fields-col paddingbot20px membership_check">
                                                         <p>
@@ -1065,7 +1084,7 @@
                                             <h2 class="paddingtop20px">Congratulations,</h2>
                                             <p><strong><span id="forename_Dsp"> </span></strong></p>
                                             <p><apex:outputText Id="membershipWelcomText" value="Welcome to our family..." rendered="{!displayMbrNoMessage}"/></p>
-                                            <p> <apex:outputText Id="membershipDisplayText" value="Successfully send the Payment link to the Parent !!!" rendered="{!displaySuccessMessage}"/><BR/><BR/>
+                                            <p> <apex:outputText Id="membershipDisplayText" value="Successfully send the Payment link to the Parent !!!" rendered="{!displaySuccessMessage}"/>
                                                 <apex:outputText Id="membershipText" value="Your Membership Number is" rendered="{!displayMbrNoMessage}"/>&nbsp;
                                                            <span id="membership-loader">
                                                                <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
@@ -1194,6 +1213,11 @@
                 $("#postcode_checker").click(function () {
                     console.log($('#postcode').val());
                     postCodeVal($('#postcode').val(),$('#textEmail').val());
+                var varible = $('.memberexist input').val();
+                    if(varible == "true" ){
+                      $('#MembershipalertModal').modal();
+                      $('.modal-body').html('<div>' + "Membership already Exists in the System with" +" "+ $('#textEmail').val()+'</div>');
+                    }
                 })
                 $("#nameSubmit").click(function () {
                      setInterval(function(){
@@ -1218,6 +1242,11 @@
                     var salutation = $('#salutation :selected').text();
 
                     var existContact = $('#hdn').val();
+var varible = $('.memberexist input').val();
+                    if(varible == "true" ){
+                      $('#MembershipalertModal').modal();
+                      $('.modal-body').html('<div>' + "Membership already Exists in the System with" +" "+ $('#textEmail').val()+'</div>');
+                    }
                     console.log(existContact);//&& existContact =='false'
                     //SelBranchValFunction($(selBnchvalue).val());
                     if(validateJoin() && dateFieldvalid) {
@@ -1920,11 +1949,6 @@
             $('.expand-collapse-elements, #collapse-btn').slideToggle( "slow", function() {
             });
             $('#expand-btn').slideToggle( "slow", function() {
-            });
-        });
-        $( ".all-costs-text" ).hide();
-        $( ".see-all-costs" ).click(function() {
-            $( ".all-costs-text" ).slideToggle( "slow", function() {
             });
         });
     })
