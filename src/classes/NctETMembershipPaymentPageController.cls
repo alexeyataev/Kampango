@@ -371,8 +371,8 @@ public class NctETMembershipPaymentPageController
         contactDetails.add(lastname);
         //contactDetails.add(redirectURL);
         contactDetails.sort();
-        PaymentHubCalloutUtilities paymentHubCallout = new PaymentHubCalloutUtilities();
-        redirectURL = paymentHubCallout.PaymentHub(newCont,membershipInfo,contactDetails, recDon);
+        
+        redirectURL = PaymentHubCalloutUtilities.PaymentHub(newCont,membershipInfo,contactDetails, recDon);
         sessionProfile = userinfo.getUserType();
         if(sessionProfile == 'Standard'){
             return sendPaymentLinkToParent(redirectURL);
