@@ -273,11 +273,6 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>None</fullName>
-                    <default>false</default>
-                    <label>None</label>
-                </value>
-                <value>
                     <fullName>Email</fullName>
                     <default>false</default>
                     <label>Email</label>
