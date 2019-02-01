@@ -62,7 +62,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>DirectpaymentlinksendtoParent</apexClass>
+        <apexClass>DirectPaymentLinkSendToParent</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
