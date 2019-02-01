@@ -135,11 +135,10 @@
 
     <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd.classpath" /> 
     
-    <pmd rulesetfiles="rulesets/apex/ruleset-PMD.xml" failOnRuleViolation="no"  noCache="yes" > 
-       <formatter type="xml" toFile="pmd.xml"/>
-            <fileset dir="src/"> 
+    <pmd rulesetfiles="rulesets/apex/ruleset.xml" failOnRuleViolation="no"  noCache="yes" > 
+        <formatter type="xml" toFile="pmd.xml"/>
+        <fileset dir="src/"> 
             <include name="**/*.*"/> 
-			<exclude name="**/Course*.*"/>
         </fileset> 
     </pmd> 
 	
