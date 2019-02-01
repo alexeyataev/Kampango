@@ -1437,15 +1437,21 @@ var varible = $('.memberexist input').val();
             $("#Pay_now").click(function (){
                 console.log($('#selectMembership :selected').val());
                 console.log($('#selectMembership :selected').text());
-                setInterval(function(){
-                	var membershipTypeText = $('#membershipSelection > span').text();
-                    if(membershipTypeText.includes('Individual 18 month membership')){
-                        $('.eighteen-months-membership').removeClass('hide');
-                    }
-                    else{
-                        $('.eighteen-months-membership').addClass('hide');
-                    }
-                },200);
+                if( $('#selectMembership :selected').text().includes('per quarter')){
+                	$('.eighteen-months-membership').removeClass('hide');
+               	}
+                else {
+                	$('.eighteen-months-membership').addClass('hide');
+                }
+                //setInterval(function(){
+                //var membershipTypeText = $('#membershipSelection > span').text();
+                // if(membershipTypeText.includes('Individual 18 month membership')){
+                //     $('.eighteen-months-membership').removeClass('hide');
+                // }
+                // else{
+                //     $('.eighteen-months-membership').addClass('hide');
+                //}
+                // },200);
                 if (($('#selectMembership :selected').val() == '' ||  $('#selectMembership :selected').val() == 'Please select')){
                     $('#selectMembership select').addClass('error-border');
                      //alert("Please select your membership type");
