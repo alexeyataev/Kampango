@@ -1289,7 +1289,7 @@
                     var sortCode1 = $('#scd1').val();
                     var sortCode2 = $('#scd2').val();
                     var sortCode3 = $('#scd3').val();
-                    var sortCode = sortCode1 + '-' + sortCode2 + '-' + sortCode3;
+                    var sortCode = sortCode1 + sortCode2 + sortCode3;
                     var accountNumber = $('#accountNumber').val();
                     var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
                     var acquistion = $('#acquistion :selected').val();
@@ -1539,7 +1539,7 @@
                     var sortCode1 = $('#scd1').val();
                     var sortCode2 = $('#scd2').val();
                     var sortCode3 = $('#scd3').val();
-                    var sortCode = sortCode1 + '-' + sortCode2 + '-' + sortCode3;
+                    var sortCode = sortCode1 + sortCode2 + sortCode3;
                     var accountNumber = $('#accountNumber').val();
                     var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
                     console.log(giftAidCheckbox);
