@@ -1066,9 +1066,18 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <picklistValues>
             <picklist>Source__c</picklist>
             <values>
-                <fullName>None</fullName>
+                <fullName>Email</fullName>
                 <default>false</default>
             </values>
+			<values>
+                <fullName>Paper Form</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+			
         </picklistValues>
         <picklistValues>
             <picklist>cpm__Expiration_Date__c</picklist>
@@ -1280,7 +1289,15 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <picklistValues>
             <picklist>Source__c</picklist>
             <values>
-                <fullName>None</fullName>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Paper Form</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Phone</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1493,7 +1510,15 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <picklistValues>
             <picklist>Source__c</picklist>
             <values>
-                <fullName>None</fullName>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Paper Form</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Phone</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
