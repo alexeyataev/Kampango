@@ -636,7 +636,7 @@
                                                   Please wait <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
                                                 </span>
                                                 <span id="membershiptype" style="width:1px;height:1px;display:none;">{!membershipTypeMap}</span>
-                                                <select name="selectMembership" id="selectMembership" class="form-fields membership-fields">
+                                                <select style="margin-bottom:0;" name="selectMembership" id="selectMembership" class="form-fields membership-fields">
                                                     <option value=""></option>
                                                     <option SELECTED="true" value="">Please select</option>
                                                     <apex:repeat value="{!membershipTypeMap}" var="typeKey">
@@ -647,11 +647,9 @@
                                                     </apex:repeat>
                                                 </select>
                                                 </apex:outputPanel>
-                                                <br/>
-                                                        <div id="reduced" style="display:none">
-                                                                <strong>You are eligible for this if you receive Employment Support Allowance or tax credits (excluding child tax credits alone).</strong>
-                                                        </div>
-                                                <br />
+                                                <div id="reduced" style="display:none">
+                                                    <strong>You are eligible for this if you receive Employment Support Allowance or tax credits (excluding child tax credits alone).</strong>
+                                                </div>
                                                 </p>
                                             </div>
                                             <div class="pure-control-group" id="giftaid" style="clear:both;">
@@ -1920,11 +1918,6 @@
             $('.expand-collapse-elements, #collapse-btn').slideToggle( "slow", function() {
             });
             $('#expand-btn').slideToggle( "slow", function() {
-            });
-        });
-        $( ".all-costs-text" ).hide();
-        $( ".see-all-costs" ).click(function() {
-            $( ".all-costs-text" ).slideToggle( "slow", function() {
             });
         });
     })
