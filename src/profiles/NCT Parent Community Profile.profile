@@ -4045,13 +4045,6 @@
         <apexPage>CommunitiesLogin</apexPage>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>CommunitiesSelfReg</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>CommunitiesSelfRegConfirm</apexPage>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>Exception</apexPage>
     </pageAccesses>
     <pageAccesses>
