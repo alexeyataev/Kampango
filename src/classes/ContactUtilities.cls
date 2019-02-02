@@ -130,7 +130,7 @@ public without sharing class ContactUtilities {
                                                         (
                                                                 npe03__Contact__c != null
                                                              AND
-                                                                npe03__Contact__r.Email = :email
+                                                                (npe03__Contact__r.Email = :email AND npe03__Contact__r.Email != NULL AND npe03__Contact__r.Email != '')
                                                         )                      
                                                        ];
         if(recDonList.size()>0){
