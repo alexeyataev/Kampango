@@ -1,4 +1,4 @@
-<apex:page applyHtmlTag="true" docType="html-5.0" controller="NctMembershipPaymentPageController" showHeader="false" sidebar="false">
+<apex:page applyHtmlTag="true" docType="html-5.0" controller="NctETMembershipPaymentPageController" showHeader="false" sidebar="false">
 <apex:pageMessages id="error-message"/>
 <!--<apex:outputPanel id="hiddenContact">
     <input type="hidden" id="hdn" value="{!isContactExisting}" />

@@ -268,7 +268,7 @@ public class NctETMembershipPaymentPageController
         return null;
         
     }
-    public void contactInfo()
+    public PageReference contactInfo()
     {
         feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
         PageReference redirecContUrl;
@@ -291,6 +291,11 @@ public class NctETMembershipPaymentPageController
                     if(membershipInfo.Payment_Method__c == 'Credit/Debit Card')
                     {
                         paymentHubCallout();
+                        PageReference pageRef = new PageReference(redirectURL);
+        
+                        pageRef.setRedirect(true);
+                        System.debug('doing: '+sessionProfile);
+                        return pageRef;
                     }
                 }
                 else{
@@ -318,6 +323,7 @@ public class NctETMembershipPaymentPageController
                  //thankYouSec();
             }
         }
+        return null;
     } 
     public void nctBranchs(){
         
@@ -377,11 +383,7 @@ public class NctETMembershipPaymentPageController
             return sendPaymentLinkToParent(redirectURL);
         }
         else{
-            PageReference pageRef = new PageReference(redirectURL);
-        
-            pageRef.setRedirect(true);
-            System.debug('doing: '+sessionProfile);
-            return pageRef;
+            return null;
         }
         //return null;
         
