@@ -116,7 +116,6 @@ public class NctETMembershipPaymentPageController
                 genders = newCont.Gender__c;
             }
         }
-        isMembershipExists = ContactUtilities.isMembershipExists(contId, email);
         pymtPrfl = new cpm__Payment_Profile__c();
         recDon = new npe03__Recurring_Donation__c();
         gftAid = new gaid__Gift_Aid_Declaration__c();
