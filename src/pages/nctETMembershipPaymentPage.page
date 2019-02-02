@@ -1242,11 +1242,12 @@
                     var salutation = $('#salutation :selected').text();
 
                     var existContact = $('#hdn').val();
-var varible = $('.memberexist input').val();
+                    var varible = $('.memberexist input').val();
                     if(varible == "true" ){
                       $('#MembershipalertModal').modal();
                       $('.modal-body').html('<div>' + "Membership already Exists in the System with" +" "+ $('#textEmail').val()+'</div>');
                     }
+                    else{
                     console.log(existContact);//&& existContact =='false'
                     //SelBranchValFunction($(selBnchvalue).val());
                     if(validateJoin() && dateFieldvalid) {
@@ -1269,6 +1270,7 @@ var varible = $('.memberexist input').val();
                         $('#register').removeClass('active show');
                         console.log($('#membershipText').val(),"staff memebership");
                     }
+                   }
                    }
                 });
                 $("#confirm_all_pay_cc").click(function () {
