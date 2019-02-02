@@ -1979,13 +1979,13 @@
             $("#due-Date").blur(function(e){
                 
             	 	date = e.target.value;
-                    if(date == "" || date == undefined){
+                    if(date == undefined){
                         $('#MembershipalertModal').modal();
                         $('.modal-body').html('<div>' + "Please Enter Valid Date"+ '</div>');
                         $('#due-Date').addClass('error');
                          dateFieldvalid = false;
                         
-                     }else{
+                     }else if(date !== ""){
                             var  currentDate = new Date();
                             var  currentYear = currentDate.getFullYear();
                             var  userDate = new Date(date);
@@ -1993,6 +1993,7 @@
                             var  yearLength = year.toString().length;
                             if(yearLength == 4 && (currentDate.getTime() < userDate.getTime()) ){
                                 console.log("success");
+                                $('#due-Date').removeClass('error');
                                 dateFieldvalid = true;
                                
                             }else{
@@ -2001,16 +2002,26 @@
                                 $('#due-Date').addClass('error');
                                  dateFieldvalid = false;
                             }
-                	}
+                	}else{
+                    	 $('#due-Date').val('dd-mm-yyyy');
+                         $('#due-Date').removeClass('error');
+                        dateFieldvalid = true;
+                        
+                    }
                 
             });
             
             $("#nameSubmit").click(function(){
-                 if ( dateFieldvalid == false ) {
+
+                var recheck = $('#due-Date').val();
+                 if ( dateFieldvalid == false && recheck !== "" ) {
                     $('#MembershipalertModal').modal();
                     $('.modal-body').html('<div>' + "Please Enter Valid Date"+ '</div>');
                     $('#due-Date').css({"border":"1px solid red", "background-color":"rgba(255, 0, 0, 0.25)"});
-                } 
+                }else{
+                        dateFieldvalid = true;
+                    	$('#due-Date').removeClass('error');
+                }
             });
             
             //date validation ends here
