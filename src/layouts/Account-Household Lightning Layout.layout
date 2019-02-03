@@ -37,6 +37,10 @@
                 <behavior>Edit</behavior>
                 <field>npo02__HouseholdPhone__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Data_Source__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

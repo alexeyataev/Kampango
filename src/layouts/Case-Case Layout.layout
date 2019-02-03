@@ -73,6 +73,10 @@
                 <behavior>Edit</behavior>
                 <field>dummy_CourseId__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Data_Source__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
