@@ -43,6 +43,11 @@ public class NctETMembershipPaymentPageController
         }
         set;}
     public list<SelectOption> contactPreferenceOptions {get; set;}
+    
+    public boolean smsOpt{get; set;}
+    public boolean postOpt{get; set;}
+    public boolean emailOpt{get; set;}
+    public boolean doNotCallOpt{get; set;}
     public AccountContactRelation accntContRel{get; set;}
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
     public npe03__Recurring_Donation__c recDon {get;set;}
@@ -134,6 +139,7 @@ public class NctETMembershipPaymentPageController
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
         System.debug('Twomems :'+twomems+'salutationPrimary: '+salutationPrimary+'salutationSecondary: '+salutationSecondary
                     +'Genders: '+genders+'Contact Preferences:'+contactSelectedPreferences);
+                    System.debug('smsOpt: '+smsOpt+'postOpt '+postOpt+'emailOpt '+emailOpt+'doNotCallOpt '+doNotCallOpt);
 
         String contactPreference = '';
         Boolean start = true;
@@ -151,6 +157,9 @@ public class NctETMembershipPaymentPageController
         list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrimary};
         list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone,salutationSecondary};
         list<String> contactFieldListExt = new list<String>{postCode,contactPreference,streetValue,streetValue1,streetValue2,stateValue,cityValue};
+        list<Boolean> contactBooleanList = new list<Boolean>{smsOpt,postOpt,emailOpt,doNotCallOpt};
+        
+        System.debug('contactBooleanList: '+contactBooleanList);
      
             
        	Id userId = userinfo.getUserId();
@@ -170,12 +179,12 @@ public class NctETMembershipPaymentPageController
             {
                 recordType = 'Parent';
                 
-                newCont = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
+                newCont = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
                 
                 if(twomems == 'true' && sfirstname != null || sfirstname != '')
                 {
                     recordType = 'Companion';
-                    snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
+                    snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
                     
                     membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);
                     
@@ -234,7 +243,7 @@ public class NctETMembershipPaymentPageController
             if(twomems == 'true' && sfirstname != null || sfirstname != '')
             {
                 recordType = 'Companion';
-                snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);    
+                snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);    
             }
             if(isVolunteer == true || isPractitioner == true){
                 
@@ -356,9 +365,9 @@ public class NctETMembershipPaymentPageController
          //accountDetails.sort();
         System.debug('accountDetails:'+accountDetails);
         MembershipCrudHelper MemCrudHelp = new MembershipCrudHelper();
-        pymtPrfl = MemCrudHelp.paymentProfile(newCont, accountDetails);
-        gftAid = MemCrudHelp.giftAid(newCont.Id, isGiftAid,membershipInfo,accountDetails);
-        recDon = MemCrudHelp.recDonation(newCont.Id,membershipInfo,pymtPrfl,accountDetails);
+        pymtPrfl = MemCrudHelp.paymentProfile(newCont,accountDetails);
+        gftAid = MemCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
+        recDon = MemCrudHelp.recDonation(newCont.Id,snewCont.Id,membershipInfo,pymtPrfl,accountDetails);
         thankYouSec();
     }    
     public void thankYouSec()

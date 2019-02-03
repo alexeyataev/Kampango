@@ -15,7 +15,7 @@
        <apex:param id="accNum" name="accNum" value="" assignTo="{!accountNumber}"/>
        <apex:param id="gftAid" name="gftAid" value="" assignTo="{!isGiftAid}"/>
     </apex:actionFunction>
-    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,membershipNumber,membershipText">
+    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,membershipNumber,membershipText,smsOpt,postOpt,emailOpt,doNotCallOpt">
         <apex:param id="aname" name="chkbox" value="" assignTo="{!twomems}"/>
         <apex:param id="firstName" name="firstName" value="" assignTo="{!firstname}"/>
         <apex:param id="lastName" name="lastName" value="" assignTo="{!lastname}"/>
@@ -327,6 +327,13 @@
                 background-image:none;
                 color:#008669;
             }
+            .contact_check{
+                padding-top:10px;
+            }
+            .contact_check span{
+                	display:inline !important;
+                    padding:0px 10px;
+                }
         </style>
     </head>
 
@@ -597,14 +604,17 @@
                                                 <div class="row radio-fields-row">
                                                     <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
                                                     <div class="col-12 radio-fields-col">
-                                                        <span style="text-color:white;"><apex:selectCheckboxes value="{!contactSelectedPreferences}">
+                                                    <!--<span style="text-color:white;"><apex:selectCheckboxes value="{!contactSelectedPreferences}">
                                                                     <apex:selectOptions value="{!contactPreferenceOptions}" />
 
-                                                         </apex:selectCheckboxes></span>
-                                                        <!--<span><input type="checkbox" name="contact" value="email" />Email</span>
-                                                        <span><input type="checkbox" name="contact" value="sms" />SMS Text</span>
-                                                        <span><input type="checkbox" name="contact" value="post" />Post</span>
-                                                        <span><input type="checkbox" name="contact" value="telephone" />Telephone</span>-->
+                                                         </apex:selectCheckboxes></span>-->
+                                                        <div class="contact_check">
+                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!smsOpt}"/>SMS Opt Out</span>
+                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!postOpt}"/>Post Opt Out</span>
+                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!emailOpt}"/>Email Opt Out</span> 
+                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!doNotCallOpt}"/>Do Not Call</span> 
+                                                            
+                                                          </div>
                                                     </div>
                                                 </div>
                                                 <!-- privacy statement start here -->
@@ -1246,32 +1256,42 @@
                     if(varible == "true" ){
                       $('#MembershipalertModal').modal();
                       $('.modal-body').html('<div>' + "Membership already Exists in the System with" +" "+ $('#textEmail').val()+'</div>');
-                    }
-                    else{
-                    console.log(existContact);//&& existContact =='false'
-                    //SelBranchValFunction($(selBnchvalue).val());
-                    if(validateJoin() && dateFieldvalid) {
-                    if(staffValue != 'staff' ){//&& validateGender()
-                    afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text());
-                    //var gender = $('input[name=gender]':checked).val();
-                    //console.log(gender);
-                    $('#register_li').removeClass('active');
-                    $('#payment_li').addClass('active');
-                    $('#register').removeClass('active show');
-                    $('#payment').addClass('active show');
-                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    }else{
+                        console.log(existContact);//&& existContact =='false'
+                        //SelBranchValFunction($(selBnchvalue).val());
+                        if(validateJoin() && dateFieldvalid) {
+                            if(staffValue != 'staff' ){//&& validateGender()
+                            afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),
+                              $('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),
+                              $('#textEmailPartner').val(),$('#textTelephoneHomePartner').val(),$('#postcode').val(),
+                              $('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),
+                              $('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),
+                              $('#town').val(),$('#county').val(),$(salutation).text());
+                        
+                            //var gender = $('input[name=gender]':checked).val();
+                            //console.log(gender);
+                            $('#register_li').removeClass('active');
+                            $('#payment_li').addClass('active');
+                            $('#register').removeClass('active show');
+                            $('#payment').addClass('active show');
+                            $("html, body").animate({ scrollTop: 0 }, "slow");
 
-                	}
-                    else {
-                        afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text());
-                    	$('#thankyou_li').addClass('active');
-                        $('#thankyou').addClass('active show');
-                        $('#register_li').removeClass('active');
-                        $('#register').removeClass('active show');
-                        console.log($('#membershipText').val(),"staff memebership");
+                            }
+                            else {
+                                afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),
+                                  $('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),
+                                  $('#textTelephoneHomePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),
+                                  $('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),
+                                  $('#county').val(),$(salutation).text());
+                        
+                                $('#thankyou_li').addClass('active');
+                                $('#thankyou').addClass('active show');
+                                $('#register_li').removeClass('active');
+                                $('#register').removeClass('active show');
+                                console.log($('#membershipText').val(),"staff memebership");
+                            }
+                        }
                     }
-                   }
-                   }
                 });
                 $("#confirm_all_pay_cc").click(function () {
 					setInterval(function(){
