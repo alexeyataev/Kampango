@@ -1184,7 +1184,7 @@
                                                                                                                                     style="position: static;">
                                                                                                                                     <p
                                                                                                                                         style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">Hi
-                                                                                                                                        {!Payment_Link__c.Contact__c},
+                                                                                                                                        {!Payment_Link__c.Contact_FirstName__c},
 
 
                                                                                                                                     </p>
@@ -1685,7 +1685,7 @@
                                                                                                 <p style="line-height: 17px;">
                                                                                                     <br>
                                                                                                 </p>
-                                                                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">2018
+                                                                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">2019
                                                                                                     NCT, 30 Euston
                                                                                                     Square,
                                                                                                     London, NW1 2FB.</p>

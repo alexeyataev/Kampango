@@ -137,6 +137,18 @@
         <unique>false</unique>
     </fields>
      <fields>
+     <fullName>Contact_FirstName__c</fullName>
+        <externalId>false</externalId>
+        <formula>First_Contact__r.FirstName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FirstContact FirstName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Data_Source__c</fullName>
         <externalId>false</externalId>
         <label>Data Source</label>
