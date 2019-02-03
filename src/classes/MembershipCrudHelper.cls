@@ -57,77 +57,83 @@ public without sharing class MembershipCrudHelper {
                 upsert pymtPrfl;
                 
             }
-            
-        }
-        if(paymentProfileRecord.size()>0){
-            return paymentProfileRecord[0];
+            if(paymentProfileRecord.size()>0){
+                return paymentProfileRecord[0];
+            }
+            else{
+                return pymtPrfl;
+            }
         }
         else{
-            return pymtPrfl;
+            return null;
         }
+        
         
     }
     public gaid__Gift_Aid_Declaration__c giftAid(ID contID, string isGiftAid,Membership_Type__mdt membershipDetails,list<string> accountDetails){
          gaid__Gift_Aid_Declaration__c[] giftAidDeclarationRecord;
-         if(contID != null)
-         {
-             if(isGiftAid == 'true') 
-             {
-                giftAidDeclarationRecord = [SELECT 
-                                                    id,
-                                                    gaid__Type__c,
-                                                    gaid__Acquisition_Method__c,
-                                            		gaid__Start_Date__c,
-                                                    gaid__Date_Made__c,
-                                                    gaid__Active__c 
-                                            FROM
-                                                    gaid__Gift_Aid_Declaration__c
-                                            WHERE 
-                                                    gaid__Contact__c = :contID
-                                            AND
-                                                    CreatedDate = :System.Date.today() limit 1];
-                 if(giftAidDeclarationRecord.size()>0){
-                     	giftAidDeclarationRecord[0].gaid__Contact__c= contID;
-                        giftAidDeclarationRecord[0].gaid__Type__c = membershipDetails.GiftAid_Type__c;
-                        if(accountDetails[3] != '' && accountDetails[3] != null){
-                              giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = accountDetails[3];
-                        }
-                        else{
-                              giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = membershipDetails.GiftAid_Acquisition_Method__c;
-                        }
-                        giftAidDeclarationRecord[0].gaid__Start_Date__c = system.today();
-                        giftAidDeclarationRecord[0].gaid__Date_Made__c = system.today();
-                        giftAidDeclarationRecord[0].gaid__Active__c = true;
-                     	upsert giftAidDeclarationRecord[0];
-                     	
-                 }
-                 else{
-                     gftAid.gaid__Contact__c= contID;
-                    gftAid.gaid__Type__c = membershipDetails.GiftAid_Type__c;
-                    if(accountDetails[3] != '' && accountDetails[3] != null){
-                        gftAid.gaid__Acquisition_Method__c = accountDetails[3];
-                    }
-                    else{
-                        gftAid.gaid__Acquisition_Method__c = membershipDetails.GiftAid_Acquisition_Method__c;
-                    }
-                    gftAid.gaid__Start_Date__c = system.today();
-                    gftAid.gaid__Date_Made__c = system.today();
-                    gftAid.gaid__Active__c = true;
-                    
-                    upsert gftAid;
-                    
-                 }
+         
+        if(contID != null && isGiftAid == 'true') 
+        {
+            giftAidDeclarationRecord = [SELECT 
+                                        id,
+                                        gaid__Type__c,
+                                        gaid__Acquisition_Method__c,
+                                        gaid__Start_Date__c,
+                                        gaid__Date_Made__c,
+                                        gaid__Active__c 
+                                        FROM
+                                        gaid__Gift_Aid_Declaration__c
+                                        WHERE 
+                                        gaid__Contact__c = :contID
+                                        AND
+                                        CreatedDate = :System.Date.today() limit 1];
+            if(giftAidDeclarationRecord.size()>0){
+                giftAidDeclarationRecord[0].gaid__Contact__c= contID;
+                giftAidDeclarationRecord[0].gaid__Type__c = membershipDetails.GiftAid_Type__c;
+                if(accountDetails[3] != '' && accountDetails[3] != null){
+                    giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = accountDetails[3];
+                }
+                else{
+                    giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = membershipDetails.GiftAid_Acquisition_Method__c;
+                }
+                giftAidDeclarationRecord[0].gaid__Start_Date__c = system.today();
+                giftAidDeclarationRecord[0].gaid__Date_Made__c = system.today();
+                giftAidDeclarationRecord[0].gaid__Active__c = true;
+                upsert giftAidDeclarationRecord[0];
                 
-        	}
-        }
-        if(giftAidDeclarationRecord.size()>0){
-            return giftAidDeclarationRecord[0];
+            }
+            else{
+                gftAid.gaid__Contact__c= contID;
+                gftAid.gaid__Type__c = membershipDetails.GiftAid_Type__c;
+                if(accountDetails[3] != '' && accountDetails[3] != null){
+                    gftAid.gaid__Acquisition_Method__c = accountDetails[3];
+                }
+                else{
+                    gftAid.gaid__Acquisition_Method__c = membershipDetails.GiftAid_Acquisition_Method__c;
+                }
+                gftAid.gaid__Start_Date__c = system.today();
+                gftAid.gaid__Date_Made__c = system.today();
+                gftAid.gaid__Active__c = true;
+                
+                upsert gftAid;
+                
+            }
+            if(giftAidDeclarationRecord.size()>0){
+                return giftAidDeclarationRecord[0];
+            }
+            else{
+                return gftAid;
+            }
+            
         }
         else{
-            return gftAid;
+            return null;
         }
+     
+        
     }
-    public npe03__Recurring_Donation__c recDonation(ID contID,Id scontID,Membership_Type__mdt membershipDetails,cpm__Payment_Profile__c pymtProfl,list<string> accountDetails){
+    public npe03__Recurring_Donation__c recDonation(ID contID,Contact scont,Membership_Type__mdt membershipDetails,cpm__Payment_Profile__c pymtProfl,list<string> accountDetails){
          npe03__Recurring_Donation__c[] recDonationRecord;
          if(contID != null)
          {
@@ -163,8 +169,8 @@ public without sharing class MembershipCrudHelper {
                     if(accountDetails[4] != '' && accountDetails[4] != null){
                          recDonationRecord[0].Source__c = accountDetails[4];
                     }
-                    if(scontID != null){
-                        recDonationRecord[0].Second_Contact__c = scontID; 
+                    if(scont != null){
+                        recDonationRecord[0].Second_Contact__c = scont.Id; 
                     }
                     
                     recDonationRecord[0].npe03__Next_Payment_Date__c = MembershipUtilties.getNextDonationDate(System.Date.today());
@@ -191,8 +197,8 @@ public without sharing class MembershipCrudHelper {
                     
                     recDon.npe03__Next_Payment_Date__c = MembershipUtilties.getNextDonationDate(System.Date.today());
                     recDon.First_Contact__c = contID;
-                 	if(scontID != null){
-                        recDon.Second_Contact__c = scontID; 
+                 	if(scont != null){
+                        recDon.Second_Contact__c = scont.Id; 
                     }
                  	recDon.Data_Source__c = 'Salesforce';
                     recDon.npe03__Schedule_Type__c = membershipDetails.Schedule_Type__c;
@@ -208,12 +214,16 @@ public without sharing class MembershipCrudHelper {
                  	
                  	
              }
+             if(recDonationRecord.size()>0){
+                return recDonationRecord[0];
+            }
+            else{
+                return recDon;
+            }
          }
-       	 if(recDonationRecord.size()>0){
-            return recDonationRecord[0];
-        }
         else{
-            return recDon;
+            return null;
         }
+       	 
     }
 }
