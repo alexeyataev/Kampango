@@ -1451,6 +1451,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+    <editable>true</editable>
+        <field>Contact.Post_Opt_Out__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Practitioner__c</field>
         <readable>false</readable>
@@ -1468,6 +1473,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.ReportsToId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+    <editable>true</editable>
+        <field>Contact.SMS_Opt_Out__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3071,6 +3081,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+    <editable>false</editable>
+        <field>Payment_Link__c.Contact_FirstName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Payment_Link__c.Contact__c</field>
         <readable>true</readable>
@@ -4038,6 +4053,11 @@
     </fieldPermissions>
     <fieldPermissions>
     <editable>false</editable>
+    <field>npe03__Recurring_Donation__c.Contact_FirstName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>npe03__Recurring_Donation__c.Data_Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
