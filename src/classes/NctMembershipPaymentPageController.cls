@@ -73,6 +73,11 @@ public without sharing class NctMembershipPaymentPageController
     public list<SelectOption> contactPreferenceOptions {get; set;}
     public String recordType;
 
+    public boolean smsOpt{get; set;}
+    public boolean postOpt{get; set;}
+    public boolean emailOpt{get; set;}
+    public boolean doNotCallOpt{get; set;}
+
     public NctMembershipPaymentPageController()
     {
         contId = ApexPages.currentPage().getParameters().get('Id');
@@ -95,6 +100,7 @@ public without sharing class NctMembershipPaymentPageController
                 if(newCont.Contact_Prefrence__c != null){
                     contactSelectedPreferences = newCont.Contact_Prefrence__c.split(';',0);
                 }
+
                 System.debug('selectedPreferences: '+salutationPrimary);
             }
         }
@@ -133,7 +139,7 @@ public without sharing class NctMembershipPaymentPageController
         list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrimary};
         list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone,salutationSecondary};
         list<String> contactFieldListExt = new list<String>{postCode,contactPreference,streetValue,streetValue1,streetValue2,stateValue,cityValue};
-
+     	  list<Boolean> contactBooleanList = new list<Boolean>{smsOpt,postOpt,emailOpt,doNotCallOpt};
         //Date expDate = Date.valueOf(eDate);
 
         if(isContactExisting == false && newCont == null){
@@ -142,12 +148,12 @@ public without sharing class NctMembershipPaymentPageController
             {
                 recordType = 'Parent';
 
-                newCont = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
+                newCont = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
 
                 if(twomems == 'true' && sfirstname != null || sfirstname != '')
                 {
                     recordType = 'Companion';
-                    snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
+                    snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
 
                     membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint','Parent, Companion');
                 }
@@ -205,7 +211,7 @@ public without sharing class NctMembershipPaymentPageController
             {
 
                 recordType = 'Companion';
-                snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont);
+                snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
 
 
             }
@@ -248,7 +254,7 @@ public without sharing class NctMembershipPaymentPageController
         membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                 No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                 Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c,
-                                                GiftAid_Acquisition_Method__c, Payment_Processor__c FROM  Membership_Type__mdt where Id =:feeAmount];
+                                                GiftAid_Acquisition_Method__c, Payment_Processor__c,Data_Source__c  FROM  Membership_Type__mdt where Id =:feeAmount];
         System.debug('Membership##### '+membershipInfo);
         if(membershipInfo != null)
         {
@@ -271,8 +277,8 @@ public without sharing class NctMembershipPaymentPageController
         postCode = Apexpages.currentPage().getParameters().get('postVal');
         System.debug('postCode: '+postCode);
         if(postCode != null && postCode != ''){
-        nearestBranchs = MembershipUtilties.getBranches(postCode);
-        System.debug('branches'+nearestBranchs);
+          nearestBranchs = MembershipUtilties.getBranches(postCode);
+          System.debug('branches'+nearestBranchs);
         }
 
     }
@@ -300,7 +306,7 @@ public without sharing class NctMembershipPaymentPageController
 
                 gftAid.gaid__Type__c = membershipInfo.GiftAid_Type__c;
 
-                gftAid.gaid__Acquisition_Method__c = acquistion;
+                gftAid.gaid__Acquisition_Method__c = membershipInfo.GiftAid_Acquisition_Method__c;
                 gftAid.gaid__Start_Date__c = system.today();
                 gftAid.gaid__Date_Made__c = system.today();
                 gftAid.gaid__Active__c = true;
@@ -318,6 +324,7 @@ public without sharing class NctMembershipPaymentPageController
             recDon.npsp4hub__Payment_Processor__c = membershipInfo.Payment_Processor__c;
             recDon.npsp4hub__Target__c = membershipInfo.Payment_Target__c;
             recDon.Membership_Status__c = 'Confirmed';
+            recDon.Data_Source__c = membershipInfo.Data_Source__c;
             recDon.npsp4hub__Payment_Profile__c = pymtPrfl.Id;
             Insert recDon;
        }
@@ -369,8 +376,9 @@ public without sharing class NctMembershipPaymentPageController
             }
             system.debug('RECCURRING DONATION record  ' + reccDonList);
         }
+		// @ ********* As per W-001364 comments, Community creation is parked aside.*********
 
-        list<User> userList = [select Id, Name from User where user.ContactId =: reccDonList[0].npe03__Contact__c and Username =:reccDonList[0].npe03__Contact__r.Email];
+       /* list<User> userList = [select Id, Name from User where user.ContactId =: reccDonList[0].npe03__Contact__c and Username =:reccDonList[0].npe03__Contact__r.Email];
         if(userList == null || userList.isEmpty())
         {
             try
@@ -399,13 +407,13 @@ public without sharing class NctMembershipPaymentPageController
             }
             catch(DmlException e)
             {
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,'Community User creadentials Exists in the System with this Username: '+reccDonList[0].npe03__Contact__r.Email));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,'Community User credentials Exists in the System with this Username: '+reccDonList[0].npe03__Contact__r.Email));
             }
         }
         else{
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,'Community User creadentials Exists in the System with this Username: '+reccDonList[0].npe03__Contact__r.Email));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,'Community User credentials Exists in the System with this Username: '+reccDonList[0].npe03__Contact__r.Email));
             System.debug('User Exists: '+userList);
-        }
+        }*/
 
     }
     public PageReference paymentHubCallout()
