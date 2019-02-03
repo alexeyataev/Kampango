@@ -65,6 +65,10 @@
                 <behavior>Edit</behavior>
                 <field>cpm__Last_Status_Reason__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Data_Source__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
