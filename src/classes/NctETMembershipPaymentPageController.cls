@@ -366,8 +366,12 @@ public class NctETMembershipPaymentPageController
         System.debug('accountDetails:'+accountDetails);
         MembershipCrudHelper MemCrudHelp = new MembershipCrudHelper();
         pymtPrfl = MemCrudHelp.paymentProfile(newCont,accountDetails);
+        if(isGiftAid == 'true'){
         gftAid = MemCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
-        recDon = MemCrudHelp.recDonation(newCont.Id,snewCont.Id,membershipInfo,pymtPrfl,accountDetails);
+        }
+        if(pymtPrfl != null){
+            recDon = MemCrudHelp.recDonation(newCont.Id,snewCont,membershipInfo,pymtPrfl,accountDetails);
+        }
         thankYouSec();
     }    
     public void thankYouSec()
