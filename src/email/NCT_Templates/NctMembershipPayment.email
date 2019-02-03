@@ -1065,7 +1065,7 @@
                                                                                                                         <tr>
                                                                                                                           <td valign="top" align="left" class="element-pad element-bord">
                                                                                                                                 <div class="ee_editable" style="position: static;">
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">Hi  {!npe03__Recurring_Donation__c.First_Contact__c} ,
+                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">Hi  {!npe03__Recurring_Donation__c.Contact_FirstName__c} ,
                                                                                                                                                                                                                           
                                                                                                                                     </p>
                                                                                                                                     <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
@@ -1436,7 +1436,7 @@
                                                                                                 <p style="line-height: 17px;">
                                                                                                     <br>
                                                                                                 </p>
-                                                                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">2018 NCT, 30 Euston Square,
+                                                                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">2019 NCT, 30 Euston Square,
                                                                                                     London, NW1 2FB.</p>
                                                                                                 <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">Reg Charity No (England and
                                                                                                     Wales): 801395, (Scotland):
