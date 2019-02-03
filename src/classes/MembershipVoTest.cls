@@ -39,6 +39,7 @@ private class MembershipVoTest {
         
         
         MembershipVo membership = new MembershipVo();
+        membership.membershipInfo = new Membership_Type__mdt();
         membership.isVolunteer = true;
         membership.isGiftAidSelected = true;
         membership.isJointMembership = false;
