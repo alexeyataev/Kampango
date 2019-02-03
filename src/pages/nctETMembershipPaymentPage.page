@@ -15,7 +15,7 @@
        <apex:param id="accNum" name="accNum" value="" assignTo="{!accountNumber}"/>
        <apex:param id="gftAid" name="gftAid" value="" assignTo="{!isGiftAid}"/>
     </apex:actionFunction>
-    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,membershipNumber,membershipText">
+    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,membershipNumber,membershipText,smsOpt,postOpt,emailOpt,doNotCallOpt">
         <apex:param id="aname" name="chkbox" value="" assignTo="{!twomems}"/>
         <apex:param id="firstName" name="firstName" value="" assignTo="{!firstname}"/>
         <apex:param id="lastName" name="lastName" value="" assignTo="{!lastname}"/>
@@ -1261,7 +1261,13 @@
                         //SelBranchValFunction($(selBnchvalue).val());
                         if(validateJoin() && dateFieldvalid) {
                             if(staffValue != 'staff' ){//&& validateGender()
-                            afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text());
+                            afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),
+                              $('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),
+                              $('#textEmailPartner').val(),$('#textTelephoneHomePartner').val(),$('#postcode').val(),
+                              $('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),
+                              $('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),
+                              $('#town').val(),$('#county').val(),$(salutation).text());
+                        
                             //var gender = $('input[name=gender]':checked).val();
                             //console.log(gender);
                             $('#register_li').removeClass('active');
@@ -1272,7 +1278,12 @@
 
                             }
                             else {
-                                afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text());
+                                afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),
+                                  $('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),
+                                  $('#textTelephoneHomePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),
+                                  $('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),
+                                  $('#county').val(),$(salutation).text());
+                        
                                 $('#thankyou_li').addClass('active');
                                 $('#thankyou').addClass('active show');
                                 $('#register_li').removeClass('active');

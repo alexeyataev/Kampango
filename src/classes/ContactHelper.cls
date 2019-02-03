@@ -17,7 +17,7 @@ public without sharing class ContactHelper {
 	 **
 	*/
     public static Contact getCreateContact(list<String> contactFieldsList, list<String> contactFieldListExt, 
-                                           Id selectBranch, String recordType,Contact newCont){
+                                           Id selectBranch, String recordType,Contact newCont, list<Boolean> contactBooleanList){
 
         Contact createContact;                                       
                                                
@@ -48,6 +48,11 @@ public without sharing class ContactHelper {
         createContact.MailingStreet = contactFieldListExt[2]+''+contactFieldListExt[3]+''+contactFieldListExt[4];
         createContact.MailingState = contactFieldListExt[5];
         createContact.MailingCity = contactFieldListExt[6];
+        createContact.Data_Source__c = 'Salesforce';                                       
+        createContact.SMS_Opt_Out__c = contactBooleanList[0];
+        createContact.Post_Opt_Out__c = contactBooleanList[1];
+        createContact.HasOptedOutOfEmail = contactBooleanList[2];
+        createContact.DoNotCall = contactBooleanList[3];
         Database.upsert(createContact, false);
                                                
         System.debug('contactFieldsList: '+contactFieldsList+'\n'+'contactFieldsList: '+contactFieldListExt+'\n'+'Contact Details: '+createContact);
