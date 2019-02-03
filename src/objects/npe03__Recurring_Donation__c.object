@@ -588,7 +588,6 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <fields>
      <fields>
         <fullName>Source__c</fullName>
         <externalId>false</externalId>
