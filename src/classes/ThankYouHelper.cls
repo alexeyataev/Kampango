@@ -2,7 +2,7 @@ public without sharing class ThankYouHelper {
     public boolean isStaff {get; set;}
     public string membershipNumber {get;set;}
     list<User> UserList = new list<User>();
-    list<npe03__Recurring_Donation__c> reccDonList = new list<npe03__Recurring_Donation__c>();
+    public list<npe03__Recurring_Donation__c> reccDonList = new list<npe03__Recurring_Donation__c>();
     public ThankYouHelper(){
         Id userId = userinfo.getUserId();
         isStaff = ContactUtilities.isStaff(userId);
@@ -24,7 +24,7 @@ public without sharing class ThankYouHelper {
                 upsert reccDonList;
                 system.debug('membershipNumber  ' + membershipNumber);
             }
-            else if(reccDonList == null && reccDonList.isEmpty())
+            else if(reccDonList == null || reccDonList.isEmpty())
             {
                 recDon.Name = 'Credit/Debit Card Membership';
                 recDon.npe03__Amount__c = 60;
