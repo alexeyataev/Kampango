@@ -24,6 +24,10 @@
                 <field>Target_Group__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Data_Source__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Maximum_Places_Per_Course__c</field>
             </layoutItems>
