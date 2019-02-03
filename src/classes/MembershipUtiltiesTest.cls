@@ -37,9 +37,11 @@ private class MembershipUtiltiesTest {
       if(i < 5){
         pr.Contact__c = contactList[i].Id;
         pr.Expiry_Date__c = myDate.addDays(i);
+		pr.Acquisition_Date__c = today();
       }else{
         pr.Contact__c = contactList[i].Id;
         pr.Expiry_Date__c = myDate.addDays(-i);
+		pr.Acquisition_Date__c = today();
       }
       practitionerRole.add(pr);
     }
