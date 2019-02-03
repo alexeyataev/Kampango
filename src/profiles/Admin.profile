@@ -191,6 +191,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.Data_Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -656,6 +661,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>AccountContactRelation.Data_Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>AccountContactRelation.EndDate</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -772,6 +782,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Course_Payment_Method__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.Data_Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -925,6 +940,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Branch_PSA_Office__c.Data_Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Case.AccountId</field>
         <readable>true</readable>
@@ -978,6 +998,11 @@
         <editable>false</editable>
         <field>Case.Course_Transfer_To__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Data_Source__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1182,6 +1207,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Contact_Prefrence__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Data_Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1436,6 +1466,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Contact.Post_Opt_Out__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Contact.Practitioner__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1452,6 +1487,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.ReportsToId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable> 
+        <field>Contact.SMS_Opt_Out__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2045,6 +2085,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+    <editable>true</editable>
+        <field>Course__c.Data_Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.DayTime__c</field>
         <readable>false</readable>
@@ -2275,6 +2320,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+    <editable>true</editable>
+        <field>Direct_Debits__c.Data_Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Direct_Debits__c.DirectDebit_Key__c</field>
         <readable>false</readable>
@@ -2293,6 +2343,11 @@
         <editable>false</editable>
         <field>Event_Expense__c.Comment__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+    <editable>true</editable>
+        <field>Event_Expense__c.Data_Source__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -3005,8 +3060,18 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Link__c.Contact_FirstName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Payment_Link__c.Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Payment_Link__c.Data_Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3172,6 +3237,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Practitioner_Role__c.Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Practitioner_Role__c.Data_Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3348,6 +3418,11 @@
         <editable>false</editable>
         <field>User.CurrencyIsoCode__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+    <editable>true</editable>
+        <field>User.Data_Source__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -3627,6 +3702,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>npe03__Recurring_Donation__c.Cancelled_By__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+    <editable>false</editable>
+        <field>npe03__Recurring_Donation__c.Contact_FirstName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>npe03__Recurring_Donation__c.Data_Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4394,6 +4479,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Contact.Practitioner</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Contact.Staff</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
