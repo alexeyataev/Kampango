@@ -589,6 +589,144 @@
         <type>Lookup</type>
     </fields>
     <fields>
+     <fields>
+        <fullName>Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Source</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Enquiry by EMAIL</fullName>
+                    <default>false</default>
+                    <label>Enquiry by EMAIL</label>
+                </value>
+                <value>
+                    <fullName>Enquiry by phone - main NCT</fullName>
+                    <default>false</default>
+                    <label>Enquiry by phone - main NCT</label>
+                </value>
+                <value>
+                    <fullName>Enquiry by Paper</fullName>
+                    <default>false</default>
+                    <label>Enquiry by Paper</label>
+                </value>
+                <value>
+                    <fullName>Membership General</fullName>
+                    <default>false</default>
+                    <label>Membership General</label>
+                </value>
+                <value>
+                    <fullName>Intrabiz Class Bookings</fullName>
+                    <default>false</default>
+                    <label>Intrabiz Class Bookings</label>
+                </value>
+                <value>
+                    <fullName>General Knowledge</fullName>
+                    <default>false</default>
+                    <label>General Knowledge</label>
+                </value>
+                <value>
+                    <fullName>Automatic</fullName>
+                    <default>false</default>
+                    <label>Automatic</label>
+                </value>
+                <value>
+                    <fullName>B&amp;B - request by post</fullName>
+                    <default>false</default>
+                    <label>B&amp;B - request by post</label>
+                </value>
+                <value>
+                    <fullName>B&amp;B - request by phone</fullName>
+                    <default>false</default>
+                    <label>B&amp;B - request by phone</label>
+                </value>
+                <value>
+                    <fullName>Baby Show</fullName>
+                    <default>false</default>
+                    <label>Baby Show</label>
+                </value>
+                <value>
+                    <fullName>Dunelm Staff Membership</fullName>
+                    <default>false</default>
+                    <label>Dunelm Staff Membership</label>
+                </value>
+                <value>
+                    <fullName>Enquiry pack</fullName>
+                    <default>false</default>
+                    <label>Enquiry pack</label>
+                </value>
+                <value>
+                    <fullName>Enquiry pack - ANTENATAL</fullName>
+                    <default>false</default>
+                    <label>Enquiry pack - ANTENATAL</label>
+                </value>
+                <value>
+                    <fullName>Enquiry pack GENERIC</fullName>
+                    <default>false</default>
+                    <label>Enquiry pack GENERIC</label>
+                </value>
+                <value>
+                    <fullName>Gifted Membership recipient</fullName>
+                    <default>false</default>
+                    <label>Gifted Membership recipient</label>
+                </value>
+                <value>
+                    <fullName>Memb vith ant classes</fullName>
+                    <default>false</default>
+                    <label>Memb vith ant classes</label>
+                </value>
+                <value>
+                    <fullName>Memb. form in branch Newsletter</fullName>
+                    <default>false</default>
+                    <label>Memb. form in branch Newsletter</label>
+                </value>
+                <value>
+                    <fullName>Membership by phone</fullName>
+                    <default>false</default>
+                    <label>Membership by phone</label>
+                </value>
+                <value>
+                    <fullName>Membership form A5 green</fullName>
+                    <default>false</default>
+                    <label>Membership form A5 green</label>
+                </value>
+                <value>
+                    <fullName>Membership renewing</fullName>
+                    <default>false</default>
+                    <label>Membership renewing</label>
+                </value>
+                <value>
+                    <fullName>Nov 2011 Membership Fix</fullName>
+                    <default>false</default>
+                    <label>Nov 2011 Membership Fix</label>
+                </value>
+                <value>
+                    <fullName>Online Membership Application</fullName>
+                    <default>false</default>
+                    <label>Online Membership Application</label>
+                </value>
+                <value>
+                    <fullName>Renewing membership</fullName>
+                    <default>false</default>
+                    <label>Renewing membership</label>
+                </value>
+                <value>
+                    <fullName>None</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>None</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>npe03__Amount__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
