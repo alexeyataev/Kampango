@@ -793,6 +793,21 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <description>Stores Credit Card information</description>
         <label>Credit Card</label>
         <picklistValues>
+        <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Source_Code__c</picklist>
             <values>
                 <fullName>A5GREEN</fullName>
@@ -1014,6 +1029,21 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <active>true</active>
         <description>Stores bank account information in the IBAN format</description>
         <label>IBAN</label>
+        <picklistValues>
+        <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Source_Code__c</picklist>
             <values>
@@ -1238,6 +1268,21 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <description>Stores bank account information (pre-IBAN)</description>
         <label>Legacy Bank Account</label>
         <picklistValues>
+        <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Source_Code__c</picklist>
             <values>
                 <fullName>A5GREEN</fullName>
@@ -1458,6 +1503,21 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <fullName>paybacs__Bank_Account</fullName>
         <active>true</active>
         <label>Bank Account</label>
+        <picklistValues>
+        <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Source_Code__c</picklist>
             <values>
