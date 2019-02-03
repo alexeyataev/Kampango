@@ -169,9 +169,9 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Oral</fullName>
+                    <fullName>Verbal</fullName>
                     <default>false</default>
-                    <label>Oral</label>
+                    <label>Verbal</label>
                 </value>
                 <value>
                     <fullName>Written</fullName>
