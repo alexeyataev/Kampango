@@ -3083,7 +3083,7 @@
     <fieldPermissions>
     <editable>false</editable>
         <field>Payment_Link__c.Contact_FirstName__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4054,7 +4054,7 @@
     <fieldPermissions>
     <editable>false</editable>
     <field>npe03__Recurring_Donation__c.Contact_FirstName__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

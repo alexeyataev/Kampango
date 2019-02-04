@@ -1810,21 +1810,6 @@ Completed - All the session of course have been completed by the practitioner.</
             </values>
         </picklistValues>
         <picklistValues>
-        <picklist>Data_Source__c</picklist>
-            <values>
-                <fullName>CARE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Intrabiz</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Salesforce</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Men_only__c</picklist>
             <values>
                 <fullName>CARE N%2FA</fullName>
@@ -2169,21 +2154,6 @@ Completed - All the session of course have been completed by the practitioner.</
             <values>
                 <fullName>Yoga for Pregnancy</fullName>
                 <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-        <picklist>Data_Source__c</picklist>
-            <values>
-                <fullName>CARE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Intrabiz</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Salesforce</fullName>
-                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -2532,21 +2502,6 @@ Completed - All the session of course have been completed by the practitioner.</
             <values>
                 <fullName>Yoga for Pregnancy</fullName>
                 <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-        <picklist>Data_Source__c</picklist>
-            <values>
-                <fullName>CARE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Intrabiz</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Salesforce</fullName>
-                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
