@@ -1176,9 +1176,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Branch__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -3751,7 +3751,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    
+
         <editable>false</editable>
         <field>cpm__Payment_Profile__c.AccountKey__c</field>
         <readable>false</readable>
