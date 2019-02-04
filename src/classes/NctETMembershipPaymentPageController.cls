@@ -91,7 +91,6 @@ public class NctETMembershipPaymentPageController
     {  
         contId = ApexPages.currentPage().getParameters().get('Id');
         system.debug('*$*$**$ contId  ' + contId);
-        etSpecific = true;
        	Contact con= new Contact();
         gaid__Gift_Aid_Declaration__c giftAid = new gaid__Gift_Aid_Declaration__c();
         npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
@@ -105,6 +104,12 @@ public class NctETMembershipPaymentPageController
         isStaff = ContactUtilities.isStaff(userId);
         
     	sessionProfile = userinfo.getUserType();
+        if(sessionProfile == 'Standard'){
+            etSpecific = true;
+        }
+        else{
+            etSpecific = false;
+        }
         System.debug('sessionProfile '+sessionProfile);
         staffMember ='no staff';
         if(contId != null)
