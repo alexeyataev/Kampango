@@ -4054,9 +4054,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>ParentCommunitySelfReg</apexPage>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>PaymentLinkProcessor</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
