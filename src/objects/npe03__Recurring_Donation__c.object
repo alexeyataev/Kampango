@@ -689,9 +689,9 @@
                     <label>Gifted Membership recipient</label>
                 </value>
                 <value>
-                    <fullName>Memb vith ant classes</fullName>
+                    <fullName>Memb with ant classes</fullName>
                     <default>false</default>
-                    <label>Memb vith ant classes</label>
+                    <label>Memb with ant classes</label>
                 </value>
                 <value>
                     <fullName>Memb. form in branch Newsletter</fullName>
