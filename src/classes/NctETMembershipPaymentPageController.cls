@@ -109,7 +109,7 @@ public class NctETMembershipPaymentPageController
         staffMember ='no staff';
         if(contId != null)
         {
-            newCont = [SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
+            newCont = [SELECT Id,Salutation,DoNotCall, SMS_Opt_Out__c, Post_Opt_Out__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
             if(newCont != null){
                 
                 firstname = newCont.FirstName;
@@ -119,6 +119,10 @@ public class NctETMembershipPaymentPageController
                 postCode = newCont.MailingPostalCode;
                 salutationPrimary = newCont.Salutation;
                 genders = newCont.Gender__c;
+                smsOpt = newCont.SMS_Opt_Out__c;
+    			postOpt = newCont.Post_Opt_Out__c;
+    			emailOpt = newCont.HasOptedOutOfEmail;
+    			doNotCallOpt = newCont.DoNotCall;
             }
         }
         pymtPrfl = new cpm__Payment_Profile__c();
