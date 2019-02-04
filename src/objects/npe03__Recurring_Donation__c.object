@@ -1497,20 +1497,6 @@ CASE(
             </values>
         </picklistValues>
         <picklistValues>
-        <picklist>Data_Source__c</picklist>
-            <values>
-                <fullName>CARE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Intrabiz</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Salesforce</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
             <picklist>Membership_Status__c</picklist>
             <values>
                 <fullName>Cancelled</fullName>
