@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Mandates required for Sepa Direct Debit</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>BookingKey__c</fullName>
+        <externalId>false</externalId>
+        <label>BookingKey</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Key__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Key</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DD_Reference__c</fullName>
+        <externalId>false</externalId>
+        <label>DD Reference</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DirectDebitKey__c</fullName>
+        <externalId>false</externalId>
+        <label>DirectDebitKey</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mandate_Key__c</fullName>
+        <externalId>false</externalId>
+        <label>Mandate Key</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Payment_Profile_Key__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Profile Key</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Source Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>A5GREEN</fullName>
+                    <default>false</default>
+                    <label>A5GREEN</label>
+                </value>
+                <value>
+                    <fullName>AUTO</fullName>
+                    <default>false</default>
+                    <label>AUTO</label>
+                </value>
+                <value>
+                    <fullName>BBPH</fullName>
+                    <default>false</default>
+                    <label>BBPH</label>
+                </value>
+                <value>
+                    <fullName>BBPO</fullName>
+                    <default>false</default>
+                    <label>BBPO</label>
+                </value>
+                <value>
+                    <fullName>EEM</fullName>
+                    <default>false</default>
+                    <label>EEM</label>
+                </value>
+                <value>
+                    <fullName>EEPHE</fullName>
+                    <default>false</default>
+                    <label>EEPHE</label>
+                </value>
+                <value>
+                    <fullName>ENQ602</fullName>
+                    <default>false</default>
+                    <label>ENQ602</label>
+                </value>
+                <value>
+                    <fullName>ENQA1</fullName>
+                    <default>false</default>
+                    <label>ENQA1</label>
+                </value>
+                <value>
+                    <fullName>ENQG1</fullName>
+                    <default>false</default>
+                    <label>ENQG1</label>
+                </value>
+                <value>
+                    <fullName>FIX201111</fullName>
+                    <default>false</default>
+                    <label>FIX201111</label>
+                </value>
+                <value>
+                    <fullName>IBIZ1</fullName>
+                    <default>false</default>
+                    <label>IBIZ1</label>
+                </value>
+                <value>
+                    <fullName>GEN</fullName>
+                    <default>false</default>
+                    <label>GEN</label>
+                </value>
+                <value>
+                    <fullName>MANTE</fullName>
+                    <default>false</default>
+                    <label>MANTE</label>
+                </value>
+                <value>
+                    <fullName>MEMREN</fullName>
+                    <default>false</default>
+                    <label>MEMREN</label>
+                </value>
+                <value>
+                    <fullName>MG</fullName>
+                    <default>false</default>
+                    <label>MG</label>
+                </value>
+                <value>
+                    <fullName>MNEWS</fullName>
+                    <default>false</default>
+                    <label>MNEWS</label>
+                </value>
+                <value>
+                    <fullName>ONLINE</fullName>
+                    <default>false</default>
+                    <label>ONLINE</label>
+                </value>
+                <value>
+                    <fullName>REN</fullName>
+                    <default>false</default>
+                    <label>REN</label>
+                </value>
+                <value>
+                    <fullName>MPHO</fullName>
+                    <default>false</default>
+                    <label>MPHO</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Source</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>None</fullName>
+                    <default>false</default>
+                    <label>None</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>cpm__Account_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF ( NOT(ISBLANK(cpm__Payment_Profile__r.cpm__IBAN__c
+)) , cpm__Payment_Profile__r.cpm__IBAN__c
+ , cpm__Payment_Profile__r.cpm__Bank_Account__c  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Indicates whether or not this mandate is still active and available for use.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether or not this mandate is still active and available for use.</inlineHelpText>
+        <label>Active</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>cpm__Address_Line__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF ( 
+    NOT ( ISBLANK ( cpm__Payment_Profile__r.cpm__Contact__c ) ), 
+        IF ( NOT (ISBLANK ( cpm__Payment_Profile__r.cpm__Contact__r.MailingStreet ) ), 
+        cpm__Payment_Profile__r.cpm__Contact__r.MailingStreet ,
+        &quot;&quot; ),
+    IF ( NOT (ISBLANK ( cpm__Payment_Profile__r.cpm__Account__r.ShippingStreet ) ), 
+        cpm__Payment_Profile__r.cpm__Account__r.ShippingStreet ,
+        &quot;&quot; )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Address Line</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__City__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF ( 
+    NOT ( ISBLANK ( cpm__Payment_Profile__r.cpm__Contact__c ) ), 
+        IF ( NOT (ISBLANK ( cpm__Payment_Profile__r.cpm__Contact__r.MailingCity ) ), 
+        cpm__Payment_Profile__r.cpm__Contact__r.MailingCity ,
+        &quot;&quot; ),
+    IF ( NOT (ISBLANK ( cpm__Payment_Profile__r.cpm__Account__r.ShippingCity ) ), 
+        cpm__Payment_Profile__r.cpm__Account__r.ShippingCity ,
+        &quot;&quot; )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>City</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Contact__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The name of the contact that issued the mandate.</description>
+        <externalId>false</externalId>
+        <formula>cpm__Payment_Profile__r.cpm__Contact__r.FirstName &amp; &quot; &quot; &amp;  cpm__Payment_Profile__r.cpm__Contact__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The name of the contact that issued the mandate.</inlineHelpText>
+        <label>Contact</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Country__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF ( 
+    NOT ( ISBLANK ( cpm__Payment_Profile__r.cpm__Contact__c ) ), 
+        IF ( NOT (ISBLANK ( cpm__Payment_Profile__r.cpm__Contact__r.MailingCountry ) ), 
+        cpm__Payment_Profile__r.cpm__Contact__r.MailingCountry ,
+        &quot;&quot; ),
+    IF ( NOT (ISBLANK ( cpm__Payment_Profile__r.cpm__Account__r.ShippingCountry ) ), 
+        cpm__Payment_Profile__r.cpm__Account__r.ShippingCountry ,
+        &quot;&quot; )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Country</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Custom_Reference__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Allows you to override the default mandate reference with a custom value.</description>
+        <externalId>false</externalId>
+        <label>Custom Reference</label>
+        <length>35</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Date_Signed__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The signing date for this mandate.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The signing date for this mandate.</inlineHelpText>
+        <label>Date Signed</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>cpm__Email__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF (  NOT( ISBLANK(cpm__Payment_Profile__r.cpm__Contact__r.Email) ) , cpm__Payment_Profile__r.cpm__Contact__r.Email , &quot;&quot; )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__End_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter an End date if you want to override manually</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>cpm__FirstName__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF ( NOT (ISBLANK ( cpm__Payment_Profile__r.cpm__Contact__r.FirstName ) ) , cpm__Payment_Profile__r.cpm__Contact__r.FirstName , &quot;&quot; )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FirstName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__IBAN__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The IBAN this mandate is valid for.</description>
+        <externalId>false</externalId>
+        <formula>cpm__Payment_Profile__r.cpm__IBAN__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The IBAN this mandate is valid for.</inlineHelpText>
+        <label>IBAN</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__LastName__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF ( NOT (ISBLANK ( cpm__Payment_Profile__r.cpm__Contact__r.LastName ) ) , cpm__Payment_Profile__r.cpm__Contact__r.LastName , &quot;&quot; )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>LastName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Last_Status_Reason__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Status Reason</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>cpm__Last_Used__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The last time this mandate was used to do a direct debit.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The last time this mandate was used to do a direct debit.</inlineHelpText>
+        <label>Last Used</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>cpm__Mandate_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The final mandate reference, gives the custom reference if present, the auto generated one otherwise.</description>
+        <externalId>false</externalId>
+        <formula>BLANKVALUE(cpm__Custom_Reference__c, cpm__Prefix__c &amp;&quot;&quot;&amp; CASESAFEID(Id))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The final mandate reference, gives the custom reference if present, the auto generated one otherwise.</inlineHelpText>
+        <label>Mandate ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Mandate_Schedule__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Mandate Schedule</label>
+        <referenceTo>cpm__Mandate_Schedule__c</referenceTo>
+        <relationshipLabel>Mandates</relationshipLabel>
+        <relationshipName>Mandates</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>cpm__Payment_Processor__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Payment Processor</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Payment_Profile__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The payment profile this mandate is valid for.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The payment profile this mandate is valid for.</inlineHelpText>
+        <label>Payment Profile</label>
+        <referenceTo>cpm__Payment_Profile__c</referenceTo>
+        <relationshipName>Mandates</relationshipName>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>cpm__PostalCode__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF ( 
+    NOT ( ISBLANK ( cpm__Payment_Profile__r.cpm__Contact__c ) ), 
+        IF ( NOT (ISBLANK ( cpm__Payment_Profile__r.cpm__Contact__r.MailingPostalCode ) ), 
+        cpm__Payment_Profile__r.cpm__Contact__r.MailingPostalCode ,
+        &quot;&quot; ),
+    IF ( NOT (ISBLANK ( cpm__Payment_Profile__r.cpm__Account__r.ShippingPostalCode ) ), 
+        cpm__Payment_Profile__r.cpm__Account__r.ShippingPostalCode ,
+        &quot;&quot; )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PostalCode</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Prefix__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a value if you want to prefix the Mandate ID</inlineHelpText>
+        <label>Prefix</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Prenotification_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The date a pre-notification was sent.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date a pre-notification was sent.</inlineHelpText>
+        <label>Pre-notification Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>cpm__Reference__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The mandate reference.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The mandate reference.</inlineHelpText>
+        <label>Reference</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Sort_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sort Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pending registration</fullName>
+                    <default>false</default>
+                    <label>Pending registration</label>
+                </value>
+                <value>
+                    <fullName>Pending cancellation</fullName>
+                    <default>false</default>
+                    <label>Pending cancellation</label>
+                </value>
+                <value>
+                    <fullName>Success</fullName>
+                    <default>false</default>
+                    <label>Success</label>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                    <label>Cancelled</label>
+                </value>
+                <value>
+                    <fullName>Failed</fullName>
+                    <default>false</default>
+                    <label>Failed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>cpm__Target__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Target</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>BACS Direct Debit</fullName>
+                    <default>true</default>
+                    <label>BACS Direct Debit</label>
+                </value>
+                <value>
+                    <fullName>Replace by Target</fullName>
+                    <default>false</default>
+                    <label>Replace by Target</label>
+                </value>
+                <value>
+                    <fullName>HMRC</fullName>
+                    <default>false</default>
+                    <label>HMRC</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>cpm__Title__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF ( NOT (ISBLANK ( cpm__Payment_Profile__r.cpm__Contact__r.Title ) ) , cpm__Payment_Profile__r.cpm__Contact__r.Title , &quot;&quot; )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Title</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CARE N/A</fullName>
+                    <default>true</default>
+                    <label>CARE N/A</label>
+                </value>
+                <value>
+                    <fullName>Recurring</fullName>
+                    <default>false</default>
+                    <label>Recurring</label>
+                </value>
+                <value>
+                    <fullName>One-Off</fullName>
+                    <default>false</default>
+                    <label>One-Off</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>cpm__Unique_Mandate_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <description>Unique mandate ID that is filled by a workflow. This field is needed to make sure we have unique ids throughout the ORG</description>
+        <externalId>true</externalId>
+        <label>Unique Mandate Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>cpm__Use_First_on_next_run__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>When checked, the transactions using this mandate are offered as FIRST to the bank.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the transactions using this mandate are offered as FIRST to the bank.</inlineHelpText>
+        <label>Use First on next run</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>cpm__Valid_Until__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The valid until date for this mandate.</description>
+        <externalId>false</externalId>
+        <formula>/*IF ( NOT(ISBLANK(End_Date__c)) , End_Date__c, 
+IF (NOT(ISBLANK(Last_Used__c)) , DATE( YEAR(Last_Used__c) + 3 , MONTH(Last_Used__c), DAY(Last_Used__c) ),
+IF (NOT(ISBLANK(Date_Signed__c)), DATE( YEAR(Date_Signed__c) + 3, MONTH(Date_Signed__c), DAY(Date_Signed__c) ), Null 
+)))*/
+
+BLANKVALUE(cpm__End_Date__c,
+IF(
+  AND(
+    MONTH( BLANKVALUE(cpm__Last_Used__c, cpm__Date_Signed__c) ) = 2,
+    DAY( BLANKVALUE(cpm__Last_Used__c, cpm__Date_Signed__c) ) = 29,
+    NOT( 
+      OR( 
+        MOD( YEAR( BLANKVALUE(cpm__Last_Used__c, cpm__Date_Signed__c) ) + 3, 400 ) = 0, 
+        AND( 
+          MOD( YEAR( BLANKVALUE(cpm__Last_Used__c, cpm__Date_Signed__c) ) + 3, 4 ) = 0,
+          MOD( YEAR( BLANKVALUE(cpm__Last_Used__c, cpm__Date_Signed__c) ) + 3, 100 ) != 0
+        )
+      )
+    ) 
+  ),
+  DATE( YEAR( BLANKVALUE(cpm__Last_Used__c, cpm__Date_Signed__c) ) + 3, 2, 28),
+  DATE( YEAR( BLANKVALUE(cpm__Last_Used__c, cpm__Date_Signed__c) ) + 3, MONTH( BLANKVALUE(cpm__Last_Used__c, cpm__Date_Signed__c) ), DAY( BLANKVALUE(cpm__Last_Used__c, cpm__Date_Signed__c) ) )
+))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Valid Until</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>paybacs__Payer_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>cpm__Payment_Profile__r.cpm__Holder_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Payer Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>paybacs__Register_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date that the mandate was registered / activated</description>
+        <externalId>false</externalId>
+        <label>Register Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <label>Mandate</label>
+    <nameField>
+        <displayFormat>MD-{0000000}</displayFormat>
+        <label>Reference</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Mandates</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>cpm__Active__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>cpm__Active__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>cpm__Active__c</searchFilterFields>
+        <searchFilterFields>cpm__Last_Used__c</searchFilterFields>
+        <searchFilterFields>cpm__Date_Signed__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>
