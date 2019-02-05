@@ -1434,7 +1434,7 @@ a {text-decoration: none;}
                                                                                                                                     style="position: static;">
                                                                                                                                     <p
                                                                                                                                         style="line-height: 24px; text-align: left; font-size: 14px;">Hi
-                                                                                                                                        {!npe03__Recurring_Donation__c.Contact_FirstName__c},</p>
+                                                                                                                                        {!npe03__Recurring_Donation__c.First_Contact__c},</p>
                                                                                                                                     <p
                                                                                                                                         style="line-height: 24px; text-align: left; font-size: 14px;"><br></p>
                                                                                                                                     <p
