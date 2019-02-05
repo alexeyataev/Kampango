@@ -802,7 +802,7 @@
 
                                                         <div class="pure-control-group">
                                                             <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Payment date:</label>
-                                                            <input class="form-fields membership-fields" type="hidden" SELECTED="true" CHECKED="true" name="paymentDate" value="3rd" onChange="" />&nbsp;3rd of the month&nbsp;&nbsp;
+                                                            <input class="form-fields membership-fields" type="hidden" SELECTED="true" CHECKED="true" name="paymentDate" value="3rd" onChange="" />&nbsp;<span id="payment-date"></span>&nbsp;&nbsp;
                                                         </div>
                                                         <p></p>
                                                          <div class="pure-control-group">
@@ -1439,6 +1439,34 @@
             }
 
             $("#Pay_now").click(function (){
+                var today = new Date();
+                var dateValues;
+                var daysInMonths;
+                var dd = today.getDate();
+                var mm = today.getMonth()+1;
+                var yyyy = today.getFullYear();
+                function myFunction() {
+                    var today = new Date();
+                    var month = today.getMonth();
+                    daysInMonths = daysInMonth(month + 1, today.getFullYear());
+                    if( (dd + 10) > daysInMonths){
+                        var dateValue = (dd + 10) - daysInMonths;
+                        if(dateValue >= 3){
+                            $('#payment-date').text('0'+(today.getMonth()+3) + '/' + '03' +  '/' + today.getFullYear());
+                        }
+                        else {
+                            $('#payment-date').text('0'+(today.getMonth()+2)  + '/' + '03' + '/' + today.getFullYear());
+                        }
+                    }
+                    else {
+                        $('#payment-date').text('0'+(today.getMonth()+2) + '/' + '03' + '/' + today.getFullYear());
+                    }
+                }
+                
+                function daysInMonth(month,year) {
+                    return new Date(year, month, 0).getDate();
+                }
+                myFunction();
                 console.log($('#selectMembership :selected').val());
                 console.log($('#selectMembership :selected').text());
                 if( $('#selectMembership :selected').text().includes('per quarter')){
