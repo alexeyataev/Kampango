@@ -43,6 +43,7 @@ public without sharing class MembershipCrudHelper {
                 	
             }
             else{
+                pymtPrfl = new cpm__Payment_Profile__c();
                 system.debug(' *$*$*$* Contact Account Id   ' + con.AccountId);
                 pymtPrfl.RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get('Bank Account').getRecordTypeId();
                 pymtPrfl.cpm__Contact__c = con.Id; 
@@ -89,7 +90,7 @@ public without sharing class MembershipCrudHelper {
                                         AND
                                         CreatedDate = :System.Date.today() limit 1];
             if(giftAidDeclarationRecord.size()>0){
-                giftAidDeclarationRecord[0].gaid__Contact__c= contID;
+                
                 giftAidDeclarationRecord[0].gaid__Type__c = membershipDetails.GiftAid_Type__c;
                 if(accountDetails[3] != '' && accountDetails[3] != null){
                     giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = accountDetails[3];
@@ -104,6 +105,7 @@ public without sharing class MembershipCrudHelper {
                 
             }
             else{
+                gftAid = new gaid__Gift_Aid_Declaration__c();
                 gftAid.gaid__Contact__c= contID;
                 gftAid.gaid__Type__c = membershipDetails.GiftAid_Type__c;
                 if(accountDetails[3] != '' && accountDetails[3] != null){
@@ -187,6 +189,7 @@ public without sharing class MembershipCrudHelper {
                  	
              }
              else{
+                 recDon = new npe03__Recurring_Donation__c();
                  recDon.Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                     recDon.npe03__Amount__c = membershipDetails.Installment_Amount__c;
                     recDon.npe03__Installments__c = membershipDetails.No_of_Installments__c;
