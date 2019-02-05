@@ -1688,7 +1688,7 @@
             			$('#gift_li').removeClass('active');
                         //$("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                     }
-                        }, 2500);
+                        }, 3500);
                 });
              
 
