@@ -228,6 +228,16 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
+        <fields>ACCOUNT.NAME</fields>
+        <fields>ACCOUNT.RECORDTYPE</fields>
+        <fields>ACCOUNT.TYPE</fields>
+        <fields>npe01__One2OneContact__c</fields>
+        <fields>ACCOUNT.ADDRESS1_CITY</fields>
+        <fields>ACCOUNT.PHONE1</fields>
+        <fields>npo02__TotalOppAmount__c</fields>
+        <relatedList>Account.npe01__One2OneContact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>NAME</fields>
         <relatedList>gaid__Gift_Aid_Declaration__c.gaid__Contact__c</relatedList>
     </relatedLists>
@@ -251,14 +261,6 @@
         <fields>RECORDTYPE</fields>
         <fields>cpm__Active__c</fields>
         <relatedList>cpm__Payment_Profile__c.cpm__Contact__c</relatedList>
-    </relatedLists>
-        <relatedLists>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>ACCOUNT.RECORDTYPE</fields>
-        <fields>ACCCONRELATION.IS_DIRECT</fields>
-        <fields>ACCCONRELATION.ROLES</fields>
-        <relatedList>RelatedContactAccountRelationList</relatedList>
-    </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
