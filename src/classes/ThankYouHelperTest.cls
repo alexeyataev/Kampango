@@ -28,14 +28,14 @@ private class ThankYouHelperTest {
         recDon.npe03__Contact__c = con.id;
         recDonation.add(recDon); 
         insert recDonation;
-         
+        Boolean lifeMembership = true;
         pagereference page = page.NctETMembershipPaymentPage;
          Test.setCurrentPage(page);
          ID contID = ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
 
         ThankYouHelper thankYou = new ThankYouHelper();
         thankYou.reccDonList = recDonation;
-         membershipNumber =  thankYou.membershipNumberCreation(con,recDon); 
+         membershipNumber =  thankYou.membershipNumberCreation(con,recDon,lifeMembership); 
          system.assertEquals('Confirmed',recDonation[0].Membership_Status__c);
      }
         @isTest
@@ -49,6 +49,7 @@ private class ThankYouHelperTest {
         con.Phone = '3453535353555';
         con.Prefered_First_Name__c = 'NCT';
         insert con;
+        Boolean lifeMembership = false;
         pagereference page = page.NctETMembershipPaymentPage;
          Test.setCurrentPage(page);
          ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
@@ -56,7 +57,7 @@ private class ThankYouHelperTest {
 
         ThankYouHelper thankYou = new ThankYouHelper();
         thankYou.reccDonList = recDonation;
-        thankYou.membershipNumberCreation(con,recDon);  
+        thankYou.membershipNumberCreation(con,recDon,lifeMembership);  
         //system.assertEquals('Pending', recDon.Membership_Status__c);
     }
     
@@ -71,10 +72,11 @@ private class ThankYouHelperTest {
         con.Phone = '3453535353555';
         con.Prefered_First_Name__c = 'NCT';
         insert con;
-
+        String membershipNumber;
+		Boolean lifeMembership = false;
         ThankYouHelper thankYou = new ThankYouHelper();
         thankYou.isStaff = true;
-             thankYou.membershipNumberCreation(con,recDon1);  
-        system.assertEquals('Confirmed', recDon1.Membership_Status__c);
+          membershipNumber= thankYou.membershipNumberCreation(con,recDon1,lifeMembership);  
+        system.assertNotEquals('Confirmed', membershipNumber);
     }
 }
