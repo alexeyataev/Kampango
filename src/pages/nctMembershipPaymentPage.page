@@ -8,7 +8,12 @@
         <p>Input field:<apex:input type="text" id="isExists" value="{!isContactExisting}"/> </p>
     </apex:outputPanel>-->
    <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue">
-        <apex:param id="selValId" name="seltdName" value="" />
+        <apex:param id="selValId" name="seltdName" value="" assignTo="{!feeAmount}"/>
+       <apex:param id="giftVal" name="giftName" value="" assignTo="{!isGiftAid}"/>
+   </apex:actionFunction>
+    <apex:actionFunction name="giftAidCreation" action="{!giftAidCreation}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
+        <apex:param id="selgftValId" name="selgfttdName" value="" assignTo="{!feeAmount}"/>
+        
    </apex:actionFunction>
     <!--<apex:actionFunction name="isContactExisting" action="{!existingContactChecker}" reRender="membershipNumber">
         <apex:param id="accname" name="accname" value="" assignTo="{!accountName}"/>
@@ -852,39 +857,6 @@
                                             <div class="pure-control-group" style="clear:both;">
 
                                             <style>td {padding:5px; border:1px dotted #aaa;}</style>
-                                                <!-- <div class='giftaidblock' style='border:1px solid #333; padding:10px;'>
-                                                @2    <img src='assets/gift_aid.jpg' width='140' height='49' title='Gift Aid' align='right'/>
-                                                    Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra cost to you.
-                                                    This means that for every &pound;1 you give, we will receive an extra 25p from HM Revenue and Customs<br />
-                                                    <p>
-                                                        <strong>Your Gift Aid declaration</strong><br />
-                                                    </p>
-                                                      <div class="col-12">
-                                                       <label class="font-bold">Gift Aid Acquistion Method: </label>
-                                                       <select id="acquistion2" class="gift-aid-select-box">
-                                                           <option>Oral</option>
-                                                           <option>Written</option>
-                                                           <option>Digital</option>
-                                                       </select>
-                                                    </div>
-                                                    <div class="col-12 radio-fields-col membership_check paddingbot20px">
-                                                    <p>
-                                                        <span><input type='checkbox' Id="giftAidCheckbox" name='checkboxGiftAidPerson1' style='float:left' />
-                                                    I agree to the NCT claiming tax under the Gift Aid scheme on all my donations and subscriptions until I advise otherwise. I confirm that I am paying an
-                                                                    amount of UK Income and/or Capital Gains Tax which is at least equal to the amount of tax that all Charities and Community Amateur Sports Clubs (CASCs)
-                                                                    will reclaim on my donation in each tax year (6 April one year to 5 April the next).</span>
-                                                    </p>
-                                                    </div>
-                                                    <br style='clear:both;' />
-                                                    <p style='font-size:11px; line-height: 13px;'>
-
-                                                            Please note: we will claim back the tax on any donations or membership subscriptions you have given us in the last 4 tax years. If you want to nominate another date,
-                                                            e.g. because you have been a non-taxpayer for some of the last four years or if you want to cancel this declaration, change your home address or no longer pay
-                                                            sufficient tax on your income, please contact our enquiries team at enquiries@nct.org.uk
-
-                                                    </p>
-                                                </div>   -->
-
                                                     </div>
                                                     <div class="pure-control-group">
 
@@ -1483,6 +1455,7 @@
                         $("#direct_debit_block").hide();
                         $("#gift_aid_block").show();
                         cardPayment = true;
+                       
                         console.log(cardPayment, "cardPayment");
                         $("html, body").animate({ scrollTop: 0 }, "slow");
                     }
@@ -1570,6 +1543,7 @@
                     console.log(accountName);
                     console.log(sortCode);
                     console.log(accountNumber);
+            		console.log(typeof giftAidCheckbox, 'Gift Aid CC Flow');
                     //console.log($(giftAidCheckbox)[0].checked);
                     //saverecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
                     $('#payment_li, #gift_li').removeClass('active');
@@ -1581,8 +1555,12 @@
                     $("#DD_acc_name").html(accountName);
                     $("#DD_sort_code").html(sortCode);
                     $("#DD_bank_acc_num").html(accountNumber);
+            		console.log(cardPayment, 'cardPayment');
                     if (cardPayment === true && $('#selectMembership :selected').val() != '') {
-                        SelValFunction($('#selectMembership :selected').val());
+                        
+                        SelValFunction($('#selectMembership :selected').val(),giftAidCheckbox);
+                        
+                        
                         $("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                     }
                 });
