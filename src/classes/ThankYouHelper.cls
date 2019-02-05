@@ -3,12 +3,13 @@ public without sharing class ThankYouHelper {
     public string membershipNumber {get;set;}
     list<User> UserList = new list<User>();
     public list<npe03__Recurring_Donation__c> reccDonList = new list<npe03__Recurring_Donation__c>();
+    public npe03__Recurring_Donation__c recDon {get; set;}
     public ThankYouHelper(){
         Id userId = userinfo.getUserId();
         isStaff = ContactUtilities.isStaff(userId);
     }
       
-    public String membershipNumberCreation(contact cont,npe03__Recurring_Donation__c recDon){
+    public String membershipNumberCreation(contact cont,npe03__Recurring_Donation__c recDon, Boolean lifeMembership){
         system.debug('Apexpages.currentPage().getParameters().get(contId) ---   ' + Apexpages.currentPage().getParameters().get('contId'));
         if(Apexpages.currentPage().getParameters().get('contId') != null && Apexpages.currentPage().getParameters().get('contId') !='')
         {
@@ -40,10 +41,8 @@ public without sharing class ThankYouHelper {
             }
         }
         else{    
-            
-            if(isStaff == true)
-            {
-                System.debug('Staff flow');
+            if(cont != null && lifeMembership == true){
+                recDon = new npe03__Recurring_Donation__c();
                 recDon.Name = 'Staff Membership';
                 recDon.npe03__Amount__c = 0;
                 recDon.npe03__Contact__c = cont.Id;
@@ -55,11 +54,9 @@ public without sharing class ThankYouHelper {
                
                 Insert recDon;
             }
-           
-           
+                
             
         }
-        system.debug('RECCURRING DONATION   ' + recDon.Id);
         if(recDon.Id != null)
         {
             reccDonList = [select Id, Membership_Number__c,npe03__Contact__c,npsp4hub__Payment_Method__c,

@@ -1,7 +1,11 @@
 <apex:page applyHtmlTag="true" docType="html-5.0" controller="NctETMembershipPaymentPageController" showHeader="false" sidebar="false">
 <apex:form id="membrShpForm">
    <apex:actionFunction name="SelValFunction" action="{!contactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
-        <apex:param id="selValId" name="seltdName" value="" />
+        <apex:param id="selValId" name="seltdName" value="" assignTo="{!feeAmount}"/>
+       	<apex:param id="lifeMembershipVal" name="lifeMembershipName" value="" assignTo="{!lifeMembership}"/>
+   </apex:actionFunction>
+    <apex:actionFunction name="giftAidCreation" action="{!giftAidCreation}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
+        <apex:param id="giftVal" name="giftName" value="" assignTo="{!isGiftAid}"/>
    </apex:actionFunction>
     <apex:actionFunction name="thankYouPage" action="{!thankYouSec}" reRender="membershipNumber,membershipText">
    </apex:actionFunction>
@@ -15,7 +19,7 @@
        <apex:param id="accNum" name="accNum" value="" assignTo="{!accountNumber}"/>
        <apex:param id="gftAid" name="gftAid" value="" assignTo="{!isGiftAid}"/>
     </apex:actionFunction>
-    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,membershipNumber,membershipText,smsOpt,postOpt,emailOpt,doNotCallOpt">
+    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,membershipNumber,membershipText,smsOpt,postOpt,emailOpt,doNotCallOpt,isMembershipExists">
         <apex:param id="aname" name="chkbox" value="" assignTo="{!twomems}"/>
         <apex:param id="firstName" name="firstName" value="" assignTo="{!firstname}"/>
         <apex:param id="lastName" name="lastName" value="" assignTo="{!lastname}"/>
@@ -1528,7 +1532,16 @@
                     $('#selectMembership select').removeClass('error-border');
                 }
                 if (($('#selectMembership :selected').val() != '')) {
-                    SelValFunction($('#selectMembership :selected').val());
+                    var lifeMembership;
+                    if(($('#selectMembership :selected').text().includes('Life Membership - Free'))){
+                    	lifeMembership = true;
+                        SelValFunction($('#selectMembership :selected').val(),lifeMembership);
+                    }
+                    else{
+                        lifeMembership = false;
+                        SelValFunction($('#selectMembership :selected').val(),lifeMembership);
+                    }
+                    
                     console.log($('#selectMembership :selected').text().includes('Credit'));
                     $("#direct_debit_block").show();
                     if(($('#selectMembership :selected').text().includes('Credit'))){
@@ -1635,6 +1648,7 @@
                         	$('#membership-loader').removeClass('show-loader');
                         }
                     },200)
+                    setTimeout(function(){
                     var accountName = $('#accountName').val();
                     var sortCode1 = $('#scd1').val();
                     var sortCode2 = $('#scd2').val();
@@ -1646,6 +1660,10 @@
                     console.log(accountName);
                     console.log(sortCode);
                     console.log(accountNumber);
+            		console.log(typeof giftAidCheckbox, 'Gift Aid CC Flow');
+            		if (cardPayment === true) {
+            			giftAidCreation(giftAidCheckbox);
+                    }
                     //console.log($(giftAidCheckbox)[0].checked);
                     //saverecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
                     $('#payment_li, #gift_li').removeClass('active');
@@ -1657,7 +1675,9 @@
                     $("#DD_acc_name").html(accountName);
                     $("#DD_sort_code").html(sortCode);
                     $("#DD_bank_acc_num").html(accountNumber);
+            		console.log(cardPayment, 'cardPayment');
                     if (cardPayment === true) {
+                        
                         $('#thankyou').addClass('active show');
                         $('#thankyou_li').addClass('active');
                         $('#payment').removeClass('active show');
@@ -1668,7 +1688,9 @@
             			$('#gift_li').removeClass('active');
                         //$("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                     }
+                        }, 2500);
                 });
+             
 
     });
     </script>
