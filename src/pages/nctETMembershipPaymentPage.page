@@ -613,10 +613,10 @@
 
                                                          </apex:selectCheckboxes></span>-->
                                                         <div class="contact_check">
-                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!smsOpt}"/>SMS Opt Out</span>
-                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!postOpt}"/>Post Opt Out</span>
-                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!emailOpt}"/>Email Opt Out</span> 
-                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!doNotCallOpt}"/>Do Not Call</span> 
+                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!smsOpt}"/>SMS</span>
+                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!postOpt}"/>Post</span>
+                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!emailOpt}"/>Email</span> 
+                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!doNotCallOpt}"/>Phone</span> 
                                                             
                                                           </div>
                                                     </div>
@@ -1688,7 +1688,7 @@
             			$('#gift_li').removeClass('active');
                         //$("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                     }
-                        }, 2500);
+                        }, 3500);
                 });
              
 
@@ -1743,14 +1743,14 @@
 
         function validateGender() {
 
-            /*var gender = $('input[name=gender]:checked').val();
+            var gender = $('input[name=gender]:checked').val();
             console.log(gender);
                     if(gender == ""|| gender == undefined) {
                         return false
                     }
                     else{
                         return true;
-            }*/
+            }
         }
         function validateJoin() {
                     error="";
@@ -1784,13 +1784,13 @@
                         $('#selectTitle').addClass('error');
                         //return false;
                     }
-            /*if(validateGender()) {
+                    if(validateGender()) {
                         //$('.gender-error').addClass('hide');
                     }
                     else{
                         //$('.gender-error').removeClass('hide');
-                        error=error+'please select gender.\n'
-                    }*/
+                        error=error+'please select gender.\n' + '<br>';
+                    }
 
 
                     $('input').removeClass("error");    // clear all markup before beginning.

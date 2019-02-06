@@ -617,10 +617,10 @@
 
                                                          </apex:selectCheckboxes></span>-->
                                                         <div class="contact_check">
-                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!smsOpt}"/>SMS Opt Out</span>
-                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!postOpt}"/>Post Opt Out</span>
-                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!emailOpt}"/>Email Opt Out</span> 
-                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!doNotCallOpt}"/>Do Not Call</span> 
+                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!smsOpt}"/>SMS</span>
+                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!postOpt}"/>Post</span>
+                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!emailOpt}"/>Email</span> 
+                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!doNotCallOpt}"/>Phone</span> 
                                                             
                                                           </div>
                                                     </div>
@@ -807,7 +807,7 @@
 
                                                         <div class="pure-control-group">
                                                             <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Payment date:</label>
-                                                            <input class="form-fields membership-fields" type="hidden" SELECTED="true" CHECKED="true" name="paymentDate" value="3rd" onChange="" />&nbsp;3rd of the month&nbsp;&nbsp;
+                                                            <input class="form-fields membership-fields" type="hidden" SELECTED="true" CHECKED="true" name="paymentDate" value="3rd" onChange="" />&nbsp;<span id="payment-date"></span>&nbsp;&nbsp;
                                                         </div>
                                                         <p></p>
                                                          <div class="pure-control-group">
@@ -1411,6 +1411,34 @@
             }
 
             $("#Pay_now").click(function (){
+                var today = new Date();
+                var dateValues;
+                var daysInMonths;
+                var dd = today.getDate();
+                var mm = today.getMonth()+1;
+                var yyyy = today.getFullYear();
+                function myFunction() {
+                    var today = new Date();
+                    var month = today.getMonth();
+                    daysInMonths = daysInMonth(month + 1, today.getFullYear());
+                    if( (dd + 10) > daysInMonths){
+                        var dateValue = (dd + 10) - daysInMonths;
+                        if(dateValue >= 3){
+                            $('#payment-date').text('0'+(today.getMonth()+3) + '/' + '03' +  '/' + today.getFullYear());
+                        }
+                        else {
+                            $('#payment-date').text('0'+(today.getMonth()+2)  + '/' + '03' + '/' + today.getFullYear());
+                        }
+                    }
+                    else {
+                        $('#payment-date').text('0'+(today.getMonth()+2) + '/' + '03' + '/' + today.getFullYear());
+                    }
+                }
+                
+                function daysInMonth(month,year) {
+                    return new Date(year, month, 0).getDate();
+                }
+                myFunction();
                 console.log($('#selectMembership :selected').val());
                 console.log($('#selectMembership :selected').text());
                 if( $('#selectMembership :selected').text().includes('per quarter')){
@@ -1619,12 +1647,12 @@
 
             var gender = $('#gender').val();
             console.log('Test gender:'+gender);
-            /*if(gender == ""|| gender == undefined) {
+            if(gender == ""|| gender == undefined) {
                         return false
                     }
                     else{
                         return true;
-            }*/
+            }
         }
         function validateJoin() {
                     error="";
@@ -1656,13 +1684,13 @@
                         $('#selectTitle').addClass('error');
                         //return false;
                     }
-            /*if(validateGender()) {
+                   if(validateGender()) {
                         //$('.gender-error').addClass('hide');
                     }
                     else{
                         //$('.gender-error').removeClass('hide');
-                        error=error+'please select gender.\n'
-                    }*/
+                        error=error+'please select gender.\n' + '<br>';
+                    }
 
 
                     $('input').removeClass("error");    // clear all markup before beginning.
