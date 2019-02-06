@@ -9,12 +9,12 @@
     </apex:outputPanel>-->
    <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue">
         <apex:param id="selValId" name="seltdName" value="" assignTo="{!feeAmount}"/>
-       <apex:param id="giftVal" name="giftName" value="" assignTo="{!isGiftAid}"/>
+       <!--<apex:param id="giftVal" name="giftName" value="" assignTo="{!isGiftAid}"/>-->
    </apex:actionFunction>
-    <apex:actionFunction name="giftAidCreation" action="{!giftAidCreation}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
-        <apex:param id="selgftValId" name="selgfttdName" value="" assignTo="{!feeAmount}"/>
-        
-   </apex:actionFunction>
+    <apex:actionFunction name="giftAidCreation" action="{!giftAidCreation}" oncomplete="SelValFunction($('#selectMembership :selected').val());" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
+        <apex:param id="selgftValId" name="selgfttdName" value="" assignTo="{!isGiftAid}"/>
+        <apex:param id="selValAmountId" name="seltAmountdName" value="" assignTo="{!feeAmount}"/>
+   </apex:actionFunction>  
     <!--<apex:actionFunction name="isContactExisting" action="{!existingContactChecker}" reRender="membershipNumber">
         <apex:param id="accname" name="accname" value="" assignTo="{!accountName}"/>
    </apex:actionFunction>-->
@@ -1585,9 +1585,10 @@
                     $("#DD_bank_acc_num").html(accountNumber);
             		console.log(cardPayment, 'cardPayment');
                     if (cardPayment === true && $('#selectMembership :selected').val() != '') {
-                        
-                        SelValFunction($('#selectMembership :selected').val(),giftAidCheckbox);
-                        
+                        console.log('Gift AID Dec: ',giftAidCheckbox,$('#selectMembership :selected').val());
+                        giftAidCreation(giftAidCheckbox,$('#selectMembership :selected').val());
+                        //membershipInfo($('#selectMembership :selected').val());
+                        //SelValFunction($('#selectMembership :selected').val());                        
                         
                         $("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                     }

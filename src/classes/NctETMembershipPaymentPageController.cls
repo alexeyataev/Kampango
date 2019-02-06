@@ -89,6 +89,7 @@ public class NctETMembershipPaymentPageController
     public String recordType;
     public String sessionProfile;
     public Boolean lifeMembership{get; set;}
+    public static Boolean inspect = false;
     public NctETMembershipPaymentPageController()
     {  
         contId = ApexPages.currentPage().getParameters().get('Id');
@@ -290,14 +291,26 @@ public class NctETMembershipPaymentPageController
     }
     public PageReference contactInfo()
     {
-        feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
-        PageReference redirecContUrl;
-        system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
-        membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
-                                                No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
-                                                Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
-                                                GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
-                                                where Id =:feeAmount];
+        if(membershipInfo != null && inspect == true){
+            feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
+            PageReference redirecContUrl;
+            system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
+            membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
+                                                    No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
+                                                    Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
+                                                    GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
+                                                    where Id =:feeAmount];
+        }
+        else{
+            feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
+            PageReference redirecContUrl;
+            system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
+            membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
+                                                    No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
+                                                    Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
+                                                    GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
+                                                    where Id =:feeAmount];
+        }
         System.debug('Membership##### '+membershipInfo);
         
         if(membershipInfo != null)
@@ -309,16 +322,13 @@ public class NctETMembershipPaymentPageController
                 if(membershipInfo != null && sessionProfile != 'Standard')
                 {
                     
-                    //if(membershipInfo.Payment_Method__c == 'Credit/Debit Card')
-                    //{
-                        //giftAidCreation();
-                        paymentHubCallout();
-                        PageReference pageRef = new PageReference(redirectURL);
-        
-                        pageRef.setRedirect(true);
-                        System.debug('doing: '+sessionProfile);
-                        return pageRef;
-                    //}
+                    paymentHubCallout();
+                    PageReference pageRef = new PageReference(redirectURL);
+    
+                    pageRef.setRedirect(true);
+                    System.debug('doing: '+sessionProfile);
+                    return pageRef;
+                    
                 }
                 else if(sessionProfile == 'Standard'){
                     displaySuccessMessage = true;
@@ -364,6 +374,18 @@ public class NctETMembershipPaymentPageController
     }
     public void giftAidCreation(){
         displayMbrNoMessage = true;
+        if(sessionProfile != 'Standard'){
+            feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName');
+            PageReference redirecContUrl;
+            system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
+            membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
+                                                    No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
+                                                    Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
+                                                    GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
+                                                    where Id =:feeAmount];
+        }
+      	
+        System.debug('Membership##### '+membershipInfo);
       
         system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
         list<String> accountDetails = new list<String>();
@@ -376,6 +398,7 @@ public class NctETMembershipPaymentPageController
         if(isGiftAid == 'true'){
         	gftAid = MemCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
         }
+        inspect = true;
     }
    
     public void paymentSave()
