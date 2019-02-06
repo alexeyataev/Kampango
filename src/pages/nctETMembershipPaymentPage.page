@@ -1743,7 +1743,7 @@
 
         function validateGender() {
 
-            var gender = $('input[name=gender]:checked').val();
+            var gender = $("input[name$='gender']:checked").val();
             console.log(gender);
                     if(gender == ""|| gender == undefined) {
                         return false

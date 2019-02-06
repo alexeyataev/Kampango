@@ -1645,7 +1645,7 @@
 
         function validateGender() {
 
-            var gender = $('#gender').val();
+            var gender = $("input[name$='gender']:checked").val();
             console.log('Test gender:'+gender);
             if(gender == ""|| gender == undefined) {
                         return false
