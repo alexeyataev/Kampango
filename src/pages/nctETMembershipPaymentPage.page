@@ -1632,6 +1632,7 @@
             }
         });
        $('#direct_debit_back').on('click', function(){
+           $('#gift_aid_btn').prop('disabled', false);
             $('#confirmation').removeClass('active show');
             $('#confirmation_li').removeClass('active');
             $('#gift_aid_block').show();
@@ -1689,6 +1690,7 @@
                         //$("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                     }
                         }, 3500);
+                        $('#gift_aid_btn').prop('disabled', true);
                 });
              
 
