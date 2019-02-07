@@ -395,7 +395,7 @@ public class NctETMembershipPaymentPageController
             isContactExisting = ContactUtilities.isContactExisting(emails);
             System.debug('isContactExisting: '+isContactExisting);
         }
-        //isMembershipExists = ContactUtilities.isMembershipExists(contId, email);
+        isMembershipExists = ContactUtilities.isMembershipExists(contId, emails);
         postCode = Apexpages.currentPage().getParameters().get('postVal');
         System.debug('postCode: '+postCode);
         if(postCode != null && postCode != ''){
