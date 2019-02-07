@@ -49,10 +49,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Data_Source__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Gender__c</field>
             </layoutItems>
         </layoutColumns>
@@ -72,6 +68,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Branch__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Data_Source__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -101,9 +101,17 @@
         <editHeading>true</editHeading>
         <label>Contact Information</label>
         <layoutColumns>
-         <layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Phone</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MobilePhone</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DoNotCall</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -111,10 +119,22 @@
                 <behavior>Required</behavior>
                 <field>Email</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SMS_Opt_Out__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Post_Opt_Out__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>HasOptedOutOfEmail</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
-     <layoutSections>
+    <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
@@ -167,8 +187,6 @@
                 <behavior>Edit</behavior>
                 <field>MailingAddress</field>
             </layoutItems>
-        </layoutColumns>
-         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Mailing_City__c</field>
@@ -181,7 +199,8 @@
                 <behavior>Edit</behavior>
                 <field>Mailing_State__c</field>
             </layoutItems>
-        <layoutColumns/>          
+        </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -285,7 +304,7 @@
         <fields>ACCCONRELATION.ROLES</fields>
         <relatedList>RelatedContactAccountRelationList</relatedList>
     </relatedLists>
-            <relatedLists>
+    <relatedLists>
         <fields>NAME</fields>
         <fields>npe03__Date_Established__c</fields>
         <fields>npe03__Last_Payment_Date__c</fields>
@@ -304,7 +323,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1j000000NBWM</masterLabel>
+        <masterLabel>00h1x000000Iv9P</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
