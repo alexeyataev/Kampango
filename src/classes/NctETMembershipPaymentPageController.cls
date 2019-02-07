@@ -90,6 +90,7 @@ public class NctETMembershipPaymentPageController
     public String sessionProfile;
     public Boolean lifeMembership{get; set;}
     public static Boolean inspect = false;
+    public static Boolean onComplete {get; set;}
     public NctETMembershipPaymentPageController()
     {  
         contId = ApexPages.currentPage().getParameters().get('Id');
@@ -127,16 +128,39 @@ public class NctETMembershipPaymentPageController
                 postCode = newCont.MailingPostalCode;
                 salutationPrimary = newCont.Salutation;
                 genders = newCont.Gender__c;
-                smsOpt = newCont.SMS_Opt_Out__c;
-    			postOpt = newCont.Post_Opt_Out__c;
-    			emailOpt = newCont.HasOptedOutOfEmail;
-    			doNotCallOpt = newCont.DoNotCall;
+               if(newCont.SMS_Opt_Out__c == true){
+                    smsOpt = false;
+                }
+                else{
+                    smsOpt = true;
+                }
+                if(newCont.Post_Opt_Out__c == true){
+                    postOpt = false;
+                }
+                else{
+                    postOpt = true;
+                }
+                if(newCont.HasOptedOutOfEmail == true){
+                    emailOpt = false;
+                }
+                else{
+                    emailOpt = true;
+                }
+                if(newCont.DoNotCall == true){
+                    doNotCallOpt = false;
+                }
+                else{
+                    doNotCallOpt = true;
+                }
+ 		
             }
+        
+        }else{
+            smsOpt = true;
+            postOpt = true;
+            emailOpt = true;
+            doNotCallOpt = true;
         }
-        smsOpt = true;
-        postOpt = true;
-        emailOpt = true;
-        doNotCallOpt = true;
         pymtPrfl = new cpm__Payment_Profile__c();
         recDon = new npe03__Recurring_Donation__c();
         gftAid = new gaid__Gift_Aid_Declaration__c();
@@ -360,6 +384,10 @@ public class NctETMembershipPaymentPageController
         }
         return null;
     } 
+    public void onCompleteContactInfo(){
+        onComplete = true;
+        System.debug('onComplete:'+onComplete);
+    }
     public void nctBranchs(){
         
         String emails = Apexpages.currentPage().getParameters().get('emailsVal');
