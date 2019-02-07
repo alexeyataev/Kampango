@@ -1815,6 +1815,33 @@ ISBLANK(TEXT(Cancellation_Reason__c))
         <errorDisplayField>Cancellation_Reason__c</errorDisplayField>
         <errorMessage>You must select Cancellation reason</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>MembershipStatus_Validation</fullName>
+        <active>false</active>
+        <errorConditionFormula>OR( 
+AND( 
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelled&quot;), 
+ISPICKVAL(Membership_Status__c, &quot;Cancelling&quot;) 
+), 
+
+AND( 
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Confirmed&quot;), 
+ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
+
+), 
+
+AND( 
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelled&quot;), 
+ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
+),
+ 
+AND( 
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelling&quot;), 
+ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
+)
+)</errorConditionFormula>
+        <errorMessage>you are not allowed to change the status</errorMessage>
+    </validationRules>
     <visibility>Public</visibility>
     <webLinks>
         <fullName>Cancel_Membership</fullName>
