@@ -3849,7 +3849,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Payment_Profile__c.cpm__Contact__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
