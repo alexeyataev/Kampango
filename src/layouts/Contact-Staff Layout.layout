@@ -100,7 +100,7 @@
                 <field>npe01__PreferredPhone__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>MobilePhone</field>
             </layoutItems>
             <layoutItems>
@@ -110,7 +110,7 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>npe01__HomeEmail__c</field>
             </layoutItems>
             <layoutItems>
