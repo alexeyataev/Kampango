@@ -1,8 +1,10 @@
 <apex:page applyHtmlTag="true" docType="html-5.0" controller="NctETMembershipPaymentPageController" showHeader="false" sidebar="false">
 <apex:form id="membrShpForm">
-   <apex:actionFunction name="SelValFunction" action="{!contactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
+   <apex:actionFunction name="SelValFunction" action="{!contactInfo}" oncomplete="onComplete();" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
         <apex:param id="selValId" name="seltdName" value="" assignTo="{!feeAmount}"/>
        	<apex:param id="lifeMembershipVal" name="lifeMembershipName" value="" assignTo="{!lifeMembership}"/>
+           </apex:actionFunction>
+    <apex:actionFunction name="onComplete" action="{!onCompleteContactInfo}" reRender="onComplete">
    </apex:actionFunction>
     <apex:actionFunction name="giftAidCreation" action="{!giftAidCreation}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
         <apex:param id="giftVal" name="giftName" value="" assignTo="{!isGiftAid}"/>
@@ -346,6 +348,7 @@
 
 <body class="membership-details-screen">
     <section>
+    <apex:input value="{!onComplete}" id="onComplete" style="opacity:0;width:1px;height:1px;"/>
     	<input type="text" value="{!staffMember}" id="checkStaff" style="opacity:0;width:1px;height:1px;"/>
         <div class="green-bg-image">
             <div class="text-center nct-mebmber-logo"><apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nctmembers-logo.png')}"/></div>
@@ -1450,7 +1453,7 @@
     </script>
     <script>
     $(function() {
-
+         var giftAidExec = false;
         console.log( "ready!" ); //branch
         var cardPayment = false;
         $('#selectMembership').change(function() {
@@ -1658,7 +1661,12 @@
                         	$('#membership-loader').removeClass('show-loader');
                         }
                     },200)
-                    setTimeout(function(){
+                    setInterval(function() {
+                    giftAidExec = $("[id$='onComplete']").val();
+                      console.log(typeof giftAidExec, 'giftAidExec');
+                      if(giftAidExec == 'true') {
+                        //setTimeout(function(){
+                          console.log(giftAidExec, 'giftAidExec if');
                     var accountName = $('#accountName').val();
                     var sortCode1 = $('#scd1').val();
                     var sortCode2 = $('#scd2').val();
@@ -1698,9 +1706,14 @@
             			$('#gift_li').removeClass('active');
                         //$("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                     }
-                        }, 3500);
+                      //}, 3500);
+                          //giftAidExec = false;
+                          $("[id$='onComplete']").val(false);
+                          }
+                          
+                   }, 2000)
                         $('#gift_aid_btn').prop('disabled', true);
-                });
+                        });
              
 
     });
