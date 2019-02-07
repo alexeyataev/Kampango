@@ -167,6 +167,7 @@ public without sharing class MembershipCrudHelper {
              if(recDonationRecord.size()>0){
                  recDonationRecord[0].Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                     recDonationRecord[0].npe03__Amount__c = membershipDetails.Installment_Amount__c;
+                    recDonationRecord[0].Membership_type__c = membershipDetails.Membership__c;
                     recDonationRecord[0].npe03__Installments__c = membershipDetails.No_of_Installments__c;
                     if(accountDetails[4] != '' && accountDetails[4] != null){
                          recDonationRecord[0].Source__c = accountDetails[4];
@@ -192,6 +193,7 @@ public without sharing class MembershipCrudHelper {
                  recDon = new npe03__Recurring_Donation__c();
                  recDon.Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                     recDon.npe03__Amount__c = membershipDetails.Installment_Amount__c;
+                    recDon.Membership_type__c = membershipDetails.Membership__c;
                     recDon.npe03__Installments__c = membershipDetails.No_of_Installments__c;
                     recDon.npe03__Contact__c = contID;
                     if(accountDetails[4] != '' && accountDetails[4] != null){
