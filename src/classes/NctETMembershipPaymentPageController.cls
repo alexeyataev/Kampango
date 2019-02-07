@@ -90,6 +90,7 @@ public class NctETMembershipPaymentPageController
     public String sessionProfile;
     public Boolean lifeMembership{get; set;}
     public static Boolean inspect = false;
+    public static Boolean onComplete {get; set;}
     public NctETMembershipPaymentPageController()
     {  
         contId = ApexPages.currentPage().getParameters().get('Id');
@@ -360,6 +361,10 @@ public class NctETMembershipPaymentPageController
         }
         return null;
     } 
+    public void onCompleteContactInfo(){
+        onComplete = true;
+        System.debug('onComplete:'+onComplete);
+    }
     public void nctBranchs(){
         
         String emails = Apexpages.currentPage().getParameters().get('emailsVal');
