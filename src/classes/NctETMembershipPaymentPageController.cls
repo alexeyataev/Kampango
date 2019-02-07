@@ -133,6 +133,10 @@ public class NctETMembershipPaymentPageController
     			doNotCallOpt = newCont.DoNotCall;
             }
         }
+        smsOpt = true;
+        postOpt = true;
+        emailOpt = true;
+        doNotCallOpt = true;
         pymtPrfl = new cpm__Payment_Profile__c();
         recDon = new npe03__Recurring_Donation__c();
         gftAid = new gaid__Gift_Aid_Declaration__c();
@@ -363,14 +367,25 @@ public class NctETMembershipPaymentPageController
             isContactExisting = ContactUtilities.isContactExisting(emails);
             System.debug('isContactExisting: '+isContactExisting);
         }
-        isMembershipExists = ContactUtilities.isMembershipExists(contId, email);
+        //isMembershipExists = ContactUtilities.isMembershipExists(contId, email);
         postCode = Apexpages.currentPage().getParameters().get('postVal');
         System.debug('postCode: '+postCode);
         if(postCode != null && postCode != ''){
         nearestBranchs = MembershipUtilties.getBranches(postCode);
         System.debug('branches'+nearestBranchs);
         }
+        }
+    public void membershipDupeChecker(){
         
+        String emails = Apexpages.currentPage().getParameters().get('emailDupeVal');
+        System.debug('emails: '+emails);
+        if(contId == null){
+            isContactExisting = ContactUtilities.isContactExisting(emails);
+            System.debug('isContactExisting: '+isContactExisting);
+       
+        }
+        isMembershipExists = ContactUtilities.isMembershipExists(contId, emails);
+		System.debug('isMembershipExists: '+isMembershipExists);         
     }
     public void giftAidCreation(){
         displayMbrNoMessage = true;
