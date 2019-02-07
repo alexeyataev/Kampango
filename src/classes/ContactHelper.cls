@@ -48,11 +48,31 @@ public without sharing class ContactHelper {
         createContact.MailingStreet = contactFieldListExt[2]+''+contactFieldListExt[3]+''+contactFieldListExt[4];
         createContact.MailingState = contactFieldListExt[5];
         createContact.MailingCity = contactFieldListExt[6];
-        createContact.Data_Source__c = 'Salesforce';                                       
-        createContact.SMS_Opt_Out__c = contactBooleanList[0];
-        createContact.Post_Opt_Out__c = contactBooleanList[1];
-        createContact.HasOptedOutOfEmail = contactBooleanList[2];
-        createContact.DoNotCall = contactBooleanList[3];
+        createContact.Data_Source__c = 'Salesforce';    
+        if(contactBooleanList[0] == false){
+           createContact.SMS_Opt_Out__c = true;                                        
+        }
+        else{
+             createContact.SMS_Opt_Out__c = false;                                        
+        }
+        if(contactBooleanList[1] == false){
+             createContact.Post_Opt_Out__c = true;                                        
+        }
+        else{
+             createContact.Post_Opt_Out__c = false;                                       
+        }
+        if(contactBooleanList[2] == false){
+             createContact.HasOptedOutOfEmail = true;                                      
+        }
+        else{
+             createContact.HasOptedOutOfEmail = false;                                      
+        }
+        if(contactBooleanList[3] == false){
+             createContact.DoNotCall = true;                                     
+        }
+        else{
+             createContact.DoNotCall = false;                                      
+        }                                   
         Database.upsert(createContact, false);
                                                
         System.debug('contactFieldsList: '+contactFieldsList+'\n'+'contactFieldsList: '+contactFieldListExt+'\n'+'Contact Details: '+createContact);

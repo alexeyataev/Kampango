@@ -7,6 +7,9 @@
     <apex:actionFunction name="giftAidCreation" action="{!giftAidCreation}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
         <apex:param id="giftVal" name="giftName" value="" assignTo="{!isGiftAid}"/>
    </apex:actionFunction>
+   <apex:actionFunction name="membershipDupeChecker" action="{!membershipDupeChecker}" reRender="isMembershipExists">
+       <apex:param id="emailDupeVal" name="emailDupeVal" value=""/>
+   </apex:actionFunction>
     <apex:actionFunction name="thankYouPage" action="{!thankYouSec}" reRender="membershipNumber,membershipText">
    </apex:actionFunction>
    <apex:actionFunction name="postCodeVal" action="{!nctBranchs}" reRender="branch_Picklist,isMembershipExists">
@@ -1224,14 +1227,20 @@
                     }
 
                 })
+                
+                $('#textEmail').on('blur change keyup',function(){
+                    console.log("blur evebnt called",$('#textEmail').val());
+                      membershipDupeChecker($('#textEmail').val());
+                })
+        		
                 $("#postcode_checker").click(function () {
                     console.log($('#postcode').val());
                     postCodeVal($('#postcode').val(),$('#textEmail').val());
-                var varible = $('.memberexist input').val();
+                    /*var varible = $('.memberexist input').val();
                     if(varible == "true" ){
                       $('#MembershipalertModal').modal();
                       $('.modal-body').html('<div>' + "Membership already Exists in the System with" +" "+ $('#textEmail').val()+'</div>');
-                    }
+                    }*/
                 })
                 $("#nameSubmit").click(function () {
                      setInterval(function(){
