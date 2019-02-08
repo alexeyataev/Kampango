@@ -27,6 +27,7 @@ public without sharing class ThankYouHelper {
             }
             else if(reccDonList == null || reccDonList.isEmpty())
             {
+                recDon = new npe03__Recurring_Donation__c();
                 recDon.Name = 'Credit/Debit Card Membership';
                 recDon.npe03__Amount__c = 60;
                 recDon.npe03__Contact__c = Apexpages.currentPage().getParameters().get('contId');
@@ -35,7 +36,7 @@ public without sharing class ThankYouHelper {
                 recDon.npe03__Installment_Period__c = 'Yearly';
                 recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
                 
-                recDon.Membership_Status__c = 'Pending';
+                recDon.Membership_Status__c = 'Confirmed';
                 
                 Insert recDon;
             }
