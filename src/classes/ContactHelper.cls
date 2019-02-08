@@ -20,7 +20,8 @@ public without sharing class ContactHelper {
                                            Id selectBranch, String recordType,Contact newCont, list<Boolean> contactBooleanList){
 
         Contact createContact;                                       
-                                               
+        
+        Contact con;
         createContact = new Contact();
         createContact.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId();
                                                
@@ -38,7 +39,11 @@ public without sharing class ContactHelper {
         //createContact.Expected_Due_Date__c = expDate; 
         //}
         if(newCont != null){
-            Contact con =[Select AccountId from Contact where id = :newCont.id];
+            con =[Select AccountId from Contact where id = :newCont.id];
+            if (!Schema.sObjectType.Contact.fields.AccountId.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+            }
             createContact.Parent_Contact__c = newCont.id;
             createContact.AccountId = con.AccountId;
         }
@@ -48,7 +53,11 @@ public without sharing class ContactHelper {
         createContact.MailingStreet = contactFieldListExt[2]+''+contactFieldListExt[3]+''+contactFieldListExt[4];
         createContact.MailingState = contactFieldListExt[5];
         createContact.MailingCity = contactFieldListExt[6];
-        createContact.Data_Source__c = 'Salesforce';    
+        createContact.Data_Source__c = 'Salesforce';  
+        createContact.SMS_Opt_Out__c = contactBooleanList[0];
+        createContact.Post_Opt_Out__c = contactBooleanList[1];
+        createContact.HasOptedOutOfEmail = contactBooleanList[2];
+        createContact.DoNotCall = contactBooleanList[3];                                      
         if(contactBooleanList[0] == false){
            createContact.SMS_Opt_Out__c = true;                                        
         }

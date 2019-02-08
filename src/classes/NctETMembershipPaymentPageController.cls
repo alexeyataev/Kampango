@@ -362,15 +362,16 @@ public class NctETMembershipPaymentPageController
                     displaySuccessMessage = true;
                     paymentHubCallout();
                     recDon = new npe03__Recurring_Donation__c();
-                    recDon.Name = 'Credit/Debit Card Membership';
-                    recDon.npe03__Amount__c = 60;
+                    recDon.Name = membershipInfo.Contact_Type__c + ' ' + membershipInfo.Membership__c;
+                    recDon.npe03__Amount__c = membershipInfo.Installment_Amount__c;
                     recDon.npe03__Contact__c = newCont.Id;
                     recDon.CARE_Payment_Frequency__c = 'One Time';
                     recDon.Source__c = membershipSource;
                     recDon.First_Contact__c = newCont.Id;
                     recDon.npe03__Schedule_Type__c = membershipInfo.Schedule_Type__c;
-                    recDon.npe03__Installment_Period__c = 'Yearly';
-                    recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
+                    recDon.Membership_type__c = membershipInfo.Membership__c;
+                    recDon.npe03__Installment_Period__c = membershipInfo.Installment_Period__c;
+                    recDon.npsp4hub__Payment_Method__c = membershipInfo.Payment_Method__c;
                     recDon.Membership_Status__c = 'Pending';
                     Insert recDon;
                     
