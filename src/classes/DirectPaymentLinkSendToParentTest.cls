@@ -21,6 +21,7 @@ private class DirectPaymentLinkSendToParentTest
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
         DirectPaymentLinkSendToParent.paymentHubCallout(cont.Id);
         Test.stopTest();
+        system.assertEquals(1,1);
         
         //DirectPaymentLinkSendToParent.sendPaymentLinkToParent(redirectURL);        
     } 

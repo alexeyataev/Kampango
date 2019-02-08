@@ -438,9 +438,9 @@ public class NctETMembershipPaymentPageController
          accountDetails.add(sortCode);
          accountDetails.add(acquistion);
          accountDetails.add(membershipSource);
-        MembershipCrudHelper MemCrudHelp = new MembershipCrudHelper();
+        MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
         if(isGiftAid == 'true'){
-        	gftAid = MemCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
+        	gftAid = memCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
         }
         inspect = true;
     }
@@ -457,13 +457,13 @@ public class NctETMembershipPaymentPageController
          accountDetails.add(membershipSource);
          //accountDetails.sort();
         System.debug('accountDetails:'+accountDetails);
-        MembershipCrudHelper MemCrudHelp = new MembershipCrudHelper();
-        pymtPrfl = MemCrudHelp.paymentProfile(newCont,accountDetails);
+        MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
+        pymtPrfl = memCrudHelp.paymentProfile(newCont,accountDetails);
         if(isGiftAid == 'true'){
-        	gftAid = MemCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
+        	gftAid = memCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
         }
         if(pymtPrfl != null){
-            recDon = MemCrudHelp.recDonation(newCont.Id,snewCont,membershipInfo,pymtPrfl,accountDetails);
+            recDon = memCrudHelp.recDonation(newCont.Id,snewCont,membershipInfo,pymtPrfl,accountDetails);
         }
         thankYouSec();
     }    
