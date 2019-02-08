@@ -63,10 +63,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>NctMembershipPaymentPageController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PaymentLinkProcessorController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
