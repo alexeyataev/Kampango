@@ -1,7 +1,7 @@
 public without sharing class ThankYouHelper {
     public boolean isStaff {get; set;}
     public string membershipNumber {get;set;}
-    list<User> userList = new list<User>();
+    list<User> UserList = new list<User>();
     public list<npe03__Recurring_Donation__c> reccDonList = new list<npe03__Recurring_Donation__c>();
     public npe03__Recurring_Donation__c recDon {get; set;}
     public ThankYouHelper(){
