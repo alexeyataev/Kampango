@@ -1,6 +1,6 @@
 public without sharing class PaymentHubCalloutUtilities {
     public String sessionProfile = userinfo.getUserType();
-    public static String paymentHub(contact cont,Membership_Type__mdt membershipDetails, list<string> contactDetails, npe03__Recurring_Donation__c recurringDonation){
+    public static String PaymentHub(contact cont,Membership_Type__mdt membershipDetails, list<string> contactDetails, npe03__Recurring_Donation__c recurringDonation){
         decimal instlmntAmt; 
         
         if(membershipDetails != null)
@@ -80,7 +80,7 @@ public without sharing class PaymentHubCalloutUtilities {
         paymentHubRequest.setEndpoint(System.Label.SF_INSTANCE+'/services/apexrest/cpm/v1.0/Payment'); 
         
         //paymentHubRequest.setEndpoint('https://cs102.salesforce.com/services/apexrest/cpm/v1.0/Payment');        
-        paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.accessToken);  
+        paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);  
         //paymentHubRequest.setHeader('Authorization','Bearer '+ UserInfo.getSessionID()); 
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('Accept','application/json');
