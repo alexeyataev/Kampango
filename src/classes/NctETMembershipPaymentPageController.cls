@@ -91,6 +91,7 @@ public class NctETMembershipPaymentPageController
     public Boolean lifeMembership{get; set;}
     public static Boolean inspect = false;
     public static Boolean onComplete {get; set;}
+    public String contactType;
     public NctETMembershipPaymentPageController()
     {  
         contId = ApexPages.currentPage().getParameters().get('Id');
@@ -104,9 +105,7 @@ public class NctETMembershipPaymentPageController
         acquistionOptions = SObjectUtilities.getPicklistValues(giftAid, 'gaid__Acquisition_Method__c');
         membershipSourceOptions = SObjectUtilities.getPicklistValues(recDon, 'Source__c');
         contactPreferenceOptions =SObjectUtilities.getPicklistValues(con, 'Contact_Prefrence__c');
-       	Id userId = userinfo.getUserId();
-        isStaff = ContactUtilities.isStaff(userId);
-        
+       	        
     	sessionProfile = userinfo.getUserType();
         if(sessionProfile == 'Standard'){
             etSpecific = true;
@@ -118,6 +117,7 @@ public class NctETMembershipPaymentPageController
         staffMember ='no staff';
         if(contId != null)
         {
+            isStaff = ContactUtilities.isStaff(contId);
             newCont = [SELECT Id,Salutation,DoNotCall, SMS_Opt_Out__c, Post_Opt_Out__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
             if(newCont != null){
                 
@@ -176,11 +176,6 @@ public class NctETMembershipPaymentPageController
     }
     public PageReference  receiveInput(){
                 
-        system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
-        System.debug('Twomems :'+twomems+'salutationPrimary: '+salutationPrimary+'salutationSecondary: '+salutationSecondary
-                    +'Genders: '+genders+'Contact Preferences:'+contactSelectedPreferences);
-                    System.debug('smsOpt: '+smsOpt+'postOpt '+postOpt+'emailOpt '+emailOpt+'doNotCallOpt '+doNotCallOpt);
-
         String contactPreference = '';
         Boolean start = true;
         if(!contactSelectedPreferences.isEmpty()) {           
@@ -202,8 +197,6 @@ public class NctETMembershipPaymentPageController
         System.debug('contactBooleanList: '+contactBooleanList);
      
             
-       	Id userId = userinfo.getUserId();
-        isStaff = ContactUtilities.isStaff(userId);
         System.debug('isStaff: '+isStaff);
         isVolunteer = ContactUtilities.isVolunteerExisting(contId);
         isPractitioner = MembershipUtilties.isPractitioner(firstname, lastname, email);
@@ -212,108 +205,45 @@ public class NctETMembershipPaymentPageController
         
         
         System.debug('isMembershipExists: '+isMembershipExists+'targetCustomer:'+targetCustomer);
-        
-        
         if(isContactExisting == false){
             if(newCont == null )
             {
                 recordType = 'Parent';
-                
                 newCont = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
                 
                 if(twomems == 'true' && sfirstname != null || sfirstname != '')
                 {
                     recordType = 'Companion';
                     snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
-                    
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);
-                    
-                    
+                    contactType = 'joint';
                 }
                 else 
                 {
-                    
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
-                    System.debug('membershipTypeMap '+membershipTypeMap);
+                    contactType = 'Individual';
                     
                 }
             }
         }
-        
-        
-        // Yet to define the custom metadata, once done the logic can be updated and modified accordingly, hence commenting
-        
-        else if(contId != null)
+        else if(contId != null || isContactExisting == true){
+        List<Contact> contactList;
+        System.debug('Contact Exists(Next Flow Starts): '+isContactExisting);
+        newCont =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Email = :email limit 1];
+        contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :newCont.Id OR Parent_Contact__c = :contId];
+        if(twomems == 'true' && sfirstname != null || sfirstname != '')
         {
-            
-            System.debug('isPractitioner :'+isPractitioner);
-            
-            if(isVolunteer == true || isPractitioner == true){
-                
-                if(twomems == 'true')
-                {   
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
-                }
-                else 
-                {
-                    
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
-                    System.debug('membershipTypeMap '+membershipTypeMap);
-                }
-                
-                
-            }
-            
-            else{
-                if(twomems == 'true')
-                {   
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
-                }
-                else 
-                {
-                    
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
-                    System.debug('membershipTypeMap '+membershipTypeMap);
-                }
-            }
+            recordType = 'Companion';
+            if(contactList.size()<0){
+            snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);    
         }
-        else if(isContactExisting == true){
-            System.debug('Contact Exists(Next Flow Starts): '+isContactExisting);
-            newCont =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact where Email = :email limit 1];
-            if(twomems == 'true' && sfirstname != null || sfirstname != '')
-            {
-                recordType = 'Companion';
-                snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);    
-            }
-            if(isVolunteer == true || isPractitioner == true){
+        contactType = 'joint';
+        }                                 
+        else{
+            
+            contactType = 'Individual';
                 
-                if(twomems == 'true')
-                {   
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
-                }
-                else 
-                {
-                    
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
-                    System.debug('membershipTypeMap '+membershipTypeMap);
-                }                    
-            }                
-            else{
-                if(twomems == 'true')
-                {   
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('joint',targetCustomer,etSpecific);            
-                }
-                else 
-                {
-                    
-                    membershipTypeMap = MembershipUtilties.getMembershipTypeMap('Individual',targetCustomer,etSpecific);
-                    System.debug('membershipTypeMap '+membershipTypeMap);
-                }
-            }    
-        }
-        if(isStaff == true){
-            thankYouSec();                
+            }
         }    
+        membershipTypeMap = MembershipUtilties.getMembershipTypeMap(contactType,targetCustomer,etSpecific);    
         return null;
         
     }
