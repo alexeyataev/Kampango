@@ -1306,6 +1306,10 @@
                                 $('#register').removeClass('active show');
                                 console.log($('#membershipText').val(),"staff memebership");
                             }
+                            $('#nameSubmit').prop('disabled', true);
+                        }
+                        else {
+                        	$('#nameSubmit').prop('disabled', false);
                         }
                     }
                 });
@@ -1618,6 +1622,7 @@
         });
 
          $('#pay_now_back').on('click', function(){
+             $('#nameSubmit').prop('disabled', false);
             $('#payment').removeClass('active show');
             $('#payment_li').removeClass('active');
             $('#register_li').addClass('active');

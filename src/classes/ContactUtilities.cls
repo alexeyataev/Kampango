@@ -70,24 +70,26 @@ public without sharing class ContactUtilities {
 	 * It returns boolean value.
 	 **
     */
-    public static boolean isStaff(Id userId){
+    public static boolean isStaff(Id contId){
+        List<Contact> con;
+        Id recordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Staff').getRecordTypeId();
+        System.debug('recordTypeId: '+recordTypeId);
         
-        list<User> us;
-        
-        us = [SELECT
-                  	Id ,
-                  	Profile.Name 
+        con = [SELECT
+              		 Id,
+               		 Name
                   FROM
-                  	User 
+                  	 Contact
                   WHERE 
-                  	id = :userId];
-        if (!Schema.sObjectType.User.fields.Id.isAccessible()){
+                  	id = :contId 
+               AND
+               		RecordTypeId = :recordTypeId];
+
+        if (!Schema.sObjectType.Contact.fields.Id.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
-         }
-        	
-        if(us.size()>0 && us[0].Profile.Name != null && us[0].Profile.Name == 'Office Staff'){
-            System.debug('Profile Name: '+us[0].Profile.Name);
+         }       	
+        if(con.size()>0){
             
             return true;
         }
