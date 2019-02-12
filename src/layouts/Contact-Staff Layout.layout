@@ -252,6 +252,11 @@
             <actionType>CustomButton</actionType>
             <sortOrder>13</sortOrder>
         </platformActionListItems>
+         <platformActionListItems>
+            <actionName>Contact.Add_To_Membership</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>14</sortOrder>
+        </platformActionListItems>
     </platformActionList>
     <quickActionList>
         <quickActionListItems>
