@@ -212,12 +212,12 @@
             <actionType>ProductivityAction</actionType>
             <sortOrder>5</sortOrder>
         </platformActionListItems>
-       <platformActionListItems>
-            <actionName>SmsHighlightAction</actionName>
-            <actionType>ProductivityAction</actionType>
+        <platformActionListItems>
+            <actionName>Contact.Add_To_Membership</actionName>
+            <actionType>QuickAction</actionType>
             <sortOrder>6</sortOrder>
         </platformActionListItems>
-     <platformActionListItems>
+        <platformActionListItems>
             <actionName>Contact.Request_Payment</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>21</sortOrder>
