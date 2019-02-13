@@ -1132,8 +1132,8 @@
                                                             <tr>
                                                               <td valign="top" align="left" class="element-pad element-bord">
                                                                 <div class="ee_editable" style="position: static;">
-                                                                  <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">Hello
-                                                                    {!npe03__Recurring_Donation__c.First_Contact__c},</p>
+                                                                  <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">Hi
+                                                                    {!npe03__Recurring_Donation__c.Contact_FirstName__c},</p>
                                                                   <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">
                                                                     &nbsp;&nbsp;</p>
                                                                   <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">Your
@@ -1172,33 +1172,6 @@
                                                             </tr>
                                                           </tbody>
                                                         </table>
-                                                        <table cellpadding="0" cellspacing="0" width="100%" class="ee_element ee_button"
-                                                          ee-type="element" data-title="Button" style="table-layout: auto;">
-                                                          <tbody>
-                                                            <tr>
-                                                              <td class="element-pad button-container button-v2 button-center"
-                                                                style="">
-                                                                <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.nct.org.uk/get-involved/membership/members-club-sign" style="height:31.5pt;v-text-anchor:middle;width:227pt;" arcsize="48%" stroked="false"  fillcolor="#00876a"><w:anchorlock></w:anchorlock><p style="text-align:center;padding:0;margin:0;"><font style="color:#ffffff; font-style:normal;font-variant:normal;font-weight:400;font-family:Arial, sans-serif;font-size:13.5pt; padding:0; margin:0; line-height:inherit;"><br><font>Explore Members Club now &gt;&gt;</font></font></p></v:roundrect><![endif]-->
-                                                                <!--[if !mso]><!---->
-                                                                <table cellspacing="0" cellpadding="0" border="0" class="button-wrapper col-font-reset"
-                                                                  ee-template-version="2.4" style="table-layout: auto;">
-                                                                  <tbody>
-                                                                    <tr>
-                                                                      <td class="button-td buttonhover" style="min-width: 0px; background-color: rgb(0, 135, 106); border-radius: 20px;">
-                                                                        <p style="margin: 0px; line-height: 13px;"
-                                                                          class="ee_editable button-a"><a href="https://www.nct.org.uk/get-involved/membership/members-club-sign"
-                                                                            style="border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 20px; padding-top: 0px;padding-right: 25px;padding-bottom: 12px;padding-left: 25px; font-size: 18px; line-height: inherit;"><br>
-                                                                            <font>Explore Members Club now &gt;&gt;</font>
-                                                                          </a></p>
-                                                                      </td>
-                                                                    </tr>
-                                                                  </tbody>
-                                                                </table>
-                                                                <!--<![endif]-->
-                                                              </td>
-                                                            </tr>
-                                                          </tbody>
-                                                        </table>
                                                       </td>
                                                     </tr>
                                                   </tbody>
@@ -1209,7 +1182,31 @@
                                           </tr>
                                         </tbody>
                                       </table>
-
+                                      <table cellpadding="0" cellspacing="0" width="100%" class="ee_element ee_button" ee-type="element" data-title="Button" style="table-layout: auto;">
+                                        <tbody>
+                                          <tr>
+                                            <td class="element-pad button-container button-v2 button-center; text-align:center" >
+                                              <div style="text-align: center;">
+                                              <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.greatmagazines.co.uk/free-digital-issue-mother-and-baby?utm_source=display&utm_medium=partner&utm_content=NCT&utm_campaign=NCT_Partnership" style="height:46.5pt;v-text-anchor:middle;width:217pt;background-color: rgb(0, 126, 102);" arcsize="32%" stroked="false"  fillcolor="#007e66"><w:anchorlock></w:anchorlock><p style="text-align:center;padding:0;margin:0 auto;">
+                                                <font style="color:#ffffff; font-style:normal;font-variant:normal;font-weight:400;font-family:Arial, sans-serif;font-size:13.5pt; padding:0; margin:0; line-height:inherit;"><font>Explore members club now &gt;&gt;</font></font></p></v:roundrect><![endif]-->
+                                              <!--[if !mso]><!---->
+                                              </div>
+                                              <table cellspacing="0" cellpadding="0" border="0" class="button-wrapper col-font-reset" ee-template-version="2.4" style="table-layout: auto;">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="button-td" style="min-width: 0px; background-color: rgb(0, 126, 102); border-radius: 20px;">
+                                                      <p style="margin: 0px; line-height: 20px;" class="ee_editable button-a"><a href="https://www.greatmagazines.co.uk/free-digital-issue-mother-and-baby?utm_source=display&amp;utm_medium=partner&amp;utm_content=NCT&amp;utm_campaign=NCT_Partnership" style="border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 20px; padding-top: 11px;padding-right: 17px;padding-bottom: 11px;padding-left: 17px; font-size: 18px; line-height: inherit;">
+                                                          <font style="color:#ffffff;">Explore Members Club now &gt;&gt;</font>
+                                                        </a></p>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                              <!--<![endif]-->
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
                                     </div>
                                     <!--[if mso]></td></tr></table><![endif]-->
                                   </td>
@@ -1813,21 +1810,8 @@
                                                   <font style="color: rgb(81, 83, 74); font-size: 11px;">Please do not
                                                     reply to this email.</font>
                                                 </p>
-                                                <p style="line-height: 17px;"><br></p>
-                                                <p style="line-height: 17px;">
-                                                  <font style="color: rgb(81, 83, 74); font-size: 11px;">If you no
-                                                    longer wish to receive emails from NCT or wish to choose the types
-                                                    of email we send to you, please click here: Want to unsubscribe or
-                                                    change your details.</font>
-                                                </p>
-                                                <p style="line-height: 17px;"></p>
-                                                <p style="line-height: 17px;">
-                                                  <font style="color: rgb(81, 83, 74); font-size: 11px;">You can
-                                                    resubscribe at any time by visiting our website to register your
-                                                    details.</font>
-                                                </p>
                                                 <p style="line-height: 17px;"><br /></p>
-                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">2018
+                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">2019
                                                   NCT, 30 Euston Square, London, NW1 2FB.</p>
                                                 <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">Reg
                                                   Charity No (England and Wales): 801395, (Scotland): SC041592. Reg

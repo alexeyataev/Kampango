@@ -1065,7 +1065,7 @@
                                                                                                                         <tr>
                                                                                                                             <td valign="top" align="left" class="element-pad element-bord">
                                                                                                                                 <div class="ee_editable" style="position: static;">
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">Hi  {!npe03__Recurring_Donation__c.First_Contact__c} ,
+                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">Hi  {!npe03__Recurring_Donation__c.Contact_FirstName__c} ,
                                                                                                                                     </p>
                                                                                                                                     <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">
                                                                                                                                         <br>
@@ -1425,26 +1425,9 @@
                                                                                                     <br>
                                                                                                 </p>
                                                                                                 <p style="line-height: 17px;">
-                                                                                                    <font style="color: rgb(81, 83, 74); font-size: 11px;">If you no longer wish
-                                                                                                        to receive emails
-                                                                                                        from NCT or wish
-                                                                                                        to choose the types
-                                                                                                        of email we send
-                                                                                                        to you, please click
-                                                                                                        here: Want to unsubscribe
-                                                                                                        or change your details.</font>
-                                                                                                </p>
-                                                                                                <p style="line-height: 17px;"></p>
-                                                                                                <p style="line-height: 17px;">
-                                                                                                    <font style="color: rgb(81, 83, 74); font-size: 11px;">You can resubscribe at
-                                                                                                        any time by visiting
-                                                                                                        our website to register
-                                                                                                        your details.</font>
-                                                                                                </p>
-                                                                                                <p style="line-height: 17px;">
                                                                                                     <br>
                                                                                                 </p>
-                                                                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">2018 NCT, 30 Euston Square,
+                                                                                                <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">2019 NCT, 30 Euston Square,
                                                                                                     London, NW1 2FB.</p>
                                                                                                 <p style="margin: 0px; font-size: 11px; line-height: 17px; color: rgb(81, 83, 74);">Reg Charity No (England and
                                                                                                     Wales): 801395, (Scotland):

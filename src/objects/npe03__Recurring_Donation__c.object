@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
@@ -137,6 +137,18 @@
         <unique>false</unique>
     </fields>
      <fields>
+     <fullName>Contact_FirstName__c</fullName>
+        <externalId>false</externalId>
+        <formula>First_Contact__r.FirstName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FirstContact FirstName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Data_Source__c</fullName>
         <externalId>false</externalId>
         <label>Data Source</label>
@@ -371,39 +383,39 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>1 year standard - Individual</fullName>
+                    <fullName>12 month membership - Individual</fullName>
                     <default>false</default>
-                    <label>1 year standard - Individual</label>
+                    <label>12 month membership - Individual</label>
                 </value>
                 <value>
-                    <fullName>1 year standard - Joint</fullName>
+                    <fullName>12 month membership - Joint</fullName>
                     <default>false</default>
-                    <label>1 year standard - Joint</label>
+                    <label>12 month membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>18 month - Individual</fullName>
+                    <fullName>18 month membership - Individual</fullName>
                     <default>false</default>
-                    <label>18 month - Individual</label>
+                    <label>18 month membership - Individual</label>
                 </value>
                 <value>
-                    <fullName>18 month - Joint</fullName>
+                    <fullName>18 month membership - Joint</fullName>
                     <default>false</default>
-                    <label>18 month - Joint</label>
+                    <label>18 month membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>4 year - Individual</fullName>
+                    <fullName>4 year membership - Individual</fullName>
                     <default>false</default>
-                    <label>4 year - Individual</label>
+                    <label>4 year membership - Individual</label>
                 </value>
                 <value>
-                    <fullName>4 year - Joint</fullName>
+                    <fullName>4 year membership - Joint</fullName>
                     <default>false</default>
-                    <label>4 year - Joint</label>
+                    <label>4 year membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>Life</fullName>
+                    <fullName>Life Membership</fullName>
                     <default>false</default>
-                    <label>Life</label>
+                    <label>Life Membership</label>
                 </value>
                 <value>
                     <fullName>Life Joint Membership</fullName>
@@ -411,14 +423,14 @@
                     <label>Life Joint Membership</label>
                 </value>
                 <value>
-                    <fullName>Reduced rate 1 year - Ind</fullName>
+                    <fullName>Reduced 12 month membership - Ind</fullName>
                     <default>false</default>
-                    <label>Reduced rate 1 year - Ind</label>
+                    <label>Reduced 12 month membership - Ind</label>
                 </value>
                 <value>
-                    <fullName>Reduced rate 1 year - Joint</fullName>
+                    <fullName>Reduced 12 month membership - Joint</fullName>
                     <default>false</default>
-                    <label>Reduced rate 1 year - Joint</label>
+                    <label>Reduced 12 month membership - Joint</label>
                 </value>
                 <value>
                     <fullName>Staff Membership - Individual</fullName>
@@ -431,24 +443,24 @@
                     <label>Staff Membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>Ten Year - Individual</fullName>
+                    <fullName>10 Year membership - Individual</fullName>
                     <default>false</default>
-                    <label>Ten Year - Individual</label>
+                    <label>10 Year membership - Individual</label>
                 </value>
                 <value>
-                    <fullName>Ten Year - Joint</fullName>
+                    <fullName>10 Year membership - Joint</fullName>
                     <default>false</default>
-                    <label>Ten Year - Joint</label>
+                    <label>10 Year membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>1 year volunteer/practitioner - Ind</fullName>
+                    <fullName>12 month membership volunteer/practitioner - Ind</fullName>
                     <default>false</default>
-                    <label>1 year volunteer/practitioner - Ind</label>
+                    <label>12 month membership volunteer/practitioner - Ind</label>
                 </value>
                 <value>
-                    <fullName>1 year volunteer/practitioner - Jnt</fullName>
+                    <fullName>12 month membership volunteer/practitioner - Jnt</fullName>
                     <default>false</default>
-                    <label>1 year volunteer/practitioner - Jnt</label>
+                    <label>12 month membership volunteer/practitioner - Jnt</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -587,6 +599,143 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+     <fields>
+        <fullName>Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Source</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Enquiry by EMAIL</fullName>
+                    <default>false</default>
+                    <label>Enquiry by EMAIL</label>
+                </value>
+                <value>
+                    <fullName>Enquiry by phone - main NCT</fullName>
+                    <default>false</default>
+                    <label>Enquiry by phone - main NCT</label>
+                </value>
+                <value>
+                    <fullName>Enquiry by Paper</fullName>
+                    <default>false</default>
+                    <label>Enquiry by Paper</label>
+                </value>
+                <value>
+                    <fullName>Membership General</fullName>
+                    <default>false</default>
+                    <label>Membership General</label>
+                </value>
+                <value>
+                    <fullName>Intrabiz Class Bookings</fullName>
+                    <default>false</default>
+                    <label>Intrabiz Class Bookings</label>
+                </value>
+                <value>
+                    <fullName>General Knowledge</fullName>
+                    <default>false</default>
+                    <label>General Knowledge</label>
+                </value>
+                <value>
+                    <fullName>Automatic</fullName>
+                    <default>false</default>
+                    <label>Automatic</label>
+                </value>
+                <value>
+                    <fullName>B&amp;B - request by post</fullName>
+                    <default>false</default>
+                    <label>B&amp;B - request by post</label>
+                </value>
+                <value>
+                    <fullName>B&amp;B - request by phone</fullName>
+                    <default>false</default>
+                    <label>B&amp;B - request by phone</label>
+                </value>
+                <value>
+                    <fullName>Baby Show</fullName>
+                    <default>false</default>
+                    <label>Baby Show</label>
+                </value>
+                <value>
+                    <fullName>Dunelm Staff Membership</fullName>
+                    <default>false</default>
+                    <label>Dunelm Staff Membership</label>
+                </value>
+                <value>
+                    <fullName>Enquiry pack</fullName>
+                    <default>false</default>
+                    <label>Enquiry pack</label>
+                </value>
+                <value>
+                    <fullName>Enquiry pack - ANTENATAL</fullName>
+                    <default>false</default>
+                    <label>Enquiry pack - ANTENATAL</label>
+                </value>
+                <value>
+                    <fullName>Enquiry pack GENERIC</fullName>
+                    <default>false</default>
+                    <label>Enquiry pack GENERIC</label>
+                </value>
+                <value>
+                    <fullName>Gifted Membership recipient</fullName>
+                    <default>false</default>
+                    <label>Gifted Membership recipient</label>
+                </value>
+                <value>
+                    <fullName>Memb with ant classes</fullName>
+                    <default>false</default>
+                    <label>Memb with ant classes</label>
+                </value>
+                <value>
+                    <fullName>Memb. form in branch Newsletter</fullName>
+                    <default>false</default>
+                    <label>Memb. form in branch Newsletter</label>
+                </value>
+                <value>
+                    <fullName>Membership by phone</fullName>
+                    <default>false</default>
+                    <label>Membership by phone</label>
+                </value>
+                <value>
+                    <fullName>Membership form A5 green</fullName>
+                    <default>false</default>
+                    <label>Membership form A5 green</label>
+                </value>
+                <value>
+                    <fullName>Membership renewing</fullName>
+                    <default>false</default>
+                    <label>Membership renewing</label>
+                </value>
+                <value>
+                    <fullName>Nov 2011 Membership Fix</fullName>
+                    <default>false</default>
+                    <label>Nov 2011 Membership Fix</label>
+                </value>
+                <value>
+                    <fullName>Online Membership Application</fullName>
+                    <default>false</default>
+                    <label>Online Membership Application</label>
+                </value>
+                <value>
+                    <fullName>Renewing membership</fullName>
+                    <default>false</default>
+                    <label>Renewing membership</label>
+                </value>
+                <value>
+                    <fullName>None</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>None</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>npe03__Amount__c</fullName>
@@ -846,7 +995,7 @@ OR(
                 <sorted>false</sorted>
                 <value>
                     <fullName>Multiply By</fullName>
-                    <default>false</default>
+                    <default>true</default>
                     <label>Multiply By</label>
                 </value>
                 <value>
@@ -1431,7 +1580,7 @@ CASE(
             </values>
             <values>
                 <fullName>Multiply By</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -1665,6 +1814,33 @@ ISBLANK(TEXT(Cancellation_Reason__c))
 )</errorConditionFormula>
         <errorDisplayField>Cancellation_Reason__c</errorDisplayField>
         <errorMessage>You must select Cancellation reason</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>MembershipStatus_Validation</fullName>
+        <active>false</active>
+        <errorConditionFormula>OR( 
+AND( 
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelled&quot;), 
+ISPICKVAL(Membership_Status__c, &quot;Cancelling&quot;) 
+), 
+
+AND( 
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Confirmed&quot;), 
+ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
+
+), 
+
+AND( 
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelled&quot;), 
+ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
+),
+ 
+AND( 
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelling&quot;), 
+ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
+)
+)</errorConditionFormula>
+        <errorMessage>you are not allowed to change the status</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
     <webLinks>

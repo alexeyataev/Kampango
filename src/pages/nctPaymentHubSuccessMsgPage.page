@@ -1,4 +1,4 @@
-<apex:page id="nctPymtHbSccMgPg" controller="nctMembershipPaymentPageController" showHeader="false" sidebar="false" action="{!thankYouSec}">
+<apex:page id="nctPymtHbSccMgPg" controller="NctETMembershipPaymentPageController" showHeader="false" sidebar="false" action="{!thankYouSec}">
     <apex:form id="nctPymtHbSccMgFrm">
         <head>
             <meta charset="utf-8"/>

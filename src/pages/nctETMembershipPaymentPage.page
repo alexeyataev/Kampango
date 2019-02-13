@@ -1,11 +1,20 @@
 <apex:page applyHtmlTag="true" docType="html-5.0" controller="NctETMembershipPaymentPageController" showHeader="false" sidebar="false">
 <apex:form id="membrShpForm">
-   <apex:actionFunction name="SelValFunction" action="{!contactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
-        <apex:param id="selValId" name="seltdName" value="" />
+   <apex:actionFunction name="SelValFunction" action="{!contactInfo}" oncomplete="onComplete();" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
+        <apex:param id="selValId" name="seltdName" value="" assignTo="{!feeAmount}"/>
+       	<apex:param id="lifeMembershipVal" name="lifeMembershipName" value="" assignTo="{!lifeMembership}"/>
+           </apex:actionFunction>
+    <apex:actionFunction name="onComplete" action="{!onCompleteContactInfo}" reRender="onComplete">
+   </apex:actionFunction>
+    <apex:actionFunction name="giftAidCreation" action="{!giftAidCreation}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
+        <apex:param id="giftVal" name="giftName" value="" assignTo="{!isGiftAid}"/>
+   </apex:actionFunction>
+   <apex:actionFunction name="membershipDupeChecker" action="{!membershipDupeChecker}" reRender="isMembershipExists">
+       <apex:param id="emailDupeVal" name="emailDupeVal" value=""/>
    </apex:actionFunction>
     <apex:actionFunction name="thankYouPage" action="{!thankYouSec}" reRender="membershipNumber,membershipText">
    </apex:actionFunction>
-   <apex:actionFunction name="postCodeVal" action="{!nctBranchs}" reRender="branch_Picklist">
+   <apex:actionFunction name="postCodeVal" action="{!nctBranchs}" reRender="branch_Picklist,isMembershipExists">
         <apex:param id="postVal" name="postVal" value="" />
        <apex:param id="emailsVal" name="emailsVal" value=""/>
    </apex:actionFunction>
@@ -15,7 +24,7 @@
        <apex:param id="accNum" name="accNum" value="" assignTo="{!accountNumber}"/>
        <apex:param id="gftAid" name="gftAid" value="" assignTo="{!isGiftAid}"/>
     </apex:actionFunction>
-    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,membershipNumber,membershipText">
+    <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,membershipNumber,membershipText,smsOpt,postOpt,emailOpt,doNotCallOpt,isMembershipExists">
         <apex:param id="aname" name="chkbox" value="" assignTo="{!twomems}"/>
         <apex:param id="firstName" name="firstName" value="" assignTo="{!firstname}"/>
         <apex:param id="lastName" name="lastName" value="" assignTo="{!lastname}"/>
@@ -315,6 +324,10 @@
                 	padding-left:0;
                 }
             }
+	    .acquition{width:50%}
+	    .membershipsource select , .acquition select{
+		width:100%;
+	    }
              #MembershipalertModal .modal-header ,#MembershipalertModal .modal-footer {
 				border:none;
 			}
@@ -323,11 +336,19 @@
                 background-image:none;
                 color:#008669;
             }
+            .contact_check{
+                padding-top:10px;
+            }
+            .contact_check span{
+                	display:inline !important;
+                    padding:0px 10px;
+                }
         </style>
     </head>
 
 <body class="membership-details-screen">
     <section>
+    <apex:input value="{!onComplete}" id="onComplete" style="opacity:0;width:1px;height:1px;"/>
     	<input type="text" value="{!staffMember}" id="checkStaff" style="opacity:0;width:1px;height:1px;"/>
         <div class="green-bg-image">
             <div class="text-center nct-mebmber-logo"><apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nctmembers-logo.png')}"/></div>
@@ -498,6 +519,19 @@
                                                         <button type="button" class="green-button nomargin form-fields" id="postcode_checker">Find  address</button>
                                                     </div>
                                                 </div>
+                                                <span class="memberexist" style="opacity:0">
+                                                	<apex:input value="{!isMembershipExists}" id="isMembershipExists"/>
+                                                 </span>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-12">
+                                                        <div><label><sup class="light-orange-color">*</sup>Source</label></div>
+                                                            <span style="text-color:white;width:100%;" class="form-fields membership-fields gender-title-select membershipsource custom_select">
+                                                              <apex:selectList id="membershipSource" value="{!membershipSource}" multiselect="false" size="1">
+                                                                <apex:selectOptions value="{!membershipSourceOptions}" />
+                                                                
+                                                          </apex:selectList></span>
+                                                    </div>
+                                                </div>  
                                             </div>
 
                                             <!-- Membership person  details end here-->
@@ -580,14 +614,17 @@
                                                 <div class="row radio-fields-row">
                                                     <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
                                                     <div class="col-12 radio-fields-col">
-                                                        <span style="text-color:white;"><apex:selectCheckboxes value="{!contactSelectedPreferences}">
+                                                    <!--<span style="text-color:white;"><apex:selectCheckboxes value="{!contactSelectedPreferences}">
                                                                     <apex:selectOptions value="{!contactPreferenceOptions}" />
 
-                                                         </apex:selectCheckboxes></span>
-                                                        <!--<span><input type="checkbox" name="contact" value="email" />Email</span>
-                                                        <span><input type="checkbox" name="contact" value="sms" />SMS Text</span>
-                                                        <span><input type="checkbox" name="contact" value="post" />Post</span>
-                                                        <span><input type="checkbox" name="contact" value="telephone" />Telephone</span>-->
+                                                         </apex:selectCheckboxes></span>-->
+                                                        <div class="contact_check">
+                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!smsOpt}"/>SMS</span>
+                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!postOpt}"/>Post</span>
+                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!emailOpt}"/>Email</span> 
+                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!doNotCallOpt}"/>Phone</span> 
+                                                            
+                                                          </div>
                                                     </div>
                                                 </div>
                                                 <!-- privacy statement start here -->
@@ -636,7 +673,7 @@
                                                   Please wait <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
                                                 </span>
                                                 <span id="membershiptype" style="width:1px;height:1px;display:none;">{!membershipTypeMap}</span>
-                                                <select name="selectMembership" id="selectMembership" class="form-fields membership-fields">
+                                                <select style="margin-bottom:0;" name="selectMembership" id="selectMembership" class="form-fields membership-fields">
                                                     <option value=""></option>
                                                     <option SELECTED="true" value="">Please select</option>
                                                     <apex:repeat value="{!membershipTypeMap}" var="typeKey">
@@ -647,11 +684,9 @@
                                                     </apex:repeat>
                                                 </select>
                                                 </apex:outputPanel>
-                                                <br/>
-                                                        <div id="reduced" style="display:none">
-                                                                <strong>You are eligible for this if you receive Employment Support Allowance or tax credits (excluding child tax credits alone).</strong>
-                                                        </div>
-                                                <br />
+                                                <div id="reduced" style="display:none">
+                                                    <strong>You are eligible for this if you receive Employment Support Allowance or tax credits (excluding child tax credits alone).</strong>
+                                                </div>
                                                 </p>
                                             </div>
                                             <div class="pure-control-group" id="giftaid" style="clear:both;">
@@ -746,7 +781,7 @@
                                                             <div class="pure-control-group ddinstr">
                                                                 In order to set up your Direct Debit Instructions online you will need to provide your bank sort code and account number.   If you are not the account holder or bank account requires more than one signatory then please
                                                                 ask our Enquiries team to send you a paper Direct Debit Instruction or <a style="color:blue;cursor:pointer"  id="pay_now_again"  title="Click here"><b>Click Here</b></a>
-                                                                 to the previous page to choose the Membership with Card Payment.
+                                                                 to go back to choose the Membership with Card Payment.
                                                             </div>
 
                                                         <div class="pure-control-group">
@@ -774,7 +809,7 @@
 
                                                         <div class="pure-control-group">
                                                             <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Payment date:</label>
-                                                            <input class="form-fields membership-fields" type="hidden" SELECTED="true" CHECKED="true" name="paymentDate" value="3rd" onChange="" />&nbsp;3rd of the month&nbsp;&nbsp;
+                                                            <input class="form-fields membership-fields" type="hidden" SELECTED="true" CHECKED="true" name="paymentDate" value="3rd" onChange="" />&nbsp;<span id="payment-date"></span>&nbsp;&nbsp;
                                                         </div>
                                                         <p></p>
                                                          <div class="pure-control-group">
@@ -904,11 +939,15 @@
                                                     </p>
 													<div class="col-12">
                                                        <label class="font-bold">Gift Aid Acquistion Method: </label>
-                                                       <select class="gift-aid-select-box">
+<span class="gift-aid-select-box form-fields membership-fields gender-title-select acquition">
+                                                           <apex:selectList id="acquistion" value="{!acquistion}" multiselect="false" size="1">
+                                                           <apex:selectOptions value="{!acquistionOptions}" />
+                                                       </apex:selectList></span>
+                                                      <!-- <select class="gift-aid-select-box">
                                                            <option>Verbal</option>
                                                            <option>Written</option>
                                                            <option>Digital</option>
-                                                       </select>
+                                                       </select> -->
                                                     </div>
                                                     <div class="col-12 radio-fields-col paddingbot20px membership_check">
                                                         <p>
@@ -1065,7 +1104,7 @@
                                             <h2 class="paddingtop20px">Congratulations,</h2>
                                             <p><strong><span id="forename_Dsp"> </span></strong></p>
                                             <p><apex:outputText Id="membershipWelcomText" value="Welcome to our family..." rendered="{!displayMbrNoMessage}"/></p>
-                                            <p> <apex:outputText Id="membershipDisplayText" value="Successfully send the Payment link to the Parent !!!" rendered="{!displaySuccessMessage}"/><BR/><BR/>
+                                            <p> <apex:outputText Id="membershipDisplayText" value="Successfully send the Payment link to the Parent !!!" rendered="{!displaySuccessMessage}"/>
                                                 <apex:outputText Id="membershipText" value="Your Membership Number is" rendered="{!displayMbrNoMessage}"/>&nbsp;
                                                            <span id="membership-loader">
                                                                <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
@@ -1114,7 +1153,8 @@
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/pca.js')}"/>
     <script>
         $(document).ready(function () {
-
+            
+            dateFieldvalid = true;
         var staffValue = $('#checkStaff').val();
         	console.log(staffValue,'staff value');
             if(staffValue == 'staff'){
@@ -1190,9 +1230,20 @@
                     }
 
                 })
+                
+                $('#textEmail').on('blur change keyup',function(){
+                    console.log("blur evebnt called",$('#textEmail').val());
+                      membershipDupeChecker($('#textEmail').val());
+                })
+        		
                 $("#postcode_checker").click(function () {
                     console.log($('#postcode').val());
                     postCodeVal($('#postcode').val(),$('#textEmail').val());
+                    /*var varible = $('.memberexist input').val();
+                    if(varible == "true" ){
+                      $('#MembershipalertModal').modal();
+                      $('.modal-body').html('<div>' + "Membership already Exists in the System with" +" "+ $('#textEmail').val()+'</div>');
+                    }*/
                 })
                 $("#nameSubmit").click(function () {
                      setInterval(function(){
@@ -1217,29 +1268,50 @@
                     var salutation = $('#salutation :selected').text();
 
                     var existContact = $('#hdn').val();
-                    console.log(existContact);//&& existContact =='false'
-                    //SelBranchValFunction($(selBnchvalue).val());
-                    if(validateJoin()) {
-                    if(staffValue != 'staff' ){//&& validateGender()
-                    afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text());
-                    //var gender = $('input[name=gender]':checked).val();
-                    //console.log(gender);
-                    $('#register_li').removeClass('active');
-                    $('#payment_li').addClass('active');
-                    $('#register').removeClass('active show');
-                    $('#payment').addClass('active show');
-                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    var varible = $('.memberexist input').val();
+                    if(varible == "true" ){
+                      $('#MembershipalertModal').modal();
+                      $('.modal-body').html('<div>' + "Membership already Exists in the System with" +" "+ $('#textEmail').val()+'</div>');
+                    }else{
+                        console.log(existContact);//&& existContact =='false'
+                        //SelBranchValFunction($(selBnchvalue).val());
+                        if(validateJoin() && dateFieldvalid) {
+                            if(staffValue != 'staff' ){//&& validateGender()
+                            afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),
+                              $('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),
+                              $('#textEmailPartner').val(),$('#textTelephoneHomePartner').val(),$('#postcode').val(),
+                              $('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),
+                              $('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),
+                              $('#town').val(),$('#county').val(),$(salutation).text());
+                        
+                            //var gender = $('input[name=gender]':checked).val();
+                            //console.log(gender);
+                            $('#register_li').removeClass('active');
+                            $('#payment_li').addClass('active');
+                            $('#register').removeClass('active show');
+                            $('#payment').addClass('active show');
+                            $("html, body").animate({ scrollTop: 0 }, "slow");
 
-                	}
-                    else {
-                        afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textMobilePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text());
-                    	$('#thankyou_li').addClass('active');
-                        $('#thankyou').addClass('active show');
-                        $('#register_li').removeClass('active');
-                        $('#register').removeClass('active show');
-                        console.log($('#membershipText').val(),"staff memebership");
+                            }
+                            else {
+                                afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),
+                                  $('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),
+                                  $('#textTelephoneHomePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),
+                                  $('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),
+                                  $('#county').val(),$(salutation).text());
+                        
+                                $('#thankyou_li').addClass('active');
+                                $('#thankyou').addClass('active show');
+                                $('#register_li').removeClass('active');
+                                $('#register').removeClass('active show');
+                                console.log($('#membershipText').val(),"staff memebership");
+                            }
+                            $('#nameSubmit').prop('disabled', true);
+                        }
+                        else {
+                        	$('#nameSubmit').prop('disabled', false);
+                        }
                     }
-                   }
                 });
                 $("#confirm_all_pay_cc").click(function () {
 					setInterval(function(){
@@ -1280,7 +1352,7 @@
                     var sortCode1 = $('#scd1').val();
                     var sortCode2 = $('#scd2').val();
                     var sortCode3 = $('#scd3').val();
-                    var sortCode = sortCode1 + '-' + sortCode2 + '-' + sortCode3;
+                    var sortCode = sortCode1 + sortCode2 + sortCode3;
                     var accountNumber = $('#accountNumber').val();
                     var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
                     console.log(giftAidCheckbox);
@@ -1385,7 +1457,7 @@
     </script>
     <script>
     $(function() {
-
+         var giftAidExec = false;
         console.log( "ready!" ); //branch
         var cardPayment = false;
         $('#selectMembership').change(function() {
@@ -1405,17 +1477,66 @@
             }
 
             $("#Pay_now").click(function (){
+                var today = new Date();
+                var dateValues;
+                var daysInMonths;
+                var dd = today.getDate();
+                var mm = today.getMonth()+1;
+                var yyyy = today.getFullYear();
+                function myFunction() {
+                    var today = new Date();
+                    var month = today.getMonth();
+                    daysInMonths = daysInMonth(month + 1, today.getFullYear());
+                    if( (dd + 10) > daysInMonths){
+                        var dateValue = (dd + 10) - daysInMonths;
+                        if(dateValue >= 3){
+                            $('#payment-date').text('0'+(today.getMonth()+3) + '/' + '03' +  '/' + today.getFullYear());
+                        }
+                        else {
+                            $('#payment-date').text('0'+(today.getMonth()+2)  + '/' + '03' + '/' + today.getFullYear());
+                        }
+                    }
+                    else {
+                        $('#payment-date').text('0'+(today.getMonth()+2) + '/' + '03' + '/' + today.getFullYear());
+                    }
+                }
+                
+                function daysInMonth(month,year) {
+                    return new Date(year, month, 0).getDate();
+                }
+                myFunction();
+                var staffPayment = $('#selectMembership :selected').text().includes('Life Membership - Free')
+                if (staffPayment === true){
+                    //saveRecordValues(accountName);
+                  setInterval(function(){
+                        var loaderNumber = $("span[id$='membershipNumber']").text();
+                        if( loaderNumber === '') {
+                        	$('#membership-loader').addClass('show-loader');
+                            console.log("no textttt");
+                        }
+                        else {
+                        	$('#membership-loader').removeClass('show-loader');
+                            console.log("textttt");
+                        }
+                  },500)  
+            	}
                 console.log($('#selectMembership :selected').val());
                 console.log($('#selectMembership :selected').text());
-                setInterval(function(){
-                	var membershipTypeText = $('#membershipSelection > span').text();
-                    if(membershipTypeText.includes('Individual 18 month membership')){
-                        $('.eighteen-months-membership').removeClass('hide');
-                    }
-                    else{
-                        $('.eighteen-months-membership').addClass('hide');
-                    }
-                },200);
+                if( $('#selectMembership :selected').text().includes('per quarter')){
+                	$('.eighteen-months-membership').removeClass('hide');
+               	}
+                else {
+                	$('.eighteen-months-membership').addClass('hide');
+                }
+                //setInterval(function(){
+                //var membershipTypeText = $('#membershipSelection > span').text();
+                // if(membershipTypeText.includes('Individual 18 month membership')){
+                //     $('.eighteen-months-membership').removeClass('hide');
+                // }
+                // else{
+                //     $('.eighteen-months-membership').addClass('hide');
+                //}
+                // },200);
                 if (($('#selectMembership :selected').val() == '' ||  $('#selectMembership :selected').val() == 'Please select')){
                     $('#selectMembership select').addClass('error-border');
                      //alert("Please select your membership type");
@@ -1427,7 +1548,16 @@
                     $('#selectMembership select').removeClass('error-border');
                 }
                 if (($('#selectMembership :selected').val() != '')) {
-                    SelValFunction($('#selectMembership :selected').val());
+                    var lifeMembership;
+                    if(($('#selectMembership :selected').text().includes('Life Membership - Free'))){
+                    	lifeMembership = true;
+                        SelValFunction($('#selectMembership :selected').val(),lifeMembership);
+                    }
+                    else{
+                        lifeMembership = false;
+                        SelValFunction($('#selectMembership :selected').val(),lifeMembership);
+                    }
+                    
                     console.log($('#selectMembership :selected').text().includes('Credit'));
                     $("#direct_debit_block").show();
                     if(($('#selectMembership :selected').text().includes('Credit'))){
@@ -1492,6 +1622,7 @@
         });
 
          $('#pay_now_back').on('click', function(){
+             $('#nameSubmit').prop('disabled', false);
             $('#payment').removeClass('active show');
             $('#payment_li').removeClass('active');
             $('#register_li').addClass('active');
@@ -1518,6 +1649,7 @@
             }
         });
        $('#direct_debit_back').on('click', function(){
+           $('#gift_aid_btn').prop('disabled', false);
             $('#confirmation').removeClass('active show');
             $('#confirmation_li').removeClass('active');
             $('#gift_aid_block').show();
@@ -1534,17 +1666,27 @@
                         	$('#membership-loader').removeClass('show-loader');
                         }
                     },200)
+                    setInterval(function() {
+                    giftAidExec = $("[id$='onComplete']").val();
+                      console.log(typeof giftAidExec, 'giftAidExec');
+                      if(giftAidExec == 'true') {
+                        //setTimeout(function(){
+                          console.log(giftAidExec, 'giftAidExec if');
                     var accountName = $('#accountName').val();
                     var sortCode1 = $('#scd1').val();
                     var sortCode2 = $('#scd2').val();
                     var sortCode3 = $('#scd3').val();
-                    var sortCode = sortCode1 + '-' + sortCode2 + '-' + sortCode3;
+                    var sortCode = sortCode1 + sortCode2 + sortCode3;
                     var accountNumber = $('#accountNumber').val();
                     var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
                     console.log(giftAidCheckbox);
                     console.log(accountName);
                     console.log(sortCode);
                     console.log(accountNumber);
+            		console.log(typeof giftAidCheckbox, 'Gift Aid CC Flow');
+            		if (cardPayment === true) {
+            			giftAidCreation(giftAidCheckbox);
+                    }
                     //console.log($(giftAidCheckbox)[0].checked);
                     //saverecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
                     $('#payment_li, #gift_li').removeClass('active');
@@ -1556,7 +1698,9 @@
                     $("#DD_acc_name").html(accountName);
                     $("#DD_sort_code").html(sortCode);
                     $("#DD_bank_acc_num").html(accountNumber);
+            		console.log(cardPayment, 'cardPayment');
                     if (cardPayment === true) {
+                        
                         $('#thankyou').addClass('active show');
                         $('#thankyou_li').addClass('active');
                         $('#payment').removeClass('active show');
@@ -1567,7 +1711,15 @@
             			$('#gift_li').removeClass('active');
                         //$("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                     }
-                });
+                      //}, 3500);
+                          //giftAidExec = false;
+                          $("[id$='onComplete']").val(false);
+                          }
+                          
+                   }, 2000)
+                        $('#gift_aid_btn').prop('disabled', true);
+                        });
+             
 
     });
     </script>
@@ -1620,20 +1772,20 @@
 
         function validateGender() {
 
-            /*var gender = $('input[name=gender]:checked').val();
+            var gender = $("input[name$='gender']:checked").val();
             console.log(gender);
                     if(gender == ""|| gender == undefined) {
                         return false
                     }
                     else{
                         return true;
-            }*/
+            }
         }
         function validateJoin() {
                     error="";
                     console.log("123");
 
-                    // validate the Due date
+                   /* // validate the Due date
 
                         if(!validDate()){
                             error = error + "Please Enter Due Date .\n" + "<br>";
@@ -1654,19 +1806,20 @@
                     	}
 
             	    // validate the duedate
+                    */
 
                     if($('#selectTitle').val() == "") {
                         error = error +  "Please select your title.\n" + "<br>";
                         $('#selectTitle').addClass('error');
                         //return false;
                     }
-            /*if(validateGender()) {
+                    if(validateGender()) {
                         //$('.gender-error').addClass('hide');
                     }
                     else{
                         //$('.gender-error').removeClass('hide');
-                        error=error+'please select gender.\n'
-                    }*/
+                        error=error+'please select gender.\n' + '<br>';
+                    }
 
 
                     $('input').removeClass("error");    // clear all markup before beginning.
@@ -1679,7 +1832,21 @@
                         //return false;
                     }
                     */
-
+                    var postecodeValue = $('#postcode').val();
+                    if($('#postcode').val().length < 1){
+                        $('#postcode').addClass('error');
+                        error = error + "Please enter a post code.\n" + "<br>";
+                    }
+                    else {
+                        if($('#postcode').val().length <=4){
+                            error = error + "Postcode should be min 5 characters.\n" + "<br>";
+                            $('#postcode').addClass('error');
+                        }
+                        else {
+                            $('#postcode').removeClass('error');  
+                        }
+                    }
+				
             		// validBranch();
 
 
@@ -1906,11 +2073,6 @@
             $('#expand-btn').slideToggle( "slow", function() {
             });
         });
-        $( ".all-costs-text" ).hide();
-        $( ".see-all-costs" ).click(function() {
-            $( ".all-costs-text" ).slideToggle( "slow", function() {
-            });
-        });
     })
 	</script>
     <script>
@@ -1926,6 +2088,58 @@
                       }
              }
           });
+        // date validation start
+            
+            $("#due-Date").blur(function(e){
+                
+            	 	date = e.target.value;
+                    if(date == undefined){
+                        $('#MembershipalertModal').modal();
+                        $('.modal-body').html('<div>' + "Please Enter Valid Date"+ '</div>');
+                        $('#due-Date').addClass('error');
+                         dateFieldvalid = false;
+                        
+                     }else if(date !== ""){
+                            var  currentDate = new Date();
+                            var  currentYear = currentDate.getFullYear();
+                            var  userDate = new Date(date);
+                            var  year = userDate.getFullYear();
+                            var  yearLength = year.toString().length;
+                            if(yearLength == 4 && (currentDate.getTime() < userDate.getTime()) ){
+                                console.log("success");
+                                $('#due-Date').removeClass('error');
+                                dateFieldvalid = true;
+                               
+                            }else{
+                                $('#MembershipalertModal').modal();
+                                $('.modal-body').html('<div>' + "Date Must be Greater than currentDate" + '</div>');
+                                $('#due-Date').addClass('error');
+                                 dateFieldvalid = false;
+                            }
+                	}else{
+                    	 $('#due-Date').val('dd-mm-yyyy');
+                         $('#due-Date').removeClass('error');
+                        dateFieldvalid = true;
+                        
+                    }
+                
+            });
+            
+            $("#nameSubmit").click(function(){
+
+                var recheck = $('#due-Date').val();
+                 if ( dateFieldvalid == false && recheck !== "" ) {
+                    $('#MembershipalertModal').modal();
+                    $('.modal-body').html('<div>' + "Please Enter Valid Date"+ '</div>');
+                    $('#due-Date').css({"border":"1px solid red", "background-color":"rgba(255, 0, 0, 0.25)"});
+                }else{
+                        dateFieldvalid = true;
+                    	$('#due-Date').removeClass('error');
+                }
+            });
+            
+            //date validation ends here
+
         });
       </script>
 </body>

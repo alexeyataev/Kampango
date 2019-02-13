@@ -4,6 +4,7 @@
 *
 *    19/11/2018 MG Initial Implementation
 *    29/11/2018 MG W001166 - Added Method isPractitioner()
+*    31/01/2019 MG W-001355 - Added Method getNextDonationDate()
 *    14/12/2018 MG W001144 - Added new Method that takes 3 parameters getMembershipType()
 **/
 
@@ -110,9 +111,6 @@ public without sharing class MembershipUtilties {
     */
     public static Boolean isPractitioner(String firstName, String lastName, String email){
 
-
-
-
         List<Contact> contactList  = [
                                         SELECT
                                             Id,
@@ -137,14 +135,30 @@ public without sharing class MembershipUtilties {
             if(contactList.size()>0 && contactList[0].Practitioner_Role__r != null && contactList[0].Practitioner_Role__r.size() > 0){
                 //System.debug('Practitioner License is : '+contactList[0].Practitioner_Licence__r.size());
                 //if (contactList[0] != null ){//&& contactList[0].Practitioner_Licence__r != null && contactList[0].Practitioner_Licence__r.size() > 0){
-                    return true;
+                return true;
                 //}
             }
-
-
         return false;
     }
 
+    /**
+    *  This Method returns the Date value for the Next Donation Date 
+    *  @todaysDate : This value should be the todays Date
+    *  Story: W-001355
+    */
+    public static Date getNextDonationDate(Date todaysDate){
+        if (todaysDate.addDays(10) < Date.newInstance(todaysDate.year(), todaysDate.month()+1, 03)){
+                return Date.newInstance(todaysDate.year(), todaysDate.month()+1, 03);
+            }else{
+                return Date.newInstance(todaysDate.year(), todaysDate.month()+2, 03);
+            }
+    }
+
+    /**
+    *  This Method returns the latitude and longitude values. 
+    *  @postcode : This should be postcode of the address.
+    *  
+    */
     public static Map<String,Decimal> getGeoCodes(String postCode){
 
         Http http = new Http();
@@ -192,9 +206,13 @@ public without sharing class MembershipUtilties {
         return geoCodes;
     }
 
+    /**
+    *  This method displays the nearest branches and all branches in alphabetical order.
+    *  @postcode : This is the postcode value.
+    *  and returns the list of nearest branches and also list of all branches in alphabetical order.
+    *  @MahanthG developed on 31/12/18 
+    */
     public static Map<String, List<sObject>> getBranches(String postcode){
-
-
 
         Map<String,Decimal> geoCodes = getGeoCodes(postcode);
 
@@ -203,18 +221,16 @@ public without sharing class MembershipUtilties {
         decimal lat = geoCodes.get('latitude');
         decimal lon = geoCodes.get('longitude');
 
+        if(lat != null && lon != null){
+            String q = 'SELECT Id, Name, BillingAddress FROM Account WHERE RecordType.Name = \'Branch\' AND DISTANCE(BillingAddress, GEOLOCATION('+lat+', '+lon+'), \'mi\') < 30 '+
+                       'ORDER BY DISTANCE(BillingAddress, GEOLOCATION('+lat+', '+lon+'), \'mi\') LIMIT 10';
 
-        String q = 'SELECT Id, Name, BillingAddress FROM Account WHERE RecordType.Name = \'Branch\' AND DISTANCE(BillingAddress, GEOLOCATION('+lat+', '+lon+'), \'mi\') < 200 '+
-                   'ORDER BY DISTANCE(BillingAddress, GEOLOCATION('+lat+', '+lon+'), \'mi\') LIMIT 10';
 
-
-        List<Account> nearestBranches = Database.query(q);
-        for(Account topTenBranches : nearestBranches){
-            System.debug('Branch Name : ' + topTenBranches.Name);
-
+            List<Account> nearestBranches = Database.query(q);
+        
+            accountMap.put('All NearestBranches', nearestBranches);
+            System.debug('All Nearest Branches : '+accountMap.get('NearestBranches'));
         }
-        accountMap.put('All NearestBranches', nearestBranches);
-        System.debug('All Nearest Branches : '+accountMap.get('NearestBranches'));
 
         List<Account> listOfAllBranches = new List<Account>();
 
@@ -235,13 +251,9 @@ public without sharing class MembershipUtilties {
                                 ORDER BY
                                     Name
                             ];
-        for(Account allBranches : listOfAllBranches){
-            System.debug('Branch Name : '+allBranches.Name);
-        }
+        
         accountMap.put('Alphabetical list below:', listOfAllBranches);
         System.debug('List of all Branches : '+accountmap.get('Alphabetical list below:'));
-
-
 
         return accountMap;
     }

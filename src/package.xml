@@ -3,7 +3,7 @@
     <types>
         <members>*</members>
         <name>Document</name>
-    </types>	
+    </types>
 	<types>
         <members>*</members>
         <name>StaticResource</name>
@@ -28,8 +28,9 @@
         <members>Account</members>
         <members>AccountContactRelation</members>
         <members>Booking__c</members>
-        <members>Branch_PSA_Office__c</members>        
+        <members>Branch_PSA_Office__c</members>
         <members>Case</members>
+		<members>cpm__Payment_Profile__c</members>
         <members>Contact</members>
 		<members>CampaignMember</members>
         <members>Course__c</members>
@@ -58,6 +59,7 @@
 		<members>npe03__Recurring_Donation__c</members>
         <members>Payment_Link__c</members>
       <members>gaid__Gift_Aid_Declaration__c</members>
+      <members>cpm__Mandate__c</members>
         <name>CustomObject</name>
     </types>
 	<types>
@@ -88,9 +90,10 @@
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
 		<members>Contact-Client Layout</members>
 		<members>Contact-Practitioner</members>
-          <members>Contact-Companion Layout</members>
-          <members>Contact-Volunteer Layout</members>
-          <members>Venue__c-Venue Layout</members>
+        <members>Contact-Companion Layout</members>
+        <members>Contact-Volunteer Layout</members>
+        <members>Contact-Staff Layout</members>
+        <members>Venue__c-Venue Layout</members>
 		<members>Practitioner_Role__c-Practitioner Licence Layout</members>
         <members>Case-CaseLayout_De_Registration</members>
 		<members>Case-Case Layout</members>
@@ -109,6 +112,7 @@
         <members>User-User Layout</members>
         <members>UserAlt-User Profile Layout</members>
         <members>Venue__c-Venue Layout</members>
+        <members>*</members>
         <name>Layout</name>
     </types>
 	<types>
@@ -118,7 +122,7 @@
 	<types>
         <members>*</members>
         <name>ValidationRule</name>
-    </types>        
+    </types>
    <!-- <types>
         <members>*</members>
         <name>CustomLabels</name>
@@ -152,10 +156,11 @@
     <types>
         <members>Practitioner_Changes</members>
         <members>Practitioner_changed_in_Session</members>
+        <members>MandateTypeField</members>
         <name>Flow</name>
     </types>
 	<types>
-        <members>NCT_Templates/Case</members>     
+        <members>NCT_Templates/Case</members>
         <members>unfiled$public/Parent_Welcome_Email</members>
 		<members>GW_Volunteers__Volunteers_Email_Templates/Volunteer_de_register</members>
         <members>NCT_Templates/Booking_Status_is_Paid_or_Installment</members>
@@ -166,7 +171,7 @@
         <members>NCT_Templates/Course_booking_status_Confirmed</members>
         <members>NCT_Templates/Course_booking_status_reserved</members>
         <members>NCT_Templates/Practitioner_Changes_Course</members>
-        <members>NCT_Templates/Practitioner_Changes_sessions</members>		
+        <members>NCT_Templates/Practitioner_Changes_sessions</members>
 		<members>NCT_Templates/Booking_Enquiry_Case_Queue_Confirmation</members>
         <members>NCT_Templates/Request_to_be_Volunteer</members>
 		<members>GW_Volunteers__Volunteers_Email_Templates/Volunteer_de_register</members>
