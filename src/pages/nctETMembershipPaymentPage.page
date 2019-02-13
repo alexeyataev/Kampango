@@ -674,7 +674,6 @@
                                                 </span>
                                                 <span id="membershiptype" style="width:1px;height:1px;display:none;">{!membershipTypeMap}</span>
                                                 <select style="margin-bottom:0;" name="selectMembership" id="selectMembership" class="form-fields membership-fields">
-                                                    <option value=""></option>
                                                     <option SELECTED="true" value="">Please select</option>
                                                     <apex:repeat value="{!membershipTypeMap}" var="typeKey">
                                                         <option value="{!membershipTypeMap}" style='font-weight:bold; background:#abcb63;' disabled="true">{!typeKey}</option>
