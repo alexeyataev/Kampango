@@ -58,7 +58,7 @@ private class ThankYouHelperTest {
         ThankYouHelper thankYou = new ThankYouHelper();
         thankYou.reccDonList = recDonation;
         thankYou.membershipNumberCreation(con,recDon,lifeMembership);  
-        //system.assertEquals('Pending', recDon.Membership_Status__c);
+        system.assertEquals('Pending', recDon.Membership_Status__c);
     }
     
     @isTest
