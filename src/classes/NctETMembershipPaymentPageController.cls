@@ -94,6 +94,9 @@ public class NctETMembershipPaymentPageController
         staffMember ='no staff';
         if(contId != null)
         {
+            if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
             isStaff = ContactUtilities.isStaff(contId);
             newCont = [SELECT Id,Salutation,DoNotCall, SMS_Opt_Out__c, Post_Opt_Out__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
             if(newCont != null){
@@ -187,6 +190,13 @@ public class NctETMembershipPaymentPageController
         }
         else if(contId != null || isContactExisting == true){
         List<Contact> contactList;
+<<<<<<< HEAD
+=======
+        System.debug('Contact Exists(Next Flow Starts): '+isContactExisting);
+            if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
+>>>>>>> 78b44049aa9f7737e7adc06f7faec50f8452f4f0
         newCont =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Email = :email limit 1];
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :newCont.Id OR Parent_Contact__c = :contId];
         if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
@@ -212,6 +222,13 @@ public class NctETMembershipPaymentPageController
         if(membershipInfo != null && inspect == true){
             feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
             PageReference redirecContUrl;
+<<<<<<< HEAD
+=======
+            system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
+            if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
+>>>>>>> 78b44049aa9f7737e7adc06f7faec50f8452f4f0
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                     Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
@@ -221,7 +238,14 @@ public class NctETMembershipPaymentPageController
         else{
             feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
             PageReference redirecContUrl;
+<<<<<<< HEAD
 
+=======
+            system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
+             if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
+>>>>>>> 78b44049aa9f7737e7adc06f7faec50f8452f4f0
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                     Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
@@ -233,6 +257,10 @@ public class NctETMembershipPaymentPageController
         if(membershipInfo != null)
         {
             
+             if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible() &&
+                 Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isCreateable()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
             if(membershipInfo.Payment_Method__c == 'Credit/Debit Card')
             {
                 sessionProfile = userinfo.getUserType();
@@ -309,7 +337,14 @@ public class NctETMembershipPaymentPageController
         if(sessionProfile != 'Standard'){
             feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName');
             PageReference redirecContUrl;
+<<<<<<< HEAD
 
+=======
+            system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
+             if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
+>>>>>>> 78b44049aa9f7737e7adc06f7faec50f8452f4f0
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                     Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
@@ -325,9 +360,9 @@ public class NctETMembershipPaymentPageController
          accountDetails.add(sortCode);
          accountDetails.add(acquistion);
          accountDetails.add(membershipSource);
-        MembershipCrudHelper MemCrudHelp = new MembershipCrudHelper();
+        MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
         if(isGiftAid == 'true'){
-        	gftAid = MemCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
+        	gftAid = memCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
         }
         inspect = true;
     }
@@ -342,14 +377,21 @@ public class NctETMembershipPaymentPageController
          accountDetails.add(sortCode);
          accountDetails.add(acquistion);
          accountDetails.add(membershipSource);
+<<<<<<< HEAD
 
         MembershipCrudHelper MemCrudHelp = new MembershipCrudHelper();
         pymtPrfl = MemCrudHelp.paymentProfile(newCont,accountDetails);
+=======
+         //accountDetails.sort();
+        System.debug('accountDetails:'+accountDetails);
+        MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
+        pymtPrfl = memCrudHelp.paymentProfile(newCont,accountDetails);
+>>>>>>> 78b44049aa9f7737e7adc06f7faec50f8452f4f0
         if(isGiftAid == 'true'){
-        	gftAid = MemCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
+        	gftAid = memCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
         }
         if(pymtPrfl != null){
-            recDon = MemCrudHelp.recDonation(newCont.Id,snewCont,membershipInfo,pymtPrfl,accountDetails);
+            recDon = memCrudHelp.recDonation(newCont.Id,snewCont,membershipInfo,pymtPrfl,accountDetails);
         }
         thankYouSec();
     }    
@@ -386,6 +428,10 @@ public class NctETMembershipPaymentPageController
         *   
         */
         System.debug('********** Creating Payment Link Record **************');
+        if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible() &&
+            Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isCreateable()){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
         Payment_Link__c payLink = new Payment_Link__c();
         payLink.Contact__c = newCont.Id;
         payLink.Email__c = newCont.Email;

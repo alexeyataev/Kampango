@@ -11,7 +11,10 @@ public without sharing class PaymentLinkProcessorController {
     public PaymentLinkProcessorController(){
         
         paymentLinkFound = false;       
-        String encryptedLinkId = ApexPages.currentPage().getParameters().get('paymentId');        
+        String encryptedLinkId = ApexPages.currentPage().getParameters().get('paymentId'); 
+         if (!Schema.sObjectType.Payment_Link__c.fields.Payment_Link__c.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+         } 
         List<Payment_Link__c> paymentLinkList = [ 
                                                     SELECT 
                                                         Payment_Link__c,
