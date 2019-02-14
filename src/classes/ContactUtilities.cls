@@ -103,7 +103,7 @@ public without sharing class ContactUtilities {
 	 * It returns String value of targetCustomer.
 	 **
     */
-    public static String targetCustomer(Boolean isStaff,Boolean isVolunteer,Boolean isPractitioner,String twomems){
+    public static String targetCustomer(Boolean isStaff,Boolean isVolunteer,Boolean isPractitioner,Boolean twomems){
         
         String targetCustomer;
         if(isStaff == true){
@@ -113,7 +113,7 @@ public without sharing class ContactUtilities {
             targetCustomer = 'Volunteer/Practitioner';
         }
         else{
-            if(twomems == 'true'){
+            if(twomems == true){
                 targetCustomer = 'Parent, Companion';
             }
             else{

@@ -1,6 +1,6 @@
 public class NctETMembershipPaymentPageController 
 {
-    public string twomems{get; set;}
+    public Boolean twomems{get; set;}
     public String isGiftAid{get; set;}
     public String firstname{get; set;}
     public String lastname{get; set;}
@@ -172,7 +172,7 @@ public class NctETMembershipPaymentPageController
                 recordType = 'Parent';
                 newCont = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
                 
-                if(twomems == 'true' && sfirstname != null || sfirstname != '')
+                if(twomems == true && sfirstname != null || sfirstname != '')
                 {
                     recordType = 'Companion';
                     snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
@@ -189,7 +189,7 @@ public class NctETMembershipPaymentPageController
         List<Contact> contactList;
         newCont =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Email = :email limit 1];
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :newCont.Id OR Parent_Contact__c = :contId];
-        if(twomems == 'true' && sfirstname != null || sfirstname != '')
+        if(twomems == true && sfirstname != null || sfirstname != '')
         {
             recordType = 'Companion';
             if(contactList.size()<0){
