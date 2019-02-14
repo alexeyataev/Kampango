@@ -6,10 +6,10 @@ public class NctETMembershipPaymentPageController
     public String lastname{get; set;}
     public String email{get; set;}
     public String phone{get; set;}
-    public String sfirstname{get; set;}
-    public String slastname{get; set;}
-    public String semail{get; set;}
-    public String sphone{get; set;}
+    public String secondContactFirstName{get; set;}
+    public String secondContactLastName{get; set;}
+    public String secondContactEmail{get; set;}
+    public String secondContactPhone{get; set;}
     public String postCode{get; set;}
     public String membershipSource{get;set;}
     public list<SelectOption> membershipSourceOptions{get; set;}
@@ -28,7 +28,7 @@ public class NctETMembershipPaymentPageController
     public String acquistion {get;set;}
     public list<SelectOption> acquistionOptions{get; set;}
     public String genders {get;set;}
-    public String sGenders {get;set;}
+    public String secondContactGenders {get;set;}
     public list<SelectOption> genderOptions{get; set;}
     public boolean smsOpt{get; set;}
     public boolean postOpt{get; set;}
@@ -155,7 +155,7 @@ public class NctETMembershipPaymentPageController
                 
        
         list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrimary};
-        list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone,salutationSecondary};
+        list<String> secondContactFieldsList = new list<String>{secondContactFirstName,secondContactLastName,secondContactEmail,secondContactGenders,secondContactPhone,salutationSecondary};
         list<String> contactFieldListExt = new list<String>{postCode,eDate,streetValue,streetValue1,streetValue2,stateValue,cityValue};
         list<Boolean> contactBooleanList = new list<Boolean>{smsOpt,postOpt,emailOpt,doNotCallOpt};
         
@@ -172,7 +172,7 @@ public class NctETMembershipPaymentPageController
                 recordType = 'Parent';
                 newCont = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
                 
-                if(twomems == true && sfirstname != null || sfirstname != '')
+                if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
                 {
                     recordType = 'Companion';
                     snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
@@ -189,7 +189,7 @@ public class NctETMembershipPaymentPageController
         List<Contact> contactList;
         newCont =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Email = :email limit 1];
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :newCont.Id OR Parent_Contact__c = :contId];
-        if(twomems == true && sfirstname != null || sfirstname != '')
+        if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
         {
             recordType = 'Companion';
             if(contactList.size()<0){
