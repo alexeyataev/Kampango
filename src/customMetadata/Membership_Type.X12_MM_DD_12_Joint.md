@@ -7,6 +7,10 @@
         <value xsi:type="xsd:string">Joint</value>
     </values>
     <values>
+        <field>Data_Source__c</field>
+        <value xsi:type="xsd:string">Salesforce</value>
+    </values>
+    <values>
         <field>ET_Specific__c</field>
         <value xsi:type="xsd:boolean">false</value>
     </values>
@@ -65,6 +69,10 @@
     <values>
         <field>Recursive__c</field>
         <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Schedule_Type__c</field>
+        <value xsi:type="xsd:string">Multiply By</value>
     </values>
     <values>
         <field>Target_Customer__c</field>
