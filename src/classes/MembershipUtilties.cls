@@ -63,7 +63,10 @@ public without sharing class MembershipUtilties {
             targetCustomerList.add('Volunteer/Practitioner');
             targetCustomerList.add(targetCustomer);
         }
-
+ if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         }
         List<Membership_Type__mdt>   membershipTypeList = [
                                                             SELECT
                                                                 MasterLabel,
@@ -110,7 +113,10 @@ public without sharing class MembershipUtilties {
     *  Story:  W001166
     */
     public static Boolean isPractitioner(String firstName, String lastName, String email){
-
+		  if (!Schema.sObjectType.Contact.fields.Id.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         } 
         List<Contact> contactList  = [
                                         SELECT
                                             Id,
@@ -233,7 +239,11 @@ public without sharing class MembershipUtilties {
         }
 
         List<Account> listOfAllBranches = new List<Account>();
-
+  if (!Schema.sObjectType.Account.fields.Name.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         } 
+        
         listOfAllBranches = [
                                 SELECT
                                     Id,
