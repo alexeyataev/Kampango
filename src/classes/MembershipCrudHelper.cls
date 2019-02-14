@@ -49,7 +49,7 @@ public without sharing class MembershipCrudHelper {
                 	
             }
             else{
-                if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.cpm__Account__c.isUpdateable() && 
+                if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.cpm__Account__c.isUpdateable() || 
                     !Schema.sObjectType.cpm__Payment_Profile__c.fields.cpm__Account__c.isCreateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
@@ -120,7 +120,7 @@ public without sharing class MembershipCrudHelper {
                 
             }
             else{
-               if (!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isUpdateable() && 
+               if (!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isUpdateable() || 
                     !Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isCreateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
@@ -215,7 +215,7 @@ public without sharing class MembershipCrudHelper {
                  	
              }
              else{
-                     if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isAccessible()&&
+                     if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isAccessible() ||
                         Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;

@@ -24,7 +24,7 @@ public without sharing class ThankYouHelper {
                        npe03__Date_Established__c from npe03__Recurring_Donation__c where npe03__Contact__c =: Apexpages.currentPage().getParameters().get('contId') limit 1];   
             if(reccDonList != null && !reccDonList.isEmpty())
             {
-                if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isCreateable() &&
+                if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isCreateable() ||
                 Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isUpdateable()){       
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
