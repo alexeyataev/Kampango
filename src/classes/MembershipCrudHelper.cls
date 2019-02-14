@@ -17,7 +17,7 @@ public without sharing class MembershipCrudHelper {
     public cpm__Payment_Profile__c paymentProfile(contact con,list<string> accountDetails){
         if(con != null)
         {
-             if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isCreateable() &&
+             if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isCreateable() ||
                  Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isUpdateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
