@@ -14,20 +14,21 @@ public without sharing class ThankYouHelper {
         if(Apexpages.currentPage().getParameters().get('contId') != null && Apexpages.currentPage().getParameters().get('contId') !='')
         {
             system.debug('Apexpages.currentPage().getParameters().get(contId) ---   ' + Apexpages.currentPage().getParameters().get('contId'));
-              if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Number__c.isCreateable()){       
+              if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isAccessible()){       
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
-         } 
+               } 
           reccDonList = [select Id, Membership_Number__c,npe03__Contact__c,npsp4hub__Payment_Method__c,npe03__Contact__r.AccountId,npe03__Contact__r.Phone,
                        npe03__Amount__c,npe03__Installment_Period__c,Membership_type__c, npe03__Contact__r.Prefered_First_Name__c,
                        npe03__Contact__r.LastName,npe03__Contact__r.Email,npe03__Installment_Amount__c, Membership_Status__c,
                        npe03__Date_Established__c from npe03__Recurring_Donation__c where npe03__Contact__c =: Apexpages.currentPage().getParameters().get('contId') limit 1];   
             if(reccDonList != null && !reccDonList.isEmpty())
             {
-                if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Number__c.isCreateable()){       
+                if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isCreateable() ||
+                Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isUpdateable()){       
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
-         } 
+                 } 
                 membershipNumber = reccDonList[0].Membership_Number__c;
                 reccDonList[0].Membership_Status__c = 'Confirmed';
                 upsert reccDonList;
@@ -35,6 +36,10 @@ public without sharing class ThankYouHelper {
             }
             else if(reccDonList == null || reccDonList.isEmpty())
             {
+                if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isCreateable()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+                }
                 recDon = new npe03__Recurring_Donation__c();
                 recDon.Name = 'Credit/Debit Card Membership';
                 recDon.npe03__Amount__c = 60;
@@ -50,10 +55,10 @@ public without sharing class ThankYouHelper {
             }
         }
         else{   
-               if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Number__c.isCreateable()){
+               if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isCreateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
-         } 
+                } 
             if(cont != null && lifeMembership == true){
                 recDon = new npe03__Recurring_Donation__c();
                 recDon.Name = 'Staff Membership';
@@ -62,9 +67,7 @@ public without sharing class ThankYouHelper {
                 recDon.CARE_Payment_Frequency__c = 'One Time';
                 recDon.First_Contact__c = cont.Id;
                 recDon.npe03__Installment_Period__c = 'Yearly';
-                
                 recDon.Membership_Status__c = 'Confirmed';
-               
                 Insert recDon;
             }
                 
@@ -72,7 +75,7 @@ public without sharing class ThankYouHelper {
         }
         if(recDon.Id != null)
         {
-               if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Number__c.isAccessible()){
+               if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
          } 
