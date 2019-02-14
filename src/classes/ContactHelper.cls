@@ -39,6 +39,10 @@ public without sharing class ContactHelper {
         //createContact.Expected_Due_Date__c = expDate; 
         //}
         if(newCont != null){
+            if (!Schema.sObjectType.Contact.fields.AccountId.isCreateable()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+            }
             con =[Select AccountId from Contact where id = :newCont.id];
             if (!Schema.sObjectType.Contact.fields.AccountId.isCreateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));

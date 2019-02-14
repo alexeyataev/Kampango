@@ -17,7 +17,8 @@ public without sharing class MembershipCrudHelper {
     public cpm__Payment_Profile__c paymentProfile(contact con,list<string> accountDetails){
         if(con != null)
         {
-             if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isAccessible()){
+             if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isCreateable() ||
+                 Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isUpdateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
          }
@@ -48,6 +49,12 @@ public without sharing class MembershipCrudHelper {
                 	
             }
             else{
+                if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.cpm__Account__c.isUpdateable() || 
+                    !Schema.sObjectType.cpm__Payment_Profile__c.fields.cpm__Account__c.isCreateable()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         }
+               
                 pymtPrfl = new cpm__Payment_Profile__c();
                 system.debug(' *$*$*$* Contact Account Id   ' + con.AccountId);
                 pymtPrfl.RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get('Bank Account').getRecordTypeId();
@@ -56,12 +63,7 @@ public without sharing class MembershipCrudHelper {
                 {
                     pymtPrfl.cpm__Bank_Account__c = accountDetails[0];
                 }            
-                if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.cpm__Account__c.isAccessible() && 
-                    !Schema.sObjectType.cpm__Payment_Profile__c.fields.cpm__Account__c.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-                return null;
-         }
-                pymtPrfl.cpm__Account__c = con.AccountId;
+                 pymtPrfl.cpm__Account__c = con.AccountId;
                 pymtPrfl.cpm__Holder_Name__c = accountDetails[1];
                 pymtPrfl.paybacs__Sort_Code__c = accountDetails[2];
                 
@@ -118,7 +120,11 @@ public without sharing class MembershipCrudHelper {
                 
             }
             else{
-              
+               if (!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isUpdateable() || 
+                    !Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isCreateable()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         }
                 gftAid = new gaid__Gift_Aid_Declaration__c();
                 gftAid.gaid__Contact__c= contID;
                 gftAid.gaid__Type__c = membershipDetails.GiftAid_Type__c;
@@ -128,11 +134,7 @@ public without sharing class MembershipCrudHelper {
                 else{
                     gftAid.gaid__Acquisition_Method__c = membershipDetails.GiftAid_Acquisition_Method__c;
                 }
-             if (!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isAccessible() && 
-                    !Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-                return null;
-         }
+            
             
                 gftAid.gaid__Start_Date__c = system.today();
                 gftAid.gaid__Date_Made__c = system.today();
@@ -213,6 +215,11 @@ public without sharing class MembershipCrudHelper {
                  	
              }
              else{
+                     if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isAccessible() ||
+                        Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         }     
                          recDon = new npe03__Recurring_Donation__c();
                  recDon.Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                     recDon.npe03__Amount__c = membershipDetails.Installment_Amount__c;
@@ -228,11 +235,7 @@ public without sharing class MembershipCrudHelper {
                  	if(scont != null){
                         recDon.Second_Contact__c = scont.Id; 
                     }
-                 if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isAccessible()&&
-                        Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-                return null;
-         }         
+                 
                  	recDon.Data_Source__c = 'Salesforce';
                     recDon.npe03__Schedule_Type__c = membershipDetails.Schedule_Type__c;
                     recDon.npe03__Installment_Period__c = membershipDetails.Installment_Period__c;
