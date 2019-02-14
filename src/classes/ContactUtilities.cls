@@ -16,18 +16,18 @@ public without sharing class ContactUtilities {
 	*/
     public static boolean isContactExisting(String email){
         		List<Contact> contactlist;
-        
+           if (!Schema.sObjectType.Contact.fields.Email.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         }
+           
         contactlist = [SELECT 
                        Id, Email 
                        FROM 
                        Contact 
                        WHERE 
                        Email = :email and Email != null and Email != '']; 
-        if (!Schema.sObjectType.Contact.fields.Email.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-                return null;
-         }
-                                  	 
+                            	 
         if(contactList.size()>0){
             System.debug('Contact List size: '+contactlist);
             return true;

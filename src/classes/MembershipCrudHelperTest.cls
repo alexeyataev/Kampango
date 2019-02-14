@@ -2,7 +2,7 @@
 private class MembershipCrudHelperTest {
     private npe03__Recurring_Donation__c recDonation;
     @isTest
-    private static void MembershipCrudTest(){
+    private static void membershipCrudTest(){
         Membership_Type__mdt  membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                 No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                 Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
