@@ -40,7 +40,7 @@ public without sharing class ContactHelper {
         //}
         if(newCont != null){
             con =[Select AccountId from Contact where id = :newCont.id];
-            if (!Schema.sObjectType.Contact.fields.AccountId.isAccessible()){
+            if (!Schema.sObjectType.Contact.fields.AccountId.isCreateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
             }
