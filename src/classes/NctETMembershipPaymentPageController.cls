@@ -302,8 +302,7 @@ public without sharing class NctETMembershipPaymentPageController
                 }
                 else if(sessionProfile == 'Standard'){
                     
-             if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.npe03__Contact__c.isAccessible() &&
-                 Schema.sObjectType.npe03__Recurring_Donation__c.fields.npe03__Contact__c.isCreateable()){
+             if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.npe03__Contact__c.isCreateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
              }
                     displaySuccessMessage = true;
@@ -453,10 +452,9 @@ public without sharing class NctETMembershipPaymentPageController
         *   
         */
         System.debug('********** Creating Payment Link Record **************');
-        if (!Schema.sObjectType.Payment_Link__c.fields.Contact__c.isAccessible() &&
-            Schema.sObjectType.Payment_Link__c.fields.Contact__c.isCreateable()){
+        if(!Schema.sObjectType.Payment_Link__c.fields.Contact__c.isCreateable()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-             }
+        }
         Payment_Link__c payLink = new Payment_Link__c();
         payLink.Contact__c = newCont.Id;
         payLink.Email__c = newCont.Email;
