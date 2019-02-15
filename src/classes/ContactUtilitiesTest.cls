@@ -65,7 +65,7 @@ private class ContactUtilitiesTest {
         Boolean isStaffs = true;
         Boolean isVolunteer = true;
         Boolean isPractitioner = true;
-        String twomems = 'true';
+        Boolean twomems = true;
         Boolean isVolunteerExisting = ContactUtilities.isVolunteerExisting(con.Id);
         System.assert(true,isVolunteerExisting);
         
@@ -129,7 +129,7 @@ private class ContactUtilitiesTest {
         Boolean isStaffs = false;
         Boolean isVolunteer = false;
         Boolean isPractitioner = false;
-        String twomems = 'true';
+        Boolean twomems = true;
         
         Boolean isVolunteerExisting = ContactUtilities.isVolunteerExisting(con.Id);
         System.assert(true,isVolunteerExisting);
@@ -143,7 +143,7 @@ private class ContactUtilitiesTest {
         System.assertEquals(false, isPractitioner);
         System.assertEquals('true', twomems);
         
-        String twomemsf = 'false';
+        Boolean twomemsf = false;
         String targetCustomers = ContactUtilities.targetCustomer(isStaffs,isVolunteer,isPractitioner,twomemsf);
         
         System.assertEquals(false, isStaffs);

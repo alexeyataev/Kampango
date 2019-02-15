@@ -157,6 +157,9 @@ public without sharing class NctETMembershipPaymentPageController
     public PageReference  receiveInput(){
                 
         Contact con;
+        if(eDate != null){
+        Date expDate = Date.valueOf(eDate); 
+        }
         //list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrimary};
         //list<String> secondContactFieldsList = new list<String>{secondContactFirstName,secondContactLastName,secondContactEmail,secondContactGenders,secondContactPhone,salutationSecondary};
         //list<String> contactFieldListExt = new list<String>{postCode,eDate,streetValue,streetValue1,streetValue2,stateValue,cityValue};
@@ -176,18 +179,18 @@ public without sharing class NctETMembershipPaymentPageController
                 //primaryContact = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList);
                 primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=firstname,
                                       LastName=lastname,Email=email,Gender__c=genders,Phone=phone,Salutation=salutationPrimary,MailingPostalCode=postCode,
-                                      Contact_Prefrence__c=contactPreference,MailingStreet=streetValue+streetValue1+streetValue2,
+                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,
                                       MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt);
                 insert primaryContact;
-                if(twomems == 'true' && sfirstname != null || sfirstname != '')
+                if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
                 {
                     recordType = 'Companion';
                     con =[Select AccountId from Contact where id = :primaryContact.id];
                     //secondaryContact = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList);
-                    secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=sfirstname,
-                                      LastName=slastname,Email=semail,Gender__c=sgenders,Phone=sphone,Salutation=salutationSecondary,MailingPostalCode=postCode,
-                                      Contact_Prefrence__c=contactPreference,MailingStreet=streetValue+streetValue1+streetValue2,
+                    secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
+                                      LastName=secondContactLastName,Email=secondContactEmail,Gender__c=sgenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
+                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,
                                       MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
                     insert secondaryContact;
@@ -214,9 +217,9 @@ public without sharing class NctETMembershipPaymentPageController
             if(contactList.size()<0){
             con =[Select AccountId from Contact where id = :primaryContact.id];
             //secondaryContact = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList); 
-            secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=sfirstname,
-                                      LastName=slastname,Email=semail,Gender__c=sgenders,Phone=sphone,Salutation=salutationSecondary,MailingPostalCode=postCode,
-                                      Contact_Prefrence__c=contactPreference,MailingStreet=streetValue+streetValue1+streetValue2,
+            secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
+                                      LastName=secondContactLastName,Email=secondContactEmail,Gender__c=sgenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
+                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,
                                       MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
             insert secondaryContact;
@@ -384,9 +387,6 @@ public without sharing class NctETMembershipPaymentPageController
          accountDetails.add(sortCode);
          accountDetails.add(acquistion);
          accountDetails.add(membershipSource);
-
-        MembershipCrudHelper MemCrudHelp = new MembershipCrudHelper();
-        pymtPrfl = MemCrudHelp.paymentProfile(primaryContact,accountDetails);
          //accountDetails.sort();
         System.debug('accountDetails:'+accountDetails);
         MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
