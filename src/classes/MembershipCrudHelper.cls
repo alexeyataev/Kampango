@@ -17,7 +17,7 @@ public without sharing class MembershipCrudHelper {
     public cpm__Payment_Profile__c paymentProfile(contact con,list<string> accountDetails){
         if(con != null)
         {
-             if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.cpm__Bank_Account__c.isAccessible()){
+             if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
              }
@@ -85,7 +85,7 @@ public without sharing class MembershipCrudHelper {
          
         if(contID != null && isGiftAid == 'true') 
         {
-            if (!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Type__c.isAccessible()){
+            if (!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
             }
@@ -224,6 +224,8 @@ public without sharing class MembershipCrudHelper {
                     recDon.npe03__Contact__c = contID;
                     if(accountDetails[4] != '' && accountDetails[4] != null){
                          recDon.Source__c = accountDetails[4];
+                    }else{
+                         recDon.Source__c ='Online Membership Application';
                     }
                     
                     recDon.npe03__Next_Payment_Date__c = MembershipUtilties.getNextDonationDate(System.Date.today());
