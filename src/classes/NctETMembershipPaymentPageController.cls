@@ -1,4 +1,4 @@
-public class NctETMembershipPaymentPageController 
+public without sharing class NctETMembershipPaymentPageController 
 {
     public Boolean twomems{get; set;}
     public String isGiftAid{get; set;}
@@ -267,10 +267,6 @@ public class NctETMembershipPaymentPageController
         if(membershipInfo != null)
         {
             
-             if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible() &&
-                 Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-             }
             if(membershipInfo.Payment_Method__c == 'Credit/Debit Card')
             {
                 sessionProfile = userinfo.getUserType();
@@ -286,6 +282,10 @@ public class NctETMembershipPaymentPageController
                     
                 }
                 else if(sessionProfile == 'Standard'){
+                    
+             if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.npe03__Contact__c.isCreateable()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
                     displaySuccessMessage = true;
                     paymentHubCallout();
                     recDon = new npe03__Recurring_Donation__c();
@@ -432,10 +432,9 @@ public class NctETMembershipPaymentPageController
         *   
         */
         System.debug('********** Creating Payment Link Record **************');
-        if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible() &&
-            Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isCreateable()){
+        if(!Schema.sObjectType.Payment_Link__c.fields.Contact__c.isCreateable()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-             }
+        }
         Payment_Link__c payLink = new Payment_Link__c();
         payLink.Contact__c = primaryContact.Id;
         payLink.Email__c = primaryContact.Email;

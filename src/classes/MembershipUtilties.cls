@@ -63,7 +63,7 @@ public without sharing class MembershipUtilties {
             targetCustomerList.add('Volunteer/Practitioner');
             targetCustomerList.add(targetCustomer);
         }
- if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
+        if(!Schema.sObjectType.Membership_Type__mdt.fields.Membership__c.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
          }
@@ -89,7 +89,7 @@ public without sharing class MembershipUtilties {
                                                            ];
 
 
-        for (Membership_Type__mdt membershipType : membershipTypeList ){
+        for(Membership_Type__mdt membershipType : membershipTypeList ){
             if (membershipTypeMap.get(membershipType.Membership__c) == null){
                 List<Membership_Type__mdt> tempMembershipTypeList = new List<Membership_Type__mdt>();
                 tempMembershipTypeList.add(membershipType);
@@ -113,7 +113,7 @@ public without sharing class MembershipUtilties {
     *  Story:  W001166
     */
     public static Boolean isPractitioner(String firstName, String lastName, String email){
-		  if (!Schema.sObjectType.Contact.fields.Id.isAccessible()){
+		  if(!Schema.sObjectType.Contact.fields.LastName.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
          } 
@@ -153,7 +153,7 @@ public without sharing class MembershipUtilties {
     *  Story: W-001355
     */
     public static Date getNextDonationDate(Date todaysDate){
-        if (todaysDate.addDays(10) < Date.newInstance(todaysDate.year(), todaysDate.month()+1, 03)){
+        if(todaysDate.addDays(10) < Date.newInstance(todaysDate.year(), todaysDate.month()+1, 03)){
                 return Date.newInstance(todaysDate.year(), todaysDate.month()+1, 03);
             }else{
                 return Date.newInstance(todaysDate.year(), todaysDate.month()+2, 03);
@@ -239,7 +239,7 @@ public without sharing class MembershipUtilties {
         }
 
         List<Account> listOfAllBranches = new List<Account>();
-  if (!Schema.sObjectType.Account.fields.Name.isAccessible()){
+       if(!Schema.sObjectType.Account.fields.Name.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
          } 
