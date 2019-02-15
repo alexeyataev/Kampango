@@ -1,6 +1,7 @@
 public without sharing class NctETMembershipPaymentPageController 
 {
     public Boolean twomems{get; set;}
+    public boolean twomem{get; set;}
     public Date expDate {get; set;}
     public String isGiftAid{get; set;}
     public String firstname{get; set;}
