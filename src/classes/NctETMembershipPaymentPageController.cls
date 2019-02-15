@@ -159,7 +159,7 @@ public without sharing class NctETMembershipPaymentPageController
     public PageReference  receiveInput(){
                 
         Contact con;
-        if(eDate != null){
+        if(eDate != null && eDate != ''){
         expDate = Date.valueOf(eDate); 
         }
         //list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrimary};
