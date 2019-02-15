@@ -1,6 +1,7 @@
 public without sharing class NctETMembershipPaymentPageController 
 {
     public Boolean twomems{get; set;}
+    public Date expDate {get; set;}
     public String isGiftAid{get; set;}
     public String firstname{get; set;}
     public String lastname{get; set;}
@@ -158,7 +159,7 @@ public without sharing class NctETMembershipPaymentPageController
                 
         Contact con;
         if(eDate != null){
-        Date expDate = Date.valueOf(eDate); 
+        expDate = Date.valueOf(eDate); 
         }
         //list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrimary};
         //list<String> secondContactFieldsList = new list<String>{secondContactFirstName,secondContactLastName,secondContactEmail,secondContactGenders,secondContactPhone,salutationSecondary};
@@ -189,7 +190,7 @@ public without sharing class NctETMembershipPaymentPageController
                     con =[Select AccountId from Contact where id = :primaryContact.id];
                     //secondaryContact = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList);
                     secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
-                                      LastName=secondContactLastName,Email=secondContactEmail,Gender__c=sgenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
+                                      LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
                                       Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,
                                       MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
@@ -218,7 +219,7 @@ public without sharing class NctETMembershipPaymentPageController
             con =[Select AccountId from Contact where id = :primaryContact.id];
             //secondaryContact = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList); 
             secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
-                                      LastName=secondContactLastName,Email=secondContactEmail,Gender__c=sgenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
+                                      LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
                                       Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,
                                       MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);

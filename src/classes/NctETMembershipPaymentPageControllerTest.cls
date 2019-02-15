@@ -91,7 +91,7 @@ private class NctETMembershipPaymentPageControllerTest {
         controller.streetValue = con.Id;
         controller.stateValue = con.Id;
         controller.cityValue = con.Id;
-        controller.newCont = con;
+        controller.primaryContact = con;
         
         controller.receiveInput();        
         controller.nctBranchs();
