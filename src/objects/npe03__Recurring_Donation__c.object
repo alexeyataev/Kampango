@@ -276,7 +276,7 @@
     <fields>
         <fullName>Membership_Months_Left__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( Text(Membership_type__c) , 
+        <formula>CASE( Text(Membership_type__c) ,
 &quot;1 year standard - Individual&quot;, (ADDMONTHS( DATEVALUE(CreatedDate),12)- TODAY())/30.5,
 
 &quot;1 year standard - Joint&quot;, (ADDMONTHS( DATEVALUE(CreatedDate),12)- TODAY())/30.5,
@@ -478,9 +478,9 @@
     <fields>
         <fullName>Next_Payment__c</fullName>
         <externalId>false</externalId>
-         <formula>CASE(text( npsp4hub__Payment_Method__c ), 
+         <formula>CASE(text( npsp4hub__Payment_Method__c ),
 &apos;Direct Debit&apos;,   DATE(YEAR(TODAY()),MONTH(TODAY())+1,3),
-&apos;Credit/Debit Card&apos;,   null, 
+&apos;Credit/Debit Card&apos;,   null,
 &apos;CreditCard&apos;, null,null)</formula>
         <label>Next Payment</label>
         <required>false</required>
@@ -797,12 +797,12 @@
         <fullName>npe03__Installment_Amount__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
-        <formula>IF( 
+        <formula>IF(
 
 OR(
-(text(npe03__Schedule_Type__c)=$Label.npe03__RecurringDonationMultiplyValue), 
+(text(npe03__Schedule_Type__c)=$Label.npe03__RecurringDonationMultiplyValue),
 (text(npe03__Open_Ended_Status__c)=$Label.npe03__RecurringDonationOpenStatus)
-) 
+)
 , npe03__Amount__c , IF(npe03__Installments__c&gt;0,npe03__Amount__c / npe03__Installments__c,0)
 
 
@@ -821,7 +821,7 @@ OR(
     <fields>
         <fullName>npe03__Installment_Period__c</fullName>
         <deprecated>false</deprecated>
-        <description>How often you’ll receive the donations. NOTE: Changing the installment period for an existing Fixed-Length Recurring Donation may result in the loss and re-creation of open opportunities. Any data associated with those opportunities may be lost.</description>
+        <description>How often youï¿½ll receive the donations. NOTE: Changing the installment period for an existing Fixed-Length Recurring Donation may result in the loss and re-creation of open opportunities. Any data associated with those opportunities may be lost.</description>
         <externalId>false</externalId>
         <inlineHelpText>Sets the installment period for your recurring donations.  WARNING: Changing the Installment Period for an existing open-ended Recurring Donation can cause open Opportunities to be deleted and recreated. Any associated data may not be retained.</inlineHelpText>
         <label>Installment Period</label>
@@ -1808,7 +1808,7 @@ CASE(
 ISPICKVAL(Membership_Status__c, &apos;Cancelled&apos;),
 ISPICKVAL(Membership_Status__c, &apos;Cancelling&apos;)
 )
- &amp;&amp; 
+ &amp;&amp;
 OR(
 ISBLANK(TEXT(Cancellation_Reason__c))
 )</errorConditionFormula>
@@ -1818,26 +1818,26 @@ ISBLANK(TEXT(Cancellation_Reason__c))
     <validationRules>
         <fullName>MembershipStatus_Validation</fullName>
         <active>false</active>
-        <errorConditionFormula>OR( 
-AND( 
-ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelled&quot;), 
-ISPICKVAL(Membership_Status__c, &quot;Cancelling&quot;) 
-), 
-
-AND( 
-ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Confirmed&quot;), 
-ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
-
-), 
-
-AND( 
-ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelled&quot;), 
-ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
+        <errorConditionFormula>OR(
+AND(
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelled&quot;),
+ISPICKVAL(Membership_Status__c, &quot;Cancelling&quot;)
 ),
- 
-AND( 
-ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelling&quot;), 
-ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
+
+AND(
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Confirmed&quot;),
+ISPICKVAL(Membership_Status__c, &quot;Pending&quot;)
+
+),
+
+AND(
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelled&quot;),
+ISPICKVAL(Membership_Status__c, &quot;Pending&quot;)
+),
+
+AND(
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelling&quot;),
+ISPICKVAL(Membership_Status__c, &quot;Pending&quot;)
 )
 )</errorConditionFormula>
         <errorMessage>you are not allowed to change the status</errorMessage>
@@ -1845,23 +1845,23 @@ ISPICKVAL(Membership_Status__c, &quot;Pending&quot;)
     <validationRules>
         <fullName>Not_Allow_Status_Value_Change</fullName>
         <active>true</active>
-        <description>rule to not allow status value change from “Confirmed” to “Pending”</description>
-        <errorConditionFormula>OR( 
+        <description>rule to not allow status value change from ï¿½Confirmedï¿½ to ï¿½Pendingï¿½</description>
+        <errorConditionFormula>OR(
 ISPICKVAL
-(PRIORVALUE(Membership_Status__c ), &quot;Confirmed&quot;), 
-ISPICKVAL( Membership_Status__c , &quot;Pending&quot;) 
-) 
-&amp;&amp; 
-OR( 
+(PRIORVALUE(Membership_Status__c ), &quot;Confirmed&quot;),
+ISPICKVAL( Membership_Status__c , &quot;Pending&quot;)
+)
+&amp;&amp;
+OR(
 ISCHANGED( Membership_Status__c)
 )
 &amp;&amp;
-OR( 
+OR(
 ISPICKVAL
 (PRIORVALUE(Membership_Status__c ), &quot;Cancelled&quot;), ISPICKVAL
 (PRIORVALUE(Membership_Status__c ), &quot;Cancelling&quot;),
 ISPICKVAL( Membership_Status__c , &quot;Pending&quot;))</errorConditionFormula>
-        <errorMessage>you are not allowed to change the status</errorMessage>
+        <errorMessage>you are not allowed to change the status.</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
     <webLinks>
@@ -1872,18 +1872,18 @@ ISPICKVAL( Membership_Status__c , &quot;Pending&quot;))</errorConditionFormula>
         <masterLabel>Cancel Membership</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
-var css = new sforce.SObject(&quot;Case&quot;); 
-css.Subject= &apos;{!Case.Subject }&apos;; 
-css.Description = &apos;{!Case.Description}&apos;; 
-var result = sforce.connection.create([css]); 
-if(result[0].getBoolean(&quot;success&quot;)){ 
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+var css = new sforce.SObject(&quot;Case&quot;);
+css.Subject= &apos;{!Case.Subject }&apos;;
+css.Description = &apos;{!Case.Description}&apos;;
+var result = sforce.connection.create([css]);
+if(result[0].getBoolean(&quot;success&quot;)){
 
-window.location = ../ + result[0].id + &quot;/e&quot;; 
-alert(&apos;Created successfully &apos;+result); 
-}else{ 
+window.location = ../ + result[0].id + &quot;/e&quot;;
+alert(&apos;Created successfully &apos;+result);
+}else{
 
-alert(&apos;Could not create record &apos;+result); 
+alert(&apos;Could not create record &apos;+result);
 
 }</url>
     </webLinks>
