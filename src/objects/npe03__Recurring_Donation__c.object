@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+ï»¿<?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
@@ -821,7 +821,7 @@ OR(
     <fields>
         <fullName>npe03__Installment_Period__c</fullName>
         <deprecated>false</deprecated>
-        <description>How often you’ll receive the donations. NOTE: Changing the installment period for an existing Fixed-Length Recurring Donation may result in the loss and re-creation of open opportunities. Any data associated with those opportunities may be lost.</description>
+        <description>How often youâ€™ll receive the donations. NOTE: Changing the installment period for an existing Fixed-Length Recurring Donation may result in the loss and re-creation of open opportunities. Any data associated with those opportunities may be lost.</description>
         <externalId>false</externalId>
         <inlineHelpText>Sets the installment period for your recurring donations.  WARNING: Changing the Installment Period for an existing open-ended Recurring Donation can cause open Opportunities to be deleted and recreated. Any associated data may not be retained.</inlineHelpText>
         <label>Installment Period</label>
@@ -1840,27 +1840,6 @@ ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelling&quot;),
 ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
 )
 )</errorConditionFormula>
-        <errorMessage>you are not allowed to change the status</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Not_Allow_Status_Value_Change</fullName>
-        <active>true</active>
-        <description>rule to not allow status value change from “Confirmed” to “Pending”</description>
-        <errorConditionFormula>OR( 
-ISPICKVAL
-(PRIORVALUE(Membership_Status__c ), &quot;Confirmed&quot;), 
-ISPICKVAL( Membership_Status__c , &quot;Pending&quot;) 
-) 
-&amp;&amp; 
-OR( 
-ISCHANGED( Membership_Status__c)
-)
-&amp;&amp;
-OR( 
-ISPICKVAL
-(PRIORVALUE(Membership_Status__c ), &quot;Cancelled&quot;), ISPICKVAL
-(PRIORVALUE(Membership_Status__c ), &quot;Cancelling&quot;),
-ISPICKVAL( Membership_Status__c , &quot;Pending&quot;))</errorConditionFormula>
         <errorMessage>you are not allowed to change the status</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
