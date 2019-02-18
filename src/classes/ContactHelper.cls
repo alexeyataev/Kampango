@@ -33,14 +33,17 @@ public without sharing class ContactHelper {
         createContact.Salutation = contactFieldsList[5];
                                                
         createContact.MailingPostalCode = contactFieldListExt[0];
-        createContact.Contact_Prefrence__c = contactFieldListExt[1];
-        //if(eDate != null){
-        //expDate = Date.valueOf(eDate);
-        //createContact.Expected_Due_Date__c = expDate; 
-        //}
+        if(contactFieldListExt[1] != null && contactFieldListExt[1] != ''){
+            Date expDate = Date.valueOf(contactFieldListExt[1]);
+            createContact.Expected_Due_Date__c = expDate; 
+        }
         if(newCont != null){
+            if (!Schema.sObjectType.Contact.fields.AccountId.isCreateable()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+            }
             con =[Select AccountId from Contact where id = :newCont.id];
-            if (!Schema.sObjectType.Contact.fields.AccountId.isAccessible()){
+            if (!Schema.sObjectType.Contact.fields.AccountId.isCreateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
             }

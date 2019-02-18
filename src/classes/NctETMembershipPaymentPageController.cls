@@ -1,17 +1,17 @@
-public class NctETMembershipPaymentPageController 
+public without sharing class NctETMembershipPaymentPageController 
 {
-    public string twomems{get; set;}
-    public Date expDate {get; set;}
+    public Boolean twomems{get; set;}
     public boolean twomem{get; set;}
+    public Date expDate {get; set;}
     public String isGiftAid{get; set;}
     public String firstname{get; set;}
     public String lastname{get; set;}
     public String email{get; set;}
     public String phone{get; set;}
-    public String sfirstname{get; set;}
-    public String slastname{get; set;}
-    public String semail{get; set;}
-    public String sphone{get; set;}
+    public String secondContactFirstName{get; set;}
+    public String secondContactLastName{get; set;}
+    public String secondContactEmail{get; set;}
+    public String secondContactPhone{get; set;}
     public String postCode{get; set;}
     public String membershipSource{get;set;}
     public list<SelectOption> membershipSourceOptions{get; set;}
@@ -21,8 +21,8 @@ public class NctETMembershipPaymentPageController
     public String streetValue2 {get; set;}
     public String stateValue {get; set;}
     public String cityValue {get; set;}
-    public Contact newCont {get;set;} 
-    public Contact snewCont {get;set;} 
+    public Contact primaryContact {get;set;} 
+    public Contact secondaryContact {get;set;} 
     public String salutation{get; set;}
     public String salutationPrimary {get;set;}
     public String salutationSecondary {get;set;}
@@ -30,34 +30,19 @@ public class NctETMembershipPaymentPageController
     public String acquistion {get;set;}
     public list<SelectOption> acquistionOptions{get; set;}
     public String genders {get;set;}
-    public String sGenders {get;set;}
+    public String secondContactGenders {get;set;}
     public list<SelectOption> genderOptions{get; set;}
-    
-    public list<String> contactSelectedPreferences {
-        get{
-            if(contactSelectedPreferences == NULL){
-                
-                contactSelectedPreferences = new List<String>();
-            }
-            return contactSelectedPreferences;
-        }
-        set;}
-    public list<SelectOption> contactPreferenceOptions {get; set;}
-    
     public boolean smsOpt{get; set;}
     public boolean postOpt{get; set;}
     public boolean emailOpt{get; set;}
     public boolean doNotCallOpt{get; set;}
-    public AccountContactRelation accntContRel{get; set;}
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
     public npe03__Recurring_Donation__c recDon {get;set;}
     public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
     
     public Id feeAmount {get;set;}
-    public Id feeAmountgift{get; set;}
     public Id selectBranch {get; set;}
     public string membershipNumber {get;set;}
-    public string courseBookingNo {get;set;}
     public string redirectURL {get;set;} 
     public Id contId {get;set;}
     public boolean etSpecific;
@@ -67,15 +52,10 @@ public class NctETMembershipPaymentPageController
     public String accountNumber {get; set;}
     public string displayValue {get;set;}
     public string counter  {get;set;}
-    public string selValues {get;set;}
     public Membership_Type__mdt membershipInfo {get;set;}
-    public npe03__Recurring_Donation__c reccDon {get;set;}
     public Map<String, List<Membership_Type__mdt>> membershipTypeMap{get;set;}
-    public list<Account> branchs {get; set;}
     
     public Map<String, list<sObject>> nearestBranchs {get; set;}
-    public Id branchRecordTypeId {get; set;}
-    public list<Account> latlonPostcode {get; set;}
     public String eDate {get; set;}
     public boolean displaySuccessMessage {get;set;}
     public boolean displayMbrNoMessage {get;set;}
@@ -104,7 +84,6 @@ public class NctETMembershipPaymentPageController
         genderOptions = SObjectUtilities.getPicklistValues(con, 'Gender__c');
         acquistionOptions = SObjectUtilities.getPicklistValues(giftAid, 'gaid__Acquisition_Method__c');
         membershipSourceOptions = SObjectUtilities.getPicklistValues(recDon, 'Source__c');
-        contactPreferenceOptions =SObjectUtilities.getPicklistValues(con, 'Contact_Prefrence__c');
        	        
     	sessionProfile = userinfo.getUserType();
         if(sessionProfile == 'Standard'){
@@ -117,36 +96,39 @@ public class NctETMembershipPaymentPageController
         staffMember ='no staff';
         if(contId != null)
         {
+            if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
             isStaff = ContactUtilities.isStaff(contId);
-            newCont = [SELECT Id,Salutation,DoNotCall, SMS_Opt_Out__c, Post_Opt_Out__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
-            if(newCont != null){
+            primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_Out__c, Post_Opt_Out__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
+            if(primaryContact != null){
                 
-                firstname = newCont.FirstName;
-                lastname = newCont.LastName;
-                email = newCont.Email;
-                phone = newCont.Phone;
-                postCode = newCont.MailingPostalCode;
-                salutationPrimary = newCont.Salutation;
-                genders = newCont.Gender__c;
-               if(newCont.SMS_Opt_Out__c == true){
+                firstname = primaryContact.FirstName;
+                lastname = primaryContact.LastName;
+                email = primaryContact.Email;
+                phone = primaryContact.Phone;
+                postCode = primaryContact.MailingPostalCode;
+                salutationPrimary = primaryContact.Salutation;
+                genders = primaryContact.Gender__c;
+               if(primaryContact.SMS_Opt_Out__c == true){
                     smsOpt = false;
                 }
                 else{
                     smsOpt = true;
                 }
-                if(newCont.Post_Opt_Out__c == true){
+                if(primaryContact.Post_Opt_Out__c == true){
                     postOpt = false;
                 }
                 else{
                     postOpt = true;
                 }
-                if(newCont.HasOptedOutOfEmail == true){
+                if(primaryContact.HasOptedOutOfEmail == true){
                     emailOpt = false;
                 }
                 else{
                     emailOpt = true;
                 }
-                if(newCont.DoNotCall == true){
+                if(primaryContact.DoNotCall == true){
                     doNotCallOpt = false;
                 }
                 else{
@@ -176,45 +158,44 @@ public class NctETMembershipPaymentPageController
     }
     public PageReference  receiveInput(){
                 
-        String contactPreference = '';
-        Boolean start = true;
-        if(!contactSelectedPreferences.isEmpty()) {           
-            for(String str : contactSelectedPreferences) {
-                if(start) {
-                    contactPreference = str;
-                    start = false;
-                } else {               
-                    contactPreference = contactPreference + ';' + str;
-                }
-            }
+        Contact con;
+        if(eDate != null && eDate != ''){
+        expDate = Date.valueOf(eDate); 
         }
+        //list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrimary};
+        //list<String> secondContactFieldsList = new list<String>{secondContactFirstName,secondContactLastName,secondContactEmail,secondContactGenders,secondContactPhone,salutationSecondary};
+        //list<String> contactFieldListExt = new list<String>{postCode,eDate,streetValue,streetValue1,streetValue2,stateValue,cityValue};
+        //list<Boolean> contactBooleanList = new list<Boolean>{smsOpt,postOpt,emailOpt,doNotCallOpt};
         
-        list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrimary};
-        list<String> secondContactFieldsList = new list<String>{sfirstname,slastname,semail,sgenders,sphone,salutationSecondary};
-        list<String> contactFieldListExt = new list<String>{postCode,contactPreference,streetValue,streetValue1,streetValue2,stateValue,cityValue};
-        list<Boolean> contactBooleanList = new list<Boolean>{smsOpt,postOpt,emailOpt,doNotCallOpt};
-        
-        System.debug('contactBooleanList: '+contactBooleanList);
      
-            
-        System.debug('isStaff: '+isStaff);
         isVolunteer = ContactUtilities.isVolunteerExisting(contId);
         isPractitioner = MembershipUtilties.isPractitioner(firstname, lastname, email);
         targetCustomer = ContactUtilities.targetCustomer(isStaff,isVolunteer,isPractitioner,twomems);
         isMembershipExists = ContactUtilities.isMembershipExists(contId, email);
         
         
-        System.debug('isMembershipExists: '+isMembershipExists+'targetCustomer:'+targetCustomer);
         if(isContactExisting == false){
-            if(newCont == null )
+            if(primaryContact == null )
             {
                 recordType = 'Parent';
-                newCont = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
-                
-                if(twomems == 'true' && sfirstname != null || sfirstname != '')
+                //primaryContact = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList);
+                primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=firstname,
+                                      LastName=lastname,Email=email,Gender__c=genders,Phone=phone,Salutation=salutationPrimary,MailingPostalCode=postCode,
+                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,
+                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
+                                      HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt);
+                insert primaryContact;
+                if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
                 {
                     recordType = 'Companion';
-                    snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);
+                    con =[Select AccountId from Contact where id = :primaryContact.id];
+                    //secondaryContact = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList);
+                    secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
+                                      LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
+                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,
+                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
+                                      HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
+                    insert secondaryContact;
                     contactType = 'joint';
                 }
                 else 
@@ -227,13 +208,23 @@ public class NctETMembershipPaymentPageController
         else if(contId != null || isContactExisting == true){
         List<Contact> contactList;
         System.debug('Contact Exists(Next Flow Starts): '+isContactExisting);
-        newCont =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Email = :email limit 1];
-        contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :newCont.Id OR Parent_Contact__c = :contId];
-        if(twomems == 'true' && sfirstname != null || sfirstname != '')
+            if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
+        primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Email = :email limit 1];
+        contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :primaryContact.Id OR Parent_Contact__c = :contId];
+        if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
         {
             recordType = 'Companion';
             if(contactList.size()<0){
-            snewCont = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,newCont,contactBooleanList);    
+            con =[Select AccountId from Contact where id = :primaryContact.id];
+            //secondaryContact = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList); 
+            secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
+                                      LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
+                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,
+                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
+                                      HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
+            insert secondaryContact;
         }
         contactType = 'joint';
         }                                 
@@ -253,6 +244,9 @@ public class NctETMembershipPaymentPageController
             feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
             PageReference redirecContUrl;
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
+            if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                     Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
@@ -262,7 +256,11 @@ public class NctETMembershipPaymentPageController
         else{
             feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
             PageReference redirecContUrl;
+
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
+             if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                     Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
@@ -284,20 +282,24 @@ public class NctETMembershipPaymentPageController
                     PageReference pageRef = new PageReference(redirectURL);
     
                     pageRef.setRedirect(true);
-                    System.debug('doing: '+sessionProfile);
+
                     return pageRef;
                     
                 }
                 else if(sessionProfile == 'Standard'){
+                    
+             if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.npe03__Contact__c.isCreateable()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
                     displaySuccessMessage = true;
                     paymentHubCallout();
                     recDon = new npe03__Recurring_Donation__c();
                     recDon.Name = membershipInfo.Contact_Type__c + ' ' + membershipInfo.Membership__c;
                     recDon.npe03__Amount__c = membershipInfo.Installment_Amount__c;
-                    recDon.npe03__Contact__c = newCont.Id;
+                    recDon.npe03__Contact__c = primaryContact.Id;
                     recDon.CARE_Payment_Frequency__c = 'One Time';
                     recDon.Source__c = membershipSource;
-                    recDon.First_Contact__c = newCont.Id;
+                    recDon.First_Contact__c = primaryContact.Id;
                     recDon.npe03__Schedule_Type__c = membershipInfo.Schedule_Type__c;
                     recDon.Membership_type__c = membershipInfo.Membership__c;
                     recDon.npe03__Installment_Period__c = membershipInfo.Installment_Period__c;
@@ -317,41 +319,44 @@ public class NctETMembershipPaymentPageController
     } 
     public void onCompleteContactInfo(){
         onComplete = true;
-        System.debug('onComplete:'+onComplete);
+
     }
     public void nctBranchs(){
         
         String emails = Apexpages.currentPage().getParameters().get('emailsVal');
         if(contId == null){
             isContactExisting = ContactUtilities.isContactExisting(emails);
-            System.debug('isContactExisting: '+isContactExisting);
+
         }
         isMembershipExists = ContactUtilities.isMembershipExists(contId, emails);
         postCode = Apexpages.currentPage().getParameters().get('postVal');
-        System.debug('postCode: '+postCode);
+
         if(postCode != null && postCode != ''){
         nearestBranchs = MembershipUtilties.getBranches(postCode);
-        System.debug('branches'+nearestBranchs);
+
         }
         }
     public void membershipDupeChecker(){
         
         String emails = Apexpages.currentPage().getParameters().get('emailDupeVal');
-        System.debug('emails: '+emails);
+
         if(contId == null){
             isContactExisting = ContactUtilities.isContactExisting(emails);
-            System.debug('isContactExisting: '+isContactExisting);
        
         }
         isMembershipExists = ContactUtilities.isMembershipExists(contId, emails);
-		System.debug('isMembershipExists: '+isMembershipExists);         
+       
     }
     public void giftAidCreation(){
         displayMbrNoMessage = true;
         if(sessionProfile != 'Standard'){
             feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName');
             PageReference redirecContUrl;
+
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
+             if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                     Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
@@ -360,17 +365,16 @@ public class NctETMembershipPaymentPageController
         }
       	
         System.debug('Membership##### '+membershipInfo);
-      
-        system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
+
         list<String> accountDetails = new list<String>();
          accountDetails.add(accountNumber);
          accountDetails.add(accountName);
          accountDetails.add(sortCode);
          accountDetails.add(acquistion);
          accountDetails.add(membershipSource);
-        MembershipCrudHelper MemCrudHelp = new MembershipCrudHelper();
+        MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
         if(isGiftAid == 'true'){
-        	gftAid = MemCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
+        	gftAid = memCrudHelp.giftAid(primaryContact.Id,isGiftAid,membershipInfo,accountDetails);
         }
         inspect = true;
     }
@@ -378,7 +382,7 @@ public class NctETMembershipPaymentPageController
     public void paymentSave()
     {   
         displayMbrNoMessage = true;
-        system.debug(firstname + '   *$*#@**$*$ firstname  ' + lastname + ' lastname &$#*#*# email  ' + email + '   *$*$*$ phone ' + phone);
+
         list<String> accountDetails = new list<String>();
          accountDetails.add(accountNumber);
          accountDetails.add(accountName);
@@ -387,13 +391,13 @@ public class NctETMembershipPaymentPageController
          accountDetails.add(membershipSource);
          //accountDetails.sort();
         System.debug('accountDetails:'+accountDetails);
-        MembershipCrudHelper MemCrudHelp = new MembershipCrudHelper();
-        pymtPrfl = MemCrudHelp.paymentProfile(newCont,accountDetails);
+        MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
+        pymtPrfl = memCrudHelp.paymentProfile(primaryContact,accountDetails);
         if(isGiftAid == 'true'){
-        	gftAid = MemCrudHelp.giftAid(newCont.Id,isGiftAid,membershipInfo,accountDetails);
+        	gftAid = memCrudHelp.giftAid(primaryContact.Id,isGiftAid,membershipInfo,accountDetails);
         }
         if(pymtPrfl != null){
-            recDon = MemCrudHelp.recDonation(newCont.Id,snewCont,membershipInfo,pymtPrfl,accountDetails);
+            recDon = memCrudHelp.recDonation(primaryContact.Id,secondaryContact,membershipInfo,pymtPrfl,accountDetails);
         }
         thankYouSec();
     }    
@@ -401,8 +405,8 @@ public class NctETMembershipPaymentPageController
     {
        displayMbrNoMessage = true;
        ThankYouHelper thankYou = new ThankYouHelper();
-       System.debug('Blocker: '+recDon);
-       membershipNumber = thankYou.membershipNumberCreation(newCont,recDon,lifeMembership);
+
+       membershipNumber = thankYou.membershipNumberCreation(primaryContact,recDon,lifeMembership);
     }
     public PageReference paymentHubCallout()
     {   
@@ -410,10 +414,10 @@ public class NctETMembershipPaymentPageController
         contactDetails.add(email);
         contactDetails.add(firstname);
         contactDetails.add(lastname);
-        //contactDetails.add(redirectURL);
+
         contactDetails.sort();
        
-        redirectURL = PaymentHubCalloutUtilities.PaymentHub(newCont,membershipInfo,contactDetails, recDon);
+        redirectURL = PaymentHubCalloutUtilities.PaymentHub(primaryContact,membershipInfo,contactDetails, recDon);
         sessionProfile = userinfo.getUserType();
         if(sessionProfile == 'Standard'){
             return sendPaymentLinkToParent(redirectURL);
@@ -421,10 +425,7 @@ public class NctETMembershipPaymentPageController
         else{
             return null;
         }
-        //return null;
-        
-        
-        
+ 
     }
     public PageReference sendPaymentLinkToParent(string paymentLink)
     {   
@@ -433,9 +434,12 @@ public class NctETMembershipPaymentPageController
         *   
         */
         System.debug('********** Creating Payment Link Record **************');
+        if(!Schema.sObjectType.Payment_Link__c.fields.Contact__c.isCreateable()){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+        }
         Payment_Link__c payLink = new Payment_Link__c();
-        payLink.Contact__c = newCont.Id;
-        payLink.Email__c = newCont.Email;
+        payLink.Contact__c = primaryContact.Id;
+        payLink.Email__c = primaryContact.Email;
         payLink.Link_Sent_Date__c = Date.Today();
         payLink.Payment_Key__c = 'Test';
         payLink.Payment_Link__c = paymentLink;

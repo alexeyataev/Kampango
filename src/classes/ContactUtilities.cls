@@ -16,18 +16,18 @@ public without sharing class ContactUtilities {
 	*/
     public static boolean isContactExisting(String email){
         		List<Contact> contactlist;
-        
+           if(!Schema.sObjectType.Contact.fields.lastname.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         }
+           
         contactlist = [SELECT 
-                       Id, Email 
+                       Id, lastname,Email 
                        FROM 
                        Contact 
                        WHERE 
                        Email = :email and Email != null and Email != '']; 
-        if (!Schema.sObjectType.Contact.fields.Email.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-                return null;
-         }
-                                  	 
+                            	 
         if(contactList.size()>0){
             System.debug('Contact List size: '+contactlist);
             return true;
@@ -46,16 +46,17 @@ public without sharing class ContactUtilities {
     public static boolean isVolunteerExisting(Id contId){//, String email
         
        list<AccountContactRelation> accntContRelList;
+		if(!Schema.sObjectType.AccountContactRelation.fields.Roles.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         }
         accntContRelList = [SELECT Id,
                                 Roles 
                                 FROM 
                                 AccountContactRelation 
                                 where 
                                 Contact.id=:contId ]; //OR Contact.Email = :email
-        if (!Schema.sObjectType.AccountContactRelation.fields.Roles.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-                return null;
-         }
+        
         if(accntContRelList.size()>0 && (accntContRelList[0].Roles =='Volunteer' || accntContRelList[0].Roles =='Branch Coordinator' ||accntContRelList[0].Roles =='Branch Treasurer' || accntContRelList[0].Roles =='Regional Coordinator')){
             System.debug('Contact List size: '+accntContRelList);
             return true;
@@ -74,7 +75,10 @@ public without sharing class ContactUtilities {
         List<Contact> con;
         Id recordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Staff').getRecordTypeId();
         System.debug('recordTypeId: '+recordTypeId);
-        
+         if(!Schema.sObjectType.Contact.fields.Id.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         }  
         con = [SELECT
               		 Id,
                		 Name
@@ -85,10 +89,7 @@ public without sharing class ContactUtilities {
                AND
                		RecordTypeId = :recordTypeId];
 
-        if (!Schema.sObjectType.Contact.fields.Id.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-                return null;
-         }       	
+            	
         if(con.size()>0){
             
             return true;
@@ -103,7 +104,7 @@ public without sharing class ContactUtilities {
 	 * It returns String value of targetCustomer.
 	 **
     */
-    public static String targetCustomer(Boolean isStaff,Boolean isVolunteer,Boolean isPractitioner,String twomems){
+    public static String targetCustomer(Boolean isStaff,Boolean isVolunteer,Boolean isPractitioner,Boolean twomems){
         
         String targetCustomer;
         if(isStaff == true){
@@ -113,7 +114,7 @@ public without sharing class ContactUtilities {
             targetCustomer = 'Volunteer/Practitioner';
         }
         else{
-            if(twomems == 'true'){
+            if(twomems == true){
                 targetCustomer = 'Parent, Companion';
             }
             else{
@@ -132,6 +133,10 @@ public without sharing class ContactUtilities {
     public static boolean isMembershipExists(Id contId, String email){
         
         list<npe03__Recurring_Donation__c> recDonList;
+          if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.npe03__Contact__c.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         }
         recDonList =[Select 
                              Id,
                              Name,
@@ -151,10 +156,7 @@ public without sharing class ContactUtilities {
                                  (npe03__Contact__r.Email = :email AND npe03__Contact__r.Email != NULL AND npe03__Contact__r.Email != '')
                              )                      
                         ];
-        if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.npe03__Contact__c.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-                return null;
-         }
+      
         if(recDonList.size()>0){
             System.debug('Recurring Donations List size: '+recDonList);
             return true;

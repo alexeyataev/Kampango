@@ -30,10 +30,10 @@
         <apex:param id="lastName" name="lastName" value="" assignTo="{!lastname}"/>
         <apex:param id="emailVal" name="emailVal" value="" assignTo="{!email}"/>
         <apex:param id="phoneVal" name="phoneVal" value="" assignTo="{!phone}"/>
-        <apex:param id="sfirstName" name="sfirstName" value="" assignTo="{!sfirstname}"/>
-        <apex:param id="slastName" name="slastName" value="" assignTo="{!slastname}"/>
-        <apex:param id="semailVal" name="semailVal" value="" assignTo="{!semail}"/>
-        <apex:param id="sphoneVal" name="sphoneVal" value="" assignTo="{!sphone}"/>
+        <apex:param id="secondContactFirstName" name="secondContactFirstName" value="" assignTo="{!secondContactFirstName}"/>
+        <apex:param id="secondContactLastName" name="secondContactLastName" value="" assignTo="{!secondContactLastName}"/>
+        <apex:param id="secondContactEmailVal" name="secondContactEmailVal" value="" assignTo="{!secondContactEmail}"/>
+        <apex:param id="secondContactPhoneVal" name="secondContactPhoneVal" value="" assignTo="{!secondContactPhone}"/>
         <apex:param id="postcodeval" name="postcodeval" value="" assignTo="{!postCode}"/>
         <apex:param id="duedate" name="dueDate" value="" assignTo="{!eDate}"/>
         <apex:param id="selBranchVal" name="selBranchVal" value="" assignTo="{!selectBranch}"/>
@@ -484,7 +484,7 @@
                                                         <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                                 Gender</label></div>
                                                         <span class="dynmaic-radio-fields">
-                                                        <apex:selectRadio id="sgender" value="{!sGenders}">
+                                                        <apex:selectRadio id="secondContactGender" value="{!secondContactGenders}">
                                                                     <apex:selectOptions value="{!genderOptions}" />
                                                          </apex:selectRadio>
                                                         </span>
@@ -674,7 +674,6 @@
                                                 </span>
                                                 <span id="membershiptype" style="width:1px;height:1px;display:none;">{!membershipTypeMap}</span>
                                                 <select style="margin-bottom:0;" name="selectMembership" id="selectMembership" class="form-fields membership-fields">
-                                                    <option value=""></option>
                                                     <option SELECTED="true" value="">Please select</option>
                                                     <apex:repeat value="{!membershipTypeMap}" var="typeKey">
                                                         <option value="{!membershipTypeMap}" style='font-weight:bold; background:#abcb63;' disabled="true">{!typeKey}</option>

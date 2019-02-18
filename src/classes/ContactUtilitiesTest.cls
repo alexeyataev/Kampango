@@ -65,7 +65,7 @@ private class ContactUtilitiesTest {
         Boolean isStaffs = true;
         Boolean isVolunteer = true;
         Boolean isPractitioner = true;
-        String twomems = 'true';
+        Boolean twomems = true;
         Boolean isVolunteerExisting = ContactUtilities.isVolunteerExisting(con.Id);
         System.assert(true,isVolunteerExisting);
         
@@ -77,7 +77,7 @@ private class ContactUtilitiesTest {
 		System.assertEquals(true, isStaffs);
         System.assertEquals(true, isVolunteer);
         System.assertEquals(true, isPractitioner);
-        System.assertEquals('true', twomems);
+        System.assertEquals(true, twomems);
         
         Boolean isStaffsf = false;
         String targetCustomers = ContactUtilities.targetCustomer(isStaffsf,isVolunteer,isPractitioner,twomems);
@@ -85,7 +85,7 @@ private class ContactUtilitiesTest {
         System.assertEquals(false, isStaffsf);
         System.assertEquals(true, isVolunteer);
         System.assertEquals(true, isPractitioner);
-        System.assertEquals('true', twomems);
+        System.assertEquals(true, twomems);
         
         Boolean isMembershipExists = ContactUtilities.isMembershipExists(con.Id, con.Email);
         System.assert(true,isMembershipExists);
@@ -129,7 +129,7 @@ private class ContactUtilitiesTest {
         Boolean isStaffs = false;
         Boolean isVolunteer = false;
         Boolean isPractitioner = false;
-        String twomems = 'true';
+        Boolean twomems = true;
         
         Boolean isVolunteerExisting = ContactUtilities.isVolunteerExisting(con.Id);
         System.assert(true,isVolunteerExisting);
@@ -141,15 +141,15 @@ private class ContactUtilitiesTest {
 		System.assertEquals(false, isStaffs);
         System.assertEquals(false, isVolunteer);
         System.assertEquals(false, isPractitioner);
-        System.assertEquals('true', twomems);
+        System.assertEquals(true, twomems);
         
-        String twomemsf = 'false';
+        Boolean twomemsf = false;
         String targetCustomers = ContactUtilities.targetCustomer(isStaffs,isVolunteer,isPractitioner,twomemsf);
         
         System.assertEquals(false, isStaffs);
         System.assertEquals(false, isVolunteer);
         System.assertEquals(false, isPractitioner);
-        System.assertEquals('false', twomemsf);
+        System.assertEquals(false, twomemsf);
         
         Boolean isMembershipExists = ContactUtilities.isMembershipExists(con.id, con.Email);
         System.assert(true,isMembershipExists);

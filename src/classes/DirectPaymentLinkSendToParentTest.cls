@@ -21,7 +21,7 @@ private class DirectPaymentLinkSendToParentTest
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
         DirectPaymentLinkSendToParent.paymentHubCallout(cont.Id);
         Test.stopTest();
-        
+        system.assertEquals('12 Months Standard - Individual', recurringDonation.Membership_type__c);
         //DirectPaymentLinkSendToParent.sendPaymentLinkToParent(redirectURL);        
     } 
 

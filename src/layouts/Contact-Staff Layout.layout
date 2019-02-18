@@ -100,12 +100,12 @@
                 <field>npe01__PreferredPhone__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>MobilePhone</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>DoNotCall</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Phone</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

@@ -50,14 +50,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Contact_Prefrence__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Payment_Profile__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Gender__c</field>
             </layoutItems>
             <layoutItems>
@@ -104,7 +96,7 @@
                 <behavior>Edit</behavior>
                 <field>Branch__c</field>
             </layoutItems>
-             <layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SMS_Opt_Out__c</field>
             </layoutItems>
@@ -112,7 +104,7 @@
                 <behavior>Edit</behavior>
                 <field>HasOptedOutOfEmail</field>
             </layoutItems>
-             <layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Post_Opt_Out__c</field>
             </layoutItems>
@@ -188,39 +180,29 @@
             <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Add_To_Membership</actionName>
-            <actionType>CustomButton</actionType>
+            <actionName>SmsHighlightAction</actionName>
+            <actionType>ProductivityAction</actionType>
             <sortOrder>1</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Contact.Request_Payment</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>2</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>SmsHighlightAction</actionName>
-            <actionType>ProductivityAction</actionType>
-            <sortOrder>3</sortOrder>
-        </platformActionListItems>
-          <platformActionListItems>
             <actionName>CallHighlightAction</actionName>
             <actionType>ProductivityAction</actionType>
-            <sortOrder>4</sortOrder>
+            <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>EmailHighlightAction</actionName>
             <actionType>ProductivityAction</actionType>
-            <sortOrder>5</sortOrder>
+            <sortOrder>3</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Contact.Add_To_Membership</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>6</sortOrder>
+            <sortOrder>4</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Contact.Request_Payment</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>21</sortOrder>
+            <sortOrder>5</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
@@ -239,6 +221,7 @@
         <relatedList>npe03__Recurring_Donation__c.npe03__Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>cpm__Account__c</fields>
         <fields>cpm__Bank_Account__c</fields>
@@ -248,7 +231,7 @@
         <fields>cpm__Active__c</fields>
         <relatedList>cpm__Payment_Profile__c.cpm__Contact__c</relatedList>
     </relatedLists>
-        <relatedLists>
+    <relatedLists>
         <fields>ACCOUNT.NAME</fields>
         <fields>ACCOUNT.RECORDTYPE</fields>
         <fields>ACCCONRELATION.IS_DIRECT</fields>

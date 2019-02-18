@@ -1,6 +1,6 @@
 public without sharing class PaymentHubCalloutUtilities {
     public String sessionProfile = userinfo.getUserType();
-    public static String PaymentHub(contact cont,Membership_Type__mdt membershipDetails, list<string> contactDetails, npe03__Recurring_Donation__c recurringDonation){
+    public static String paymentHub(contact cont,Membership_Type__mdt membershipDetails, list<string> contactDetails, npe03__Recurring_Donation__c recurringDonation){
         decimal instlmntAmt; 
         
         if(membershipDetails != null)
