@@ -60,6 +60,7 @@
         <members>Payment_Link__c</members>
       <members>gaid__Gift_Aid_Declaration__c</members>
       <members>cpm__Mandate__c</members>
+	  <members>cpm__Mandate_Schedule__c</members>
         <name>CustomObject</name>
     </types>
 	<types>

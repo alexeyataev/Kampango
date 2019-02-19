@@ -3746,8 +3746,32 @@
         <field>Venue__c.Venue_Suitability__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	 <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Mandate_Schedule__c.cpm__Last_Status_Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
-
+        <editable>true</editable>
+        <field>cpm__Mandate_Schedule__c.cpm__Processing_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Mandate_Schedule__c.cpm__Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Mandate_Schedule__c.cpm__Sub_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Mandate_Schedule__c.cpm__Target__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Payment_Profile__c.AccountKey__c</field>
         <readable>false</readable>
