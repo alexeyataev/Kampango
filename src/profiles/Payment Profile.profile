@@ -4085,10 +4085,6 @@
 		<enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>FileAttachment</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>FileNotFound</apexPage>
 		<enabled>true</enabled>
     </pageAccesses>

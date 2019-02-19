@@ -4028,10 +4028,6 @@
         <apexPage>Exception</apexPage>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>FileAttachment</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>FileNotFound</apexPage>
     </pageAccesses>
     <pageAccesses>
