@@ -1816,31 +1816,30 @@ ISBLANK(TEXT(Cancellation_Reason__c))
         <errorMessage>You must select Cancellation reason</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>MembershipStatus_Validation</fullName>
-        <active>false</active>
+        <fullName>Not_Allow_Status_Value_Change</fullName>
+
+        <active>true</active>
+
+        <description>rule to not allow status value change from “Confirmed” to “Pending”</description>
+
         <errorConditionFormula>OR( 
-AND( 
-ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelled&quot;), 
-ISPICKVAL(Membership_Status__c, &quot;Cancelling&quot;) 
-), 
-
-AND( 
-ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Confirmed&quot;), 
-ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
-
-), 
-
-AND( 
-ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelled&quot;), 
-ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
-),
- 
-AND( 
-ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelling&quot;), 
-ISPICKVAL(Membership_Status__c, &quot;Pending&quot;) 
+ISPICKVAL
+(PRIORVALUE(Membership_Status__c ), &quot;Confirmed&quot;), 
+ISPICKVAL( Membership_Status__c , &quot;Pending&quot;) 
+) 
+&amp;&amp; 
+OR( 
+ISCHANGED( Membership_Status__c)
 )
-)</errorConditionFormula>
+&amp;&amp;
+OR( 
+ISPICKVAL
+(PRIORVALUE(Membership_Status__c ), &quot;Cancelled&quot;), ISPICKVAL
+(PRIORVALUE(Membership_Status__c ), &quot;Cancelling&quot;),
+ISPICKVAL( Membership_Status__c , &quot;Pending&quot;))</errorConditionFormula>
+
         <errorMessage>you are not allowed to change the status</errorMessage>
+
     </validationRules>
     <visibility>Public</visibility>
     <webLinks>
