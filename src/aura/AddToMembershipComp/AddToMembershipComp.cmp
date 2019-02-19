@@ -1,5 +1,8 @@
 <aura:component implements="force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" controller="AddToMembershipCompController">
-	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name="recordId" type="Id" />
+    <h5 align="center">Your request has been processing</h5><br/>
+    <h5 align="center">Please Wait...!</h5>
       
 </aura:component>

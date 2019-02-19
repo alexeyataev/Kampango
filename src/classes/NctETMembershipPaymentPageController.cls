@@ -323,13 +323,13 @@ public without sharing class NctETMembershipPaymentPageController
     }
     public void nctBranchs(){
         
-        String emails = Apexpages.currentPage().getParameters().get('emailsVal');
+        String emails = Apexpages.currentPage().getParameters().get('emailsVal').escapeHtml4();
         if(contId == null){
             isContactExisting = ContactUtilities.isContactExisting(emails);
 
         }
         isMembershipExists = ContactUtilities.isMembershipExists(contId, emails);
-        postCode = Apexpages.currentPage().getParameters().get('postVal');
+        postCode = Apexpages.currentPage().getParameters().get('postVal').escapeHtml4();
 
         if(postCode != null && postCode != ''){
         nearestBranchs = MembershipUtilties.getBranches(postCode);
@@ -338,7 +338,7 @@ public without sharing class NctETMembershipPaymentPageController
         }
     public void membershipDupeChecker(){
         
-        String emails = Apexpages.currentPage().getParameters().get('emailDupeVal');
+        String emails = Apexpages.currentPage().getParameters().get('emailDupeVal').escapeHtml4();
 
         if(contId == null){
             isContactExisting = ContactUtilities.isContactExisting(emails);
@@ -350,7 +350,7 @@ public without sharing class NctETMembershipPaymentPageController
     public void giftAidCreation(){
         displayMbrNoMessage = true;
         if(sessionProfile != 'Standard'){
-            feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName');
+            feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName').escapeHtml4();
             PageReference redirecContUrl;
 
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
@@ -417,7 +417,7 @@ public without sharing class NctETMembershipPaymentPageController
 
         contactDetails.sort();
        
-        redirectURL = PaymentHubCalloutUtilities.PaymentHub(primaryContact,membershipInfo,contactDetails, recDon);
+        redirectURL = PaymentHubCalloutUtilities.PaymentHub(primaryContact,membershipInfo,contactDetails);
         sessionProfile = userinfo.getUserType();
         if(sessionProfile == 'Standard'){
             return sendPaymentLinkToParent(redirectURL);

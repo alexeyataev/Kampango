@@ -1,6 +1,6 @@
 public without sharing class PaymentHubCalloutUtilities {
     public String sessionProfile = userinfo.getUserType();
-    public static String paymentHub(contact cont,Membership_Type__mdt membershipDetails, list<string> contactDetails, npe03__Recurring_Donation__c recurringDonation){
+    public static String paymentHub(contact cont,Membership_Type__mdt membershipDetails, list<string> contactDetails){
         decimal instlmntAmt; 
         
         if(membershipDetails != null)
@@ -43,10 +43,6 @@ public without sharing class PaymentHubCalloutUtilities {
             cvo.Email = contactDetails[0];        
           cvo.FirstName = contactDetails[1];
           cvo.LastName = contactDetails[2];
-        } else if (recurringDonation != null){
-            cvo.Email = recurringDonation.First_Contact__r.Email;        // use recurringDonation.FirstContact.Email
-            cvo.FirstName = recurringDonation.First_Contact__r.FirstName;  // use recurringDonation.FirstContact. Prefered_First_Name__c
-            cvo.LastName = recurringDonation.First_Contact__r.LastName;   // use recurringDonation.FirstContact.LastName
         }
  
         PaymentRequestVo.PayerVo payerReq = new PaymentRequestVo.PayerVo();
@@ -59,9 +55,7 @@ public without sharing class PaymentHubCalloutUtilities {
         if(cont!=null){
         system.debug('*$*$**$*$ feeAmount  ' + instlmntAmt);        
         payment.Amount=instlmntAmt;
-        }else if(recurringDonation != null){
-                 payment.Amount=recurringDonation.npe03__Amount__c; 
-               }
+        }
         paymentReq.Payment = payment;
         PaymentRequestVo.PaymentMethodVo paymentMethod = new PaymentRequestVo.PaymentMethodVo();
         paymentMethod.Name='CreditCard';
