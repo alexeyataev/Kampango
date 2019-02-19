@@ -4454,6 +4454,10 @@
         <layout>npe03__Recurring_Donation__c-npe03__Recurring Donation Layout</layout>
         <recordType>npe03__Recurring_Donation__c.Recurring_Donations</recordType>
     </layoutAssignments>
+	<tabVisibilities>
+        <tab>cpm__Mandate_Schedule__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
