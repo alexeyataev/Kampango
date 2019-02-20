@@ -109,7 +109,7 @@ public without sharing class MembershipUtilties {
     *  Story:  W001166
     */
     public static Boolean isPractitioner(String firstName, String lastName, String email){
-		  if(!Schema.sObjectType.Contact.fields.LastName.isAccessible() && !Schema.sObjectType.Practitioner_Role__c.fields.Is_Active__c.isAccessible()){
+		  if(!Schema.sObjectType.Contact.fields.LastName.isAccessible() && !Schema.sObjectType.Contact.fields.Email.isAccessible() && !Schema.sObjectType.Practitioner_Role__c.fields.Is_Active__c.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
          } 

@@ -23,7 +23,7 @@
                  toastEvent.setParams({
                      type : 'Error',
                  "title": "Error!",
-                 "message": "Payment link is not generated"
+                 "message": "This option is not available for this payment mode"
                 });
                 toastEvent.fire();
             }

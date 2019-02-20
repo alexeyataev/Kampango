@@ -33,25 +33,7 @@ public without sharing class ThankYouHelper {
                 upsert reccDonList;
                 system.debug('membershipNumber  ' + membershipNumber);
             }
-            else if(reccDonList == null || reccDonList.isEmpty())
-            {
-                if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-                return null;
-                }
-                recDon = new npe03__Recurring_Donation__c();
-                recDon.Name = 'Credit/Debit Card Membership';
-                recDon.npe03__Amount__c = 60;
-                recDon.npe03__Contact__c = Apexpages.currentPage().getParameters().get('contId');
-                recDon.CARE_Payment_Frequency__c = 'One Time';
-                recDon.First_Contact__c = Apexpages.currentPage().getParameters().get('contId');
-                recDon.npe03__Installment_Period__c = 'Yearly';
-                recDon.npsp4hub__Payment_Method__c = 'Credit/Debit Card';
-                
-                recDon.Membership_Status__c = 'Confirmed';
-                
-                Insert recDon;
-            }
+            
         }
         else{   
                
