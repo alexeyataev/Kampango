@@ -74,7 +74,8 @@ public without sharing class NctETMembershipPaymentPageController
     public String contactType;
     public NctETMembershipPaymentPageController()
     {  
-        contId = ApexPages.currentPage().getParameters().get('Id');
+        ID contactID = ApexPages.currentPage().getParameters().get('Id');
+        contId = contactID;
         system.debug('*$*$**$ contId  ' + contId);
        	Contact con= new Contact();
         gaid__Gift_Aid_Declaration__c giftAid = new gaid__Gift_Aid_Declaration__c();
@@ -92,7 +93,7 @@ public without sharing class NctETMembershipPaymentPageController
         else{
             etSpecific = false;
         }
-        System.debug('sessionProfile '+sessionProfile);
+        
         staffMember ='no staff';
         if(contId != null)
         {
@@ -110,38 +111,10 @@ public without sharing class NctETMembershipPaymentPageController
                 postCode = primaryContact.MailingPostalCode;
                 salutationPrimary = primaryContact.Salutation;
                 genders = primaryContact.Gender__c;
-               if(primaryContact.SMS_Opt_Out__c == true){
-                    smsOpt = false;
-                }
-                else{
-                    smsOpt = true;
-                }
-                if(primaryContact.Post_Opt_Out__c == true){
-                    postOpt = false;
-                }
-                else{
-                    postOpt = true;
-                }
-                if(primaryContact.HasOptedOutOfEmail == true){
-                    emailOpt = false;
-                }
-                else{
-                    emailOpt = true;
-                }
-                if(primaryContact.DoNotCall == true){
-                    doNotCallOpt = false;
-                }
-                else{
-                    doNotCallOpt = true;
-                }
+               
  		
             }
         
-        }else{
-            smsOpt = true;
-            postOpt = true;
-            emailOpt = true;
-            doNotCallOpt = true;
         }
         pymtPrfl = new cpm__Payment_Profile__c();
         recDon = new npe03__Recurring_Donation__c();
@@ -383,11 +356,14 @@ public without sharing class NctETMembershipPaymentPageController
          accountDetails.add(acquistion);
          accountDetails.add(membershipSource);
         MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
-        if(isGiftAid == 'true'){
-        	gftAid = memCrudHelp.giftAid(primaryContact.Id,isGiftAid,membershipInfo,accountDetails);
+        memCrudHelp.pcont = primaryContact;
+        memCrudHelp.scont = secondaryContact;
+
+if(isGiftAid == 'true'){
+        	gftAid = memCrudHelp.giftAid(isGiftAid,membershipInfo,accountDetails);
         }
         if(membershipInfo.Payment_Method__c == 'Credit/Debit Card' && sessionProfile != 'Standard'){
-            recDon = memCrudHelp.recDonation(primaryContact.Id,secondaryContact,membershipInfo,pymtPrfl,accountDetails);
+            recDon = memCrudHelp.recDonation(membershipInfo,pymtPrfl,accountDetails);
         }
         inspect = true;
     }
@@ -405,12 +381,15 @@ public without sharing class NctETMembershipPaymentPageController
          //accountDetails.sort();
         System.debug('accountDetails:'+accountDetails);
         MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
-        pymtPrfl = memCrudHelp.paymentProfile(primaryContact,accountDetails);
+        memCrudHelp.pcont = primaryContact;
+        memCrudHelp.scont = secondaryContact;
+       
+        pymtPrfl = memCrudHelp.paymentProfile(accountDetails);
         if(isGiftAid == 'true'){
-        	gftAid = memCrudHelp.giftAid(primaryContact.Id,isGiftAid,membershipInfo,accountDetails);
+        	gftAid = memCrudHelp.giftAid(isGiftAid,membershipInfo,accountDetails);
         }
         if(pymtPrfl != null){
-            recDon = memCrudHelp.recDonation(primaryContact.Id,secondaryContact,membershipInfo,pymtPrfl,accountDetails);
+            recDon = memCrudHelp.recDonation(membershipInfo,pymtPrfl,accountDetails);
         }
         thankYouSec();
     }    
