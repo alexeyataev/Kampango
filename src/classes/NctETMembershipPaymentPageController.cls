@@ -177,22 +177,28 @@ public without sharing class NctETMembershipPaymentPageController
         if(isContactExisting == false){
             if(primaryContact == null )
             {
+                if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                }
                 recordType = 'Parent';
                 //primaryContact = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList);
                 primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=firstname,
                                       LastName=lastname,Email=email,Gender__c=genders,Phone=phone,Salutation=salutationPrimary,MailingPostalCode=postCode,
-                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,
+                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
                                       MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt);
                 insert primaryContact;
                 if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
                 {
+                    if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+                	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             		}
                     recordType = 'Companion';
                     con =[Select AccountId from Contact where id = :primaryContact.id];
                     //secondaryContact = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList);
                     secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
                                       LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
-                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,
+                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
                                       MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
                     insert secondaryContact;
@@ -215,13 +221,16 @@ public without sharing class NctETMembershipPaymentPageController
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :primaryContact.Id OR Parent_Contact__c = :contId];
         if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
         {
+            if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+             }
             recordType = 'Companion';
             if(contactList.size()<0){
             con =[Select AccountId from Contact where id = :primaryContact.id];
             //secondaryContact = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList); 
             secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
                                       LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
-                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,
+                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
                                       MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
             insert secondaryContact;
@@ -375,6 +384,9 @@ public without sharing class NctETMembershipPaymentPageController
         MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
         if(isGiftAid == 'true'){
         	gftAid = memCrudHelp.giftAid(primaryContact.Id,isGiftAid,membershipInfo,accountDetails);
+        }
+        if(membershipInfo.Payment_Method__c == 'Credit/Debit Card' && sessionProfile != 'Standard'){
+            recDon = memCrudHelp.recDonation(primaryContact.Id,secondaryContact,membershipInfo,pymtPrfl,accountDetails);
         }
         inspect = true;
     }

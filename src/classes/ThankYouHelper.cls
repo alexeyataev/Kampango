@@ -73,7 +73,7 @@ public without sharing class ThankYouHelper {
                 
             
         }
-        if(recDon.Id != null)
+        if(recDon != null)
         {
                if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Number__c.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
