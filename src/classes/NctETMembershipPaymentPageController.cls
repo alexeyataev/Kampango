@@ -177,7 +177,7 @@ public without sharing class NctETMembershipPaymentPageController
         if(isContactExisting == false){
             if(primaryContact == null )
             {
-                if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+                if (!Schema.sObjectType.Contact.fields.FirstName.isCreateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 }
                 recordType = 'Parent';
@@ -188,11 +188,12 @@ public without sharing class NctETMembershipPaymentPageController
                                       MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt);
                 insert primaryContact;
-                if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
-                {
-                    if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+                if(!Schema.sObjectType.Contact.fields.FirstName.isCreateable()){
                 	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
              		}
+                if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
+                {
+                    
                     recordType = 'Companion';
                     con =[Select AccountId from Contact where id = :primaryContact.id];
                     //secondaryContact = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList);
@@ -221,7 +222,7 @@ public without sharing class NctETMembershipPaymentPageController
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :primaryContact.Id OR Parent_Contact__c = :contId];
         if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
         {
-            if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+            if (!Schema.sObjectType.Contact.fields.FirstName.isCreateable()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
              }
             recordType = 'Companion';
@@ -295,11 +296,12 @@ public without sharing class NctETMembershipPaymentPageController
                     return pageRef;
                     
                 }
+                if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.npe03__Contact__c.isCreateable()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                 }
                 else if(sessionProfile == 'Standard'){
                     
-             if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.npe03__Contact__c.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-             }
+             
                     displaySuccessMessage = true;
                     paymentHubCallout();
                     recDon = new npe03__Recurring_Donation__c();
