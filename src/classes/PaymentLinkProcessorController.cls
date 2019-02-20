@@ -37,6 +37,11 @@ public without sharing class PaymentLinkProcessorController {
     public PageReference redirect() {
     
         if(paymentLinkFound){
+            Set<String> whiteListedDomains = new Set<String>();
+            whiteListedDomains.add(New URL(paymentLink).getHost());
+            if(!whiteListedDomains.contains(New URL(paymentLink).getHost())){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+            }
             PageReference pageRef = new PageReference(paymentLink);
             System.debug('Page Reference : '+pageRef);
             return pageRef;

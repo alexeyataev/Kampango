@@ -162,15 +162,12 @@ public without sharing class NctETMembershipPaymentPageController
         if(eDate != null && eDate != ''){
         expDate = Date.valueOf(eDate); 
         }
-        //list<String> firstContactFieldsList = new list<String>{firstname,lastname,email,genders,phone,salutationPrimary};
-        //list<String> secondContactFieldsList = new list<String>{secondContactFirstName,secondContactLastName,secondContactEmail,secondContactGenders,secondContactPhone,salutationSecondary};
-        //list<String> contactFieldListExt = new list<String>{postCode,eDate,streetValue,streetValue1,streetValue2,stateValue,cityValue};
-        //list<Boolean> contactBooleanList = new list<Boolean>{smsOpt,postOpt,emailOpt,doNotCallOpt};
         
+        list<Boolean> contactBooleanList = new list<Boolean>{isStaff,isVolunteer,isPractitioner,twomems};
      
         isVolunteer = ContactUtilities.isVolunteerExisting(contId);
         isPractitioner = MembershipUtilties.isPractitioner(firstname, lastname, email);
-        targetCustomer = ContactUtilities.targetCustomer(isStaff,isVolunteer,isPractitioner,twomems);
+        targetCustomer = ContactUtilities.targetCustomer(contactBooleanList);
         isMembershipExists = ContactUtilities.isMembershipExists(contId, email);
         
         
@@ -181,7 +178,6 @@ public without sharing class NctETMembershipPaymentPageController
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 }
                 recordType = 'Parent';
-                //primaryContact = ContactHelper.getCreateContact(firstContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList);
                 primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=firstname,
                                       LastName=lastname,Email=email,Gender__c=genders,Phone=phone,Salutation=salutationPrimary,MailingPostalCode=postCode,
                                       Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
@@ -196,7 +192,6 @@ public without sharing class NctETMembershipPaymentPageController
                     
                     recordType = 'Companion';
                     con =[Select AccountId from Contact where id = :primaryContact.id];
-                    //secondaryContact = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList);
                     secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
                                       LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
                                       Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
@@ -228,7 +223,6 @@ public without sharing class NctETMembershipPaymentPageController
             recordType = 'Companion';
             if(contactList.size()<0){
             con =[Select AccountId from Contact where id = :primaryContact.id];
-            //secondaryContact = ContactHelper.getCreateContact(secondContactFieldsList,contactFieldListExt,selectBranch,recordType,primaryContact,contactBooleanList); 
             secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
                                       LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
                                       Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
@@ -289,6 +283,11 @@ public without sharing class NctETMembershipPaymentPageController
                 {
                     
                     paymentHubCallout();
+                    Set<String> whiteListedDomains = new Set<String>();
+                    whiteListedDomains.add(New URL(redirectURL).getHost());
+                    if(!whiteListedDomains.contains(New URL(redirectURL).getHost())){
+                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                    }
                     PageReference pageRef = new PageReference(redirectURL);
     
                     pageRef.setRedirect(true);

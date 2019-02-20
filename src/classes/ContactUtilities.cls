@@ -104,17 +104,17 @@ public without sharing class ContactUtilities {
 	 * It returns String value of targetCustomer.
 	 **
     */
-    public static String targetCustomer(Boolean isStaff,Boolean isVolunteer,Boolean isPractitioner,Boolean twomems){
+    public static String targetCustomer(List<Boolean> contactBooleanList){
         
         String targetCustomer;
-        if(isStaff == true){
+        if(contactBooleanList[0] == true){
             targetCustomer = 'Staff Only';
         }
-        else if(isVolunteer == true || isPractitioner == true){
+        else if(contactBooleanList[1] == true || contactBooleanList[2] == true){
             targetCustomer = 'Volunteer/Practitioner';
         }
         else{
-            if(twomems == true){
+            if(contactBooleanList[3] == true){
                 targetCustomer = 'Parent, Companion';
             }
             else{
