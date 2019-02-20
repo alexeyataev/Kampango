@@ -52,10 +52,6 @@ public without sharing class MembershipUtilties {
             targetCustomerList.add('Staff Only');
         }
         else if (targetCustomer != 'Practitioner' && targetCustomer != 'Volunteer' && targetCustomer != 'Volunteer/Practitioner'){
-            if(etSpecific == true)
-            {
-                targetCustomerList.add('Staff Only');
-            }
             targetCustomerList.add('Parent on benefits');
             targetCustomerList.add('Parent');
             targetCustomerList.add('Parent, Companion');
@@ -113,7 +109,7 @@ public without sharing class MembershipUtilties {
     *  Story:  W001166
     */
     public static Boolean isPractitioner(String firstName, String lastName, String email){
-		  if(!Schema.sObjectType.Contact.fields.LastName.isAccessible()){
+		  if(!Schema.sObjectType.Contact.fields.LastName.isAccessible() && !Schema.sObjectType.Contact.fields.Email.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
          } 

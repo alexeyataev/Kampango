@@ -209,8 +209,13 @@ public without sharing class MembershipCrudHelper {
                     recDonationRecord[0].CARE_Payment_Frequency__c = 'Care Frequency';
                     recDonationRecord[0].npsp4hub__Payment_Processor__c = membershipDetails.Payment_Processor__c;
                     recDonationRecord[0].npsp4hub__Target__c = membershipDetails.Payment_Target__c;
+                    if(membershipDetails.Payment_Method__c != 'Credit/Debit Card'){
                     recDonationRecord[0].Membership_Status__c = 'Confirmed';
                     recDonationRecord[0].npsp4hub__Payment_Profile__c = pymtProfl.Id;
+                    }
+                    else{
+                         recDonationRecord[0].Membership_Status__c = 'Pending';
+                    }
                  	upsert recDonationRecord[0];
                  	
              }
@@ -233,7 +238,10 @@ public without sharing class MembershipCrudHelper {
                  	if(scont != null){
                         recDon.Second_Contact__c = scont.Id; 
                     }
-                 
+                    if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isAccessible() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()){
+                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                     return null;
+                    }
                  	recDon.Data_Source__c = 'Salesforce';
                     recDon.npe03__Schedule_Type__c = membershipDetails.Schedule_Type__c;
                     recDon.npe03__Installment_Period__c = membershipDetails.Installment_Period__c;
@@ -242,8 +250,13 @@ public without sharing class MembershipCrudHelper {
                     recDon.CARE_Payment_Frequency__c = 'Care Frequency';
                     recDon.npsp4hub__Payment_Processor__c = membershipDetails.Payment_Processor__c;
                     recDon.npsp4hub__Target__c = membershipDetails.Payment_Target__c;
+                    if(membershipDetails.Payment_Method__c != 'Credit/Debit Card'){
                     recDon.Membership_Status__c = 'Confirmed';
                     recDon.npsp4hub__Payment_Profile__c = pymtProfl.Id;
+                    }
+                    else{
+                         recDon.Membership_Status__c = 'Pending';
+                    }
                     upsert recDon;
                  	
                  	
