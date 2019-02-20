@@ -73,14 +73,16 @@ private class ContactUtilitiesTest {
         Boolean isStaff = ContactUtilities.isStaff(userId);
         System.assert(true,isStaff);
         
-        String targetCustomer = ContactUtilities.targetCustomer(isStaffs,isVolunteer,isPractitioner,twomems);
+        List<Boolean> targetCustomerList = new List<Boolean>{isStaffs,isVolunteer,isPractitioner,twomems}
+        String targetCustomer = ContactUtilities.targetCustomer(targetCustomerList);
 		System.assertEquals(true, isStaffs);
         System.assertEquals(true, isVolunteer);
         System.assertEquals(true, isPractitioner);
         System.assertEquals(true, twomems);
         
         Boolean isStaffsf = false;
-        String targetCustomers = ContactUtilities.targetCustomer(isStaffsf,isVolunteer,isPractitioner,twomems);
+        List<Boolean> targetCustomersList = new List<Boolean>{isStaffsf,isVolunteer,isPractitioner,twomems}
+        String targetCustomers = ContactUtilities.targetCustomer(targetCustomersList);
         
         System.assertEquals(false, isStaffsf);
         System.assertEquals(true, isVolunteer);
@@ -136,15 +138,16 @@ private class ContactUtilitiesTest {
        	Id userId = usr.id;
         Boolean isStaff = ContactUtilities.isStaff(userId);
         System.assert(true,isStaff);
-        
-        String targetCustomer = ContactUtilities.targetCustomer(isStaffs,isVolunteer,isPractitioner,twomems);
+        List<Boolean> targetCustomerList = new List<Boolean>{isStaffs,isVolunteer,isPractitioner,twomems}
+        String targetCustomer = ContactUtilities.targetCustomer(targetCustomerList);
 		System.assertEquals(false, isStaffs);
         System.assertEquals(false, isVolunteer);
         System.assertEquals(false, isPractitioner);
         System.assertEquals(true, twomems);
         
         Boolean twomemsf = false;
-        String targetCustomers = ContactUtilities.targetCustomer(isStaffs,isVolunteer,isPractitioner,twomemsf);
+        List<Boolean> targetCustomersList = new List<Boolean>{isStaffsf,isVolunteer,isPractitioner,twomems}
+        String targetCustomers = ContactUtilities.targetCustomer(targetCustomersList);
         
         System.assertEquals(false, isStaffs);
         System.assertEquals(false, isVolunteer);
