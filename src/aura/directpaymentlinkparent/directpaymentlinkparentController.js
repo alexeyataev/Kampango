@@ -23,7 +23,7 @@
                  toastEvent.setParams({
                      type : 'Error',
                  "title": "Error!",
-                 "message": "This option is not available for this payment mode"
+                 "message": "Request Payment feature is only available for Credit/Debit mode of Payment "
                 });
                 toastEvent.fire();
             }

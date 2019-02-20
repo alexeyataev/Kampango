@@ -21,7 +21,7 @@
             toastEvent.setParams({
                 type: 'error',
                 title : 'Error Message',
-                message:'Membership Already Exists for this Contact'              
+                message:'Membership already exists for this Contact'              
             });
             toastEvent.fire();
             }
