@@ -354,6 +354,10 @@
                 	display:inline !important;
                     padding:0px 10px;
             }
+            .membership-line{
+                width: 100%;
+                left: 0px;
+            }
         </style>
     </head>
 
