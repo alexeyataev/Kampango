@@ -3,6 +3,9 @@ public without sharing class MembershipCrudHelper {
     public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
     public cpm__Payment_Profile__c pymtPrfl{get;set;}
     public npe03__Recurring_Donation__c recDon {get;set;}
+    public Contact pcont{set; get;}
+    public Contact scont{set; get;}
+
     public list<cpm__Payment_Profile__c> paymentProfileRecord = new list<cpm__Payment_Profile__c>();
     public list<gaid__Gift_Aid_Declaration__c> giftAidDeclarationRecord = new list<gaid__Gift_Aid_Declaration__c>();
     public list<npe03__Recurring_Donation__c> recDonationRecord = new list<npe03__Recurring_Donation__c>(); 
@@ -14,8 +17,8 @@ public without sharing class MembershipCrudHelper {
             gftAid = new gaid__Gift_Aid_Declaration__c();
     }
     
-    public cpm__Payment_Profile__c paymentProfile(contact con,list<string> accountDetails){
-        if(con != null)
+    public cpm__Payment_Profile__c paymentProfile(list<string> accountDetails){
+        if(pcont != null)
         {
              if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
@@ -31,7 +34,7 @@ public without sharing class MembershipCrudHelper {
                                     FROM 
                                         cpm__Payment_Profile__c 
                                     WHERE 
-                                        cpm__Contact__c = :con.id
+                                        cpm__Contact__c = :pcont.id
                                     AND
                                         CreatedDate = :System.Date.today() limit 1];
             if(paymentProfileRecord.size()>0){
@@ -40,12 +43,12 @@ public without sharing class MembershipCrudHelper {
                     return null;
                 }
                 paymentProfileRecord[0].RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get('Bank Account').getRecordTypeId();
-                    //extPymtPrfyl.cpm__Contact__c = con.Id; 
+                    //extPymtPrfyl.cpm__Contact__c = pcont.Id; 
                     if(accountDetails[0] != '' && accountDetails[0] != null)
                     {
                         paymentProfileRecord[0].cpm__Bank_Account__c = accountDetails[0];
                     }            
-                    paymentProfileRecord[0].cpm__Account__c = con.AccountId;
+                    paymentProfileRecord[0].cpm__Account__c = pcont.AccountId;
                     paymentProfileRecord[0].cpm__Holder_Name__c = accountDetails[1];
                     paymentProfileRecord[0].paybacs__Sort_Code__c = accountDetails[2];
                 	upsert paymentProfileRecord[0];
@@ -54,14 +57,14 @@ public without sharing class MembershipCrudHelper {
             else{
                
                 pymtPrfl = new cpm__Payment_Profile__c();
-                system.debug(' *$*$*$* Contact Account Id   ' + con.AccountId);
+                system.debug(' *$*$*$* Contact Account Id   ' + pcont.AccountId);
                 pymtPrfl.RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get('Bank Account').getRecordTypeId();
-                pymtPrfl.cpm__Contact__c = con.Id; 
+                pymtPrfl.cpm__Contact__c = pcont.Id; 
                 if(accountDetails[0] != '' && accountDetails[0] != null)
                 {
                     pymtPrfl.cpm__Bank_Account__c = accountDetails[0];
                 }            
-                 pymtPrfl.cpm__Account__c = con.AccountId;
+                 pymtPrfl.cpm__Account__c = pcont.AccountId;
                 pymtPrfl.cpm__Holder_Name__c = accountDetails[1];
                 pymtPrfl.paybacs__Sort_Code__c = accountDetails[2];
                 
@@ -81,9 +84,9 @@ public without sharing class MembershipCrudHelper {
         
         
     }
-    public gaid__Gift_Aid_Declaration__c giftAid(ID contID, string isGiftAid,Membership_Type__mdt membershipDetails,list<string> accountDetails){
+    public gaid__Gift_Aid_Declaration__c giftAid(string isGiftAid,Membership_Type__mdt membershipDetails,list<string> accountDetails){
          
-        if(contID != null && isGiftAid == 'true') 
+        if(pcont != null && isGiftAid == 'true') 
         {
             if (!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
@@ -99,7 +102,7 @@ public without sharing class MembershipCrudHelper {
                                         FROM
                                         gaid__Gift_Aid_Declaration__c
                                         WHERE 
-                                        gaid__Contact__c = :contID
+                                        gaid__Contact__c = :pcont.Id
                                         AND
                                         CreatedDate = :System.Date.today() limit 1];
             if(giftAidDeclarationRecord.size()>0){
@@ -122,7 +125,7 @@ public without sharing class MembershipCrudHelper {
             }
             else{
                 gftAid = new gaid__Gift_Aid_Declaration__c();
-                gftAid.gaid__Contact__c= contID;
+                gftAid.gaid__Contact__c= pcont.Id;
                 gftAid.gaid__Type__c = membershipDetails.GiftAid_Type__c;
                 if(accountDetails[3] != '' && accountDetails[3] != null){
                     gftAid.gaid__Acquisition_Method__c = accountDetails[3];
@@ -153,8 +156,8 @@ public without sharing class MembershipCrudHelper {
      
         
     }
-    public npe03__Recurring_Donation__c recDonation(ID contID,Contact scont,Membership_Type__mdt membershipDetails,cpm__Payment_Profile__c pymtProfl,list<string> accountDetails){
-         if(contID != null)
+    public npe03__Recurring_Donation__c recDonation(Membership_Type__mdt membershipDetails,cpm__Payment_Profile__c pymtProfl,list<string> accountDetails){
+         if(pcont != null)
          {
               if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Name.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
@@ -181,7 +184,7 @@ public without sharing class MembershipCrudHelper {
                                  FROM
                                      npe03__Recurring_Donation__c
                                  WHERE
-                                     npe03__Contact__c = :contID
+                                     npe03__Contact__c = :pcont.Id
                                  AND
                                      CreatedDate = :System.Date.today() limit 1];
              
@@ -226,7 +229,7 @@ public without sharing class MembershipCrudHelper {
                     recDon.npe03__Amount__c = membershipDetails.Installment_Amount__c;
                     recDon.Membership_type__c = membershipDetails.Membership__c;
                     recDon.npe03__Installments__c = membershipDetails.No_of_Installments__c;
-                    recDon.npe03__Contact__c = contID;
+                    recDon.npe03__Contact__c = pcont.Id;
                     if(accountDetails[4] != '' && accountDetails[4] != null){
                          recDon.Source__c = accountDetails[4];
                     }else{
@@ -234,7 +237,7 @@ public without sharing class MembershipCrudHelper {
                     }
                     
                     recDon.npe03__Next_Payment_Date__c = MembershipUtilties.getNextDonationDate(System.Date.today());
-                    recDon.First_Contact__c = contID;
+                    recDon.First_Contact__c = pcont.Id;
                  	if(scont != null){
                         recDon.Second_Contact__c = scont.Id; 
                     }
