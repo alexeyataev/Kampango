@@ -36,13 +36,13 @@ private class MembershipCrudHelperTest {
         list<String> accountDetails = new list<String>{'145263777','Santhosh','CD-1234','Text','Enquiry by phone - main NCT'};
         MembershipCrudHelper memCrud = new MembershipCrudHelper();
  
-        paymntProfl = memCrud.paymentProfile(con,accountDetails);
+        paymntProfl = memCrud.paymentProfile(accountDetails);
         system.assertEquals(accountDetails[2],paymntProfl.paybacs__Sort_Code__c);      
         
-         gftAid = memCrud.giftAid(con.Id,isGiftAid,membershipDetails,accountDetails);
+         gftAid = memCrud.giftAid(isGiftAid,membershipDetails,accountDetails);
          system.assertEquals(true,gftAid.gaid__Active__c);
         
-        recDonation = memCrud.recDonation(con.Id,con,membershipDetails,paymntProfl,accountDetails);
+        recDonation = memCrud.recDonation(membershipDetails,paymntProfl,accountDetails);
         system.assertEquals('confirmed',recDonation.Membership_Status__c);
 
     }  
