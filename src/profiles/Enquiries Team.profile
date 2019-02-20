@@ -30,6 +30,11 @@
         <default>true</default>
         <visible>true</visible>
     </applicationVisibilities>
+	<applicationVisibilities>
+        <application>cpm__StepOrange_CPM</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
     <classAccesses>
         <apexClass>AcessTokenResponseVo</apexClass>
         <enabled>true</enabled>
@@ -5035,7 +5040,7 @@
     </tabVisibilities>
 	<tabVisibilities>
         <tab>cpm__Mandate_Schedule__c</tab>
-        <visibility>DefaultOn</visibility>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>
     <userPermissions>

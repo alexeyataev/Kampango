@@ -147,6 +147,7 @@
 		<members>NCT_Event</members>
 		<members>NCT_General</members>
 		<members>NCT_General_Lightning</members>
+		<members>cpm__StepOrange_CPM</members>
         <name>CustomApplication</name>
     </types>
 	<types>
