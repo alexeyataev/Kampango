@@ -2,27 +2,41 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>*</members>
-        <name>Document</name>
+        <name>ApexClass</name>
     </types>
 	<types>
         <members>*</members>
-        <name>StaticResource</name>
+        <name>ApexPage</name>
     </types>
     <types>
         <members>*</members>
-        <name>Role</name>
+        <name>ApexComponent</name>
     </types>
     <types>
         <members>*</members>
-        <name>Group</name>
+        <name>ApexTrigger</name>
     </types>
-    <types>
-        <members>*</members>
-        <name>Queue</name>
+	<types>
+		<members>*</members>
+		<name>AssignmentRules</name>
+	</types>
+	<types>
+		<members>*</members>
+        <name>AuraDefinitionBundle</name>
     </types>
 	<types>
         <members>*</members>
-        <name>QuickAction</name>
+        <name>ContentAsset</name>
+    </types>
+	<types>
+        <members>NCT</members>
+		<members>NCT_Courses</members>
+		<members>NCT_Courses_Classic</members>
+		<members>NCT_Event</members>
+		<members>NCT_General</members>
+		<members>NCT_General_Lightning</members>
+		<members>cpm__StepOrange_CPM</members>
+        <name>CustomApplication</name>
     </types>
     <types>
         <members>Account</members>
@@ -45,6 +59,7 @@
 		<members>Membership_Type__mdt</members>
         <members>PSA_Office__c</members>
         <members>Payment_Plan__c</members>
+        <members>PaymentHubApiSettings__c</members>
         <members>Permission_Question__c</members>
         <members>Permission__c</members>
 		<members>Practitioner_Role__c</members>
@@ -64,102 +79,16 @@
         <name>CustomObject</name>
     </types>
 	<types>
-        <members>CaseOrigin</members>
-		<members>CasePriority</members>
-		<members>CaseReason</members>
-		<members>CaseStatus</members>
-		<members>CaseType</members>
-        <name>StandardValueSet</name>
-    </types>
-	<types>
         <members>*</members>
         <name>CustomMetadata</name>
     </types>
 	<types>
-        <members>Account-Branches Layout</members>
-        <members>Account-Branches Layout_BV</members>
-        <members>Account-Household Lightning Layout</members>
-        <members>Account-Organization Lightning Layout</members>
-        <members>Account-Venue Layout</members>
-        <members>AccountContactRelation-Account Contact Relationship Layout</members>
-        <members>Booking__c-Booking Layout</members>
-        <members>cpm__Installment__c-cpm__Installment Layout</members>
-        <members>cpm__Installment__c-cpm__Installment Payable Layout</members>
-        <members>cpm__Payment_Profile__c-paybacs__Bank Account</members>
-        <members>npe03__Recurring_Donation__c-Membership Layout</members>
-        <members>npe03__Recurring_Donation__c-npe03__Recurring Donation Layout</members>
-        <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
-		<members>Contact-Client Layout</members>
-		<members>Contact-Practitioner</members>
-        <members>Contact-Companion Layout</members>
-        <members>Contact-Volunteer Layout</members>
-        <members>Contact-Staff Layout</members>
-        <members>Venue__c-Venue Layout</members>
-		<members>Practitioner_Role__c-Practitioner Licence Layout</members>
-        <members>Case-CaseLayout_De_Registration</members>
-		<members>Case-Case Layout</members>
-        <members>Course__c-Course Layout</members>
-        <members>Course__c-Venue_Not_Compulsary_Capasity_PSA</members>
-        <members>Direct_Debits__c-Direct Debits Layout</members>
-        <members>Gift_Aid__c-Gift Aid Layout</members>
-        <members>Membership__c-Membership Layout</members>
-		<members>Membership_Type__mdt-Membership Type Layout</members>
-        <members>Payment_Plan__c-Payment Plan Layout</members>
-        <members>Permission_Question__c-Permission_Question Layout</members>
-        <members>Permission__c-Permission Layout</members>
-        <members>PostCode_Allocation__c-PostCode Allocation Layout</members>
-        <members>Session__c-Session Layout</members>
-        <members>Transaction__c-Transaction Layout</members>
-        <members>User-User Layout</members>
-        <members>UserAlt-User Profile Layout</members>
-        <members>Venue__c-Venue Layout</members>
-        <members>*</members>
-        <name>Layout</name>
-    </types>
-	<types>
         <members>*</members>
         <name>CustomTab</name>
-    </types>
-	<types>
-        <members>*</members>
-        <name>ValidationRule</name>
-    </types>
-   <!-- <types>
-        <members>*</members>
-        <name>CustomLabels</name>
-    </types>-->
-	<types>
-        <members>*</members>
-        <name>CustomTab</name>
-    </types>
-	<types>
-		<members>*</members>
-		<name>AssignmentRules</name>
-	</types>
-	<types>
-        <members>*</members>
-        <name>ContentAsset</name>
-    </types>
-	<types>
-        <members>NCT</members>
-		<members>NCT_Courses</members>
-		<members>NCT_Courses_Classic</members>
-		<members>NCT_Event</members>
-		<members>NCT_General</members>
-		<members>NCT_General_Lightning</members>
-		<members>cpm__StepOrange_CPM</members>
-        <name>CustomApplication</name>
-    </types>
-	<types>
-        <members>NCT_Event_UtilityBar</members>
-		<members>Case_Record_Page1</members>
-        <name>FlexiPage</name>
     </types>
     <types>
-        <members>Practitioner_Changes</members>
-        <members>Practitioner_changed_in_Session</members>
-        <members>MandateTypeField</members>
-        <name>Flow</name>
+        <members>*</members>
+        <name>Document</name>
     </types>
 	<types>
         <members>NCT_Templates/Case</members>
@@ -206,9 +135,97 @@
         <members>unfiled$public/Parent_Welcome_Email</members>
         <name>EmailTemplate</name>
     </types>
+	<types>
+        <members>NCT_Event_UtilityBar</members>
+		<members>Case_Record_Page1</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Practitioner_Changes</members>
+        <members>Practitioner_changed_in_Session</members>
+        <members>MandateTypeField</members>
+        <name>Flow</name>
+    </types>
     <types>
         <members>*</members>
-        <name>WorkflowAlert</name>
+        <name>Group</name>
+    </types>
+	<types>
+        <members>Account-Branches Layout</members>
+        <members>Account-Branches Layout_BV</members>
+        <members>Account-Household Lightning Layout</members>
+        <members>Account-Organization Lightning Layout</members>
+        <members>Account-Venue Layout</members>
+        <members>AccountContactRelation-Account Contact Relationship Layout</members>
+        <members>Booking__c-Booking Layout</members>
+        <members>cpm__Installment__c-cpm__Installment Layout</members>
+        <members>cpm__Installment__c-cpm__Installment Payable Layout</members>
+        <members>cpm__Payment_Profile__c-paybacs__Bank Account</members>
+        <members>npe03__Recurring_Donation__c-Membership Layout</members>
+        <members>npe03__Recurring_Donation__c-npe03__Recurring Donation Layout</members>
+        <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
+		<members>Contact-Client Layout</members>
+		<members>Contact-Practitioner</members>
+        <members>Contact-Companion Layout</members>
+        <members>Contact-Volunteer Layout</members>
+        <members>Contact-Staff Layout</members>
+        <members>Venue__c-Venue Layout</members>
+		<members>Practitioner_Role__c-Practitioner Licence Layout</members>
+        <members>Case-CaseLayout_De_Registration</members>
+		<members>Case-Case Layout</members>
+        <members>Course__c-Course Layout</members>
+        <members>Course__c-Venue_Not_Compulsary_Capasity_PSA</members>
+        <members>Direct_Debits__c-Direct Debits Layout</members>
+        <members>Gift_Aid__c-Gift Aid Layout</members>
+        <members>Membership__c-Membership Layout</members>
+		<members>Membership_Type__mdt-Membership Type Layout</members>
+        <members>Payment_Plan__c-Payment Plan Layout</members>
+        <members>Permission_Question__c-Permission_Question Layout</members>
+        <members>Permission__c-Permission Layout</members>
+        <members>PostCode_Allocation__c-PostCode Allocation Layout</members>
+        <members>Session__c-Session Layout</members>
+        <members>Transaction__c-Transaction Layout</members>
+        <members>User-User Layout</members>
+        <members>UserAlt-User Profile Layout</members>
+        <members>Venue__c-Venue Layout</members>
+        <members>*</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>NamedCredential</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Queue</name>
+    </types>
+	<types>
+        <members>*</members>
+        <name>QuickAction</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Role</name>
+    </types>
+	<types>
+        <members>*</members>
+        <name>SharingRules</name>
+    </types>
+	<types>
+        <members>CaseOrigin</members>
+		<members>CasePriority</members>
+		<members>CaseReason</members>
+		<members>CaseStatus</members>
+		<members>CaseType</members>
+        <name>StandardValueSet</name>
+    </types>
+	<types>
+        <members>*</members>
+        <name>StaticResource</name>
     </types>
 	<types>
         <members>Account</members>
@@ -246,35 +263,11 @@
     </types>
     <types>
         <members>*</members>
-        <name>ApexClass</name>
+        <name>WorkflowAlert</name>
     </types>
 	<types>
         <members>*</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTrigger</name>
-    </types>
-	<types>
-        <!--<members>CommunityFooter</members>
-        <members>CommunityHeader</members>
-        <members>PractitionalCourosal</members>
-        <members>PractitionerHeader</members>-->
-		<members>*</members>
-        <name>AuraDefinitionBundle</name>
-    </types>
-	<types>
-        <members>*</members>
-        <name>SharingRules</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Profile</name>
+        <name>ValidationRule</name>
     </types>
     <version>44.0</version>
 </Package>
