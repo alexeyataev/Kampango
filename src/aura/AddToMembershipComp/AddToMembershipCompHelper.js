@@ -1,5 +1,5 @@
 ({
-	helperMethod : function(component, contId, callback) {
+	duplicateMemberFinder : function(component, event, callback) {
 		 var action = component.get("c.addToMembershipValidation");
         action.setParams({"contId": component.get("v.recordId") });
         action.setCallback(this, function(response) {
