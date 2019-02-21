@@ -101,7 +101,7 @@ public without sharing class NctETMembershipPaymentPageController
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
              }
             isStaff = ContactUtilities.isStaff(contId);
-            primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_Out__c, Post_Opt_Out__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
+            primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
             if(primaryContact != null){
                 
                 firstname = primaryContact.FirstName;
@@ -111,8 +111,8 @@ public without sharing class NctETMembershipPaymentPageController
                 postCode = primaryContact.MailingPostalCode;
                 salutationPrimary = primaryContact.Salutation;
                 genders = primaryContact.Gender__c;
-                smsOpt = primaryContact.SMS_Opt_Out__c;
-                postOpt = primaryContact.Post_Opt_Out__c;
+                smsOpt = primaryContact.SMS_Opt_In__c;
+                postOpt = primaryContact.Post_Opt_In__c;
                 emailOpt = primaryContact.HasOptedOutOfEmail;
                 doNotCallOpt = primaryContact.DoNotCall;
                
@@ -156,16 +156,23 @@ public without sharing class NctETMembershipPaymentPageController
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 }
                 recordType = 'Parent';
-                try{
                     primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=firstname,
                                         LastName=lastname,Email=email,Gender__c=genders,Phone=phone,Salutation=salutationPrimary,MailingPostalCode=postCode,
                                         Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
-                                        MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
+                                        MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
                                         HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt);
-                    insert primaryContact;
-                }
-                catch(DMLException de){
-                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Duplicate Contact is found.'));
+                    Database.SaveResult sr = Database.insert(primaryContact, false);
+                if (!sr.isSuccess()) {
+                    
+                    // Insertion failed due to duplicate detected
+                    for(Database.Error duplicateError : sr.getErrors()){
+                        Datacloud.DuplicateResult duplicateResult = 
+                            ((Database.DuplicateError)duplicateError).getDuplicateResult();
+                        System.debug('Duplicate records have been detected by ' + 
+                                     duplicateResult.getDuplicateRule());
+                        System.debug(duplicateResult.getErrorMessage());
+                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Duplicate records found.'));
+                    }
                 }
                 if(!Schema.sObjectType.Contact.fields.FirstName.isCreateable()){
                 	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
@@ -178,7 +185,7 @@ public without sharing class NctETMembershipPaymentPageController
                     secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
                                       LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
                                       Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
-                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
+                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
                     insert secondaryContact;
                     contactType = 'joint';
@@ -209,7 +216,7 @@ public without sharing class NctETMembershipPaymentPageController
             secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
                                       LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
                                       Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
-                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
+                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
             insert secondaryContact;
         }
