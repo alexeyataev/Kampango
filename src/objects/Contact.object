@@ -4362,7 +4362,7 @@
         <fullName>Post_Opt_Out__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>Post Opt Out</label>
+        <label>Post Opt In</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
@@ -4402,7 +4402,7 @@
         <fullName>SMS_Opt_Out__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>SMS Opt Out</label>
+        <label>SMS Opt In</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>

@@ -22,7 +22,7 @@ public without sharing class DirectPaymentLinkSendToParent
         String emailBodyValue = emailTemplateId.HtmlValue;
         String emailSubjectValue = emailTemplateId.Subject;
         Messaging.SingleEmailMessage  mail = new Messaging.SingleEmailMessage ();
-        emailBodyValue = emailBodyValue.replace('{!npe03__Recurring_Donation__c.First_Contact__c}',payLink.Contact_FirstName__c);
+        emailBodyValue = emailBodyValue.replace('{!npe03__Recurring_Donation__c.Contact_FirstName__c}',payLink.Contact_FirstName__c);
         emailBodyValue = emailBodyValue.replace('href=""', 'href="' + paymentLink +'"');
         system.debug('   *$*$* emailBodyValue   ' + emailBodyValue);
         mail.setHtmlBody(emailBodyValue);

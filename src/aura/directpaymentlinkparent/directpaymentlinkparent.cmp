@@ -2,8 +2,12 @@
 
     	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
         <aura:attribute name="recordId" type="Id" />
-        <h1 align="center">Your request has been processing</h1><br/>
-        <h5 align="center">Please Wait...!</h5>
-
-
+        <aura:html tag="style">
+.slds-backdrop {
+             background: rgba(43, 40, 38, 0) !important;  
+              }
+.slds-fade-in-open{
+             display:none !important;
+              }
+</aura:html>
 </aura:component>
