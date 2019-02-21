@@ -43,6 +43,10 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>Membership_Payment_Type__c</field>
+        <value xsi:type="xsd:string">Annual Direct Debit</value>
+    </values>
+    <values>
         <field>Membership__c</field>
         <value xsi:type="xsd:string">Reduced 12 month membership</value>
     </values>
@@ -65,6 +69,10 @@
     <values>
         <field>Payment_Type__c</field>
         <value xsi:type="xsd:string">Direct Debit (£10)</value>
+    </values>
+    <values>
+        <field>Period__c</field>
+        <value xsi:type="xsd:string">Reduced 12 month</value>
     </values>
     <values>
         <field>Recursive__c</field>

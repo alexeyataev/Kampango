@@ -226,7 +226,7 @@ public without sharing class NctETMembershipPaymentPageController
              }
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
-                                                    Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
+                                                    Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, Period__c, Membership_Payment_Type__c,
                                                     GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
                                                     where Id =:feeAmount];
         }
@@ -240,7 +240,7 @@ public without sharing class NctETMembershipPaymentPageController
              }
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
-                                                    Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
+                                                    Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, Period__c, Membership_Payment_Type__c,
                                                     GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
                                                     where Id =:feeAmount];
         }
@@ -277,7 +277,7 @@ public without sharing class NctETMembershipPaymentPageController
                     displaySuccessMessage = true;
                     paymentHubCallout();
                     recDon = new npe03__Recurring_Donation__c();
-                    recDon.Name = membershipInfo.Contact_Type__c + ' ' + membershipInfo.Membership__c;
+                    recDon.Name = membershipInfo.Period__c + ' Membership ' + membershipInfo.Membership_Payment_Type__c;
                     recDon.npe03__Amount__c = membershipInfo.Installment_Amount__c;
                     recDon.npe03__Contact__c = primaryContact.Id;
                     recDon.CARE_Payment_Frequency__c = 'One Time';
@@ -342,7 +342,7 @@ public without sharing class NctETMembershipPaymentPageController
              }
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
-                                                    Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
+                                                    Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, Period__c, Membership_Payment_Type__c,
                                                     GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
                                                     where Id =:feeAmount];
         }
