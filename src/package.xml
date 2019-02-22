@@ -78,6 +78,10 @@
 	  <members>cpm__Mandate_Schedule__c</members>
         <name>CustomObject</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>CustomObjectTranslation</name>
+    </types>
 	<types>
         <members>*</members>
         <name>CustomMetadata</name>
