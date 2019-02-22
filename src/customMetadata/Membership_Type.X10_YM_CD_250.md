@@ -43,10 +43,6 @@
         <value xsi:nil="true"/>
     </values>
     <values>
-        <field>Membership_Payment_Type__c</field>
-        <value xsi:type="xsd:string">Card Payment</value>
-    </values>
-    <values>
         <field>Membership__c</field>
         <value xsi:type="xsd:string">10 year membership</value>
     </values>
@@ -69,10 +65,6 @@
     <values>
         <field>Payment_Type__c</field>
         <value xsi:type="xsd:string">Credit/Debit Card (£250)</value>
-    </values>
-    <values>
-        <field>Period__c</field>
-        <value xsi:type="xsd:string">10 year</value>
     </values>
     <values>
         <field>Recursive__c</field>

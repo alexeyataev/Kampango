@@ -193,7 +193,7 @@ public without sharing class MembershipCrudHelper {
                      ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                      return null;
                  }
-                 recDonationRecord[0].Name = membershipDetails.Period__c + ' Membership ' + membershipDetails.Membership_Payment_Type__c;
+                 recDonationRecord[0].Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                     recDonationRecord[0].npe03__Amount__c = membershipDetails.Installment_Amount__c;
                     recDonationRecord[0].Membership_type__c = membershipDetails.Membership__c;
                     recDonationRecord[0].npe03__Installments__c = membershipDetails.No_of_Installments__c;
@@ -225,7 +225,7 @@ public without sharing class MembershipCrudHelper {
              else{
                      
                          recDon = new npe03__Recurring_Donation__c();
-                 recDon.Name = membershipDetails.Period__c + ' Membership ' + membershipDetails.Membership_Payment_Type__c;
+                 recDon.Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                     recDon.npe03__Amount__c = membershipDetails.Installment_Amount__c;
                     recDon.Membership_type__c = membershipDetails.Membership__c;
                     recDon.npe03__Installments__c = membershipDetails.No_of_Installments__c;
