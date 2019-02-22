@@ -69,29 +69,6 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Account_Number__c</fullName>
-        <externalId>false</externalId>
-        <label>Account Number</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Bank_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Bank Name</label>
-        <length>20</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>BookingKey__c</fullName>
         <externalId>false</externalId>
         <label>BookingKey</label>
@@ -771,11 +748,9 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
         <fullName>cpm__All</fullName>
         <columns>NAME</columns>
         <columns>cpm__Contact__c</columns>
-        <columns>Bank_Name__c</columns>
         <columns>cpm__Bank_Account__c</columns>
         <columns>paybacs__Sort_Code__c</columns>
         <columns>CREATED_DATE</columns>
-        <columns>Account_Number__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -1106,8 +1081,7 @@ such as IBAN, legacy bank account, Credit Card etc.</description>
 			<values>
                 <fullName>Phone</fullName>
                 <default>false</default>
-            </values>
-			
+            </values>			
         </picklistValues>
         <picklistValues>
             <picklist>cpm__Expiration_Date__c</picklist>
