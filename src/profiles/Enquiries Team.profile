@@ -4959,10 +4959,6 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Membership__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>Payment_Link__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
