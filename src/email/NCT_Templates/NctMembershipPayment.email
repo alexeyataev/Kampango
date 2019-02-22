@@ -1065,7 +1065,7 @@
                                                                                                                         <tr>
                                                                                                                           <td valign="top" align="left" class="element-pad element-bord">
                                                                                                                                 <div class="ee_editable" style="position: static;">
-                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">Hi  {!npe03__Recurring_Donation__c.Contact_FirstName__c} ,
+                                                                                                                                    <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 16px; color: rgb(0, 0, 0);">Hi  {!Payment_Link__c.Contact_FirstName__c},
                                                                                                                                                                                                                           
                                                                                                                                     </p>
                                                                                                                                     <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">
@@ -1086,7 +1086,7 @@
                                                                                                                                     <p style="line-height: 24px; font-family: arial, helvetica, sans-serif; font-size: 17px; color: rgb(0, 0, 0);">Payment
                                                                                                                                         Link
                                                                                                                                         :
-                                                                                                                                        <a href="" style="color:green;cursor: pointer;text-decoration: none">Click
+                                                                                                                                        <a href="{!Payment_Link__c.Payment_Link__c}" style="color:green;cursor: pointer;text-decoration: none">Click
                                                                                                                                             here
                                                                                                                                         </a>
                                                                                                                                     </p>
