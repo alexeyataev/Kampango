@@ -312,5 +312,18 @@
         <errorDisplayField>Expiry_Date__c</errorDisplayField>
         <errorMessage>Please enter an Expiry Date</errorMessage>
     </validationRules>
+	  <validationRules>
+        <fullName>Expiry_Date_Should_be_Greater_than_Today</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+OR( 
+ISNEW(), 
+ISCHANGED(Expiry_Date__c) 
+), 
+Expiry_Date__c &lt; TODAY() 
+)</errorConditionFormula>
+        <errorDisplayField>Expiry_Date__c</errorDisplayField>
+        <errorMessage>Expiration date should be greater than Today&apos;s date</errorMessage>
+    </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
