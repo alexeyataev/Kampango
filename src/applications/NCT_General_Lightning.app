@@ -129,7 +129,7 @@
     <tabs>Course__c</tabs>
     <tabs>Booking__c</tabs>
     <tabs>Direct_Debits__c</tabs>
-    <tabs>Membership__c</tabs>
+    <tabs>Membership</tabs>
     <tabs>Payment_Plan__c</tabs>
     <tabs>Transaction__c</tabs>
     <tabs>Gift_Aid__c</tabs>
