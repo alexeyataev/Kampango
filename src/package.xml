@@ -193,10 +193,6 @@
     </types>
     <types>
         <members>*</members>
-        <name>NamedCredential</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>Profile</name>
     </types>
     <types>
@@ -269,5 +265,5 @@
         <members>*</members>
         <name>ValidationRule</name>
     </types>
-    <version>44.0</version>
+    <version>45.0</version>
 </Package>
