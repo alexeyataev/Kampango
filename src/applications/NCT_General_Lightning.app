@@ -126,8 +126,6 @@
     <tabs>standard-home</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
-    <tabs>Course__c</tabs>
-    <tabs>Booking__c</tabs>
     <tabs>Direct_Debits__c</tabs>
     <tabs>Membership</tabs>
     <tabs>Payment_Plan__c</tabs>
@@ -136,7 +134,6 @@
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <tabs>standard-Campaign</tabs>
-    <tabs>Session__c</tabs>
     <tabs>PostCode_Allocation__c</tabs>
     <tabs>Permission__c</tabs>
     <tabs>Permission_Question__c</tabs>

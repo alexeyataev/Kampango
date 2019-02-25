@@ -1207,7 +1207,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.Post_Opt_Out__c</field>
+        <field>Contact.Post_Opt_In__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1232,7 +1232,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable> 
-        <field>Contact.SMS_Opt_Out__c</field>
+        <field>Contact.SMS_Opt_In__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
