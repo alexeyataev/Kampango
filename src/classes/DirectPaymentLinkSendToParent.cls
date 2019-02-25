@@ -5,30 +5,18 @@ public without sharing class DirectPaymentLinkSendToParent
     @auraenabled
     public static void paymentHubCallout(Id contId)
     {     
-        String redirectURL;
-
-        paymentLink= [SELECT Id, Name, Contact__c,Contact__r.Email, Data_Source__c, Email__c, Link_Sent_Date__c, Link_Status__c, Payment_Key__c, Payment_Link__c, Contact_FirstName__c FROM Payment_Link__c where Contact__c =: contId limit 1];
-        redirectURL = paymentLink.Payment_Link__c;
-        sendPaymentLinkToParent(redirectURL, paymentLink);
+        paymentLink= [SELECT Id, Name, Contact__c,Payment_Link__c FROM Payment_Link__c where Contact__c =: contId limit 1];
+        sendPaymentLinkToParent(paymentLink);
      }
-      public static void sendPaymentLinkToParent(string paymentLink, Payment_Link__c payLink)
+      public static void sendPaymentLinkToParent(Payment_Link__c payLink)
       {   
-        npe03__Recurring_Donation__c recurringdonationtwo;
-        system.debug('*$*$* EMail Method was called   ' + paymentLink);
-              if (!Schema.sObjectType.EmailTemplate.fields.Name.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-             }
-        EmailTemplate emailTemplateId = [SELECT Id,Name,Subject, Body,HtmlValue FROM EmailTemplate WHERE Name ='NctMembershipPayment'];
-        String emailBodyValue = emailTemplateId.HtmlValue;
-        String emailSubjectValue = emailTemplateId.Subject;
-        Messaging.SingleEmailMessage  mail = new Messaging.SingleEmailMessage ();
-        emailBodyValue = emailBodyValue.replace('{!npe03__Recurring_Donation__c.First_Contact__c}',payLink.Contact_FirstName__c);
-        emailBodyValue = emailBodyValue.replace('href=""', 'href="' + paymentLink +'"');
-        system.debug('   *$*$* emailBodyValue   ' + emailBodyValue);
-        mail.setHtmlBody(emailBodyValue);
-        mail.setToAddresses(new String[] {payLink.Contact__r.Email});
-        mail.setSubject(emailSubjectValue);
-        Messaging.sendEmail(new Messaging.SingleEmailMessage [] {mail});  
+        
+          Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
+          message.setTargetObjectId(payLink.Contact__c);
+          message.setWhatId(payLink.Id);
+          EmailTemplate emailTemplateId = [SELECT Id,Name,Subject, Body,HtmlValue FROM EmailTemplate WHERE Name ='NctMembershipPayment'];
+          message.setTemplateId(emailTemplateId.Id);
+          Messaging.sendEmail(new Messaging.SingleEmailMessage[] { message });
        }
 
 }
