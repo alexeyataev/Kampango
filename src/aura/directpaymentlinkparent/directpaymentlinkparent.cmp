@@ -1,7 +1,7 @@
 <aura:component implements="force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" controller="DirectPaymentLinkSendToParent">
 
     	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-        <aura:attribute name="recordId" type="Id" />
+        
         <aura:html tag="style">
 .slds-backdrop {
              background: rgba(43, 40, 38, 0) !important;  

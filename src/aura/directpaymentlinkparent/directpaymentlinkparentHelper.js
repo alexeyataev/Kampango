@@ -1,5 +1,5 @@
 ({
-	paymentLink : function(component, event, callback) {
+	paymentLink : function(component) {
         var action = component.get("c.paymentHubCallout");
        action.setParams({"contId": component.get("v.recordId") });
        action.setCallback(this, function(response) {
