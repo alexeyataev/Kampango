@@ -62,7 +62,15 @@
     </target>
 
     <target name="deployBase">
-	    <sf:deploy username="${env.username}" password="${env.password}" sessionId="${sf.sessionId}" serverurl="${env.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src" rollbackOnError="true" />
+	    <sf:deploy username="${env.username}"
+                password="${env.password}"
+                sessionId="${sf.sessionId}"
+                serverurl="${env.serverurl}"
+                maxPoll="${sf.maxPoll}"
+                deployRoot="src"
+                rollbackOnError="true"
+                testLevel="RunLocalTests"
+                ignoreWarnings="true" />
     </target>
 
     <target name="deployPostPackage">
