@@ -64,6 +64,17 @@
         <senderType>CurrentUser</senderType>
         <template>NCT_Templates/Request_to_be_Volunteer</template>
     </alerts>
+    <alerts>
+        <fullName>Volunteer_De_Registration</fullName>
+        <description>Volunteer De-Registration</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>anjineyulu.valasa@csscorp.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>GW_Volunteers__Volunteers_Email_Templates/Volunteer_de_register</template>
+    </alerts>
     <fieldUpdates>
         <fullName>Parent_Course_Transfer</fullName>
         <field>OwnerId</field>
