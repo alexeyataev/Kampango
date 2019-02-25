@@ -138,8 +138,6 @@
         <name>FlexiPage</name>
     </types>
     <types>
-        <members>Practitioner_Changes</members>
-        <members>Practitioner_changed_in_Session</members>
         <members>MandateTypeField</members>
         <name>Flow</name>
     </types>
