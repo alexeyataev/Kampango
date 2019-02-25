@@ -861,6 +861,11 @@
         <field>Contact.Account_Holder_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.SMS_Opt_Out__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Post_Opt_Out__c</field>
@@ -1218,7 +1223,7 @@
     </fieldPermissions>
     <fieldPermissions>
     <editable>true</editable>
-        <field>Contact.SMS_Opt_Out__c</field>
+        <field>Contact.SMS_Opt_In__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
