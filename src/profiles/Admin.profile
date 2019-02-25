@@ -4576,7 +4576,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>PostCode_Allocation__c</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Practitioner_Licence__c</tab>
