@@ -58,7 +58,6 @@
         <members>PSA_Office__c</members>
         <members>Payment_Plan__c</members>
         <members>PaymentHubApiSettings__c</members>
-        <members>PaymentAPISettings__c</members>
         <members>Permission_Question__c</members>
         <members>Permission__c</members>
 		<members>Practitioner_Role__c</members>
