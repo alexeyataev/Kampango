@@ -13,7 +13,7 @@ private class MembershipCrudHelperTest {
             Membership_Type__mdt  membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                 No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                 Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
-                                                GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt limit 1];
+                                                GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt where Payment_Method__c = 'Credit/Debit Card' limit 1];
         npe03__Recurring_Donation__c recDonate = new npe03__Recurring_Donation__c();
         cpm__Payment_Profile__c paymntProfl = new cpm__Payment_Profile__c();
         gaid__Gift_Aid_Declaration__c gftAid = new gaid__Gift_Aid_Declaration__c();
@@ -56,7 +56,7 @@ private class MembershipCrudHelperTest {
         Membership_Type__mdt  membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                 No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                 Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
-                                                GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt limit 1];
+                                                GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt where Payment_Method__c = 'Direct Debit' limit 1];
         list<cpm__Payment_Profile__c> paymntProflRecord = new list<cpm__Payment_Profile__c>();
         list<gaid__Gift_Aid_Declaration__c> giftAidDeclareRecord = new list<gaid__Gift_Aid_Declaration__c>();
         list<npe03__Recurring_Donation__c> recDonateRecord = new list<npe03__Recurring_Donation__c>();
