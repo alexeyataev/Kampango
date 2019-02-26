@@ -13,5 +13,9 @@
         <members>DisplayDdSchedule</members>
         <name>ApexComponent</name>
     </types>
+    <types>
+        <members>gaid__Gift_Aid_Declaration__c.Method__c</members>
+         <name>CustomField</name>
+    </types> 
     <version>45.0</version>
 </Package>
