@@ -140,6 +140,11 @@ private class NctETMembershipPaymentPageControllerTest {
         
         ApexPages.currentPage().getParameters().put('seltdName',membershipDetails.Id);
         
+        PaymentHubApiSettings__c PaymentHubApiSettings = new PaymentHubApiSettings__c();
+        PaymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
+        PaymentHubApiSettings.Credit_Card_Payment_API_Token__c = '1234567890123';
+        insert PaymentHubApiSettings; 
+        
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
         nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController();
@@ -226,6 +231,11 @@ private class NctETMembershipPaymentPageControllerTest {
         Test.setCurrentPage(pageRef); 
         
         ApexPages.currentPage().getParameters().put('seltdName',membershipDetails.Id);
+        
+        PaymentHubApiSettings__c PaymentHubApiSettings = new PaymentHubApiSettings__c();
+        PaymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
+        PaymentHubApiSettings.Credit_Card_Payment_API_Token__c = '1234567890123';
+        insert PaymentHubApiSettings; 
         
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
