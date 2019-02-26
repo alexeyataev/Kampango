@@ -9,5 +9,9 @@
         <members>BookCourseControllerTest</members>
         <name>ApexClass</name>
     </types>
+    <types>
+        <members>DisplayDdSchedule</members>
+        <name>ApexComponent</name>
+    </types>
     <version>45.0</version>
 </Package>
