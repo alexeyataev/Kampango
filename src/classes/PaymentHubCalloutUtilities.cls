@@ -58,6 +58,7 @@ public without sharing class PaymentHubCalloutUtilities {
         HttpResponse paymentHubResponse = new HttpResponse();
         Http paymentHubHttp = new Http(); 
         
+        
         paymentHubRequest.setEndpoint('callout:Payment_API');
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('api-token',paymentHubApiSettings.Credit_Card_Payment_API_Token__c);

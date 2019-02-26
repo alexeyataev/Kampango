@@ -316,13 +316,13 @@ public without sharing class NctETMembershipPaymentPageController
     }
     public void nctBranchs(){
         
-        String emails = Apexpages.currentPage().getParameters().get('emailsVal').escapeHtml4();
+        String emails = Apexpages.currentPage().getParameters().get('emailsVal');
         if(contId == null){
             isContactExisting = ContactUtilities.isContactExisting(emails);
 
         }
         isMembershipExists = ContactUtilities.isMembershipExists(contId, emails);
-        postCode = Apexpages.currentPage().getParameters().get('postVal').escapeHtml4();
+        postCode = Apexpages.currentPage().getParameters().get('postVal');
 
         if(postCode != null && postCode != ''){
         nearestBranchs = MembershipUtilties.getBranches(postCode);
@@ -331,7 +331,7 @@ public without sharing class NctETMembershipPaymentPageController
         }
     public void membershipDupeChecker(){
         
-        String emails = Apexpages.currentPage().getParameters().get('emailDupeVal').escapeHtml4();
+        String emails = Apexpages.currentPage().getParameters().get('emailDupeVal');
 
         if(contId == null){
             isContactExisting = ContactUtilities.isContactExisting(emails);
@@ -343,7 +343,7 @@ public without sharing class NctETMembershipPaymentPageController
     public void giftAidCreation(){
         displayMbrNoMessage = true;
         if(sessionProfile != 'Standard'){
-            feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName').escapeHtml4();
+            feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName');
             PageReference redirecContUrl;
 
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);

@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>DirectPaymentLinkSendToParentTest</members>
-        <members>MembershipCrudHelperTest</members>
-        <members>MembershipUtiltiesTest</members>
-        <members>NctETMembershipPaymentPageControllerTest</members>
+        <members>BookCourseControllerModel</members>
+        <members>BookCourseControllerModelTest</members>
+        <members>DisplayDdScheduleController</members>
+        <members>DisplayDdScheduleControllerTest</members>
+        <members>BookCourseController</members>
+        <members>BookCourseControllerTest</members>
         <name>ApexClass</name>
     </types>
+    <types>
+        <members>DisplayDdSchedule</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>gaid__Gift_Aid_Declaration__c.Method__c</members>
+         <name>CustomField</name>
+    </types> 
     <version>45.0</version>
 </Package>
