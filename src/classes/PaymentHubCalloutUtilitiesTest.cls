@@ -10,7 +10,20 @@ private class PaymentHubCalloutUtilitiesTest {
         insert cont; 
         
         list<String> contactDetails = new list<String>();
-   
+         
+        PaymentHubApiSettings__c PaymentHubApiSettings = new PaymentHubApiSettings__c();
+        PaymentHubApiSettings.Payment_Status_Root_Url__c = System.Label.PAYMENTSTATUSURL;
+        PaymentHubApiSettings.Credit_Card_Payment_API_Token__c = System.Label.API_TOKEN;
+        insert PaymentHubApiSettings;
+        PaymentAPISettings__c PaymentAPISettings = new PaymentAPISettings__c();
+        PaymentAPISettings.API_TOKEN__c = System.Label.API_TOKEN;
+        PaymentAPISettings.CLIENT_SECRET__c = System.Label.CLIENT_SECRET;
+        PaymentAPISettings.CLIENTID__c = System.Label.CLIENTID;
+        PaymentAPISettings.ENDPOINT_PASSWORD__c = System.Label.ENDPOINT_PASSWORD;
+        PaymentAPISettings.ENDPOINT_USERNAME__c = System.Label.ENDPOINT_USERNAME;
+        PaymentAPISettings.ENDPOINTOAUTH__c = System.Label.ENDPOINTOAUTH;
+        PaymentAPISettings.SF_INSTANCE__c = System.Label.SF_INSTANCE;
+        insert  PaymentAPISettings;
         
         Membership_Type__mdt  membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                 No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
@@ -37,6 +50,21 @@ private class PaymentHubCalloutUtilitiesTest {
         contactDetails.add(Email);
         contactDetails.add(FirstName);
         contactDetails.add(LastName);
+        
+        PaymentHubApiSettings__c PaymentHubApiSettings = new PaymentHubApiSettings__c();
+        PaymentHubApiSettings.Payment_Status_Root_Url__c = System.Label.PAYMENTSTATUSURL;
+        PaymentHubApiSettings.Credit_Card_Payment_API_Token__c = System.Label.API_TOKEN;
+        insert PaymentHubApiSettings;
+        
+        PaymentAPISettings__c PaymentAPISettings = new PaymentAPISettings__c();
+        PaymentAPISettings.API_TOKEN__c = System.Label.API_TOKEN;
+        PaymentAPISettings.CLIENT_SECRET__c = System.Label.CLIENT_SECRET;
+        PaymentAPISettings.CLIENTID__c = System.Label.CLIENTID;
+        PaymentAPISettings.ENDPOINT_PASSWORD__c = System.Label.ENDPOINT_PASSWORD;
+        PaymentAPISettings.ENDPOINT_USERNAME__c = System.Label.ENDPOINT_USERNAME;
+        PaymentAPISettings.ENDPOINTOAUTH__c = System.Label.ENDPOINTOAUTH;
+        PaymentAPISettings.SF_INSTANCE__c = System.Label.SF_INSTANCE;
+        insert  PaymentAPISettings;
         
         Membership_Type__mdt  membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                 No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,

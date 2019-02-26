@@ -2,6 +2,7 @@ public without sharing class PaymentHubCalloutUtilities {
     
     
     private static PaymentHubApiSettings__c paymentHubApiSettings = PaymentHubApiSettings__c.getInstance();
+    private static PaymentAPISettings__c paymentApiSettings = PaymentAPISettings__c.getInstance();
     
     public static String paymentHub(contact cont,Membership_Type__mdt membershipDetails, list<string> contactDetails){
         decimal instlmntAmt; 
@@ -18,7 +19,7 @@ public without sharing class PaymentHubCalloutUtilities {
         HttpResponse tokenResponse = new HttpResponse();
         Http tokenHttp = new Http();
         
-        tokenRequest.setEndpoint(System.Label.ENDPOINTOAUTH+'client_id='+System.Label.CLIENTID+'&client_secret='+System.Label.CLIENT_SECRET+'&grant_type=password&username='+System.Label.ENDPOINT_USERNAME+'&password='+System.Label.ENDPOINT_PASSWORD);
+        tokenRequest.setEndpoint(paymentApiSettings.ENDPOINTOAUTH__c+'client_id='+paymentApiSettings.CLIENTID__c+'&client_secret='+paymentApiSettings.CLIENT_SECRET__c+'&grant_type=password&username='+paymentApiSettings.ENDPOINT_USERNAME__c+'&password='+paymentApiSettings.ENDPOINT_PASSWORD__c);
         
         tokenRequest.setMethod('POST'); 
         tokenRequest.setTimeout(120000);    
@@ -72,10 +73,10 @@ public without sharing class PaymentHubCalloutUtilities {
         HttpResponse paymentHubResponse = new HttpResponse();
         Http paymentHubHttp = new Http(); 
         
-        paymentHubRequest.setEndpoint(System.Label.SF_INSTANCE+'/services/apexrest/cpm/v1.0/Payment');
+        paymentHubRequest.setEndpoint(paymentApiSettings.SF_INSTANCE__c+'/services/apexrest/cpm/v1.0/Payment');
         paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
-        paymentHubRequest.setHeader('api-token',System.Label.API_TOKEN);
+        paymentHubRequest.setHeader('api-token',paymentHubApiSettings.Credit_Card_Payment_API_Token__c);
         paymentHubRequest.setBody(JSON.serialize(paymentReq));
         paymentHubRequest.setMethod('POST'); 
         paymentHubRequest.setTimeout(120000);    
