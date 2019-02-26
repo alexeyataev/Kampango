@@ -1,8 +1,8 @@
 public without sharing class PaymentHubCalloutUtilities {
     
+    public String sessionProfile = userinfo.getUserType();
     
     private static PaymentHubApiSettings__c paymentHubApiSettings = PaymentHubApiSettings__c.getInstance();
-    private static PaymentAPISettings__c paymentApiSettings = PaymentAPISettings__c.getInstance();
     
     public static String paymentHub(contact cont,Membership_Type__mdt membershipDetails, list<string> contactDetails){
         decimal instlmntAmt; 
@@ -14,22 +14,7 @@ public without sharing class PaymentHubCalloutUtilities {
 
         string responseContent;
         string redirectURL;
-        
-        HttpRequest tokenRequest = new HttpRequest();
-        HttpResponse tokenResponse = new HttpResponse();
-        Http tokenHttp = new Http();
-        
-        tokenRequest.setEndpoint(paymentApiSettings.ENDPOINTOAUTH__c+'client_id='+paymentApiSettings.CLIENTID__c+'&client_secret='+paymentApiSettings.CLIENT_SECRET__c+'&grant_type=password&username='+paymentApiSettings.ENDPOINT_USERNAME__c+'&password='+paymentApiSettings.ENDPOINT_PASSWORD__c);
-        
-        tokenRequest.setMethod('POST'); 
-        tokenRequest.setTimeout(120000);    
-        
-        tokenResponse = tokenHttp.send(tokenRequest);
 
-        AcessTokenResponseVo accessTokenVo = (AcessTokenResponseVo)JSON.deserialize(tokenResponse.getBody(),AcessTokenResponseVo.class);
-
-        
-        
         PaymentRequestVo paymentReq = new PaymentRequestVo();
         paymentReq.SuccessURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubSuccessMsgPage?contId='+ cont.Id;
         paymentReq.FailureURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubErrorMsgPage';
@@ -73,8 +58,8 @@ public without sharing class PaymentHubCalloutUtilities {
         HttpResponse paymentHubResponse = new HttpResponse();
         Http paymentHubHttp = new Http(); 
         
-        paymentHubRequest.setEndpoint(paymentApiSettings.SF_INSTANCE__c+'/services/apexrest/cpm/v1.0/Payment');
-        paymentHubRequest.setHeader('Authorization','Bearer '+accessTokenVo.access_token);
+        
+        paymentHubRequest.setEndpoint('callout:Payment_API');
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('api-token',paymentHubApiSettings.Credit_Card_Payment_API_Token__c);
         paymentHubRequest.setBody(JSON.serialize(paymentReq));
