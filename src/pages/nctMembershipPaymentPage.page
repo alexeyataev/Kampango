@@ -56,6 +56,15 @@
         <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
         <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+        <apex:includeScript value="{!URLFOR('https://www.google-analytics.com/analytics.js')}"/>
+		<script>
+            window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+            	ga('create', 'UA-1436592-20', 'auto');
+            	ga('send', 'pageview');
+                ga(function(){
+                console.log(ga.getAll());
+               });
+		</script>
         <style>
             @media (min-width: 1200px){
                 .container {
