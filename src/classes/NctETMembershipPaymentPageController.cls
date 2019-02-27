@@ -203,7 +203,7 @@ public without sharing class NctETMembershipPaymentPageController
             if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
              }
-        primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Email = :email OR Id = :contId limit 1];
+        primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE (Email = :email AND Email != '') OR Id =:contId limit 1];
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :primaryContact.Id OR Parent_Contact__c = :contId];
         if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
         {
@@ -287,7 +287,7 @@ public without sharing class NctETMembershipPaymentPageController
                     displaySuccessMessage = true;
                     paymentHubCallout();
                     recDon = new npe03__Recurring_Donation__c();
-                    recDon.Name = membershipInfo.Contact_Type__c + ' ' + membershipInfo.Membership__c;
+                    recDon.Name = membershipInfo.Contact_Type__c + ' ' + membershipInfo.Membership__c+' '+membershipInfo.Payment_Method__c;
                     recDon.npe03__Amount__c = membershipInfo.Installment_Amount__c;
                     recDon.npe03__Contact__c = primaryContact.Id;
                     recDon.CARE_Payment_Frequency__c = 'One Time';
