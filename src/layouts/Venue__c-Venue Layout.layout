@@ -169,14 +169,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Description__c</fields>
-        <fields>Practitioner__c</fields>
-        <fields>Available_Places__c</fields>
-        <fields>PSA_Office__c</fields>
-        <relatedList>Course__c.Venue__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>Venue_PSA_Office__c.Venue__c</relatedList>
     </relatedLists>
     <relatedLists>

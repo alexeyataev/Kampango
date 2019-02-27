@@ -4359,10 +4359,10 @@
         <type>Phone</type>
     </fields>
      <fields>
-        <fullName>Post_Opt_Out__c</fullName>
+        <fullName>Post_Opt_In__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>Post Opt Out</label>
+        <label>Post Opt In</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
@@ -4399,10 +4399,10 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>SMS_Opt_Out__c</fullName>
+        <fullName>SMS_Opt_In__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>SMS Opt Out</label>
+        <label>SMS Opt In</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>

@@ -101,7 +101,7 @@ public without sharing class NctETMembershipPaymentPageController
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
              }
             isStaff = ContactUtilities.isStaff(contId);
-            primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_Out__c, Post_Opt_Out__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
+            primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
             if(primaryContact != null){
                 
                 firstname = primaryContact.FirstName;
@@ -111,6 +111,10 @@ public without sharing class NctETMembershipPaymentPageController
                 postCode = primaryContact.MailingPostalCode;
                 salutationPrimary = primaryContact.Salutation;
                 genders = primaryContact.Gender__c;
+                smsOpt = primaryContact.SMS_Opt_In__c;
+                postOpt = primaryContact.Post_Opt_In__c;
+                emailOpt = primaryContact.HasOptedOutOfEmail;
+                doNotCallOpt = primaryContact.DoNotCall;
                
  		
             }
@@ -136,10 +140,11 @@ public without sharing class NctETMembershipPaymentPageController
         expDate = Date.valueOf(eDate); 
         }
         
-        list<Boolean> contactBooleanList = new list<Boolean>{isStaff,isVolunteer,isPractitioner,twomems};
+        
      
         isVolunteer = ContactUtilities.isVolunteerExisting(contId);
         isPractitioner = MembershipUtilties.isPractitioner(firstname, lastname, email);
+        list<Boolean> contactBooleanList = new list<Boolean>{isStaff,isVolunteer,isPractitioner,twomems};
         targetCustomer = ContactUtilities.targetCustomer(contactBooleanList);
         isMembershipExists = ContactUtilities.isMembershipExists(contId, email);
         
@@ -151,12 +156,24 @@ public without sharing class NctETMembershipPaymentPageController
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 }
                 recordType = 'Parent';
-                primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=firstname,
-                                      LastName=lastname,Email=email,Gender__c=genders,Phone=phone,Salutation=salutationPrimary,MailingPostalCode=postCode,
-                                      Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
-                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
-                                      HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt);
-                insert primaryContact;
+                    primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=firstname,
+                                        LastName=lastname,Email=email,Gender__c=genders,Phone=phone,Salutation=salutationPrimary,MailingPostalCode=postCode,
+                                        Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
+                                        MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
+                                        HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt);
+                    Database.SaveResult sr = Database.insert(primaryContact, false);
+                if (!sr.isSuccess()) {
+                    
+                    // Insertion failed due to duplicate detected
+                    for(Database.Error duplicateError : sr.getErrors()){
+                        Datacloud.DuplicateResult duplicateResult = 
+                            ((Database.DuplicateError)duplicateError).getDuplicateResult();
+                        System.debug('Duplicate records have been detected by ' + 
+                                     duplicateResult.getDuplicateRule());
+                        System.debug(duplicateResult.getErrorMessage());
+                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Duplicate records found.'));
+                    }
+                }
                 if(!Schema.sObjectType.Contact.fields.FirstName.isCreateable()){
                 	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
              		}
@@ -168,7 +185,7 @@ public without sharing class NctETMembershipPaymentPageController
                     secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
                                       LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
                                       Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
-                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
+                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
                     insert secondaryContact;
                     contactType = 'joint';
@@ -186,7 +203,7 @@ public without sharing class NctETMembershipPaymentPageController
             if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
              }
-        primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Email = :email limit 1];
+        primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Email = :email OR Id = :contId limit 1];
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :primaryContact.Id OR Parent_Contact__c = :contId];
         if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
         {
@@ -199,7 +216,7 @@ public without sharing class NctETMembershipPaymentPageController
             secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
                                       LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
                                       Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
-                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_Out__c=smsOpt,Post_Opt_Out__c=postOpt,
+                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
             insert secondaryContact;
         }
@@ -256,15 +273,8 @@ public without sharing class NctETMembershipPaymentPageController
                 {
                     
                     paymentHubCallout();
-                    Set<String> whiteListedDomains = new Set<String>();
-                    whiteListedDomains.add(New URL(redirectURL).getHost());
-                    if(!whiteListedDomains.contains(New URL(redirectURL).getHost())){
-                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-                    }
-                    PageReference pageRef = new PageReference(redirectURL);
-    
+                    PageReference pageRef = new PageReference(redirectURL);    
                     pageRef.setRedirect(true);
-
                     return pageRef;
                     
                 }
@@ -306,13 +316,13 @@ public without sharing class NctETMembershipPaymentPageController
     }
     public void nctBranchs(){
         
-        String emails = Apexpages.currentPage().getParameters().get('emailsVal').escapeHtml4();
+        String emails = Apexpages.currentPage().getParameters().get('emailsVal');
         if(contId == null){
             isContactExisting = ContactUtilities.isContactExisting(emails);
 
         }
         isMembershipExists = ContactUtilities.isMembershipExists(contId, emails);
-        postCode = Apexpages.currentPage().getParameters().get('postVal').escapeHtml4();
+        postCode = Apexpages.currentPage().getParameters().get('postVal');
 
         if(postCode != null && postCode != ''){
         nearestBranchs = MembershipUtilties.getBranches(postCode);
@@ -321,7 +331,7 @@ public without sharing class NctETMembershipPaymentPageController
         }
     public void membershipDupeChecker(){
         
-        String emails = Apexpages.currentPage().getParameters().get('emailDupeVal').escapeHtml4();
+        String emails = Apexpages.currentPage().getParameters().get('emailDupeVal');
 
         if(contId == null){
             isContactExisting = ContactUtilities.isContactExisting(emails);
@@ -333,7 +343,7 @@ public without sharing class NctETMembershipPaymentPageController
     public void giftAidCreation(){
         displayMbrNoMessage = true;
         if(sessionProfile != 'Standard'){
-            feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName').escapeHtml4();
+            feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName');
             PageReference redirecContUrl;
 
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
