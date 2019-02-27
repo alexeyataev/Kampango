@@ -115,8 +115,16 @@ public without sharing class NctETMembershipPaymentPageController
                 postOpt = primaryContact.Post_Opt_In__c;
                 emailOpt = primaryContact.HasOptedOutOfEmail;
                 doNotCallOpt = primaryContact.DoNotCall;
-               
- 		
+
+            }
+            List<Contact> secondaryContactList = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where Parent_Contact__c =:primaryContact.Id LIMIT 1];
+            if(secondaryContactList.size()>0){
+                
+                secondContactFirstName = secondaryContactList[0].FirstName;
+                secondContactLastName = secondaryContactList[0].LastName;
+                secondContactEmail = secondaryContactList[0].Email;
+                secondContactPhone = secondaryContactList[0].Phone;
+
             }
         
         }
