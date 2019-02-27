@@ -48,7 +48,8 @@ public without sharing class ThankYouHelper {
                 recDon.npe03__Contact__c = cont.Id;
                 recDon.CARE_Payment_Frequency__c = 'One Time';
                 recDon.First_Contact__c = cont.Id;
-                recDon.npe03__Installment_Period__c = 'Yearly';
+                recDon.npe03__Installment_Period__c = '--None--';
+                recDon.npe03__Installments__c = 0;
                 recDon.Membership_Status__c = 'Confirmed';
                 Insert recDon;
             }
