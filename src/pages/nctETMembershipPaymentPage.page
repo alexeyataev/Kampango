@@ -473,13 +473,13 @@
                                                         <div class="col-md-5">
                                                             <div><label><sup class="light-orange-color">*</sup>First
                                                                     Name</label></div>
-                                                            <input id='textForenamePartner' name='textForenamePartner' value="{!secondContactFirstName}" type="text"  class="form-fields membership-fields"
+                                                            <input id='textForenamePartner' name='textForenamePartner' type="text"  class="form-fields membership-fields"
                                                                 placeholder="First Name" />
                                                         </div>
                                                         <div class="col-md-5">
                                                             <div><label><sup class="light-orange-color">*</sup>Last
                                                                     Name</label></div>
-                                                            <input type="text" id='textSurnamePartner' name='textSurnamePartner' value="{!secondContactLastName}" class="form-fields membership-fields"
+                                                            <input type="text" id='textSurnamePartner' name='textSurnamePartner' class="form-fields membership-fields"
                                                                 placeholder="Last Name" />
                                                         </div>
                                                     </div>
@@ -499,7 +499,7 @@
                                                         <div class="col-md-12 col-12">
                                                             <div><label><sup class="light-orange-color">*</sup>Email
                                                                     Address</label></div>
-                                                            <input type="email" id='textEmailPartner' name='textEmailPartner' value="{!secondContactEmail}" class="form-fields membership-fields"
+                                                            <input type="email" id='textEmailPartner' name='textEmailPartner' class="form-fields membership-fields"
                                                                 placeholder="Email address" />
                                                         </div>
                                                     </div>
@@ -507,7 +507,7 @@
                                                         <div class="col-md-12 col-12">
                                                             <div><label><sup class="light-orange-color">*</sup>Phone
                                                                     Number</label></div>
-                                                            <input type="text" name='textTelephoneHomePartner' id='textTelephoneHomePartner' value="{!secondContactPhone}" class="form-fields membership-fields"
+                                                            <input type="text" name='textTelephoneHomePartner' id='textTelephoneHomePartner' class="form-fields membership-fields"
                                                                 placeholder="Phone number" />
                                                         </div>
                                                     </div>
