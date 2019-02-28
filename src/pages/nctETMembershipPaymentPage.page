@@ -1253,7 +1253,7 @@
                         var branch = $('#selectBranch :selected').text();
                         if (branch == "") {
                         $('#MembershipalertModal').modal();
-                        $('.modal-body').html('<div>' + 'Please Find Address.' + '</div>');
+                        $('.modal-body').html('<div>' + 'Please click on "Find Address" to select address and NCT Branch.' + '</div>');
                             return false
                         }
                         else {
