@@ -14,8 +14,9 @@
         <name>ApexComponent</name>
     </types>
     <types>
+        <members>Contact.Payment_Profile__c</members>
         <members>gaid__Gift_Aid_Declaration__c.Method__c</members>
-         <name>CustomField</name>
+        <name>CustomField</name>
     </types> 
     <version>45.0</version>
 </Package>
