@@ -338,13 +338,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Description__c</fields>
-        <fields>Practitioner__c</fields>
-        <fields>Course_Name__c</fields>
-        <fields>Status__c</fields>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>PSA__c</fields>
         <fields>PSA_Roles__c</fields>
         <fields>CREATEDBY_USER</fields>
