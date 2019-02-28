@@ -11,10 +11,10 @@ private class PaymentHubCalloutUtilitiesTest {
         
         list<String> contactDetails = new list<String>();
           
-        PaymentHubApiSettings__c PaymentHubApiSettings = new PaymentHubApiSettings__c();
-        PaymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
-        PaymentHubApiSettings.Credit_Card_Payment_API_Token__c = '1234567890123';
-        insert PaymentHubApiSettings; 
+        PaymentHubApiSettings__c paymentHubApiSettings = new PaymentHubApiSettings__c();
+        paymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
+        paymentHubApiSettings.Credit_Card_Payment_API_Token__c = '1234567890123';
+        insert paymentHubApiSettings; 
      
         Membership_Type__mdt  membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                 No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
@@ -32,9 +32,9 @@ private class PaymentHubCalloutUtilitiesTest {
         contact con = new contact();
         
          
-        String FirstName = 'NCT Child';
-        String LastName = 'Trust';
-        String Email = 'nct@gmail.com';
+        String firstName = 'NCT Child';
+        String lastName = 'Trust';
+        String email = 'nct@gmail.com';
         
         
         list<String> contactDetails = new list<String>();
@@ -42,10 +42,10 @@ private class PaymentHubCalloutUtilitiesTest {
         contactDetails.add(FirstName);
         contactDetails.add(LastName);
           
-        PaymentHubApiSettings__c PaymentHubApiSettings = new PaymentHubApiSettings__c();
-        PaymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
-        PaymentHubApiSettings.Credit_Card_Payment_API_Token__c = '1234567890123';
-        insert PaymentHubApiSettings; 
+        PaymentHubApiSettings__c paymentHubApiSettings = new PaymentHubApiSettings__c();
+        paymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
+        paymentHubApiSettings.Credit_Card_Payment_API_Token__c = '1234567890123';
+        insert paymentHubApiSettings; 
  
 
         
