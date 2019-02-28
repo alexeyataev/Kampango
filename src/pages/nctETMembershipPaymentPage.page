@@ -479,7 +479,7 @@
                                                         <div class="col-md-5">
                                                             <div><label><sup class="light-orange-color">*</sup>Last
                                                                     Name</label></div>
-                                                            <input type="text" id='textSurnamePartner' name='textSurnamePartner'  class="form-fields membership-fields"
+                                                            <input type="text" id='textSurnamePartner' name='textSurnamePartner' class="form-fields membership-fields"
                                                                 placeholder="Last Name" />
                                                         </div>
                                                     </div>
@@ -499,7 +499,7 @@
                                                         <div class="col-md-12 col-12">
                                                             <div><label><sup class="light-orange-color">*</sup>Email
                                                                     Address</label></div>
-                                                            <input type="email" id='textEmailPartner' name='textEmailPartner'  class="form-fields membership-fields"
+                                                            <input type="email" id='textEmailPartner' name='textEmailPartner' class="form-fields membership-fields"
                                                                 placeholder="Email address" />
                                                         </div>
                                                     </div>
@@ -507,7 +507,7 @@
                                                         <div class="col-md-12 col-12">
                                                             <div><label><sup class="light-orange-color">*</sup>Phone
                                                                     Number</label></div>
-                                                            <input type="text" name='textTelephoneHomePartner'  id='textTelephoneHomePartner' class="form-fields membership-fields"
+                                                            <input type="text" name='textTelephoneHomePartner' id='textTelephoneHomePartner' class="form-fields membership-fields"
                                                                 placeholder="Phone number" />
                                                         </div>
                                                     </div>
