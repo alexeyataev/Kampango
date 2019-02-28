@@ -320,10 +320,10 @@ OR(
 ISNEW(), 
 ISCHANGED(Expiry_Date__c) 
 ), 
-Expiry_Date__c &lt; TODAY() 
+Expiry_Date__c &lt;= TODAY() 
 )</errorConditionFormula>
         <errorDisplayField>Expiry_Date__c</errorDisplayField>
-        <errorMessage>Expiration date should be greater than Today&apos;s date</errorMessage>
+        <errorMessage>Expiry date should be a future date</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
