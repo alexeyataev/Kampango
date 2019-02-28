@@ -59,7 +59,7 @@ public without sharing class PaymentHubCalloutUtilities {
         Http paymentHubHttp = new Http(); 
         
         
-        paymentHubRequest.setEndpoint('callout:Payment_API');
+        paymentHubRequest.setEndpoint('callout:Stripe_Payment_API');
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('api-token',paymentHubApiSettings.Credit_Card_Payment_API_Token__c);
         paymentHubRequest.setBody(JSON.serialize(paymentReq));
