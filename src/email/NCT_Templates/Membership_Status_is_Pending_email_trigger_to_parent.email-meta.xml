@@ -5,7 +5,7 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Membership Status is Pending email trigger to parent</name>
     <style>none</style>
-    <subject>Membership Status is Pending email trigger to parent</subject>
+    <subject>Membership Status is Pending</subject>
     <textOnly>NCT
 
 Hi {!npe03__Recurring_Donation__c.First_Contact__c}
