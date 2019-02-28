@@ -115,8 +115,16 @@ public without sharing class NctETMembershipPaymentPageController
                 postOpt = primaryContact.Post_Opt_In__c;
                 emailOpt = primaryContact.HasOptedOutOfEmail;
                 doNotCallOpt = primaryContact.DoNotCall;
-               
- 		
+
+            }
+            List<Contact> secondaryContactList = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where Parent_Contact__c =:primaryContact.Id LIMIT 1];
+            if(secondaryContactList.size()>0){
+                
+                secondContactFirstName = secondaryContactList[0].FirstName;
+                secondContactLastName = secondaryContactList[0].LastName;
+                secondContactEmail = secondaryContactList[0].Email;
+                secondContactPhone = secondaryContactList[0].Phone;
+
             }
         
         }
@@ -316,13 +324,13 @@ public without sharing class NctETMembershipPaymentPageController
     }
     public void nctBranchs(){
         
-        String emails = Apexpages.currentPage().getParameters().get('emailsVal');
+        String emails = Apexpages.currentPage().getParameters().get('emailsVal').escapeHtml4();
         if(contId == null){
             isContactExisting = ContactUtilities.isContactExisting(emails);
 
         }
         isMembershipExists = ContactUtilities.isMembershipExists(contId, emails);
-        postCode = Apexpages.currentPage().getParameters().get('postVal');
+        postCode = Apexpages.currentPage().getParameters().get('postVal').escapeHtml4();
 
         if(postCode != null && postCode != ''){
         nearestBranchs = MembershipUtilties.getBranches(postCode);
@@ -331,7 +339,7 @@ public without sharing class NctETMembershipPaymentPageController
         }
     public void membershipDupeChecker(){
         
-        String emails = Apexpages.currentPage().getParameters().get('emailDupeVal');
+        String emails = Apexpages.currentPage().getParameters().get('emailDupeVal').escapeHtml4();
 
         if(contId == null){
             isContactExisting = ContactUtilities.isContactExisting(emails);
@@ -343,7 +351,7 @@ public without sharing class NctETMembershipPaymentPageController
     public void giftAidCreation(){
         displayMbrNoMessage = true;
         if(sessionProfile != 'Standard'){
-            feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName');
+            feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName').escapeHtml4();
             PageReference redirecContUrl;
 
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
