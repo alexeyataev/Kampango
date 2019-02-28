@@ -1248,6 +1248,19 @@
                     }*/
                 })
                 $("#nameSubmit").click(function () {
+                    
+                    // --------------------------
+                        var branch = $('#selectBranch :selected').text();
+                        if (branch == "") {
+                        $('#MembershipalertModal').modal();
+                        $('.modal-body').html('<div>' + 'Please Find Address.' + '</div>');
+                            return false
+                        }
+                        else {
+                            $('#selectBranch').removeClass('error');
+                        }
+                    //------------------------------
+                    
                      setInterval(function(){
                         var membershiptype = $("#membershiptype").text();
                         if(membershiptype === ''){
