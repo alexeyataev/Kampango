@@ -58,10 +58,6 @@
                 <behavior>Edit</behavior>
                 <field>DoNotCall</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>npsp__Do_Not_Contact__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
