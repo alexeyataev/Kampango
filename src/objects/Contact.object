@@ -4311,18 +4311,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Payment_Profile__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Payment Profile</label>
-        <referenceTo>cpm__Payment_Profile__c</referenceTo>
-        <relationshipLabel>Contact</relationshipLabel>
-        <relationshipName>Contact</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Phone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>

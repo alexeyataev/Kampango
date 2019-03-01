@@ -109,10 +109,7 @@ public without sharing class MembershipUtilties {
     *  Story:  W001166
     */
     public static Boolean isPractitioner(String firstName, String lastName, String email){
-		  if(!Schema.sObjectType.Contact.fields.LastName.isAccessible() && !Schema.sObjectType.Contact.fields.Email.isAccessible() && !Schema.sObjectType.Practitioner_Role__c.fields.Is_Active__c.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-                return null;
-         } 
+		  
         List<Contact> contactList  = [
                                         SELECT
                                             Id,
@@ -133,6 +130,10 @@ public without sharing class MembershipUtilties {
                                             LastName = :lastName AND
                                             Email = :email
                                     ];
+        if(!Schema.sObjectType.Contact.fields.LastName.isAccessible() && !Schema.sObjectType.Contact.fields.Email.isAccessible() && !Schema.sObjectType.Practitioner_Role__c.fields.Is_Active__c.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         } 
 
             if(contactList.size()>0 && contactList[0].Practitioner_Role__r != null && contactList[0].Practitioner_Role__r.size() > 0){
                 //System.debug('Practitioner License is : '+contactList[0].Practitioner_Licence__r.size());

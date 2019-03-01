@@ -105,10 +105,6 @@
         <apexClass>SiteRegisterControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>NctETMembershipPaymentPageControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
         <custom>true</custom>
     <fieldPermissions>
         <editable>false</editable>
@@ -1123,11 +1119,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Parent_Contact__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.Payment_Profile__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

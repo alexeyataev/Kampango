@@ -10,18 +10,16 @@ private class DirectPaymentLinkSendToParentTest
         cont.Prefered_First_Name__c = 'NCT';
         insert cont;        
         
-        npe03__Recurring_Donation__c recurringDonation = new npe03__Recurring_Donation__c();
-        recurringDonation.First_Contact__c = cont.Id;
-        recurringDonation.npe03__Amount__c = 10000;
-        recurringDonation.npe03__Contact__c = cont.Id;
-        recurringDonation.Membership_type__c = '12 Months Standard - Individual';        
-        insert recurringDonation;
+        Payment_Link__c paymentLink = new Payment_Link__c();
+        paymentLink.Contact__c = cont.id; 
+        paymentLink.Email__c = 'nctchil@gmail.com';
+        insert paymentLink;
         
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
+        system.debug('payment'+paymentLink);
+        
         DirectPaymentLinkSendToParent.paymentHubCallout(cont.Id);
-        Test.stopTest();
-        system.assertEquals('12 Months Standard - Individual', recurringDonation.Membership_type__c);
+       
+        system.assertEquals('nctchil@gmail.com', paymentLink.Email__c);
         //DirectPaymentLinkSendToParent.sendPaymentLinkToParent(redirectURL);        
     } 
 
