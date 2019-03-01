@@ -610,7 +610,7 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
+            <restricted>false</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
@@ -1531,6 +1531,101 @@ CASE(
             </values>
             <values>
                 <fullName>Post</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+		<picklistValues>
+            <picklist>Source__c</picklist>
+            <values>
+                <fullName>Automatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B%26B - request by phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B%26B - request by post</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Baby Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dunelm Staff Membership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enquiry by EMAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enquiry by Paper</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enquiry by phone - main NCT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enquiry pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enquiry pack - ANTENATAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enquiry pack GENERIC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Knowledge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gifted Membership recipient</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz Class Bookings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Memb with ant classes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Memb%2E form in branch Newsletter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Membership General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Membership by phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Membership form A5 green</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Membership renewing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nov 2011 Membership Fix</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Membership Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Renewing membership</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
