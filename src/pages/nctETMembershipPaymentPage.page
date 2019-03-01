@@ -473,13 +473,13 @@
                                                         <div class="col-md-5">
                                                             <div><label><sup class="light-orange-color">*</sup>First
                                                                     Name</label></div>
-                                                            <input id='textForenamePartner' name='textForenamePartner' type="text"  class="form-fields membership-fields"
+                                                            <input id='textForenamePartner' name='textForenamePartner' value="{!secondContactFirstName}" type="text"  class="form-fields membership-fields"
                                                                 placeholder="First Name" />
                                                         </div>
                                                         <div class="col-md-5">
                                                             <div><label><sup class="light-orange-color">*</sup>Last
                                                                     Name</label></div>
-                                                            <input type="text" id='textSurnamePartner' name='textSurnamePartner' class="form-fields membership-fields"
+                                                            <input type="text" id='textSurnamePartner' name='textSurnamePartner' value="{!secondContactLastName}" class="form-fields membership-fields"
                                                                 placeholder="Last Name" />
                                                         </div>
                                                     </div>
@@ -499,7 +499,7 @@
                                                         <div class="col-md-12 col-12">
                                                             <div><label><sup class="light-orange-color">*</sup>Email
                                                                     Address</label></div>
-                                                            <input type="email" id='textEmailPartner' name='textEmailPartner' class="form-fields membership-fields"
+                                                            <input type="email" id='textEmailPartner' name='textEmailPartner' value="{!secondContactEmail}" class="form-fields membership-fields"
                                                                 placeholder="Email address" />
                                                         </div>
                                                     </div>
@@ -507,7 +507,7 @@
                                                         <div class="col-md-12 col-12">
                                                             <div><label><sup class="light-orange-color">*</sup>Phone
                                                                     Number</label></div>
-                                                            <input type="text" name='textTelephoneHomePartner' id='textTelephoneHomePartner' class="form-fields membership-fields"
+                                                            <input type="text" name='textTelephoneHomePartner' value="{!secondContactPhone}" id='textTelephoneHomePartner' class="form-fields membership-fields"
                                                                 placeholder="Phone number" />
                                                         </div>
                                                     </div>
@@ -1154,6 +1154,7 @@
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/jquery.min.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/bootstrap.min.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/pca.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/custom-validations.js')}"/>
     <script>
         $(document).ready(function () {
             
@@ -1187,7 +1188,7 @@
                 	$('#accountNumber').focus();
                 }
             });
-            $("#textMobile, #scd1, #scd2, #scd3, #accountNumber").keydown(function (e) {
+            $("#textMobile, #scd1, #scd2, #scd3, #accountNumber, #textTelephoneHomePartner").keydown(function (e) {
                     if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
                         (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
                         (e.keyCode >= 35 && e.keyCode <= 40)) {
@@ -1214,8 +1215,6 @@
                     }
                 })
                 $('#selectBranch').change(function() {
-                    console.log("GO!");
-                    console.log($('#selectBranch :selected').val());
 
                     if (($('#selectBranch :selected').val() != '')) {
                         var selectBranch = $('#selectBranch :selected').val();
@@ -1249,6 +1248,19 @@
                     }*/
                 })
                 $("#nameSubmit").click(function () {
+                    
+                    // --------------------------
+                        var branch = $('#selectBranch :selected').text();
+                        if (branch == "") {
+                        $('#MembershipalertModal').modal();
+                        $('.modal-body').html('<div>' + 'Please click on "Find Address" to select address and NCT Branch.' + '</div>');
+                            return false
+                        }
+                        else {
+                            $('#selectBranch').removeClass('error');
+                        }
+                    //------------------------------
+                    
                      setInterval(function(){
                         var membershiptype = $("#membershiptype").text();
                         if(membershiptype === ''){
@@ -1260,14 +1272,6 @@
                             $('#membershiptype-loader').removeClass('show-loader');
                         }
                     },100)
-                    console.log($(twomem)[0].checked);
-                    console.log($(selectBranch).checked);
-                    console.log($('#address_line_1 ').val());
-                    console.log($('#textAddress2').val());
-                    console.log($('#textAddress3').val());
-                    console.log($('#town').val());
-                    console.log($('#county').val());
-                    console.log($('#due-Date').val());
                     var salutation = $('#salutation :selected').text();
 
                     var existContact = $('#hdn').val();
@@ -1288,7 +1292,6 @@
                               $('#town').val(),$('#county').val(),$(salutation).text());
                         
                             //var gender = $('input[name=gender]':checked).val();
-                            //console.log(gender);
                             $('#register_li').removeClass('active');
                             $('#payment_li').addClass('active');
                             $('#register').removeClass('active show');
@@ -1358,10 +1361,6 @@
                     var sortCode = sortCode1 + sortCode2 + sortCode3;
                     var accountNumber = $('#accountNumber').val();
                     var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
-                    console.log(giftAidCheckbox);
-                    console.log(accountName);
-                    console.log(sortCode);
-                    console.log(accountNumber);
                     saveRecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
                     var forename_Dsp = $('#textForename').val();
                     $('#confirmation_li').removeClass('active');
@@ -1464,14 +1463,8 @@
         console.log( "ready!" ); //branch
         var cardPayment = false;
         $('#selectMembership').change(function() {
-            //alert("GO");
-            console.log($('#selectMembership :selected').text().includes('Credit'));
-            console.log($('#selectMembership :selected').text());
-			console.log("GO!");
-			console.log($('#selectMembership :selected').val());
             var paymentType = $('#selectMembership :selected').text().includes('Credit');
             var staffPayment = $('#selectMembership :selected').text().includes('Life Membership - Free')
-            //console.log('paymenttype', paymentType);
             if (paymentType === true || staffPayment === true){
                 $("#Pay_now, #gift_aid_btn, #direct_pay_btn, #confirm_all_pay_dd").html('Sign Up');
             }
@@ -1523,8 +1516,6 @@
                         }
                   },500)  
             	}
-                console.log($('#selectMembership :selected').val());
-                console.log($('#selectMembership :selected').text());
                 if( $('#selectMembership :selected').text().includes('per quarter')){
                 	$('.eighteen-months-membership').removeClass('hide');
                	}
@@ -1690,7 +1681,6 @@
             		if (cardPayment === true) {
             			giftAidCreation(giftAidCheckbox);
                     }
-                    //console.log($(giftAidCheckbox)[0].checked);
                     //saverecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
                     $('#payment_li, #gift_li').removeClass('active');
                     $('#confirmation_li').addClass('active');
@@ -1725,321 +1715,6 @@
              
 
     });
-    </script>
-    <script>
-        function validEmail(v) {
-            var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
-            return (v.match(r) == null) ? false : true;
-        }
-
-        function validPhone(v) {
-            //var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]");
-            //var r = new RegExp("[a-zA-Z]");
-            //return (v.match(r) == null) ? true : false;
-            // var phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
-            // return phoneNumberPattern.test(v);
-            var phoneNumber = $('#textMobile').val();
-            console.log(phoneNumber.length, 'phoneNumber.length');
-            if(phoneNumber.length ==11 || phoneNumber.length ==13 || phoneNumber.length ==14){
-                return true;
-            }
-            else {
-            	return false;
-            }
-        }
-
-		/*
-        function validBranch() {
-            console.log("118:"+$('#selectBranch').val());
-            if (($('#selectBranch').val()=="Nearest first")  ||  ($('#selectBranch').val()=="--------------") || ($('#selectBranch').val()=="Alphabetical list below:") ) {
-                error = error + "Please select a branch\n";
-                $('#selectBranch').addClass('error');
-            }
-        }
-        */
-
-        function validText(v) {
-            //var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]");
-            var r = new RegExp("[0-9]");
-            return (v.match(r) == null) ? true : false;
-        }
-
-        function validDate() {
-               var date = $("#due-Date").val();
-               if (date == "" || date == undefined) {
-                   return false
-               } else {
-                   return true;
-               }
-        }
-
-        function validateGender() {
-
-            var gender = $("input[name$='gender']:checked").val();
-            console.log(gender);
-                    if(gender == ""|| gender == undefined) {
-                        return false
-                    }
-                    else{
-                        return true;
-            }
-        }
-        function validateJoin() {
-                    error="";
-                    console.log("123");
-
-                   /* // validate the Due date
-
-                        if(!validDate()){
-                            error = error + "Please Enter Due Date .\n" + "<br>";
-                             $('#due-Date').css({"border":"1px solid red", "background-color":"rgba(255, 0, 0, 0.25)"});
-                        }else{
-                            var date = $("#due-Date").val();
-                            var  currentDt = new Date();
-                            var  currentYear = currentDt.getFullYear();
-                            var  d = new Date(date);
-                            var  year = d.getFullYear();
-                            var  yearLength = year.toString().length;
-                     		if(yearLength == 4 && currentYear <= year){
-                        		console.log("success")
-                         	}else{
-                             error= error +"Please Enter valid date. \n" + "<br>";
-                              $('#due-Date').css({"border":"1px solid red", "background-color":"rgba(255, 0, 0, 0.25)"});
-                         	}
-                    	}
-
-            	    // validate the duedate
-                    */
-
-                    if($('#selectTitle').val() == "") {
-                        error = error +  "Please select your title.\n" + "<br>";
-                        $('#selectTitle').addClass('error');
-                        //return false;
-                    }
-                    if(validateGender()) {
-                        //$('.gender-error').addClass('hide');
-                    }
-                    else{
-                        //$('.gender-error').removeClass('hide');
-                        error=error+'please select gender.\n' + '<br>';
-                    }
-
-
-                    $('input').removeClass("error");    // clear all markup before beginning.
-                        
-                   /* if($('#county').val() == "") {
-
-                    if($('#county').val() == "") {
-                        error = error +  "Please enter your county.\n" + "<br>";
-                        $('#county').addClass('error');
-                        //return false;
-                    }
-                    */
-                    var postecodeValue = $('#postcode').val();
-                    if($('#postcode').val().length < 1){
-                        $('#postcode').addClass('error');
-                        error = error + "Please enter a post code.\n" + "<br>";
-                    }
-                    else {
-                        if($('#postcode').val().length <=4){
-                            error = error + "Postcode should be min 5 characters.\n" + "<br>";
-                            $('#postcode').addClass('error');
-                        }
-                        else {
-                            $('#postcode').removeClass('error');  
-                        }
-                    }
-				
-            		// validBranch();
-
-
-                    if($('#textForename').val() == "") {
-                        error = error +  "Please enter your forename.\n" + "<br>";
-                        $('#textForename').addClass('error');
-                        //return false;
-                    }
-
-                    if($('#textSurname').val() == "") {
-                        $('#textSurname').addClass('error');
-                        error = error + "Please enter your surname.\n" + "<br>";
-                        //return false;
-                    }
-
-                    if($('#textAddress1').val() == "") {
-                        $('#address_line_1').addClass('error');
-                        error = error + "Please enter your address.\n" + "<br>";
-                        //return false;
-                    }
-
-                    if($('#agree').is(":checked") != true) {
-                        error = error + "Please agree the Terms and Conditions.\n" + "<br>";
-                    }
-
-                    if($('#textEmail').val() == "") {
-                        $('#textEmail').addClass('error');
-                        error = error + "Please enter your email address.\n" + "<br>";
-                        //return false;
-                    } else {
-
-                        var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;                                         //Define email filter
-                        if (!(emailFilter.test($('#textEmail').val()))) {                               //Filter email out
-                            error = error + "Please enter a valid email address.\n" + "<br>";
-                            $('#textEmail').addClass('error');
-                            //return false;
-                        }
-                        var illegalCharsForEmail= /[\(\)\<\>\,\;\:\\\"\[\]]/ ;                                  //Define illegal chars
-                        if ($('#textEmail').val().match(illegalCharsForEmail)) {                        //Check illegal chars
-                            $('#textEmail').addClass('error');
-                            error = error + "The email address contains illegal characters.\n" + "<br>";
-                            //return false;
-                        }
-
-                    }
-                    //alert(validEmail(document.form1.textEmail.value));
-
-                    if($('#textTown').val() == "") {
-                        $('#town').addClass('error');
-                        error = error + "Please enter your town.\n" + "<br>";
-                        //return false;
-                    }
-                    if($('#textPostcode').val() == "") {
-                        $('#textPostcode').addClass('error');
-                        error = error + "Please enter your postcode.\n" + "<br>";
-                        //return false;
-                    }
-
-                    if($('#textMobile').val() == "") {
-                        error = error + "Please enter your mobile number.\n" + "<br>";
-                        $('#textMobile').addClass('error');
-
-                        //return false;
-                    } else {
-                        // not blank, check no alpha
-                        if (!validPhone($('#textMobile').val())) {
-                            error = error + "UK Mobile number starts with 0 and 11 digits without Access code or With Access code (+44 or 0044) 13 or 14 digits.\n" + "<br>";
-                           $('#textMobile').addClass('error');
-                        }
-
-                    }
-                    if ($(twomem)[0].checked){
-                        var personPhoneNumber = $('#textTelephoneHomePartner').val();
-                        console.log(personPhoneNumber.length, 'phoneNumber.length');
-                        if(personPhoneNumber.length ==0 || personPhoneNumber.length ==11 || personPhoneNumber.length ==13 || personPhoneNumber.length ==14){
-                            $('#textTelephoneHomePartner').removeClass('error');
-                        }
-                        else {
-                            error = error + "UK Mobile number starts with 0 and 11 digits without Access code or With Access code (+44 or 0044) 13 or 14 digits.\n"
-                            $('#textTelephoneHomePartner').addClass('error');
-                        }
-                        if($('#textEmailPartner').val() !='' ){
-                        	var secondEmailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;                                         //Define email filter
-                            if (!(secondEmailFilter.test($('#textEmailPartner').val()))) {                               //Filter email out
-                                error = error + "Please enter a valid email address.\n";
-                                $('#textEmailPartner').addClass('error');   
-                            }
-                            var secondIllegalCharsForEmail= /[\(\)\<\>\,\;\:\\\"\[\]]/ ;                                  //Define illegal chars
-                            if ($('#textEmailPartner').val().match(secondIllegalCharsForEmail)) {                        //Check illegal chars
-                                $('#textEmailPartner').addClass('error');
-                                error = error + "The email address contains illegal characters.\n";   
-                            }
-                        }
-                        
-                    }
-                    var babyDay = $('#selectDay').val();
-                    var babyMonth = $('#selectMonth').val();
-                    var babyYear =  $('#babyYear').val();
-
-                    if(babyDay == "" && babyMonth == "" && babyYear == "") {
-                        //Dont do anything
-                    } else if(babyDay != "" && babyMonth != "" && babyYear != "") {
-                        //Dont do anything
-                    } else {
-                        error = error + "Either give full date or no date at all for 'Date of birth of baby'\n";
-                        //return false;
-                    }
-
-                console.log("211");
-
-            if ($('#twomem').attr('checked')) {
-                    if($('#selectTitlePartner').val() == "Please Select" ) {
-                        error = error +  "Please select your partner's title.\n" + "<br>";
-                        $('#selectTitle').addClass('error');
-                        //return false;
-                    }
-
-
-                if ($('#textForenamePartner').val()=="") {
-                    $('#textForenamePartner').addClass('error');
-                    error = error + "Please enter your partner's first name.\n" + "<br>";
-                } else {
-                    if (!validText($('#textForenamePartner').val())) {
-                        error = error + "Please do not include numeric values in the name field\n" + "<br>";
-                        $('#textSurnamePartner').addClass('error');
-                    }
-                }
-
-                if ($('#textSurnamePartner').val()=="") {
-                    $('#textSurnamePartner').addClass('error');
-                    error = error + "Please enter your partner's surname.\n" + "<br>";
-                }else {
-                    if (!validText($('#textSurnamePartner').val())) {
-                        error = error + "Please do not include numeric values in the surname field\n" + "<br>";
-                        $('#textSurnamePartner').addClass('error');
-                    }
-                }
-                if($('#textEmailPartner').val() == "") {
-                    $('#textEmailPartner').addClass('error');
-                    error = error + "Please enter your partner's email address.\n" + "<br>";
-                    //return false;
-                } else {
-                    var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;                                         //Define email filter
-                    if (!(emailFilter.test($('#textEmail').val()))) {                               //Filter email out
-                        error = error + "Please enter a valid email address.\n" + "<br>";
-                        $('#textEmailPartner').addClass('error');
-                        //return false;
-                    }
-                    var illegalCharsForEmail= /[\(\)\<\>\,\;\:\\\"\[\]]/ ;                                  //Define illegal chars
-                    if ($('#textEmail').val().match(illegalCharsForEmail)) {                        //Check illegal chars
-                        $('#textEmailPartner').addClass('error');
-                        error = error + "The email address contains illegal characters.\n" + "<br>";
-                        //return false;
-                    }
-                }
-                if($('#textMobilePartner').val() == "") {
-                    error = error + "Please enter your partner's mobile number.\n" + "<br>";
-                    $('#textMobilePartner').addClass('error');
-
-                    //return false;
-                } else {
-                    // not blank, check no alpha
-                    if (!validPhone($('#textMobilePartner').val())) {
-                        error = error + "Please enter a valid mobile number.\n" + "<br>";
-                    $('#textMobilePartner').addClass('error');
-                    }
-                }
-            }
-
-            /*----------- validate branch ----*/
-            var branch = $('#selectBranch :selected').text();
-            if( branch == "All NearestBranches" || branch =="--------------" || branch == "Alphabetical list below:" ){
-                error = error + "Please select a branch. \n" + "<br>";
-                 $('#selectBranch').addClass('error');
-            }else{
-                $('#selectBranch').removeClass('error');   
-            }
-
-            /* ---- validate branch ----- */
-
-                if (error != "") {
-                    //alert(error);
-                    $('#MembershipalertModal').modal();
-                    $('.modal-body').html('<div>' + error + '</div>');
-                    return false;
-                } else {
-                    return true;
-                }
-
-        }
     </script>
    <script>
 		$(document).ready(function () {

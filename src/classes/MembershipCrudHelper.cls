@@ -117,8 +117,8 @@ public without sharing class MembershipCrudHelper {
                 else{
                     giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = membershipDetails.GiftAid_Acquisition_Method__c;
                 }
-                giftAidDeclarationRecord[0].gaid__Start_Date__c = system.today();
-                giftAidDeclarationRecord[0].gaid__Date_Made__c = system.today();
+                giftAidDeclarationRecord[0].gaid__Start_Date__c = system.date.today();
+                giftAidDeclarationRecord[0].gaid__Date_Made__c = system.date.today();
                 giftAidDeclarationRecord[0].gaid__Active__c = true;
                 upsert giftAidDeclarationRecord[0];
                 
@@ -135,8 +135,8 @@ public without sharing class MembershipCrudHelper {
                 }
             
             
-                gftAid.gaid__Start_Date__c = system.today();
-                gftAid.gaid__Date_Made__c = system.today();
+                gftAid.gaid__Start_Date__c = system.date.today();
+                gftAid.gaid__Date_Made__c = system.date.today();
                 gftAid.gaid__Active__c = true;
                 
                 upsert gftAid;
@@ -225,7 +225,7 @@ public without sharing class MembershipCrudHelper {
              else{
                      
                          recDon = new npe03__Recurring_Donation__c();
-                 recDon.Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
+                 recDon.Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c+' '+membershipDetails.Payment_Method__c;
                     recDon.npe03__Amount__c = membershipDetails.Installment_Amount__c;
                     recDon.Membership_type__c = membershipDetails.Membership__c;
                     recDon.npe03__Installments__c = membershipDetails.No_of_Installments__c;

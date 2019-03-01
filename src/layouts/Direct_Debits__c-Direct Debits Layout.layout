@@ -101,16 +101,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Client__c</fields>
-        <fields>Course__c</fields>
-        <fields>Status__c</fields>
-        <fields>Booking_Date__c</fields>
-        <fields>Cost__c</fields>
-        <fields>Outstanding_Amount__c</fields>
-        <relatedList>Booking__c.Direct_Debit__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>Type__c</fields>
         <fields>Payment_Method__c</fields>
         <fields>Status__c</fields>

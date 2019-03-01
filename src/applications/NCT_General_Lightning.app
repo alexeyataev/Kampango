@@ -17,14 +17,6 @@
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Case</pageOrSobjectType>
         <type>Flexipage</type>
-        <profile>Branch Volunteer PC</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Case_Record_Page1</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Case</pageOrSobjectType>
-        <type>Flexipage</type>
         <profile>Membership coordinator</profile>
     </profileActionOverrides>
     <profileActionOverrides>
@@ -35,15 +27,6 @@
         <recordType>Case.Case</recordType>
         <type>Flexipage</type>
         <profile>Capacity PSA</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Case_Record_Page1</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Case</pageOrSobjectType>
-        <recordType>Case.Case</recordType>
-        <type>Flexipage</type>
-        <profile>Branch Volunteer PC</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -71,15 +54,6 @@
         <recordType>Case.De_Registration</recordType>
         <type>Flexipage</type>
         <profile>Capacity PSA</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Case_Record_Page1</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Case</pageOrSobjectType>
-        <recordType>Case.De_Registration</recordType>
-        <type>Flexipage</type>
-        <profile>Branch Volunteer PC</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -126,8 +100,6 @@
     <tabs>standard-home</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
-    <tabs>Course__c</tabs>
-    <tabs>Booking__c</tabs>
     <tabs>Direct_Debits__c</tabs>
     <tabs>Membership</tabs>
     <tabs>Payment_Plan__c</tabs>
@@ -136,7 +108,6 @@
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <tabs>standard-Campaign</tabs>
-    <tabs>Session__c</tabs>
     <tabs>PostCode_Allocation__c</tabs>
     <tabs>Permission__c</tabs>
     <tabs>Permission_Question__c</tabs>

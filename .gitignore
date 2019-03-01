@@ -1,0 +1,9 @@
+#Source related
+retrieve/
+build.properties
+
+#IDE related
+
+.forceCode/
+.sfdx/
+.vscode/

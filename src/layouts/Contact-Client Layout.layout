@@ -42,10 +42,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>npsp__Do_Not_Contact__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Expected_Due_Date__c</field>
             </layoutItems>
             <layoutItems>
@@ -98,7 +94,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SMS_Opt_Out__c</field>
+                <field>SMS_Opt_In__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -106,7 +102,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Post_Opt_Out__c</field>
+                <field>Post_Opt_In__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

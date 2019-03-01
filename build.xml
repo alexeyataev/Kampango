@@ -57,12 +57,24 @@
 
     <!-- Shows deploying code & running tests for code in directory -->
     <target name="deployCode">
-      <!-- Upload the contents of the "src" directory, running the tests for just 1 class 
-      <sf:deploy username="${env.username}" password="${env.password}" sessionId="${sf.sessionId}" serverurl="${env.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src" testLevel="RunSpecifiedTests" rollbackOnError="true">
-      	 <runTest>SampleDeployClass</runTest> 
-      </sf:deploy>-->
-	  <sf:deploy username="${env.username}" password="${env.password}" sessionId="${sf.sessionId}" serverurl="${env.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src" rollbackOnError="true">
-      </sf:deploy>
+        <antcall target="deployBase" />
+        <antcall target="deployPostPackage" />
+    </target>
+
+    <target name="deployBase">
+	    <sf:deploy username="${env.username}"
+                password="${env.password}"
+                sessionId="${sf.sessionId}"
+                serverurl="${env.serverurl}"
+                maxPoll="${sf.maxPoll}"
+                deployRoot="src"
+                rollbackOnError="true"
+                testLevel="RunLocalTests"
+                ignoreWarnings="true" />
+    </target>
+
+    <target name="deployPostPackage">
+        <sf:deploy username="${env.username}" password="${env.password}" sessionId="${sf.sessionId}" serverurl="${env.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src-postPackage" rollbackOnError="true" />
     </target>
 	
 	 <!-- Shows deploying code with no TestLevel sepcified -->
