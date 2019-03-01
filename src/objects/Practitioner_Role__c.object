@@ -74,7 +74,7 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-     <fields>
+    <fields>
         <fullName>Data_Source__c</fullName>
         <externalId>false</externalId>
         <label>Data Source</label>
@@ -298,7 +298,7 @@
     <pluralLabel>Practitioner Roles</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
-     <validationRules>
+    <validationRules>
         <fullName>Acquisition_Date_Should_Not_Blank</fullName>
         <active>true</active>
         <errorConditionFormula>ISBLANK( Acquisition_Date__c )</errorConditionFormula>
@@ -311,6 +311,19 @@
         <errorConditionFormula>ISBLANK( Expiry_Date__c )</errorConditionFormula>
         <errorDisplayField>Expiry_Date__c</errorDisplayField>
         <errorMessage>Please enter an Expiry Date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Expiry_Date_Should_be_Greater_than_Today</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND($Profile.Name &lt;&gt; &apos;System Administrator&apos;, 
+OR( 
+ISNEW(), 
+ISCHANGED(Expiry_Date__c) 
+), 
+Expiry_Date__c &lt;= TODAY() 
+)</errorConditionFormula>
+        <errorDisplayField>Expiry_Date__c</errorDisplayField>
+        <errorMessage>Expiry date should be a future date</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
