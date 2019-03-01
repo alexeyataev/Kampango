@@ -196,6 +196,10 @@
         <members>*</members>
         <name>Role</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>Settings</name>
+    </types>
 	<types>
         <members>*</members>
         <name>SharingRules</name>
