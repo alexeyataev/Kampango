@@ -243,7 +243,6 @@ public without sharing class NctETMembershipPaymentPageController
     public PageReference contactInfo()
     {
         if(membershipInfo != null && inspect == true){
-            feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
             PageReference redirecContUrl;
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
             if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
@@ -256,7 +255,6 @@ public without sharing class NctETMembershipPaymentPageController
                                                     where Id =:feeAmount];
         }
         else{
-            feeAmount = Apexpages.currentPage().getParameters().get('seltdName');
             PageReference redirecContUrl;
 
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
@@ -292,28 +290,12 @@ public without sharing class NctETMembershipPaymentPageController
                 else if(sessionProfile == 'Standard'){
                     
              
-                    displaySuccessMessage = true;
-                    paymentHubCallout();
-                    recDon = new npe03__Recurring_Donation__c();
-                    recDon.Name = membershipInfo.Contact_Type__c + ' ' + membershipInfo.Membership__c+' '+membershipInfo.Payment_Method__c;
-                    recDon.npe03__Amount__c = membershipInfo.Installment_Amount__c;
-                    recDon.npe03__Contact__c = primaryContact.Id;
-                    recDon.CARE_Payment_Frequency__c = 'One Time';
-                    recDon.Source__c = membershipSource;
-                    recDon.First_Contact__c = primaryContact.Id;
-                    recDon.npe03__Schedule_Type__c = membershipInfo.Schedule_Type__c;
-                    recDon.Membership_type__c = membershipInfo.Membership__c;
-                    recDon.npe03__Installment_Period__c = membershipInfo.Installment_Period__c;
-                    recDon.npsp4hub__Payment_Method__c = membershipInfo.Payment_Method__c;
-                    recDon.Membership_Status__c = 'Pending';
-                    Insert recDon;
-                    
-                    thankYouSec();
+                    paymentHubCallout();                
                 }
                
             }
             else if(lifeMembership == true){
-                 thankYouSec();
+                 membershipNumberDisplay();
             }
         }
         return null;
@@ -367,28 +349,19 @@ public without sharing class NctETMembershipPaymentPageController
       	
         System.debug('Membership##### '+membershipInfo);
 
-        list<String> accountDetails = new list<String>();
-         accountDetails.add(accountNumber);
-         accountDetails.add(accountName);
-         accountDetails.add(sortCode);
-         accountDetails.add(acquistion);
-         accountDetails.add(membershipSource);
-        MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
-        memCrudHelp.pcont = primaryContact;
-        memCrudHelp.scont = secondaryContact;
-
-if(isGiftAid == 'true'){
-        	gftAid = memCrudHelp.giftAid(isGiftAid,membershipInfo,accountDetails);
-        }
-        if(membershipInfo.Payment_Method__c == 'Credit/Debit Card' && sessionProfile != 'Standard'){
-            recDon = memCrudHelp.recDonation(membershipInfo,pymtPrfl,accountDetails);
-        }
+        displaySuccessMessage = true;
+        thankYouSec();
         inspect = true;
     }
    
     public void paymentSave()
     {   
         displayMbrNoMessage = true;
+        displaySuccessMessage = false;
+        thankYouSec();
+    }
+    public void thankYouSec()
+    {
 
         list<String> accountDetails = new list<String>();
          accountDetails.add(accountNumber);
@@ -401,22 +374,21 @@ if(isGiftAid == 'true'){
         MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
         memCrudHelp.pcont = primaryContact;
         memCrudHelp.scont = secondaryContact;
-       
-        pymtPrfl = memCrudHelp.paymentProfile(accountDetails);
+        if(membershipInfo.Payment_Method__c != 'Credit/Debit Card'){
+            pymtPrfl = memCrudHelp.paymentProfile(accountDetails);
+        }
         if(isGiftAid == 'true'){
         	gftAid = memCrudHelp.giftAid(isGiftAid,membershipInfo,accountDetails);
         }
-        if(pymtPrfl != null){
+
             recDon = memCrudHelp.recDonation(membershipInfo,pymtPrfl,accountDetails);
-        }
-        thankYouSec();
+            membershipNumberDisplay();
     }    
-    public void thankYouSec()
-    {
+    public void membershipNumberDisplay(){
        displayMbrNoMessage = true;
        ThankYouHelper thankYou = new ThankYouHelper();
 
-       membershipNumber = thankYou.membershipNumberCreation(primaryContact,recDon,lifeMembership);
+       membershipNumber = thankYou.membershipNumberCreation(primaryContact,recDon,lifeMembership,membershipInfo);
     }
     public PageReference paymentHubCallout()
     {   

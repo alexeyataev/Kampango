@@ -9,7 +9,7 @@ public without sharing class ThankYouHelper {
         isStaff = ContactUtilities.isStaff(userId);
     }
       
-    public String membershipNumberCreation(contact cont,npe03__Recurring_Donation__c recDon, Boolean lifeMembership){
+    public String membershipNumberCreation(contact cont,npe03__Recurring_Donation__c recDon, Boolean lifeMembership,Membership_Type__mdt membershipDetails){
         system.debug('Apexpages.currentPage().getParameters().get(contId) ---   ' + Apexpages.currentPage().getParameters().get('contId'));
         if(Apexpages.currentPage().getParameters().get('contId') != null && Apexpages.currentPage().getParameters().get('contId') !='')
         {
@@ -43,13 +43,12 @@ public without sharing class ThankYouHelper {
                 return null;
                 } 
                 recDon = new npe03__Recurring_Donation__c();
-                recDon.Name = 'Staff Membership';
-                recDon.npe03__Amount__c = 0;
+                recDon.Name = membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c+' '+membershipDetails.Payment_Method__c;
+                recDon.npe03__Amount__c = membershipDetails.Installment_Amount__c;
                 recDon.npe03__Contact__c = cont.Id;
-                recDon.CARE_Payment_Frequency__c = 'One Time';
                 recDon.First_Contact__c = cont.Id;
-                recDon.npe03__Installment_Period__c = '--None--';
-                recDon.npe03__Installments__c = 0;
+                recDon.npe03__Installment_Period__c = membershipDetails.Installment_Period__c;
+                recDon.npe03__Installments__c = membershipDetails.No_of_Installments__c;
                 recDon.Membership_Status__c = 'Confirmed';
                 Insert recDon;
             }
