@@ -41,7 +41,7 @@ public without sharing class MembershipCrudHelper {
                 return null;
             }
             paymentProfileRecord[0].RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get('Bank Account').getRecordTypeId();
-                //extPymtPrfyl.cpm__Contact__c = pcont.Id; 
+            
                 if(accountDetails[0] != '' && accountDetails[0] != null)
                 {
                     paymentProfileRecord[0].cpm__Bank_Account__c = accountDetails[0];

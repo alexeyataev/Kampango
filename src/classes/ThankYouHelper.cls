@@ -1,6 +1,7 @@
 public without sharing class ThankYouHelper {
     public boolean isStaff {get; set;}
     public string membershipNumber {get;set;}
+    public Membership_Type__mdt membershipDetails{get;set;}
     list<User> userList = new list<User>();
     public list<npe03__Recurring_Donation__c> reccDonList = new list<npe03__Recurring_Donation__c>();
     public npe03__Recurring_Donation__c recDon {get; set;}
@@ -9,7 +10,7 @@ public without sharing class ThankYouHelper {
         isStaff = ContactUtilities.isStaff(userId);
     }
       
-    public String membershipNumberCreation(contact cont,npe03__Recurring_Donation__c recDon, Boolean lifeMembership,Membership_Type__mdt membershipDetails){
+    public String membershipNumberCreation(contact cont,npe03__Recurring_Donation__c recDon, Boolean lifeMembership){
         system.debug('Apexpages.currentPage().getParameters().get(contId) ---   ' + Apexpages.currentPage().getParameters().get('contId'));
         if(Apexpages.currentPage().getParameters().get('contId') != null && Apexpages.currentPage().getParameters().get('contId') !='')
         {

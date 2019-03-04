@@ -124,66 +124,9 @@ private class MembershipCrudHelperTest {
         recDonateRecord[0] = memCrud.recDonation(membershipDetails,paymentProfile,accountDetails);
         system.assertEquals(1,memCrud.recDonationRecord.size());
     }
-    @isTest 
-    private static void contactnotexists(){
-        String isGiftAid = 'true';
-        Membership_Type__mdt  membershipDetails = new Membership_Type__mdt();
-        gaid__Gift_Aid_Declaration__c gftAid = new gaid__Gift_Aid_Declaration__c();
-        cpm__Payment_Profile__c paymntProfl = new cpm__Payment_Profile__c();
-        contact con = new contact();
-        list<String> accountDetails = new list<String>{'145263777','Santhosh','CD-1234','Text','Enquiry by phone - main NCT'};
-        
-        MembershipCrudHelper memCrud = new MembershipCrudHelper();
-        memCrud.scont = con;
-        memCrud.paymentProfile(accountDetails);
-        memCrud.giftAid(isGiftAid,membershipDetails,accountDetails);
-        system.assertNotEquals(true,gftAid.gaid__Active__c);
-        memCrud.recDonation(membershipDetails,paymntProfl,accountDetails);
-        
-    }
+
     @isTest
-    private static void giftAidRecordCreation1(){
-        
-        Membership_Type__mdt  membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
-                                                No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
-                                                Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
-                                                GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt limit 1];
-   
-        list<gaid__Gift_Aid_Declaration__c> giftAidDeclareRecord = new list<gaid__Gift_Aid_Declaration__c>();
-        list<String> accountDetails = new list<String>{'145263777','Santhosh','CD-1234','','Enquiry by phone - main NCT'};
-         String isGiftAid = 'true';
-        account acct = new account();
-        acct.name = 'account details';
-        insert acct;
-        
-        contact con = new contact();
-        con.FirstName = 'NCT Child';
-        con.LastName = 'Trust';
-        con.Email = 'nct@gmail.com';
-        con.Prefered_First_Name__c = 'NCT';
-        con.AccountId = acct.Id;
-        system.debug('accountid  ' + con.AccountId);
-        insert con;
-        
-        gaid__Gift_Aid_Declaration__c giftAidDeclare = new gaid__Gift_Aid_Declaration__c();
-        giftAidDeclare.gaid__Type__c = 'Ongoing';
-        giftAidDeclare.gaid__Acquisition_Method__c = 'Written';
-        giftAidDeclare.gaid__Active__c = true;
-        giftAidDeclare.gaid__Start_Date__c = system.today();
-        giftAidDeclare.gaid__Contact__c = con.id;
-        giftAidDeclare.gaid__Date_Made__c = system.today();
-        giftAidDeclareRecord.add(giftAidDeclare);
-        insert giftAidDeclareRecord;
-        
-        test.setCreatedDate(giftAidDeclareRecord[0].id, system.date.today());
-        MembershipCrudHelper memCrud = new MembershipCrudHelper();
-        memCrud.giftAidDeclarationRecord  = giftAidDeclareRecord;
-        memCrud.pcont = con;
-        giftAidDeclareRecord[0] = memCrud.giftAid(isGiftAid,membershipDetails,accountDetails);
-        system.assertEquals(true,giftAidDeclare.gaid__Active__c);
-    }
-    @isTest
-    private static void giftAidRecordCreation2(){
+    private static void giftAidRecordCreation(){
         Membership_Type__mdt  membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                 No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                 Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
@@ -212,4 +155,5 @@ private class MembershipCrudHelperTest {
          gftAid = memCrud.giftAid(isGiftAid,membershipDetails,accountDetails);
          system.assertEquals(true,gftAid.gaid__Active__c);
     }  
+    
 }

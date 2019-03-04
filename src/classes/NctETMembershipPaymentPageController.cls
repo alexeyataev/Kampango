@@ -387,8 +387,8 @@ public without sharing class NctETMembershipPaymentPageController
     public void membershipNumberDisplay(){
        displayMbrNoMessage = true;
        ThankYouHelper thankYou = new ThankYouHelper();
-
-       membershipNumber = thankYou.membershipNumberCreation(primaryContact,recDon,lifeMembership,membershipInfo);
+        thankyou.membershipDetails = membershipInfo;
+       membershipNumber = thankYou.membershipNumberCreation(primaryContact,recDon,lifeMembership);
     }
     public PageReference paymentHubCallout()
     {   
