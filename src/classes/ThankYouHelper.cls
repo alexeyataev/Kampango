@@ -16,7 +16,7 @@ public without sharing class ThankYouHelper {
         {
             system.debug('Apexpages.currentPage().getParameters().get(contId) ---   ' + Apexpages.currentPage().getParameters().get('contId'));
               if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isAccessible()){       
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
                 return null;
                } 
           reccDonList = [select Id, Membership_Number__c,npe03__Contact__c,npsp4hub__Payment_Method__c,npe03__Contact__r.AccountId,npe03__Contact__r.Phone,
@@ -26,11 +26,11 @@ public without sharing class ThankYouHelper {
             if(reccDonList != null && !reccDonList.isEmpty())
             {
                 if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isUpdateable() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
                 return null;
                 }
                 membershipNumber = reccDonList[0].Membership_Number__c;
-                reccDonList[0].Membership_Status__c = 'Confirmed';
+                reccDonList[0].Membership_Status__c = MembershipConstants.CONFIRMED;
                 upsert reccDonList;
                 system.debug('membershipNumber  ' + membershipNumber);
             }
@@ -40,7 +40,7 @@ public without sharing class ThankYouHelper {
                
             if(cont != null && lifeMembership == true){
                 if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
                 return null;
                 } 
                 recDon = new npe03__Recurring_Donation__c();
@@ -50,7 +50,7 @@ public without sharing class ThankYouHelper {
                 recDon.First_Contact__c = cont.Id;
                 recDon.npe03__Installment_Period__c = membershipDetails.Installment_Period__c;
                 recDon.npe03__Installments__c = membershipDetails.No_of_Installments__c;
-                recDon.Membership_Status__c = 'Confirmed';
+                recDon.Membership_Status__c = MembershipConstants.CONFIRMED;
                 Insert recDon;
             }
                 
@@ -59,7 +59,7 @@ public without sharing class ThankYouHelper {
         if(recDon != null)
         {
                if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Number__c.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
                 return null;
                } 
             reccDonList = [select Id, Membership_Number__c,npe03__Contact__c,npsp4hub__Payment_Method__c,

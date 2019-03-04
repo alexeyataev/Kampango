@@ -87,18 +87,18 @@ public without sharing class NctETMembershipPaymentPageController
         membershipSourceOptions = SObjectUtilities.getPicklistValues(recDon, 'Source__c');
        	        
     	sessionProfile = userinfo.getUserType();
-        if(sessionProfile == 'Standard'){
+        if(sessionProfile == MembershipConstants.STANDARD){
             etSpecific = true;
         }
         else{
             etSpecific = false;
         }
         
-        staffMember ='no staff';
+        staffMember =MembershipConstants.NOSTAFF;
         if(contId != null)
         {
             if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }
             isStaff = ContactUtilities.isStaff(contId);
             primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:contId];
@@ -133,7 +133,7 @@ public without sharing class NctETMembershipPaymentPageController
         gftAid = new gaid__Gift_Aid_Declaration__c();
         displaySuccessMessage = false;
         displayMbrNoMessage = false;
-        displayValue = 'none';
+        displayValue = MembershipConstants.NONE;
         counter = '';
         accountName='';
         sortCode='';
@@ -161,13 +161,13 @@ public without sharing class NctETMembershipPaymentPageController
             if(primaryContact == null )
             {
                 if (!Schema.sObjectType.Contact.fields.FirstName.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
                 }
-                recordType = 'Parent';
+                recordType = MembershipConstants.PARENT;
                     primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=firstname,
                                         LastName=lastname,Email=email,Gender__c=genders,Phone=phone,Salutation=salutationPrimary,MailingPostalCode=postCode,
                                         Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
-                                        MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
+                                        MailingState=stateValue,MailingCity=cityValue,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
                                         HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt);
                     Database.SaveResult sr = Database.insert(primaryContact, false);
                 if (!sr.isSuccess()) {
@@ -179,28 +179,28 @@ public without sharing class NctETMembershipPaymentPageController
                         System.debug('Duplicate records have been detected by ' + 
                                      duplicateResult.getDuplicateRule());
                         System.debug(duplicateResult.getErrorMessage());
-                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Duplicate records found.'));
+                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.DUPLICATE_RECORDS_FOUND));
                     }
                 }
                 if(!Schema.sObjectType.Contact.fields.FirstName.isCreateable()){
-                	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              		}
                 if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
                 {
                     
-                    recordType = 'Companion';
+                    recordType = MembershipConstants.COMPANION;
                     con =[Select AccountId from Contact where id = :primaryContact.id];
                     secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
                                       LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
                                       Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
-                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
+                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
                     insert secondaryContact;
-                    contactType = 'joint';
+                    contactType = MembershipConstants.JOINT;
                 }
                 else 
                 {
-                    contactType = 'Individual';
+                    contactType = MembershipConstants.INDIVIDUAL;
                     
                 }
             }
@@ -209,30 +209,30 @@ public without sharing class NctETMembershipPaymentPageController
         List<Contact> contactList;
         System.debug('Contact Exists(Next Flow Starts): '+isContactExisting);
             if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }
         primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE (Email = :email AND Email != '') OR Id =:contId limit 1];
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :primaryContact.Id];
         if(twomems == true && secondContactFirstName != null || secondContactFirstName != '')
         {
             if (!Schema.sObjectType.Contact.fields.FirstName.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }
-            recordType = 'Companion';
+            recordType = MembershipConstants.COMPANION;
             if(contactList.size()<0){
             con =[Select AccountId from Contact where id = :primaryContact.id];
             secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContactFirstName,
                                       LastName=secondContactLastName,Email=secondContactEmail,Gender__c=secondContactGenders,Phone=secondContactPhone,Salutation=salutationSecondary,MailingPostalCode=postCode,
                                       Expected_Due_Date__c = expDate,MailingStreet=streetValue+streetValue1+streetValue2,Branch__c=selectBranch,
-                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = 'Salesforce',SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
+                                      MailingState=stateValue,MailingCity=cityValue,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=smsOpt,Post_Opt_In__c=postOpt,
                                       HasOptedOutOfEmail=emailOpt,DoNotCall=doNotCallOpt,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
             insert secondaryContact;
         }
-        contactType = 'joint';
+        contactType = MembershipConstants.JOINT;
         }                                 
         else{
             
-            contactType = 'Individual';
+            contactType = MembershipConstants.INDIVIDUAL;
                 
             }
         }    
@@ -246,7 +246,7 @@ public without sharing class NctETMembershipPaymentPageController
             PageReference redirecContUrl;
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
             if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
@@ -259,7 +259,7 @@ public without sharing class NctETMembershipPaymentPageController
 
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
              if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
@@ -272,10 +272,10 @@ public without sharing class NctETMembershipPaymentPageController
         if(membershipInfo != null)
         {
             
-            if(membershipInfo.Payment_Method__c == 'Credit/Debit Card')
+            if(membershipInfo.Payment_Method__c == MembershipConstants.CREDIT_OR_DEBIT_CARD)
             {
                 sessionProfile = userinfo.getUserType();
-                if(membershipInfo != null && sessionProfile != 'Standard')
+                if(membershipInfo != null && sessionProfile != MembershipConstants.STANDARD)
                 {
                     
                     paymentHubCallout();
@@ -285,9 +285,9 @@ public without sharing class NctETMembershipPaymentPageController
                     
                 }
                 if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.npe03__Contact__c.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
                  }
-                else if(sessionProfile == 'Standard'){
+                else if(sessionProfile == MembershipConstants.STANDARD){
                     
              
                     paymentHubCallout();                
@@ -332,13 +332,13 @@ public without sharing class NctETMembershipPaymentPageController
     }
     public void giftAidCreation(){
         displayMbrNoMessage = true;
-        if(sessionProfile != 'Standard'){
+        if(sessionProfile != MembershipConstants.STANDARD){
             feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName').escapeHtml4();
             PageReference redirecContUrl;
 
             system.debug('*$*$*$  feeAmount   ' + feeAmount+ '$$$$$$ lifeMembership: '+lifeMembership);
              if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }
             membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
@@ -363,25 +363,23 @@ public without sharing class NctETMembershipPaymentPageController
     public void thankYouSec()
     {
 
-        list<String> accountDetails = new list<String>();
-         accountDetails.add(accountNumber);
-         accountDetails.add(accountName);
-         accountDetails.add(sortCode);
-         accountDetails.add(acquistion);
-         accountDetails.add(membershipSource);
-         //accountDetails.sort();
-        System.debug('accountDetails:'+accountDetails);
+        
         MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
         memCrudHelp.pcont = primaryContact;
         memCrudHelp.scont = secondaryContact;
-        if(membershipInfo.Payment_Method__c != 'Credit/Debit Card'){
-            pymtPrfl = memCrudHelp.paymentProfile(accountDetails);
+        memCrudHelp.accountName = accountName;
+        memCrudHelp.accountNumber = accountNumber;
+        memCrudHelp.sortCode = sortCode;
+        memCrudHelp.acquistion = acquistion;
+        memCrudHelp.membershipSource = membershipSource;
+        if(membershipInfo.Payment_Method__c != MembershipConstants.CREDIT_OR_DEBIT_CARD){
+           pymtPrfl = memCrudHelp.paymentProfile();
         }
-        if(isGiftAid == 'true'){
-        	gftAid = memCrudHelp.giftAid(isGiftAid,membershipInfo,accountDetails);
+        if(isGiftAid == MembershipConstants.TRUE_VALUE){
+        	gftAid = memCrudHelp.giftAid(membershipInfo);
         }
 
-            recDon = memCrudHelp.recDonation(membershipInfo,pymtPrfl,accountDetails);
+            recDon = memCrudHelp.recDonation(membershipInfo,pymtPrfl);
             membershipNumberDisplay();
     }    
     public void membershipNumberDisplay(){
@@ -401,7 +399,7 @@ public without sharing class NctETMembershipPaymentPageController
        
         redirectURL = PaymentHubCalloutUtilities.PaymentHub(primaryContact,membershipInfo,contactDetails);
         sessionProfile = userinfo.getUserType();
-        if(sessionProfile == 'Standard'){
+        if(sessionProfile == MembershipConstants.STANDARD){
             return sendPaymentLinkToParent(redirectURL);
         }
         else{
@@ -417,13 +415,13 @@ public without sharing class NctETMembershipPaymentPageController
         */
         System.debug('********** Creating Payment Link Record **************');
         if(!Schema.sObjectType.Payment_Link__c.fields.Contact__c.isCreateable()){
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
         }
         Payment_Link__c payLink = new Payment_Link__c();
         payLink.Contact__c = primaryContact.Id;
         payLink.Email__c = primaryContact.Email;
         payLink.Link_Sent_Date__c = Date.Today();
-        payLink.Payment_Key__c = 'Test';
+        payLink.Payment_Key__c = MembershipConstants.TEST;
         payLink.Payment_Link__c = paymentLink;
         insert payLink;
         System.debug('Payment Link Record Created : '+'ID: '+payLink.Id+', /r/n'+payLink.Contact__c+', '+payLink.Payment_Key__c+', '+payLink.Payment_Link__c);

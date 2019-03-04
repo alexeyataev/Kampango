@@ -19,7 +19,7 @@ private class MembershipCrudHelperTest {
         gaid__Gift_Aid_Declaration__c gftAid = new gaid__Gift_Aid_Declaration__c();
         list<cpm__Payment_Profile__c> paymntProflRecord = new list<cpm__Payment_Profile__c>();
         list<String> accountDetails = new list<String>{'145263777','Santhosh','CD-1234','Written','Enquiry by phone - main NCT'};
-        String isGiftAid = 'true';
+
         
         account acct = new account();
         acct.name = 'account details';
@@ -39,15 +39,20 @@ private class MembershipCrudHelperTest {
         MembershipCrudHelper memCrud = new MembershipCrudHelper();
         memCrud.pcont = con;
         memCrud.scont = scon;       
-        paymntProfl = memCrud.paymentProfile(accountDetails);
+         memCrud.accountName = 'Santhosh';
+        memCrud.accountNumber = '145263777';
+        memCrud.sortCode = 'CD-1234';
+        memCrud.acquistion = 'Written';
+        memCrud.membershipSource = 'Enquiry by phone - main NCT'; 
+        paymntProfl = memCrud.paymentProfile();
         system.assertEquals(accountDetails[2],paymntProfl.paybacs__Sort_Code__c);      
-        gftAid = memCrud.giftAid(isGiftAid,membershipDetails,accountDetails);
+        gftAid = memCrud.giftAid(membershipDetails);
         system.assertEquals(true,gftAid.gaid__Active__c);
         id id1= paymntProfl.id;
         list<cpm__Payment_Profile__c> profid =[SELECT id from cpm__Payment_Profile__c WHERE ID=:id1 limit 1];     
         if(profid.size()>0){
             recDonate = new npe03__Recurring_Donation__c();
-            recDonate = memCrud.recDonation(membershipDetails,paymntProfile,accountDetails); 
+            recDonate = memCrud.recDonation(membershipDetails,paymntProfile);
         }    
         system.assertEquals('Pending', recDonate.Membership_Status__c);
     }  
@@ -61,7 +66,7 @@ private class MembershipCrudHelperTest {
         list<gaid__Gift_Aid_Declaration__c> giftAidDeclareRecord = new list<gaid__Gift_Aid_Declaration__c>();
         list<npe03__Recurring_Donation__c> recDonateRecord = new list<npe03__Recurring_Donation__c>();
         
-        String isGiftAid = 'true';
+
         account acct = new account();
         acct.name = 'account details';
         insert acct;
@@ -72,7 +77,7 @@ private class MembershipCrudHelperTest {
         con.Email = 'nct@gmail.com';
         con.Prefered_First_Name__c = 'NCT';
         con.AccountId = acct.Id;
-        system.debug('accountid  ' + con.AccountId);
+        
         insert con;
         cpm__Payment_Profile__c paymentProfile = new cpm__Payment_Profile__c();       
         cpm__Payment_Profile__c paymntProfile = new cpm__Payment_Profile__c();
@@ -114,14 +119,19 @@ private class MembershipCrudHelperTest {
         MembershipCrudHelper memCrud = new MembershipCrudHelper();
         memCrud.pcont = con;
         memCrud.scont = scon;
+        memCrud.accountName = 'Santhosh';
+        memCrud.accountNumber = '145263777';
+        memCrud.sortCode = 'CD-1234';
+        memCrud.acquistion = 'Written';
+        memCrud.membershipSource = 'Enquiry by phone - main NCT';
         memCrud.paymentProfileRecord = paymntProflRecord;        
-        paymntProflRecord[0] = memCrud.paymentProfile(accountDetails);
+        paymntProflRecord[0] = memCrud.paymentProfile();
         system.assertEquals(1,memCrud.paymentProfileRecord.size());             
         memCrud.giftAidDeclarationRecord  = giftAidDeclareRecord;
-        giftAidDeclareRecord[0] = memCrud.giftAid(isGiftAid,membershipDetails,accountDetails); 
+        giftAidDeclareRecord[0] = memCrud.giftAid(membershipDetails);  
         system.assertEquals(1,memCrud.giftAidDeclarationRecord.size());
         memCrud.recDonationRecord = recDonateRecord;        
-        recDonateRecord[0] = memCrud.recDonation(membershipDetails,paymentProfile,accountDetails);
+        recDonateRecord[0] = memCrud.recDonation(membershipDetails,paymentProfile);
         system.assertEquals(1,memCrud.recDonationRecord.size());
     }
 
@@ -135,7 +145,7 @@ private class MembershipCrudHelperTest {
         gaid__Gift_Aid_Declaration__c gftAid = new gaid__Gift_Aid_Declaration__c();
         
         list<String> accountDetails = new list<String>{'145263777','Santhosh','CD-1234','','Enquiry by phone - main NCT'};
-        String isGiftAid = 'true';
+
         
         account acct = new account();
         acct.name = 'account details';
@@ -152,7 +162,12 @@ private class MembershipCrudHelperTest {
         
          MembershipCrudHelper memCrud = new MembershipCrudHelper();   
         memCrud.pcont = con;
-         gftAid = memCrud.giftAid(isGiftAid,membershipDetails,accountDetails);
+         memCrud.accountName = 'Santhosh';
+        memCrud.accountNumber = '145263777';
+        memCrud.sortCode = 'CD-1234';
+        memCrud.acquistion = 'Written';
+        memCrud.membershipSource = 'Enquiry by phone - main NCT';
+         gftAid = memCrud.giftAid(membershipDetails);
          system.assertEquals(true,gftAid.gaid__Active__c);
     }  
     
