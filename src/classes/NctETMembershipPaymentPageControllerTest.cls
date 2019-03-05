@@ -138,7 +138,6 @@ private class NctETMembershipPaymentPageControllerTest {
         Id contId = pageRef.getParameters().put('Id', String.valueOf(con.Id));
         Test.setCurrentPage(pageRef); 
         
-        ApexPages.currentPage().getParameters().put('seltdName',membershipDetails.Id);
         
         PaymentHubApiSettings__c paymentHubApiSettings = new PaymentHubApiSettings__c();
         paymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
@@ -148,8 +147,7 @@ private class NctETMembershipPaymentPageControllerTest {
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
         nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController();
-         ApexPages.currentPage().getParameters().put('seltdName',membershipDetails.Id);
-        ApexPages.currentPage().getParameters().put('emailsVal','testemail@test.com');
+         ApexPages.currentPage().getParameters().put('emailsVal','testemail@test.com');
         ApexPages.currentPage().getParameters().put('postVal','SE1 3XF');
         ApexPages.currentPage().getParameters().put('emailDupeVal','testemail@test.com');
 
@@ -167,6 +165,7 @@ private class NctETMembershipPaymentPageControllerTest {
         controller.streetValue2 = con.Id;
         controller.cityValue = con.Id;
         controller.primaryContact = con;
+        controller.feeAmount = membershipDetails.Id;
         controller.accountNumber = '12345';
         controller.accountName ='Test';
         controller.sortCode = '';
@@ -229,9 +228,7 @@ private class NctETMembershipPaymentPageControllerTest {
         PageReference pageRef = Page.nctETMembershipPaymentPage; 
         Id contId = pageRef.getParameters().put('Id', String.valueOf(con.Id));
         Test.setCurrentPage(pageRef); 
-        
-        ApexPages.currentPage().getParameters().put('seltdName',membershipDetails.Id);
-        
+              
         PaymentHubApiSettings__c paymentHubApiSettings = new PaymentHubApiSettings__c();
         paymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
         paymentHubApiSettings.Credit_Card_Payment_API_Token__c = '1234567890123';
@@ -240,7 +237,6 @@ private class NctETMembershipPaymentPageControllerTest {
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
         nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController();
-         ApexPages.currentPage().getParameters().put('seltdName',membershipDetails.Id);
         ApexPages.currentPage().getParameters().put('emailsVal','testemail@test.com');
         ApexPages.currentPage().getParameters().put('postVal','SE1 3XF');
         ApexPages.currentPage().getParameters().put('emailDupeVal','testemail@test.com');
@@ -259,6 +255,7 @@ private class NctETMembershipPaymentPageControllerTest {
         controller.streetValue2 = con.Id;
         controller.cityValue = con.Id;
         controller.primaryContact = con;
+        controller.feeAmount = membershipDetails.Id;
         
         controller.secondContactFirstName = con.Id;
         controller.secondContactLastName = con.Id;
