@@ -49,10 +49,6 @@
         <name>GiftAid_Declaration_Key__c</name>
     </fields>
     <fields>
-        <label><!-- Method --></label>
-        <name>Method__c</name>
-    </fields>
-    <fields>
         <label><!-- Owner --></label>
         <name>Owner__c</name>
         <relationshipLabel><!-- Gift Aid Declarations --></relationshipLabel>
