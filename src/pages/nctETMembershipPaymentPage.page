@@ -1648,11 +1648,24 @@
             $('#register_li').addClass('active');
             $('#register').addClass('active show');
         });
-        $('#direct_pay_back, #go-back-payment').on('click', function(){
+        $('#direct_pay_back').on('click', function(){
+
+            $('#direct_debit_block').css('display', 'none');
+            $('#pay_page').css('display', '');
+            afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),
+                      $('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),
+                      $('#textEmailPartner').val(),$('#textTelephoneHomePartner').val(),$('#postcode').val(),
+                      $('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),
+                      $('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),
+                      $('#town').val(),$('#county').val(),$(salutation).text());
+            
+        });
+         $('#go-back-payment').on('click', function(){
             $('#direct_debit_block').css('display', 'none');
             $('#pay_page').css('display', '');
         });
         $('#gift_aid_back').on('click', function(){
+            $('#giftAidCheckbox').prop('checked', false);
             if(cardPayment === false) {
                 $('#direct_debit_block').show();
                 $('#gift_aid_block').hide();
@@ -1686,12 +1699,12 @@
                         	$('#membership-loader').removeClass('show-loader');
                         }
                     },200)
+                    
+            if (cardPayment === true) {
                     setInterval(function() {
                     giftAidExec = $("[id$='onComplete']").val();
                       console.log(typeof giftAidExec, 'giftAidExec');
                       if(giftAidExec == 'true') {
-                        //setTimeout(function(){
-                          console.log(giftAidExec, 'giftAidExec if');
                     var accountName = $('#accountName').val();
                     var sortCode1 = $('#scd1').val();
                     var sortCode2 = $('#scd2').val();
@@ -1699,15 +1712,9 @@
                     var sortCode = sortCode1 + sortCode2 + sortCode3;
                     var accountNumber = $('#accountNumber').val();
                     var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
-                    console.log(giftAidCheckbox);
-                    console.log(accountName);
-                    console.log(sortCode);
-                    console.log(accountNumber);
-            		console.log(typeof giftAidCheckbox, 'Gift Aid CC Flow');
             		if (cardPayment === true) {
             			giftAidCreation(giftAidCheckbox);
                     }
-                    //saverecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
                     $('#payment_li, #gift_li').removeClass('active');
                     $('#confirmation_li').addClass('active');
                     $('#payment').removeClass('active show');
@@ -1717,9 +1724,7 @@
                     $("#DD_acc_name").html(accountName);
                     $("#DD_sort_code").html(sortCode);
                     $("#DD_bank_acc_num").html(accountNumber);
-            		console.log(cardPayment, 'cardPayment');
-                    if (cardPayment === true) {
-                        
+                    if (cardPayment === true) {           
                         $('#thankyou').addClass('active show');
                         $('#thankyou_li').addClass('active');
                         $('#payment').removeClass('active show');
@@ -1728,14 +1733,29 @@
                         $('#payment_li').removeClass('active');
                         $('#gift_aid_block').hide();
             			$('#gift_li').removeClass('active');
-                        //$("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                     }
-                      //}, 3500);
-                          //giftAidExec = false;
                           $("[id$='onComplete']").val(false);
                           }
                           
                    }, 2000)
+                   } else {
+                            var accountName = $('#accountName').val();
+                            var sortCode1 = $('#scd1').val();
+                            var sortCode2 = $('#scd2').val();
+                            var sortCode3 = $('#scd3').val();
+                            var sortCode = sortCode1 + sortCode2 + sortCode3;
+                            var accountNumber = $('#accountNumber').val();
+                            var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
+                            $('#payment_li, #gift_li').removeClass('active');
+                            $('#confirmation_li').addClass('active');
+                            $('#payment').removeClass('active show');
+                            $('#confirmation').addClass('active show');
+                            $('#credit_card_confirm').hide();
+                            $("#gift_aid_block").hide();
+                            $("#DD_acc_name").html(accountName);
+                            $("#DD_sort_code").html(sortCode);
+                            $("#DD_bank_acc_num").html(accountNumber);
+                        }
                         $('#gift_aid_btn').prop('disabled', true);
                         });
              

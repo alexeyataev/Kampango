@@ -178,8 +178,7 @@ private class NctETMembershipPaymentPageControllerTest {
         controller.receiveInput();
         controller.nctBranchs();
         controller.contactInfo();
-        controller.PaymentSave();
-        controller.thankYouSec();        
+        controller.giftAidCreation();
         Test.stopTest();
         system.assertEquals(1,1);
     }
@@ -264,8 +263,6 @@ private class NctETMembershipPaymentPageControllerTest {
         controller.salutationSecondary = con.Id;
         controller.secondContactGenders = con.Id;
         controller.secondaryContact = con;
-         
-        
         controller.accountNumber = '12345';
         controller.accountName ='Test';
         controller.sortCode = '';
@@ -275,8 +272,8 @@ private class NctETMembershipPaymentPageControllerTest {
         controller.receiveInput();
         controller.nctBranchs();
         controller.contactInfo();
-        controller.PaymentSave();
-        controller.thankYouSec();        
+        controller.onCompleteContactInfo();
+        controller.giftAidCreation();     
         Test.stopTest();
         system.assertEquals(1,1);
     }

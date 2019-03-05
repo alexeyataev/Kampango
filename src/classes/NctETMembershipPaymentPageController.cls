@@ -284,15 +284,7 @@ public without sharing class NctETMembershipPaymentPageController
                     return pageRef;
                     
                 }
-                if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.npe03__Contact__c.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
-                 }
-                else if(sessionProfile == MembershipConstants.STANDARD){
-                    
-             
-                    paymentHubCallout();                
-                }
-               
+
             }
             else if(lifeMembership == true){
                  membershipNumberDisplay();
@@ -363,7 +355,10 @@ public without sharing class NctETMembershipPaymentPageController
     public void thankYouSec()
     {
 
-        
+        if(sessionProfile == MembershipConstants.STANDARD && membershipInfo.Payment_Method__c == MembershipConstants.CREDIT_OR_DEBIT_CARD){
+            paymentHubCallout();                
+        }
+     
         MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
         memCrudHelp.pcont = primaryContact;
         memCrudHelp.scont = secondaryContact;
@@ -378,9 +373,9 @@ public without sharing class NctETMembershipPaymentPageController
         if(isGiftAid == MembershipConstants.TRUE_VALUE){
         	gftAid = memCrudHelp.giftAid(membershipInfo);
         }
-
-            recDon = memCrudHelp.recDonation(membershipInfo,pymtPrfl);
-            membershipNumberDisplay();
+        recDon = memCrudHelp.recDonation(membershipInfo,pymtPrfl);
+        
+        membershipNumberDisplay();
     }    
     public void membershipNumberDisplay(){
        displayMbrNoMessage = true;
