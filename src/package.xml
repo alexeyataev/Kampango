@@ -51,6 +51,8 @@
 		<members>Event_Expense__c</members>
 		<members>Event_MDF__c</members>
 		<members>Event_Registration__c</members>
+		<members>CAD__c	</members>
+		<members>Practitioner_Rate__c</members>
 		<members>Event_Session__c</members>
         <members>Gift_Aid__c</members>
         <members>Membership__c</members>
@@ -69,10 +71,14 @@
         <members>Venue_PSA_Office__c</members>
         <members>Venue__c</members>
 		<members>npe03__Recurring_Donation__c</members>
+		<members>Session__c</members>
         <members>Payment_Link__c</members>
-      <members>gaid__Gift_Aid_Declaration__c</members>
-      <members>cpm__Mandate__c</members>
-	  <members>cpm__Mandate_Schedule__c</members>
+		<members>Session_Practitioner__c</members>
+		<members>Course_Budget__c</members>
+        <members>gaid__Gift_Aid_Declaration__c</members>
+       <members>cpm__Mandate__c</members>
+	   <members>cpm__Mandate_Schedule__c</members>
+	   <members>Venue_Rate__c</members>
         <name>CustomObject</name>
     </types>
 	<types>
@@ -171,12 +177,17 @@
 		<members>Membership_Type__mdt-Membership Type Layout</members>
         <members>Payment_Plan__c-Payment Plan Layout</members>
         <members>Permission_Question__c-Permission_Question Layout</members>
+		<members>CAD__c-CAD Layout</members>
+		<members>Session__c-Session Layout</members>
+		<members>Session_Practitioner__c-Session Practitioner Layout</members>
         <members>Permission__c-Permission Layout</members>
+		<members>Course_Budget__c-Course Budget Layout</members>
         <members>PostCode_Allocation__c-PostCode Allocation Layout</members>
         <members>Transaction__c-Transaction Layout</members>
+		<members>Practitioner_Rate__c-Practitioner Rate Layout</members>
         <members>User-User Layout</members>
         <members>UserAlt-User Profile Layout</members>
-        <members>Venue__c-Venue Layout</members>
+		<members>Venue_Rate__c-Venue Rate Layout</members> 
         <members>*</members>
         <name>Layout</name>
     </types>
