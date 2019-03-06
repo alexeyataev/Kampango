@@ -51,7 +51,7 @@
 		<members>Event_Expense__c</members>
 		<members>Event_MDF__c</members>
 		<members>Event_Registration__c</members>
-		<members>CAD__c	</members>
+		<members>CAD__c</members>
 		<members>Practitioner_Rate__c</members>
 		<members>Event_Session__c</members>
         <members>Gift_Aid__c</members>
