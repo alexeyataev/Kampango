@@ -894,7 +894,7 @@
     </fields>
     <fields>
         <fullName>AccountKey__c</fullName>
-        <externalId>false</externalId>
+        <externalId>true</externalId>
         <label>AccountKey</label>
         <precision>8</precision>
         <required>false</required>
@@ -955,13 +955,53 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+ <fullName>Boundary__c</fullName>
+        <externalId>false</externalId>
+        <label>Boundary</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Standard</fullName>
+                    <default>false</default>
+                    <label>Standard</label>
+                </value>
+                <value>
+                    <fullName>Fringe</fullName>
+                    <default>false</default>
+                    <label>Fringe</label>
+                </value>
+                <value>
+                    <fullName>London</fullName>
+                    <default>false</default>
+                    <label>London</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Branch_Code__c</fullName>
         <externalId>false</externalId>
         <label>Branch Code</label>
-        <length>9</length>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Branch_Key__c</fullName>
+        <externalId>true</externalId>
+        <label>BranchKey</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1029,6 +1069,10 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
         <fullName>Emergency_number__c</fullName>
         <externalId>false</externalId>
         <label>Emergency number</label>
@@ -1055,13 +1099,13 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
-    <!--<fields>
+    <fields>
         <fullName>IsCustomerPortal</fullName>
     </fields>
     <fields>
         <fullName>IsPartner</fullName>
         <trackFeedHistory>false</trackFeedHistory>
-    </fields>-->
+    </fields>
     <fields>
         <fullName>Jigsaw</fullName>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1100,6 +1144,54 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Number</type>
         <unique>false</unique>
+</fields>
+    <fields>
+        <fullName>Mailing_Longtitude__c</fullName>
+        <externalId>false</externalId>
+        <label>Mailing Longtitude</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mailing_Postal_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Mailing Postal Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mailing_State__c</fullName>
+        <externalId>false</externalId>
+        <label>Mailing State</label>
+        <length>122</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mailing_Street__c</fullName>
+        <externalId>false</externalId>
+        <label>Mailing Street</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>LongTextArea</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Mobile__c</fullName>
+        <externalId>false</externalId>
+        <label>Mobile</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Phone</type>
     </fields>
     <fields>
         <fullName>Name</fullName>
@@ -1184,6 +1276,17 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PrimaryContactKey__c</fullName>
+        <externalId>true</externalId>
+        <label>PrimaryContactKey</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Projector_Required__c</fullName>
@@ -2313,6 +2416,36 @@ IF(NOT(ISNULL($Setup.npo02__Households_Settings__c.npo02__Membership_Grace_Perio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Boundary__c</picklist>
+            <values>
+                <fullName>Fringe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Industry</picklist>
             <values>
                 <fullName>Agriculture</fullName>
@@ -2674,6 +2807,36 @@ IF(NOT(ISNULL($Setup.npo02__Households_Settings__c.npo02__Membership_Grace_Perio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Boundary__c</picklist>
+            <values>
+                <fullName>Fringe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Industry</picklist>
             <values>
                 <fullName>Agriculture</fullName>
@@ -2953,6 +3116,36 @@ IF(NOT(ISNULL($Setup.npo02__Households_Settings__c.npo02__Membership_Grace_Perio
             <values>
                 <fullName>Web</fullName>
                 <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Boundary__c</picklist>
+            <values>
+                <fullName>Fringe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3246,6 +3439,36 @@ IF(NOT(ISNULL($Setup.npo02__Households_Settings__c.npo02__Membership_Grace_Perio
             <values>
                 <fullName>Web</fullName>
                 <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Boundary__c</picklist>
+            <values>
+                <fullName>Fringe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Data_Source__c</picklist>
+            <values>
+                <fullName>CARE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intrabiz</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
