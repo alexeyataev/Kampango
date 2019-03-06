@@ -637,16 +637,16 @@
                                                          <p>We’d also like to keep in touch with you about our services, support and family events,
                                                            plus how you can support our important work. We’ll only contact you in the ways you want, 
                                                            and we’ll keep your information safe. Check out our Privacy policy <a style="text-decoration:underline;" href="www.nct.org.uk/privacy" target="_open">(www.nct.org.uk/privacy)</a> for more details.</p>                                                     
-                                                         <div>Would you like to hear from us by:</div>                                                   
+                                                         <div>Would you like to hear from us by</div>                                                   
                                                          <div class="col-12 radio-fields-col">
                                                            <!--<span style="text-color:white;"><apex:selectCheckboxes value="{!contactSelectedPreferences}">
                                                                     <apex:selectOptions value="{!contactPreferenceOptions}" />
                                                           </apex:selectCheckboxes></span>-->
                                                           <div class="contact_check">
-                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!emailOpt}"/>Email:</span> 
-                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!smsOpt}"/>Text:</span>
-                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!postOpt}"/>Post:</span>
-                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!doNotCallOpt}"/>Telephone:</span>
+                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!emailOpt}"/>Email</span> 
+                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!smsOpt}"/>Text</span>
+                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!postOpt}"/>Post</span>
+                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!doNotCallOpt}"/>Telephone</span>
                                                           </div>
                                                             <style>
                                                               .contact_check span {
