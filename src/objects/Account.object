@@ -1064,10 +1064,6 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Description</fullName>
-        <trackFeedHistory>false</trackFeedHistory>
-    </fields>
-    <fields>
         <fullName>Emergency_number__c</fullName>
         <externalId>false</externalId>
         <label>Emergency number</label>
