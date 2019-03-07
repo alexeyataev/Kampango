@@ -1,7 +1,7 @@
 @isTest
-global with sharing class MockHttpResponseGenerator implements HttpCalloutMock 
+public with sharing class MockHttpResponseGenerator implements HttpCalloutMock 
 {   
-    global HTTPResponse respond(HTTPRequest request) 
+    public HTTPResponse respond(HTTPRequest request) 
     {
         HttpResponse response = new HttpResponse();
         response.setHeader('Content-Type', 'application/json');
