@@ -140,8 +140,20 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Reference__c</fullName>
+        <fullName>PSA_OfficeKey__c</fullName>
         <externalId>false</externalId>
+        <label>PSA OfficeKey</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reference__c</fullName>
+        <externalId>true</externalId>
         <label>Reference</label>
         <length>11</length>
         <required>false</required>

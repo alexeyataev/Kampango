@@ -64,6 +64,53 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Access_Instructions__c</fullName>
+        <externalId>false</externalId>
+        <label>Access Instructions</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Access_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Access Method</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Already open</fullName>
+                    <default>false</default>
+                    <label>Already open</label>
+                </value>
+                <value>
+                    <fullName>opened for us</fullName>
+                    <default>false</default>
+                    <label>opened for us</label>
+                </value>
+                <value>
+                    <fullName>pin code entry</fullName>
+                    <default>false</default>
+                    <label>pin code entry</label>
+                </value>
+                <value>
+                    <fullName>key entry</fullName>
+                    <default>false</default>
+                    <label>key entry</label>
+                </value>
+                <value>
+                    <fullName>key and pin code entry</fullName>
+                    <default>false</default>
+                    <label>key and pin code entry</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Account_Holder_Name__c</fullName>
         <externalId>false</externalId>
         <label>Account Holder Name</label>
@@ -84,6 +131,92 @@
         <unique>false</unique>
     </fields>
     <fields>
+ <fullName>Alternate_Booking_Contact_Key__c</fullName>
+        <externalId>true</externalId>
+        <label>Alternate Booking Contact Key</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Alternate_Booking_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Alternate Booking Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Venue (Alternate Booking Contact)</relationshipLabel>
+        <relationshipName>Venue2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Alternate_Emergency_Contact_Key__c</fullName>
+        <externalId>true</externalId>
+        <label>Alternate Emergency Contact Key</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Alternate_Emergency_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Alternate Emergency Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Venue (Alternate Emergency Contact)</relationshipLabel>
+        <relationshipName>Venue4</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Antenatal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Antenatal?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Audio_Visual_Equipment_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Audio/Visual Equipment Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Audio_Visual_Equipment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Audio/Visual Equipment</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Baby_Changing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Baby Changing</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Baby_Massage__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Baby Massage?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Bank_or_Building_Society_Name__c</fullName>
         <description>Regarding account holder bank name or Society name</description>
         <externalId>false</externalId>
@@ -93,6 +226,45 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+<fullName>Booking_Contact_Key__c</fullName>
+        <externalId>true</externalId>
+        <label>Booking Contact Key</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Booking_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Booking Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Venue (Booking Contact)</relationshipLabel>
+        <relationshipName>Venue1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Buggy_Access__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Buggy Access?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Cancellation_Terms__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancellation Terms</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Capacity__c</fullName>
@@ -127,6 +299,14 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Cats_at_Venue__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Cats at Venue?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
@@ -181,6 +361,48 @@
         </valueSet>
     </fields>
     <fields>
+<fullName>Deposit_Return_Terms__c</fullName>
+        <externalId>false</externalId>
+        <label>Deposit Return Terms</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Deposit__c</fullName>
+        <externalId>false</externalId>
+        <label>Deposit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Directions__c</fullName>
+        <externalId>false</externalId>
+        <label>Directions</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Disabled_Access__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Disabled Access?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Dogs_at_Venue__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Dogs at Venue?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Email__c</fullName>
         <externalId>false</externalId>
         <label>Email</label>
@@ -190,18 +412,107 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Emergency_Contact_Key__c</fullName>
+        <externalId>true</externalId>
+        <label>Emergency Contact Key</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Emergency_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Emergency Contact</label>
-        <required>true</required>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Venue (Emergency Contact)</relationshipLabel>
+        <relationshipName>Venue3</relationshipName>
+        <required>false</required>
         <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Flip_Cart_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Flip Cart Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
         <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Free__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Free?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Hot_Drink_Making_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Hot Drink Making Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Hot_Drink_Making__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Hot Drink Making</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Instructions_for_Parents__c</fullName>
+        <externalId>false</externalId>
+        <label>Instructions for Parents</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Instructions_for_Practitioners__c</fullName>
+        <externalId>false</externalId>
+        <label>Instructions for Practitioners</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Key_Holders__c</fullName>
+        <externalId>false</externalId>
+        <label>Key Holders</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Kitchen_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Kitchen Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Kitchen__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Kitchen</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>MailingCity__c</fullName>
         <externalId>false</externalId>
-        <label>City</label>
-        <length>11</length>
+        <label>MailingCity</label>
+        <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -210,7 +521,7 @@
     <fields>
         <fullName>MailingCountry__c</fullName>
         <externalId>false</externalId>
-        <label>Country</label>
+        <label>MailingCountry</label>
         <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -242,8 +553,8 @@
     <fields>
         <fullName>MailingPostalCode__c</fullName>
         <externalId>false</externalId>
-        <label>PostalCode</label>
-        <length>11</length>
+        <label>MailingPostalCode</label>
+        <length>25</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -252,7 +563,7 @@
     <fields>
         <fullName>MailingState__c</fullName>
         <externalId>false</externalId>
-        <label>State</label>
+        <label>MailingState</label>
         <length>25</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -262,10 +573,52 @@
     <fields>
         <fullName>MailingStreet__c</fullName>
         <externalId>false</externalId>
-        <label>Street</label>
+        <label>MailingStreet</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>PIN_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>PIN Code</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Parking__c</fullName>
+        <externalId>false</externalId>
+        <label>Parent Parking</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Parents_to_bring_birth_ball_cushion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Parents to bring  birth ball/cushion?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Parents_to_bring_lunch__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Parents to bring lunch?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Parking_Available__c</fullName>
@@ -274,6 +627,17 @@
         <label>Parking Available</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Payment_ProfileKey__c</fullName>
+        <externalId>true</externalId>
+        <label>Payment ProfileKey</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Payment_Profile__c</fullName>
@@ -288,12 +652,52 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Payment_Terms__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Terms</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Phone__c</fullName>
         <externalId>false</externalId>
         <label>Phone</label>
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Poling_Station__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Poling Station?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Postnatal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Postnatal?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Practitioner_Parking__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Practitioner Parking</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Preferred__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Preferred</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Private__c</fullName>
@@ -308,6 +712,14 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Projector required</label>
+	<trackTrending>false</trackTrending>
+	 <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Ready_to_Use__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Ready to Use?</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -340,6 +752,46 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Storage__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Storage?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Suitable_for_Autumn__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Suitable for Autumn</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Suitable_for_Spring__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Suitable for Spring?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Suitable_for_Summer__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Suitable for Summer?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Suitable_for_Winter__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Suitable for Winter?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Tidy_up_Time__c</fullName>
         <externalId>false</externalId>
         <label>Tidy up Time</label>
@@ -356,6 +808,43 @@
         <type>Time</type>
     </fields>
     <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Commercial</fullName>
+                    <default>false</default>
+                    <label>Commercial</label>
+                </value>
+                <value>
+                    <fullName>practitioner home</fullName>
+                    <default>false</default>
+                    <label>practitioner home</label>
+                </value>
+                <value>
+                    <fullName>parent home</fullName>
+                    <default>false</default>
+                    <label>parent home</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Venue_Availablity__c</fullName>
+        <externalId>false</externalId>
+        <label>Venue Availablity</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Venue_GeoLocation__c</fullName>
         <description>Geolocation of the venue</description>
         <displayLocationInDecimal>false</displayLocationInDecimal>
@@ -365,6 +854,25 @@
         <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Location</type>
+    </fields>
+	<fields>
+        <fullName>Venuekey__c</fullName>
+        <externalId>true</externalId>
+        <label>Venuekey</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Website__c</fullName>
+        <externalId>false</externalId>
+        <label>Website</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
     </fields>
     <fields>
         <fullName>Venue_Keys__c</fullName>
