@@ -73,6 +73,8 @@
       <members>gaid__Gift_Aid_Declaration__c</members>
       <members>cpm__Mandate__c</members>
 	  <members>cpm__Mandate_Schedule__c</members>
+	  <members>Session__c</members>
+	  <members>Session_Practitioner__c</members>
         <name>CustomObject</name>
     </types>
 	<types>
@@ -177,6 +179,8 @@
         <members>User-User Layout</members>
         <members>UserAlt-User Profile Layout</members>
         <members>Venue__c-Venue Layout</members>
+		<members>Session__c-Session Layout</members>
+		<members>Session_Practitioner__c-Session Practitioner Layout</members>
         <members>*</members>
         <name>Layout</name>
     </types>
