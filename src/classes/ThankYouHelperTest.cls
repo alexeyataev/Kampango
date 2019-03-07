@@ -4,8 +4,8 @@ private class ThankYouHelperTest {
      private static void recurringExists(){
          String membershipNumber;
          list<npe03__Recurring_Donation__c> recDonation = new list<npe03__Recurring_Donation__c>();
-       
-         
+         Membership_Type__mdt membershipDetails;
+
         contact con = new contact();
         con.FirstName = 'NCT Child';
         con.LastName = 'Trust';
@@ -49,6 +49,7 @@ private class ThankYouHelperTest {
         con.Phone = '3453535353555';
         con.Prefered_First_Name__c = 'NCT';
         insert con;
+        Membership_Type__mdt membershipDetails;
         Boolean lifeMembership = false;
         pagereference page = page.NctETMembershipPaymentPage;
         Test.setCurrentPage(page);
@@ -73,12 +74,14 @@ private class ThankYouHelperTest {
         con.Phone = '3453535353555';
         con.Prefered_First_Name__c = 'NCT';
         insert con;
+        Membership_Type__mdt membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c, No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c,GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt WHERE 
+													Payment_Type__c='Life Membership - Free' limit 1];
         
-
         String membershipNumber;
 		Boolean lifeMembership = true;
         ThankYouHelper thankYou = new ThankYouHelper();
         thankYou.recDon = recDonation;
+        thankyou.membershipDetails = membershipDetails;
         membershipNumber = thankYou.membershipNumberCreation(con,recDon1,lifeMembership);  
         system.assertNotEquals('Confirmed', membershipNumber);
     }

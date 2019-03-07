@@ -56,6 +56,15 @@
         <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/font-awesome.min.css')}"/>
         <apex:stylesheet value="{!URLFOR($Resource.nctapp, 'nct-app/css/style.css')}"/>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+        <apex:includeScript value="{!URLFOR('https://www.google-analytics.com/analytics.js')}"/>
+		<script>
+            window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+            	ga('create', 'UA-1436592-20', 'auto');
+            	ga('send', 'pageview');
+                ga(function(){
+                console.log(ga.getAll());
+               });
+		</script>
         <style>
             @media (min-width: 1200px){
                 .container {
@@ -615,36 +624,53 @@
                                             </div>
                                             <!-- newprivacy content start here -->
                                               <div class="newprivacy-content">
-                                                <div class="row radio-fields-row">
-                                                    <div class="col-12 radio-fields-title">I agree to NCT contacting me in the following ways:</div>
-                                                    <div class="col-12 radio-fields-col">
-                                                    <!--<span style="text-color:white;"><apex:selectCheckboxes value="{!contactSelectedPreferences}">
-                                                                    <apex:selectOptions value="{!contactPreferenceOptions}" />
-
-                                                         </apex:selectCheckboxes></span>-->
-                                                        <div class="contact_check">
-                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!smsOpt}"/>SMS</span>
-                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!postOpt}"/>Post</span>
-                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!emailOpt}"/>Email</span> 
-                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!doNotCallOpt}"/>Phone</span> 
-                                                            
-                                                          </div>
-                                                    </div>
-                                                </div>
+                                                
                                                 <!-- privacy statement start here -->
                                                 <div class="privacy-statement">
                                                     <div class="container">
                                                         <div class="privacy-statement-title">
                                                           Privacy statement
+                                                        </div>
+                                                       <div class="row radio-fields-row">
+                                                         <p>As part of your membership we’ll be in touch to keep you up-to-date with member news and benefits, 
+                                                            by email and post.  </p>
+                                                         <p>We’d also like to keep in touch with you about our services, support and family events,
+                                                           plus how you can support our important work. We’ll only contact you in the ways you want, 
+                                                           and we’ll keep your information safe. Check out our Privacy policy <a style="text-decoration:underline;" href="www.nct.org.uk/privacy" target="_open">(www.nct.org.uk/privacy)</a> for more details.</p>                                                     
+                                                         <div>Would you like to hear from us by</div>                                                   
+                                                         <div class="col-12 radio-fields-col">
+                                                           <!--<span style="text-color:white;"><apex:selectCheckboxes value="{!contactSelectedPreferences}">
+                                                                    <apex:selectOptions value="{!contactPreferenceOptions}" />
+                                                          </apex:selectCheckboxes></span>-->
+                                                          <div class="contact_check">
+                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!emailOpt}"/>Email</span> 
+                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!smsOpt}"/>Text</span>
+                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!postOpt}"/>Post</span>
+                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!doNotCallOpt}"/>Telephone</span>
+                                                          </div>
+                                                            <style>
+                                                              .contact_check span {
+                                                                 display: block !important;
+                                                                 padding: 0px 15px 10px 0;
+                                                              }
+                                                              .newprivacy-content .privacy-statement {
+                                                            	text-align: left;
+                                                              }
+                                                              .privacy-statement-title{
+                                                                text-align: center;
+                                                            	padding-bottom: 15px;
+                                                              }
+                                                              .radio-fields-col,.agree-statement-row{
+                                                                padding-left:0;
+                                                              }
+                                                            </style>
+                                                          <div style="padding-bottom:15px;">You can change your mind at any time through our online preference centre or by contacting us on 0300 330 0700.</div>
+                                                          <div class="agree-statement-row">
+                                                            <input id="agree" type="checkbox" /> I have read and understand/agree with our websites Terms and Conditions.
+                                                          </div>  
+                                                        </div>
                                                       </div>
-                                                      <p>NCT would like to keep in touch with you about our services, support, events, campaigns and
-                                                        fundraising. We'll only contact you in the ways you want, and we'll keep your information safe.
-                                                        Our privacy policy has full details of how we use personal data
-                                                        <a href="https://www.nct.org.uk/privacy" class="underlink" target="_open">https://www.nct.org.uk/privacy</a>
-                                                      </p>
-                                                      <div class="agree-statement-row">
-                                                          <input id="agree" type="checkbox" /> I have read and understand/agree with our websites Terms and Conditions.
-                                                      </div>
+                                                      
                                                   </div>
                                                   </div>
                                                   <!-- privacy statement end here -->
@@ -1622,11 +1648,24 @@
             $('#register_li').addClass('active');
             $('#register').addClass('active show');
         });
-        $('#direct_pay_back, #go-back-payment').on('click', function(){
+        $('#direct_pay_back').on('click', function(){
+
+            $('#direct_debit_block').css('display', 'none');
+            $('#pay_page').css('display', '');
+            afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),
+                      $('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),
+                      $('#textEmailPartner').val(),$('#textTelephoneHomePartner').val(),$('#postcode').val(),
+                      $('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),
+                      $('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),
+                      $('#town').val(),$('#county').val(),$(salutation).text());
+            
+        });
+         $('#go-back-payment').on('click', function(){
             $('#direct_debit_block').css('display', 'none');
             $('#pay_page').css('display', '');
         });
         $('#gift_aid_back').on('click', function(){
+            $('#giftAidCheckbox').prop('checked', false);
             if(cardPayment === false) {
                 $('#direct_debit_block').show();
                 $('#gift_aid_block').hide();
@@ -1660,12 +1699,12 @@
                         	$('#membership-loader').removeClass('show-loader');
                         }
                     },200)
+                    
+            if (cardPayment === true) {
                     setInterval(function() {
                     giftAidExec = $("[id$='onComplete']").val();
                       console.log(typeof giftAidExec, 'giftAidExec');
                       if(giftAidExec == 'true') {
-                        //setTimeout(function(){
-                          console.log(giftAidExec, 'giftAidExec if');
                     var accountName = $('#accountName').val();
                     var sortCode1 = $('#scd1').val();
                     var sortCode2 = $('#scd2').val();
@@ -1673,15 +1712,9 @@
                     var sortCode = sortCode1 + sortCode2 + sortCode3;
                     var accountNumber = $('#accountNumber').val();
                     var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
-                    console.log(giftAidCheckbox);
-                    console.log(accountName);
-                    console.log(sortCode);
-                    console.log(accountNumber);
-            		console.log(typeof giftAidCheckbox, 'Gift Aid CC Flow');
             		if (cardPayment === true) {
             			giftAidCreation(giftAidCheckbox);
                     }
-                    //saverecordValues(accountName,sortCode,accountNumber,giftAidCheckbox);
                     $('#payment_li, #gift_li').removeClass('active');
                     $('#confirmation_li').addClass('active');
                     $('#payment').removeClass('active show');
@@ -1691,9 +1724,7 @@
                     $("#DD_acc_name").html(accountName);
                     $("#DD_sort_code").html(sortCode);
                     $("#DD_bank_acc_num").html(accountNumber);
-            		console.log(cardPayment, 'cardPayment');
-                    if (cardPayment === true) {
-                        
+                    if (cardPayment === true) {           
                         $('#thankyou').addClass('active show');
                         $('#thankyou_li').addClass('active');
                         $('#payment').removeClass('active show');
@@ -1702,14 +1733,29 @@
                         $('#payment_li').removeClass('active');
                         $('#gift_aid_block').hide();
             			$('#gift_li').removeClass('active');
-                        //$("#confirmation").append( "<div class='col-md-7'><div class='loader'><img src='/resource/1543388581000/nctapp/nct-app/assets/nctmembers-logo.png' /><div>Loading...</div></div></div>" );
                     }
-                      //}, 3500);
-                          //giftAidExec = false;
                           $("[id$='onComplete']").val(false);
                           }
                           
                    }, 2000)
+                   } else {
+                            var accountName = $('#accountName').val();
+                            var sortCode1 = $('#scd1').val();
+                            var sortCode2 = $('#scd2').val();
+                            var sortCode3 = $('#scd3').val();
+                            var sortCode = sortCode1 + sortCode2 + sortCode3;
+                            var accountNumber = $('#accountNumber').val();
+                            var giftAidCheckbox= $('#giftAidCheckbox')[0].checked;
+                            $('#payment_li, #gift_li').removeClass('active');
+                            $('#confirmation_li').addClass('active');
+                            $('#payment').removeClass('active show');
+                            $('#confirmation').addClass('active show');
+                            $('#credit_card_confirm').hide();
+                            $("#gift_aid_block").hide();
+                            $("#DD_acc_name").html(accountName);
+                            $("#DD_sort_code").html(sortCode);
+                            $("#DD_bank_acc_num").html(accountNumber);
+                        }
                         $('#gift_aid_btn').prop('disabled', true);
                         });
              

@@ -81,6 +81,10 @@
 	   <members>Venue_Rate__c</members>
         <name>CustomObject</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>CustomObjectTranslation</name>
+    </types>
 	<types>
         <members>*</members>
         <name>CustomMetadata</name>
@@ -207,6 +211,10 @@
     <types>
         <members>*</members>
         <name>Role</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Settings</name>
     </types>
 	<types>
         <members>*</members>
