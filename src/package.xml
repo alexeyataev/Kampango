@@ -188,6 +188,7 @@
         <members>User-User Layout</members>
         <members>UserAlt-User Profile Layout</members>
 		<members>Venue_Rate__c-Venue Rate Layout</members> 
+		<members>Venue__c-Venue Layout</members>
         <members>*</members>
         <name>Layout</name>
     </types>
