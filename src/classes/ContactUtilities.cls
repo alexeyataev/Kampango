@@ -29,7 +29,7 @@ public without sharing class ContactUtilities {
                        Email = :email and Email != null and Email != '']; 
                             	 
         if(contactList.size()>0){
-            System.debug('Contact List size: '+contactlist);
+
             return true;
         }
         else{
