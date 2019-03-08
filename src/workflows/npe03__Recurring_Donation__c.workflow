@@ -196,6 +196,33 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Renewal_Update</fullName>
+        <field>Renewal_Date__c</field>
+        <formula>CASE( Text(Membership_type__c) , 
+&quot;12 month membership&quot;, ADDMONTHS( DATEVALUE(CreatedDate),12),
+
+&quot;18 month membership&quot;, ADDMONTHS( DATEVALUE(CreatedDate),18),
+
+&quot;4 year membership&quot;, ADDMONTHS( DATEVALUE(CreatedDate),48),
+
+&quot;Life Membership&quot;, ADDMONTHS( DATEVALUE(CreatedDate),1188),
+
+&quot;Reduced 12 month membership&quot;, ADDMONTHS( DATEVALUE(CreatedDate),12),
+
+&quot;Staff Membership&quot; , ADDMONTHS( DATEVALUE(CreatedDate),1188),
+
+&quot;10 year membership&quot; , ADDMONTHS( DATEVALUE(CreatedDate),120),
+
+null
+)</formula>
+        <name>Renewal Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+
     <rules>
         <fullName>Membership Renewal Notification</fullName>
         <actions>
@@ -250,6 +277,19 @@
         <description>Payment Method Direct Debit email trigger to parent</description>
         <formula>AND($Profile.Name = &quot;Enquiries Team&quot; &amp;&amp; ISPICKVAL( npsp4hub__Payment_Method__c, &apos;Direct Debit&apos;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+      <fullName>Renewal Update</fullName>
+        <actions>
+            <name>Renewal_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>npe03__Recurring_Donation__c.Membership_type__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>UpdateNewDonationDate</fullName>
