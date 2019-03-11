@@ -93,7 +93,6 @@ public without sharing class MembershipUtilties {
 
             }else{
                 membershipTypeMap.get(membershipType.Membership__c).add(membershipType);
-                //System.debug('List of Metadata Type : '+membershipTypeMap + '\n');
             }
 
         }
