@@ -222,9 +222,21 @@
         <fullName>gaid__First_Name__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
-        <formula>gaid__Contact__r.FirstName</formula>
+        <formula>BLANKVALUE(gaid__Firstname__c, gaid__Contact__r.FirstName)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>First Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+    <fullName>gaid__Firstname__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This value overrides the default contact value.</inlineHelpText>
+        <label>First Name</label>
+        <length>35</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -245,9 +257,21 @@
         <fullName>gaid__Last_Name__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
-        <formula>gaid__Contact__r.LastName</formula>
+        <formula>BLANKVALUE( gaid__Lastname__c , gaid__Contact__r.LastName)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Last Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+    <fullName>gaid__Lastname__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This overrides the contact default.</inlineHelpText>
+        <label>Last Name</label>
+        <length>35</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

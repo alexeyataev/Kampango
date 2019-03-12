@@ -21,9 +21,24 @@ public without sharing class MembershipCrudHelper {
             recDon = new npe03__Recurring_Donation__c();
             gftAid = new gaid__Gift_Aid_Declaration__c();
     }
-    
+    private boolean paymentProfileCheck(){
+        return !Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isAccessible()
+        &&(!Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isCreateable() || !Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isUpdateable());
+    }
+    private boolean giftAidCheck(){
+        return !Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isAccessible()
+        &&(!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isUpdateable() || !Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isCreateable());
+    }
+    private boolean recDonationCheck(){
+        return !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Name.isAccessible()
+        &&(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isAccessible() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()
+        &&(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isupdateable() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()));
+    }
+    private boolean ismembershipSource(){
+    	return membershipSource != '' && membershipSource != null;
+    }
     public cpm__Payment_Profile__c paymentProfile(){
-        if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isAccessible()){
+        if (paymentProfileCheck()){
         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
         return null;
         }
@@ -41,10 +56,6 @@ public without sharing class MembershipCrudHelper {
                                 AND
                                     CreatedDate = :System.Date.today() limit 1 FOR UPDATE];
         if(paymentProfileRecord.size()>0){
-            if (!Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isCreateable() || !Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isUpdateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
-                return null;
-            }
             paymentProfileRecord[0].RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get(MembershipConstants.BANK_ACCOUNT).getRecordTypeId();
             
                 if(accountNumber != '' && accountNumber != null)
@@ -55,6 +66,7 @@ public without sharing class MembershipCrudHelper {
                 paymentProfileRecord[0].cpm__Holder_Name__c = accountName;
                 paymentProfileRecord[0].paybacs__Sort_Code__c = sortCode;
                 upsert paymentProfileRecord[0];
+                return paymentProfileRecord[0];
                 
         }
         else{
@@ -72,12 +84,6 @@ public without sharing class MembershipCrudHelper {
             pymtPrfl.paybacs__Sort_Code__c = sortCode;
             
             upsert pymtPrfl;
-            
-        }
-        if(paymentProfileRecord.size()>0){
-            return paymentProfileRecord[0];
-        }
-        else{
             return pymtPrfl;
         }
 
@@ -85,7 +91,7 @@ public without sharing class MembershipCrudHelper {
         
     }
     public gaid__Gift_Aid_Declaration__c giftAid(Membership_Type__mdt membershipDetails){
-        if (!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isAccessible()){
+        if (giftAidCheck()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
             return null;
         }
@@ -103,10 +109,6 @@ public without sharing class MembershipCrudHelper {
                                     AND
                                     CreatedDate = :System.Date.today() limit 1];
         if(giftAidDeclarationRecord.size()>0){
-            if (!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isUpdateable() || !Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isCreateable()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
-                    return null;
-            }
             giftAidDeclarationRecord[0].gaid__Type__c = membershipDetails.GiftAid_Type__c;
             if(acquistion != '' && acquistion != null){
                 giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = acquistion;
@@ -118,6 +120,7 @@ public without sharing class MembershipCrudHelper {
             giftAidDeclarationRecord[0].gaid__Date_Made__c = system.date.today();
             giftAidDeclarationRecord[0].gaid__Active__c = true;
             upsert giftAidDeclarationRecord[0];
+            return giftAidDeclarationRecord[0];
             
         }
         else{
@@ -137,19 +140,14 @@ public without sharing class MembershipCrudHelper {
             gftAid.gaid__Active__c = true;
             
             Database.insert(gftAid, false);
-            
-        }
-        if(giftAidDeclarationRecord.size()>0){
-            return giftAidDeclarationRecord[0];
-        }
-        else{
             return gftAid;
+            
         }
                        
     }
     public npe03__Recurring_Donation__c recDonation(Membership_Type__mdt membershipDetails,cpm__Payment_Profile__c pymtProfl){
 
-            if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Name.isAccessible()){
+            if(recDonationCheck()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
             return null;
             }
@@ -179,21 +177,10 @@ public without sharing class MembershipCrudHelper {
                                     CreatedDate = :System.Date.today() limit 1];
             
             if(recDonationRecord.size()>0){
-                if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isAccessible() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()){
-                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
-                    return null;
-                }
                 recDonationRecord[0].Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                 recDonationRecord[0].npe03__Amount__c = membershipDetails.Installment_Amount__c;
                 recDonationRecord[0].Membership_type__c = membershipDetails.Membership__c;
                 recDonationRecord[0].npe03__Installments__c = membershipDetails.No_of_Installments__c;
-                if(membershipSource != '' && membershipSource != null){
-                        recDonationRecord[0].Source__c = membershipSource;
-                }
-                if(scont != null){
-                    recDonationRecord[0].Second_Contact__c = scont.Id; 
-                }
-                
                 recDonationRecord[0].npe03__Next_Payment_Date__c = MembershipUtilties.getNextDonationDate(System.Date.today());
                 recDonationRecord[0].npe03__Schedule_Type__c = membershipDetails.Schedule_Type__c;
                 recDonationRecord[0].npe03__Installment_Period__c = membershipDetails.Installment_Period__c;
@@ -209,7 +196,7 @@ public without sharing class MembershipCrudHelper {
                     recDonationRecord[0].Membership_Status__c = MembershipConstants.PENDING;
                 }
                 upsert recDonationRecord[0];
-                
+                return recDonationRecord[0];   
             }
             else{
                     
@@ -219,7 +206,7 @@ public without sharing class MembershipCrudHelper {
                 recDon.Membership_type__c = membershipDetails.Membership__c;
                 recDon.npe03__Installments__c = membershipDetails.No_of_Installments__c;
                 recDon.npe03__Contact__c = pcont.Id;
-                if(membershipSource != '' && membershipSource != null){
+                if(ismembershipSource()){
                         recDon.Source__c = membershipSource;
                 }else{
                      recDon.Source__c = MembershipConstants.ONLINE_MEMBERSHIP_APPLICATION;
@@ -229,10 +216,6 @@ public without sharing class MembershipCrudHelper {
                 recDon.First_Contact__c = pcont.Id;
                 if(scont != null){
                     recDon.Second_Contact__c = scont.Id; 
-                }
-                if(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isupdateable() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()){
-                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
-                    return null;
                 }
                 recDon.Data_Source__c = MembershipConstants.SALESFORCE;
                 recDon.npe03__Schedule_Type__c = membershipDetails.Schedule_Type__c;
@@ -249,13 +232,6 @@ public without sharing class MembershipCrudHelper {
                     recDon.Membership_Status__c = MembershipConstants.PENDING;
                 }
                 Database.insert(recDon, false);
-                
-                
-            }
-            if(recDonationRecord.size()>0){
-            return recDonationRecord[0];
-        }
-        else{
             return recDon;
         }
        	 

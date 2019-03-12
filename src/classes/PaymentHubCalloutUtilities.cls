@@ -1,7 +1,4 @@
 public without sharing class PaymentHubCalloutUtilities {
-    
-    public String sessionProfile = userinfo.getUserType();
-    
     private static PaymentHubApiSettings__c paymentHubApiSettings = PaymentHubApiSettings__c.getInstance();
     
     public static String paymentHub(contact cont,Membership_Type__mdt membershipDetails, list<string> contactDetails){
