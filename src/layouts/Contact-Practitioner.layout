@@ -240,6 +240,7 @@
         <relatedList>Practitioner_Role__c.Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
+    <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>npe03__Date_Established__c</fields>
         <fields>npe03__Last_Payment_Date__c</fields>
