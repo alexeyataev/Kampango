@@ -9,7 +9,10 @@ private class PaymentHubCalloutUtilitiesTest {
         cont.Prefered_First_Name__c = 'NCT';
         insert cont; 
         
-        list<String> contactDetails = new list<String>();
+        PaymentRequestVo.ContactVo cvo = new PaymentRequestVo.ContactVo();
+            cvo.Email = cont.Email;        
+            cvo.FirstName = cont.FirstName;
+            cvo.LastName = cont.LastName;
           
         PaymentHubApiSettings__c paymentHubApiSettings = new PaymentHubApiSettings__c();
         paymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
@@ -22,7 +25,7 @@ private class PaymentHubCalloutUtilitiesTest {
                                                 GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt where  Payment_Method__c='Credit/Debit Card' limit 1];
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
-        PaymentHubCalloutUtilities.paymentHub(cont,membershipDetails,contactDetails);    
+        PaymentHubCalloutUtilities.paymentHub(cont,membershipDetails,null);    
         Test.stopTest();
         system.assertEquals('Credit/Debit Card',membershipDetails.Payment_Method__c );
         
@@ -32,15 +35,20 @@ private class PaymentHubCalloutUtilitiesTest {
         contact con = new contact();
         
          
-        String firstName = 'NCT Child';
-        String lastName = 'Trust';
-        String email = 'nct@gmail.com';
+        String firstName = 'NCT Childs';
+        String lastName = 'Trusts';
+        String email = 'nct.cm@gmail.com';
         
         
         list<String> contactDetails = new list<String>();
-        contactDetails.add(Email);
-        contactDetails.add(FirstName);
-        contactDetails.add(LastName);
+        contactDetails.add(email);
+        contactDetails.add(firstName);
+        contactDetails.add(lastName);
+        
+         PaymentRequestVo.ContactVo cvo = new PaymentRequestVo.ContactVo();
+           cvo.Email = contactDetails[0];        
+            cvo.FirstName = contactDetails[1];
+            cvo.LastName = contactDetails[2];
           
         PaymentHubApiSettings__c paymentHubApiSettings = new PaymentHubApiSettings__c();
         paymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
@@ -59,5 +67,4 @@ private class PaymentHubCalloutUtilitiesTest {
         Test.stopTest();
         system.assertEquals('Credit/Debit Card',membershipDetails.Payment_Method__c );
     }
-
 }

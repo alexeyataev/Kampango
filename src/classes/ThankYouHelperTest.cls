@@ -1,9 +1,7 @@
 @isTest
 private class ThankYouHelperTest {    
-     @isTest
-     private static void recurringExists(){
+    @isTest static void recurringExists(){
          String membershipNumber;
-         list<npe03__Recurring_Donation__c> recDonation = new list<npe03__Recurring_Donation__c>();
          Membership_Type__mdt membershipDetails;
 
         contact con = new contact();
@@ -13,7 +11,7 @@ private class ThankYouHelperTest {
         con.Phone = '3453535353555';
         con.Prefered_First_Name__c = 'NCT';
         insert con;
-
+		List<npe03__Recurring_Donation__c> reclist = new list<npe03__Recurring_Donation__c>();
         npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
         recDon.Name = 'NCT Child';
         recDon.npe03__Amount__c = 10000;
@@ -24,22 +22,22 @@ private class ThankYouHelperTest {
         recDon.Membership_Status__c = 'Confirmed'; 
         recDon.Membership_type__c = '18 month - Joint';
         recDon.npe03__Contact__c = con.id;
-        recDonation.add(recDon); 
-        insert recDonation;
+        reclist.add(recDon);
+        insert reclist;
         Boolean lifeMembership = false;
+        Test.startTest();
         pagereference page = page.NctETMembershipPaymentPage;
         Test.setCurrentPage(page);
         ID contID = ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
 
         ThankYouHelper thankYou = new ThankYouHelper();
-        thankYou.reccDonList = recDonation;
-         system.debug('no of rows '+  recDonation.size());
-         system.debug('no of rows '+  thankYou.reccDonList.size());
+        thankYou.reccDonList = reclist;
+         system.debug('no of rows '+  reclist.size());	
         membershipNumber =  thankYou.membershipNumberCreation(con,recDon,lifeMembership); 
-        system.assertEquals('Confirmed',recDonation[0].Membership_Status__c);
+        system.assertEquals('Confirmed',reclist[0].Membership_Status__c);
+        Test.stopTest();
      }
-     @isTest
-     private static void recurringNotExists(){
+     @isTest static void recurringNotExists(){
         list<npe03__Recurring_Donation__c> recDonation = new list<npe03__Recurring_Donation__c>();
         npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
         contact con = new contact();
@@ -51,6 +49,7 @@ private class ThankYouHelperTest {
         insert con;
         Membership_Type__mdt membershipDetails;
         Boolean lifeMembership = false;
+        Test.startTest();
         pagereference page = page.NctETMembershipPaymentPage;
         Test.setCurrentPage(page);
         ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
@@ -60,6 +59,7 @@ private class ThankYouHelperTest {
         thankYou.reccDonList = recDonation;
         thankYou.membershipNumberCreation(con,recDon,lifeMembership);  
         system.assertEquals(null, recDon.Membership_Status__c);
+        Test.stopTest();
     }
     
     @isTest
@@ -79,10 +79,13 @@ private class ThankYouHelperTest {
         
         String membershipNumber;
 		Boolean lifeMembership = true;
+		Test.startTest();
         ThankYouHelper thankYou = new ThankYouHelper();
         thankYou.recDon = recDonation;
         thankyou.membershipDetails = membershipDetails;
         membershipNumber = thankYou.membershipNumberCreation(con,recDon1,lifeMembership);  
         system.assertNotEquals('Confirmed', membershipNumber);
+        Test.stopTest();
     }
+    
 }
