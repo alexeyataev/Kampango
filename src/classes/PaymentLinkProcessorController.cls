@@ -37,7 +37,7 @@ public without sharing class PaymentLinkProcessorController {
     public PageReference redirect() {
     
         if(paymentLinkFound){
-            PageReference pageRef = new PageReference(paymentLink);
+            PageReference pageRef = new PageReference(''+paymentLink);
             System.debug('Page Reference : '+pageRef);
             return pageRef;
         } else {
