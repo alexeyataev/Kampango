@@ -72,4 +72,31 @@ private class PaymentLinkProcessorControllerTest {
 		System.assertEquals(null, pg);
 										
 	}
+    @isTest static void permissioncheck() {
+        Profile p = [SELECT Id FROM Profile WHERE Name='Read Only'];
+      	User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
+        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
+        LocaleSidKey='en_US', ProfileId = p.Id,
+        TimeZoneSidKey='America/Los_Angeles', UserName='newusers@testorg.com');
+
+        System.runAs(u) {
+            List<Payment_Link__c> paymentLinkList = [ 
+                                                        SELECT 
+                                                            Payment_Link__c,
+                                                            Id,
+                                                            Link_Status__c 
+                                                        FROM 
+                                                            Payment_Link__c 
+                                                        WHERE 
+                                                            Link_Status__c='Active' 
+                                                    ];
+            Test.StartTest(); 
+            ApexPages.currentPage().getParameters().put('paymentId', paymentLinkList[0].Id);
+            PaymentLinkProcessorController paymentLinkProcessor = new PaymentLinkProcessorController();		
+            PageReference pg = 	paymentLinkProcessor.redirect();
+            Test.StopTest();
+            System.assertNotEquals(null, pg);
+            System.AssertEquals(pg.getUrl(), paymentLinkList[0].Payment_Link__c);
+        }
+	}
 }

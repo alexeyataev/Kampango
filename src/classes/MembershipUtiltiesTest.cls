@@ -185,4 +185,6 @@ private class MembershipUtiltiesTest {
     System.assertNotEquals(null, branchesMap);
     System.assertNotEquals(0, branchesMap.size());
   }
+    
+    
 }

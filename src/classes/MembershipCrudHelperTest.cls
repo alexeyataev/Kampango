@@ -171,4 +171,5 @@ private class MembershipCrudHelperTest {
          system.assertEquals(true,gftAid.gaid__Active__c);
     }  
     
+    
 }
