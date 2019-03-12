@@ -6,7 +6,7 @@ public with sharing class StaffMembershipController{
         if (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Number__c.isAccessible()
             && !Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()
             && !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()){
-         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'Error: Insufficient Access'));
+         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient Access'));
         }  
        Membership_Type__mdt membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
