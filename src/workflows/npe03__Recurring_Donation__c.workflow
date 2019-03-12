@@ -200,19 +200,19 @@
         <fullName>Renewal_Update</fullName>
         <field>Renewal_Date__c</field>
         <formula>CASE( Text(Membership_type__c) , 
-&quot;12 month membership&quot;, ADDMONTHS( DATEVALUE(CreatedDate),12),
+&quot;12 month membership&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
-&quot;18 month membership&quot;, ADDMONTHS( DATEVALUE(CreatedDate),18),
+&quot;18 month membership&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),18),
 
-&quot;4 year membership&quot;, ADDMONTHS( DATEVALUE(CreatedDate),48),
+&quot;4 year membership&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),48),
 
-&quot;Life Membership&quot;, ADDMONTHS( DATEVALUE(CreatedDate),1188),
+&quot;Life Membership&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),1188),
 
-&quot;Reduced 12 month membership&quot;, ADDMONTHS( DATEVALUE(CreatedDate),12),
+&quot;Reduced 12 month membership&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
-&quot;Staff Membership&quot; , ADDMONTHS( DATEVALUE(CreatedDate),1188),
+&quot;Staff Membership&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),1188),
 
-&quot;10 year membership&quot; , ADDMONTHS( DATEVALUE(CreatedDate),120),
+&quot;10 year membership&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),120),
 
 null
 )</formula>
