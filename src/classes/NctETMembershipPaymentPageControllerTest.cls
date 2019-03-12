@@ -47,8 +47,7 @@ private class NctETMembershipPaymentPageControllerTest {
         PageReference pageRef = Page.nctETMembershipPaymentPage; 
         Id contId = pageRef.getParameters().put('Id', String.valueOf(con.Id));
         Test.setCurrentPage(pageRef); 
-        
-        ApexPages.currentPage().getParameters().put('seltdName',membershipDetails.Id);
+
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
         nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController();
@@ -86,8 +85,7 @@ private class NctETMembershipPaymentPageControllerTest {
         controller.nctBranchs();
         controller.membershipDupeChecker();
         controller.giftAidCreation();
-        controller.PaymentSave();
-        controller.thankYouSec();        
+        controller.PaymentSave();     
         Test.stopTest();
         system.assertEquals(1,1);
        
