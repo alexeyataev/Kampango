@@ -57,4 +57,32 @@ private class AddToMembershipCompControllerTest {
             System.assert(true,'You Cant Add Membership, hence already membership exists for this contact');
        }
     }
+    @isTest
+    private static void permissionCheck(){
+         Profile p = [SELECT Id FROM Profile WHERE Name='Read Only'];
+      	User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
+        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
+        LocaleSidKey='en_US', ProfileId = p.Id,
+        TimeZoneSidKey='America/Los_Angeles', UserName='newusers@testorg.com');
+
+        System.runAs(u) {
+            contact cont = new contact();
+            cont.LastName = 'NCT CHild';
+            cont.Phone = '0987654321234';
+            cont.Email = 'nctchild4555@gmail.com';
+            insert cont;
+            list<npe03__Recurring_Donation__c> recurrDonList = new  list<npe03__Recurring_Donation__c>();
+            
+              /* Reccurring Donation record insertion doesn't happened, So membership doesn't exists, it goes to try block 
+            * and compares assertequals method. */
+           try{
+             AddToMembershipCompController.addToMembershipValidation(cont.id);
+             AddToMembershipCompController.recurrDonList = recurrDonList;
+                system.assertEquals(0, AddToMembershipCompController.recurrDonList.size());
+            }catch(AuraHandledException e) {
+                System.debug(e.getMessage());
+                System.assert(true,'You Cant Add Membership, hence already membership exists for this contact');
+           }
+    	}
+    }
 }

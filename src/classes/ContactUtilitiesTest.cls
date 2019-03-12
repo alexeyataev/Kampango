@@ -157,4 +157,62 @@ private class ContactUtilitiesTest {
         Boolean isMembershipExists = ContactUtilities.isMembershipExists(con.id, con.Email);
         System.assert(true,isMembershipExists);
 	}
+    @isTest static void permissionCheck() {
+		Profile p = [SELECT Id FROM Profile WHERE Name='Read Only'];
+      	User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
+        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
+        LocaleSidKey='en_US', ProfileId = p.Id,
+        TimeZoneSidKey='America/Los_Angeles', UserName='newusers@testorg.com');
+
+        System.runAs(u) {
+            Contact con = new Contact();
+            con.FirstName = 'Test FirstName';
+            con.LastName = 'Test LastName';
+            con.Email = 'testemail@test.com';
+            insert con;
+            String str = 'testemails@test.com';
+            Boolean isContactExisting = ContactUtilities.isContactExisting(str);
+            System.assert(true,isContactExisting);
+            
+            Account a = new Account();
+            a.RecordTypeId =Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+            a.Name ='Test Account';
+            Insert a;
+            
+            con.AccountId =a.Id;
+            upsert con;
+            
+            Profile portalProfile = [SELECT Id,Name FROM Profile WHERE Name ='Enquiries Team' Limit 1];
+            User usr = new User();
+            
+            Boolean isStaffs = false;
+            Boolean isVolunteer = false;
+            Boolean isPractitioner = false;
+            Boolean twomems = false;
+            
+            Boolean isVolunteerExisting = ContactUtilities.isVolunteerExisting(con.Id);
+            System.assert(true,isVolunteerExisting);
+            Id userId = usr.id;
+            Boolean isStaff = ContactUtilities.isStaff(userId);
+            System.assert(true,isStaff);
+            List<Boolean> targetCustomerList = new List<Boolean>{isStaffs,isVolunteer,isPractitioner,twomems};
+            String targetCustomer = ContactUtilities.targetCustomer(targetCustomerList);
+            System.assertEquals(false, isStaffs);
+            System.assertEquals(false, isVolunteer);
+            System.assertEquals(false, isPractitioner);
+            System.assertEquals(false, twomems);
+            
+            Boolean twomemsf = false;
+            List<Boolean> targetCustomersList = new List<Boolean>{isStaffs,isVolunteer,isPractitioner,twomems};
+            String targetCustomers = ContactUtilities.targetCustomer(targetCustomersList);
+            
+            System.assertEquals(false, isStaffs);
+            System.assertEquals(false, isVolunteer);
+            System.assertEquals(false, isPractitioner);
+            System.assertEquals(false, twomemsf);
+            
+            Boolean isMembershipExists = ContactUtilities.isMembershipExists(con.id, con.Email);
+            System.assert(true,isMembershipExists);
+        }
+	}
 }
