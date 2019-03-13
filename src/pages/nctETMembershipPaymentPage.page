@@ -1189,12 +1189,15 @@
         var staffValue = $('#checkStaff').val();
         	console.log(staffValue,'staff value');
             if(staffValue == 'staff'){
-                $('#textForename, #textSurname, #textEmail').prop('readonly', true);
+                $('#pcfirst').css('display','block');
+                $('#textForename, #textSurname, #textEmail, #address_line_1,#textMobile, #postcode, #textAddress2, #textAddress3,#town,#county,#due-Date').prop('readonly', true);
                 // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', true);
+                $('#selectBranch,#building,.contact_check input,.mrtitle select,.dynmaic-radio-fields td input').prop('disabled', true);
             }
        		else {
-               $('#textForename, #textSurname, #textEmail').prop('readonly', false);
+               $('#textForename, #textSurname, #textEmail, #address_line_1, #textMobile, #postcode, #textAddress2, #textAddress3,#town,#county,#due-Date').prop('readonly', false);
                 // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', false);
+                $('#selectBranch,#building,.contact_check input,.mrtitle select,.dynmaic-radio-fields td input').prop('disabled', false);
             }
             /*
         	$('#scd1').keypress(function(e) {
@@ -1267,7 +1270,9 @@
         		
                 $("#postcode_checker").click(function () {
                     console.log($('#postcode').val());
-                    postCodeVal($('#postcode').val(),$('#textEmail').val());
+                    if(staffValue != 'staff'){
+                        postCodeVal($('#postcode').val(),$('#textEmail').val());
+                    }
                     /*var varible = $('.memberexist input').val();
                     if(varible == "true" ){
                       $('#MembershipalertModal').modal();
@@ -1278,7 +1283,7 @@
                     
                     // --------------------------
                         var branch = $('#selectBranch :selected').text();
-                        if (branch == "") {
+                        if (branch == "" && staffValue != 'staff') {
                         $('#MembershipalertModal').modal();
                         $('.modal-body').html('<div>' + 'Please click on "Find Address" to select address and NCT Branch.' + '</div>');
                             return false
@@ -1310,7 +1315,10 @@
                         console.log(existContact);//&& existContact =='false'
                         //SelBranchValFunction($(selBnchvalue).val());
                         if(validateJoin() && dateFieldvalid) {
-                            if(staffValue != 'staff' ){//&& validateGender()
+                            //if(staffValue != 'staff' ){//&& validateGender()
+                            if(staffValue == 'staff' ){
+                                $(selectBranch).val('');
+                            }
                             afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),
                               $('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),
                               $('#textEmailPartner').val(),$('#textTelephoneHomePartner').val(),$('#postcode').val(),
@@ -1325,8 +1333,8 @@
                             $('#payment').addClass('active show');
                             $("html, body").animate({ scrollTop: 0 }, "slow");
 
-                            }
-                            else {
+                            //}
+                           /* else {
                                 afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),
                                   $('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),
                                   $('#textTelephoneHomePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),
@@ -1338,7 +1346,7 @@
                                 $('#register_li').removeClass('active');
                                 $('#register').removeClass('active show');
                                 console.log($('#membershipText').val(),"staff memebership");
-                            }
+                            }*/
                             $('#nameSubmit').prop('disabled', true);
                         }
                         else {
