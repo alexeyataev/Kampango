@@ -286,8 +286,9 @@ null
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>npe03__Recurring_Donation__c.Membership_type__c</field>
-            <operation>notEqual</operation>
+        <field>npe03__Recurring_Donation__c.Membership_Status__c</field>
+            <operation>equals</operation>
+            <value>Confirmed</value>
         </criteriaItems>
         <triggerType>onAllChanges</triggerType>
     </rules>
