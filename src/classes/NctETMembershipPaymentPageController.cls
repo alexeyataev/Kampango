@@ -292,15 +292,18 @@ public without sharing class NctETMembershipPaymentPageController
         if(membership.sessionProfile == MembershipConstants.STANDARD && membership.membershipInfo.Payment_Method__c == MembershipConstants.CREDIT_OR_DEBIT_CARD){
             paymentHubCallout();                
         }
-     
+           
+        MembershipVo.MemberCrudHelper crudHelper = new MembershipVo.MemberCrudHelper();
+        crudHelper.accountName = membership.accountName;
+        crudHelper.accountNumber = membership.accountNumber;
+        crudHelper.acquistion = membership.acquistion;
+        crudHelper.membershipSource = membership.membershipSource;
+        crudHelper.sortCode = membership.sortCode;
+        crudHelper.pcont = membership.primaryContact;
+        crudHelper.scont = membership.secondaryContact;
+        
         MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
-        memCrudHelp.pcont = membership.primaryContact;
-        memCrudHelp.scont = membership.secondaryContact;
-        memCrudHelp.accountName = membership.accountName;
-        memCrudHelp.accountNumber = membership.accountNumber;
-        memCrudHelp.sortCode = membership.sortCode;
-        memCrudHelp.acquistion = membership.acquistion;
-        memCrudHelp.membershipSource = membership.membershipSource;
+        memCrudHelp.crudHelper = crudHelper;
         if(membership.membershipInfo.Payment_Method__c != MembershipConstants.CREDIT_OR_DEBIT_CARD){
            pymtPrfl = memCrudHelp.paymentProfile();
         }

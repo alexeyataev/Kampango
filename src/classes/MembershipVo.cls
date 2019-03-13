@@ -74,4 +74,14 @@ public with sharing class MembershipVo {
     public String sessionProfile;
     public Boolean lifeMembership{get; set;}
     public String contactType;
+    public MemberCrudHelper memberCrud{get;set;}
+    public class MemberCrudHelper{
+        public String accountName {get; set;}
+        public String sortCode {get; set;}
+        public String accountNumber {get; set;}
+        public String acquistion {get;set;}
+        public String membershipSource{get;set;}
+        public Contact pcont{set; get;}
+        public Contact scont{set; get;}
+    }
 }
