@@ -3188,7 +3188,7 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>cpm__Payment_Profile__c.cpm__Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
