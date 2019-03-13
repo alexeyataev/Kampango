@@ -1,7 +1,7 @@
 @isTest
 	private class MembershipVoTest {
         
-	@isTest static void MembershipVoMethod(){
+	@isTest static void membershipVoMethod(){
         account acct = new account();
         acct.name = 'account details';
         insert acct;
@@ -90,6 +90,16 @@
             membership.targetCustomer = 'Test';
             membership.twomem = true;
             membership.twomems = true;
+        MembershipVo.MemberCrudHelper memCrud = new MembershipVo.MemberCrudHelper();
+        memCrud.pcont = con;
+        memCrud.scont = scon;
+        memCrud.accountName = 'Santhosh';
+        memCrud.accountNumber = '145263777';
+        memCrud.sortCode = 'CD-1234';
+        memCrud.acquistion = 'Written';
+        memCrud.membershipSource = 'Enquiry by phone - main NCT'; 
+        membership.memberCrud = memCrud;
+        
         system.assertEquals('Credit/Debit Card', membership.membershipInfo.Payment_Method__c);
         system.assertEquals('Nct childs', membership.lastname);
     }

@@ -3,13 +3,7 @@ public without sharing class MembershipCrudHelper {
     public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
     public cpm__Payment_Profile__c pymtPrfl{get;set;}
     public npe03__Recurring_Donation__c recDon {get;set;}
-    public Contact pcont{set; get;}
-    public Contact scont{set; get;}
-    public String accountNumber {get; set;}
-    public String sortCode {get; set;}
-    public String accountName {get; set;}
-    public String acquistion {get;set;}
-    public String membershipSource{get;set;}
+    public MembershipVo.MemberCrudHelper crudHelper{get;set;} 
 
     public list<cpm__Payment_Profile__c> paymentProfileRecord = new list<cpm__Payment_Profile__c>();
     public list<gaid__Gift_Aid_Declaration__c> giftAidDeclarationRecord = new list<gaid__Gift_Aid_Declaration__c>();
@@ -35,7 +29,7 @@ public without sharing class MembershipCrudHelper {
         &&(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isupdateable() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()));
     }
     private boolean ismembershipSource(){
-    	return membershipSource != '' && membershipSource != null;
+    	return crudHelper.membershipSource != '' && crudHelper.membershipSource != null;
     }
     public cpm__Payment_Profile__c paymentProfile(){
         if (paymentProfileCheck()){
@@ -52,19 +46,19 @@ public without sharing class MembershipCrudHelper {
                                 FROM 
                                     cpm__Payment_Profile__c 
                                 WHERE 
-                                    cpm__Contact__c = :pcont.id
+                                    cpm__Contact__c = :crudHelper.pcont.id
                                 AND
                                     CreatedDate = :System.Date.today() limit 1 FOR UPDATE];
         if(paymentProfileRecord.size()>0){
             paymentProfileRecord[0].RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get(MembershipConstants.BANK_ACCOUNT).getRecordTypeId();
             
-                if(accountNumber != '' && accountNumber != null)
+                if(crudHelper.accountNumber != '' && crudHelper.accountNumber != null)
                 {
-                    paymentProfileRecord[0].cpm__Bank_Account__c = accountNumber;
+                    paymentProfileRecord[0].cpm__Bank_Account__c = crudHelper.accountNumber;
                 }            
-                paymentProfileRecord[0].cpm__Account__c = pcont.AccountId;
-                paymentProfileRecord[0].cpm__Holder_Name__c = accountName;
-                paymentProfileRecord[0].paybacs__Sort_Code__c = sortCode;
+                paymentProfileRecord[0].cpm__Account__c = crudHelper.pcont.AccountId;
+                paymentProfileRecord[0].cpm__Holder_Name__c = crudHelper.accountName;
+                paymentProfileRecord[0].paybacs__Sort_Code__c = crudHelper.sortCode;
                 upsert paymentProfileRecord[0];
                 return paymentProfileRecord[0];
                 
@@ -72,16 +66,16 @@ public without sharing class MembershipCrudHelper {
         else{
             
             pymtPrfl = new cpm__Payment_Profile__c();
-            system.debug(' *$*$*$* Contact Account Id   ' + pcont.AccountId);
+            system.debug(' *$*$*$* Contact Account Id   ' + crudHelper.pcont.AccountId);
             pymtPrfl.RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get(MembershipConstants.BANK_ACCOUNT).getRecordTypeId();
-            pymtPrfl.cpm__Contact__c = pcont.Id; 
-            if(accountNumber != '' && accountNumber != null)
+            pymtPrfl.cpm__Contact__c = crudHelper.pcont.Id; 
+            if(crudHelper.accountNumber != '' && crudHelper.accountNumber != null)
             {
-                pymtPrfl.cpm__Bank_Account__c = accountNumber;
+                pymtPrfl.cpm__Bank_Account__c = crudHelper.accountNumber;
             }            
-                pymtPrfl.cpm__Account__c = pcont.AccountId;
-            pymtPrfl.cpm__Holder_Name__c = accountName;
-            pymtPrfl.paybacs__Sort_Code__c = sortCode;
+                pymtPrfl.cpm__Account__c = crudHelper.pcont.AccountId;
+            pymtPrfl.cpm__Holder_Name__c = crudHelper.accountName;
+            pymtPrfl.paybacs__Sort_Code__c = crudHelper.sortCode;
             
             upsert pymtPrfl;
             return pymtPrfl;
@@ -105,13 +99,13 @@ public without sharing class MembershipCrudHelper {
                                     FROM
                                     gaid__Gift_Aid_Declaration__c
                                     WHERE 
-                                    gaid__Contact__c = :pcont.Id
+                                    gaid__Contact__c = :crudHelper.pcont.Id
                                     AND
                                     CreatedDate = :System.Date.today() limit 1];
         if(giftAidDeclarationRecord.size()>0){
             giftAidDeclarationRecord[0].gaid__Type__c = membershipDetails.GiftAid_Type__c;
-            if(acquistion != '' && acquistion != null){
-                giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = acquistion;
+            if(crudHelper.acquistion != '' && crudHelper.acquistion != null){
+                giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = crudHelper.acquistion;
             }
             else{
                 giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = membershipDetails.GiftAid_Acquisition_Method__c;
@@ -125,10 +119,10 @@ public without sharing class MembershipCrudHelper {
         }
         else{
             gftAid = new gaid__Gift_Aid_Declaration__c();
-            gftAid.gaid__Contact__c= pcont.Id;
+            gftAid.gaid__Contact__c= crudHelper.pcont.Id;
             gftAid.gaid__Type__c = membershipDetails.GiftAid_Type__c;
-            if(acquistion != '' && acquistion != null){
-                gftAid.gaid__Acquisition_Method__c = acquistion;
+            if(crudHelper.acquistion != '' && crudHelper.acquistion != null){
+                gftAid.gaid__Acquisition_Method__c = crudHelper.acquistion;
             }
             else{
                 gftAid.gaid__Acquisition_Method__c = membershipDetails.GiftAid_Acquisition_Method__c;
@@ -172,7 +166,7 @@ public without sharing class MembershipCrudHelper {
                                 FROM
                                     npe03__Recurring_Donation__c
                                 WHERE
-                                    npe03__Contact__c = :pcont.Id
+                                    npe03__Contact__c = :crudHelper.pcont.Id
                                 AND
                                     CreatedDate = :System.Date.today() limit 1];
             
@@ -205,17 +199,17 @@ public without sharing class MembershipCrudHelper {
                 recDon.npe03__Amount__c = membershipDetails.Installment_Amount__c;
                 recDon.Membership_type__c = membershipDetails.Membership__c;
                 recDon.npe03__Installments__c = membershipDetails.No_of_Installments__c;
-                recDon.npe03__Contact__c = pcont.Id;
+                recDon.npe03__Contact__c = crudHelper.pcont.Id;
                 if(ismembershipSource()){
-                        recDon.Source__c = membershipSource;
+                        recDon.Source__c = crudHelper.membershipSource;
                 }else{
                      recDon.Source__c = MembershipConstants.ONLINE_MEMBERSHIP_APPLICATION;
                 }
                 
                 recDon.npe03__Next_Payment_Date__c = MembershipUtilties.getNextDonationDate(System.Date.today());
-                recDon.First_Contact__c = pcont.Id;
-                if(scont != null){
-                    recDon.Second_Contact__c = scont.Id; 
+                recDon.First_Contact__c = crudHelper.pcont.Id;
+                if(crudHelper.scont != null){
+                    recDon.Second_Contact__c = crudHelper.scont.Id; 
                 }
                 recDon.Data_Source__c = MembershipConstants.SALESFORCE;
                 recDon.npe03__Schedule_Type__c = membershipDetails.Schedule_Type__c;
