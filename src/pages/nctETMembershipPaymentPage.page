@@ -654,7 +654,7 @@
                                                                  padding: 0px 15px 10px 0;
                                                               }
                                                               .newprivacy-content .privacy-statement {
-                                                            	text-align: left;
+                                                            	text-align: justify;
                                                               }
                                                               .privacy-statement-title{
                                                                 text-align: center;
