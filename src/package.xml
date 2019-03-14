@@ -157,7 +157,6 @@
         <members>cpm__Installment__c-cpm__Installment Layout</members>
         <members>cpm__Installment__c-cpm__Installment Payable Layout</members>
         <members>cpm__Payment_Profile__c-paybacs__Bank Account</members>
-		<members>cpm__Payment_Profile__c-cpm__IBAN</members>
         <members>npe03__Recurring_Donation__c-Membership Layout</members>
         <members>npe03__Recurring_Donation__c-npe03__Recurring Donation Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
