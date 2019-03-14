@@ -367,6 +367,9 @@
                 width: 100%;
                 left: 0px;
             }
+            . membership-form-col{
+                text-align:justify;
+            }
         </style>
     </head>
 
