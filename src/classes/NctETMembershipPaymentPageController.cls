@@ -1,14 +1,11 @@
 public without sharing class NctETMembershipPaymentPageController 
 {
-  public MembershipVo membership{get;set;}
-     private static Boolean inspect = false;
+    public MembershipVo membership{get;set;}
+    private static Boolean inspect = false;
     public static Boolean onComplete {get; set;}  
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
     public npe03__Recurring_Donation__c recDon {get;set;}
     public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
-    public list<cpm__Payment_Profile__c> paymentProfileRecord = new list<cpm__Payment_Profile__c>();
-    public list<gaid__Gift_Aid_Declaration__c> giftAidDeclarationRecord = new list<gaid__Gift_Aid_Declaration__c>();
-    public list<npe03__Recurring_Donation__c> recDonationRecord = new list<npe03__Recurring_Donation__c>();
     
     public NctETMembershipPaymentPageController()
     {  

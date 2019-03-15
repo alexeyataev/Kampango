@@ -7438,6 +7438,14 @@ OR(
         <errorMessage>Please select a Preferred Phone</errorMessage>
     </validationRules>
     <validationRules>
+	<fullName>First_Name_Mandatory</fullName>
+        <active>true</active>
+        <description>First Name field should be mandatory</description>
+        <errorConditionFormula>ISBLANK(FirstName)</errorConditionFormula>
+        <errorDisplayField>npo02__SystemHouseholdProcessor__c</errorDisplayField>
+        <errorMessage>First Name Required</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Sort_Code_validation</fullName>
         <active>true</active>
         <errorConditionFormula>Sort_Code__c != null &amp;&amp; NOT (REGEX(  Sort_Code__c , &quot;[&lt;|&gt;]?[0-9]+&quot;) )</errorConditionFormula>
