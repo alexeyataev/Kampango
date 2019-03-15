@@ -23,6 +23,7 @@ private class NctETMembershipPaymentPageControllerTest {
         con.MailingState = 'Test State';
         con.MailingCity = 'Test City';
         con.Prefered_First_Name__c = 'Test FirstName';
+        con.FirstName = 'Childs';
         con.LastName = 'Test LastName';
         con.Email = 'testemail@test.com';
         con.Phone = '123456789';
@@ -114,6 +115,7 @@ private class NctETMembershipPaymentPageControllerTest {
         con.MailingState = 'Test State';
         con.MailingCity = 'Test City';
         con.Prefered_First_Name__c = 'Test FirstName';
+        con.FirstName = 'Childs';
         con.LastName = 'Test LastName';
         con.Email = 'testemail@test.com';
         con.Phone = '123456789';
@@ -207,6 +209,7 @@ private class NctETMembershipPaymentPageControllerTest {
         con.MailingState = 'Test State';
         con.MailingCity = 'Test City';
         con.Prefered_First_Name__c = 'Test FirstName';
+        con.FirstName = 'Childs';
         con.LastName = 'Test LastName';
         con.Email = 'testemail@test.com';
         con.Phone = '123456789';
@@ -330,6 +333,7 @@ private class NctETMembershipPaymentPageControllerTest {
             con.MailingState = 'Test State';
             con.MailingCity = 'Test City';
             con.Prefered_First_Name__c = 'Test FirstName';
+            con.FirstName = 'Childs';
             con.LastName = 'Test LastName';
             con.Email = 'testemail@test.com';
             con.Phone = '123456789';
@@ -428,6 +432,7 @@ private class NctETMembershipPaymentPageControllerTest {
             con.MailingState = 'Test State';
             con.MailingCity = 'Test City';
             con.Prefered_First_Name__c = 'Test FirstName';
+            con.FirstName = 'Childs';
             con.LastName = 'Test LastName';
             con.Email = 'testemail@test.com';
             con.Phone = '123456789';
