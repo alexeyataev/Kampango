@@ -23,6 +23,7 @@ private class NctETMembershipPaymentPageControllerTest {
         con.MailingState = 'Test State';
         con.MailingCity = 'Test City';
         con.Prefered_First_Name__c = 'Test FirstName';
+        con.FirstName = 'Childs';
         con.LastName = 'Test LastName';
         con.Email = 'testemail@test.com';
         con.Phone = '123456789';
@@ -114,6 +115,7 @@ private class NctETMembershipPaymentPageControllerTest {
         con.MailingState = 'Test State';
         con.MailingCity = 'Test City';
         con.Prefered_First_Name__c = 'Test FirstName';
+        con.FirstName = 'Childs';
         con.LastName = 'Test LastName';
         con.Email = 'testemail@test.com';
         con.Phone = '123456789';
@@ -207,6 +209,7 @@ private class NctETMembershipPaymentPageControllerTest {
         con.MailingState = 'Test State';
         con.MailingCity = 'Test City';
         con.Prefered_First_Name__c = 'Test FirstName';
+        con.FirstName = 'Childs';
         con.LastName = 'Test LastName';
         con.Email = 'testemail@test.com';
         con.Phone = '123456789';
@@ -223,6 +226,7 @@ private class NctETMembershipPaymentPageControllerTest {
         secCon.MailingState = 'Test State';
         secCon.MailingCity = 'Test City';
         secCon.Prefered_First_Name__c = 'Test SecFirstName';
+        secCon.FirstName = 'Test Cities';
         secCon.LastName = 'Test LastNameSec';
         secCon.Email = 'testemailSec@test.com';
         secCon.Phone = '12345678912';
@@ -330,6 +334,7 @@ private class NctETMembershipPaymentPageControllerTest {
             con.MailingState = 'Test State';
             con.MailingCity = 'Test City';
             con.Prefered_First_Name__c = 'Test FirstName';
+            con.FirstName = 'Childs';
             con.LastName = 'Test LastName';
             con.Email = 'testemail@test.com';
             con.Phone = '123456789';
@@ -428,6 +433,7 @@ private class NctETMembershipPaymentPageControllerTest {
             con.MailingState = 'Test State';
             con.MailingCity = 'Test City';
             con.Prefered_First_Name__c = 'Test FirstName';
+            con.FirstName = 'Childs';
             con.LastName = 'Test LastName';
             con.Email = 'testemail@test.com';
             con.Phone = '123456789';

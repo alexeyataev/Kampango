@@ -3,6 +3,7 @@ private class StaffMembershipControllerTest {
     @isTest static void isRecurringDonationExists(){
         contact cont = new contact();
         cont.LastName = 'Test Contact';
+        cont.FirstName = 'NCT Child';
         cont.Phone = '0987654321234';
         cont.Email = 'testcontact@test.com';
         insert cont;
@@ -26,6 +27,7 @@ private class StaffMembershipControllerTest {
     @isTest static void isRecurringDonationNotExists(){
         contact cont = new contact();
         cont.LastName = 'Test Contact';
+        cont.FirstName = 'NCT Child';
         cont.Phone = '0987654321234';
         cont.Email = 'testcontact@test.com';
         insert cont;
@@ -67,6 +69,7 @@ private class StaffMembershipControllerTest {
         LocaleSidKey='en_US', ProfileId = p.Id,
         TimeZoneSidKey='America/Los_Angeles', UserName='newusers@testorg.com');
 		contact cont = new contact();
+        cont.FirstName = 'NCT Child';
         cont.LastName = 'Test Contact';
         cont.Phone = '0987654321234';
         cont.Email = 'testcontact@test.com';
