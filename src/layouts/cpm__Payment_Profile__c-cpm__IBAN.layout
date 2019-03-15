@@ -57,6 +57,10 @@
                 <behavior>Edit</behavior>
                 <field>cpm__Active__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>cpm__IBAN__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Source__c</field>
