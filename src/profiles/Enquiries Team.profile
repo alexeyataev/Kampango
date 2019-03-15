@@ -4158,6 +4158,11 @@
         <visible>true</visible>
     </recordTypeVisibilities>
 	<recordTypeVisibilities>
+        <default>false</default>
+        <recordType>cpm__Payment_Profile__c.cpm__IBAN</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+	<recordTypeVisibilities>
         <default>true</default>
         <recordType>cpm__Payment_Profile__c.paybacs__Bank_Account</recordType>
         <visible>true</visible>
