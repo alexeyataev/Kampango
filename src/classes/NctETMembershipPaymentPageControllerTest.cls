@@ -226,6 +226,7 @@ private class NctETMembershipPaymentPageControllerTest {
         secCon.MailingState = 'Test State';
         secCon.MailingCity = 'Test City';
         secCon.Prefered_First_Name__c = 'Test SecFirstName';
+        secCon.FirstName = 'Test Cities';
         secCon.LastName = 'Test LastNameSec';
         secCon.Email = 'testemailSec@test.com';
         secCon.Phone = '12345678912';
