@@ -1,14 +1,11 @@
 public without sharing class NctETMembershipPaymentPageController 
 {
-  public MembershipVo membership{get;set;}
-     private static Boolean inspect = false;
+    public MembershipVo membership{get;set;}
+    private static Boolean inspect = false;
     public static Boolean onComplete {get; set;}  
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
     public npe03__Recurring_Donation__c recDon {get;set;}
     public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
-    public list<cpm__Payment_Profile__c> paymentProfileRecord = new list<cpm__Payment_Profile__c>();
-    public list<gaid__Gift_Aid_Declaration__c> giftAidDeclarationRecord = new list<gaid__Gift_Aid_Declaration__c>();
-    public list<npe03__Recurring_Donation__c> recDonationRecord = new list<npe03__Recurring_Donation__c>();
     
     public NctETMembershipPaymentPageController()
     {  
@@ -42,6 +39,7 @@ public without sharing class NctETMembershipPaymentPageController
             membership.isStaff = ContactUtilities.isStaff(membership.contId);membership.isMembershipExists = ContactUtilities.isMembershipExists(membership.contId, membership.email);
             membership.staffMember = 'staff';
             membership.primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,Contact_Prefrence__c,Prefered_First_Name__c,AccountId,Expected_Due_Date__c,MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry,Branch__r.Name,Branch__c FROM Contact where id=:membership.contId];
+         
             if(membership.primaryContact != null){
                 
                 membership.firstname = membership.primaryContact.FirstName;
@@ -55,11 +53,13 @@ public without sharing class NctETMembershipPaymentPageController
                 membership.postOpt = membership.primaryContact.Post_Opt_In__c;
                 membership.emailOpt = membership.primaryContact.HasOptedOutOfEmail;
                 membership.doNotCallOpt = membership.primaryContact.DoNotCall;
-                membership.eDate = String.valueOf(membership.primaryContact.Expected_Due_Date__c);
-                membership.cityValue = String.valueOf(membership.primaryContact.MailingCity);
-                assignBranchValues(membership.primaryContact.Branch__c);                	
+                membership.eDate = String.valueOf(membership.primaryContact.Expected_Due_Date__c); 	
+                membership.cityValue = String.valueOf(membership.primaryContact.MailingCity);                               	
                 membership.stateValue = String.valueOf(membership.primaryContact.MailingState); 
                 membership.streetValue = String.valueOf(membership.primaryContact.MailingStreet);
+                assignBranchValues(membership.primaryContact.Branch__c); 
+                
+
             }
             List<Contact> secondaryContactList = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where Parent_Contact__c =:membership.primaryContact.Id LIMIT 1];
             if(secondaryContactList.size()>0){
@@ -91,10 +91,9 @@ public without sharing class NctETMembershipPaymentPageController
     private Boolean receiveInputSecondContactPermissionCheck(){
         return membership.twomems == true && (membership.secondContactFirstName != null || membership.secondContactFirstName != '');      
     }
-
+    
     private void assignBranchValues(Id branch){
         List<Account> acc;
-        
         if(branch!= null){
                         acc = Database.Query('SELECT id,name,Data_Source__c FROM account WHERE ID =\''+branch+'\' LIMIT 1');
                         String strs = acc[0].Name;
@@ -103,6 +102,7 @@ public without sharing class NctETMembershipPaymentPageController
                         membership.nearestBranchs = accmap; 
                     }    
     }
+    
     public PageReference  receiveInput(){
                 
         Contact con;
@@ -308,17 +308,17 @@ public without sharing class NctETMembershipPaymentPageController
         if(membership.sessionProfile == MembershipConstants.STANDARD && membership.membershipInfo.Payment_Method__c == MembershipConstants.CREDIT_OR_DEBIT_CARD){
             paymentHubCallout();                
         }
-        
+           
         MembershipVo.MemberCrudHelper crudHelper = new MembershipVo.MemberCrudHelper();
         crudHelper.accountName = membership.accountName;
         crudHelper.accountNumber = membership.accountNumber;
         crudHelper.acquistion = membership.acquistion;
         crudHelper.membershipSource = membership.membershipSource;
         crudHelper.sortCode = membership.sortCode;
-            
+        crudHelper.pcont = membership.primaryContact;
+        crudHelper.scont = membership.secondaryContact;
+        
         MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
-        memCrudHelp.pcont = membership.primaryContact;
-        memCrudHelp.scont = membership.secondaryContact;
         memCrudHelp.crudHelper = crudHelper;
         if(membership.membershipInfo.Payment_Method__c != MembershipConstants.CREDIT_OR_DEBIT_CARD){
            pymtPrfl = memCrudHelp.paymentProfile();

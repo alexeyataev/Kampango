@@ -405,7 +405,7 @@
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                         <div><label><sup class="light-orange-color">*</sup>Title</label></div>
-                                                        <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="salutation" value="{!membership.salutationPrimary}" multiselect="false" size="1">
+                                                        <span style="text-color:white;" class="form-fields first-person-title membership-fields gender-title-select mrtitle"><apex:selectList id="salutation" value="{!membership.salutationPrimary}" multiselect="false" size="1">
                                                                 <apex:selectOptions value="{!membership.salutationOptions}" />
 
                                                           </apex:selectList></span>
@@ -426,7 +426,7 @@
                                                   <!-- <p class="gender-error error-message hide">Please select gender </p> -->
                                                     <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                             Gender</label></div>
-                                                	<span class="dynmaic-radio-fields">
+                                                	<span class="dynmaic-radio-fields first-person-gender">
                                                 	<apex:selectRadio id="gender" value="{!membership.genders}">
                                                                 <apex:selectOptions value="{!membership.genderOptions}" />
                                                      </apex:selectRadio>
@@ -1192,12 +1192,12 @@
                 $('#pcfirst').css('display','block');
                 $('#textForename, #textSurname, #textEmail, #address_line_1,#textMobile, #postcode, #textAddress2, #textAddress3,#town,#county,#due-Date').prop('readonly', true);
                 // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', true);
-                $('#selectBranch,#building,.contact_check input,.mrtitle select,.dynmaic-radio-fields td input').prop('disabled', true);
+                $('#selectBranch,#building,.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', true);
             }
        		else {
                $('#textForename, #textSurname, #textEmail, #address_line_1, #textMobile, #postcode, #textAddress2, #textAddress3,#town,#county,#due-Date').prop('readonly', false);
                 // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', false);
-                $('#selectBranch,#building,.contact_check input,.mrtitle select,.dynmaic-radio-fields td input').prop('disabled', false);
+                $('#selectBranch,#building,.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', false);
             }
             /*
         	$('#scd1').keypress(function(e) {
