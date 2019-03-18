@@ -17,5 +17,5 @@ public class MembershipConstants {
     public static final String ONLINE_MEMBERSHIP_APPLICATION = 'Online Membership Application';
     public static final String SALESFORCE = 'Salesforce';
     public static final String LIFEMEMBERSHIP = 'Life Membership - Free';
-
+    public static final String STAFF = 'staff';
 }

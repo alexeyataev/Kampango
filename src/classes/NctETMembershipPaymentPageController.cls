@@ -37,7 +37,7 @@ public without sharing class NctETMembershipPaymentPageController
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }
             membership.isStaff = ContactUtilities.isStaff(membership.contId);membership.isMembershipExists = ContactUtilities.isMembershipExists(membership.contId, membership.email);
-            membership.staffMember = 'staff';
+            membership.staffMember = MembershipConstants.STAFF;
             membership.primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,Contact_Prefrence__c,Prefered_First_Name__c,AccountId,Expected_Due_Date__c,MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry,Branch__r.Name,Branch__c FROM Contact where id=:membership.contId];
          
             if(membership.primaryContact != null){
