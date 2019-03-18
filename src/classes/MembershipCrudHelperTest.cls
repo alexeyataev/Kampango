@@ -36,14 +36,17 @@ private class MembershipCrudHelperTest {
          
         cpm__Payment_Profile__c paymntProfile = new cpm__Payment_Profile__c();
   
-        MembershipCrudHelper memCrud = new MembershipCrudHelper();
-        memCrud.pcont = con;
-        memCrud.scont = scon;       
-         memCrud.accountName = 'Santhosh';
-        memCrud.accountNumber = '145263777';
-        memCrud.sortCode = 'CD-1234';
-        memCrud.acquistion = 'Written';
-        memCrud.membershipSource = 'Enquiry by phone - main NCT'; 
+        MembershipVo.MemberCrudHelper crudHelper = new MembershipVo.MemberCrudHelper();
+        crudHelper.pcont = con;
+        crudHelper.scont = scon;
+        crudHelper.accountName = 'Santhosh';
+        crudHelper.accountNumber = '145263777';
+        crudHelper.sortCode = 'CD-1234';
+        crudHelper.acquistion = 'Written';
+        crudHelper.membershipSource = 'Enquiry by phone - main NCT'; 
+            
+        MembershipCrudHelper memCrud = new MembershipCrudHelper();               
+        memCrud.crudHelper = crudHelper;
         paymntProfl = memCrud.paymentProfile();
         system.assertEquals(accountDetails[2],paymntProfl.paybacs__Sort_Code__c);      
         gftAid = memCrud.giftAid(membershipDetails);
@@ -116,14 +119,17 @@ private class MembershipCrudHelperTest {
         test.setCreatedDate(recDonateRecord[0].id, system.date.today());
         list<String> accountDetails = new list<String>{'145263777','Santhosh','CD-1234','Digital','Enquiry by phone - main NCT'};
         
-        MembershipCrudHelper memCrud = new MembershipCrudHelper();
-        memCrud.pcont = con;
-        memCrud.scont = scon;
-        memCrud.accountName = 'Santhosh';
-        memCrud.accountNumber = '145263777';
-        memCrud.sortCode = 'CD-1234';
-        memCrud.acquistion = 'Written';
-        memCrud.membershipSource = 'Enquiry by phone - main NCT';
+        MembershipVo.MemberCrudHelper crudHelper = new MembershipVo.MemberCrudHelper();
+        crudHelper.pcont = con;
+        crudHelper.scont = scon;
+        crudHelper.accountName = 'Santhosh';
+        crudHelper.accountNumber = '145263777';
+        crudHelper.sortCode = 'CD-1234';
+        crudHelper.acquistion = 'Written';
+        crudHelper.membershipSource = 'Enquiry by phone - main NCT'; 
+        
+        MembershipCrudHelper memCrud = new MembershipCrudHelper();        
+        memCrud.crudHelper = crudHelper;
         memCrud.paymentProfileRecord = paymntProflRecord;        
         paymntProflRecord[0] = memCrud.paymentProfile();
         system.assertEquals(1,memCrud.paymentProfileRecord.size());             
@@ -159,14 +165,17 @@ private class MembershipCrudHelperTest {
         con.AccountId = acct.Id;
         insert con;
           
+        MembershipVo.MemberCrudHelper crudHelper = new MembershipVo.MemberCrudHelper();
+        crudHelper.pcont = con;
+        crudHelper.accountName = 'Santhosh';
+        crudHelper.accountNumber = '145263777';
+        crudHelper.sortCode = 'CD-1234';
+        crudHelper.acquistion = 'Written';
+        crudHelper.membershipSource = 'Enquiry by phone - main NCT'; 
         
-         MembershipCrudHelper memCrud = new MembershipCrudHelper();   
-        memCrud.pcont = con;
-         memCrud.accountName = 'Santhosh';
-        memCrud.accountNumber = '145263777';
-        memCrud.sortCode = 'CD-1234';
-        memCrud.acquistion = 'Written';
-        memCrud.membershipSource = 'Enquiry by phone - main NCT';
+        MembershipCrudHelper memCrud = new MembershipCrudHelper();           
+        memCrud.crudHelper = crudHelper;
+
          gftAid = memCrud.giftAid(membershipDetails);
          system.assertEquals(true,gftAid.gaid__Active__c);
     }  

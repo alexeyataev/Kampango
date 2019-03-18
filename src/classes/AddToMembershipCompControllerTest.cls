@@ -6,6 +6,7 @@ private class AddToMembershipCompControllerTest {
         
         contact cont = new contact();
         cont.LastName = 'NCT CHild';
+        cont.FirstName = 'Childs';
         cont.Phone = '0987654321234';
         cont.Email = 'nctchild4555@gmail.com';
         insert cont;
@@ -41,6 +42,7 @@ private class AddToMembershipCompControllerTest {
         
         contact cont = new contact();
         cont.LastName = 'NCT CHild';
+        cont.FirstName = 'Childs';
         cont.Phone = '0987654321234';
         cont.Email = 'nctchild4555@gmail.com';
         insert cont;
@@ -68,6 +70,7 @@ private class AddToMembershipCompControllerTest {
         System.runAs(u) {
             contact cont = new contact();
             cont.LastName = 'NCT CHild';
+            cont.FirstName = 'Childs';
             cont.Phone = '0987654321234';
             cont.Email = 'nctchild4555@gmail.com';
             insert cont;

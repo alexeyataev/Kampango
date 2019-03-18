@@ -26,11 +26,7 @@
         <recipients>
             <field>First_Contact__c</field>
             <type>contactLookup</type>
-        </recipients>
-        <recipients>
-            <recipient>anjineyulu.valasa@csscorp.com</recipient>
-            <type>user</type>
-        </recipients>
+        </recipients>      
         <senderType>DefaultWorkflowUser</senderType>
         <template>NCT_Templates/Renewal</template>
     </alerts>
@@ -41,19 +37,7 @@
         <recipients>
             <field>First_Contact__c</field>
             <type>contactLookup</type>
-        </recipients>
-        <recipients>
-            <recipient>anjineyulu.valasa@csscorp.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>jitendrakumar.dikshit@csscorp.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>ujwal.theja@csscorp.com</recipient>
-            <type>user</type>
-        </recipients>
+        </recipients>  
         <senderType>DefaultWorkflowUser</senderType>
         <template>NCT_Templates/Membership_Renewal_Date</template>
     </alerts>
