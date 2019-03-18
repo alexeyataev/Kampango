@@ -36,8 +36,10 @@ public without sharing class NctETMembershipPaymentPageController
             if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }
-            membership.isStaff = ContactUtilities.isStaff(membership.contId);
-            membership.primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email,Expected_Due_Date__c, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where id=:membership.contId];
+            membership.isStaff = ContactUtilities.isStaff(membership.contId);membership.isMembershipExists = ContactUtilities.isMembershipExists(membership.contId, membership.email);
+            membership.staffMember = MembershipConstants.STAFF;
+            membership.primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,Contact_Prefrence__c,Prefered_First_Name__c,AccountId,Expected_Due_Date__c,MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry,Branch__r.Name,Branch__c FROM Contact where id=:membership.contId];
+         
             if(membership.primaryContact != null){
                 
                 membership.firstname = membership.primaryContact.FirstName;
@@ -52,6 +54,11 @@ public without sharing class NctETMembershipPaymentPageController
                 membership.emailOpt = membership.primaryContact.HasOptedOutOfEmail;
                 membership.doNotCallOpt = membership.primaryContact.DoNotCall;
                 membership.eDate = String.valueOf(membership.primaryContact.Expected_Due_Date__c); 	
+                membership.cityValue = String.valueOf(membership.primaryContact.MailingCity);                               	
+                membership.stateValue = String.valueOf(membership.primaryContact.MailingState); 
+                membership.streetValue = String.valueOf(membership.primaryContact.MailingStreet);
+                assignBranchValues(membership.primaryContact.Branch__c); 
+                
 
             }
             List<Contact> secondaryContactList = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where Parent_Contact__c =:membership.primaryContact.Id LIMIT 1];
@@ -84,6 +91,18 @@ public without sharing class NctETMembershipPaymentPageController
     private Boolean receiveInputSecondContactPermissionCheck(){
         return membership.twomems == true && (membership.secondContactFirstName != null || membership.secondContactFirstName != '');      
     }
+    
+    private void assignBranchValues(Id branch){
+        List<Account> acc;
+        if(branch!= null){
+                        acc = Database.Query('SELECT id,name,Data_Source__c FROM account WHERE ID =\''+branch+'\' LIMIT 1');
+                        String strs = acc[0].Name;
+                        map<string, list<account>> accmap = new map<string, list<account>>();
+                        accmap.put(strs,acc);
+                        membership.nearestBranchs = accmap; 
+                    }    
+    }
+    
     public PageReference  receiveInput(){
                 
         Contact con;
