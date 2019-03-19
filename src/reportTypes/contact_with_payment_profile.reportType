@@ -716,11 +716,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Post_Opt_Out__c</field>
-            <table>Contact</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Practitioner__c</field>
             <table>Contact</table>
         </columns>
