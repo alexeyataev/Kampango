@@ -7422,15 +7422,19 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
-	<fullName>Branch_Mandatory</fullName>
+	<fullName>Contact_Phone_Validation</fullName>
         <active>true</active>
-        <errorConditionFormula>AND( 
-$Profile.Name &lt;&gt; &apos;System Administrator&apos;, 
+        <description>Validation error message should be displayed when phone number is 10 digits 13 and more than 14</description>
+        <errorConditionFormula>AND($Profile.Name &lt;&gt; &apos;System Administrator&apos;, 
 $Profile.Name &lt;&gt; &apos;Read Only&apos;, 
-ISBLANK(Branch__c) 
-)</errorConditionFormula>
-        <errorDisplayField>Branch__c</errorDisplayField>
-        <errorMessage>Branch is Mandatory</errorMessage>
+$Profile.Name &lt;&gt; &apos;Payment Profile&apos;,
+NOT(OR(
+LEN(Phone) =11,
+LEN(Phone) =13,
+LEN(Phone) =14
+)) )</errorConditionFormula>
+        <errorDisplayField>Phone</errorDisplayField>
+        <errorMessage>UK Mobile number starts with 0 and 11 digits without Access code or With Access code (+44 or 0044) 13 or 14 digits.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Contact_Preferred_Email</fullName>
@@ -7467,18 +7471,6 @@ OR(
         <errorConditionFormula>ISBLANK(FirstName)</errorConditionFormula>
         <errorDisplayField>FirstName</errorDisplayField>
         <errorMessage>First Name Required</errorMessage>
-    </validationRules>
-    <validationRules>
-	<fullName>Gender_Mandatory</fullName>
-        <active>true</active>
-        <description>Making Gender Field as Mandatory for Contact Object</description>
-        <errorConditionFormula>AND( 
-$Profile.Name &lt;&gt; &apos;System Administrator&apos;, 
-$Profile.Name &lt;&gt; &apos;Read Only&apos;, 
-ISPICKVAL(Gender__c,&apos;&apos;)
-)</errorConditionFormula>
-        <errorDisplayField>Gender__c</errorDisplayField>
-        <errorMessage>Gender is Mandatory</errorMessage>
     </validationRules>
     <validationRules>
 	<fullName>PostCode_Mandatory</fullName>
