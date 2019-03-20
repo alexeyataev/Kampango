@@ -7476,14 +7476,18 @@ ISBLANK( MailingCity ) ,
 ISBLANK( MailingCountry ) , 
 ISBLANK( MailingState ) , 
 ISBLANK( MailingStreet ) , 
-ISBLANK( MailingPostalCode ) 
+ISBLANK( MailingPostalCode ),
+$Profile.Name &lt;&gt; &quot;System Administrator&quot; 
 )</errorConditionFormula>
         <errorMessage>Please Provide the Mailing Address</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Salutation_Mandatory</fullName>
         <active>true</active>
-        <errorConditionFormula>ISPICKVAL(Salutation,&quot;&quot;)</errorConditionFormula>
+        <errorConditionFormula>AND(
+ISPICKVAL(Salutation,&quot;&quot;),
+$Profile.Name &lt;&gt; &quot;System Administrator&quot;
+)</errorConditionFormula>
         <errorDisplayField>Salutation</errorDisplayField>
         <errorMessage>Please provide the Salutation</errorMessage>
     </validationRules>
