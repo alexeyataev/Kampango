@@ -89,7 +89,7 @@
                 <field>Email</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Branch__c</field>
             </layoutItems>
             <layoutItems>

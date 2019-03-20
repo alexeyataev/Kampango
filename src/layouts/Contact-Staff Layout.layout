@@ -65,7 +65,7 @@
                 <field>Title</field>
             </layoutItems>
             <layoutItems>
-               <behavior>Required</behavior>
+               <behavior>Edit</behavior>
                 <field>Branch__c</field>
             </layoutItems>
         </layoutColumns>
@@ -75,7 +75,7 @@
                 <field>Expected_Due_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Gender__c</field>
             </layoutItems>
             <layoutItems>
