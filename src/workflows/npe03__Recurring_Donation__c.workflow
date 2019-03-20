@@ -181,6 +181,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+	<fullName>Renewal_Date_Field_Update</fullName>
+        <description>Renewal date should be blank when change the status from Conformed to cancelled and Conformed to cancelling</description>
+        <field>Renewal_Date__c</field>
+        <name>Renewal Date Field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Renewal_Update</fullName>
         <field>Renewal_Date__c</field>
         <formula>CASE( Text(Membership_type__c) , 
@@ -261,6 +270,38 @@ null
         <description>Payment Method Direct Debit email trigger to parent</description>
         <formula>AND($Profile.Name = &quot;Enquiries Team&quot; &amp;&amp; ISPICKVAL( npsp4hub__Payment_Method__c, &apos;Direct Debit&apos;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+	<fullName>Renewal Date Field Update</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>npe03__Recurring_Donation__c.Membership_Status__c</field>
+            <operation>equals</operation>
+            <value>Confirmed</value>
+        </criteriaItems>
+        <description>if membership status is confirmed and based on the Date Established date field, update renewal date field</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Renewal Date Update</fullName>
+        <actions>
+            <name>Renewal_Date_Field_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>npe03__Recurring_Donation__c.Membership_Status__c</field>
+            <operation>equals</operation>
+            <value>Cancelled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>npe03__Recurring_Donation__c.Membership_Status__c</field>
+            <operation>equals</operation>
+            <value>Cancelling</value>
+        </criteriaItems>
+        <description>Renewal date should be blank when change the status from Conformed to cancelled and Conformed to cancelling</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
       <fullName>Renewal Update</fullName>
