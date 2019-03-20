@@ -191,11 +191,13 @@
     </types>
 	<types>
         <members>Recurring_Donation_Report_Type</members>
+		 <members>contact_with_payment_profile</members>
         <name>ReportType</name>
     </types>
     <types>
         <members>unfiled$public/Reason_for_cancellation_of_membership_40d</members>
         <members>unfiled$public/Recurring_Donation_Report_Type_BE9</members>
+		 <members>unfiled$public/contact_with_payment_profile_Rep_aYP</members>
         <name>Report</name>
     </types>
     <types>
