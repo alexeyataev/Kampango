@@ -32,7 +32,7 @@ public without sharing class MembershipCrudHelper {
     	return crudHelper.membershipSource != '' && crudHelper.membershipSource != null;
     }
     public cpm__Payment_Profile__c paymentProfile(){
-        if (paymentProfileCheck()){
+        if(paymentProfileCheck()){
         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
         return null;
         }
@@ -50,6 +50,10 @@ public without sharing class MembershipCrudHelper {
                                 AND
                                     CreatedDate = :System.Date.today() limit 1 FOR UPDATE];
         if(paymentProfileRecord.size()>0){
+            if(paymentProfileCheck()){
+              ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
+              return null;
+             }
             paymentProfileRecord[0].RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get(MembershipConstants.BANK_ACCOUNT).getRecordTypeId();
             
                 if(crudHelper.accountNumber != '' && crudHelper.accountNumber != null)
@@ -85,7 +89,7 @@ public without sharing class MembershipCrudHelper {
         
     }
     public gaid__Gift_Aid_Declaration__c giftAid(Membership_Type__mdt membershipDetails){
-        if (giftAidCheck()){
+        if(giftAidCheck()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
             return null;
         }
@@ -103,6 +107,10 @@ public without sharing class MembershipCrudHelper {
                                     AND
                                     CreatedDate = :System.Date.today() limit 1];
         if(giftAidDeclarationRecord.size()>0){
+            if(giftAidCheck()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
+                return null;
+            }
             giftAidDeclarationRecord[0].gaid__Type__c = membershipDetails.GiftAid_Type__c;
             if(crudHelper.acquistion != '' && crudHelper.acquistion != null){
                 giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = crudHelper.acquistion;
@@ -171,6 +179,10 @@ public without sharing class MembershipCrudHelper {
                                     CreatedDate = :System.Date.today() limit 1];
             
             if(recDonationRecord.size()>0){
+                if(recDonationCheck()){
+                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
+                 return null;
+                }                
                 recDonationRecord[0].Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                 recDonationRecord[0].npe03__Amount__c = membershipDetails.Installment_Amount__c;
                 recDonationRecord[0].Membership_type__c = membershipDetails.Membership__c;
