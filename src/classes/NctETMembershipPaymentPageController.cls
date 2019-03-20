@@ -6,6 +6,7 @@ public without sharing class NctETMembershipPaymentPageController
     public cpm__Payment_Profile__c pymtPrfl {get;set;}
     public npe03__Recurring_Donation__c recDon {get;set;}
     public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
+    private List<Contact> contactList;
     
     public NctETMembershipPaymentPageController()
     {  
@@ -106,7 +107,7 @@ public without sharing class NctETMembershipPaymentPageController
     public PageReference  receiveInput(){
                 
         Contact con;
-        if(membership.eDate != null && membership.eDate != ''){
+        if(dateFormatCheck()){
         membership.expDate = Date.valueOf(membership.eDate); 
         }
         
@@ -122,7 +123,7 @@ public without sharing class NctETMembershipPaymentPageController
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
         }
 
-        if(membership.isContactExisting == false && membership.primaryContact == null){
+        if(isNotExistingContactCheck()){
 
                 membership.recordType = MembershipConstants.PARENT;
                     membership.primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(membership.recordType).getRecordTypeId(),FirstName=membership.firstname,
@@ -135,17 +136,7 @@ public without sharing class NctETMembershipPaymentPageController
                     
                     // Insertion failed due to duplicate detected
                     for(Database.Error duplicateError : sr.getErrors()){
-                        if(duplicateError instanceof Database.DuplicateError) {
-                            Datacloud.DuplicateResult duplicateResult = 
-                                ((Database.DuplicateError)duplicateError).getDuplicateResult();
-                            System.debug('Duplicate records have been detected by ' + 
-                                         duplicateResult.getDuplicateRule());
-                            System.debug(duplicateResult.getErrorMessage());
-                            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error,MembershipConstants.DUPLICATE_RECORDS_FOUND));
-                        }
-                        else{
-                            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error,MembershipConstants.DUPLICATE_RECORDS_FOUND));
-                        }
+                        DuplicateFinder(duplicateError);
                     }
                 }
                 if(receiveInputSecondContactPermissionCheck())
@@ -168,8 +159,8 @@ public without sharing class NctETMembershipPaymentPageController
                 }
 
         }
-        else if(membership.contId != null || membership.isContactExisting == true){
-        List<Contact> contactList;
+        else if(isExistingContactCheck()){
+        
         System.debug('Contact Exists(Next Flow Starts): '+membership.isContactExisting);
         membership.primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingStreet,MailingState,MailingCity,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE (Email = :membership.email AND Email != '') OR Id =:membership.contId limit 1];
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email,MailingStreet,MailingState,MailingCity, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :membership.primaryContact.Id];
@@ -179,10 +170,9 @@ public without sharing class NctETMembershipPaymentPageController
         membership.primaryContact.MailingCity = membership.cityValue;
 
         Database.update(membership.primaryContact, false);
-        if(receiveInputSecondContactPermissionCheck())
+        if(secondContactRequiredCheck())
         {
             membership.recordType = MembershipConstants.COMPANION;
-            if(contactList.size()<0){
             con =[Select AccountId from Contact where id = :membership.primaryContact.id];
             membership.secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(membership.recordType).getRecordTypeId(),FirstName=membership.secondContactFirstName,
                                       LastName=membership.secondContactLastName,Email=membership.secondContactEmail,Gender__c=membership.secondContactGenders,Phone=membership.secondContactPhone,Salutation=membership.salutationSecondary,MailingPostalCode=membership.postCode,
@@ -190,8 +180,7 @@ public without sharing class NctETMembershipPaymentPageController
                                       MailingState=membership.stateValue,MailingCity=membership.cityValue,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=membership.smsOpt,Post_Opt_In__c=membership.postOpt,
                                       HasOptedOutOfEmail=membership.emailOpt,DoNotCall=membership.doNotCallOpt,Parent_Contact__c = membership.primaryContact.id,AccountId = con.AccountId);
             insert membership.secondaryContact;
-        }
-        membership.contactType = MembershipConstants.JOINT;
+            membership.contactType = MembershipConstants.JOINT;
         }                                 
         else{
             
@@ -202,6 +191,31 @@ public without sharing class NctETMembershipPaymentPageController
         membership.membershipTypeMap = MembershipUtilties.getMembershipTypeMap(membership.contactType,membership.targetCustomer,membership.etSpecific);    
         return null;
         
+    }
+    private boolean isNotExistingContactCheck(){
+    	return membership.isContactExisting == false && membership.primaryContact == null;
+    }
+    private boolean isExistingContactCheck(){
+    	return membership.contId != null || membership.isContactExisting == true;
+    }
+    private boolean dateFormatCheck(){
+    	return membership.eDate != null && membership.eDate != '';
+    }
+    private boolean secondContactRequiredCheck(){
+    	return receiveInputSecondContactPermissionCheck() && contactList.size()<0;
+    }
+    private void duplicateFinder(Database.Error duplicateError){
+        if(duplicateError instanceof Database.DuplicateError) {
+            Datacloud.DuplicateResult duplicateResult = 
+                ((Database.DuplicateError)duplicateError).getDuplicateResult();
+            System.debug('Duplicate records have been detected by ' + 
+                         duplicateResult.getDuplicateRule());
+            System.debug(duplicateResult.getErrorMessage());
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error,MembershipConstants.DUPLICATE_RECORDS_FOUND));
+        }
+        else{
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error,MembershipConstants.DUPLICATE_RECORDS_FOUND));
+        }
     }
     public PageReference contactInfo()
     {
