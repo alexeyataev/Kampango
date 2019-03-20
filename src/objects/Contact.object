@@ -7422,6 +7422,17 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
+	 <fullName>Contact_Phone_Validation</fullName>
+        <active>false</active>
+        <errorConditionFormula>OR(
+LEN(Phone) &lt;= 10,
+LEN(Phone) = 13,
+LEN(Phone) &gt; 14
+)</errorConditionFormula>
+        <errorDisplayField>Phone</errorDisplayField>
+        <errorMessage>UK Mobile number starts with 0 and 11 digits without Access code or With Access code (+44 or 0044) 13 or 14 digits.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Contact_Preferred_Email</fullName>
         <active>true</active>
         <errorConditionFormula>AND(
@@ -7456,6 +7467,25 @@ OR(
         <errorConditionFormula>ISBLANK(FirstName)</errorConditionFormula>
         <errorDisplayField>npo02__SystemHouseholdProcessor__c</errorDisplayField>
         <errorMessage>First Name Required</errorMessage>
+    </validationRules>
+    <validationRules>
+	<fullName>Mailing_Address_Mandatory</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR( 
+ISBLANK( MailingCity ) , 
+ISBLANK( MailingCountry ) , 
+ISBLANK( MailingState ) , 
+ISBLANK( MailingStreet ) , 
+ISBLANK( MailingPostalCode ) 
+)</errorConditionFormula>
+        <errorMessage>Please Provide the Mailing Address</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Salutation_Mandatory</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISPICKVAL(Salutation,&quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>Salutation</errorDisplayField>
+        <errorMessage>Please provide the Salutation</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Sort_Code_validation</fullName>
