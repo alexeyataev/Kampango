@@ -171,8 +171,14 @@ public without sharing class NctETMembershipPaymentPageController
         else if(membership.contId != null || membership.isContactExisting == true){
         List<Contact> contactList;
         System.debug('Contact Exists(Next Flow Starts): '+membership.isContactExisting);
-        membership.primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE (Email = :membership.email AND Email != '') OR Id =:membership.contId limit 1];
-        contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :membership.primaryContact.Id];
+        membership.primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingStreet,MailingState,MailingCity,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE (Email = :membership.email AND Email != '') OR Id =:membership.contId limit 1];
+        contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email,MailingStreet,MailingState,MailingCity, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :membership.primaryContact.Id];
+
+        membership.primaryContact.MailingStreet = membership.streetValue+membership.streetValue1+membership.streetValue2;
+        membership.primaryContact.MailingState = membership.stateValue;
+        membership.primaryContact.MailingCity = membership.cityValue;
+
+        Database.update(membership.primaryContact, false);
         if(receiveInputSecondContactPermissionCheck())
         {
             membership.recordType = MembershipConstants.COMPANION;
