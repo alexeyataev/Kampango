@@ -566,7 +566,7 @@
                                                     <div class="row">
                                                         <div class="col-5"><label class="text-center font-bold"><sup class="light-orange-color">*</sup>Home address:</label></div>
                                                         <div class="col-7">
-                                                            <input type="text" class="form-fields membership-fields" name="textAddress1" id="address_line_1" size="60" maxlength="35" value=""  placeholder="address line" required="true" />
+                                                            <input type="text" class="form-fields membership-fields" name="textAddress1" id="address_line_1" size="60" maxlength="35" value="{!membership.streetValue}"  placeholder="address line" required="true" />
                                                             <input type="text" class="form-fields membership-fields" id="textAddress2" name="textAddress2" size="60" maxlength="35" value="" placeholder="address line2"  />
                                                             <input type="text" class="form-fields membership-fields"  id='textAddress3' name='textAddress3' size='60' maxlength='35' value=''  placeholder="address line3"  />
                                                         </div>
@@ -575,13 +575,13 @@
                                                     <div class="row">
                                                             <div class="col-5"> <label class="text-center font-bold"><sup class="light-orange-color">*</sup>Town:</label> </div>
                                                             <div class="col-7">
-                                                                <input type="text" class="form-fields membership-fields" name='textTown' id='town' size='35' maxlength='35' value='' placeholder="Town" required="true" />
+                                                                <input type="text" class="form-fields membership-fields" name='textTown' id='town' size='35' maxlength='35' value='{!membership.cityValue}' placeholder="Town" required="true" />
                                                             </div>
                                                     </div>
                                                     <div class="row">
                                                             <div class="col-5"> <label class="text-center font-bold">County:</label> </div>
                                                             <div class="col-7">
-                                                                <input type="text" class="form-fields membership-fields"  name='textCounty' id='county' size='35' maxlength='35' value=''  placeholder="County"  />
+                                                                <input type="text" class="form-fields membership-fields"  name='textCounty' id='county' size='35' maxlength='35' value='{!membership.stateValue}'  placeholder="County"  />
                                                             </div>
                                                     </div>
                                                     <div class="row">
@@ -1193,14 +1193,14 @@
         	console.log(staffValue,'staff value');
             if(staffValue == 'staff'){
                 $('#pcfirst').css('display','block');
-                $('#textForename, #textSurname, #textEmail, #address_line_1,#textMobile, #postcode, #textAddress2, #textAddress3,#town,#county,#due-Date').prop('readonly', true);
+                $('#textForename, #textSurname, #textEmail,#textMobile, #postcode,#due-Date').prop('readonly', true);
                 // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', true);
-                $('#selectBranch,#building,.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', true);
+                $('#selectBranch,.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', true);
             }
        		else {
-               $('#textForename, #textSurname, #textEmail, #address_line_1, #textMobile, #postcode, #textAddress2, #textAddress3,#town,#county,#due-Date').prop('readonly', false);
+               $('#textForename, #textSurname, #textEmail, #textMobile, #postcode,#due-Date').prop('readonly', false);
                 // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', false);
-                $('#selectBranch,#building,.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', false);
+                $('#selectBranch,.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', false);
             }
             /*
         	$('#scd1').keypress(function(e) {
