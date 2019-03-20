@@ -261,7 +261,7 @@
         <members>Venue_PSA_Office__c</members>
         <members>Venue__c</members>
         <members>npe03__Recurring_Donation__c</members>
-         <members>cpm_Payment_Profile__c</members>
+         <members>cpm__Payment__Profile__c</members>
         <name>Workflow</name>
     </types>
     <types>
