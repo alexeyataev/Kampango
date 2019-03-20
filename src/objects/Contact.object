@@ -7485,6 +7485,7 @@ ISPICKVAL(Gender__c,&apos;&apos;)
         <active>true</active>
         <errorConditionFormula>AND( 
 $Profile.Name &lt;&gt; &apos;System Administrator&apos;,
+$Profile.Name &lt;&gt; &apos;Read Only&apos;,
 ISBLANK(MailingPostalCode)
 )</errorConditionFormula>
  <errorDisplayField>MailingPostalCode</errorDisplayField>
@@ -7495,6 +7496,7 @@ ISBLANK(MailingPostalCode)
         <active>true</active>
         <errorConditionFormula>AND(
 $Profile.Name &lt;&gt; &apos;System Administrator&apos;,
+$Profile.Name &lt;&gt; &apos;Read Only&apos;,
 ISPICKVAL(Salutation,&quot;&quot;)
 )</errorConditionFormula>
         <errorDisplayField>Salutation</errorDisplayField>
