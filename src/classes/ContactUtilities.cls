@@ -167,7 +167,36 @@ public without sharing class ContactUtilities {
         }
                 
     }
-    
+    /* This method validates the Companion contact is existing or not with the Parent Contact 
+     **
+	 * email:- Get the list of contacts based on the email id
+	 **
+	*/
+    public static boolean isCompanionContactExisting(Id contId){
+        		List<Contact> contactlist;
+           if(!Schema.sObjectType.Contact.fields.lastname.isAccessible()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
+                return null;
+         }
+           
+        contactlist = [SELECT 
+                            Id, Parent_Contact__c ,Email 
+                       FROM 
+                            Contact 
+                       WHERE 
+                            Parent_Contact__c = :contId 
+                       AND
+                            Parent_Contact__c != null]; 
+                            	 
+        if(contactList.size()>0){
+
+            return true;
+        }
+        else{
+            return false;
+        }
+     	
+    }
     /*public PageReference doRedirect(Id contId){
 
     PageReference pageRef = new PageReference('/apex/MembershipStatus?id='+contId);

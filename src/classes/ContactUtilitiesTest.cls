@@ -14,6 +14,13 @@ private class ContactUtilitiesTest {
         con.LastName = 'Test LastName';
         con.Email = 'testemail@test.com';
         insert con;
+        
+        Contact secCon = new Contact();
+        secCon.FirstName = 'Test FirstName';
+        secCon.LastName = 'Test LastName';
+        secCon.Email = 'sectestemail@test.com';
+        secCon.Parent_Contact__c = con.id;
+        insert secCon;
         Boolean isContactExisting = ContactUtilities.isContactExisting(con.Email);
         System.assert(true,isContactExisting);
         
@@ -66,6 +73,7 @@ private class ContactUtilitiesTest {
         Boolean isVolunteer = true;
         Boolean isPractitioner = true;
         Boolean twomems = true;
+        Boolean isCompanionContactExisting = ContactUtilities.isCompanionContactExisting(con.Id);
         Boolean isVolunteerExisting = ContactUtilities.isVolunteerExisting(con.Id);
         System.assert(true,isVolunteerExisting);
         
@@ -132,7 +140,7 @@ private class ContactUtilitiesTest {
         Boolean isVolunteer = false;
         Boolean isPractitioner = false;
         Boolean twomems = true;
-        
+        Boolean isCompanionContactExisting = ContactUtilities.isCompanionContactExisting(con.Id);
         Boolean isVolunteerExisting = ContactUtilities.isVolunteerExisting(con.Id);
         System.assert(true,isVolunteerExisting);
        	Id userId = usr.id;
@@ -189,7 +197,7 @@ private class ContactUtilitiesTest {
             Boolean isVolunteer = false;
             Boolean isPractitioner = false;
             Boolean twomems = false;
-            
+            Boolean isCompanionContactExisting = ContactUtilities.isCompanionContactExisting(con.Id);
             Boolean isVolunteerExisting = ContactUtilities.isVolunteerExisting(con.Id);
             System.assert(true,isVolunteerExisting);
             Id userId = usr.id;
