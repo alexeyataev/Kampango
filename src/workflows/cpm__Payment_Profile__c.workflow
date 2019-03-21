@@ -18,7 +18,9 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>OR(ISCHANGED(cpm__Holder_Name__c), ISCHANGED( paybacs__Sort_Code__c ), ISCHANGED( cpm__Bank_Account__c )  )</formula>
+        <formula>AND(
+OR(ISCHANGED(cpm__Holder_Name__c), ISCHANGED( paybacs__Sort_Code__c ), ISCHANGED( cpm__Bank_Account__c )),
+cpm__Active__c = true)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
