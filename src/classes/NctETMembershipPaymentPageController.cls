@@ -7,6 +7,7 @@ public without sharing class NctETMembershipPaymentPageController
     public npe03__Recurring_Donation__c recDon {get;set;}
     public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
     private List<Contact> contactList;
+    public Boolean isCompanionContactExisting {get; set;}
     
     public NctETMembershipPaymentPageController()
     {  
@@ -40,7 +41,8 @@ public without sharing class NctETMembershipPaymentPageController
             membership.isStaff = ContactUtilities.isStaff(membership.contId);membership.isMembershipExists = ContactUtilities.isMembershipExists(membership.contId, membership.email);
             membership.staffMember = MembershipConstants.STAFF;
             membership.primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,Contact_Prefrence__c,Prefered_First_Name__c,AccountId,Expected_Due_Date__c,MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry,Branch__r.Name,Branch__c FROM Contact where id=:membership.contId];
-         
+            isCompanionContactExisting = ContactUtilities.isCompanionContactExisting(membership.contId);
+            System.debug('isCompanionContactExisting '+isCompanionContactExisting );
             if(membership.primaryContact != null){
                 
                 membership.firstname = membership.primaryContact.FirstName;
