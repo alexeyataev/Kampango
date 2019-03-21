@@ -7422,6 +7422,18 @@ npo02__Household__r.npo02__TotalOppAmount__c)</formula>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
+	<fullName>Contact_Phone_Validation</fullName>
+        <active>true</active>
+        <description>Validation error message should be displayed when phone number is 10 digits 13 and more than 14</description>
+        <errorConditionFormula>AND($Profile.Name &lt;&gt; &apos;System Administrator&apos;, 
+$Profile.Name &lt;&gt; &apos;Read Only&apos;, 
+$Profile.Name &lt;&gt; &apos;Payment Profile&apos;,
+IF( OR(AND(BEGINS( Phone , &apos;0&apos;),  LEN(Phone)= 11),AND(BEGINS( Phone , &apos;+44&apos;),  LEN(Phone)= 13),AND(BEGINS( Phone , &apos;0044&apos;),  LEN(Phone)= 14)), FALSE, TRUE)
+)</errorConditionFormula>
+        <errorDisplayField>Phone</errorDisplayField>
+        <errorMessage>UK Mobile number starts with 0 and 11 digits without Access code or With Access code (+44 or 0044) 13 or 14 digits.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Contact_Preferred_Email</fullName>
         <active>true</active>
         <errorConditionFormula>AND(
@@ -7456,6 +7468,28 @@ OR(
         <errorConditionFormula>ISBLANK(FirstName)</errorConditionFormula>
         <errorDisplayField>npo02__SystemHouseholdProcessor__c</errorDisplayField>
         <errorMessage>First Name Required</errorMessage>
+    </validationRules>
+    <validationRules>
+	 <fullName>PostCode_Mandatory</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+$Profile.Name &lt;&gt; &apos;System Administrator&apos;,
+$Profile.Name &lt;&gt; &apos;Read Only&apos;,
+ISBLANK(MailingPostalCode)
+)</errorConditionFormula>
+        <errorDisplayField>MailingPostalCode</errorDisplayField>
+        <errorMessage>Please Provide the Mailing Address</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Salutation_Mandatory</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+$Profile.Name &lt;&gt; &apos;System Administrator&apos;,
+$Profile.Name &lt;&gt; &apos;Read Only&apos;,
+ISPICKVAL(Salutation,&quot;&quot;)
+)</errorConditionFormula>
+        <errorDisplayField>Salutation</errorDisplayField>
+        <errorMessage>Please provide the Salutation</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Sort_Code_validation</fullName>
