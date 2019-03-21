@@ -367,6 +367,7 @@
     <section>
     <apex:input value="{!onComplete}" id="onComplete" style="opacity:0;width:1px;height:1px;"/>
     	<input type="text" value="{!membership.staffMember}" id="checkStaff" style="opacity:0;width:1px;height:1px;"/>
+        <input type="text" value="{!isCompanionContactExisting}" id="staffSecondContact" style="opacity:0;width:1px;height:1px;"/>
         <div class="green-bg-image">
             <div class="text-center nct-mebmber-logo"><apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nctmembers-logo.png')}"/></div>
         </div>
@@ -1190,7 +1191,9 @@
             
             dateFieldvalid = true;
         var staffValue = $('#checkStaff').val();
+        var staffSecondContact = $('#staffSecondContact').val();
         	console.log(staffValue,'staff value');
+            console.log(staffSecondContact,'Staff Second Contact value');
             if(staffValue == 'staff'){
                 $('#pcfirst').css('display','block');
                 $('#textForename, #textSurname, #textEmail,#textMobile, #postcode,#due-Date').prop('readonly', true);
@@ -1201,6 +1204,19 @@
                $('#textForename, #textSurname, #textEmail, #textMobile, #postcode,#due-Date').prop('readonly', false);
                 // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', false);
                 $('#selectBranch,.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', false);
+            }
+            if(staffSecondContact == 'true'){
+                console.log(staffSecondContact,'Staff Second Contact value if');
+                $('#secondMembership').show();
+                 $('#textForenamePartner, #textSurnamePartner, #textForenamePartner,#textTelephoneHomePartner,#textEmailPartner').prop('readonly', true);
+                $('#secondMembership td input').prop('disabled', true);
+                $('#twomem').prop('checked', true);
+            }
+            else {
+                console.log(staffSecondContact,'Staff Second Contact value else');
+                $('#textForenamePartner, #textSurnamePartner, #textForenamePartner, #textTelephoneHomePartner,#textEmailPartner').prop('readonly', false);
+                $('#secondMembership td input').prop('disabled', false);
+                $('#twomem').prop('checked', false);
             }
             /*
         	$('#scd1').keypress(function(e) {
@@ -1232,6 +1248,9 @@
                     }
                 });
             $("#secondMembership").hide();
+            if(staffSecondContact == 'true'){
+                $('#secondMembership').show();
+            }
             $('#giftaid').hide(); // 11/27/2018 changes start here
             $("#direct_debit_block").hide();
             $("#gift_aid_block").hide(); // 11/27/2018 changes start here
