@@ -7478,7 +7478,7 @@ $Profile.Name &lt;&gt; &apos;Read Only&apos;,
 ISBLANK(MailingPostalCode)
 )</errorConditionFormula>
         <errorDisplayField>MailingPostalCode</errorDisplayField>
-        <errorMessage>Please Provide the Mailing Address</errorMessage>
+        <errorMessage>Please Provide the Mailing Postal Code</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Salutation_Mandatory</fullName>
