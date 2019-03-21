@@ -45,7 +45,7 @@
                 <field>Expected_Due_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Gender__c</field>
             </layoutItems>
             <layoutItems>
@@ -89,7 +89,7 @@
                 <field>Email</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Branch__c</field>
             </layoutItems>
             <layoutItems>

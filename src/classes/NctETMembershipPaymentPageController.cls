@@ -164,7 +164,7 @@ public without sharing class NctETMembershipPaymentPageController
         else if(isExistingContactCheck()){
         
         System.debug('Contact Exists(Next Flow Starts): '+membership.isContactExisting);
-        membership.primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingStreet,MailingState,MailingCity,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE (Email = :membership.email AND Email != '') OR Id =:membership.contId limit 1];
+        contactFinder(); 
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email,MailingStreet,MailingState,MailingCity, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :membership.primaryContact.Id];
 
         membership.primaryContact.MailingStreet = membership.streetValue+membership.streetValue1+membership.streetValue2;
@@ -193,6 +193,14 @@ public without sharing class NctETMembershipPaymentPageController
         membership.membershipTypeMap = MembershipUtilties.getMembershipTypeMap(membership.contactType,membership.targetCustomer,membership.etSpecific);    
         return null;
         
+    }
+    private void contactFinder(){
+        if(membership.contId != null){
+             membership.primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingStreet,MailingState,MailingCity,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Id =:membership.contId limit 1];
+        }
+        else{
+            membership.primaryContact =[SELECT Id,Salutation,Gender__c, LastName, FirstName, Email, Phone,MailingStreet,MailingState,MailingCity,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Email = :membership.email AND Email != '' limit 1];
+        }
     }
     private boolean isNotExistingContactCheck(){
     	return membership.isContactExisting == false && membership.primaryContact == null;
