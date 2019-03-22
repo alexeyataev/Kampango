@@ -30,10 +30,9 @@ private class ThankYouHelperTest {
         Test.setCurrentPage(page);
         ID contID = ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
 
-        ThankYouHelper thankYou = new ThankYouHelper();
-        thankYou.reccDonList = reclist;
+        ThankYouHelper.reccDonList = reclist;
          system.debug('no of rows '+  reclist.size());	
-        membershipNumber =  thankYou.membershipNumberCreation(con,recDon,lifeMembership); 
+        membershipNumber =  ThankYouHelper.membershipNumberCreation(con,recDon,lifeMembership); 
         system.assertEquals('Confirmed',reclist[0].Membership_Status__c);
         Test.stopTest();
      }
@@ -54,10 +53,8 @@ private class ThankYouHelperTest {
         Test.setCurrentPage(page);
         ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
         
-
-        ThankYouHelper thankYou = new ThankYouHelper();
-        thankYou.reccDonList = recDonation;
-        thankYou.membershipNumberCreation(con,recDon,lifeMembership);  
+        ThankYouHelper.reccDonList = recDonation;
+        ThankYouHelper.membershipNumberCreation(con,recDon,lifeMembership);  
         system.assertEquals(null, recDon.Membership_Status__c);
         Test.stopTest();
     }
@@ -81,9 +78,9 @@ private class ThankYouHelperTest {
 		Boolean lifeMembership = true;
 		Test.startTest();
         ThankYouHelper thankYou = new ThankYouHelper();
-        thankYou.recDon = recDonation;
-        thankyou.membershipDetails = membershipDetails;
-        membershipNumber = thankYou.membershipNumberCreation(con,recDon1,lifeMembership);  
+        ThankYouHelper.recDon = recDonation;
+        ThankYouHelper.membershipDetails = membershipDetails;
+        membershipNumber = ThankYouHelper.membershipNumberCreation(con,recDon1,lifeMembership);  
         system.assertNotEquals('Confirmed', membershipNumber);
         Test.stopTest();
     }

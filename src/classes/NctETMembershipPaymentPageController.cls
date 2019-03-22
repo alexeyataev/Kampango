@@ -35,7 +35,24 @@ public without sharing class NctETMembershipPaymentPageController
        membership.staffMember =MembershipConstants.NOSTAFF;
         if(membership.contId != null)
         {
-            if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+            displayContactDataForExistingContact();
+        
+        }
+        pymtPrfl = new cpm__Payment_Profile__c();
+        recDon = new npe03__Recurring_Donation__c();
+        gftAid = new gaid__Gift_Aid_Declaration__c();
+         membership.displaySuccessMessage = false;
+        membership.displayMbrNoMessage = false;
+        membership.displayValue = MembershipConstants.NONE;
+        membership.counter = '';
+        membership.accountName='';
+        membership.sortCode='';
+        membership.accountName=''; 
+
+
+    }
+    private void displayContactDataForExistingContact(){
+         if (!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }
             membership.isStaff = ContactUtilities.isStaff(membership.contId);membership.isMembershipExists = ContactUtilities.isMembershipExists(membership.contId, membership.email);
@@ -73,22 +90,8 @@ public without sharing class NctETMembershipPaymentPageController
                 membership.secondContactPhone = secondaryContactList[0].Phone;
 
             }
-        
-        }
-        pymtPrfl = new cpm__Payment_Profile__c();
-        recDon = new npe03__Recurring_Donation__c();
-        gftAid = new gaid__Gift_Aid_Declaration__c();
-         membership.displaySuccessMessage = false;
-        membership.displayMbrNoMessage = false;
-        membership.displayValue = MembershipConstants.NONE;
-        membership.counter = '';
-        membership.accountName='';
-        membership.sortCode='';
-        membership.accountName=''; 
-
-
     }
-         private Boolean receiveInputPermissionCheck(){
+    private Boolean receiveInputPermissionCheck(){
         return !Schema.sObjectType.Contact.fields.FirstName.isCreateable() && !Schema.sObjectType.Contact.fields.FirstName.isAccessible();
     }
     private Boolean receiveInputSecondContactPermissionCheck(){
@@ -167,6 +170,7 @@ public without sharing class NctETMembershipPaymentPageController
         contactFinder(); 
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email,MailingStreet,MailingState,MailingCity, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :membership.primaryContact.Id];
 
+        membership.primaryContact.MailingPostalCode = membership.postCode;
         membership.primaryContact.MailingStreet = membership.streetValue+membership.streetValue1+membership.streetValue2;
         membership.primaryContact.MailingState = membership.stateValue;
         membership.primaryContact.MailingCity = membership.cityValue;
@@ -347,24 +351,23 @@ public without sharing class NctETMembershipPaymentPageController
         crudHelper.sortCode = membership.sortCode;
         crudHelper.pcont = membership.primaryContact;
         crudHelper.scont = membership.secondaryContact;
+        crudHelper.isVolunteer = membership.isVolunteer;
         
-        MembershipCrudHelper memCrudHelp = new MembershipCrudHelper();
-        memCrudHelp.crudHelper = crudHelper;
+        MembershipCrudHelper.crudHelper = crudHelper;
         if(membership.membershipInfo.Payment_Method__c != MembershipConstants.CREDIT_OR_DEBIT_CARD){
-           pymtPrfl = memCrudHelp.paymentProfile();
+           pymtPrfl = MembershipCrudHelper.paymentProfile();
         }
         if(membership.isGiftAid == MembershipConstants.TRUE_VALUE){
-        	gftAid = memCrudHelp.giftAid(membership.membershipInfo);
+        	gftAid = MembershipCrudHelper.giftAid(membership.membershipInfo);
         }
-        recDon = memCrudHelp.recDonation(membership.membershipInfo,pymtPrfl);
+        recDon = MembershipCrudHelper.recDonation(membership.membershipInfo,pymtPrfl);
         
         membershipNumberDisplay();
     }    
     public void membershipNumberDisplay(){
        membership.displayMbrNoMessage = true;
-       ThankYouHelper thankYou = new ThankYouHelper();
-        thankyou.membershipDetails = membership.membershipInfo;
-       membership.membershipNumber = thankYou.membershipNumberCreation(membership.primaryContact,recDon,membership.lifeMembership);
+        ThankYouHelper.membershipDetails = membership.membershipInfo;
+       membership.membershipNumber = ThankYouHelper.membershipNumberCreation(membership.primaryContact,recDon,membership.lifeMembership);
     }
     public PageReference paymentHubCallout()
     {   

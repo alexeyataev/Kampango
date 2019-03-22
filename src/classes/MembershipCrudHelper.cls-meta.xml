@@ -3,12 +3,12 @@
     <apiVersion>44.0</apiVersion>
     <packageVersions>
         <majorNumber>1</majorNumber>
-        <minorNumber>32</minorNumber>
+        <minorNumber>41</minorNumber>
         <namespace>cpm</namespace>
     </packageVersions>
     <packageVersions>
         <majorNumber>1</majorNumber>
-        <minorNumber>7</minorNumber>
+        <minorNumber>9</minorNumber>
         <namespace>gaid</namespace>
     </packageVersions>
     <packageVersions>
@@ -18,7 +18,7 @@
     </packageVersions>
     <packageVersions>
         <majorNumber>1</majorNumber>
-        <minorNumber>41</minorNumber>
+        <minorNumber>50</minorNumber>
         <namespace>npsp4hub</namespace>
     </packageVersions>
     <packageVersions>
