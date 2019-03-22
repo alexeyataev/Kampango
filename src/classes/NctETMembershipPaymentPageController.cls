@@ -170,6 +170,7 @@ public without sharing class NctETMembershipPaymentPageController
         contactFinder(); 
         contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email,MailingStreet,MailingState,MailingCity, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :membership.primaryContact.Id];
 
+        membership.primaryContact.MailingPostalCode = membership.postCode;
         membership.primaryContact.MailingStreet = membership.streetValue+membership.streetValue1+membership.streetValue2;
         membership.primaryContact.MailingState = membership.stateValue;
         membership.primaryContact.MailingCity = membership.cityValue;
