@@ -1209,13 +1209,13 @@
                 console.log(staffSecondContact,'Staff Second Contact value if');
                 $('#secondMembership').show();
                  $('#textForenamePartner, #textSurnamePartner, #textForenamePartner,#textTelephoneHomePartner,#textEmailPartner').prop('readonly', true);
-                $('#secondMembership td input').prop('disabled', true);
+                $('#secondMembership td input, #secondMembership .mrtitle select').prop('disabled', true);
                 $('#twomem').prop('checked', true);
             }
             else {
                 console.log(staffSecondContact,'Staff Second Contact value else');
                 $('#textForenamePartner, #textSurnamePartner, #textForenamePartner, #textTelephoneHomePartner,#textEmailPartner').prop('readonly', false);
-                $('#secondMembership td input').prop('disabled', false);
+                $('#secondMembership td input, #secondMembership .mrtitle select').prop('disabled', false);
                 $('#twomem').prop('checked', false);
             }
             /*
