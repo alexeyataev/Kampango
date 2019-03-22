@@ -1,37 +1,31 @@
 public without sharing class MembershipCrudHelper {
         
-    public gaid__Gift_Aid_Declaration__c gftAid {get;set;}
-    public cpm__Payment_Profile__c pymtPrfl{get;set;}
-    public npe03__Recurring_Donation__c recDon {get;set;}
-    public MembershipVo.MemberCrudHelper crudHelper{get;set;} 
+    public static gaid__Gift_Aid_Declaration__c gftAid {get;set;}
+    public static cpm__Payment_Profile__c pymtPrfl{get;set;}
+    public static npe03__Recurring_Donation__c recDon {get;set;}
+    public static MembershipVo.MemberCrudHelper crudHelper{get;set;} 
 
-    public list<cpm__Payment_Profile__c> paymentProfileRecord = new list<cpm__Payment_Profile__c>();
-    public list<gaid__Gift_Aid_Declaration__c> giftAidDeclarationRecord = new list<gaid__Gift_Aid_Declaration__c>();
-    public list<npe03__Recurring_Donation__c> recDonationRecord = new list<npe03__Recurring_Donation__c>(); 
+    public static list<cpm__Payment_Profile__c> paymentProfileRecord = new list<cpm__Payment_Profile__c>();
+    public static list<gaid__Gift_Aid_Declaration__c> giftAidDeclarationRecord = new list<gaid__Gift_Aid_Declaration__c>();
+    public static list<npe03__Recurring_Donation__c> recDonationRecord = new list<npe03__Recurring_Donation__c>(); 
     
-    
-    public MembershipCrudHelper(){       
-            pymtPrfl = new cpm__Payment_Profile__c();
-            recDon = new npe03__Recurring_Donation__c();
-            gftAid = new gaid__Gift_Aid_Declaration__c();
-    }
-    private boolean paymentProfileCheck(){
+    private static boolean paymentProfileCheck(){
         return !Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isAccessible()
         &&(!Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isCreateable() || !Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isUpdateable());
     }
-    private boolean giftAidCheck(){
+    private static boolean giftAidCheck(){
         return !Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isAccessible()
         &&(!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isUpdateable() || !Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isCreateable());
     }
-    private boolean recDonationCheck(){
+    private static boolean recDonationCheck(){
         return !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Name.isAccessible()
         &&(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isAccessible() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()
         &&(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isupdateable() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()));
     }
-    private boolean ismembershipSource(){
+    private static boolean ismembershipSource(){
     	return crudHelper.membershipSource != '' && crudHelper.membershipSource != null;
     }
-    public cpm__Payment_Profile__c paymentProfile(){
+    public static cpm__Payment_Profile__c paymentProfile(){
         if(paymentProfileCheck()){
         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
         return null;
@@ -88,7 +82,7 @@ public without sharing class MembershipCrudHelper {
         
         
     }
-    public gaid__Gift_Aid_Declaration__c giftAid(Membership_Type__mdt membershipDetails){
+    public static gaid__Gift_Aid_Declaration__c giftAid(Membership_Type__mdt membershipDetails){
         if(giftAidCheck()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
             return null;
@@ -147,7 +141,7 @@ public without sharing class MembershipCrudHelper {
         }
                        
     }
-    public npe03__Recurring_Donation__c recDonation(Membership_Type__mdt membershipDetails,cpm__Payment_Profile__c pymtProfl){
+    public static npe03__Recurring_Donation__c recDonation(Membership_Type__mdt membershipDetails,cpm__Payment_Profile__c pymtProfl){
 
             if(recDonationCheck()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
@@ -185,7 +179,8 @@ public without sharing class MembershipCrudHelper {
                 }                
                 recDonationRecord[0].Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                 recDonationRecord[0].npe03__Amount__c = membershipDetails.Installment_Amount__c;
-                recDonationRecord[0].Membership_type__c = membershipDetails.Membership__c;
+                String membershipType = membershipTypeChecker(membershipDetails);
+                recDonationRecord[0].Membership_type__c = membershipType; 
                 recDonationRecord[0].npe03__Installments__c = membershipDetails.No_of_Installments__c;
                 recDonationRecord[0].npe03__Next_Payment_Date__c = MembershipUtilties.getNextDonationDate(System.Date.today());
                 recDonationRecord[0].npe03__Schedule_Type__c = membershipDetails.Schedule_Type__c;
@@ -209,7 +204,8 @@ public without sharing class MembershipCrudHelper {
                         recDon = new npe03__Recurring_Donation__c();
                 recDon.Name =membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c+' '+membershipDetails.Payment_Method__c;
                 recDon.npe03__Amount__c = membershipDetails.Installment_Amount__c;
-                recDon.Membership_type__c = membershipDetails.Membership__c;
+                String membershipType = membershipTypeChecker(membershipDetails);
+                recDon.Membership_type__c = membershipType; 
                 recDon.npe03__Installments__c = membershipDetails.No_of_Installments__c;
                 recDon.npe03__Contact__c = crudHelper.pcont.Id;
                 if(ismembershipSource()){
@@ -241,5 +237,16 @@ public without sharing class MembershipCrudHelper {
             return recDon;
         }
        	 
+    }
+    private static String membershipTypeChecker(Membership_Type__mdt membershipDetails){
+        String membershipType;
+        if(crudHelper.isVolunteer == true){
+             membershipType = membershipDetails.Membership__c +'-'+membershipDetails.Target_Customer__c+'-'+membershipDetails.Contact_Type__c;
+        }
+        else{
+             membershipType = membershipDetails.Membership__c+'-'+membershipDetails.Contact_Type__c; 
+        }
+        return membershipType;
+               
     }
 }

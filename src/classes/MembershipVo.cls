@@ -80,6 +80,7 @@ public with sharing class MembershipVo {
         public String sortCode {get; set;}
         public String accountNumber {get; set;}
         public String acquistion {get;set;}
+        public boolean isVolunteer {get; set;}
         public String membershipSource{get;set;}
         public Contact pcont{set; get;}
         public Contact scont{set; get;}
