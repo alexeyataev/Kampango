@@ -12,7 +12,7 @@ public with sharing class StaffMembershipController{
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                     Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
                                                     GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
-                                                    where Payment_Type__c= :MembershipConstants.LIFEMEMBERSHIP limit 1];
+                                                    where Payment_Type__c= :MembershipConstants.LIFEMEMBERSHIP AND Contact_Type__c = :MembershipConstants.INDIVIDUAL limit 1];
        recurringDon= [SELECT
                           Id,
                           Name,
@@ -39,6 +39,7 @@ public with sharing class StaffMembershipController{
                 npe03__Recurring_Donation__c recurringDonation = new npe03__Recurring_Donation__c();
                 recurringDonation.Name = membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                 recurringDonation.npe03__Amount__c = membershipDetails.Installment_Amount__c;
+                recurringDonation.Membership_type__c = membershipDetails.Membership__c+'-'+membershipDetails.Contact_Type__c;
                 recurringDonation.npe03__Contact__c = contId;
                 recurringDonation.First_Contact__c = contId;
                 recurringDonation.npe03__Installment_Period__c = membershipDetails.Installment_Period__c;

@@ -44,18 +44,19 @@ private class MembershipCrudHelperTest {
         crudHelper.sortCode = 'CD-1234';
         crudHelper.acquistion = 'Written';
         crudHelper.membershipSource = 'Enquiry by phone - main NCT'; 
+        crudHelper.isVolunteer = true;
             
-        MembershipCrudHelper memCrud = new MembershipCrudHelper();               
-        memCrud.crudHelper = crudHelper;
-        paymntProfl = memCrud.paymentProfile();
+            
+        MembershipCrudHelper.crudHelper = crudHelper;
+        paymntProfl = MembershipCrudHelper.paymentProfile();
         system.assertEquals(accountDetails[2],paymntProfl.paybacs__Sort_Code__c);      
-        gftAid = memCrud.giftAid(membershipDetails);
+        gftAid = MembershipCrudHelper.giftAid(membershipDetails);
         system.assertEquals(true,gftAid.gaid__Active__c);
         id id1= paymntProfl.id;
         list<cpm__Payment_Profile__c> profid =[SELECT id from cpm__Payment_Profile__c WHERE ID=:id1 limit 1];     
         if(profid.size()>0){
             recDonate = new npe03__Recurring_Donation__c();
-            recDonate = memCrud.recDonation(membershipDetails,paymntProfile);
+            recDonate = MembershipCrudHelper.recDonation(membershipDetails,paymntProfile);
         }    
         system.assertEquals('Pending', recDonate.Membership_Status__c);
     }  
@@ -126,19 +127,19 @@ private class MembershipCrudHelperTest {
         crudHelper.accountNumber = '145263777';
         crudHelper.sortCode = 'CD-1234';
         crudHelper.acquistion = 'Written';
-        crudHelper.membershipSource = 'Enquiry by phone - main NCT'; 
-        
-        MembershipCrudHelper memCrud = new MembershipCrudHelper();        
-        memCrud.crudHelper = crudHelper;
-        memCrud.paymentProfileRecord = paymntProflRecord;        
-        paymntProflRecord[0] = memCrud.paymentProfile();
-        system.assertEquals(1,memCrud.paymentProfileRecord.size());             
-        memCrud.giftAidDeclarationRecord  = giftAidDeclareRecord;
-        giftAidDeclareRecord[0] = memCrud.giftAid(membershipDetails);  
-        system.assertEquals(1,memCrud.giftAidDeclarationRecord.size());
-        memCrud.recDonationRecord = recDonateRecord;        
-        recDonateRecord[0] = memCrud.recDonation(membershipDetails,paymentProfile);
-        system.assertEquals(1,memCrud.recDonationRecord.size());
+        crudHelper.membershipSource = 'Enquiry by phone - main NCT';
+        crudHelper.isVolunteer = true;
+                
+        MembershipCrudHelper.crudHelper = crudHelper;
+        MembershipCrudHelper.paymentProfileRecord = paymntProflRecord;        
+        paymntProflRecord[0] = MembershipCrudHelper.paymentProfile();
+        system.assertEquals(1,MembershipCrudHelper.paymentProfileRecord.size());             
+        MembershipCrudHelper.giftAidDeclarationRecord  = giftAidDeclareRecord;
+        giftAidDeclareRecord[0] = MembershipCrudHelper.giftAid(membershipDetails);  
+        system.assertEquals(1,MembershipCrudHelper.giftAidDeclarationRecord.size());
+       MembershipCrudHelper.recDonationRecord = recDonateRecord;        
+        recDonateRecord[0] = MembershipCrudHelper.recDonation(membershipDetails,paymentProfile);
+        system.assertEquals(1,MembershipCrudHelper.recDonationRecord.size());
     }
 
     @isTest
@@ -172,11 +173,10 @@ private class MembershipCrudHelperTest {
         crudHelper.sortCode = 'CD-1234';
         crudHelper.acquistion = 'Written';
         crudHelper.membershipSource = 'Enquiry by phone - main NCT'; 
+        crudHelper.isVolunteer = true;
         
-        MembershipCrudHelper memCrud = new MembershipCrudHelper();           
-        memCrud.crudHelper = crudHelper;
-
-         gftAid = memCrud.giftAid(membershipDetails);
+        MembershipCrudHelper.crudHelper = crudHelper; 
+        gftAid = MembershipCrudHelper.giftAid(membershipDetails);
          system.assertEquals(true,gftAid.gaid__Active__c);
     }  
     

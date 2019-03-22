@@ -1,22 +1,18 @@
 public without sharing class ThankYouHelper {
-    public boolean isStaff {get; set;}
-    public string membershipNumber {get;set;}
-    public Membership_Type__mdt membershipDetails{get;set;}
-    list<User> userList = new list<User>();
-    public list<npe03__Recurring_Donation__c> reccDonList = new list<npe03__Recurring_Donation__c>();
-    public npe03__Recurring_Donation__c recDon {get; set;}
-    public ThankYouHelper(){
-        Id userId = userinfo.getUserId();
-        isStaff = ContactUtilities.isStaff(userId);
-    }
-    private Boolean permissionCheck(){
+
+    public static string membershipNumber {get;set;}
+    public static Membership_Type__mdt membershipDetails{get;set;}
+    public static list<npe03__Recurring_Donation__c> reccDonList = new list<npe03__Recurring_Donation__c>();
+    public static npe03__Recurring_Donation__c recDon {get; set;}
+
+    private static Boolean permissionCheck(){
     	return !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isAccessible()
               && (!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isUpdateable() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isCreateable());
     }
-    private boolean contIdCheck(){
+    private static boolean contIdCheck(){
     	return Apexpages.currentPage().getParameters().get('contId') != null && Apexpages.currentPage().getParameters().get('contId') !='';
     }   
-    public String membershipNumberCreation(contact cont,npe03__Recurring_Donation__c recDon, Boolean lifeMembership){
+    public static String membershipNumberCreation(contact cont,npe03__Recurring_Donation__c recDon, Boolean lifeMembership){
         if(permissionCheck()){ 
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
                 return null;
