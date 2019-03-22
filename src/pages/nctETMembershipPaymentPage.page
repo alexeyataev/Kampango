@@ -1207,6 +1207,7 @@
             }
             if(staffSecondContact == 'true'){
                 console.log(staffSecondContact,'Staff Second Contact value if');
+                $('#person-clear').css('display', 'none');
                 $('#secondMembership').show();
                  $('#textForenamePartner, #textSurnamePartner, #textForenamePartner,#textTelephoneHomePartner,#textEmailPartner').prop('readonly', true);
                 $('#secondMembership td input, #secondMembership .mrtitle select').prop('disabled', true);
@@ -1292,9 +1293,9 @@
         		
                 $("#postcode_checker").click(function () {
                     console.log($('#postcode').val());
-                    if(staffValue != 'staff'){
+
                         postCodeVal($('#postcode').val(),$('#textEmail').val());
-                    }
+
                     /*var varible = $('.memberexist input').val();
                     if(varible == "true" ){
                       $('#MembershipalertModal').modal();
@@ -1305,7 +1306,7 @@
                     
                     // --------------------------
                         var branch = $('#selectBranch :selected').text();
-                        if (branch == "" && staffValue != 'staff') {
+                        if (branch == "") {
                         $('#MembershipalertModal').modal();
                         $('.modal-body').html('<div>' + 'Please click on "Find Address" to select address and NCT Branch.' + '</div>');
                             return false
@@ -1678,6 +1679,18 @@
             $('#payment_li').removeClass('active');
             $('#register_li').addClass('active');
             $('#register').addClass('active show');
+            var staffValue = $('#checkStaff').val();
+            if(staffValue == 'staff'){
+                $('#pcfirst').css('display','block');
+                $('#textForename, #textSurname, #textEmail,#textMobile,#due-Date').prop('readonly', true);
+                // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', true);
+                $('.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', true);
+            }
+       		else {
+               $('#textForename, #textSurname, #textEmail, #textMobile,#due-Date').prop('readonly', false);
+                // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', false);
+                $('.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', false);
+            }
         });
         $('#direct_pay_back').on('click', function(){
 
