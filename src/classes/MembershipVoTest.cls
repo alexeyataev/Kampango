@@ -61,7 +61,7 @@
         membership.membershipTypeMap = membershipTypes;
          membership.nearestBranchs = objects;
       
-            membership.phone = 'Test';
+            membership.phone = '09874657878';
             membership.postCode = 'Test';
             membership.postOpt = true;
             membership.primaryContact = con;
@@ -76,7 +76,7 @@
             membership.secondContactFirstName = 'Test';
             membership.secondContactGenders = 'Test';
             membership.secondContactLastName = 'Test';
-            membership.secondContactPhone = 'Test';
+            membership.secondContactPhone = '09874657878';
             membership.selectBranch = con.id;
             membership.sessionProfile = '';
            
@@ -98,6 +98,7 @@
         memCrud.sortCode = 'CD-1234';
         memCrud.acquistion = 'Written';
         memCrud.membershipSource = 'Enquiry by phone - main NCT'; 
+        memCrud.isVolunteer = true;
         membership.memberCrud = memCrud;
         
         system.assertEquals('Credit/Debit Card', membership.membershipInfo.Payment_Method__c);

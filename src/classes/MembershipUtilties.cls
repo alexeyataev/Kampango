@@ -112,28 +112,16 @@ public without sharing class MembershipUtilties {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
          }   
-        List<Contact> contactList  = [
-                                        SELECT
-                                            Id,
-                                            Prefered_First_Name__c,
-                                            LastName,
-                                            Email,
-                                            (
-                                                SELECT
-                                                    Id
-                                                FROM
-                                                    Practitioner_Role__r
-                                                WHERE
-                                                    Is_Active__c = True
-                                            )
-                                        FROM
-                                            Contact
-                                        WHERE
-                                            LastName = :lastName AND
-                                            Email = :email
-                                    ];
+        list<Practitioner_Role__c> practitionerList = [ SELECT 
+                                                             ID,
+                                                             Name,
+                                                             Contact__r.Lastname, 
+                                                             Contact__r.Email 
+                                                             FROM Practitioner_Role__c WHERE
+                                                    Is_Active__c = True AND contact__r.Lastname = :lastName AND contact__r.Email = :email];
+                                                    
 
-            if(contactList.size()>0 && contactList[0].Practitioner_Role__r != null && contactList[0].Practitioner_Role__r.size() > 0){
+            if(practitionerList.size()>0){
                 //System.debug('Practitioner License is : '+contactList[0].Practitioner_Licence__r.size());
                 //if (contactList[0] != null ){//&& contactList[0].Practitioner_Licence__r != null && contactList[0].Practitioner_Licence__r.size() > 0){
                 return true;
