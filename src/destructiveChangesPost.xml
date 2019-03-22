@@ -6,7 +6,10 @@
         <members>DisplayDdScheduleController</members>
         <members>DisplayDdScheduleControllerTest</members>
         <members>BookCourseController</members>
-        <members>BookCourseControllerTest</members>
+        <members>DirectDebitModels</members>
+        <members>ParentCommunitySelfRegController</members>
+        <members>DisplayCourseSessionsController</members>
+        <members>SiteRegisterController</members>
         <name>ApexClass</name>
     </types>
     <types>
