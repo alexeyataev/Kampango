@@ -1198,12 +1198,12 @@
                 $('#pcfirst').css('display','block');
                 $('#textForename, #textSurname, #textEmail,#textMobile,#due-Date').prop('readonly', true);
                 // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', true);
-                $('#selectBranch,.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', true);
+                $('.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', true);
             }
        		else {
                $('#textForename, #textSurname, #textEmail, #textMobile,#due-Date').prop('readonly', false);
                 // $('.dynmaic-radio-fields input, .gender-title-select select').prop('disabled', false);
-                $('#selectBranch,.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', false);
+                $('.contact_check input,.first-person-title select,.first-person-gender td input').prop('disabled', false);
             }
             if(staffSecondContact == 'true'){
                 console.log(staffSecondContact,'Staff Second Contact value if');

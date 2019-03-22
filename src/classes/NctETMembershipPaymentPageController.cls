@@ -168,8 +168,9 @@ public without sharing class NctETMembershipPaymentPageController
         
         System.debug('Contact Exists(Next Flow Starts): '+membership.isContactExisting);
         contactFinder(); 
-        contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c, LastName, FirstName, Email,MailingStreet,MailingState,MailingCity, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :membership.primaryContact.Id];
+        contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c,Branch__c, LastName, FirstName, Email,MailingStreet,MailingState,MailingCity, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :membership.primaryContact.Id];
 
+        membership.primaryContact.Branch__c = membership.selectBranch;
         membership.primaryContact.MailingPostalCode = membership.postCode;
         membership.primaryContact.MailingStreet = membership.streetValue+membership.streetValue1+membership.streetValue2;
         membership.primaryContact.MailingState = membership.stateValue;
