@@ -413,19 +413,9 @@
                     <label>4 year membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>Life Membership</fullName>
+                    <fullName>Reduced 12 month membership - Individual</fullName>
                     <default>false</default>
-                    <label>Life Membership</label>
-                </value>
-                <value>
-                    <fullName>Life Joint Membership</fullName>
-                    <default>false</default>
-                    <label>Life Joint Membership</label>
-                </value>
-                <value>
-                    <fullName>Reduced 12 month membership - Ind</fullName>
-                    <default>false</default>
-                    <label>Reduced 12 month membership - Ind</label>
+                    <label>Reduced 12 month membership - Individual</label>
                 </value>
                 <value>
                     <fullName>Reduced 12 month membership - Joint</fullName>
@@ -453,14 +443,14 @@
                     <label>10 Year membership - Joint</label>
                 </value>
                 <value>
-                    <fullName>12 month membership volunteer/practitioner - Ind</fullName>
+                    <fullName>12 month membership volunteer/practitioner - Individual</fullName>
                     <default>false</default>
-                    <label>12 month membership volunteer/practitioner - Ind</label>
+                    <label>12 month membership volunteer/practitioner - Individual</label>
                 </value>
                 <value>
-                    <fullName>12 month membership volunteer/practitioner - Jnt</fullName>
+                    <fullName>12 month membership volunteer/practitioner - Joint</fullName>
                     <default>false</default>
-                    <label>12 month membership volunteer/practitioner - Jnt</label>
+                    <label>12 month membership volunteer/practitioner - Joint</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1516,6 +1506,65 @@ CASE(
             </values>
             <values>
                 <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+		<picklistValues>
+            <picklist>Membership_type__c</picklist>
+            <values>
+                <fullName>10 Year membership - Individual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10 Year membership - Joint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 month membership - Individual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 month membership - Joint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 month membership volunteer%2Fpractitioner - Individual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 month membership volunteer%2Fpractitioner - Joint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18 month membership - Individual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18 month membership - Joint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4 year membership - Individual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4 year membership - Joint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reduced 12 month membership - Individual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reduced 12 month membership - Joint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Staff Membership - Individual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Staff Membership - Joint</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
