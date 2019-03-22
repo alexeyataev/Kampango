@@ -88,6 +88,8 @@ public without sharing class NctETMembershipPaymentPageController
                 membership.secondContactLastName = secondaryContactList[0].LastName;
                 membership.secondContactEmail = secondaryContactList[0].Email;
                 membership.secondContactPhone = secondaryContactList[0].Phone;
+                membership.salutationSecondary = secondaryContactList[0].Salutation;
+                membership.secondContactGenders = secondaryContactList[0].Gender__c;
 
             }
     }
