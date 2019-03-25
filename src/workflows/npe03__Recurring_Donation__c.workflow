@@ -205,17 +205,9 @@
 
 &quot;4 year membership-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),48),
 
-&quot;Life Membership-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),1188),
-
-&quot;Life Membership-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),1188),
-
 &quot;Reduced 12 month membership-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
 &quot;Reduced 12 month membership-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
-
-&quot;Staff Membership-Individual&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),1188),
-
-&quot;Staff Membership-Joint&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),1188),
 
 &quot;10 year membership-Individual&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),120),
 
