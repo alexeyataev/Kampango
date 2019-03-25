@@ -6,8 +6,8 @@
         <name>ApexComponent</name>
     </types>
     <types>
+        <members>ParentCommunitySelfReg</members>
         <members>CommunitiesSelfReg</members>
-        <members>CommunitiesSelfRegConfirm</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -17,8 +17,6 @@
         <members>DisplayDdScheduleControllerTest</members>
         <members>BookCourseController</members>
         <members>ParentCommunitySelfRegController</members>
-        <members>CommunitiesSelfRegConfirmController</members>
-        <members>CommunitiesSelfRegConfirmControllerTest</members>
         <members>CommunitiesSelfRegController</members>
         <members>CommunitiesSelfRegControllerTest</members>
         <name>ApexClass</name>
