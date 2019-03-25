@@ -131,7 +131,7 @@ public with sharing class ParentCommunitySelfRegController {
             System.debug(ex.getMessage());
         }**/
         
-        if (userId != null) { 
+        //if (userId != null) { 
             
             /**if (password != null && password.length() > 1) {
                 return Site.login(userName, password, ApexPages.currentPage().getParameters().get('startURL'));
@@ -142,7 +142,7 @@ public with sharing class ParentCommunitySelfRegController {
                 page.setRedirect(true);
                 return page;
             }**/
-        }
+        //}
         return null;
     }
    

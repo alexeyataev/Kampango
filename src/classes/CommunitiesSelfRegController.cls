@@ -63,7 +63,7 @@ public class CommunitiesSelfRegController {
             System.debug(ex.getMessage());
         }**/
         
-        if (userId != null) { 
+        //if (userId != null) { 
             /**if (password != null && password.length() > 1) {
                 return Site.login(userName, password, ApexPages.currentPage().getParameters().get('startURL'));
             }
@@ -72,7 +72,7 @@ public class CommunitiesSelfRegController {
                 page.setRedirect(true);
                 return page;
             }**/
-        }
+        //}
         return null;
     }
 }
