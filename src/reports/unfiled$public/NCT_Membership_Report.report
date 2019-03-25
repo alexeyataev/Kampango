@@ -70,7 +70,7 @@
         <field>Contact$FirstName</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>contact with payment profile Rep</name>
+    <name>NCT Membership Report</name>
     <params>
         <name>co</name>
         <value>1</value>
