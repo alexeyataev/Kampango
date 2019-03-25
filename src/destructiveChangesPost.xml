@@ -6,9 +6,9 @@
         <name>ApexComponent</name>
     </types>
     <types>
-        <members>DisplayCourseSessions</members>
+        <members>CommunitiesSelfReg</members>
         <members>CommunitiesSelfRegConfirm</members>
-        <name>ApexComponent</name>
+        <name>ApexPage</name>
     </types>
     <types>
         <members>BookCourseControllerModel</members>
