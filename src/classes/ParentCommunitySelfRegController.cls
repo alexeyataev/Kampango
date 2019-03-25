@@ -17,10 +17,6 @@ public with sharing class ParentCommunitySelfRegController {
     
     public List<String> selectedPreferences {
         get{
-            if(selectedPreferences == NULL){
-                
-                selectedPreferences = new List<String>();
-            }
             return selectedPreferences;
         }
         set;}
@@ -41,10 +37,7 @@ public with sharing class ParentCommunitySelfRegController {
     }
     
     public ParentCommunitySelfRegController() {
-        String expid = ApexPages.currentPage().getParameters().get('expid');            
-        //if (expId != null) {
-            //Site.setExperienceId(expId); 
-        //}    
+        String expid = ApexPages.currentPage().getParameters().get('expid');               
     }
     
     
@@ -100,49 +93,8 @@ public with sharing class ParentCommunitySelfRegController {
         u.PostalCode = postalCode;
         
         u.Phone = phone;
-        
-        
-        if(u.PostalCode == '' || u.PostalCode!=null){
-            if(u.PostalCode.length()>=6){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please enter valid postalcode'));
-               
-            }
-        }
         String userId;
         System.debug('Test'+userName);
-        /**try {
-            userId = Site.createExternalUser(u, accountId, password);
-            
-        } catch(Site.ExternalUserCreateException ex) {
-            List<String> errors = ex.getDisplayMessages();
-            for (String error : errors)  {
-                
-                 
-            }
-            list<User> us =[select username from  user where username =:email];
-        
-        	if(email == us[0].username){
-            System.debug('username'+us[0].username);
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Email already exist on the system'));
-        	} 
-            
-            // This message is used for debugging. Do not display this in the UI to the end user.
-            // It has the information around why the user creation failed.
-            System.debug(ex.getMessage());
-        }**/
-        
-        //if (userId != null) { 
-            
-            /**if (password != null && password.length() > 1) {
-                return Site.login(userName, password, ApexPages.currentPage().getParameters().get('startURL'));
-                
-            }
-            else {
-                PageReference page = System.Page.CommunitiesSelfRegConfirm;
-                page.setRedirect(true);
-                return page;
-            }**/
-        //}
         return null;
     }
    

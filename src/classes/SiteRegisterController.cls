@@ -4,8 +4,7 @@
 public with sharing class SiteRegisterController {
     // PORTAL_ACCOUNT_ID is the account on which the contact will be created on and then enabled as a portal user.
     // you need to add the account owner into the role hierarchy before this will work - please see Customer Portal Setup help for more information.       
-    //private static Id portalAccounId = Label.SiteRegisterControllerID;
-
+   
     public String username {get; set;}
     public String email {get; set;}
     public String password {get; set {password = value == null ? value : value.trim(); } }
@@ -27,21 +26,6 @@ public with sharing class SiteRegisterController {
         u.Username = username;
         u.Email = email;
         u.CommunityNickname = communityNickname;
-        
-        String accountId = portalAccounId;
-
-        // lastName is a required field on user, but if it isn't specified, we'll default it to the username
-        String userId = Site.createPortalUser(u, accountId, password);
-        //if (userId != null) { 
-            //if (password != null && password.length() > 1) {
-                //return Site.login(username, password, null);
-            //}
-            //else {
-                //PageReference page = System.Page.SiteRegisterConfirm;
-                //page.setRedirect(true);
-                //return page;
-            //}
-        //}
         return null;
     }
 }

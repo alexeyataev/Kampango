@@ -16,9 +16,6 @@ public class CommunitiesSelfRegController {
 
     public CommunitiesSelfRegController() {
         String expid = ApexPages.currentPage().getParameters().get('expid');            
-        //if (expId != null) {
-            //Site.setExperienceId(expId); 
-        //}    
     }
     
     private boolean isValidPassword() {
@@ -49,30 +46,6 @@ public class CommunitiesSelfRegController {
         u.ProfileId = profileId;
         
         String userId;
-
-        /**try {
-            userId = Site.createExternalUser(u, accountId, password);
-        } catch(Site.ExternalUserCreateException ex) {
-            List<String> errors = ex.getDisplayMessages();
-            for (String error : errors)  {
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, error));
-            }
-            
-            // This message is used for debugging. Do not display this in the UI to the end user.
-            // It has the information around why the user creation failed.
-            System.debug(ex.getMessage());
-        }**/
-        
-        //if (userId != null) { 
-            /**if (password != null && password.length() > 1) {
-                return Site.login(userName, password, ApexPages.currentPage().getParameters().get('startURL'));
-            }
-            else {
-                PageReference page = System.Page.CommunitiesSelfRegConfirm;
-                page.setRedirect(true);
-                return page;
-            }**/
-        //}
         return null;
     }
 }
