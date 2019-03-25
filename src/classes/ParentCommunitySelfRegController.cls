@@ -42,9 +42,9 @@ public with sharing class ParentCommunitySelfRegController {
     
     public ParentCommunitySelfRegController() {
         String expid = ApexPages.currentPage().getParameters().get('expid');            
-        if (expId != null) {
+        //if (expId != null) {
             //Site.setExperienceId(expId); 
-        }    
+        //}    
     }
     
     
