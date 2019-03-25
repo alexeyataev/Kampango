@@ -28,8 +28,6 @@ private class AddToMembershipCompControllerTest {
         * and compares assert method. */
         try{
          AddToMembershipCompController.addToMembershipValidation(cont.id);
-         AddToMembershipCompController.recurrDonList = recurrDonList;
-            system.assertEquals(0, AddToMembershipCompController.recurrDonList.size());
         }catch(AuraHandledException e) {
             System.debug(e.getMessage());
             System.assert(true,'You Cant Add Membership, hence already membership exists for this contact');
@@ -52,8 +50,6 @@ private class AddToMembershipCompControllerTest {
         * and compares assertequals method. */
        try{
          AddToMembershipCompController.addToMembershipValidation(cont.id);
-         AddToMembershipCompController.recurrDonList = recurrDonList;
-            system.assertEquals(0, AddToMembershipCompController.recurrDonList.size());
         }catch(AuraHandledException e) {
             System.debug(e.getMessage());
             System.assert(true,'You Cant Add Membership, hence already membership exists for this contact');
@@ -80,8 +76,6 @@ private class AddToMembershipCompControllerTest {
             * and compares assertequals method. */
            try{
              AddToMembershipCompController.addToMembershipValidation(cont.id);
-             AddToMembershipCompController.recurrDonList = recurrDonList;
-                system.assertEquals(0, AddToMembershipCompController.recurrDonList.size());
             }catch(AuraHandledException e) {
                 System.debug(e.getMessage());
                 System.assert(true,'You Cant Add Membership, hence already membership exists for this contact');

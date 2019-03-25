@@ -1188,7 +1188,7 @@
     <apex:includeScript value="{!URLFOR($Resource.nctapp, 'nct-app/js/custom-validations.js')}"/>
     <script>
         $(document).ready(function () {
-            
+            $('#selectBranch option').filter(function () { return $(this).html() == ""; }).prop('disabled',true).next().next().prop('selected',true);    
             dateFieldvalid = true;
         var staffValue = $('#checkStaff').val();
         var staffSecondContact = $('#staffSecondContact').val();
@@ -1339,9 +1339,9 @@
                         //SelBranchValFunction($(selBnchvalue).val());
                         if(validateJoin() && dateFieldvalid) {
                             //if(staffValue != 'staff' ){//&& validateGender()
-                            if(staffValue == 'staff' ){
+                            /*if(staffValue == 'staff' ){
                                 $(selectBranch).val('');
-                            }
+                            }*/
                             afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),
                               $('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),
                               $('#textEmailPartner').val(),$('#textTelephoneHomePartner').val(),$('#postcode').val(),
