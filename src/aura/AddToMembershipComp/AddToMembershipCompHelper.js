@@ -21,7 +21,7 @@
                 type: 'error',
                 title : 'Error Message',
                 duration : '1000',
-                message:'Membership already exists for this Contact'              
+                message:'Membership already exists for this Email'              
             });
             toastEvent.fire();
             }
