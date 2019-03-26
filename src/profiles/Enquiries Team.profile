@@ -4579,7 +4579,7 @@
         <name>InboundMigrationToolsUser</name>
     </userPermissions>
     <userPermissions>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
         <name>InstallPackaging</name>
     </userPermissions>
     <userPermissions>
@@ -4611,7 +4611,7 @@
         <name>ManageCallCenters</name>
     </userPermissions>
     <userPermissions>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
         <name>ManageCases</name>
     </userPermissions>
     <userPermissions>
@@ -4775,7 +4775,7 @@
         <name>ModerateChatter</name>
     </userPermissions>
     <userPermissions>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
         <name>ModifyAllData</name>
     </userPermissions>
     <userPermissions>
