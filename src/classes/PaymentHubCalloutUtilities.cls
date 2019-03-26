@@ -24,12 +24,6 @@ public without sharing class PaymentHubCalloutUtilities {
             cvo.FirstName = cont.FirstName;
             cvo.LastName = cont.LastName;
         }
-        else if (cont == null)
-        {
-            cvo.Email = contactDetails[0];        
-            cvo.FirstName = contactDetails[1];
-            cvo.LastName = contactDetails[2];
-        }
  
         PaymentRequestVo.PayerVo payerReq = new PaymentRequestVo.PayerVo();
         payerReq.AllowDeduplication=true;
