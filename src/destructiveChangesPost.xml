@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>DisplayCourseSessions</members>
         <members>DisplayDdSchedule</members>
         <name>ApexComponent</name>
     </types>
-    <types>
-        <members>ParentCommunitySelfReg</members>
-        <members>CommunitiesSelfReg</members>
-        <name>ApexPage</name>
-    </types>
+
     <types>
         <members>BookCourseControllerModel</members>
         <members>BookCourseControllerModelTest</members>
         <members>DisplayDdScheduleController</members>
         <members>DisplayDdScheduleControllerTest</members>
         <members>BookCourseController</members>
-        <members>ParentCommunitySelfRegController</members>
-        <members>CommunitiesSelfRegController</members>
-        <members>CommunitiesSelfRegControllerTest</members>
+
         <name>ApexClass</name>
     </types>
     

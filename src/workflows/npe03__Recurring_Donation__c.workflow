@@ -193,19 +193,29 @@
         <fullName>Renewal_Update</fullName>
         <field>Renewal_Date__c</field>
         <formula>CASE( Text(Membership_type__c) , 
-&quot;12 month membership&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+&quot;12 month membership-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
-&quot;18 month membership&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),18),
+&quot;12 month membership-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
-&quot;4 year membership&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),48),
+&quot;18 month membership-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),18),
 
-&quot;Life Membership&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),1188),
+&quot;18 month membership-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),18),
 
-&quot;Reduced 12 month membership&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+&quot;4 year membership-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),48),
 
-&quot;Staff Membership&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),1188),
+&quot;4 year membership-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),48),
 
-&quot;10 year membership&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),120),
+&quot;Reduced 12 month membership-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+
+&quot;Reduced 12 month membership-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+
+&quot;10 year membership-Individual&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),120),
+
+&quot;10 year membership-Joint&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),120),
+
+&quot;12 month membership volunteer/practitioner-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+
+&quot;12 month membership volunteer/practitioner-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
 null
 )</formula>
@@ -213,9 +223,7 @@ null
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
-
     <rules>
         <fullName>Membership Renewal Notification</fullName>
         <actions>
@@ -269,17 +277,6 @@ null
         <active>true</active>
         <description>Payment Method Direct Debit email trigger to parent</description>
         <formula>AND($Profile.Name = &quot;Enquiries Team&quot; &amp;&amp; ISPICKVAL( npsp4hub__Payment_Method__c, &apos;Direct Debit&apos;))</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-	<fullName>Renewal Date Field Update</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>npe03__Recurring_Donation__c.Membership_Status__c</field>
-            <operation>equals</operation>
-            <value>Confirmed</value>
-        </criteriaItems>
-        <description>if membership status is confirmed and based on the Date Established date field, update renewal date field</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
