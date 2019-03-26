@@ -1,0 +1,36 @@
+<apex:component controller="DisplayCourseSessionsController">
+	<apex:attribute name="courseRecordId" assignTo="{!courseId}" type="Id" description="Course Record Id" />
+	<table>
+		<tr><td width="10%">Day</td><td width="10%">Date</td><td width="10%">Starts</td><td width="10%">Ends</td><td>Notes</td></tr>
+		<apex:repeat value="{!sessions}" var="session">
+			<tr>
+			<apex:outputPanel rendered="{!session.Confirmed__c == true}">
+				<td>
+					<apex:outputText value="{!session.Day__c}" />
+				</td>
+				<td>
+					<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+					    <apex:param value="{!session.Start__c}" /> 
+					</apex:outputText>
+				</td>
+				<td>
+					<apex:outputText value="{0,date,HH':'mm}">
+					    <apex:param value="{!session.Start__c}" /> 
+					</apex:outputText>
+				</td>
+				<td>
+					<apex:outputText value="{0,date,HH':'mm}">
+					    <apex:param value="{!session.End__c}" /> 
+					</apex:outputText>
+				</td>
+				<td>
+					<apex:outputText value="{!session.Notes__c}" />
+				</td>
+			</apex:outputPanel>
+			<apex:outputPanel rendered="{!NOT(session.Confirmed__c)}">
+			<td colspan="5">An additional session of {!session.Duration_Formatted__c} will be held but exact details are yet to be confirmed</td>
+			</apex:outputPanel>
+			</tr>
+		</apex:repeat>
+	</table>
+</apex:component>
