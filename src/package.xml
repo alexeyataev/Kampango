@@ -83,6 +83,10 @@
         <members>*</members>
         <name>CustomMetadata</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>CustomLabels</name>
+    </types>
 	<types>
         <members>*</members>
         <name>CustomTab</name>
@@ -194,8 +198,8 @@
         <name>ReportType</name>
     </types>
     <types>
-        <members>unfiled$public/Reason_for_cancellation_of_membership_40d</members>
-		 <members>unfiled$public/contact_with_payment_profile_Rep_aYP</members>
+        <members>unfiled$public/NCT_Membership_Cancellation_Report</members>
+		 <members>unfiled$public/NCT_Membership_Report</members>
         <name>Report</name>
     </types>
     <types>
