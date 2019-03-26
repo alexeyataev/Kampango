@@ -83,6 +83,10 @@
         <members>*</members>
         <name>CustomMetadata</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>CustomLabels</name>
+    </types>
 	<types>
         <members>*</members>
         <name>CustomTab</name>

@@ -21,7 +21,7 @@
                 type: 'error',
                 title : 'Error Message',
                 duration : '1000',
-                message:'Membership already exists for this Email'              
+                message: $A.get("$Label.c.MembershipExist")                          
             });
             toastEvent.fire();
             }
