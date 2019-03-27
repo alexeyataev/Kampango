@@ -70,9 +70,12 @@
         <members>Venue__c</members>
 		<members>npe03__Recurring_Donation__c</members>
         <members>Payment_Link__c</members>
-      <members>gaid__Gift_Aid_Declaration__c</members>
-      <members>cpm__Mandate__c</members>
-	  <members>cpm__Mandate_Schedule__c</members>
+        <members>gaid__Gift_Aid_Declaration__c</members>
+        <members>cpm__Mandate__c</members>
+	    <members>cpm__Mandate_Schedule__c</members>
+	    <members>cpm__Payment_Schedule__c</members>
+		<members>cpm__Payment__c</members>
+		<members>npe01__OppPayment__c</members>
         <name>CustomObject</name>
     </types>
     <types>
