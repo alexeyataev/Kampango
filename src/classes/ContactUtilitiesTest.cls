@@ -172,6 +172,10 @@ private class ContactUtilitiesTest {
 		User u = [Select id,name from user where name ='CreditCardPayment Site Guest User'];
 
         System.runAs(u) {
+            Account acc = new Account();
+            acc.RecordTypeId =Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+            acc.Name ='Test Account';
+            Insert acc;
             Contact con = new Contact();
             con.FirstName = 'Test FirstName';
             con.LastName = 'Test LastName';
@@ -179,7 +183,7 @@ private class ContactUtilitiesTest {
             con.MailingPostalCode = 'SE1';
             con.Phone ='01234567890';
             con.Salutation = 'Mr.';
-            con.Branch__c = null;
+            con.Branch__c = acc.id;
             insert con;
             String str = 'testemails@test.com';
             Boolean isContactExisting = ContactUtilities.isContactExisting(str);
