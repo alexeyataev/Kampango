@@ -12,15 +12,15 @@ public without sharing class DirectPaymentLinkSendToParent
      }
       public static void sendPaymentLinkToParent(Payment_Link__c payLink)
       {   
-          if(!Schema.sObjectType.EmailTemplate.fields.Name.isAccessible()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
-             }
+          if(Schema.sObjectType.EmailTemplate.fields.HtmlValue.isAccessible()){
+             
           Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
           message.setTargetObjectId(payLink.Contact__c);
           message.setWhatId(payLink.Id);
           EmailTemplate emailTemplateId = [SELECT Id,Name,Subject, Body,HtmlValue FROM EmailTemplate WHERE Name ='NctMembershipPayment'];
           message.setTemplateId(emailTemplateId.Id);
           Messaging.sendEmail(new Messaging.SingleEmailMessage[] { message });
-       }
+         }
+      }
 
 }
