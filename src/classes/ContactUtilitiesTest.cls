@@ -179,6 +179,7 @@ private class ContactUtilitiesTest {
             con.MailingPostalCode = 'SE1';
             con.Phone ='01234567890';
             con.Salutation = 'Mr.';
+            con.Branch__c = null;
             insert con;
             String str = 'testemails@test.com';
             Boolean isContactExisting = ContactUtilities.isContactExisting(str);
