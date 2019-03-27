@@ -124,10 +124,6 @@
                 <field>Membership_Status__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Next_Payment__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Source__c</field>
             </layoutItems>
