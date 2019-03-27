@@ -169,7 +169,11 @@ private class ContactUtilitiesTest {
 	}
     @isTest static void permissionCheck() {
 
-		User u = [Select id,name from user where name ='CreditCardPayment Site Guest User'];
+		Profile p = [SELECT Id FROM Profile WHERE Name='Read Only'];
+      	User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
+        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
+        LocaleSidKey='en_US', ProfileId = p.Id,
+        TimeZoneSidKey='America/Los_Angeles', UserName='newusers@testorg.com');
 
         System.runAs(u) {
             Account acc = new Account();
