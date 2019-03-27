@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>MembershipExist</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MembershipExistErrorMessage</shortDescription>
+        <value>Membership already exists for this Email</value>
+    </labels>
+</CustomLabels>

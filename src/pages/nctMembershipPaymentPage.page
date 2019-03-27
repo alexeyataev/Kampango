@@ -1449,14 +1449,14 @@
                     if( (dd + 10) > daysInMonths){
                         var dateValue = (dd + 10) - daysInMonths;
                         if(dateValue >= 3){
-                            $('#payment-date').text('0'+(today.getMonth()+3) + '/' + '03' +  '/' + today.getFullYear());
+                            $('#payment-date').text('03'+'/' +'0'+(today.getMonth()+3)+  '/' + today.getFullYear());
                         }
                         else {
-                            $('#payment-date').text('0'+(today.getMonth()+2)  + '/' + '03' + '/' + today.getFullYear());
+                            $('#payment-date').text( '03'+'/' +'0'+(today.getMonth()+2) + '/' + today.getFullYear());
                         }
                     }
                     else {
-                        $('#payment-date').text('0'+(today.getMonth()+2) + '/' + '03' + '/' + today.getFullYear());
+                        $('#payment-date').text('03'+ '/'+'0'+(today.getMonth()+2)+ '/' + today.getFullYear());
                     }
                 }
                 

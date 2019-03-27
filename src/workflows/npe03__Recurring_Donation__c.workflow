@@ -174,7 +174,7 @@
     <fieldUpdates>
         <fullName>Nextdonationdatevalue</fullName>
         <field>npe03__Next_Payment_Date__c</field>
-        <formula>ADDMONTHS(DATE(YEAR(Renewal_Date__c ),MONTH(Renewal_Date__c ),1),1)+2</formula>
+        <formula>ADDMONTHS(DATE(YEAR(npe03__Date_Established__c),MONTH(npe03__Date_Established__c),1),1)+2</formula>
         <name>Nextdonationdatevalue</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -320,7 +320,7 @@ null
             <name>Nextdonationdatevalue</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Updating nextdonationdate field value based on the renewal date.</description>
         <formula>!ISNULL(Renewal_Date__c)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
