@@ -9,10 +9,12 @@
 private class ContactUtilitiesTest {
 	@isTest static void positiveMethod() {
 		// Implement test code
+        RecordType recordtype = [SELECT Id, Name FROM RecordType where name='staff'];
 		Contact con = new Contact();
         con.FirstName = 'Test FirstName';
         con.LastName = 'Test LastName';
         con.Email = 'testemail@test.com';
+        con.RecordTypeId = recordtype.id;
         insert con;
         
         Contact secCon = new Contact();
@@ -78,7 +80,7 @@ private class ContactUtilitiesTest {
         System.assert(true,isVolunteerExisting);
         
         Id userId = usr.id;
-        Boolean isStaff = ContactUtilities.isStaff(userId);
+        Boolean isStaff = ContactUtilities.isStaff(con.id);
         System.assert(true,isStaff);
         
         List<Boolean> targetCustomerList = new List<Boolean>{isStaffs,isVolunteer,isPractitioner,twomems};
@@ -144,7 +146,7 @@ private class ContactUtilitiesTest {
         Boolean isVolunteerExisting = ContactUtilities.isVolunteerExisting(con.Id);
         System.assert(true,isVolunteerExisting);
        	Id userId = usr.id;
-        Boolean isStaff = ContactUtilities.isStaff(userId);
+        Boolean isStaff = ContactUtilities.isStaff(con.id);
         System.assert(true,isStaff);
         List<Boolean> targetCustomerList = new List<Boolean>{isStaffs,isVolunteer,isPractitioner,twomems};
         String targetCustomer = ContactUtilities.targetCustomer(targetCustomerList);
@@ -166,17 +168,17 @@ private class ContactUtilitiesTest {
         System.assert(true,isMembershipExists);
 	}
     @isTest static void permissionCheck() {
-		Profile p = [SELECT Id FROM Profile WHERE Name='Read Only'];
-      	User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
-        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
-        LocaleSidKey='en_US', ProfileId = p.Id,
-        TimeZoneSidKey='America/Los_Angeles', UserName='newusers@testorg.com');
+
+		User u = [Select id,name from user where name ='CreditCardPayment Site Guest User'];
 
         System.runAs(u) {
             Contact con = new Contact();
             con.FirstName = 'Test FirstName';
             con.LastName = 'Test LastName';
             con.Email = 'testemail@test.com';
+            con.MailingPostalCode = 'SE1';
+            con.Phone ='01234567890';
+            con.Salutation = 'Mr.';
             insert con;
             String str = 'testemails@test.com';
             Boolean isContactExisting = ContactUtilities.isContactExisting(str);
@@ -201,7 +203,7 @@ private class ContactUtilitiesTest {
             Boolean isVolunteerExisting = ContactUtilities.isVolunteerExisting(con.Id);
             System.assert(true,isVolunteerExisting);
             Id userId = usr.id;
-            Boolean isStaff = ContactUtilities.isStaff(userId);
+            Boolean isStaff = ContactUtilities.isStaff(con.id);
             System.assert(true,isStaff);
             List<Boolean> targetCustomerList = new List<Boolean>{isStaffs,isVolunteer,isPractitioner,twomems};
             String targetCustomer = ContactUtilities.targetCustomer(targetCustomerList);
