@@ -158,15 +158,19 @@ public without sharing class ContactUtilities {
                                  ))
                          AND
                             (
-                                  Membership_Status__c != 'Cancelled'
+                                  Membership_Status__c != :MembershipConstants.CANCELLED
                                 OR
-                                  Membership_Status__c != 'Lapsed'
+                                  Membership_Status__c != :MembershipConstants.LAPSED
                             )
                          AND
                             (
                                 Renewal_Date__c > :System.date.today()
+                                OR
+                                (
+                                    Membership_Status__c = :MembershipConstants.PENDING
                                 AND
-                                Renewal_Date__c != null
+                                    Renewal_Date__c = null
+                                )
                             )
 
                                                    
