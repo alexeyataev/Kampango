@@ -138,6 +138,18 @@ private class ContactUtilitiesTest {
         usr.Phone = '123456789';
         insert usr;
         
+        npe03__Recurring_Donation__c recDonate = new npe03__Recurring_Donation__c();
+        recDonate.Name = 'NCT Child';
+        recDonate.npe03__Amount__c = 60;
+        recDonate.npe03__Installment_Period__c = 'Monthly';
+        recDonate.CARE_Payment_Frequency__c = 'NCT CHILD TRUST';
+        recDonate.First_Payment__c = system.today();
+        recDonate.First_Contact__c = con.id; 
+        recDonate.Membership_Status__c = 'Confirmed'; 
+        recDonate.Membership_type__c = '18 month - Joint';
+        recDonate.npe03__Contact__c = con.id;
+        insert recDonate;
+
         Boolean isStaffs = false;
         Boolean isVolunteer = false;
         Boolean isPractitioner = false;
@@ -164,7 +176,7 @@ private class ContactUtilitiesTest {
         System.assertEquals(false, isPractitioner);
         System.assertEquals(false, twomemsf);
         
-        Boolean isMembershipExists = ContactUtilities.isMembershipExists(con.id, con.Email);
+        Boolean isMembershipExists = ContactUtilities.isMembershipExists(con.id, null);
         System.assert(true,isMembershipExists);
 	}
     @isTest static void permissionCheck() {
