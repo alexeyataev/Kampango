@@ -30,10 +30,8 @@ private class ThankYouHelperTest {
         Test.setCurrentPage(page);
         ID contID = ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
         ThankyouHelper.membershipDetails = membershipDetails;
-        //ThankYouHelper.reccDonList = reclist;
-        // system.debug('no of rows '+  reclist.size());	
         membershipNumber =  ThankYouHelper.membershipNumberCreation(con,recDon,lifeMembership); 
-        // system.assertEquals('Confirmed',reclist[0].Membership_Status__c);
+        system.assertEquals('Confirmed',recDon.Membership_Status__c);
         Test.stopTest();
      }
      @isTest static void recurringNotExists(){
