@@ -140,11 +140,12 @@ public without sharing class ContactUtilities {
         recDonList =[Select 
                              Id,
                              Name,
+                             Renewal_Date__c,
                              npe03__Contact__c                   
                          From
                              npe03__Recurring_Donation__c
                          WHERE
-                             (
+                             ((
                                  npe03__Contact__c != null 
                                  AND
                                  npe03__Contact__c = :contId
@@ -154,7 +155,21 @@ public without sharing class ContactUtilities {
                                  npe03__Contact__c != null
                                  AND
                                  (npe03__Contact__r.Email = :email AND npe03__Contact__r.Email != NULL AND npe03__Contact__r.Email != '')
-                             )                      
+                                 ))
+                         AND
+                            (
+                                  Membership_Status__c != 'Cancelled'
+                                OR
+                                  Membership_Status__c != 'Lapsed'
+                            )
+                         AND
+                            (
+                                Renewal_Date__c > :System.date.today()
+                                AND
+                                Renewal_Date__c != null
+                            )
+
+                                                   
                         ];
       
         if(recDonList.size()>0){
