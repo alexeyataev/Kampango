@@ -18,10 +18,11 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-       ISNEW(), 
-AND(
-OR(ISCHANGED(cpm__Holder_Name__c),ISCHANGED( paybacs__Sort_Code__c ),ISCHANGED( cpm__Bank_Account__c), cpm__Active__c = true))
-)</formula>
+        <formula>OR(
+        ISNEW(), 
+        AND(
+      OR(ISCHANGED(cpm__Holder_Name__c),ISCHANGED( paybacs__Sort_Code__c ),ISCHANGED( cpm__Bank_Account__c), cpm__Active__c = true))
+    )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
