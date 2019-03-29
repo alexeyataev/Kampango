@@ -18,4 +18,7 @@ public class MembershipConstants {
     public static final String SALESFORCE = 'Salesforce';
     public static final String LIFEMEMBERSHIP = 'Life Membership - Free';
     public static final String STAFF = 'staff';
+    public static final String CANCELLED = 'Cancelled';
+    public static final String LAPSED = 'Lapsed';
+    
 }

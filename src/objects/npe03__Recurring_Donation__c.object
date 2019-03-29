@@ -1960,12 +1960,25 @@ ISBLANK(TEXT(Cancellation_Reason__c))
         <errorMessage>You must select Cancellation reason</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Not_Allow_Status_Value_Change</fullName>
-
+        <fullName>Membership_Status_Cancelled_To_Confirmed</fullName>
         <active>true</active>
+        <description>Rule not allowed cancelled/Lapsed to Confirmed</description>
+        <errorConditionFormula>OR(AND( 
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Cancelled&quot;), 
+ISPICKVAL(Membership_Status__c, &quot;Confirmed&quot;) 
+), 
 
+AND( 
+ISPICKVAL( PRIORVALUE (Membership_Status__c), &quot;Lapsed&quot;), 
+ISPICKVAL(Membership_Status__c, &quot;Confirmed&quot;) 
+)
+)</errorConditionFormula>
+        <errorMessage>you are not allowed to change the status</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Not_Allow_Status_Value_Change</fullName>
+        <active>true</active>
         <description>rule to not allow status value change from “Confirmed” to “Pending”</description>
-
         <errorConditionFormula>OR( 
 ISPICKVAL
 (PRIORVALUE(Membership_Status__c ), &quot;Confirmed&quot;), 

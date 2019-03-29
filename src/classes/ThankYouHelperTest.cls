@@ -5,16 +5,17 @@ private class ThankYouHelperTest {
          Membership_Type__mdt membershipDetails;
 
         contact con = new contact();
-        con.FirstName = 'NCT Child';
-        con.LastName = 'Trust';
-        con.Email = 'nct@gmail.com';
+        con.FirstName = 'NCTChild123455';
+        con.LastName = 'Trust1123445677';
+        con.Email = 'nct12113331@gmail.com';
         con.Phone = '3453535353555';
         con.Prefered_First_Name__c = 'NCT';
         insert con;
-		List<npe03__Recurring_Donation__c> reclist = new list<npe03__Recurring_Donation__c>();
+
         npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
-        recDon.Name = 'NCT Child';
+        recDon.Name = 'NCTChild';
         recDon.npe03__Amount__c = 10000;
+        recDon.npe03__Date_Established__c = System.Date.today();
         recDon.npe03__Installment_Period__c = 'Monthly';
         recDon.CARE_Payment_Frequency__c = 'NCT CHILD TRUST';
         recDon.First_Payment__c = system.today();
@@ -22,18 +23,15 @@ private class ThankYouHelperTest {
         recDon.Membership_Status__c = 'Confirmed'; 
         recDon.Membership_type__c = '18 month - Joint';
         recDon.npe03__Contact__c = con.id;
-        reclist.add(recDon);
-        insert reclist;
+        insert recDon;
         Boolean lifeMembership = false;
         Test.startTest();
         pagereference page = page.NctETMembershipPaymentPage;
         Test.setCurrentPage(page);
         ID contID = ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
-
-        ThankYouHelper.reccDonList = reclist;
-         system.debug('no of rows '+  reclist.size());	
+        ThankyouHelper.membershipDetails = membershipDetails;
         membershipNumber =  ThankYouHelper.membershipNumberCreation(con,recDon,lifeMembership); 
-        system.assertEquals('Confirmed',reclist[0].Membership_Status__c);
+        system.assertEquals('Confirmed',recDon.Membership_Status__c);
         Test.stopTest();
      }
      @isTest static void recurringNotExists(){
@@ -78,11 +76,41 @@ private class ThankYouHelperTest {
 		Boolean lifeMembership = true;
 		Test.startTest();
         ThankYouHelper thankYou = new ThankYouHelper();
-        ThankYouHelper.recDon = recDonation;
         ThankYouHelper.membershipDetails = membershipDetails;
         membershipNumber = ThankYouHelper.membershipNumberCreation(con,recDon1,lifeMembership);  
         system.assertNotEquals('Confirmed', membershipNumber);
         Test.stopTest();
+    }
+    @isTest static void permissionCheck(){
+        
+        Profile p = [SELECT Id FROM Profile WHERE Name='Read Only'];
+      	User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
+        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
+        LocaleSidKey='en_US', ProfileId = p.Id,
+        TimeZoneSidKey='America/Los_Angeles', UserName='newusers@testorg.com');
+
+        System.runAs(u) {
+            list<npe03__Recurring_Donation__c> recDonation = new list<npe03__Recurring_Donation__c>();
+            npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
+            contact con = new contact();
+            con.FirstName = 'NCT Child';
+            con.LastName = 'Trust';
+            con.Email = 'nct@gmail.com';
+            con.Phone = '3453535353555';
+            con.Prefered_First_Name__c = 'NCT';
+            insert con;
+            Membership_Type__mdt membershipDetails;
+            Boolean lifeMembership = false;
+            Test.startTest();
+            pagereference page = page.NctETMembershipPaymentPage;
+            Test.setCurrentPage(page);
+            ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
+            
+            ThankYouHelper.reccDonList = recDonation;
+            ThankYouHelper.membershipNumberCreation(con,recDon,lifeMembership);  
+            system.assertEquals(null, recDon.Membership_Status__c);
+            Test.stopTest();
+        }
     }
     
 }
