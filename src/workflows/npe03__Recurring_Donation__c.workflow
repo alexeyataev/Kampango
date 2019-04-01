@@ -193,29 +193,29 @@
         <fullName>Renewal_Update</fullName>
         <field>Renewal_Date__c</field>
         <formula>CASE( Text(Membership_type__c) , 
-&quot;12 month membership-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+&quot;12 month membership - Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
-&quot;12 month membership-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+&quot;12 month membership - Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
-&quot;18 month membership-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),18),
+&quot;18 month membership - Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),18),
 
-&quot;18 month membership-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),18),
+&quot;18 month membership - Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),18),
 
-&quot;4 year membership-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),48),
+&quot;4 year membership - Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),48),
 
-&quot;4 year membership-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),48),
+&quot;4 year membership - Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),48),
 
-&quot;Reduced 12 month membership-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+&quot;Reduced 12 month membership - Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
-&quot;Reduced 12 month membership-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+&quot;Reduced 12 month membership - Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
-&quot;10 year membership-Individual&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),120),
+&quot;10 year membership - Individual&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),120),
 
-&quot;10 year membership-Joint&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),120),
+&quot;10 year membership - Joint&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),120),
 
-&quot;12 month membership volunteer/practitioner-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+&quot;12 month membership volunteer/practitioner - Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
-&quot;12 month membership volunteer/practitioner-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+&quot;12 month membership volunteer/practitioner - Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
 null
 )</formula>

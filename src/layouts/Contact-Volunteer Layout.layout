@@ -47,7 +47,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Birthdate</field>
+                <field>Expected_Due_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
