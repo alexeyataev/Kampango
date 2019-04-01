@@ -39,7 +39,7 @@ public with sharing class StaffMembershipController{
                     npe03__Recurring_Donation__c recurringDonation = new npe03__Recurring_Donation__c();
                     recurringDonation.Name = membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                     recurringDonation.npe03__Amount__c = membershipDetails.Installment_Amount__c;
-                    recurringDonation.Membership_type__c = membershipDetails.Membership__c+'-'+membershipDetails.Contact_Type__c;
+                    recurringDonation.Membership_type__c = membershipDetails.Membership__c+' - '+membershipDetails.Contact_Type__c;
                     recurringDonation.npe03__Contact__c = contId;
                     recurringDonation.First_Contact__c = contId;
                     recurringDonation.npe03__Installment_Period__c = membershipDetails.Installment_Period__c;

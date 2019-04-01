@@ -241,10 +241,10 @@ public without sharing class MembershipCrudHelper {
     private static String membershipTypeChecker(Membership_Type__mdt membershipDetails){
         String membershipType;
         if(crudHelper.isVolunteer == true){
-             membershipType = membershipDetails.Membership__c+' '+membershipDetails.Target_Customer__c+'-'+membershipDetails.Contact_Type__c;
+             membershipType = membershipDetails.Membership__c+' '+membershipDetails.Target_Customer__c+' - '+membershipDetails.Contact_Type__c;
         }
         else{
-             membershipType = membershipDetails.Membership__c+'-'+membershipDetails.Contact_Type__c; 
+             membershipType = membershipDetails.Membership__c +' - '+ membershipDetails.Contact_Type__c; 
         }
         return membershipType;
                
