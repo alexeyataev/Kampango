@@ -17,7 +17,7 @@
             <name>Bank_Details_changed_for_Payment_profile</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>OR(
         ISNEW(), 
         AND(
