@@ -213,9 +213,9 @@
 
 &quot;10 year membership-Joint&quot; , ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),120),
 
-&quot;12 month membership-volunteer/practitioner-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+&quot;12 month membership volunteer/practitioner-Individual&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
-&quot;12 month membership-volunteer/practitioner-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
+&quot;12 month membership volunteer/practitioner-Joint&quot;, ADDMONTHS( DATETIMEVALUE(npe03__Date_Established__c),12),
 
 null
 )</formula>
