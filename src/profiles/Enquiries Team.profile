@@ -4274,7 +4274,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Membership</tab>
-        <visibility>DefaultOn</visibility>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Payment_Link__c</tab>
