@@ -218,7 +218,7 @@ public without sharing class NctETMembershipPaymentPageController
     	return membership.eDate != null && membership.eDate != '';
     }
     private boolean secondContactRequiredCheck(){
-    	return receiveInputSecondContactPermissionCheck() && contactList.size()<0;
+    	return receiveInputSecondContactPermissionCheck() && contactList.isEmpty();
     }
     private void duplicateFinder(Database.Error duplicateError){
         if(duplicateError instanceof Database.DuplicateError) {
@@ -359,12 +359,12 @@ public without sharing class NctETMembershipPaymentPageController
         if(membership.membershipInfo.Payment_Method__c != MembershipConstants.CREDIT_OR_DEBIT_CARD){
            pymtPrfl = MembershipCrudHelper.paymentProfile();
         }
+        recDon = MembershipCrudHelper.recDonation(membership.membershipInfo,pymtPrfl);
+        membershipNumberDisplay();
         if(membership.isGiftAid == MembershipConstants.TRUE_VALUE){
         	gftAid = MembershipCrudHelper.giftAid(membership.membershipInfo);
         }
-        recDon = MembershipCrudHelper.recDonation(membership.membershipInfo,pymtPrfl);
         
-        membershipNumberDisplay();
     }    
     public void membershipNumberDisplay(){
        membership.displayMbrNoMessage = true;

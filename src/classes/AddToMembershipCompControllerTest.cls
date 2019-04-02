@@ -1,59 +1,37 @@
 @isTest
 private class AddToMembershipCompControllerTest {
-
-    @isTest
-    private static void isMembershipExists(){
-        
+      @isTest
+    static void isMembershipExists(){
+        contact contactID = new contact();
         contact cont = new contact();
         cont.LastName = 'NCT CHild';
         cont.FirstName = 'Childs';
-        cont.Phone = '0987654321234';
+        cont.Phone = '09876543212';
         cont.Email = 'nctchild4555@gmail.com';
         insert cont;
         
-        npe03__Recurring_Donation__c recDonate = new npe03__Recurring_Donation__c();
-        recDonate.Name = 'NCT Child';
-        recDonate.npe03__Amount__c = 60;
-        recDonate.npe03__Installment_Period__c = 'Monthly';
-        recDonate.CARE_Payment_Frequency__c = 'NCT CHILD TRUST';
-        recDonate.First_Payment__c = system.Date.today();
-        recDonate.First_Contact__c = cont.id; 
-        recDonate.Membership_Status__c = 'Confirmed'; 
-        recDonate.Membership_type__c = '18 month - Joint';
-        recDonate.npe03__Contact__c = cont.id;
-        recDonate.Renewal_Date__c = System.Date.today() +100;
-        insert recDonate;
+        npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
+        recDon.Name = 'NCT Childs';
+        recDon.npe03__Amount__c = 10000;
+        recDon.npe03__Installment_Period__c = 'Monthly';
+        recDon.CARE_Payment_Frequency__c = 'NCT CHILD TRUST';
+        recDon.First_Payment__c = system.date.today();
+        recDon.First_Contact__c = cont.id; 
+        recDon.Membership_Status__c = 'Pending'; 
+        recDon.Membership_type__c = '18 month - Joint';
+        recDon.npe03__Contact__c = cont.id;
+        recDon.Renewal_Date__c = null;
+        insert recDon;
+        system.debug('gygfkwgfgw' + recDon.Renewal_Date__c);
         
-       /* Reccurring Donation record insertion happened, So membership exists, it goes to catch block 
-        * and compares assert method. */
         try{
          AddToMembershipCompController.addToMembershipValidation(cont.id);
+         system.assertEquals('Pending',recDon.Membership_Status__c);
         }catch(AuraHandledException e) {
-            System.debug(e.getMessage());
-            System.assert(true,'You Cant Add Membership, hence already membership exists for this contact');
+            System.assert(e.getMessage().contains('You Cant Add Membership, hence already membership exists for this contact')); 
        }
-        
+    }
 
-    }
-      @isTest
-    private static void isMembershipNotExists(){
-        
-        contact cont = new contact();
-        cont.LastName = 'NCT CHild';
-        cont.FirstName = 'Childs';
-        cont.Phone = '0987654321234';
-        cont.Email = 'nctchild4555@gmail.com';
-        insert cont;
-        
-          /* Reccurring Donation record insertion doesn't happened, So membership doesn't exists, it goes to try block 
-        * and compares assertequals method. */
-       try{
-         AddToMembershipCompController.addToMembershipValidation(cont.id);
-        }catch(AuraHandledException e) {
-            System.debug(e.getMessage());
-            System.assert(true,'You Cant Add Membership, hence already membership exists for this contact');
-       }
-    }
     @isTest
     private static void permissionCheck(){
          Profile p = [SELECT Id FROM Profile WHERE Name='Read Only'];
@@ -75,6 +53,7 @@ private class AddToMembershipCompControllerTest {
             * and compares assertequals method. */
            try{
              AddToMembershipCompController.addToMembershipValidation(cont.id);
+             system.assertEquals('NCT CHild',cont.LastName);
             }catch(AuraHandledException e) {
                 System.debug(e.getMessage());
                 System.assert(true,'You Cant Add Membership, hence already membership exists for this contact');
