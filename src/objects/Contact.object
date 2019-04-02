@@ -4294,12 +4294,12 @@
             <filterItems>
                 <field>$Source.RecordTypeId</field>
                 <operation>equals</operation>
-                <value>Parent</value>
+                <value>Parent, Practitioner, Volunteer</value>
             </filterItems>
             <filterItems>
                 <field>Contact.RecordTypeId</field>
                 <operation>equals</operation>
-                <value>Parent</value>
+                <value>Parent, Practitioner, Volunteer</value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
