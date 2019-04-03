@@ -76,6 +76,7 @@
 	    <members>cpm__Payment_Schedule__c</members>
 		<members>cpm__Payment__c</members>
 		<members>npe01__OppPayment__c</members>
+		<members>cpm__Mandate_History__c</members>
         <name>CustomObject</name>
     </types>
     <types>
