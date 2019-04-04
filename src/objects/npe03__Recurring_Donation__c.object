@@ -1071,9 +1071,9 @@ CASE(
                     <label>GiftAid</label>
                 </value>
                 <value>
-                    <fullName>CreditCard</fullName>
+                    <fullName>Credit/Debit Card</fullName>
                     <default>false</default>
-                    <label>CreditCard</label>
+                    <label>Credit/Debit Card</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1127,11 +1127,11 @@ CASE(
                 <valueName>PaymentHub-GiftAid</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>CreditCard</controllingFieldValue>
+                <controllingFieldValue>Credit/Debit Card</controllingFieldValue>
                 <valueName>PaymentHub-Stripe</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>CreditCard</controllingFieldValue>
+                <controllingFieldValue>Credit/Debit Card</controllingFieldValue>
                 <valueName>PaymentHub-WorldPay</valueName>
             </valueSettings>
         </valueSet>
@@ -1730,7 +1730,7 @@ CASE(
         <picklistValues>
             <picklist>npsp4hub__Payment_Method__c</picklist>
             <values>
-                <fullName>CreditCard</fullName>
+                <fullName>Credit%2FDebit Card</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1754,6 +1754,10 @@ CASE(
             </values>
             <values>
                 <fullName>PaymentHub-GiftAid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+            <fullName>PaymentHub-Stripe</fullName>
                 <default>false</default>
             </values>
             <values>

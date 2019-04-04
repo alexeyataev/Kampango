@@ -68,7 +68,11 @@
         <description>Membership Status is Pending email trigger to parent</description>
         <protected>false</protected>
         <recipients>
-            <field>npe03__Contact__c</field>
+            <field>First_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Second_Contact__c</field>
             <type>contactLookup</type>
         </recipients>
         <senderType>DefaultWorkflowUser</senderType>
@@ -350,7 +354,7 @@ null
         <criteriaItems>
             <field>npe03__Recurring_Donation__c.npsp4hub__Payment_Method__c</field>
             <operation>contains</operation>
-            <value>CreditCard</value>
+            <value>Credit/Debit Card</value>
         </criteriaItems>
         <criteriaItems>
             <field>npe03__Recurring_Donation__c.npsp4hub__Payment_Method__c</field>
