@@ -97,7 +97,7 @@ public without sharing class NctETMembershipPaymentPageController
         return !Schema.sObjectType.Contact.fields.FirstName.isCreateable() && !Schema.sObjectType.Contact.fields.FirstName.isAccessible();
     }
     private Boolean receiveInputSecondContactPermissionCheck(){
-        return membership.twomems == true && (membership.secondContactFirstName != null || membership.secondContactFirstName != '');      
+        return membership.twomems == true && membership.primaryContact.id != null && (membership.secondContactFirstName != null || membership.secondContactFirstName != '');      
     }
     
     private void assignBranchValues(Id branch){
@@ -191,14 +191,20 @@ public without sharing class NctETMembershipPaymentPageController
             membership.contactType = MembershipConstants.JOINT;
         }                                 
         else{
-            
-            membership.contactType = MembershipConstants.INDIVIDUAL;
-                
+           companionCheck();   
             }
         }    
         membership.membershipTypeMap = MembershipUtilties.getMembershipTypeMap(membership.contactType,membership.targetCustomer,membership.etSpecific);    
         return null;
-        
+
+    }
+    private void companionCheck(){
+        if(membership.twomems == true){
+            membership.contactType = MembershipConstants.JOINT;
+        }
+        else{
+            membership.contactType = MembershipConstants.INDIVIDUAL;
+        }
     }
     private void contactFinder(){
         if(membership.contId != null){
