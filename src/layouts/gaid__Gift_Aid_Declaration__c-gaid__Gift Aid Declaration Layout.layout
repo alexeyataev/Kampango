@@ -18,6 +18,14 @@
                 <behavior>Edit</behavior>
                 <field>gaid__Type__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>gaid__Housename_or_number__c</field>
+            </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>gaid__Postalcode__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>gaid__Acquisition_Method__c</field>
