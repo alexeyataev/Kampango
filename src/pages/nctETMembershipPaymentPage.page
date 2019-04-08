@@ -1189,6 +1189,45 @@
     <script>
         $(document).ready(function () {
             $('#selectBranch option').filter(function () { return $(this).html() == ""; }).prop('disabled',true).next().next().prop('selected',true);    
+            (function (global) {
+                            if(typeof (global) === "undefined")
+                            {
+                                throw new Error("window is undefined");
+                            }
+                        
+                            var _hash = "/";
+                            var noBackPlease = function () {
+                                global.location.href += "#";
+                        
+                                global.setTimeout(function () {
+                                    global.location.href += "/";
+                                }, 50);
+                            };
+                            
+                            // Earlier we had setInerval here....
+                            global.onhashchange = function () {
+                                if (global.location.hash !== _hash) {
+                                    global.location.hash = _hash;
+                                }
+                            };
+                        
+                            global.onload = function () {
+                                
+                                noBackPlease();
+                        
+                                // disables backspace on page except on input fields and textarea..
+                                document.body.onkeydown = function (e) {
+                                    var elm = e.target.nodeName.toLowerCase();
+                                    if (e.which === 8 && (elm !== 'input' && elm  !== 'textarea')) {
+                                        e.preventDefault();
+                                    }
+                                    // stopping event bubbling up the DOM tree..
+                                    e.stopPropagation();
+                                };
+                                
+                            };
+                        
+             })(window);
             dateFieldvalid = true;
         var staffValue = $('#checkStaff').val();
         var staffSecondContact = $('#staffSecondContact').val();
@@ -1531,6 +1570,13 @@
             }
 
             $("#Pay_now").click(function (){
+                if($('.messageTable')[0]){
+                    console.log("class exists");
+                     location.reload();
+                 }
+                 else {
+                    console.log("class not exists");
+                 }
                 var today = new Date();
                 var dateValues;
                 var daysInMonths;
@@ -1674,6 +1720,13 @@
         });
 
          $('#pay_now_back').on('click', function(){
+             if($('.messageTable')[0]){
+             	console.log("class exists");
+                 location.reload();
+             }
+             else {
+             	console.log("class not exists");
+             }
              $('#nameSubmit').prop('disabled', false);
             $('#payment').removeClass('active show');
             $('#payment_li').removeClass('active');

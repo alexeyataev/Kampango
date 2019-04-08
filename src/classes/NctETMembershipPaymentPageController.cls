@@ -111,7 +111,7 @@ public without sharing class NctETMembershipPaymentPageController
                     }    
     }
     
-    public PageReference  receiveInput(){
+    public PageReference receiveInput(){
                 
         Contact con;
         if(dateFormatCheck()){
@@ -139,13 +139,7 @@ public without sharing class NctETMembershipPaymentPageController
                                         MailingState=membership.stateValue,MailingCity=membership.cityValue,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=membership.smsOpt,Post_Opt_In__c=membership.postOpt,
                                         HasOptedOutOfEmail=membership.emailOpt,DoNotCall=membership.doNotCallOpt);
                     Database.SaveResult sr = Database.insert(membership.primaryContact, false);
-                if (!sr.isSuccess()) {
-                    
-                    // Insertion failed due to duplicate detected
-                    for(Database.Error duplicateError : sr.getErrors()){
-                        DuplicateFinder(duplicateError);
-                    }
-                }
+                    saveResultCheck(sr);
                 if(receiveInputSecondContactPermissionCheck())
                 {
                     
@@ -156,7 +150,8 @@ public without sharing class NctETMembershipPaymentPageController
                                       Expected_Due_Date__c =membership.expDate,MailingStreet=membership.streetValue+membership.streetValue1+membership.streetValue2,Branch__c=membership.selectBranch,
                                       MailingState=membership.stateValue,MailingCity=membership.cityValue,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=membership.smsOpt,Post_Opt_In__c=membership.postOpt,
                                       HasOptedOutOfEmail=membership.emailOpt,DoNotCall=membership.doNotCallOpt,Parent_Contact__c = membership.primaryContact.id,AccountId = con.AccountId);
-                    insert membership.secondaryContact;
+                    Database.SaveResult srSec = Database.insert(membership.secondaryContact, false);
+            		saveResultCheck(srSec);
                     membership.contactType = MembershipConstants.JOINT;
                 }
                 else 
@@ -187,7 +182,9 @@ public without sharing class NctETMembershipPaymentPageController
                                       Expected_Due_Date__c =membership.expDate,MailingStreet=membership.streetValue+membership.streetValue1+membership.streetValue2,Branch__c=membership.selectBranch,
                                       MailingState=membership.stateValue,MailingCity=membership.cityValue,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=membership.smsOpt,Post_Opt_In__c=membership.postOpt,
                                       HasOptedOutOfEmail=membership.emailOpt,DoNotCall=membership.doNotCallOpt,Parent_Contact__c = membership.primaryContact.id,AccountId = con.AccountId);
-            insert membership.secondaryContact;
+            Database.SaveResult srCompExist = Database.insert(membership.secondaryContact, false);
+            saveResultCheck(srCompExist);
+            
             membership.contactType = MembershipConstants.JOINT;
         }                                 
         else{
@@ -197,6 +194,15 @@ public without sharing class NctETMembershipPaymentPageController
         membership.membershipTypeMap = MembershipUtilties.getMembershipTypeMap(membership.contactType,membership.targetCustomer,membership.etSpecific);    
         return null;
 
+    }
+    private void saveResultCheck(Database.SaveResult sr){
+        if (!sr.isSuccess()) {
+            
+            // Insertion failed due to duplicate detected
+            for(Database.Error duplicateError : sr.getErrors()){
+                DuplicateFinder(duplicateError);
+            }
+        }
     }
     private void companionCheck(){
         if(membership.twomems == true){
@@ -245,7 +251,7 @@ public without sharing class NctETMembershipPaymentPageController
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }
          if(membership.membershipInfo != null && inspect == true){
-            PageReference redirecContUrl;
+
             system.debug('*$*$*$  feeAmount   ' + membership.feeAmount+ '$$$$$$ lifeMembership: '+membership.lifeMembership);
             membership.membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
@@ -254,8 +260,7 @@ public without sharing class NctETMembershipPaymentPageController
                                                     where Id =:membership.feeAmount];
         }
         else{
-            PageReference redirecContUrl;
-
+            
             system.debug('*$*$*$  feeAmount   ' + membership.feeAmount+ '$$$$$$ lifeMembership: '+membership.lifeMembership);
 
             membership.membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
@@ -320,8 +325,7 @@ public without sharing class NctETMembershipPaymentPageController
         membership.displayMbrNoMessage = true;
         if(membership.sessionProfile != MembershipConstants.STANDARD){
             membership.feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName').escapeHtml4();
-            PageReference redirecContUrl;
-
+            
             system.debug('*$*$*$  feeAmount   ' + membership.feeAmount+ '$$$$$$ lifeMembership: '+membership.lifeMembership);
 
             membership.membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
