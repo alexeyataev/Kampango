@@ -1,4 +1,5 @@
 public with sharing class StaffMembershipController{
+    private static Contact contact;
 	public static list<npe03__Recurring_Donation__c> recurringDon{set;get;}
     @auraenabled
     public static void membershipInsert(Id contId)
@@ -8,6 +9,15 @@ public with sharing class StaffMembershipController{
             && Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_Status__c.isCreateable()
             )
         {  
+            contact = [SELECT 
+                  		Id,
+                  		Email
+                   FROM
+                  		Contact
+                   WHERE
+                  		Id = :contId];
+           Id contactId;
+           Boolean isMembershipExists = ContactUtilities.isMembershipExists(contactId, contact.Email);
            Membership_Type__mdt membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                         No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                         Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
@@ -35,7 +45,7 @@ public with sharing class StaffMembershipController{
                               npe03__Recurring_Donation__c
                           WHERE
                               npe03__Contact__c = :contId limit 1];
-            if(recurringDon.size() == 0 || recurringDon.size() == null){
+            if((recurringDon.size() == 0 || recurringDon.size() == null) && isMembershipExists != true){
                     npe03__Recurring_Donation__c recurringDonation = new npe03__Recurring_Donation__c();
                     recurringDonation.Name = membershipDetails.Contact_Type__c + ' ' + membershipDetails.Membership__c;
                     recurringDonation.npe03__Amount__c = membershipDetails.Installment_Amount__c;
