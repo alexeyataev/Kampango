@@ -141,6 +141,7 @@ public without sharing class ContactUtilities {
                              Id,
                              Name,
                              Renewal_Date__c,
+                             npe03__Installment_Period__c,
                              npe03__Contact__c                   
                          From
                              npe03__Recurring_Donation__c
@@ -170,6 +171,14 @@ public without sharing class ContactUtilities {
                                     Membership_Status__c = :MembershipConstants.PENDING
                                 AND
                                     Renewal_Date__c = null
+                                )
+                                OR
+                                (
+                                    Membership_Status__c = :MembershipConstants.CONFIRMED
+                                AND
+                                    Renewal_Date__c = null
+                                AND
+                                    npe03__Installment_Period__c = '99 Years'
                                 )
                             )
 
