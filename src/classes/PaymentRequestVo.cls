@@ -1,14 +1,15 @@
 public with sharing class PaymentRequestVo {
     
-    public String successURL{get;set;}
-    public String failureURL{get;set;}
-    public String origin{get;set;}
+   
     public PayerVo payer{get;set;}
     public PaymentVo payment{get;set;}
-    public PaymentMethodVo paymentMethod{get;set;}
     public SourceConnectorVo sourceConnector{get;set;}
-    
-    
+    public PaymentURLVo paymentURL{get;set;}
+     public class PaymentURLVo {
+      public String successURL{get;set;}
+      public String failureURL{get;set;}
+      public String origin{get;set;}
+    }
     	//Assessment Vo
 	public class PayerVo{
 	    public Boolean allowDeduplication{get;set;}
@@ -18,6 +19,7 @@ public with sharing class PaymentRequestVo {
     
 	public class PaymentVo{
 	    public Decimal amount{get;set;}
+        public String name{get;set;}
 	}
 
 	public class ContactVo{
@@ -26,9 +28,6 @@ public with sharing class PaymentRequestVo {
 	    public String lastName{get;set;}
 	}
 
-	public class PaymentMethodVo{
-	    public String name{get;set;}
-	}
 
 	public class SourceConnectorVo{
 	    public String name{get;set;}

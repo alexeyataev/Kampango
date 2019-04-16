@@ -24,72 +24,53 @@
         Map<String, List<Membership_Type__mdt>> membershipTypes = new Map<String, List<Membership_Type__mdt>>();
         
         MembershipVo  membership = new MembershipVo();
-        membership.accountName = 'Nct child';
-        membership.accountNumber = '145263777';
-        membership.acquistion = 'Written';
-        membership.acquistionOptions = selectOptions;
-        membership.cityValue = 'Test';
-        membership.contactType = 'Test'; 
-        membership.displayMbrNoMessage = true;
-        membership.displaySuccessMessage = true;
-        membership.contId = con.id;
-        membership.counter = 'Test'; 
-        membership.doNotCallOpt = true; 
-        membership.displayValue = 'Test';
-        membership.eDate = 'today';
-        membership.email = 'Test';
-        membership.emailOpt = true;
-        membership.etSpecific = true;
-        membership.expDate = system.date.today();
-        membership.feeAmount = con.id;
-        membership.firstname = 'Test';
-        membership.genderOptions = selectOptions;
-        membership.genders = 'Test';
-        membership.genderValue = 'Test';
-        membership.isContactExisting = true;
-        membership.isMembershipExists = true;
-        membership.isGiftAid = 'Test';
-        membership.isPractitioner = true;
-        membership.isStaff = true;
-        membership.isVolunteer = true;
-        membership.lastname = 'Nct childs';
-        membership.lifeMembership = true;
-        membership.membershipInfo = membershipDetails;
-        membership.membershipNumber = 'Test';
-        membership.membershipSource = 'Test';
-        membership.membershipSourceOptions = selectOptions;
-        membership.membershipTypeMap = membershipTypes;
-         membership.nearestBranchs = objects;
-      
-            membership.phone = '09874657878';
-            membership.postCode = 'Test';
-            membership.postOpt = true;
-            membership.primaryContact = con;
-            membership.recordType = 'Test';
-            membership.redirectURL = 'Test';
-            membership.salutation = 'Test';
-            membership.salutationOptions = selectOptions;
-            membership.salutationPrimary = 'Test';
-            membership.salutationSecondary = 'Test';
-            membership.secondaryContact = con;
-            membership.secondContactEmail = 'Test';
-            membership.secondContactFirstName = 'Test';
-            membership.secondContactGenders = 'Test';
-            membership.secondContactLastName = 'Test';
-            membership.secondContactPhone = '09874657878';
-            membership.selectBranch = con.id;
-            membership.sessionProfile = '';
-           
-            membership.smsOpt = false;
-            membership.sortCode = 'Test';
-            membership.staffMember = 'Test'; 
-            membership.stateValue = 'Test';
-            membership.streetValue = 'Test';
-            membership.streetValue1 = 'Test';
-            membership.streetValue2 = 'Test';
-            membership.targetCustomer = 'Test';
-            membership.twomem = true;
-            membership.twomems = true;
+        MembershipVo.MembershipInformation membershipInfo = new MembershipVo.MembershipInformation();
+        membershipInfo.membershipInfo = membershipDetails;
+        membershipInfo.membershipNumber = 'Test';
+        membershipInfo.membershipSource = 'Test';
+        membershipInfo.membershipSourceOptions = selectOptions;
+        membershipInfo.membershipTypeMap = membershipTypes;
+        membershipInfo.nearestBranchs = objects;
+        membershipInfo.staffMember = 'Test';
+        membershipInfo.acquistion = 'Written';
+        membershipInfo.acquistionOptions = selectOptions;
+        
+        MembershipVo.AccountInfo accountInfo = new MembershipVo.AccountInfo();
+        accountInfo.accountName = 'Nct child';
+        accountInfo.accountNumber = '145263777';
+        accountInfo.sortCode = 'Test';
+        accountInfo.feeAmount = con.id;
+        accountInfo.recordType = 'Test';
+        accountInfo.redirectURL = 'Test';
+        accountInfo.contactType = 'Test';
+        accountInfo.isGiftAid = 'Test';
+        accountInfo.targetCustomer = 'Test';
+        accountInfo.sessionProfile = '';
+        
+        MembershipVo.BooleanCheck booleanChecking = new MembershipVo.BooleanCheck();
+        booleanChecking.isContactExisting = true;
+        booleanChecking.isMembershipExists = true;
+        booleanChecking.displayMbrNoMessage = true;
+        booleanChecking.displaySuccessMessage = true;
+        booleanChecking.isStaff = true;
+        booleanChecking.isVolunteer = true;
+        booleanChecking.genderOptions = selectOptions;
+        booleanChecking.salutationOptions = selectOptions;
+        booleanChecking.twomems = true;
+
+            
+        MembershipVo.SecondContactVo secondContact = new MembershipVo.SecondContactVo();
+            secondContact.secondContactEmail = 'Test';
+            secondContact.secondContactFirstName = 'Test';
+            secondContact.secondContactGenders = 'Test';
+            secondContact.secondContactLastName = 'Test';
+            secondContact.secondContactPhone = '09874657878';
+            secondContact.salutationSecondary = 'Test';
+            secondContact.eDate = 'today';
+            secondContact.streetValue1 = 'Test';
+            secondContact.streetValue2 = 'Test';
+
+            
         MembershipVo.MemberCrudHelper memCrud = new MembershipVo.MemberCrudHelper();
         memCrud.pcont = con;
         memCrud.scont = scon;
@@ -99,9 +80,12 @@
         memCrud.acquistion = 'Written';
         memCrud.membershipSource = 'Enquiry by phone - main NCT'; 
         memCrud.isVolunteer = true;
-        membership.memberCrud = memCrud;
+        //membership.memberCrud = memCrud;
+        membership.BooleanChecking = booleanChecking;
+        membership.accountInformation = accountInfo;
+        membership.membershipDetails = membershipInfo; 
+        membership.secondContact = secondContact;
         
-        system.assertEquals('Credit/Debit Card', membership.membershipInfo.Payment_Method__c);
-        system.assertEquals('Nct childs', membership.lastname);
+        system.assertEquals('Credit/Debit Card', membershipInfo.membershipInfo.Payment_Method__c);
     }
 }

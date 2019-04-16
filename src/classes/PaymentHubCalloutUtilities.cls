@@ -11,12 +11,12 @@ public without sharing class PaymentHubCalloutUtilities {
 
         string responseContent;
         string redirectURL;
-
         PaymentRequestVo paymentReq = new PaymentRequestVo();
-        paymentReq.SuccessURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubSuccessMsgPage?contId='+ cont.Id;
-        paymentReq.FailureURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubErrorMsgPage';
-        paymentReq.Origin='test';
- 
+        PaymentRequestVo.PaymentURLVo paymentURL = new PaymentRequestVo.PaymentURLVo();
+        paymentURL.SuccessURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubSuccessMsgPage?contId='+ cont.Id;
+        paymentURL.FailureURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubErrorMsgPage';
+        paymentURL.Origin='test';
+        paymentReq.paymentURL = paymentURL;
         PaymentRequestVo.ContactVo cvo = new PaymentRequestVo.ContactVo();
         if(cont != null)
         {
@@ -32,14 +32,11 @@ public without sharing class PaymentHubCalloutUtilities {
         paymentReq.Payer = payerReq;
  
         PaymentRequestVo.PaymentVo payment = new PaymentRequestVo.PaymentVo();
+        payment.Name='CreditCard';
         if(cont!=null){       
             payment.Amount=instlmntAmt;
         }
-
         paymentReq.Payment = payment;
-        PaymentRequestVo.PaymentMethodVo paymentMethod = new PaymentRequestVo.PaymentMethodVo();
-        paymentMethod.Name='CreditCard';
-        paymentReq.PaymentMethod = paymentMethod;
  
         PaymentRequestVo.SourceConnectorVo sourceConnector = new PaymentRequestVo.SourceConnectorVo();
         sourceConnector.Name='PaymentHub';

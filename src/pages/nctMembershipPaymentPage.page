@@ -1,14 +1,14 @@
-<apex:page applyHtmlTag="true" docType="html-5.0" controller="NctETMembershipPaymentPageController" showHeader="false" sidebar="false">
+<apex:page applyHtmlTag="true" docType="html-5.0" standardController="contact" extensions="NctETMembershipPaymentPageController" showHeader="false" sidebar="false">
 <apex:pageMessages id="error-message"/>
 
 <apex:form id="membrShpForm">
 
    <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue">
-        <apex:param id="selValId" name="seltdName" value="" assignTo="{!membership.feeAmount}"/>
+        <apex:param id="selValId" name="seltdName" value="" assignTo="{!accountInformation.feeAmount}"/>
    </apex:actionFunction>
     <apex:actionFunction name="giftAidCreation" action="{!giftAidCreation}" oncomplete="SelValFunction($('#selectMembership :selected').val());" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
-        <apex:param id="selgftValId" name="selgfttdName" value="" assignTo="{!membership.isGiftAid}"/>
-        <apex:param id="selValAmountId" name="seltAmountdName" value="" assignTo="{!membership.feeAmount}"/>
+        <apex:param id="selgftValId" name="selgfttdName" value="" assignTo="{!accountInformation.isGiftAid}"/>
+        <apex:param id="selValAmountId" name="seltAmountdName" value="" assignTo="{!accountInformation.feeAmount}"/>
    </apex:actionFunction>  
     <apex:actionFunction name="membershipDupeChecker" action="{!membershipDupeChecker}" reRender="isMembershipExists">
        <apex:param id="emailDupeVal" name="emailDupeVal" value=""/>
@@ -18,32 +18,31 @@
         <apex:param id="emailsVal" name="emailsVal" value=""/>
    </apex:actionFunction>
    <apex:actionFunction name="saveRecordValues" action="{!paymentSave}" reRender="membershipNumber,error-message">
-      <apex:param id="accname" name="accname" value="" assignTo="{!membership.accountName}"/>
-       <apex:param id="sortCode" name="sortCode" value="" assignTo="{!membership.sortCode}"/>
-       <apex:param id="accNum" name="accNum" value="" assignTo="{!membership.accountNumber}"/>
-       <apex:param id="gftAid" name="gftAid" value="" assignTo="{!membership.isGiftAid}"/>
-       <apex:param id="acquistionval" name="acquistionval" value="" assignTo="{!membership.acquistion}"/>
+      <apex:param id="accname" name="accname" value="" assignTo="{!accountInformation.accountName}"/>
+       <apex:param id="sortCode" name="sortCode" value="" assignTo="{!accountInformation.sortCode}"/>
+       <apex:param id="accNum" name="accNum" value="" assignTo="{!accountInformation.accountNumber}"/>
+       <apex:param id="gftAid" name="gftAid" value="" assignTo="{!accountInformation.isGiftAid}"/>
+       <apex:param id="acquistionval" name="acquistionval" value="" assignTo="{!membershipDetails.acquistion}"/>
     </apex:actionFunction>
     <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,isExist,error-message">
-        <apex:param id="aname" name="chkbox" value="" assignTo="{!membership.twomems}"/>
-        <apex:param id="firstName" name="firstName" value="" assignTo="{!membership.firstname}"/>
-        <apex:param id="lastName" name="lastName" value="" assignTo="{!membership.lastname}"/>
-        <apex:param id="emailVal" name="emailVal" value="" assignTo="{!membership.email}"/>
-        <apex:param id="phoneVal" name="phoneVal" value="" assignTo="{!membership.phone}"/>
-        <apex:param id="secondContactFirstName" name="secondContactFirstName" value="" assignTo="{!membership.secondContactFirstName}"/>
-        <apex:param id="secondContactLastName" name="secondContactLastName" value="" assignTo="{!membership.secondContactLastName}"/>
-        <apex:param id="secondContactEmailVal" name="secondContactEmailVal" value="" assignTo="{!membership.secondContactEmail}"/>
-        <apex:param id="secondContactPhoneVal" name="secondContactPhoneVal" value="" assignTo="{!membership.secondContactPhone}"/>
-        <apex:param id="postcodeval" name="postcodeval" value="" assignTo="{!membership.postCode}"/>
-        <apex:param id="duedate" name="dueDate" value="" assignTo="{!membership.eDate}"/>
-        <apex:param id="selBranchVal" name="selBranchVal" value="" assignTo="{!membership.selectBranch}"/>
-        <apex:param id="genderVal" name="genderVal" value="" assignTo="{!membership.genderValue}"/>
-        <apex:param id="streetVal" name="streetVal" value="" assignTo="{!membership.streetValue}"/>
-        <apex:param id="streetVal1" name="streetVal1" value="" assignTo="{!membership.streetValue1}"/>
-        <apex:param id="streetVal2" name="streetVal2" value="" assignTo="{!membership.streetValue2}"/>
-        <apex:param id="townVal" name="twonVal" value="" assignTo="{!membership.stateValue}"/>
-        <apex:param id="countyVal" name="countyVal" value="" assignTo="{!membership.cityValue}"/>
-        <apex:param id="salutationVal" name="salutationVal" value="" assignTo="{!membership.salutation}"/>
+        <apex:param id="aname" name="chkbox" value="" assignTo="{!booleanChecking.twomems}"/>
+        <apex:param id="firstName" name="firstName" value="" assignTo="{!Contact.firstname}"/>
+        <apex:param id="lastName" name="lastName" value="" assignTo="{!Contact.lastname}"/>
+        <apex:param id="emailVal" name="emailVal" value="" assignTo="{!Contact.email}"/>
+        <apex:param id="phoneVal" name="phoneVal" value="" assignTo="{!Contact.phone}"/>
+        <apex:param id="secondContactFirstName" name="secondContactFirstName" value="" assignTo="{!secondContact.secondContactFirstName}"/>
+        <apex:param id="secondContactLastName" name="secondContactLastName" value="" assignTo="{!secondContact.secondContactLastName}"/>
+        <apex:param id="secondContactEmailVal" name="secondContactEmailVal" value="" assignTo="{!secondContact.secondContactEmail}"/>
+        <apex:param id="secondContactPhoneVal" name="secondContactPhoneVal" value="" assignTo="{!secondContact.secondContactPhone}"/>
+        <apex:param id="postcodeval" name="postcodeval" value="" assignTo="{!Contact.MailingPostalCode}"/>
+        <apex:param id="duedate" name="dueDate" value="" assignTo="{!secondContact.eDate}"/>
+        <apex:param id="selBranchVal" name="selBranchVal" value="" assignTo="{!Contact.Branch__c}"/>
+        <apex:param id="genderVal" name="genderVal" value="" />
+        <apex:param id="streetVal" name="streetVal" value="" assignTo="{!Contact.MailingStreet}"/>
+        <apex:param id="streetVal1" name="streetVal1" value="" />
+        <apex:param id="streetVal2" name="streetVal2" value="" assignTo="{!addressInfo.streetValue2}"/>
+        <apex:param id="townVal" name="twonVal" value="" assignTo="{!Contact.MailingState}"/>
+        <apex:param id="countyVal" name="countyVal" value="" assignTo="{!Contact.MailingCity}"/>
     </apex:actionFunction>
    <head>
         <meta charset="utf-8"/>
@@ -416,20 +415,21 @@
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                         <div><label><sup class="light-orange-color">*</sup>Title</label></div>
-                                                          <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="salutation" value="{!membership.salutationPrimary}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!membership.salutationOptions}" />
-
-                                                          </apex:selectList></span>
+                                                          <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle">
+                                                              <apex:selectList id="salutation" value="{!Contact.salutation}" multiselect="false" size="1">
+                                                                <apex:selectOptions value="{!booleanChecking.salutationOptions}" />
+                                                          	</apex:selectList>
+                                                                </span>
 
                                                     </div>
                                                     <div class="col-md-5">
                                                         <div><label><sup class="light-orange-color">*</sup>First Name</label></div>
-                                                            <input id='textForename' name='textForename' value="{!membership.firstname}" type="text" class="form-fields membership-fields"
+                                                            <input id='textForename' name='textForename' value="{!contact.firstname}" type="text" class="form-fields membership-fields"
                                                             placeholder="First Name" />
                                                     </div>
                                                     <div class="col-md-5">
                                                         <div><label><sup class="light-orange-color">*</sup>Last Name</label></div>
-                                                            <input type="text" id='textSurname' name='textSurname' value="{!membership.lastname}" class="form-fields membership-fields"
+                                                            <input type="text" id='textSurname' name='textSurname' value="{!contact.lastname}" class="form-fields membership-fields"
                                                             placeholder="Last Name" />
                                                     </div>
                                                 </div>
@@ -438,8 +438,8 @@
                                                     <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                             Gender</label></div>
                                                     <span class="dynmaic-radio-fields">
-                                                    <apex:selectRadio id="gender" value="{!membership.genders}">
-                                                                <apex:selectOptions value="{!membership.genderOptions}" />
+                                                    <apex:selectRadio id="gender" value="{!contact.Gender__c}">
+                                                                <apex:selectOptions value="{!booleanChecking.genderOptions}" />
                                                      </apex:selectRadio>
                                                     </span>
 
@@ -448,20 +448,20 @@
                                                 <div class="row">
                                                     <div class="col-md-12 col-12">
                                                         <div><label><sup class="light-orange-color">*</sup>Email Address</label></div>
-                                                            <input type="email" name='textEmail' id='textEmail' value="{!membership.email}" class="form-fields membership-fields"
+                                                            <input type="email" name='textEmail' id='textEmail' value="{!contact.email}" class="form-fields membership-fields"
                                                             placeholder="Email address" />
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 col-12">
                                                         <div><label><sup class="light-orange-color">*</sup>Phone Number</label></div>
-                                                            <input type="text" id='textMobile' name='textMobile' value="{!membership.phone}" class="form-fields membership-fields"
+                                                            <input type="text" id='textMobile' name='textMobile' value="{!contact.phone}" class="form-fields membership-fields"
                                                             placeholder="Phone number" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12 radio-fields-col membership_check paddingbot20px">
                                                     <span>
-                                                        <input type="checkbox" name="contact" id="twomem" value="{!membership.twomem}"/>
+                                                        <input type="checkbox" name="contact" id="twomem" value="{!booleanChecking.twomems}"/>
 
                                                         NCT membership covers up to two people at the same address. If
                                                         you'd like a joint membership, please tick this box.
@@ -479,8 +479,8 @@
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div><label><sup class="light-orange-color">*</sup>Title</label></div>
-                                                            <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="ssalutation" value="{!membership.salutationSecondary}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!membership.salutationOptions}" />
+                                                            <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle"><apex:selectList id="ssalutation" value="{!secondContact.salutationSecondary}" multiselect="false" size="1">
+                                                                <apex:selectOptions value="{!booleanChecking.salutationOptions}" />
 
                                                             </apex:selectList></span>
 
@@ -503,8 +503,8 @@
                                                         <div class="col-md-3"><label><sup class="light-orange-color">*</sup>Your
                                                                 Gender</label></div>
                                                         <span class="dynmaic-radio-fields">
-                                                        <apex:selectRadio id="secondContactGender" value="{!membership.secondContactGenders}">
-                                                                    <apex:selectOptions value="{!membership.genderOptions}" />
+                                                        <apex:selectRadio id="secondContactGender" value="{!secondContact.secondContactGenders}">
+                                                                    <apex:selectOptions value="{!booleanChecking.genderOptions}" />
                                                          </apex:selectRadio>
                                                         </span>
 
@@ -531,7 +531,7 @@
                                                 <div class="row">
                                                     <div class="col-12"><label><sup class="light-orange-color">*</sup>Postcode</label></div>
                                                     <div class="col-md-8 col-12">
-                                                        <input type="text" class="form-fields membership-fields" placeholder="Postcode" id ="postcode" value="{!membership.postCode}" />
+                                                        <input type="text" class="form-fields membership-fields" placeholder="Postcode" id ="postcode" value="{!contact.MailingPostalCode}" />
                                                     </div>
 
                                                     <div class="col-md-4 col-12">
@@ -539,7 +539,7 @@
                                                     </div>
                                                 </div>
                                                  <span class="memberexist" style="opacity:0">
-                                                	<apex:input value="{!membership.isMembershipExists}" id="isMembershipExists"/>
+                                                	<apex:input value="{!booleanChecking.isMembershipExists}" id="isMembershipExists"/>
                                                  </span>
                                             </div>
 
@@ -580,7 +580,7 @@
                                                         <div class="col-5"><label class="text-center font-bold">Due/birth date:</label></div>
                                                         <div class="col-7">
                                                                     <!--<apex:input type="date" value="{!membership.eDate}"  styleClass="custom_select" id="due-Date" required="true"/>  -->
-                                                                    <input type="date" value="{!membership.eDate}" class="custom_select" id="due-Date" />
+                                                                    <input type="date" value="{!secondContact.eDate}" class="custom_select" id="due-Date" />
                                                                     <span style='color:#999999; font-size:10px'>Please enter the date of birth of your youngest child, or if you are expecting, your estimated due date.
                                                                             This information is optional, but it will help us tailor the information we provide to you.</span>
                                                         </div>
@@ -591,13 +591,13 @@
                                                             <div class="col-7">
                                                                  <apex:outputPanel id="branch_Picklist">
                                                                  <select name='branch' id='selectBranch' class="custom_select" >
-                                                                       <apex:repeat value="{!membership.nearestBranchs}" var="branchKey">
-                                                                        <option value="{!membership.nearestBranchs}" >{!branchKey}</option>
+                                                                       <apex:repeat value="{!membershipDetails.nearestBranchs}" var="branchKey">
+                                                                        <option value="{!membershipDetails.nearestBranchs}" >{!branchKey}</option>
 
 
                                                                         <option value="" disabled="true">------------------------</option>
 
-                                                                       <apex:repeat value="{!membership.nearestBranchs[branchKey]}" var="branchKey1" >
+                                                                       <apex:repeat value="{!membershipDetails.nearestBranchs[branchKey]}" var="branchKey1" >
                                                                         <option value="{!branchKey1.Id}">{!branchKey1.Name}</option>
                                                                         </apex:repeat>
                                                                         </apex:repeat>
@@ -639,10 +639,10 @@
                                                                     <apex:selectOptions value="{!contactPreferenceOptions}" />
                                                           </apex:selectCheckboxes></span>-->
                                                           <div class="contact_check">
-                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!membership.emailOpt}"/>Email</span> 
-                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!membership.smsOpt}"/>Text</span>
-                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!membership.postOpt}"/>Post</span>
-                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!membership.doNotCallOpt}"/>Telephone</span>
+                                                             <span><apex:inputCheckbox id="emailOpt" label="emailOpt" value="{!Contact.HasOptedOutOfEmail}"/>Email</span> 
+                                                             <span><apex:inputCheckbox id="smsOpt" label="smsOpt" value="{!Contact.SMS_Opt_In__c}"/>Text</span>
+                                                             <span><apex:inputCheckbox id="postOpt" label="postOpt" value="{!Contact.Post_Opt_In__c}"/>Post</span>
+                                                             <span><apex:inputCheckbox id="doNotCallOpt" label="doNotCallOpt" value="{!Contact.DoNotCall}"/>Telephone</span>
                                                           </div>
                                                             <style>
                                                               .contact_check span {
@@ -698,12 +698,12 @@
                                                 <span id="membershiptype-loader" class="show-loader">
                                                   Please wait <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
                                                 </span>
-                                                <span id="membershiptype" style="width:1px;height:1px;display:none;">{!membership.membershipTypeMap}</span>
+                                                <span id="membershiptype" style="width:1px;height:1px;display:none;">{!membershipDetails.membershipTypeMap}</span>
                                                 <select style="margin-bottom:0;" name="selectMembership" id="selectMembership" class="form-fields membership-fields">
                                                     <option SELECTED="true" value="">Please select</option>
-                                                    <apex:repeat value="{!membership.membershipTypeMap}" var="typeKey">
-                                                        <option value="{!membership.membershipTypeMap}" style='font-weight:bold; background:#abcb63;' disabled="true">{!typeKey}</option>
-                                                        <apex:repeat value="{!membership.membershipTypeMap[typeKey]}" var="mbrshpFee">
+                                                    <apex:repeat value="{!membershipDetails.membershipTypeMap}" var="typeKey">
+                                                        <option value="{!membershipDetails.membershipTypeMap}" style='font-weight:bold; background:#abcb63;' disabled="true">{!typeKey}</option>
+                                                        <apex:repeat value="{!membershipDetails.membershipTypeMap[typeKey]}" var="mbrshpFee">
                                                             <option value="{!mbrshpFee.Id}">&nbsp; &nbsp; &nbsp; &nbsp;{!mbrshpFee.Payment_Type__c}</option>
                                                         </apex:repeat>
                                                     </apex:repeat>
@@ -787,13 +787,13 @@
                                                         <div class="pure-control-group">
 
                                                                 <label for="forename">Your name:&nbsp; </label>
-                                                                <apex:outputText Id="nameDisplay" value=" {!membership.firstname} {!membership.lastname}" style="font-weight:bold;"></apex:outputText>
+                                                                <apex:outputText Id="nameDisplay" value=" {!Contact.firstname} {!Contact.lastname}" style="font-weight:bold;"></apex:outputText>
                                                                 <strong><font id="forename_Dsp"> </font></strong>
 
                                                             </div>
                                                         <div class="pure-control-group" id="membershipSelection">
                                                             <label for="surname">Membership type:&nbsp;  </label>
-                                                             <apex:outputText Id="membershipTypeInfo" value=" {!membership.membershipInfo.Contact_Type__c} {!membership.membershipInfo.Membership__c}" style="font-weight:bold;"></apex:outputText>
+                                                             <apex:outputText Id="membershipTypeInfo" value=" {!membershipDetails.membershipInfo.Contact_Type__c} {!membershipDetails.membershipInfo.Membership__c}" style="font-weight:bold;"></apex:outputText>
                                                             <strong><span id="forename_Details"> </span></strong>
                                                         </div>
                                                         <p>&nbsp;</p>
@@ -844,7 +844,7 @@
                                                         </div>
 
                                                         <div class="pure-control-group paydates"><p>
-                                                                <span><span id='dateprocess1'><strong>&pound;<apex:outputText Id="membershipFeeInfo" value=" {!membership.membershipInfo.Installment_Amount__c}"/><span id="pay_money"> </span></strong>
+                                                                <span><span id='dateprocess1'><strong>&pound;<apex:outputText Id="membershipFeeInfo" value=" {!membershipDetails.membershipInfo.Installment_Amount__c}"/><span id="pay_money"> </span></strong>
                                                         on or after 3rd of the month <span class="eighteen-months-membership">and quarterly thereafter</span>.
                                                         </span></span>
                                                             <br /></p>
@@ -1061,7 +1061,7 @@
 
                                               <font id="userData">
                                                         <strong>&pound;
-                                                        <span id="DD_pay_value"><apex:outputText Id="membershipFeeValue" value=" {!membership.membershipInfo.Installment_Amount__c}"/></span></strong>
+                                                        <span id="DD_pay_value"><apex:outputText Id="membershipFeeValue" value=" {!membershipDetails.membershipInfo.Installment_Amount__c}"/></span></strong>
                                                         on or after 3rd of the month and quarterly thereafter if quarterly option selected
                                                         .</font>
 
@@ -1095,7 +1095,7 @@
                                                 <span id="membership-loader">
                                                      <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
                                                  </span>
-                                                <apex:outputText Id="membershipNumber" value="{!membership.membershipNumber}" style="font-weight:bold;"/></p>
+                                                <apex:outputText Id="membershipNumber" value="{!membershipDetails.membershipNumber}" style="font-weight:bold;"/></p>
                                         <div class="col-md-1 col-12">
                                         </div>
                                     </div>
@@ -1308,7 +1308,7 @@
 
                         //SelBranchValFunction($(selBnchvalue).val());
                         if(validateJoin() && dateFieldvalid ){//&& validateGender()
-                            afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textTelephoneHomePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val(),$(salutation).text());
+                            afunction($(twomem)[0].checked,$('#textForename').val(),$('#textSurname').val(),$('#textEmail').val(),$('#textMobile').val(),$('#textForenamePartner').val(),$('#textSurnamePartner').val(),$('#textEmailPartner').val(),$('#textTelephoneHomePartner').val(),$('#postcode').val(),$('#due-Date').val(),$(selectBranch).val(),$('#gender').val(),$('#address_line_1').val()+$('#textAddress2').val()+$('#textAddress3').val(),$('#town').val(),$('#county').val());
                             //var gender = $('input[name=gender]':checked).val();
                             //console.log(gender);
                             console.log($(salutation).val());

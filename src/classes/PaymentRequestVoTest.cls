@@ -3,14 +3,17 @@ private class PaymentRequestVoTest {
     @isTest
     private static void paymentTest(){
         
-        PaymentRequestVo.PaymentMethodVo paymentMethod = new PaymentRequestVo.PaymentMethodVo();
-        paymentMethod.name = 'NCT Child Trust';
+        PaymentRequestVo.PaymentURLVo paymentURL = new PaymentRequestVo.PaymentURLVo();
+        paymentURL.successURL = 'www.success.com';
+        paymentURL.failureURL = 'www.failure.com';
+        paymentURL.origin = 'NCT';
         
         PaymentRequestVo.SourceConnectorVo sourceConnector = new PaymentRequestVo.SourceConnectorVo();
         sourceConnector.name = 'NCT Child';
         
         PaymentRequestVo.PaymentVo payment = new PaymentRequestVo.PaymentVo();
         payment.amount = 10000;
+        payment.name = 'NCT Child Trust';
         
         PaymentRequestVo.ContactVo  contact = new PaymentRequestVo.ContactVo();
         contact.email = 'nct@gmail.com';
@@ -22,16 +25,13 @@ private class PaymentRequestVoTest {
         payer.contact = contact;
         payer.contactUpdate = 'Yes';
         
-        PaymentRequestVo paymentRequest = new PaymentRequestVo();
-        paymentRequest.successURL = 'www.success.com';
-        paymentRequest.failureURL = 'www.failure.com';
-        paymentRequest.origin = 'NCT';
+        PaymentRequestVo paymentRequest = new PaymentRequestVo();        
         paymentRequest.payer = payer;
         paymentRequest.payment = payment;
-        paymentRequest.paymentMethod = paymentMethod;
+        paymentRequest.paymentURL = paymentURL; 
         paymentRequest.sourceConnector = sourceConnector;
         
-        system.assertEquals('NCT Child Trust', paymentMethod.name);
+        system.assertEquals('NCT Child Trust', payment.name);
         system.assertEquals('NCT Child', sourceConnector.name);
     }
 
