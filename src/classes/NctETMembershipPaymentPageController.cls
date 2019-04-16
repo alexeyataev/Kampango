@@ -50,7 +50,7 @@ public without sharing class NctETMembershipPaymentPageController
         accountInformation.sortCode='';
     }
     private void displayContactDataForExistingContact(){
-         	if(!Schema.sObjectType.Contact.fields.FirstName.isAccessible()){
+         	if(!Schema.sObjectType.Contact.fields.Data_Source__c.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }     
             booleanChecking.isStaff = ContactUtilities.isStaff(cont.id);
