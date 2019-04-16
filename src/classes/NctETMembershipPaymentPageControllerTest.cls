@@ -4,7 +4,7 @@ private class NctETMembershipPaymentPageControllerTest {
     Static contact newCont;
     
     @isTest static void permissionCheck(){
-        Profile p = [SELECT Id FROM Profile WHERE Name='Payment Profile'];
+        Profile p = [SELECT Id FROM Profile WHERE Name='Read Only'];
       	User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
         EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
         LocaleSidKey='en_US', ProfileId = p.Id,
