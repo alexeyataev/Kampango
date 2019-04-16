@@ -12,11 +12,7 @@ public without sharing class PaymentHubCalloutUtilities {
         string responseContent;
         string redirectURL;
         PaymentRequestVo paymentReq = new PaymentRequestVo();
-        PaymentRequestVo.PaymentURLVo paymentURL = new PaymentRequestVo.PaymentURLVo();
-        paymentURL.SuccessURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubSuccessMsgPage?contId='+ cont.Id;
-        paymentURL.FailureURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubErrorMsgPage';
-        paymentURL.Origin='test';
-        paymentReq.paymentURL = paymentURL;
+        
         PaymentRequestVo.ContactVo cvo = new PaymentRequestVo.ContactVo();
         if(cont != null)
         {
@@ -29,6 +25,9 @@ public without sharing class PaymentHubCalloutUtilities {
         payerReq.AllowDeduplication=true;
         payerReq.contact = cvo;
         payerReq.ContactUpdate ='replace';
+        payerReq.SuccessURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubSuccessMsgPage?contId='+ cont.Id;
+        payerReq.FailureURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubErrorMsgPage';
+        payerReq.Origin='test';
         paymentReq.Payer = payerReq;
  
         PaymentRequestVo.PaymentVo payment = new PaymentRequestVo.PaymentVo();

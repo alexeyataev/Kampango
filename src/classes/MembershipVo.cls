@@ -64,6 +64,7 @@ public with sharing class MembershipVo {
       public boolean isContactExisting{get; set;}
       public boolean isVolunteer{get; set;}
       public boolean isStaff{get; set;}
+        public Boolean isCompanionContactExisting {get; set;}
     }
   
     public class MemberCrudHelper{

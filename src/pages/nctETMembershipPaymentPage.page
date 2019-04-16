@@ -366,7 +366,7 @@
     <section>
     <apex:input value="{!onComplete}" id="onComplete" style="opacity:0;width:1px;height:1px;"/>
     	<input type="text" value="{!membershipDetails.staffMember}" id="checkStaff" style="opacity:0;width:1px;height:1px;"/>
-        <input type="text" value="{!isCompanionContactExisting}" id="staffSecondContact" style="opacity:0;width:1px;height:1px;"/>
+        <input type="text" value="{!booleanChecking.isCompanionContactExisting}" id="staffSecondContact" style="opacity:0;width:1px;height:1px;"/>
         <div class="green-bg-image">
             <div class="text-center nct-mebmber-logo"><apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/nctmembers-logo.png')}"/></div>
         </div>

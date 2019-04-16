@@ -3,11 +3,6 @@ private class PaymentRequestVoTest {
     @isTest
     private static void paymentTest(){
         
-        PaymentRequestVo.PaymentURLVo paymentURL = new PaymentRequestVo.PaymentURLVo();
-        paymentURL.successURL = 'www.success.com';
-        paymentURL.failureURL = 'www.failure.com';
-        paymentURL.origin = 'NCT';
-        
         PaymentRequestVo.SourceConnectorVo sourceConnector = new PaymentRequestVo.SourceConnectorVo();
         sourceConnector.name = 'NCT Child';
         
@@ -24,11 +19,13 @@ private class PaymentRequestVoTest {
         payer.allowDeduplication = true;
         payer.contact = contact;
         payer.contactUpdate = 'Yes';
+        payer.successURL = 'www.success.com';
+        payer.failureURL = 'www.failure.com';
+        payer.origin = 'NCT';
         
         PaymentRequestVo paymentRequest = new PaymentRequestVo();        
         paymentRequest.payer = payer;
         paymentRequest.payment = payment;
-        paymentRequest.paymentURL = paymentURL; 
         paymentRequest.sourceConnector = sourceConnector;
         
         system.assertEquals('NCT Child Trust', payment.name);

@@ -12,8 +12,7 @@ public without sharing class NctETMembershipPaymentPageController
     private static Boolean inspect = false;
     public static Boolean onComplete {get; set;}     
     private List<Contact> contactList;    
-    public Boolean isCompanionContactExisting {get; set;}
-    private Contact con;
+    
     @TestVisible
     private contact primaryContact;
     @TestVisible
@@ -58,8 +57,8 @@ public without sharing class NctETMembershipPaymentPageController
             booleanChecking.isMembershipExists = ContactUtilities.isMembershipExists(cont.id, cont.email);
             membershipDetails.staffMember = MembershipConstants.STAFF; 
             primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,Contact_Prefrence__c,Prefered_First_Name__c,AccountId,Expected_Due_Date__c,MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry,Branch__r.Name,Branch__c FROM Contact where id=:ApexPages.currentPage().getParameters().get('Id')];
-            isCompanionContactExisting = ContactUtilities.isCompanionContactExisting(cont.id);
-            System.debug('isCompanionContactExisting '+isCompanionContactExisting );
+            booleanChecking.isCompanionContactExisting = ContactUtilities.isCompanionContactExisting(cont.id);
+            System.debug('isCompanionContactExisting '+booleanChecking.isCompanionContactExisting );
 
             if(primaryContact != null){  
                 secondContact.eDate = String.valueof(primaryContact.Expected_Due_Date__c);
@@ -127,6 +126,7 @@ public without sharing class NctETMembershipPaymentPageController
     }
     @TestVisible
     private void secondaryContactCreation(){
+        Contact con;
         if(MembershipConditionCheckUtilities.secondContactRequiredCheck(booleanChecking.twomems,primaryContact.id,secondContact.secondContactFirstName))
         {            
             accountInformation.recordType = MembershipConstants.COMPANION;
