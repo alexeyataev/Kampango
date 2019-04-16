@@ -28,14 +28,12 @@ public without sharing class PaymentHubCalloutUtilities {
         payerReq.SuccessURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubSuccessMsgPage?contId='+ cont.Id;
         payerReq.FailureURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubErrorMsgPage';
         payerReq.Origin='test';
+        payerReq.Name='CreditCard';
+        if(cont!=null){       
+            payerReq.Amount=instlmntAmt;
+        }
         paymentReq.Payer = payerReq;
  
-        PaymentRequestVo.PaymentVo payment = new PaymentRequestVo.PaymentVo();
-        payment.Name='CreditCard';
-        if(cont!=null){       
-            payment.Amount=instlmntAmt;
-        }
-        paymentReq.Payment = payment;
  
         PaymentRequestVo.SourceConnectorVo sourceConnector = new PaymentRequestVo.SourceConnectorVo();
         sourceConnector.Name='PaymentHub';
