@@ -46,4 +46,9 @@
         <enabled>true</enabled>
         <name>ViewAllUsers</name>
     </userPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Data_Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 </Profile>
