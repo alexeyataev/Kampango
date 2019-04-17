@@ -1,4 +1,4 @@
-<apex:page id="nctPymtHbSccMgPg" controller="NctETMembershipPaymentPageController" showHeader="false" sidebar="false" action="{!membershipNumberDisplay}">
+<apex:page id="nctPymtHbSccMgPg" standardController="contact" extensions="NctETMembershipPaymentPageController" showHeader="false" sidebar="false" action="{!membershipNumberDisplay}">
     <apex:form id="nctPymtHbSccMgFrm">
         <head>
             <meta charset="utf-8"/>
@@ -84,7 +84,7 @@
                             <div>Your payment was successful.</div><BR/>
                             <div class="paddingbot20px">Thank you for making the Payment.</div>
                             <p><apex:outputText Id="membershipText" value="Your Membership Number is -"/>&nbsp;
-                               <apex:outputText Id="membershipNumber" value="{!membership.membershipNumber}" style="font-weight:bold;"/></p>
+                               <apex:outputText Id="membershipNumber" value="{!membershipDetails.membershipNumber}" style="font-weight:bold;"/></p>
                         </div>
                         <!--<div class="text-center text-white paddingbot20px">
                             <a class="back-button btn green-button button" href="">

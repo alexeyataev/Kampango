@@ -148,10 +148,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>MembershipConstantsTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>MembershipCrudHelper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -4041,9 +4037,6 @@
         <layout>Branch_PSA_Office__c-Branch PSA Office Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CAD__c-CAD Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>CampaignMember-Campaign Member Page Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -4103,9 +4096,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Direct_Debits__c-Direct Debits Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>DuplicateRecordItem-Duplicate Record Item Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>DuplicateRecordSet-Duplicate Record Set Layout</layout>
