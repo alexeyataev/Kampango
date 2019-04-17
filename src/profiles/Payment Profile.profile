@@ -4089,9 +4089,6 @@
         <layout>Contract-Contract Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course_Budget__c-Course Budget Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Course__c-Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
