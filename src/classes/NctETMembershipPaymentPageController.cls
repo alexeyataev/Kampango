@@ -228,7 +228,7 @@ public without sharing class NctETMembershipPaymentPageController
         booleanChecking.displaySuccessMessage = false;
         thankYouSec();
     }
-    private void thankYouSec()
+    public void thankYouSec()
     {
         if(accountDetails.sessionProfile == MembershipConstants.STANDARD && membershipDetails.membershipInfo.Payment_Method__c == MembershipConstants.CREDIT_OR_DEBIT_CARD){
             paymentHubCallout();                
