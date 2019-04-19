@@ -1,6 +1,6 @@
 @isTest
 private class MembershipCrudHelperVoTest {
-    @isTest static void MembershipCrudHelperVoMethod(){
+    @isTest static void membershipCrudHelperVoMethod(){
         
         MembershipCrudHelperVo membershipCrudHelperVo = new MembershipCrudHelperVo();
         

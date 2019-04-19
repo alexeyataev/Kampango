@@ -1,4 +1,4 @@
-public class MembershipCrudHelperVo {
+public with sharing class MembershipCrudHelperVo {
         public String accountName {get; set;}
         public String sortCode {get; set;}
         public String accountNumber {get; set;}
