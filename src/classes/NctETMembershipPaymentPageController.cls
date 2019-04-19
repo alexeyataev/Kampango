@@ -5,15 +5,16 @@ public without sharing class NctETMembershipPaymentPageController
     public  MembershipBooleanCheckVo booleanChecking{get;set;}
     public  MembershipVo.MembershipInformation membershipDetails{get;set;}
     public  MembershipContactVo.SecondContactVo secondContact{get;set;}
-    public  MembershipContactVo.ContactVo contactVo{get;set;}
+    public  MembershipContactVo contactVo{get;set;}
+    public  MembershipCrudHelperVo.MembershipUtilitiesVo membership{get;set;}
+    public  MembershipBooleanCheckVo.AccountDetails accountDetails{get;set;}
+    private String contactType{get; set;}
     @TestVisible
     private npe03__Recurring_Donation__c recDon;
     @TestVisible
     private date expDate;
-    private static Boolean inspect = false;
     public static Boolean onComplete {get; set;}     
     private List<Contact> contactList;    
-    private Contact con;
     @TestVisible
     private contact primaryContact;
     @TestVisible
@@ -33,15 +34,17 @@ public without sharing class NctETMembershipPaymentPageController
         booleanChecking = new MembershipBooleanCheckVo();
         membershipDetails  = new MembershipVo.MembershipInformation();        
         secondContact = new MembershipContactVo.SecondContactVo();
-        contactVo = new MembershipContactVo.ContactVo();
-        
+        contactVo = new MembershipContactVo();
+        membership = new MembershipCrudHelperVo.MembershipUtilitiesVo();
+        accountDetails = new MembershipBooleanCheckVo.AccountDetails();
+            
         contactVo.salutationOptions = SObjectUtilities.getPicklistValues(con, 'salutation');
         contactVo.genderOptions = SObjectUtilities.getPicklistValues(con, 'Gender__c');
         contactVo.acquistionOptions = SObjectUtilities.getPicklistValues(gifAid, 'gaid__Acquisition_Method__c');
         membershipDetails.membershipSourceOptions = SObjectUtilities.getPicklistValues(recDonate, 'Source__c');      	        
   
         
-        membershipDetails.staffMember = MembershipConstants.NOSTAFF;
+        contactVo.staffMember = MembershipConstants.NOSTAFF;
         if(cont.id != null)
         {            
             displayContactDataForExistingContact();        
@@ -58,13 +61,13 @@ public without sharing class NctETMembershipPaymentPageController
              }     
             booleanChecking.isStaff = ContactUtilities.isStaff(cont.id);
             booleanChecking.isMembershipExists = ContactUtilities.isMembershipExists(cont.id, cont.email);
-            membershipDetails.staffMember = MembershipConstants.STAFF; 
+            contactVo.staffMember = MembershipConstants.STAFF; 
             primaryContact = [SELECT Id,Salutation,DoNotCall, SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,Contact_Prefrence__c,Prefered_First_Name__c,AccountId,Expected_Due_Date__c,MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry,Branch__r.Name,Branch__c FROM Contact where id=:ApexPages.currentPage().getParameters().get('Id')];
             booleanChecking.isCompanionContactExisting = ContactUtilities.isCompanionContactExisting(cont.id);
             System.debug('isCompanionContactExisting '+booleanChecking.isCompanionContactExisting );
 
             if(primaryContact != null){  
-                contactVo.eDate = String.valueof(primaryContact.Expected_Due_Date__c);
+                membership.eDate = String.valueof(primaryContact.Expected_Due_Date__c);
                 membershipDetails.nearestBranchs = MembershipConditionHelper.assignBranchValues(primaryContact.Branch__c);
             }
             List<Contact> secondaryContactList = [SELECT Id,Salutation,DoNotCall, Branch__c,SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where Parent_Contact__c =:primaryContact	.Id LIMIT 1];
@@ -80,14 +83,14 @@ public without sharing class NctETMembershipPaymentPageController
             }
     }
    public PageReference  receiveInput(){                
-       if(MembershipConditionCheckUtilities.dateFormatCheck(contactVo.eDate)){
-        expDate = Date.valueOf(contactVo.eDate);
+       if(MembershipConditionCheckUtilities.dateFormatCheck(membership.eDate)){
+        expDate = Date.valueOf(membership.eDate);
         }
         Boolean isPractitioner;
         booleanChecking.isVolunteer = ContactUtilities.isVolunteerExisting(cont.Id);
         isPractitioner = MembershipUtilties.isPractitioner(cont.firstname,cont.lastname,cont.email);
         list<Boolean> contactBooleanList = new list<Boolean>{booleanChecking.isStaff,booleanChecking.isVolunteer,isPractitioner,booleanChecking.twomems};
-        accountInformation.targetCustomer = ContactUtilities.targetCustomer(contactBooleanList);
+        accountDetails.targetCustomer = ContactUtilities.targetCustomer(contactBooleanList);
         booleanChecking.isMembershipExists = ContactUtilities.isMembershipExists(cont.Id,cont.email);
         
         if(MembershipConditionCheckUtilities.receiveInputPermissionCheck()){
@@ -98,8 +101,8 @@ public without sharing class NctETMembershipPaymentPageController
        
         if(MembershipConditionCheckUtilities.isNotExistingContactCheck(booleanChecking.isContactExisting,primaryContact)){
 
-                contactVo.recordType = MembershipConstants.PARENT;
-                    primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(contactVo.recordType).getRecordTypeId(),FirstName=cont.firstname,
+                membership.recordType = MembershipConstants.PARENT;
+                    primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(membership.recordType).getRecordTypeId(),FirstName=cont.firstname,
                                         LastName=cont.lastname,Email=cont.email,Gender__c=cont.Gender__c,Phone=cont.phone,Salutation=cont.salutation,MailingPostalCode=cont.MailingPostalCode,
                                         Expected_Due_Date__c =expDate,MailingStreet=cont.MailingStreet+contactVo.streetValue1+contactVo.streetValue2,Branch__c=cont.Branch__c,
                                         MailingState=cont.MailingState,MailingCity=cont.MailingCity,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=cont.SMS_Opt_In__c,Post_Opt_In__c=cont.Post_Opt_In__c,
@@ -124,7 +127,7 @@ public without sharing class NctETMembershipPaymentPageController
             secondaryContactCreation();
             
         }    
-       membershipDetails.membershipTypeMap = MembershipUtilties.getMembershipTypeMap(contactVo.contactType,accountInformation.targetCustomer,false);    
+       membershipDetails.membershipTypeMap = MembershipUtilties.getMembershipTypeMap(contactType,accountDetails.targetCustomer,false);    
            return null;
     }
     @TestVisible
@@ -132,39 +135,38 @@ public without sharing class NctETMembershipPaymentPageController
         
         if(MembershipConditionCheckUtilities.secondContactRequiredCheck(booleanChecking.twomems,primaryContact.id,secondContact.secondContactFirstName))
         {            
-            contactVo.recordType = MembershipConstants.COMPANION;
-            con =[Select AccountId from Contact where id = :primaryContact.id];
+            membership.recordType = MembershipConstants.COMPANION;
+            Contact con =[Select AccountId from Contact where id = :primaryContact.id];
             
-            secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(contactVo.recordType).getRecordTypeId(),FirstName=secondContact.secondContactFirstName,
+            secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(membership.recordType).getRecordTypeId(),FirstName=secondContact.secondContactFirstName,
                                                          LastName=secondContact.secondContactLastName,Email=secondContact.secondContactEmail,Gender__c=secondContact.secondContactGenders,Phone=secondContact.secondContactPhone,Salutation=secondContact.salutationSecondary,MailingPostalCode=cont.MailingPostalCode,
                                                          Expected_Due_Date__c =expDate,MailingStreet=cont.MailingStreet+contactVo.streetValue1+contactVo.streetValue2,Branch__c=cont.Branch__c,
                                                          MailingState=cont.MailingState,MailingCity=cont.MailingCity,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=cont.SMS_Opt_In__c,Post_Opt_In__c=cont.Post_Opt_In__c,
                                                          HasOptedOutOfEmail=cont.HasOptedOutOfEmail,DoNotCall=cont.DoNotCall,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
             Database.SaveResult srSec = Database.insert(secondaryContact, false);
             MembershipConditionHelper.saveResultCheck(srSec);
-            contactVo.contactType = MembershipConstants.JOINT;
+            contactType = MembershipConstants.JOINT;
         }                              
-		contactVo.contactType = MembershipConditionHelper.companionCheck(booleanChecking.twomems); 
+		contactType = MembershipConditionHelper.companionCheck(booleanChecking.twomems); 
     }
     public pageReference contactInfo(){
         if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
              }
          
-        system.debug('*$*$*$  feeAmount   ' + accountInformation.feeAmount);
         
         membershipDetails.membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                             No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                             Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
                                             GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
-                                            where Id =:accountInformation.feeAmount];
+                                            where Id =:membership.feeAmount];
         System.debug('Membership##### '+membershipDetails.membershipInfo);
-		  accountInformation.sessionProfile = userinfo.getUserType();
-         if(membershipDetails.membershipInfo != null && accountInformation.sessionProfile != MembershipConstants.STANDARD && membershipDetails.membershipInfo.Payment_Method__c == MembershipConstants.CREDIT_OR_DEBIT_CARD)
+		  accountDetails.sessionProfile = userinfo.getUserType();
+         if(membershipDetails.membershipInfo != null && accountDetails.sessionProfile != MembershipConstants.STANDARD && membershipDetails.membershipInfo.Payment_Method__c == MembershipConstants.CREDIT_OR_DEBIT_CARD)
           { 
 
               paymentHubCallout();
-              PageReference pageRef = new PageReference(''+accountInformation.redirectURL);    
+              PageReference pageRef = new PageReference(''+accountDetails.redirectURL);    
               pageRef.setRedirect(true);
               return pageRef;                    
           }
@@ -204,21 +206,20 @@ public without sharing class NctETMembershipPaymentPageController
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
         }
         booleanChecking.displayMbrNoMessage = true;
-        if(accountInformation.sessionProfile != MembershipConstants.STANDARD){
-            accountInformation.feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName').escapeHtml4();
+        if(accountDetails.sessionProfile != MembershipConstants.STANDARD){
+            membership.feeAmount = Apexpages.currentPage().getParameters().get('seltAmountdName').escapeHtml4();
             PageReference redirecContUrl;
 
             membershipDetails.membershipInfo = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                     Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
                                                     GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
-                                                    where Id =:accountInformation.feeAmount];
+                                                    where Id =:membership.feeAmount];
         }
       	
         System.debug('Membership##### '+membershipDetails.membershipInfo);
         booleanChecking.displaySuccessMessage = true;
         thankYouSec();
-        inspect = true;
     }
    
     public void paymentSave()
@@ -227,16 +228,16 @@ public without sharing class NctETMembershipPaymentPageController
         booleanChecking.displaySuccessMessage = false;
         thankYouSec();
     }
-    public void thankYouSec()
+    private void thankYouSec()
     {
-        if(accountInformation.sessionProfile == MembershipConstants.STANDARD && membershipDetails.membershipInfo.Payment_Method__c == MembershipConstants.CREDIT_OR_DEBIT_CARD){
+        if(accountDetails.sessionProfile == MembershipConstants.STANDARD && membershipDetails.membershipInfo.Payment_Method__c == MembershipConstants.CREDIT_OR_DEBIT_CARD){
             paymentHubCallout();                
         }
            
-        MembershipBooleanCheckVo.MemberCrudHelper crudHelper = new MembershipBooleanCheckVo.MemberCrudHelper();
+        MembershipCrudHelperVo crudHelper = new MembershipCrudHelperVo();
         crudHelper.accountName = accountInformation.accountName;
         crudHelper.accountNumber = accountInformation.accountNumber;
-        crudHelper.acquistion = contactVo.acquistion;
+        crudHelper.acquistion = membership.acquistion;
         crudHelper.membershipSource = membershipDetails.membershipSource;
         crudHelper.sortCode = accountInformation.sortCode;
         crudHelper.pcont = primaryContact;
@@ -261,17 +262,17 @@ public without sharing class NctETMembershipPaymentPageController
        membershipDetails.membershipNumber = ThankYouHelper.membershipNumberCreation(primaryContact,recDon);
     }
     
-    public PageReference paymentHubCallout()
+    private PageReference paymentHubCallout()
     {   
         list<String> contactDetails = new list<String>();
         contactDetails.add(Cont.email);
         contactDetails.add(Cont.firstname);
         contactDetails.add(Cont.lastname);
 
-        accountInformation.redirectURL = PaymentHubCalloutUtilities.PaymentHub(primaryContact,membershipDetails.membershipInfo,contactDetails);
-        accountInformation.sessionProfile = userinfo.getUserType();
-        if(accountInformation.sessionProfile == MembershipConstants.STANDARD){
-            return sendPaymentLinkToParent(accountInformation.redirectURL);
+        accountDetails.redirectURL = PaymentHubCalloutUtilities.PaymentHub(primaryContact,membershipDetails.membershipInfo,contactDetails);
+        accountDetails.sessionProfile = userinfo.getUserType();
+        if(accountDetails.sessionProfile == MembershipConstants.STANDARD){
+            return sendPaymentLinkToParent(accountDetails.redirectURL);
         }
         else{
             return null;
@@ -279,7 +280,7 @@ public without sharing class NctETMembershipPaymentPageController
        
     }
     
-    /*public PageReference sendPaymentLinkToParent(string paymentLink)
+    private PageReference sendPaymentLinkToParent(string paymentLink)
     {   
         /* Updated by Mahanth 20/12/2018
         *  The following code creates a payment link record
@@ -298,6 +299,6 @@ public without sharing class NctETMembershipPaymentPageController
         insert payLink;
         System.debug('Payment Link Record Created : '+'ID: '+payLink.Id+', /r/n'+payLink.Contact__c+', '+payLink.Payment_Key__c+', '+payLink.Payment_Link__c);
         return null;
-    }*/
+    }
 
 }

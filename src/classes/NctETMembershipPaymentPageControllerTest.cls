@@ -5,7 +5,7 @@ private class NctETMembershipPaymentPageControllerTest {
     
     @isTest static void permissionCheck(){
         Profile p = [SELECT Id FROM Profile WHERE Name='Payment Profile'];
-      	User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
+      User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
         EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
         LocaleSidKey='en_US', ProfileId = p.Id,
         TimeZoneSidKey='America/Los_Angeles', UserName='newusers@testorg.com');
@@ -53,20 +53,25 @@ private class NctETMembershipPaymentPageControllerTest {
         secondContact.salutationSecondary = 'Mr.';
         secondContact.secondContactGenders = 'Male';
         
-        MembershipContactVo.ContactVo contactVo = new MembershipContactVo.ContactVo();
-        contactVo.eDate = '2050-03-31';  
+        MembershipContactVo contactVo = new MembershipContactVo();          
         contactVo.streetValue1 = '';
         contactVo.streetValue2 = '';
-        contactVo.acquistion ='';
         
+        
+        MembershipCrudHelperVo.MembershipUtilitiesVo  membership = new MembershipCrudHelperVo.MembershipUtilitiesVo();
+        membership.acquistion ='';
+        membership.eDate = '2050-03-31';
+        membership.feeAmount = membershipDetails.Id;
+            
         MembershipVo.AccountInfo accountInfo = new MembershipVo.AccountInfo();
         accountInfo.accountNumber = '12345';
         accountInfo.accountName ='Test';
         accountInfo.sortCode = '';
-        accountInfo.sessionProfile = 'guest';
-        accountInfo.feeAmount = membershipDetails.Id;
+ 
         
-        
+        MembershipBooleanCheckVo.AccountDetails accountDetails = new MembershipBooleanCheckVo.AccountDetails();
+        accountDetails.sessionProfile = 'Guest';
+            
         MembershipVo.MembershipInformation membershipInfo = new MembershipVo.MembershipInformation();        
         membershipInfo.membershipSource =''; 
                    
@@ -87,6 +92,11 @@ private class NctETMembershipPaymentPageControllerTest {
             controller.membershipDetails = membershipInfo;
             controller.secondContact = secondContact;
             controller.primaryContact = primaryContact;
+            controller.booleanChecking = booleanChecking;
+            controller.contactVo = contactVo;
+            controller.membership = membership;
+            controller.accountDetails = accountDetails;
+            
             ApexPages.currentPage().getParameters().put('emailsVal','testemail@test.com');
             ApexPages.currentPage().getParameters().put('postVal','SE1 3XF');
             ApexPages.currentPage().getParameters().put('emailDupeVal','testemail@test.com');
@@ -101,14 +111,14 @@ private class NctETMembershipPaymentPageControllerTest {
             controller.giftAidCreation();
             
             Test.stopTest();
-             system.assertEquals('Guest', accountInfo.sessionProfile);
+             system.assertEquals('Guest', accountDetails.sessionProfile);
             system.assertEquals('Test', accountInfo.accountName);
 
         }
     }
     @isTest static void duplicateTesting(){
          Profile p = [SELECT Id FROM Profile WHERE Name='Read Only']; 
-      	User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
+      User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
         EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
         LocaleSidKey='en_US', ProfileId = p.Id,
         TimeZoneSidKey='America/Los_Angeles', UserName='newusers@testorg.com');
@@ -127,7 +137,7 @@ private class NctETMembershipPaymentPageControllerTest {
             
             PageReference pageRef = Page.nctETMembershipPaymentPage; 
             Test.setCurrentPage(pageRef); 
-         
+        
         MembershipContactVo.SecondContactVo secondContact = new MembershipContactVo.SecondContactVo();
         secondContact.secondContactFirstName = 'Test Second Name';
         secondContact.secondContactLastName = 'Test Second Last Name';
@@ -135,21 +145,25 @@ private class NctETMembershipPaymentPageControllerTest {
         secondContact.secondContactPhone = '12345678901';
         secondContact.salutationSecondary = 'Mr.';
         secondContact.secondContactGenders = 'Male';
-            
-        MembershipContactVo.ContactVo contactVo = new MembershipContactVo.ContactVo();
-        contactVo.eDate = '2050-03-31';  
+        
+        MembershipContactVo contactVo = new MembershipContactVo();          
         contactVo.streetValue1 = '';
         contactVo.streetValue2 = '';
-        contactVo.acquistion ='';
-            
         
+        MembershipBooleanCheckVo.AccountDetails accountDetails = new MembershipBooleanCheckVo.AccountDetails();
+        accountDetails.sessionProfile = 'guest';
+        
+        MembershipCrudHelperVo.MembershipUtilitiesVo  membership = new MembershipCrudHelperVo.MembershipUtilitiesVo();
+        membership.acquistion ='';
+        membership.eDate = '2050-03-31';
+        membership.feeAmount = membershipDetails.Id;
+            
         MembershipVo.AccountInfo accountInfo = new MembershipVo.AccountInfo();
         accountInfo.accountNumber = '12345';
         accountInfo.accountName ='Test';
         accountInfo.sortCode = '';
-        accountInfo.sessionProfile = 'guest';
-        accountInfo.feeAmount = membershipDetails.Id;
-        
+                    
+            
         MembershipVo.MembershipInformation membershipInfo = new MembershipVo.MembershipInformation();
         membershipInfo.membershipSource ='';
          
@@ -176,7 +190,10 @@ private class NctETMembershipPaymentPageControllerTest {
             controller.accountInformation = accountInfo;
             controller.membershipDetails = membershipInfo;
             controller.secondContact = secondContact;
-            controller.booleanChecking = booleanchecking;
+            controller.booleanChecking = booleanChecking;
+            controller.contactVo = contactVo;
+            controller.accountDetails = accountDetails;
+            controller.membership = membership;
             controller.primaryContact = null;
 
             ApexPages.currentPage().getParameters().put('emailsVal','testemail@test.com');
@@ -192,7 +209,7 @@ private class NctETMembershipPaymentPageControllerTest {
             controller.giftAidCreation();  
             controller.paymentSave();
             Test.stopTest();
-            system.assertEquals('Standard', accountInfo.sessionProfile);
+            system.assertEquals('Standard', accountDetails.sessionProfile);
             system.assertEquals('Test', accountInfo.accountName);
         }
     }

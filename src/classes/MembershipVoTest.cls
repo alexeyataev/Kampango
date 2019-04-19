@@ -31,19 +31,14 @@ private class MembershipVoTest {
         membershipInfo.membershipSourceOptions = selectOptions;
         membershipInfo.membershipTypeMap = membershipTypes;
         membershipInfo.nearestBranchs = objects;
-        membershipInfo.staffMember = 'Test';
         membership.membershipDetails = membershipInfo;
         
         MembershipVo.AccountInfo accountInfo = new MembershipVo.AccountInfo();
         accountInfo.accountName = 'Nct child';
         accountInfo.accountNumber = '145263777';
         accountInfo.sortCode = 'Test';
-        accountInfo.feeAmount = con.id;
-        accountInfo.redirectURL = 'Test';
-        accountInfo.targetCustomer = 'Test';
-        accountInfo.sessionProfile = '';
 		membership.accountInformation = accountInfo;
         
-        system.assertEquals(accountInfo.targetCustomer, 'Test');
+        system.assertEquals(accountInfo.sortCode, 'Test');
     }
 }

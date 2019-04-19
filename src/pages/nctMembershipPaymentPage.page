@@ -4,11 +4,11 @@
 <apex:form id="membrShpForm">
 
    <apex:actionFunction name="SelValFunction" action="{!ContactInfo}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue">
-        <apex:param id="selValId" name="seltdName" value="" assignTo="{!accountInformation.feeAmount}"/>
+        <apex:param id="selValId" name="seltdName" value="" assignTo="{!membership.feeAmount}"/>
    </apex:actionFunction>
     <apex:actionFunction name="giftAidCreation" action="{!giftAidCreation}" oncomplete="SelValFunction($('#selectMembership :selected').val());" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
         <apex:param id="selgftValId" name="selgfttdName" value="" assignTo="{!booleanChecking.isGiftAid}"/>
-        <apex:param id="selValAmountId" name="seltAmountdName" value="" assignTo="{!accountInformation.feeAmount}"/>
+        <apex:param id="selValAmountId" name="seltAmountdName" value="" assignTo="{!membership.feeAmount}"/>
    </apex:actionFunction>  
     <apex:actionFunction name="membershipDupeChecker" action="{!membershipDupeChecker}" reRender="isMembershipExists">
        <apex:param id="emailDupeVal" name="emailDupeVal" value=""/>
@@ -35,7 +35,7 @@
         <apex:param id="secondContactEmailVal" name="secondContactEmailVal" value="" assignTo="{!secondContact.secondContactEmail}"/>
         <apex:param id="secondContactPhoneVal" name="secondContactPhoneVal" value="" assignTo="{!secondContact.secondContactPhone}"/>
         <apex:param id="postcodeval" name="postcodeval" value="" assignTo="{!Contact.MailingPostalCode}"/>
-        <apex:param id="duedate" name="dueDate" value="" assignTo="{!contactVo.eDate}"/>
+        <apex:param id="duedate" name="dueDate" value="" assignTo="{!membership.eDate}"/>
         <apex:param id="selBranchVal" name="selBranchVal" value="" assignTo="{!Contact.Branch__c}"/>
         <apex:param id="genderVal" name="genderVal" value="" />
         <apex:param id="streetVal" name="streetVal" value="" assignTo="{!Contact.MailingStreet}"/>
@@ -580,7 +580,7 @@
                                                         <div class="col-5"><label class="text-center font-bold">Due/birth date:</label></div>
                                                         <div class="col-7">
                                                                     <!--<apex:input type="date" value="{!membership.eDate}"  styleClass="custom_select" id="due-Date" required="true"/>  -->
-                                                                    <input type="date" value="{!contactVo.eDate}" class="custom_select" id="due-Date" />
+                                                                    <input type="date" value="{!membership.eDate}" class="custom_select" id="due-Date" />
                                                                     <span style='color:#999999; font-size:10px'>Please enter the date of birth of your youngest child, or if you are expecting, your estimated due date.
                                                                             This information is optional, but it will help us tailor the information we provide to you.</span>
                                                         </div>

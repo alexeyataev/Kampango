@@ -3,7 +3,7 @@ public without sharing class MembershipCrudHelper {
     public static gaid__Gift_Aid_Declaration__c gftAid {get;set;}
     public static cpm__Payment_Profile__c pymtPrfl{get;set;}
     public static npe03__Recurring_Donation__c recDon {get;set;}
-    public static MembershipBooleanCheckVo.MemberCrudHelper crudHelper{get;set;} 
+    public static MembershipCrudHelperVo crudHelper{get;set;} 
 
     public static list<cpm__Payment_Profile__c> paymentProfileRecord = new list<cpm__Payment_Profile__c>();
     public static list<gaid__Gift_Aid_Declaration__c> giftAidDeclarationRecord = new list<gaid__Gift_Aid_Declaration__c>();

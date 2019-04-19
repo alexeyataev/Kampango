@@ -17,18 +17,13 @@ private class MembershipBooleanCheckVoTest {
         
         System.assertEquals(membershipBooleanCheckVo.twomems, true);
         
-        MembershipBooleanCheckVo.MemberCrudHelper memberCrudHelper = new MembershipBooleanCheckVo.MemberCrudHelper();
-        
-        memberCrudHelper.accountName = 'Test';
-        memberCrudHelper.accountNumber ='123';
-        memberCrudHelper.acquistion = 'Verbal';
-        memberCrudHelper.isVolunteer = true;
-        memberCrudHelper.membershipSource = 'Test';
-        memberCrudHelper.pcont = null;
-        memberCrudHelper.scont = null;
-        memberCrudHelper.sortCode = '123';
-        
-        System.assertEquals(memberCrudHelper.sortCode, '123');
+       MembershipBooleanCheckVo.AccountDetails accountDetails = new MembershipBooleanCheckVo.AccountDetails();
+       accountDetails.redirectURL = '';
+       accountDetails.sessionProfile = '';
+       accountDetails.targetCustomer = '';
+       
+       System.assertEquals(accountDetails.sessionProfile, '');
+           
           
     }
 
