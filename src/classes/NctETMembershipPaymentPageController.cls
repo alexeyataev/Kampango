@@ -279,7 +279,7 @@ public without sharing class NctETMembershipPaymentPageController
        
     }
     
-    public PageReference sendPaymentLinkToParent(string paymentLink)
+    /*public PageReference sendPaymentLinkToParent(string paymentLink)
     {   
         /* Updated by Mahanth 20/12/2018
         *  The following code creates a payment link record
@@ -298,6 +298,6 @@ public without sharing class NctETMembershipPaymentPageController
         insert payLink;
         System.debug('Payment Link Record Created : '+'ID: '+payLink.Id+', /r/n'+payLink.Contact__c+', '+payLink.Payment_Key__c+', '+payLink.Payment_Link__c);
         return null;
-    }
+    }*/
 
 }
