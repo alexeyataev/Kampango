@@ -22,7 +22,7 @@
        <apex:param id="sortCode" name="sortCode" value="" assignTo="{!accountInformation.sortCode}"/>
        <apex:param id="accNum" name="accNum" value="" assignTo="{!accountInformation.accountNumber}"/>
        <apex:param id="gftAid" name="gftAid" value="" assignTo="{!booleanChecking.isGiftAid}"/>
-       <apex:param id="acquistionval" name="acquistionval" value="" assignTo="{!contactVo.acquistion}"/>
+       <apex:param id="acquistionval" name="acquistionval" value="" assignTo="{!membership.acquistion}"/>
     </apex:actionFunction>
     <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,isExist,error-message">
         <apex:param id="aname" name="chkbox" value="" assignTo="{!booleanChecking.twomems}"/>
