@@ -1,5 +1,5 @@
 @isTest
-	private class MembershipVoTest {
+private class MembershipVoTest {
         
 	@isTest static void membershipVoMethod(){
         account acct = new account();
@@ -32,60 +32,18 @@
         membershipInfo.membershipTypeMap = membershipTypes;
         membershipInfo.nearestBranchs = objects;
         membershipInfo.staffMember = 'Test';
-        membershipInfo.acquistion = 'Written';
-        membershipInfo.acquistionOptions = selectOptions;
+        membership.membershipDetails = membershipInfo;
         
         MembershipVo.AccountInfo accountInfo = new MembershipVo.AccountInfo();
         accountInfo.accountName = 'Nct child';
         accountInfo.accountNumber = '145263777';
         accountInfo.sortCode = 'Test';
         accountInfo.feeAmount = con.id;
-        accountInfo.recordType = 'Test';
         accountInfo.redirectURL = 'Test';
-        accountInfo.contactType = 'Test';
-        accountInfo.isGiftAid = 'Test';
         accountInfo.targetCustomer = 'Test';
         accountInfo.sessionProfile = '';
+		membership.accountInformation = accountInfo;
         
-        MembershipVo.BooleanCheck booleanChecking = new MembershipVo.BooleanCheck();
-        booleanChecking.isContactExisting = true;
-        booleanChecking.isMembershipExists = true;
-        booleanChecking.displayMbrNoMessage = true;
-        booleanChecking.displaySuccessMessage = true;
-        booleanChecking.isStaff = true;
-        booleanChecking.isVolunteer = true;
-        booleanChecking.genderOptions = selectOptions;
-        booleanChecking.salutationOptions = selectOptions;
-        booleanChecking.twomems = true;
-
-            
-        MembershipVo.SecondContactVo secondContact = new MembershipVo.SecondContactVo();
-            secondContact.secondContactEmail = 'Test';
-            secondContact.secondContactFirstName = 'Test';
-            secondContact.secondContactGenders = 'Test';
-            secondContact.secondContactLastName = 'Test';
-            secondContact.secondContactPhone = '09874657878';
-            secondContact.salutationSecondary = 'Test';
-            secondContact.eDate = 'today';
-            secondContact.streetValue1 = 'Test';
-            secondContact.streetValue2 = 'Test';
-
-            
-        MembershipVo.MemberCrudHelper memCrud = new MembershipVo.MemberCrudHelper();
-        memCrud.pcont = con;
-        memCrud.scont = scon;
-        memCrud.accountName = 'Santhosh';
-        memCrud.accountNumber = '145263777';
-        memCrud.sortCode = 'CD-1234';
-        memCrud.acquistion = 'Written';
-        memCrud.membershipSource = 'Enquiry by phone - main NCT'; 
-        memCrud.isVolunteer = true;
-        //membership.memberCrud = memCrud;
-        membership.BooleanChecking = booleanChecking;
-        membership.accountInformation = accountInfo;
-        membership.membershipDetails = membershipInfo; 
-        membership.secondContact = secondContact;
-        
-        system.assertEquals('Credit/Debit Card', membershipInfo.membershipInfo.Payment_Method__c);
+        system.assertEquals(accountInfo.targetCustomer, 'Test');
     }
 }

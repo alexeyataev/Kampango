@@ -36,7 +36,7 @@ private class MembershipCrudHelperTest {
          
         cpm__Payment_Profile__c paymntProfile = new cpm__Payment_Profile__c();
   
-        MembershipVo.MemberCrudHelper crudHelper = new MembershipVo.MemberCrudHelper();
+        MembershipBooleanCheckVo.MemberCrudHelper crudHelper = new MembershipBooleanCheckVo.MemberCrudHelper();
         crudHelper.pcont = con;
         crudHelper.scont = scon;
         crudHelper.accountName = 'Santhosh';
@@ -120,7 +120,7 @@ private class MembershipCrudHelperTest {
         test.setCreatedDate(recDonateRecord[0].id, system.date.today());
         list<String> accountDetails = new list<String>{'145263777','Santhosh','CD-1234','Digital','Enquiry by phone - main NCT'};
         
-        MembershipVo.MemberCrudHelper crudHelper = new MembershipVo.MemberCrudHelper();
+        MembershipBooleanCheckVo.MemberCrudHelper crudHelper = new MembershipBooleanCheckVo.MemberCrudHelper();
         crudHelper.pcont = con;
         crudHelper.scont = scon;
         crudHelper.accountName = 'Santhosh';
@@ -166,7 +166,7 @@ private class MembershipCrudHelperTest {
         con.AccountId = acct.Id;
         insert con;
           
-        MembershipVo.MemberCrudHelper crudHelper = new MembershipVo.MemberCrudHelper();
+        MembershipBooleanCheckVo.MemberCrudHelper crudHelper = new MembershipBooleanCheckVo.MemberCrudHelper();
         crudHelper.pcont = con;
         crudHelper.accountName = 'Santhosh';
         crudHelper.accountNumber = '145263777';

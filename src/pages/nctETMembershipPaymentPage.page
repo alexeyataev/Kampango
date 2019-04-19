@@ -2,13 +2,13 @@
     <apex:pageMessages id="error-message"/>
    <apex:form id="membrShpForm">
    <apex:actionFunction name="SelValFunction" action="{!contactInfo}" oncomplete="onComplete();" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
-        <apex:param id="selValId" name="seltdName" value="" assignTo="{!accountInformation.feeAmount}"/>
+       <apex:param id="selValId" name="seltdName" value="" assignTo="{!accountInformation.feeAmount}"/>
        <apex:param id="lifeMembershipVal" name="lifeMembershipName" value="" />
            </apex:actionFunction>
     <apex:actionFunction name="onComplete" action="{!onCompleteContactInfo}" reRender="onComplete">
    </apex:actionFunction>
     <apex:actionFunction name="giftAidCreation" action="{!giftAidCreation}" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
-        <apex:param id="giftVal" name="giftName" value="" assignTo="{!accountInformation.isGiftAid}"/>
+        <apex:param id="giftVal" name="giftName" value="" assignTo="{!booleanChecking.isGiftAid}"/>
    </apex:actionFunction>
    <apex:actionFunction name="membershipDupeChecker" action="{!membershipDupeChecker}" reRender="isMembershipExists">
        <apex:param id="emailDupeVal" name="emailDupeVal" value=""/>
@@ -23,7 +23,7 @@
       <apex:param id="accname" name="accname" value="" assignTo="{!accountInformation.accountName}"/>
        <apex:param id="sortCode" name="sortCode" value="" assignTo="{!accountInformation.sortCode}"/>
        <apex:param id="accNum" name="accNum" value="" assignTo="{!accountInformation.accountNumber}"/>
-       <apex:param id="gftAid" name="gftAid" value="" assignTo="{!accountInformation.isGiftAid}"/>
+       <apex:param id="gftAid" name="gftAid" value="" assignTo="{!booleanChecking.isGiftAid}"/>
     </apex:actionFunction>
     <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,membershipNumber,membershipText,smsOpt,postOpt,emailOpt,doNotCallOpt,isMembershipExists,error-message">
         <apex:param id="aname" name="chkbox" value="" assignTo="{!booleanChecking.twomems}"/>
@@ -36,12 +36,12 @@
         <apex:param id="secondContactEmailVal" name="secondContactEmailVal" value="" assignTo="{!secondContact.secondContactEmail}"/>
         <apex:param id="secondContactPhoneVal" name="secondContactPhoneVal" value="" assignTo="{!secondContact.secondContactPhone}"/>
         <apex:param id="postcodeval" name="postcodeval" value="" assignTo="{!Contact.MailingPostalCode}"/>
-        <apex:param id="duedate" name="dueDate" value="" assignTo="{!secondContact.eDate}"/>
+        <apex:param id="duedate" name="dueDate" value="" assignTo="{!contactVo.eDate}"/>
         <apex:param id="selBranchVal" name="selBranchVal" value="" assignTo="{!Contact.Branch__c}"/>
         <apex:param id="genderVal" name="genderVal" value="" />
         <apex:param id="streetVal" name="streetVal" value="" assignTo="{!Contact.MailingStreet}"/>
-        <!--<apex:param id="streetVal1" name="streetVal1" value="" assignTo="{!addressInfo.streetValue1}"/>
-        <apex:param id="streetVal2" name="streetVal2" value="" assignTo="{!addressInfo.streetValue2}"/>-->
+        <apex:param id="streetVal1" name="streetVal1" value="" assignTo="{!contactVo.streetValue1}"/>
+        <apex:param id="streetVal2" name="streetVal2" value="" assignTo="{!contactVo.streetValue2}"/>
         <apex:param id="townVal" name="twonVal" value="" assignTo="{!Contact.MailingState}"/>
         <apex:param id="countyVal" name="countyVal" value="" assignTo="{!Contact.MailingCity}"/>
     </apex:actionFunction>
@@ -411,7 +411,7 @@
                                                         <span style="text-color:white;" class="form-fields first-person-title membership-fields gender-title-select mrtitle">
                                                             
                                                        <apex:selectList id="salutation" value="{!Contact.salutation}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!booleanChecking.salutationOptions}" />
+                                                                <apex:selectOptions value="{!contactVo.salutationOptions}" />
                                                           	</apex:selectList>
                                                         </span>
 
@@ -433,7 +433,7 @@
                                                             Gender</label></div>
                                                 	<span class="dynmaic-radio-fields first-person-gender">
                                                 	<apex:selectRadio id="gender" value="{!contact.Gender__c}">
-                                                                <apex:selectOptions value="{!booleanChecking.genderOptions}" />
+                                                                <apex:selectOptions value="{!contactVo.genderOptions}" />
                                                      </apex:selectRadio>
                                                 	</span>
 
@@ -478,7 +478,7 @@
                                                             <div><label><sup class="light-orange-color">*</sup>Title</label></div>
                                                             <span style="text-color:white;" class="form-fields membership-fields gender-title-select mrtitle">
                                                             <apex:selectList id="ssalutation" value="{!secondContact.salutationSecondary}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!booleanChecking.salutationOptions}" />
+                                                                <apex:selectOptions value="{!contactVo.salutationOptions}" />
 
                                                           	</apex:selectList></span>
                                                             <!--<select class="form-fields membership-fields">
@@ -505,7 +505,7 @@
                                                                 Gender</label></div>
                                                         <span class="dynmaic-radio-fields">
                                                         <apex:selectRadio id="secondContactGender" value="{!secondContact.secondContactGenders}">
-                                                                    <apex:selectOptions value="{!booleanChecking.genderOptions}" />
+                                                                    <apex:selectOptions value="{!contactVo.genderOptions}" />
                                                          </apex:selectRadio>
                                                         </span>
 
@@ -591,7 +591,7 @@
                                                         <div class="col-5"><label class="text-center font-bold">Due/birth date:</label></div>
                                                         <div class="col-7">
                                                                     <!--<apex:input type="date" value="{!eDate}"  styleClass="custom_select" id="due-Date" required="true"/>  -->
-                                                                    <input type="date" value="{!secondContact.eDate}" class="custom_select" id="due-Date" />
+                                                                    <input type="date" value="{!contactVo.eDate}" class="custom_select" id="due-Date" />
                                                                     <span style='color:#999999; font-size:10px'>Please enter the date of birth of your youngest child, or if you are expecting, your estimated due date.
                                                                             This information is optional, but it will help us tailor the information we provide to you.</span>
                                                         </div>
@@ -976,8 +976,8 @@
 													<div class="col-12">
                                                        <label class="font-bold">Gift Aid Acquistion Method: </label>
 <span class="gift-aid-select-box form-fields membership-fields gender-title-select acquition">
-                                                           <apex:selectList id="acquistion" value="{!membershipDetails.acquistion}" multiselect="false" size="1">
-                                                           <apex:selectOptions value="{!membershipDetails.acquistionOptions}" />
+                                                           <apex:selectList id="acquistion" value="{!contactVo.acquistion}" multiselect="false" size="1">
+                                                           <apex:selectOptions value="{!contactVo.acquistionOptions}" />
                                                        </apex:selectList></span>
                                                       <!-- <select class="gift-aid-select-box">
                                                            <option>Verbal</option>

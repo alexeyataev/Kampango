@@ -1,10 +1,11 @@
 public without sharing class NctETMembershipPaymentPageController 
 {
     public contact cont;
-    public MembershipVo.AccountInfo accountInformation{get; set;}
-    public MembershipVo.BooleanCheck booleanChecking{get;set;}
-    public MembershipVo.MembershipInformation membershipDetails{get;set;}
-    public MembershipVo.SecondContactVo secondContact{get;set;}
+    public  MembershipVo.AccountInfo accountInformation{get; set;}
+    public  MembershipBooleanCheckVo booleanChecking{get;set;}
+    public  MembershipVo.MembershipInformation membershipDetails{get;set;}
+    public  MembershipContactVo.SecondContactVo secondContact{get;set;}
+    public  MembershipContactVo.ContactVo contactVo{get;set;}
     @TestVisible
     private npe03__Recurring_Donation__c recDon;
     @TestVisible
@@ -12,7 +13,7 @@ public without sharing class NctETMembershipPaymentPageController
     private static Boolean inspect = false;
     public static Boolean onComplete {get; set;}     
     private List<Contact> contactList;    
-    
+    private Contact con;
     @TestVisible
     private contact primaryContact;
     @TestVisible
@@ -27,15 +28,16 @@ public without sharing class NctETMembershipPaymentPageController
         gaid__Gift_Aid_Declaration__c gifAid = new gaid__Gift_Aid_Declaration__c();
         npe03__Recurring_Donation__c recDonate = new npe03__Recurring_Donation__c();
         
-        system.debug('tt' + cont);
+        system.debug('contact' + cont);
         accountInformation = new MembershipVo.AccountInfo();
-        booleanChecking = new MembershipVo.BooleanCheck();
+        booleanChecking = new MembershipBooleanCheckVo();
         membershipDetails  = new MembershipVo.MembershipInformation();        
-        secondContact = new MembershipVo.SecondContactVo();
-            
-        booleanChecking.salutationOptions = SObjectUtilities.getPicklistValues(con, 'salutation');
-        booleanChecking.genderOptions = SObjectUtilities.getPicklistValues(con, 'Gender__c');
-        membershipDetails.acquistionOptions = SObjectUtilities.getPicklistValues(gifAid, 'gaid__Acquisition_Method__c');
+        secondContact = new MembershipContactVo.SecondContactVo();
+        contactVo = new MembershipContactVo.ContactVo();
+        
+        contactVo.salutationOptions = SObjectUtilities.getPicklistValues(con, 'salutation');
+        contactVo.genderOptions = SObjectUtilities.getPicklistValues(con, 'Gender__c');
+        contactVo.acquistionOptions = SObjectUtilities.getPicklistValues(gifAid, 'gaid__Acquisition_Method__c');
         membershipDetails.membershipSourceOptions = SObjectUtilities.getPicklistValues(recDonate, 'Source__c');      	        
   
         
@@ -49,6 +51,7 @@ public without sharing class NctETMembershipPaymentPageController
         accountInformation.accountName='';
         accountInformation.sortCode='';
     }
+    @TestVisible
     private void displayContactDataForExistingContact(){
          	if(!Schema.sObjectType.Contact.fields.Data_Source__c.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
@@ -61,7 +64,7 @@ public without sharing class NctETMembershipPaymentPageController
             System.debug('isCompanionContactExisting '+booleanChecking.isCompanionContactExisting );
 
             if(primaryContact != null){  
-                secondContact.eDate = String.valueof(primaryContact.Expected_Due_Date__c);
+                contactVo.eDate = String.valueof(primaryContact.Expected_Due_Date__c);
                 membershipDetails.nearestBranchs = MembershipConditionHelper.assignBranchValues(primaryContact.Branch__c);
             }
             List<Contact> secondaryContactList = [SELECT Id,Salutation,DoNotCall, Branch__c,SMS_Opt_In__c, Post_Opt_In__c, HasOptedOutOfEmail,Gender__c, LastName, FirstName, Email, Phone,MailingPostalCode,Contact_Prefrence__c,Prefered_First_Name__c,AccountId FROM Contact where Parent_Contact__c =:primaryContact	.Id LIMIT 1];
@@ -77,8 +80,8 @@ public without sharing class NctETMembershipPaymentPageController
             }
     }
    public PageReference  receiveInput(){                
-       if(MembershipConditionCheckUtilities.dateFormatCheck(secondContact.eDate)){
-        expDate = Date.valueOf(secondContact.eDate);
+       if(MembershipConditionCheckUtilities.dateFormatCheck(contactVo.eDate)){
+        expDate = Date.valueOf(contactVo.eDate);
         }
         Boolean isPractitioner;
         booleanChecking.isVolunteer = ContactUtilities.isVolunteerExisting(cont.Id);
@@ -95,10 +98,10 @@ public without sharing class NctETMembershipPaymentPageController
        
         if(MembershipConditionCheckUtilities.isNotExistingContactCheck(booleanChecking.isContactExisting,primaryContact)){
 
-                accountInformation.recordType = MembershipConstants.PARENT;
-                    primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(accountInformation.recordType).getRecordTypeId(),FirstName=cont.firstname,
+                contactVo.recordType = MembershipConstants.PARENT;
+                    primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(contactVo.recordType).getRecordTypeId(),FirstName=cont.firstname,
                                         LastName=cont.lastname,Email=cont.email,Gender__c=cont.Gender__c,Phone=cont.phone,Salutation=cont.salutation,MailingPostalCode=cont.MailingPostalCode,
-                                        Expected_Due_Date__c =expDate,MailingStreet=cont.MailingStreet+secondContact.streetValue1+secondContact.streetValue2,Branch__c=cont.Branch__c,
+                                        Expected_Due_Date__c =expDate,MailingStreet=cont.MailingStreet+contactVo.streetValue1+contactVo.streetValue2,Branch__c=cont.Branch__c,
                                         MailingState=cont.MailingState,MailingCity=cont.MailingCity,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=cont.SMS_Opt_In__c,Post_Opt_In__c=cont.Post_Opt_In__c,
                                         HasOptedOutOfEmail=cont.HasOptedOutOfEmail,DoNotCall=cont.DoNotCall);
                     Database.SaveResult sr = Database.insert(primaryContact, false);
@@ -113,7 +116,7 @@ public without sharing class NctETMembershipPaymentPageController
             
             primaryContact.Branch__c = Cont.Branch__c;
             primaryContact.MailingPostalCode = Cont.MailingPostalCode;
-            primaryContact.MailingStreet = Cont.MailingStreet+secondContact.streetValue1+secondContact.streetValue2;
+            primaryContact.MailingStreet = Cont.MailingStreet+contactVo.streetValue1+contactVo.streetValue2;
             primaryContact.MailingState = Cont.MailingState;
             primaryContact.MailingCity = Cont.MailingCity;
     
@@ -121,27 +124,27 @@ public without sharing class NctETMembershipPaymentPageController
             secondaryContactCreation();
             
         }    
-       membershipDetails.membershipTypeMap = MembershipUtilties.getMembershipTypeMap(accountInformation.contactType,accountInformation.targetCustomer,false);    
+       membershipDetails.membershipTypeMap = MembershipUtilties.getMembershipTypeMap(contactVo.contactType,accountInformation.targetCustomer,false);    
            return null;
     }
     @TestVisible
     private void secondaryContactCreation(){
-        Contact con;
+        
         if(MembershipConditionCheckUtilities.secondContactRequiredCheck(booleanChecking.twomems,primaryContact.id,secondContact.secondContactFirstName))
         {            
-            accountInformation.recordType = MembershipConstants.COMPANION;
+            contactVo.recordType = MembershipConstants.COMPANION;
             con =[Select AccountId from Contact where id = :primaryContact.id];
             
-            secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(accountInformation.recordType).getRecordTypeId(),FirstName=secondContact.secondContactFirstName,
+            secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(contactVo.recordType).getRecordTypeId(),FirstName=secondContact.secondContactFirstName,
                                                          LastName=secondContact.secondContactLastName,Email=secondContact.secondContactEmail,Gender__c=secondContact.secondContactGenders,Phone=secondContact.secondContactPhone,Salutation=secondContact.salutationSecondary,MailingPostalCode=cont.MailingPostalCode,
-                                                         Expected_Due_Date__c =expDate,MailingStreet=cont.MailingStreet+secondContact.streetValue1+secondContact.streetValue2,Branch__c=cont.Branch__c,
+                                                         Expected_Due_Date__c =expDate,MailingStreet=cont.MailingStreet+contactVo.streetValue1+contactVo.streetValue2,Branch__c=cont.Branch__c,
                                                          MailingState=cont.MailingState,MailingCity=cont.MailingCity,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=cont.SMS_Opt_In__c,Post_Opt_In__c=cont.Post_Opt_In__c,
                                                          HasOptedOutOfEmail=cont.HasOptedOutOfEmail,DoNotCall=cont.DoNotCall,Parent_Contact__c = primaryContact.id,AccountId = con.AccountId);
             Database.SaveResult srSec = Database.insert(secondaryContact, false);
             MembershipConditionHelper.saveResultCheck(srSec);
-            accountInformation.contactType = MembershipConstants.JOINT;
+            contactVo.contactType = MembershipConstants.JOINT;
         }                              
-		accountInformation.contactType = MembershipConditionHelper.companionCheck(booleanChecking.twomems); 
+		contactVo.contactType = MembershipConditionHelper.companionCheck(booleanChecking.twomems); 
     }
     public pageReference contactInfo(){
         if (!Schema.sObjectType.Membership_Type__mdt.fields.MasterLabel.isAccessible()){
@@ -230,10 +233,10 @@ public without sharing class NctETMembershipPaymentPageController
             paymentHubCallout();                
         }
            
-        MembershipVo.MemberCrudHelper crudHelper = new MembershipVo.MemberCrudHelper();
+        MembershipBooleanCheckVo.MemberCrudHelper crudHelper = new MembershipBooleanCheckVo.MemberCrudHelper();
         crudHelper.accountName = accountInformation.accountName;
         crudHelper.accountNumber = accountInformation.accountNumber;
-        crudHelper.acquistion = membershipDetails.acquistion;
+        crudHelper.acquistion = contactVo.acquistion;
         crudHelper.membershipSource = membershipDetails.membershipSource;
         crudHelper.sortCode = accountInformation.sortCode;
         crudHelper.pcont = primaryContact;
@@ -247,11 +250,12 @@ public without sharing class NctETMembershipPaymentPageController
         recDon = MembershipCrudHelper.recDonation(membershipDetails.membershipInfo,pymtPrfl);
         membershipNumberDisplay();
         gaid__Gift_Aid_Declaration__c gftAid = new gaid__Gift_Aid_Declaration__c();
-        if(accountInformation.isGiftAid == MembershipConstants.TRUE_VALUE){
+        if(booleanChecking.isGiftAid == MembershipConstants.TRUE_VALUE){
         	gftAid = MembershipCrudHelper.giftAid(membershipDetails.membershipInfo);
         }
         
     }    
+    
     public void membershipNumberDisplay(){
        booleanChecking.displayMbrNoMessage = true;
        membershipDetails.membershipNumber = ThankYouHelper.membershipNumberCreation(primaryContact,recDon);

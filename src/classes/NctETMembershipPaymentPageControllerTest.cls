@@ -45,16 +45,19 @@ private class NctETMembershipPaymentPageControllerTest {
             Id contId = pageRef.getParameters().put('Id', String.valueOf(con.Id));
             Test.setCurrentPage(pageRef); 
             
-        MembershipVo.SecondContactVo secondContact = new MembershipVo.SecondContactVo();
-        secondContact.streetValue1 = '';
-        secondContact.streetValue2 = '';
+        MembershipContactVo.SecondContactVo secondContact = new MembershipContactVo.SecondContactVo();
         secondContact.secondContactFirstName = 'Test Second Name';
         secondContact.secondContactLastName = 'Test Second Last Name';
         secondContact.secondContactEmail = 'test.secondlast@test.com';
         secondContact.secondContactPhone = '12345678901';
         secondContact.salutationSecondary = 'Mr.';
         secondContact.secondContactGenders = 'Male';
-        secondContact.eDate = '2050-03-31';
+        
+        MembershipContactVo.ContactVo contactVo = new MembershipContactVo.ContactVo();
+        contactVo.eDate = '2050-03-31';  
+        contactVo.streetValue1 = '';
+        contactVo.streetValue2 = '';
+        contactVo.acquistion ='';
         
         MembershipVo.AccountInfo accountInfo = new MembershipVo.AccountInfo();
         accountInfo.accountNumber = '12345';
@@ -62,14 +65,14 @@ private class NctETMembershipPaymentPageControllerTest {
         accountInfo.sortCode = '';
         accountInfo.sessionProfile = 'guest';
         accountInfo.feeAmount = membershipDetails.Id;
-        accountInfo.isGiftAid = 'true';
         
-        MembershipVo.MembershipInformation membershipInfo = new MembershipVo.MembershipInformation();
-        membershipInfo.acquistion ='';
+        
+        MembershipVo.MembershipInformation membershipInfo = new MembershipVo.MembershipInformation();        
         membershipInfo.membershipSource =''; 
                    
-        MembershipVo.BooleanCheck booleanChecking = new MembershipVo.BooleanCheck();    
+        MembershipBooleanCheckVo booleanChecking = new MembershipBooleanCheckVo();    
         booleanChecking.isContactExisting = true;
+        booleanChecking.isGiftAid = 'true';
                   
             PaymentHubApiSettings__c paymentHubApiSettings = new PaymentHubApiSettings__c();
             paymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
@@ -122,19 +125,23 @@ private class NctETMembershipPaymentPageControllerTest {
             acc.Name ='Test Branch';
             insert acc;
             
-              PageReference pageRef = Page.nctETMembershipPaymentPage; 
+            PageReference pageRef = Page.nctETMembershipPaymentPage; 
             Test.setCurrentPage(pageRef); 
-            
-        MembershipVo.SecondContactVo secondContact = new MembershipVo.SecondContactVo();
-        secondContact.streetValue1 = '';
-        secondContact.streetValue2 = '';
+         
+        MembershipContactVo.SecondContactVo secondContact = new MembershipContactVo.SecondContactVo();
         secondContact.secondContactFirstName = 'Test Second Name';
         secondContact.secondContactLastName = 'Test Second Last Name';
         secondContact.secondContactEmail = 'test.secondlast@test.com';
         secondContact.secondContactPhone = '12345678901';
         secondContact.salutationSecondary = 'Mr.';
         secondContact.secondContactGenders = 'Male';
-        secondContact.eDate = '2050-03-31';
+            
+        MembershipContactVo.ContactVo contactVo = new MembershipContactVo.ContactVo();
+        contactVo.eDate = '2050-03-31';  
+        contactVo.streetValue1 = '';
+        contactVo.streetValue2 = '';
+        contactVo.acquistion ='';
+            
         
         MembershipVo.AccountInfo accountInfo = new MembershipVo.AccountInfo();
         accountInfo.accountNumber = '12345';
@@ -142,19 +149,18 @@ private class NctETMembershipPaymentPageControllerTest {
         accountInfo.sortCode = '';
         accountInfo.sessionProfile = 'guest';
         accountInfo.feeAmount = membershipDetails.Id;
-        accountInfo.isGiftAid = 'true';
         
         MembershipVo.MembershipInformation membershipInfo = new MembershipVo.MembershipInformation();
-        membershipInfo.acquistion ='';
         membershipInfo.membershipSource ='';
          
-        MembershipVo.BooleanCheck booleanchecking = new MembershipVo.BooleanCheck();        
+        MembershipBooleanCheckVo booleanchecking = new MembershipBooleanCheckVo();        
         booleanchecking.isContactExisting = false;
         booleanchecking.twomems = false;
         booleanChecking.displayMbrNoMessage = true;
         booleanChecking.displaySuccessMessage = false;
         booleanChecking.isContactExisting = false;
         booleanChecking.isMembershipExists = true;
+        booleanChecking.isGiftAid = 'true';
 
             Contact con = new Contact();
                        
