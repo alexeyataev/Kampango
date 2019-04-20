@@ -56,24 +56,19 @@ private class NctETMembershipPaymentPageControllerTest {
         MembershipContactVo contactVo = new MembershipContactVo();          
         contactVo.streetValue1 = '';
         contactVo.streetValue2 = '';
-        
-        
-        MembershipCrudHelperVo.MembershipUtilitiesVo  membership = new MembershipCrudHelperVo.MembershipUtilitiesVo();
-        membership.acquistion ='';
-        membership.eDate = '2050-03-31';
-        membership.feeAmount = membershipDetails.Id;
-            
-        MembershipVo.AccountInfo accountInfo = new MembershipVo.AccountInfo();
-        accountInfo.accountNumber = '12345';
-        accountInfo.accountName ='Test';
-        accountInfo.sortCode = '';
- 
+                    
+        MembershipVo membershipVo = new MembershipVo();
+        membershipVo.accountNumber = '12345';
+        membershipVo.accountName ='Test';
+        membershipVo.sortCode = '';
+        membershipVo.acquistion ='';
+        membershipVo.eDate = '2050-03-31';
+        membershipVo.feeAmount = membershipDetails.Id;
+        membershipVo.membershipSource ='';
         
         MembershipBooleanCheckVo.AccountDetails accountDetails = new MembershipBooleanCheckVo.AccountDetails();
         accountDetails.sessionProfile = 'Guest';
-            
-        MembershipVo.MembershipInformation membershipInfo = new MembershipVo.MembershipInformation();        
-        membershipInfo.membershipSource =''; 
+      
                    
         MembershipBooleanCheckVo booleanChecking = new MembershipBooleanCheckVo();    
         booleanChecking.isContactExisting = true;
@@ -87,14 +82,12 @@ private class NctETMembershipPaymentPageControllerTest {
             Test.startTest();
             Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
             ApexPages.StandardController sc = new ApexPages.StandardController(con);
-            nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController(sc);
-            controller.accountInformation = accountInfo;
-            controller.membershipDetails = membershipInfo;
+            nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController(sc); 
             controller.secondContact = secondContact;
             controller.primaryContact = primaryContact;
             controller.booleanChecking = booleanChecking;
             controller.contactVo = contactVo;
-            controller.membership = membership;
+            controller.membershipVo = membershipVo;
             controller.accountDetails = accountDetails;
             
             ApexPages.currentPage().getParameters().put('emailsVal','testemail@test.com');
@@ -112,7 +105,7 @@ private class NctETMembershipPaymentPageControllerTest {
             
             Test.stopTest();
              system.assertEquals('Guest', accountDetails.sessionProfile);
-            system.assertEquals('Test', accountInfo.accountName);
+            system.assertEquals('Test', membershipVo.accountName);
 
         }
     }
@@ -151,21 +144,17 @@ private class NctETMembershipPaymentPageControllerTest {
         contactVo.streetValue2 = '';
         
         MembershipBooleanCheckVo.AccountDetails accountDetails = new MembershipBooleanCheckVo.AccountDetails();
-        accountDetails.sessionProfile = 'guest';
-        
-        MembershipCrudHelperVo.MembershipUtilitiesVo  membership = new MembershipCrudHelperVo.MembershipUtilitiesVo();
-        membership.acquistion ='';
-        membership.eDate = '2050-03-31';
-        membership.feeAmount = membershipDetails.Id;
+        accountDetails.sessionProfile = 'guest'; 
             
-        MembershipVo.AccountInfo accountInfo = new MembershipVo.AccountInfo();
-        accountInfo.accountNumber = '12345';
-        accountInfo.accountName ='Test';
-        accountInfo.sortCode = '';
-                    
-            
-        MembershipVo.MembershipInformation membershipInfo = new MembershipVo.MembershipInformation();
-        membershipInfo.membershipSource ='';
+        MembershipVo membershipVo = new MembershipVo();
+        membershipVo.accountNumber = '12345';
+        membershipVo.accountName ='Test';
+        membershipVo.sortCode = '';
+        membershipVo.acquistion ='';
+        membershipVo.eDate = '2050-03-31';
+        membershipVo.feeAmount = membershipDetails.Id;
+        membershipVo.membershipSource ='';            
+              
          
         MembershipBooleanCheckVo booleanchecking = new MembershipBooleanCheckVo();        
         booleanchecking.isContactExisting = false;
@@ -187,13 +176,11 @@ private class NctETMembershipPaymentPageControllerTest {
             Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
             ApexPages.StandardController sc = new ApexPages.StandardController(con);
             nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController(sc);
-            controller.accountInformation = accountInfo;
-            controller.membershipDetails = membershipInfo;
             controller.secondContact = secondContact;
             controller.booleanChecking = booleanChecking;
             controller.contactVo = contactVo;
             controller.accountDetails = accountDetails;
-            controller.membership = membership;
+            controller.membershipVo = membershipVo;
             controller.primaryContact = null;
 
             ApexPages.currentPage().getParameters().put('emailsVal','testemail@test.com');
@@ -210,7 +197,7 @@ private class NctETMembershipPaymentPageControllerTest {
             controller.paymentSave();
             Test.stopTest();
             system.assertEquals('Standard', accountDetails.sessionProfile);
-            system.assertEquals('Test', accountInfo.accountName);
+            system.assertEquals('Test', membershipVo.accountName);
         }
     }
     

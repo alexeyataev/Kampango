@@ -24,21 +24,19 @@ private class MembershipVoTest {
         Map<String, List<Membership_Type__mdt>> membershipTypes = new Map<String, List<Membership_Type__mdt>>();
         
         MembershipVo  membership = new MembershipVo();
-        MembershipVo.MembershipInformation membershipInfo = new MembershipVo.MembershipInformation();
-        membershipInfo.membershipInfo = membershipDetails;
-        membershipInfo.membershipNumber = 'Test';
-        membershipInfo.membershipSource = 'Test';
-        membershipInfo.membershipSourceOptions = selectOptions;
-        membershipInfo.membershipTypeMap = membershipTypes;
-        membershipInfo.nearestBranchs = objects;
-        membership.membershipDetails = membershipInfo;
-        
-        MembershipVo.AccountInfo accountInfo = new MembershipVo.AccountInfo();
-        accountInfo.accountName = 'Nct child';
-        accountInfo.accountNumber = '145263777';
-        accountInfo.sortCode = 'Test';
-		membership.accountInformation = accountInfo;
-        
-        system.assertEquals(accountInfo.sortCode, 'Test');
+        membership.membershipInfo = membershipDetails;
+        membership.membershipNumber = 'Test';
+        membership.membershipSource = 'Test';
+        membership.membershipSourceOptions = selectOptions;
+        membership.membershipTypeMap = membershipTypes;
+        membership.nearestBranchs = objects;      
+        membership.accountName = 'Nct child';
+        membership.accountNumber = '145263777';
+        membership.sortCode = 'Test';
+        membership.acquistion = 'Verbal';
+        membership.eDate = '12-12-2012';
+        membership.feeAmount = null;
+        membership.recordType = 'Parent';       
+        system.assertEquals(membership.sortCode, 'Test');
     }
 }

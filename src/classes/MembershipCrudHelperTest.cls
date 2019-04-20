@@ -9,7 +9,6 @@ private class MembershipCrudHelperTest {
         LocaleSidKey='en_US', ProfileId = p.Id,
         TimeZoneSidKey='America/Los_Angeles',
          UserName='standarduser@testorg.com.test');
-       
             Membership_Type__mdt  membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                 No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                 Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
@@ -33,30 +32,35 @@ private class MembershipCrudHelperTest {
         con.Prefered_First_Name__c = 'NCT';
         con.AccountId = acct.Id;
         insert con;
-         
+        
+        PageReference pageRef = Page.nctETMembershipPaymentPage; 
+        Id contId = pageRef.getParameters().put('Id', String.valueOf(con.Id));
+        Test.setCurrentPage(pageRef);
+        
+        ApexPages.StandardController sc = new ApexPages.StandardController(con);
+        nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController(sc);
+        controller.membershipVo.accountName = 'Santhosh';
+        controller.membershipVo.accountNumber = '145263777';
+        controller.membershipVo.sortCode = 'CD-1234';
+        controller.membershipVo.acquistion = 'Written';
+        controller.membershipVo.membershipSource = 'Enquiry by phone - main NCT'; 
+        controller.booleanChecking.isVolunteer = true;
+        
         cpm__Payment_Profile__c paymntProfile = new cpm__Payment_Profile__c();
   
-        MembershipCrudHelperVo crudHelper = new MembershipCrudHelperVo();
-        crudHelper.pcont = con;
-        crudHelper.scont = scon;
-        crudHelper.accountName = 'Santhosh';
-        crudHelper.accountNumber = '145263777';
-        crudHelper.sortCode = 'CD-1234';
-        crudHelper.acquistion = 'Written';
-        crudHelper.membershipSource = 'Enquiry by phone - main NCT'; 
-        crudHelper.isVolunteer = true;
-            
-            
-        MembershipCrudHelper.crudHelper = crudHelper;
-        paymntProfl = MembershipCrudHelper.paymentProfile();
+        MembershipCrudHelper crudHelper = new MembershipCrudHelper(controller);
+        crudHelper.primaryContact = con;
+        crudHelper.secondaryContact = scon;
+
+        paymntProfl = crudHelper.paymentProfile();
         system.assertEquals(accountDetails[2],paymntProfl.paybacs__Sort_Code__c);      
-        gftAid = MembershipCrudHelper.giftAid(membershipDetails);
+        gftAid = crudHelper.giftAid(membershipDetails);
         system.assertEquals(true,gftAid.gaid__Active__c);
         id id1= paymntProfl.id;
         list<cpm__Payment_Profile__c> profid =[SELECT id from cpm__Payment_Profile__c WHERE ID=:id1 limit 1];     
         if(profid.size()>0){
             recDonate = new npe03__Recurring_Donation__c();
-            recDonate = MembershipCrudHelper.recDonation(membershipDetails,paymntProfile);
+            recDonate = crudHelper.recDonation(membershipDetails,paymntProfile);
         }    
         system.assertEquals('Pending', recDonate.Membership_Status__c);
     }  
@@ -81,8 +85,12 @@ private class MembershipCrudHelperTest {
         con.Email = 'nct@gmail.com';
         con.Prefered_First_Name__c = 'NCT';
         con.AccountId = acct.Id;
-        
         insert con;
+        
+        PageReference pageRef = Page.nctETMembershipPaymentPage; 
+        Id contId = pageRef.getParameters().put('Id', String.valueOf(con.Id));
+        Test.setCurrentPage(pageRef);
+                
         cpm__Payment_Profile__c paymentProfile = new cpm__Payment_Profile__c();       
         cpm__Payment_Profile__c paymntProfile = new cpm__Payment_Profile__c();
         paymntProfile.cpm__Contact__c = con.id;
@@ -120,26 +128,29 @@ private class MembershipCrudHelperTest {
         test.setCreatedDate(recDonateRecord[0].id, system.date.today());
         list<String> accountDetails = new list<String>{'145263777','Santhosh','CD-1234','Digital','Enquiry by phone - main NCT'};
         
-        MembershipCrudHelperVo crudHelper = new MembershipCrudHelperVo();
-        crudHelper.pcont = con;
-        crudHelper.scont = scon;
-        crudHelper.accountName = 'Santhosh';
-        crudHelper.accountNumber = '145263777';
-        crudHelper.sortCode = 'CD-1234';
-        crudHelper.acquistion = 'Written';
-        crudHelper.membershipSource = 'Enquiry by phone - main NCT';
-        crudHelper.isVolunteer = true;
-                
-        MembershipCrudHelper.crudHelper = crudHelper;
-        MembershipCrudHelper.paymentProfileRecord = paymntProflRecord;        
-        paymntProflRecord[0] = MembershipCrudHelper.paymentProfile();
-        system.assertEquals(1,MembershipCrudHelper.paymentProfileRecord.size());             
-        MembershipCrudHelper.giftAidDeclarationRecord  = giftAidDeclareRecord;
-        giftAidDeclareRecord[0] = MembershipCrudHelper.giftAid(membershipDetails);  
-        system.assertEquals(1,MembershipCrudHelper.giftAidDeclarationRecord.size());
-       MembershipCrudHelper.recDonationRecord = recDonateRecord;        
-        recDonateRecord[0] = MembershipCrudHelper.recDonation(membershipDetails,paymentProfile);
-        system.assertEquals(1,MembershipCrudHelper.recDonationRecord.size());
+        ApexPages.StandardController sc = new ApexPages.StandardController(con);
+        nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController(sc);
+        controller.membershipVo.accountName = 'Santhosh';
+        controller.membershipVo.accountNumber = '145263777';
+        controller.membershipVo.sortCode = 'CD-1234';
+        controller.membershipVo.acquistion = 'Written';
+        controller.membershipVo.membershipSource = 'Enquiry by phone - main NCT'; 
+        controller.booleanChecking.isVolunteer = true;
+        
+        MembershipCrudHelper crudHelper = new MembershipCrudHelper(controller);
+        crudHelper.primaryContact = con;
+        crudHelper.secondaryContact = scon;
+        
+
+        crudHelper.paymentProfileRecord = paymntProflRecord;        
+        paymntProflRecord[0] = crudHelper.paymentProfile();
+        system.assertEquals(1,crudHelper.paymentProfileRecord.size());             
+        crudHelper.giftAidDeclarationRecord  = giftAidDeclareRecord;
+        giftAidDeclareRecord[0] =crudHelper.giftAid(membershipDetails);  
+        system.assertEquals(1,crudHelper.giftAidDeclarationRecord.size());
+        crudHelper.recDonationRecord = recDonateRecord;        
+        recDonateRecord[0] = crudHelper.recDonation(membershipDetails,paymentProfile);
+        system.assertEquals(1,crudHelper.recDonationRecord.size());
     }
 
     @isTest
@@ -150,35 +161,47 @@ private class MembershipCrudHelperTest {
                                                 GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt limit 1];
     
         gaid__Gift_Aid_Declaration__c gftAid = new gaid__Gift_Aid_Declaration__c();
-        
-        list<String> accountDetails = new list<String>{'145263777','Santhosh','CD-1234','','Enquiry by phone - main NCT'};
-
-        
+      
         account acct = new account();
         acct.name = 'account details';
         insert acct;
         
-        contact con = new contact();
-        con.FirstName = 'NCT Child';
-        con.LastName = 'Trust';
-        con.Email = 'nct@gmail.com';
-        con.Prefered_First_Name__c = 'NCT';
-        con.AccountId = acct.Id;
-        insert con;
-          
-        MembershipCrudHelperVo crudHelper = new MembershipCrudHelperVo();
-        crudHelper.pcont = con;
-        crudHelper.accountName = 'Santhosh';
-        crudHelper.accountNumber = '145263777';
-        crudHelper.sortCode = 'CD-1234';
-        crudHelper.acquistion = 'Written';
-        crudHelper.membershipSource = 'Enquiry by phone - main NCT'; 
-        crudHelper.isVolunteer = true;
+        Contact con = new Contact();
+            con.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
+    
+            con.Branch__c = acct.id; 
+            con.MailingStreet = 'Test address';
+            con.MailingState = 'Test State';
+            con.MailingCity = 'Test City';
+            con.Prefered_First_Name__c = 'Test FirstName';
+            con.FirstName = 'Childs';
+            con.LastName = 'Test LastName';
+            con.Email = 'testemail@test.com';
+            con.Phone = '123456789';
+            con.MailingPostalCode = 'SW123';
+            con.salutation = 'Mr';
+            con.Gender__c = 'Male';
+            insert con;
+        PageReference pageRef = Page.nctETMembershipPaymentPage; 
+        Id contId = pageRef.getParameters().put('Id', String.valueOf(con.Id));
+        Test.setCurrentPage(pageRef);
         
-        MembershipCrudHelper.crudHelper = crudHelper; 
-        gftAid = MembershipCrudHelper.giftAid(membershipDetails);
+        ApexPages.StandardController sc = new ApexPages.StandardController(con);
+        nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController(sc);
+        //controller.primaryContact = con;
+        controller.membershipVo.accountName = 'Santhosh';
+        controller.membershipVo.accountNumber = '145263777';
+        controller.membershipVo.sortCode = 'CD-1234';
+        controller.membershipVo.acquistion = 'Written';
+        controller.membershipVo.membershipSource = 'Enquiry by phone - main NCT'; 
+        controller.booleanChecking.isVolunteer = true;
+        
+        MembershipCrudHelper crudHelper = new MembershipCrudHelper(controller);
+        crudHelper.primaryContact = con;
+        crudHelper.et = controller;
+        
+        gftAid = crudHelper.giftAid(membershipDetails);
          system.assertEquals(true,gftAid.gaid__Active__c);
     }  
-    
     
 }

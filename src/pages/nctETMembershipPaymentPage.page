@@ -2,7 +2,7 @@
     <apex:pageMessages id="error-message"/>
    <apex:form id="membrShpForm">
    <apex:actionFunction name="SelValFunction" action="{!contactInfo}" oncomplete="onComplete();" reRender="nameDisplay,membershipTypeInfo,membershipFeeInfo,membershipFeeValue,displayValues">
-       <apex:param id="selValId" name="seltdName" value="" assignTo="{!membership.feeAmount}"/>
+       <apex:param id="selValId" name="seltdName" value="" assignTo="{!membershipVo.feeAmount}"/>
        <apex:param id="lifeMembershipVal" name="lifeMembershipName" value="" />
            </apex:actionFunction>
     <apex:actionFunction name="onComplete" action="{!onCompleteContactInfo}" reRender="onComplete">
@@ -20,9 +20,9 @@
        <apex:param id="emailsVal" name="emailsVal" value=""/>
    </apex:actionFunction>
    <apex:actionFunction name="saveRecordValues" action="{!paymentSave}" reRender="displayValues">
-      <apex:param id="accname" name="accname" value="" assignTo="{!accountInformation.accountName}"/>
-       <apex:param id="sortCode" name="sortCode" value="" assignTo="{!accountInformation.sortCode}"/>
-       <apex:param id="accNum" name="accNum" value="" assignTo="{!accountInformation.accountNumber}"/>
+      <apex:param id="accname" name="accname" value="" assignTo="{!membershipVo.accountName}"/>
+       <apex:param id="sortCode" name="sortCode" value="" assignTo="{!membershipVo.sortCode}"/>
+       <apex:param id="accNum" name="accNum" value="" assignTo="{!membershipVo.accountNumber}"/>
        <apex:param id="gftAid" name="gftAid" value="" assignTo="{!booleanChecking.isGiftAid}"/>
     </apex:actionFunction>
     <apex:actionFunction name="afunction" action="{!receiveInput}" reRender="selMembership,membershipNumber,membershipText,smsOpt,postOpt,emailOpt,doNotCallOpt,isMembershipExists,error-message">
@@ -36,7 +36,7 @@
         <apex:param id="secondContactEmailVal" name="secondContactEmailVal" value="" assignTo="{!secondContact.secondContactEmail}"/>
         <apex:param id="secondContactPhoneVal" name="secondContactPhoneVal" value="" assignTo="{!secondContact.secondContactPhone}"/>
         <apex:param id="postcodeval" name="postcodeval" value="" assignTo="{!Contact.MailingPostalCode}"/>
-        <apex:param id="duedate" name="dueDate" value="" assignTo="{!membership.eDate}"/>
+        <apex:param id="duedate" name="dueDate" value="" assignTo="{!membershipVo.eDate}"/>
         <apex:param id="selBranchVal" name="selBranchVal" value="" assignTo="{!Contact.Branch__c}"/>
         <apex:param id="genderVal" name="genderVal" value="" />
         <apex:param id="streetVal" name="streetVal" value="" assignTo="{!Contact.MailingStreet}"/>
@@ -546,8 +546,8 @@
                                                     <div class="col-md-12 col-12">
                                                         <div><label><sup class="light-orange-color">*</sup>Source</label></div>
                                                             <span style="text-color:white;width:100%;" class="form-fields membership-fields gender-title-select membershipsource custom_select">
-                                                              <apex:selectList id="membershipSource" value="{!membershipDetails.membershipSource}" multiselect="false" size="1">
-                                                                <apex:selectOptions value="{!membershipDetails.membershipSourceOptions}" />
+                                                              <apex:selectList id="membershipSource" value="{!membershipVo.membershipSource}" multiselect="false" size="1">
+                                                                <apex:selectOptions value="{!membershipVo.membershipSourceOptions}" />
                                                                 
                                                           </apex:selectList></span>
                                                     </div>
@@ -591,7 +591,7 @@
                                                         <div class="col-5"><label class="text-center font-bold">Due/birth date:</label></div>
                                                         <div class="col-7">
                                                                     <!--<apex:input type="date" value="{!eDate}"  styleClass="custom_select" id="due-Date" required="true"/>  -->
-                                                                    <input type="date" value="{!membership.eDate}" class="custom_select" id="due-Date" />
+                                                                    <input type="date" value="{!membershipVo.eDate}" class="custom_select" id="due-Date" />
                                                                     <span style='color:#999999; font-size:10px'>Please enter the date of birth of your youngest child, or if you are expecting, your estimated due date.
                                                                             This information is optional, but it will help us tailor the information we provide to you.</span>
                                                         </div>
@@ -602,13 +602,13 @@
                                                             <div class="col-7">
                                                                  <apex:outputPanel id="branch_Picklist">
                                                                  <select name='branch' id='selectBranch' class="custom_select" >
-                                                                       <apex:repeat value="{!membershipDetails.nearestBranchs}" var="branchKey">
-                                                                        <option value="{!membershipDetails.nearestBranchs}" >{!branchKey}</option>
+                                                                       <apex:repeat value="{!membershipVo.nearestBranchs}" var="branchKey">
+                                                                        <option value="{!membershipVo.nearestBranchs}" >{!branchKey}</option>
 
 
                                                                         <option value="" disabled="true">------------------------</option>
 
-                                                                       <apex:repeat value="{!membershipDetails.nearestBranchs[branchKey]}" var="branchKey1" >
+                                                                       <apex:repeat value="{!membershipVo.nearestBranchs[branchKey]}" var="branchKey1" >
                                                                         <option value="{!branchKey1.Id}">{!branchKey1.Name}</option>
                                                                         </apex:repeat>
                                                                         </apex:repeat>
@@ -709,12 +709,12 @@
                                                 <span id="membershiptype-loader" class="show-loader">
                                                   Please wait <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
                                                 </span>
-                                                <span id="membershiptype" style="width:1px;height:1px;display:none;">{!membershipDetails.membershipTypeMap}</span>
+                                                <span id="membershiptype" style="width:1px;height:1px;display:none;">{!membershipVo.membershipTypeMap}</span>
                                                 <select style="margin-bottom:0;" name="selectMembership" id="selectMembership" class="form-fields membership-fields">
                                                     <option SELECTED="true" value="">Please select</option>
-                                                    <apex:repeat value="{!membershipDetails.membershipTypeMap}" var="typeKey">
-                                                        <option value="{!membershipDetails.membershipTypeMap}" style='font-weight:bold; background:#abcb63;' disabled="true">{!typeKey}</option>
-                                                        <apex:repeat value="{!membershipDetails.membershipTypeMap[typeKey]}" var="mbrshpFee">
+                                                    <apex:repeat value="{!membershipVo.membershipTypeMap}" var="typeKey">
+                                                        <option value="{!membershipVo.membershipTypeMap}" style='font-weight:bold; background:#abcb63;' disabled="true">{!typeKey}</option>
+                                                        <apex:repeat value="{!membershipVo.membershipTypeMap[typeKey]}" var="mbrshpFee">
                                                             <option value="{!mbrshpFee.Id}">&nbsp; &nbsp; &nbsp; &nbsp;{!mbrshpFee.Payment_Type__c}</option>
                                                         </apex:repeat>
                                                     </apex:repeat>
@@ -804,7 +804,7 @@
                                                             </div>
                                                         <div class="pure-control-group" id="membershipSelection">
                                                             <label for="surname">Membership type:&nbsp;  </label>
-                                                             <apex:outputText Id="membershipTypeInfo" value=" {!membershipDetails.membershipInfo.Contact_Type__c} {!membershipDetails.membershipInfo.Membership__c}" style="font-weight:bold;"></apex:outputText>
+                                                             <apex:outputText Id="membershipTypeInfo" value=" {!membershipVo.membershipInfo.Contact_Type__c} {!membershipVo.membershipInfo.Membership__c}" style="font-weight:bold;"></apex:outputText>
                                                             <strong><span id="forename_Details"> </span></strong>
                                                         </div>
                                                         <p>&nbsp;</p>
@@ -855,7 +855,7 @@
                                                         </div>
 
                                                         <div class="pure-control-group paydates"><p>
-                                                                <span><span id='dateprocess1'><strong>&pound;<apex:outputText Id="membershipFeeInfo" value=" {!membershipDetails.membershipInfo.Installment_Amount__c}"/><span id="pay_money"> </span></strong>
+                                                                <span><span id='dateprocess1'><strong>&pound;<apex:outputText Id="membershipFeeInfo" value=" {!membershipVo.membershipInfo.Installment_Amount__c}"/><span id="pay_money"> </span></strong>
                                                         on or after 3rd of the month <span class="eighteen-months-membership">and quarterly thereafter</span>.
                                                         </span></span>
                                                             <br /></p>
@@ -976,7 +976,7 @@
 													<div class="col-12">
                                                        <label class="font-bold">Gift Aid Acquistion Method: </label>
 <span class="gift-aid-select-box form-fields membership-fields gender-title-select acquition">
-                                                           <apex:selectList id="acquistion" value="{!membership.acquistion}" multiselect="false" size="1">
+                                                           <apex:selectList id="acquistion" value="{!membershipVo.acquistion}" multiselect="false" size="1">
                                                            <apex:selectOptions value="{!contactVo.acquistionOptions}" />
                                                        </apex:selectList></span>
                                                       <!-- <select class="gift-aid-select-box">
@@ -1109,7 +1109,7 @@
 
                                               <font id="userData">
                                                         <strong>&pound;
-                                                        <span id="DD_pay_value"><apex:outputText Id="membershipFeeValue" value=" {!membershipDetails.membershipInfo.Installment_Amount__c}"/></span></strong>
+                                                        <span id="DD_pay_value"><apex:outputText Id="membershipFeeValue" value=" {!membershipVo.membershipInfo.Installment_Amount__c}"/></span></strong>
                                                         on or after 3rd of the month and quarterly thereafter if quarterly option selected
                                                         .</font>
 
@@ -1145,7 +1145,7 @@
                                                            <span id="membership-loader">
                                                                <apex:image url="{!URLFOR($Resource.nctapp, 'nct-app/assets/loader.gif')}"/>
                                                                </span>
-                                               <apex:outputText Id="membershipNumber" value="{!membershipDetails.membershipNumber}" style="font-weight:bold;" rendered="{!booleanChecking.displayMbrNoMessage}"/></p>
+                                               <apex:outputText Id="membershipNumber" value="{!membershipVo.membershipNumber}" style="font-weight:bold;" rendered="{!booleanChecking.displayMbrNoMessage}"/></p>
                                                </apex:outputPanel>
                                         <div class="col-md-1 col-12">
                                         </div>
