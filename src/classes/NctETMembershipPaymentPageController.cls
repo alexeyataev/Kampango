@@ -11,6 +11,7 @@ public without sharing class NctETMembershipPaymentPageController
     private npe03__Recurring_Donation__c recDon;
     @TestVisible
     private date expDate;
+    private String recordType;
     public static Boolean onComplete {get; set;}     
     private List<Contact> contactList;    
     @TestVisible
@@ -97,8 +98,8 @@ public without sharing class NctETMembershipPaymentPageController
        
         if(MembershipConditionCheckUtilities.isNotExistingContactCheck(booleanChecking.isContactExisting,primaryContact)){
 
-                membershipVo.recordType = MembershipConstants.PARENT;
-                    primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(membershipVo.recordType).getRecordTypeId(),FirstName=cont.firstname,
+                recordType = MembershipConstants.PARENT;
+                    primaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=cont.firstname,
                                         LastName=cont.lastname,Email=cont.email,Gender__c=cont.Gender__c,Phone=cont.phone,Salutation=cont.salutation,MailingPostalCode=cont.MailingPostalCode,
                                         Expected_Due_Date__c =expDate,MailingStreet=cont.MailingStreet+contactVo.streetValue1+contactVo.streetValue2,Branch__c=cont.Branch__c,
                                         MailingState=cont.MailingState,MailingCity=cont.MailingCity,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=cont.SMS_Opt_In__c,Post_Opt_In__c=cont.Post_Opt_In__c,
@@ -131,10 +132,10 @@ public without sharing class NctETMembershipPaymentPageController
         
         if(MembershipConditionCheckUtilities.secondContactRequiredCheck(booleanChecking.twomems,primaryContact.id,secondContact.secondContactFirstName))
         {            
-            membershipVo.recordType = MembershipConstants.COMPANION;
+            recordType = MembershipConstants.COMPANION;
             Contact con =[Select AccountId from Contact where id = :primaryContact.id];
             
-            secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(membershipVo.recordType).getRecordTypeId(),FirstName=secondContact.secondContactFirstName,
+            secondaryContact = new Contact(RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordType).getRecordTypeId(),FirstName=secondContact.secondContactFirstName,
                                                          LastName=secondContact.secondContactLastName,Email=secondContact.secondContactEmail,Gender__c=secondContact.secondContactGenders,Phone=secondContact.secondContactPhone,Salutation=secondContact.salutationSecondary,MailingPostalCode=cont.MailingPostalCode,
                                                          Expected_Due_Date__c =expDate,MailingStreet=cont.MailingStreet+contactVo.streetValue1+contactVo.streetValue2,Branch__c=cont.Branch__c,
                                                          MailingState=cont.MailingState,MailingCity=cont.MailingCity,Data_Source__c = MembershipConstants.SALESFORCE,SMS_Opt_In__c=cont.SMS_Opt_In__c,Post_Opt_In__c=cont.Post_Opt_In__c,

@@ -35,8 +35,7 @@ private class MembershipVoTest {
         membership.sortCode = 'Test';
         membership.acquistion = 'Verbal';
         membership.eDate = '12-12-2012';
-        membership.feeAmount = null;
-        membership.recordType = 'Parent';       
+        membership.feeAmount = null;       
         system.assertEquals(membership.sortCode, 'Test');
     }
 }
