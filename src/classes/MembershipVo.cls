@@ -16,7 +16,7 @@ public with sharing class MembershipVo {
         public String sortCode {get; set;}
         public String accountNumber {get; set;}     
         public Id feeAmount {get;set;}
-        public String recordType{get; set;}
+        public String recordType;
         public String acquistion {get;set;}
         public string eDate{get;set;}
 
