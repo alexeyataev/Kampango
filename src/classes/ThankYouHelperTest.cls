@@ -28,14 +28,11 @@ private class ThankYouHelperTest {
         pagereference page = page.NctETMembershipPaymentPage;
         Test.setCurrentPage(page);
         ID contID = ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
-        ThankyouHelper.membershipDetails = membershipDetails;
         membershipNumber =  ThankYouHelper.membershipNumberCreation(con,recDon); 
         system.assertEquals('Confirmed',recDon.Membership_Status__c);
         Test.stopTest();
      }
      @isTest static void recurringNotExists(){
-        list<npe03__Recurring_Donation__c> recDonation = new list<npe03__Recurring_Donation__c>();
-        npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
         contact con = new contact();
         con.FirstName = 'NCT Child';
         con.LastName = 'Trust';
@@ -43,6 +40,20 @@ private class ThankYouHelperTest {
         con.Phone = '3453535353555';
         con.Prefered_First_Name__c = 'NCT';
         insert con;
+        list<npe03__Recurring_Donation__c> recDonation = new list<npe03__Recurring_Donation__c>();
+         npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
+        recDon.Name = 'NCTChild';
+        recDon.npe03__Amount__c = 10000;
+        recDon.npe03__Date_Established__c = System.Date.today();
+        recDon.npe03__Installment_Period__c = 'Monthly';
+        recDon.CARE_Payment_Frequency__c = 'NCT CHILD TRUST';
+        recDon.First_Payment__c = system.today();
+        recDon.First_Contact__c = con.id; 
+        recDon.Membership_Status__c = 'Confirmed'; 
+        recDon.Membership_type__c = '18 month - Joint';
+        recDon.npe03__Contact__c = con.id;
+       recDonation.add(recDon);
+
         Membership_Type__mdt membershipDetails;
         Test.startTest();
         pagereference page = page.NctETMembershipPaymentPage;
@@ -51,7 +62,7 @@ private class ThankYouHelperTest {
         
         ThankYouHelper.reccDonList = recDonation;
         ThankYouHelper.membershipNumberCreation(con,recDon);  
-        system.assertEquals(null, recDon.Membership_Status__c);
+        system.assertEquals('Confirmed', recDon.Membership_Status__c);
         Test.stopTest();
     }
     
@@ -73,7 +84,6 @@ private class ThankYouHelperTest {
         String membershipNumber;
 		Test.startTest();
         ThankYouHelper thankYou = new ThankYouHelper();
-        ThankYouHelper.membershipDetails = membershipDetails;
         membershipNumber = ThankYouHelper.membershipNumberCreation(con,recDon1);  
         system.assertNotEquals('Confirmed', membershipNumber);
         Test.stopTest();
@@ -108,5 +118,37 @@ private class ThankYouHelperTest {
             Test.stopTest();
         }
     }
+    @isTest static void recurringExistsNegativeTesting(){
+         String membershipNumber;
+         Membership_Type__mdt membershipDetails;
+
+        contact con = new contact();
+        con.FirstName = 'NCTChild123455';
+        con.LastName = 'Trust1123445677';
+        con.Email = 'nct12113331@gmail.com';
+        con.Phone = '3453535353555';
+        con.Prefered_First_Name__c = 'NCT';
+        insert con;
+
+        npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
+        recDon.Name = 'NCTChild';
+        recDon.npe03__Amount__c = 10000;
+        recDon.npe03__Date_Established__c = System.Date.today();
+        recDon.npe03__Installment_Period__c = 'Monthly';
+        recDon.CARE_Payment_Frequency__c = 'NCT CHILD TRUST';
+        recDon.First_Payment__c = system.today();
+        recDon.First_Contact__c = con.id; 
+        recDon.Membership_Status__c = 'Pending'; 
+        recDon.Membership_type__c = '18 month - Joint';
+        recDon.npe03__Contact__c = con.id;
+        insert recDon;
+        Test.startTest();
+        pagereference page = page.NctETMembershipPaymentPage;
+        Test.setCurrentPage(page);
+        ID contID = ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
+        membershipNumber =  ThankYouHelper.membershipNumberCreation(con,recDon); 
+        system.assertEquals('Pending',recDon.Membership_Status__c);
+        Test.stopTest();
+     }
     
 }
