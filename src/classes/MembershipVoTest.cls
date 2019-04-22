@@ -1,5 +1,5 @@
 @isTest
-	private class MembershipVoTest {
+private class MembershipVoTest {
         
 	@isTest static void membershipVoMethod(){
         account acct = new account();
@@ -24,84 +24,18 @@
         Map<String, List<Membership_Type__mdt>> membershipTypes = new Map<String, List<Membership_Type__mdt>>();
         
         MembershipVo  membership = new MembershipVo();
-        membership.accountName = 'Nct child';
-        membership.accountNumber = '145263777';
-        membership.acquistion = 'Written';
-        membership.acquistionOptions = selectOptions;
-        membership.cityValue = 'Test';
-        membership.contactType = 'Test'; 
-        membership.displayMbrNoMessage = true;
-        membership.displaySuccessMessage = true;
-        membership.contId = con.id;
-        membership.counter = 'Test'; 
-        membership.doNotCallOpt = true; 
-        membership.displayValue = 'Test';
-        membership.eDate = 'today';
-        membership.email = 'Test';
-        membership.emailOpt = true;
-        membership.etSpecific = true;
-        membership.expDate = system.date.today();
-        membership.feeAmount = con.id;
-        membership.firstname = 'Test';
-        membership.genderOptions = selectOptions;
-        membership.genders = 'Test';
-        membership.genderValue = 'Test';
-        membership.isContactExisting = true;
-        membership.isMembershipExists = true;
-        membership.isGiftAid = 'Test';
-        membership.isPractitioner = true;
-        membership.isStaff = true;
-        membership.isVolunteer = true;
-        membership.lastname = 'Nct childs';
-        membership.lifeMembership = true;
         membership.membershipInfo = membershipDetails;
         membership.membershipNumber = 'Test';
         membership.membershipSource = 'Test';
         membership.membershipSourceOptions = selectOptions;
         membership.membershipTypeMap = membershipTypes;
-         membership.nearestBranchs = objects;
-      
-            membership.phone = '09874657878';
-            membership.postCode = 'Test';
-            membership.postOpt = true;
-            membership.primaryContact = con;
-            membership.recordType = 'Test';
-            membership.redirectURL = 'Test';
-            membership.salutation = 'Test';
-            membership.salutationOptions = selectOptions;
-            membership.salutationPrimary = 'Test';
-            membership.salutationSecondary = 'Test';
-            membership.secondaryContact = con;
-            membership.secondContactEmail = 'Test';
-            membership.secondContactFirstName = 'Test';
-            membership.secondContactGenders = 'Test';
-            membership.secondContactLastName = 'Test';
-            membership.secondContactPhone = '09874657878';
-            membership.selectBranch = con.id;
-            membership.sessionProfile = '';
-           
-            membership.smsOpt = false;
-            membership.sortCode = 'Test';
-            membership.staffMember = 'Test'; 
-            membership.stateValue = 'Test';
-            membership.streetValue = 'Test';
-            membership.streetValue1 = 'Test';
-            membership.streetValue2 = 'Test';
-            membership.targetCustomer = 'Test';
-            membership.twomem = true;
-            membership.twomems = true;
-        MembershipVo.MemberCrudHelper memCrud = new MembershipVo.MemberCrudHelper();
-        memCrud.pcont = con;
-        memCrud.scont = scon;
-        memCrud.accountName = 'Santhosh';
-        memCrud.accountNumber = '145263777';
-        memCrud.sortCode = 'CD-1234';
-        memCrud.acquistion = 'Written';
-        memCrud.membershipSource = 'Enquiry by phone - main NCT'; 
-        memCrud.isVolunteer = true;
-        membership.memberCrud = memCrud;
-        
-        system.assertEquals('Credit/Debit Card', membership.membershipInfo.Payment_Method__c);
-        system.assertEquals('Nct childs', membership.lastname);
+        membership.nearestBranchs = objects;      
+        membership.accountName = 'Nct child';
+        membership.accountNumber = '145263777';
+        membership.sortCode = 'Test';
+        membership.acquistion = 'Verbal';
+        membership.eDate = '12-12-2012';
+        membership.feeAmount = null;       
+        system.assertEquals(membership.sortCode, 'Test');
     }
 }

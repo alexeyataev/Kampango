@@ -24,13 +24,12 @@ private class ThankYouHelperTest {
         recDon.Membership_type__c = '18 month - Joint';
         recDon.npe03__Contact__c = con.id;
         insert recDon;
-        Boolean lifeMembership = false;
         Test.startTest();
         pagereference page = page.NctETMembershipPaymentPage;
         Test.setCurrentPage(page);
         ID contID = ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
         ThankyouHelper.membershipDetails = membershipDetails;
-        membershipNumber =  ThankYouHelper.membershipNumberCreation(con,recDon,lifeMembership); 
+        membershipNumber =  ThankYouHelper.membershipNumberCreation(con,recDon); 
         system.assertEquals('Confirmed',recDon.Membership_Status__c);
         Test.stopTest();
      }
@@ -45,14 +44,13 @@ private class ThankYouHelperTest {
         con.Prefered_First_Name__c = 'NCT';
         insert con;
         Membership_Type__mdt membershipDetails;
-        Boolean lifeMembership = false;
         Test.startTest();
         pagereference page = page.NctETMembershipPaymentPage;
         Test.setCurrentPage(page);
         ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
         
         ThankYouHelper.reccDonList = recDonation;
-        ThankYouHelper.membershipNumberCreation(con,recDon,lifeMembership);  
+        ThankYouHelper.membershipNumberCreation(con,recDon);  
         system.assertEquals(null, recDon.Membership_Status__c);
         Test.stopTest();
     }
@@ -73,11 +71,10 @@ private class ThankYouHelperTest {
 													Payment_Type__c='Life Membership - Free' limit 1];
         
         String membershipNumber;
-		Boolean lifeMembership = true;
 		Test.startTest();
         ThankYouHelper thankYou = new ThankYouHelper();
         ThankYouHelper.membershipDetails = membershipDetails;
-        membershipNumber = ThankYouHelper.membershipNumberCreation(con,recDon1,lifeMembership);  
+        membershipNumber = ThankYouHelper.membershipNumberCreation(con,recDon1);  
         system.assertNotEquals('Confirmed', membershipNumber);
         Test.stopTest();
     }
@@ -100,14 +97,13 @@ private class ThankYouHelperTest {
             con.Prefered_First_Name__c = 'NCT';
             insert con;
             Membership_Type__mdt membershipDetails;
-            Boolean lifeMembership = false;
             Test.startTest();
             pagereference page = page.NctETMembershipPaymentPage;
             Test.setCurrentPage(page);
             ApexPages.currentPage().getParameters().put('contID',String.valueOf(con.ID));
             
             ThankYouHelper.reccDonList = recDonation;
-            ThankYouHelper.membershipNumberCreation(con,recDon,lifeMembership);  
+            ThankYouHelper.membershipNumberCreation(con,recDon);  
             system.assertEquals(null, recDon.Membership_Status__c);
             Test.stopTest();
         }

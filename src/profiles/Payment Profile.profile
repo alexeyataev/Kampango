@@ -46,4 +46,18 @@
         <enabled>true</enabled>
         <name>ViewAllUsers</name>
     </userPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Data_Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Contact</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
 </Profile>

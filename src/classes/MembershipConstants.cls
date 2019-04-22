@@ -20,5 +20,8 @@ public class MembershipConstants {
     public static final String STAFF = 'staff';
     public static final String CANCELLED = 'Cancelled';
     public static final String LAPSED = 'Lapsed';
+    public static final String REPLACE = 'replace';
+    public static final String CREDITCARD = 'CreditCard';
+    public static final String PAYMENTHUB = 'PaymentHub';
     
 }

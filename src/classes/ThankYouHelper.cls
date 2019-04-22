@@ -11,7 +11,7 @@ public without sharing class ThankYouHelper {
     private static boolean contIdCheck(){
     	return Apexpages.currentPage().getParameters().get('contId') != null && Apexpages.currentPage().getParameters().get('contId') !='';
     }   
-    public static String membershipNumberCreation(contact cont,npe03__Recurring_Donation__c recDon, Boolean lifeMembership){
+    public static String membershipNumberCreation(contact cont,npe03__Recurring_Donation__c recDon){
         if(permissionCheck()){ 
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
                 return null;

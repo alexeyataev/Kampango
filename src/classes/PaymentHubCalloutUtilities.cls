@@ -14,8 +14,6 @@ public without sharing class PaymentHubCalloutUtilities {
 
         PaymentRequestVo paymentReq = new PaymentRequestVo();
         paymentReq.SuccessURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubSuccessMsgPage?contId='+ cont.Id;
-        paymentReq.FailureURL= paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubErrorMsgPage';
-        paymentReq.Origin='test';
  
         PaymentRequestVo.ContactVo cvo = new PaymentRequestVo.ContactVo();
         if(cont != null)
@@ -26,9 +24,7 @@ public without sharing class PaymentHubCalloutUtilities {
         }
  
         PaymentRequestVo.PayerVo payerReq = new PaymentRequestVo.PayerVo();
-        payerReq.AllowDeduplication=true;
         payerReq.contact = cvo;
-        payerReq.ContactUpdate ='replace';
         paymentReq.Payer = payerReq;
  
         PaymentRequestVo.PaymentVo payment = new PaymentRequestVo.PaymentVo();
@@ -38,11 +34,9 @@ public without sharing class PaymentHubCalloutUtilities {
 
         paymentReq.Payment = payment;
         PaymentRequestVo.PaymentMethodVo paymentMethod = new PaymentRequestVo.PaymentMethodVo();
-        paymentMethod.Name='CreditCard';
         paymentReq.PaymentMethod = paymentMethod;
  
         PaymentRequestVo.SourceConnectorVo sourceConnector = new PaymentRequestVo.SourceConnectorVo();
-        sourceConnector.Name='PaymentHub';
         paymentReq.SourceConnector = sourceConnector;
         
         HttpRequest paymentHubRequest = new HttpRequest();
@@ -54,6 +48,7 @@ public without sharing class PaymentHubCalloutUtilities {
         paymentHubRequest.setHeader('Content-Type','application/json; charset=UTF-8');
         paymentHubRequest.setHeader('api-token',paymentHubApiSettings.Credit_Card_Payment_API_Token__c);
         paymentHubRequest.setBody(JSON.serialize(paymentReq));
+        System.debug('JSON.serialize(paymentReq):'+JSON.serialize(paymentReq));
         paymentHubRequest.setMethod('POST'); 
         paymentHubRequest.setTimeout(120000);    
         paymentHubResponse = paymentHubHttp.send(paymentHubRequest);

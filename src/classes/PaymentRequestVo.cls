@@ -1,8 +1,8 @@
 public with sharing class PaymentRequestVo {
-    
+    private static PaymentHubApiSettings__c paymentHubApiSettings = PaymentHubApiSettings__c.getInstance();
     public String successURL{get;set;}
-    public String failureURL{get;set;}
-    public String origin{get;set;}
+    String failureURL = paymentHubApiSettings.Payment_Status_Root_Url__c +'/nctPaymentHubErrorMsgPage';
+    String origin = MembershipConstants.TEST;
     public PayerVo payer{get;set;}
     public PaymentVo payment{get;set;}
     public PaymentMethodVo paymentMethod{get;set;}
@@ -11,9 +11,9 @@ public with sharing class PaymentRequestVo {
     
     	//Assessment Vo
 	public class PayerVo{
-	    public Boolean allowDeduplication{get;set;}
+	    Boolean allowDeduplication = true;
 		public ContactVo contact{get;set;}
-		public String contactUpdate{get;set;}
+		String contactUpdate = MembershipConstants.REPLACE;
 	}
     
 	public class PaymentVo{
@@ -27,11 +27,11 @@ public with sharing class PaymentRequestVo {
 	}
 
 	public class PaymentMethodVo{
-	    public String name{get;set;}
+	    String name = MembershipConstants.CREDITCARD;
 	}
 
 	public class SourceConnectorVo{
-	    public String name{get;set;}
+	    String name = MembershipConstants.PAYMENTHUB;
 	    
 	}
 }
