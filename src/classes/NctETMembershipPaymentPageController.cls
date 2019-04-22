@@ -181,10 +181,10 @@ public without sharing class NctETMembershipPaymentPageController
 
         }
         booleanChecking.isMembershipExists = ContactUtilities.isMembershipExists(cont.Id, emails);
-        cont.Mailing_Postal_Code__c = Apexpages.currentPage().getParameters().get('postVal').escapeHtml4();
+        cont.MailingPostalCode = Apexpages.currentPage().getParameters().get('postVal').escapeHtml4();
 
-        if(cont.Mailing_Postal_Code__c != null && cont.Mailing_Postal_Code__c != ''){
-        membershipVo.nearestBranchs = MembershipUtilties.getBranches(cont.Mailing_Postal_Code__c);
+        if(cont.MailingPostalCode != null && cont.MailingPostalCode != ''){
+        membershipVo.nearestBranchs = MembershipUtilties.getBranches(cont.MailingPostalCode);
         system.debug('nct branches'+membershipVo.nearestBranchs );
         }
         }

@@ -1,7 +1,6 @@
 public without sharing class ThankYouHelper {
 
     public static string membershipNumber {get;set;}
-    public static Membership_Type__mdt membershipDetails{get;set;}
     public static list<npe03__Recurring_Donation__c> reccDonList = new list<npe03__Recurring_Donation__c>();
 
     private static Boolean permissionCheck(){
