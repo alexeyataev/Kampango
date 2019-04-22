@@ -230,20 +230,26 @@ public without sharing class NctETMembershipPaymentPageController
         if(accountDetails.sessionProfile == MembershipConstants.STANDARD && membershipVo.membershipInfo.Payment_Method__c == MembershipConstants.CREDIT_OR_DEBIT_CARD){
             paymentHubCallout();                
         }
+        MembershipCrudHelperVo crudHelper = new MembershipCrudHelperVo();
+        crudHelper.accountName = membershipVo.accountName;
+        crudHelper.accountNumber = membershipVo.accountNumber;
+        crudHelper.acquistion = membershipVo.acquistion;
+        crudHelper.membershipSource = membershipVo.membershipSource;
+        crudHelper.sortCode = membershipVo.sortCode;
+        crudHelper.pcont = primaryContact;
+        crudHelper.scont = secondaryContact;
+        crudHelper.isVolunteer = booleanChecking.isVolunteer;
         cpm__Payment_Profile__c pymtPrfl = new cpm__Payment_Profile__c();
-        ApexPages.StandardController sc = new ApexPages.StandardController(cont);
-        nctETMembershipPaymentPageController controller = new nctETMembershipPaymentPageController(sc);
-        MembershipCrudHelper crudHelper = new MembershipCrudHelper(controller);
-        crudHelper.primaryContact = primaryContact;
-        crudHelper.secondaryContact = secondaryContact;
+        MembershipCrudHelper.crudHelper = crudHelper;
+ 
         if(membershipVo.membershipInfo.Payment_Method__c != MembershipConstants.CREDIT_OR_DEBIT_CARD){
-           pymtPrfl = crudHelper.paymentProfile();
+           pymtPrfl = MembershipCrudHelper.paymentProfile();
         }
-        recDon = crudHelper.recDonation(membershipVo.membershipInfo,pymtPrfl);
+        recDon = MembershipCrudHelper.recDonation(membershipVo.membershipInfo,pymtPrfl);
         membershipNumberDisplay();
         gaid__Gift_Aid_Declaration__c gftAid = new gaid__Gift_Aid_Declaration__c();
         if(booleanChecking.isGiftAid == MembershipConstants.TRUE_VALUE){
-        	gftAid = crudHelper.giftAid(membershipVo.membershipInfo);
+        	gftAid = MembershipCrudHelper.giftAid(membershipVo.membershipInfo);
         }
         
     }    

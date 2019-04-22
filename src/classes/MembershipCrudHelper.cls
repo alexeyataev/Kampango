@@ -1,35 +1,31 @@
 public without sharing class MembershipCrudHelper {
         
-    public  gaid__Gift_Aid_Declaration__c gftAid {get;set;}
-    public  cpm__Payment_Profile__c pymtPrfl{get;set;}
-    public  npe03__Recurring_Donation__c recDon {get;set;}
-    public contact primaryContact{get;set;}
-    public contact secondaryContact{get;set;}
-    public list<cpm__Payment_Profile__c> paymentProfileRecord = new list<cpm__Payment_Profile__c>();
-    public list<gaid__Gift_Aid_Declaration__c> giftAidDeclarationRecord = new list<gaid__Gift_Aid_Declaration__c>();
-    public list<npe03__Recurring_Donation__c> recDonationRecord = new list<npe03__Recurring_Donation__c>();
-    @TestVisible
-    NctETMembershipPaymentPageController eT;
-    public MembershipCrudHelper(NctETMembershipPaymentPageController controller){
-        eT = controller;        
-    }
-    private boolean paymentProfileCheck(){
+    public static gaid__Gift_Aid_Declaration__c gftAid {get;set;}
+    public static cpm__Payment_Profile__c pymtPrfl{get;set;}
+    public static npe03__Recurring_Donation__c recDon {get;set;}
+    public static MembershipCrudHelperVo crudHelper{get;set;} 
+
+    public static list<cpm__Payment_Profile__c> paymentProfileRecord = new list<cpm__Payment_Profile__c>();
+    public static list<gaid__Gift_Aid_Declaration__c> giftAidDeclarationRecord = new list<gaid__Gift_Aid_Declaration__c>();
+    public static list<npe03__Recurring_Donation__c> recDonationRecord = new list<npe03__Recurring_Donation__c>(); 
+    
+    private static boolean paymentProfileCheck(){
         return !Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isAccessible()
         &&(!Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isCreateable() || !Schema.sObjectType.cpm__Payment_Profile__c.fields.RecordTypeId.isUpdateable());
     }
-    private boolean giftAidCheck(){
+    private static boolean giftAidCheck(){
         return !Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isAccessible()
         &&(!Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isUpdateable() || !Schema.sObjectType.gaid__Gift_Aid_Declaration__c.fields.gaid__Contact__c.isCreateable());
     }
-    private boolean recDonationCheck(){
+    private static boolean recDonationCheck(){
         return !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Name.isAccessible()
         &&(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isAccessible() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()
         &&(!Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isupdateable() || !Schema.sObjectType.npe03__Recurring_Donation__c.fields.Membership_type__c.isCreateable()));
     }
-    private boolean ismembershipSource(){
-    	return eT.membershipVo.membershipSource != '' && eT.membershipVo.membershipSource != null;
+    private static boolean ismembershipSource(){
+    	return crudHelper.membershipSource != '' && crudHelper.membershipSource != null;
     }
-    public cpm__Payment_Profile__c paymentProfile(){
+    public static cpm__Payment_Profile__c paymentProfile(){
         if(paymentProfileCheck()){
         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
         return null;
@@ -44,7 +40,7 @@ public without sharing class MembershipCrudHelper {
                                 FROM 
                                     cpm__Payment_Profile__c 
                                 WHERE 
-                                    cpm__Contact__c = :primaryContact.id
+                                    cpm__Contact__c = :crudHelper.pcont.id
                                 AND
                                     CreatedDate = :System.Date.today() limit 1 FOR UPDATE];
         if(paymentProfileRecord.size()>0){
@@ -54,13 +50,13 @@ public without sharing class MembershipCrudHelper {
              }
             paymentProfileRecord[0].RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get(MembershipConstants.BANK_ACCOUNT).getRecordTypeId();
             
-                if(eT.membershipVo.accountNumber != '' && eT.membershipVo.accountNumber != null)
+                if(crudHelper.accountNumber != '' && crudHelper.accountNumber != null)
                 {
-                    paymentProfileRecord[0].cpm__Bank_Account__c = eT.membershipVo.accountNumber;
+                    paymentProfileRecord[0].cpm__Bank_Account__c = crudHelper.accountNumber;
                 }            
-                paymentProfileRecord[0].cpm__Account__c = primaryContact.AccountId;
-                paymentProfileRecord[0].cpm__Holder_Name__c = eT.membershipVo.accountName;
-                paymentProfileRecord[0].paybacs__Sort_Code__c = eT.membershipVo.sortCode;
+                paymentProfileRecord[0].cpm__Account__c = crudHelper.pcont.AccountId;
+                paymentProfileRecord[0].cpm__Holder_Name__c = crudHelper.accountName;
+                paymentProfileRecord[0].paybacs__Sort_Code__c = crudHelper.sortCode;
                 upsert paymentProfileRecord[0];
                 return paymentProfileRecord[0];
                 
@@ -68,16 +64,16 @@ public without sharing class MembershipCrudHelper {
         else{
             
             pymtPrfl = new cpm__Payment_Profile__c();
-            system.debug(' *$*$*$* Contact Account Id   ' + primaryContact.AccountId);
+            system.debug(' *$*$*$* Contact Account Id   ' + crudHelper.pcont.AccountId);
             pymtPrfl.RecordTypeId = Schema.SObjectType.cpm__Payment_Profile__c.getRecordTypeInfosByName().get(MembershipConstants.BANK_ACCOUNT).getRecordTypeId();
-            pymtPrfl.cpm__Contact__c = primaryContact.Id; 
-            if(eT.membershipVo.accountNumber != '' && eT.membershipVo.accountNumber != null)
+            pymtPrfl.cpm__Contact__c = crudHelper.pcont.Id; 
+            if(crudHelper.accountNumber != '' && crudHelper.accountNumber != null)
             {
-                pymtPrfl.cpm__Bank_Account__c = eT.membershipVo.accountNumber;
+                pymtPrfl.cpm__Bank_Account__c = crudHelper.accountNumber;
             }            
-                pymtPrfl.cpm__Account__c = primaryContact.AccountId;
-            pymtPrfl.cpm__Holder_Name__c = eT.membershipVo.accountName;
-            pymtPrfl.paybacs__Sort_Code__c = eT.membershipVo.sortCode;
+                pymtPrfl.cpm__Account__c = crudHelper.pcont.AccountId;
+            pymtPrfl.cpm__Holder_Name__c = crudHelper.accountName;
+            pymtPrfl.paybacs__Sort_Code__c = crudHelper.sortCode;
             
             upsert pymtPrfl;
             return pymtPrfl;
@@ -86,7 +82,7 @@ public without sharing class MembershipCrudHelper {
         
         
     }
-    public gaid__Gift_Aid_Declaration__c giftAid(Membership_Type__mdt membershipDetails){
+    public static gaid__Gift_Aid_Declaration__c giftAid(Membership_Type__mdt membershipDetails){
         if(giftAidCheck()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
             return null;
@@ -101,7 +97,7 @@ public without sharing class MembershipCrudHelper {
                                     FROM
                                     gaid__Gift_Aid_Declaration__c
                                     WHERE 
-                                    gaid__Contact__c = :primaryContact.Id
+                                    gaid__Contact__c = :crudHelper.pcont.Id
                                     AND
                                     CreatedDate = :System.Date.today() limit 1];
         if(giftAidDeclarationRecord.size()>0){
@@ -110,8 +106,8 @@ public without sharing class MembershipCrudHelper {
                 return null;
             }
             giftAidDeclarationRecord[0].gaid__Type__c = membershipDetails.GiftAid_Type__c;
-            if(eT.membershipVo.acquistion != '' && eT.membershipVo.acquistion != null){
-                giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = eT.membershipVo.acquistion;
+            if(crudHelper.acquistion != '' && crudHelper.acquistion != null){
+                giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = crudHelper.acquistion;
             }
             else{
                 giftAidDeclarationRecord[0].gaid__Acquisition_Method__c = membershipDetails.GiftAid_Acquisition_Method__c;
@@ -125,10 +121,10 @@ public without sharing class MembershipCrudHelper {
         }
         else{
             gftAid = new gaid__Gift_Aid_Declaration__c();
-            gftAid.gaid__Contact__c= primaryContact.Id;
+            gftAid.gaid__Contact__c= crudHelper.pcont.Id;
             gftAid.gaid__Type__c = membershipDetails.GiftAid_Type__c;
-            if(eT.membershipVo.acquistion != '' && eT.membershipVo.acquistion != null){
-                gftAid.gaid__Acquisition_Method__c = eT.membershipVo.acquistion;
+            if(crudHelper.acquistion != '' && crudHelper.acquistion != null){
+                gftAid.gaid__Acquisition_Method__c = crudHelper.acquistion;
             }
             else{
                 gftAid.gaid__Acquisition_Method__c = membershipDetails.GiftAid_Acquisition_Method__c;
@@ -145,7 +141,7 @@ public without sharing class MembershipCrudHelper {
         }
                        
     }
-    public npe03__Recurring_Donation__c recDonation(Membership_Type__mdt membershipDetails,cpm__Payment_Profile__c pymtProfl){
+    public static npe03__Recurring_Donation__c recDonation(Membership_Type__mdt membershipDetails,cpm__Payment_Profile__c pymtProfl){
 
             if(recDonationCheck()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
@@ -172,7 +168,7 @@ public without sharing class MembershipCrudHelper {
                                 FROM
                                     npe03__Recurring_Donation__c
                                 WHERE
-                                    npe03__Contact__c = :primaryContact.Id
+                                    npe03__Contact__c = :crudHelper.pcont.Id
                                 AND
                                     CreatedDate = :System.Date.today() limit 1];
             
@@ -211,17 +207,17 @@ public without sharing class MembershipCrudHelper {
                 String membershipType = membershipTypeChecker(membershipDetails);
                 recDon.Membership_type__c = membershipType; 
                 recDon.npe03__Installments__c = membershipDetails.No_of_Installments__c;
-                recDon.npe03__Contact__c = primaryContact.Id;
+                recDon.npe03__Contact__c = crudHelper.pcont.Id;
                 if(ismembershipSource()){
-                        recDon.Source__c = eT.membershipVo.membershipSource;
+                        recDon.Source__c = crudHelper.membershipSource;
                 }else{
                      recDon.Source__c = MembershipConstants.ONLINE_MEMBERSHIP_APPLICATION;
                 }
                 
                 recDon.npe03__Next_Payment_Date__c = MembershipUtilties.getNextDonationDate(System.Date.today());
-                recDon.First_Contact__c = primaryContact.Id;
-                if(secondaryContact != null){
-                    recDon.Second_Contact__c = secondaryContact.Id; 
+                recDon.First_Contact__c = crudHelper.pcont.Id;
+                if(crudHelper.scont != null){
+                    recDon.Second_Contact__c = crudHelper.scont.Id; 
                 }
                 recDon.Data_Source__c = MembershipConstants.SALESFORCE;
                 recDon.npe03__Schedule_Type__c = membershipDetails.Schedule_Type__c;
@@ -242,9 +238,9 @@ public without sharing class MembershipCrudHelper {
         }
        	 
     }
-    private String membershipTypeChecker(Membership_Type__mdt membershipDetails){
+    private static String membershipTypeChecker(Membership_Type__mdt membershipDetails){
         String membershipType;
-        if(eT.booleanChecking.isVolunteer == true){
+        if(crudHelper.isVolunteer == true){
              membershipType = membershipDetails.Membership__c+' '+membershipDetails.Target_Customer__c+' - '+membershipDetails.Contact_Type__c;
         }
         else{

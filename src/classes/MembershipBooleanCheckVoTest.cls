@@ -18,11 +18,11 @@ private class MembershipBooleanCheckVoTest {
         System.assertEquals(membershipBooleanCheckVo.twomems, true);
         
        MembershipBooleanCheckVo.AccountDetails accountDetails = new MembershipBooleanCheckVo.AccountDetails();
-       accountDetails.redirectURL = '';
-       accountDetails.sessionProfile = '';
-       accountDetails.targetCustomer = '';
+       accountDetails.redirectURL = 'TestURL.com';
+       accountDetails.sessionProfile = 'Test Standard';
+       accountDetails.targetCustomer = 'Test Customer';
        
-       System.assertEquals(accountDetails.sessionProfile, '');
+       System.assertEquals(accountDetails.sessionProfile, 'Test Standard');
            
           
     }

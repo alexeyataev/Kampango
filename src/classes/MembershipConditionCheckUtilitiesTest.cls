@@ -68,9 +68,9 @@ private class MembershipConditionCheckUtilitiesTest {
            contact con = new contact();
            Boolean twomems = true;
             Id primaryContactId = con.id;
-            String secondContactFirstName = 'chintu';
+            String secondContactFirstName = 'NCT Customer';
            MembershipConditionCheckUtilities.secondContactRequiredCheck(true, con.Id, secondContactFirstName);
-           system.assertEquals('chintu', secondContactFirstName);
+           system.assertEquals('NCT Customer', secondContactFirstName);
            system.assertEquals(null, con.Id);
        } 
      
