@@ -20,8 +20,8 @@ public without sharing class MembershipConditionCheckUtilities {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,MembershipConstants.INSUFFICIENT_ACCESS));
         }
         List<Contact> contactList =[SELECT Id,Salutation,Gender__c,Parent_Contact__c,Branch__c, LastName, FirstName, Email,MailingStreet,MailingState,MailingCity, Phone,MailingPostalCode,Prefered_First_Name__c,AccountId FROM Contact WHERE Parent_Contact__c = :primaryContactId];
-        if(contactList.isEmpty()){
-    	return receiveInputSecondContactPermissionCheck(twomems,primaryContactId,secondContactFirstName) && contactList.isEmpty();
+        if(!contactList.isEmpty()){
+    	    return receiveInputSecondContactPermissionCheck(twomems,primaryContactId,secondContactFirstName) && contactList.isEmpty();
         }else{
             return receiveInputSecondContactPermissionCheck(twomems,primaryContactId,secondContactFirstName);
         }
