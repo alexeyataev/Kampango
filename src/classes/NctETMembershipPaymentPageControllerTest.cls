@@ -321,7 +321,7 @@ private class NctETMembershipPaymentPageControllerTest {
             con.LastName = 'Test LastName';
             con.Email = 'testemail@test.com';
             con.Phone = '123456789';
-            con.MailingPostalCode = 'SW123';
+            con.MailingPostalCode = 'NR3 3NS';
             con.salutation = 'Mr';
             con.Gender__c = 'Male';
             insert con;
