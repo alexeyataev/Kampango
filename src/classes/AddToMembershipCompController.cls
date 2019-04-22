@@ -3,7 +3,7 @@ public with sharing class AddToMembershipCompController {
 	@auraenabled    
     public static void addToMembershipValidation(Id contId){  
         system.debug('addToMembershipValidation : contId : '+contId);
-        if(!Schema.sObjectType.Contact.fields.Email.isAccessible()){
+        if(!Schema.sObjectType.Contact.fields.Data_Source__c.isAccessible()){
          ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'Error: Insufficient Access'));
         }
         contact = [SELECT 

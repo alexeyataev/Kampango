@@ -16,7 +16,7 @@ public without sharing class ContactUtilities {
 	*/
     public static boolean isContactExisting(String email){
         		List<Contact> contactlist;
-           if(!Schema.sObjectType.Contact.fields.lastname.isAccessible()){
+           if(!Schema.sObjectType.Contact.fields.Data_Source__c.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
          }
@@ -75,7 +75,7 @@ public without sharing class ContactUtilities {
         List<Contact> con;
         Id recordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Staff').getRecordTypeId();
         System.debug('recordTypeId: '+recordTypeId);
-         if(!Schema.sObjectType.Contact.fields.Id.isAccessible()){
+         if(!Schema.sObjectType.Contact.fields.Data_Source__c.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
          }  
@@ -198,7 +198,7 @@ public without sharing class ContactUtilities {
 	*/
     public static boolean isCompanionContactExisting(Id contId){
         		List<Contact> contactlist;
-           if(!Schema.sObjectType.Contact.fields.lastname.isAccessible()){
+           if(!Schema.sObjectType.Contact.fields.Data_Source__c.isAccessible()){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL,'Insufficient access'));
                 return null;
          }
