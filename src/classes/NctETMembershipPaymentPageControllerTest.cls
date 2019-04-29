@@ -3,6 +3,38 @@ private class NctETMembershipPaymentPageControllerTest {
     private static PaymentHubApiSettings__c paymentHubApiSettings = PaymentHubApiSettings__c.getInstance();
     Static contact newCont;
     
+    @testSetup static void setup() {
+       Account acc = new Account();
+        acc.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+        acc.Name ='Test Branch';
+        insert acc;
+        List<Contact> contact = new List<Contact>();
+        for(Integer i=0;i<2;i++){
+            contact.add(new Contact(
+            RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId(),
+           	Branch__c = acc.id, 
+            MailingStreet = 'Test address',
+            MailingState = 'Test State',
+            MailingCity = 'Test City',
+            LastName = 'NCT CHild'+i,
+            FirstName = 'Childs'+i,
+            Phone = '09876543212',
+            Email = 'nctchild4555'+i+'@gmail.com'));
+        }
+        insert contact;
+        System.debug('contact:'+contact);
+        List<Contact> secondContact = new List<Contact>();
+        for(Integer j=0;j<2;j++){
+            secondContact.add(new Contact(
+            LastName = 'NCT CHild'+j+j,
+            FirstName = 'Childs'+j+j,
+            Phone = '01234567890',
+            Email = 'nctchild4555'+j+j+'@gmail.com',
+            Parent_Contact__c = contact[j].id));
+        }
+        insert secondContact;
+    }
+    
     @isTest static void permissionCheck(){
         Profile p = [SELECT Id FROM Profile WHERE Name='Payment Profile'];
       User u = new User(Alias = 'newUsers', Email='newusers@testorg.com',
@@ -10,6 +42,7 @@ private class NctETMembershipPaymentPageControllerTest {
         LocaleSidKey='en_US', ProfileId = p.Id,
         TimeZoneSidKey='America/Los_Angeles', UserName='newusers@testorg.com');
 
+        Contact con = [Select id,Email,FirstName,LastName,Phone,Branch__c,Salutation,Gender__c,MailingStreet,MailingState,MailingCity from contact where phone='09876543212' limit 1];
         System.runAs(u) {
              Membership_Type__mdt  membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
@@ -17,27 +50,9 @@ private class NctETMembershipPaymentPageControllerTest {
                                                     GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
                                                     WHERE Payment_Method__c = 'Credit/Debit Card' limit 1];
             
-            Account acc = new Account();
-            acc.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();       
-            acc.Name ='Test Branch';
-            insert acc;
-            Contact primaryContact = new Contact();
-            Contact con = new Contact();
-            con.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Parent').getRecordTypeId();
+            
     
-            con.Branch__c = acc.id; 
-            con.MailingStreet = 'Test address';
-            con.MailingState = 'Test State';
-            con.MailingCity = 'Test City';
-            con.Prefered_First_Name__c = 'Test FirstName';
-            con.FirstName = 'Childs';
-            con.LastName = 'Test LastName';
-            con.Email = 'testemail@test.com';
-            con.Phone = '123456789';
-            con.MailingPostalCode = 'SW123';
-            con.salutation = 'Mr';
-            con.Gender__c = 'Male';
-            insert con;
+            Contact primaryContact = new Contact();
             
             npe03__Recurring_Donation__c recDonate = new npe03__Recurring_Donation__c();
             
