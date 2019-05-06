@@ -1,32 +1,42 @@
 @isTest
 private class AddToMembershipCompControllerTest {
+  
+    @testSetup static void setup() {
+        List<Contact> contact = new List<Contact>();
+        for(Integer i=0;i<2;i++){
+            contact.add(new Contact(
+            LastName = 'NCT CHild'+i,
+            FirstName = 'Childs'+i,
+            Phone = '09876543212',
+            Email = 'nctchild4555'+i+'@gmail.com'));
+        }
+        insert contact;
+        System.debug('contact:'+contact);
+        List<npe03__Recurring_Donation__c> recDonation = new List<npe03__Recurring_Donation__c>();
+        for(Integer j=0; j<2; j++){
+            recDonation.add(new npe03__Recurring_Donation__c(
+                Name = 'NCT Childs',
+                npe03__Amount__c = 10000,
+                npe03__Installment_Period__c = 'Monthly',
+                CARE_Payment_Frequency__c = 'NCT CHILD TRUST',
+                First_Payment__c = system.date.today(),
+                First_Contact__c = contact[j].id, 
+                Membership_Status__c = 'Pending', 
+                Membership_type__c = '18 month - Joint',
+                npe03__Contact__c = contact[j].id,
+                Renewal_Date__c = null
+            ));
+        }
+        insert recDonation;
+    }
       @isTest
     static void isMembershipExists(){
-        contact contactID = new contact();
-        contact cont = new contact();
-        cont.LastName = 'NCT CHild';
-        cont.FirstName = 'Childs';
-        cont.Phone = '09876543212';
-        cont.Email = 'nctchild4555@gmail.com';
-        insert cont;
         
-        npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
-        recDon.Name = 'NCT Childs';
-        recDon.npe03__Amount__c = 10000;
-        recDon.npe03__Installment_Period__c = 'Monthly';
-        recDon.CARE_Payment_Frequency__c = 'NCT CHILD TRUST';
-        recDon.First_Payment__c = system.date.today();
-        recDon.First_Contact__c = cont.id; 
-        recDon.Membership_Status__c = 'Pending'; 
-        recDon.Membership_type__c = '18 month - Joint';
-        recDon.npe03__Contact__c = cont.id;
-        recDon.Renewal_Date__c = null;
-        insert recDon;
-        system.debug('gygfkwgfgw' + recDon.Renewal_Date__c);
+         List<npe03__Recurring_Donation__c> recDon = [Select Id,Name,Membership_Status__c,npe03__Contact__c from npe03__Recurring_Donation__c where Name='NCT Childs'];
         
         try{
-         AddToMembershipCompController.addToMembershipValidation(cont.id);
-         system.assertEquals('Pending',recDon.Membership_Status__c);
+         AddToMembershipCompController.addToMembershipValidation(recDon[0].npe03__Contact__c);
+         system.assertEquals('Pending',recDon[0].Membership_Status__c);
         }catch(AuraHandledException e) {
             System.assert(e.getMessage().contains('You Cant Add Membership, hence already membership exists for this contact')); 
        }

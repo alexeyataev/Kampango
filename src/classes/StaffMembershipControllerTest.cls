@@ -1,12 +1,51 @@
 @isTest
 private class StaffMembershipControllerTest {
+    @testSetup static void setup() {
+       Account acc = new Account();
+        acc.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+        acc.Name ='Test Branch';
+        insert acc;
+        List<Contact> firstContact = new List<Contact>();
+        for(Integer i=0;i<2;i++){
+            firstContact.add(new Contact(
+            LastName = 'NCT CHild'+i,
+            FirstName = 'Childs'+i,
+            Phone = '09876543212',
+            Email = 'nctchild4555'+i+'@gmail.com'));
+        }
+        insert firstContact;
+         
+         List<Contact> secondContact = new List<Contact>();
+        for(Integer j=0;j<2;j++){
+            secondContact.add(new Contact(
+            LastName = 'NCT CHild'+j+j,
+            FirstName = 'Childs'+j+j,
+            Phone = '01234567890',
+            Email = 'nctchild4555'+j+j+'@gmail.com',
+            Parent_Contact__c = firstContact[j].id));
+        }
+        insert secondContact;
+         
+         List<npe03__Recurring_Donation__c> recDonation = new List<npe03__Recurring_Donation__c>();
+        for(Integer j=0; j<2; j++){
+            recDonation.add(new npe03__Recurring_Donation__c(
+                Name = 'NCT Childs',
+                npe03__Amount__c = 10000,
+                npe03__Installment_Period__c = 'Monthly',
+                CARE_Payment_Frequency__c = 'NCT CHILD TRUST',
+                First_Payment__c = system.date.today(),
+                First_Contact__c = firstContact[j].id, 
+                Membership_Status__c = 'Pending', 
+                Membership_type__c = '18 month - Joint',
+                npe03__Contact__c = firstContact[j].id,
+                Renewal_Date__c = null
+            ));
+        }
+        insert recDonation;
+    }
     @isTest static void isRecurringDonationExists(){
-        contact cont = new contact();
-        cont.LastName = 'Test Contact';
-        cont.FirstName = 'NCT Child';
-        cont.Phone = '0987654321234';
-        cont.Email = 'testcontact@test.com';
-        insert cont;
+        List<Contact> firstContact = [Select id, Name from Contact where phone='01234567890'];
+
         list<npe03__Recurring_Donation__c> recurrDonList = new  list<npe03__Recurring_Donation__c>();
         Membership_Type__mdt membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
@@ -15,8 +54,8 @@ private class StaffMembershipControllerTest {
                                                     where Payment_Type__c= :MembershipConstants.LIFEMEMBERSHIP limit 1];
         
         try{
-            StaffMembershipController.recurringDon =null;
-         	StaffMembershipController.membershipInsert(cont.id);
+            StaffMembershipController.recurringDon =recurrDonList;
+         	StaffMembershipController.membershipInsert(firstContact[0].id);
 
         }catch(AuraHandledException e) {
             System.debug(e.getMessage());
@@ -25,35 +64,19 @@ private class StaffMembershipControllerTest {
 
     }
     @isTest static void isRecurringDonationNotExists(){
-        contact cont = new contact();
-        cont.LastName = 'Test Contact';
-        cont.FirstName = 'NCT Child';
-        cont.Phone = '0987654321234';
-        cont.Email = 'testcontact@test.com';
-        insert cont;
         
-        list<npe03__Recurring_Donation__c> recurrDonList = new  list<npe03__Recurring_Donation__c>();
-        npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
-        recDon.Name = 'Test Membership';
-        recDon.npe03__Amount__c = 10000;
-        recDon.npe03__Installment_Period__c = 'Monthly';
-        recDon.First_Payment__c = system.today();
-        recDon.First_Contact__c = cont.id; 
-        recDon.Membership_Status__c = 'Confirmed'; 
-        recDon.Membership_type__c = '18 month - Joint';
-        recDon.npe03__Contact__c = cont.id;
-        recurrDonList.add(recDon);
-        insert recurrDonList;
+        
+        List<npe03__Recurring_Donation__c> recDonation = [Select id, Name from npe03__Recurring_Donation__c where Name = 'NCT Childs'];
         
         Membership_Type__mdt membershipDetails = [SELECT Id, MasterLabel, Eligible_for_Gift_Aid__c,Installment_Amount__c, Payment_Target__c,Schedule_Type__c,
                                                     No_of_Installments__c,Payment_Type__c,  Payment_Method__c, Recursive__c, GiftAid_Type__c,
                                                     Total_Amount__c, Contact_Type__c, Membership__c,Installment_Period__c, 
                                                     GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt 
                                                     where Payment_Type__c='Life Membership - Free' limit 1];
-        
+        List<Contact> firstContact = [Select id, Name from Contact where phone='09876543212'];
         try{
-            StaffMembershipController.recurringDon = recurrDonList;
-         	StaffMembershipController.membershipInsert(cont.id);
+            StaffMembershipController.recurringDon = recDonation;
+         	StaffMembershipController.membershipInsert(firstContact[0].id);
             
 
         }catch(AuraHandledException e) {
@@ -68,25 +91,10 @@ private class StaffMembershipControllerTest {
         EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
         LocaleSidKey='en_US', ProfileId = p.Id,
         TimeZoneSidKey='America/Los_Angeles', UserName='newusers@testorg.com');
-		contact cont = new contact();
-        cont.FirstName = 'NCT Child';
-        cont.LastName = 'Test Contact';
-        cont.Phone = '0987654321234';
-        cont.Email = 'testcontact@test.com';
-        insert cont;
+
+		List<npe03__Recurring_Donation__c> recDonation = [Select id, Name from npe03__Recurring_Donation__c where Name = 'NCT Childs'];
+        List<Contact> firstContact = [Select id, Name from Contact where phone='09876543212'];
         
-        list<npe03__Recurring_Donation__c> recurrDonList = new  list<npe03__Recurring_Donation__c>();
-        npe03__Recurring_Donation__c recDon = new npe03__Recurring_Donation__c();
-        recDon.Name = 'Test Membership';
-        recDon.npe03__Amount__c = 10000;
-        recDon.npe03__Installment_Period__c = 'Monthly';
-        recDon.First_Payment__c = system.today();
-        recDon.First_Contact__c = cont.id; 
-        recDon.Membership_Status__c = 'Confirmed'; 
-        recDon.Membership_type__c = '18 month - Joint';
-        recDon.npe03__Contact__c = cont.id;
-        recurrDonList.add(recDon);
-        insert recurrDonList;
         System.runAs(u) {
         
         
@@ -97,8 +105,8 @@ private class StaffMembershipControllerTest {
                                                     where Payment_Type__c='Life Membership - Free' limit 1];
         
         try{
-            StaffMembershipController.recurringDon = recurrDonList;
-         	StaffMembershipController.membershipInsert(cont.id);
+            StaffMembershipController.recurringDon = recDonation;
+         	StaffMembershipController.membershipInsert(firstContact[0].id);
             
 
         }catch(AuraHandledException e) {

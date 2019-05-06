@@ -1,18 +1,29 @@
 @isTest
 private class PaymentHubCalloutUtilitiesTest {
+    @testSetup static void setup() {
+       Account acc = new Account();
+        acc.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+        acc.Name ='Test Branch';
+        insert acc;
+        List<Contact> firstContact = new List<Contact>();
+        for(Integer i=0;i<2;i++){
+            firstContact.add(new Contact(
+            LastName = 'NCT CHild'+i,
+            FirstName = 'Childs'+i,
+            Phone = '09876543212',
+            Email = 'nctchild4555'+i+'@gmail.com'));
+        }
+        insert firstContact;
+        
+    }
     @isTest 
     private static void paymentHubCallContactExists(){
-        contact cont = new contact();
-        cont.FirstName = 'NCT Child';
-        cont.LastName = 'Trust';
-        cont.Email = 'nct@gmail.com';
-        cont.Prefered_First_Name__c = 'NCT';
-        insert cont; 
+        List<Contact> firstContact = [Select id,FirstName,LastName,Email from Contact where Phone = '09876543212']; 
         
         PaymentRequestVo.ContactVo cvo = new PaymentRequestVo.ContactVo();
-            cvo.Email = cont.Email;        
-            cvo.FirstName = cont.FirstName;
-            cvo.LastName = cont.LastName;
+            cvo.Email = firstContact[0].Email;        
+            cvo.FirstName = firstContact[0].FirstName;
+            cvo.LastName = firstContact[0].LastName;
           
         PaymentHubApiSettings__c paymentHubApiSettings = new PaymentHubApiSettings__c();
         paymentHubApiSettings.Payment_Status_Root_Url__c = 'https://test.salesforce.com/nctMembershipPaymentPage';
@@ -25,7 +36,7 @@ private class PaymentHubCalloutUtilitiesTest {
                                                 GiftAid_Acquisition_Method__c,Target_Customer__c, Payment_Processor__c FROM  Membership_Type__mdt where  Payment_Method__c='Credit/Debit Card' limit 1];
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
-        PaymentHubCalloutUtilities.paymentHub(cont,membershipDetails,null);    
+        PaymentHubCalloutUtilities.paymentHub(firstContact[0],membershipDetails,null);      
         Test.stopTest();
         system.assertEquals('Credit/Debit Card',membershipDetails.Payment_Method__c );
         

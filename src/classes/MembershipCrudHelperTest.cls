@@ -1,5 +1,34 @@
 @isTest
 private class MembershipCrudHelperTest {
+    @testSetup static void setup() {
+       Account acc = new Account();
+        acc.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+        acc.Name ='Test Branch';
+        insert acc;
+        List<Contact> firstContact = new List<Contact>();
+        for(Integer i=0;i<2;i++){
+            firstContact.add(new Contact(
+            LastName = 'NCT CHild'+i,
+            FirstName = 'Childs'+i,
+            Phone = '09876543212',
+            Email = 'nctchild4555'+i+'@gmail.com'));
+        }
+        insert firstContact;
+        System.debug('contact:'+firstContact);
+        List<Contact> secondContact = new List<Contact>();
+        for(Integer j=0;j<2;j++){
+            secondContact.add(new Contact(
+            LastName = 'NCT CHild'+j+j,
+            FirstName = 'Childs'+j+j,
+            Phone = '01234567890',
+            Email = 'nctchild4555'+j+j+'@gmail.com',
+            Parent_Contact__c = firstContact[j].id));
+        }
+        insert secondContact;
+        
+        
+        
+    }
     @isTest
     private static void membershipCrudTest(){
         
@@ -20,25 +49,13 @@ private class MembershipCrudHelperTest {
         list<cpm__Payment_Profile__c> paymntProflRecord = new list<cpm__Payment_Profile__c>();
         list<String> accountDetails = new list<String>{'145263777','Santhosh','CD-1234','Written','Enquiry by phone - main NCT'};
 
-        
-        account acct = new account();
-        acct.name = 'account details';
-        insert acct;
-        contact scon = new contact();
-        
-        contact con = new contact();
-        con.FirstName = 'NCT Child';
-        con.LastName = 'Trust';
-        con.Email = 'nct@gmail.com';
-        con.Prefered_First_Name__c = 'NCT';
-        con.AccountId = acct.Id;
-        insert con;
-         
+        List<Contact> contact =[Select id,Name,Email,AccountId from Contact where Phone = '09876543212'];
+        List<Contact> secondContact =[Select id,Name,Email from Contact where Phone='01234567890']; 
         cpm__Payment_Profile__c paymntProfile = new cpm__Payment_Profile__c();
   
         MembershipCrudHelperVo crudHelper = new MembershipCrudHelperVo();
-        crudHelper.pcont = con;
-        crudHelper.scont = scon;
+        crudHelper.pcont = contact[0];
+        crudHelper.scont = secondContact[0];
         crudHelper.accountName = 'Santhosh';
         crudHelper.accountNumber = '145263777';
         crudHelper.sortCode = 'CD-1234';
@@ -140,6 +157,7 @@ private class MembershipCrudHelperTest {
        MembershipCrudHelper.recDonationRecord = recDonateRecord;        
         recDonateRecord[0] = MembershipCrudHelper.recDonation(membershipDetails,paymentProfile);
         system.assertEquals(1,MembershipCrudHelper.recDonationRecord.size());
+
     }
 
     @isTest
@@ -153,21 +171,11 @@ private class MembershipCrudHelperTest {
         
         list<String> accountDetails = new list<String>{'145263777','Santhosh','CD-1234','','Enquiry by phone - main NCT'};
 
-        
-        account acct = new account();
-        acct.name = 'account details';
-        insert acct;
-        
-        contact con = new contact();
-        con.FirstName = 'NCT Child';
-        con.LastName = 'Trust';
-        con.Email = 'nct@gmail.com';
-        con.Prefered_First_Name__c = 'NCT';
-        con.AccountId = acct.Id;
-        insert con;
+        List<Contact> contact =[Select id,Name,Email from Contact where Phone = '09876543212'];
+        List<Contact> secondContact =[Select id,Name,Email from Contact where Phone='01234567890']; 
           
         MembershipCrudHelperVo crudHelper = new MembershipCrudHelperVo();
-        crudHelper.pcont = con;
+        crudHelper.pcont = contact[0];
         crudHelper.accountName = 'Santhosh';
         crudHelper.accountNumber = '145263777';
         crudHelper.sortCode = 'CD-1234';
