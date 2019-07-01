@@ -1,9 +1,0 @@
-<aura:component description="footer" implements="forceCommunity:availableForAllPageTypes" access="global" >
-    <aura:attribute name="footer" type="String" default="© 2018 NCT, 30 Euston Square, London, NW1 2FB. Reg Charity No (England and Wales): 801395, (Scotland): SC041592. Reg Company No: 2370573." access="global"/> 
-    <aura:attribute name="footyear" type="string" default="1st 1000 days" access="global"/>
-	<div class="grid">
-        <span> {!v.footer}</span> <br/>
-        <span> &copy; Copyright {!v.footyear}</span>
-    </div>
-    
-</aura:component>
