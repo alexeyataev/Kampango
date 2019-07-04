@@ -1,0 +1,10 @@
+{
+  "orgName": "NCT",
+  "edition": "Enterprise",
+  "features": [],
+  "settings": {
+    "orgPreferenceSettings": {
+      "s1DesktopEnabled": true
+    }
+  }
+}
