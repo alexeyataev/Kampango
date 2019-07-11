@@ -155,8 +155,8 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Session</label>
     <nameField>
-        <displayFormat>SE-{0000000}</displayFormat>
-        <label>Session Number</label>
+        <displayFormat>S-{0000000}</displayFormat>
+        <label>Session Name</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
