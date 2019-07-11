@@ -149,14 +149,14 @@
     <enableHistory>true</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Session</label>
     <nameField>
-        <displayFormat>S-{0000000}</displayFormat>
-        <label>Session Name</label>
+        <displayFormat>SE-{0000000}</displayFormat>
+        <label>Session Number</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
