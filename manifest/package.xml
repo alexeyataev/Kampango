@@ -5,5 +5,23 @@
         <members>Session__c</members>
         <name>CustomObject</name>
     </types>
+    <types>
+        <members>Account.PSA_Area__c</members>
+        <name>CustomField</name>
+    </types>
+     <types>
+        <members>PSA_Areas</members>
+        <name>GlobalValueSet</name>
+    </types>
+    <types>
+        <members>Account-Branch Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <members>Capacity PSA</members>
+        <members>Enquiry PSA</members>
+        <name>Profile</name>
+    </types>
     <version>46.0</version>
 </Package>

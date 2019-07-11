@@ -38,7 +38,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Session__c.Website_Text__c</field>
+        <field>Account.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
