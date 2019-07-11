@@ -90,6 +90,7 @@
     <miniLayout>
         <fields>Name</fields>
         <fields>ParentId</fields>
+        <fields>PSA_Area__c</fields>
     </miniLayout>
     <quickActionList>
         <quickActionListItems>
