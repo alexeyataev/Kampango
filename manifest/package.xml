@@ -19,6 +19,8 @@
     </types>
     <types>
         <members>Admin</members>
+        <members>Capacity PSA</members>
+        <members>Enquiry PSA</members>
         <name>Profile</name>
     </types>
     <version>46.0</version>
