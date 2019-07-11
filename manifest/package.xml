@@ -5,5 +5,10 @@
         <members>Session__c</members>
         <name>CustomObject</name>
     </types>
+    <types>
+        <members>Enquiry PSA</members>
+        <members>Capacity PSA</members>
+        <name>Profile</name>
+    </types>
     <version>46.0</version>
 </Package>
