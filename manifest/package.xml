@@ -3,6 +3,7 @@
     <types>
         <members>Course__c</members>
         <members>Session__c</members>
+        <members>Account</members>
         <name>CustomObject</name>
     </types>
     <types>
