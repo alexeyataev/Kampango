@@ -24,7 +24,7 @@
                 <field>Course_Sub_Type__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>Course_Status__c</field>
             </layoutItems>
             <layoutItems>
