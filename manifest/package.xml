@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>Course__c</members>
-        <members>Session__c</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>Account.PSA_Area__c</members>
+        <members>Account.Email__c</members>
         <name>CustomField</name>
     </types>
-     <types>
-        <members>PSA_Areas</members>
-        <name>GlobalValueSet</name>
+    <types>
+        <members>AccountType</members>
+        <name>StandardValueSet</name>
     </types>
     <types>
-        <members>Account-Branch Layout</members>
+        <members>Account-Organization Lightning Layout</members>
         <name>Layout</name>
     </types>
     <types>
         <members>Admin</members>
-        <members>Capacity PSA</members>
-        <members>Enquiry PSA</members>
         <name>Profile</name>
     </types>
     <version>46.0</version>
