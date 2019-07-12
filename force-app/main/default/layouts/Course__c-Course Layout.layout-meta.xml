@@ -55,7 +55,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Offer_Email_Text__c</field>
+                <field>Additional_Offer_Information__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -63,7 +63,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Website_Text__c</field>
+                <field>Additional_Course_Finder_Information__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -79,7 +79,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Hide_From_Website__c</field>
+                <field>Hide_From_Course_Finder__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

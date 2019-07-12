@@ -163,6 +163,13 @@
     </nameField>
     <pluralLabel>Courses</pluralLabel>
     <searchLayouts>
+        <customTabListAdditionalFields xsi:nil="true"/>
+        <customTabListAdditionalFields xsi:nil="true"/>
+        <customTabListAdditionalFields xsi:nil="true"/>
+        <customTabListAdditionalFields xsi:nil="true"/>
+        <customTabListAdditionalFields xsi:nil="true"/>
+        <customTabListAdditionalFields xsi:nil="true"/>
+        <customTabListAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Course_Status__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
