@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -141,44 +141,26 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>Course_Compact_Layout</compactLayoutAssignment>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableFeeds>true</enableFeeds>
-    <enableHistory>true</enableHistory>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
-    <enableReports>true</enableReports>
+    <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
-    <label>Course</label>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <label>Estimated Costs</label>
     <nameField>
-        <displayFormat>C{000000}</displayFormat>
-        <label>Course Number</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <displayFormat>C-{000000}</displayFormat>
+        <label>Estimated Costs</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Courses</pluralLabel>
-    <searchLayouts>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields>Course_Status__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-    </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <pluralLabel>Estimated Costs</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
