@@ -150,6 +150,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Type__c</fields>
+        <fields>Amount__c</fields>
         <relatedList>Estimated_Costs__c.Course__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

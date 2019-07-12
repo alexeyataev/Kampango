@@ -163,21 +163,7 @@
     </nameField>
     <pluralLabel>Courses</pluralLabel>
     <searchLayouts>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Course_Status__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields xsi:nil="true"/>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

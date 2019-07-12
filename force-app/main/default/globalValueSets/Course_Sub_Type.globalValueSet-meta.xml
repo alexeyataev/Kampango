@@ -46,5 +46,5 @@
         <label>Waterbirth</label>
     </customValue>
     <masterLabel>Course Sub Type</masterLabel>
-    <sorted>false</sorted>
+    <sorted>true</sorted>
 </GlobalValueSet>

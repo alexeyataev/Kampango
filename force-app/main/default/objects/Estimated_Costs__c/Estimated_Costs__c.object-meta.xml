@@ -155,7 +155,7 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Estimated Costs</label>
     <nameField>
-        <displayFormat>C-{000000}</displayFormat>
+        <displayFormat>EC{000000}</displayFormat>
         <label>Estimated Costs</label>
         <type>AutoNumber</type>
     </nameField>
