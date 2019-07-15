@@ -9,7 +9,6 @@
         <members>DisplayCourseSessionsController</members>
         <members>DisplayCourseSessionsControllerTest</members>
         <members>TestSessionBuilder</members>
-        <members>TestSessionBuilder</members>
         <members>TestCourseBuilder</members>
         <name>ApexClass</name>
     </types>
