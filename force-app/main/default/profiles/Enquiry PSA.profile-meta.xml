@@ -76,11 +76,6 @@
         <field>Course__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Sub_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
    <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Target_Group__c</field>
@@ -98,30 +93,9 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Course__c.Women_Only__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Estimated_Costs__c.Amount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Estimated_Costs__c.Course__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Estimated_Costs__c.Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-  
    <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Confirmation_Email_Information__c</field>

@@ -77,15 +77,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Sub_Type__c</field>
-        <readable>true</readable>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Total_Contact_Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Target_Group__c</field>
         <readable>true</readable>
@@ -97,30 +93,10 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Course__c.Women_Only__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Estimated_Costs__c.Amount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Estimated_Costs__c.Course__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Estimated_Costs__c.Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Confirmation_Email_Information__c</field>
         <readable>true</readable>
@@ -150,6 +126,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Session__c-Session Layout</layout>
     </layoutAssignments>
