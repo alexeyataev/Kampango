@@ -171,6 +171,9 @@
         <customTabListAdditionalFields xsi:nil="true"/>
         <customTabListAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Target_Group__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Branch__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Sub_Type__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
