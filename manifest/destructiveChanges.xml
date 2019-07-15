@@ -27,19 +27,15 @@
         <members>Course__c.Description__c</members>
         <members>Course__c.Duration__c</members>
         <members>Course__c.Duration_Formatted__c</members>
-        <members>Course__c.End_Date__c</members>
         <members>Course__c.End_Time__c</members>
         <members>Course__c.Fee__c</members>
         <members>Course__c.Notes__c</members>
         <members>Course__c.Places__c</members>
         <members>Course__c.Postnatal_End_Date__c</members>
         <members>Course__c.Postnatal_Start_Date__c</members>
-        <members>Course__c.Practitioner__c</members>
         <members>Course__c.PSA_Branch__c</members>
         <members>Course__c.PSA_Office__c</members>
-        <members>Course__c.Start_Date__c</members>
         <members>Course__c.Start_Time__c</members>
-        <members>Course__c.Venue__c</members>
         <name>CustomField</name>
     </types>
 </Package>
