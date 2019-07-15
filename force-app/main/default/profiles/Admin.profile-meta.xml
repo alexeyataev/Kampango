@@ -4,7 +4,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.PSA_Area__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -29,6 +28,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Course_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -62,8 +66,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Start_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Target_Group__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Total_Contact_Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -96,11 +110,39 @@
         <field>Estimated_Costs__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Confirmation_Email_Information__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Contact_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Lunch_Break_Minutes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Practitioner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Website_Text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>  
     <layoutAssignments>
         <layout>Course__c-Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Session__c-Session Layout</layout>
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -120,4 +162,5 @@
         <object>Estimated_Costs__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <userLicense>Salesforce</userLicense>
 </Profile>

@@ -2,6 +2,11 @@
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>true</custom>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.PSA_Area__c </field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Additional_Course_Finder_Information__c</field>
         <readable>true</readable>
@@ -38,6 +43,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Hide_From_Course_Finder__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -61,9 +71,20 @@
         <field>Course__c.Private_Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+   <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Start_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+   <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Target_Group__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Total_Contact_Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -91,11 +112,40 @@
         <field>Estimated_Costs__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
+  
+   <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Confirmation_Email_Information__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Contact_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Lunch_Break_Minutes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Practitioner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Website_Text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Course__c-Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Session__c-Session Layout</layout>
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -113,6 +163,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Estimated_Costs__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Session__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <userLicense>Salesforce</userLicense>
