@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_Date__c</fullName>
+    <externalId>false</externalId>
+    <label>End Date</label>
+    <summarizedField>Session__c.Date__c</summarizedField>
+    <summaryFilterItems>
+        <field>Session__c.Type__c</field>
+        <operation>notEqual</operation>
+        <value>Reunion</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Course__c.Duration__c</members>
+        <members>Course__c.Duration_Formatted__c</members>
+        <members>Course__c.End_Time__c</members>
+        <members>Session__c.Confirmed__c</members>
+        <members>Session__c.Day__c</members>
+        <members>Session__c.Duration__c</members>
+        <members>Session__c.Duration_Formatted__c</members>
+        <members>Session__c.Notes__c</members>
+        <members>Session__c.Venue__c</members>
+        <members>Session__c.Women_Only__c</members>
+        <name>CustomField</name>
+    </types>
+</Package>
