@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <fullName>Status__c</fullName>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attendee_Type__c</fullName>
     <externalId>false</externalId>
-    <label>Status</label>
-    <required>false</required>
-    <trackFeedHistory>false</trackFeedHistory>
+    <label>Attendee Type</label>
+    <required>true</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -13,24 +12,24 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Draft</fullName>
-                <default>true</default>
-                <label>Draft</label>
+                <fullName>Women Only</fullName>
+                <default>false</default>
+                <label>Women Only</label>
             </value>
             <value>
-                <fullName>Final</fullName>
+                <fullName>Pregnant Women Only</fullName>
                 <default>false</default>
-                <label>Final</label>
+                <label>Pregnant Women Only</label>
             </value>
             <value>
-                <fullName>Cancelling</fullName>
+                <fullName>Birth Partners Only</fullName>
                 <default>false</default>
-                <label>Cancelling</label>
+                <label>Birth Partners Only</label>
             </value>
             <value>
-                <fullName>Cancelled</fullName>
+                <fullName>Birth Partners Welcome</fullName>
                 <default>false</default>
-                <label>Cancelled</label>
+                <label>Birth Partners Welcome</label>
             </value>
         </valueSetDefinition>
     </valueSet>
