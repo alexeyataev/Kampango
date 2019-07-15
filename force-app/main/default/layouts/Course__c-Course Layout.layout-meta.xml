@@ -17,15 +17,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Course_Type__c</field>
+                <field>Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Course_Sub_Type__c</field>
+                <field>Sub_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Course_Status__c</field>
+                <field>Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -49,7 +49,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Course_Fee__c</field>
+                <field>Fee__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -142,7 +142,7 @@
     <miniLayout>
         <fields>Name</fields>
         <fields>Target_Group__c</fields>
-        <fields>Course_Status__c</fields>
+        <fields>Status__c</fields>
     </miniLayout>
     <relatedLists>
         <relatedList>RelatedContentNoteList</relatedList>
