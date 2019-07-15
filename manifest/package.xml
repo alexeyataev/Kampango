@@ -15,7 +15,7 @@
         <name>StandardValueSet</name>
     </types>
     <types>
-        <members>Account.Billing_email_address_required</members>
+        <members>Account.Billing_Email_Required_For_Suppliers</members>
         <name>ValidationRule</name>
     </types>
     <types>
