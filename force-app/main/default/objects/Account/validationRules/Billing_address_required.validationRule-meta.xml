@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_address_required</fullName>
+    <active>true</active>
+    <description>Billing address required when Account type Supplier</description>
+    <errorConditionFormula>AND(
+ISBLANK(Billing_Email__c),
+ISPICKVAL(Type, &quot;Supplier&quot;))</errorConditionFormula>
+    <errorDisplayField>Billing_Email__c</errorDisplayField>
+    <errorMessage>Billing address shouldn&#39;t be empty.</errorMessage>
+</ValidationRule>

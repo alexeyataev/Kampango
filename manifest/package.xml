@@ -7,14 +7,18 @@
     </types>
     <types>
         <members>Account.PSA_Area__c</members>
-        <members>Account.Email__c</members>
+        <members>Account.Billing_Email__c</members>
         <name>CustomField</name>
     </types>
     <types>
         <members>AccountType</members>
         <name>StandardValueSet</name>
     </types>
-     <types>
+    <types>
+        <members>Account.Billing_address_required</members>
+        <name>ValidationRule</name>
+    </types>
+    <types>
         <members>PSA_Areas</members>
         <name>GlobalValueSet</name>
     </types>

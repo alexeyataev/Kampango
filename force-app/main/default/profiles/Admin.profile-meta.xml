@@ -3,7 +3,7 @@
     <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.Email__c</field>
+        <field>Account.Billing_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
