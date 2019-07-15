@@ -8,6 +8,7 @@
     </types>
     <types>
         <members>Account.PSA_Area__c</members>
+        <members>Account.Billing_Email__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -17,6 +18,7 @@
     </types>
     <types>
         <members>Account-Branch Layout</members>
+        <members>Account-Organization Lightning Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <name>Layout</name>
@@ -26,6 +28,14 @@
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>
         <name>Profile</name>
+    </types>
+    <types>
+       <members>AccountType</members>
+        <name>StandardValueSet</name>
+    </types>
+    <types>
+        <members>Account.Billing_Email_Required_For_Suppliers</members>
+        <name>ValidationRule</name>
     </types>
     <version>46.0</version>
 </Package>
