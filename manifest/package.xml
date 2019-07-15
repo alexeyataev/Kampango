@@ -6,8 +6,9 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>Account.PSA_Area__c</members>
+        <members>Account.Account_Number__c</members>
         <members>Account.Billing_Email__c</members>
+        <members>Account.PSA_Area__c</members>
         <name>CustomField</name>
     </types>
     <types>
