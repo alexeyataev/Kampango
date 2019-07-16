@@ -21,19 +21,19 @@
                 <label>Opened for us</label>
             </value>
             <value>
-                <fullName>Pin code entry</fullName>
+                <fullName>Pin code</fullName>
                 <default>false</default>
-                <label>Pin code entry</label>
+                <label>Pin code</label>
             </value>
             <value>
-                <fullName>Key entry</fullName>
+                <fullName>Key</fullName>
                 <default>false</default>
-                <label>Key entry</label>
+                <label>Key</label>
             </value>
             <value>
-                <fullName>Key and pin code entry</fullName>
+                <fullName>Key and pin code</fullName>
                 <default>false</default>
-                <label>Key and pin code entry</label>
+                <label>Key and pin code</label>
             </value>
         </valueSetDefinition>
     </valueSet>
