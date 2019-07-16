@@ -31,6 +31,10 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>Account.Branch</members>
+        <name>RecordType</name>
+    </types>
+    <types>
        <members>AccountType</members>
         <name>StandardValueSet</name>
     </types>
