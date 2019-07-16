@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>UNKNOWN</fullName>
+        <default>true</default>
+        <label>UNKNOWN</label>
+    </customValue>
+    <customValue>
+        <fullName>Y</fullName>
+        <default>false</default>
+        <label>Y</label>
+    </customValue>
+    <customValue>
+        <fullName>N</fullName>
+        <default>false</default>
+        <label>N</label>
+    </customValue>
+    <masterLabel>Y/N/UNKNOWN</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
