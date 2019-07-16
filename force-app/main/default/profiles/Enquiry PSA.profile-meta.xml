@@ -4,12 +4,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Account_Number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Billing_Email__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -46,7 +46,7 @@
         <field>Course__c.End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+      <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Fee__c</field>
         <readable>true</readable>
@@ -137,7 +137,7 @@
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
     </layoutAssignments>
-	<layoutAssignments>
+    <layoutAssignments>
         <layout>Session__c-Session Layout</layout>
     </layoutAssignments>
     <objectPermissions>

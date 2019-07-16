@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Branch_Account__c</fullName>
+    <fullName>Branch__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Branch Account</label>
+    <label>Branch</label>
     <lookupFilter>
         <active>true</active>
         <errorMessage>Branch does not exist.</errorMessage>
