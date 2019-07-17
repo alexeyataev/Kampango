@@ -61,21 +61,6 @@
         <field>Course__c.End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Estimated_Practitioner_Fees__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Estimated_Travel_Costs__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Estimated_Venue_Costs__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Fee__c</field>
@@ -111,11 +96,6 @@
         <field>Course__c.Private_Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Session_Without_Practitioner__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Start_Date__c</field>
@@ -126,7 +106,7 @@
         <field>Course__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Target_Group__c</field>
         <readable>true</readable>
