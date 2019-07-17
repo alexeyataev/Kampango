@@ -36,7 +36,7 @@
         <field>Course__c.End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
-      <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Fee__c</field>
         <readable>true</readable>
@@ -66,7 +66,7 @@
         <field>Course__c.Private_Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Start_Date__c</field>
         <readable>true</readable>
@@ -96,7 +96,27 @@
         <field>Course__c.Women_Only__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Reserved_Places__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Remaining_Places__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Enquiries__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Confirmed_Places__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Confirmation_Email_Information__c</field>
         <readable>true</readable>
