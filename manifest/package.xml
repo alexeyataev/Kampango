@@ -10,6 +10,13 @@
         <members>Account.Account_Number__c</members>
         <members>Account.Billing_Email__c</members>
         <members>Account.PSA_Area__c</members>
+        <members>Course__c.Count_of_Estimated_Practitioner_Fees__c</members>
+        <members>Course__c.Count_of_Estimated_Travel_Costs__c</members>
+        <members>Course__c.Count_of_Estimated_Venue_Costs__c</members>
+        <members>Course__c.Count_of_Sessions_Without_Practitioner__c</members>
+        <members>Course__c.Count_of_Unconfirmed_Non_Reunion_Session__c</members>
+        <members>Course__c.Number_of_Sessions__c</members>
+        <members>Session__c.Practitioner_Chosen__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -25,6 +32,10 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>Update_service_field_on_session</members>
+        <name>Flow</name>
+    </types>
+    <types>
         <members>Admin</members>
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>
@@ -36,6 +47,8 @@
     </types>
     <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
+        <members>Course__c.Check_Fee_and_Estimated_Costs</members>
+        <members>Course__c.Check_Sessions_and_Practitioners</members>
         <name>ValidationRule</name>
     </types>
     <version>46.0</version>
