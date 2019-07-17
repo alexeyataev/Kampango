@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Access_instructions__c</fullName>
+    <fullName>Access_Instructions__c</fullName>
     <externalId>false</externalId>
-    <label>Access instructions</label>
+    <label>Access Instructions</label>
     <length>32768</length>
     <trackTrending>false</trackTrending>
     <type>LongTextArea</type>

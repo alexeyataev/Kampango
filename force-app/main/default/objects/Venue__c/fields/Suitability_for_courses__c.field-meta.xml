@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Suitability_for_courses__c</fullName>
+    <fullName>Suitability_for_Courses__c</fullName>
     <externalId>false</externalId>
-    <label>Suitability for courses</label>
+    <label>Suitability for Courses</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>MultiselectPicklist</type>
@@ -11,24 +11,24 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>antenatal classes</fullName>
+                <fullName>Antenatal Classes</fullName>
                 <default>false</default>
-                <label>antenatal classes</label>
+                <label>Antenatal Classes</label>
             </value>
             <value>
-                <fullName>postnatal classes</fullName>
+                <fullName>Postnatal Classes</fullName>
                 <default>false</default>
-                <label>postnatal classes</label>
+                <label>Postnatal Classes</label>
             </value>
             <value>
-                <fullName>baby massage classes</fullName>
+                <fullName>Baby Massage Classes</fullName>
                 <default>false</default>
-                <label>baby massage classes</label>
+                <label>Baby Massage Classes</label>
             </value>
             <value>
-                <fullName>reunion</fullName>
+                <fullName>Reunion</fullName>
                 <default>false</default>
-                <label>reunion</label>
+                <label>Reunion</label>
             </value>
         </valueSetDefinition>
     </valueSet>

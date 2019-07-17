@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Access_method__c</fullName>
+    <fullName>Access_Method__c</fullName>
     <externalId>false</externalId>
-    <label>Access method</label>
+    <label>Access Method</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -11,19 +11,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Always open</fullName>
+                <fullName>Always Open</fullName>
                 <default>false</default>
-                <label>Always open</label>
+                <label>Always Open</label>
             </value>
             <value>
-                <fullName>Opened for us</fullName>
+                <fullName>Opened for Us</fullName>
                 <default>false</default>
-                <label>Opened for us</label>
+                <label>Opened for Us</label>
             </value>
             <value>
-                <fullName>Pin code</fullName>
+                <fullName>Pin Code</fullName>
                 <default>false</default>
-                <label>Pin code</label>
+                <label>Pin Code</label>
             </value>
             <value>
                 <fullName>Key</fullName>
@@ -31,9 +31,9 @@
                 <label>Key</label>
             </value>
             <value>
-                <fullName>Key and pin code</fullName>
+                <fullName>Key And Pin Code</fullName>
                 <default>false</default>
-                <label>Key and pin code</label>
+                <label>Key And Pin Code</label>
             </value>
         </valueSetDefinition>
     </valueSet>

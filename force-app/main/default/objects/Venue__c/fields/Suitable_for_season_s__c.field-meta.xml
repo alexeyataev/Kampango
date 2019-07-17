@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Suitable_for_season_s__c</fullName>
+    <fullName>Suitable_for_Season_s__c</fullName>
     <externalId>false</externalId>
-    <label>Suitable for season(s)</label>
+    <label>Suitable for Season(s)</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>MultiselectPicklist</type>

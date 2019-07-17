@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Venue_website__c</fullName>
+    <fullName>Venue_Website__c</fullName>
     <externalId>false</externalId>
-    <label>Venue website</label>
+    <label>Venue Website</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Url</type>

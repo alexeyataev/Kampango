@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Easily_Accessible_by_Public_Transport__c</fullName>
+    <fullName>Used_as_Polling_Station__c</fullName>
     <externalId>false</externalId>
-    <label>Easily Accessible by Public Transport</label>
+    <label>Used as Polling Station</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
