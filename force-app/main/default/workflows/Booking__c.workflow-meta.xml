@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>SendEmailToClient</fullName>
+        <description>SendEmailToClient</description>
+        <protected>false</protected>
+        <recipients>
+            <field>PrimaryContact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>NCT_Templates/BookingNotificationEmail</template>
+    </alerts>
     <fieldUpdates>
         <fullName>SetExpDate</fullName>
         <field>ReservationExpiryDate__c</field>
         <formula>Course__r.Start_Date__c - 1</formula>
         <name>SetExpDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SetExpDateTo5Days</fullName>
+        <field>ReservationExpiryDate__c</field>
+        <formula>TODAY() + 5</formula>
+        <name>SetExpDateTo5Days</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -18,6 +38,38 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SetOfferEmailDate</fullName>
+        <field>OfferEmailDate__c</field>
+        <formula>TODAY()</formula>
+        <name>SetOfferEmailDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Booking_to_Lapsed</fullName>
+        <field>Status__c</field>
+        <literalValue>Lapsed</literalValue>
+        <name>Set Booking to Lapsed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Booking%3ASendOfferEmail</fullName>
+        <actions>
+            <name>SendEmailToClient</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Booking__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Reserved</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>Booking%3ASetExpirationDate%3C10Days</fullName>
         <actions>
@@ -35,7 +87,12 @@
             <operation>lessThan</operation>
             <value>10</value>
         </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <criteriaItems>
+            <field>Course__c.Course_Sub_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Introducing Solids</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>Booking%3ASetExpirationDate10Days</fullName>
@@ -53,6 +110,44 @@
             <field>Booking__c.DaysBeforeCourseStart__c</field>
             <operation>greaterOrEqual</operation>
             <value>10</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Course__c.Course_Sub_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Introducing Solids</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Booking%3ASetExpirationDate5Days</fullName>
+        <actions>
+            <name>SetExpDateTo5Days</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Booking__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Reserved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Course__c.Course_Sub_Type__c</field>
+            <operation>equals</operation>
+            <value>Introducing Solids</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Booking%3ASetOfferEmailDate</fullName>
+        <actions>
+            <name>SetOfferEmailDate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Booking__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Reserved</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

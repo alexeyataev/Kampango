@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MandatoryPrimaryContactFields</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISCHANGED( PrimaryContact__c ) &amp;&amp;
+(
+ISBLANK(PrimaryContact__r.FirstName) ||
+ISBLANK(PrimaryContact__r.LastName) ||
+ISBLANK(PrimaryContact__r.MailingCity) ||
+ISBLANK(PrimaryContact__r.MailingPostalCode) ||
+ISBLANK( PrimaryContact__r.Email ) ||
+ISBLANK( PrimaryContact__r.MailingCountry ) ||
+ISBLANK( PrimaryContact__r.MailingStreet ) ||
+ISBLANK( PrimaryContact__r.MailingState ) ||
+(
+  ISBLANK( PrimaryContact__r.HomePhone ) &amp;&amp; 
+  ISBLANK( PrimaryContact__r.Phone )
+)
+),  PrimaryContact__c != NULL)</errorConditionFormula>
+    <errorMessage>Please review primary contact. Full name, full address, email and phone (Phone or Home Phone) are required.</errorMessage>
+</ValidationRule>
