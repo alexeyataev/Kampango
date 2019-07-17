@@ -47,15 +47,6 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Set_Booking_to_Lapsed</fullName>
-        <field>Status__c</field>
-        <literalValue>Lapsed</literalValue>
-        <name>Set Booking to Lapsed</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>Booking%3ASendOfferEmail</fullName>
         <actions>
