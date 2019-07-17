@@ -181,7 +181,7 @@
                     <stringValue>Boolean</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Practitioner_Chosen_Assistant__c</field>
+            <field>Practitioner_Chosen__c</field>
             <value>
                 <booleanValue>false</booleanValue>
             </value>
@@ -261,7 +261,7 @@
                     <stringValue>Boolean</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Practitioner_Chosen_Assistant__c</field>
+            <field>Practitioner_Chosen__c</field>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
