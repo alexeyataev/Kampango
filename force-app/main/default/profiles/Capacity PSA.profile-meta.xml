@@ -158,7 +158,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Venue__c.Branch_Account__c</field>
+        <field>Venue__c.Branch__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -323,7 +323,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Venue__c.Supplier_Account__c</field>
+        <field>Venue__c.Supplier__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

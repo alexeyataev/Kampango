@@ -47,11 +47,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Branch_Account__c</field>
+                <field>Branch__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Supplier_Account__c</field>
+                <field>Supplier__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
