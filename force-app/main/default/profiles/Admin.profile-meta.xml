@@ -166,8 +166,6 @@
         <field>Session__c.Website_Text__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Venue__c.Access_Code__c</field>
