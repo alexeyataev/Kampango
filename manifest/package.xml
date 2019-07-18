@@ -4,16 +4,24 @@
         <members>Course__c</members>
         <members>Estimated_Costs__c</members> 
         <members>Session__c</members>
+        <members>Venue__c</members>
+        <members>Venue_Contact__c</members>
         <name>CustomObject</name>
     </types>
     <types>
-        <members>Account.PSA_Area__c</members>
+        <members>Venue__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Account.Account_Number__c</members>
         <members>Account.Billing_Email__c</members>
+        <members>Account.PSA_Area__c</members>
         <name>CustomField</name>
     </types>
     <types>
         <members>Course_Sub_Type</members>
         <members>PSA_Areas</members>
+        <members>Y_N_UNKNOWN</members>
         <name>GlobalValueSet</name>
     </types>
     <types>
@@ -21,7 +29,13 @@
         <members>Account-Organization Lightning Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
+        <members>Venue__c-Venue Layout</members>
+        <members>Venue_Contact__c-Venue Contact Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+        <members>Update_service_field_on_session</members>
+        <name>Flow</name>
     </types>
     <types>
         <members>Admin</members>
@@ -35,6 +49,8 @@
     </types>
     <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
+        <members>Course__c.Check_Fee_and_Estimated_Costs</members>
+        <members>Course__c.Check_Sessions_and_Practitioners</members>
         <name>ValidationRule</name>
     </types>
     <version>46.0</version>

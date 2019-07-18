@@ -205,6 +205,7 @@
         <editable>true</editable>
         <field>Contact.TotalOpenBookings__c</field>
         <readable>true</readable>
+
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -509,6 +510,36 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Venue__c.Pet_At_Venue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Room_Ready_Immediately__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Set_Up_Tidy_Time_Included__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Space_Access_For_Buggies_Prams__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Storage_Facilities_Between_Events__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Suitability_for_Courses__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Suitable_for_Season_s__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
