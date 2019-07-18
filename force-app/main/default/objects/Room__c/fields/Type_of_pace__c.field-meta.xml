@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type_of_pace__c</fullName>
+    <externalId>false</externalId>
+    <label>Type of Space</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Small Hall</fullName>
+                <default>false</default>
+                <label>Small Hall</label>
+            </value>
+            <value>
+                <fullName>Large Hall</fullName>
+                <default>false</default>
+                <label>Large Hall</label>
+            </value>
+            <value>
+                <fullName>Small Meeting Room</fullName>
+                <default>false</default>
+                <label>Small Meeting Room</label>
+            </value>
+            <value>
+                <fullName>Medium Meeting Room</fullName>
+                <default>false</default>
+                <label>Medium Meeting Room</label>
+            </value>
+            <value>
+                <fullName>Large Meeting Room</fullName>
+                <default>false</default>
+                <label>Large Meeting Room</label>
+            </value>
+            <value>
+                <fullName>Home</fullName>
+                <default>false</default>
+                <label>Home</label>
+            </value>
+            <value>
+                <fullName>Cafe</fullName>
+                <default>false</default>
+                <label>Cafe</label>
+            </value>
+            <value>
+                <fullName>Medium National Event</fullName>
+                <default>false</default>
+                <label>Medium National Event</label>
+            </value>
+            <value>
+                <fullName>Large National Event</fullName>
+                <default>false</default>
+                <label>Large National Event</label>
+            </value>
+            <value>
+                <fullName>Outdoor Space</fullName>
+                <default>false</default>
+                <label>Outdoor Space</label>
+            </value>
+            <value>
+                <fullName>Pub</fullName>
+                <default>false</default>
+                <label>Pub</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
