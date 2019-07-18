@@ -5,7 +5,6 @@
         <name>CompactLayout</name>
     </types>
     <types>
-        <members>Contact</members>
         <members>Course__c</members>
         <members>Estimated_Costs__c</members>
         <members>Practitioner_Equipment__c</members>
@@ -68,10 +67,6 @@
     <types>
         <members>Contact.Practitioner</members>
         <name>RecordType</name>
-    </types>
-    <types>
-        <members>Account</members>
-        <name>Settings</name>
     </types>
     <types>
         <members>AccountType</members>
