@@ -4,6 +4,6 @@
     <fields>MailingAddress</fields>
     <fields>AccountId</fields>
     <fields>Home_PSA__c</fields>
-    <fields>Second_home_PSA__c</fields>
+    <fields>Second_Home_PSA__c</fields>
     <label>Practitioner Compact layout</label>
 </CompactLayout>

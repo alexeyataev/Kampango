@@ -65,6 +65,7 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>Contact.Clients</members>
         <members>Contact.Practitioner</members>
         <name>RecordType</name>
     </types>
