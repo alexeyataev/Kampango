@@ -4,13 +4,22 @@
         <members>BookCourseController</members>
         <members>BookCourseControllerModel</members>
         <members>BookCourseControllerTest</members>
+        <members>DirectDebitModels</members>
+        <members>DirectDebitUtilities</members>
+        <members>DirectDebitUtilitiesTest</members>
+        <members>DisplayDdScheduleController</members>
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
+        <members>TestAccountBuilder</members>
+        <members>TestBookingBuilder</members>
+        <members>TestContactBuilder</members>
         <members>TestCourseBuilder</members>
+        <members>TestSessionBuilder</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>DisplayCourseDetails</members>
+        <members>DisplayDdSchedule</members>
         <name>ApexComponent</name>
     </types>
     <types>
@@ -24,6 +33,7 @@
         <members>Course__c.Breastfeeding_Sessions__c</members>
         <members>Course__c.Course_Index__c</members>
         <members>Course__c.Course_Reference__c</members>
+        <members>Course__c.Course_Type__c</members>
         <members>Course__c.Description__c</members>
         <members>Course__c.Duration__c</members>
         <members>Course__c.Duration_Formatted__c</members>
@@ -43,6 +53,9 @@
         <members>Session__c.Notes__c</members>
         <members>Session__c.Venue__c</members>
         <members>Session__c.Women_Only__c</members>
+        <members>Venue__c.Venue_GeoLocation__c</members>
+        <members>Venue__c.Venue_Keys__c</members>
+        <members>Venue__c.Venue_Suitability__c</members>
         <name>CustomField</name>
     </types>
 </Package>
