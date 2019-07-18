@@ -65,12 +65,16 @@
         <name>Profile</name>
     </types>
     <types>
-        <members>AccountType</members>
-        <name>StandardValueSet</name>
-    </types>
-    <types>
         <members>Contact.Practitioner</members>
         <name>RecordType</name>
+    </types>
+    <types>
+        <members>Account</members>
+        <name>Settings</name>
+    </types>
+    <types>
+        <members>AccountType</members>
+        <name>StandardValueSet</name>
     </types>
     <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
