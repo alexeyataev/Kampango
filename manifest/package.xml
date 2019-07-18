@@ -24,7 +24,7 @@
         <members>Account.Billing_Email__c</members>
         <members>Account.PSA_Area__c</members>
         <members>Contact.AccountId</members>
-        <members>Contact.Current_Fee_Band_effective_from__c</members>
+        <members>Contact.Current_Fee_Band_Effective_From__c</members>
         <members>Contact.Fee_Band__c</members>
         <members>Contact.Home_PSA__c</members>
         <members>Contact.NCT_Number__c</members>
@@ -32,7 +32,7 @@
         <members>Contact.Practitioner_Re_Registration_Date__c</members>
         <members>Contact.Secondary_Email__c</members>
         <members>Contact.Secondary_Phone__c</members>
-        <members>Contact.Second_home_PSA__c</members>
+        <members>Contact.Second_Home_PSA__c</members>
         <name>CustomField</name>
     </types>
     <types>
