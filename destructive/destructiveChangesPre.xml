@@ -4,5 +4,14 @@
         <members>TestSessionBuilder</members>
 	<name>ApexClass</name>
     </types>
+    <types>
+        <members>Executive Management</members>
+        <members>Fundraising and Development</members>
+        <members>NCT PSA</members>
+        <members>Office Staff</members>
+        <members>Program Staff</members>
+        <members>Volunteer</members>
+        <name>Profile</name>
+    </types>
     <version>46.0</version>
 </Package>
