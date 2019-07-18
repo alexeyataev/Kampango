@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>Contact.Practitioner_Compact_layout</members>
+        <name>CompactLayout</name>
+    </types>
+    <types>
         <members>Course__c</members>
-        <members>Estimated_Costs__c</members> 
+        <members>Estimated_Costs__c</members>
+        <members>Practitioner_Equipment__c</members>
+        <members>Practitioner_Study_Day__c</members>
+        <members>Practitioner_Travel_Cost__c</members>
         <members>Session__c</members>
         <members>Venue__c</members>
         <members>Venue_Contact__c</members>
@@ -16,6 +23,16 @@
         <members>Account.Account_Number__c</members>
         <members>Account.Billing_Email__c</members>
         <members>Account.PSA_Area__c</members>
+        <members>Contact.AccountId</members>
+        <members>Contact.Current_Fee_Band_effective_from__c</members>
+        <members>Contact.Fee_Band__c</members>
+        <members>Contact.Home_PSA__c</members>
+        <members>Contact.NCT_Number__c</members>
+        <members>Contact.Practitioner_Re_Registration_Amount__c</members>
+        <members>Contact.Practitioner_Re_Registration_Date__c</members>
+        <members>Contact.Secondary_Email__c</members>
+        <members>Contact.Secondary_Phone__c</members>
+        <members>Contact.Second_home_PSA__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -28,7 +45,11 @@
         <members>Account-Branch Layout</members>
         <members>Account-Organization Lightning Layout</members>
         <members>Course__c-Course Layout</members>
+        <members>Contact-Practitioner Page Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
+        <members>Practitioner_Study_Day__c-Practitioner Study Day Layout</members>
+        <members>Practitioner_Equipment__c-Practitioner Inventory Layout</members>
+        <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
         <members>Venue__c-Venue Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
         <name>Layout</name>
@@ -44,8 +65,12 @@
         <name>Profile</name>
     </types>
     <types>
-       <members>AccountType</members>
+        <members>AccountType</members>
         <name>StandardValueSet</name>
+    </types>
+    <types>
+        <members>Contact.Practitioner</members>
+        <name>RecordType</name>
     </types>
     <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>

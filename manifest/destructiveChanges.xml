@@ -38,6 +38,12 @@
         <members>Course__c.Duration__c</members>
         <members>Course__c.Duration_Formatted__c</members>
         <members>Course__c.End_Time__c</members>
+        <members>Contact.Mailing_City__c</members>
+        <members>Contact.Mailing_Country__c</members>
+        <members>Contact.Mailing_Longtitude__c</members>
+        <members>Contact.Mailing_Postal_Code__c</members>
+        <members>Contact.Mailing_State__c</members>
+        <members>Contact.Mailing_Street__c</members>
         <members>Course__c.Notes__c</members>
         <members>Course__c.Places__c</members>
         <members>Course__c.Postnatal_End_Date__c</members>

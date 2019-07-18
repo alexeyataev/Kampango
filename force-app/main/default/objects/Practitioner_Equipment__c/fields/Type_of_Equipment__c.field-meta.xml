@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type_of_Equipment__c</fullName>
+    <externalId>false</externalId>
+    <label>Type of Equipment</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Antenatal demonstration doll</fullName>
+                <default>false</default>
+                <label>Antenatal demonstration doll</label>
+            </value>
+            <value>
+                <fullName>Ardo Belly Ball</fullName>
+                <default>false</default>
+                <label>Ardo Belly Ball</label>
+            </value>
+            <value>
+                <fullName>Ardo Belly Ball With Breast</fullName>
+                <default>false</default>
+                <label>Ardo Belly Ball With Breast</label>
+            </value>
+            <value>
+                <fullName>Birthing ball (65cm)</fullName>
+                <default>false</default>
+                <label>Birthing ball (65cm)</label>
+            </value>
+            <value>
+                <fullName>Birthing ball (75cm)</fullName>
+                <default>false</default>
+                <label>Birthing ball (75cm)</label>
+            </value>
+            <value>
+                <fullName>Breastfeeding positioning doll</fullName>
+                <default>false</default>
+                <label>Breastfeeding positioning doll</label>
+            </value>
+            <value>
+                <fullName>Breastfeeding step-by-step poster (A3)</fullName>
+                <default>false</default>
+                <label>Breastfeeding step-by-step poster (A3)</label>
+            </value>
+            <value>
+                <fullName>Breastfeeding step-by-step teaching cards</fullName>
+                <default>false</default>
+                <label>Breastfeeding step-by-step teaching cards</label>
+            </value>
+            <value>
+                <fullName>Foot Pump</fullName>
+                <default>false</default>
+                <label>Foot Pump</label>
+            </value>
+            <value>
+                <fullName>Labour and birth positions - 2 posters (A2)</fullName>
+                <default>false</default>
+                <label>Labour and birth positions - 2 posters (A2)</label>
+            </value>
+            <value>
+                <fullName>NCT stages of labour cross sectional charts</fullName>
+                <default>false</default>
+                <label>NCT stages of labour cross sectional charts</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Pelvis</fullName>
+                <default>false</default>
+                <label>Pelvis</label>
+            </value>
+            <value>
+                <fullName>Peterkin demonstration doll</fullName>
+                <default>false</default>
+                <label>Peterkin demonstration doll</label>
+            </value>
+            <value>
+                <fullName>Positions for labour and birth teaching cards (A4)</fullName>
+                <default>false</default>
+                <label>Positions for labour and birth teaching cards (A4)</label>
+            </value>
+            <value>
+                <fullName>Positions for labour and birth teaching cards (A5)</fullName>
+                <default>false</default>
+                <label>Positions for labour and birth teaching cards (A5)</label>
+            </value>
+            <value>
+                <fullName>Real Baby Milk &#39;Breastfeeding for mums by mums&#39; DVD</fullName>
+                <default>false</default>
+                <label>Real Baby Milk &#39;Breastfeeding for mums by mums&#39; DVD</label>
+            </value>
+            <value>
+                <fullName>What’s in a nappy poster (A3)</fullName>
+                <default>false</default>
+                <label>What’s in a nappy poster (A3)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
