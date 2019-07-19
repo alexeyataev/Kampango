@@ -198,7 +198,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Contact.NCTNumber__c</field>
+        <field>Contact.NCT_Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
