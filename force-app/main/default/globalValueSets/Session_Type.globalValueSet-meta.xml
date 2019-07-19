@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Standard</fullName>
+        <default>true</default>
+        <label>Standard</label>
+    </customValue>
+    <customValue>
+        <fullName>Breastfeeding</fullName>
+        <default>false</default>
+        <label>Breast feeding</label>
+    </customValue>
+    <customValue>
+        <fullName>Reunion</fullName>
+        <default>false</default>
+        <label>Reunion</label>
+    </customValue>
+    <masterLabel>Session Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
