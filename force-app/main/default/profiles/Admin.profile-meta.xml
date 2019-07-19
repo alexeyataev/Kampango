@@ -683,6 +683,9 @@
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>Venue__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Booking__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
