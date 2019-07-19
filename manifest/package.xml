@@ -42,6 +42,10 @@
         <name>Flow</name>
     </types>
     <types>
+        <members>Branch_and_PSA_Management</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
         <members>Admin</members>
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>

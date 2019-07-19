@@ -12,7 +12,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -486,7 +486,7 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Branch</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
