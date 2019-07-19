@@ -193,11 +193,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Practitioner_Equipment__c.Practitioner__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Practitioner_Equipment__c.Quantity__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -581,7 +576,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>Contact.Clients</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -645,7 +639,7 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-         <name>ConvertLeads</name>
+        <name>ConvertLeads</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -701,7 +695,7 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-         <name>ImportPersonal</name>
+        <name>ImportPersonal</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

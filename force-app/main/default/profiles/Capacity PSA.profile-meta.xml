@@ -193,11 +193,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Practitioner_Equipment__c.Practitioner__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Practitioner_Equipment__c.Quantity__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -472,7 +467,7 @@
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-      <layout>Session__c-Session Layout</layout>
+        <layout>Session__c-Session Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Practitioner_Equipment__c-Practitioner Inventory Layout</layout>
@@ -581,7 +576,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>Contact.Clients</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
