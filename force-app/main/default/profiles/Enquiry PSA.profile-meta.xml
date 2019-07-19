@@ -12,7 +12,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -326,7 +326,27 @@
         <field>Course__c.Women_Only__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>Rate__c.Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Room__c.Display_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Room__c.Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Room__c.Type_of_Space__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Confirmation_Email_Information__c</field>
         <readable>true</readable>
@@ -567,6 +587,12 @@
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
     </layoutAssignments>
+	<layoutAssignments>
+        <layout>Rate__c-Rate Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Room__c-Room Layout</layout>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Session__c-Session Layout</layout>
     </layoutAssignments>
@@ -603,6 +629,24 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Estimated_Costs__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+	<objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Rate__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Room__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -644,7 +688,7 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Branch</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
