@@ -37,7 +37,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NCTNumber__c</field>
+                <field>NCT_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -45,7 +45,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>TotalOpenBookings__c</field>
+                <field>Total_Open_Bookings__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -289,7 +289,7 @@
         <fields>NAME</fields>
         <fields>Course__c</fields>
         <fields>Status__c</fields>
-        <relatedList>Booking__c.PrimaryContact__c</relatedList>
+        <relatedList>Booking__c.Primary_Contact__c</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MandatoryBirthDate</fullName>
     <active>true</active>
-    <errorConditionFormula>ISBLANK( BirthDate__c ) &amp;&amp;
-ISBLANK( BirthDueDate__c )</errorConditionFormula>
+    <errorConditionFormula>ISBLANK( Birth_Date__c ) &amp;&amp;
+ISBLANK( Birth_Due_Date__c )</errorConditionFormula>
     <errorMessage>Please fill in Birth date or Birth due date.</errorMessage>
 </ValidationRule>

@@ -104,7 +104,7 @@
                         <stringValue>Formula</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.ReservationExpiryDate__c</leftValueReference>
+                <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <elementReference>formula_2_myRule_1_8210507829</elementReference>
@@ -160,7 +160,7 @@
             <name>myPostWaitRule_myWaitEvent_myWait_myRule_1_event_0</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>myVariable_current.ReservationExpiryDate__c</leftValueReference>
+                <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -209,7 +209,7 @@
                         <stringValue>Formula</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.ReservationExpiryDate__c</leftValueReference>
+                <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <elementReference>formula_2_myRule_1_8210507829</elementReference>
@@ -304,7 +304,7 @@
                         <stringValue>Formula</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_old.ReservationExpiryDate__c</leftValueReference>
+                <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <elementReference>formula_3_myRule_1_pmetrule_0348541316</elementReference>
@@ -348,23 +348,23 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>PRIORVALUE([Booking__c].ReservationExpiryDate__c )</stringValue>
+                <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c )</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_2_myRule_1_8210507829</name>
         <dataType>Date</dataType>
-        <expression>PRIORVALUE({!myVariable_current.ReservationExpiryDate__c} )</expression>
+        <expression>PRIORVALUE({!myVariable_current.Reservation_Expiry_Date__c} )</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>PRIORVALUE([Booking__c].ReservationExpiryDate__c )</stringValue>
+                <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c )</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_3_myRule_1_pmetrule_0348541316</name>
         <dataType>Date</dataType>
-        <expression>PRIORVALUE({!myVariable_old.ReservationExpiryDate__c} )</expression>
+        <expression>PRIORVALUE({!myVariable_old.Reservation_Expiry_Date__c} )</expression>
     </formulas>
     <interviewLabel>Booking_SetExpirationStatus-2_InterviewLabel</interviewLabel>
     <label>Booking:SetExpirationStatus</label>
@@ -468,7 +468,7 @@
                     <stringValue>String</stringValue>
                 </value>
             </processMetadataValues>
-            <field>CourseSubType__c</field>
+            <field>Course_Sub_Type__c</field>
             <operator>NotEqualTo</operator>
             <value>
                 <stringValue>Introducing Solids</stringValue>
@@ -517,7 +517,7 @@
                     <stringValue>Number</stringValue>
                 </value>
             </processMetadataValues>
-            <field>DaysBeforeCourseStart__c</field>
+            <field>Days_Before_Course_Start__c</field>
             <operator>LessThan</operator>
             <value>
                 <numberValue>10.0</numberValue>
@@ -649,7 +649,7 @@
                     <stringValue>String</stringValue>
                 </value>
             </processMetadataValues>
-            <field>CourseSubType__c</field>
+            <field>Course_Sub_Type__c</field>
             <operator>NotEqualTo</operator>
             <value>
                 <stringValue>Introducing Solids</stringValue>
@@ -698,7 +698,7 @@
                     <stringValue>Number</stringValue>
                 </value>
             </processMetadataValues>
-            <field>DaysBeforeCourseStart__c</field>
+            <field>Days_Before_Course_Start__c</field>
             <operator>GreaterThanOrEqualTo</operator>
             <value>
                 <numberValue>10.0</numberValue>
@@ -830,7 +830,7 @@
                     <stringValue>String</stringValue>
                 </value>
             </processMetadataValues>
-            <field>CourseSubType__c</field>
+            <field>Course_Sub_Type__c</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Introducing Solids</stringValue>
@@ -995,7 +995,7 @@
             <inputParameters>
                 <name>TimeFieldColumnEnumOrId</name>
                 <value>
-                    <stringValue>ReservationExpiryDate__c</stringValue>
+                    <stringValue>Reservation_Expiry_Date__c</stringValue>
                 </value>
             </inputParameters>
             <label>myWaitEvent_myWait_myRule_1_event_0</label>

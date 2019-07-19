@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Postcode__c</fullName>
     <externalId>false</externalId>
-    <formula>PrimaryContact__r.MailingPostalCode</formula>
+    <formula>Primary_Contact__r.MailingPostalCode</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Postcode</label>
     <required>false</required>

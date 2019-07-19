@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Phone1__c</fullName>
+    <fullName>Total_Open_Bookings__c</fullName>
     <externalId>false</externalId>
-    <formula>Primary_Contact__r.Phone</formula>
+    <formula>Primary_Contact__r.Total_Open_Bookings__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Phone 1</label>
+    <label>Total Open Bookings</label>
+    <precision>18</precision>
     <required>false</required>
+    <scale>0</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
+    <type>Number</type>
     <unique>false</unique>
 </CustomField>

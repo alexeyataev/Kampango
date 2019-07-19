@@ -18,17 +18,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.AcceptanceDate__c</field>
+        <field>Booking__c.Acceptance_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.BirthDate__c</field>
+        <field>Booking__c.Birth_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.BirthDueDate__c</field>
+        <field>Booking__c.Birth_Due_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -38,7 +38,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.ConfirmedDate__c</field>
+        <field>Booking__c.Confirmed_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -48,22 +48,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.CourseSubType__c</field>
+        <field>Booking__c.Course_Sub_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.DaysBeforeCourseStart__c</field>
+        <field>Booking__c.Days_Before_Course_Start__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.EmailPartner__c</field>
+        <field>Booking__c.Email_Partner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.EmailTemplateUtilityField__c</field>
+        <field>Booking__c.Email_Template_Utility_Field__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -73,82 +73,82 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.FeeOverrideReason__c</field>
+        <field>Booking__c.Fee_Override_Reason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.FeeOverride__c</field>
+        <field>Booking__c.Fee_Override__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.FirstBaby__c</field>
+        <field>Booking__c.First_Baby__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.FirstNamePartner__c</field>
+        <field>Booking__c.First_Name_Partner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.FirstName__c</field>
+        <field>Booking__c.First_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.HowHeard__c</field>
+        <field>Booking__c.How_Heard__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.InfoForPractitioner__c</field>
+        <field>Booking__c.Info_For_Practitioner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.LastNamePartner__c</field>
+        <field>Booking__c.Last_Name_Partner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.LastName__c</field>
+        <field>Booking__c.Last_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.MultipleBirth__c</field>
+        <field>Booking__c.Multiple_Birth__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.NCTNumberPartner__c</field>
+        <field>Booking__c.NCT_Number_Partner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.NCTNumber__c</field>
+        <field>Booking__c.NCT_Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.OfferEmailDate__c</field>
+        <field>Booking__c.Offer_Email_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.PSAArea__c</field>
+        <field>Booking__c.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.PartnerContact__c</field>
+        <field>Booking__c.Partner_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Phone1Partner__c</field>
+        <field>Booking__c.Phone1_Partner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -158,7 +158,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Phone2Partner__c</field>
+        <field>Booking__c.Phone2_Partner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -173,22 +173,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.PrimaryContact__c</field>
+        <field>Booking__c.Primary_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.ReservationExpiryDate__c</field>
+        <field>Booking__c.Reservation_Expiry_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.StreetAddress__c</field>
+        <field>Booking__c.Street_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.TotalOpenBookings__c</field>
+        <field>Booking__c.Total_Open_Bookings__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

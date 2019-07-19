@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>dlrs__AggregateResultField__c</field>
-        <value xsi:type="xsd:string">TotalOpenBookings__c</value>
+        <value xsi:type="xsd:string">Total_Open_Bookings__c</value>
     </values>
     <values>
         <field>dlrs__CalculationMode__c</field>
@@ -52,15 +52,15 @@
     </values>
     <values>
         <field>dlrs__RelationshipCriteriaFields__c</field>
-        <value xsi:type="xsd:string">DaysBeforeCourseStart__c</value>
+        <value xsi:type="xsd:string">Days_Before_Course_Start__c</value>
     </values>
     <values>
         <field>dlrs__RelationshipCriteria__c</field>
-        <value xsi:type="xsd:string">DaysBeforeCourseStart__c &gt; 0</value>
+        <value xsi:type="xsd:string">Days_Before_Course_Start__c &gt; 0</value>
     </values>
     <values>
         <field>dlrs__RelationshipField__c</field>
-        <value xsi:type="xsd:string">PrimaryContact__c</value>
+        <value xsi:type="xsd:string">Primary_Contact__c</value>
     </values>
     <values>
         <field>dlrs__RowLimit__c</field>

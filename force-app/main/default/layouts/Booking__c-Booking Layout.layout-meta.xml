@@ -25,57 +25,57 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>BirthDate__c</field>
+                <field>Birth_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>BirthDueDate__c</field>
+                <field>Birth_Due_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FirstBaby__c</field>
+                <field>First_Baby__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>MultipleBirth__c</field>
+                <field>Multiple_Birth__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ReservationExpiryDate__c</field>
+                <field>Reservation_Expiry_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>HowHeard__c</field>
+                <field>How_Heard__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OfferEmailDate__c</field>
+                <field>Offer_Email_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>AcceptanceDate__c</field>
+                <field>Acceptance_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ConfirmedDate__c</field>
+                <field>Confirmed_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FeeOverride__c</field>
+                <field>Fee_Override__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FeeOverrideReason__c</field>
+                <field>Fee_Override_Reason__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>InfoForPractitioner__c</field>
+                <field>Info_For_Practitioner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>TotalOpenBookings__c</field>
+                <field>Total_Open_Bookings__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -88,19 +88,19 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>PrimaryContact__c</field>
+                <field>Primary_Contact__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>NCTNumber__c</field>
+                <field>NCT_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FirstName__c</field>
+                <field>First_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>LastName__c</field>
+                <field>Last_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -116,7 +116,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>StreetAddress__c</field>
+                <field>Street_Address__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -134,31 +134,31 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>PartnerContact__c</field>
+                <field>Partner_Contact__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>NCTNumberPartner__c</field>
+                <field>NCT_Number_Partner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FirstNamePartner__c</field>
+                <field>First_Name_Partner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>LastNamePartner__c</field>
+                <field>Last_Name_Partner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>EmailPartner__c</field>
+                <field>Email_Partner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Phone1Partner__c</field>
+                <field>Phone1_Partner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Phone2Partner__c</field>
+                <field>Phone2_Partner__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
