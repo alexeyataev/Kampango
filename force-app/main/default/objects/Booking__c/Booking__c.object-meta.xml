@@ -155,7 +155,7 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Booking</label>
     <nameField>
-        <displayFormat>B-{00000000}</displayFormat>
+        <displayFormat>B{00000000}</displayFormat>
         <label>Booking Number</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>

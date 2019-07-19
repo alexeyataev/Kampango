@@ -119,6 +119,4 @@
         <members>Booking__c.Set_Offer_Email_Sent_Time</members>
         <name>WorkflowFieldUpdate</name>
     </types>
-    </types>
-    <types>
 </Package>
