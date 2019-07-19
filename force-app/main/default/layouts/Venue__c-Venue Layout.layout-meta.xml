@@ -295,7 +295,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Display_Name__c</fields>
-        <fields>Type_of_pace__c</fields>
+        <fields>Type_of_Space__c</fields>
         <relatedList>Room__c.Venue__c</relatedList>
     </relatedLists>
     <relatedLists>
