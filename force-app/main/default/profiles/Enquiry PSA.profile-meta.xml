@@ -412,7 +412,7 @@
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
     </layoutAssignments>
-	<layoutAssignments>
+    <layoutAssignments>
         <layout>Rate__c-Rate Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
