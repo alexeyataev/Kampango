@@ -203,7 +203,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.TotalOpenBookings__c</field>
+        <field>Contact.Total_Open_Bookings__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
