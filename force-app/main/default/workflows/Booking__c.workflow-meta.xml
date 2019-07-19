@@ -5,7 +5,7 @@
         <description>SendEmailToClient</description>
         <protected>false</protected>
         <recipients>
-            <field>PrimaryContact__c</field>
+            <field>Primary_Contact__c</field>
             <type>contactLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
@@ -13,7 +13,7 @@
     </alerts>
     <fieldUpdates>
         <fullName>SetExpDate</fullName>
-        <field>ReservationExpiryDate__c</field>
+        <field>Reservation_Expiry_Date__c</field>
         <formula>Course__r.Start_Date__c - 1</formula>
         <name>SetExpDate</name>
         <notifyAssignee>false</notifyAssignee>
@@ -22,7 +22,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>SetExpDateTo5Days</fullName>
-        <field>ReservationExpiryDate__c</field>
+        <field>Reservation_Expiry_Date__c</field>
         <formula>TODAY() + 5</formula>
         <name>SetExpDateTo5Days</name>
         <notifyAssignee>false</notifyAssignee>
@@ -31,7 +31,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>SetExpDateToTenDays</fullName>
-        <field>ReservationExpiryDate__c</field>
+        <field>Reservation_Expiry_Date__c</field>
         <formula>TODAY() + 10</formula>
         <name>SetExpDateToTenDays</name>
         <notifyAssignee>false</notifyAssignee>
@@ -40,7 +40,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>SetOfferEmailDate</fullName>
-        <field>OfferEmailDate__c</field>
+        <field>Offer_Email_Date__c</field>
         <formula>TODAY()</formula>
         <name>SetOfferEmailDate</name>
         <notifyAssignee>false</notifyAssignee>
@@ -83,7 +83,7 @@
             <value>Reserved</value>
         </criteriaItems>
         <criteriaItems>
-            <field>Booking__c.DaysBeforeCourseStart__c</field>
+            <field>Booking__c.Days_Before_Course_Start__c</field>
             <operation>lessThan</operation>
             <value>10</value>
         </criteriaItems>
@@ -107,7 +107,7 @@
             <value>Reserved</value>
         </criteriaItems>
         <criteriaItems>
-            <field>Booking__c.DaysBeforeCourseStart__c</field>
+            <field>Booking__c.Days_Before_Course_Start__c</field>
             <operation>greaterOrEqual</operation>
             <value>10</value>
         </criteriaItems>

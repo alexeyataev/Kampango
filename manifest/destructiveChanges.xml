@@ -94,17 +94,22 @@
         <name>RecordType</name>
     </types>
     <types>
+        <members>Executive Management</members>
+        <members>Fundraising and Development</members>
+        <members>NCT PSA</members>
+        <members>Office Staff</members>
+        <members>Program Staff</members>
+        <members>Volunteer</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>Account.Venue</members>
+        <name>RecordType</name>
+    </types>
+    <types>
         <members>Booking__c.Send Reservation Email</members>
         <members>Booking__c.Send Confirmation Email</members>
         <name>WorkflowRule</name>
     </types>
     <types>
-        <members>Booking__c.Send_Confirmation_Email</members>
-        <members>Booking__c.Send_Reservation_Email</members>
-        <name>WorkflowAlert</name>
-    </types>
-    <types>
-        <members>Booking__c.Set_Offer_Email_Sent_Time</members>
-        <name>WorkflowFieldUpdate</name>
-    </types>
 </Package>
