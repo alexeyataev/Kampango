@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Licence__c</fullName>
+    <externalId>false</externalId>
+    <label>Licence</label>
+    <referenceTo>Licence__c</referenceTo>
+    <relationshipLabel>Licences To Practice</relationshipLabel>
+    <relationshipName>Licences_To_Practice</relationshipName>
+    <relationshipOrder>1</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>
