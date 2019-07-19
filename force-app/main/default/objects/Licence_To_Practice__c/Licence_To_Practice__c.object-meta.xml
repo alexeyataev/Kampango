@@ -155,8 +155,9 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Licence To Practice</label>
     <nameField>
+        <displayFormat>LTP{000000}</displayFormat>
         <label>Licence To Practice Name</label>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Licences To Practice</pluralLabel>
     <searchLayouts/>
