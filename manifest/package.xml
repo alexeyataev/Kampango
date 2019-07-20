@@ -7,8 +7,6 @@
     <types>
         <members>Course__c</members>
         <members>Estimated_Costs__c</members>
-        <members>Practitioner_Equipment__c</members>
-        <members>Practitioner_Study_Day__c</members>
         <members>Practitioner_Travel_Cost__c</members>
         <members>Session__c</members>
         <members>Venue__c</members>
@@ -37,6 +35,7 @@
     </types>
     <types>
         <members>Course_Sub_Type</members>
+        <members>Fee_Band</members>
         <members>PSA_Areas</members>
         <members>Y_N_UNKNOWN</members>
         <name>GlobalValueSet</name>
@@ -46,9 +45,7 @@
         <members>Account-Organization Lightning Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Contact-Practitioner Page Layout</members>
-        <members>Estimated_Costs__c-Estimated Costs Layout</members>
-        <members>Practitioner_Study_Day__c-Practitioner Study Day Layout</members>
-        <members>Practitioner_Equipment__c-Practitioner Inventory Layout</members>
+        <members>Estimated_Costs__c-Estimated Costs Layout</members>      
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
         <members>Venue__c-Venue Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>

@@ -274,20 +274,9 @@
     </relatedLists>
     <relatedLists>
         <fields>Venue_Name__c</fields>
-        <fields>PSA_Area__c</fields>
+        <fields>Venue_PSA_Area__c</fields>
         <fields>Return_Travel_Cost__c</fields>
         <relatedList>Practitioner_Travel_Cost__c.Practitioner__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>Type_of_Equipment__c</fields>
-        <fields>Description__c</fields>
-        <fields>Quantity__c</fields>
-        <relatedList>Practitioner_Equipment__c.Practitioner__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Date_Attended__c</fields>
-        <relatedList>Practitioner_Study_Day__c.Practitioner__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedContentNoteList</relatedList>
