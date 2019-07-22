@@ -3,7 +3,6 @@
     <fullName>Street_Address__c</fullName>
     <externalId>false</externalId>
     <formula>Primary_Contact__r.MailingStreet</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Street Address</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

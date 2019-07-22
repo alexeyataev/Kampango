@@ -3,7 +3,6 @@
     <fullName>Town__c</fullName>
     <externalId>false</externalId>
     <formula>Primary_Contact__r.MailingCity</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Town</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

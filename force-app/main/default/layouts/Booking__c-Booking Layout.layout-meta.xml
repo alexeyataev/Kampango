@@ -21,10 +21,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Branch__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Birth_Date__c</field>
             </layoutItems>
             <layoutItems>
@@ -42,6 +38,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Reservation_Expiry_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Branch__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -87,7 +87,7 @@
         <label>Client Details</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Primary_Contact__c</field>
             </layoutItems>
             <layoutItems>
@@ -104,15 +104,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Email__c</field>
+                <field>Primary_Contact_Email__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Phone1__c</field>
+                <field>Phone__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Phone2__c</field>
+                <field>Home_Phone__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -154,11 +154,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Phone1_Partner__c</field>
+                <field>Phone_Partner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Phone2_Partner__c</field>
+                <field>Home_Phone_Partner__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

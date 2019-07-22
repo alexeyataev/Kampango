@@ -3,7 +3,6 @@
     <fullName>County__c</fullName>
     <externalId>false</externalId>
     <formula>Primary_Contact__r.MailingState</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>County</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
