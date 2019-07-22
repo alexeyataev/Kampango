@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <fullName>Type__c</fullName>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Of_Day_Week__c</fullName>
     <externalId>false</externalId>
-    <label>Type</label>
+    <label>Time Of Day/Week</label>
     <required>true</required>
-    <trackFeedHistory>true</trackFeedHistory>
-    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -13,14 +11,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Antenatal</fullName>
+                <fullName>Weekday Daytime</fullName>
                 <default>false</default>
-                <label>Antenatal</label>
+                <label>Weekday Daytime</label>
             </value>
             <value>
-                <fullName>Postnatal</fullName>
+                <fullName>Weekday Evening</fullName>
                 <default>false</default>
-                <label>Postnatal</label>
+                <label>Weekday Evening</label>
+            </value>
+            <value>
+                <fullName>Weekend</fullName>
+                <default>false</default>
+                <label>Weekend</label>
             </value>
         </valueSetDefinition>
     </valueSet>
