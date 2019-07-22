@@ -9,6 +9,23 @@
     <type>Picklist</type>
     <valueSet>
         <restricted>true</restricted>
-        <valueSetName>Session_Type</valueSetName>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Standard</fullName>
+                <default>true</default>
+                <label>Standard</label>
+            </value>
+            <value>
+                <fullName>Breastfeeding</fullName>
+                <default>false</default>
+                <label>Breast feeding</label>
+            </value>
+            <value>
+                <fullName>Reunion</fullName>
+                <default>false</default>
+                <label>Reunion</label>
+            </value>
+        </valueSetDefinition>
     </valueSet>
 </CustomField>
