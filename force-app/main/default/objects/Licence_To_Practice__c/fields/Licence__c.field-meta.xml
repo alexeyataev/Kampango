@@ -36,9 +36,14 @@
                 <label>Baby Massage Practitioner</label>
             </value>
             <value>
-                <fullName>Twins and Multiples</fullName>
+                <fullName>Twins and Multiples Practitioner</fullName>
                 <default>false</default>
-                <label>Twins and Multiples</label>
+                <label>Twins and Multiples Practitioner</label>
+            </value>
+            <value>
+                <fullName>Introduction to Solids Practitioner</fullName>
+                <default>false</default>
+                <label>Introduction to Solids Practitioner</label>
             </value>
         </valueSetDefinition>
     </valueSet>
