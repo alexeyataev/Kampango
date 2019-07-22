@@ -2,9 +2,17 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>Course__c</members>
-        <members>Estimated_Costs__c</members> 
+        <members>Estimated_Costs__c</members>
+        <members>Rate__c</members> 
+        <members>Room__c</members>
         <members>Session__c</members>
+        <members>Venue__c</members>
+        <members>Venue_Contact__c</members>
         <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Venue__c</members>
+        <name>CustomTab</name>
     </types>
     <types>
         <members>Account.Account_Number__c</members>
@@ -15,6 +23,7 @@
     <types>
         <members>Course_Sub_Type</members>
         <members>PSA_Areas</members>
+        <members>Y_N_UNKNOWN</members>
         <name>GlobalValueSet</name>
     </types>
     <types>
@@ -22,11 +31,19 @@
         <members>Account-Organization Lightning Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
+        <members>Rate__c-Rate Layout</members>
+        <members>Room__c-Room Layout</members>
+        <members>Venue__c-Venue Layout</members>
+        <members>Venue_Contact__c-Venue Contact Layout</members>
         <name>Layout</name>
     </types>
     <types>
         <members>Update_service_field_on_session</members>
         <name>Flow</name>
+    </types>
+    <types>
+        <members>Branch_and_PSA_Management</members>
+        <name>PermissionSet</name>
     </types>
     <types>
         <members>Admin</members>
@@ -42,6 +59,7 @@
         <members>Account.Billing_Email_Required_For_Suppliers</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
+        <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <name>ValidationRule</name>
     </types>
     <version>46.0</version>
