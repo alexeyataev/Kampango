@@ -41,6 +41,7 @@
         <field>Contact.Home_PSA__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Contact.NCT_Number__c</field>
         <readable>true</readable>
