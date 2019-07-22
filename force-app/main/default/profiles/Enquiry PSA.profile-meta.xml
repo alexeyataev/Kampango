@@ -471,12 +471,6 @@
         <layout>Session__c-Session Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Practitioner_Equipment__c-Practitioner Inventory Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Practitioner_Study_Day__c-Practitioner Study Day Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
