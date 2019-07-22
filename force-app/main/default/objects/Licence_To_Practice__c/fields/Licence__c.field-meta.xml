@@ -3,12 +3,43 @@
     <fullName>Licence__c</fullName>
     <externalId>false</externalId>
     <label>Licence</label>
-    <referenceTo>Licence__c</referenceTo>
-    <relationshipLabel>Licences To Practice</relationshipLabel>
-    <relationshipName>Licences_To_Practice</relationshipName>
-    <relationshipOrder>1</relationshipOrder>
-    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <required>true</required>
     <trackTrending>false</trackTrending>
-    <type>MasterDetail</type>
-    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Signature Antenatal Teacher</fullName>
+                <default>false</default>
+                <label>Signature Antenatal Teacher</label>
+            </value>
+            <value>
+                <fullName>Essentials Antenatal Teacher</fullName>
+                <default>false</default>
+                <label>Essentials Antenatal Teacher</label>
+            </value>
+            <value>
+                <fullName>Breastfeeding Counsellor</fullName>
+                <default>false</default>
+                <label>Breastfeeding Counsellor</label>
+            </value>
+            <value>
+                <fullName>Postnatal Practitioner</fullName>
+                <default>false</default>
+                <label>Postnatal Practitioner</label>
+            </value>
+            <value>
+                <fullName>Baby Massage Practitioner</fullName>
+                <default>false</default>
+                <label>Baby Massage Practitioner</label>
+            </value>
+            <value>
+                <fullName>Twins and Multiples</fullName>
+                <default>false</default>
+                <label>Twins and Multiples</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
 </CustomField>

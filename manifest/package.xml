@@ -3,7 +3,6 @@
     <types>
         <members>Course__c</members>
         <members>Estimated_Costs__c</members>
-        <members>Licence__c</members>
         <members>Licence_To_Practice__c</members>
         <members>Rate__c</members> 
         <members>Room__c</members>
@@ -13,7 +12,6 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>Licence__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
     </types>
@@ -46,7 +44,7 @@
         <name>Flow</name>
     </types>
     <types>
-    	<members>Licence_To_Practice_Management</members>
+    	<members>Practitioner_Management</members>
         <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
     </types>
