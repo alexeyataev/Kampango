@@ -3,7 +3,6 @@
     <fullName>Venue_PSA_Area__c</fullName>
     <externalId>false</externalId>
     <formula>Venue_Name__r.PSA_Area__c</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Venue PSA Area</label>
     <required>false</required>
     <trackTrending>false</trackTrending>

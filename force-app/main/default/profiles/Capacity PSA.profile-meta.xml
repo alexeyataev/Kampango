@@ -22,8 +22,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Email</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Fee_Band__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.HomePhone</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -34,6 +44,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.NCT_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Phone</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -54,11 +69,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Secondary_Email__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.Secondary_Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -181,7 +191,22 @@
         <field>Course__c.Women_Only__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Practitioner_Travel_Cost__c.Return_Travel_Cost__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Practitioner_Travel_Cost__c.Venue_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Practitioner_Travel_Cost__c.Venue_PSA_Area__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Rate__c.Notes__c</field>
         <readable>true</readable>
@@ -199,21 +224,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Room__c.Type_of_Space__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Practitioner_Travel_Cost__c.Return_Travel_Cost__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Practitioner_Travel_Cost__c.Venue_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Practitioner_Travel_Cost__c.Venue_PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -461,19 +471,18 @@
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
     </layoutAssignments>
-	<layoutAssignments>
+    <layoutAssignments>
+        <layout>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Rate__c-Rate Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Room__c-Room Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Session__c-Session Layout</layout>
+     <layout>Session__c-Session Layout</layout>
     </layoutAssignments>
-    <layoutAssignments>
-        <layout>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Venue_Contact__c-Venue Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -505,7 +514,16 @@
         <object>Estimated_Costs__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-	<objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Practitioner_Travel_Cost__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
@@ -521,15 +539,6 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Room__c</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>Practitioner_Travel_Cost__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -560,7 +569,7 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>
-        <default>false</default>
+     <default>false</default>
         <recordType>Account.Branch</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -748,7 +757,7 @@
         <enabled>true</enabled>
         <name>ViewRoles</name>
     </userPermissions>
-    <userPermissions>
+     <userPermissions>
         <enabled>false</enabled>
         <name>ViewSetup</name>
     </userPermissions>

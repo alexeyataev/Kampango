@@ -31,7 +31,6 @@
         <members>Contact.Practitioner_Re_Registration_Amount__c</members>
         <members>Contact.Practitioner_Re_Registration_Date__c</members>
         <members>Contact.Secondary_Email__c</members>
-        <members>Contact.Secondary_Phone__c</members>
         <members>Contact.Second_Home_PSA__c</members>
         <name>CustomField</name>
     </types>
