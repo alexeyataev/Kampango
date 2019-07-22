@@ -12,7 +12,7 @@ public class WorldPayCardPaymentProvider implements IPaymentServiceProvider {
         PaymentBody paymentBody = createPaymentBody(contactId, feeAmount);
         String installmentPayRequest = JSON.serialize(paymentBody);   
         HttpRequest req = new HttpRequest();
-        req.setEndpoint('callout:World_Pay_Test_Auth');
+        req.setEndpoint('callout:World_Pay_Auth');
         req.setBody(installmentPayRequest);
         req.setHeader('Content-Type', 'application/json;charset=UTF-8');
         req.setHeader('api_token', 'qJKBsZNzdqClIuKvGx0zIApojFpYSIBSFwDA2qalvq2BljHVIU1ktRM5KHfNciQyW9PRK4bxYgiNwxKuqokMK7zjfzcM47cj53crArfpl8siZD9vpm9u4swxg3nl75sD32BzZimaSvGnAsIBbQmwneacYkt9wSpddoxgJRJQo43esYuWTxp8SHzE8jgBv50Itvtu68wk');
