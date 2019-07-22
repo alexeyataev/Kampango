@@ -59,6 +59,7 @@
         <members>Account.Billing_Email_Required_For_Suppliers</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
+        <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <name>ValidationRule</name>
     </types>
     <version>46.0</version>
