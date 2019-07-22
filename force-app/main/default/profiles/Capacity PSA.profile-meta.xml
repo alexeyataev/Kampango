@@ -41,7 +41,6 @@
         <field>Contact.Home_PSA__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Contact.NCT_Number__c</field>
         <readable>true</readable>
@@ -481,8 +480,9 @@
         <layout>Room__c-Room Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-     <layout>Session__c-Session Layout</layout>
+        <layout>Session__c-Session Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
         <layout>Venue_Contact__c-Venue Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
