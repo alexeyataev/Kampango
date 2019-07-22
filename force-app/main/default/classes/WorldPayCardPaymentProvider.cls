@@ -6,7 +6,7 @@ public class WorldPayCardPaymentProvider implements IPaymentServiceProvider {
     private static final String ERROR_PAGE = !Parentforce_Community_Settings__c.getAll().values().isEmpty() ? Parentforce_Community_Settings__c.getAll().values()[0].BaseUrl__c + 'error' : '';
     private static final String ORIGIN = 'BookingJourney';
     private static final Boolean ALLOW_DEDUPLICATION = true;
-    public static List<String> getPaymentLink(List<List<String>> params) {
+    public static List<String> getPaymentLink(List<List<String>> params) { 
         String contactId = params[0][0] != null ? params[0][0] : '';
         String feeAmount = params[0][1] != null ? params[0][1] : '';
         PaymentBody paymentBody = createPaymentBody(contactId, feeAmount);
