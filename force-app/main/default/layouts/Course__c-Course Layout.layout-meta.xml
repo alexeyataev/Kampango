@@ -165,7 +165,6 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Date__c</fields>
-        <fields>Session_Type__c</fields>
         <fields>Practitioner__c</fields>
         <relatedList>Session__c.Course__c</relatedList>
     </relatedLists>
