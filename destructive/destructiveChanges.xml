@@ -68,7 +68,7 @@
         <name>Profile</name>
     </types>
     <types>
-        <members>Account.Venue</members>
-        <name>RecordType</name>
-    </types>
+        <members>Course__c.Check_Numer_of_Places_against_Practition</members>
+        <name>ValidationRule</name>
+    </types>  
 </Package>
