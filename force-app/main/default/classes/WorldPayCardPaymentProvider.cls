@@ -1,17 +1,15 @@
 public class WorldPayCardPaymentProvider implements IPaymentServiceProvider {
     private static final String PAYER_CONTACT_UPDATE = 'none';
-    private static final String PAYMENT_METHOD = 'Creditcard';
-    private static final String SOURCE_CONNECTOR = 'PaymentHub-for-NPSP';
-    private static final String SUCCESS_PAGE = !Parentforce_Community_Settings__c.getAll().values().isEmpty() ? Parentforce_Community_Settings__c.getAll().values()[0].BaseUrl__c + 'success' : '';
-    private static final String ERROR_PAGE = !Parentforce_Community_Settings__c.getAll().values().isEmpty() ? Parentforce_Community_Settings__c.getAll().values()[0].BaseUrl__c + 'error' : '';
-    private static final String API_TOKEN = !Parentforce_Community_Settings__c.getAll().values().isEmpty() ? Parentforce_Community_Settings__c.getAll().values()[0].API_Token__c : '';
+    private static final String PAYMENT_METHOD = '{"Name":"Creditcard"}';
+    private static final String SOURCE_CONNECTOR = '{"Name":"PaymentHub-for-NPSP"}';
+    private static final String SUCCESS_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + 'success';
+    private static final String ERROR_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + 'error';
+    private static final String API_TOKEN = Parentforce_Community_Settings__c.getOrgDefaults().API_Token__c;
     private static final String ORIGIN = 'BookingJourney';
-    private static final Boolean ALLOW_DEDUPLICATION = true;
-    public static List<String> getPaymentLink(List<List<String>> params) {
-        String contactId = params[0][0] != null ? params[0][0] : '';
-        String feeAmount = params[0][1] != null ? params[0][1] : '';
+    public static String GetCardPaymentURL(String contactId, String feeAmount) {
         PaymentBody paymentBody = createPaymentBody(contactId, feeAmount);
-        String installmentPayRequest = JSON.serialize(paymentBody);   
+        String installmentPayRequest = JSON.serialize(paymentBody);
+        system.debug(installmentPayRequest);
         HttpRequest req = new HttpRequest();
         req.setEndpoint('callout:World_Pay_Auth');
         req.setBody(installmentPayRequest);
@@ -22,15 +20,13 @@ public class WorldPayCardPaymentProvider implements IPaymentServiceProvider {
         Http http = new Http();
         HttpResponse resp = http.send(req);
         cpm.API_Request_Response.PaymentPostRequest request = (cpm.API_Request_Response.PaymentPostRequest)JSON.deserializeStrict(resp.getBody(), cpm.API_Request_Response.PaymentPostRequest.class);
-        return new List<String>{request.RedirectURL};
+        return request.RedirectURL;
     }
     private static PaymentBody createPaymentBody(String contactId, String feeValue) {
-        Contact contact = new Contact(contactId);
-        Payer payer = new Payer(ALLOW_DEDUPLICATION, contact, PAYER_CONTACT_UPDATE);
-        Payment payment = new Payment(feeValue);
-        PaymentMethod paymentMethod = new PaymentMethod(PAYMENT_METHOD);
-        SourceConnector sourceConnector = new SourceConnector(SOURCE_CONNECTOR);
-        PaymentBody paymentBody = new PaymentBody(SUCCESS_PAGE, ERROR_PAGE, ORIGIN, payer, payment, paymentMethod, sourceConnector);
+        String contactParam = '{"Id":"' + contactId + '"}';
+        Payer payer = new Payer(contactParam, PAYER_CONTACT_UPDATE);
+        String feeParam = '{"Amount":"' + feeValue + '"}';
+        PaymentBody paymentBody = new PaymentBody(SUCCESS_PAGE, ERROR_PAGE, ORIGIN, payer, feeParam, PAYMENT_METHOD, SOURCE_CONNECTOR);
         return paymentBody;
     }
     private class PaymentBody {
@@ -38,51 +34,25 @@ public class WorldPayCardPaymentProvider implements IPaymentServiceProvider {
         private String FailureURL {get;set;}
         private String Origin {get;set;}
         private Payer Payer {get;set;}
-        private Payment Payment {get;set;}
-        private PaymentMethod PaymentMethod {get;set;}
-        private SourceConnector SourceConnector {get;set;}
-        private PaymentBody(String successURL, String failureURL, String origin, Payer payer, Payment payment, PaymentMethod paymentMethod, SourceConnector sourceConnector) {
+        private Object Payment {get;set;}
+        private Object PaymentMethod {get;set;}
+        private Object SourceConnector {get;set;}
+        private PaymentBody(String successURL, String failureURL, String origin, Payer payer, String payment, String paymentMethod, String sourceConnector) {
             this.SuccessURL = successURL;
             this.FailureURL = failureURL;
             this.Origin = origin;
             this.Payer = payer;
-            this.Payment = payment;
-            this.PaymentMethod = paymentMethod;
-            this.SourceConnector = sourceConnector;
+            this.Payment = JSON.deserializeUntyped(payment);
+            this.PaymentMethod = JSON.deserializeUntyped(paymentMethod);
+            this.SourceConnector = JSON.deserializeUntyped(sourceConnector);
         }
     }
     private class Payer {
-        private Boolean AllowDeduplication {get;set;}
-        private Contact Contact {get;set;}
+        private Object Contact {get;set;}
         private String ContactUpdate {get;set;}
-        private Payer(Boolean allowDeduplication, Contact contact, String contactUpdate) {
-            this.AllowDeduplication = allowDeduplication;
-            this.Contact = contact;
+        private Payer(String contactParam, String contactUpdate) {
+            this.Contact = JSON.deserializeUntyped(contactParam);
             this.ContactUpdate = contactUpdate;
-        }
-    }
-    private class Contact {
-        private String Id {get;set;}
-        private Contact(String contactId) {
-            this.Id = contactId;
-        }
-    }
-    private class Payment {
-        private String Amount {get;set;}
-        private Payment(String amount) {
-            this.Amount = amount;
-        }
-    }
-    private class PaymentMethod {
-        private String Name {get;set;}
-        private PaymentMethod(String name) {
-            this.Name = name;
-        }
-    }
-    private class SourceConnector {
-        private String Name {get;set;}
-        private SourceConnector(String name) {
-            this.Name = name;
         }
     }
 }
