@@ -500,7 +500,7 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Branch</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
