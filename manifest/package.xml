@@ -12,6 +12,7 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>Licence_To_Practice__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
     </types>
