@@ -16,7 +16,7 @@ public class PaymentProviderTest
         Test.setMock(HttpCalloutMock.class, new PaymentProviderHttpResponseMock(responseUrl));
         Test.startTest();
         List<List<String>> params = new List<List<String>>();
-        params.add(new List<String>{'contactId', '50'});
+        params.add(new List<String>{'contactId', '20'});
         List<String> responseList = FlowPaymentHandler.getPaymentLink(params);
         system.assertEquals(responseList[0], responseUrl);
         Test.stopTest();
