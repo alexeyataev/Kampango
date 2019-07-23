@@ -4,9 +4,10 @@ public class WorldPayCardPaymentProvider implements IPaymentServiceProvider {
     private static final String SOURCE_CONNECTOR = 'PaymentHub-for-NPSP';
     private static final String SUCCESS_PAGE = !Parentforce_Community_Settings__c.getAll().values().isEmpty() ? Parentforce_Community_Settings__c.getAll().values()[0].BaseUrl__c + 'success' : '';
     private static final String ERROR_PAGE = !Parentforce_Community_Settings__c.getAll().values().isEmpty() ? Parentforce_Community_Settings__c.getAll().values()[0].BaseUrl__c + 'error' : '';
+    private static final String API_TOKEN = !Parentforce_Community_Settings__c.getAll().values().isEmpty() ? Parentforce_Community_Settings__c.getAll().values()[0].API_Token__c : '';
     private static final String ORIGIN = 'BookingJourney';
     private static final Boolean ALLOW_DEDUPLICATION = true;
-    public static List<String> getPaymentLink(List<List<String>> params) { 
+    public static List<String> getPaymentLink(List<List<String>> params) {
         String contactId = params[0][0] != null ? params[0][0] : '';
         String feeAmount = params[0][1] != null ? params[0][1] : '';
         PaymentBody paymentBody = createPaymentBody(contactId, feeAmount);
@@ -15,7 +16,7 @@ public class WorldPayCardPaymentProvider implements IPaymentServiceProvider {
         req.setEndpoint('callout:World_Pay_Auth');
         req.setBody(installmentPayRequest);
         req.setHeader('Content-Type', 'application/json;charset=UTF-8');
-        req.setHeader('api_token', 'qJKBsZNzdqClIuKvGx0zIApojFpYSIBSFwDA2qalvq2BljHVIU1ktRM5KHfNciQyW9PRK4bxYgiNwxKuqokMK7zjfzcM47cj53crArfpl8siZD9vpm9u4swxg3nl75sD32BzZimaSvGnAsIBbQmwneacYkt9wSpddoxgJRJQo43esYuWTxp8SHzE8jgBv50Itvtu68wk');
+        req.setHeader('api_token', API_TOKEN);
         req.setMethod('POST');
         req.setTimeout(120000);
         Http http = new Http();
