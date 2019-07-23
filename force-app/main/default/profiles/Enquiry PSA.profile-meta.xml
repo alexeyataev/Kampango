@@ -413,6 +413,10 @@
         <layout>Venue__c-Venue Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Account-Branch Layout</layout>
+        <recordType>Account.Branch</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Account-Household Lightning Layout</layout>
         <recordType>Account.HH_Account</recordType>
     </layoutAssignments>
