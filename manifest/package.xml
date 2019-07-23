@@ -3,6 +3,7 @@
     <types>
         <members>Course__c</members>
         <members>Estimated_Costs__c</members>
+        <members>Licence_To_Practice__c</members>
         <members>Rate__c</members> 
         <members>Room__c</members>
         <members>Session__c</members>
@@ -24,6 +25,7 @@
         <members>Course_Sub_Type</members>
         <members>PSA_Areas</members>
         <members>Y_N_UNKNOWN</members>
+        <members>Session_Type</members>
         <name>GlobalValueSet</name>
     </types>
     <types>
@@ -42,6 +44,7 @@
         <name>Flow</name>
     </types>
     <types>
+    	<members>Practitioner_Management</members>
         <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
     </types>
