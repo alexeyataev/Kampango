@@ -24,5 +24,5 @@ Your membership donation will support our work in your community, and in local c
 
 With very best wishes, and looking forward to welcoming you to NCT, <br><br>
 
-{!Booking__c.Created_User_First_Name__c} <br>
-{!Booking__c.Created_User_Phone__c}
+{!Booking__c.Enquiry_PSA_First_Name__c} <br>
+{!Booking__c.Enquiry_PSA_Phone__c}
