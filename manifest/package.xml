@@ -25,7 +25,6 @@
         <members>Course_Sub_Type</members>
         <members>PSA_Areas</members>
         <members>Y_N_UNKNOWN</members>
-        <members>Session_Type</members>
         <name>GlobalValueSet</name>
     </types>
     <types>
