@@ -38,6 +38,7 @@
         <members>Room__c-Room Layout</members>
         <members>Venue__c-Venue Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
+        <members>Session__c-Session Layout</members>
         <name>Layout</name>
     </types>
     <types>
