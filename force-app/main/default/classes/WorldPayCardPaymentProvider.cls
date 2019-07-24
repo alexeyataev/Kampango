@@ -1,7 +1,7 @@
 public class WorldPayCardPaymentProvider implements IPaymentServiceProvider {
     private static final String PAYER_CONTACT_UPDATE = 'none';
-    private static final String PAYMENT_METHOD = '{"Name":"Creditcard"}';
-    private static final String SOURCE_CONNECTOR = '{"Name":"PaymentHub-for-NPSP"}';
+    private static final String PAYMENT_METHOD = 'Creditcard';
+    private static final String SOURCE_CONNECTOR = 'PaymentHub-for-NPSP';
     private static final String SUCCESS_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + 'success';
     private static final String ERROR_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + 'error';
     private static final String API_TOKEN = Parentforce_Community_Settings__c.getOrgDefaults().API_Token__c;
@@ -9,7 +9,6 @@ public class WorldPayCardPaymentProvider implements IPaymentServiceProvider {
     public static String GetCardPaymentURL(String contactId, String feeAmount) {
         PaymentBody paymentBody = createPaymentBody(contactId, feeAmount);
         String installmentPayRequest = JSON.serialize(paymentBody);
-        system.debug(installmentPayRequest);
         HttpRequest req = new HttpRequest();
         req.setEndpoint('callout:World_Pay_Auth');
         req.setBody(installmentPayRequest);
@@ -23,36 +22,34 @@ public class WorldPayCardPaymentProvider implements IPaymentServiceProvider {
         return request.RedirectURL;
     }
     private static PaymentBody createPaymentBody(String contactId, String feeValue) {
-        String contactParam = '{"Id":"' + contactId + '"}';
-        Payer payer = new Payer(contactParam, PAYER_CONTACT_UPDATE);
-        String feeParam = '{"Amount":"' + feeValue + '"}';
-        PaymentBody paymentBody = new PaymentBody(SUCCESS_PAGE, ERROR_PAGE, ORIGIN, payer, feeParam, PAYMENT_METHOD, SOURCE_CONNECTOR);
+        Payer payer = new Payer(contactId, PAYER_CONTACT_UPDATE);
+        PaymentBody paymentBody = new PaymentBody(SUCCESS_PAGE, ERROR_PAGE, ORIGIN, payer, feeValue, PAYMENT_METHOD, SOURCE_CONNECTOR);
         return paymentBody;
     }
     private class PaymentBody {
-        private String SuccessURL {get;set;}
-        private String FailureURL {get;set;}
-        private String Origin {get;set;}
-        private Payer Payer {get;set;}
-        private Object Payment {get;set;}
-        private Object PaymentMethod {get;set;}
-        private Object SourceConnector {get;set;}
+        private String successURL {get;set;}
+        private String failureURL {get;set;}
+        private String origin {get;set;}
+        private Payer payer {get;set;}
+        private Map<String, String> payment {get;set;}
+        private Map<String, String> paymentMethod {get;set;}
+        private Map<String, String> sourceConnector {get;set;}
         private PaymentBody(String successURL, String failureURL, String origin, Payer payer, String payment, String paymentMethod, String sourceConnector) {
-            this.SuccessURL = successURL;
-            this.FailureURL = failureURL;
-            this.Origin = origin;
-            this.Payer = payer;
-            this.Payment = JSON.deserializeUntyped(payment);
-            this.PaymentMethod = JSON.deserializeUntyped(paymentMethod);
-            this.SourceConnector = JSON.deserializeUntyped(sourceConnector);
+            this.successURL = successURL;
+            this.failureURL = failureURL;
+            this.origin = origin;
+            this.payer = payer;
+            this.payment = new Map<String, String> {'Amount' => payment};
+            this.paymentMethod = new Map<String, String> {'Name' => paymentMethod};
+            this.sourceConnector = new Map<String, String> {'Name' => sourceConnector};
         }
     }
     private class Payer {
-        private Object Contact {get;set;}
-        private String ContactUpdate {get;set;}
-        private Payer(String contactParam, String contactUpdate) {
-            this.Contact = JSON.deserializeUntyped(contactParam);
-            this.ContactUpdate = contactUpdate;
+        private Map<String, String> contact {get;set;}
+        private String contactUpdate {get;set;}
+        private Payer(String contactId, String contactUpdate) {
+            this.contact = new Map<String, String> {'Id' => contactId};
+            this.contactUpdate = contactUpdate;
         }
     }
 }
