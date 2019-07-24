@@ -4,15 +4,15 @@ Your course reference: {!Course__c.PSA_Area__c} / {!Course__c.Name} <br><br>
 
 Dear {!Booking__c.First_Name__c} {!Booking__c.Email_Template_Utility_Field__c}  <br><br>
 
-Thank you so much for enquiring about our {!Course__c.Course_Sub_Type__c} course. We’re really looking forward to welcoming you at NCT as you prepare for your birth and life as a parent.<br><br>
+Thank you for enquiring about our {!Course__c.Course_Sub_Type__c} course. We’re really looking forward to welcoming you at NCT as you prepare for your birth and life as a parent.<br><br>
 
-Please click here to review your reservation and confirm your place. [link to booking journey]<br><br>
+Your place is reserved until {!Booking__c.Reservation_Expiry_Date__c}.<br><br>
 
-If this course isn’t suitable, do come back to me by email or give me a call to find a more suitable alternative.<br><br>
+Please click here to review your reservation and book your place. [link to booking journey]<br><br>
+
+If this course isn’t suitable, do come back to me by email or give me a call so we can look at alternatives.<br><br>
 
 Please note that your place will be confirmed once we have received your payment or Direct Debit Instructions and that full payment for your course is due 30 days before the course commences.<br><br>
-
-Your course is reserved until {!Booking__c.Reservation_Expiry_Date__c}.<br><br>
 
 What parents tell us…<br><br>
 
