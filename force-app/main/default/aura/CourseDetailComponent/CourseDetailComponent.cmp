@@ -1,0 +1,4 @@
+<aura:component implements="lightning:availableForFlowScreens" access="global">
+    <aura:attribute name="bookingId" type="String" access="global"/>
+    <c:courseDetailsComponent bookingId="{!v.bookingId}"/>
+</aura:component>	

@@ -1,0 +1,57 @@
+<template>
+    <div>
+        <div>
+            This booking is for <b>{firstName} {lastName}</b>.
+        </div>
+        <div>
+            You have a place reserved untill <lightning-formatted-date-time 
+            value={expirationDate} 
+            year="numeric" 
+            month="long" 
+            day="2-digit">
+        </lightning-formatted-date-time> on the following course:
+        </div>
+        <div class="Heading3">
+            <b>Course Details</b>
+        </div>
+        <div>
+            <b>Course</b> {courseRef}
+        </div>
+        <div>
+            <b>Starts </b> <lightning-formatted-date-time 
+            value={startDate} 
+            year="numeric" 
+            month="long" 
+            day="2-digit"></lightning-formatted-date-time>
+        </div>
+        <div>
+            <b>Ends </b> <lightning-formatted-date-time 
+            value={endDate}
+            year="numeric" 
+            month="long" 
+            day="2-digit"></lightning-formatted-date-time>
+        </div>
+        <div>
+            <b>Venue</b>
+        </div>
+        <div class="Row">
+            <div>
+                <b>Sessions </b>
+            </div>
+            <div>
+                <lightning-datatable
+                    key-field="id"
+                    data={sessions}
+                    columns={sessionColumns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </div>
+        </div>
+        <div>
+            <b>Total fees </b> &#163;<lightning-formatted-number 
+                                    value={courseFee} 
+                                    minimum-fraction-digits="2">
+                                </lightning-formatted-number>
+        </div>
+    </div>
+</template>

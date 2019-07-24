@@ -1,0 +1,17 @@
+.Row
+{
+    display: flex;
+    flex-direction:row;
+}
+.Heading3{
+    font-family : 'Raleway', arial, sans-serif;
+    font-size : 1.563rem; 
+    font-weight : 500;
+    line-height : 1.6;
+    color: #00876a; 
+}
+@font-face {
+    font-family: Lato;
+    src: url(/assets/fonts/Lato.woff2) format('woff2'),
+         url(/assets/fonts/Lato.woff) format('woff');
+  }
