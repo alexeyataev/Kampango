@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-     <types>
+    <types>
         <members>Course__c</members>
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
@@ -18,7 +18,7 @@
     <types>
         <members>Account.Account_Number__c</members>
         <members>Account.Billing_Email__c</members>
-	    <members>Account.Capacity_PSA__c</members>
+        <members>Account.Capacity_PSA__c</members>
         <members>Account.Enquiry_PSA__c</members>
         <members>Account.PSA_Area__c</members>
         <name>CustomField</name>
