@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>NCT_Courses</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
         <members>Course__c</members>
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
