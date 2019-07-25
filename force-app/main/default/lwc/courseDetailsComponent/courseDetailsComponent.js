@@ -12,7 +12,8 @@ const BOOKING_FIELDS = [
         'Booking__c.Course__r.Course_Reference__c',
         'Booking__c.Course__r.Start_Date__c',
         'Booking__c.Course__r.End_Date__c',
-        'Booking__c.Course__r.Course_Fee__c'
+        'Booking__c.Course__r.Course_Fee__c',
+        'Booking__c.Course__r.Sub_Type__c'
     ];
 
 export default class CourseDetailsComponent extends LightningElement {
@@ -28,6 +29,7 @@ export default class CourseDetailsComponent extends LightningElement {
     @api endDate;
     @api sessions;
     @api courseFee;
+    @api coursetype;
     @wire (getRecord, {recordId: '$bookingId', fields: BOOKING_FIELDS})
     retrieveRecord({error, data}){
         if(error){
@@ -55,6 +57,7 @@ export default class CourseDetailsComponent extends LightningElement {
             this.endDate = this.bookingRecord.fields.Course__r.value.fields.End_Date__c.value;
             this.courseId = this.bookingRecord.fields.Course__c.value;
             this.courseFee = this.bookingRecord.fields.Course__r.value.fields.Course_Fee__c.value;
+            this.coursetype = this.bookingRecord.fields.Course__r.value.fields.Sub_Type__c.value;
             this.retrieveSessions(this.courseId);
         }
     } 
