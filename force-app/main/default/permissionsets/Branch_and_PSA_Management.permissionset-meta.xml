@@ -3,6 +3,16 @@
     <description>Allows creation of branches and movement within PSA areas.</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.Capacity_PSA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Enquiry_PSA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
