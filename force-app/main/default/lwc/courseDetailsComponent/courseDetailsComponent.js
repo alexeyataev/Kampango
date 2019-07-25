@@ -30,6 +30,7 @@ export default class CourseDetailsComponent extends LightningElement {
     @api sessions;
     @api courseFee;
     @api coursetype;
+    @api get valuesLoaded(){return this.bookingId && this.courseId;}
     @wire (getRecord, {recordId: '$bookingId', fields: BOOKING_FIELDS})
     retrieveRecord({error, data}){
         if(error){

@@ -1,94 +1,99 @@
 <template>
-    <div class="slds-text-heading_small">
-        <div class="Padding10 LatoFont">
-            This booking is for <b>{firstName} {lastName}</b>.
-        </div>
-        <div class="Padding10 LatoFont">
-            You have a place reserved until <lightning-formatted-date-time 
-            value={expirationDate} 
-            year="numeric" 
-            month="long" 
-            day="2-digit">
-        </lightning-formatted-date-time> on the following course:
-        </div>
-        <div class="Heading3 LatoFont">
-            <b>Course Details</b>
-        </div>
-        <table class="LatoFont">
-            <tr>
-                <td>
-                    <b>Course</b> 
-                </td>
-                <td>
-                    {coursetype} - <b>{courseRef}</b>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Starts</b> 
-                </td>
-                <td>
-                    <lightning-formatted-date-time 
-                        value={startDate} 
-                        year="numeric" 
-                        month="long" 
-                        day="2-digit">
-                    </lightning-formatted-date-time>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Ends</b> 
-                </td>
-                <td>
-                    <lightning-formatted-date-time 
-                        value={endDate}
-                        year="numeric" 
-                        month="long" 
-                        day="2-digit">
-                    </lightning-formatted-date-time>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Venue</b> 
-                </td>
-                <td>
-                    
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Sessions </b>
-                </td>
-                <td>
-                    <div class="slds-grid slds-wrap">
-                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-medium-size_1-of-1 slds-small-size_1-of-1">
-                            <lightning-datatable
-                                key-field="id"
-                                data={sessions}
-                                columns={sessionColumns}
-                                hide-checkbox-column
-                                resize-column-disabled>
-                            </lightning-datatable>
+    <template if:true={valuesLoaded}>
+        <div class="slds-text-heading_small">
+            <div class="Padding10 LatoFont">
+                This booking is for <b>{firstName} {lastName}</b>.
+            </div>
+            <div class="Padding10 LatoFont">
+                You have a place reserved until <lightning-formatted-date-time 
+                value={expirationDate} 
+                year="numeric" 
+                month="long" 
+                day="2-digit">
+            </lightning-formatted-date-time> on the following course:
+            </div>
+            <div class="Heading3 LatoFont">
+                <b>Course Details</b>
+            </div>
+            <table class="LatoFont">
+                <tr>
+                    <td>
+                        <b>Course</b> 
+                    </td>
+                    <td>
+                        {coursetype} - <b>{courseRef}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Starts</b> 
+                    </td>
+                    <td>
+                        <lightning-formatted-date-time 
+                            value={startDate} 
+                            year="numeric" 
+                            month="long" 
+                            day="2-digit">
+                        </lightning-formatted-date-time>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Ends</b> 
+                    </td>
+                    <td>
+                        <lightning-formatted-date-time 
+                            value={endDate}
+                            year="numeric" 
+                            month="long" 
+                            day="2-digit">
+                        </lightning-formatted-date-time>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Venue</b> 
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Sessions </b>
+                    </td>
+                    <td>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-medium-size_1-of-1 slds-small-size_1-of-1">
+                                <lightning-datatable
+                                    key-field="id"
+                                    data={sessions}
+                                    columns={sessionColumns}
+                                    hide-checkbox-column
+                                    resize-column-disabled>
+                                </lightning-datatable>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Total fees</b> 
-                </td>
-                <td>
-                    <b>
-                        &#163;
-                        <lightning-formatted-number 
-                            value={courseFee} 
-                            minimum-fraction-digits="2">
-                        </lightning-formatted-number>
-                    </b>
-                </td>
-            </tr>
-        </table>
-    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Total fees</b> 
+                    </td>
+                    <td>
+                        <b>
+                            &#163;
+                            <lightning-formatted-number 
+                                value={courseFee} 
+                                minimum-fraction-digits="2">
+                            </lightning-formatted-number>
+                        </b>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+    <template if:false={valuesLoaded}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template> 
 </template>
