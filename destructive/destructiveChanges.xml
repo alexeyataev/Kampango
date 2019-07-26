@@ -32,7 +32,6 @@
         <members>Course__c.Booked_Places__c</members>
         <members>Course__c.Breastfeeding_Sessions__c</members>
         <members>Course__c.Course_Index__c</members>
-        <members>Course__c.Course_Reference__c</members>
         <members>Course__c.Course_Type__c</members>
         <members>Course__c.Description__c</members>
         <members>Course__c.Duration__c</members>
@@ -94,6 +93,11 @@
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
         <name>ValidationRule</name>
     </types>
+    <types>
+        <members>Booking__c.Send Reservation Email</members>
+        <members>Booking__c.Send Confirmation Email</members>
+        <name>WorkflowRule</name>
+    </types>  
     <types>
         <members>Booking__c.Send Reservation Email</members>
         <members>Booking__c.Send Confirmation Email</members>
