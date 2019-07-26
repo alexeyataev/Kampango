@@ -155,10 +155,9 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Session</label>
     <nameField>
-        <displayFormat>S-{0000000}</displayFormat>
         <label>Session Name</label>
         <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Sessions</pluralLabel>
     <searchLayouts/>
