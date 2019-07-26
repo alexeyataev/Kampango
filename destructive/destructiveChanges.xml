@@ -110,11 +110,6 @@
         <name>WorkflowRule</name>
     </types>  
     <types>
-        <members>Booking__c.Send_Confirmation_Email</members>
-        <members>Booking__c.Send_Reservation_Email</members>
-        <name>WorkflowAlert</name>
-    </types>
-    <types>
         <members>Booking__c.Set_Offer_Email_Sent_Time</members>
         <name>WorkflowFieldUpdate</name>
     </types>
