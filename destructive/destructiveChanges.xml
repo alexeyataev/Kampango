@@ -93,6 +93,11 @@
     <types>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
         <name>ValidationRule</name>
+    </types>
+    <types>
+        <members>Booking__c.Send Reservation Email</members>
+        <members>Booking__c.Send Confirmation Email</members>
+        <name>WorkflowRule</name>
     </types>  
     <types>
         <members>Booking__c.Send Reservation Email</members>
