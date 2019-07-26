@@ -146,20 +146,20 @@
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>true</enableHistory>
+    <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
-    <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
-    <label>Session</label>
+    <label>Practitioner Travel Cost</label>
     <nameField>
-        <label>Session Name</label>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <displayFormat>TC{000000}</displayFormat>
+        <label>Practitioner Travel Cost Name</label>
+        <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Sessions</pluralLabel>
+    <pluralLabel>Practitioner Travel Costs</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
