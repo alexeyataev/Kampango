@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Course_Compact_Layout</fullName>
-    <fields>Branch__c</fields>
+    <fields>Name</fields>
     <fields>Sub_Type__c</fields>
+    <fields>Branch__c</fields>
     <fields>Target_Group__c</fields>
     <fields>Status__c</fields>
     <label>Course Compact Layout</label>
