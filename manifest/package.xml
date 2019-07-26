@@ -49,7 +49,7 @@
         <name>GlobalValueSet</name>
     </types>
     <types>
-    <members>Course_Record_Page</members>
+    	<members>Course_Record_Page</members>
         <name>FlexiPage</name>
     </types>
     <types>
