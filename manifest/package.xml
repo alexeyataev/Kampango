@@ -34,7 +34,7 @@
         <name>GlobalValueSet</name>
     </types>
     <types>
-    	<members>Course_Record_Page</members>
+    	  <members>Course_Record_Page</members>
         <name>FlexiPage</name>
     </types>
     <types>
@@ -63,6 +63,10 @@
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>Account.Branch</members>
+        <name>RecordType</name>
     </types>
     <types>
        <members>AccountType</members>
