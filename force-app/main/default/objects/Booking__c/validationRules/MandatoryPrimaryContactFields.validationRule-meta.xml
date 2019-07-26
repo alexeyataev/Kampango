@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MandatoryPrimaryContactFields</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(ISCHANGED( Primary_Contact__c ) &amp;&amp;
+    <errorConditionFormula>AND(
 (
 ISBLANK(Primary_Contact__r.FirstName) ||
 ISBLANK(Primary_Contact__r.LastName) ||
