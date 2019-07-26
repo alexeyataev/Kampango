@@ -4,11 +4,6 @@
     <externalId>false</externalId>
     <label>Total Contact Hours</label>
     <summarizedField>Session__c.Contact_Hours__c</summarizedField>
-    <summaryFilterItems>
-        <field>Session__c.Type__c</field>
-        <operation>notEqual</operation>
-        <value>Reunion</value>
-    </summaryFilterItems>
     <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
     <summaryOperation>sum</summaryOperation>
     <trackHistory>false</trackHistory>
