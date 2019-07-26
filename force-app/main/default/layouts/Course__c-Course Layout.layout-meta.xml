@@ -215,23 +215,27 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
-        <relatedList>RelatedEntityHistoryList</relatedList>
+        <fields>NAME</fields>
+        <fields>Day_of_Week__c</fields>
+        <fields>Date__c</fields>
+        <fields>Start__c</fields>
+        <fields>End__c</fields>
+        <fields>Type__c</fields>
+        <fields>Practitioner__c</fields>
+        <fields>Venue__c</fields>
+        <relatedList>Session__c.Course__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedContentNoteList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Date__c</fields>
-        <fields>Type__c</fields>
-        <fields>Practitioner__c</fields>
-        <relatedList>Session__c.Course__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>Type__c</fields>
         <fields>Amount__c</fields>
         <relatedList>Estimated_Costs__c.Course__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

@@ -16,6 +16,10 @@
                 <field>Type__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Day_of_Week__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Date__c</field>
             </layoutItems>
@@ -44,6 +48,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Practitioner__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Venue__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
