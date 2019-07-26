@@ -27,6 +27,12 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>Contact.Mailing_City__c</members>
+        <members>Contact.Mailing_Country__c</members>
+        <members>Contact.Mailing_Longtitude__c</members>
+        <members>Contact.Mailing_Postal_Code__c</members>
+        <members>Contact.Mailing_State__c</members>
+        <members>Contact.Mailing_Street__c</members>
         <members>Course__c.Antenatal_Sessions__c</members>
         <members>Course__c.Available_Places__c</members>
         <members>Course__c.Booked_Places__c</members>
