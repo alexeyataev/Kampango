@@ -53,6 +53,7 @@
         <name>FlexiPage</name>
     </types>
     <types>
+        <members>Set_Main_Venue_on_Course</members>
         <members>Update_service_field_on_session</members>
         <name>Flow</name>
     </types>
@@ -61,7 +62,8 @@
         <members>Account-Organization Lightning Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Contact-Practitioner Page Layout</members>
-        <members>Estimated_Costs__c-Estimated Costs Layout</members>      
+        <members>Estimated_Costs__c-Estimated Costs Layout</members>
+        <members>Licence_To_Practice__c-Licence_To_Practice_Layout</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
         <members>Rate__c-Rate Layout</members>
         <members>Room__c-Room Layout</members>
