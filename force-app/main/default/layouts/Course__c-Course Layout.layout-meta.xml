@@ -24,6 +24,14 @@
                 <field>Sub_Type__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Start_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>End_Date__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Status__c</field>
             </layoutItems>
@@ -50,6 +58,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Fee__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Total_Contact_Hours__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -145,6 +157,17 @@
         <fields>Status__c</fields>
     </miniLayout>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>Day_of_Week__c</fields>
+        <fields>Date__c</fields>
+        <fields>Start__c</fields>
+        <fields>End__c</fields>
+        <fields>Type__c</fields>
+        <fields>Practitioner__c</fields>
+        <fields>Venue__c</fields>
+        <relatedList>Session__c.Course__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedContentNoteList</relatedList>
     </relatedLists>
     <relatedLists>
@@ -152,6 +175,9 @@
         <fields>Type__c</fields>
         <fields>Amount__c</fields>
         <relatedList>Estimated_Costs__c.Course__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

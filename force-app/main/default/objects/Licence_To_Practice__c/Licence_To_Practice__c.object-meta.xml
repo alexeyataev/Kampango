@@ -146,20 +146,20 @@
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>true</enableHistory>
+    <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
-    <enableReports>true</enableReports>
+    <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
-    <label>Session</label>
+    <label>Licence To Practice</label>
     <nameField>
-        <label>Session Name</label>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <displayFormat>LTP{000000}</displayFormat>
+        <label>Licence To Practice Name</label>
+        <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Sessions</pluralLabel>
+    <pluralLabel>Licences To Practice</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>

@@ -11,6 +11,16 @@
         <field>Account.Billing_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Capacity_PSA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Enquiry_PSA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.PSA_Area__c</field>
@@ -193,6 +203,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Licence_To_Practice__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Practitioner_Travel_Cost__c.Return_Travel_Cost__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -224,6 +239,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Room__c.Type_of_Space__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Day_of_Week__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -494,6 +514,10 @@
         <recordType>Account.Branch</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Account-Household Lightning Layout</layout>
+        <recordType>Account.HH_Account</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Account-Organization Lightning Layout</layout>
         <recordType>Account.Organization</recordType>
     </layoutAssignments>
@@ -513,6 +537,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Estimated_Costs__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Licence_To_Practice__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -572,6 +605,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Branch</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.HH_Account</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
