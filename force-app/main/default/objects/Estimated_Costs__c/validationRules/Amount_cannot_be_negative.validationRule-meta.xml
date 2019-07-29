@@ -3,5 +3,5 @@
     <fullName>Amount_cannot_be_negative</fullName>
     <active>true</active>
     <errorConditionFormula>Amount__c &lt; 0</errorConditionFormula>
-    <errorMessage>Amount cannot be negative</errorMessage>
+    <errorMessage>Estimated cost amount cannot be negative</errorMessage>
 </ValidationRule>

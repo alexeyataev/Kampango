@@ -3,5 +3,5 @@
     <fullName>Course_Fee_cannot_be_negative</fullName>
     <active>true</active>
     <errorConditionFormula>Fee__c &lt; 0</errorConditionFormula>
-    <errorMessage>Course Fee cannot be negative</errorMessage>
+    <errorMessage>Course fee cannot be negative</errorMessage>
 </ValidationRule>
