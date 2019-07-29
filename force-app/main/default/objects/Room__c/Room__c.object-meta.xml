@@ -155,9 +155,8 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Room</label>
     <nameField>
-        <displayFormat>RM{000000}</displayFormat>
         <label>Room Name</label>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Rooms</pluralLabel>
     <searchLayouts/>
