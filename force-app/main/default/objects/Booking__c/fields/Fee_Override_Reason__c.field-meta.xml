@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fee_Override_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Fee Override Reason</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No discount given</fullName>
+                <default>false</default>
+                <label>No discount given</label>
+            </value>
+            <value>
+                <fullName>Under 18</fullName>
+                <default>false</default>
+                <label>Under 18</label>
+            </value>
+            <value>
+                <fullName>Student (under 22)</fullName>
+                <default>false</default>
+                <label>Student (under 22)</label>
+            </value>
+            <value>
+                <fullName>Income support</fullName>
+                <default>false</default>
+                <label>Income support</label>
+            </value>
+            <value>
+                <fullName>Income based job seekers allowance</fullName>
+                <default>false</default>
+                <label>Income based job seekers allowance</label>
+            </value>
+            <value>
+                <fullName>Income related employment and support allowance</fullName>
+                <default>false</default>
+                <label>Income related employment and support allowance</label>
+            </value>
+            <value>
+                <fullName>Working tax credit</fullName>
+                <default>false</default>
+                <label>Working tax credit</label>
+            </value>
+            <value>
+                <fullName>Universal credit</fullName>
+                <default>false</default>
+                <label>Universal credit</label>
+            </value>
+            <value>
+                <fullName>Household income &lt;£16.19k</fullName>
+                <default>false</default>
+                <label>Household income &lt;£16.19k</label>
+            </value>
+            <value>
+                <fullName>Household income &lt;£28.19k</fullName>
+                <default>false</default>
+                <label>Household income &lt;£28.19k</label>
+            </value>
+            <value>
+                <fullName>Booked after start of course</fullName>
+                <default>false</default>
+                <label>Booked after start of course</label>
+            </value>
+            <value>
+                <fullName>Other - see notes</fullName>
+                <default>false</default>
+                <label>Other - see notes</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
