@@ -51,7 +51,7 @@
                 <behavior>Required</behavior>
                 <field>Number_of_places__c</field>
             </layoutItems>
-            <layoutItems>
+             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Remaining_Places__c</field>
             </layoutItems>
@@ -68,8 +68,11 @@
                 <field>Enquiries__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Fee__c</field>
+                <behavior>Readonly</behavior>
+                <field>Total_Contact_Hours__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Total_Contact_Hours__c</field>
             </layoutItems>
         </layoutColumns>
