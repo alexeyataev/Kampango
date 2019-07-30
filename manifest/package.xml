@@ -9,6 +9,8 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Booking__c</members>
+        <members>Contact</members>
         <members>Course__c</members>
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
@@ -18,13 +20,11 @@
         <members>Session__c</members>
         <members>Venue__c</members>
         <members>Venue_Contact__c</members>
-        <members>Booking__c</members>
-        <members>Contact</members>
         <name>CustomObject</name>
     </types>
     <types>
-        <members>Venue__c</members>
         <members>Booking__c</members>
+        <members>Venue__c</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -33,16 +33,6 @@
         <members>Account.Capacity_PSA__c</members>
         <members>Account.Enquiry_PSA__c</members>
         <members>Account.PSA_Area__c</members>
-        <members>Contact.AccountId</members>
-        <members>Contact.Current_Fee_Band_Effective_From__c</members>
-        <members>Contact.Fee_Band__c</members>
-        <members>Contact.Home_PSA__c</members>
-        <members>Contact.NCT_Number__c</members>
-        <members>Contact.Practitioner_Re_Registration_Amount__c</members>
-        <members>Contact.Practitioner_Re_Registration_Date__c</members>
-        <members>Contact.Secondary_Email__c</members>
-        <members>Contact.Second_Home_PSA__c</members>
-        <members>Contact.Total_Open_Bookings__c</members>
         <members>Booking__c.Acceptance_Date__c</members>
         <members>Booking__c.Birth_Date__c</members>
         <members>Booking__c.Birth_Due_Date__c</members>
@@ -82,6 +72,16 @@
         <members>Booking__c.Status__c</members>
         <members>Booking__c.Total_Open_Bookings__c</members>
         <members>Booking__c.Town__c</members>
+        <members>Contact.AccountId</members>
+        <members>Contact.Current_Fee_Band_Effective_From__c</members>
+        <members>Contact.Fee_Band__c</members>
+        <members>Contact.Home_PSA__c</members>
+        <members>Contact.NCT_Number__c</members>
+        <members>Contact.Practitioner_Re_Registration_Amount__c</members>
+        <members>Contact.Practitioner_Re_Registration_Date__c</members>
+        <members>Contact.Secondary_Email__c</members>
+        <members>Contact.Second_Home_PSA__c</members>
+        <members>Contact.Total_Open_Bookings__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -96,8 +96,8 @@
         <name>FlexiPage</name>
     </types>
     <types>
-        <members>Update_service_field_on_session</members>
         <members>Booking_SetExpirationStatus</members>
+        <members>Update_service_field_on_session</members>
         <name>Flow</name>
     </types>
     <types>
@@ -139,15 +139,15 @@
     </types>
     <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
+        <members>Booking__c.FeeOverrideRestriction</members>
+        <members>Booking__c.InappropriateStatusTransition</members>
+        <members>Booking__c.MandatoryBirthDate</members>
+        <members>Booking__c.MandatoryPrimaryContactFields</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
         <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
         <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
-        <members>Booking__c.FeeOverrideRestriction</members>
-        <members>Booking__c.InappropriateStatusTransition</members>
-        <members>Booking__c.MandatoryBirthDate</members>
-        <members>Booking__c.MandatoryPrimaryContactFields</members>
         <name>ValidationRule</name>
     </types>
     <types>
