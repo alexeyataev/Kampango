@@ -71,10 +71,6 @@
                 <behavior>Readonly</behavior>
                 <field>Total_Contact_Hours__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Total_Contact_Hours__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
