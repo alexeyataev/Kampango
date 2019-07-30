@@ -1,28 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>Contact.Practitioner_Compact_layout</members>
+        <name>CompactLayout</name>
+    </types>
+    <types>
+        <members>NCT_Courses</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
         <members>Course__c</members>
-        <members>Estimated_Costs__c</members> 
+        <members>Estimated_Costs__c</members>
+        <members>Licence_To_Practice__c</members>
+        <members>Practitioner_Travel_Cost__c</members>
+        <members>Rate__c</members> 
+        <members>Room__c</members>
         <members>Session__c</members>
+        <members>Venue__c</members>
+        <members>Venue_Contact__c</members>
         <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Venue__c</members>
+        <name>CustomTab</name>
     </types>
     <types>
         <members>Account.Account_Number__c</members>
         <members>Account.Billing_Email__c</members>
+        <members>Account.Capacity_PSA__c</members>
+        <members>Account.Enquiry_PSA__c</members>
         <members>Account.PSA_Area__c</members>
+        <members>Contact.AccountId</members>
+        <members>Contact.Current_Fee_Band_Effective_From__c</members>
+        <members>Contact.Fee_Band__c</members>
+        <members>Contact.Home_PSA__c</members>
+        <members>Contact.NCT_Number__c</members>
+        <members>Contact.Practitioner_Re_Registration_Amount__c</members>
+        <members>Contact.Practitioner_Re_Registration_Date__c</members>
+        <members>Contact.Secondary_Email__c</members>
+        <members>Contact.Second_Home_PSA__c</members>
         <name>CustomField</name>
     </types>
     <types>
         <members>Course_Sub_Type</members>
+        <members>Fee_Band</members>
         <members>PSA_Areas</members>
+        <members>Y_N_UNKNOWN</members>
         <name>GlobalValueSet</name>
+    </types>
+    <types>
+    	<members>Course_Record_Page</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Populate_Practitioner_Name</members>
+        <members>Update_Practitioner_Licence</members>
+        <members>Update_service_field_on_session</members>
+        <name>Flow</name>
     </types>
     <types>
         <members>Account-Branch Layout</members>
         <members>Account-Organization Lightning Layout</members>
         <members>Course__c-Course Layout</members>
+        <members>Contact-Practitioner Page Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
+        <members>Licence_To_Practice__c-Licence To Practice Layout</members>
+        <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
+        <members>Rate__c-Rate Layout</members>
+        <members>Room__c-Room Layout</members>
+        <members>Session__c-Session Layout</members>
+        <members>Venue__c-Venue Layout</members>
+        <members>Venue_Contact__c-Venue Contact Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+    	<members>Practitioner_Management</members>
+        <members>Branch_and_PSA_Management</members>
+        <name>PermissionSet</name>
     </types>
     <types>
         <members>Admin</members>
@@ -31,11 +85,22 @@
         <name>Profile</name>
     </types>
     <types>
-       <members>AccountType</members>
+        <members>Account.Branch</members>
+        <members>Contact.Clients</members>
+        <members>Contact.Practitioner</members>
+        <name>RecordType</name>
+    </types>
+    <types>
+        <members>AccountType</members>
         <name>StandardValueSet</name>
     </types>
     <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
+        <members>Course__c.Check_Fee_and_Estimated_Costs</members>
+        <members>Course__c.Check_Sessions_and_Practitioners</members>
+        <members>Course__c.Course_Fee_cannot_be_negative</members>
+        <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
+        <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <name>ValidationRule</name>
     </types>
     <version>46.0</version>
