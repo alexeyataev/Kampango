@@ -100,16 +100,15 @@
         <members>Populate_Practitioner_Name</members>
         <members>Update_Practitioner_Licence</members>
         <members>Update_service_field_on_session</members>
-        <members>Update_service_field_on_session</members>
         <name>Flow</name>
     </types>
     <types>
         <members>Account-Branch Layout</members>
         <members>Account-Organization Lightning Layout</members>
         <members>Booking__c-Booking Layout</members>
+        <members>Contact-Client Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Contact-Practitioner Page Layout</members>
-        <members>Contact-Client Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
