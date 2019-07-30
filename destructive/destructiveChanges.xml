@@ -52,6 +52,8 @@
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
         <members>Course__c.End_Time__c</members>
+        <members>Room.Confirmation_Email_Information__c</members>
+        <members>Room.Display_Name__c</members>
         <members>Session__c.Confirmed__c</members>
         <members>Session__c.Day__c</members>
         <members>Session__c.Duration__c</members>
@@ -59,6 +61,7 @@
         <members>Session__c.Notes__c</members>
         <members>Session__c.Session_Type__c</members>
         <members>Session__c.Venue__c</members>
+        <members>Session__c.Website_Text__c</members>
         <members>Session__c.Women_Only__c</members>
         <members>Venue__c.Venue_GeoLocation__c</members>
         <members>Venue__c.Venue_Keys__c</members>
