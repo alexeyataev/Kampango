@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
-        <fullName>Baby Massage</fullName>
-        <default>false</default>
-        <label>Baby Massage</label>
-    </customValue>
-    <customValue>
         <fullName>Early Days</fullName>
         <default>false</default>
         <label>Early Days</label>
@@ -16,14 +11,9 @@
         <label>Introducing Solids</label>
     </customValue>
     <customValue>
-        <fullName>NCT Antenatal Refresher</fullName>
+        <fullName>Baby Massage</fullName>
         <default>false</default>
-        <label>NCT Antenatal Refresher</label>
-    </customValue>
-    <customValue>
-        <fullName>NCT Essentials Antenatal</fullName>
-        <default>false</default>
-        <label>NCT Essentials Antenatal</label>
+        <label>Baby Massage</label>
     </customValue>
     <customValue>
         <fullName>NCT Signature Antenatal</fullName>
@@ -31,9 +21,14 @@
         <label>NCT Signature Antenatal</label>
     </customValue>
     <customValue>
-        <fullName>One to One</fullName>
+        <fullName>NCT Essentials Antenatal</fullName>
         <default>false</default>
-        <label>One to One</label>
+        <label>NCT Essentials Antenatal</label>
+    </customValue>
+    <customValue>
+        <fullName>NCT Antenatal Refresher</fullName>
+        <default>false</default>
+        <label>NCT Antenatal Refresher</label>
     </customValue>
     <customValue>
         <fullName>Twins and Multiples</fullName>
@@ -45,6 +40,11 @@
         <default>false</default>
         <label>Waterbirth</label>
     </customValue>
+    <customValue>
+        <fullName>One to One</fullName>
+        <default>false</default>
+        <label>One to One</label>
+    </customValue>
     <masterLabel>Course Sub Type</masterLabel>
-    <sorted>true</sorted>
+    <sorted>false</sorted>
 </GlobalValueSet>
