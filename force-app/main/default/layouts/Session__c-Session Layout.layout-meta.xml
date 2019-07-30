@@ -35,6 +35,10 @@
                 <behavior>Edit</behavior>
                 <field>Lunch_Break_Minutes__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Practitioner_Licence__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -48,10 +52,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Room__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Practitioner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
