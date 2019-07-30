@@ -107,6 +107,7 @@
         <members>Account-Organization Lightning Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Contact-Client Layout</members>
+        <members>Contact-Contact Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Contact-Practitioner Page Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
@@ -133,6 +134,7 @@
     <types>
         <members>Account.Branch</members>
         <members>Contact.Clients</members>
+        <members>Contact.Contact</members>
         <members>Contact.Practitioner</members>
         <name>RecordType</name>
     </types>
