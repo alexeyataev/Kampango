@@ -35,12 +35,12 @@
                 <behavior>Edit</behavior>
                 <field>Lunch_Break_Minutes__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Practitioner_Licence__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Course__c</field>
