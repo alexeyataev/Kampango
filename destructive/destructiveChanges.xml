@@ -48,6 +48,7 @@
         <members>Course__c.Places__c</members>
         <members>Course__c.Postnatal_End_Date__c</members>
         <members>Course__c.Postnatal_Start_Date__c</members>
+        <members>Course__c.Practitioner__c</members>
         <members>Course__c.PSA_Branch__c</members>
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
@@ -59,6 +60,7 @@
         <members>Session__c.Duration__c</members>
         <members>Session__c.Duration_Formatted__c</members>
         <members>Session__c.Notes__c</members>
+        <members>Session__c.Practitioner__c</members>
         <members>Session__c.Session_Type__c</members>
         <members>Session__c.Venue__c</members>
         <members>Session__c.Website_Text__c</members>

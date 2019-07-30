@@ -53,6 +53,8 @@
         <name>FlexiPage</name>
     </types>
     <types>
+        <members>Populate_Practitioner_Name</members>
+        <members>Update_Practitioner_Licence</members>
         <members>Update_service_field_on_session</members>
         <name>Flow</name>
     </types>
@@ -61,7 +63,8 @@
         <members>Account-Organization Lightning Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Contact-Practitioner Page Layout</members>
-        <members>Estimated_Costs__c-Estimated Costs Layout</members>      
+        <members>Estimated_Costs__c-Estimated Costs Layout</members>
+        <members>Licence_To_Practice__c-Licence To Practice Layout</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
         <members>Rate__c-Rate Layout</members>
         <members>Room__c-Room Layout</members>
@@ -95,6 +98,8 @@
         <members>Account.Billing_Email_Required_For_Suppliers</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
+        <members>Course__c.Course_Fee_cannot_be_negative</members>
+        <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
         <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <members>Session__c.Session_Confirmation_Rule</members>
         <name>ValidationRule</name>
