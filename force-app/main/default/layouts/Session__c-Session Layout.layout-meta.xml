@@ -47,6 +47,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Venue__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Practitioner_Licence__c</field>
             </layoutItems>
             <layoutItems>

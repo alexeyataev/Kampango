@@ -447,7 +447,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Session__c.Confirmation_Email_Information__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -457,17 +457,17 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Session__c.Lunch_Break_Minutes__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Session__c.Practitioner_Chosen__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Session__c.Practitioner_Licence__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -477,7 +477,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Session__c.Website_Text__c</field>
         <readable>true</readable>
     </fieldPermissions>
