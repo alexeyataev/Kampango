@@ -11,9 +11,6 @@
         <label>myDecision</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision2</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
@@ -28,61 +25,23 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Practitioner doesn&#39;t exist</label>
+            <label>Practitioner Licence is blank</label>
         </rules>
     </decisions>
-    <decisions>
-        <processMetadataValues>
-            <name>index</name>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </processMetadataValues>
-        <name>myDecision2</name>
-        <label>myDecision2</label>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>myRule_3</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>formula_myRule_3</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>myRule_3_A1</targetReference>
-            </connector>
-            <label>Practitioner exist</label>
-        </rules>
-    </decisions>
+    <description>If Practitioner Licence is blank Main Practitioner Licence from Course will be set</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ISBLANK([Session__c].Practitioner_Licence__c )</stringValue>
+                <stringValue>ISBLANK([Session__c].Practitioner_Licence__c ) </stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
         <expression>ISBLANK({!myVariable_current.Practitioner_Licence__c} )</expression>
     </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>NOT(ISBLANK([Session__c].Practitioner_Licence__c))</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_myRule_3</name>
-        <dataType>Boolean</dataType>
-        <expression>NOT(ISBLANK({!myVariable_current.Practitioner_Licence__c}))</expression>
-    </formulas>
-    <interviewLabel>Update_service_field_on_session-2_InterviewLabel</interviewLabel>
-    <label>Update service field on session</label>
+    <interviewLabel>Update_Practitioner_Licence-1_InterviewLabel</interviewLabel>
+    <label>Update Practitioner Licence</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -104,7 +63,7 @@
     <processMetadataValues>
         <name>TriggerType</name>
         <value>
-            <stringValue>onAllChanges</stringValue>
+            <stringValue>onCreateOnly</stringValue>
         </value>
     </processMetadataValues>
     <processType>Workflow</processType>
@@ -134,7 +93,7 @@
             <name>referenceTargetField</name>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>Update to false</label>
+        <label>Update Practitioner Licence</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
         <filters>
@@ -154,7 +113,7 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
-                    <stringValue>Boolean</stringValue>
+                    <stringValue>ID</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -166,104 +125,24 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Practitioner Chosen Assistant</stringValue>
+                    <stringValue>Practitioner Licence</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
                 <name>leftHandSideReferenceTo</name>
                 <value>
-                    <stringValue/>
+                    <stringValue>Licence_To_Practice__c</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>Boolean</stringValue>
+                    <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Practitioner_Chosen__c</field>
+            <field>Practitioner_Licence__c</field>
             <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </inputAssignments>
-        <object>Session__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>always</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>extraTypeInfo</name>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[Session__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>referenceTargetField</name>
-        </processMetadataValues>
-        <name>myRule_3_A1</name>
-        <label>Update to true</label>
-        <locationX>300</locationX>
-        <locationY>200</locationY>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Practitioner Chosen Assistant</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Practitioner_Chosen__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>myVariable_current.Course__r.Main_Practitioner_Licence__c</elementReference>
             </value>
         </inputAssignments>
         <object>Session__c</object>

@@ -87,11 +87,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Primary_Contact_Email__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Booking__c.Fee_Override_Reason__c</field>
         <readable>true</readable>
@@ -114,6 +109,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.First_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Home_Phone_Partner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Home_Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -173,12 +178,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Home_Phone_Partner__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Home_Phone__c</field>
+        <field>Booking__c.Primary_Contact_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -204,16 +204,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Town__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.NCT_Number__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contact.Total_Open_Bookings__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -269,6 +259,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Secondary_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Total_Open_Bookings__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -341,6 +336,16 @@
         <field>Course__c.Include_Additional_Admin_Cost__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Main_Practitioner_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Main_Venue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Number_of_Sessions__c</field>
@@ -396,6 +401,11 @@
         <field>Licence_To_Practice__c.End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>Licence_To_Practice__c.Practitioner_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Practitioner_Travel_Cost__c.Return_Travel_Cost__c</field>
@@ -437,7 +447,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Session__c.Confirmation_Email_Information__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -447,22 +457,27 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Session__c.Lunch_Break_Minutes__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Session__c.Practitioner_Chosen__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Session__c.Practitioner__c</field>
+        <editable>false</editable>
+        <field>Session__c.Practitioner_Licence__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <field>Session__c.Practitoner_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Session__c.Website_Text__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -680,6 +695,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
+    </layoutAssignments>
+	<layoutAssignments>
+        <layout>Licence_To_Practice__c-Licence To Practice Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</layout>
