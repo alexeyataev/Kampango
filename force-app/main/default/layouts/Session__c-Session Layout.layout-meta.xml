@@ -47,11 +47,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Practitioner__c</field>
+                <field>Venue__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Venue__c</field>
+                <field>Practitioner_Licence__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Practitoner_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
