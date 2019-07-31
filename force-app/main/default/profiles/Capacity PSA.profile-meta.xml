@@ -347,6 +347,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Main_Venue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Number_of_Sessions__c</field>
         <readable>true</readable>
@@ -474,6 +479,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Practitoner_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Room__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Venue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
