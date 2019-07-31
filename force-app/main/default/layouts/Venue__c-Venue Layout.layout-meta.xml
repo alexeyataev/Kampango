@@ -267,7 +267,7 @@
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
-            <layoutItems
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>LastModifiedById</field>
             </layoutItems>
