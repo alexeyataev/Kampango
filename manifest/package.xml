@@ -117,8 +117,23 @@
         <name>ValidationRule</name>
     </types>
     <types>
-        <members>Booking__c</members>
-        <name>Workflow</name>
+        <members>Booking__c.Booking:SendOfferEmail</members>
+        <members>Booking__c.Booking:SetExpirationDate%3C10Days</members>
+        <members>Booking__c.Booking:SetExpirationDate10Days</members>
+        <members>Booking__c.Booking:SetExpirationDate5Days</members>
+        <members>Booking__c.Booking:SetOfferEmailDate</members>
+        <name>WorkflowRule</name>
+    </types>  
+    <types>
+        <members>Booking__c.SetExpDate</members>
+        <members>Booking__c.SetExpDateTo5Days</members>
+        <members>Booking__c.SetExpDateToTenDays</members>
+        <members>Booking__c.SetOfferEmailDate</members>
+        <name>WorkflowFieldUpdate</name>
+    </types>
+    <types>
+        <members>Booking__c.SendEmailToClient</members>
+        <name>WorkflowAlert</name>
     </types>  
     <version>46.0</version>
 </Package>
