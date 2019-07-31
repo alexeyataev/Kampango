@@ -127,6 +127,7 @@
         <members>Admin</members>
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>
+        <members>Payment API User</members>
         <name>Profile</name>
     </types>
     <types>
