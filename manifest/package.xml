@@ -107,6 +107,7 @@
         <members>Account-Organization Lightning Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Contact-Client Layout</members>
+        <members>Contact-Contact Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Contact-Practitioner Page Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
@@ -128,11 +129,13 @@
         <members>Admin</members>
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>
+        <members>Payment API User</members>
         <name>Profile</name>
     </types>
     <types>
         <members>Account.Branch</members>
         <members>Contact.Clients</members>
+        <members>Contact.Contact</members>
         <members>Contact.Practitioner</members>
         <name>RecordType</name>
     </types>
