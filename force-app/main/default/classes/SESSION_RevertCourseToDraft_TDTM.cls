@@ -24,7 +24,6 @@ global class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
                 }
             }
         } else if (triggerAction == npsp.TDTM_Runnable.Action.afterDelete) {
-            System.debug('123');
             for(Session__c aSession : oldSessionList){
                 courseIds.add(aSession.Course__c);
             }

@@ -3,14 +3,14 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @TestSetup
     private static void setupTestData() {
-        Id branchRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+        Id branchRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Branch').getRecordTypeId();
         Account account = new Account(
             RecordtypeId = branchRecordTypeId,
             Name = 'TestBranch'
         );
         insert account;
 
-        Id practitionerRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Practitioner').getRecordTypeId();
+        Id practitionerRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('Practitioner').getRecordTypeId();
         Contact practitioner = new Contact(RecordTypeId = practitionerRecordTypeId, LastName = 'Practitioner', AccountId = account.id );
         insert practitioner;
 
@@ -261,10 +261,27 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         course.Status__c = 'Final';
         update course;
 
-        Licence_To_Practice__c licenceToPractice = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
+        Id branchRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Branch').getRecordTypeId();
+        Account account = new Account(
+            RecordtypeId = branchRecordTypeId,
+            Name = 'TestBranch'
+        );
+        insert account;
+
+        Id practitionerRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('Practitioner').getRecordTypeId();
+        Contact practitioner2 = new Contact(RecordTypeId = practitionerRecordTypeId, LastName = 'Practitioner2', AccountId = account.id );
+        insert practitioner2;
+
+        Licence_To_Practice__c licenceToPractice2 = new Licence_To_Practice__c(
+            Contact__c = practitioner2.Id,
+            Start_Date__c = Date.Today(),
+            Status__c = 'Full',
+            Licence__c = 'Postnatal Practitioner'
+        );
+        insert licenceToPractice2;
 
         Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id];
-        session.Practitioner_Licence__c = licenceToPractice.Id;
+        session.Practitioner_Licence__c = licenceToPractice2.Id;
         update session;
 
         test.stopTest();
