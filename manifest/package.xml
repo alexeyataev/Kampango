@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>SESSION_RevertCourseToDraft_TDTM</members>
+        <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>TDTM_Session_c</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
         <members>Contact.Practitioner_Compact_layout</members>
         <name>CompactLayout</name>
     </types>
@@ -98,6 +107,8 @@
     <types>
         <members>Booking_SetExpirationStatus</members>
         <members>Populate_Practitioner_Name</members>
+        <members>Revert_Course_To_Draft_After_Cost_Deletion</members>
+        <members>Revert_Course_To_Draft_If_Cost_Changes</members>
         <members>Update_Practitioner_Licence</members>
         <members>Update_service_field_on_session</members>
         <name>Flow</name>
