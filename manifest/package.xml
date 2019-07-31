@@ -14,7 +14,7 @@
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
         <members>Practitioner_Travel_Cost__c</members>
-        <members>Rate__c</members> 
+        <members>Rate__c</members>
         <members>Room__c</members>
         <members>Session__c</members>
         <members>Venue__c</members>
@@ -58,6 +58,7 @@
     <types>
         <members>Booking_SetExpirationStatus</members>
         <members>Populate_Practitioner_Name</members>
+        <members>Set_Main_Venue_on_Course</members>
         <members>Update_Practitioner_Licence</members>
         <members>Update_service_field_on_session</members>
         <name>Flow</name>
