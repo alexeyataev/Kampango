@@ -47,6 +47,10 @@
                 <behavior>Edit</behavior>
                 <field>Access_Code__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Map_Link__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -233,10 +237,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Directions__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Google_Map_Link__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
