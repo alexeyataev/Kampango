@@ -27,6 +27,28 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>Booking__c.Client_Name__c</members>
+        <members>Booking__c.Due_Date__c</members>
+        <members>Booking__c.Client__c</members>
+        <members>Booking__c.Bank_Account_Number__c</members>
+        <members>Booking__c.Bank_Sort_Code__c</members>
+        <members>Booking__c.Twins_or_more__c</members>
+        <members>Booking__c.Under_18__c</members>
+        <members>Booking__c.Confirm_DD_Authorisation__c</members>
+        <members>Booking__c.Client_Gift_Aid__c</members>
+        <members>Booking__c.Course_Payment_Method__c</members>
+        <members>Booking__c.Companion__c</members>
+        <members>Booking__c.Do_Not_Include_on_Class_List__c</members>
+        <members>Booking__c.Do_Not_Send_Further_Information__c</members>
+        <members>Booking__c.First_Baby__c</members>
+        <members>Booking__c.First_Heard__c</members>
+        <members>Booking__c.Membership_Choice__c</members>
+        <members>Booking__c.Membership_Payment_Method__c</members>
+        <members>Booking__c.No_3rd_Party_Mailings__c</members>
+        <members>Booking__c.Offer_Email_Sent__c</members>
+        <members>Booking__c.Partner_Gift_Aid__c</members>
+        <members>Booking__c.Partner_Membership__c</members>
+        <members>Booking__c.Preferred_Payment_Date__c</members>
         <members>Contact.Mailing_City__c</members>
         <members>Contact.Mailing_Country__c</members>
         <members>Contact.Mailing_Longtitude__c</members>
@@ -61,31 +83,10 @@
         <members>Session__c.Practitioner__c</members>
         <members>Session__c.Session_Type__c</members>
         <members>Session__c.Women_Only__c</members>
+        <members>Venue__c.Google_Map_Link__c</members>
         <members>Venue__c.Venue_GeoLocation__c</members>
         <members>Venue__c.Venue_Keys__c</members>
         <members>Venue__c.Venue_Suitability__c</members>
-        <members>Booking__c.Client_Name__c</members>
-        <members>Booking__c.Due_Date__c</members>
-        <members>Booking__c.Client__c</members>
-        <members>Booking__c.Bank_Account_Number__c</members>
-        <members>Booking__c.Bank_Sort_Code__c</members>
-        <members>Booking__c.Twins_or_more__c</members>
-        <members>Booking__c.Under_18__c</members>
-        <members>Booking__c.Confirm_DD_Authorisation__c</members>
-        <members>Booking__c.Client_Gift_Aid__c</members>
-        <members>Booking__c.Course_Payment_Method__c</members>
-        <members>Booking__c.Companion__c</members>
-        <members>Booking__c.Do_Not_Include_on_Class_List__c</members>
-        <members>Booking__c.Do_Not_Send_Further_Information__c</members>
-        <members>Booking__c.First_Baby__c</members>
-        <members>Booking__c.First_Heard__c</members>
-        <members>Booking__c.Membership_Choice__c</members>
-        <members>Booking__c.Membership_Payment_Method__c</members>
-        <members>Booking__c.No_3rd_Party_Mailings__c</members>
-        <members>Booking__c.Offer_Email_Sent__c</members>
-        <members>Booking__c.Partner_Gift_Aid__c</members>
-        <members>Booking__c.Partner_Membership__c</members>
-        <members>Booking__c.Preferred_Payment_Date__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -105,12 +106,7 @@
         <members>Booking__c.Send Reservation Email</members>
         <members>Booking__c.Send Confirmation Email</members>
         <name>WorkflowRule</name>
-    </types>  
-    <types>
-        <members>Booking__c.Send Reservation Email</members>
-        <members>Booking__c.Send Confirmation Email</members>
-        <name>WorkflowRule</name>
-    </types>  
+    </types>    
     <types>
         <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Reservation_Email</members>
