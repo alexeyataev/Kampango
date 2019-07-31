@@ -14,7 +14,7 @@
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
         <members>Practitioner_Travel_Cost__c</members>
-        <members>Rate__c</members> 
+        <members>Rate__c</members>
         <members>Room__c</members>
         <members>Session__c</members>
         <members>Venue__c</members>
