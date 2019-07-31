@@ -103,5 +103,9 @@
         <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <name>ValidationRule</name>
     </types>
+     <types>
+        <members>NCT_Styles</members>
+        <name>StaticResource</name>
+    </types>
     <version>46.0</version>
 </Package>
