@@ -37,7 +37,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Attendee_Type__c</field>
+                <field>Specific_Attendee_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
