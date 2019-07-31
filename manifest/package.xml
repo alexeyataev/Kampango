@@ -19,12 +19,11 @@
     </types>
     <types>
         <members>Booking__c</members>
-        <members>Contact</members>
         <members>Course__c</members>
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
         <members>Practitioner_Travel_Cost__c</members>
-        <members>Rate__c</members> 
+        <members>Rate__c</members>
         <members>Room__c</members>
         <members>Session__c</members>
         <members>Venue__c</members>
@@ -109,6 +108,7 @@
         <members>Populate_Practitioner_Name</members>
         <members>Revert_Course_To_Draft_After_Cost_Deletion</members>
         <members>Revert_Course_To_Draft_If_Cost_Changes</members>
+        <members>Set_Main_Venue_on_Course</members>
         <members>Update_Practitioner_Licence</members>
         <members>Update_service_field_on_session</members>
         <name>Flow</name>
@@ -118,6 +118,7 @@
         <members>Account-Organization Lightning Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Contact-Client Layout</members>
+        <members>Contact-Contact Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Contact-Practitioner Page Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
@@ -139,11 +140,13 @@
         <members>Admin</members>
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>
+        <members>Payment API User</members>
         <name>Profile</name>
     </types>
     <types>
         <members>Account.Branch</members>
         <members>Contact.Clients</members>
+        <members>Contact.Contact</members>
         <members>Contact.Practitioner</members>
         <name>RecordType</name>
     </types>
@@ -165,11 +168,11 @@
         <name>ValidationRule</name>
     </types>
     <types>
-        <members>Booking__c.Booking%3ASendOfferEmail</members>
-        <members>Booking__c.Booking%3ASetExpirationDate%3C10Days</members>
-        <members>Booking__c.Booking%3ASetExpirationDate10Days</members>
-        <members>Booking__c.Booking%3ASetExpirationDate5Days</members>
-        <members>Booking__c.Booking%3ASetOfferEmailDate</members>
+        <members>Booking__c.Booking:SendOfferEmail</members>
+        <members>Booking__c.Booking:SetExpirationDate%3C10Days</members>
+        <members>Booking__c.Booking:SetExpirationDate10Days</members>
+        <members>Booking__c.Booking:SetExpirationDate5Days</members>
+        <members>Booking__c.Booking:SetOfferEmailDate</members>
         <name>WorkflowRule</name>
     </types>  
     <types>
