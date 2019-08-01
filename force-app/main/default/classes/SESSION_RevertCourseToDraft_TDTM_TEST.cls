@@ -1,8 +1,14 @@
 @isTest
 public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
+    private static final String COURSE_DRAFT_STATUS = 'Draft';
+    private static final String COURSE_FINAL_STATUS = 'Final';
+
+    private static final Id PRACTITIONER_RECORD_TYPE_ID = TestDataFactory.getPractitionerRecordTypeId();
+
     @TestSetup
     private static void setupTestData() {
+
         Id branchRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Branch').getRecordTypeId();
         Account account = new Account(
             RecordtypeId = branchRecordTypeId,
@@ -10,18 +16,14 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         );
         insert account;
 
-        Id practitionerRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('Practitioner').getRecordTypeId();
-        Contact practitioner = new Contact(RecordTypeId = practitionerRecordTypeId, LastName = 'Practitioner', AccountId = account.id );
+        Contact practitioner = new Contact(
+            RecordTypeId = PRACTITIONER_RECORD_TYPE_ID,
+            LastName = 'Practitioner',
+            AccountId = account.id
+        );
         insert practitioner;
 
-        Venue__c venue = new Venue__c(
-            Name = 'TestVenue',
-            Street_Address__c = '123 Secret Street',
-            Town__c = 'Baltimore',
-            Postcode__c = '20755',
-            Type__c = 'Commercial',
-            Subtype__c = 'Primary'
-        );
+        Venue__c venue = TestDataFactory.createVenue();
         insert venue;
 
         Room__c room = new Room__c(
@@ -41,7 +43,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             Type__c = 'Antenatal',
             Sub_Type__c = 'One to One',
             Fee__c = 100,
-            Status__c = 'Draft',
+            Status__c = COURSE_DRAFT_STATUS,
             Number_of_places__c = 3,
             Branch__c = account.Id,
             Main_Practitioner_Licence__c = licenceToPractice.Id
@@ -73,24 +75,14 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
 
     @isTest
-    static void revertDraftAfterInsert() {
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
+    static void RevertCourseToDraft_NewSessionIsAdded_CourseStatusIsRevertedToDraft() {
 
-        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
-        th.Name = 'SessionTriggerHandler';
-        th.npsp__Class__c = 'SESSION_RevertCourseToDraft_TDTM';
-        th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete';
-        th.npsp__Active__c = true;
-        th.npsp__Load_Order__c = 1;
-        th.npsp__Asynchronous__c = false;
-
-        triggerHandlers.add(th);
+        createTriggerSystemHandlerRecord();
 
         test.startTest();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
-        course.Status__c = 'Final';
+        course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         Licence_To_Practice__c practitionerLicence = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
@@ -114,29 +106,18 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        System.assertEquals('Draft', [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
     }
 
     @isTest
-    static void revertDraftAfterDateUpdate() {
+    static void RevertCourseToDraft_DateUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
-
-        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
-        th.Name = 'SessionTriggerHandler';
-        th.npsp__Class__c = 'SESSION_RevertCourseToDraft_TDTM';
-        th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete';
-        th.npsp__Active__c = true;
-        th.npsp__Load_Order__c = 1;
-        th.npsp__Asynchronous__c = false;
-
-        triggerHandlers.add(th);
+        createTriggerSystemHandlerRecord();
 
         test.startTest();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
-        course.Status__c = 'Final';
+        course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id];
@@ -145,29 +126,19 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        System.assertEquals('Draft', [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
     }
 
 
     @isTest
-    static void revertDraftAfterStartTimeUpdate() {
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
+    static void RevertCourseToDraft_StartTimeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
-        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
-        th.Name = 'SessionTriggerHandler';
-        th.npsp__Class__c = 'SESSION_RevertCourseToDraft_TDTM';
-        th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete';
-        th.npsp__Active__c = true;
-        th.npsp__Load_Order__c = 1;
-        th.npsp__Asynchronous__c = false;
-
-        triggerHandlers.add(th);
+        createTriggerSystemHandlerRecord();
 
         test.startTest();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
-        course.Status__c = 'Final';
+        course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id];
@@ -176,28 +147,18 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        System.assertEquals('Draft', [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
     }
 
     @isTest
-    static void revertDraftAfterEndTimeUpdate() {
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
+    static void RevertCourseToDraft_EndTimeUpdatedOnSession_CourseStatusIsRevertedToDraft () {
 
-        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
-        th.Name = 'SessionTriggerHandler';
-        th.npsp__Class__c = 'SESSION_RevertCourseToDraft_TDTM';
-        th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete';
-        th.npsp__Active__c = true;
-        th.npsp__Load_Order__c = 1;
-        th.npsp__Asynchronous__c = false;
-
-        triggerHandlers.add(th);
+        createTriggerSystemHandlerRecord();
 
         test.startTest();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
-        course.Status__c = 'Final';
+        course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id];
@@ -206,28 +167,18 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        System.assertEquals('Draft', [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
     }
 
     @isTest
-    static void revertDraftAfterLunchBreakMinutesUpdate() {
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
+    static void RevertCourseToDraft_LunchBreakMinutesUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
-        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
-        th.Name = 'SessionTriggerHandler';
-        th.npsp__Class__c = 'SESSION_RevertCourseToDraft_TDTM';
-        th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete';
-        th.npsp__Active__c = true;
-        th.npsp__Load_Order__c = 1;
-        th.npsp__Asynchronous__c = false;
-
-        triggerHandlers.add(th);
+        createTriggerSystemHandlerRecord();
 
         test.startTest();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
-        course.Status__c = 'Final';
+        course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id];
@@ -236,29 +187,19 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        System.assertEquals('Draft', [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
 
     }
 
     @isTest
-    static void revertDraftAfterPractitionerLicenceUpdate() {
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
+    static void RevertCourseToDraft_PractitionerLicenceUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
-        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
-        th.Name = 'SessionTriggerHandler';
-        th.npsp__Class__c = 'SESSION_RevertCourseToDraft_TDTM';
-        th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete';
-        th.npsp__Active__c = true;
-        th.npsp__Load_Order__c = 1;
-        th.npsp__Asynchronous__c = false;
-
-        triggerHandlers.add(th);
+        createTriggerSystemHandlerRecord();
 
         test.startTest();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
-        course.Status__c = 'Final';
+        course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         Id branchRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Branch').getRecordTypeId();
@@ -268,8 +209,10 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         );
         insert account;
 
-        Id practitionerRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('Practitioner').getRecordTypeId();
-        Contact practitioner2 = new Contact(RecordTypeId = practitionerRecordTypeId, LastName = 'Practitioner2', AccountId = account.id );
+        Contact practitioner2 = new Contact(
+            RecordTypeId = PRACTITIONER_RECORD_TYPE_ID,
+            LastName = 'Practitioner2',
+            AccountId = account.id );
         insert practitioner2;
 
         Licence_To_Practice__c licenceToPractice2 = new Licence_To_Practice__c(
@@ -286,28 +229,18 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        System.assertEquals('Draft', [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
     }
 
     @isTest
-    static void revertDraftAfterVenueUpdate() {
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
+    static void  RevertCourseToDraft_VenueUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
-        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
-        th.Name = 'SessionTriggerHandler';
-        th.npsp__Class__c = 'SESSION_RevertCourseToDraft_TDTM';
-        th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete';
-        th.npsp__Active__c = true;
-        th.npsp__Load_Order__c = 1;
-        th.npsp__Asynchronous__c = false;
-
-        triggerHandlers.add(th);
+        createTriggerSystemHandlerRecord();
 
         test.startTest();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
-        course.Status__c = 'Final';
+        course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         Venue__c venue = new Venue__c(
@@ -332,11 +265,30 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        System.assertEquals('Draft', [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
     }
 
     @isTest
-    static void revertDraftAfterSessionDeletion() {
+    static void RevertCourseToDraft_SessionDeletedOnCourse_CourseStatusIsRevertedToDraft() {
+
+        createTriggerSystemHandlerRecord();
+
+        test.startTest();
+
+        Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
+        course.Status__c = COURSE_FINAL_STATUS;
+        update course;
+
+        Session__c session = [SELECT Id FROM Session__c WHERE Course__c =:course.Id];
+        delete session;
+
+        test.stopTest();
+
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+    }
+
+
+    private static void createTriggerSystemHandlerRecord(){
         List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
 
         npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
@@ -349,18 +301,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         th.npsp__Asynchronous__c = false;
 
         triggerHandlers.add(th);
-
-        test.startTest();
-
-        Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
-        course.Status__c = 'Final';
-        update course;
-
-        Session__c session = [SELECT Id FROM Session__c WHERE Course__c =:course.Id];
-        delete session;
-
-        test.stopTest();
-
-        System.assertEquals('Draft', [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
     }
+
 }
