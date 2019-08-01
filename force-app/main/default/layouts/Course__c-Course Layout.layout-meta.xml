@@ -51,9 +51,29 @@
                 <behavior>Required</behavior>
                 <field>Number_of_places__c</field>
             </layoutItems>
+             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Remaining_Places__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Reserved_Places__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Confirmed_Places__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Enquiries__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Total_Contact_Hours__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Main_Venue__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
