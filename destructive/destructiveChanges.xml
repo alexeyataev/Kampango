@@ -75,6 +75,7 @@
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
         <members>Course__c.End_Time__c</members>
+        <members>Session__c.Attendee_Type__c</members>
         <members>Session__c.Confirmed__c</members>
         <members>Session__c.Day__c</members>
         <members>Session__c.Duration__c</members>
@@ -106,12 +107,7 @@
         <members>Booking__c.Send Reservation Email</members>
         <members>Booking__c.Send Confirmation Email</members>
         <name>WorkflowRule</name>
-    </types>  
-    <types>
-        <members>Booking__c.Send Reservation Email</members>
-        <members>Booking__c.Send Confirmation Email</members>
-        <name>WorkflowRule</name>
-    </types>  
+    </types>    
     <types>
         <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Reservation_Email</members>
