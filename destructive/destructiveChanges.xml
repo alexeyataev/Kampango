@@ -75,8 +75,8 @@
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
         <members>Course__c.End_Time__c</members>
-        <members>Room.Confirmation_Email_Information__c</members>
-        <members>Room.Display_Name__c</members>
+        <members>Room__c.Confirmation_Email_Information__c</members>
+        <members>Room__c.Display_Name__c</members>
         <members>Session__c.Confirmed__c</members>
         <members>Session__c.Day__c</members>
         <members>Session__c.Duration__c</members>
