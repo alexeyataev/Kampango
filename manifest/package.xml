@@ -12,6 +12,7 @@
     </types>
     <types>
         <members>Contact.Practitioner_Compact_layout</members>
+        <members>Session__c.Session_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
     <types>
