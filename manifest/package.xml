@@ -117,11 +117,11 @@
         <name>ValidationRule</name>
     </types>
     <types>
-        <members>Booking__c.Booking:SendOfferEmail</members>
-        <members>Booking__c.Booking:SetExpirationDate%3C10Days</members>
-        <members>Booking__c.Booking:SetExpirationDate10Days</members>
-        <members>Booking__c.Booking:SetExpirationDate5Days</members>
-        <members>Booking__c.Booking:SetOfferEmailDate</members>
+        <members>Booking__c.Booking%3ASendOfferEmail</members>
+        <members>Booking__c.Booking%3ASetExpirationDate%3C10Days</members>
+        <members>Booking__c.Booking%3ASetExpirationDate10Days</members>
+        <members>Booking__c.Booking%3ASetExpirationDate5Days</members>
+        <members>Booking__c.Booking%3ASetOfferEmailDate</members>
         <name>WorkflowRule</name>
     </types>  
     <types>
