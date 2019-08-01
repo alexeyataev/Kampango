@@ -54,8 +54,8 @@
                 <field>Practitioner_Licence__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Attendee_Type__c</field>
+                <behavior>Edit</behavior>
+                <field>Specific_Attendee_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
