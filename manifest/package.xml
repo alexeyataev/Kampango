@@ -3,6 +3,7 @@
     <types>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
+        <members>TestDataFactory</members>
         <name>ApexClass</name>
     </types>
     <types>
