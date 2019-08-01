@@ -53,7 +53,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Remaining_Places__c</field>
+                <field>Confirmed_Places__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -61,11 +61,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Confirmed_Places__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>Enquiries__c</field>
+            </layoutItems>
+             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Remaining_Places__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
