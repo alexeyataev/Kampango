@@ -146,6 +146,7 @@
     </types>
     <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
+        <members>Booking__c.FeeOverrideAmountRestriction</members>
         <members>Booking__c.FeeOverrideRestriction</members>
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
@@ -163,6 +164,7 @@
         <members>Booking__c.Booking:SetExpirationDate10Days</members>
         <members>Booking__c.Booking:SetExpirationDate5Days</members>
         <members>Booking__c.Booking:SetOfferEmailDate</members>
+        <members>Booking__c.Booking_SetExpDate_Less5Days</members>
         <name>WorkflowRule</name>
     </types>  
     <types>
@@ -170,6 +172,7 @@
         <members>Booking__c.SetExpDateTo5Days</members>
         <members>Booking__c.SetExpDateToTenDays</members>
         <members>Booking__c.SetOfferEmailDate</members>
+        <members>Booking__c.SetExpirationDate_Less5</members>
         <name>WorkflowFieldUpdate</name>
     </types>
     <types>
