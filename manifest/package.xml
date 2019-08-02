@@ -2,6 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>Contact.Practitioner_Compact_layout</members>
+        <members>Session__c.Session_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
     <types>
@@ -106,6 +107,7 @@
     </types>
     <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
+        <members>Booking__c.FeeOverrideAmountRestriction</members>
         <members>Booking__c.FeeOverrideRestriction</members>
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
@@ -123,6 +125,7 @@
         <members>Booking__c.Booking%3ASetExpirationDate10Days</members>
         <members>Booking__c.Booking%3ASetExpirationDate5Days</members>
         <members>Booking__c.Booking%3ASetOfferEmailDate</members>
+        <members>Booking__c.Booking_SetExpDate_Less5Days</members>
         <name>WorkflowRule</name>
     </types>  
     <types>
@@ -130,6 +133,7 @@
         <members>Booking__c.SetExpDateTo5Days</members>
         <members>Booking__c.SetExpDateToTenDays</members>
         <members>Booking__c.SetOfferEmailDate</members>
+        <members>Booking__c.SetExpirationDate_Less5</members>
         <name>WorkflowFieldUpdate</name>
     </types>
     <types>
