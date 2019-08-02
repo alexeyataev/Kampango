@@ -1,3 +1,4 @@
+@isTest
 public without sharing class TestDataFactory {
     public static List<Venue__c> venues;
     public static List<Account> accounts;

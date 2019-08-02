@@ -20,9 +20,13 @@ global class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        for (Course__c aCourse : [SELECT Id, Status__c FROM Course__c WHERE Id IN :courseIds]) {
-            aCourse.Status__c = 'Draft';
-            courseToUpdate.add(aCourse);
+        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Id IN :courseIds LIMIT 50000];
+
+        if(!courses.isEmpty()) {
+            for (Course__c aCourse : courses) {
+                aCourse.Status__c = 'Draft';
+                courseToUpdate.add(aCourse);
+            }
         }
         dmlWrapper.objectsToUpdate.addAll((List<Course__c>) courseToUpdate);
         return dmlWrapper;
