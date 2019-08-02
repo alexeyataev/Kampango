@@ -469,7 +469,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Day_of_Week__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
