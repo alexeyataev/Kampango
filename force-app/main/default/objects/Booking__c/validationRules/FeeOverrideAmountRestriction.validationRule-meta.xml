@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FeeOverrideAmountRestriction</fullName>
+    <active>true</active>
+    <errorConditionFormula>Fee_Override__c &gt; Course_Fee__c</errorConditionFormula>
+    <errorDisplayField>Fee_Override__c</errorDisplayField>
+    <errorMessage>Fee override can&#39;t be Greater than a Course fee.</errorMessage>
+</ValidationRule>
