@@ -68,7 +68,7 @@ export default class CourseDetailsComponent extends LightningElement {
             fieldName: 'Date__c',
             type: 'date',
             typeAttributes:{
-                weekday: "long"
+                weekday: "short"
             }
         },
         {
@@ -77,8 +77,7 @@ export default class CourseDetailsComponent extends LightningElement {
             type: 'date',
             typeAttributes:{
                 month: "long",
-                day: "2-digit",
-                year: "numeric"
+                day: "2-digit"
             }
         },
         {
@@ -98,12 +97,13 @@ export default class CourseDetailsComponent extends LightningElement {
                 hour: "2-digit",
                 minute: "2-digit"
             }
-        },
-        {
-            label: 'Notes',
-            fieldName: 'Notes__c',
-            type: 'Text'
         }
+        // },
+        // {
+        //     label: 'Notes',
+        //     fieldName: 'Notes__c',
+        //     type: 'Text'
+        // }
     ];   
 
     retrieveSessions(id){
@@ -126,7 +126,7 @@ export default class CourseDetailsComponent extends LightningElement {
                     variant: 'error',
                 }),
             )
-        });
+        });        
     }
 
 }

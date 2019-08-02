@@ -17,7 +17,7 @@ public with sharing class CourseDetailController_Test {
             new Course__c(
                 Status__c = 'Draft',
                 Branch__c = branch.Id,
-                Practitioner__c = practitioner.Id,
+                //Practitioner__c = practitioner.Id,
                 Number_of_places__c = 15,
                 Type__c = 'Postnatal',
                 Sub_Type__c = 'Baby Massage'
@@ -25,7 +25,7 @@ public with sharing class CourseDetailController_Test {
             new Course__c(
                 Status__c = 'Draft',
                 Branch__c = branch.Id,
-                Practitioner__c = practitioner.Id,
+                //Practitioner__c = practitioner.Id,
                 Number_of_places__c = 10,
                 Type__c = 'Antenatal',
                 Sub_Type__c = 'NCT Essentials Antenatal'

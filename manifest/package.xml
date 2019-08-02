@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>CourseDetailComponent</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
         <members>Contact.Practitioner_Compact_layout</members>
         <name>CompactLayout</name>
+    </types>
+    <types>
+        <members>CourseDetailController_Test</members>
+        <members>CourseDetailController</members>
+        <name>ApexClass</name>
     </types>
     <types>
         <members>NCT_Courses</members>
@@ -118,6 +127,10 @@
         <members>Venue__c-Venue Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+    	<members>courseDetailsComponent</members>
+        <name>LightningComponentBundle</name>
     </types>
     <types>
     	<members>Practitioner_Management</members>
