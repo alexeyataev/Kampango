@@ -104,7 +104,6 @@
     </types>
     <types>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
-        <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <name>ValidationRule</name>
     </types>
     <types>
