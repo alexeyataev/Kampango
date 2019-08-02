@@ -16,6 +16,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         TestDataFactory.createEstimatedCosts();
     }
 
+
     @isTest
     static void RevertCourseToDraft_NewSessionIsAdded_CourseStatusIsRevertedToDraft() {
 
@@ -48,7 +49,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1].Status__c);
     }
 
     @isTest
@@ -62,14 +63,15 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id];
+        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.Date__c = Date.today();
         update session;
 
         test.stopTest();
 
-        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1].Status__c);
     }
+
 
     @isTest
     static void RevertCourseToDraft_StartTimeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
@@ -82,13 +84,13 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id];
+        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.Start__c = Time.newInstance(19, 00, 0, 0);
         update session;
 
         test.stopTest();
 
-        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1].Status__c);
     }
 
     @isTest
@@ -102,13 +104,13 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id];
+        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.End__c = Time.newInstance(02, 00, 0, 0);
         update session;
 
         test.stopTest();
 
-        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1].Status__c);
     }
 
     @isTest
@@ -122,13 +124,13 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id];
+        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.Lunch_Break_Minutes__c = 15;
         update session;
 
         test.stopTest();
 
-        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1].Status__c);
 
     }
 
@@ -143,7 +145,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
-        List<Contact> practitioners = [SELECT Id, LastName FROM Contact WHERE LastName = 'Practitioner2'];
+        List<Contact> practitioners = [SELECT Id, LastName FROM Contact WHERE LastName = 'Practitioner2' LIMIT 1];
         Licence_To_Practice__c licenceToPractice2 = new Licence_To_Practice__c(
             Contact__c = practitioners[0].Id,
             Start_Date__c = Date.Today(),
@@ -152,13 +154,13 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         );
         insert licenceToPractice2;
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id];
+        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.Practitioner_Licence__c = licenceToPractice2.Id;
         update session;
 
         test.stopTest();
 
-        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1].Status__c);
     }
 
     @isTest
@@ -187,14 +189,14 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         );
         insert room;
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id];
+        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.Venue__c = venue.Id;
         session.Room__c = room.Id;
         update session;
 
         test.stopTest();
 
-        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1].Status__c);
     }
 
     @isTest
@@ -208,12 +210,79 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
-        Session__c session = [SELECT Id FROM Session__c WHERE Course__c =:course.Id];
+        Session__c session = [SELECT Id FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         delete session;
 
         test.stopTest();
 
-        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1].Status__c);
+    }
+
+
+    @isTest
+    static void RevertCourseToDraft_BulkSessionsChanged_CourseStatusIsRevertedToDraft() {
+
+        createTriggerSystemHandlerRecord();
+        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c = 'Draft' LIMIT 10];
+
+        Set<Id> courseIds = new Set<Id>();
+
+        test.startTest();
+
+        for(Course__c aCourse : courses){
+            courseIds.add(aCourse.Id);
+            aCourse.Status__c = COURSE_FINAL_STATUS;
+        }
+        update courses;
+
+
+        List<Session__c> session = [SELECT Id, Start__c FROM Session__c WHERE Course__c IN : courseIds];
+        for(Session__c aSession : session){
+            aSession.Start__c = Time.newInstance(12, 00, 0, 0);
+        }
+        update session;
+
+        List<Course__c> coursesAfterUpdate = [SELECT Id, Status__c FROM Course__c  WHERE Id IN : courseIds LIMIT 10];
+        Integer countCoursesWithDraftStatus = 0;
+        for(Course__c aCourse : coursesAfterUpdate){
+            if(aCourse.Status__c == 'Draft'){
+                countCoursesWithDraftStatus++;
+            }
+        }
+        test.stopTest();
+
+        System.assertEquals(5, countCoursesWithDraftStatus);
+    }
+
+    @isTest
+    static void RevertCourseToDraft_BulkSessionsDeleted_CourseStatusIsRevertedToDraft() {
+
+        createTriggerSystemHandlerRecord();
+        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c = 'Draft' LIMIT 10];
+
+        Set<Id> courseIds = new Set<Id>();
+
+        test.startTest();
+
+        for(Course__c aCourse : courses){
+            courseIds.add(aCourse.Id);
+            aCourse.Status__c = COURSE_FINAL_STATUS;
+        }
+        update courses;
+
+        List<Session__c> session = [SELECT Id, Start__c FROM Session__c WHERE Course__c IN : courseIds];
+        delete session;
+
+        List<Course__c> coursesAfterUpdate = [SELECT Id, Status__c FROM Course__c  WHERE Id IN : courseIds LIMIT 10];
+        Integer countCoursesWithDraftStatus = 0;
+        for(Course__c aCourse : coursesAfterUpdate){
+            if(aCourse.Status__c == 'Draft'){
+                countCoursesWithDraftStatus++;
+            }
+        }
+        test.stopTest();
+
+        System.assertEquals(5, countCoursesWithDraftStatus);
     }
 
     private static void createTriggerSystemHandlerRecord(){

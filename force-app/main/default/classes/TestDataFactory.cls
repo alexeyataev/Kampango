@@ -91,20 +91,58 @@ public without sharing class TestDataFactory {
         return licenceToPractices;
     }
 
-    public static List<Course__c> createCourses(){
+    public static List<Course__c> createCourses() {
         courses = new List<Course__c>();
-
-        courses.add(
-            new Course__c(
-                Type__c = 'Antenatal',
-                Sub_Type__c = 'One to One',
-                Fee__c = 100,
-                Status__c = 'Draft',
-                Number_of_places__c = 3,
-                Branch__c = accounts[0].Id,
-                Main_Practitioner_Licence__c = licenceToPractices[0].Id
-            )
-        );
+        //0
+        courses.add(new Course__c(
+            Type__c = 'Antenatal',
+            Sub_Type__c = 'One to One',
+            Fee__c = 100,
+            Status__c = 'Draft',
+            Number_of_places__c = 3,
+            Branch__c = accounts[0].Id,
+            Main_Practitioner_Licence__c = licenceToPractices[0].Id
+        ));
+        //1
+        courses.add(new Course__c(
+            Type__c = 'Antenatal',
+            Sub_Type__c = 'One to One',
+            Fee__c = 100,
+            Status__c = 'Draft',
+            Number_of_places__c = 3,
+            Branch__c = accounts[0].Id,
+            Main_Practitioner_Licence__c = licenceToPractices[0].Id
+        ));
+        //2
+        courses.add(new Course__c(
+            Type__c = 'Antenatal',
+            Sub_Type__c = 'One to One',
+            Fee__c = 78,
+            Status__c = 'Draft',
+            Number_of_places__c = 3,
+            Branch__c = accounts[0].Id,
+            Main_Practitioner_Licence__c = licenceToPractices[0].Id
+        ));
+        //3
+        courses.add(new Course__c(
+            Type__c = 'Antenatal',
+            Sub_Type__c = 'One to One',
+            Fee__c = 34,
+            Status__c = 'Draft',
+            Number_of_places__c = 3,
+            Branch__c = accounts[0].Id,
+            Main_Practitioner_Licence__c = licenceToPractices[0].Id
+        ));
+        //4
+        courses.add(new Course__c(
+            Type__c = 'Antenatal',
+            Sub_Type__c = 'One to One',
+            Fee__c = 345,
+            Status__c = 'Draft',
+            Number_of_places__c = 3,
+            Branch__c = accounts[0].Id,
+            Main_Practitioner_Licence__c = licenceToPractices[0].Id
+        ));
         insert courses;
         return courses;
     }
@@ -113,8 +151,9 @@ public without sharing class TestDataFactory {
         sessions = new List<Session__c>();
 
         sessions.add(
+            //0
             new Session__c(
-                Name = 'testSession',
+                Name = 'testSession1',
                 Type__c = 'Standard',
                 Date__c = Date.today() + 5,
                 Start__c = Time.newInstance(18, 30, 0, 0),
@@ -125,8 +164,157 @@ public without sharing class TestDataFactory {
                 Course__c = courses[0].Id,
                 Room__c = rooms[0].Id,
                 Status__c = 'Confirmed'
-            )
-        );
+            ));
+        //1
+        sessions.add(
+            new Session__c(
+                Name = 'testSession2',
+                Type__c = 'Standard',
+                Date__c = Date.today() + 5,
+                Start__c = Time.newInstance(18, 30, 0, 0),
+                End__c = Time.newInstance(18, 30, 2, 20),
+                Specific_Attendee_Type__c = 'Women only',
+                Practitioner_Licence__c = licenceToPractices[0].Id,
+                Venue__c = venues[0].Id,
+                Course__c = courses[0].Id,
+                Room__c = rooms[0].Id,
+                Status__c = 'Confirmed'
+            ));
+        //2
+        sessions.add(
+            new Session__c(
+                Name = 'testSession3',
+                Type__c = 'Standard',
+                Date__c = Date.today() + 5,
+                Start__c = Time.newInstance(18, 30, 0, 0),
+                End__c = Time.newInstance(18, 30, 2, 20),
+                Specific_Attendee_Type__c = 'Women only',
+                Practitioner_Licence__c = licenceToPractices[0].Id,
+                Venue__c = venues[0].Id,
+                Course__c = courses[1].Id,
+                Room__c = rooms[0].Id,
+                Status__c = 'Confirmed'
+            ));
+        //3
+        sessions.add(
+            new Session__c(
+                Name = 'testSession4',
+                Type__c = 'Standard',
+                Date__c = Date.today() + 5,
+                Start__c = Time.newInstance(18, 30, 0, 0),
+                End__c = Time.newInstance(18, 30, 2, 20),
+                Specific_Attendee_Type__c = 'Women only',
+                Practitioner_Licence__c = licenceToPractices[0].Id,
+                Venue__c = venues[0].Id,
+                Course__c = courses[1].Id,
+                Room__c = rooms[0].Id,
+                Status__c = 'Confirmed'
+            ));
+        //4
+        sessions.add(
+            new Session__c(
+                Name = 'testSession5',
+                Type__c = 'Standard',
+                Date__c = Date.today() + 5,
+                Start__c = Time.newInstance(18, 30, 0, 0),
+                End__c = Time.newInstance(18, 30, 2, 20),
+                Specific_Attendee_Type__c = 'Women only',
+                Practitioner_Licence__c = licenceToPractices[0].Id,
+                Venue__c = venues[0].Id,
+                Course__c = courses[2].Id,
+                Room__c = rooms[0].Id,
+                Status__c = 'Confirmed'
+            ));
+        //5
+        sessions.add(
+            new Session__c(
+                Name = 'testSession5',
+                Type__c = 'Standard',
+                Date__c = Date.today() + 5,
+                Start__c = Time.newInstance(18, 30, 0, 0),
+                End__c = Time.newInstance(18, 30, 2, 20),
+                Specific_Attendee_Type__c = 'Women only',
+                Practitioner_Licence__c = licenceToPractices[0].Id,
+                Venue__c = venues[0].Id,
+                Course__c = courses[2].Id,
+                Room__c = rooms[0].Id,
+                Status__c = 'Confirmed'
+            ));
+        //6
+        sessions.add(
+            new Session__c(
+                Name = 'testSession6',
+                Type__c = 'Standard',
+                Date__c = Date.today() + 5,
+                Start__c = Time.newInstance(18, 30, 0, 0),
+                End__c = Time.newInstance(18, 30, 2, 20),
+                Specific_Attendee_Type__c = 'Women only',
+                Practitioner_Licence__c = licenceToPractices[0].Id,
+                Venue__c = venues[0].Id,
+                Course__c = courses[3].Id,
+                Room__c = rooms[0].Id,
+                Status__c = 'Confirmed'
+            ));
+        //7
+        sessions.add(
+            new Session__c(
+                Name = 'testSession7',
+                Type__c = 'Standard',
+                Date__c = Date.today() + 5,
+                Start__c = Time.newInstance(18, 30, 0, 0),
+                End__c = Time.newInstance(18, 30, 2, 20),
+                Specific_Attendee_Type__c = 'Women only',
+                Practitioner_Licence__c = licenceToPractices[0].Id,
+                Venue__c = venues[0].Id,
+                Course__c = courses[3].Id,
+                Room__c = rooms[0].Id,
+                Status__c = 'Confirmed'
+            ));
+        //8
+        sessions.add(
+            new Session__c(
+                Name = 'testSession8',
+                Type__c = 'Standard',
+                Date__c = Date.today() + 5,
+                Start__c = Time.newInstance(18, 30, 0, 0),
+                End__c = Time.newInstance(18, 30, 2, 20),
+                Specific_Attendee_Type__c = 'Women only',
+                Practitioner_Licence__c = licenceToPractices[0].Id,
+                Venue__c = venues[0].Id,
+                Course__c = courses[4].Id,
+                Room__c = rooms[0].Id,
+                Status__c = 'Confirmed'
+            ));
+        //9
+        sessions.add(
+            new Session__c(
+                Name = 'testSession9',
+                Type__c = 'Standard',
+                Date__c = Date.today() + 5,
+                Start__c = Time.newInstance(18, 30, 0, 0),
+                End__c = Time.newInstance(18, 30, 2, 20),
+                Specific_Attendee_Type__c = 'Women only',
+                Practitioner_Licence__c = licenceToPractices[0].Id,
+                Venue__c = venues[0].Id,
+                Course__c = courses[4].Id,
+                Room__c = rooms[0].Id,
+                Status__c = 'Confirmed'
+            ));
+        //10
+        sessions.add(
+            new Session__c(
+                Name = 'testSession10',
+                Type__c = 'Standard',
+                Date__c = Date.today() + 5,
+                Start__c = Time.newInstance(18, 30, 0, 0),
+                End__c = Time.newInstance(18, 30, 2, 20),
+                Specific_Attendee_Type__c = 'Women only',
+                Practitioner_Licence__c = licenceToPractices[0].Id,
+                Venue__c = venues[0].Id,
+                Course__c = courses[4].Id,
+                Room__c = rooms[0].Id,
+                Status__c = 'Confirmed'
+            ));
         insert sessions;
         return sessions;
     }
@@ -152,7 +340,81 @@ public without sharing class TestDataFactory {
                 Course__c = courses[0].Id,
                 Amount__c = 1)
         );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Practitioner Fee',
+                Course__c = courses[1].Id,
+                Amount__c = 1)
+        );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Travel',
+                Course__c = courses[1].Id,
+                Amount__c = 1)
+        );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Venue',
+                Course__c = courses[1].Id,
+                Amount__c = 1)
+        );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Practitioner Fee',
+                Course__c = courses[2].Id,
+                Amount__c = 1)
+        );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Travel',
+                Course__c = courses[2].Id,
+                Amount__c = 1)
+        );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Venue',
+                Course__c = courses[2].Id,
+                Amount__c = 1)
+        );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Practitioner Fee',
+                Course__c = courses[3].Id,
+                Amount__c = 1)
+        );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Travel',
+                Course__c = courses[3].Id,
+                Amount__c = 1)
+        );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Venue',
+                Course__c = courses[3].Id,
+                Amount__c = 1)
+        );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Practitioner Fee',
+                Course__c = courses[4].Id,
+                Amount__c = 1)
+        );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Travel',
+                Course__c = courses[4].Id,
+                Amount__c = 1)
+        );
+        estimatedCosts.add(
+            new Estimated_Costs__c(
+                Type__c = 'Venue',
+                Course__c = courses[4].Id,
+                Amount__c = 1)
+        );
         insert estimatedCosts;
+
         return estimatedCosts;
     }
+
 }
