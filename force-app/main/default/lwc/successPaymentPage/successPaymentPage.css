@@ -15,6 +15,7 @@ body {
    background: #34A434;
 }
 
-.success_text_color {
+.success_text {
+   font-size: 3rem;
    color: #34A434
 }
