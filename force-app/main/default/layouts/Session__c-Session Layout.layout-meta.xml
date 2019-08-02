@@ -35,12 +35,12 @@
                 <behavior>Edit</behavior>
                 <field>Lunch_Break_Minutes__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Attendee_Type__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Practitioner_Licence__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Course__c</field>
@@ -51,19 +51,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Practitioner_Licence__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Practitoner_Name__c</field>
+                <field>Room__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Confirmation_Email_Information__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Website_Text__c</field>
+                <field>Specific_Attendee_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>

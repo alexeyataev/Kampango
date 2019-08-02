@@ -149,18 +149,23 @@
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Room</label>
     <nameField>
-        <displayFormat>RM{000000}</displayFormat>
         <label>Room Name</label>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Rooms</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Display_Name__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Display_Name__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>Display_Name__c</searchFilterFields>
+        <searchResultsAdditionalFields>Display_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Type_of_Space__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

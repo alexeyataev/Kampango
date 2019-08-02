@@ -43,6 +43,10 @@
                 <behavior>Readonly</behavior>
                 <field>Branch__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Course_Fee__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
