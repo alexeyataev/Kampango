@@ -4,75 +4,17 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     private static final String COURSE_DRAFT_STATUS = 'Draft';
     private static final String COURSE_FINAL_STATUS = 'Final';
 
-    private static final Id PRACTITIONER_RECORD_TYPE_ID = TestDataFactory.getPractitionerRecordTypeId();
-
     @TestSetup
     private static void setupTestData() {
-
-        Id branchRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Branch').getRecordTypeId();
-        Account account = new Account(
-            RecordtypeId = branchRecordTypeId,
-            Name = 'TestBranch'
-        );
-        insert account;
-
-        Contact practitioner = new Contact(
-            RecordTypeId = PRACTITIONER_RECORD_TYPE_ID,
-            LastName = 'Practitioner',
-            AccountId = account.id
-        );
-        insert practitioner;
-
-        Venue__c venue = TestDataFactory.createVenue();
-        insert venue;
-
-        Room__c room = new Room__c(
-            Venue__c = venue.Id
-        );
-        insert room;
-
-        Licence_To_Practice__c licenceToPractice = new Licence_To_Practice__c(
-            Contact__c = practitioner.Id,
-            Start_Date__c = Date.Today(),
-            Status__c = 'Full',
-            Licence__c = 'Postnatal Practitioner'
-        );
-        insert licenceToPractice;
-
-        Course__c course = new Course__c(
-            Type__c = 'Antenatal',
-            Sub_Type__c = 'One to One',
-            Fee__c = 100,
-            Status__c = COURSE_DRAFT_STATUS,
-            Number_of_places__c = 3,
-            Branch__c = account.Id,
-            Main_Practitioner_Licence__c = licenceToPractice.Id
-        );
-        insert course;
-
-        Session__c session = new Session__c(
-            Name = 'testSession',
-            Type__c = 'Standard',
-            Date__c = Date.today() + 5,
-            Start__c = Time.newInstance(18, 30, 0, 0),
-            End__c = Time.newInstance(18, 30, 2, 20),
-            Specific_Attendee_Type__c = 'Women only',
-            Practitioner_Licence__c = licenceToPractice.Id,
-            Venue__c = venue.Id,
-            Course__c = course.Id,
-            Room__c = room.Id,
-            Status__c = 'Confirmed'
-        );
-
-        insert session;
-
-        List<Estimated_Costs__c> estimatedCosts = new List<Estimated_Costs__c>();
-        estimatedCosts.add(new Estimated_Costs__c(Type__c = 'Practitioner Fee', Course__c = course.Id, Amount__c = 1));
-        estimatedCosts.add(new Estimated_Costs__c(Type__c = 'Travel', Course__c = course.Id, Amount__c = 1));
-        estimatedCosts.add(new Estimated_Costs__c(Type__c = 'Venue', Course__c = course.Id, Amount__c = 1));
-        insert estimatedCosts;
+        TestDataFactory.createAccountBranch();
+        TestDataFactory.createContactPractitioner();
+        TestDataFactory.createVenues();
+        TestDataFactory.createRooms();
+        TestDataFactory.createLicenceToPractices();
+        TestDataFactory.createCourses();
+        TestDataFactory.createSessions();
+        TestDataFactory.createEstimatedCosts();
     }
-
 
     @isTest
     static void RevertCourseToDraft_NewSessionIsAdded_CourseStatusIsRevertedToDraft() {
@@ -128,7 +70,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
     }
-
 
     @isTest
     static void RevertCourseToDraft_StartTimeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
@@ -202,21 +143,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
-        Id branchRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Branch').getRecordTypeId();
-        Account account = new Account(
-            RecordtypeId = branchRecordTypeId,
-            Name = 'TestBranch'
-        );
-        insert account;
-
-        Contact practitioner2 = new Contact(
-            RecordTypeId = PRACTITIONER_RECORD_TYPE_ID,
-            LastName = 'Practitioner2',
-            AccountId = account.id );
-        insert practitioner2;
-
+        List<Contact> practitioners = [SELECT Id, LastName FROM Contact WHERE LastName = 'Practitioner2'];
         Licence_To_Practice__c licenceToPractice2 = new Licence_To_Practice__c(
-            Contact__c = practitioner2.Id,
+            Contact__c = practitioners[0].Id,
             Start_Date__c = Date.Today(),
             Status__c = 'Full',
             Licence__c = 'Postnatal Practitioner'
@@ -286,7 +215,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         System.assertEquals(COURSE_DRAFT_STATUS, [SELECT Status__c FROM Course__c WHERE Id = :course.Id].Status__c);
     }
-
 
     private static void createTriggerSystemHandlerRecord(){
         List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
