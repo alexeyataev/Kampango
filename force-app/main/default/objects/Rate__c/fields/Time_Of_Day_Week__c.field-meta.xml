@@ -11,6 +11,11 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>Any</fullName>
+                <default>false</default>
+                <label>Any</label>
+            </value>
+            <value>
                 <fullName>Weekday Daytime</fullName>
                 <default>false</default>
                 <label>Weekday Daytime</label>
@@ -24,11 +29,6 @@
                 <fullName>Weekend</fullName>
                 <default>false</default>
                 <label>Weekend</label>
-            </value>
-            <value>
-                <fullName>Any</fullName>
-                <default>false</default>
-                <label>Any</label>
             </value>
         </valueSetDefinition>
     </valueSet>
