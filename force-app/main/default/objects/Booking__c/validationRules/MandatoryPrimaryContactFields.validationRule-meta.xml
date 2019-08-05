@@ -9,11 +9,9 @@ ISBLANK(Primary_Contact__r.LastName) ||
 ISBLANK(Primary_Contact__r.MailingCity) ||
 ISBLANK(Primary_Contact__r.MailingPostalCode) ||
 ISBLANK( Primary_Contact__r.Email ) ||
-ISBLANK( Primary_Contact__r.MailingCountry ) ||
 ISBLANK( Primary_Contact__r.MailingStreet ) ||
-ISBLANK( Primary_Contact__r.MailingState ) ||
 (
-  ISBLANK( Primary_Contact__r.HomePhone ) &amp;&amp; 
+  ISBLANK(  Primary_Contact__r.MobilePhone ) &amp;&amp; 
   ISBLANK( Primary_Contact__r.Phone )
 )
 ),  Primary_Contact__c != NULL)</errorConditionFormula>
