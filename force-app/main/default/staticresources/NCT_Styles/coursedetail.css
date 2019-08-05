@@ -1,0 +1,12 @@
+div.requiredInput {
+    display: inline-block;
+}
+
+div.marginAround {
+	margin: 30px;
+}
+
+div.marginVertical {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}

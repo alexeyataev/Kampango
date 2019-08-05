@@ -106,6 +106,10 @@
         <name>StandardValueSet</name>
     </types>
     <types>
+        <members>NCT_Styles</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
         <members>Booking__c.FeeOverrideAmountRestriction</members>
         <members>Booking__c.FeeOverrideRestriction</members>
@@ -140,6 +144,6 @@
     <types>
         <members>Booking__c.SendEmailToClient</members>
         <name>WorkflowAlert</name>
-    </types>  
+    </types>
     <version>46.0</version>
 </Package>
