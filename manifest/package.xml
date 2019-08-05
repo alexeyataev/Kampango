@@ -102,6 +102,15 @@
         <name>RecordType</name>
     </types>
     <types>
+        <members>Capacity_PSA</members>
+        <members>Capacity_PSA/Venue_Schedule</members>
+        <name>Report</name>
+    </types>
+    <types>
+        <members>Sessions_on_venues</members>
+        <name>ReportType</name>
+    </types>
+    <types>
         <members>AccountType</members>
         <name>StandardValueSet</name>
     </types>
