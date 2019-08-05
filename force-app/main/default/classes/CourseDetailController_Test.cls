@@ -25,9 +25,6 @@ public with sharing class CourseDetailController_Test {
             new Course__c(
                 Status__c = 'Draft',
                 Branch__c = branch.Id,
-                PSA_Branch__c = 'Bridport',
-                PSA_Office__c = '1C',
-                Practitioner__c = practitioner.Id,
                 Number_of_places__c = 15,
                 Type__c = 'Postnatal',
                 Sub_Type__c = 'Baby Massage',
@@ -36,9 +33,6 @@ public with sharing class CourseDetailController_Test {
             new Course__c(
                 Status__c = 'Draft',
                 Branch__c = branch.Id,
-                PSA_Branch__c = 'Bridport',
-                PSA_Office__c = '1C',
-                Practitioner__c = practitioner.Id,
                 Number_of_places__c = 10,
                 Type__c = 'Antenatal',
                 Sub_Type__c = 'NCT Essentials Antenatal',
@@ -53,8 +47,7 @@ public with sharing class CourseDetailController_Test {
                 Date__c = System.today(),
                 End__c = Time.newInstance(11, 0, 0, 0),
                 Start__c = Time.newInstance(10, 0, 0, 0),
-                Status__c = 'Provisional',
-                Attendee_Type__c = 'Women Only'
+                Status__c = 'Provisional'
             ),
             new Session__c(
                 Course__c = courses[0].Id,
@@ -62,8 +55,7 @@ public with sharing class CourseDetailController_Test {
                 Date__c = System.today(),
                 End__c = Time.newInstance(12, 0, 0, 0),
                 Start__c = Time.newInstance(11, 0, 0, 0),
-                Status__c = 'Provisional',
-                Attendee_Type__c = 'Women Only'
+                Status__c = 'Provisional'
             ),
             new Session__c(
                 Course__c = courses[1].Id,
@@ -71,8 +63,7 @@ public with sharing class CourseDetailController_Test {
                 Date__c = System.today(),
                 End__c = Time.newInstance(11, 0, 0, 0),
                 Start__c = Time.newInstance(10, 0, 0, 0),
-                Status__c = 'Provisional',
-                Attendee_Type__c = 'Women Only'
+                Status__c = 'Provisional'
             )
         };
         insert sessions;
