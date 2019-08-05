@@ -2,6 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>Contact.Practitioner_Compact_layout</members>
+        <members>Session__c.Session_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
     <types>
@@ -101,11 +102,25 @@
         <name>RecordType</name>
     </types>
     <types>
+        <members>Capacity_PSA</members>
+        <members>Capacity_PSA/Venue_Schedule</members>
+        <name>Report</name>
+    </types>
+    <types>
+        <members>Sessions_on_venues</members>
+        <name>ReportType</name>
+    </types>
+    <types>
         <members>AccountType</members>
         <name>StandardValueSet</name>
     </types>
     <types>
+        <members>NCT_Styles</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
+        <members>Booking__c.FeeOverrideAmountRestriction</members>
         <members>Booking__c.FeeOverrideRestriction</members>
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
@@ -115,6 +130,8 @@
         <members>Course__c.Course_Fee_cannot_be_negative</members>
         <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
         <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
+        <members>Session__c.End_time_should_not_be_before_start_time</members>
+        <members>Session__c.Session_Confirmation_Rule</members>
         <name>ValidationRule</name>
     </types>
     <types>
@@ -123,6 +140,7 @@
         <members>Booking__c.Booking%3ASetExpirationDate10Days</members>
         <members>Booking__c.Booking%3ASetExpirationDate5Days</members>
         <members>Booking__c.Booking%3ASetOfferEmailDate</members>
+        <members>Booking__c.Booking_SetExpDate_Less5Days</members>
         <name>WorkflowRule</name>
     </types>  
     <types>
@@ -130,11 +148,12 @@
         <members>Booking__c.SetExpDateTo5Days</members>
         <members>Booking__c.SetExpDateToTenDays</members>
         <members>Booking__c.SetOfferEmailDate</members>
+        <members>Booking__c.SetExpirationDate_Less5</members>
         <name>WorkflowFieldUpdate</name>
     </types>
     <types>
         <members>Booking__c.SendEmailToClient</members>
         <name>WorkflowAlert</name>
-    </types>  
+    </types>
     <version>46.0</version>
 </Package>
