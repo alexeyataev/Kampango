@@ -3,7 +3,13 @@
     <types>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
+        <members>TestEstimatedCostsBuilder</members>
+        <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
+        <members>TestLicenceToPracticeBuilder</members>
+        <members>TestRoomBuilder</members>
+        <members>TestSessionBuilder</members>
+        <members>TestVenueBuilder</members>
         <name>ApexClass</name>
     </types>
     <types>
