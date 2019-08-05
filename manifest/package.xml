@@ -115,8 +115,21 @@
         <name>RecordType</name>
     </types>
     <types>
+        <members>Capacity_PSA</members>
+        <members>Capacity_PSA/Venue_Schedule</members>
+        <name>Report</name>
+    </types>
+    <types>
+        <members>Sessions_on_venues</members>
+        <name>ReportType</name>
+    </types>
+    <types>
         <members>AccountType</members>
         <name>StandardValueSet</name>
+    </types>
+    <types>
+        <members>NCT_Styles</members>
+        <name>StaticResource</name>
     </types>
     <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
@@ -153,6 +166,6 @@
     <types>
         <members>Booking__c.SendEmailToClient</members>
         <name>WorkflowAlert</name>
-    </types>  
+    </types>
     <version>46.0</version>
 </Package>
