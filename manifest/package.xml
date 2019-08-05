@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>CourseDetailController_Test</members>
+        <members>CourseDetailController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
         <members>CourseDetailComponent</members>
         <name>AuraDefinitionBundle</name>
     </types>
@@ -8,11 +13,6 @@
         <members>Contact.Practitioner_Compact_layout</members>
         <members>Session__c.Session_Compact_Layout</members>
         <name>CompactLayout</name>
-    </types>
-    <types>
-        <members>CourseDetailController_Test</members>
-        <members>CourseDetailController</members>
-        <name>ApexClass</name>
     </types>
     <types>
         <members>NCT_Courses</members>
@@ -53,6 +53,10 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
         <name>CustomField</name>
+    </types>
+    <types>
+        <members>NCT_Templates/BookingNotificationEmail</members>
+        <name>EmailTemplate</name>
     </types>
     <types>
         <members>Course_Sub_Type</members>
@@ -167,10 +171,6 @@
     <types>
         <members>Booking__c.SendEmailToClient</members>
         <name>WorkflowAlert</name>
-    </types>
-    <types>
-        <members>NCT_Templates/BookingNotificationEmail</members>
-        <name>EmailTemplate</name>
     </types>
     <version>46.0</version>
 </Package>

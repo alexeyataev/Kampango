@@ -2,6 +2,8 @@ import { LightningElement, api, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import retrieveRelatedSessions from '@salesforce/apex/CourseDetailController.retrieveRelatedSessions';
+import NCT_STYLES from '@salesforce/resourceUrl/NCT_Styles';
+import { loadStyle } from 'lightning/platformResourceLoader';
 
 const BOOKING_FIELDS = [
         'Booking__c.Reservation_Expiry_Date__c',
@@ -13,6 +15,7 @@ const BOOKING_FIELDS = [
         'Booking__c.Course__r.Fee__c',
         'Booking__c.Course__r.Sub_Type__c'
     ];
+
 
 export default class CourseDetailsComponent extends LightningElement {
 
@@ -27,7 +30,8 @@ export default class CourseDetailsComponent extends LightningElement {
     @api sessions;
     @api courseFee;
     @api coursetype;
-    @api get valuesLoaded(){return this.bookingId && this.courseId;}
+    @api stylesLoaded = false;
+    @api get valuesLoaded(){return this.bookingId && this.courseId && this.stylesLoaded;}
     @wire (getRecord, {recordId: '$bookingId', fields: BOOKING_FIELDS})
     retrieveRecord({error, data}){
         if(error){
@@ -115,6 +119,22 @@ export default class CourseDetailsComponent extends LightningElement {
                 }),
             )
         });        
+    }
+
+    connectedCallback(){
+        loadStyle(this, NCT_STYLES + '/coursedetail.css')
+            .then(() => {
+                this.stylesLoaded = true;
+            })
+            .catch(error => {
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Error loading styles',
+                        message: error.message,
+                        variant: 'error',
+                    }),
+                );
+            });
     }
 
 }
