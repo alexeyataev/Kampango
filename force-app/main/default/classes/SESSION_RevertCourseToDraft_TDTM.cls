@@ -20,7 +20,7 @@ global class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Id IN :courseIds LIMIT 50000];
+        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Id IN :courseIds];
 
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {

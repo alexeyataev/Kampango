@@ -240,7 +240,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     static void RevertCourseToDraft_BulkSessionsChanged_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
-        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c = 'Draft' LIMIT 10];
+        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
         Set<Id> courseIds = new Set<Id>();
 
@@ -259,25 +259,18 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         }
         update session;
 
-        List<Course__c> coursesAfterUpdate = [SELECT Id, Status__c FROM Course__c  WHERE Id IN : courseIds LIMIT 10];
+        List<Course__c> coursesAfterUpdate = [SELECT Id, Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_DRAFT_STATUS LIMIT 10];
 
-        Integer countCoursesWithDraftStatus = 0;
-
-        for(Course__c aCourse : coursesAfterUpdate){
-            if(aCourse.Status__c == 'Draft'){
-                countCoursesWithDraftStatus++;
-            }
-        }
         test.stopTest();
 
-        System.assertEquals(5, countCoursesWithDraftStatus);
+        System.assertEquals(5, coursesAfterUpdate.size());
     }
 
     @isTest
     static void RevertCourseToDraft_BulkSessionsDeleted_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
-        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c = 'Draft' LIMIT 10];
+        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
         Set<Id> courseIds = new Set<Id>();
 
@@ -292,16 +285,10 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         List<Session__c> session = [SELECT Id, Start__c FROM Session__c WHERE Course__c IN : courseIds];
         delete session;
 
-        List<Course__c> coursesAfterUpdate = [SELECT Id, Status__c FROM Course__c  WHERE Id IN : courseIds LIMIT 10];
-        Integer countCoursesWithDraftStatus = 0;
-        for(Course__c aCourse : coursesAfterUpdate){
-            if(aCourse.Status__c == 'Draft'){
-                countCoursesWithDraftStatus++;
-            }
-        }
+        List<Course__c> coursesAfterUpdate = [SELECT Id, Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_DRAFT_STATUS LIMIT 10];
         test.stopTest();
 
-        System.assertEquals(5, countCoursesWithDraftStatus);
+        System.assertEquals(5, coursesAfterUpdate.size());
     }
 
     private static void createTriggerSystemHandlerRecord(){
