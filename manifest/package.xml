@@ -167,5 +167,9 @@
         <members>Booking__c.SendEmailToClient</members>
         <name>WorkflowAlert</name>
     </types>
+    <types>
+        <members>NCT_Templates/BookingNotificationEmail</members>
+        <name>EmailTemplate</name>
+    </types>
     <version>46.0</version>
 </Package>

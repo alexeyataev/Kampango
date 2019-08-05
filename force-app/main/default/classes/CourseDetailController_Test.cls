@@ -10,25 +10,39 @@ public with sharing class CourseDetailController_Test {
         insert branch;
         Contact practitioner = new Contact(
             RecordTypeId = Schema.Sobjecttype.Contact.getRecordTypeInfosByName().get('Practitioner').getRecordTypeId(),
-            LastName = 'Test'
+            LastName = 'Test',
+            AccountId = branch.Id
         );
         insert practitioner;
+        Licence_To_Practice__c license = new Licence_To_Practice__c(
+            Contact__c = practitioner.Id,
+            Licence__c = 'Signature Antenatal Teacher',
+            Start_Date__c = System.today(),
+            Status__c = 'Full'
+        );
+        insert license;
         List<Course__c> courses = new List<Course__c>{
             new Course__c(
                 Status__c = 'Draft',
                 Branch__c = branch.Id,
-                //Practitioner__c = practitioner.Id,
+                PSA_Branch__c = 'Bridport',
+                PSA_Office__c = '1C',
+                Practitioner__c = practitioner.Id,
                 Number_of_places__c = 15,
                 Type__c = 'Postnatal',
-                Sub_Type__c = 'Baby Massage'
+                Sub_Type__c = 'Baby Massage',
+                Main_Practitioner_Licence__c = license.Id
             ),
             new Course__c(
                 Status__c = 'Draft',
                 Branch__c = branch.Id,
-                //Practitioner__c = practitioner.Id,
+                PSA_Branch__c = 'Bridport',
+                PSA_Office__c = '1C',
+                Practitioner__c = practitioner.Id,
                 Number_of_places__c = 10,
                 Type__c = 'Antenatal',
-                Sub_Type__c = 'NCT Essentials Antenatal'
+                Sub_Type__c = 'NCT Essentials Antenatal',
+                Main_Practitioner_Licence__c = license.Id
             )
         };
         insert courses;
