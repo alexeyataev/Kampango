@@ -63,7 +63,7 @@
                 <behavior>Readonly</behavior>
                 <field>Enquiries__c</field>
             </layoutItems>
-             <layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Remaining_Places__c</field>
             </layoutItems>
@@ -187,11 +187,6 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>Clone</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>0</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>Edit</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>1</sortOrder>
@@ -251,6 +246,11 @@
             <actionType>QuickAction</actionType>
             <sortOrder>12</sortOrder>
         </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Clone</actionName>
+            <actionType>StandardButton</actionType>
+            <sortOrder>0</sortOrder>
+        </platformActionListItems>
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
@@ -262,6 +262,17 @@
         <fields>Practitoner_Name__c</fields>
         <fields>Venue__c</fields>
         <relatedList>Session__c.Course__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Status__c</fields>
+        <fields>Last_Name__c</fields>
+        <fields>First_Name__c</fields>
+        <fields>Birth_Date__c</fields>
+        <fields>Birth_Due_Date__c</fields>
+        <relatedList>Booking__c.Course__c</relatedList>
+        <sortField>Status__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedContentNoteList</relatedList>
