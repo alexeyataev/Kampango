@@ -3,6 +3,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     private static final String COURSE_DRAFT_STATUS = 'Draft';
     private static final String COURSE_FINAL_STATUS = 'Final';
+    private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
     private static final String PRACTITIONER_LASTNAME = 'Practitioner2';
 
     private static Account branchAccount;
@@ -24,15 +25,15 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
         practitioner = practitionerContactBuilder
-            .WithRecordType('Practitioner')
+            .WithRecordType(PRACTITIONER_RECORDTYPE_NAME)
             .WithAccount(branchAccount)
             .InsertRecord(true)
             .Build();
 
          practitionerContactBuilder
-            .WithRecordType('Practitioner')
+            .WithRecordType(PRACTITIONER_RECORDTYPE_NAME)
             .WithAccount(branchAccount)
-             .WithLastName('Practitioner2')
+            .WithLastName(PRACTITIONER_LASTNAME)
             .InsertRecord(true)
             .Build();
 
@@ -300,10 +301,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        TestDataFactory.createCourses();
-        TestDataFactory.createSessions();
-        TestDataFactory.createEstimatedCosts();
-
+        Integer countAffectedCourses = 4;
+        Integer existedCountCourses = [SELECT Count() FROM Course__c];
+        TestDataFactory.buildCourseWithSessions(countAffectedCourses);
 
         List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
@@ -327,7 +327,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        System.assertEquals(5, coursesAfterUpdate.size());
+        System.assertEquals(countAffectedCourses+existedCountCourses, coursesAfterUpdate.size());
     }
 
     @isTest
@@ -335,9 +335,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        TestDataFactory.createCourses();
-        TestDataFactory.createSessions();
-        TestDataFactory.createEstimatedCosts();
+        Integer countAffectedCourses = 4;
+        Integer existedCountCourses = [SELECT Count() FROM Course__c];
+        TestDataFactory.buildCourseWithSessions(countAffectedCourses);
 
         List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
@@ -357,7 +357,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         List<Course__c> coursesAfterUpdate = [SELECT Id, Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_DRAFT_STATUS LIMIT 10];
         test.stopTest();
 
-        System.assertEquals(5, coursesAfterUpdate.size());
+        System.assertEquals(countAffectedCourses+existedCountCourses, coursesAfterUpdate.size());
     }
 
     private static void createTriggerSystemHandlerRecord(){

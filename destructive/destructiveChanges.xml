@@ -11,7 +11,6 @@
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
         <members>TestBookingBuilder</members>
-        <members>TestSessionBuilder</members>
         <name>ApexClass</name>
     </types>
     <types>

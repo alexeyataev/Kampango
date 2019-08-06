@@ -20,7 +20,7 @@ global class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Id IN :courseIds];
+        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Id IN :courseIds AND Status__c != 'Draft'];
 
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {
@@ -32,7 +32,7 @@ global class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
         return dmlWrapper;
     }
 
-    private Set<Id> idsOfChangedSessions(List<Session__c> newSessionList,List<Session__c> oldSessionList){
+    private Set<Id> idsOfChangedSessions(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
         Set<Id> courseIds = new Set<Id>();
         for(Integer i = 0; i<newSessionList.size(); i++) {
             if (newSessionList[i].Date__c != oldSessionList[i].Date__c ||
