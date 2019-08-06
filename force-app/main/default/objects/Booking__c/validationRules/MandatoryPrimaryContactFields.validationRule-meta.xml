@@ -10,10 +10,7 @@ ISBLANK(Primary_Contact__r.MailingCity) ||
 ISBLANK(Primary_Contact__r.MailingPostalCode) ||
 ISBLANK( Primary_Contact__r.Email ) ||
 ISBLANK( Primary_Contact__r.MailingStreet ) ||
-(
-  ISBLANK( Primary_Contact__r.MobilePhone ) &amp;&amp; 
-  ISBLANK( Primary_Contact__r.HomePhone )
-)
+ISBLANK( Primary_Contact__r.Phone )
 ),  Primary_Contact__c != NULL)</errorConditionFormula>
-    <errorMessage>Please review primary contact. Full name, full address, email and phone (Phone or Home Phone) are required.</errorMessage>
+    <errorMessage>Please review primary contact. Full name, full address, email and phone (Mobile or Home Phone) are required.</errorMessage>
 </ValidationRule>
