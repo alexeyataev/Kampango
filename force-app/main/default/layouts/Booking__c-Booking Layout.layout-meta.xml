@@ -112,7 +112,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Phone__c</field>
+                <field>Mobile__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -158,7 +158,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Phone_Partner__c</field>
+                <field>Mobile_Partner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
