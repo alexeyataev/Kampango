@@ -164,6 +164,7 @@
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
+        <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
