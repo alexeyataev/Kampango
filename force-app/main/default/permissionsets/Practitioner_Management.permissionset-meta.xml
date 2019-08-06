@@ -8,9 +8,9 @@
     <hasActivationRequired>false</hasActivationRequired>
     <label>Practitioner Management</label>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Contact</object>
@@ -25,4 +25,8 @@
         <object>Licence_To_Practice__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <recordTypeVisibilities>
+        <recordType>Contact.Practitioner</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
 </PermissionSet>
