@@ -102,11 +102,6 @@
         <name>Profile</name>
     </types>
     <types>
-        <members>Contact.Companion</members>
-        <members>Contact.Parent</members>
-        <name>RecordType</name>
-    </types>
-    <types>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
         <name>ValidationRule</name>
     </types>
