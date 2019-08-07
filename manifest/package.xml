@@ -19,6 +19,7 @@
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
     <types>
+        <members>ClientDetailsAuraContainer</members>
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
         <members>SuccessPaymentsPage</members>
@@ -127,6 +128,7 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>clientDetailsContainer</members>
     	<members>courseDetailsComponent</members>
         <members>failurePaymentPage</members>
         <members>successPaymentPage</members>

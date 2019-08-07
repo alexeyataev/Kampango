@@ -1,0 +1,5 @@
+<aura:component implements="lightning:availableForFlowScreens" access="global">
+    <div>
+        <c:clientDetailsContainer/>
+    </div>
+</aura:component>	
