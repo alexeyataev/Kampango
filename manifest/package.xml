@@ -4,6 +4,8 @@
         <members>CourseDetailController</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
+        <members>TestAccountBuilder</members>
+        <members>TestContactBuilder</members>
         <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>

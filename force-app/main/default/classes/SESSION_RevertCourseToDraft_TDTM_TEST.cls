@@ -115,9 +115,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c courseToCheck = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c coursesToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToCheck.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, coursesToTest.Status__c);
     }
 
     @isTest
@@ -137,9 +137,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c courseToCheck = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c coursesToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToCheck.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, coursesToTest.Status__c);
     }
 
 
@@ -160,9 +160,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c courseToCheck = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c coursesToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToCheck.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, coursesToTest.Status__c);
     }
 
     @isTest
@@ -182,9 +182,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c courseToCheck = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c coursesToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToCheck.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, coursesToTest.Status__c);
     }
 
     @isTest
@@ -204,9 +204,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c courseToCheck = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c coursesToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToCheck.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, coursesToTest.Status__c);
 
     }
 
@@ -235,9 +235,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c courseToCheck = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c coursesToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToCheck.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, coursesToTest.Status__c);
     }
 
     @isTest
@@ -269,9 +269,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c courseToCheck = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c coursesToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToCheck.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, coursesToTest.Status__c);
     }
 
     @isTest
@@ -290,9 +290,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c courseToCheck = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c coursesToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToCheck.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, coursesToTest.Status__c);
     }
 
 
@@ -301,21 +301,19 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Integer countAffectedCourses = 4;
-        Integer existedCountCourses = [SELECT Count() FROM Course__c];
-        TestDataFactory.buildCoursesWithSessions(countAffectedCourses);
-
-        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
+        Integer coursesToCreate = 4;
+        TestDataFactory.buildCoursesWithSessions(coursesToCreate);
+        List<Course__c> coursesToTest = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
         Set<Id> courseIds = new Set<Id>();
 
         test.startTest();
 
-        for (Course__c aCourse : courses){
+        for (Course__c aCourse : coursesToTest){
             courseIds.add(aCourse.Id);
             aCourse.Status__c = COURSE_FINAL_STATUS;
         }
-        update courses;
+        update coursesToTest;
 
         List<Session__c> session = [SELECT Id, Start__c FROM Session__c WHERE Course__c IN : courseIds];
         for(Session__c aSession : session){
@@ -327,7 +325,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        System.assertEquals(countAffectedCourses+existedCountCourses, coursesAfterUpdate.size());
+        System.assertEquals(coursesToTest.size(), coursesAfterUpdate.size());
     }
 
     @isTest
@@ -335,21 +333,19 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Integer countAffectedCourses = 4;
-        Integer existedCountCourses = [SELECT Count() FROM Course__c];
-        TestDataFactory.buildCoursesWithSessions(countAffectedCourses);
-
-        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
+        Integer coursesToCreate = 4;
+        TestDataFactory.buildCoursesWithSessions(coursesToCreate);
+        List<Course__c> coursesToTest = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
         Set<Id> courseIds = new Set<Id>();
 
         test.startTest();
 
-        for (Course__c aCourse : courses){
+        for (Course__c aCourse : coursesToTest){
             courseIds.add(aCourse.Id);
             aCourse.Status__c = COURSE_FINAL_STATUS;
         }
-        update courses;
+        update coursesToTest;
 
         List<Session__c> session = [SELECT Id, Start__c FROM Session__c WHERE Course__c IN : courseIds];
         delete session;
@@ -357,7 +353,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         List<Course__c> coursesAfterUpdate = [SELECT Id, Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_DRAFT_STATUS LIMIT 10];
         test.stopTest();
 
-        System.assertEquals(countAffectedCourses+existedCountCourses, coursesAfterUpdate.size());
+        System.assertEquals(coursesToTest.size(), coursesAfterUpdate.size());
     }
 
     private static void createTriggerSystemHandlerRecord(){
