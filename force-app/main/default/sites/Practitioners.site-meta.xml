@@ -23,7 +23,7 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>diana.gerasimchuk@greencouchconsulting.com.nct</siteAdmin>
+    <siteAdmin>it@nct.org.uk</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>parentforce</subdomain>
     <urlPathPrefix>Practitioners</urlPathPrefix>
