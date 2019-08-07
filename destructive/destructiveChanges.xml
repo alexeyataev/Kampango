@@ -10,11 +10,7 @@
         <members>DisplayDdScheduleController</members>
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
-        <members>TestAccountBuilder</members>
         <members>TestBookingBuilder</members>
-        <members>TestContactBuilder</members>
-        <members>TestCourseBuilder</members>
-        <members>TestSessionBuilder</members>
         <name>ApexClass</name>
     </types>
     <types>
