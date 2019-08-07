@@ -2,8 +2,22 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>CourseDetailController</members>
+        <members>SESSION_RevertCourseToDraft_TDTM</members>
+        <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
+        <members>TestAccountBuilder</members>
+        <members>TestContactBuilder</members>
+        <members>TestEstimatedCostsBuilder</members>
+        <members>TestCourseBuilder</members>
+        <members>TestDataFactory</members>
+        <members>TestLicenceToPracticeBuilder</members>
+        <members>TestRoomBuilder</members>
+        <members>TestSessionBuilder</members>
+        <members>TestVenueBuilder</members>
         <name>ApexClass</name>
     </types>
+    <types>
+        <members>TDTM_Session_c</members>
+        <name>ApexTrigger</name>
     <types>
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
@@ -12,7 +26,7 @@
     </types>
     <types>
         <members>Contact.Practitioner_Compact_layout</members>
-	<members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
+       	<members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
         <members>Session__c.Session_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
@@ -78,6 +92,7 @@
         <name>GlobalValueSet</name>
     </types>
     <types>
+        <members>Contact_Record_Page</members>
     	<members>Course_Record_Page</members>
         <members>Venue_Record_Page</members>
         <name>FlexiPage</name>
@@ -86,6 +101,8 @@
         <members>Booking_Journey_Flow</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Populate_Practitioner_Name</members>
+        <members>Revert_Course_To_Draft_After_Cost_Deletion</members>
+        <members>Revert_Course_To_Draft_If_Cost_Changes</members>
         <members>Set_Main_Venue_on_Course</members>
         <members>Update_Practitioner_Licence</members>
         <members>Update_service_field_on_session</members>
