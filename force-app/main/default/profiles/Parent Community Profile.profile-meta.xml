@@ -562,11 +562,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Venue__c.Google_Map_Link__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Venue__c.Host_Parking_Details__c</field>
         <readable>false</readable>
     </fieldPermissions>
