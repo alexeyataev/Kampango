@@ -5,7 +5,7 @@ public with sharing class TestSessionBuilder {
 	private String type = 'Standard';
 	private Date sessionDate  = Date.today() + 5;
 	private Time startTime = Time.newInstance(18, 30, 0, 0);
-	private Time endTime = Time.newInstance(18, 30, 2, 20);
+	private Time endTime = Time.newInstance(19, 30, 0, 00);
 	private String specificAttendeeType = 'Women only';
 	private String status = 'Confirmed';
 	private Licence_To_Practice__c practitionerLicence;
