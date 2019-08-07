@@ -51,6 +51,8 @@
         <members>Contact.Mailing_Postal_Code__c</members>
         <members>Contact.Mailing_State__c</members>
         <members>Contact.Mailing_Street__c</members>
+        <members>Contact.Phone_1__c</members>
+        <members>Contact.Phone_2__c</members>
         <members>Course__c.Antenatal_Sessions__c</members>
         <members>Course__c.Available_Places__c</members>
         <members>Course__c.Booked_Places__c</members>
@@ -98,6 +100,11 @@
         <members>Program Staff</members>
         <members>Volunteer</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>Contact.Companion</members>
+        <members>Contact.Parent</members>
+        <name>RecordType</name>
     </types>
     <types>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
