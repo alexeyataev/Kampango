@@ -7,7 +7,7 @@ public without sharing class TestDataFactory {
     public static List<Course__c> courses = new List<Course__c>();
     public static List<Session__c> sessions = new List<Session__c>();
 
-    public static void buildCourseWithSessions(Integer count) {
+    public static void buildCoursesWithSessions(Integer count) {
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
 
         for(Integer i = 0; i < count; i++){

@@ -303,7 +303,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Integer countAffectedCourses = 4;
         Integer existedCountCourses = [SELECT Count() FROM Course__c];
-        TestDataFactory.buildCourseWithSessions(countAffectedCourses);
+        TestDataFactory.buildCoursesWithSessions(countAffectedCourses);
 
         List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
@@ -337,7 +337,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Integer countAffectedCourses = 4;
         Integer existedCountCourses = [SELECT Count() FROM Course__c];
-        TestDataFactory.buildCourseWithSessions(countAffectedCourses);
+        TestDataFactory.buildCoursesWithSessions(countAffectedCourses);
 
         List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
