@@ -115,9 +115,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c draftCourseAfterUpdate = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, draftCourseAfterUpdate.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
     }
 
     @isTest
@@ -137,9 +137,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c draftCourseAfterUpdate = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, draftCourseAfterUpdate.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
     }
 
 
@@ -160,9 +160,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c draftCourseAfterUpdate = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, draftCourseAfterUpdate.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
     }
 
     @isTest
@@ -182,9 +182,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c draftCourseAfterUpdate = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, draftCourseAfterUpdate.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
     }
 
     @isTest
@@ -204,9 +204,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c draftCourseAfterUpdate = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, draftCourseAfterUpdate.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
 
     }
 
@@ -235,9 +235,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c draftCourseAfterUpdate = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, draftCourseAfterUpdate.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
     }
 
     @isTest
@@ -269,9 +269,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c draftCourseAfterUpdate = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, draftCourseAfterUpdate.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
     }
 
     @isTest
@@ -290,9 +290,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.stopTest();
 
-        Course__c draftCourseAfterUpdate = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
 
-        System.assertEquals(COURSE_DRAFT_STATUS, draftCourseAfterUpdate.Status__c);
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
     }
 
 
