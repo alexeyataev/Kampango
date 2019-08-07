@@ -7,10 +7,10 @@ public without sharing class TestDataFactory {
     public static List<Course__c> courses = new List<Course__c>();
     public static List<Session__c> sessions = new List<Session__c>();
 
-    public static void buildCoursesWithSessions(Integer count) {
+    public static void buildCoursesWithSessions(Integer numberOfCourses, Integer numberOfSessions) {
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
 
-        for(Integer i = 0; i < count; i++){
+        for(Integer i = 0; i < numberOfCourses; i++){
             courses.add(courseBuilder
                 .WithAccount(account)
                 .WithLicenceToPractice(licenceToPractice)
@@ -18,7 +18,7 @@ public without sharing class TestDataFactory {
                 .Build());
         }
 
-        for(Integer i = 0; i < count; i++){
+        for(Integer i = 0; i < numberOfCourses; i++) {
             TestEstimatedCostsBuilder estimatedCostsBuilder = new TestEstimatedCostsBuilder();
             estimatedCostsBuilder
                 .WithCourse(courses[i])
@@ -39,7 +39,7 @@ public without sharing class TestDataFactory {
 
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
 
-        for(Integer i = 0; i < count*2; i++){
+        for(Integer i = 0; i < numberOfSessions; i++){
             sessions.add( sessionBuilder
                 .WithCourse(courses[i/2])
                 .WithVenue(venue)

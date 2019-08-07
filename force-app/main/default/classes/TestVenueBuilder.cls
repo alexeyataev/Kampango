@@ -2,9 +2,9 @@
 public with sharing class TestVenueBuilder {
 
     private String name = 'TestVenue';
-    private String streetAddress = '123 Secret Street';
-    private String town = 'Baltimore';
-    private String postcode = '20755';
+    private String streetAddress = '221B Baker Street';
+    private String town = 'London';
+    private String postcode = 'NW1 6XE';
     private String type = 'Commercial';
     private String subtype = 'Primary';
     private Boolean insertRecord = false;
