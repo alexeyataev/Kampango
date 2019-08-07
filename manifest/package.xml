@@ -62,6 +62,7 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>Communities_Shared_Document_Folder</members>
         <members>Communities_Shared_Document_Folder/social_logo_png.png</members>
         <name>Document</name>
     </types>
