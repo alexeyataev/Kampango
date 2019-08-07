@@ -5,7 +5,7 @@
     <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
     <communityRoles/>
     <disableReputationRecordConversations>true</disableReputationRecordConversations>
-    <emailSenderAddress>diana.gerasimchuk@greencouchconsulting.com</emailSenderAddress>
+    <emailSenderAddress>it@nct.org.uk</emailSenderAddress>
     <emailSenderName>Practitioners</emailSenderName>
     <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
     <enableDirectMessages>true</enableDirectMessages>
