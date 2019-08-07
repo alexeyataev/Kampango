@@ -74,4 +74,3 @@ public with sharing class TestVenueBuilder {
         return testVenue;
     }
 }
-
