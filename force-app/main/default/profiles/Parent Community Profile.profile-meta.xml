@@ -422,11 +422,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Room__c.Display_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Room__c.Notes__c</field>
         <readable>false</readable>
     </fieldPermissions>
