@@ -160,10 +160,6 @@
     </nameField>
     <pluralLabel>Rooms</pluralLabel>
     <searchLayouts>
-        <lookupDialogsAdditionalFields>Display_Name__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Display_Name__c</lookupPhoneDialogsAdditionalFields>
-        <searchFilterFields>Display_Name__c</searchFilterFields>
-        <searchResultsAdditionalFields>Display_Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Type_of_Space__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
