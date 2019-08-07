@@ -177,7 +177,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         test.startTest();
 
         Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
-        session.End__c = Time.newInstance(02, 00, 0, 0);
+        session.End__c = Time.newInstance(20, 00, 0, 0);
         update session;
 
         test.stopTest();
