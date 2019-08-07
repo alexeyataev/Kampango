@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>CourseDetailController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>CourseDetailComponent</members>
+        <members>FailurePaymentsPage</members>
+        <members>SuccessPaymentsPage</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
         <members>Contact.Practitioner_Compact_layout</members>
+	<members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
         <members>Session__c.Session_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
@@ -21,6 +32,10 @@
         <members>Venue__c</members>
         <members>Venue_Contact__c</members>
         <name>CustomObject</name>
+    </types>
+     <types>
+        <members>Parent_Community</members>
+        <name>CustomSite</name>
     </types>
     <types>
         <members>Booking__c</members>
@@ -46,6 +61,10 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>NCT_Templates/BookingNotificationEmail</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
         <members>Course_Sub_Type</members>
         <members>Fee_Band</members>
         <members>PSA_Areas</members>
@@ -57,6 +76,7 @@
         <name>FlexiPage</name>
     </types>
     <types>
+        <members>Booking_Journey_Flow</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Populate_Practitioner_Name</members>
         <members>Set_Main_Venue_on_Course</members>
@@ -83,6 +103,20 @@
         <name>Layout</name>
     </types>
     <types>
+    	<members>courseDetailsComponent</members>
+        <members>failurePaymentPage</members>
+        <members>successPaymentPage</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>Parent Community</members>
+        <name>Network</name>
+    </types>
+    <types>
+        <members>cbParent_Community</members>
+        <name>NetworkBranding</name>
+    </types>
+    <types>
     	<members>Practitioner_Management</members>
         <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
@@ -91,6 +125,7 @@
         <members>Admin</members>
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>
+        <members>Parent Community Profile</members>
         <members>Payment API User</members>
         <name>Profile</name>
     </types>
@@ -114,6 +149,10 @@
         <members>AccountType</members>
         <name>StandardValueSet</name>
     </types>
+     <types>
+        <members>Parent_Community1</members>
+        <name>SiteDotCom</name>
+    </types>
     <types>
         <members>NCT_Styles</members>
         <name>StaticResource</name>
@@ -125,6 +164,7 @@
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
+        <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
