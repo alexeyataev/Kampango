@@ -18,6 +18,7 @@
     <types>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
+    </types>
     <types>
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
@@ -29,6 +30,10 @@
        	<members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
         <members>Session__c.Session_Compact_Layout</members>
         <name>CompactLayout</name>
+    </types>
+    <types>
+        <members>nctlogo</members>
+        <name>ContentAsset</name>
     </types>
     <types>
         <members>NCT_Courses</members>

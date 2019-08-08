@@ -938,7 +938,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Additional_Course_Finder_Information__c</field>
+        <field>Course__c.Additional_Confirmation_Information__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -948,12 +948,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Break_Even_Number_Of_Places__c</field>
+        <field>Course__c.Bracket_Course__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Confirmation_Email_Text__c</field>
+        <field>Course__c.Break_Even_Number_Of_Places__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
