@@ -52,7 +52,7 @@
         <members>Venue_Contact__c</members>
         <name>CustomObject</name>
     </types>
-     <types>
+    <types>
         <members>Parent_Community</members>
         <members>Practitioners</members>
         <name>CustomSite</name>
