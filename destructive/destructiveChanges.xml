@@ -95,6 +95,10 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>Course__c.Upcoming_Courses</members>
+        <name>ListView</name>
+    </types>
+    <types>
         <members>Executive Management</members>
         <members>Fundraising and Development</members>
         <members>NCT PSA</members>
