@@ -4,7 +4,8 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import {CurrentPageReference} from 'lightning/navigation';
 
 const BOOKING_FIELDS = [
-    'Booking__c.Primary_Contact__c'
+    'Booking__c.Primary_Contact__c',
+    'Booking__c.Course__r.Couples_Allowed__c'
 ];
 const BOOKING_OPTIONAL_FIELDS = [
     'Booking__c.Partner_Contact__c'
@@ -37,6 +38,7 @@ export default class ClientDetailsContainer extends LightningElement {
         } else if (data){
             this.primaryContactId = data.fields.Primary_Contact__c.value;
             this.partnerContactId = data.fields.Partner_Contact__c.value;
+            this.partnersAllowed = data.fields.Course__r.value.fields.Couples_Allowed__c.value;
             this.valuesLoaded = true;
         }
     }
