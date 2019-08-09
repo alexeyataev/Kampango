@@ -210,6 +210,7 @@
         <members>Course__c.Check_Sessions_and_Practitioners</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
         <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
+        <members>Licence_To_Practice__c.End_date_should_not_be_blank</members>
         <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <members>Session__c.End_time_should_not_be_before_start_time</members>
         <members>Session__c.Session_Confirmation_Rule</members>
