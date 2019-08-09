@@ -52,7 +52,7 @@
         <members>Venue_Contact__c</members>
         <name>CustomObject</name>
     </types>
-    <types>
+     <types>
         <members>Parent_Community</members>
         <members>Practitioners</members>
         <name>CustomSite</name>
@@ -98,7 +98,8 @@
     </types>
     <types>
         <members>Contact_Record_Page</members>
-    	<members>Course_Record_Page</members>
+        <members>Course_Record_Page</members>
+    	<members>Room_Record_Page</members>
         <members>Venue_Record_Page</members>
         <name>FlexiPage</name>
     </types>
