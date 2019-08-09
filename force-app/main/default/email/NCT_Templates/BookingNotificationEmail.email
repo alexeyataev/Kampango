@@ -8,7 +8,8 @@ Thank you for enquiring about our {!Course__c.Sub_Type__c} course. We’re reall
 
 Your place is reserved until {!Booking__c.Reservation_Expiry_Date__c}.<br><br>
 
-Please click here to review your reservation and book your place. [link to booking journey]<br><br>
+Please click here to review your reservation and book your place. {!$Setup.Parentforce_Community_Settings__c.Base_Url__c}/s/booking?bookingId={!Booking__c.Id}
+<br><br>
 
 If this course isn’t suitable, do come back to me by email or give me a call so we can look at alternatives.<br><br>
 
