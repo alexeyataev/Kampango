@@ -124,6 +124,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>Preferred_Phone__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Town__c</field>
             </layoutItems>
             <layoutItems>
