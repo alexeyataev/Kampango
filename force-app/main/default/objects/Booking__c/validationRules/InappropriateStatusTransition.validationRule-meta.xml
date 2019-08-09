@@ -2,8 +2,9 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>InappropriateStatusTransition</fullName>
     <active>true</active>
-    <errorConditionFormula>(ISPICKVAL(PRIORVALUE(Status__c ), &quot;Reserved&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Enquiry&quot;) ) || (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Confirmed&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Reserved&quot;) ) || (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Confirmed&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Enquiry&quot;) ) || (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Expired&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Enquiry&quot;) ) || (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Expired&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Confirmed&quot;) )
-&amp;&amp; ISCHANGED(Status__c )</errorConditionFormula>
+    <errorConditionFormula>AND(NOT(OR((ISPICKVAL(PRIORVALUE(Status__c ), &quot;Enquiry&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Reserved&quot;) ), 
+(ISPICKVAL(PRIORVALUE(Status__c ), &quot;Expired&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Reserved&quot;) ))),
+ISCHANGED(Status__c ))</errorConditionFormula>
     <errorDisplayField>Status__c</errorDisplayField>
-    <errorMessage>Inappropriate status transition. (Possible options: Enquiry - Reserved, Reserved - Confirmed, Expired - Reserved).</errorMessage>
+    <errorMessage>Inappropriate status transition. (Possible options: Enquiry - Reserved, Expired - Reserved).</errorMessage>
 </ValidationRule>
