@@ -19,19 +19,12 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>displayOption</name>
-                <value>BOTH</value>
-            </componentInstanceProperties>
-            <componentName>runtime_sales_merge:mergeCandidatesPreviewCard</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>
                 <value>ADVGRID</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>rowsToDisplay</name>
-                <value>5</value>
+                <value>10</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>showActionBar</name>
@@ -53,24 +46,9 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>runtime_sales_social:socialPanel</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>flavor</name>
-                <value>list</value>
-            </componentInstanceProperties>
-            <componentName>wits:newsPanel</componentName>
-        </componentInstances>
-        <mode>Replace</mode>
-        <name>newsTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
             <componentInstanceProperties>
                 <name>active</name>
-                <value>true</value>
+                <value>false</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>body</name>
@@ -84,23 +62,16 @@
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
+                <name>active</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>body</name>
                 <value>detailTabContent</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Standard.Tab.detail</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>newsTabContent</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.news</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
