@@ -36,6 +36,15 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Room__c</pageOrSobjectType>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Course_Assignment_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Course_Assignment__c</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
         <logoVersion>1</logoVersion>
@@ -60,6 +69,7 @@
     <tabs>standard-Account</tabs>
     <tabs>Venue__c</tabs>
     <tabs>standard-report</tabs>
+    <tabs>Course_Assignment__c</tabs>
     <tabs>ITS__c</tabs>
     <tabs>agf__QA_Test_Case__c</tabs>
     <tabs>agf__QA_Test_Plan__c</tabs>

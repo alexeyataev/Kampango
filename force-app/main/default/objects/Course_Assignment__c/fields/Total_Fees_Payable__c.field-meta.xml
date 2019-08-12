@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Practitioner_Chosen__c</fullName>
-    <defaultValue>false</defaultValue>
+    <fullName>Total_Fees_Payable__c</fullName>
     <externalId>false</externalId>
-    <label>Practitioner Chosen</label>
+    <label>Total Fees Payable</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
+    <type>Currency</type>
 </CustomField>

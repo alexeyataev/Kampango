@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Specific_Attendee_Type__c</fullName>
+    <fullName>Status__c</fullName>
     <externalId>false</externalId>
-    <label>Specific Attendee Type</label>
+    <label>Status</label>
     <required>false</required>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
@@ -12,30 +12,29 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Women Only</fullName>
+                <fullName>Draft</fullName>
                 <default>false</default>
-                <label>Women Only</label>
+                <label>Draft</label>
             </value>
             <value>
-                <fullName>Pregnant Women Only</fullName>
+                <fullName>Submitted</fullName>
                 <default>false</default>
-                <label>Pregnant Women Only</label>
+                <label>Submitted</label>
             </value>
             <value>
-                <fullName>Birth Partners Only</fullName>
+                <fullName>Approved</fullName>
                 <default>false</default>
-                <label>Birth Partners Only</label>
+                <label>Approved</label>
             </value>
             <value>
-                <fullName>Birth Partners Welcome</fullName>
+                <fullName>Rejected</fullName>
                 <default>false</default>
-                <label>Birth Partners Welcome</label>
+                <label>Rejected</label>
             </value>
             <value>
-                <fullName>--None--</fullName>
+                <fullName>Invalidated.</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
-                <label>--None--</label>
+                <label>Invalidated.</label>
             </value>
         </valueSetDefinition>
     </valueSet>
