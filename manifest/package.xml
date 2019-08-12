@@ -223,6 +223,25 @@
         <name>ValidationRule</name>
     </types>
     <types>
+        <members>Course_Assignment__c</members>
+        <name>Workflow</name>
+    </types>
+    <types>
+        <members>Booking__c.SendEmailToClient</members>
+        <name>WorkflowAlert</name>
+    </types>
+    <types>
+        <members>Booking__c.SetExpDate</members>
+        <members>Booking__c.SetExpDateTo5Days</members>
+        <members>Booking__c.SetExpDateToTenDays</members>
+        <members>Booking__c.SetOfferEmailDate</members>
+        <members>Booking__c.SetExpirationDate_Less5</members>
+        <members>Course_Assignment__c.UpdateStatusToApproved</members>
+        <members>Course_Assignment__c.UpdateStatusToSubmitted</members>
+        <members>Course_Assignment__c.UprateStatusToRejected</members>
+        <name>WorkflowFieldUpdate</name>
+    </types>
+    <types>
         <members>Booking__c.Booking%3ASendOfferEmail</members>
         <members>Booking__c.Booking%3ASetExpirationDate%3C10Days</members>
         <members>Booking__c.Booking%3ASetExpirationDate10Days</members>
@@ -230,18 +249,6 @@
         <members>Booking__c.Booking%3ASetOfferEmailDate</members>
         <members>Booking__c.Booking_SetExpDate_Less5Days</members>
         <name>WorkflowRule</name>
-    </types>  
-    <types>
-        <members>Booking__c.SetExpDate</members>
-        <members>Booking__c.SetExpDateTo5Days</members>
-        <members>Booking__c.SetExpDateToTenDays</members>
-        <members>Booking__c.SetOfferEmailDate</members>
-        <members>Booking__c.SetExpirationDate_Less5</members>
-        <name>WorkflowFieldUpdate</name>
-    </types>
-    <types>
-        <members>Booking__c.SendEmailToClient</members>
-        <name>WorkflowAlert</name>
     </types>
     <version>46.0</version>
 </Package>
