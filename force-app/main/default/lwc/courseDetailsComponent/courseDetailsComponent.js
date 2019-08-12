@@ -53,7 +53,6 @@ export default class CourseDetailsComponent extends LightningElement {
                 }),
             );
         } else if (data) {
-            console.log(JSON.stringify(data));
             this.bookingRecord = data;
             this.expirationDate = this.bookingRecord.fields.Reservation_Expiry_Date__c.value;
             this.firstName = this.bookingRecord.fields.First_Name__c.value;
@@ -174,7 +173,6 @@ export default class CourseDetailsComponent extends LightningElement {
                 return row != null;
             }
         );
-        console.log('array.filter' + JSON.stringify(array));
         array.forEach(
             function (row){
                 if(sessionMap.has(row.id)){
@@ -188,7 +186,6 @@ export default class CourseDetailsComponent extends LightningElement {
                 }
             }
         );
-        console.log('sessionMap' + JSON.stringify(sessionMap));
         this.venues = sessionMap.values();
     }
 
