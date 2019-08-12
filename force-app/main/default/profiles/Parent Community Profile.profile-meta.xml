@@ -74,11 +74,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Fee_Override__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Final_Fee__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

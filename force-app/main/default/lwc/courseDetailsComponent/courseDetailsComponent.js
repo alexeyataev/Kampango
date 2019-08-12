@@ -13,7 +13,7 @@ const BOOKING_FIELDS = [
         'Booking__c.Last_Name__c',
         'Booking__c.Course__r.Start_Date__c',
         'Booking__c.Course__r.End_Date__c',
-        'Booking__c.Final_Fee__c',
+        'Booking__c.Fee_Override__c',
         'Booking__c.Course__r.Sub_Type__c',
         'Booking__c.Course__r.Main_Venue__r.Town__c'
     ];
@@ -60,7 +60,7 @@ export default class CourseDetailsComponent extends LightningElement {
             this.startDate = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
             this.endDate = this.bookingRecord.fields.Course__r.value.fields.End_Date__c.value;
             this.courseId = this.bookingRecord.fields.Course__c.value;
-            this.courseFee = this.bookingRecord.fields.Final_Fee__c.value;
+            this.courseFee = this.bookingRecord.fields.Fee_Override__c.value;
             this.coursetype = this.bookingRecord.fields.Course__r.value.fields.Sub_Type__c.value;
             this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Town__c.value;
             this.retrieveSessions(this.courseId);
