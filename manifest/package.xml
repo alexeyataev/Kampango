@@ -161,6 +161,7 @@
         <members>Admin</members>
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>
+        <members>Finance</members>
         <members>Parent Community Profile</members>
         <members>Payment API User</members>
         <members>Practitioner</members>
