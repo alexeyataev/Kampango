@@ -331,6 +331,11 @@
             <sortOrder>7</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>NewContact</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>8</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>LogACall</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>9</sortOrder>
@@ -360,11 +365,6 @@
             <actionType>StandardButton</actionType>
             <sortOrder>14</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <actionName>NewContact</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>8</sortOrder>
-        </platformActionListItems>
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
@@ -375,7 +375,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Display_Name__c</fields>
         <fields>Type_of_Space__c</fields>
         <relatedList>Room__c.Venue__c</relatedList>
     </relatedLists>
@@ -387,11 +386,22 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Course__c.Main_Venue__c</relatedList>
+        <fields>Date__c</fields>
+        <fields>Day_of_Week__c</fields>
+        <fields>Start__c</fields>
+        <fields>End__c</fields>
+        <fields>Room__c</fields>
+        <fields>Practitoner_Name__c</fields>
+        <fields>Course__c</fields>
+        <relatedList>Session__c.Venue__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Session__c.Venue__c</relatedList>
+        <fields>Sub_Type__c</fields>
+        <fields>Main_Practitioner_Name__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_Date__c</fields>
+        <relatedList>Course__c.Main_Venue__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
