@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <fullName>Additional_Course_Finder_Information__c</fullName>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Confirmation_Information__c</fullName>
     <externalId>false</externalId>
-    <label>Additional Course Finder Information</label>
+    <label>Additional Confirmation Information</label>
     <length>131072</length>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
