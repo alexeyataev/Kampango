@@ -68,6 +68,7 @@
     </types>
     <types>
         <members>Account.Account_Number__c</members>
+        <members>Account.Bank_Account_Number__c</members>
         <members>Account.Bank_Account__c</members>
         <members>Account.Billing_Email__c</members>
         <members>Account.Capacity_PSA__c</members>
