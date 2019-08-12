@@ -155,7 +155,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Course Assignment</label>
     <nameField>
-        <displayFormat>CAD-{000000}</displayFormat>
+        <displayFormat>CA{000000}</displayFormat>
         <label>Course Assignment Name</label>
         <trackHistory>true</trackHistory>
         <type>AutoNumber</type>

@@ -32,9 +32,9 @@
                 <label>Rejected</label>
             </value>
             <value>
-                <fullName>Invalidated.</fullName>
+                <fullName>Invalidated</fullName>
                 <default>false</default>
-                <label>Invalidated.</label>
+                <label>Invalidated</label>
             </value>
         </valueSetDefinition>
     </valueSet>
