@@ -13,8 +13,9 @@ const BOOKING_FIELDS = [
         'Booking__c.Last_Name__c',
         'Booking__c.Course__r.Start_Date__c',
         'Booking__c.Course__r.End_Date__c',
-        'Booking__c.Course__r.Fee__c',
-        'Booking__c.Course__r.Sub_Type__c'
+        'Booking__c.Final_Fee__c',
+        'Booking__c.Course__r.Sub_Type__c',
+        'Booking__c.Course__r.Main_Venue__r.Town__c'
     ];
 
 
@@ -31,6 +32,8 @@ export default class CourseDetailsComponent extends LightningElement {
     @api sessions;
     @api courseFee;
     @api coursetype;
+    @api mainTown;
+    @api venues;
     @api stylesLoaded = false;
     @api get valuesLoaded(){return this.bookingId && this.courseId && this.stylesLoaded;}
     @wire (getRecord, {recordId: '$bookingId', fields: BOOKING_FIELDS})
@@ -50,6 +53,7 @@ export default class CourseDetailsComponent extends LightningElement {
                 }),
             );
         } else if (data) {
+            console.log(JSON.stringify(data));
             this.bookingRecord = data;
             this.expirationDate = this.bookingRecord.fields.Reservation_Expiry_Date__c.value;
             this.firstName = this.bookingRecord.fields.First_Name__c.value;
@@ -57,8 +61,9 @@ export default class CourseDetailsComponent extends LightningElement {
             this.startDate = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
             this.endDate = this.bookingRecord.fields.Course__r.value.fields.End_Date__c.value;
             this.courseId = this.bookingRecord.fields.Course__c.value;
-            this.courseFee = this.bookingRecord.fields.Course__r.value.fields.Fee__c.value;
+            this.courseFee = this.bookingRecord.fields.Final_Fee__c.value;
             this.coursetype = this.bookingRecord.fields.Course__r.value.fields.Sub_Type__c.value;
+            this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Town__c.value;
             this.retrieveSessions(this.courseId);
         }
     } 
@@ -68,7 +73,8 @@ export default class CourseDetailsComponent extends LightningElement {
             fieldName: 'Date__c',
             type: 'date',
             typeAttributes:{
-                weekday: "short"
+                weekday: 'short',
+                timeZone: 'Europe/London'
             }
         },
         {
@@ -76,8 +82,9 @@ export default class CourseDetailsComponent extends LightningElement {
             fieldName: 'Date__c',
             type: 'date',
             typeAttributes:{
-                month: "long",
-                day: "2-digit"
+                month: 'long',
+                day: '2-digit',
+                timeZone: 'Europe/London'
             }
         },
         {
@@ -85,8 +92,9 @@ export default class CourseDetailsComponent extends LightningElement {
             fieldName: 'Start__c',
             type: 'date',
             typeAttributes:{
-                hour: "2-digit",
-                minute: "2-digit"
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'Europe/London'
             }
         },
         {
@@ -94,8 +102,9 @@ export default class CourseDetailsComponent extends LightningElement {
             fieldName: 'End__c',
             type: 'date',
             typeAttributes:{
-                hour: "2-digit",
-                minute: "2-digit"
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'Europe/London'
             }
         }
     ];   
@@ -104,6 +113,7 @@ export default class CourseDetailsComponent extends LightningElement {
         retrieveRelatedSessions({courseId: id})
         .then(data => {
             this.sessions = data;
+            this.getVenues(data);
         })
         .catch(error => {
             let message = 'Unknown error';
@@ -140,6 +150,46 @@ export default class CourseDetailsComponent extends LightningElement {
                     }),
                 );
             });
+    }
+
+    getVenues(sessions){
+        var array;
+        var sessionMap = new Map();
+        array = sessions.map (
+            function(row, index){
+                if(row.Venue__c){
+                    return Object.assign(
+                        {street: row.Venue__r.Street_Address__c},
+                        {town: row.Venue__r.Town__c},
+                        {county: row.Venue__r.County__c},
+                        {postcode: row.Venue__r.Postcode__c},
+                        {id: row.Venue__c},
+                        {name: row.Venue__r.Name},
+                        {sessions: index + 1}
+                    );
+                }
+        });
+        array = array.filter(
+            function(row){
+                return row != null;
+            }
+        );
+        console.log('array.filter' + JSON.stringify(array));
+        array.forEach(
+            function (row){
+                if(sessionMap.has(row.id)){
+                    let record = sessionMap.get(row.id);
+                    record.sessions = record.sessions.replace('session', 'sessions');
+                    record.sessions = record.sessions + ', ' + row.sessions;
+                    sessionMap.set(row.id, record);
+                } else {
+                    row.sessions = 'session ' + row.sessions;
+                    sessionMap.set(row.id, row);
+                }
+            }
+        );
+        console.log('sessionMap' + JSON.stringify(sessionMap));
+        this.venues = sessionMap.values();
     }
 
 }

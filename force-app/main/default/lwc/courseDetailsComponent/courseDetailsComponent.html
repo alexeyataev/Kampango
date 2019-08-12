@@ -8,7 +8,7 @@
         </div>
         <br>
         <div class="heading_3 lato-font">
-            {coursetype} course
+            {coursetype} course {mainTown}
         </div>
         <div class="heading_5 lato-font">
             Venue (
@@ -33,16 +33,22 @@
         <div class="row-flex">
             <div class="padding-right_30 col-flex">
                 <div class="border-top_grey border-bottom_grey height_100">
-                    <div class="padding-top_1 padding-bottom_1">
+                    <div class="padding-top_1">
                         <div class="lato-font heading_3">Location</div>
                         <div>
-                            Venue
+                            <template for:each={venues} for:item="venue">
+                                    <p class="lato-font regular-text padding-top_1 padding-bottom_1" key={venue.id}>
+                                        <b>{venue.name}</b> ({venue.sessions})<br/>
+                                        {venue.street}, {venue.town}, {venue.county},<br/>
+                                        {venue.postcode}
+                                    </p>
+                            </template>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="padding-left_30 col-flex">
-                <div class="border-top_grey border-bottom_grey">
+                <div class="border-top_grey border-bottom_grey height_100">
                     <div class="padding-top_1 padding-bottom_1">
                         <div class="lato-font heading_3">Schedule</div>
                         <div class="lato-font regular-text">
