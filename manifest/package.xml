@@ -23,6 +23,10 @@
         <name>ApexTrigger</name>
     </types>
     <types>
+        <members>Course_Assignment__c.Approve_Course_Assignment</members>
+        <name>ApprovalProcess</name>
+    </types>
+    <types>
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
         <members>SuccessPaymentsPage</members>
@@ -44,6 +48,7 @@
     </types>
     <types>
         <members>Booking__c</members>
+        <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
@@ -62,6 +67,7 @@
         <name>CustomSite</name>
     </types>
     <types>
+        <members>Course_Assignment__c</members>
         <members>Booking__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
@@ -102,6 +108,7 @@
     </types>
     <types>
         <members>Contact_Record_Page</members>
+        <members>Course_Assignment_Record_Page</members>
         <members>Course_Record_Page</members>
     	<members>Room_Record_Page</members>
         <members>Venue_Record_Page</members>
@@ -124,8 +131,9 @@
         <members>Booking__c-Booking Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
-        <members>Course__c-Course Layout</members>
         <members>Contact-Practitioner Page Layout</members>
+        <members>Course_Assignment__c-Course Assignment Layout</members>
+        <members>Course__c-Course Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
@@ -210,6 +218,7 @@
         <members>Licence_To_Practice__c.End_date_should_not_be_blank</members>
         <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <members>Session__c.End_time_should_not_be_before_start_time</members>
+        <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
         <name>ValidationRule</name>
     </types>
