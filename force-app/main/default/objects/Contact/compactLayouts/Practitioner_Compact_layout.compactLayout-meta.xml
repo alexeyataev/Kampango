@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Practitioner_Compact_layout</fullName>
+    <fields>Name</fields>
     <fields>MailingAddress</fields>
     <fields>AccountId</fields>
     <fields>Home_PSA__c</fields>
