@@ -89,7 +89,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
 
     @isTest
-    static void RevertCourseToDraft_NewSessionIsAdded_CourseStatusIsRevertedToDraft() {
+    static void revertCourseToDraft_NewSessionIsAdded_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
 
@@ -121,7 +121,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
-    static void RevertCourseToDraft_DateUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+    static void revertCourseToDraft_DateUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
 
@@ -144,7 +144,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
 
     @isTest
-    static void RevertCourseToDraft_StartTimeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+    static void revertCourseToDraft_StartTimeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
 
@@ -166,7 +166,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
-    static void RevertCourseToDraft_EndTimeUpdatedOnSession_CourseStatusIsRevertedToDraft () {
+    static void revertCourseToDraft_EndTimeUpdatedOnSession_CourseStatusIsRevertedToDraft () {
 
         createTriggerSystemHandlerRecord();
 
@@ -188,7 +188,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
-    static void RevertCourseToDraft_LunchBreakMinutesUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+    static void revertCourseToDraft_LunchBreakMinutesUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
 
@@ -211,7 +211,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
-    static void RevertCourseToDraft_PractitionerLicenceUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+    static void revertCourseToDraft_PractitionerLicenceUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
 
@@ -241,7 +241,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
-    static void RevertCourseToDraft_VenueUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+    static void revertCourseToDraft_VenueUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
 
@@ -275,7 +275,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
-    static void RevertCourseToDraft_SessionDeletedOnCourse_CourseStatusIsRevertedToDraft() {
+    static void revertCourseToDraft_SessionDeletedOnCourse_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
 
@@ -297,7 +297,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
 
     @isTest
-    static void RevertCourseToDraft_BulkSessionsChanged_CourseStatusIsRevertedToDraft() {
+    static void revertCourseToDraft_BulkSessionsChanged_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
 
@@ -333,7 +333,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
-    static void RevertCourseToDraft_BulkSessionsDeleted_CourseStatusIsRevertedToDraft() {
+    static void revertCourseToDraft_BulkSessionsDeleted_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
 
