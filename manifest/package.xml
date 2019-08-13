@@ -52,7 +52,6 @@
         <members>Rate__c</members>
         <members>Room__c</members>
         <members>Session__c</members>
-        <members>Settings__c</members>
         <members>Venue__c</members>
         <members>Venue_Contact__c</members>
         <name>CustomObject</name>
