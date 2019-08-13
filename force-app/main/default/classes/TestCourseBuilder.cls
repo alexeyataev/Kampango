@@ -21,7 +21,7 @@ public with sharing class TestCourseBuilder {
         return this;
     }
 
-    public TestCourseBuilder withSFee(Integer fee)
+    public TestCourseBuilder withFee(Integer fee)
     {
         this.fee = fee;
         return this;

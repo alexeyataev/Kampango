@@ -20,13 +20,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
             }
         }
 
-        Map<String, Schema.SObjectField> fieldsByNames = Schema.getGlobalDescribe().get('Session__c').getDescribe().fields.getMap();
-        List<Course__c> courses;
-        DescribeFieldResult fieldDescribe = fieldsByNames.get('Status__c').getDescribe();
-
-        if(fieldDescribe.isAccessible() && fieldDescribe.isUpdateable()) {
-            courses = [SELECT Id, Status__c FROM Course__c WHERE Id IN :courseIds AND Status__c != 'Draft'];
-        }
+        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Id IN :courseIds AND Status__c != 'Draft' WITH SECURITY_ENFORCED];
 
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {
