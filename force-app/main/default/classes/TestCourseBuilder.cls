@@ -9,51 +9,51 @@ public with sharing class TestCourseBuilder {
     private Licence_To_Practice__c licenceToPractice;
     private Boolean insertRecord = false;
 
-    public TestCourseBuilder WithType(String type)
+    public TestCourseBuilder withType(String type)
     {
         this.type = type;
         return this;
     }
 
-    public TestCourseBuilder WithSubType(String subType)
+    public TestCourseBuilder withSubType(String subType)
     {
         this.subType = subType;
         return this;
     }
 
-    public TestCourseBuilder WithSFee(Integer fee)
+    public TestCourseBuilder withSFee(Integer fee)
     {
         this.fee = fee;
         return this;
     }
-    public TestCourseBuilder WithNumberOfPlaces(Integer numberOfPlaces)
+    public TestCourseBuilder withNumberOfPlaces(Integer numberOfPlaces)
     {
         this.numberOfPlaces = numberOfPlaces;
         return this;
     }
 
-    public TestCourseBuilder WithStatus(String status)
+    public TestCourseBuilder withStatus(String status)
     {
         this.status = status;
         return this;
     }
-    public TestCourseBuilder WithAccount(Account account)
+    public TestCourseBuilder withAccount(Account account)
     {
         this.account = account;
         return this;
     }
-    public TestCourseBuilder WithLicenceToPractice(Licence_To_Practice__c licenceToPractice)
+    public TestCourseBuilder withLicenceToPractice(Licence_To_Practice__c licenceToPractice)
     {
         this.licenceToPractice = licenceToPractice;
         return this;
     }
-    public TestCourseBuilder InsertRecord(Boolean insertRecord)
+    public TestCourseBuilder insertRecord(Boolean insertRecord)
     {
         this.insertRecord = insertRecord;
         return this;
     }
 
-    public Course__c Build()
+    public Course__c build()
     {
         Course__c course = new Course__c(
             Type__c = this.type,
