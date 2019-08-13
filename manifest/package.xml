@@ -70,7 +70,11 @@
         <members>Account.Account_Number__c</members>
         <members>Account.Billing_Email__c</members>
         <members>Account.Capacity_PSA__c</members>
-        <members>Account.Enquiry_PSA__c</members>
+        <members>Account.Capacity_PSA_Email__c</members>
+        <members>Account.Capacity_PSA_Phone__c</members>
+        <members>Account.Enquiries_PSA__c</members>
+        <members>Account.Enquiries_PSA_Email__c</members>
+        <members>Account.Enquiries_PSA_Phone__c</members>
         <members>Account.PSA_Area__c</members>
         <members>Contact.AccountId</members>
         <members>Contact.Current_Fee_Band_Effective_From__c</members>
@@ -104,6 +108,7 @@
         <members>Contact_Record_Page</members>
         <members>Course_Record_Page</members>
     	<members>Room_Record_Page</members>
+	<members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
         <name>FlexiPage</name>
     </types>
