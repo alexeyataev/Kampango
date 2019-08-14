@@ -76,8 +76,15 @@
         <members>Account.Account_Number__c</members>
         <members>Account.Billing_Email__c</members>
         <members>Account.Capacity_PSA__c</members>
-        <members>Account.Enquiry_PSA__c</members>
+        <members>Account.Capacity_PSA_Email__c</members>
+        <members>Account.Capacity_PSA_Phone__c</members>
+        <members>Account.Enquiries_PSA__c</members>
+        <members>Account.Enquiries_PSA_Email__c</members>
+        <members>Account.Enquiries_PSA_Phone__c</members>
         <members>Account.PSA_Area__c</members>
+        <members>Asset.Loaned_Date__c</members>
+        <members>Asset.Product2Id</members>
+        <members>Asset.Returned_Date__c</members>
         <members>Contact.AccountId</members>
         <members>Contact.Current_Fee_Band_Effective_From__c</members>
         <members>Contact.Fee_Band__c</members>
@@ -111,6 +118,7 @@
         <members>Course_Assignment_Record_Page</members>
         <members>Course_Record_Page</members>
     	<members>Room_Record_Page</members>
+	<members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
         <name>FlexiPage</name>
     </types>
@@ -128,6 +136,7 @@
     <types>
         <members>Account-Branch Layout</members>
         <members>Account-Organization Lightning Layout</members>
+        <members>Asset-Practitioner Asset Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
@@ -136,6 +145,7 @@
         <members>Course__c-Course Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
+        <members>Product2-Practitioner Product Page</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
         <members>Rate__c-Rate Layout</members>
         <members>Room__c-Room Layout</members>
@@ -162,6 +172,7 @@
     </types>
     <types>
     	<members>Practitioner_Management</members>
+        <members>Product_Management</members>
         <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
     </types>
@@ -169,6 +180,7 @@
         <members>Admin</members>
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>
+        <members>Finance</members>
         <members>Parent Community Profile</members>
         <members>Payment API User</members>
         <members>Practitioner</members>

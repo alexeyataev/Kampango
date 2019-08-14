@@ -14,79 +14,79 @@ public with sharing class TestSessionBuilder {
 	private Room__c room;
 	private Boolean insertRecord = false;
 
-	public TestSessionBuilder WithName(String name)
+	public TestSessionBuilder withName(String name)
 	{
 		this.name = name;
 		return this;
 	}
 
-	public TestSessionBuilder WithType(String type)
+	public TestSessionBuilder withType(String type)
 	{
 		this.type = type;
 		return this;
 	}
 
-	public TestSessionBuilder WithDate(Date sessionDate)
+	public TestSessionBuilder withDate(Date sessionDate)
 	{
 		this.sessionDate = sessionDate;
 		return this;
 	}
 
-	public TestSessionBuilder WithStartTime(Time startTime)
+	public TestSessionBuilder withStartTime(Time startTime)
 	{
 		this.startTime = startTime;
 		return this;
 	}
 
-	public TestSessionBuilder WithEndTime(Time endTime)
+	public TestSessionBuilder withEndTime(Time endTime)
 	{
 		this.endTime = endTime;
 		return this;
 	}
 
-	public TestSessionBuilder WithSpecificAttendeeType(String specificAttendeeType)
+	public TestSessionBuilder withSpecificAttendeeType(String specificAttendeeType)
 	{
 		this.specificAttendeeType = specificAttendeeType;
 		return this;
 	}
 
-	public TestSessionBuilder WithStatus(String status)
+	public TestSessionBuilder withStatus(String status)
 	{
 		this.status = status;
 		return this;
 	}
 
-	public TestSessionBuilder WithPractitionerLicence(Licence_To_Practice__c practitionerLicence)
+	public TestSessionBuilder withPractitionerLicence(Licence_To_Practice__c practitionerLicence)
 	{
 		this.practitionerLicence = practitionerLicence;
 		return this;
 	}
 
-	public TestSessionBuilder WithVenue(Venue__c venue)
+	public TestSessionBuilder withVenue(Venue__c venue)
 	{
 		this.venue = venue;
 		return this;
 	}
 
-	public TestSessionBuilder WithCourse(Course__c course)
+	public TestSessionBuilder withCourse(Course__c course)
 	{
 		this.course = course;
 		return this;
 	}
 
-	public TestSessionBuilder WithRoom(Room__c room)
+	public TestSessionBuilder withRoom(Room__c room)
 	{
 		this.room = room;
 		return this;
 	}
 
-	public TestSessionBuilder InsertRecord(Boolean insertRecord)
+	public TestSessionBuilder insertRecord(Boolean insertRecord)
 	{
 		this.insertRecord = insertRecord;
 		return this;
 	}
 
-	public Session__c Build()
+	public Session__c build()
 	{
 		Session__c session = new Session__c(
 			Course__c = this.course.Id,
