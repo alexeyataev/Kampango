@@ -338,6 +338,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course_Assignment__c.PractitionerId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.Total_Open_Bookings__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -484,6 +489,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Women_Only__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Licence_To_Practice__c.ContactId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

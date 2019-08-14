@@ -128,6 +128,8 @@
         <members>Populate_Practitioner_Name</members>
         <members>Revert_Course_To_Draft_After_Cost_Deletion</members>
         <members>Revert_Course_To_Draft_If_Cost_Changes</members>
+        <members>Session_assignment_flow</members>
+        <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Main_Venue_on_Course</members>
         <members>Update_Practitioner_Licence</members>
         <members>Update_service_field_on_session</members>
