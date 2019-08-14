@@ -11,11 +11,26 @@ const BOOKING_FIELDS = [
         'Booking__c.Course__c',
         'Booking__c.First_Name__c',
         'Booking__c.Last_Name__c',
-        'Booking__c.Course__r.Start_Date__c',
-        'Booking__c.Course__r.End_Date__c',
-        'Booking__c.Course__r.Fee__c',
-        'Booking__c.Course__r.Sub_Type__c'
+        'Booking__c.Fee_Override__c',
+        'Booking__c.Course__r.Sub_Type__c',
+        'Booking__c.Course__r.Main_Venue__r.Town__c',
+        'Booking__c.Course__r.Main_Venue__r.Name'
     ];
+
+const MONTHS = new Map ([
+    [0, 'January'],
+    [1, 'February'],
+    [2, 'March'],
+    [3, 'April'],
+    [4, 'May'],
+    [5, 'June'],
+    [6, 'July'],
+    [7, 'August'],
+    [8, 'September'],
+    [9, 'October'],
+    [10, 'November'],
+    [11, 'December']
+]);
 
 
 export default class CourseDetailsComponent extends LightningElement {
@@ -28,9 +43,14 @@ export default class CourseDetailsComponent extends LightningElement {
     @api lastName;
     @api startDate;
     @api endDate;
-    @api sessions;
+    sessions;
+    @api formattedSessions;
     @api courseFee;
     @api coursetype;
+    @api mainTown;
+    @api venues;
+    @api mainVenueName;
+    allVenues;
     @api stylesLoaded = false;
     @api get valuesLoaded(){return this.bookingId && this.courseId && this.stylesLoaded;}
     @wire (getRecord, {recordId: '$bookingId', fields: BOOKING_FIELDS})
@@ -54,39 +74,42 @@ export default class CourseDetailsComponent extends LightningElement {
             this.expirationDate = this.bookingRecord.fields.Reservation_Expiry_Date__c.value;
             this.firstName = this.bookingRecord.fields.First_Name__c.value;
             this.lastName = this.bookingRecord.fields.Last_Name__c.value;
-            this.startDate = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
-            this.endDate = this.bookingRecord.fields.Course__r.value.fields.End_Date__c.value;
             this.courseId = this.bookingRecord.fields.Course__c.value;
-            this.courseFee = this.bookingRecord.fields.Course__r.value.fields.Fee__c.value;
+            this.courseFee = this.bookingRecord.fields.Fee_Override__c.value;
             this.coursetype = this.bookingRecord.fields.Course__r.value.fields.Sub_Type__c.value;
+            this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Town__c.value;
+            this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
             this.retrieveSessions(this.courseId);
         }
     } 
     sessionColumns = [
         {
+            fieldName: 'row',
+            type: 'number',
+            cellAttributes: { alignment: 'center' }
+        },
+        {
             label: 'Day',
             fieldName: 'Date__c',
             type: 'date',
             typeAttributes:{
-                weekday: "short"
+                weekday: 'short',
+                timeZone: 'Europe/London'
             }
         },
         {
             label: 'Date',
-            fieldName: 'Date__c',
-            type: 'date',
-            typeAttributes:{
-                month: "long",
-                day: "2-digit"
-            }
+            fieldName: 'dateFormatted',
+            type: 'string'
         },
         {
             label: 'Starts',
             fieldName: 'Start__c',
             type: 'date',
             typeAttributes:{
-                hour: "2-digit",
-                minute: "2-digit"
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'Europe/London'
             }
         },
         {
@@ -94,8 +117,9 @@ export default class CourseDetailsComponent extends LightningElement {
             fieldName: 'End__c',
             type: 'date',
             typeAttributes:{
-                hour: "2-digit",
-                minute: "2-digit"
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'Europe/London'
             }
         }
     ];   
@@ -103,7 +127,21 @@ export default class CourseDetailsComponent extends LightningElement {
     retrieveSessions(id){
         retrieveRelatedSessions({courseId: id})
         .then(data => {
-            this.sessions = data;
+            this.sessions = data.map(
+                function(row, index){
+                    return Object.assign(
+                        {Date__c: row.Date__c},
+                        {dateFormatted: row.Date__c},
+                        {Start__c: row.Start__c},
+                        {End__c: row.End__c},
+                        {row: index + 1},
+                        {id: row.Id}
+                    );
+                }
+            );
+            this.formatSessions();
+            this.getVenues(data);
+            this.formatVenues();
         })
         .catch(error => {
             let message = 'Unknown error';
@@ -140,6 +178,95 @@ export default class CourseDetailsComponent extends LightningElement {
                     }),
                 );
             });
+    }
+
+    getVenues(sessions){
+        var array = sessions.map (
+            function(row, index){
+                if(row.Venue__c){
+                    return Object.assign(
+                        {street: row.Venue__r.Street_Address__c},
+                        {town: row.Venue__r.Town__c},
+                        {county: row.Venue__r.County__c},
+                        {postcode: row.Venue__r.Postcode__c},
+                        {id: row.Venue__c},
+                        {name: row.Venue__r.Name},
+                        {sessions: index + 1}
+                    );
+                }
+        });
+        this.allVenues = array;
+    }
+
+    formatSessions(){
+        var array = this.sessions;
+        var monthDay;
+        let start, end;
+        array.forEach(
+            function(row, index){
+                let date = new Date(row.dateFormatted);
+                monthDay = date.getDate().toString();
+                switch(monthDay.substring(monthDay.length - 1, monthDay.length)){
+                    case '1':
+                        if(monthDay !== '11'){
+                            monthDay += 'st';
+                        } else
+                            monthDay += 'th';
+                        break;
+                    case '2':
+                        if(monthDay !== '12'){
+                            monthDay += 'nd';
+                        } else
+                            monthDay += 'th';
+                        break;
+                    case '3':
+                        if(monthDay !== '13'){
+                            monthDay += 'rd';
+                        } else
+                            monthDay += 'th';
+                        break;
+                    default:
+                        monthDay += 'th';
+                }
+                let dateStr = monthDay + ' ' + MONTHS.get(date.getMonth());
+                row.dateFormatted = dateStr;
+                if(index === 0){
+                    start = dateStr;
+                }
+                if(index === (array.length - 1)){
+                    end = dateStr;
+                }
+            }
+        );
+        this.startDate = start;
+        this.endDate = end;
+        this.formattedSessions = array;
+    }
+
+    formatVenues(array){
+        var sessionMap = new Map();
+        var array = this.allVenues;
+        array = array.filter(
+            function(row){
+                return row != null;
+            }
+        );
+        array.forEach(
+            function (row){
+                if(sessionMap.has(row.id)){
+                    let record = sessionMap.get(row.id);
+                    if(!record.sessions.includes('sessions')){
+                        record.sessions = record.sessions.replace('session', 'sessions');
+                    }
+                    record.sessions = record.sessions + ', ' + row.sessions;
+                    sessionMap.set(row.id, record);
+                } else {
+                    row.sessions = 'session ' + row.sessions;
+                    sessionMap.set(row.id, row);
+                }
+            }
+        );
+        this.venues = sessionMap.values();
     }
 
 }
