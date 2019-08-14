@@ -241,6 +241,14 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
+        <fields>ASSET.NAME</fields>
+        <fields>PRODUCT2.NAME</fields>
+        <fields>ASSET.QUANTITY</fields>
+        <fields>Loaned_Date__c</fields>
+        <fields>Returned_Date__c</fields>
+        <relatedList>RelatedAssetList</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>NAME</fields>
         <fields>Licence__c</fields>
         <fields>Status__c</fields>

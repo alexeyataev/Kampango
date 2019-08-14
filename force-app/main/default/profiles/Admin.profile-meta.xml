@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-    <classAccesses>
+   <classAccesses>
         <apexClass>SESSION_RevertCourseToDraft_TDTM</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -24,7 +24,7 @@
         <field>Account.Capacity_PSA__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+   <fieldPermissions>
         <editable>true</editable>
         <field>Account.Capacity_PSA_Email__c</field>
         <readable>true</readable>
@@ -67,6 +67,26 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.Zumzum__Bank_Sort_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Loaned_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Product2Id</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Quantity</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Returned_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -224,7 +244,7 @@
         <field>Booking__c.Partner_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+   <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Postcode__c</field>
         <readable>true</readable>
@@ -264,7 +284,7 @@
         <field>Contact.Current_Fee_Band_Effective_From__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Email</field>
         <readable>true</readable>
@@ -502,6 +522,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Practitioner_Travel_Cost__c.Venue_PSA_Area__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Family</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.ProductCode</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -788,7 +823,7 @@
         <layout>Account-Branch Layout</layout>
         <recordType>Account.Branch</recordType>
     </layoutAssignments>
-    <layoutAssignments>
+     <layoutAssignments>
         <layout>Account-Household Lightning Layout</layout>
         <recordType>Account.HH_Account</recordType>
     </layoutAssignments>
@@ -834,6 +869,19 @@
     <layoutAssignments>
         <layout>Venue__c-Venue Layout</layout>
     </layoutAssignments>
+    <loginIpRanges>
+        <endAddress>255.255.255.255</endAddress>
+        <startAddress>0.0.0.0</startAddress>
+    </loginIpRanges>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Asset</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -877,6 +925,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Practitioner_Travel_Cost__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Product2</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
