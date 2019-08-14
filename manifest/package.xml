@@ -2,8 +2,11 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>CourseDetailController</members>
+        <members>IPaymentServiceProvider</members>
+        <members>PaymentApiRequest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
+        <members>StepOrangeCardPaymentProvider</members>
         <members>TestAccountBuilder</members>
         <members>TestContactBuilder</members>
         <members>TestEstimatedCostsBuilder</members>
@@ -44,6 +47,7 @@
         <members>Course__c</members>
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
+        <members>Parentforce_Community_Settings__c</members>
         <members>Practitioner_Travel_Cost__c</members>
         <members>Rate__c</members>
         <members>Room__c</members>
@@ -52,7 +56,7 @@
         <members>Venue_Contact__c</members>
         <name>CustomObject</name>
     </types>
-    <types>
+     <types>
         <members>Parent_Community</members>
         <members>Practitioners</members>
         <name>CustomSite</name>
@@ -66,7 +70,11 @@
         <members>Account.Account_Number__c</members>
         <members>Account.Billing_Email__c</members>
         <members>Account.Capacity_PSA__c</members>
-        <members>Account.Enquiry_PSA__c</members>
+        <members>Account.Capacity_PSA_Email__c</members>
+        <members>Account.Capacity_PSA_Phone__c</members>
+        <members>Account.Enquiries_PSA__c</members>
+        <members>Account.Enquiries_PSA_Email__c</members>
+        <members>Account.Enquiries_PSA_Phone__c</members>
         <members>Account.PSA_Area__c</members>
         <members>Contact.AccountId</members>
         <members>Contact.Current_Fee_Band_Effective_From__c</members>
@@ -98,7 +106,9 @@
     </types>
     <types>
         <members>Contact_Record_Page</members>
-    	<members>Course_Record_Page</members>
+        <members>Course_Record_Page</members>
+    	<members>Room_Record_Page</members>
+	<members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
         <name>FlexiPage</name>
     </types>
@@ -156,6 +166,7 @@
         <members>Admin</members>
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>
+        <members>Finance</members>
         <members>Parent Community Profile</members>
         <members>Payment API User</members>
         <members>Practitioner</members>
@@ -202,6 +213,7 @@
         <members>Course__c.Check_Sessions_and_Practitioners</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
         <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
+        <members>Licence_To_Practice__c.End_date_should_not_be_blank</members>
         <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <members>Session__c.End_time_should_not_be_before_start_time</members>
         <members>Session__c.Session_Confirmation_Rule</members>
