@@ -281,7 +281,7 @@
         <field>Contact.Current_Fee_Band_Effective_From__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Email</field>
         <readable>true</readable>
@@ -446,7 +446,7 @@
         <field>Course__c.Private_Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Start_Date__c</field>
         <readable>true</readable>
@@ -806,15 +806,15 @@
         <recordType>Account.Branch</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Asset-Practitioner Asset Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Account-Household Lightning Layout</layout>
         <recordType>Account.HH_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-Organization Lightning Layout</layout>
         <recordType>Account.Organization</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Practitioner Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Booking__c-Booking Layout</layout>

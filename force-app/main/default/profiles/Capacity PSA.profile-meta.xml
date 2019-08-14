@@ -16,7 +16,7 @@
         <field>Account.Capacity_PSA__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Account.Capacity_PSA_Email__c</field>
         <readable>true</readable>
@@ -341,7 +341,7 @@
         <field>Contact.Total_Open_Bookings__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Contact.npe01__PreferredPhone__c</field>
         <readable>true</readable>
@@ -511,6 +511,7 @@
         <field>Product2.Family</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Rate__c.Notes__c</field>
         <readable>true</readable>
@@ -810,7 +811,8 @@
         <recordType>Account.Branch</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Asset-Practitioner Asset Layout</layout>
+        <layout>Account-Household Lightning Layout</layout>
+        <recordType>Account.HH_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-Household Lightning Layout</layout>
@@ -819,6 +821,9 @@
     <layoutAssignments>
         <layout>Account-Organization Lightning Layout</layout>
         <recordType>Account.Organization</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Practitioner Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Booking__c-Booking Layout</layout>
@@ -984,8 +989,8 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-         <recordType>Account.HH_Account</recordType>
-         <visible>true</visible>
+        <recordType>Account.HH_Account</recordType>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
