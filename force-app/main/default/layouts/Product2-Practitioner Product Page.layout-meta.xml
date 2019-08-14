@@ -13,7 +13,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Family</field>
+                <field>ProductCode</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
