@@ -7,37 +7,37 @@ public with sharing class TestLicenceToPracticeBuilder {
     private String licence = 'Postnatal Practitioner';
     private Boolean insertRecord = false;
 
-    public TestLicenceToPracticeBuilder WithContact(Contact contact)
+    public TestLicenceToPracticeBuilder withContact(Contact contact)
     {
         this.contact = contact;
         return this;
     }
 
-    public TestLicenceToPracticeBuilder WithStartDate(Date startDate)
+    public TestLicenceToPracticeBuilder withStartDate(Date startDate)
     {
         this.startDate = startDate;
         return this;
     }
 
-    public TestLicenceToPracticeBuilder WithStatus(String status)
+    public TestLicenceToPracticeBuilder withStatus(String status)
     {
         this.status = status;
         return this;
     }
 
-    public TestLicenceToPracticeBuilder WithLicence(String licence)
+    public TestLicenceToPracticeBuilder withLicence(String licence)
     {
         this.licence = licence;
         return this;
     }
 
-    public TestLicenceToPracticeBuilder InsertRecord(Boolean insertRecord)
+    public TestLicenceToPracticeBuilder insertRecord(Boolean insertRecord)
     {
         this.insertRecord = insertRecord;
         return this;
     }
 
-    public Licence_To_Practice__c Build()
+    public Licence_To_Practice__c build()
     {
         Licence_To_Practice__c licenceToPractice = new Licence_To_Practice__c(
             Contact__c = this.contact.Id,
