@@ -23,7 +23,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Enquiries_PSA__c</field>
+        <field>Account.Enquiry_PSA__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -83,12 +83,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_First_Name__c</field>
+        <field>Booking__c.Enquiry_PSA_First_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_Phone__c</field>
+        <field>Booking__c.Enquiry_PSA_Phone__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2961,14 +2961,14 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>npe01__OppPayment__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
+		<allowCreate>true</allowCreate>
+		<allowDelete>false</allowDelete>
+		<allowEdit>true</allowEdit>
+		<allowRead>true</allowRead>
+		<modifyAllRecords>false</modifyAllRecords>
+		<object>npe01__OppPayment__c</object>
+		<viewAllRecords>true</viewAllRecords>
+	</objectPermissions>
     <recordTypeVisibilities>
         <default>true</default>
         <personAccountDefault>true</personAccountDefault>
