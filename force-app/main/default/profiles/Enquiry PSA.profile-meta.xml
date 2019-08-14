@@ -523,7 +523,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Product2.Family</field>
+        <field>Product2.ProductCode</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
