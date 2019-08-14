@@ -3,7 +3,7 @@
     <fullName>Status__c</fullName>
     <externalId>false</externalId>
     <label>Status</label>
-    <required>false</required>
+    <required>true</required>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -13,7 +13,7 @@
             <sorted>false</sorted>
             <value>
                 <fullName>Draft</fullName>
-                <default>false</default>
+                <default>true</default>
                 <label>Draft</label>
             </value>
             <value>
