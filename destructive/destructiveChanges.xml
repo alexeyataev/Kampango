@@ -112,6 +112,7 @@
         <name>ValidationRule</name>
     </types>
     <types>
+        <members>Booking__c.Booking%3ASendOfferEmail</members>
         <members>Booking__c.Send Reservation Email</members>
         <members>Booking__c.Send Confirmation Email</members>
         <name>WorkflowRule</name>
