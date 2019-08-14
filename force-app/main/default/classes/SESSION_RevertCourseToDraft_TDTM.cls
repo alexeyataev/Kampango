@@ -1,4 +1,4 @@
-global class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
+global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
     global override npsp.TDTM_Runnable.DmlWrapper run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         npsp.TDTM_Runnable.dmlWrapper dmlWrapper = new npsp.TDTM_Runnable.DmlWrapper();
 
@@ -20,7 +20,7 @@ global class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Id IN :courseIds AND Status__c != 'Draft'];
+        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Id IN :courseIds AND Status__c != 'Draft' WITH SECURITY_ENFORCED];
 
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {

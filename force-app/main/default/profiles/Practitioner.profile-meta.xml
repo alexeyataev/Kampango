@@ -27,7 +27,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Enquiry_PSA__c</field>
+        <field>Account.Enquiries_PSA__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -92,12 +92,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Enquiry_PSA_First_Name__c</field>
+        <field>Booking__c.Enquiries_PSA_First_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Enquiry_PSA_Phone__c</field>
+        <field>Booking__c.Enquiries_PSA_Phone__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
