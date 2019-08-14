@@ -815,10 +815,6 @@
         <recordType>Account.HH_Account</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Household Lightning Layout</layout>
-        <recordType>Account.HH_Account</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Account-Organization Lightning Layout</layout>
         <recordType>Account.Organization</recordType>
     </layoutAssignments>
