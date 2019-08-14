@@ -39,21 +39,21 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>SetExpirationDate_Less5</fullName>
+        <field>Reservation_Expiry_Date__c</field>
+        <formula>Course__r.Start_Date__c - 1</formula>
+        <name>SetExpirationDate_Less5</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>SetOfferEmailDate</fullName>
         <field>Offer_Email_Date__c</field>
         <formula>TODAY()</formula>
         <name>SetOfferEmailDate</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Set_Booking_to_Lapsed</fullName>
-        <field>Status__c</field>
-        <literalValue>Lapsed</literalValue>
-        <name>Set Booking to Lapsed</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
     <rules>
@@ -135,6 +135,11 @@
             <operation>equals</operation>
             <value>Introducing Solids</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>Booking__c.Days_Before_Course_Start__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>5</value>
+        </criteriaItems>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -150,5 +155,29 @@
             <value>Reserved</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Booking_SetExpDate_Less5Days</fullName>
+        <actions>
+            <name>SetExpirationDate_Less5</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Course__c.Sub_Type__c</field>
+            <operation>equals</operation>
+            <value>Introducing Solids</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Booking__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Reserved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Booking__c.Days_Before_Course_Start__c</field>
+            <operation>lessThan</operation>
+            <value>5</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
