@@ -283,6 +283,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contact.AccountId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.Current_Fee_Band_Effective_From__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -833,7 +838,7 @@
         <recordType>Contact.Contact</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Contact-Practitioner Page Layout</layout>
+        <layout>Contact-Practitioner Read Only Layout</layout>
         <recordType>Contact.Practitioner</recordType>
     </layoutAssignments>
     <layoutAssignments>
