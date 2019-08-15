@@ -103,18 +103,18 @@ public class CareHelper {
         update updateContactList;
     }
     private class ContactOjbect {
-        private ContactDetails Contact {get;set;}
+        private ContactDetails contact {get;set;}
     }
     private class ContactDetails {
-        private String ContactKey {get;set;}
-        private String ContactNumber {get;set;}
+        private String contactKey {get;set;}
+        private String contactNumber {get;set;}
     }
     private class ContactBankAccountObject {
-        private ContactBankAccountDetails ContactBankAccount {get;set;}
+        private ContactBankAccountDetails contactBankAccount {get;set;}
     }
     private class ContactBankAccountDetails {
-        private String ContactKey {get;set;}
-        private String BankDetailNumber {get;set;}
-        private String Information {get;set;}
+        private String contactKey {get;set;}
+        private String bankDetailNumber {get;set;}
+        private String information {get;set;}
     }
 }
