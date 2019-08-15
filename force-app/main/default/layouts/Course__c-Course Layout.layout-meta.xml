@@ -88,7 +88,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Main_Practitioner_Name__c</field>
+                <field>Main_Practitioner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
