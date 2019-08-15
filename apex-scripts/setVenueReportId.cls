@@ -1,0 +1,1 @@
+CourseSettingsService.setVenueScheduleReportId('Venue Schedule');
