@@ -583,7 +583,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.PractitionerId__c</field>
+        <field>Session__c.Practitioner_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

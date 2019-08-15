@@ -79,7 +79,7 @@
             </value>
         </filters>
         <filters>
-            <field>PractitionerId__c</field>
+            <field>Practitioner_Id__c</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>Contact_Id_From_PB</elementReference>
@@ -90,7 +90,7 @@
         <queriedFields>Id</queriedFields>
         <queriedFields>Course_Assignment__c</queriedFields>
         <queriedFields>Course__c</queriedFields>
-        <queriedFields>PractitionerId__c</queriedFields>
+        <queriedFields>Practitioner_Id__c</queriedFields>
     </recordLookups>
     <recordUpdates>
         <name>Update_Sessions</name>
