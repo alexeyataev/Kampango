@@ -22,7 +22,7 @@
         <fullName>UprateStatusToRejected</fullName>
         <field>Status__c</field>
         <literalValue>Rejected</literalValue>
-        <name>UprateStatusToRejected</name>
+        <name>UpdateStatusToRejected</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
