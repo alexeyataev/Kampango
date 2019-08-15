@@ -12,7 +12,7 @@ public class CareHelper {
         Http http = new Http();
         req.setEndpoint('https://careforce.nct.org.uk:1443/AuthParentForceTest/SFAddUpdateContactWS.pl');
         req.setMethod('GET');
-        req.setBody('Source=' + BaseCareApiCall.source
+        req.setBody('Source=' + source
             //+ '&Branch=' + branchNumber
             + '&Surname=' + cont.LastName
             + '&FirstName=' + cont.FirstName
