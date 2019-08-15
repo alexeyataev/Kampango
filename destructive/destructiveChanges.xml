@@ -28,6 +28,8 @@
         <members>Booking__c.Client__c</members>
         <members>Booking__c.Bank_Account_Number__c</members>
         <members>Booking__c.Bank_Sort_Code__c</members>
+        <members>Booking__c.Enquiry_PSA_Phone__c</members>
+        <members>Booking__c.Enquiry_PSA_First_Name__c</members>
         <members>Booking__c.Twins_or_more__c</members>
         <members>Booking__c.Under_18__c</members>
         <members>Booking__c.Confirm_DD_Authorisation__c</members>
