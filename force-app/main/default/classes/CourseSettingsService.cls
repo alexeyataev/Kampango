@@ -2,11 +2,10 @@ public with sharing class CourseSettingsService {
 
 	public static void setVenueScheduleReportId(String reportName) {
 
-		List<Report> venueReport = [
-				SELECT Id
-				FROM Report
-				WHERE Name = :reportName
-				LIMIT 1
+		List<Report> venueReport = [SELECT Id
+			FROM Report
+			WHERE Name = :reportName
+			LIMIT 1
 		];
 
 		if (venueReport.size() == 0) {
