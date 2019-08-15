@@ -1,8 +1,8 @@
 public with sharing class CourseSettingsService {
 
 	public static void setVenueScheduleReportId(String reportName) {
-		
-        List<Report> venueReport = [
+
+		List<Report> venueReport = [
 				SELECT Id
 				FROM Report
 				WHERE Name = :reportName
@@ -13,7 +13,9 @@ public with sharing class CourseSettingsService {
 			return;
 		}
 
-		Course_Settings__c courseSettings = [SELECT Id, Venue_Schedule_Report_ID__c FROM Course_Settings__c LIMIT 1];
+		Course_Settings__c courseSettings = [SELECT Id, Venue_Schedule_Report_ID__c
+			FROM Course_Settings__c
+			LIMIT 1];
 		courseSettings.Venue_Schedule_Report_ID__c = venueReport[0].id;
 
 		update courseSettings;
