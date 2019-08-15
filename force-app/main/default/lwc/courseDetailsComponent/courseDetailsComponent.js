@@ -110,10 +110,10 @@ export default class CourseDetailsComponent extends LightningElement {
             this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
             date = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
             date = new Date(date);
-            this.startDate = this.formatSession(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
+            this.startDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
             date = this.bookingRecord.fields.Course__r.value.fields.End_Date__c.value;
             date = new Date(date);
-            this.endDate = this.formatSession(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
+            this.endDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
             this.retrieveSessions(this.courseId);
         }
     }
@@ -206,7 +206,7 @@ export default class CourseDetailsComponent extends LightningElement {
         this.formattedSessions = array;
     }
 
-    formatSession(monthDay){
+    addDateOrdinal(monthDay){
         switch(monthDay.substring(monthDay.length - 1, monthDay.length)){
             case '1':
                 if(monthDay !== '11'){
