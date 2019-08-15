@@ -33,7 +33,7 @@
         <name>step_1</name>
         <rejectionActions>
             <action>
-                <name>UprateStatusToRejected</name>
+                <name>UpdateStatusToRejected</name>
                 <type>FieldUpdate</type>
             </action>
         </rejectionActions>
