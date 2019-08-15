@@ -11,27 +11,11 @@ const BOOKING_FIELDS = [
         'Booking__c.Course__c',
         'Booking__c.First_Name__c',
         'Booking__c.Last_Name__c',
-        'Booking__c.Fee_Override__c',
+        'Booking__c.Final_Fee__c',
         'Booking__c.Course__r.Sub_Type__c',
         'Booking__c.Course__r.Main_Venue__r.Town__c',
         'Booking__c.Course__r.Main_Venue__r.Name'
     ];
-
-const MONTHS = new Map ([
-    [0, 'January'],
-    [1, 'February'],
-    [2, 'March'],
-    [3, 'April'],
-    [4, 'May'],
-    [5, 'June'],
-    [6, 'July'],
-    [7, 'August'],
-    [8, 'September'],
-    [9, 'October'],
-    [10, 'November'],
-    [11, 'December']
-]);
-
 
 export default class CourseDetailsComponent extends LightningElement {
 
@@ -75,7 +59,7 @@ export default class CourseDetailsComponent extends LightningElement {
             this.firstName = this.bookingRecord.fields.First_Name__c.value;
             this.lastName = this.bookingRecord.fields.Last_Name__c.value;
             this.courseId = this.bookingRecord.fields.Course__c.value;
-            this.courseFee = this.bookingRecord.fields.Fee_Override__c.value;
+            this.courseFee = this.bookingRecord.fields.Final_Fee__c.value;
             this.coursetype = this.bookingRecord.fields.Course__r.value.fields.Sub_Type__c.value;
             this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Town__c.value;
             this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
@@ -228,7 +212,7 @@ export default class CourseDetailsComponent extends LightningElement {
                     default:
                         monthDay += 'th';
                 }
-                let dateStr = monthDay + ' ' + MONTHS.get(date.getMonth());
+                let dateStr = monthDay + ' ' + date.toLocaleString('default', { month: 'long' });
                 row.dateFormatted = dateStr;
                 if(index === 0){
                     start = dateStr;
