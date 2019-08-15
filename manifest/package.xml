@@ -117,6 +117,7 @@
     </types>
     <types>
         <members>Booking_Journey_Flow</members>
+        <members>Booking_sendOfferEmail</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Populate_Practitioner_Name</members>
         <members>Revert_Course_To_Draft_After_Cost_Deletion</members>
@@ -128,6 +129,7 @@
     </types>
     <types>
         <members>Account-Branch Layout</members>
+        <members>Account-Branch Read Only Layout</members>
         <members>Account-Organization Lightning Layout</members>
         <members>Asset-Practitioner Asset Layout</members>
         <members>Booking__c-Booking Layout</members>
@@ -135,6 +137,7 @@
         <members>Contact-Contact Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Contact-Practitioner Page Layout</members>
+        <members>Contact-Practitioner Read Only Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
         <members>Product2-Practitioner Product Page</members>
@@ -227,7 +230,6 @@
         <name>ValidationRule</name>
     </types>
     <types>
-        <members>Booking__c.Booking%3ASendOfferEmail</members>
         <members>Booking__c.Booking%3ASetExpirationDate%3C10Days</members>
         <members>Booking__c.Booking%3ASetExpirationDate10Days</members>
         <members>Booking__c.Booking%3ASetExpirationDate5Days</members>
