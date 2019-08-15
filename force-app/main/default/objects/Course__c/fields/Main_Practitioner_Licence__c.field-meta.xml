@@ -4,6 +4,15 @@
     <deleteConstraint>Restrict</deleteConstraint>
     <externalId>false</externalId>
     <label>Main Practitioner Licence</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Licence_To_Practice__c.Contact__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Main_Practitioner__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Licence_To_Practice__c</referenceTo>
     <relationshipLabel>Courses</relationshipLabel>
     <relationshipName>Courses</relationshipName>
