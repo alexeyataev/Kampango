@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Final_Fee__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(NULLVALUE(Fee_Override__c, 0) = 0, Course__r.Fee__c, Fee_Override__c)</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <formula>IF(ISBLANK(Fee_Override__c), Course__r.Fee__c, Fee_Override__c)</formula>
     <label>Final Fee</label>
     <precision>18</precision>
     <required>false</required>
