@@ -1,5 +1,6 @@
 public class FlowPaymentHandler {
-    /*@InvocableMethod
+    //@InvocableMethod
+    //old invocable method
     public static List<String> GetPaymentLink(List<List<String>> params) {
         try {
             IPaymentServiceProvider paymentServiceProvider = new StepOrangeCardPaymentProvider();
@@ -9,7 +10,7 @@ public class FlowPaymentHandler {
         } catch(Exception e) {
             return new List<String> {'error'};
         }
-    }*/
+    }
     @InvocableMethod
     public static List<String> invokePaymentMethod(List<List<String>> params) {
         List<String> paramsList = params[0];
