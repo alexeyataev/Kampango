@@ -5,6 +5,7 @@ public class PaymentApiRequest{
     private Payer Payer {get;set;}
     private Payment Payment {get;set;}
     private PaymentMethod PaymentMethod {get;set;}
+    private Recurring Recurring {get;set;}
     private SourceConnector SourceConnector {get;set;}
     public PaymentApiRequest(String successURL, String failureURL, String origin, Payer payer, Payment payment, PaymentMethod paymentMethod, SourceConnector sourceConnector) {
         this.SuccessURL = successURL;
@@ -13,6 +14,17 @@ public class PaymentApiRequest{
         this.Payer = payer;
         this.Payment = payment;
         this.PaymentMethod = paymentMethod;
+        this.SourceConnector = sourceConnector;
+    }
+    // DD
+    public PaymentApiRequest(String successURL, String failureURL, String origin, Payer payer, Payment payment, PaymentMethod paymentMethod, Recurring recurring, SourceConnector sourceConnector) {
+        this.SuccessURL = successURL;
+        this.FailureURL = failureURL;
+        this.Origin = origin;
+        this.Payer = payer;
+        this.Payment = payment;
+        this.PaymentMethod = paymentMethod;
+        this.Recurring = recurring;
         this.SourceConnector = sourceConnector;
     }
     public class Payer {
@@ -37,8 +49,23 @@ public class PaymentApiRequest{
     }
     public class PaymentMethod {
         private String Name {get;set;}
+        private Map<String, String> PaymentProfile {get;set;}
         public PaymentMethod(String name) {
             this.Name = name;
+        }
+        public PaymentMethod(String name, Map<String, String> paymentProfile) {
+            this.Name = name;
+            this.PaymentProfile = paymentProfile;
+        }
+    }
+    public class Recurring {
+        private String Amount {get;set;}
+        private String Frequency {get;set;}
+        private String StartDate {get;set;}
+        public Recurring(String amount, String frequency, String startDate) {
+            this.Amount = amount;
+            this.Frequency = frequency;
+            this.StartDate = startDate;
         }
     }
     public class SourceConnector {
