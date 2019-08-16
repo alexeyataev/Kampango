@@ -82,7 +82,7 @@
             <field>Practitioner__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Contact_Id_From_PB</elementReference>
+                <elementReference>Owner_Id_From_PB</elementReference>
             </value>
         </filters>
         <object>Session__c</object>
@@ -107,14 +107,14 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>Contact_Id_From_PB</name>
+        <name>Course_Id_From_PB</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>Course_Id_From_PB</name>
+        <name>Owner_Id_From_PB</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>

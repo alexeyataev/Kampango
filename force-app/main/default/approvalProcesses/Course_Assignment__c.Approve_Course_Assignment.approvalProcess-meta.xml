@@ -12,7 +12,10 @@
         <field>Name</field>
         <field>Owner</field>
         <field>Course__c</field>
-        <field>Practitioner__c</field>
+        <field>00N6E000003KVxl</field>
+        <field>CreatedBy</field>
+        <field>LastModifiedBy</field>
+        <field>Status__c</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
@@ -24,7 +27,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>Practitioner__c</name>
+                <name>Owner</name>
                 <type>relatedUserField</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

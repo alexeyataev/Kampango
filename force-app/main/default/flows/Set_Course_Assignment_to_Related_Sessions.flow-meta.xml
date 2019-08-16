@@ -119,7 +119,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Contact_Id_From_PB</stringValue>
+                    <stringValue>Owner_Id_From_PB</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -140,9 +140,9 @@
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <name>Contact_Id_From_PB</name>
+            <name>Owner_Id_From_PB</name>
             <value>
-                <elementReference>myVariable_current.Practitioner__r.Contact.Id</elementReference>
+                <elementReference>myVariable_current.Owner:User.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
