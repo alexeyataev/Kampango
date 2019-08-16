@@ -286,7 +286,7 @@
         <fields>End__c</fields>
         <fields>Type__c</fields>
         <fields>Specific_Attendee_Type__c</fields>
-        <fields>Practitoner_Name__c</fields>
+        <fields>Practitioner__c</fields>
         <fields>Venue__c</fields>
         <relatedList>Session__c.Course__c</relatedList>
     </relatedLists>
