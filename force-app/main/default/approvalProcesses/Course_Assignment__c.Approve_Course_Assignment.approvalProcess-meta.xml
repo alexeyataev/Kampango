@@ -12,7 +12,6 @@
         <field>Name</field>
         <field>Owner</field>
         <field>Course__c</field>
-        <field>00N6E000003KVxl</field>
         <field>CreatedBy</field>
         <field>LastModifiedBy</field>
         <field>Status__c</field>

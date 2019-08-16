@@ -68,6 +68,7 @@
         <members>Course__c.Duration__c</members>
         <members>Course__c.Duration_Formatted__c</members>
         <members>Course__c.End_Time__c</members>
+        <members>Course__c.Main_Practitioner_Name</members>
         <members>Course__c.Notes__c</members>
         <members>Course__c.Places__c</members>
         <members>Course__c.Postnatal_End_Date__c</members>
@@ -86,6 +87,7 @@
         <members>Session__c.Duration__c</members>
         <members>Session__c.Duration_Formatted__c</members>
         <members>Session__c.Notes__c</members>
+        <members>Session__c.Practitoner_Name__c</members>
         <members>Session__c.Practitioner__c</members>
         <members>Session__c.Session_Type__c</members>
         <members>Session__c.Website_Text__c</members>
