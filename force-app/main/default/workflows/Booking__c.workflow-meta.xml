@@ -57,20 +57,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
-        <fullName>Booking%3ASendOfferEmail</fullName>
-        <actions>
-            <name>SendEmailToClient</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Booking__c.Status__c</field>
-            <operation>equals</operation>
-            <value>Reserved</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Booking%3ASetExpirationDate%3C10Days</fullName>
         <actions>
             <name>SetExpDate</name>

@@ -138,12 +138,14 @@
     </types>
     <types>
         <members>Account-Branch Layout</members>
+        <members>Account-Branch Read Only Layout</members>
         <members>Account-Organization Lightning Layout</members>
         <members>Asset-Practitioner Asset Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
         <members>Contact-Practitioner Page Layout</members>
+        <members>Contact-Practitioner Read Only Layout</members>
         <members>Course_Assignment__c-Course Assignment Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
@@ -258,7 +260,6 @@
         <name>WorkflowFieldUpdate</name>
     </types>
     <types>
- 		<members>Booking__c.Booking%3ASendOfferEmail</members>
         <members>Booking__c.Booking%3ASetExpirationDate%3C10Days</members>
         <members>Booking__c.Booking%3ASetExpirationDate10Days</members>
         <members>Booking__c.Booking%3ASetExpirationDate5Days</members>

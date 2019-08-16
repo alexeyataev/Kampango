@@ -11,27 +11,13 @@ const BOOKING_FIELDS = [
         'Booking__c.Course__c',
         'Booking__c.First_Name__c',
         'Booking__c.Last_Name__c',
-        'Booking__c.Fee_Override__c',
+        'Booking__c.Final_Fee__c',
         'Booking__c.Course__r.Sub_Type__c',
-        'Booking__c.Course__r.Main_Venue__r.Town__c',
-        'Booking__c.Course__r.Main_Venue__r.Name'
+        'Booking__c.Course__r.Branch__r.Name',
+        'Booking__c.Course__r.Main_Venue__r.Name',
+        'Booking__c.Course__r.Start_Date__c',
+        'Booking__c.Course__r.End_Date__c'
     ];
-
-const MONTHS = new Map ([
-    [0, 'January'],
-    [1, 'February'],
-    [2, 'March'],
-    [3, 'April'],
-    [4, 'May'],
-    [5, 'June'],
-    [6, 'July'],
-    [7, 'August'],
-    [8, 'September'],
-    [9, 'October'],
-    [10, 'November'],
-    [11, 'December']
-]);
-
 
 export default class CourseDetailsComponent extends LightningElement {
 
@@ -53,35 +39,6 @@ export default class CourseDetailsComponent extends LightningElement {
     allVenues;
     @api stylesLoaded = false;
     @api get valuesLoaded(){return this.bookingId && this.courseId && this.stylesLoaded;}
-    @wire (getRecord, {recordId: '$bookingId', fields: BOOKING_FIELDS})
-    retrieveRecord({error, data}){
-        if(error){
-            let message = 'Unknown error';
-            if (Array.isArray(error.body)) {
-                message = error.body.map(e => e.message).join(', ');
-            } else if (typeof error.body.message === 'string') {
-                message = error.body.message;
-            }
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Error loading booking',
-                    message,
-                    variant: 'error',
-                }),
-            );
-        } else if (data) {
-            this.bookingRecord = data;
-            this.expirationDate = this.bookingRecord.fields.Reservation_Expiry_Date__c.value;
-            this.firstName = this.bookingRecord.fields.First_Name__c.value;
-            this.lastName = this.bookingRecord.fields.Last_Name__c.value;
-            this.courseId = this.bookingRecord.fields.Course__c.value;
-            this.courseFee = this.bookingRecord.fields.Fee_Override__c.value;
-            this.coursetype = this.bookingRecord.fields.Course__r.value.fields.Sub_Type__c.value;
-            this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Town__c.value;
-            this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
-            this.retrieveSessions(this.courseId);
-        }
-    } 
     sessionColumns = [
         {
             fieldName: 'row',
@@ -122,7 +79,44 @@ export default class CourseDetailsComponent extends LightningElement {
                 timeZone: 'Europe/London'
             }
         }
-    ];   
+    ];
+
+    @wire (getRecord, {recordId: '$bookingId', fields: BOOKING_FIELDS})
+    retrieveRecord({error, data}){
+        if(error){
+            let message = 'Unknown error';
+            if (Array.isArray(error.body)) {
+                message = error.body.map(e => e.message).join(', ');
+            } else if (typeof error.body.message === 'string') {
+                message = error.body.message;
+            }
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error loading booking',
+                    message,
+                    variant: 'error',
+                }),
+            );
+        } else if (data) {
+            let date;
+            this.bookingRecord = data;
+            this.expirationDate = this.bookingRecord.fields.Reservation_Expiry_Date__c.value;
+            this.firstName = this.bookingRecord.fields.First_Name__c.value;
+            this.lastName = this.bookingRecord.fields.Last_Name__c.value;
+            this.courseId = this.bookingRecord.fields.Course__c.value;
+            this.courseFee = this.bookingRecord.fields.Final_Fee__c.value;
+            this.coursetype = this.bookingRecord.fields.Course__r.value.fields.Sub_Type__c.value;
+            this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Branch__r.value.fields.Name.value;
+            this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
+            date = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
+            date = new Date(date);
+            this.startDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
+            date = this.bookingRecord.fields.Course__r.value.fields.End_Date__c.value;
+            date = new Date(date);
+            this.endDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
+            this.retrieveSessions(this.courseId);
+        }
+    }
 
     retrieveSessions(id){
         retrieveRelatedSessions({courseId: id})
@@ -199,48 +193,43 @@ export default class CourseDetailsComponent extends LightningElement {
     }
 
     formatSessions(){
-        var array = this.sessions;
-        var monthDay;
-        let start, end;
+        let array = this.sessions,
+            monthDay;
         array.forEach(
-            function(row, index){
+            (row) => {
                 let date = new Date(row.dateFormatted);
                 monthDay = date.getDate().toString();
-                switch(monthDay.substring(monthDay.length - 1, monthDay.length)){
-                    case '1':
-                        if(monthDay !== '11'){
-                            monthDay += 'st';
-                        } else
-                            monthDay += 'th';
-                        break;
-                    case '2':
-                        if(monthDay !== '12'){
-                            monthDay += 'nd';
-                        } else
-                            monthDay += 'th';
-                        break;
-                    case '3':
-                        if(monthDay !== '13'){
-                            monthDay += 'rd';
-                        } else
-                            monthDay += 'th';
-                        break;
-                    default:
-                        monthDay += 'th';
-                }
-                let dateStr = monthDay + ' ' + MONTHS.get(date.getMonth());
+                let dateStr = monthDay + ' ' + date.toLocaleString('default', { month: 'long' });
                 row.dateFormatted = dateStr;
-                if(index === 0){
-                    start = dateStr;
-                }
-                if(index === (array.length - 1)){
-                    end = dateStr;
-                }
             }
         );
-        this.startDate = start;
-        this.endDate = end;
         this.formattedSessions = array;
+    }
+
+    addDateOrdinal(monthDay){
+        switch(monthDay.substring(monthDay.length - 1, monthDay.length)){
+            case '1':
+                if(monthDay !== '11'){
+                    monthDay += 'st';
+                } else
+                    monthDay += 'th';
+                break;
+            case '2':
+                if(monthDay !== '12'){
+                    monthDay += 'nd';
+                } else
+                    monthDay += 'th';
+                break;
+            case '3':
+                if(monthDay !== '13'){
+                    monthDay += 'rd';
+                } else
+                    monthDay += 'th';
+                break;
+            default:
+                monthDay += 'th';
+        }
+        return monthDay;
     }
 
     formatVenues(array){

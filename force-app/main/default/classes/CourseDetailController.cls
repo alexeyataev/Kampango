@@ -8,6 +8,7 @@ public with sharing class CourseDetailController {
                 Venue__r.County__c, Venue__c, Venue__r.Name
             FROM Session__c
             WHERE Course__c = :courseId
+            AND (Type__c != 'Reunion' OR (Type__c = 'Reunion' AND Status__c != 'Provisional'))
             ORDER BY Date__c, Start__c
         ];
         return sessions;
