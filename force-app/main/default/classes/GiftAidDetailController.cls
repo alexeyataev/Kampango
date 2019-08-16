@@ -2,11 +2,14 @@ public with sharing class GiftAidDetailController {
     private static final String PARENT_PAY = 'parent';
     private static final String PARTNER_PAY = 'partner';
 
-    @AuraEnabled
-    public static void createGiftAidDeclaration(String value, Id bookingId) {
-        if (value == PARENT_PAY) {
+    @InvocableMethod
+    public static void createGiftAidDeclaration(List<List<String>> flowParams) {
+        String bookingId = flowParams[0][0];
+        String giftAidPayValue = flowParams[0][1];
+
+        if (giftAidPayValue == PARENT_PAY) {
             parentPay(bookingId);
-        } else if (value == PARTNER_PAY) {
+        } else if (giftAidPayValue == PARTNER_PAY) {
             partnerPay(bookingId);
         }
     }

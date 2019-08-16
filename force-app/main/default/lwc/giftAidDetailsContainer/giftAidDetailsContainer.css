@@ -1,48 +1,6 @@
-body {
-   font-family: 'Raleway', arial, sans-serif;
-}
-
 .headerBottomLine {
    width: 100%;
    height: .6rem;
    background: #34A335;
    clip-path: polygon(0 30%, 0 0, 100% 0, 100% 100%);
-}
-
-.header_text {
-   font-size: 2rem;
-}
-
-.payButton {
-   border: none;
-   background: #34a335;
-   border-radius: 20px;
-   font-size: .9rem;
-   width: 7rem;
-   height: 2.5rem;
-   cursor: pointer;
-   color: white;
-   outline: none;
-}
-
-.payButton:hover {
-   background: #42b242;
-}
-
-.radioButtonContainer label {
-   width: 20px;
-   height: 20px;
-   background: white;
-   display: block;
-   border: 1px solid black;
-   border-radius: 50%;
-   cursor: pointer;
-}
-
-.radioButtonContainer input {
-   display: none;
-}
-
-input:checked+label {
-   background: #34a335;
 }

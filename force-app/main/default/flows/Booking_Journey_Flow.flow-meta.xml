@@ -1,5 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Gift_Aid_Params</name>
+        <label>Send Params to Apex Class</label>
+        <locationX>424</locationX>
+        <locationY>374</locationY>
+        <actionName>GiftAidDetailController</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Details_Payment</targetReference>
+        </connector>
+        <inputParameters>
+            <name>flowParams</name>
+            <value>
+                <elementReference>Params_List</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Gift_Aid_Data_Parent</name>
+        <label>Gift Aid Data Parent</label>
+        <locationX>501</locationX>
+        <locationY>227</locationY>
+        <assignmentItems>
+            <assignToReference>Params_List</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Params_List</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>INDIVIDUAl_DECLARATION</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Gift_Aid_Params</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Gift_Aid_Data_Partner</name>
+        <label>Gift Aid Data Partner</label>
+        <locationX>343</locationX>
+        <locationY>225</locationY>
+        <assignmentItems>
+            <assignToReference>Params_List</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Params_List</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>JOINT_DECLARATION</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Gift_Aid_Params</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>Decline_Gift_Aid_Choice</name>
+        <choiceText>&lt;u style=&quot;color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;Decline Gift Aid&lt;/u&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>decline</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Individual_Declaration_Choice</name>
+        <choiceText>&lt;u style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);&quot;&gt;Individual declaration&lt;/u&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;{!Individual_Declaration_Template}﻿&lt;/span&gt;&lt;/p&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <elementReference>INDIVIDUAl_DECLARATION</elementReference>
+        </value>
+    </choices>
+    <choices>
+        <name>Joint_Declaration_Choice</name>
+        <choiceText>&lt;u style=&quot;font-size: 14px; background-color: rgb(249, 249, 250); color: rgb(0, 0, 0);&quot;&gt;Joint declaration&lt;/u&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;{!Joint_Declaration_Template}&lt;/span&gt;&lt;/p&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <elementReference>JOINT_DECLARATION</elementReference>
+        </value>
+    </choices>
+    <constants>
+        <name>INDIVIDUAl_DECLARATION</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>individual</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>JOINT_DECLARATION</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>joint</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <name>Gift_Aid_Decision</name>
+        <label>Gift Aid Decision</label>
+        <locationX>492</locationX>
+        <locationY>73</locationY>
+        <defaultConnector>
+            <targetReference>Details_Payment</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Individual_is_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Individual_Declaration_Choice</leftValueReference>
+                <operator>WasSelected</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Gift_Aid_Data_Parent</targetReference>
+            </connector>
+            <label>Individual is True</label>
+        </rules>
+        <rules>
+            <name>Joint_is_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Joint_Declaration_Choice</leftValueReference>
+                <operator>WasSelected</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Gift_Aid_Data_Partner</targetReference>
+            </connector>
+            <label>Joint is True</label>
+        </rules>
+    </decisions>
     <interviewLabel>Booking {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Flow</label>
     <processMetadataValues>
@@ -16,22 +157,105 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <screens>
-        <name>Screen_1</name>
-        <label>Screen 1</label>
-        <locationX>210</locationX>
-        <locationY>50</locationY>
-        <allowBack>true</allowBack>
+        <name>Course_Summary_Details_Screen</name>
+        <label>Course Summary Details Screen</label>
+        <locationX>141</locationX>
+        <locationY>64</locationY>
+        <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Gift_Aid_Screen</targetReference>
+        </connector>
         <fields>
-            <name>Course_Summary</name>
+            <name>Course_Summary_Details</name>
             <extensionName>c:CourseDetailComponent</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <isRequired>true</isRequired>
         </fields>
-        <showFooter>false</showFooter>
+        <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Screen_1</startElementReference>
+    <screens>
+        <name>Details_Payment</name>
+        <label>Details Payment</label>
+        <locationX>758</locationX>
+        <locationY>72</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>DetailsPaymentDescription</name>
+            <fieldText>&lt;p&gt;Payment Details&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Gift_Aid_Screen</name>
+        <label>Gift Aid Screen</label>
+        <locationX>270</locationX>
+        <locationY>64</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Gift_Aid_Decision</targetReference>
+        </connector>
+        <fields>
+            <name>Gift_Aid_Header_Description</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 24px;&quot;&gt; NCT membership subscriptions qualify for Gift Aid&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Gift_Aid_Description</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 16px; color: rgb(60, 60, 59);&quot;&gt;Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra cost to you. This means that for every £1 you give, we will receive an extra 25p from HM Revenue and Customs.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Gift_Aid_Chose</name>
+            <choiceReferences>Individual_Declaration_Choice</choiceReferences>
+            <choiceReferences>Joint_Declaration_Choice</choiceReferences>
+            <choiceReferences>Decline_Gift_Aid_Choice</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Would you like to add Gift Aid?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Gift_Aid_Description_Footer</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(60, 60, 59); font-size: 16px;&quot;&gt;I understand that if we individually pay less Income Tax and/or Capital Gains tax than the amount of Gift Aid claimed on all our donations in that tax year, it is our responsibility to pay any difference. Please let us know if you want to cancel this declaration, nominate a different start date for this declaration, change your home address or no longer pay sufficient tax by contacting our enquiries team on &lt;/span&gt;&lt;a href=&quot;mailto:enquiries@nct.org.uk&quot; target=&quot;_blank&quot; style=&quot;color: rgb(80, 88, 199); font-size: 16px;&quot;&gt;enquiries@nct.org.uk&lt;/a&gt;&lt;span style=&quot;color: rgb(80, 88, 199); font-size: 16px;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <startElementReference>Course_Summary_Details_Screen</startElementReference>
     <status>Active</status>
+    <textTemplates>
+        <name>Individual_Declaration_Template</name>
+        <text>I am a UK taxpayer.  Please treat all donations and subscriptions I make or have made to NCT for the past 4 years as Gift Aid donations until further notice. </text>
+    </textTemplates>
+    <textTemplates>
+        <name>Joint_Declaration_Template</name>
+        <text>We are both UK taxpayers and I confirm I am signing on both individuals behalf. Please treat all donations and subscriptions we make or have made to NCT for the past 4 years as Gift Aid donations until further notice.</text>
+    </textTemplates>
+    <variables>
+        <name>bookingId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue/>
+        </value>
+    </variables>
+    <variables>
+        <name>Params_List</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>
