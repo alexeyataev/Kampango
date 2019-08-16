@@ -11,14 +11,9 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Commercial</fullName>
+                <fullName>Commercial/Community</fullName>
                 <default>false</default>
-                <label>Commercial</label>
-            </value>
-            <value>
-                <fullName>Community</fullName>
-                <default>false</default>
-                <label>Community</label>
+                <label>Commercial/Community</label>
             </value>
             <value>
                 <fullName>Practitioner Home</fullName>
