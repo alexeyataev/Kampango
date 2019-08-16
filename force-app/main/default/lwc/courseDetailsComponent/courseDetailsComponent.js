@@ -50,8 +50,7 @@ export default class CourseDetailsComponent extends LightningElement {
             fieldName: 'Date__c',
             type: 'date',
             typeAttributes:{
-                weekday: 'short'//,
-                //timeZone: 'Europe/London'
+                weekday: 'short'
             }
         },
         {
