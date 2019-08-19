@@ -12,7 +12,14 @@ public with sharing class TestSessionBuilder {
 	private Venue__c venue;
 	private Course__c course;
 	private Room__c room;
+	private Contact practitioner;
 	private Boolean insertRecord = false;
+
+	public TestSessionBuilder withPractitioner(Contact practitioner)
+	{
+		this.practitioner = practitioner;
+		return this;
+	}
 
 	public TestSessionBuilder withName(String name)
 	{
@@ -56,6 +63,12 @@ public with sharing class TestSessionBuilder {
 		return this;
 	}
 
+	public TestSessionBuilder withPractitionerLicence(Licence_To_Practice__c practitionerLicence)
+	{
+		this.practitionerLicence = practitionerLicence;
+		return this;
+	}
+
 	public TestSessionBuilder withVenue(Venue__c venue)
 	{
 		this.venue = venue;
@@ -92,7 +105,10 @@ public with sharing class TestSessionBuilder {
 			Specific_Attendee_Type__c = this.specificAttendeeType,
 			Venue__c = this.venue.Id,
 			Room__c = this.room.Id,
-			Status__c = this.status
+			Status__c = this.status,
+			Practitioner__c = this.practitioner.Id,
+			Practitioner_Licence__c = this.practitionerLicence.Id
+
 		);
 
 		if(insertRecord)

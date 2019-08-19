@@ -25,10 +25,9 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Practitioner Licence is blank</label>
+            <label>Practitioner is blank</label>
         </rules>
     </decisions>
-    <description>If Practitioner Licence is blank Main Practitioner Licence from Course will be set</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -40,8 +39,8 @@
         <dataType>Boolean</dataType>
         <expression>ISBLANK({!myVariable_current.Practitioner__c} )</expression>
     </formulas>
-    <interviewLabel>Update_Practitioner_Licence-4_InterviewLabel</interviewLabel>
-    <label>Update Practitioner Licence</label>
+    <interviewLabel>Update_Practitioner_on_Sessions-1_InterviewLabel</interviewLabel>
+    <label>Update Practitioner on Sessions</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -93,7 +92,7 @@
             <name>referenceTargetField</name>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>Update Practitioner Licence</label>
+        <label>Update Practitioner  and Practitioner Licence</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
         <filters>

@@ -47,8 +47,14 @@ public without sharing class TestDataFactory {
                 .WithVenue(venue)
                 .WithRoom(room)
                 .withStatus('Provisional')
+                .withPractitioner(practitioner)
+                .withPractitionerLicence(licenceToPractice)
                 .InsertRecord(true)
                 .Build());
         }
+    }
+
+    public static Session__c getSession(){
+        return [SELECT Status__c FROM Session__c LIMIT 1];
     }
 }

@@ -62,6 +62,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .WithVenue(venue)
             .WithRoom(room)
             .withStatus('Provisional')
+            .withPractitioner(practitioner)
+            .withPractitionerLicence(licenceToPractice)
             .InsertRecord(true)
             .Build();
 
@@ -88,7 +90,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        Session__c session = TestDataFactory.getSession();
         session.Status__c = 'Confirmed';
         update session;
 
@@ -100,6 +102,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Venue__c venue = [SELECT Id FROM Venue__c LIMIT 1];
         Room__c room = [SELECT Id FROM Room__c LIMIT 1];
+        Contact practitioner = [SELECT Id, LastName FROM Contact WHERE RecordType.Name = 'Practitioner' LIMIT 1];
 
         test.startTest();
 
@@ -109,6 +112,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .WithVenue(venue)
             .WithRoom(room)
             .withStatus('Provisional')
+            .withPractitioner(practitioner)
+            .withPractitionerLicence(practitionerLicence)
             .InsertRecord(true)
             .Build();
 
@@ -124,7 +129,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        Session__c session = TestDataFactory.getSession();
         session.Status__c = 'Confirmed';
         update session;
 
@@ -151,7 +156,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        Session__c session = TestDataFactory.getSession();
         session.Status__c = 'Confirmed';
         update session;
 
@@ -177,7 +182,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        Session__c session = TestDataFactory.getSession();
         session.Status__c = 'Confirmed';
         update session;
 
@@ -203,7 +208,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        Session__c session = TestDataFactory.getSession();
         session.Status__c = 'Confirmed';
         update session;
 
@@ -230,7 +235,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        Session__c session = TestDataFactory.getSession();
         session.Status__c = 'Confirmed';
         update session;
 
@@ -264,7 +269,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        Session__c session = TestDataFactory.getSession();
         session.Status__c = 'Confirmed';
         update session;
 
@@ -304,7 +309,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
-        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        Session__c session = TestDataFactory.getSession();
         session.Status__c = 'Confirmed';
         update session;
 
