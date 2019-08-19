@@ -58,12 +58,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Enquiry_PSA_First_Name__c</field>
+        <field>Booking__c.Enquiries_PSA_First_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Enquiry_PSA_Phone__c</field>
+        <field>Booking__c.Enquiries_PSA_Phone__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -74,7 +74,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Fee_Override__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Final_Fee__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -150,6 +155,11 @@
         <editable>false</editable>
         <field>Booking__c.Offer_Email_Date__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.PSA_Office__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1028,6 +1038,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Main_Venue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Number_of_Sessions__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1209,7 +1224,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Venue__c.County__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1387,6 +1402,15 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
+        <object>Account</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>Booking__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
@@ -1406,6 +1430,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Course__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Venue__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>
