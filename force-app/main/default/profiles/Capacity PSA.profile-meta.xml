@@ -1036,10 +1036,6 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Course_Assignment__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>Venue__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
