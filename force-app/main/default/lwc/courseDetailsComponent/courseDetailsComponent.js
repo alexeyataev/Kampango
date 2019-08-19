@@ -257,5 +257,4 @@ export default class CourseDetailsComponent extends LightningElement {
         this.venues = sessionMap.values();
     }
 
-
 }
