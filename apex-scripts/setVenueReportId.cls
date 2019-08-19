@@ -6,7 +6,7 @@ List<Report> venueReport = [SELECT Id
     LIMIT 1
 ];
 
-if (venueReport.size() == 0) {
+if (venueReport.size() != 1) {
     return;
 }
 
