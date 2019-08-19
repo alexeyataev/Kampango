@@ -61,12 +61,22 @@ export default class CourseDetailsComponent extends LightningElement {
         {
             label: 'Starts',
             fieldName: 'Start__c',
-            type: 'string'
+            type: 'date',
+            typeAttributes: {
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'GMT'
+            }
         },
         {
             label: 'Ends',
             fieldName: 'End__c',
-            type: 'string'
+            type: 'date',
+            typeAttributes: {
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'GMT'
+            }
         }
     ];
 
@@ -108,7 +118,6 @@ export default class CourseDetailsComponent extends LightningElement {
     }
 
     retrieveSessions(id){
-        let self = this;
         retrieveRelatedSessions({courseId: id})
         .then(data => {
             this.sessions = data.map(
@@ -116,8 +125,8 @@ export default class CourseDetailsComponent extends LightningElement {
                     return Object.assign(
                         {Date__c: row.Date__c},
                         {dateFormatted: row.Date__c},
-                        {Start__c: self.formatTime(row.Start__c)},
-                        {End__c: self.formatTime(row.End__c)},
+                        {Start__c: row.Start__c},
+                        {End__c: row.End__c},
                         {row: index + 1},
                         {id: row.Id}
                     );
@@ -247,16 +256,6 @@ export default class CourseDetailsComponent extends LightningElement {
         );
         this.venues = sessionMap.values();
     }
-    
-    formatTime(timeInMs){
-        let seconds, 
-            hours, 
-            minutes;
-        seconds = timeInMs / 1000;
-        hours = Math.trunc(seconds / 3600);
-        minutes = Math.trunc((seconds % 3600) / 60);
-        return hours + ':'+ (minutes.toString().length === 2 ? 
-            minutes : minutes.toString().padStart(2, '0'));
-    }
+
 
 }
