@@ -27,12 +27,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         practitioner = practitionerContactBuilder
             .WithRecordType(PRACTITIONER_RECORDTYPE_NAME)
             .WithAccount(branchAccount)
-            .InsertRecord(true)
-            .Build();
-
-         practitionerContactBuilder
-            .WithRecordType(PRACTITIONER_RECORDTYPE_NAME)
-            .WithAccount(branchAccount)
             .WithLastName(PRACTITIONER_LASTNAME)
             .InsertRecord(true)
             .Build();
@@ -57,6 +51,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         course = courseBuilder
             .WithAccount(branchAccount)
+            .WithPractitioner(practitioner)
             .WithLicenceToPractice(licenceToPractice)
             .InsertRecord(true)
             .Build();
@@ -65,8 +60,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         session = sessionBuilder
             .WithCourse(course)
             .WithVenue(venue)
-            .WithPractitionerLicence(licenceToPractice)
             .WithRoom(room)
+            .withStatus('Provisional')
             .InsertRecord(true)
             .Build();
 
@@ -93,6 +88,10 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
+        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        session.Status__c = 'Confirmed';
+        update session;
+
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -110,6 +109,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .WithVenue(venue)
             .WithPractitionerLicence(practitionerLicence)
             .WithRoom(room)
+            .withStatus('Provisional')
             .InsertRecord(true)
             .Build();
 
@@ -125,13 +125,17 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
+        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        session.Status__c = 'Confirmed';
+        update session;
+
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         test.startTest();
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
+        session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.Date__c = Date.today();
         update session;
 
@@ -148,13 +152,17 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
+        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        session.Status__c = 'Confirmed';
+        update session;
+
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         test.startTest();
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
+        session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.Start__c = Time.newInstance(19, 00, 0, 0);
         update session;
 
@@ -170,13 +178,17 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
+        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        session.Status__c = 'Confirmed';
+        update session;
+
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         test.startTest();
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
+        session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.End__c = Time.newInstance(20, 00, 0, 0);
         update session;
 
@@ -192,13 +204,17 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
+        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        session.Status__c = 'Confirmed';
+        update session;
+
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         test.startTest();
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
+        session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.Lunch_Break_Minutes__c = 15;
         update session;
 
@@ -215,6 +231,10 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
+        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        session.Status__c = 'Confirmed';
+        update session;
+
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -229,7 +249,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .InsertRecord(true)
             .Build();
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
+        session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.Practitioner_Licence__c = licenceToPractice.Id;
         update session;
 
@@ -244,6 +264,10 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     static void revertCourseToDraft_VenueUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
         createTriggerSystemHandlerRecord();
+
+        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        session.Status__c = 'Confirmed';
+        update session;
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -262,7 +286,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
-        Session__c session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
+        session = [SELECT Date__c FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         session.Venue__c = venue.Id;
         session.Room__c = room.Id;
         update session;
@@ -281,11 +305,15 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
+        Session__c session = [SELECT Status__c FROM Session__c LIMIT 1];
+        session.Status__c = 'Confirmed';
+        update session;
+
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
-        Session__c session = [SELECT Id FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
+        session = [SELECT Id FROM Session__c WHERE Course__c =:course.Id LIMIT 1];
         delete session;
 
         test.stopTest();
@@ -306,6 +334,14 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
 
+        List<Session__c> sessions = [SELECT Status__c FROM Session__c LIMIT 1000];
+
+        for (Session__c aSession : sessions){
+            aSession.Status__c = 'Confirmed';
+        }
+
+        update sessions;
+
         List<Course__c> coursesToTest = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
         Set<Id> courseIds = new Set<Id>();
@@ -318,11 +354,12 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         }
         update coursesToTest;
 
-        List<Session__c> session = [SELECT Id, Start__c FROM Session__c WHERE Course__c IN : courseIds];
-        for(Session__c aSession : session){
+        sessions = [SELECT Id, Start__c FROM Session__c WHERE Course__c IN : courseIds];
+
+        for(Session__c aSession : sessions){
             aSession.Start__c = Time.newInstance(12, 00, 0, 0);
         }
-        update session;
+        update sessions;
 
         test.stopTest();
 
@@ -341,6 +378,14 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         Integer sessionsToCreate = 8;
 
         TestDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
+
+        List<Session__c> sessions = [SELECT Status__c FROM Session__c LIMIT 1000];
+
+        for (Session__c aSession : sessions){
+            aSession.Status__c = 'Confirmed';
+        }
+
+        update sessions;
 
         List<Course__c> coursesToTest = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 

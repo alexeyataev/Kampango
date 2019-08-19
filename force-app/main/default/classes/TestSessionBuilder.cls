@@ -96,7 +96,6 @@ public with sharing class TestSessionBuilder {
 			Start__c = this.startTime,
 			End__c = this.endTime,
 			Specific_Attendee_Type__c = this.specificAttendeeType,
-			Practitioner_Licence__c = this.practitionerLicence.Id,
 			Venue__c = this.venue.Id,
 			Room__c = this.room.Id,
 			Status__c = this.status

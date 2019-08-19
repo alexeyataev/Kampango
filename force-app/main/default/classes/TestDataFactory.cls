@@ -4,6 +4,7 @@ public without sharing class TestDataFactory {
     public static Account account = [SELECT Id FROM Account LIMIT 1];
     public static Room__c room = [SELECT Id FROM Room__c LIMIT 1];
     public static Licence_To_Practice__c licenceToPractice = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
+    public static Contact practitioner = [SELECT Id, LastName FROM Contact WHERE RecordType.Name = 'Practitioner' LIMIT 1];
     public static List<Course__c> courses = new List<Course__c>();
     public static List<Session__c> sessions = new List<Session__c>();
 
@@ -13,6 +14,7 @@ public without sharing class TestDataFactory {
         for(Integer i = 0; i < numberOfCourses; i++){
             courses.add(courseBuilder
                 .WithAccount(account)
+                .withPractitioner(practitioner)
                 .WithLicenceToPractice(licenceToPractice)
                 .InsertRecord(true)
                 .Build());
@@ -39,12 +41,13 @@ public without sharing class TestDataFactory {
 
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
 
-        for(Integer i = 0; i < numberOfSessions; i++){
-            sessions.add( sessionBuilder
-                .WithCourse(courses[i/2])
+        for(Integer i = 0; i < numberOfSessions; i++) {
+            sessions.add(sessionBuilder
+                .WithCourse(courses[i / 2])
                 .WithVenue(venue)
-                .WithPractitionerLicence(licenceToPractice)
                 .WithRoom(room)
+                .WithPractitionerLicence(licenceToPractice)
+                .withStatus('Provisional')
                 .InsertRecord(true)
                 .Build());
         }

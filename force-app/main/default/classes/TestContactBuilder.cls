@@ -43,12 +43,17 @@ public with sharing class TestContactBuilder {
     
     public Contact build(){
     	
-    	Contact testContact = new Contact(RecordTypeId = this.recordTypeId,
-    							FirstName = this.firstName,
-    							LastName = this.lastName, AccountId =account.Id );
-    	
-    	insert testContact;
-    	
+    	Contact testContact = new Contact(
+			RecordTypeId = this.recordTypeId,
+			FirstName = this.firstName,
+			LastName = this.lastName, AccountId =account.Id
+		);
+
+		if(insertRecord)
+		{
+			insert testContact;
+		}
+
     	return testContact;
     }
 }
