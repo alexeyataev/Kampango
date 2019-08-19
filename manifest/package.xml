@@ -67,7 +67,6 @@
         <name>CustomSite</name>
     </types>
     <types>
-        <members>Course_Assignment__c</members>
         <members>Booking__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
