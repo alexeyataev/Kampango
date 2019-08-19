@@ -33,14 +33,14 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ISBLANK([Session__c].Practitioner_Licence__c ) </stringValue>
+                <stringValue>ISBLANK([Session__c].Practitioner__c ) </stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>ISBLANK({!myVariable_current.Practitioner_Licence__c} )</expression>
+        <expression>ISBLANK({!myVariable_current.Practitioner__c} )</expression>
     </formulas>
-    <interviewLabel>Update_Practitioner_Licence-1_InterviewLabel</interviewLabel>
+    <interviewLabel>Update_Practitioner_Licence-4_InterviewLabel</interviewLabel>
     <label>Update Practitioner Licence</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -143,6 +143,42 @@
             <field>Practitioner_Licence__c</field>
             <value>
                 <elementReference>myVariable_current.Course__r.Main_Practitioner_Licence__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Practitioner</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Contact</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Practitioner__c</field>
+            <value>
+                <elementReference>myVariable_current.Course__r.Main_Practitioner__c</elementReference>
             </value>
         </inputAssignments>
         <object>Session__c</object>
