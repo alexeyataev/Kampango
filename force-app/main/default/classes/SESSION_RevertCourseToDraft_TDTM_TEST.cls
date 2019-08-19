@@ -90,9 +90,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = TestDataFactory.getSession();
-        session.Status__c = 'Confirmed';
-        update session;
+        TestDataFactory.setSessionToConfirmed();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -129,9 +127,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = TestDataFactory.getSession();
-        session.Status__c = 'Confirmed';
-        update session;
+        TestDataFactory.setSessionToConfirmed();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -156,9 +152,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = TestDataFactory.getSession();
-        session.Status__c = 'Confirmed';
-        update session;
+        TestDataFactory.setSessionToConfirmed();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -182,9 +176,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = TestDataFactory.getSession();
-        session.Status__c = 'Confirmed';
-        update session;
+        TestDataFactory.setSessionToConfirmed();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -208,9 +200,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = TestDataFactory.getSession();
-        session.Status__c = 'Confirmed';
-        update session;
+        TestDataFactory.setSessionToConfirmed();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -235,9 +225,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = TestDataFactory.getSession();
-        session.Status__c = 'Confirmed';
-        update session;
+        TestDataFactory.setSessionToConfirmed();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -269,9 +257,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Session__c session = TestDataFactory.getSession();
-        session.Status__c = 'Confirmed';
-        update session;
+        TestDataFactory.setSessionToConfirmed();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -309,9 +295,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
-        Session__c session = TestDataFactory.getSession();
-        session.Status__c = 'Confirmed';
-        update session;
+        TestDataFactory.setSessionToConfirmed();
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;

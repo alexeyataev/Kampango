@@ -54,7 +54,9 @@ public without sharing class TestDataFactory {
         }
     }
 
-    public static Session__c getSession(){
-        return [SELECT Status__c FROM Session__c LIMIT 1];
+    public static void setSessionToConfirmed(){
+        Session__c session  =  [SELECT Status__c FROM Session__c LIMIT 1];
+        session.Status__c = 'Confirmed';
+        update session;
     }
 }
