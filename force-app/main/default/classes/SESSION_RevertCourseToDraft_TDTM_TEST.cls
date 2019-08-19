@@ -107,7 +107,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         session = sessionBuilder
             .WithCourse(course)
             .WithVenue(venue)
-            .WithPractitionerLicence(practitionerLicence)
             .WithRoom(room)
             .withStatus('Provisional')
             .InsertRecord(true)

@@ -56,12 +56,6 @@ public with sharing class TestSessionBuilder {
 		return this;
 	}
 
-	public TestSessionBuilder withPractitionerLicence(Licence_To_Practice__c practitionerLicence)
-	{
-		this.practitionerLicence = practitionerLicence;
-		return this;
-	}
-
 	public TestSessionBuilder withVenue(Venue__c venue)
 	{
 		this.venue = venue;

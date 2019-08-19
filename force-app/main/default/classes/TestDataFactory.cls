@@ -46,7 +46,6 @@ public without sharing class TestDataFactory {
                 .WithCourse(courses[i / 2])
                 .WithVenue(venue)
                 .WithRoom(room)
-                .WithPractitionerLicence(licenceToPractice)
                 .withStatus('Provisional')
                 .InsertRecord(true)
                 .Build());
