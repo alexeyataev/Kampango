@@ -1158,7 +1158,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Practitoner_Name__c</field>
+        <field>Session__c.Practitoner__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -348,7 +348,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Main_Practitioner_Name__c</field>
+        <field>Course__c.Main_Practitioner__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
