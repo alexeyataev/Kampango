@@ -1,3 +1,0 @@
-<aura:component implements="lightning:availableForFlowScreens" access="global">
-    <c:courseDetailsComponent/>
-</aura:component>
