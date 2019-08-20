@@ -64,7 +64,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset.ContactId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
