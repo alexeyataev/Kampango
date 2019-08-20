@@ -958,11 +958,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Bracket_Course__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Course__c.Break_Even_Number_Of_Places__c</field>
         <readable>false</readable>
     </fieldPermissions>
