@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "c/courseDetailsComponent": [
+                "courseDetailsComponent/courseDetailsComponent.js"
+            ],
+            "c/failurePaymentPage": [
+                "failurePaymentPage/failurePaymentPage.js"
+            ],
+            "c/giftAidDetailsContainer": [
+                "giftAidDetailsContainer/giftAidDetailsContainer.js"
+            ],
+            "c/successPaymentPage": [
+                "successPaymentPage/successPaymentPage.js"
+            ]
+        },
+        "experimentalDecorators": true
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}
