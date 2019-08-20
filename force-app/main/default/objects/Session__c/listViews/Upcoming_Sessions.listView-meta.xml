@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Upcoming_Sessions</fullName>
-    <columns>NAME</columns>
+    <columns>Date__c</columns>
+    <columns>Day_of_Week__c</columns>
+    <columns>Start__c</columns>
+    <columns>End__c</columns>
+    <columns>Venue__c</columns>
+    <columns>PSA_Area__c</columns>
+    <columns>Course__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Date__c</field>
