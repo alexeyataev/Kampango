@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Gift_Aid_Params</name>
         <label>Send Params to Apex Class</label>
-        <locationX>424</locationX>
-        <locationY>374</locationY>
+        <locationX>538</locationX>
+        <locationY>464</locationY>
         <actionName>GiftAidDetailController</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -20,8 +20,8 @@
     <assignments>
         <name>Gift_Aid_Data_Parent</name>
         <label>Gift Aid Data Parent</label>
-        <locationX>501</locationX>
-        <locationY>227</locationY>
+        <locationX>129</locationX>
+        <locationY>444</locationY>
         <assignmentItems>
             <assignToReference>Params_List</assignToReference>
             <operator>Add</operator>
@@ -43,8 +43,8 @@
     <assignments>
         <name>Gift_Aid_Data_Partner</name>
         <label>Gift Aid Data Partner</label>
-        <locationX>343</locationX>
-        <locationY>225</locationY>
+        <locationX>232</locationX>
+        <locationY>381</locationY>
         <assignmentItems>
             <assignToReference>Params_List</assignToReference>
             <operator>Add</operator>
@@ -65,7 +65,7 @@
     </assignments>
     <choices>
         <name>Decline_Gift_Aid_Choice</name>
-        <choiceText>&lt;u style=&quot;color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;Decline Gift Aid&lt;/u&gt;</choiceText>
+        <choiceText>&lt;b style=&quot;color: rgb(85, 85, 85); font-size: 14px;&quot;&gt;Decline Gift Aid&lt;/b&gt;</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>decline</stringValue>
@@ -73,7 +73,7 @@
     </choices>
     <choices>
         <name>Individual_Declaration_Choice</name>
-        <choiceText>&lt;u style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);&quot;&gt;Individual declaration&lt;/u&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;{!Individual_Declaration_Template}﻿&lt;/span&gt;&lt;/p&gt;</choiceText>
+        <choiceText>&lt;b style=&quot;color: rgb(85, 85, 85); font-size: 14px;&quot;&gt;{!Individual_Declaration_Description_Template_1}&lt;/b&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;{!Individual_Declaration_Description_Template_2}﻿&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</choiceText>
         <dataType>String</dataType>
         <value>
             <elementReference>INDIVIDUAl_DECLARATION</elementReference>
@@ -81,7 +81,7 @@
     </choices>
     <choices>
         <name>Joint_Declaration_Choice</name>
-        <choiceText>&lt;u style=&quot;font-size: 14px; background-color: rgb(249, 249, 250); color: rgb(0, 0, 0);&quot;&gt;Joint declaration&lt;/u&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;{!Joint_Declaration_Template}&lt;/span&gt;&lt;/p&gt;</choiceText>
+        <choiceText>&lt;b style=&quot;color: rgb(85, 85, 85); font-size: 14px;&quot;&gt;{!Join_Declaration_Description_Template_1}&lt;/b&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;{!Joint_Declaration_Description_Template_2}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</choiceText>
         <dataType>String</dataType>
         <value>
             <elementReference>JOINT_DECLARATION</elementReference>
@@ -91,21 +91,21 @@
         <name>INDIVIDUAl_DECLARATION</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>individual</stringValue>
+            <stringValue>parent</stringValue>
         </value>
     </constants>
     <constants>
         <name>JOINT_DECLARATION</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>joint</stringValue>
+            <stringValue>partner</stringValue>
         </value>
     </constants>
     <decisions>
         <name>Gift_Aid_Decision</name>
         <label>Gift Aid Decision</label>
-        <locationX>492</locationX>
-        <locationY>73</locationY>
+        <locationX>352</locationX>
+        <locationY>247</locationY>
         <defaultConnector>
             <targetReference>Details_Payment</targetReference>
         </defaultConnector>
@@ -156,16 +156,38 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Booking_Record</name>
+        <label>Get Booking Record</label>
+        <locationX>319</locationX>
+        <locationY>51</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Gift_Aid_Screen</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </filters>
+        <object>Booking__c</object>
+        <outputReference>Current_Booking_Record</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>First_Name_Partner__c</queriedFields>
+        <queriedFields>Last_Name_Partner__c</queriedFields>
+    </recordLookups>
     <screens>
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>
-        <locationX>141</locationX>
-        <locationY>64</locationY>
+        <locationX>187</locationX>
+        <locationY>51</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Gift_Aid_Screen</targetReference>
+            <targetReference>Get_Booking_Record</targetReference>
         </connector>
         <fields>
             <name>Course_Summary_Details</name>
@@ -179,14 +201,14 @@
     <screens>
         <name>Details_Payment</name>
         <label>Details Payment</label>
-        <locationX>758</locationX>
-        <locationY>72</locationY>
-        <allowBack>true</allowBack>
+        <locationX>708</locationX>
+        <locationY>81</locationY>
+        <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <fields>
             <name>DetailsPaymentDescription</name>
-            <fieldText>&lt;p&gt;Payment Details&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Payment Details:&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -195,9 +217,9 @@
     <screens>
         <name>Gift_Aid_Screen</name>
         <label>Gift Aid Screen</label>
-        <locationX>270</locationX>
-        <locationY>64</locationY>
-        <allowBack>true</allowBack>
+        <locationX>452</locationX>
+        <locationY>101</locationY>
+        <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
@@ -210,7 +232,7 @@
         </fields>
         <fields>
             <name>Gift_Aid_Description</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 16px; color: rgb(60, 60, 59);&quot;&gt;Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra cost to you. This means that for every £1 you give, we will receive an extra 25p from HM Revenue and Customs.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 16px; color: rgb(86, 144, 42);&quot;&gt;Please tick the Gift Aid declaration if application and click on Continue.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(60, 60, 59);&quot;&gt;Ticking the Gift Aid means NCT can get the most out of your membership donation, at no extra cost to you. &lt;/span&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(60, 60, 59);&quot;&gt;This means for every &lt;/b&gt;£&lt;b style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(60, 60, 59);&quot;&gt;1 you give, we will receive an extra 25p of Gift Aid&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(60, 60, 59);&quot;&gt;. Gift Aid is reclaimed by the charity from the tax you pay for the current tax year. Your address is needed to indentify you as acurrent UK taxpayer.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(60, 60, 59);&quot;&gt;The first member doesn&#39;t have to be the person who pays for Membership. However, to qualify for Gift Aid, the member who pays must also pay income tax or capital gains tax to at least equal the amount that NCT will claim in the tax year.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); font-size: 16px; color: rgb(85, 85, 85);&quot;&gt;Your declaration:&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -219,14 +241,9 @@
             <choiceReferences>Joint_Declaration_Choice</choiceReferences>
             <choiceReferences>Decline_Gift_Aid_Choice</choiceReferences>
             <dataType>String</dataType>
-            <fieldText>Would you like to add Gift Aid?</fieldText>
+            <defaultSelectedChoiceReference>Decline_Gift_Aid_Choice</defaultSelectedChoiceReference>
             <fieldType>RadioButtons</fieldType>
             <isRequired>false</isRequired>
-        </fields>
-        <fields>
-            <name>Gift_Aid_Description_Footer</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(60, 60, 59); font-size: 16px;&quot;&gt;I understand that if we individually pay less Income Tax and/or Capital Gains tax than the amount of Gift Aid claimed on all our donations in that tax year, it is our responsibility to pay any difference. Please let us know if you want to cancel this declaration, nominate a different start date for this declaration, change your home address or no longer pay sufficient tax by contacting our enquiries team on &lt;/span&gt;&lt;a href=&quot;mailto:enquiries@nct.org.uk&quot; target=&quot;_blank&quot; style=&quot;color: rgb(80, 88, 199); font-size: 16px;&quot;&gt;enquiries@nct.org.uk&lt;/a&gt;&lt;span style=&quot;color: rgb(80, 88, 199); font-size: 16px;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -234,11 +251,19 @@
     <startElementReference>Course_Summary_Details_Screen</startElementReference>
     <status>Active</status>
     <textTemplates>
-        <name>Individual_Declaration_Template</name>
-        <text>I am a UK taxpayer.  Please treat all donations and subscriptions I make or have made to NCT for the past 4 years as Gift Aid donations until further notice. </text>
+        <name>Individual_Declaration_Description_Template_1</name>
+        <text>I want to take out paid NCT membership and I want to Gift Aid this donation and any donations I make in the future or have made in the past 4 years to NCT.</text>
     </textTemplates>
     <textTemplates>
-        <name>Joint_Declaration_Template</name>
+        <name>Individual_Declaration_Description_Template_2</name>
+        <text>I am a UK taxpayer and understand that if I pay less Income Tax and/or Capital Gains Tax than the amount of Gift Aid claimed on all my donations in that year it is my responsibility to pay any.</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Join_Declaration_Description_Template_1</name>
+        <text>{!Current_Booking_Record.First_Name_Partner__c} {!Current_Booking_Record.Last_Name_Partner__c}  wants to take out NCT membership and they want to Gift Aid this donation and any donations they make in the future or have made in the past 4 years to NCT.</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Joint_Declaration_Description_Template_2</name>
         <text>We are both UK taxpayers and I confirm I am signing on both individuals behalf. Please treat all donations and subscriptions we make or have made to NCT for the past 4 years as Gift Aid donations until further notice.</text>
     </textTemplates>
     <variables>
@@ -250,6 +275,14 @@
         <value>
             <stringValue/>
         </value>
+    </variables>
+    <variables>
+        <name>Current_Booking_Record</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Booking__c</objectType>
     </variables>
     <variables>
         <name>Params_List</name>
