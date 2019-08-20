@@ -353,7 +353,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Contact.Test_Practitioner_Schedule_of_Sessions__c</field>
+        <field>Contact.Schedule_of_Sessions__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -89,7 +89,7 @@
         <members>Contact.Practitioner_Re_Registration_Date__c</members>
         <members>Contact.Secondary_Email__c</members>
         <members>Contact.Second_Home_PSA__c</members>
-        <members>Contact.Test_Practitioner_Schedule_of_Sessions__c</members>
+        <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
         <name>CustomField</name>
     </types>
@@ -193,12 +193,12 @@
     <types>
         <members>Capacity_PSA</members>
         <members>Capacity_PSA/Venue_Schedule</members>
-        <members>Capacity_PSA/Test_Practitioner_Schedule_of_Session</members>
+        <members>Capacity_PSA/Schedule_of_Sessions</members>
         <name>Report</name>
     </types>
     <types>
         <members>Sessions_on_venues</members>
-        <members>Test_Practitioner_Schedule_of_Sessions</members>
+        <members>Schedule_of_Sessions</members>
         <name>ReportType</name>
     </types>
     <types>

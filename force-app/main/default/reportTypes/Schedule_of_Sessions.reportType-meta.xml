@@ -16,7 +16,7 @@
         <outerJoin>true</outerJoin>
         <relationship>Licences_To_Practice__r</relationship>
     </join>
-    <label>Test Practitioner Schedule of Sessions</label>
+    <label>Schedule of Sessions</label>
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>

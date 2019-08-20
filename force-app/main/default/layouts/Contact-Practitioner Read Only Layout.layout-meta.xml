@@ -41,6 +41,10 @@
                 <behavior>Readonly</behavior>
                 <field>Secondary_Email__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Schedule_of_Sessions__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

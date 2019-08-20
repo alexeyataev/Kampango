@@ -43,7 +43,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Test_Practitioner_Schedule_of_Sessions__c</field>
+                <field>Schedule_of_Sessions__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
