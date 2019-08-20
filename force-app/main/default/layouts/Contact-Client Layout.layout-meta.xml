@@ -265,6 +265,10 @@
     </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
+        <relatedList>gaid__Gift_Aid_Declaration__c.gaid__Contact__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <relatedList>npe4__Relationship__c.npe4__Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
