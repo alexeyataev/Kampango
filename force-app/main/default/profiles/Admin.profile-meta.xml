@@ -356,6 +356,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contact.Schedule_of_Sessions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.Total_Open_Bookings__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -372,11 +377,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Additional_Offer_Information__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Bracket_Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

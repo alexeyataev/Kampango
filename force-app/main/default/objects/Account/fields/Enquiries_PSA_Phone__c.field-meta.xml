@@ -5,5 +5,6 @@
     <label>Enquiries PSA Phone</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
     <type>Phone</type>
 </CustomField>
