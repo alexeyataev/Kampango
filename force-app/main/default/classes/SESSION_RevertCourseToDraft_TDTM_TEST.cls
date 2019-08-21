@@ -90,18 +90,18 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
         TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
 
-        Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         Licence_To_Practice__c practitionerLicence = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
         Venue__c venue = [SELECT Id FROM Venue__c LIMIT 1];
         Room__c room = [SELECT Id FROM Room__c LIMIT 1];
-        Contact practitioner = [SELECT LastName FROM Contact WHERE RecordType.Name = 'Practitioner' LIMIT 1];
+        Contact practitioner = [SELECT Id FROM Contact WHERE RecordType.Name = 'Practitioner' LIMIT 1];
 
         test.startTest();
 
@@ -128,11 +128,11 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
         TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
 
-        Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
@@ -156,11 +156,11 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
         TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
 
-        Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
@@ -183,11 +183,11 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
         TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
 
-        Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
@@ -211,11 +211,11 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
         TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
 
-        Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
@@ -240,11 +240,11 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
         TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
 
-        Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
@@ -277,11 +277,11 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
         TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
 
-        Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
@@ -317,11 +317,11 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
         TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
 
-        Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
@@ -336,7 +336,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
     }
 
-
     @isTest
     static void revertCourseToDraft_BulkSessionsChanged_CourseStatusIsRevertedToDraft() {
 
@@ -347,7 +346,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
 
-        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1000]);
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1000]);
 
         TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
 
@@ -386,7 +385,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
 
-        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1000]);
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1000]);
 
         TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
 
