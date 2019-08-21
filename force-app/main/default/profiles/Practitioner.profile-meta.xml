@@ -182,6 +182,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.PSA_Office__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Partner_Contact__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -268,11 +273,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Additional_Offer_Information__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Bracket_Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -458,6 +458,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Lunch_Break_Minutes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

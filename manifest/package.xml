@@ -47,9 +47,11 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Account</members>
         <members>Booking__c</members>
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
+        <members>Course_Settings__c</members>
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
@@ -72,15 +74,6 @@
         <name>CustomTab</name>
     </types>
     <types>
-        <members>Account.Account_Number__c</members>
-        <members>Account.Billing_Email__c</members>
-        <members>Account.Capacity_PSA__c</members>
-        <members>Account.Capacity_PSA_Email__c</members>
-        <members>Account.Capacity_PSA_Phone__c</members>
-        <members>Account.Enquiries_PSA__c</members>
-        <members>Account.Enquiries_PSA_Email__c</members>
-        <members>Account.Enquiries_PSA_Phone__c</members>
-        <members>Account.PSA_Area__c</members>
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
@@ -93,7 +86,9 @@
         <members>Contact.Practitioner_Re_Registration_Date__c</members>
         <members>Contact.Secondary_Email__c</members>
         <members>Contact.Second_Home_PSA__c</members>
+        <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -200,10 +195,12 @@
     <types>
         <members>Capacity_PSA</members>
         <members>Capacity_PSA/Venue_Schedule</members>
+        <members>Capacity_PSA/Schedule_of_Sessions</members>
         <name>Report</name>
     </types>
     <types>
         <members>Sessions_on_venues</members>
+        <members>Schedule_of_Sessions</members>
         <name>ReportType</name>
     </types>
     <types>

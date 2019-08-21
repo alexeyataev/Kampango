@@ -59,6 +59,7 @@
         <members>Course__c.Antenatal_Sessions__c</members>
         <members>Course__c.Available_Places__c</members>
         <members>Course__c.Booked_Places__c</members>
+        <members>Course__c.Bracket_Course__c</members>
         <members>Course__c.Breastfeeding_Sessions__c</members>
         <members>Course__c.Confirmation_Email_Text__c</members>
         <members>Course__c.Course_Index__c</members>
