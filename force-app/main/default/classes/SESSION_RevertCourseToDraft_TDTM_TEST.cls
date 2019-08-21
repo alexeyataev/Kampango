@@ -90,17 +90,18 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        TestDataFactory.setSessionToConfirmed();
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+
+        TestDataFactory.setSessionToConfirmed(sessionsMap.keySet());
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         Licence_To_Practice__c practitionerLicence = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
-
         Venue__c venue = [SELECT Id FROM Venue__c LIMIT 1];
         Room__c room = [SELECT Id FROM Room__c LIMIT 1];
-        Contact practitioner = [SELECT Id, LastName FROM Contact WHERE RecordType.Name = 'Practitioner' LIMIT 1];
+        Contact practitioner = [SELECT LastName FROM Contact WHERE RecordType.Name = 'Practitioner' LIMIT 1];
 
         test.startTest();
 
@@ -127,7 +128,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = TestDataFactory.setSessionToConfirmed();
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+
+        TestDataFactory.setSessionToConfirmed(sessionsMap.keySet());
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -135,10 +138,10 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
-        for(Session__c aSession : sessions){
+        for(Session__c aSession : sessionsMap.values()){
             aSession.Date__c = Date.today();
         }
-        update sessions;
+        update sessionsMap.values();
 
         test.stopTest();
 
@@ -153,7 +156,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = TestDataFactory.setSessionToConfirmed();
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+
+        TestDataFactory.setSessionToConfirmed(sessionsMap.keySet());
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -161,10 +166,10 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
-        for(Session__c aSession : sessions){
+        for(Session__c aSession : sessionsMap.values()){
             aSession.Start__c = Time.newInstance(19, 00, 0, 0);
         }
-        update sessions;
+        update sessionsMap.values();
 
         test.stopTest();
 
@@ -178,7 +183,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = TestDataFactory.setSessionToConfirmed();
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+
+        TestDataFactory.setSessionToConfirmed(sessionsMap.keySet());
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -186,11 +193,11 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
-        for(Session__c aSession : sessions) {
+        for(Session__c aSession : sessionsMap.values()) {
             aSession.End__c = Time.newInstance(20, 00, 0, 0);
         }
 
-        update sessions;
+        update sessionsMap.values();
 
         test.stopTest();
 
@@ -204,7 +211,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = TestDataFactory.setSessionToConfirmed();
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+
+        TestDataFactory.setSessionToConfirmed(sessionsMap.keySet());
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -212,11 +221,11 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
-        for(Session__c aSession : sessions) {
+        for(Session__c aSession : sessionsMap.values()) {
             aSession.Lunch_Break_Minutes__c = 15;
         }
 
-        update sessions;
+        update sessionsMap.values();
 
         test.stopTest();
 
@@ -231,7 +240,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = TestDataFactory.setSessionToConfirmed();
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+
+        TestDataFactory.setSessionToConfirmed(sessionsMap.keySet());
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -239,7 +250,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
-        Contact practitioner = [SELECT Id, LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME LIMIT 1];
+        Contact practitioner = [SELECT LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME LIMIT 1];
 
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
         licenceToPractice = licenceToPracticeBuilder
@@ -247,11 +258,11 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .InsertRecord(true)
             .Build();
 
-        for(Session__c aSession : sessions) {
+        for(Session__c aSession : sessionsMap.values()) {
             aSession.Practitioner_Licence__c = licenceToPractice.Id;
         }
 
-        update sessions;
+        update sessionsMap.values();
 
 
         test.stopTest();
@@ -266,7 +277,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = TestDataFactory.setSessionToConfirmed();
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+
+        TestDataFactory.setSessionToConfirmed(sessionsMap.keySet());
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -285,12 +298,12 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
-        for(Session__c aSession : sessions) {
+        for(Session__c aSession : sessionsMap.values()) {
             aSession.Venue__c = venue.Id;
             aSession.Room__c = room.Id;
         }
 
-        update sessions;
+        update sessionsMap.values();
 
         test.stopTest();
 
@@ -304,7 +317,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = TestDataFactory.setSessionToConfirmed();
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1]);
+
+        TestDataFactory.setSessionToConfirmed(sessionsMap.keySet());
 
         Course__c course = [SELECT Type__c FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -312,7 +327,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
-        delete sessions;
+        delete sessionsMap.values();
 
         test.stopTest();
 
@@ -332,19 +347,13 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
 
-        List<Session__c> sessions = [SELECT Status__c FROM Session__c LIMIT 1000];
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1000]);
 
-        for (Session__c aSession : sessions){
-            aSession.Status__c = 'Confirmed';
-        }
+        TestDataFactory.setSessionToConfirmed(sessionsMap.keySet());
 
-        update sessions;
-
-        List<Course__c> coursesToTest = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
+        List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
         Set<Id> courseIds = new Set<Id>();
-
-        test.startTest();
 
         for (Course__c aCourse : coursesToTest){
             courseIds.add(aCourse.Id);
@@ -352,17 +361,17 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         }
         update coursesToTest;
 
-        sessions = [SELECT Id, Start__c FROM Session__c WHERE Course__c IN : courseIds];
+        test.startTest();
 
-        for(Session__c aSession : sessions){
+        for(Session__c aSession : sessionsMap.values()){
             aSession.Start__c = Time.newInstance(12, 00, 0, 0);
         }
-        update sessions;
+
+        update sessionsMap.values();
 
         test.stopTest();
 
-        List<Course__c> draftCoursesAfterUpdate = [SELECT Id, Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_DRAFT_STATUS LIMIT 10];
-
+        List<Course__c> draftCoursesAfterUpdate = [SELECT Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_DRAFT_STATUS LIMIT 10];
 
         System.assertEquals(coursesToTest.size(), draftCoursesAfterUpdate.size());
     }
@@ -377,19 +386,13 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
 
-        List<Session__c> sessions = [SELECT Status__c FROM Session__c LIMIT 1000];
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Status__c FROM Session__c LIMIT 1000]);
 
-        for (Session__c aSession : sessions){
-            aSession.Status__c = 'Confirmed';
-        }
+        TestDataFactory.setSessionToConfirmed(sessionsMap.keySet());
 
-        update sessions;
-
-        List<Course__c> coursesToTest = [SELECT Id, Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
+        List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
         Set<Id> courseIds = new Set<Id>();
-
-        test.startTest();
 
         for (Course__c aCourse : coursesToTest){
             courseIds.add(aCourse.Id);
@@ -397,17 +400,18 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         }
         update coursesToTest;
 
-        List<Session__c> session = [SELECT Id, Start__c FROM Session__c WHERE Course__c IN : courseIds];
-        delete session;
+        test.startTest();
+
+        delete sessionsMap.values();
 
         test.stopTest();
 
-        List<Course__c> draftCoursesAfterUpdate = [SELECT Id, Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_DRAFT_STATUS LIMIT 10];
+        List<Course__c> draftCoursesAfterUpdate = [SELECT Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_DRAFT_STATUS LIMIT 10];
 
         System.assertEquals(coursesToTest.size(), draftCoursesAfterUpdate.size());
     }
 
-    private static void createTriggerSystemHandlerRecord(){
+    private static void createTriggerSystemHandlerRecord() {
 
         List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
 

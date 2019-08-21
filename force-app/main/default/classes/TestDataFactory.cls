@@ -54,12 +54,12 @@ public without sharing class TestDataFactory {
         }
     }
 
-    public static List<Session__c> setSessionToConfirmed(){
-        List<Session__c> sessions  =  [SELECT Status__c FROM Session__c LIMIT 1];
-        for(Session__c aSession : sessions){
+    public static void setSessionToConfirmed(Set<Id> sessionIds){
+        List<Session__c> sessions  =  new List<Session__c>();
+        for(Session__c aSession : [SELECT Status__c FROM Session__c WHERE Id IN: sessionIds]){
             aSession.Status__c = 'Confirmed';
+            sessions.add(aSession);
         }
         update sessions;
-        return sessions;
     }
 }
