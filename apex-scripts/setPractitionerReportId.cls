@@ -21,5 +21,5 @@ if(courseSettings.size() == 0) {
     insert newCourseSettings;
 } else {
     courseSettings[0].Schedule_of_Sessions__c = sessionsReport[0].id;
-	update courseSettings;
+    update courseSettings;
 }

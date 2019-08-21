@@ -21,6 +21,6 @@ if(courseSettings.size() == 0) {
     insert newCourseSettings;
 } else {
     courseSettings[0].Venue_Schedule_Report_ID__c = venueReport[0].id;
-	update courseSettings;
+    update courseSettings;
 }
 
