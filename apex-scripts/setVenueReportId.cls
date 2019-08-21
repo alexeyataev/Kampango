@@ -10,9 +10,17 @@ if (venueReport.size() != 1) {
     return;
 }
 
-Course_Settings__c courseSettings = [SELECT Id, Venue_Schedule_Report_ID__c
+List<Course_Settings__c> courseSettings = [SELECT Id, Venue_Schedule_Report_ID__c
     FROM Course_Settings__c
     LIMIT 1];
-courseSettings.Venue_Schedule_Report_ID__c = venueReport[0].id;
+    
+if(courseSettings.size() == 0) {
+    Course_Settings__c newCourseSettings = new Course_Settings__c(
+        Venue_Schedule_Report_ID__c = venueReport[0].id
+    );
+    insert newCourseSettings;
+} else {
+    courseSettings[0].Venue_Schedule_Report_ID__c = venueReport[0].id;
+	update courseSettings;
+}
 
-update courseSettings;

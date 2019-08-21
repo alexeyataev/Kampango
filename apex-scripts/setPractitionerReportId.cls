@@ -10,9 +10,16 @@ if (sessionsReport.size() != 1) {
     return;
 }
 
-Course_Settings__c courseSettings = [SELECT Id, Schedule_of_Sessions__c
+List<Course_Settings__c> courseSettings = [SELECT Id, Schedule_of_Sessions__c
     FROM Course_Settings__c
     LIMIT 1];
-courseSettings.Schedule_of_Sessions__c = sessionsReport[0].id;
-
-update courseSettings;
+    
+if(courseSettings.size() == 0) {
+    Course_Settings__c newCourseSettings = new Course_Settings__c(
+        Schedule_of_Sessions__c = sessionsReport[0].id
+    );
+    insert newCourseSettings;
+} else {
+    courseSettings[0].Schedule_of_Sessions__c = sessionsReport[0].id;
+	update courseSettings;
+}
