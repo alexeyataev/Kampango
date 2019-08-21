@@ -54,7 +54,7 @@ public without sharing class TestDataFactory {
         }
     }
 
-    public static void setSessionToConfirmed(Set<Id> sessionIds){
+    public static void setSessionsToConfirmed(Set<Id> sessionIds){
         List<Session__c> sessions  =  new List<Session__c>();
         for(Session__c aSession : [SELECT Status__c FROM Session__c WHERE Id IN: sessionIds]){
             aSession.Status__c = 'Confirmed';
