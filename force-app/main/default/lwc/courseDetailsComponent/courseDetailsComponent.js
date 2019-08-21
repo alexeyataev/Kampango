@@ -177,10 +177,14 @@ export default class CourseDetailsComponent extends LightningElement {
         var array = sessions.map (
             function(row, index){
                 if(row.Venue__c){
+                    let county = '';
+                    if(row.Venue__r.County__c){
+                        county = row.Venue__r.County__c + ',';
+                    }
                     return Object.assign(
                         {street: row.Venue__r.Street_Address__c},
                         {town: row.Venue__r.Town__c},
-                        {county: row.Venue__r.County__c},
+                        {county: county},
                         {postcode: row.Venue__r.Postcode__c},
                         {id: row.Venue__c},
                         {name: row.Venue__r.Name},
