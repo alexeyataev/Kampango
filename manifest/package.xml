@@ -45,6 +45,7 @@
     <types>
         <members>Booking__c</members>
         <members>Course__c</members>
+        <members>Course_Settings__c</members>
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
@@ -89,6 +90,7 @@
         <members>Contact.Secondary_Email__c</members>
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <name>CustomField</name>
     </types>
     <types>
