@@ -11,7 +11,7 @@
             {coursetype} course {mainTown}
         </div>
         <div class="heading_5 lato-font">
-            at The {mainVenueName} ({startDate}
+            at {mainVenueName} ({startDate}
             <span> - </span>
             {endDate})
         </div>
@@ -29,7 +29,7 @@
                             <template for:each={venues} for:item="venue">
                                     <p class="lato-font regular-text padding-top_1 padding-bottom_1" key={venue.id}>
                                         <b>{venue.name}</b> ({venue.sessions})<br/>
-                                        {venue.street}, {venue.town}, {venue.county},<br/>
+                                        {venue.street}, {venue.town}, {venue.county}<br/>
                                         {venue.postcode}
                                     </p>
                             </template>
