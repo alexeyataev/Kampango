@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Info_For_Practitioner__c</fullName>
     <externalId>false</externalId>
-    <label>Info For Practitioner</label>
+    <label>Info for Practitioner</label>
     <length>32768</length>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
