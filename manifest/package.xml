@@ -88,6 +88,7 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <name>CustomField</name>
     </types>
@@ -186,6 +187,10 @@
         <members>Payment API User</members>
         <members>Practitioner</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>npsp__NewTask</members>            
+        <name>QuickAction</name>  
     </types>
     <types>
         <members>Account.Branch</members>
