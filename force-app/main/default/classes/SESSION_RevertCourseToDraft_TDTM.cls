@@ -4,7 +4,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
 
         List<Session__c> newSessionList = (List<Session__c>) triggerNew;
         List<Session__c> oldSessionList = (List<Session__c>) triggerOld;
-        List<Course__c> courseToUpdate = new List<Course__c>();
+        List<Course__c> coursesToUpdate = new List<Course__c>();
 
         Set<Id> courseIds = new Set<Id>();
 
@@ -13,10 +13,22 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
                 courseIds.add(aSession.Course__c);
             }
         } else if (triggerAction == npsp.TDTM_Runnable.Action.AfterUpdate) {
-            courseIds.addAll(idsOfChangedSessions(newSessionList, oldSessionList));
+            courseIds.addAll(idsOfCoursesToChange(newSessionList, oldSessionList));
+
         } else if (triggerAction == npsp.TDTM_Runnable.Action.afterDelete) {
             for (Session__c aSession : oldSessionList) {
                 courseIds.add(aSession.Course__c);
+            }
+        } else if (triggerAction == npsp.TDTM_Runnable.Action.BeforeUpdate) {
+            for(Integer i = 0; i<newSessionList.size(); i++) {
+                if(oldSessionList[i].Status__c == 'Confirmed' &&
+                    (newSessionList[i].Date__c != oldSessionList[i].Date__c ||
+                    newSessionList[i].Start__c != oldSessionList[i].Start__c ||
+                    newSessionList[i].End__c != oldSessionList[i].End__c ||
+                    newSessionList[i].Lunch_Break_Minutes__c != oldSessionList[i].Lunch_Break_Minutes__c )) {
+                    newSessionList[i].Status__c = 'Provisional';
+                }
+
             }
         }
 
@@ -25,14 +37,14 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {
                 aCourse.Status__c = 'Draft';
-                courseToUpdate.add(aCourse);
+                coursesToUpdate.add(aCourse);
             }
         }
-        dmlWrapper.objectsToUpdate.addAll((List<Course__c>) courseToUpdate);
+        dmlWrapper.objectsToUpdate.addAll((List<Course__c>) coursesToUpdate);
         return dmlWrapper;
     }
 
-    private Set<Id> idsOfChangedSessions(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
+    private Set<Id> idsOfCoursesToChange(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
         Set<Id> courseIds = new Set<Id>();
         for(Integer i = 0; i<newSessionList.size(); i++) {
             if (newSessionList[i].Date__c != oldSessionList[i].Date__c ||
