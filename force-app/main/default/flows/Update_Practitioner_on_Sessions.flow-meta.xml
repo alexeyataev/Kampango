@@ -25,23 +25,22 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Practitioner Licence is blank</label>
+            <label>Practitioner is blank</label>
         </rules>
     </decisions>
-    <description>If Practitioner Licence is blank Main Practitioner Licence from Course will be set</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ISBLANK([Session__c].Practitioner_Licence__c ) </stringValue>
+                <stringValue>ISBLANK([Session__c].Practitioner__c ) </stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>ISBLANK({!myVariable_current.Practitioner_Licence__c} )</expression>
+        <expression>ISBLANK({!myVariable_current.Practitioner__c} )</expression>
     </formulas>
-    <interviewLabel>Update_Practitioner_Licence-1_InterviewLabel</interviewLabel>
-    <label>Update Practitioner Licence</label>
+    <interviewLabel>Update_Practitioner_on_Sessions-1_InterviewLabel</interviewLabel>
+    <label>Update Practitioner on Sessions</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -93,7 +92,7 @@
             <name>referenceTargetField</name>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>Update Practitioner Licence</label>
+        <label>Update Practitioner  and Practitioner Licence</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
         <filters>
@@ -143,6 +142,42 @@
             <field>Practitioner_Licence__c</field>
             <value>
                 <elementReference>myVariable_current.Course__r.Main_Practitioner_Licence__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Practitioner</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Contact</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Practitioner__c</field>
+            <value>
+                <elementReference>myVariable_current.Course__r.Main_Practitioner__c</elementReference>
             </value>
         </inputAssignments>
         <object>Session__c</object>

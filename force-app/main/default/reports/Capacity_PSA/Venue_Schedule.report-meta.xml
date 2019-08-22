@@ -16,7 +16,7 @@
         <field>Venue__c.Sessions__r$Room__c</field>
     </columns>
     <columns>
-        <field>Venue__c.Sessions__r$Practitoner_Name__c</field>
+        <field>Venue__c.Sessions__r$Practitioner__c</field>
     </columns>
     <columns>
         <field>Venue__c.Sessions__r$Course__c</field>
