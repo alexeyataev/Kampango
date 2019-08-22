@@ -536,8 +536,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         List<Course__c> draftCoursesAfterUpdate = [SELECT Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_DRAFT_STATUS LIMIT 10];
         List<Session__c> sessionsToTest = [SELECT Status__c FROM Session__c WHERE Status__c =:SESSION_PROVISIONAL_STATUS];
 
-        System.assertEquals(coursesToTest.size() + 1, draftCoursesAfterUpdate.size());
-        System.assertEquals(sessionsToCreate, sessionsToTest.size());
+        System.assertEquals(coursesToTest.size(), draftCoursesAfterUpdate.size());
+        System.assertEquals(sessionsToCreate + 1, sessionsToTest.size());
     }
 
 
