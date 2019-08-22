@@ -13,52 +13,50 @@ public without sharing class TestDataFactory {
 
         for(Integer i = 0; i < numberOfCourses; i++){
             courses.add(courseBuilder
-                .WithAccount(account)
+                .withAccount(account)
                 .withPractitioner(practitioner)
-                .WithLicenceToPractice(licenceToPractice)
-                .InsertRecord(true)
-                .Build());
+                .withLicenceToPractice(licenceToPractice)
+                .insertRecord(true)
+                .build());
         }
 
         for(Integer i = 0; i < numberOfCourses; i++) {
             TestEstimatedCostsBuilder estimatedCostsBuilder = new TestEstimatedCostsBuilder();
             estimatedCostsBuilder
-                .WithCourse(courses[i])
-                .WithType('Travel')
-                .InsertRecord(true)
-                .Build();
+                .withCourse(courses[i])
+                .withType('Travel')
+                .insertRecord(true)
+                .build();
             estimatedCostsBuilder
-                .WithCourse(courses[i])
-                .WithType('Venue')
-                .InsertRecord(true)
-                .Build();
+                .withCourse(courses[i])
+                .withType('Venue')
+                .insertRecord(true)
+                .build();
             estimatedCostsBuilder
-                .WithCourse(courses[i])
-                .WithType('Practitioner Fee')
-                .InsertRecord(true)
-                .Build();
+                .withCourse(courses[i])
+                .withType('Practitioner Fee')
+                .insertRecord(true)
+                .build();
         }
 
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
 
         for(Integer i = 0; i < numberOfSessions; i++) {
             sessions.add(sessionBuilder
-                .WithCourse(courses[i / 2])
-                .WithVenue(venue)
-                .WithRoom(room)
+                .withCourse(courses[i / 2])
+                .withVenue(venue)
+                .withRoom(room)
                 .withStatus('Provisional')
                 .withPractitioner(practitioner)
                 .withPractitionerLicence(licenceToPractice)
-                .InsertRecord(true)
-                .Build());
+                .insertRecord(true)
+                .build());
         }
     }
 
-    public static void setSessionsToConfirmed(Set<Id> sessionIds){
-        List<Session__c> sessions  =  new List<Session__c>();
-        for(Session__c aSession : [SELECT Status__c FROM Session__c WHERE Id IN: sessionIds]){
+    public static void setSessionsToConfirmed(List<Session__c> sessions){
+        for(Session__c aSession : sessions){
             aSession.Status__c = 'Confirmed';
-            sessions.add(aSession);
         }
         update sessions;
     }

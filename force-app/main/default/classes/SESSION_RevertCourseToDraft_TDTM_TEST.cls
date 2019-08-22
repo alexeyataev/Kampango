@@ -3,8 +3,10 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     private static final String COURSE_DRAFT_STATUS = 'Draft';
     private static final String COURSE_FINAL_STATUS = 'Final';
+    private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
-    private static final String PRACTITIONER_LASTNAME = 'Practitioner2';
+    private static final String PRACTITIONER_LASTNAME = 'Practitioner';
+    private static final String PRACTITIONER_LASTNAME_TWO = 'Practitioner2';
 
     private static Account branchAccount;
     private static Contact practitioner;
@@ -19,69 +21,76 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
         branchAccount =  accountBranchBuilder
-            .WithRecordType('Branch')
-            .InsertRecord(true)
-            .Build();
+            .withRecordType('Branch')
+            .insertRecord(true)
+            .build();
 
         TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
         practitioner = practitionerContactBuilder
-            .WithRecordType(PRACTITIONER_RECORDTYPE_NAME)
-            .WithAccount(branchAccount)
-            .WithLastName(PRACTITIONER_LASTNAME)
-            .InsertRecord(true)
-            .Build();
+            .withRecordType(PRACTITIONER_RECORDTYPE_NAME)
+            .withAccount(branchAccount)
+            .withLastName(PRACTITIONER_LASTNAME)
+            .insertRecord(true)
+            .build();
+
+        practitionerContactBuilder
+            .withRecordType(PRACTITIONER_RECORDTYPE_NAME)
+            .withAccount(branchAccount)
+            .withLastName(PRACTITIONER_LASTNAME_TWO)
+            .insertRecord(true)
+            .build();
 
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         venue = venueBuilder
-            .InsertRecord(true)
-            .Build();
+            .insertRecord(true)
+            .build();
 
         TestRoomBuilder roomBuilder = new TestRoomBuilder();
         room = roomBuilder
-            .WithVenue(venue)
-            .InsertRecord(true)
-            .Build();
+            .withVenue(venue)
+            .insertRecord(true)
+            .build();
 
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
         licenceToPractice = licenceToPracticeBuilder
-            .WithContact(practitioner)
-            .InsertRecord(true)
-            .Build();
+            .withContact(practitioner)
+            .insertRecord(true)
+            .build();
 
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         course = courseBuilder
-            .WithAccount(branchAccount)
-            .WithPractitioner(practitioner)
-            .WithLicenceToPractice(licenceToPractice)
-            .InsertRecord(true)
-            .Build();
+            .withAccount(branchAccount)
+            .withPractitioner(practitioner)
+            .withLicenceToPractice(licenceToPractice)
+            .insertRecord(true)
+            .build();
 
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         session = sessionBuilder
-            .WithCourse(course)
-            .WithVenue(venue)
-            .WithRoom(room)
+            .withCourse(course)
+            .withVenue(venue)
+            .withRoom(room)
             .withStatus('Provisional')
             .withPractitioner(practitioner)
             .withPractitionerLicence(licenceToPractice)
-            .InsertRecord(true)
-            .Build();
+            .insertRecord(true)
+            .build();
 
         TestEstimatedCostsBuilder estimatedCostsBuilder = new TestEstimatedCostsBuilder();
         estimatedCostsBuilder
-            .WithCourse(course)
-            .InsertRecord(true)
-            .Build();
+            .withCourse(course)
+            .insertRecord(true)
+            .build();
         estimatedCostsBuilder
-            .WithCourse(course)
-            .WithType('Venue')
-            .InsertRecord(true)
-            .Build();
+            .withCourse(course)
+            .withType('Venue')
+            .insertRecord(true)
+            .build();
         estimatedCostsBuilder
-            .WithCourse(course)
-            .WithType('Practitioner Fee')
-            .InsertRecord(true)
-            .Build();
+            .withCourse(course)
+            .withType('Practitioner Fee')
+            .insertRecord(true)
+            .build();
     }
 
 
@@ -90,9 +99,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         createTriggerSystemHandlerRecord();
 
-        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
+        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
-        TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
+        TestDataFactory.setSessionsToConfirmed(sessions);
 
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -107,14 +116,14 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         session = sessionBuilder
-            .WithCourse(course)
-            .WithVenue(venue)
-            .WithRoom(room)
+            .withCourse(course)
+            .withVenue(venue)
+            .withRoom(room)
             .withStatus('Provisional')
             .withPractitioner(practitioner)
             .withPractitionerLicence(practitionerLicence)
-            .InsertRecord(true)
-            .Build();
+            .insertRecord(true)
+            .build();
 
         test.stopTest();
 
@@ -130,7 +139,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
-        TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
+        TestDataFactory.setSessionsToConfirmed(sessionsMap.values());
 
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -158,7 +167,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
-        TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
+        TestDataFactory.setSessionsToConfirmed(sessionsMap.values());
 
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -185,7 +194,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
-        TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
+        TestDataFactory.setSessionsToConfirmed(sessionsMap.values());
 
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -213,7 +222,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
-        TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
+        TestDataFactory.setSessionsToConfirmed(sessionsMap.values());
 
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -242,7 +251,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
-        TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
+        TestDataFactory.setSessionsToConfirmed(sessionsMap.values());
 
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -254,9 +263,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
         licenceToPractice = licenceToPracticeBuilder
-            .WithContact(practitioner)
-            .InsertRecord(true)
-            .Build();
+            .withContact(practitioner)
+            .insertRecord(true)
+            .build();
 
         for(Session__c aSession : sessionsMap.values()) {
             aSession.Practitioner_Licence__c = licenceToPractice.Id;
@@ -279,7 +288,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
-        TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
+        TestDataFactory.setSessionsToConfirmed(sessionsMap.values());
 
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -319,7 +328,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
 
-        TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
+        TestDataFactory.setSessionsToConfirmed(sessionsMap.values());
 
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -328,6 +337,64 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         test.startTest();
 
         delete sessionsMap.values();
+
+        test.stopTest();
+
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
+    }
+
+    @isTest
+    static void revertCourseToDraft_PractitionerUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+
+        createTriggerSystemHandlerRecord();
+
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
+
+        TestDataFactory.setSessionsToConfirmed(sessionsMap.values());
+
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
+        course.Status__c = COURSE_FINAL_STATUS;
+        update course;
+
+        test.startTest();
+
+        Contact practitioner2 = [SELECT LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME_TWO];
+        for(Session__c aSession : sessionsMap.values()) {
+            aSession.Practitioner__c = practitioner2.Id;
+            aSession.Practitioner_Licence__c = NULL;
+            aSession.Status__c = 'Provisional';
+        }
+        update sessionsMap.values();
+
+        test.stopTest();
+
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
+    }
+
+    @isTest
+    static void revertCourseToDraft_StatusUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+
+        createTriggerSystemHandlerRecord();
+
+        Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1]);
+
+        TestDataFactory.setSessionsToConfirmed(sessionsMap.values());
+
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
+        course.Status__c = COURSE_FINAL_STATUS;
+        update course;
+
+        test.startTest();
+
+        for(Session__c aSession : sessionsMap.values()) {
+            aSession.Status__c = SESSION_PROVISIONAL_STATUS;
+        }
+
+        update sessionsMap.values();
 
         test.stopTest();
 
@@ -348,7 +415,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1000]);
 
-        TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
+        TestDataFactory.setSessionsToConfirmed(sessionsMap.values());
 
         List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
@@ -387,7 +454,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Map<Id,Session__c> sessionsMap = new Map<Id, Session__c>([SELECT Id FROM Session__c LIMIT 1000]);
 
-        TestDataFactory.setSessionsToConfirmed(sessionsMap.keySet());
+        TestDataFactory.setSessionsToConfirmed(sessionsMap.values());
 
         List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
 
