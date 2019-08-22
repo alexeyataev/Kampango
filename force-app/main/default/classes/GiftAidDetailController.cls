@@ -1,20 +1,23 @@
 public with sharing class GiftAidDetailController {
-    private static final String PARENT_PAY = 'parent';
-    private static final String PARTNER_PAY = 'partner';
+    //GAD = Gift Aid Declaration;
+    private static final String INDIVIDUAL_GAD_DECLARATION = 'individual';
+    private static final String JOINT_GAD_DECLARATION = 'joint';
+    private static final String ACQUISITION_METHOD = 'Digital';
+    private static final String METHOD = 'GiftAid';
 
     @InvocableMethod
     public static void createGiftAidDeclaration(List<List<String>> flowParams) {
         String bookingId = flowParams[0][0];
-        String giftAidPayValue = flowParams[0][1];
+        String giftAidDeclarationValue = flowParams[0][1];
 
-        if (giftAidPayValue == PARENT_PAY) {
-            parentPay(bookingId);
-        } else if (giftAidPayValue == PARTNER_PAY) {
-            partnerPay(bookingId);
+        if (giftAidDeclarationValue == INDIVIDUAL_GAD_DECLARATION) {
+            addIndividualDeclaration(bookingId);
+        } else if (giftAidDeclarationValue == JOINT_GAD_DECLARATION) {
+            addJointDeclaration(bookingId);
         }
     }
 
-    private static void parentPay(Id bookingId) {
+    private static void addIndividualDeclaration(Id bookingId) {
         Booking__c booking = [
             SELECT  Primary_Contact__c,
                     First_Name__c,
@@ -25,24 +28,29 @@ public with sharing class GiftAidDetailController {
             WHERE ID = :bookingId
         ];
 
-        gaid__Gift_Aid_Declaration__c giftAidDeclaration = new gaid__Gift_Aid_Declaration__c();
-        giftAidDeclaration.gaid__Date_Made__c = Date.today();
-        giftAidDeclaration.gaid__Active__c = true;
-        giftAidDeclaration.gaid__Contact__c = booking.Primary_Contact__c;
-        giftAidDeclaration.gaid__FirstName__c = booking.First_Name__c;
-        giftAidDeclaration.gaid__LastName__c = booking.Last_Name__c;
-        giftAidDeclaration.gaid__Postalcode__c = booking.Postcode__c;
-        giftAidDeclaration.gaid__Housename_or_number__c = booking.Primary_Contact__r.MailingStreet;
-        giftAidDeclaration.gaid__Acquisition_Method__c = 'Digital';
-        giftAidDeclaration.Method__c = 'GiftAid';
+        List<gaid__Gift_Aid_Declaration__c> individualGiftAidDeclarationList = new List<gaid__Gift_Aid_Declaration__c> {
+            new gaid__Gift_Aid_Declaration__c(
+                gaid__Date_Made__c = Date.today(),
+                gaid__Active__c = true,
+                gaid__Contact__c = booking.Primary_Contact__c,
+                gaid__FirstName__c = booking.First_Name__c,
+                gaid__LastName__c = booking.Last_Name__c,
+                gaid__Postalcode__c = booking.Postcode__c,
+                gaid__Housename_or_number__c = booking.Primary_Contact__r.MailingStreet,
+                gaid__Acquisition_Method__c = ACQUISITION_METHOD,
+                Method__c = METHOD
+            )
+        };
 
-        insertGiftAidDeclaration(giftAidDeclaration);
+        insertGiftAidDeclaration(individualGiftAidDeclarationList);
     }
 
-    private static void partnerPay(Id bookingId) {
+    private static void addJointDeclaration(Id bookingId) {
         Booking__c booking = [
             SELECT  Partner_Contact__c,
                     Primary_Contact__c,
+                    First_Name__c,
+                    Last_Name__c,
                     First_Name_Partner__c,
                     Last_Name_Partner__c,
                     Postcode__c,
@@ -51,25 +59,39 @@ public with sharing class GiftAidDetailController {
             WHERE ID = :bookingId
         ];
 
-        gaid__Gift_Aid_Declaration__c giftAidDeclaration = new gaid__Gift_Aid_Declaration__c();
-        giftAidDeclaration.gaid__Date_Made__c = Date.today();
-        giftAidDeclaration.gaid__Active__c = true;
-        giftAidDeclaration.gaid__Contact__c = booking.Partner_Contact__c;
-        giftAidDeclaration.gaid__FirstName__c = booking.First_Name_Partner__c;
-        giftAidDeclaration.gaid__LastName__c = booking.Last_Name_Partner__c;
-        giftAidDeclaration.gaid__Postalcode__c = booking.Postcode__c;
-        giftAidDeclaration.gaid__Housename_or_number__c = booking.Primary_Contact__r.MailingStreet;
-        giftAidDeclaration.gaid__Acquisition_Method__c = 'Digital';
-        giftAidDeclaration.Method__c = 'GiftAid';
+        List<gaid__Gift_Aid_Declaration__c> jointGiftAidDeclarationList = new List<gaid__Gift_Aid_Declaration__c> {
+            new gaid__Gift_Aid_Declaration__c (
+                gaid__Date_Made__c = Date.today(),
+                gaid__Active__c = true,
+                gaid__Contact__c = booking.Primary_Contact__c,
+                gaid__FirstName__c = booking.First_Name__c,
+                gaid__LastName__c = booking.Last_Name__c,
+                gaid__Postalcode__c = booking.Postcode__c,
+                gaid__Housename_or_number__c = booking.Primary_Contact__r.MailingStreet,
+                gaid__Acquisition_Method__c = ACQUISITION_METHOD,
+                Method__c = METHOD
+            ),
+            new gaid__Gift_Aid_Declaration__c (
+                gaid__Date_Made__c = Date.today(),
+                gaid__Active__c = true,
+                gaid__Contact__c = booking.Partner_Contact__c,
+                gaid__FirstName__c = booking.First_Name_Partner__c,
+                gaid__LastName__c = booking.Last_Name_Partner__c,
+                gaid__Postalcode__c = booking.Postcode__c,
+                gaid__Housename_or_number__c = booking.Primary_Contact__r.MailingStreet,
+                gaid__Acquisition_Method__c = ACQUISITION_METHOD,
+                Method__c = METHOD
+            )
+        };
         
-        insertGiftAidDeclaration(giftAidDeclaration);
+        insertGiftAidDeclaration(jointGiftAidDeclarationList);
     }
 
-    private static void insertGiftAidDeclaration(gaid__Gift_Aid_Declaration__c giftAidDeclarationObject) {
+    private static void insertGiftAidDeclaration(List<gaid__Gift_Aid_Declaration__c> giftAidDeclarationObject) {
         try {
             insert giftAidDeclarationObject;
         } catch (DmlException ex) {
-           throw new AuraHandledException(ex.getMessage());
+            throw new AuraHandledException(ex.getMessage());
         }
     }
 }
