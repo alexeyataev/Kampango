@@ -45,6 +45,7 @@
     <types>
         <members>Account</members>
         <members>Booking__c</members>
+        <members>Booking_Permission__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
         <members>Estimated_Costs__c</members>
@@ -215,6 +216,7 @@
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
+        <members>Booking__c.PreventConfirmedBookingCreation</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
