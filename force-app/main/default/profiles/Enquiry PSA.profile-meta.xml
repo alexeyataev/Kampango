@@ -54,12 +54,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Zumzum__Bank_Account_No__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Zumzum__Bank_Sort_Code__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

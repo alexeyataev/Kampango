@@ -125,6 +125,7 @@
     <types>
         <members>Account-Branch Layout</members>
         <members>Account-Branch Read Only Layout</members>
+        <members>Account-Household Lightning Layout</members>
         <members>Account-Organization Lightning Layout</members>
         <members>Asset-Practitioner Asset Layout</members>
         <members>Booking__c-Booking Layout</members>
