@@ -98,6 +98,7 @@
     </types>
     <types>
         <members>NCT_Templates/BookingNotificationEmail</members>
+        <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <name>EmailTemplate</name>
     </types>
     <types>

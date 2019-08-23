@@ -1,0 +1,16 @@
+Dear {!Course_Assignment__c.OwnerFirstName},
+</br>
+</br>
+NCT has sent you this email so that you securely sign your assignment for this course online.
+</br>
+</br>
+<a href = "{!Community.Url}" target = "_blank">Please click here to review and sign this assignment</a> 
+</br>
+</br>
+King Regards,  
+</br>
+</br>
+{!Course_Assignment__c.CreatedBy}
+</br>
+Course Organazer
+</br>
