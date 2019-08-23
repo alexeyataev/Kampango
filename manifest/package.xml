@@ -45,7 +45,6 @@
     <types>
         <members>Account</members>
         <members>Booking__c</members>
-        <members>Booking_Permission__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
         <members>Estimated_Costs__c</members>
