@@ -1,66 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <name>Gift_Aid_Params</name>
-        <label>Send Params to Apex Class</label>
-        <locationX>700</locationX>
-        <locationY>579</locationY>
-        <actionName>GiftAidDetailController</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Details_Payment</targetReference>
-        </connector>
-        <inputParameters>
-            <name>flowParams</name>
-            <value>
-                <elementReference>Params_List</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
     <assignments>
-        <name>Gift_Aid_Individual_Data</name>
-        <label>Collect data for individual declaration</label>
-        <locationX>365</locationX>
-        <locationY>437</locationY>
+        <name>Collect_GAD</name>
+        <label>Collect GAD</label>
+        <locationX>415</locationX>
+        <locationY>310</locationY>
         <assignmentItems>
-            <assignToReference>Params_List</assignToReference>
+            <assignToReference>GiftAidDeclarationList</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>bookingId</elementReference>
+                <elementReference>ParentGad</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Params_List</assignToReference>
+            <assignToReference>GiftAidDeclarationList</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>INDIVIDUAl_DECLARATION</elementReference>
+                <elementReference>PartnerGAD</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Gift_Aid_Params</targetReference>
+            <targetReference>Create_Gift_Aid_Declaration</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>Gift_Aid_Joint_Declaration</name>
-        <label>Collect data for joint declaration</label>
-        <locationX>568</locationX>
-        <locationY>434</locationY>
+        <name>GAD_for_Parent</name>
+        <label>GAD for Parent</label>
+        <locationX>557</locationX>
+        <locationY>310</locationY>
         <assignmentItems>
-            <assignToReference>Params_List</assignToReference>
-            <operator>Add</operator>
+            <assignToReference>ParentGad.gaid__Contact__c</assignToReference>
+            <operator>Assign</operator>
             <value>
-                <elementReference>bookingId</elementReference>
+                <elementReference>Current_Booking_Record.Primary_Contact__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Params_List</assignToReference>
-            <operator>Add</operator>
+            <assignToReference>ParentGad.Method__c</assignToReference>
+            <operator>Assign</operator>
             <value>
-                <elementReference>JOINT_DECLARATION</elementReference>
+                <elementReference>GAD_METHOD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGad.gaid__Acquisition_Method__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GAD_ACQUISITION_METHOD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGad.gaid__Date_Made__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGad.gaid__Housename_or_number__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Current_Booking_Record.Street_Address__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGad.gaid__Postalcode__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Current_Booking_Record.Postcode__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGad.gaid__Active__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Gift_Aid_Params</targetReference>
+            <targetReference>Collect_GAD</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>GAD_for_Partner</name>
+        <label>GAD for Partner</label>
+        <locationX>554</locationX>
+        <locationY>424</locationY>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.gaid__Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Current_Booking_Record.Partner_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.Method__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GAD_METHOD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.gaid__Acquisition_Method__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GAD_ACQUISITION_METHOD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.gaid__Date_Made__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.gaid__Housename_or_number__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Current_Booking_Record.Street_Address__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGad.gaid__Postalcode__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Current_Booking_Record.Postcode__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGad.gaid__Active__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>GAD_for_Parent</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -75,18 +151,26 @@
         <name>Individual_Declaration_Choice</name>
         <choiceText>&lt;span style=&quot;font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;{!Individual_Declaration_Description_Template_1}&lt;/span&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</choiceText>
         <dataType>String</dataType>
-        <value>
-            <elementReference>INDIVIDUAl_DECLARATION</elementReference>
-        </value>
     </choices>
     <choices>
         <name>Joint_Declaration_Choice</name>
         <choiceText>&lt;span style=&quot;font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;{!Join_Declaration_Description_Template_1}&lt;/span&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</choiceText>
         <dataType>String</dataType>
-        <value>
-            <elementReference>JOINT_DECLARATION</elementReference>
-        </value>
     </choices>
+    <constants>
+        <name>GAD_ACQUISITION_METHOD</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Digital</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>GAD_METHOD</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>GiftAid</stringValue>
+        </value>
+    </constants>
     <constants>
         <name>INDIVIDUAl_DECLARATION</name>
         <dataType>String</dataType>
@@ -102,16 +186,16 @@
         </value>
     </constants>
     <decisions>
-        <name>Gift_Aid_Decision</name>
-        <label>Gift Aid Decision</label>
-        <locationX>616</locationX>
-        <locationY>318</locationY>
+        <name>Check_Declaration</name>
+        <label>Check Declaration</label>
+        <locationX>829</locationX>
+        <locationY>358</locationY>
         <defaultConnector>
             <targetReference>Details_Payment</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <defaultConnectorLabel>Decline Gift Aid</defaultConnectorLabel>
         <rules>
-            <name>Individual_is_True</name>
+            <name>Individual_GAD</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Individual_Declaration_Choice</leftValueReference>
@@ -121,12 +205,12 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Gift_Aid_Individual_Data</targetReference>
+                <targetReference>GAD_for_Parent</targetReference>
             </connector>
-            <label>Individual is True</label>
+            <label>Individual GAD</label>
         </rules>
         <rules>
-            <name>Joint_is_True</name>
+            <name>Joint_GAD</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Joint_Declaration_Choice</leftValueReference>
@@ -136,22 +220,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Gift_Aid_Joint_Declaration</targetReference>
+                <targetReference>GAD_for_Partner</targetReference>
             </connector>
-            <label>Joint is True</label>
+            <label>Joint GAD</label>
         </rules>
     </decisions>
     <decisions>
-        <name>Without_Partner</name>
-        <label>Without Partner</label>
-        <locationX>411</locationX>
-        <locationY>52</locationY>
+        <name>Check_Partner</name>
+        <label>Check Partner</label>
+        <locationX>525</locationX>
+        <locationY>53</locationY>
         <defaultConnector>
             <targetReference>Gift_Aid_Screen_With_Partner</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <defaultConnectorLabel>With Partner</defaultConnectorLabel>
         <rules>
-            <name>Partner_is_False</name>
+            <name>Without_Partner</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Current_Booking_Record.Partner_Contact__c</leftValueReference>
@@ -163,7 +247,7 @@
             <connector>
                 <targetReference>GiftAidScreenWithoutPartner</targetReference>
             </connector>
-            <label>Partner is False</label>
+            <label>Without Partner</label>
         </rules>
     </decisions>
     <interviewLabel>Booking {!$Flow.CurrentDateTime}</interviewLabel>
@@ -181,14 +265,24 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Gift_Aid_Declaration</name>
+        <label>Create Gift Aid Declaration</label>
+        <locationX>415</locationX>
+        <locationY>532</locationY>
+        <connector>
+            <targetReference>Details_Payment</targetReference>
+        </connector>
+        <inputReference>GiftAidDeclarationList</inputReference>
+    </recordCreates>
     <recordLookups>
         <name>Get_Booking_Record</name>
         <label>Get Booking Record</label>
-        <locationX>299</locationX>
-        <locationY>50</locationY>
+        <locationX>383</locationX>
+        <locationY>51</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Without_Partner</targetReference>
+            <targetReference>Check_Partner</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -203,12 +297,15 @@
         <queriedFields>First_Name_Partner__c</queriedFields>
         <queriedFields>Last_Name_Partner__c</queriedFields>
         <queriedFields>Partner_Contact__c</queriedFields>
+        <queriedFields>Primary_Contact__c</queriedFields>
+        <queriedFields>Postcode__c</queriedFields>
+        <queriedFields>Street_Address__c</queriedFields>
     </recordLookups>
     <screens>
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>
-        <locationX>177</locationX>
-        <locationY>50</locationY>
+        <locationX>245</locationX>
+        <locationY>51</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -227,8 +324,8 @@
     <screens>
         <name>Details_Payment</name>
         <label>Details Payment</label>
-        <locationX>901</locationX>
-        <locationY>221</locationY>
+        <locationX>839</locationX>
+        <locationY>532</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -243,13 +340,13 @@
     <screens>
         <name>Gift_Aid_Screen_With_Partner</name>
         <label>Gift Aid Screen With Partner</label>
-        <locationX>624</locationX>
-        <locationY>175</locationY>
+        <locationX>910</locationX>
+        <locationY>227</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Gift_Aid_Decision</targetReference>
+            <targetReference>Check_Declaration</targetReference>
         </connector>
         <fields>
             <name>Gift_Aid_Header_Description</name>
@@ -277,13 +374,13 @@
     <screens>
         <name>GiftAidScreenWithoutPartner</name>
         <label>Gift Aid Screen Without Partner</label>
-        <locationX>422</locationX>
-        <locationY>216</locationY>
+        <locationX>580</locationX>
+        <locationY>202</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Gift_Aid_Decision</targetReference>
+            <targetReference>Check_Declaration</targetReference>
         </connector>
         <fields>
             <name>Gift_Aid_Header_Description_0</name>
@@ -336,10 +433,27 @@
         <objectType>Booking__c</objectType>
     </variables>
     <variables>
-        <name>Params_List</name>
-        <dataType>String</dataType>
+        <name>GiftAidDeclarationList</name>
+        <dataType>SObject</dataType>
         <isCollection>true</isCollection>
-        <isInput>true</isInput>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
+        <objectType>gaid__Gift_Aid_Declaration__c</objectType>
+    </variables>
+    <variables>
+        <name>ParentGad</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>gaid__Gift_Aid_Declaration__c</objectType>
+    </variables>
+    <variables>
+        <name>PartnerGAD</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>gaid__Gift_Aid_Declaration__c</objectType>
     </variables>
 </Flow>
