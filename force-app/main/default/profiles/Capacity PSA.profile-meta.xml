@@ -427,11 +427,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Main_Practitioner_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Main_Venue__c</field>
         <readable>true</readable>
@@ -547,6 +542,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Course_Assignment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Day_of_Week__c</field>
         <readable>true</readable>
@@ -573,7 +573,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Practitoner_Name__c</field>
+        <field>Session__c.Practitioner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -852,6 +852,9 @@
         <recordType>Contact.Practitioner</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Course_Assignment__c-Course Assignment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Course__c-Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -897,6 +900,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Booking__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Course_Assignment__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>

@@ -8,6 +8,7 @@ public with sharing class TestCourseBuilder {
     private Account account;
     private Licence_To_Practice__c licenceToPractice;
     private Boolean insertRecord = false;
+    private Contact practitioner;
 
     public TestCourseBuilder withType(String type)
     {
@@ -47,6 +48,11 @@ public with sharing class TestCourseBuilder {
         this.licenceToPractice = licenceToPractice;
         return this;
     }
+    public TestCourseBuilder withPractitioner(Contact practitioner)
+    {
+        this.practitioner = practitioner;
+        return this;
+    }
     public TestCourseBuilder insertRecord(Boolean insertRecord)
     {
         this.insertRecord = insertRecord;
@@ -62,6 +68,7 @@ public with sharing class TestCourseBuilder {
             Status__c = this.status,
             Number_of_places__c = this.numberOfPlaces,
             Branch__c = this.account.Id,
+            Main_Practitioner__c = this.practitioner.Id,
             Main_Practitioner_Licence__c = this.licenceToPractice.Id
         );
 

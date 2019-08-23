@@ -84,7 +84,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Main_Practitioner_Name__c</field>
+                <field>Main_Practitioner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -282,7 +282,7 @@
         <fields>End__c</fields>
         <fields>Type__c</fields>
         <fields>Specific_Attendee_Type__c</fields>
-        <fields>Practitoner_Name__c</fields>
+        <fields>Practitioner__c</fields>
         <fields>Venue__c</fields>
         <relatedList>Session__c.Course__c</relatedList>
     </relatedLists>
