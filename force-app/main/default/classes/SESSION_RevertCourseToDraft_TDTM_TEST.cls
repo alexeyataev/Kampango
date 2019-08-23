@@ -506,6 +506,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Integer coursesToCreate = 4;
         Integer sessionsToCreate = 8;
+        Integer additionalSessionsCreatedInTestSetup = 1;
 
         TestDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
 
@@ -537,7 +538,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         List<Session__c> sessionsToTest = [SELECT Status__c FROM Session__c WHERE Status__c =:SESSION_PROVISIONAL_STATUS];
 
         System.assertEquals(coursesToTest.size(), draftCoursesAfterUpdate.size());
-        System.assertEquals(sessionsToCreate + 1, sessionsToTest.size());
+        System.assertEquals(sessionsToCreate + additionalSessionsCreatedInTestSetup, sessionsToTest.size());
     }
 
 
