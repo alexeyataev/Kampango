@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_Assignments_Awaiting_Approval</fullName>
+    <columns>NAME</columns>
+    <columns>Course_Start_Date__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Submitted</value>
+    </filters>
+    <label>Course Assignments Awaiting Approval</label>
+</ListView>

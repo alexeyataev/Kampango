@@ -42,8 +42,16 @@
             <target>Venue__c</target>
             <type>SalesforceObject</type>
         </navigationMenuItem>
+        <navigationMenuItem>
+            <label>Course Assignments</label>
+            <position>3</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>Course_Assignment__c</target>
+            <type>SalesforceObject</type>
+        </navigationMenuItem>
     </navigationLinkSet>
     <networkMemberGroups>
+        <permissionSet>Practitioner_Management</permissionSet>
         <profile>Admin</profile>
         <profile>Practitioner</profile>
     </networkMemberGroups>
