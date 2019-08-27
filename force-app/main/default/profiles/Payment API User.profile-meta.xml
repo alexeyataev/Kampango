@@ -3048,6 +3048,10 @@
         <tab>standard-Opportunity</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>npsp__Trigger_Handler__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
