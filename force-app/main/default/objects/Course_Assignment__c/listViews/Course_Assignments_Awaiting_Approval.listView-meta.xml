@@ -3,6 +3,7 @@
     <fullName>Course_Assignments_Awaiting_Approval</fullName>
     <columns>NAME</columns>
     <columns>Course_Start_Date__c</columns>
+    <columns>PSA_Area__c</columns>
     <filterScope>Mine</filterScope>
     <filters>
         <field>Status__c</field>
