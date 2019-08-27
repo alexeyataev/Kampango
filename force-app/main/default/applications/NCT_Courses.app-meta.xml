@@ -83,6 +83,7 @@
     <tabs>agf__QA_Test_Plan__c</tabs>
     <tabs>Test_Steps__c</tabs>
     <tabs>agf__QA_Test_Execution__c</tabs>
+    <tabs>npsp__Trigger_Handler__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>NCT_Courses_UtilityBar</utilityBar>
 </CustomApplication>

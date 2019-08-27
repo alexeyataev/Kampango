@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <decisions>
-        <name>isChangedDecision2_myRule_1_Count_of_Estimated_Practitioner_Fees_c</name>
-        <label>isChangedDecision2_myRule_1_Count_of_Estimated_Practitioner_Fees_c</label>
+        <name>isChangedDecision2_myRule_1_Main_Practitioner_c</name>
+        <label>isChangedDecision2_myRule_1_Main_Practitioner_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision3_myRule_1_Count_of_Estimated_Travel_Costs_c</targetReference>
+            <targetReference>isChangedDecision3_myRule_1_Main_Venue_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_2_myRule_1_Count_of_Estimated_Practitioner_Fees_c</name>
+            <name>isChangedRule_2_myRule_1_Main_Practitioner_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -20,29 +20,29 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>myVariable_old.Count_of_Estimated_Practitioner_Fees__c</leftValueReference>
+                <leftValueReference>myVariable_old.Main_Practitioner__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>myVariable_current.Count_of_Estimated_Practitioner_Fees__c</elementReference>
+                    <elementReference>myVariable_current.Main_Practitioner__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision3_myRule_1_Count_of_Estimated_Travel_Costs_c</targetReference>
+                <targetReference>isChangedDecision3_myRule_1_Main_Venue_c</targetReference>
             </connector>
-            <label>isChangedRule_2_myRule_1_Count_of_Estimated_Practitioner_Fees_c</label>
+            <label>isChangedRule_2_myRule_1_Main_Practitioner_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision3_myRule_1_Count_of_Estimated_Travel_Costs_c</name>
-        <label>isChangedDecision3_myRule_1_Count_of_Estimated_Travel_Costs_c</label>
+        <name>isChangedDecision3_myRule_1_Main_Venue_c</name>
+        <label>isChangedDecision3_myRule_1_Main_Venue_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision4_myRule_1_Count_of_Estimated_Venue_Costs_c</targetReference>
+            <targetReference>isChangedDecision4_myRule_1_Fee_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_3_myRule_1_Count_of_Estimated_Travel_Costs_c</name>
+            <name>isChangedRule_3_myRule_1_Main_Venue_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -52,21 +52,21 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>myVariable_old.Count_of_Estimated_Travel_Costs__c</leftValueReference>
+                <leftValueReference>myVariable_old.Main_Venue__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>myVariable_current.Count_of_Estimated_Travel_Costs__c</elementReference>
+                    <elementReference>myVariable_current.Main_Venue__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision4_myRule_1_Count_of_Estimated_Venue_Costs_c</targetReference>
+                <targetReference>isChangedDecision4_myRule_1_Fee_c</targetReference>
             </connector>
-            <label>isChangedRule_3_myRule_1_Count_of_Estimated_Travel_Costs_c</label>
+            <label>isChangedRule_3_myRule_1_Main_Venue_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision4_myRule_1_Count_of_Estimated_Venue_Costs_c</name>
-        <label>isChangedDecision4_myRule_1_Count_of_Estimated_Venue_Costs_c</label>
+        <name>isChangedDecision4_myRule_1_Fee_c</name>
+        <label>isChangedDecision4_myRule_1_Fee_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
@@ -74,7 +74,7 @@
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_4_myRule_1_Count_of_Estimated_Venue_Costs_c</name>
+            <name>isChangedRule_4_myRule_1_Fee_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -84,16 +84,16 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>myVariable_old.Count_of_Estimated_Venue_Costs__c</leftValueReference>
+                <leftValueReference>myVariable_old.Fee__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>myVariable_current.Count_of_Estimated_Venue_Costs__c</elementReference>
+                    <elementReference>myVariable_current.Fee__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>myDecision</targetReference>
             </connector>
-            <label>isChangedRule_4_myRule_1_Count_of_Estimated_Venue_Costs_c</label>
+            <label>isChangedRule_4_myRule_1_Fee_c</label>
         </rules>
     </decisions>
     <decisions>
@@ -110,12 +110,12 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
-            <conditionLogic>or</conditionLogic>
+            <conditionLogic>7 AND (1 OR 2 OR 3 OR 4 OR 5 OR 6)</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>Boolean</stringValue>
+                        <stringValue>Number</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -133,10 +133,146 @@
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
+                        <stringValue>Number</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Count_of_Estimated_Practitioner_Fees__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Number</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Number</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Number</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Number</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Count_of_Estimated_Travel_Costs__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Number</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Number</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Number</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Number</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Count_of_Estimated_Venue_Costs__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_2_myRule_1_Count_of_Estimated_Practitioner_Fees_c</leftValueReference>
+                <processMetadataValues>
+                    <name>leftHandSideReferenceTo</name>
+                    <value>
+                        <stringValue>Contact</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>isChangedRule_2_myRule_1_Main_Practitioner_c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideReferenceTo</name>
+                    <value>
+                        <stringValue>Venue__c</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>isChangedRule_3_myRule_1_Main_Venue_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -152,13 +288,13 @@
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>Number</stringValue>
+                        <stringValue>Currency</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>operatorDataType</name>
                     <value>
-                        <stringValue>Number</stringValue>
+                        <stringValue>Currency</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -167,7 +303,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_3_myRule_1_Count_of_Estimated_Travel_Costs_c</leftValueReference>
+                <leftValueReference>isChangedRule_4_myRule_1_Fee_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -177,31 +313,31 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>Boolean</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>Number</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>operatorDataType</name>
                     <value>
-                        <stringValue>Number</stringValue>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-                        <stringValue>Boolean</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_4_myRule_1_Count_of_Estimated_Venue_Costs_c</leftValueReference>
+                <leftValueReference>myVariable_current.Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <stringValue>Final</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -210,8 +346,8 @@
             <label>Rollup Changes</label>
         </rules>
     </decisions>
-    <interviewLabel>Revert_Course_To_Draft_After_Cost_Deletion-1_InterviewLabel</interviewLabel>
-    <label>Revert Course To Draft After Cost Deletion</label>
+    <interviewLabel>Revert_Course_To_Draft_When_Key_Info_Changes-1_InterviewLabel</interviewLabel>
+    <label>Revert Course To Draft When Key Info Changes</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -317,8 +453,8 @@
         </inputAssignments>
         <object>Course__c</object>
     </recordUpdates>
-    <startElementReference>isChangedDecision2_myRule_1_Count_of_Estimated_Practitioner_Fees_c</startElementReference>
-    <status>Active</status>
+    <startElementReference>isChangedDecision2_myRule_1_Main_Practitioner_c</startElementReference>
+    <status>Draft</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>
