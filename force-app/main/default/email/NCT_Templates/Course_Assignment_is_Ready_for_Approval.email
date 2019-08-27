@@ -4,7 +4,7 @@ Dear {!Course_Assignment__c.OwnerFirstName},
 NCT has sent you this email so that you securely sign your assignment for this course online.
 </br>
 </br>
-<a href = "{!Community.Url}" target = "_blank">Please click here to review and sign this assignment</a> 
+<a href = "{!$Setup.Practitioner_Community_Settings__c.Base_Url__c}" target = "_blank">Please click here to review and sign this assignment</a>
 </br>
 </br>
 King Regards,  

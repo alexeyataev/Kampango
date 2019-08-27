@@ -4,7 +4,7 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Course Assignment is Ready for Approval</name>
     <style>none</style>
-    <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course_Name__c}</subject>
+    <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
     <textOnly>Dear {!Course_Assignment__c.OwnerFirstName}, 
 
 NCT has sent you this email so that you securely sign your assignment for this course online.
