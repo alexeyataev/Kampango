@@ -70,6 +70,7 @@
     </types>
     <types>
         <members>Booking__c</members>
+        <members>npsp__Trigger_Handler__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
     </types>
@@ -122,8 +123,7 @@
         <members>Booking_sendOfferEmail</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Populate_Practitioner_Name</members>
-        <members>Revert_Course_To_Draft_After_Cost_Deletion</members>
-        <members>Revert_Course_To_Draft_If_Cost_Changes</members>
+        <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Main_Venue_on_Course</members>
