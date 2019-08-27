@@ -1,14 +1,25 @@
-Network myNetwork  = [SELECT id  FROM Network WHERE Name ='Practitioners'];
+Network myNetwork  = [SELECT id
+FROM Network
+WHERE Name ='Practitioners'
+LIMIT 1
+];
 String url = Network.getSelfRegUrl(myNetwork.id);
-List<Practitioner_Community_Settings__c> settings = [SELECT Id from Practitioner_Community_Settings__c];
-Practitioner_Community_Settings__c practitionerCommunitySettings = new Practitioner_Community_Settings__c();
-System.debug(settings.size());
-if(settings.size()> 0){
-    settings[0].Base_Url__c = url.substringBefore('/s/');
-    practitionerCommunitySettings.SetupOwnerId = UserInfo.getOrganizationId();
-    update settings;
+
+List<Practitioner_Community_Settings__c> settings = [SELECT Id
+FROM Practitioner_Community_Settings__c
+LIMIT 1
+];
+
+
+if(settings.size()== 0){
+    Practitioner_Community_Settings__c newPractitionerCommunitySettings = new Practitioner_Community_Settings__c(
+        Base_Url__c = url.substringBefore('/s/'),
+        SetupOwnerId = UserInfo.getOrganizationId()
+    );
+
+    insert newPractitionerCommunitySettings;
 }else{
-    practitionerCommunitySettings.Base_Url__c = url.substringBefore('/s/');
-    practitionerCommunitySettings.SetupOwnerId = UserInfo.getOrganizationId();
-    insert practitionerCommunitySettings;
+    settings[0].Base_Url__c = url.substringBefore('/s/');
+    settings[0].SetupOwnerId = UserInfo.getOrganizationId();
+    update settings;
 }
