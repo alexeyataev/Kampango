@@ -18,8 +18,8 @@
     <recordCreates>
         <name>Create_Gift_Aid_Declaration</name>
         <label>Create Gift Aid Declaration</label>
-        <locationX>620</locationX>
-        <locationY>49</locationY>
+        <locationX>619</locationX>
+        <locationY>50</locationY>
         <faultConnector>
             <targetReference>Declaration_Error</targetReference>
         </faultConnector>
@@ -40,12 +40,6 @@
             <name>Course_Summary_Details</name>
             <extensionName>c:CourseDetailComponent</extensionName>
             <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>bookingId</name>
-                <value>
-                    <elementReference>bookingId</elementReference>
-                </value>
-            </inputParameters>
             <isRequired>true</isRequired>
         </fields>
         <showFooter>true</showFooter>
