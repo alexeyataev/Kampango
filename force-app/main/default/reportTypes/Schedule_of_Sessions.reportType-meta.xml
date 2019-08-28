@@ -61,7 +61,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Main_Practitioner_Name__c</field>
+            <field>Main_Practitioner__c</field>
             <table>Contact.Licences_To_Practice__r.Courses__r</table>
         </columns>
         <masterLabel>Courses</masterLabel>

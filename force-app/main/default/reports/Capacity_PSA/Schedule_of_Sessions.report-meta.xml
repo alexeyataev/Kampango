@@ -28,7 +28,7 @@
         <field>Contact.Licences_To_Practice__r$Licence__c</field>
     </columns>
     <columns>
-        <field>Contact.Licences_To_Practice__r.Courses__r$Main_Practitioner_Name__c</field>
+        <field>Contact.Licences_To_Practice__r.Courses__r$Main_Practitioner__c</field>
     </columns>
     <filter>
         <criteriaItems>
