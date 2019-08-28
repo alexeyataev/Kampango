@@ -5,10 +5,11 @@ List<Network> networks  = [SELECT id
     LIMIT 1
 ];
 
-String url;
-if(networks.size() != 0) {
-    url = Network.getSelfRegUrl(networks[0].id);
+if (networks.size() != 1) {
+    return;
 }
+
+String url = Network.getSelfRegUrl(networks[0].id);
 
 List<Practitioner_Community_Settings__c> settings = [SELECT Id
     FROM Practitioner_Community_Settings__c
