@@ -1,255 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <assignments>
-        <name>Collect_GAD</name>
-        <label>Collect GAD</label>
-        <locationX>415</locationX>
-        <locationY>310</locationY>
-        <assignmentItems>
-            <assignToReference>GiftAidDeclarationList</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>ParentGad</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>GiftAidDeclarationList</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>PartnerGAD</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Create_Gift_Aid_Declaration</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>GAD_for_Parent</name>
-        <label>GAD for Parent</label>
-        <locationX>557</locationX>
-        <locationY>310</locationY>
-        <assignmentItems>
-            <assignToReference>ParentGad.gaid__Contact__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Current_Booking_Record.Primary_Contact__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>ParentGad.Method__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>GAD_METHOD</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>ParentGad.gaid__Acquisition_Method__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>GAD_ACQUISITION_METHOD</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>ParentGad.gaid__Date_Made__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Flow.CurrentDate</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>ParentGad.gaid__Housename_or_number__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Current_Booking_Record.Street_Address__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>ParentGad.gaid__Postalcode__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Current_Booking_Record.Postcode__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>ParentGad.gaid__Active__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Collect_GAD</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>GAD_for_Partner</name>
-        <label>GAD for Partner</label>
-        <locationX>554</locationX>
-        <locationY>424</locationY>
-        <assignmentItems>
-            <assignToReference>PartnerGAD.gaid__Contact__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Current_Booking_Record.Partner_Contact__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>PartnerGAD.Method__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>GAD_METHOD</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>PartnerGAD.gaid__Acquisition_Method__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>GAD_ACQUISITION_METHOD</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>PartnerGAD.gaid__Date_Made__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Flow.CurrentDate</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>PartnerGAD.gaid__Housename_or_number__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Current_Booking_Record.Street_Address__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>ParentGad.gaid__Postalcode__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Current_Booking_Record.Postcode__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>ParentGad.gaid__Active__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>GAD_for_Parent</targetReference>
-        </connector>
-    </assignments>
-    <choices>
-        <name>Decline_Gift_Aid_Choice</name>
-        <choiceText>&lt;span style=&quot;font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;Decline Gift Aid&lt;/span&gt;</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>decline</stringValue>
-        </value>
-    </choices>
-    <choices>
-        <name>Individual_Declaration_Choice</name>
-        <choiceText>&lt;span style=&quot;font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;{!Individual_Declaration_Description_Template_1}&lt;/span&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</choiceText>
-        <dataType>String</dataType>
-    </choices>
-    <choices>
-        <name>Joint_Declaration_Choice</name>
-        <choiceText>&lt;span style=&quot;font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;{!Join_Declaration_Description_Template_1}&lt;/span&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</choiceText>
-        <dataType>String</dataType>
-    </choices>
-    <constants>
-        <name>GAD_ACQUISITION_METHOD</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Digital</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <name>GAD_METHOD</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>GiftAid</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <name>INDIVIDUAl_DECLARATION</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>individual</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <name>JOINT_DECLARATION</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>joint</stringValue>
-        </value>
-    </constants>
-    <decisions>
-        <name>Check_Declaration</name>
-        <label>Check Declaration</label>
-        <locationX>829</locationX>
-        <locationY>358</locationY>
-        <defaultConnector>
-            <targetReference>Details_Payment</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Decline Gift Aid</defaultConnectorLabel>
-        <rules>
-            <name>Individual_GAD</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Individual_Declaration_Choice</leftValueReference>
-                <operator>WasSelected</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>GAD_for_Parent</targetReference>
-            </connector>
-            <label>Individual GAD</label>
-        </rules>
-        <rules>
-            <name>Joint_GAD</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Joint_Declaration_Choice</leftValueReference>
-                <operator>WasSelected</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>GAD_for_Partner</targetReference>
-            </connector>
-            <label>Joint GAD</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Check_Partner</name>
-        <label>Check Partner</label>
-        <locationX>525</locationX>
-        <locationY>53</locationY>
-        <defaultConnector>
-            <targetReference>Gift_Aid_Screen_With_Partner</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>With Partner</defaultConnectorLabel>
-        <rules>
-            <name>Without_Partner</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Current_Booking_Record.Partner_Contact__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>GiftAidScreenWithoutPartner</targetReference>
-            </connector>
-            <label>Without Partner</label>
-        </rules>
-    </decisions>
     <interviewLabel>Booking {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Flow</label>
     <processMetadataValues>
@@ -268,49 +18,23 @@
     <recordCreates>
         <name>Create_Gift_Aid_Declaration</name>
         <label>Create Gift Aid Declaration</label>
-        <locationX>415</locationX>
-        <locationY>532</locationY>
-        <connector>
-            <targetReference>Details_Payment</targetReference>
-        </connector>
+        <locationX>619</locationX>
+        <locationY>50</locationY>
+        <faultConnector>
+            <targetReference>Declaration_Error</targetReference>
+        </faultConnector>
         <inputReference>GiftAidDeclarationList</inputReference>
     </recordCreates>
-    <recordLookups>
-        <name>Get_Booking_Record</name>
-        <label>Get Booking Record</label>
-        <locationX>383</locationX>
-        <locationY>51</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Check_Partner</targetReference>
-        </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>bookingId</elementReference>
-            </value>
-        </filters>
-        <object>Booking__c</object>
-        <outputReference>Current_Booking_Record</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>First_Name_Partner__c</queriedFields>
-        <queriedFields>Last_Name_Partner__c</queriedFields>
-        <queriedFields>Partner_Contact__c</queriedFields>
-        <queriedFields>Primary_Contact__c</queriedFields>
-        <queriedFields>Postcode__c</queriedFields>
-        <queriedFields>Street_Address__c</queriedFields>
-    </recordLookups>
     <screens>
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>
-        <locationX>245</locationX>
-        <locationY>51</locationY>
+        <locationX>172</locationX>
+        <locationY>50</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Get_Booking_Record</targetReference>
+            <targetReference>Gift_Aid_Declaration</targetReference>
         </connector>
         <fields>
             <name>Course_Summary_Details</name>
@@ -322,13 +46,37 @@
         <showHeader>false</showHeader>
     </screens>
     <screens>
+        <name>Declaration_Error</name>
+        <label>Declaration Error</label>
+        <locationX>618</locationX>
+        <locationY>210</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Error_Header</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(208, 66, 66); font-size: 18px; background-color: rgb(255, 255, 255);&quot;&gt;Opps! &lt;/span&gt;&lt;span style=&quot;color: rgb(79, 77, 77); font-size: 18px; background-color: rgb(255, 255, 255);&quot;&gt;Gift Aid Declaration is not created.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Error_Description</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Details_Payment</name>
         <label>Details Payment</label>
-        <locationX>839</locationX>
-        <locationY>532</locationY>
-        <allowBack>false</allowBack>
+        <locationX>479</locationX>
+        <locationY>50</locationY>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Create_Gift_Aid_Declaration</targetReference>
+        </connector>
         <fields>
             <name>DetailsPaymentDescription</name>
             <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Payment Details:&lt;/span&gt;&lt;/p&gt;</fieldText>
@@ -337,121 +85,42 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <screens>
-        <name>Gift_Aid_Screen_With_Partner</name>
-        <label>Gift Aid Screen With Partner</label>
-        <locationX>910</locationX>
-        <locationY>227</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <connector>
-            <targetReference>Check_Declaration</targetReference>
-        </connector>
-        <fields>
-            <name>Gift_Aid_Header_Description</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt; NCT Membership subscriptions qualify for Gift Aid&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Gift_Aid_Description</name>
-            <fieldText>&lt;p&gt;&lt;b style=&quot;font-family: &amp;quot;Helvetica Neue&amp;quot;; font-size: 16px; color: rgb(130, 192, 64);&quot;&gt;Please tick the Gift Aid declaration if applicable and click on Continue.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; font-family: &amp;quot;Helvetica Neue&amp;quot;; color: rgb(68, 68, 68);&quot;&gt;Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra cost to you.&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;font-size: 16px; font-family: &amp;quot;Helvetica Neue&amp;quot;; color: rgb(68, 68, 68);&quot;&gt;This means that for every £1 you give, we will receive an extra 25p&lt;/b&gt;&lt;span style=&quot;font-size: 16px; font-family: &amp;quot;Helvetica Neue&amp;quot;; color: rgb(68, 68, 68);&quot;&gt;&amp;nbsp;from HM Revenue and Customs.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-family: &amp;quot;Helvetica Neue&amp;quot;; font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;Your Gift Aid declaration:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: &amp;quot;Helvetica Neue&amp;quot;; font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;I understand that if I pay less Income Tax and/or Capital Gains tax than the amount of Gift Aid claimed on all my donations in that tax year, it is my responsibility to pay any difference.&amp;nbsp;Please let us know if you want to cancel this declaration, nominate a different start date for this declaration, change your home address or no longer pay sufficient tax by contacting our enquiries team on&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;mailto:enquiries@nct.org.uk&quot; target=&quot;_blank&quot; style=&quot;font-family: &amp;quot;Helvetica Neue&amp;quot;; font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;&lt;u&gt;enquiries@nct.org.uk&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;font-family: &amp;quot;Helvetica Neue&amp;quot;; font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;.&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Gift_Aid_Chose</name>
-            <choiceReferences>Individual_Declaration_Choice</choiceReferences>
-            <choiceReferences>Joint_Declaration_Choice</choiceReferences>
-            <choiceReferences>Decline_Gift_Aid_Choice</choiceReferences>
-            <dataType>String</dataType>
-            <defaultSelectedChoiceReference>Decline_Gift_Aid_Choice</defaultSelectedChoiceReference>
-            <fieldType>RadioButtons</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <screens>
-        <name>GiftAidScreenWithoutPartner</name>
-        <label>Gift Aid Screen Without Partner</label>
-        <locationX>580</locationX>
-        <locationY>202</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <connector>
-            <targetReference>Check_Declaration</targetReference>
-        </connector>
-        <fields>
-            <name>Gift_Aid_Header_Description_0</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt; NCT Membership subscriptions qualify for Gift Aid&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Gift_Aid_Description_0</name>
-            <fieldText>&lt;p&gt;&lt;b style=&quot;font-family: &amp;quot;Helvetica Neue&amp;quot;; font-size: 16px; color: rgb(130, 192, 64);&quot;&gt;Please tick the Gift Aid declaration if applicable and click on Continue.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; font-family: &amp;quot;Helvetica Neue&amp;quot;; color: rgb(68, 68, 68);&quot;&gt;Ticking the optional Gift Aid box means NCT can get the most of your membership donation at no extra cost to you.&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;font-size: 16px; font-family: &amp;quot;Helvetica Neue&amp;quot;; color: rgb(68, 68, 68);&quot;&gt;This means that for every £1 you give, we will receive an extra 25p&lt;/b&gt;&lt;span style=&quot;font-size: 16px; font-family: &amp;quot;Helvetica Neue&amp;quot;; color: rgb(68, 68, 68);&quot;&gt;&amp;nbsp;from HM Revenue and Customs.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-family: &amp;quot;Helvetica Neue&amp;quot;; font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;Your Gift Aid declaration:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: &amp;quot;Helvetica Neue&amp;quot;; font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;I understand that if I pay less Income Tax and/or Capital Gains tax than the amount of Gift Aid claimed on all my donations in that tax year, it is my responsibility to pay any difference.&amp;nbsp;Please let us know if you want to cancel this declaration, nominate a different start date for this declaration, change your home address or no longer pay sufficient tax by contacting our enquiries team on&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;mailto:enquiries@nct.org.uk&quot; target=&quot;_blank&quot; style=&quot;font-family: &amp;quot;Helvetica Neue&amp;quot;; font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;&lt;u&gt;enquiries@nct.org.uk&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;font-family: &amp;quot;Helvetica Neue&amp;quot;; font-size: 16px; color: rgb(68, 68, 68);&quot;&gt;.&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Gift_Aid_Chose_0</name>
-            <choiceReferences>Individual_Declaration_Choice</choiceReferences>
-            <choiceReferences>Decline_Gift_Aid_Choice</choiceReferences>
-            <dataType>String</dataType>
-            <defaultSelectedChoiceReference>Decline_Gift_Aid_Choice</defaultSelectedChoiceReference>
-            <fieldType>RadioButtons</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
     <startElementReference>Course_Summary_Details_Screen</startElementReference>
     <status>Active</status>
-    <textTemplates>
-        <name>Individual_Declaration_Description_Template_1</name>
-        <text>I am a UK taxpayer.  Please treat all donations and subscriptions I make or have made to NCT for the past 4 years as Gift Aid donations until further notice.</text>
-    </textTemplates>
-    <textTemplates>
-        <name>Join_Declaration_Description_Template_1</name>
-        <text>​We are both UK taxpayers and I confirm I am signing on both individuals behalf. Please treat all donations and subscriptions we make or have made to NCT for the past 4 years as Gift Aid donations until further notice.</text>
-    </textTemplates>
+    <subflows>
+        <name>Gift_Aid_Declaration</name>
+        <label>Gift Aid Declaration</label>
+        <locationX>327</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Details_Payment</targetReference>
+        </connector>
+        <flowName>Create_Gift_Aid_Declaration</flowName>
+        <inputAssignments>
+            <name>bookingId</name>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>GiftAidDeclarationList</assignToReference>
+            <name>GiftAidDeclarationList</name>
+        </outputAssignments>
+    </subflows>
     <variables>
         <name>bookingId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
-        <isOutput>true</isOutput>
+        <isOutput>false</isOutput>
         <value>
             <stringValue/>
         </value>
     </variables>
     <variables>
-        <name>Current_Booking_Record</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Booking__c</objectType>
-    </variables>
-    <variables>
         <name>GiftAidDeclarationList</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>gaid__Gift_Aid_Declaration__c</objectType>
-    </variables>
-    <variables>
-        <name>ParentGad</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>gaid__Gift_Aid_Declaration__c</objectType>
-    </variables>
-    <variables>
-        <name>PartnerGAD</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>gaid__Gift_Aid_Declaration__c</objectType>
