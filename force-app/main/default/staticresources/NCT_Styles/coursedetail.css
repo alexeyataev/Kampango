@@ -1,0 +1,101 @@
+div.requiredInput {
+    display: inline-block;
+}
+
+div.marginAround {
+	margin: 30px;
+}
+
+div.marginVertical {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.heading_2{
+    font-family : 'Raleway', arial, sans-serif;
+    font-size : 2rem; 
+    font-weight : 300; 
+    line-height : 2.625rem;
+    color: #000000;
+}
+.heading_3{
+    font-family : 'Raleway', arial, sans-serif;
+    font-size : 1.2rem; 
+    font-weight : 500; 
+    line-height : 2rem;
+    color: #000000; 
+}
+.heading_4{
+    font-family : 'Raleway', arial, sans-serif;
+    font-size : 1.2rem; 
+    font-weight : 390; 
+    line-height : 2.625rem;
+    color: #000000; 
+}
+.heading_5{
+    font-family : 'Raleway', arial, sans-serif;
+    font-size : 1rem; 
+    font-weight : 500; 
+    line-height : 2rem;
+    color: #000000; 
+}
+.regular-text{
+    font-family : 'Raleway', arial, sans-serif;
+    font-size : 1.1rem; 
+    font-weight : 300; 
+    line-height : 1.5rem;
+    color: #000000; 
+}
+.lato-font {
+    font-family: Lato;
+}
+th, td {
+    padding: 7px;
+}
+.padding_10{
+    padding: 10px;
+}
+.padding_30{
+    padding: 30px;
+}
+.line-height_1{
+    line-height: 1em;
+}
+.margin-half{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-right: 0em;
+    margin-left: 0em;
+}
+.margin_1{
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    margin-right: 0em;
+    margin-left: 0em;
+}
+.height_100{
+    height: 100%;
+}
+.padding-right_30{
+    padding-right: 30px;
+}
+.padding-left_30{
+    padding-left: 30px;
+}
+.padding-top_1{
+    padding-top: 1em;
+}
+.padding-bottom_1{
+    padding-bottom: 1em;
+}
+.row-flex {
+    display: flex; 
+}
+.col-flex{
+    flex: 1;
+}
+.border-top_grey{
+    border-top: 1px solid gainsboro;
+}
+.border-bottom_grey{
+    border-bottom: 1px solid gainsboro;
+}
