@@ -40,6 +40,7 @@
             </action>
         </rejectionActions>
     </approvalStep>
+    <emailTemplate>NCT_Templates/Course_Assignment_is_Ready_for_Approval</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
