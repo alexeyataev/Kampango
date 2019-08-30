@@ -8,22 +8,12 @@
         </div>
         <br>
         <div class="heading_3 lato-font">
-            {coursetype} course
+            {coursetype} course {mainTown}
         </div>
         <div class="heading_5 lato-font">
-            Venue (
-            <lightning-formatted-date-time 
-            value={startDate} 
-            month="long"
-            day="2-digit">
-            </lightning-formatted-date-time>
+            at {mainVenueName} ({startDate}
             <span> - </span>
-             <lightning-formatted-date-time 
-             value={endDate}
-             month="long"
-             day="2-digit">
-            </lightning-formatted-date-time>
-            )
+            {endDate})
         </div>
         <div class="slds-grid slds-wrap">
             <div class="regular-text lato-font slds-col slds-size_1-of-1 slds-large-size_5-of-6 slds-medium-size_5-of-6 slds-small-size_1-of-1">
@@ -33,28 +23,35 @@
         <div class="row-flex">
             <div class="padding-right_30 col-flex">
                 <div class="border-top_grey border-bottom_grey height_100">
-                    <div class="padding-top_1 padding-bottom_1">
+                    <div class="padding-top_1">
                         <div class="lato-font heading_3">Location</div>
                         <div>
-                            Venue
+                            <template for:each={venues} for:item="venue">
+                                    <p class="lato-font regular-text padding-top_1 padding-bottom_1" key={venue.id}>
+                                        <b>{venue.name}</b> ({venue.sessions})<br/>
+                                        {venue.street}, {venue.town}, {venue.county}<br/>
+                                        {venue.postcode}
+                                    </p>
+                            </template>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="padding-left_30 col-flex">
-                <div class="border-top_grey border-bottom_grey">
+                <div class="border-top_grey border-bottom_grey height_100">
                     <div class="padding-top_1 padding-bottom_1">
                         <div class="lato-font heading_3">Schedule</div>
                         <div class="lato-font regular-text">
-                            <lightning-datatable
-                                key-field="id"
-                                data={sessions}
-                                columns={sessionColumns}
-                                hide-checkbox-column
-                                resize-column-disabled
-                                show-row-number-column
-                                hide-table-header>
-                            </lightning-datatable>
+                            <template if:true={formattedSessions}>
+                                <lightning-datatable
+                                    key-field="id"
+                                    data={formattedSessions}
+                                    columns={sessionColumns}
+                                    hide-checkbox-column
+                                    resize-column-disabled
+                                    hide-table-header>
+                                </lightning-datatable>
+                            </template>
                         </div>
                     </div>
                 </div>
@@ -64,7 +61,7 @@
             Total - &#163;
             <lightning-formatted-number 
                 value={courseFee} 
-                minimum-fraction-digits="2">
+                minimum-fraction-digits="0">
             </lightning-formatted-number>
         </div>
     </template>

@@ -8,7 +8,8 @@ Thank you for enquiring about our {!Course__c.Sub_Type__c} course. We’re reall
 
 Your place is reserved until {!Booking__c.Reservation_Expiry_Date__c}.<br><br>
 
-Please click here to review your reservation and book your place. [link to booking journey]<br><br>
+<a href="{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}/s/booking?bookingId={!Booking__c.Id}">Please click here to review your reservation and book your place.</a>
+<br><br>
 
 If this course isn’t suitable, do come back to me by email or give me a call so we can look at alternatives.<br><br>
 
@@ -24,5 +25,5 @@ Your membership donation will support our work in your community, and in local c
 
 With very best wishes, and looking forward to welcoming you to NCT, <br><br>
 
-{!Booking__c.Enquiry_PSA_First_Name__c} <br>
-{!Booking__c.Enquiry_PSA_Phone__c}
+{!Booking__c.Enquiries_PSA_First_Name__c} <br>
+{!Booking__c.Enquiries_PSA_Phone__c}

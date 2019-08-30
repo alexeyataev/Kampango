@@ -2,8 +2,11 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>CourseDetailController</members>
+        <members>IPaymentServiceProvider</members>
+        <members>PaymentApiRequest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
+        <members>StepOrangeCardPaymentProvider</members>
         <members>TestAccountBuilder</members>
         <members>TestContactBuilder</members>
         <members>TestEstimatedCostsBuilder</members>
@@ -18,6 +21,11 @@
     <types>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Course_Assignment__c.Approve_Course_Assignment</members>
+        <name>ApprovalProcess</name>
+    </types>
     <types>
         <members>ClientDetailsAuraContainer</members>
         <members>CourseDetailComponent</members>
@@ -32,14 +40,23 @@
         <name>CompactLayout</name>
     </types>
     <types>
+        <members>nctlogo</members>
+        <name>ContentAsset</name>
+    </types>
+    <types>
         <members>NCT_Courses</members>
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Account</members>
         <members>Booking__c</members>
+        <members>Course_Assignment__c</members>
         <members>Course__c</members>
+        <members>Course_Settings__c</members>
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
+        <members>Parentforce_Community_Settings__c</members>
+        <members>Practitioner_Community_Settings__c</members>
         <members>Practitioner_Travel_Cost__c</members>
         <members>Rate__c</members>
         <members>Room__c</members>
@@ -55,15 +72,14 @@
     </types>
     <types>
         <members>Booking__c</members>
+        <members>npsp__Trigger_Handler__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
     </types>
     <types>
-        <members>Account.Account_Number__c</members>
-        <members>Account.Billing_Email__c</members>
-        <members>Account.Capacity_PSA__c</members>
-        <members>Account.Enquiry_PSA__c</members>
-        <members>Account.PSA_Area__c</members>
+        <members>Asset.Loaned_Date__c</members>
+        <members>Asset.Product2Id</members>
+        <members>Asset.Returned_Date__c</members>
         <members>Contact.AccountId</members>
         <members>Contact.Current_Fee_Band_Effective_From__c</members>
         <members>Contact.Fee_Band__c</members>
@@ -73,7 +89,10 @@
         <members>Contact.Practitioner_Re_Registration_Date__c</members>
         <members>Contact.Secondary_Email__c</members>
         <members>Contact.Second_Home_PSA__c</members>
+        <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -83,6 +102,7 @@
     </types>
     <types>
         <members>NCT_Templates/BookingNotificationEmail</members>
+        <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <name>EmailTemplate</name>
     </types>
     <types>
@@ -94,37 +114,49 @@
     </types>
     <types>
         <members>Contact_Record_Page</members>
-    	<members>Course_Record_Page</members>
+        <members>Course_Assignment_Record_Page</members>
+        <members>Course_Record_Page</members>
+    	<members>Room_Record_Page</members>
+	<members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
         <name>FlexiPage</name>
     </types>
     <types>
         <members>Booking_Journey_Flow</members>
+        <members>Booking_sendOfferEmail</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Populate_Practitioner_Name</members>
-        <members>Revert_Course_To_Draft_After_Cost_Deletion</members>
-        <members>Revert_Course_To_Draft_If_Cost_Changes</members>
+        <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
+        <members>Session_assignment_flow</members>
+        <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Main_Venue_on_Course</members>
-        <members>Update_Practitioner_Licence</members>
+        <members>Update_Practitioner_on_Sessions</members>
         <members>Update_service_field_on_session</members>
         <name>Flow</name>
     </types>
     <types>
         <members>Account-Branch Layout</members>
+        <members>Account-Branch Read Only Layout</members>
+        <members>Account-Household Lightning Layout</members>
         <members>Account-Organization Lightning Layout</members>
+        <members>Asset-Practitioner Asset Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
-        <members>Course__c-Course Layout</members>
         <members>Contact-Practitioner Page Layout</members>
+        <members>Contact-Practitioner Read Only Layout</members>
+        <members>Course_Assignment__c-Course Assignment Layout</members>
+        <members>Course__c-Course Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
+        <members>Product2-Practitioner Product Page</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
         <members>Rate__c-Rate Layout</members>
         <members>Room__c-Room Layout</members>
         <members>Session__c-Session Layout</members>
         <members>Venue__c-Venue Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
+        <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
         <name>Layout</name>
     </types>
     <types>
@@ -146,6 +178,7 @@
     </types>
     <types>
     	<members>Practitioner_Management</members>
+        <members>Product_Management</members>
         <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
     </types>
@@ -153,10 +186,15 @@
         <members>Admin</members>
         <members>Capacity PSA</members>
         <members>Enquiry PSA</members>
+        <members>Finance</members>
         <members>Parent Community Profile</members>
         <members>Payment API User</members>
         <members>Practitioner</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>Zumzum__NewTask</members>            
+        <name>QuickAction</name>  
     </types>
     <types>
         <members>Account.Branch</members>
@@ -168,10 +206,12 @@
     <types>
         <members>Capacity_PSA</members>
         <members>Capacity_PSA/Venue_Schedule</members>
+        <members>Capacity_PSA/Schedule_of_Sessions</members>
         <name>Report</name>
     </types>
     <types>
         <members>Sessions_on_venues</members>
+        <members>Schedule_of_Sessions</members>
         <name>ReportType</name>
     </types>
     <types>
@@ -194,15 +234,38 @@
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
+        <members>Booking__c.PreventConfirmedBookingCreation</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
         <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
+        <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
+        <members>Licence_To_Practice__c.End_date_should_not_be_blank</members>
         <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <members>Session__c.End_time_should_not_be_before_start_time</members>
+        <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
         <name>ValidationRule</name>
+    </types>
+    <types>
+        <members>Course_Assignment__c</members>
+        <name>Workflow</name>
+    </types>
+    <types>
+        <members>Booking__c.SendEmailToClient</members>
+        <name>WorkflowAlert</name>
+    </types>
+    <types>
+        <members>Booking__c.SetExpDate</members>
+        <members>Booking__c.SetExpDateTo5Days</members>
+        <members>Booking__c.SetExpDateToTenDays</members>
+        <members>Booking__c.SetOfferEmailDate</members>
+        <members>Booking__c.SetExpirationDate_Less5</members>
+        <members>Course_Assignment__c.UpdateStatusToApproved</members>
+        <members>Course_Assignment__c.UpdateStatusToSubmitted</members>
+        <members>Course_Assignment__c.UprateStatusToRejected</members>
+        <name>WorkflowFieldUpdate</name>
     </types>
     <types>
         <members>Booking__c.Booking%3ASendOfferEmail</members>
@@ -212,18 +275,6 @@
         <members>Booking__c.Booking%3ASetOfferEmailDate</members>
         <members>Booking__c.Booking_SetExpDate_Less5Days</members>
         <name>WorkflowRule</name>
-    </types>  
-    <types>
-        <members>Booking__c.SetExpDate</members>
-        <members>Booking__c.SetExpDateTo5Days</members>
-        <members>Booking__c.SetExpDateToTenDays</members>
-        <members>Booking__c.SetOfferEmailDate</members>
-        <members>Booking__c.SetExpirationDate_Less5</members>
-        <name>WorkflowFieldUpdate</name>
-    </types>
-    <types>
-        <members>Booking__c.SendEmailToClient</members>
-        <name>WorkflowAlert</name>
     </types>
     <version>46.0</version>
 </Package>

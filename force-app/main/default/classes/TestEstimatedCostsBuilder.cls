@@ -5,31 +5,31 @@ public with sharing class TestEstimatedCostsBuilder {
     private Integer amount = 100;
     private Boolean insertRecord = false;
 
-    public TestEstimatedCostsBuilder WithType(String type)
+    public TestEstimatedCostsBuilder withType(String type)
     {
         this.type = type;
         return this;
     }
 
-    public TestEstimatedCostsBuilder WithCourse(Course__c course)
+    public TestEstimatedCostsBuilder withCourse(Course__c course)
     {
         this.course = course;
         return this;
     }
 
-    public TestEstimatedCostsBuilder WithAmount(Integer amount)
+    public TestEstimatedCostsBuilder withAmount(Integer amount)
     {
         this.amount = amount;
         return this;
     }
 
-    public TestEstimatedCostsBuilder InsertRecord(Boolean insertRecord)
+    public TestEstimatedCostsBuilder insertRecord(Boolean insertRecord)
     {
         this.insertRecord = insertRecord;
         return this;
     }
 
-    public Estimated_Costs__c Build()
+    public Estimated_Costs__c build()
     {
         Estimated_Costs__c estimatedCosts = new Estimated_Costs__c(
             Type__c = this.type,

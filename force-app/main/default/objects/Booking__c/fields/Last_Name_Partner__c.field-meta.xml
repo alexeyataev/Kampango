@@ -3,7 +3,7 @@
     <fullName>Last_Name_Partner__c</fullName>
     <externalId>false</externalId>
     <formula>Partner_Contact__r.LastName</formula>
-    <label>Last Name (partner)</label>
+    <label>Last Name (Partner)</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
