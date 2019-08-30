@@ -26,6 +26,7 @@ public without sharing class TestDataFactory {
         }
         return instance;
     }
+
     public TestDataFactory buildBranchAccount() {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
         account =  accountBranchBuilder

@@ -35,9 +35,11 @@ public class TestAccountBuilder {
     
     public Account build(){
     	
-    	Account testAccount = new Account(RecordTypeId = this.recordTypeId,
-    							Name = this.name,
-    							BillingPostalCode = this.billingPostalCode);
+    	Account testAccount = new Account(
+			RecordTypeId = this.recordTypeId,
+			Name = this.name,
+			BillingPostalCode = this.billingPostalCode
+		);
     	
     	if(insertRecord)
     	{

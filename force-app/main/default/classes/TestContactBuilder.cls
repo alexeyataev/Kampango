@@ -46,7 +46,8 @@ public with sharing class TestContactBuilder {
     	Contact testContact = new Contact(
 			RecordTypeId = this.recordTypeId,
 			FirstName = this.firstName,
-			LastName = this.lastName, AccountId =account.Id
+			LastName = this.lastName,
+			AccountId = this.account.Id
 		);
 
 		if(insertRecord)

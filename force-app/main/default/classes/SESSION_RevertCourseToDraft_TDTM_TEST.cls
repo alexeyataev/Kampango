@@ -14,13 +14,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @TestSetup
     private static void setupTestData() {
-        TestDataFactory.getInstance();
-    }
-
-    @isTest
-    static void revertCourseToDraft_NewSessionIsAdded_CourseStatusIsRevertedToDraft() {
-
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
+        TestDataFactory.getInstance()
             .buildBranchAccount()
             .buildPractitioner()
             .buildVenue()
@@ -29,6 +23,12 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .buildCourse()
             .buildEstimatedCosts()
             .buildSession();
+    }
+
+    @isTest
+    static void revertCourseToDraft_NewSessionIsAdded_CourseStatusIsRevertedToDraft() {
+
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         createTriggerSystemHandlerRecord();
 
@@ -68,15 +68,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void revertCourseToDraft_DateUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         createTriggerSystemHandlerRecord();
 
@@ -106,15 +98,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void revertCourseToDraft_StartTimeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         createTriggerSystemHandlerRecord();
 
@@ -143,15 +127,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void revertCourseToDraft_EndTimeUpdatedOnSession_CourseStatusIsRevertedToDraft () {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         createTriggerSystemHandlerRecord();
 
@@ -181,15 +157,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void revertCourseToDraft_LunchBreakMinutesUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         createTriggerSystemHandlerRecord();
 
@@ -220,15 +188,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void revertCourseToDraft_PractitionerLicenceUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         createTriggerSystemHandlerRecord();
 
@@ -267,15 +227,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void revertCourseToDraft_VenueUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         createTriggerSystemHandlerRecord();
 
@@ -317,15 +269,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void revertCourseToDraft_SessionDeletedOnCourse_CourseStatusIsRevertedToDraft() {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         createTriggerSystemHandlerRecord();
 
@@ -353,13 +297,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession()
             .buildPractitionerTwo();
 
         createTriggerSystemHandlerRecord();
@@ -392,17 +329,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void revertCourseToDraft_StatusUpdatedOnSession_CourseStatusIsRevertedToDraft() {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
-
         createTriggerSystemHandlerRecord();
+
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
@@ -430,17 +359,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void changeSessionToProvisional_DateUpdatedOnSession_SessionStatusIsChangedToProvisional() {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
-
         createTriggerSystemHandlerRecord();
+
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
@@ -464,17 +385,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void changeSessionToProvisional_StartTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
-
         createTriggerSystemHandlerRecord();
+
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
@@ -498,17 +411,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void changeSessionToProvisional_EndTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
-
         createTriggerSystemHandlerRecord();
+
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
@@ -532,17 +437,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void changeSessionToProvisional_lunchBreakUpdatedOnSession_SessionStatusIsChangedToProvisional() {
 
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitioner()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession();
-
         createTriggerSystemHandlerRecord();
+
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
@@ -580,7 +477,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Integer coursesToCreate = 4;
         Integer sessionsToCreate = 8;
-        Integer additionalSessionsCreatedInTestSetup = 1;
+        Integer previouslyCreatedSessions = 2;
 
         testDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
 
@@ -612,9 +509,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         List<Session__c> sessionsToTest = [SELECT Status__c FROM Session__c WHERE Status__c =:SESSION_PROVISIONAL_STATUS];
 
         System.assertEquals(coursesToTest.size(), draftCoursesAfterUpdate.size());
-        System.assertEquals(sessionsToCreate + additionalSessionsCreatedInTestSetup, sessionsToTest.size());
+        System.assertEquals(sessionsToCreate + previouslyCreatedSessions, sessionsToTest.size());
     }
-
 
     @isTest
     static void revertCourseToDraft_BulkSessionsDeleted_CourseStatusIsRevertedToDraft() {
