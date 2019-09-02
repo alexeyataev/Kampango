@@ -130,7 +130,7 @@
         <members>Course_Assignment_Record_Page</members>
         <members>Course_Record_Page</members>
     	<members>Room_Record_Page</members>
-	    <members>Session_Record_Page</members>
+        <members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
         <name>FlexiPage</name>
     </types>
