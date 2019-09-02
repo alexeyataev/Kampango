@@ -1,10 +1,10 @@
 @IsTest
 public class TestPurchaseInvoiceBuilder {
 
-	private Boolean insertRecord = false;
 	private Id accountId;
-	private Date invoiceDate;
 	private Date dueDate;
+	private Boolean insertRecord = false;
+	private Date invoiceDate;
 	private Id purchaseOrderId;
 	private String status;
 

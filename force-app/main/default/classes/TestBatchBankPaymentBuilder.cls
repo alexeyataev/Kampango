@@ -2,20 +2,20 @@
 public class TestBatchBankPaymentBuilder {
 
 	private Boolean insertRecord = false;
-	private String type;
 	private String paymentType;
 	private String status;
-
-	public TestBatchBankPaymentBuilder withStatus(String status)
-	{
-		this.status = status;
-
-		return this;
-	}
+	private String type;
 
 	public TestBatchBankPaymentBuilder withPaymentType(String paymentType)
 	{
 		this.paymentType = paymentType;
+
+		return this;
+	}
+
+	public TestBatchBankPaymentBuilder withStatus(String status)
+	{
+		this.status = status;
 
 		return this;
 	}

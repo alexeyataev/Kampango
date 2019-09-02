@@ -1,14 +1,14 @@
 @IsTest
 public class TestPurchaseInvoiceLineItemBuilder {
 
-	private Boolean insertRecord = false;
 	private Double amount;
+	private Double gross;
+	private Boolean insertRecord = false;
+	private String narrative;
+	private Double net;
 	private Id purchaseInvoiceId;
 	private Integer quantity;
-	private Double gross;
-	private Double net;
-	private String narrative;
-
+	
 	public TestPurchaseInvoiceLineItemBuilder withAmount(Double amount)
 	{
 		this.amount = amount;

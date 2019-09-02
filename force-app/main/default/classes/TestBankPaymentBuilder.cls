@@ -1,25 +1,11 @@
 @IsTest
 public class TestBankPaymentBuilder {
 
+	private Double amount;
+	private Id batchBankPaymentId;
 	private Boolean insertRecord = false;
 	private String status;
 	private Id supplierId;
-	private Double amount;
-	private Id batchBankPaymentId;
-
-	public TestBankPaymentBuilder withStatus(String status)
-	{
-		this.status = status;
-
-		return this;
-	}
-
-	public TestBankPaymentBuilder withSupplier(Id supplierId)
-	{
-		this.supplierId = supplierId;
-
-		return this;
-	}
 
 	public TestBankPaymentBuilder withAmount(Double amount)
 	{
@@ -31,6 +17,20 @@ public class TestBankPaymentBuilder {
 	public TestBankPaymentBuilder withBatchBankPayment(Id batchBankPaymentId)
 	{
 		this.batchBankPaymentId = batchBankPaymentId;
+
+		return this;
+	}
+
+	public TestBankPaymentBuilder withStatus(String status)
+	{
+		this.status = status;
+
+		return this;
+	}
+
+	public TestBankPaymentBuilder withSupplier(Id supplierId)
+	{
+		this.supplierId = supplierId;
 
 		return this;
 	}

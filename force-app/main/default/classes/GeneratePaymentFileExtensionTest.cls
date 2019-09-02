@@ -86,24 +86,26 @@ private class GeneratePaymentFileExtensionTest {
 	@IsTest
 	public static void generatePaymentFile_BankPaymentApproved_FileGenerated() {
 
+		PageReference paymentFileRef = Page.GeneratePaymentFile;
+		Test.setCurrentPage(paymentFileRef);
+
+		Test.startTest();
+
 		Zumzum__Batch_Bank_Payment__c batchBankPayment = [
 				SELECT Id
 				FROM Zumzum__Batch_Bank_Payment__c
 				LIMIT 1
 		];
 
-		ApexPages.StandardController ctrl = new ApexPages.StandardController(batchBankPayment);
-		GeneratePaymentFileExtension generatePaymentCtrl = new GeneratePaymentFileExtension(ctrl);
+		ApexPages.StandardController standardController = new ApexPages.StandardController(batchBankPayment);
+		GeneratePaymentFileExtension generatePaymentFileController = new GeneratePaymentFileExtension(standardController);
 
-		PageReference paymentFileRef = Page.GeneratePaymentFile;
-		Test.setCurrentPage(paymentFileRef);
+		generatePaymentFileController.init();
 
-		generatePaymentCtrl.init();
+		String pageContent =  generatePaymentFileController.getPageContent();
+		String contentType =  generatePaymentFileController.getContentType();
 
-		String txtContent =  generatePaymentCtrl.getTxtString();
-		String contentType =  generatePaymentCtrl.getCntType();
-
-		System.assert(!generatePaymentCtrl.showError);
+		System.assert(!generatePaymentFileController.showError);
 
 		Date cd = Date.today();
 		String day = String.valueOf(cd.day()).leftPad(2, '0');
@@ -120,7 +122,8 @@ private class GeneratePaymentFileExtensionTest {
 						Zumzum__Supplier__r.Zumzum__Bank_Account_Name__c,
 						Name,
 						Zumzum__Supplier__r.Branch__r.Name,
-						Zumzum__Supplier__r.PSA_Area__c
+						Zumzum__Supplier__r.PSA_Area__c,
+						Payment_Reference__c
 				FROM Zumzum__Bank_Payment__c
 				WHERE Zumzum__Batch_Bank_Payment__c = :batchBankPayment.id];
 
@@ -132,21 +135,26 @@ private class GeneratePaymentFileExtensionTest {
 			columns.add(payment.Zumzum__Supplier__r.Zumzum__Bank_Sort_Code__c);
 			columns.add(payment.Zumzum__Supplier__r.Zumzum__Bank_Account_No__c);
 			columns.add(String.valueOf(payment.Zumzum__Amount__c).leftPad(11, '0'));
-			columns.add(payment.Zumzum__Supplier__r.Zumzum__Bank_Account_Name__c.leftPad(18, ' '));
-
-			String reference = GeneratePaymentFileUtil.PAYMENT_REFERENCE_PREFIX + ' ' + GeneratePaymentFileUtil.PSA_REFERENCE_PREFIX +
-					' ' + payment.Zumzum__Supplier__r.PSA_Area__c + '/' + payment.Name.split('-')[1];
-			columns.add(reference.rightPad(18, ' '));
+			columns.add(payment.Zumzum__Supplier__r.Zumzum__Bank_Account_Name__c.rightPad(18, ' '));
+			columns.add(payment.Payment_Reference__c.rightPad(18, ' '));
 			String lineStr = String.join(columns, ' ').trim();
 			rows.add(lineStr);
 		}
 		String txtString = String.join(rows,'\n').trim();
 
-		System.assertEquals(txtContent, txtString);
+		System.assertEquals(pageContent, txtString);
+
+		Test.stopTest();
+
 	}
 
 	@IsTest
 	public static void generatePaymentFile_BankPaymentNotApproved_ShowErrorMessage() {
+
+		PageReference paymentFileRef = Page.GeneratePaymentFile;
+		Test.setCurrentPage(paymentFileRef);
+
+		Test.startTest();
 
 		Zumzum__Batch_Bank_Payment__c batchBankPayment = [
 				SELECT Id, Zumzum__Status__c
@@ -158,19 +166,18 @@ private class GeneratePaymentFileExtensionTest {
 
 		update batchBankPayment;
 
-		ApexPages.StandardController ctrl = new ApexPages.StandardController(batchBankPayment);
-		GeneratePaymentFileExtension generatePaymentCtrl = new GeneratePaymentFileExtension(ctrl);
+		ApexPages.StandardController standardController = new ApexPages.StandardController(batchBankPayment);
+		GeneratePaymentFileExtension generatePaymentFileController = new GeneratePaymentFileExtension(standardController);
 
-		PageReference paymentFileRef = Page.GeneratePaymentFile;
-		Test.setCurrentPage(paymentFileRef);
+		generatePaymentFileController.init();
 
-		generatePaymentCtrl.init();
+		String pageContent =  generatePaymentFileController.getPageContent();
+		String contentType =  generatePaymentFileController.getContentType();
 
-		String txtContent =  generatePaymentCtrl.getTxtString();
-		String contentType =  generatePaymentCtrl.getCntType();
-
-		System.assert(generatePaymentCtrl.showError);
+		System.assert(generatePaymentFileController.showError);
 		System.assertEquals(contentType, 'text/html');
-		System.assertEquals(txtContent, '');
+		System.assertEquals(pageContent, '');
+
+		Test.stopTest();
 	}
 }

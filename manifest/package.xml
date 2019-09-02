@@ -78,7 +78,11 @@
         <members>Venue_Contact__c</members>
         <name>CustomObject</name>
     </types>
-     <types>
+    <types>
+        <members>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
         <members>Parent_Community</members>
         <members>Practitioners</members>
         <name>CustomSite</name>
@@ -105,6 +109,7 @@
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Zumzum__Bank_Payment__c.Payment_Reference__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <name>CustomField</name>
     </types>

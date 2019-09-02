@@ -2,10 +2,10 @@
 public class TestPurchaseOrderBuilder {
 
 	private Boolean insertRecord = false;
-	private String type;
+	private Date orderDate;
 	private String status;
 	private Id supplierId;
-	private Date orderDate;
+	private String type;
 
 	public TestPurchaseOrderBuilder withType(String type)
 	{

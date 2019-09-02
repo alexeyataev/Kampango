@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generate Payment File Invalid Batch Bank Payment Status Message</shortDescription>
+        <value>Batch Bank Payment should be approved to generate Payment File.</value>
+    </labels>
+</CustomLabels>

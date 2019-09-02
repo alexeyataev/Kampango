@@ -1,13 +1,13 @@
 @isTest
 public class TestPurchaseOrderLineItemBuilder {
 
-	private Boolean insertRecord = false;
-	private Id productId;
 	private Double amount;
+	private Double gross;
+	private Boolean insertRecord = false;
+	private String narrative;
+	private Id productId;
 	private Id purchaseOrderId;
 	private Integer quantity;
-	private Double gross;
-	private String narrative;
 
 	public TestPurchaseOrderLineItemBuilder withProduct(Id productId)
 	{

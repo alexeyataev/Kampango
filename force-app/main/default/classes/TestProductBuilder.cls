@@ -5,7 +5,6 @@ public class TestProductBuilder {
 	private Boolean isActive = true;
 	private String name;
 
-
 	public TestProductBuilder withName(String name)
 	{
 		this.name = name;
