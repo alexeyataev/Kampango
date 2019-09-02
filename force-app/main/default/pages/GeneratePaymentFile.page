@@ -1,0 +1,1 @@
+<apex:page standardController="Zumzum__Batch_Bank_Payment__c" extensions="GeneratePaymentFileExtension" action="{!init}" contentType="{!cntType}"><apex:pageMessages rendered="{!showError}" />{!txtString}</apex:page>
