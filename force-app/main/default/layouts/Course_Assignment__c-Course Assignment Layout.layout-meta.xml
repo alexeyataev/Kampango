@@ -27,8 +27,8 @@
                 <field>Course_Start_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OwnerId</field>
+                <behavior>Readonly</behavior>
+                <field>PSA_Area__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
