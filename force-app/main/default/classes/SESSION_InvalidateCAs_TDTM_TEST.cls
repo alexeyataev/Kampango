@@ -240,7 +240,6 @@ public class SESSION_InvalidateCAs_TDTM_TEST {
         TestContactBuilder contact = new TestContactBuilder();
         contact.withRecordType(practitionerLastName).withAccount(partnerAccount);
         Contact practitioner = [SELECT Owner.Id FROM Contact WHERE LastName =:practitionerLastName];
-        List<UserRole> userRoles = [Select Id, PortalRole from UserRole];
         Profile practitionerProfile = [SELECT Id FROM Profile WHERE Name =: practitionerLastName];
 
         User practitionerCommunityUser = new User(
@@ -254,8 +253,7 @@ public class SESSION_InvalidateCAs_TDTM_TEST {
             CommunityNickname = 'test123',
             TimeZoneSidKey = 'America/Los_Angeles',
             LocaleSidKey = 'en_US',
-            LanguageLocaleKey = 'en_US',
-            PortalRole = userRoles[0].PortalRole
+            LanguageLocaleKey = 'en_US'
         );
         insert practitionerCommunityUser;
         return practitionerCommunityUser;
