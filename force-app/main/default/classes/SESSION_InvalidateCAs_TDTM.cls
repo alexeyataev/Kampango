@@ -14,12 +14,12 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         List<Course_Assignment__c> courseAssignments = [SELECT Status__c
         FROM Course_Assignment__c
         WHERE Id IN : courseAssignmentIds
-        AND Status__c != 'Withdrawn'
+        AND Status__c != 'Invalidated'
         WITH SECURITY_ENFORCED];
 
         if(!courseAssignments.isEmpty()) {
             for(Course_Assignment__c assignment : courseAssignments){
-                assignment.Status__c = ' Withdrawn';
+                assignment.Status__c = 'Invalidated';
                 courseAssignmentsToUpdate.add(assignment);
             }
         }
@@ -39,7 +39,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                     newSessionList[i].Room__c != oldSessionList[i].Room__c)){
                 courseAssignmentIds.add(newSessionList[i].Course_Assignment__c);
             } else if(newSessionList[i].Type__c == 'Reunion' &&
-                (newSessionList[i].Status__c ==  'Confirmed ' && oldSessionList[i].Status__c == 'Provisional')){
+                (newSessionList[i].Status__c == 'Confirmed' && oldSessionList[i].Status__c == 'Provisional')){
                 courseAssignmentIds.add(newSessionList[i].Course_Assignment__c);
             }else if(newSessionList[i].Practitioner__c != oldSessionList[i].Practitioner__c){
                 courseAssignmentIds.add(newSessionList[i].Course_Assignment__c);
