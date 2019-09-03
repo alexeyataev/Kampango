@@ -50,11 +50,9 @@ public with sharing class CourseDetailControllerTest {
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         List<Venue__c> venues = new List<Venue__c>{
             venueBuilder.withName('Venue1')
-            .withType('Commercial')
             .insertRecord(false)
             .build(),
             venueBuilder.withName('Venue2')
-            .withType('Commercial')
             .insertRecord(false)
             .build()
         };
