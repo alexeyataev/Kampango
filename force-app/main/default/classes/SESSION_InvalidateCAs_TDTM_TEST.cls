@@ -239,7 +239,7 @@ public class SESSION_InvalidateCAs_TDTM_TEST {
 
         TestContactBuilder contact = new TestContactBuilder();
         contact.withRecordType(practitionerLastName).withAccount(partnerAccount);
-        Contact practitioner = [SELECT Owner.Id FROM Contact WHERE LastName =:practitionerLastName];
+        Contact practitioner = [SELECT Id FROM Contact WHERE LastName =:practitionerLastName];
 
         UserRole role;
         System.runAs(createSysAdminUser()){
