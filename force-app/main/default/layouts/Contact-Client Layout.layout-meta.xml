@@ -2,7 +2,6 @@
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>npe4__Relationships_Viewer</customButtons>
     <excludeButtons>Clone</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>DisableCustomerPortal</excludeButtons>
     <excludeButtons>DisablePartnerPortal</excludeButtons>
     <excludeButtons>DisablePrmSuperUser</excludeButtons>
@@ -265,6 +264,9 @@
     </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>gaid__Type__c</fields>
+        <fields>gaid__Date_Made__c</fields>
+        <fields>gaid__Active__c</fields>
         <relatedList>gaid__Gift_Aid_Declaration__c.gaid__Contact__c</relatedList>
     </relatedLists>
     <relatedLists>
