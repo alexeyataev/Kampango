@@ -240,6 +240,15 @@ public class SESSION_InvalidateCAs_TDTM_TEST {
         TestContactBuilder contact = new TestContactBuilder();
         contact.withRecordType(practitionerLastName).withAccount(partnerAccount);
         Contact practitioner = [SELECT Owner.Id FROM Contact WHERE LastName =:practitionerLastName];
+
+        UserRole role;
+        System.runAs(createSysAdminUser()){
+            role = new UserRole();
+            role.portalType = 'Partner';
+            role.PortalAccountId = partnerAccount.Id;
+            insert role;
+        }
+
         Profile practitionerProfile = [SELECT Id FROM Profile WHERE Name =: practitionerLastName];
 
         User practitionerCommunityUser = new User(
@@ -253,7 +262,8 @@ public class SESSION_InvalidateCAs_TDTM_TEST {
             CommunityNickname = 'test123',
             TimeZoneSidKey = 'America/Los_Angeles',
             LocaleSidKey = 'en_US',
-            LanguageLocaleKey = 'en_US'
+            LanguageLocaleKey = 'en_US',
+            PortalRole = role.PortalRole
         );
         insert practitionerCommunityUser;
         return practitionerCommunityUser;
@@ -276,6 +286,23 @@ public class SESSION_InvalidateCAs_TDTM_TEST {
         flow.start();
     }
 
+    private static User createSysAdminUser() {
+        Profile sysAdminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+        User sysAdminUser = new User(
+            alias = 'sysAdmin',
+            email = 'sysAdmin.email@fakemail.com',
+            emailencodingkey = 'UTF-8',
+            lastname = 'NCTtest',
+            languagelocalekey = Userinfo.getLanguage(),
+            localesidkey = Userinfo.getLocale(),
+            profileid = sysAdminProfile.Id,
+            timezonesidkey = Userinfo.getTimeZone().getID(),
+            username = 'NCTtest.sysAdmin.username@nct.com'
+        );
+
+        insert sysAdminUser;
+        return sysAdminUser;
+    }
     private static void createTriggerSystemHandlerRecord() {
 
         List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
