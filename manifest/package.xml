@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>BookingJourneyHelper</members>
+        <members>BookingJourneyHelperTest</members>
         <members>CourseDetailController</members>
+        <members>CourseDetailControllerTest</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
@@ -27,7 +30,6 @@
         <name>ApprovalProcess</name>
     </types>
     <types>
-        <members>ClientDetailsAuraContainer</members>
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
         <members>SuccessPaymentsPage</members>
@@ -117,12 +119,13 @@
         <members>Course_Assignment_Record_Page</members>
         <members>Course_Record_Page</members>
     	<members>Room_Record_Page</members>
-	<members>Session_Record_Page</members>
+	    <members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
         <name>FlexiPage</name>
     </types>
     <types>
         <members>Booking_Journey_Flow</members>
+        <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_sendOfferEmail</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Populate_Practitioner_Name</members>
@@ -160,7 +163,6 @@
         <name>Layout</name>
     </types>
     <types>
-        <members>clientDetailsContainer</members>
     	<members>courseDetailsComponent</members>
         <members>failurePaymentPage</members>
         <members>successPaymentPage</members>
