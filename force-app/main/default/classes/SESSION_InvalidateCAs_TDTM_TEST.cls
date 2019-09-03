@@ -1,5 +1,5 @@
 @isTest
-public class SESSION_InvalidateCAs_TDTM_TEST {
+private class SESSION_InvalidateCAs_TDTM_TEST {
 
     private static final String PRACTITIONER_LASTNAME = 'Practitioner';
     private static final String PRACTITIONER_LASTNAME_TWO = 'Practitioner2';
