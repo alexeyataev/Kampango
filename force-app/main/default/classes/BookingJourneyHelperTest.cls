@@ -1,8 +1,7 @@
 @IsTest
 public class BookingJourneyHelperTest {
 
-    @TestSetup
-    static void createTestData(){
+    public static String createPrimaryContact(){
         Account account = new Account(
             RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
             Name = 'Test Household'
@@ -15,20 +14,33 @@ public class BookingJourneyHelperTest {
             .withLastName('Primary')
             .insertRecord(true)
             .build();
+        return primaryContact.Id;
+    }
+
+    public static String createPartnerContact(){
+        Account account = new Account(
+            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
+            Name = 'Test Household2'
+        );
+        insert account;
+        TestContactBuilder contactBuilder = new TestContactBuilder();
         Contact partnerContact = contactBuilder.withRecordType('Client')
             .withAccount(account)
             .withFirstName('Test')
             .withLastName('Partner')
             .insertRecord(true)
             .build();
+        return partnerContact.Id;
     }
 
     @IsTest
     static void updateContact_primaryContact_contactUpdated(){
+        String primaryId = BookingJourneyHelperTest.createPrimaryContact();
+        String partnerId = BookingJourneyHelperTest.createPartnerContact();
         List<Contact> primaryContact = [
-            SELECT Id, npe01__PreferredPhone__c, FirstName, LastName
+            SELECT Id, npe01__PreferredPhone__c, FirstName, LastName, Salutation
             FROM Contact
-            WHERE LastName = 'Primary'
+            WHERE Id = :primaryId
         ];
         for(Contact contact :primaryContact){
             contact.npe01__PreferredPhone__c = 'Mobile';
@@ -50,10 +62,12 @@ public class BookingJourneyHelperTest {
 
     @IsTest
     static void updateContact_partnerContactWithId_contactUpdated(){
+        String primaryId = BookingJourneyHelperTest.createPrimaryContact();
+        String partnerId = BookingJourneyHelperTest.createPartnerContact();
         List<Contact> partnerContact = [
-            SELECT Id, npe01__PreferredPhone__c, FirstName, LastName
+            SELECT Id, npe01__PreferredPhone__c, FirstName, LastName, Salutation
             FROM Contact
-            WHERE LastName = 'Partner'
+            WHERE Id = :partnerId
         ];
         for(Contact contact :partnerContact){
             contact.npe01__PreferredPhone__c = 'Home';
@@ -75,6 +89,8 @@ public class BookingJourneyHelperTest {
 
     @IsTest
     static void updateContact_partnerContactNoId_contactCreated(){
+        String primaryId = BookingJourneyHelperTest.createPrimaryContact();
+        String partnerId = BookingJourneyHelperTest.createPartnerContact();
         TestContactBuilder contactBuilder = new TestContactBuilder();
         List<Contact> partnerContact = new List<Contact>{
             contactBuilder.withRecordType('Client')
