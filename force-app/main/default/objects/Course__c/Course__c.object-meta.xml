@@ -163,10 +163,15 @@
     </nameField>
     <pluralLabel>Courses</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Target_Group__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Branch__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Sub_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Branch__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Target_Group__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Main_Practitioner__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Confirmed_Places__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Remaining_Places__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

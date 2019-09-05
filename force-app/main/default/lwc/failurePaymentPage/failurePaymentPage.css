@@ -1,0 +1,21 @@
+body {
+   font-family: 'Raleway', arial, sans-serif;
+}
+
+.logo {
+   width: 12.5rem;
+}
+
+.line {
+   border-bottom: 1px solid rgba(1, 1, 1, .7);
+}
+
+.footer_line {
+   height: .4em;
+   background: #EB0E19;
+}
+
+.failure_text {
+   font-size: 3rem;
+   color: #EB0E19
+}
