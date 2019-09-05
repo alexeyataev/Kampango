@@ -175,6 +175,23 @@ public without sharing class TestDataFactory {
         }
         return this;
     }
+    public static User createSysAdminUser() {
+        Profile sysAdminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+        User sysAdminUser = new User(
+            alias = 'sysAdmin',
+            email = 'sysAdmin.email@fakemail.com',
+            emailencodingkey = 'UTF-8',
+            lastname = 'NCTtest',
+            languagelocalekey = Userinfo.getLanguage(),
+            localesidkey = Userinfo.getLocale(),
+            profileid = sysAdminProfile.Id,
+            timezonesidkey = Userinfo.getTimeZone().getID(),
+            username = 'NCTtest.sysAdmin.username@nct.com'
+        );
+
+        insert sysAdminUser;
+        return sysAdminUser;
+    }
 
     public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
         for(Session__c aSession : sessions){
