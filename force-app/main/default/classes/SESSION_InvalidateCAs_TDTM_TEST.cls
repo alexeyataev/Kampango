@@ -261,8 +261,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             CommunityNickname = 'test123',
             TimeZoneSidKey = 'America/Los_Angeles',
             LocaleSidKey = 'en_US',
-            LanguageLocaleKey = 'en_US',
-            PortalRole = role.PortalRole
+            LanguageLocaleKey = 'en_US'
         );
         insert practitionerCommunityUser;
         return practitionerCommunityUser;
