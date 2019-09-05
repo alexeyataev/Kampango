@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>BookingJourneyHelper</members>
+        <members>BookingJourneyHelperTest</members>
         <members>CourseDetailController</members>
+        <members>CourseDetailControllerTest</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
@@ -45,6 +48,10 @@
     <types>
         <members>NCT_Courses</members>
         <name>CustomApplication</name>
+    </types>
+    <types>
+      <members>*</members>
+      <name>CustomLabels</name>
     </types>
     <types>
         <members>Account</members>
@@ -122,6 +129,7 @@
     </types>
     <types>
         <members>Booking_Journey_Flow</members>
+        <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_sendOfferEmail</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Populate_Practitioner_Name</members>
