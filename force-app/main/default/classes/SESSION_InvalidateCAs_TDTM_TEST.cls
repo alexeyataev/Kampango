@@ -24,8 +24,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
-        System.runAs(testUser) {
+
             TestDataFactory.getInstance()
                 .buildBranchAccount()
                 .buildPractitionerTwo();
@@ -49,13 +48,11 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
 
             System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
-        }
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_DateChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
-        System.runAs(testUser) {
+
             createTriggerSystemHandlerRecord();
 
             List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
@@ -72,13 +69,11 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
 
             System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
-        }
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_StartTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
-        System.runAs(testUser) {
+
             createTriggerSystemHandlerRecord();
 
             List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
@@ -95,13 +90,10 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
 
             System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
-        }
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_EndTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
-        System.runAs(testUser) {
 
         createTriggerSystemHandlerRecord();
 
@@ -119,13 +111,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
-        }
+
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
-        System.runAs(testUser) {
+
             createTriggerSystemHandlerRecord();
 
             List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
@@ -142,13 +133,11 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
 
             System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
-        }
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
-        System.runAs(testUser) {
+
             createTriggerSystemHandlerRecord();
 
             Venue__c venue;
@@ -181,13 +170,11 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
 
             System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
-        }
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_StatusChangesFromProvisionalToConfirmedOnReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
-        System.runAs(testUser) {
+
             createTriggerSystemHandlerRecord();
 
             List<Session__c> sessions = [SELECT Id, Status__c FROM Session__c LIMIT 1];
@@ -209,13 +196,11 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
 
             System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
-        }
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_PractitionerChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
-        System.runAs(testUser) {
+
             createTriggerSystemHandlerRecord();
 
             TestDataFactory.getInstance()
@@ -244,33 +229,51 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
 
             System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
-        }
     }
 
-    private static User convertPractitionerToPartnerCommunityUser(String practitionerLastName) {
+    private static User convertPractitionerToPartnerCommunityUser(String lastName) {
 
         Account partnerAccount = [SELECT IsPartner FROM Account LIMIT 1];
         partnerAccount.IsPartner = true;
         update partnerAccount;
-
+/*
         TestContactBuilder contact = new TestContactBuilder();
-        contact.withRecordType(practitionerLastName).withAccount(partnerAccount);
-        Contact practitioner = [SELECT Id FROM Contact WHERE LastName =:practitionerLastName];
+        contact.withRecordType(lastName).withAccount(partnerAccount).build();
+*/
+        Contact practitioner = [SELECT Id FROM Contact WHERE LastName =:lastName];
+        TestContactBuilder contact2 = new TestContactBuilder();
+        contact2.withRecordType(lastName).withAccount(partnerAccount).withLastName('TestContact').insertRecord(true).build();
+
+        Contact testContact = [SELECT Id, LastName FROM Contact WHERE LastName = 'TestContact'];
 
         UserRole role;
         User practitionerCommunityUser;
-        User adminUser = createSysAdminUser();
+        User adminUser = TestDataFactory.createSysAdminUser();
         System.runAs(adminUser) {
             role = new UserRole(Name = 'testRole');
             insert role;
 
+            User user = new User();
+            user.ProfileID = [Select Id From Profile Where Name='Partner Community User'].id;
+            user.EmailEncodingKey = 'ISO-8859-1';
+            user.LanguageLocaleKey = 'en_US';
+            user.TimeZoneSidKey = 'America/New_York';
+            user.LocaleSidKey = 'en_US';
+            user.FirstName = 'first';
+            user.LastName = 'last';
+            user.Username = 'nct123@test.com';
+            user.CommunityNickname = 'testUser123';
+            user.Alias = 't1';
+            user.Email = 'no@email.com';
+            user.IsActive = true;
+            user.ContactId = testContact.Id;
 
-            Profile practitionerProfile = [SELECT Id FROM Profile WHERE Name = :practitionerLastName];
+            insert user;
 
             practitionerCommunityUser = new User(
-                Username = 'nct123@test.com',
+                Username = 'nct@test.com',
                 ContactId = practitioner.Id,
-                ProfileId = practitionerProfile.Id,
+                ProfileId = [SELECT Id, Name FROM Profile WHERE Name = :lastName].Id,
                 Alias = 'test123',
                 Email = 'test123@test.com',
                 EmailEncodingKey = 'UTF-8',
@@ -303,23 +306,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         flow.start();
     }
 
-    private static User createSysAdminUser() {
-        Profile sysAdminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
-        User sysAdminUser = new User(
-            alias = 'sysAdmin',
-            email = 'sysAdmin.email@fakemail.com',
-            emailencodingkey = 'UTF-8',
-            lastname = 'NCTtest',
-            languagelocalekey = Userinfo.getLanguage(),
-            localesidkey = Userinfo.getLocale(),
-            profileid = sysAdminProfile.Id,
-            timezonesidkey = Userinfo.getTimeZone().getID(),
-            username = 'NCTtest.sysAdmin.username@nct.com'
-        );
-
-        insert sysAdminUser;
-        return sysAdminUser;
-    }
     private static void createTriggerSystemHandlerRecord() {
 
         List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
