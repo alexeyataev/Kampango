@@ -258,29 +258,31 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Contact practitioner = [SELECT Id FROM Contact WHERE LastName =:practitionerLastName];
 
         UserRole role;
+        User practitionerCommunityUser;
         User adminUser = createSysAdminUser();
-        System.runAs(adminUser){
+        System.runAs(adminUser) {
             role = new UserRole(Name = 'testRole');
             insert role;
+
+
+            Profile practitionerProfile = [SELECT Id FROM Profile WHERE Name = :practitionerLastName];
+
+            practitionerCommunityUser = new User(
+                Username = 'nct123@test.com',
+                ContactId = practitioner.Id,
+                ProfileId = practitionerProfile.Id,
+                Alias = 'test123',
+                Email = 'test123@test.com',
+                EmailEncodingKey = 'UTF-8',
+                LastName = 'McTesty',
+                CommunityNickname = 'test123',
+                TimeZoneSidKey = 'America/Los_Angeles',
+                LocaleSidKey = 'en_US',
+                LanguageLocaleKey = 'en_US',
+                UserRole = role
+            );
+            insert practitionerCommunityUser;
         }
-
-        Profile practitionerProfile = [SELECT Id FROM Profile WHERE Name =: practitionerLastName];
-
-        User practitionerCommunityUser = new User(
-            Username = 'nct123@test.com',
-            ContactId = practitioner.Id,
-            ProfileId = practitionerProfile.Id,
-            Alias = 'test123',
-            Email = 'test123@test.com',
-            EmailEncodingKey = 'UTF-8',
-            LastName = 'McTesty',
-            CommunityNickname = 'test123',
-            TimeZoneSidKey = 'America/Los_Angeles',
-            LocaleSidKey = 'en_US',
-            LanguageLocaleKey = 'en_US',
-            UserRole = role
-        );
-        insert practitionerCommunityUser;
         return practitionerCommunityUser;
     }
 
