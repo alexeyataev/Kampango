@@ -242,11 +242,9 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Contact practitioner = [SELECT Id FROM Contact WHERE LastName =:practitionerLastName];
 
         UserRole role;
-        User userToCreateRole = createSysAdminUser();
-        System.runAs(userToCreateRole){
-            role = new UserRole();
-            role.portalType = 'Partner';
-            role.PortalAccountId = partnerAccount.Id;
+        User adminUser = createSysAdminUser();
+        System.runAs(adminUser){
+            role = new UserRole( Name = 'testRole');
             insert role;
         }
 
