@@ -24,77 +24,84 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitionerTwo();
+        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
+        System.runAs(testUser) {
+            TestDataFactory.getInstance()
+                .buildBranchAccount()
+                .buildPractitionerTwo();
 
-        createTriggerSystemHandlerRecord();
+            createTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+            List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
-        Contact practitioner2 = [SELECT Id, LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME_TWO];
+            Contact practitioner2 = [SELECT Id, LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME_TWO];
 
-        test.startTest();
+            test.startTest();
 
-        for(Session__c aSession : sessions) {
-            aSession.Practitioner__c = practitioner2.Id;
-            aSession.Practitioner_Licence__c = NULL;
+            for(Session__c aSession : sessions) {
+                aSession.Practitioner__c = practitioner2.Id;
+                aSession.Practitioner_Licence__c = NULL;
+            }
+            update sessions;
+
+            test.stopTest();
+
+            Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
+
+            System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
         }
-        update sessions;
-
-        test.stopTest();
-
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
-
-        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
-
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_DateChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
+        System.runAs(testUser) {
+            createTriggerSystemHandlerRecord();
 
-        createTriggerSystemHandlerRecord();
+            List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+            test.startTest();
 
-        test.startTest();
+            for (Session__c aSession : sessions) {
+                aSession.Date__c = Date.today() + 15;
+            }
+            update sessions;
 
-        for(Session__c aSession : sessions) {
-            aSession.Date__c = Date.today() + 15;
+            test.stopTest();
+
+            Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
+
+            System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
         }
-        update sessions;
-
-        test.stopTest();
-
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
-
-        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_StartTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
+        System.runAs(testUser) {
+            createTriggerSystemHandlerRecord();
 
-        createTriggerSystemHandlerRecord();
+            List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+            test.startTest();
 
-        test.startTest();
+            for (Session__c aSession : sessions) {
+                aSession.Start__c = Time.newInstance(09, 00, 0, 0);
+            }
+            update sessions;
 
-        for(Session__c aSession : sessions) {
-            aSession.Start__c = Time.newInstance(09, 00, 0, 0);
+            test.stopTest();
+
+            Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
+
+            System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
         }
-        update sessions;
-
-        test.stopTest();
-
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
-
-        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_EndTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-
+        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
+        System.runAs(testUser) {
 
         createTriggerSystemHandlerRecord();
 
@@ -112,123 +119,132 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
+        }
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
+        System.runAs(testUser) {
+            createTriggerSystemHandlerRecord();
 
-        createTriggerSystemHandlerRecord();
+            List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+            test.startTest();
 
-        test.startTest();
+            for (Session__c aSession : sessions) {
+                aSession.Lunch_Break_Minutes__c = 45;
+            }
+            update sessions;
 
-        for(Session__c aSession : sessions) {
-            aSession.Lunch_Break_Minutes__c = 45;
+            test.stopTest();
+
+            Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
+
+            System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
         }
-        update sessions;
-
-        test.stopTest();
-
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
-
-        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
+        System.runAs(testUser) {
+            createTriggerSystemHandlerRecord();
 
-        createTriggerSystemHandlerRecord();
+            Venue__c venue;
+            Room__c room;
 
-        Venue__c venue;
-        Room__c room;
+            List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+            TestVenueBuilder venueBuilder = new TestVenueBuilder();
+            venue = venueBuilder
+                .InsertRecord(true)
+                .Build();
 
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        venue = venueBuilder
-            .InsertRecord(true)
-            .Build();
+            TestRoomBuilder roomBuilder = new TestRoomBuilder();
+            room = roomBuilder
+                .WithVenue(venue)
+                .InsertRecord(true)
+                .Build();
 
-        TestRoomBuilder roomBuilder = new TestRoomBuilder();
-        room = roomBuilder
-            .WithVenue(venue)
-            .InsertRecord(true)
-            .Build();
+            test.startTest();
 
-        test.startTest();
+            for (Session__c aSession : sessions) {
+                aSession.Venue__c = venue.Id;
+                aSession.Room__c = room.Id;
+            }
 
-        for(Session__c aSession : sessions) {
-            aSession.Venue__c = venue.Id;
-            aSession.Room__c = room.Id;
+            update sessions;
+
+            test.stopTest();
+
+            Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
+
+            System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
         }
-
-        update sessions;
-
-        test.stopTest();
-
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
-
-        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_StatusChangesFromProvisionalToConfirmedOnReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
+        System.runAs(testUser) {
+            createTriggerSystemHandlerRecord();
 
-        createTriggerSystemHandlerRecord();
+            List<Session__c> sessions = [SELECT Id, Status__c FROM Session__c LIMIT 1];
 
-        List<Session__c> sessions = [SELECT Id, Status__c FROM Session__c LIMIT 1];
+            for (Session__c aSession : sessions) {
+                aSession.Type__c = 'Reunion';
+            }
+            update sessions;
 
-        for(Session__c aSession : sessions) {
-            aSession.Type__c = 'Reunion';
+            test.startTest();
+
+            for (Session__c aSession : sessions) {
+                aSession.Status__c = 'Confirmed';
+            }
+            update sessions;
+
+            test.stopTest();
+
+            Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
+
+            System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
         }
-        update sessions;
-
-        test.startTest();
-
-        for(Session__c aSession : sessions) {
-            aSession.Status__c = 'Confirmed';
-        }
-        update sessions;
-
-        test.stopTest();
-
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
-
-        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_PractitionerChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'nct123@test.com' LIMIT 1];
+        System.runAs(testUser) {
+            createTriggerSystemHandlerRecord();
 
-        createTriggerSystemHandlerRecord();
+            TestDataFactory.getInstance()
+                .buildBranchAccount()
+                .buildBranchAccount()
+                .buildPractitionerTwo();
 
-        TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildBranchAccount()
-            .buildPractitionerTwo();
+            List<Session__c> sessions = [SELECT Id, Practitioner__c FROM Session__c LIMIT 1];
+            for (Session__c aSession : sessions) {
+                aSession.Type__c = 'Reunion';
+            }
+            update sessions;
 
-        List<Session__c> sessions = [SELECT Id, Practitioner__c FROM Session__c LIMIT 1];
-        for(Session__c aSession : sessions) {
-            aSession.Type__c = 'Reunion';
+            Contact practitioner2 = [SELECT LastName FROM Contact WHERE LastName = :PRACTITIONER_LASTNAME_TWO];
+
+            test.startTest();
+
+            for (Session__c aSession : sessions) {
+                aSession.Practitioner__c = practitioner2.Id;
+                aSession.Practitioner_Licence__c = NULL;
+            }
+            update sessions;
+
+            test.stopTest();
+
+            Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
+
+            System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
         }
-        update sessions;
-
-        Contact practitioner2 = [SELECT LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME_TWO];
-
-        test.startTest();
-
-        for(Session__c aSession : sessions) {
-            aSession.Practitioner__c = practitioner2.Id;
-            aSession.Practitioner_Licence__c = NULL;
-        }
-        update sessions;
-
-        test.stopTest();
-
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c LIMIT 1];
-
-        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
 
     private static User convertPractitionerToPartnerCommunityUser(String practitionerLastName) {
@@ -244,7 +260,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         UserRole role;
         User adminUser = createSysAdminUser();
         System.runAs(adminUser){
-            role = new UserRole( Name = 'testRole');
+            role = new UserRole(Name = 'testRole');
             insert role;
         }
 
@@ -261,7 +277,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             CommunityNickname = 'test123',
             TimeZoneSidKey = 'America/Los_Angeles',
             LocaleSidKey = 'en_US',
-            LanguageLocaleKey = 'en_US'
+            LanguageLocaleKey = 'en_US',
+            UserRole = role
         );
         insert practitionerCommunityUser;
         return practitionerCommunityUser;
