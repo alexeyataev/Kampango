@@ -16,7 +16,7 @@ public class PaymentApiRequest{
         this.sourceConnector = sourceConnector;
     }
     public class Payer {
-        private Contact sontact {get;set;}
+        private Contact contact {get;set;}
         private String contactUpdate {get;set;}
         public Payer(Contact contact, String contactUpdate) {
             this.contact = contact;
