@@ -972,7 +972,7 @@
         <layout>Asset-Practitioner Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Booking__c-Booking Layout</layout>
+        <layout>Booking__c-Enquiry PSA Booking Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-Client Layout</layout>
