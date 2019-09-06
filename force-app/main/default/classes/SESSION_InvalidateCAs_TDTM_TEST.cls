@@ -241,9 +241,9 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             portalAccountOwner = new User(
                 UserRoleId = testRole.Id,
                 ProfileId = [SELECT Id FROM Profile WHERE name = 'System Administrator'].Id,
-                Username = System.now().millisecond() + 'test2@test.com',
+                Username = 'nctTestNct@test.com',
                 Alias = 'batman',
-                Email = 'bruce.wayne@wayneenterprises.com',
+                Email = 'NCTtestNCT123@NCTtestNCT.com',
                 EmailEncodingKey = 'UTF-8',
                 Firstname = 'Bruce',
                 Lastname = 'Wayne',
@@ -254,31 +254,31 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             insert portalAccountOwner;
         }
 
-        Account partnerAccount = [SELECT IsPartner FROM Account LIMIT 1];
-        partnerAccount.IsPartner = true;
-        partnerAccount.OwnerId = portalAccountOwner.Id;
-        update partnerAccount;
+        Account account = [SELECT ID FROM Account LIMIT 1];
+        account.IsPartner = true;
+        account.OwnerId = portalAccountOwner.Id;
+        update account;
 
         Contact practitioner = [SELECT Id FROM Contact WHERE LastName = :lastName];
-        practitioner.AccountId = partnerAccount.Id;
+        practitioner.AccountId = account.Id;
         update practitioner;
 
-        User user1 = new User(
+        User practitionerCommunityUser = new User(
             Username = PRACTITIONER_USERNAME,
             ContactId = practitioner.Id,
             ProfileId = [SELECT Id FROM Profile WHERE Name =:PRACTITIONER_LASTNAME LIMIT 1].Id,
-            Alias = 'test123',
-            Email = 'test12345@test.com',
+            Alias = 'NCTtest',
+            Email = 'NCTtestNCT@NCTtestNCT.com',
             EmailEncodingKey = 'UTF-8',
-            LastName = 'McTesty',
-            CommunityNickname = 'test12345',
+            LastName = 'NCTtestNCT',
+            CommunityNickname = 'NCTtestNCT',
             TimeZoneSidKey = 'America/Los_Angeles',
             LocaleSidKey = 'en_US',
             LanguageLocaleKey = 'en_US'
         );
-        insert user1;
+        insert practitionerCommunityUser;
 
-        return user1;
+        return practitionerCommunityUser;
     }
 
     private static void  ChangeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {

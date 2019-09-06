@@ -1,6 +1,6 @@
 @isTest
 public with sharing class TestCourseAssignmentBuilder {
-    private String Status = 'Draft';
+    private String status = 'Draft';
     private Course__c course;
     private Boolean insertRecord = false;
 

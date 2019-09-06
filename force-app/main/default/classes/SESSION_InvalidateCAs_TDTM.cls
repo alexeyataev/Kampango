@@ -8,7 +8,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         Set<Id> courseAssignmentIds = new Set<Id>();
 
         if (triggerAction == npsp.TDTM_Runnable.Action.AfterUpdate) {
-            courseAssignmentIds.addAll(idsOfCourseAssignmentsToChange(newSessionList, oldSessionList));
+            courseAssignmentIds.addAll(IdsOfCourseAssignmentsToChange(newSessionList, oldSessionList));
         }
 
         List<Course_Assignment__c> courseAssignments = [SELECT Status__c
