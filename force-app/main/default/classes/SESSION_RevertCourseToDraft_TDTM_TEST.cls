@@ -461,6 +461,38 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
+    static void changeSessionToProvisional_VenueUpdatedOnSession_SessionStatusIsChangedToProvisional() {
+
+        createTriggerSystemHandlerRecord();
+
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
+
+        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+
+        testDataFactory.setSessionsToConfirmed(sessions);
+
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        venue = venueBuilder
+            .InsertRecord(true)
+            .Build();
+
+        test.startTest();
+
+        for(Session__c aSession : sessions) {
+            aSession.Venue__c =  venue.Id;
+            aSession.Room__c =  NULL;
+        }
+
+        update sessions;
+
+        test.stopTest();
+
+        Session__c sessionToTest = [SELECT Status__c FROM Session__c WHERE Id = :sessions LIMIT 1];
+
+        System.assertEquals(SESSION_PROVISIONAL_STATUS, sessionToTest.Status__c);
+    }
+
+    @isTest
     static void revertCourseToDraft_BulkSessionsChanged_CourseStatusIsRevertedToDraft() {
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()

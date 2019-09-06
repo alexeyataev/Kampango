@@ -252,10 +252,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Account partnerAccount = [SELECT IsPartner FROM Account LIMIT 1];
         partnerAccount.IsPartner = true;
         update partnerAccount;
-/*
-        TestContactBuilder contact = new TestContactBuilder();
-        contact.withRecordType(lastName).withAccount(partnerAccount).build();
-*/
+
         Contact practitioner = [SELECT Id FROM Contact WHERE LastName =:lastName];
         TestContactBuilder contact2 = new TestContactBuilder();
         contact2.withRecordType(lastName).withAccount(partnerAccount).withLastName('TestContact').insertRecord(true).build();
@@ -268,7 +265,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         System.runAs(adminUser) {
             role = new UserRole(Name = 'testRole');
             insert role;
-
+        }
             User user = new User();
             user.ProfileID = [Select Id From Profile Where Name='Partner Community User'].id;
             user.EmailEncodingKey = 'ISO-8859-1';
@@ -301,7 +298,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                 UserRole = role
             );
             insert practitionerCommunityUser;
-        }
+
         return practitionerCommunityUser;
     }
 
