@@ -37,6 +37,18 @@
             <operator>equals</operator>
             <value>0036E00000igXVA</value>
         </criteriaItems>
+		<criteriaItems>
+            <column>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Date__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value/>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Start__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value/>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
