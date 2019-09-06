@@ -1,5 +1,5 @@
 global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
-    global override npsp.TDTM_Runnable.DmlWrapper run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+    global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         npsp.TDTM_Runnable.dmlWrapper dmlWrapper = new npsp.TDTM_Runnable.DmlWrapper();
 
         List<Session__c> newSessionList = (List<Session__c>) triggerNew;
@@ -16,7 +16,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         WHERE Id IN : courseAssignmentIds
         AND Status__c != 'Invalidated'
         WITH SECURITY_ENFORCED];
-
+        //NOPMD
         if(!courseAssignments.isEmpty()) {
             for(Course_Assignment__c assignment : courseAssignments){
                 assignment.Status__c = 'Invalidated';
@@ -27,7 +27,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         dmlWrapper.objectsToUpdate.addAll((List<Course_Assignment__c>) courseAssignmentsToUpdate);
         return dmlWrapper;
     }
-    private Set<Id> idsOfCourseAssignmentsToChange(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
+    private Set<Id> IdsOfCourseAssignmentsToChange(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
         Set<Id> courseAssignmentIds = new Set<Id>();
         for(Integer i = 0; i<newSessionList.size(); i++) {
             if(newSessionList[i].Type__c != 'Reunion' &&
@@ -48,3 +48,4 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         return courseAssignmentIds;
     }
 }
+//NOPMD
