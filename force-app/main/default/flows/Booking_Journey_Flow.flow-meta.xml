@@ -75,6 +75,7 @@
         <queriedFields>Birth_Or_Due_Date__c</queriedFields>
         <queriedFields>Postcode__c</queriedFields>
         <queriedFields>Street_Address__c</queriedFields>
+        <queriedFields>Under_18__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Course_Data</name>
@@ -100,6 +101,7 @@
         <queriedFields>Branch__c</queriedFields>
         <queriedFields>Status__c</queriedFields>
         <queriedFields>Couples_Allowed__c</queriedFields>
+        <queriedFields>Start_Date__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_User_Data</name>
@@ -125,7 +127,7 @@
     <recordLookups>
         <name>GetPrimaryContactData</name>
         <label>GetPrimaryContactData</label>
-        <locationX>256</locationX>
+        <locationX>252</locationX>
         <locationY>519</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -208,8 +210,8 @@
     <screens>
         <name>Details_Payment</name>
         <label>Details Payment</label>
-        <locationX>428</locationX>
-        <locationY>201</locationY>
+        <locationX>429</locationX>
+        <locationY>200</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -229,7 +231,7 @@
     <subflows>
         <name>Booking_Journey_Available</name>
         <label>Booking Journey Available</label>
-        <locationX>255</locationX>
+        <locationX>252</locationX>
         <locationY>341</locationY>
         <connector>
             <targetReference>Course_Summary_Details_Screen</targetReference>
@@ -263,8 +265,8 @@
     <subflows>
         <name>Contact_Details_Flow</name>
         <label>Contact Details Flow</label>
-        <locationX>251</locationX>
-        <locationY>61</locationY>
+        <locationX>252</locationX>
+        <locationY>63</locationY>
         <connector>
             <targetReference>Gift_Aid_Declaration</targetReference>
         </connector>
@@ -297,7 +299,7 @@
     <subflows>
         <name>Gift_Aid_Declaration</name>
         <label>Gift Aid Declaration</label>
-        <locationX>427</locationX>
+        <locationX>429</locationX>
         <locationY>63</locationY>
         <connector>
             <targetReference>Details_Payment</targetReference>
