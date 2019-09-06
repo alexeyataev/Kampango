@@ -1626,10 +1626,6 @@
         <apexClass>PaymentLinkGeneratorTestPageController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>PaymentLinkGeneratorTestPageMock</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
     <pageAccesses>
         <apexPage>PaymentLinkGeneratorTestPage</apexPage>
         <enabled>true</enabled>
