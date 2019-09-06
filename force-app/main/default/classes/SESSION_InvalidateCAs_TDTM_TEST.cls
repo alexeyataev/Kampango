@@ -23,8 +23,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct@test.com' LIMIT 1];
+    static void invalidateCourseAssignmentStatus_PractitionerChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
         System.runAs(testUser) {
             TestDataFactory.getInstance()
                 .buildBranchAccount()
@@ -53,8 +53,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_DateChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct@test.com' LIMIT 1];
+    static void invalidateCourseAssignmentStatus_DateChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
         System.runAs(testUser) {
             createTriggerSystemHandlerRecord();
 
@@ -76,8 +76,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_StartTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct@test.com' LIMIT 1];
+    static void invalidateCourseAssignmentStatus_StartTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
         System.runAs(testUser) {
             createTriggerSystemHandlerRecord();
 
@@ -99,8 +99,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_EndTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct@test.com' LIMIT 1];
+    static void invalidateCourseAssignmentStatus_EndTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
         System.runAs(testUser) {
 
         createTriggerSystemHandlerRecord();
@@ -123,8 +123,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct@test.com' LIMIT 1];
+    static void invalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
         System.runAs(testUser) {
             createTriggerSystemHandlerRecord();
 
@@ -146,8 +146,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct@test.com' LIMIT 1];
+    static void invalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
         System.runAs(testUser) {
             createTriggerSystemHandlerRecord();
 
@@ -185,8 +185,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_StatusChangesFromProvisionalToConfirmedOnReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct@test.com' LIMIT 1];
+    static void invalidateCourseAssignmentStatus_StatusChangesFromProvisionalToConfirmedOnReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
         System.runAs(testUser) {
             createTriggerSystemHandlerRecord();
 
@@ -213,8 +213,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_PractitionerChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'nct@test.com' LIMIT 1];
+    static void invalidateCourseAssignmentStatus_PractitionerChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
+        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
         System.runAs(testUser) {
             createTriggerSystemHandlerRecord();
 
@@ -248,58 +248,48 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     private static User convertPractitionerToPartnerCommunityUser(String lastName) {
-
+        User portalAccountOwner1;
+        System.runAs(TestDataFactory.createSysAdminUser()) {
+            portalAccountOwner1 = new User(
+                UserRoleId = [Select Id From UserRole Where PortalType = 'None' Limit 1].Id,
+                ProfileId = [Select Id from Profile where name = 'System Administrator'].Id,
+                Username = System.now().millisecond() + 'test2@test.com',
+                Alias = 'batman',
+                Email = 'bruce.wayne@wayneenterprises.com',
+                EmailEncodingKey = 'UTF-8',
+                Firstname = 'Bruce',
+                Lastname = 'Wayne',
+                LanguageLocaleKey = 'en_US',
+                LocaleSidKey = 'en_US',
+                TimeZoneSidKey = 'America/Chicago'
+            );
+            insert portalAccountOwner1;
+        }
         Account partnerAccount = [SELECT IsPartner FROM Account LIMIT 1];
         partnerAccount.IsPartner = true;
+        partnerAccount.OwnerId = portalAccountOwner1.Id;
         update partnerAccount;
 
-        Contact practitioner = [SELECT Id FROM Contact WHERE LastName =:lastName];
-        TestContactBuilder contact2 = new TestContactBuilder();
-        contact2.withRecordType(lastName).withAccount(partnerAccount).withLastName('TestContact').insertRecord(true).build();
+        Contact practitioner = [SELECT Id FROM Contact WHERE LastName = :lastName];
+        practitioner.AccountId = partnerAccount.Id;
+        update practitioner;
 
-        Contact testContact = [SELECT Id, LastName FROM Contact WHERE LastName = 'TestContact'];
+        User user1 = new User(
+            Username = 'ncttest12345@test.com',
+            ContactId = practitioner.Id,
+            ProfileId = [SELECT Id FROM Profile WHERE Name = 'Practitioner' Limit 1].Id,
+            Alias = 'test123',
+            Email = 'test12345@test.com',
+            EmailEncodingKey = 'UTF-8',
+            LastName = 'McTesty',
+            CommunityNickname = 'test12345',
+            TimeZoneSidKey = 'America/Los_Angeles',
+            LocaleSidKey = 'en_US',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert user1;
 
-        UserRole role;
-        User practitionerCommunityUser;
-        User adminUser = TestDataFactory.createSysAdminUser();
-        System.runAs(adminUser) {
-            role = new UserRole(Name = 'testRole');
-            insert role;
-        }
-            User user = new User();
-            user.ProfileID = [Select Id From Profile Where Name='Partner Community User'].id;
-            user.EmailEncodingKey = 'ISO-8859-1';
-            user.LanguageLocaleKey = 'en_US';
-            user.TimeZoneSidKey = 'America/New_York';
-            user.LocaleSidKey = 'en_US';
-            user.FirstName = 'first';
-            user.LastName = 'last';
-            user.Username = 'nct123@test.com';
-            user.CommunityNickname = 'testUser123';
-            user.Alias = 't1';
-            user.Email = 'no@email.com';
-            user.IsActive = true;
-            user.ContactId = testContact.Id;
-
-            insert user;
-
-            practitionerCommunityUser = new User(
-                Username = 'nct@test.com',
-                ContactId = practitioner.Id,
-                ProfileId = [SELECT Id, Name FROM Profile WHERE Name = :lastName].Id,
-                Alias = 'test123',
-                Email = 'test123@test.com',
-                EmailEncodingKey = 'UTF-8',
-                LastName = 'McTesty',
-                CommunityNickname = 'test123',
-                TimeZoneSidKey = 'America/Los_Angeles',
-                LocaleSidKey = 'en_US',
-                LanguageLocaleKey = 'en_US',
-                UserRole = role
-            );
-            insert practitionerCommunityUser;
-
-        return practitionerCommunityUser;
+        return user1;
     }
 
     private static void  changeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {
