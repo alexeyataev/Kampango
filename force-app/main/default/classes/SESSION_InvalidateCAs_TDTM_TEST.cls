@@ -2,11 +2,12 @@
 private class SESSION_InvalidateCAs_TDTM_TEST {
 
     private static final String PRACTITIONER_LASTNAME = 'Practitioner';
+    private static final String PRACTITIONER_USERNAME = 'ncttest@test.com';
     private static final String PRACTITIONER_LASTNAME_TWO = 'Practitioner2';
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
 
     @TestSetup
-    private static void setupTestData() {
+    private static void SetupTestData() {
       TestDataFactory.getInstance()
             .buildBranchAccount()
             .buildPractitioner()
@@ -23,14 +24,16 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void invalidateCourseAssignmentStatus_PractitionerChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
-        System.runAs(testUser) {
+    static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+
+        User practitionerCommunityUser = [SELECT Id FROM User WHERE Username =: PRACTITIONER_USERNAME LIMIT 1];
+
+        System.runAs(practitionerCommunityUser) {
             TestDataFactory.getInstance()
                 .buildBranchAccount()
                 .buildPractitionerTwo();
 
-            createTriggerSystemHandlerRecord();
+            CreateTriggerSystemHandlerRecord();
 
             List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
@@ -53,10 +56,13 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void invalidateCourseAssignmentStatus_DateChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
-        System.runAs(testUser) {
-            createTriggerSystemHandlerRecord();
+    static void InvalidateCourseAssignmentStatus_DateChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+
+        User practitionerCommunityUser = [SELECT Id FROM User WHERE Username = :PRACTITIONER_USERNAME LIMIT 1];
+
+        System.runAs(practitionerCommunityUser) {
+
+            CreateTriggerSystemHandlerRecord();
 
             List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
@@ -76,10 +82,13 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void invalidateCourseAssignmentStatus_StartTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
-        System.runAs(testUser) {
-            createTriggerSystemHandlerRecord();
+    static void InvalidateCourseAssignmentStatus_StartTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+
+        User practitionerCommunityUser= [SELECT Id FROM User WHERE Username = :PRACTITIONER_USERNAME LIMIT 1];
+
+        System.runAs(practitionerCommunityUser) {
+
+            CreateTriggerSystemHandlerRecord();
 
             List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
@@ -99,11 +108,13 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void invalidateCourseAssignmentStatus_EndTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
-        System.runAs(testUser) {
+    static void InvalidateCourseAssignmentStatus_EndTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
 
-        createTriggerSystemHandlerRecord();
+        User practitionerCommunityUser= [SELECT Id FROM User WHERE Username = :PRACTITIONER_USERNAME LIMIT 1];
+
+        System.runAs(practitionerCommunityUser) {
+
+            CreateTriggerSystemHandlerRecord();
 
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
@@ -123,10 +134,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void invalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
-        System.runAs(testUser) {
-            createTriggerSystemHandlerRecord();
+    static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+
+        User practitionerCommunityUser = [SELECT Id FROM User WHERE Username = :PRACTITIONER_USERNAME LIMIT 1];
+
+        System.runAs(practitionerCommunityUser) {
+            CreateTriggerSystemHandlerRecord();
 
             List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
@@ -146,10 +159,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void invalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
-        System.runAs(testUser) {
-            createTriggerSystemHandlerRecord();
+    static void InvalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+
+        User practitionerCommunityUser = [SELECT Id FROM User WHERE Username = :PRACTITIONER_USERNAME LIMIT 1];
+
+        System.runAs(practitionerCommunityUser) {
+            CreateTriggerSystemHandlerRecord();
 
             Venue__c venue;
             Room__c room;
@@ -185,10 +200,13 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void invalidateCourseAssignmentStatus_StatusChangesFromProvisionalToConfirmedOnReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
-        System.runAs(testUser) {
-            createTriggerSystemHandlerRecord();
+    static void InvalidateCourseAssignmentStatus_StatusChangesFromProvisionalToConfirmedOnReunionSession_CourseAssignmentStatusInvalidated() {
+
+        User practitionerCommunityUser = [SELECT Id FROM User WHERE Username = :PRACTITIONER_USERNAME LIMIT 1];
+
+        System.runAs(practitionerCommunityUser) {
+
+            CreateTriggerSystemHandlerRecord();
 
             List<Session__c> sessions = [SELECT Id, Status__c FROM Session__c LIMIT 1];
 
@@ -213,10 +231,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void invalidateCourseAssignmentStatus_PractitionerChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
-        User testUser= [SELECT Id FROM User WHERE Username = 'ncttest12345@test.com' LIMIT 1];
-        System.runAs(testUser) {
-            createTriggerSystemHandlerRecord();
+    static void InvalidateCourseAssignmentStatus_PractitionerChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
+
+        User practitionerCommunityUser = [SELECT Id FROM User WHERE Username = :PRACTITIONER_USERNAME LIMIT 1];
+
+        System.runAs(practitionerCommunityUser) {
+            CreateTriggerSystemHandlerRecord();
 
             TestDataFactory.getInstance()
                 .buildBranchAccount()
@@ -247,18 +267,18 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         }
     }
 
-    private static User convertPractitionerToPartnerCommunityUser(String lastName) {
+    private static User ConvertPractitionerToPartnerCommunityUser(String lastName) {
         User admin = TestDataFactory.createSysAdminUser();
-        UserRole role;
+        UserRole testRole;
+        User portalAccountOwner;
+
         System.runAs(admin) {
-            role = new UserRole(Name = 'testRole');
-            insert role;
-        }
-        User portalAccountOwner1;
-        System.runAs(admin) {
-            portalAccountOwner1 = new User(
-                UserRoleId = role.Id,
-                ProfileId = [Select Id from Profile where name = 'System Administrator'].Id,
+            testRole = new UserRole(Name = 'testRole');
+            insert testRole;
+
+            portalAccountOwner = new User(
+                UserRoleId = testRole.Id,
+                ProfileId = [SELECT Id FROM Profile WHERE name = 'System Administrator'].Id,
                 Username = System.now().millisecond() + 'test2@test.com',
                 Alias = 'batman',
                 Email = 'bruce.wayne@wayneenterprises.com',
@@ -269,11 +289,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                 LocaleSidKey = 'en_US',
                 TimeZoneSidKey = 'America/Chicago'
             );
-            insert portalAccountOwner1;
+            insert portalAccountOwner;
         }
+
         Account partnerAccount = [SELECT IsPartner FROM Account LIMIT 1];
         partnerAccount.IsPartner = true;
-        partnerAccount.OwnerId = portalAccountOwner1.Id;
+        partnerAccount.OwnerId = portalAccountOwner.Id;
         update partnerAccount;
 
         Contact practitioner = [SELECT Id FROM Contact WHERE LastName = :lastName];
@@ -281,9 +302,9 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         update practitioner;
 
         User user1 = new User(
-            Username = 'ncttest12345@test.com',
+            Username = PRACTITIONER_USERNAME,
             ContactId = practitioner.Id,
-            ProfileId = [SELECT Id FROM Profile WHERE Name = 'Practitioner' Limit 1].Id,
+            ProfileId = [SELECT Id FROM Profile WHERE Name =:PRACTITIONER_LASTNAME LIMIT 1].Id,
             Alias = 'test123',
             Email = 'test12345@test.com',
             EmailEncodingKey = 'UTF-8',
@@ -298,7 +319,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         return user1;
     }
 
-    private static void  changeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {
+    private static void  ChangeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {
 
         List<Course_Assignment__c> courseAssignments = [SELECT OwnerId, Course__c FROM Course_Assignment__c LIMIT 1];
 
@@ -315,7 +336,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         flow.start();
     }
 
-    private static void createTriggerSystemHandlerRecord() {
+    private static void CreateTriggerSystemHandlerRecord() {
 
         List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
 

@@ -1,5 +1,5 @@
 global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
-    global override npsp.TDTM_Runnable.DmlWrapper run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+    global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         npsp.TDTM_Runnable.dmlWrapper dmlWrapper = new npsp.TDTM_Runnable.DmlWrapper();
 
         List<Session__c> newSessionList = (List<Session__c>) triggerNew;
@@ -38,7 +38,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
         WHERE Id IN :courseIds
         AND Status__c != 'Draft'
         WITH SECURITY_ENFORCED];
-
+        //NOPMD
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {
                 aCourse.Status__c = 'Draft';
@@ -49,7 +49,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
         return dmlWrapper;
     }
 
-    private Set<Id> idsOfCoursesToChange(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
+    private Set<Id> IdsOfCoursesToChange(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
         Set<Id> courseIds = new Set<Id>();
         for(Integer i = 0; i<newSessionList.size(); i++) {
             if (newSessionList[i].Date__c != oldSessionList[i].Date__c ||
@@ -67,3 +67,4 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
         return courseIds;
     }
 }
+//NOPMD
