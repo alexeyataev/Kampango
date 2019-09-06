@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>BookingJourneyHelper</members>
+        <members>BookingJourneyHelperTest</members>
         <members>CourseDetailController</members>
+        <members>CourseDetailControllerTest</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
@@ -32,6 +35,8 @@
     <types>
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
+        <members>ParentCommunityLogoContainer</members>
+        <members>showToast</members>
         <members>SuccessPaymentsPage</members>
         <name>AuraDefinitionBundle</name>
     </types>
@@ -48,6 +53,10 @@
     <types>
         <members>NCT_Courses</members>
         <name>CustomApplication</name>
+    </types>
+    <types>
+      <members>*</members>
+      <name>CustomLabels</name>
     </types>
     <types>
         <members>Account</members>
@@ -124,11 +133,13 @@
         <name>FlexiPage</name>
     </types>
     <types>
+        <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Flow</members>
-        <members>Booking_sendOfferEmail</members>
+        <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Invalidate_Withdraw_CA_when_key_information_changes</members>
         <members>Populate_Practitioner_Name</members>
+        <members>Resend_Offer_Email</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
@@ -144,6 +155,7 @@
         <members>Account-Organization Lightning Layout</members>
         <members>Asset-Practitioner Asset Layout</members>
         <members>Booking__c-Booking Layout</members>
+        <members>Booking__c-Enquiry PSA Booking Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
         <members>Contact-Practitioner Page Layout</members>
@@ -165,6 +177,7 @@
     <types>
     	<members>courseDetailsComponent</members>
         <members>failurePaymentPage</members>
+        <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
         <name>LightningComponentBundle</name>
     </types>
@@ -195,6 +208,7 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>Booking__c.Send_Offer_Email</members>
         <members>Zumzum__NewTask</members>            
         <name>QuickAction</name>  
     </types>
@@ -231,6 +245,7 @@
     </types>
     <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
+        <members>Booking__c.ExpiredDataCanNotBeLess</members>
         <members>Booking__c.FeeOverrideAmountRestriction</members>
         <members>Booking__c.FeeOverrideRestriction</members>
         <members>Booking__c.InappropriateStatusTransition</members>
@@ -251,6 +266,7 @@
         <name>ValidationRule</name>
     </types>
     <types>
+        <members>Booking__c</members>
         <members>Course_Assignment__c</members>
         <name>Workflow</name>
     </types>
@@ -270,12 +286,7 @@
         <name>WorkflowFieldUpdate</name>
     </types>
     <types>
-        <members>Booking__c.Booking%3ASendOfferEmail</members>
-        <members>Booking__c.Booking%3ASetExpirationDate%3C10Days</members>
-        <members>Booking__c.Booking%3ASetExpirationDate10Days</members>
-        <members>Booking__c.Booking%3ASetExpirationDate5Days</members>
-        <members>Booking__c.Booking%3ASetOfferEmailDate</members>
-        <members>Booking__c.Booking_SetExpDate_Less5Days</members>
+        <members>Booking__c.Send Reservation Email</members>
         <name>WorkflowRule</name>
     </types>
     <version>46.0</version>
