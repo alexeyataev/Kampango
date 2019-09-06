@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>ExpiredDataCanNotBeLess</fullName>
+    <fullName>ExpirationDateCannotBeInPast</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
  PRIORVALUE( Reservation_Expiry_Date__c ) &gt; Reservation_Expiry_Date__c,   
  ISPICKVAL(Status__c, &quot;Expired&quot;)
 )</errorConditionFormula>
     <errorDisplayField>Reservation_Expiry_Date__c</errorDisplayField>
-    <errorMessage>Reservation Expiry Date can&#39;t be a less than a new set a date.</errorMessage>
+    <errorMessage>Expiration date cannot be in the past</errorMessage>
 </ValidationRule>

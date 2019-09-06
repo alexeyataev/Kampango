@@ -49,7 +49,7 @@
             <assignToReference>Toast_message1</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Email sending was successful!</stringValue>
+                <stringValue>Email was not sent successfully</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -72,7 +72,7 @@
             <assignToReference>Toast_message1</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Email sending was successful!</stringValue>
+                <stringValue>Email sent successfully</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
