@@ -606,7 +606,7 @@
             <assignToReference>bookingRecord.How_Heard__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>How_Heard_1</elementReference>
+                <elementReference>How_Heard</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -946,7 +946,7 @@
         <name>HowHeardNone4</name>
         <label>HowHeardNone?</label>
         <locationX>2094</locationX>
-        <locationY>1120</locationY>
+        <locationY>1119</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>HowHeardIsNone4</name>
