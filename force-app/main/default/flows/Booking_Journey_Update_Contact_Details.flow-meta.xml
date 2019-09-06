@@ -99,6 +99,13 @@
                 <elementReference>mobilePhone</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bookingRecord.Under_18__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Under_18_2</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone1</targetReference>
         </connector>
@@ -183,6 +190,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>lNamePartner</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bookingRecord.Under_18__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Under_18</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -271,6 +285,13 @@
                 <elementReference>lNamePartner</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bookingRecord.Under_18__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Under_18_5</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone4</targetReference>
         </connector>
@@ -357,6 +378,13 @@
                 <elementReference>lNamePartner</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bookingRecord.Under_18__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Under_18_6</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone5</targetReference>
         </connector>
@@ -422,6 +450,13 @@
                 <elementReference>mobilePhone</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bookingRecord.Under_18__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Under_18_3</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Update_Primary_Contact</targetReference>
         </connector>
@@ -485,6 +520,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>mobilePhone</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bookingRecord.Under_18__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Under_18_4</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -1820,6 +1862,14 @@
             <isRequired>false</isRequired>
         </fields>
         <fields>
+            <name>Under_18</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Under 18</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
             <name>Patrner</name>
             <fieldText>&lt;p&gt;Who will be coming on the course with you?&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
@@ -2098,6 +2148,14 @@
             <isRequired>false</isRequired>
         </fields>
         <fields>
+            <name>Under_18_2</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Under 18</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
             <name>How_Heard_0</name>
             <choiceReferences>none</choiceReferences>
             <choiceReferences>Booking_How_Heard</choiceReferences>
@@ -2322,6 +2380,17 @@
             <isRequired>false</isRequired>
         </fields>
         <fields>
+            <name>Under_18_4</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>bookingRecord.Under_18__c</elementReference>
+            </defaultValue>
+            <fieldText>Under 18</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
             <name>How_Heard_Default_1</name>
             <fieldText>&lt;p&gt;How did you hear about us?&lt;/p&gt;&lt;p&gt;{!bookingRecord.How_Heard__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;To change this value please use the drop-down below.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
@@ -2341,7 +2410,7 @@
     <screens>
         <name>HomeIssue_0</name>
         <label>Home Issue</label>
-        <locationX>2462</locationX>
+        <locationX>2464</locationX>
         <locationY>547</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -2598,6 +2667,17 @@
             </outputParameters>
         </fields>
         <fields>
+            <name>Under_18_6</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>bookingRecord.Under_18__c</elementReference>
+            </defaultValue>
+            <fieldText>Under 18</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
             <name>How_Heard_Default_1_0</name>
             <fieldText>&lt;p&gt;How did you hear about us?&lt;/p&gt;&lt;p&gt;{!bookingRecord.How_Heard__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;To change this value please use the drop-down below.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
@@ -2825,6 +2905,17 @@
             <fieldText>Country</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Under_18_3</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>bookingRecord.Under_18__c</elementReference>
+            </defaultValue>
+            <fieldText>Under 18</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>How_Heard_Default</name>
@@ -3103,6 +3194,17 @@
             </outputParameters>
         </fields>
         <fields>
+            <name>Under_18_5</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>bookingRecord.Under_18__c</elementReference>
+            </defaultValue>
+            <fieldText>Under 18</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
             <name>How_Heard_Default_0</name>
             <fieldText>&lt;p&gt;How did you hear about us?&lt;/p&gt;&lt;p&gt;{!bookingRecord.How_Heard__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;To change this value please use the drop-down below.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
@@ -3253,5 +3355,25 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Under18Partner</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>Under18Primary</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
 </Flow>

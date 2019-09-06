@@ -245,30 +245,6 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
-    <recordLookups>
-        <name>Get_Booking_Record</name>
-        <label>Get Booking Record</label>
-        <locationX>54</locationX>
-        <locationY>202</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Check_Partner</targetReference>
-        </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>bookingId</elementReference>
-            </value>
-        </filters>
-        <object>Booking__c</object>
-        <outputReference>BookingRecord</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Partner_Contact__c</queriedFields>
-        <queriedFields>Primary_Contact__c</queriedFields>
-        <queriedFields>Postcode__c</queriedFields>
-        <queriedFields>Street_Address__c</queriedFields>
-    </recordLookups>
     <screens>
         <name>Gift_Aid_Screen_With_Partner</name>
         <label>Gift Aid Screen With Partner</label>
@@ -336,7 +312,7 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Get_Booking_Record</startElementReference>
+    <startElementReference>Check_Partner</startElementReference>
     <status>Active</status>
     <textTemplates>
         <name>Individual_Declaration_Description_Template</name>
@@ -347,17 +323,10 @@
         <text>​We are both UK taxpayers and I confirm I am signing on both individuals behalf. Please treat all donations and subscriptions we make or have made to NCT for the past 4 years as Gift Aid donations until further notice.</text>
     </textTemplates>
     <variables>
-        <name>bookingId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
         <name>BookingRecord</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
-        <isInput>false</isInput>
+        <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>Booking__c</objectType>
     </variables>
