@@ -1622,6 +1622,22 @@
         <tab>npsp__Trigger_Handler__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
+    <classAccesses>
+        <apexClass>PaymentLinkGeneratorTestPageController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PaymentLinkGeneratorTestPageMock</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PaymentLinkGeneratorTestPageTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <pageAccesses>
+        <apexPage>PaymentLinkGeneratorTestPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <userLicense>Guest User License</userLicense>
     <userPermissions>
         <enabled>true</enabled>
