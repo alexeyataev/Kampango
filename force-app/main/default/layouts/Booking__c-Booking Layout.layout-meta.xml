@@ -139,6 +139,10 @@
                 <behavior>Readonly</behavior>
                 <field>Postcode__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Under_18__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
