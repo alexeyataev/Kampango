@@ -248,10 +248,16 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     private static User convertPractitionerToPartnerCommunityUser(String lastName) {
+        User admin = TestDataFactory.createSysAdminUser();
+        UserRole role;
+        System.runAs(admin) {
+            role = new UserRole(Name = 'testRole');
+            insert role;
+        }
         User portalAccountOwner1;
-        System.runAs(TestDataFactory.createSysAdminUser()) {
+        System.runAs(admin) {
             portalAccountOwner1 = new User(
-                UserRoleId = [Select Id From UserRole Where PortalType = 'None' Limit 1].Id,
+                UserRoleId = role.Id,
                 ProfileId = [Select Id from Profile where name = 'System Administrator'].Id,
                 Username = System.now().millisecond() + 'test2@test.com',
                 Alias = 'batman',
