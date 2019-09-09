@@ -99,6 +99,7 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>Booking_sendOfferEmail</members>
         <members>Update_Practitioner_Licence</members>
         <name>Flow</name>
     </types>
