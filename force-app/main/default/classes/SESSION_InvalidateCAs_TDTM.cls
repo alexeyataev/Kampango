@@ -27,6 +27,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         dmlWrapper.objectsToUpdate.addAll((List<Course_Assignment__c>) courseAssignmentsToUpdate);
         return dmlWrapper;
     }
+    //NOPMD
     private Set<Id> IdsOfCourseAssignmentsToChange(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
         Set<Id> courseAssignmentIds = new Set<Id>();
         for(Integer i = 0; i<newSessionList.size(); i++) {

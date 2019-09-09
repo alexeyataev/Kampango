@@ -18,4 +18,6 @@ global with sharing class SESSION_RevertToProvisional_TDTM extends npsp.TDTM_Run
         }
         return dmlWrapper;
     }
+    //NOPMD
 }
+//NOPMD
