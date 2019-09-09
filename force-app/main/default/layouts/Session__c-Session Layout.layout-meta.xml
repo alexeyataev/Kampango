@@ -32,7 +32,7 @@
                 <field>End__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Lunch_Break_Minutes__c</field>
             </layoutItems>
             <layoutItems>

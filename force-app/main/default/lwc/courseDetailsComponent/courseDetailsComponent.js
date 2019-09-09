@@ -4,7 +4,6 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import retrieveRelatedSessions from '@salesforce/apex/CourseDetailController.retrieveRelatedSessions';
 import NCT_STYLES from '@salesforce/resourceUrl/NCT_Styles';
 import { loadStyle } from 'lightning/platformResourceLoader';
-import {CurrentPageReference} from 'lightning/navigation';
 
 const BOOKING_FIELDS = [
         'Booking__c.Reservation_Expiry_Date__c',
@@ -153,11 +152,7 @@ export default class CourseDetailsComponent extends LightningElement {
         });        
     }
 
-    @wire(CurrentPageReference)
-    currentPageReference;
-
     connectedCallback(){
-        this.bookingId = this.currentPageReference.state.bookingId;
         loadStyle(this, NCT_STYLES + '/coursedetail.css')
             .then(() => {
                 this.stylesLoaded = true;
