@@ -122,9 +122,9 @@
     </types>
     <types>
         <members>Booking__c.Booking%3ASendOfferEmail</members>
-		<members>Booking__c.Booking%3ASetExpirationDate%3C10Days</members>
-		<members>Booking__c.Booking%3ASetExpirationDate10Days</members>
-		<members>Booking__c.Booking%3ASetExpirationDate5Days</members>
+        <members>Booking__c.Booking%3ASetExpirationDate%3C10Days</members>
+        <members>Booking__c.Booking%3ASetExpirationDate10Days</members>
+        <members>Booking__c.Booking%3ASetExpirationDate5Days</members>
         <members>Booking__c.Booking%3ASetOfferEmailDate</members>
         <members>Booking__c.Booking_SetExpDate_Less5Days</members>
         <members>Booking__c.Send Reservation Email</members>
