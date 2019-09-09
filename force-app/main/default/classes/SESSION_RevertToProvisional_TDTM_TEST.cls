@@ -167,8 +167,8 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
         CreateTriggerSystemHandlerRecord();
 
-        Integer coursesToCreate = 10;
-        Integer sessionsToCreate = 20;
+        Integer coursesToCreate = 5;
+        Integer sessionsToCreate = 10;
 
         testDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
 
