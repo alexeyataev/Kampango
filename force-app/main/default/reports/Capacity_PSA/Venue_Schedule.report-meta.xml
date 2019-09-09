@@ -22,12 +22,17 @@
         <field>Venue__c.Sessions__r$Course__c</field>
     </columns>
     <filter>
-        <booleanFilter>1</booleanFilter>
         <criteriaItems>
-            <column>Venue__c$Id</column>
+            <column>Venue__c.Sessions__r$Course__c.Status__c</column>
             <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value/>
+            <operator>notEqual</operator>
+            <value>Cancelling</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Venue__c.Sessions__r$Course__c.Status__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Cancelled</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
