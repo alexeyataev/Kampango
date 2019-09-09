@@ -1464,7 +1464,11 @@
                 </rightValue>
             </conditions>
             <connector>
+<<<<<<< HEAD
                 <targetReference>IsPartnerValid</targetReference>
+=======
+                <targetReference>Update_Partner_Contact</targetReference>
+>>>>>>> W-002126
             </connector>
             <label>HomePhoneEntered</label>
         </rules>
@@ -1485,6 +1489,31 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+<<<<<<< HEAD
+=======
+            <connector>
+                <targetReference>Update_Partner_Contact</targetReference>
+            </connector>
+            <label>MobilePhoneEntered</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>SalutationNone</name>
+        <label>SalutationNone?</label>
+        <locationX>1452</locationX>
+        <locationY>363</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>SalutationNone1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SalutationPartner</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>none</elementReference>
+                </rightValue>
+            </conditions>
+>>>>>>> W-002126
             <connector>
                 <targetReference>IsPartnerValid</targetReference>
             </connector>

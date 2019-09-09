@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">   
+    <types>
+        <members>Session__c.IsPublicVenue__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>NCT_Templates/Reunion_Session_Attendees_Not_Client_Host_Email</members>
+        <members>NCT_Templates/Reunion_Session_Attendees_Public_Venue_Email</members>
+        <members>NCT_Templates/Reunion_Session_Course_Leader_Email</members>
+        <members>NCT_Templates/Reunion_Session_Client_Hoster_Email</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>Reunion_sessions_sending_emails</members>
+        <members>Send_Email_On_Reunion_Session_Confirmed</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>Session__c-Session Layout</members>
+        <name>Layout</name>
+    </types>
+
+    <types>
+        <members>Contact.Send_reunion_session_email_to_practitioner</members>
+        <members>Contact.Send_reunion_session_email_to_attendee_in_host_venue</members>
+        <members>Contact.Send_reunion_session_email_to_attendee</members>
+        <members>Venue__c.Send_reunion_session_email_to_host</members>
+        <name>WorkflowAlert</name>
+    </types>
+    <version>46.0</version>
+</Package>
