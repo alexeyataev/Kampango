@@ -153,6 +153,43 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
         System.assertEquals(SESSION_PROVISIONAL_STATUS, sessionToTest.Status__c);
     }
 
+    @isTest
+    static void ChangeSessionToProvisional_BulkUpdatesOnSessions_SessionStatusIsChangedToProvisional() {
+
+        TestDataFactory testDataFactory = TestDataFactory.getInstance()
+            .buildBranchAccount()
+            .buildPractitioner()
+            .buildVenue()
+            .buildRoom()
+            .buildLicenceToPractice()
+            .buildCourse()
+            .buildEstimatedCosts();
+
+        CreateTriggerSystemHandlerRecord();
+
+        Integer coursesToCreate = 10;
+        Integer sessionsToCreate = 20;
+
+        testDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
+
+        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
+
+        testDataFactory.setSessionsToConfirmed(sessions);
+
+        test.startTest();
+
+        for(Session__c aSession : sessions) {
+            aSession.Lunch_Break_Minutes__c =  11;
+        }
+        update sessions;
+
+        test.stopTest();
+
+        List<Session__c> sessionsWithProvisionalStatus = [SELECT Status__c FROM Session__c WHERE Status__c =: SESSION_PROVISIONAL_STATUS LIMIT 1000];
+
+        System.assertEquals(sessions.size(), sessionsWithProvisionalStatus.size());
+    }
+
     private static void CreateTriggerSystemHandlerRecord() {
 
         List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
