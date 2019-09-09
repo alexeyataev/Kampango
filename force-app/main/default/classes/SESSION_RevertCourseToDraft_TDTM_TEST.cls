@@ -357,142 +357,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
-    static void ChangeSessionToProvisional_DateUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-
-        CreateTriggerSystemHandlerRecord();
-
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-
-        testDataFactory.setSessionsToConfirmed(sessions);
-
-        test.startTest();
-
-        for(Session__c aSession : sessions) {
-            aSession.Date__c = Date.today()+10;
-        }
-
-        update sessions;
-
-        test.stopTest();
-
-        Session__c sessionToTest = [SELECT Status__c FROM Session__c WHERE Id = :sessions LIMIT 1];
-
-        System.assertEquals(SESSION_PROVISIONAL_STATUS, sessionToTest.Status__c);
-    }
-
-    @isTest
-    static void ChangeSessionToProvisional_StartTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-
-        CreateTriggerSystemHandlerRecord();
-
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-
-        testDataFactory.setSessionsToConfirmed(sessions);
-
-        test.startTest();
-
-        for(Session__c aSession : sessions) {
-            aSession.Start__c =  Time.newInstance(18, 00, 0, 0);
-        }
-
-        update sessions;
-
-        test.stopTest();
-
-        Session__c sessionToTest = [SELECT Status__c FROM Session__c WHERE Id = :sessions LIMIT 1];
-
-        System.assertEquals(SESSION_PROVISIONAL_STATUS, sessionToTest.Status__c);
-    }
-
-    @isTest
-    static void ChangeSessionToProvisional_EndTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-
-        CreateTriggerSystemHandlerRecord();
-
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-
-        testDataFactory.setSessionsToConfirmed(sessions);
-
-        test.startTest();
-
-        for(Session__c aSession : sessions) {
-            aSession.End__c =  Time.newInstance(21, 00, 0, 0);
-        }
-
-        update sessions;
-
-        test.stopTest();
-
-        Session__c sessionToTest = [SELECT Status__c FROM Session__c WHERE Id = :sessions LIMIT 1];
-
-        System.assertEquals(SESSION_PROVISIONAL_STATUS, sessionToTest.Status__c);
-    }
-
-    @isTest
-    static void ChangeSessionToProvisional_lunchBreakUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-
-        CreateTriggerSystemHandlerRecord();
-
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-
-        testDataFactory.setSessionsToConfirmed(sessions);
-
-        test.startTest();
-
-        for(Session__c aSession : sessions) {
-            aSession.Lunch_Break_Minutes__c =  11;
-        }
-
-        update sessions;
-
-        test.stopTest();
-
-        Session__c sessionToTest = [SELECT Status__c FROM Session__c WHERE Id = :sessions LIMIT 1];
-
-        System.assertEquals(SESSION_PROVISIONAL_STATUS, sessionToTest.Status__c);
-    }
-
-    @isTest
-    static void ChangeSessionToProvisional_VenueUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-
-        CreateTriggerSystemHandlerRecord();
-
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-
-        testDataFactory.setSessionsToConfirmed(sessions);
-
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        venue = venueBuilder
-            .InsertRecord(true)
-            .Build();
-
-        test.startTest();
-
-        for(Session__c aSession : sessions) {
-            aSession.Venue__c =  venue.Id;
-            aSession.Room__c =  NULL;
-        }
-
-        update sessions;
-
-        test.stopTest();
-
-        Session__c sessionToTest = [SELECT Status__c FROM Session__c WHERE Id = :sessions LIMIT 1];
-
-        System.assertEquals(SESSION_PROVISIONAL_STATUS, sessionToTest.Status__c);
-    }
-
-    @isTest
     static void RevertCourseToDraft_BulkSessionsChanged_CourseStatusIsRevertedToDraft() {
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
@@ -538,10 +402,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         test.stopTest();
 
         List<Course__c> draftCoursesAfterUpdate = [SELECT Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_DRAFT_STATUS LIMIT 10];
-        List<Session__c> sessionsToTest = [SELECT Status__c FROM Session__c WHERE Status__c =:SESSION_PROVISIONAL_STATUS];
 
         System.assertEquals(coursesToTest.size(), draftCoursesAfterUpdate.size());
-        System.assertEquals(sessionsToCreate + previouslyCreatedSessions, sessionsToTest.size());
     }
 
     @isTest
@@ -597,7 +459,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         th.Name = 'SessionTriggerHandler';
         th.npsp__Class__c = 'SESSION_RevertCourseToDraft_TDTM';
         th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete;BeforeUpdate';
+        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete';
         th.npsp__Active__c = true;
         th.npsp__Load_Order__c = 0;
         th.npsp__Asynchronous__c = false;
