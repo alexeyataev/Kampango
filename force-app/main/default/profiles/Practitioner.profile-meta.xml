@@ -468,7 +468,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Contact_Hours__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Course_Assignment__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -743,6 +748,9 @@
     <layoutAssignments>
         <layout>Contact-Practitioner Page Layout</layout>
         <recordType>Contact.Practitioner</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Course_Assignment__c-Course Assignment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Course__c-Course Layout</layout>
