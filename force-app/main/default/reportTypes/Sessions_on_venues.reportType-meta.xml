@@ -68,7 +68,7 @@
             <field>Venue__c</field>
             <table>Venue__c.Sessions__r</table>
         </columns>
-		<columns>
+	<columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Status__c</field>
             <table>Venue__c.Sessions__r</table>
