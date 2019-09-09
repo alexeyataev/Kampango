@@ -373,7 +373,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Integer coursesToCreate = 4;
         Integer sessionsToCreate = 8;
-        Integer previouslyCreatedSessions = 2;
 
         testDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
 
