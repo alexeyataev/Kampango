@@ -1437,9 +1437,6 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Update_Partner_Contact</targetReference>
-            </connector>
             <label>HomePhoneEntered</label>
         </rules>
         <rules>
@@ -1459,9 +1456,6 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Update_Partner_Contact</targetReference>
-            </connector>
             <label>MobilePhoneEntered</label>
         </rules>
     </decisions>
@@ -1870,6 +1864,9 @@
         <fields>
             <name>Under_18</name>
             <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>bookingRecord.Under_18__c</elementReference>
+            </defaultValue>
             <fieldText>Under 18</fieldText>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
@@ -2156,6 +2153,9 @@
         <fields>
             <name>Under_18_2</name>
             <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>bookingRecord.Under_18__c</elementReference>
+            </defaultValue>
             <fieldText>Under 18</fieldText>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
