@@ -227,7 +227,7 @@ public without sharing class TestDataFactory {
         return users[2];
     }
 
-    public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
+    public TestDataFactory SetSessionsToConfirmed(List<Session__c> sessions){
         for(Session__c aSession : sessions){
             aSession.Status__c = 'Confirmed';
         }
