@@ -6,7 +6,7 @@ public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
     private static final String ERROR_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + '/s/failure';
     private static final String API_TOKEN = Parentforce_Community_Settings__c.getOrgDefaults().API_Token__c;
     private static final String ORIGIN = 'BookingJourney';
-    public static String GetCardPaymentURL(String contactId, String feeAmount) {
+    public static String getCardPaymentURL(String contactId, String feeAmount) {
         PaymentApiRequest paymentBody = createPaymentBody(contactId, feeAmount);
         String installmentPayRequest = JSON.serialize(paymentBody, true);
         HttpRequest req = new HttpRequest();

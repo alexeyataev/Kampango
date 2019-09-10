@@ -107,7 +107,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Venue terms</label>
+        <label>Venue Terms</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -236,7 +236,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Venue transport information</label>
+        <label>Venue Transport Information</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>

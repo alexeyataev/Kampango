@@ -38,7 +38,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision4_myRule_1_Fee_c</targetReference>
+            <targetReference>myDecision</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -59,41 +59,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision4_myRule_1_Fee_c</targetReference>
-            </connector>
-            <label>isChangedRule_3_myRule_1_Main_Venue_c</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>isChangedDecision4_myRule_1_Fee_c</name>
-        <label>isChangedDecision4_myRule_1_Fee_c</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>isChangedRule_4_myRule_1_Fee_c</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>myVariable_old</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>myVariable_old.Fee__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>myVariable_current.Fee__c</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
                 <targetReference>myDecision</targetReference>
             </connector>
-            <label>isChangedRule_4_myRule_1_Fee_c</label>
+            <label>isChangedRule_3_myRule_1_Main_Venue_c</label>
         </rules>
     </decisions>
     <decisions>
@@ -303,8 +271,8 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_4_myRule_1_Fee_c</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>myVariable_current.Fee__c</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
@@ -343,7 +311,7 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Rollup Changes</label>
+            <label>Key Info Changes</label>
         </rules>
     </decisions>
     <interviewLabel>Revert_Course_To_Draft_When_Key_Info_Changes-1_InterviewLabel</interviewLabel>
