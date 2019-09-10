@@ -176,16 +176,18 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
         testDataFactory.setSessionsToConfirmed(sessions);
 
+        Set<Id> sessionIds = new Set<Id>();
         test.startTest();
 
         for(Session__c aSession : sessions) {
             aSession.Lunch_Break_Minutes__c =  11;
+            sessionIds.add(aSession.Id);
         }
         update sessions;
 
         test.stopTest();
 
-        List<Session__c> sessionsWithProvisionalStatus = [SELECT Status__c FROM Session__c WHERE Status__c =: SESSION_PROVISIONAL_STATUS LIMIT 1000];
+        List<Session__c> sessionsWithProvisionalStatus = [SELECT Status__c FROM Session__c WHERE Status__c =: SESSION_PROVISIONAL_STATUS AND  Id IN :sessionIds LIMIT 1000];
 
         System.assertEquals(sessions.size(), sessionsWithProvisionalStatus.size());
     }
