@@ -21,12 +21,14 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
             }
         }
 
-        List<Course__c> courses = [SELECT Id,
+        List<Course__c> courses = [
+            SELECT Id,
             Status__c
-        FROM Course__c
-        WHERE Id IN :courseIds
-        AND Status__c != 'Draft'
-        WITH SECURITY_ENFORCED];
+            FROM Course__c
+            WHERE Id IN :courseIds
+            AND Status__c != 'Draft'
+            WITH SECURITY_ENFORCED
+        ];
         //NOPMD
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {
