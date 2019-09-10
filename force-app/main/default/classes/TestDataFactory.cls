@@ -5,6 +5,7 @@ public without sharing class TestDataFactory {
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
     private static final String PRACTITIONER_LASTNAME = 'Practitioner';
     private static final String PRACTITIONER_LASTNAME_TWO = 'Practitioner2';
+    private static final String PRACTITIONER_USERNAME = 'ncttest@test.com';
 
     public static List<Course__c> courses = new List<Course__c>();
     public static List<Session__c> sessions = new List<Session__c>();
@@ -191,6 +192,58 @@ public without sharing class TestDataFactory {
 
         insert sysAdminUser;
         return sysAdminUser;
+    }
+
+    public static User ConvertPractitionerToPartnerCommunityUser(String lastName) {
+        User admin = TestDataFactory.createSysAdminUser();
+        UserRole testRole;
+        User portalAccountOwner;
+
+        System.runAs(admin) {
+            testRole = new UserRole(Name = 'testRole');
+            insert testRole;
+
+            portalAccountOwner = new User(
+                UserRoleId = testRole.Id,
+                ProfileId = [SELECT Id FROM Profile WHERE name = 'System Administrator'].Id,
+                Username = 'nctTestNct@test.com',
+                Alias = 'batman',
+                Email = 'NCTtestNCT123@NCTtestNCT.com',
+                EmailEncodingKey = 'UTF-8',
+                Firstname = 'Bruce',
+                Lastname = 'Wayne',
+                LanguageLocaleKey = 'en_US',
+                LocaleSidKey = 'en_US',
+                TimeZoneSidKey = 'America/Chicago'
+            );
+            insert portalAccountOwner;
+        }
+
+        Account account = [SELECT ID FROM Account LIMIT 1];
+        account.IsPartner = true;
+        account.OwnerId = portalAccountOwner.Id;
+        update account;
+
+        Contact practitioner = [SELECT Id FROM Contact WHERE LastName = :lastName];
+        practitioner.AccountId = account.Id;
+        update practitioner;
+
+        User practitionerCommunityUser = new User(
+            Username = PRACTITIONER_USERNAME,
+            ContactId = practitioner.Id,
+            ProfileId = [SELECT Id FROM Profile WHERE Name =:PRACTITIONER_LASTNAME LIMIT 1].Id,
+            Alias = 'NCTtest',
+            Email = 'NCTtestNCT@NCTtestNCT.com',
+            EmailEncodingKey = 'UTF-8',
+            LastName = 'NCTtestNCT',
+            CommunityNickname = 'NCTtestNCT',
+            TimeZoneSidKey = 'America/Los_Angeles',
+            LocaleSidKey = 'en_US',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert practitionerCommunityUser;
+
+        return practitionerCommunityUser;
     }
 
     public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
