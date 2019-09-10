@@ -260,13 +260,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             aCourseAssignment.OwnerId = practitionerCommunityUser.Id;
         }
         update courseAssignments;
-
-        Map<String, Object> params = new Map<String, Object>();
-        params.put('CA_Id_from_PB', courseAssignments[0].Id);
-        params.put('Course_Id_From_PB', courseAssignments[0].Course__c);
-        params.put('Owner_Id_From_PB', courseAssignments[0].OwnerId);
-        Flow.Interview.Session_assignment_flow flow = new Flow.Interview.Session_assignment_flow(params);
-        flow.start();
     }
 
     private static void CreateTriggerSystemHandlerRecord() {
