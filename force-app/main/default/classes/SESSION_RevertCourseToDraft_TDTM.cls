@@ -34,7 +34,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
                 coursesToUpdate.add(aCourse);
             }
         }
-        dmlWrapper.objectsToUpdate.addAll((List<Course__c>) coursesToUpdate);
+        dmlWrapper.objectsToUpdate.addAll(coursesToUpdate);
         return dmlWrapper;
     }
     //NOPMD
