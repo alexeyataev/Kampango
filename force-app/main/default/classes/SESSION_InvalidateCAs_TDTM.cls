@@ -11,11 +11,13 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             courseAssignmentIds.addAll(IdsOfCourseAssignmentsToChange(newSessionList, oldSessionList));
         }
 
-        List<Course_Assignment__c> courseAssignments = [SELECT Status__c
-        FROM Course_Assignment__c
-        WHERE Id IN : courseAssignmentIds
-        AND Status__c != 'Invalidated'
-        WITH SECURITY_ENFORCED];
+        List<Course_Assignment__c> courseAssignments = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id IN : courseAssignmentIds
+                AND Status__c != 'Invalidated'
+            WITH SECURITY_ENFORCED
+        ];
         //NOPMD
         if(!courseAssignments.isEmpty()) {
             for(Course_Assignment__c assignment : courseAssignments){
@@ -24,7 +26,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        dmlWrapper.objectsToUpdate.addAll((List<Course_Assignment__c>) courseAssignmentsToUpdate);
+        dmlWrapper.objectsToUpdate.addAll(courseAssignmentsToUpdate);
         return dmlWrapper;
     }
     //NOPMD
