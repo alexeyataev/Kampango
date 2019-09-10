@@ -23,8 +23,6 @@ global with sharing class SESSION_RevertToProvisional_TDTM extends npsp.TDTM_Run
                 newSessionList[i].Status__c = 'Provisional';
             }
         }
-        return dmlWrapper;
     }
-    //NOPMD
 }
 //NOPMD
