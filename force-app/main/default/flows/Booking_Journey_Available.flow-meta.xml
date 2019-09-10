@@ -52,7 +52,7 @@
         <name>COURSE_CANCELLED_OR_CANCELLING</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>Course</stringValue>
+            <stringValue>Course is</stringValue>
         </value>
     </constants>
     <constants>
