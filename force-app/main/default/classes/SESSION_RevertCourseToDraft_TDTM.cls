@@ -26,7 +26,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
             Status__c
             FROM Course__c
             WHERE Id IN :courseIds
-            AND Status__c != 'Draft'
+                AND Status__c != 'Draft'
             WITH SECURITY_ENFORCED
         ];
         //NOPMD
