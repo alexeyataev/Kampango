@@ -5,7 +5,7 @@ public class FlowPaymentHandler {
             IPaymentServiceProvider paymentServiceProvider = new StepOrangeCardPaymentProvider();
             String contactId = params[0][0];
             String feeAmount = params[0][1];
-            return new List<String> {paymentServiceProvider.GetCardPaymentURL(contactId, feeAmount)};
+            return new List<String> {paymentServiceProvider.getCardPaymentURL(contactId, feeAmount)};
         } catch(Exception e) {
             return new List<String> {'error'};
         }
