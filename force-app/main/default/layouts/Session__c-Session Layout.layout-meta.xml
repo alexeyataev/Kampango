@@ -36,7 +36,7 @@
                 <field>Lunch_Break_Minutes__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Course_Assignment__c</field>
             </layoutItems>
         </layoutColumns>
