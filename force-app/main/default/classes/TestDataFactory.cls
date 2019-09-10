@@ -9,6 +9,7 @@ public without sharing class TestDataFactory {
 
     public static List<Course__c> courses = new List<Course__c>();
     public static List<Session__c> sessions = new List<Session__c>();
+    public static List<User> users = new List<User>();
 
     private Account account;
     private Contact practitioner;
@@ -130,10 +131,9 @@ public without sharing class TestDataFactory {
         return this;
     }
 
-
     public TestDataFactory buildCoursesWithSessions(Integer numberOfCourses, Integer numberOfSessions) {
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
-        for(Integer i = 0; i < numberOfCourses; i++){
+        for(Integer i = 0; i < numberOfCourses; i++) {
             courses.add(courseBuilder
                 .withAccount(account)
                 .withPractitioner(practitioner)
@@ -162,7 +162,6 @@ public without sharing class TestDataFactory {
         }
 
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
-
         for(Integer i = 0; i < numberOfSessions; i++) {
             sessions.add(sessionBuilder
                 .withCourse(courses[i / 2])
@@ -178,72 +177,54 @@ public without sharing class TestDataFactory {
     }
     public static User createSysAdminUser() {
         Profile sysAdminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
-        User sysAdminUser = new User(
-            alias = 'sysAdmin',
-            email = 'sysAdmin.email@fakemail.com',
-            emailencodingkey = 'UTF-8',
-            lastname = 'NCTtest',
-            languagelocalekey = Userinfo.getLanguage(),
-            localesidkey = Userinfo.getLocale(),
-            profileid = sysAdminProfile.Id,
-            timezonesidkey = Userinfo.getTimeZone().getID(),
-            username = 'NCTtest.sysAdmin.username@nct.com'
-        );
-
-        insert sysAdminUser;
-        return sysAdminUser;
+        TestUserBuilder userBuilder = new TestUserBuilder();
+        users.add(userBuilder
+            .withProfile(sysAdminProfile.Id)
+            .withUsername('NCTtest.sysAdmin.username@nct.com')
+            .withCommunityNickName('communityNickName1')
+            .insertRecord(true)
+            .build());
+        return users[0];
     }
 
     public static User ConvertPractitionerToPartnerCommunityUser(String lastName) {
-        User admin = TestDataFactory.createSysAdminUser();
-        UserRole testRole;
-        User portalAccountOwner;
 
-        System.runAs(admin) {
-            testRole = new UserRole(Name = 'testRole');
+        System.runAs(createSysAdminUser()) {
+            UserRole testRole = new UserRole(Name = 'testRole');
             insert testRole;
 
-            portalAccountOwner = new User(
-                UserRoleId = testRole.Id,
-                ProfileId = [SELECT Id FROM Profile WHERE name = 'System Administrator'].Id,
-                Username = 'nctTestNct@test.com',
-                Alias = 'batman',
-                Email = 'NCTtestNCT123@NCTtestNCT.com',
-                EmailEncodingKey = 'UTF-8',
-                Firstname = 'Bruce',
-                Lastname = 'Wayne',
-                LanguageLocaleKey = 'en_US',
-                LocaleSidKey = 'en_US',
-                TimeZoneSidKey = 'America/Chicago'
-            );
-            insert portalAccountOwner;
+            TestUserBuilder userBuilder = new TestUserBuilder();
+            users.add((userBuilder
+                .withUsername('nctTestNct@test.com')
+                .withUserRoleId(testRole.Id)
+                .withProfile([SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id)
+                .withEmail('NCTtestNCT123@NCTtestNCT.com')
+                .withCommunityNickName('portalAccountOwner')
+                .withAlias('AcOwner')
+                .insertRecord(true)
+                .build()));
         }
 
         Account account = [SELECT ID FROM Account LIMIT 1];
         account.IsPartner = true;
-        account.OwnerId = portalAccountOwner.Id;
+        account.OwnerId = users[1].Id;
         update account;
 
         Contact practitioner = [SELECT Id FROM Contact WHERE LastName = :lastName];
         practitioner.AccountId = account.Id;
         update practitioner;
 
-        User practitionerCommunityUser = new User(
-            Username = PRACTITIONER_USERNAME,
-            ContactId = practitioner.Id,
-            ProfileId = [SELECT Id FROM Profile WHERE Name =:PRACTITIONER_LASTNAME LIMIT 1].Id,
-            Alias = 'NCTtest',
-            Email = 'NCTtestNCT@NCTtestNCT.com',
-            EmailEncodingKey = 'UTF-8',
-            LastName = 'NCTtestNCT',
-            CommunityNickname = 'NCTtestNCT',
-            TimeZoneSidKey = 'America/Los_Angeles',
-            LocaleSidKey = 'en_US',
-            LanguageLocaleKey = 'en_US'
-        );
-        insert practitionerCommunityUser;
+        TestUserBuilder userBuilder = new TestUserBuilder();
+        users.add((userBuilder
+            .withUsername(PRACTITIONER_USERNAME)
+            .withContactId(practitioner.Id)
+            .withProfile([SELECT Id FROM Profile WHERE Name =:PRACTITIONER_LASTNAME LIMIT 1].Id)
+            .withCommunityNickName('NCTtestNCT2')
+            .withEmail('NCTtestNCT@NCTtestNCT.com')
+            .insertRecord(true)
+            .build()));
 
-        return practitionerCommunityUser;
+        return users[2];
     }
 
     public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
