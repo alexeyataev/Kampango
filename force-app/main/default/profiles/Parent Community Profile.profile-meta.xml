@@ -3,6 +3,21 @@
     <custom>true</custom>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Enquiries_PSA_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Enquiries_PSA_Phone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Enquiries_PSA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Acceptance_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1074,7 +1089,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Remaining_Places__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1607,6 +1622,14 @@
         <tab>npsp__Trigger_Handler__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
+    <classAccesses>
+        <apexClass>PaymentLinkGeneratorTestPageController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <pageAccesses>
+        <apexPage>PaymentLinkGeneratorTestPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <userLicense>Guest User License</userLicense>
     <userPermissions>
         <enabled>true</enabled>
