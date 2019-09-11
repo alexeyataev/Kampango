@@ -69,6 +69,6 @@
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Date__c</dateColumn>
-        <interval>INTERVAL_CURRENT</interval>
+        <interval>INTERVAL_CURNEXT3</interval>
     </timeFrameFilter>
 </Report>
