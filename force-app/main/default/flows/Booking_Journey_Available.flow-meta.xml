@@ -9,7 +9,7 @@
             <assignToReference>Booking_Message</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>COURSE_CANCELLED</elementReference>
+                <stringValue>{!COURSE_CANCELLED_OR_CANCELLING}  {!courseStatusToLowerCase}</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -25,7 +25,7 @@
             <assignToReference>Booking_Message</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>COURSE_CONFIRMED</elementReference>
+                <stringValue>{!COURSE_CONFIRMED} {!bookingStatusToLowerCase}</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -41,7 +41,7 @@
             <assignToReference>Booking_Message</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>LINK_EXPIRED</elementReference>
+                <stringValue>{!LINK_EXPIRED} {!bookingStatusToLowerCase}</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -49,24 +49,24 @@
         </connector>
     </assignments>
     <constants>
-        <name>COURSE_CANCELLED</name>
+        <name>COURSE_CANCELLED_OR_CANCELLING</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>Course is Cancelled</stringValue>
+            <stringValue>Course is</stringValue>
         </value>
     </constants>
     <constants>
         <name>COURSE_CONFIRMED</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>Course is confirmed</stringValue>
+            <stringValue>Course is</stringValue>
         </value>
     </constants>
     <constants>
         <name>LINK_EXPIRED</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>Link is expired.</stringValue>
+            <stringValue>Link is </stringValue>
         </value>
     </constants>
     <decisions>
@@ -135,6 +135,16 @@
             <label>Course Is Confirmed</label>
         </rules>
     </decisions>
+    <formulas>
+        <name>bookingStatusToLowerCase</name>
+        <dataType>String</dataType>
+        <expression>LOWER(TEXT({!curBooking.Status__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>courseStatusToLowerCase</name>
+        <dataType>String</dataType>
+        <expression>LOWER(TEXT({!curCourse.Status__c}))</expression>
+    </formulas>
     <interviewLabel>Booking Journey Available {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Available</label>
     <processMetadataValues>
@@ -153,7 +163,7 @@
     <screens>
         <name>Booking_Journey_Available_Screen</name>
         <label>Booking Journey Available Screen</label>
-        <locationX>679</locationX>
+        <locationX>723</locationX>
         <locationY>232</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
