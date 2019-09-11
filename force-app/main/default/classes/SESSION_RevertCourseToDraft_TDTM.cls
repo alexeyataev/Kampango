@@ -1,4 +1,5 @@
 global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
+    private static final String SESSION_DRAFT_STATUS = 'Draft';
     global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         npsp.TDTM_Runnable.dmlWrapper dmlWrapper = new npsp.TDTM_Runnable.DmlWrapper();
 
@@ -26,13 +27,13 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
             Status__c
             FROM Course__c
             WHERE Id IN :courseIds
-                AND Status__c != 'Draft'
+                AND Status__c != :SESSION_DRAFT_STATUS
             WITH SECURITY_ENFORCED
         ];
         //NOPMD
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {
-                aCourse.Status__c = 'Draft';
+                aCourse.Status__c = SESSION_DRAFT_STATUS;
                 coursesToUpdate.add(aCourse);
             }
         }

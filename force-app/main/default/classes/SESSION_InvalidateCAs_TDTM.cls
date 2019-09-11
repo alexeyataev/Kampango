@@ -1,4 +1,5 @@
 global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
+    private static final String CA_INVALIDATED_STATUS = 'Invalidated';
     global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         npsp.TDTM_Runnable.dmlWrapper dmlWrapper = new npsp.TDTM_Runnable.DmlWrapper();
 
@@ -15,13 +16,13 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             SELECT Status__c
             FROM Course_Assignment__c
             WHERE Id IN : courseAssignmentIds
-                AND Status__c != 'Invalidated'
+                AND Status__c != :CA_INVALIDATED_STATUS
             WITH SECURITY_ENFORCED
         ];
         //NOPMD
         if(!courseAssignments.isEmpty()) {
             for(Course_Assignment__c assignment : courseAssignments){
-                assignment.Status__c = 'Invalidated';
+                assignment.Status__c = CA_INVALIDATED_STATUS;
                 courseAssignmentsToUpdate.add(assignment);
             }
         }
