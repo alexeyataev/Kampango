@@ -83,7 +83,7 @@
         <label>Practitioner and Venue Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>Main_Practitioner__c</field>
             </layoutItems>
             <layoutItems>
@@ -305,6 +305,11 @@
         <fields>Type__c</fields>
         <fields>Amount__c</fields>
         <relatedList>Estimated_Costs__c.Course__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>Practitioner_Name__c</fields>
+        <fields>Status__c</fields>
+        <relatedList>Course_Assignment__c.Course__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
