@@ -61,6 +61,7 @@
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
+        <members>gaid__Gift_Aid_Declaration__c</members>
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
@@ -99,6 +100,7 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <name>CustomField</name>
@@ -134,6 +136,7 @@
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
+        <members>Create_Gift_Aid_Declaration</members>
         <members>Populate_Practitioner_Name</members>
         <members>Resend_Offer_Email</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
@@ -159,6 +162,7 @@
         <members>Contact-Practitioner Read Only Layout</members>
         <members>Course_Assignment__c-Course Assignment Layout</members>
         <members>Course__c-Course Layout</members>
+        <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
         <members>Product2-Practitioner Product Page</members>
