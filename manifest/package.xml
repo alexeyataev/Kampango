@@ -24,6 +24,7 @@
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
+        <members>TestUserBuilder</members>
         <name>ApexClass</name>
     </types>
     <types>
