@@ -176,10 +176,9 @@ public without sharing class TestDataFactory {
         return this;
     }
     public static User createSysAdminUser() {
-        Profile sysAdminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
         TestUserBuilder userBuilder = new TestUserBuilder();
         users.add(userBuilder
-            .withProfile(sysAdminProfile.Id)
+            .withProfile([SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id)
             .withUsername('NCTtest.sysAdmin.username@nct.com')
             .withCommunityNickName('communityNickName1')
             .insertRecord(true)
