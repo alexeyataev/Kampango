@@ -3,5 +3,5 @@
     <fullName>Check_Can_Confirm_Reunion_Session</fullName>
     <active>true</active>
     <errorConditionFormula>ISPICKVAL(Status__c , &quot;Confirmed&quot;)&amp;&amp; ISPICKVAL(Type__c , &quot;Reunion&quot;) &amp;&amp; ISBLANK(Practitioner_Licence__c )</errorConditionFormula>
-    <errorMessage>Ensure that the Practitioner has been populated before marking the reunion as confirmed</errorMessage>
+    <errorMessage>Ensure that the Practitioner and related Licence have been populated before marking the reunion as confirmed</errorMessage>
 </ValidationRule>

@@ -8,10 +8,15 @@
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
+        <members>SESSION_InvalidateCAs_TDTM</members>
+        <members>SESSION_InvalidateCAs_TDTM_TEST</members>
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
+        <members>SESSION_RevertToProvisional_TDTM</members>
+        <members>SESSION_RevertToProvisional_TDTM_TEST</members>
         <members>StepOrangeCardPaymentProvider</members>
         <members>TestAccountBuilder</members>
         <members>TestContactBuilder</members>
+        <members>TestCourseAssignmentBuilder</members>
         <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
@@ -19,6 +24,7 @@
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
+        <members>TestUserBuilder</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -137,6 +143,7 @@
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Create_Gift_Aid_Declaration</members>
+        <members>Invalidate_Withdraw_CA_when_key_information_changes</members>
         <members>Populate_Practitioner_Name</members>
         <members>Resend_Offer_Email</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
