@@ -1,7 +1,6 @@
 @isTest
 public with sharing class TestSessionBuilder {
 
-	private String name = 'testSession2';
 	private String type = 'Standard';
 	private Date sessionDate  = Date.today() + 5;
 	private Time startTime = Time.newInstance(18, 30, 0, 0);
@@ -18,12 +17,6 @@ public with sharing class TestSessionBuilder {
 	public TestSessionBuilder withPractitioner(Contact practitioner)
 	{
 		this.practitioner = practitioner;
-		return this;
-	}
-
-	public TestSessionBuilder withName(String name)
-	{
-		this.name = name;
 		return this;
 	}
 
@@ -97,7 +90,6 @@ public with sharing class TestSessionBuilder {
 	{
 		Session__c session = new Session__c(
 			Course__c = this.course.Id,
-			Name = this.name,
 			Type__c = this.type,
 			Date__c = this.sessionDate,
 			Start__c = this.startTime,
