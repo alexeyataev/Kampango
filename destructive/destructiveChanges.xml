@@ -23,6 +23,7 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>Account.Account_Number__c</members>
         <members>Booking__c.Client_Name__c</members>
         <members>Booking__c.Due_Date__c</members>
         <members>Booking__c.Client__c</members>
