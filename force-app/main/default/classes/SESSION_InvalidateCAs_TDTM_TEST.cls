@@ -1,15 +1,16 @@
 @isTest
 private class SESSION_InvalidateCAs_TDTM_TEST {
 
-    private static final String PRACTITIONER_LASTNAME = 'Practitioner';
-    private static final String PRACTITIONER_LASTNAME_TWO = 'Practitioner2';
+    private static final String PRACTITIONER_LASTNAME = 'Smith';
+    private static final String PRACTITIONER_LASTNAME_TWO = 'Smith2';
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
 
     @TestSetup
     private static void SetupTestData() {
       TestDataFactory.getInstance()
+            .buildOrganizationAccount('acc1')
             .buildBranchAccount()
-            .buildPractitioner()
+            .buildPractitioner(PRACTITIONER_LASTNAME)
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
@@ -18,15 +19,15 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             .buildSession()
             .buildCourseAssignment();
 
-        User practitionerCommunityUser = TestDataFactory.convertPractitionerToPartnerCommunityUser(PRACTITIONER_LASTNAME);
+        User practitionerCommunityUser = TestDataFactory.convertPractitionerToPartnerCommunityUser();
         changeOwnerOfCAandRunSession_assignment_flow(practitionerCommunityUser);
     }
 
     @isTest
     static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
         TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildPractitionerTwo();
+            .buildOrganizationAccount('acc2')
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO);
 
         CreateTriggerSystemHandlerRecord();
 
@@ -47,7 +48,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         test.stopTest();
 
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN : courseAssignmentIds LIMIT 1];
+        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN :courseAssignmentIds LIMIT 1];
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
@@ -71,7 +72,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         test.stopTest();
 
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN : courseAssignmentIds LIMIT 1];
+        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN :courseAssignmentIds LIMIT 1];
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
@@ -95,7 +96,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         test.stopTest();
 
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN : courseAssignmentIds LIMIT 1];
+        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN :courseAssignmentIds LIMIT 1];
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
@@ -119,7 +120,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         test.stopTest();
 
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN : courseAssignmentIds LIMIT 1];
+        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN :courseAssignmentIds LIMIT 1];
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
@@ -142,7 +143,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         test.stopTest();
 
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN : courseAssignmentIds LIMIT 1];
+        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN :courseAssignmentIds LIMIT 1];
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
@@ -182,7 +183,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         test.stopTest();
 
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN : courseAssignmentIds LIMIT 1];
+        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN :courseAssignmentIds LIMIT 1];
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
@@ -211,7 +212,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         test.stopTest();
 
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN : courseAssignmentIds LIMIT 1];
+        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN :courseAssignmentIds LIMIT 1];
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
@@ -222,9 +223,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         CreateTriggerSystemHandlerRecord();
 
         TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildBranchAccount()
-            .buildPractitionerTwo();
+            .buildOrganizationAccount('acc3')
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO);
 
         List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c LIMIT 1];
         Set<Id> courseAssignmentIds = new Set<Id>();
@@ -247,7 +247,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         test.stopTest();
 
-        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN : courseAssignmentIds LIMIT 1];
+        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id IN :courseAssignmentIds LIMIT 1];
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }

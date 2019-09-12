@@ -3,16 +3,24 @@ public without sharing class TestDataFactory {
 
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
-    private static final String PRACTITIONER_LASTNAME = 'Practitioner';
-    private static final String PRACTITIONER_LASTNAME_TWO = 'Practitioner2';
+    private static final String PRACTITIONER_PROFILE_NAME = 'Practitioner';
     private static final String PRACTITIONER_USERNAME = 'ncttest@test.com';
+    private static final String PORTAL_ACCOUNT_OWNER_USERNAME = 'portalAccountOwner@ncttest.com';
+    private static final String SYSTEM_ADMIN_USERNAME = 'NCTtest.sysAdmin.username@ncttest.com';
+    private static final String PORTAL_ACCOUNT_USER_EMAIL = 'portalAccountUserNCT@ncttest.com';
+    private static final String PARTNER_COMMUNITY_USER_EMAIL = 'partnerCommunityUser@ncttest.com';
+    private static final String TEST_BILLING_EMAIL = 'billingEmail@ncttest.com';
+    private static final String COMMUNITY_NICKNAME_ONE = 'NICKNAME_ONE';
+    private static final String COMMUNITY_NICKNAME_TWO = 'NICKNAME_TWO';
+    private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
+    private static final String ACCOUNT_ORGANIZATION_RECORDTYPE = 'Organization';
 
     public static List<Course__c> courses = new List<Course__c>();
     public static List<Session__c> sessions = new List<Session__c>();
     public static List<User> users = new List<User>();
-
-    private Account account;
-    private Contact practitioner;
+    private List<Contact> practitioners = new List<Contact>();
+    private Account branchAccount;
+    private static Account organizationAccount;
     private Course_Assignment__c courseAssignment;
     private Venue__c venue;
     private Room__c room;
@@ -31,32 +39,37 @@ public without sharing class TestDataFactory {
 
     public TestDataFactory buildBranchAccount() {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
-        account =  accountBranchBuilder
-            .withRecordType('Branch')
+        branchAccount =  accountBranchBuilder
+            .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
             .insertRecord(true)
             .build();
         return this;
     }
-    public TestDataFactory buildPractitioner() {
+
+    public TestDataFactory buildOrganizationAccount(String accountNumbe) {
+        TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
+        organizationAccount = accountBranchBuilder
+            .withRecordType(ACCOUNT_ORGANIZATION_RECORDTYPE)
+            .withName('John Smith')
+            .withType('Supplier')
+            .withAccountNumber(accountNumbe)
+            .withBillingEmail(TEST_BILLING_EMAIL)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildPractitioner(String lastName) {
         TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
-        practitioner = practitionerContactBuilder
+        practitioners.add(practitionerContactBuilder
             .withRecordType(PRACTITIONER_RECORDTYPE_NAME)
-            .withAccount(account)
-            .withLastName(PRACTITIONER_LASTNAME)
+            .withAccount(organizationAccount)
+            .withLastName(lastName)
             .insertRecord(true)
-            .build();
+            .build());
         return this;
     }
-    public TestDataFactory buildPractitionerTwo() {
-        TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
-        practitionerContactBuilder
-            .withRecordType(PRACTITIONER_RECORDTYPE_NAME)
-            .withAccount(account)
-            .withLastName(PRACTITIONER_LASTNAME_TWO)
-            .insertRecord(true)
-            .build();
-        return this;
-    }
+
     public TestDataFactory buildVenue() {
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         venue = venueBuilder
@@ -72,24 +85,27 @@ public without sharing class TestDataFactory {
             .build();
         return this;
     }
+
     public TestDataFactory buildLicenceToPractice() {
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
         licenceToPractice = licenceToPracticeBuilder
-            .withContact(practitioner)
+            .withContact(practitioners[0])
             .insertRecord(true)
             .build();
         return this;
     }
+
     public TestDataFactory buildCourse() {
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         course = courseBuilder
-            .withAccount(account)
-            .withPractitioner(practitioner)
+            .withAccount(branchAccount)
+            .withPractitioner(practitioners[0])
             .withLicenceToPractice(licenceToPractice)
             .insertRecord(true)
             .build();
         return this;
     }
+
     public TestDataFactory buildCourseAssignment() {
         TestCourseAssignmentBuilder courseAssignmentBuilder = new TestCourseAssignmentBuilder();
         courseAssignment = courseAssignmentBuilder
@@ -98,6 +114,7 @@ public without sharing class TestDataFactory {
             .build();
         return this;
     }
+
     public TestDataFactory buildSession() {
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         session = sessionBuilder
@@ -105,7 +122,7 @@ public without sharing class TestDataFactory {
             .withVenue(venue)
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)
-            .withPractitioner(practitioner)
+            .withPractitioner(practitioners[0])
             .withPractitionerLicence(licenceToPractice)
             .insertRecord(true)
             .build();
@@ -135,8 +152,8 @@ public without sharing class TestDataFactory {
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         for(Integer i = 0; i < numberOfCourses; i++) {
             courses.add(courseBuilder
-                .withAccount(account)
-                .withPractitioner(practitioner)
+                .withAccount(branchAccount)
+                .withPractitioner(practitioners[0])
                 .withLicenceToPractice(licenceToPractice)
                 .insertRecord(true)
                 .build());
@@ -168,25 +185,25 @@ public without sharing class TestDataFactory {
                 .withVenue(venue)
                 .withRoom(room)
                 .withStatus('Provisional')
-                .withPractitioner(practitioner)
+                .withPractitioner(practitioners[0])
                 .withPractitionerLicence(licenceToPractice)
                 .insertRecord(true)
                 .build());
         }
         return this;
     }
+
     public static User createSysAdminUser() {
         TestUserBuilder userBuilder = new TestUserBuilder();
         users.add(userBuilder
             .withProfile([SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id)
-            .withUsername('NCTtest.sysAdmin.username@nct.com')
-            .withCommunityNickName('communityNickName1')
+            .withUsername(SYSTEM_ADMIN_USERNAME)
             .insertRecord(true)
             .build());
         return users[0];
     }
 
-    public static User ConvertPractitionerToPartnerCommunityUser(String lastName) {
+    public static User ConvertPractitionerToPartnerCommunityUser() {
 
         System.runAs(createSysAdminUser()) {
             UserRole testRole = new UserRole(Name = 'testRole');
@@ -194,32 +211,33 @@ public without sharing class TestDataFactory {
 
             TestUserBuilder userBuilder = new TestUserBuilder();
             users.add((userBuilder
-                .withUsername('nctTestNct@test.com')
+                .withUsername(PORTAL_ACCOUNT_OWNER_USERNAME)
                 .withUserRoleId(testRole.Id)
-                .withProfile([SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id)
-                .withEmail('NCTtestNCT123@NCTtestNCT.com')
-                .withCommunityNickName('portalAccountOwner')
+                .withProfile([SELECT Id FROM Profile WHERE Name = 'Finance'].Id)
+                .withEmail(PORTAL_ACCOUNT_USER_EMAIL)
+                .withCommunityNickName(COMMUNITY_NICKNAME_ONE)
                 .withAlias('AcOwner')
                 .insertRecord(true)
                 .build()));
         }
 
-        Account account = [SELECT ID FROM Account LIMIT 1];
-        account.IsPartner = true;
-        account.OwnerId = users[1].Id;
-        update account;
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
+        testDataFactory.buildOrganizationAccount('acc5');
+        organizationAccount.IsPartner = true;
+        organizationAccount.OwnerId = users[1].Id;
+        update organizationAccount;
 
-        Contact practitioner = [SELECT Id FROM Contact WHERE LastName = :lastName];
-        practitioner.AccountId = account.Id;
+        Contact practitioner = [SELECT Id, Name FROM Contact WHERE Name = 'John Smith' LIMIT 1];
+        practitioner.AccountId = organizationAccount.Id;
         update practitioner;
 
         TestUserBuilder userBuilder = new TestUserBuilder();
         users.add((userBuilder
             .withUsername(PRACTITIONER_USERNAME)
             .withContactId(practitioner.Id)
-            .withProfile([SELECT Id FROM Profile WHERE Name =:PRACTITIONER_LASTNAME LIMIT 1].Id)
-            .withCommunityNickName('NCTtestNCT2')
-            .withEmail('NCTtestNCT@NCTtestNCT.com')
+            .withProfile([SELECT Id FROM Profile WHERE Name =:PRACTITIONER_PROFILE_NAME LIMIT 1].Id)
+            .withCommunityNickName(COMMUNITY_NICKNAME_TWO)
+            .withEmail(PARTNER_COMMUNITY_USER_EMAIL)
             .insertRecord(true)
             .build()));
 

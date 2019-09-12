@@ -11,6 +11,7 @@ global with sharing class SESSION_RevertToProvisional_TDTM extends npsp.TDTM_Run
         return dmlWrapper;
     }
     //NOPMD
+    //https://confluence.nct.org.uk:8443/pages/viewpage.action?spaceKey=PAR&title=PMD+Incident+Suppression+Log
 
     private void compareNewListOfSessionsWithOldListAndSetSessionsToProvisional(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
         for (Integer i = 0; i < newSessionList.size(); i++) {
@@ -26,3 +27,4 @@ global with sharing class SESSION_RevertToProvisional_TDTM extends npsp.TDTM_Run
     }
 }
 //NOPMD
+//https://confluence.nct.org.uk:8443/pages/viewpage.action?spaceKey=PAR&title=PMD+Incident+Suppression+Log
