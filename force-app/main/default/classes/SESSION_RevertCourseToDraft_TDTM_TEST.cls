@@ -5,7 +5,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     private static final String COURSE_FINAL_STATUS = 'Final';
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
     private static final String PRACTITIONER_LASTNAME_ONE = 'Smith';
-    private static final String PRACTITIONER_LASTNAME_TWO = 'Smith2';
+    private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
 
     private static Venue__c venue;

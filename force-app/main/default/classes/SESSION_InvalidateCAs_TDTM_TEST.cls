@@ -2,7 +2,7 @@
 private class SESSION_InvalidateCAs_TDTM_TEST {
 
     private static final String PRACTITIONER_LASTNAME = 'Smith';
-    private static final String PRACTITIONER_LASTNAME_TWO = 'Smith2';
+    private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
 
     @TestSetup
