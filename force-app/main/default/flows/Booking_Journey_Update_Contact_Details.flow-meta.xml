@@ -3,12 +3,12 @@
     <actionCalls>
         <name>Update_Partner_Contact</name>
         <label>Update Partner Contact</label>
-        <locationX>2244</locationX>
-        <locationY>1912</locationY>
+        <locationX>2248</locationX>
+        <locationY>1921</locationY>
         <actionName>BookingJourneyHelper</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Update_Primary_Contact</targetReference>
+            <targetReference>Assign_Booking_Partner</targetReference>
         </connector>
         <inputParameters>
             <name>contacts</name>
@@ -38,6 +38,22 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <assignments>
+        <name>Assign_Booking_Partner</name>
+        <label>Assign Booking Partner</label>
+        <locationX>2108</locationX>
+        <locationY>1921</locationY>
+        <assignmentItems>
+            <assignToReference>bookingRecord.Partner_Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>partnerContactRecord.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Primary_Contact</targetReference>
+        </connector>
+    </assignments>
     <assignments>
         <name>AssignChangedValues1</name>
         <label>AssignChangedValues</label>
@@ -199,6 +215,13 @@
                 <elementReference>Under_18</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>emailPartner</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone_0_0</targetReference>
         </connector>
@@ -292,6 +315,13 @@
                 <elementReference>Under_18_5</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>emailPartner</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone4</targetReference>
         </connector>
@@ -383,6 +413,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>Under_18_6</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>emailPartner</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -578,14 +615,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>SalutationNone4</targetReference>
+            <targetReference>IsPartnerValid</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>SetHowHeard5</name>
         <label>SetHowHeard</label>
-        <locationX>3097</locationX>
-        <locationY>1401</locationY>
+        <locationX>3192</locationX>
+        <locationY>1668</locationY>
         <assignmentItems>
             <assignToReference>bookingRecord.How_Heard__c</assignToReference>
             <operator>Assign</operator>
@@ -594,14 +631,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>SalutationNone5</targetReference>
+            <targetReference>IsPartnerValid</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>SetHowHeard_0</name>
         <label>SetHowHeard</label>
-        <locationX>1755</locationX>
-        <locationY>516</locationY>
+        <locationX>1813</locationX>
+        <locationY>571</locationY>
         <assignmentItems>
             <assignToReference>bookingRecord.How_Heard__c</assignToReference>
             <operator>Assign</operator>
@@ -610,7 +647,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>SalutationNone</targetReference>
+            <targetReference>Phone_Validation3</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -680,8 +717,8 @@
     <assignments>
         <name>SetPreferredPhone5</name>
         <label>SetPreferredPhone</label>
-        <locationX>3086</locationX>
-        <locationY>1101</locationY>
+        <locationX>3166</locationX>
+        <locationY>1283</locationY>
         <assignmentItems>
             <assignToReference>PrimaryContactRecord.npe01__PreferredPhone__c</assignToReference>
             <operator>Assign</operator>
@@ -723,54 +760,6 @@
         </assignmentItems>
         <connector>
             <targetReference>HowHeardNone_0</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>SetSalutation</name>
-        <label>SetSalutation</label>
-        <locationX>1707</locationX>
-        <locationY>266</locationY>
-        <assignmentItems>
-            <assignToReference>partnerContactRecord.Salutation</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>SalutationPartner</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Phone_Validation3</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>SetSalutation4</name>
-        <label>SetSalutation</label>
-        <locationX>2401</locationX>
-        <locationY>1370</locationY>
-        <assignmentItems>
-            <assignToReference>partnerContactRecord.Salutation</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>SalutationPartner</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_Partner_Contact</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>SetSalutation5</name>
-        <label>SetSalutation</label>
-        <locationX>2727</locationX>
-        <locationY>1920</locationY>
-        <assignmentItems>
-            <assignToReference>partnerContactRecord.Salutation</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>SalutationPartner</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_Partner_Contact</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -922,7 +911,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>SalutationNone</targetReference>
+                <targetReference>Phone_Validation3</targetReference>
             </connector>
             <label>HowHeardIsNone</label>
         </rules>
@@ -945,8 +934,8 @@
     <decisions>
         <name>HowHeardNone4</name>
         <label>HowHeardNone?</label>
-        <locationX>2094</locationX>
-        <locationY>1119</locationY>
+        <locationX>2022</locationX>
+        <locationY>1255</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>HowHeardIsNone4</name>
@@ -959,7 +948,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>SalutationNone4</targetReference>
+                <targetReference>IsPartnerValid</targetReference>
             </connector>
             <label>HowHeardIsNone</label>
         </rules>
@@ -982,8 +971,8 @@
     <decisions>
         <name>HowHeardNone5</name>
         <label>HowHeardNone?</label>
-        <locationX>2719</locationX>
-        <locationY>1378</locationY>
+        <locationX>2731</locationX>
+        <locationY>1351</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>HowHeardIsNone5</name>
@@ -996,7 +985,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>SalutationNone5</targetReference>
+                <targetReference>IsPartnerValid</targetReference>
             </connector>
             <label>HowHeardIsNone</label>
         </rules>
@@ -1051,6 +1040,43 @@
                 <targetReference>SetHowHeard_2</targetReference>
             </connector>
             <label>HowHeardNotNone</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IsPartnerValid</name>
+        <label>IsPartnerValid?</label>
+        <locationX>2242</locationX>
+        <locationY>1670</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>PartnerIsValid</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>partnerContactRecord.LastName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue/>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Partner_Contact</targetReference>
+            </connector>
+            <label>PartnerIsValid</label>
+        </rules>
+        <rules>
+            <name>PartnerIsInvalid</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>partnerContactRecord.LastName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue/>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Primary_Contact</targetReference>
+            </connector>
+            <label>PartnerIsInvalid</label>
         </rules>
     </decisions>
     <decisions>
@@ -1438,7 +1464,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Partner_Contact</targetReference>
+                <targetReference>IsPartnerValid</targetReference>
             </connector>
             <label>HomePhoneEntered</label>
         </rules>
@@ -1460,120 +1486,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Partner_Contact</targetReference>
+                <targetReference>IsPartnerValid</targetReference>
             </connector>
             <label>MobilePhoneEntered</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>SalutationNone</name>
-        <label>SalutationNone?</label>
-        <locationX>1452</locationX>
-        <locationY>363</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>SalutationNone1</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>SalutationPartner</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>none</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Phone_Validation3</targetReference>
-            </connector>
-            <label>SalutationNone</label>
-        </rules>
-        <rules>
-            <name>SalutationNotNone</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>SalutationPartner</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>none</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>SetSalutation</targetReference>
-            </connector>
-            <label>SalutationNotNone</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>SalutationNone4</name>
-        <label>SalutationNone?</label>
-        <locationX>2093</locationX>
-        <locationY>1358</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>SalutationNone41</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>SalutationPartner</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>none</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Partner_Contact</targetReference>
-            </connector>
-            <label>SalutationNone</label>
-        </rules>
-        <rules>
-            <name>SalutationNotNone4</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>SalutationPartner</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>none</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>SetSalutation4</targetReference>
-            </connector>
-            <label>SalutationNotNone</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>SalutationNone5</name>
-        <label>SalutationNone?</label>
-        <locationX>2722</locationX>
-        <locationY>1618</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>SalutationNone51</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>SalutationPartner</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>none</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Partner_Contact</targetReference>
-            </connector>
-            <label>SalutationNone</label>
-        </rules>
-        <rules>
-            <name>SalutationNotNone5</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>SalutationPartner</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>none</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>SetSalutation5</targetReference>
-            </connector>
-            <label>SalutationNotNone</label>
         </rules>
     </decisions>
     <dynamicChoiceSets>
@@ -1652,6 +1567,7 @@
         <queriedFields>Salutation</queriedFields>
         <queriedFields>FirstName</queriedFields>
         <queriedFields>LastName</queriedFields>
+        <queriedFields>Email</queriedFields>
     </recordLookups>
     <recordUpdates>
         <name>Update_Booking</name>
@@ -1868,6 +1784,11 @@
             <isRequired>false</isRequired>
         </fields>
         <fields>
+            <name>under_18_help</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
             <name>Under_18</name>
             <dataType>Boolean</dataType>
             <defaultValue>
@@ -1875,12 +1796,11 @@
             </defaultValue>
             <fieldText>Under 18</fieldText>
             <fieldType>InputField</fieldType>
-            <helpText>&lt;p&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
             <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>Patrner</name>
-            <fieldText>&lt;p&gt;Who will be coming on the course with you?&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Who will be coming on the course with you?&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -1890,7 +1810,7 @@
             <inputParameters>
                 <name>fieldsToDisplayList</name>
                 <value>
-                    <stringValue>firstName,lastName,salutation</stringValue>
+                    <stringValue>firstName,lastName</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -1911,18 +1831,6 @@
                     <elementReference>partnerContactRecord.LastName</elementReference>
                 </value>
             </inputParameters>
-            <inputParameters>
-                <name>salutation</name>
-                <value>
-                    <elementReference>partnerContactRecord.Salutation</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>salutationOptions</name>
-                <value>
-                    <stringValue>Mr.,Mrs.,Ms.</stringValue>
-                </value>
-            </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>fNamePartner</assignToReference>
@@ -1932,9 +1840,27 @@
                 <assignToReference>lNamePartner</assignToReference>
                 <name>lastName</name>
             </outputParameters>
+        </fields>
+        <fields>
+            <name>Email_Partner</name>
+            <extensionName>flowruntime:email</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Email</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <elementReference>partnerContactRecord.Email</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
             <outputParameters>
-                <assignToReference>SalutationPartner</assignToReference>
-                <name>salutation</name>
+                <assignToReference>emailPartner</assignToReference>
+                <name>value</name>
             </outputParameters>
         </fields>
         <fields>
@@ -2157,6 +2083,11 @@
             <isRequired>false</isRequired>
         </fields>
         <fields>
+            <name>under_18_help2</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
             <name>Under_18_2</name>
             <dataType>Boolean</dataType>
             <defaultValue>
@@ -2164,7 +2095,6 @@
             </defaultValue>
             <fieldText>Under 18</fieldText>
             <fieldType>InputField</fieldType>
-            <helpText>&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
             <isRequired>true</isRequired>
         </fields>
         <fields>
@@ -2392,6 +2322,11 @@
             <isRequired>false</isRequired>
         </fields>
         <fields>
+            <name>under_18_help4</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
             <name>Under_18_4</name>
             <dataType>Boolean</dataType>
             <defaultValue>
@@ -2399,7 +2334,6 @@
             </defaultValue>
             <fieldText>Under 18</fieldText>
             <fieldType>InputField</fieldType>
-            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
             <isRequired>true</isRequired>
         </fields>
         <fields>
@@ -2632,8 +2566,23 @@
             <isRequired>false</isRequired>
         </fields>
         <fields>
+            <name>under_18_help6</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Under_18_6</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>bookingRecord.Under_18__c</elementReference>
+            </defaultValue>
+            <fieldText>Under 18</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
             <name>PartnerText</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;Who will be coming on the course with you?&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;Who will be coming on the course with you?&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2643,7 +2592,7 @@
             <inputParameters>
                 <name>fieldsToDisplayList</name>
                 <value>
-                    <stringValue>firstName,lastName,salutation</stringValue>
+                    <stringValue>firstName,lastName</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -2658,12 +2607,6 @@
                     <elementReference>partnerContactRecord.LastName</elementReference>
                 </value>
             </inputParameters>
-            <inputParameters>
-                <name>salutation</name>
-                <value>
-                    <elementReference>partnerContactRecord.Salutation</elementReference>
-                </value>
-            </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>fNamePartner</assignToReference>
@@ -2673,21 +2616,22 @@
                 <assignToReference>lNamePartner</assignToReference>
                 <name>lastName</name>
             </outputParameters>
-            <outputParameters>
-                <assignToReference>SalutationPartner</assignToReference>
-                <name>salutation</name>
-            </outputParameters>
         </fields>
         <fields>
-            <name>Under_18_6</name>
-            <dataType>Boolean</dataType>
-            <defaultValue>
-                <elementReference>bookingRecord.Under_18__c</elementReference>
-            </defaultValue>
-            <fieldText>Under 18</fieldText>
-            <fieldType>InputField</fieldType>
-            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
+            <name>Email_partner3</name>
+            <extensionName>flowruntime:email</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <elementReference>partnerContactRecord.Email</elementReference>
+                </value>
+            </inputParameters>
             <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>emailPartner</assignToReference>
+                <name>value</name>
+            </outputParameters>
         </fields>
         <fields>
             <name>How_Heard_Default_1_0</name>
@@ -2919,6 +2863,11 @@
             <isRequired>false</isRequired>
         </fields>
         <fields>
+            <name>under_18_help3</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
             <name>Under_18_3</name>
             <dataType>Boolean</dataType>
             <defaultValue>
@@ -2926,7 +2875,6 @@
             </defaultValue>
             <fieldText>Under 18</fieldText>
             <fieldType>InputField</fieldType>
-            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
             <isRequired>true</isRequired>
         </fields>
         <fields>
@@ -3159,8 +3107,23 @@
             <isRequired>false</isRequired>
         </fields>
         <fields>
+            <name>under_18_help5</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Under_18_5</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>bookingRecord.Under_18__c</elementReference>
+            </defaultValue>
+            <fieldText>Under 18</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
             <name>PartnerText2</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;Who will be coming on the course with you?&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;Who will be coming on the course with you?&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -3170,7 +3133,7 @@
             <inputParameters>
                 <name>fieldsToDisplayList</name>
                 <value>
-                    <stringValue>firstName,lastName,salutation</stringValue>
+                    <stringValue>firstName,lastName</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -3185,12 +3148,6 @@
                     <elementReference>partnerContactRecord.LastName</elementReference>
                 </value>
             </inputParameters>
-            <inputParameters>
-                <name>salutation</name>
-                <value>
-                    <elementReference>partnerContactRecord.Salutation</elementReference>
-                </value>
-            </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>fNamePartner</assignToReference>
@@ -3200,21 +3157,28 @@
                 <assignToReference>lNamePartner</assignToReference>
                 <name>lastName</name>
             </outputParameters>
-            <outputParameters>
-                <assignToReference>SalutationPartner</assignToReference>
-                <name>salutation</name>
-            </outputParameters>
         </fields>
         <fields>
-            <name>Under_18_5</name>
-            <dataType>Boolean</dataType>
-            <defaultValue>
-                <elementReference>bookingRecord.Under_18__c</elementReference>
-            </defaultValue>
-            <fieldText>Under 18</fieldText>
-            <fieldType>InputField</fieldType>
-            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</helpText>
+            <name>Email_partner2</name>
+            <extensionName>flowruntime:email</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Email</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <elementReference>partnerContactRecord.Email</elementReference>
+                </value>
+            </inputParameters>
             <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>emailPartner</assignToReference>
+                <name>value</name>
+            </outputParameters>
         </fields>
         <fields>
             <name>How_Heard_Default_0</name>
@@ -3281,6 +3245,13 @@
     </variables>
     <variables>
         <name>email_prim</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>emailPartner</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

@@ -66,7 +66,6 @@ public with sharing class CourseDetailControllerTest {
         for(Integer i = 0; i < 12; i++){
             sessions.add(
                 sessionBuilder.withPractitioner(contact)
-                .withName('Test session')
                 .withType('Standard')
                 .withDate(System.today())
                 .withPractitionerLicence(lisence)
