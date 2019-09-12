@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flowDefinition>Send_Email_On_Reunion_Session_Confirmed</flowDefinition>
+    <icon>Zumzum__EmailLogo</icon>
+    <label>Resend Confirmation Email</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>
