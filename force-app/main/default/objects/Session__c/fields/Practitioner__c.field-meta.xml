@@ -4,6 +4,16 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Practitioner</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Only Practitioners can be selected.</errorMessage>
+        <filterItems>
+            <field>Contact.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Practitioner</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Sessions</relationshipLabel>
     <relationshipName>Sessions</relationshipName>
