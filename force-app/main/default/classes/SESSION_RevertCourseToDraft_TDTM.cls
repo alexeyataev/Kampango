@@ -31,7 +31,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
             WITH SECURITY_ENFORCED
         ];
         //NOPMD
-        //https://confluence.nct.org.uk:8443/pages/viewpage.action?spaceKey=PAR&title=PMD+Incident+Suppression+Log
+        //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
 
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {
@@ -43,7 +43,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
         return dmlWrapper;
     }
     //NOPMD
-    //https://confluence.nct.org.uk:8443/pages/viewpage.action?spaceKey=PAR&title=PMD+Incident+Suppression+Log
+    //Incident #2 - https://confluence.nct.org.uk:8443/x/EoSO
 
     private Set<Id> IdsOfCoursesToChange(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
         Set<Id> courseIds = new Set<Id>();
@@ -64,4 +64,4 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
     }
 }
 //NOPMD
-//https://confluence.nct.org.uk:8443/pages/viewpage.action?spaceKey=PAR&title=PMD+Incident+Suppression+Log
+//Incident #3 - https://confluence.nct.org.uk:8443/x/EoSO
