@@ -23,6 +23,7 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>Account.Account_Number__c</members>
         <members>Booking__c.Client_Name__c</members>
         <members>Booking__c.Due_Date__c</members>
         <members>Booking__c.Client__c</members>
@@ -31,7 +32,6 @@
         <members>Booking__c.Enquiry_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_First_Name__c</members>
         <members>Booking__c.Twins_or_more__c</members>
-        <members>Booking__c.Under_18__c</members>
         <members>Booking__c.Confirm_DD_Authorisation__c</members>
         <members>Booking__c.Client_Gift_Aid__c</members>
         <members>Booking__c.Course_Payment_Method__c</members>
@@ -99,7 +99,6 @@
         <name>CustomField</name>
     </types>
     <types>
-        <members>Booking_sendOfferEmail</members>
         <members>Update_Practitioner_Licence</members>
         <name>Flow</name>
     </types>
