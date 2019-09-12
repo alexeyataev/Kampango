@@ -83,7 +83,7 @@
         <label>Practitioner and Venue Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>Main_Practitioner__c</field>
             </layoutItems>
             <layoutItems>

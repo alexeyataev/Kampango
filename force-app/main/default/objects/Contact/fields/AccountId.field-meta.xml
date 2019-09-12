@@ -21,6 +21,7 @@
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Lookup</type>
 </CustomField>

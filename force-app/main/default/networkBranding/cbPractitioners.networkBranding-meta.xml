@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <NetworkBranding xmlns="http://soap.sforce.com/2006/04/metadata">
     <loginFooterText>salesforce.com</loginFooterText>
-    <loginLogo>Communities_Shared_Document_Folder/social_logo_png.png</loginLogo>
+    <loginLogo>Communities_Shared_Document_Folder1/social_logo_png1.png</loginLogo>
     <loginLogoName>social-logo.png</loginLogoName>
     <loginPrimaryColor>#1C856E</loginPrimaryColor>
     <loginQuaternaryColor>#B1BAC1</loginQuaternaryColor>

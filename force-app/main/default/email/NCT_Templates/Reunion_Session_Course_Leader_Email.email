@@ -1,0 +1,19 @@
+Course reference: {!Course__c.Name}.
+
+Dear {!Session__c.Course__c.Main_Practitioner_c.FirstName}
+
+Thank you for agreeing to facilitate the [course format] course reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start__c} to {!Session__c.End__c} at:
+
+
+Click here to see this on a map: 
+
+
+If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.
+
+
+Kind regards,
+
+[Capacity PSA name]
+Course organiser
+Email: [Capacity PSA email], eg capacity 4H@nct.org.u - not their personal NCT email address
+Tel: [Capacity PSA phone number]

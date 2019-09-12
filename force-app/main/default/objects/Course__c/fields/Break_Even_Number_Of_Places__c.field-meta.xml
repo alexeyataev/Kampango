@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Break_Even_Number_Of_Places__c</fullName>
     <externalId>false</externalId>
     <formula>MCEILING(Total_Estimated_Costs__c / IF( Include_Additional_Admin_Cost__c, Fee__c - 10, Fee__c))</formula>

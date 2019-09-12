@@ -5,5 +5,6 @@
     <label>Total Open Bookings</label>
     <summaryForeignKey>Booking__c.Primary_Contact__c</summaryForeignKey>
     <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
     <type>Summary</type>
 </CustomField>

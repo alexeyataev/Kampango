@@ -5,7 +5,7 @@
     <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
     <communityRoles/>
     <disableReputationRecordConversations>true</disableReputationRecordConversations>
-    <emailSenderAddress>it@nct.org.uk</emailSenderAddress>
+    <emailSenderAddress>ivan.konashuk@greencouchconsulting.com</emailSenderAddress>
     <emailSenderName>Practitioners</emailSenderName>
     <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
     <enableDirectMessages>true</enableDirectMessages>
@@ -13,8 +13,8 @@
     <enableGuestFileAccess>false</enableGuestFileAccess>
     <enableInvitation>false</enableInvitation>
     <enableKnowledgeable>false</enableKnowledgeable>
-    <enableMemberVisibility>true</enableMemberVisibility>
-    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enableMemberVisibility>false</enableMemberVisibility>
+    <enableNicknameDisplay>true</enableNicknameDisplay>
     <enablePrivateMessages>false</enablePrivateMessages>
     <enableReputation>false</enableReputation>
     <enableShowAllNetworkSettings>false</enableShowAllNetworkSettings>
@@ -27,33 +27,59 @@
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
     <navigationLinkSet>
         <navigationMenuItem>
-            <defaultListViewId>All</defaultListViewId>
-            <label>Courses</label>
+            <label>Sales</label>
+            <position>0</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <subMenu>
+                <navigationMenuItem>
+                    <label>Leads</label>
+                    <position>0</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>Lead</target>
+                    <type>SalesforceObject</type>
+                </navigationMenuItem>
+                <navigationMenuItem>
+                    <label>Deals</label>
+                    <position>1</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>Opportunity</target>
+                    <type>SalesforceObject</type>
+                </navigationMenuItem>
+            </subMenu>
+            <type>MenuLabel</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
+            <label>Marketing</label>
             <position>1</position>
             <publiclyAvailable>false</publiclyAvailable>
-            <target>Course__c</target>
-            <type>SalesforceObject</type>
+            <subMenu>
+                <navigationMenuItem>
+                    <label>Campaigns</label>
+                    <position>0</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>Campaign</target>
+                    <type>SalesforceObject</type>
+                </navigationMenuItem>
+                <navigationMenuItem>
+                    <label>MDF &amp; Coop</label>
+                    <position>1</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>/mdf</target>
+                    <type>InternalLink</type>
+                </navigationMenuItem>
+            </subMenu>
+            <type>MenuLabel</type>
         </navigationMenuItem>
         <navigationMenuItem>
-            <defaultListViewId>All</defaultListViewId>
-            <label>Venues</label>
+            <label>Resources</label>
             <position>2</position>
             <publiclyAvailable>false</publiclyAvailable>
-            <target>Venue__c</target>
-            <type>SalesforceObject</type>
-        </navigationMenuItem>
-        <navigationMenuItem>
-            <label>Course Assignments</label>
-            <position>3</position>
-            <publiclyAvailable>false</publiclyAvailable>
-            <target>Course_Assignment__c</target>
-            <type>SalesforceObject</type>
+            <target>/files</target>
+            <type>InternalLink</type>
         </navigationMenuItem>
     </navigationLinkSet>
     <networkMemberGroups>
-        <permissionSet>Practitioner_Management</permissionSet>
         <profile>Admin</profile>
-        <profile>Practitioner</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
@@ -66,7 +92,7 @@
     <selfRegistration>false</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
     <site>Practitioners</site>
-    <status>Live</status>
+    <status>UnderConstruction</status>
     <tabs>
         <defaultTab>home</defaultTab>
         <standardTab>Chatter</standardTab>

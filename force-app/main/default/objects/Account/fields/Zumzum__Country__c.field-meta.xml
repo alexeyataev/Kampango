@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Zumzum__Country__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>ECSL Region</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AT - Austria</fullName>
+                <default>false</default>
+                <label>AT - Austria</label>
+            </value>
+            <value>
+                <fullName>BE - Belgium</fullName>
+                <default>false</default>
+                <label>BE - Belgium</label>
+            </value>
+            <value>
+                <fullName>BG - Bulgaria</fullName>
+                <default>false</default>
+                <label>BG - Bulgaria</label>
+            </value>
+            <value>
+                <fullName>CY - Cyprus</fullName>
+                <default>false</default>
+                <label>CY - Cyprus</label>
+            </value>
+            <value>
+                <fullName>CZ - Czech Republic</fullName>
+                <default>false</default>
+                <label>CZ - Czech Republic</label>
+            </value>
+            <value>
+                <fullName>DE - Germany</fullName>
+                <default>false</default>
+                <label>DE - Germany</label>
+            </value>
+            <value>
+                <fullName>DK - Denmark</fullName>
+                <default>false</default>
+                <label>DK - Denmark</label>
+            </value>
+            <value>
+                <fullName>EE - Estonia</fullName>
+                <default>false</default>
+                <label>EE - Estonia</label>
+            </value>
+            <value>
+                <fullName>EL - Greece</fullName>
+                <default>false</default>
+                <label>EL - Greece</label>
+            </value>
+            <value>
+                <fullName>ES - Spain</fullName>
+                <default>false</default>
+                <label>ES - Spain</label>
+            </value>
+            <value>
+                <fullName>FI - Finland</fullName>
+                <default>false</default>
+                <label>FI - Finland</label>
+            </value>
+            <value>
+                <fullName>FR - France</fullName>
+                <default>false</default>
+                <label>FR - France</label>
+            </value>
+            <value>
+                <fullName>GB - Great Britain</fullName>
+                <default>false</default>
+                <label>GB - Great Britain</label>
+            </value>
+            <value>
+                <fullName>HR - Croatia</fullName>
+                <default>false</default>
+                <label>HR - Croatia</label>
+            </value>
+            <value>
+                <fullName>HU - Hungary</fullName>
+                <default>false</default>
+                <label>HU - Hungary</label>
+            </value>
+            <value>
+                <fullName>IE - Ireland</fullName>
+                <default>false</default>
+                <label>IE - Ireland</label>
+            </value>
+            <value>
+                <fullName>IT - Italy</fullName>
+                <default>false</default>
+                <label>IT - Italy</label>
+            </value>
+            <value>
+                <fullName>LT - Lithuania</fullName>
+                <default>false</default>
+                <label>LT - Lithuania</label>
+            </value>
+            <value>
+                <fullName>LU - Luxembourg</fullName>
+                <default>false</default>
+                <label>LU - Luxembourg</label>
+            </value>
+            <value>
+                <fullName>LV - Latvia</fullName>
+                <default>false</default>
+                <label>LV - Latvia</label>
+            </value>
+            <value>
+                <fullName>MT - Malta</fullName>
+                <default>false</default>
+                <label>MT - Malta</label>
+            </value>
+            <value>
+                <fullName>NL - The Netherlands</fullName>
+                <default>false</default>
+                <label>NL - The Netherlands</label>
+            </value>
+            <value>
+                <fullName>PL - Poland</fullName>
+                <default>false</default>
+                <label>PL - Poland</label>
+            </value>
+            <value>
+                <fullName>PT - Portugal</fullName>
+                <default>false</default>
+                <label>PT - Portugal</label>
+            </value>
+            <value>
+                <fullName>RO - Romania</fullName>
+                <default>false</default>
+                <label>RO - Romania</label>
+            </value>
+            <value>
+                <fullName>SE - Sweden</fullName>
+                <default>false</default>
+                <label>SE - Sweden</label>
+            </value>
+            <value>
+                <fullName>SK - Slovakia</fullName>
+                <default>false</default>
+                <label>SK - Slovakia</label>
+            </value>
+            <value>
+                <fullName>SL - Slovenia</fullName>
+                <default>false</default>
+                <label>SL - Slovenia</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

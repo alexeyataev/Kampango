@@ -111,6 +111,10 @@
     <types>
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
+        <members>NCT_Templates/Reunion_Session_Attendees_Not_Client_Host_Email</members>
+        <members>NCT_Templates/Reunion_Session_Attendees_Public_Venue_Email</members>
+        <members>NCT_Templates/Reunion_Session_Course_Leader_Email</members>
+        <members>NCT_Templates/Reunion_Session_Client_Hoster_Email</members>
         <name>EmailTemplate</name>
     </types>
     <types>

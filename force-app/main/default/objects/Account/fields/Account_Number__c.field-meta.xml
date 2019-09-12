@@ -4,5 +4,6 @@
     <displayFormat>A{00000}</displayFormat>
     <externalId>false</externalId>
     <label>Account Number</label>
+    <trackHistory>false</trackHistory>
     <type>AutoNumber</type>
 </CustomField>
