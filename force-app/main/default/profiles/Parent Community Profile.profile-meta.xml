@@ -1623,6 +1623,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <classAccesses>
+        <apexClass>BookingJourneyHelper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PaymentLinkGeneratorTestPageController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
