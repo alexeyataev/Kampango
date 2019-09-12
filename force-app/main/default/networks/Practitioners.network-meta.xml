@@ -44,8 +44,8 @@
     </navigationLinkSet>
     <networkMemberGroups>
         <permissionSet>Practitioner_Management</permissionSet>
-        <profile>admin</profile>
-        <profile>practitioner</profile>
+        <profile>Admin</profile>
+        <profile>Practitioner</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
