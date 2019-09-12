@@ -44,10 +44,16 @@
             <value/>
         </criteriaItems>
         <criteriaItems>
-            <column>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Start__c</column>
+            <column>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Day_of_Week__c</column>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
             <value/>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Contact.Licences_To_Practice__r.Courses__r$Status__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Cancelling,Cancelled</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
@@ -67,6 +73,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
+    <sortColumn>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Status__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Date__c</dateColumn>
         <interval>INTERVAL_CURNEXT3</interval>
