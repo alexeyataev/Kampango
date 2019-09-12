@@ -161,7 +161,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
-
+            .buildOrganizationAccount('acc5')
             .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
             .buildVenue()
             .buildRoom()
