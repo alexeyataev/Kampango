@@ -20,6 +20,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             WITH SECURITY_ENFORCED
         ];
         //NOPMD
+        //https://confluence.nct.org.uk:8443/pages/viewpage.action?spaceKey=PAR&title=PMD+Incident+Suppression+Log
+
         if(!courseAssignments.isEmpty()) {
             for(Course_Assignment__c assignment : courseAssignments){
                 assignment.Status__c = CA_INVALIDATED_STATUS;
@@ -31,6 +33,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         return dmlWrapper;
     }
     //NOPMD
+    //https://confluence.nct.org.uk:8443/pages/viewpage.action?spaceKey=PAR&title=PMD+Incident+Suppression+Log
+
     private Set<Id> IdsOfCourseAssignmentsToChange(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
         Set<Id> courseAssignmentIds = new Set<Id>();
         for(Integer i = 0; i<newSessionList.size(); i++) {
@@ -53,3 +57,4 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
     }
 }
 //NOPMD
+//https://confluence.nct.org.uk:8443/pages/viewpage.action?spaceKey=PAR&title=PMD+Incident+Suppression+Log

@@ -2,13 +2,16 @@
 public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
+    private static final String PRACTITIONER_LASTNAME_ONE = 'Smith';
+
     private static Venue__c venue;
 
     @TestSetup
     private static void SetupTestData() {
         TestDataFactory.getInstance()
             .buildBranchAccount()
-            .buildPractitioner()
+            .buildOrganizationAccount('acc1')
+            .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
@@ -158,7 +161,8 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
-            .buildPractitioner()
+
+            .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
@@ -187,7 +191,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
         test.stopTest();
 
-        List<Session__c> sessionsWithProvisionalStatus = [SELECT Status__c FROM Session__c WHERE Status__c =: SESSION_PROVISIONAL_STATUS AND  Id IN :sessionIds LIMIT 1000];
+        List<Session__c> sessionsWithProvisionalStatus = [SELECT Status__c FROM Session__c WHERE Status__c =: SESSION_PROVISIONAL_STATUS AND Id IN :sessionIds LIMIT 1000];
 
         System.assertEquals(sessions.size(), sessionsWithProvisionalStatus.size());
     }

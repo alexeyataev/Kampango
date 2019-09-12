@@ -4,8 +4,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     private static final String COURSE_DRAFT_STATUS = 'Draft';
     private static final String COURSE_FINAL_STATUS = 'Final';
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
-    private static final String PRACTITIONER_LASTNAME = 'Practitioner';
-    private static final String PRACTITIONER_LASTNAME_TWO = 'Practitioner2';
+    private static final String PRACTITIONER_LASTNAME_ONE = 'Smith';
+    private static final String PRACTITIONER_LASTNAME_TWO = 'Smith2';
+    private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
 
     private static Venue__c venue;
     private static Room__c room;
@@ -16,7 +17,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     private static void SetupTestData() {
         TestDataFactory.getInstance()
             .buildBranchAccount()
-            .buildPractitioner()
+            .buildOrganizationAccount('acc1')
+            .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
@@ -43,7 +45,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         Licence_To_Practice__c practitionerLicence = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
         Venue__c venue = [SELECT Id FROM Venue__c LIMIT 1];
         Room__c room = [SELECT Id FROM Room__c LIMIT 1];
-        Contact practitioner = [SELECT Id FROM Contact WHERE RecordType.Name = 'Practitioner' LIMIT 1];
+        Contact practitioner = [SELECT Id FROM Contact WHERE RecordType.Name =:PRACTITIONER_RECORDTYPE_NAME LIMIT 1];
 
         test.startTest();
 
@@ -202,7 +204,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         test.startTest();
 
-        Contact practitioner = [SELECT LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME LIMIT 1];
+        Contact practitioner = [SELECT LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME_ONE LIMIT 1];
 
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
         licenceToPractice = licenceToPracticeBuilder
@@ -215,7 +217,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         }
 
         update sessions;
-
 
         test.stopTest();
 
@@ -297,7 +298,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
-            .buildPractitionerTwo();
+            .buildOrganizationAccount('acc2')
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO);
 
         CreateTriggerSystemHandlerRecord();
 
@@ -361,7 +363,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
-            .buildPractitioner()
+            .buildOrganizationAccount('acc3')
+            .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
@@ -410,7 +413,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
-            .buildPractitioner()
+            .buildOrganizationAccount('acc4')
+            .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
