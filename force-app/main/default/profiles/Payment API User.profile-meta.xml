@@ -8,7 +8,7 @@
     <custom>true</custom>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Account_Number__c</field>
+        <field>Account.AccountNumber</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
