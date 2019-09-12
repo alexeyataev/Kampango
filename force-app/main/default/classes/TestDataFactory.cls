@@ -46,13 +46,13 @@ public without sharing class TestDataFactory {
         return this;
     }
 
-    public TestDataFactory buildOrganizationAccount(String accountNumbe) {
+    public TestDataFactory buildOrganizationAccount(String accountNumber) {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
         organizationAccount = accountBranchBuilder
             .withRecordType(ACCOUNT_ORGANIZATION_RECORDTYPE)
             .withName('John Smith')
             .withType('Supplier')
-            .withAccountNumber(accountNumbe)
+            .withAccountNumber(accountNumber)
             .withBillingEmail(TEST_BILLING_EMAIL)
             .insertRecord(true)
             .build();

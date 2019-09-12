@@ -1,13 +1,13 @@
 @isTest
 public class TestAccountBuilder {
 
-	private String recordTypeId;
-	private String name = 'John Smith';
-	private String type;
-	private String billingPostalCode;
+    private String recordTypeId;
+    private String name = 'John Smith';
+    private String type;
+    private String billingPostalCode;
     private String billingEmail;
-	private String accountNumber;
-	private Boolean insertRecord = false;
+    private String accountNumber;
+    private Boolean insertRecord = false;
 
     public TestAccountBuilder withRecordType(String recordTypeName) {
         
