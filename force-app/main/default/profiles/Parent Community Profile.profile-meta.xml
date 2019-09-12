@@ -182,7 +182,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Booking__c.Partner_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1596,9 +1596,9 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>
-        <default>true</default>
+        <default>false</default>
         <recordType>Contact.Clients</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -1622,10 +1622,6 @@
         <tab>npsp__Trigger_Handler__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
-    <classAccesses>
-        <apexClass>BookingJourneyHelper</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <classAccesses>
         <apexClass>PaymentLinkGeneratorTestPageController</apexClass>
         <enabled>false</enabled>
