@@ -845,6 +845,15 @@
         <object>gaid__Gift_Aid_Declaration__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>cpm__Installment__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <layoutAssignments>
         <layout>Account-Branch Layout</layout>
         <recordType>Account.Branch</recordType>
