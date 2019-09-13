@@ -13,7 +13,7 @@
  )
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText>Stub text</inlineHelpText>
+    <inlineHelpText>Suggested cancellation fee. If no course fee paid, no cancellation fee should be applied</inlineHelpText>
     <label>Suggested Cancellation Fee</label>
     <precision>18</precision>
     <required>false</required>
