@@ -64,6 +64,11 @@
             <field>Main_Practitioner__c</field>
             <table>Contact.Licences_To_Practice__r.Courses__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Status__c</field>
+            <table>Contact.Licences_To_Practice__r.Courses__r</table>
+        </columns>
         <masterLabel>Courses</masterLabel>
     </sections>
     <sections>
