@@ -1,12 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Email_Task</name>
+        <label>Create Task  for Activity History</label>
+        <locationX>831</locationX>
+        <locationY>382</locationY>
+        <actionName>NewTask</actionName>
+        <actionType>quickAction</actionType>
+        <inputParameters>
+            <name>Subject</name>
+            <value>
+                <stringValue>Email was resent</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Status</name>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>contextId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>ActivityDate</name>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>OwnerId</name>
+            <value>
+                <elementReference>curBooking.CreatedById</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Result_Sending_Email</name>
         <label>Result Sending Email</label>
         <locationX>831</locationX>
         <locationY>226</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
+        <connector>
+            <targetReference>Email_Task</targetReference>
+        </connector>
         <inputParameters>
             <name>type</name>
             <value>
@@ -23,7 +64,7 @@
     <actionCalls>
         <name>Sent_Email</name>
         <label>Send Email</label>
-        <locationX>352</locationX>
+        <locationX>350</locationX>
         <locationY>208</locationY>
         <actionName>Booking__c.SendEmailToClient</actionName>
         <actionType>emailAlert</actionType>
@@ -118,7 +159,7 @@
     <recordLookups>
         <name>Get_Booking_Record</name>
         <label>Get Booking Record By Id</label>
-        <locationX>201</locationX>
+        <locationX>178</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -136,6 +177,7 @@
         <queriedFields>Id</queriedFields>
         <queriedFields>First_Name__c</queriedFields>
         <queriedFields>Last_Name__c</queriedFields>
+        <queriedFields>CreatedById</queriedFields>
     </recordLookups>
     <screens>
         <name>Confirm_Send_Email_Screen</name>
