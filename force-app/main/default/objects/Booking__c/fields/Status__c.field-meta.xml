@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <label>Status</label>
     <required>true</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -29,6 +30,11 @@
                 <fullName>Expired</fullName>
                 <default>false</default>
                 <label>Expired</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
             </value>
         </valueSetDefinition>
     </valueSet>
