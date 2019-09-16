@@ -23,6 +23,7 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>Account.Account_Number__c</members>
         <members>Booking__c.Client_Name__c</members>
         <members>Booking__c.Due_Date__c</members>
         <members>Booking__c.Client__c</members>
@@ -31,7 +32,6 @@
         <members>Booking__c.Enquiry_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_First_Name__c</members>
         <members>Booking__c.Twins_or_more__c</members>
-        <members>Booking__c.Under_18__c</members>
         <members>Booking__c.Confirm_DD_Authorisation__c</members>
         <members>Booking__c.Client_Gift_Aid__c</members>
         <members>Booking__c.Course_Payment_Method__c</members>
@@ -116,11 +116,18 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>Contact.Contact_Preferred_Email</members>
+        <members>Contact.Contact_Preferred_Phone</members>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
         <name>ValidationRule</name>
     </types>
     <types>
         <members>Booking__c.Booking%3ASendOfferEmail</members>
+        <members>Booking__c.Booking%3ASetExpirationDate%3C10Days</members>
+        <members>Booking__c.Booking%3ASetExpirationDate10Days</members>
+        <members>Booking__c.Booking%3ASetExpirationDate5Days</members>
+        <members>Booking__c.Booking%3ASetOfferEmailDate</members>
+        <members>Booking__c.Booking_SetExpDate_Less5Days</members>
         <members>Booking__c.Send Reservation Email</members>
         <members>Booking__c.Send Confirmation Email</members>
         <name>WorkflowRule</name>
@@ -132,6 +139,11 @@
     </types>
     <types>
         <members>Booking__c.Set_Offer_Email_Sent_Time</members>
+        <members>Booking__c.SetExpDate</members>
+        <members>Booking__c.SetExpDateTo5Days</members>
+        <members>Booking__c.SetExpDateToTenDays</members>
+        <members>Booking__c.SetExpirationDate_Less5</members>
+        <members>Booking__c.SetOfferEmailDate</members>
         <name>WorkflowFieldUpdate</name>
     </types>
 </Package>

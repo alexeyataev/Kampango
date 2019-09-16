@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Schedule_of_Sessions__c</fullName>
     <externalId>false</externalId>
-    <formula>HYPERLINK(LEFT($Api.Partner_Server_URL_260, FIND( &#39;/services&#39;, $Api.Partner_Server_URL_260)) + &#39;/lightning/r/Report/&#39;+$Setup.Course_Settings__c.Schedule_of_Sessions__c + &#39;/view?fv0=&#39; + Id,&#39;Schedule of Sessions&#39;, &#39;_blank&#39;)</formula>
+    <formula>HYPERLINK(LEFT($Api.Partner_Server_URL_260, FIND( &#39;/services&#39;, $Api.Partner_Server_URL_260)) + &#39;lightning/r/Report/&#39;+$Setup.Course_Settings__c.Schedule_of_Sessions__c + &#39;/view?fv0=&#39; + Id,&#39;Schedule of Sessions&#39;, &#39;_blank&#39;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Schedule of Sessions</label>
     <required>false</required>

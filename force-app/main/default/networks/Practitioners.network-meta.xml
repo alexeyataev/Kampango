@@ -35,16 +35,8 @@
             <type>SalesforceObject</type>
         </navigationMenuItem>
         <navigationMenuItem>
-            <defaultListViewId>All</defaultListViewId>
-            <label>Venues</label>
-            <position>2</position>
-            <publiclyAvailable>false</publiclyAvailable>
-            <target>Venue__c</target>
-            <type>SalesforceObject</type>
-        </navigationMenuItem>
-        <navigationMenuItem>
             <label>Course Assignments</label>
-            <position>3</position>
+            <position>2</position>
             <publiclyAvailable>false</publiclyAvailable>
             <target>Course_Assignment__c</target>
             <type>SalesforceObject</type>
@@ -66,7 +58,7 @@
     <selfRegistration>false</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
     <site>Practitioners</site>
-    <status>UnderConstruction</status>
+    <status>Live</status>
     <tabs>
         <defaultTab>home</defaultTab>
         <standardTab>Chatter</standardTab>

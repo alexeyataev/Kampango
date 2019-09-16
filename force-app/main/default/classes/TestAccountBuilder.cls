@@ -1,6 +1,6 @@
 @isTest
 public class TestAccountBuilder {
-
+  
 	private String accountNumber;
 	private String bankSortCode;
 	private String bankAccountNumber;
@@ -12,22 +12,39 @@ public class TestAccountBuilder {
 	private String recordTypeId;
 	private String type;
 
-
-    public TestAccountBuilder withRecordType(string recordTypeName) {
+    public TestAccountBuilder withRecordType(String recordTypeName) {
         
         recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get(recordTypeName).getRecordTypeId();
         
         return this;
     }
+    public TestAccountBuilder withBillingEmail(String billingEmail) {
+
+       this.billingEmail = billingEmail;
+
+        return this;
+    }
     
-    public TestAccountBuilder withName(string name)
+    public TestAccountBuilder withName(String name)
     {
     	this.name = name;
     	
     	return this;
     }
-    
-    public TestAccountBuilder withBillingPostalCode(string postalCode)
+    public TestAccountBuilder withType(String type)
+    {
+        this.type = type;
+
+        return this;
+    }
+
+    public TestAccountBuilder withAccountNumber(String accountNumber)
+    {
+        this.accountNumber = accountNumber;
+
+        return this;
+    }
+    public TestAccountBuilder withBillingPostalCode(String postalCode)
     {
     	this.billingPostalCode = postalCode;
     	
@@ -83,9 +100,8 @@ public class TestAccountBuilder {
     	this.insertRecord = insertRecord;
     	return this;
     }
-    
-    public Account build(){
-    	
+
+  public Account build(){
     	Account testAccount = new Account(RecordTypeId = this.recordTypeId,
     							Name = this.name,
     							BillingPostalCode = this.billingPostalCode,
@@ -95,7 +111,6 @@ public class TestAccountBuilder {
 								Zumzum__Bank_Sort_Code__c = this.bankSortCode,
 								Zumzum__Bank_Account_No__c = this.bankAccountNumber,
 								Zumzum__Bank_Account_Name__c = this.bankAccountName);
-
     	if(insertRecord)
     	{
     		insert testAccount;
