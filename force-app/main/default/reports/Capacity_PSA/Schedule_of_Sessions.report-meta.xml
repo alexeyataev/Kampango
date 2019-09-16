@@ -62,13 +62,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-<<<<<<< HEAD
     <sortColumn>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Date__c</sortColumn>
     <sortOrder>Asc</sortOrder>
-=======
-    <sortColumn>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Status__c</sortColumn>
-    <sortOrder>Desc</sortOrder>
->>>>>>> 900f22f7980729834a7a325a549148a22dcb757f
     <timeFrameFilter>
         <dateColumn>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Date__c</dateColumn>
         <interval>INTERVAL_CURNEXT3</interval>
