@@ -73,7 +73,9 @@ public with sharing class GeneratePaymentFileUtil {
 						Zumzum__Supplier__r.PSA_Area__c,
 						Payment_Reference__c
 				FROM Zumzum__Bank_Payment__c
-				WHERE Zumzum__Batch_Bank_Payment__c = :batchBankPaymentId];
+				WHERE Zumzum__Batch_Bank_Payment__c = :batchBankPaymentId
+				WITH SECURITY_ENFORCED
+		];
 
 		return payments;
 	}
