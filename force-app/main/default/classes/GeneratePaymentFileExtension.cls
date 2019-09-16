@@ -18,6 +18,7 @@ public with sharing class GeneratePaymentFileExtension {
 				SELECT id, Zumzum__Status__c
 				FROM Zumzum__Batch_Bank_Payment__c
 				WHERE id = :this.recordId
+				WITH SECURITY_ENFORCED
 		];
 
 		this.showError = batchBankPayment.Zumzum__Status__c != VALID_BATCH_BANK_PAYMENT_STATUS;
