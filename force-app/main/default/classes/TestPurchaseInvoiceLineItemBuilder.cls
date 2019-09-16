@@ -37,7 +37,7 @@ public class TestPurchaseInvoiceLineItemBuilder {
 		return this;
 	}
 
-	public TestPurchaseInvoiceLineItemBuilder withNet(Double Net)
+	public TestPurchaseInvoiceLineItemBuilder withNet(Double net)
 	{
 		this.net = net;
 
