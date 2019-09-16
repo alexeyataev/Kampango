@@ -6,7 +6,8 @@
         <protected>false</protected>
         <shortDescription>Generate Payment File Invalid Batch Bank Payment Status Message</shortDescription>
         <value>Batch Bank Payment should be approved to generate Payment File.</value>
-
+    </labels>
+    <labels>    
         <fullName>ContactUpdateException</fullName>
         <language>en_US</language>
         <protected>false</protected>
