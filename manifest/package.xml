@@ -302,6 +302,7 @@
         <name>WebLink</name>
     </types>
     <types>
+        <members>Booking__c</members>
         <members>Course_Assignment__c</members>
         <name>Workflow</name>
     </types>
