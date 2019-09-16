@@ -103,7 +103,7 @@
             </processMetadataValues>
             <name>oldVenueId</name>
             <value>
-                <elementReference>formula_3_myRule_1_A1_4866967730</elementReference>
+                <elementReference>formula_3_myRule_1_A1_2955610481</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -226,49 +226,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>oldMainPractitionerId</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Formula</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>oldMainPractitionerId</name>
-            <value>
-                <elementReference>formula_7_myRule_5_A1_7006071181</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>newMainPractitionerId</stringValue>
+                    <stringValue>practitionerId</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -289,7 +247,7 @@
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <name>newMainPractitionerId</name>
+            <name>practitionerId</name>
             <value>
                 <elementReference>myVariable_current.Main_Practitioner__c</elementReference>
             </value>
@@ -333,7 +291,7 @@
             </processMetadataValues>
             <name>oldMainPractitionerLicenceId</name>
             <value>
-                <elementReference>formula_8_myRule_5_A1_4341243454</elementReference>
+                <elementReference>formula_7_myRule_5_A1_6247884613</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -569,20 +527,9 @@
                 <stringValue>PRIORVALUE([Course__c].Main_Venue__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_4866967730</name>
+        <name>formula_3_myRule_1_A1_2955610481</name>
         <dataType>String</dataType>
         <expression>PRIORVALUE({!myVariable_current.Main_Venue__c} )</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>PRIORVALUE([Course__c].Main_Practitioner__c ) </stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_7_myRule_5_A1_7006071181</name>
-        <dataType>String</dataType>
-        <expression>PRIORVALUE({!myVariable_current.Main_Practitioner__c} )</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -591,11 +538,11 @@
                 <stringValue>PRIORVALUE([Course__c].Main_Practitioner_Licence__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_5_A1_4341243454</name>
+        <name>formula_7_myRule_5_A1_6247884613</name>
         <dataType>String</dataType>
         <expression>PRIORVALUE({!myVariable_current.Main_Practitioner_Licence__c} )</expression>
     </formulas>
-    <interviewLabel>Update_Related_Sessions-3_InterviewLabel</interviewLabel>
+    <interviewLabel>Update_Related_Sessions-5_InterviewLabel</interviewLabel>
     <label>Update Related Sessions</label>
     <processMetadataValues>
         <name>ObjectType</name>
