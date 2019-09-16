@@ -4,16 +4,23 @@ public with sharing class CourseDetailControllerTest {
     @TestSetup
     static void createTestData(){
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
-        Account account =  accountBuilder.withRecordType('Branch')
-            .withName('Test Branch')
+        Account branchAccount = accountBuilder
+            .withRecordType('Branch')
+            .insertRecord(true)
+            .build();
+        Account organizationAccount =  accountBuilder
+            .withRecordType('Organization')
+            .withName('John Smith')
+            .withType('Supplier')
+            .withAccountNumber('acc123')
+            .withBillingEmail('billingEmail@ncttest.com')
             .withBillingPostalCode('qwerty')
             .insertRecord(true)
             .build();
         TestContactBuilder contactBuilder = new TestContactBuilder();
-        Contact contact = contactBuilder.withRecordType('Practitioner')
-            .withAccount(account)
-            .withFirstName('Fname')
-            .withLastName('Lname')
+        Contact contact = contactBuilder
+            .withRecordType('Practitioner')
+            .withAccount(organizationAccount)
             .insertRecord(true)
             .build();
         TestLicenceToPracticeBuilder lisenceBuilder = new TestLicenceToPracticeBuilder();
@@ -30,7 +37,7 @@ public with sharing class CourseDetailControllerTest {
             .withFee(100)
             .withNumberOfPlaces(15)
             .withStatus('Draft')
-            .withAccount(account)
+            .withAccount(branchAccount)
             .withLicenceToPractice(lisence)
             .withPractitioner(contact)
             .insertRecord(false)
@@ -40,7 +47,7 @@ public with sharing class CourseDetailControllerTest {
             .withFee(120)
             .withNumberOfPlaces(10)
             .withStatus('Draft')
-            .withAccount(account)
+            .withAccount(branchAccount)
             .withLicenceToPractice(lisence)
             .withPractitioner(contact)
             .insertRecord(false)
@@ -66,7 +73,6 @@ public with sharing class CourseDetailControllerTest {
         for(Integer i = 0; i < 12; i++){
             sessions.add(
                 sessionBuilder.withPractitioner(contact)
-                .withName('Test session')
                 .withType('Standard')
                 .withDate(System.today())
                 .withPractitionerLicence(lisence)
