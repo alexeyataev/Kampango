@@ -143,6 +143,7 @@
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
+        <members>Create_Gift_Aid_Declaration</members>
         <members>Invalidate_Withdraw_CA_when_key_information_changes</members>
         <members>Populate_Practitioner_Name</members>
         <members>Resend_Offer_Email</members>
