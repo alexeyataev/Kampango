@@ -24,8 +24,8 @@ public with sharing class GeneratePaymentFileUtil {
 		}
 
 		private String getPaymentAmount(){
-			String amountStr = String.valueOf(bankPayment.Zumzum__Amount__c);
-			return amountStr.leftPad(11, '0');
+			String amount = String.valueOf(bankPayment.Zumzum__Amount__c);
+			return amount.leftPad(11, '0');
 		}
 
 		private String getBankAccountName(){
@@ -45,18 +45,17 @@ public with sharing class GeneratePaymentFileUtil {
 
 		for(Zumzum__Bank_Payment__c bankPayment: bankPayments){
 			BankPaymentWrapper bankPaymentWrapper = new BankPaymentWrapper(bankPayment);
-			String lineStr = String.join(bankPaymentWrapper.getColumns(), ' ').trim();
-			rows.add(lineStr);
+			rows.add(String.join(bankPaymentWrapper.getColumns(), ' ').trim());
 		}
 		String result = String.join(rows,'\n').trim();
 		return result;
 	}
 
 	public static String generatePaymentFileName(){
-		Date cd = Date.today();
-		String day = String.valueOf(cd.day()).leftPad(2, '0');
-		String month = String.valueOf(cd.month()).leftPad(2, '0');
-		String fileName = FILE_PREFIX + day + month + cd.year() + FILE_EXTENSION;
+		Date currentDate = Date.today();
+		String day = String.valueOf(currentDate.day()).leftPad(2, '0');
+		String month = String.valueOf(currentDate.month()).leftPad(2, '0');
+		String fileName = FILE_PREFIX + day + month + currentDate.year() + FILE_EXTENSION;
 		return fileName;
 	}
 
