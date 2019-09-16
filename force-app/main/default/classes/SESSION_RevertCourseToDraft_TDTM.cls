@@ -1,5 +1,6 @@
 global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
-    global override npsp.TDTM_Runnable.DmlWrapper run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
+    private static final String SESSION_DRAFT_STATUS = 'Draft';
+    global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         npsp.TDTM_Runnable.dmlWrapper dmlWrapper = new npsp.TDTM_Runnable.DmlWrapper();
 
         List<Session__c> newSessionList = (List<Session__c>) triggerNew;
@@ -19,32 +20,32 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
             for (Session__c aSession : oldSessionList) {
                 courseIds.add(aSession.Course__c);
             }
-        } else if (triggerAction == npsp.TDTM_Runnable.Action.BeforeUpdate) {
-            for(Integer i = 0; i<newSessionList.size(); i++) {
-                if(oldSessionList[i].Status__c == 'Confirmed' &&
-                    (newSessionList[i].Date__c != oldSessionList[i].Date__c ||
-                    newSessionList[i].Start__c != oldSessionList[i].Start__c ||
-                    newSessionList[i].End__c != oldSessionList[i].End__c ||
-                    newSessionList[i].Lunch_Break_Minutes__c != oldSessionList[i].Lunch_Break_Minutes__c )) {
-                    newSessionList[i].Status__c = 'Provisional';
-                }
-
-            }
         }
 
-        List<Course__c> courses = [SELECT Id, Status__c FROM Course__c WHERE Id IN :courseIds AND Status__c != 'Draft' WITH SECURITY_ENFORCED];
+        List<Course__c> courses = [
+            SELECT Id,
+            Status__c
+            FROM Course__c
+            WHERE Id IN :courseIds
+                AND Status__c != :SESSION_DRAFT_STATUS
+            WITH SECURITY_ENFORCED
+        ];
+        //NOPMD
+        //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
 
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {
-                aCourse.Status__c = 'Draft';
+                aCourse.Status__c = SESSION_DRAFT_STATUS;
                 coursesToUpdate.add(aCourse);
             }
         }
-        dmlWrapper.objectsToUpdate.addAll((List<Course__c>) coursesToUpdate);
+        dmlWrapper.objectsToUpdate.addAll(coursesToUpdate);
         return dmlWrapper;
     }
+    //NOPMD
+    //Incident #2 - https://confluence.nct.org.uk:8443/x/EoSO
 
-    private Set<Id> idsOfCoursesToChange(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
+    private Set<Id> IdsOfCoursesToChange(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
         Set<Id> courseIds = new Set<Id>();
         for(Integer i = 0; i<newSessionList.size(); i++) {
             if (newSessionList[i].Date__c != oldSessionList[i].Date__c ||
@@ -62,3 +63,5 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
         return courseIds;
     }
 }
+//NOPMD
+//Incident #3 - https://confluence.nct.org.uk:8443/x/EoSO

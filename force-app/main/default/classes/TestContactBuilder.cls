@@ -2,8 +2,8 @@
 public with sharing class TestContactBuilder {
 	
 	private Id recordTypeId;
-	private string firstName = 'Test';
-	private string lastName = 'Contact';
+	private string firstName = 'John';
+	private string lastName = 'Smith';
 	private Account account;
 	private Boolean insertRecord = false;
 
@@ -14,9 +14,9 @@ public with sharing class TestContactBuilder {
         return this;
     }
 
-    public TestContactBuilder withAccount(Account a) {
+    public TestContactBuilder withAccount(Account account) {
     	
-    	this.account = a;
+    	this.account = account;
     	
     	return this;
     }
@@ -42,11 +42,11 @@ public with sharing class TestContactBuilder {
     }
     
     public Contact build(){
-    	
     	Contact testContact = new Contact(
 			RecordTypeId = this.recordTypeId,
 			FirstName = this.firstName,
-			LastName = this.lastName, AccountId =account.Id
+			LastName = this.lastName,
+			AccountId = this.account.Id
 		);
 
 		if(insertRecord)
