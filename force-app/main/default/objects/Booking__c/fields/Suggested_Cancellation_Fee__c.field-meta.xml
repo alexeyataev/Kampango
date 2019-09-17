@@ -6,8 +6,14 @@
  0,
  IF( AND(Days_Before_Course_Start__c &gt;= 30, Course_Fee__c &gt; 30), 
   Course_Fee__c - 30,
-  IF( AND(Days_Before_Course_Start__c &lt; 30, Days_Before_Course_Start__c &gt;= 15, Course_Fee__c &gt;= 60), 
-   Course_Fee__c * 0.5,
+  IF( AND(Days_Before_Course_Start__c &lt; 30, Days_Before_Course_Start__c &gt;= 15), 
+   IF(Course_Fee__c &gt;= 60, 
+    Course_Fee__c * 0.5,
+    IF(AND(Course_Fee__c &gt; 30, Course_Fee__c &lt; 60),
+     Course_Fee__c - 30,
+     0
+    )
+   ),
    0
   )
  )
