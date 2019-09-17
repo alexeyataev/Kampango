@@ -192,7 +192,7 @@
     <processMetadataValues>
         <name>TriggerType</name>
         <value>
-            <stringValue>onCreateOnly</stringValue>
+            <stringValue>onAllChanges</stringValue>
         </value>
     </processMetadataValues>
     <processType>Workflow</processType>
