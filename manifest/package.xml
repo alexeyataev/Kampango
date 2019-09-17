@@ -95,6 +95,7 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
+        <members>Booking__c.Suggested_Cancellation_Fee__c</members>
         <members>Contact.AccountId</members>
         <members>Contact.Current_Fee_Band_Effective_From__c</members>
         <members>Contact.Fee_Band__c</members>
