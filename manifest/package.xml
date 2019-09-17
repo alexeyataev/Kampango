@@ -92,6 +92,7 @@
         <members>Session__c</members>
         <members>Venue__c</members>
         <members>Venue_Contact__c</members>
+        <members>PaymentFileSettings__c</members>
         <name>CustomObject</name>
     </types>
     <types>
