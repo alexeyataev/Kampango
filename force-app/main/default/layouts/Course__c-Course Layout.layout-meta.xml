@@ -144,7 +144,7 @@
         <label>Booking Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Number_of_places__c</field>
             </layoutItems>
             <layoutItems>
