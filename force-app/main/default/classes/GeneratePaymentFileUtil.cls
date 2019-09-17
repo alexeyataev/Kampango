@@ -1,7 +1,7 @@
 public with sharing class GeneratePaymentFileUtil {
 
-	public static final String FILE_PREFIX = 'PSAAccount';
-	public static final String FILE_EXTENSION = '.txt';
+	public static final String FILE_PREFIX = PaymentFileSettings__c.getInstance(UserInfo.getProfileId()).PSA_File_Prefix__c;
+	public static final String FILE_EXTENSION = PaymentFileSettings__c.getInstance(UserInfo.getProfileId()).PSA_File_Extension__c;
 
 	private class BankPaymentWrapper {
 
