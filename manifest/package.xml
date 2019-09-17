@@ -151,8 +151,11 @@
         <members>Session_assignment_flow</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Main_Venue_on_Course</members>
+        <members>Update_Practitioner_Licence_on_Sessions_related_to_Course</members>
         <members>Update_Practitioner_on_Sessions</members>
+        <members>Update_Related_Sessions</members>
         <members>Update_service_field_on_session</members>
+        <members>Update_Venue_on_Sessions_related_to_Course</members>
         <name>Flow</name>
     </types>
     <types>
