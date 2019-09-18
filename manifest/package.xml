@@ -3,8 +3,11 @@
     <types>
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
+        <members>CourseApi</members>
         <members>CourseDetailController</members>
         <members>CourseDetailControllerTest</members>
+        <members>CourseFinderModel</members>
+        <members>CourseSearchUtility</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>

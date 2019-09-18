@@ -1,0 +1,11 @@
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>CourseApi</members>
+        <members>CourseSearchUtility</members>
+        <members>CourseFinderModel</members>
+        <name>ApexClass</name>
+    </types>
+    <version>46.0</version>
+</Package>
