@@ -1,11 +1,10 @@
-public with sharing class CourseCreateEnquiryUtility {
+public without sharing class CourseCreateEnquiryUtility {
+    private static final String CONTACT_RECORDTYPE_NAME = 'Contact';
 
     public static void createEnquiry(String courseNumber, Map<String, String> requestParameters) {
-
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
 
         if (String.isNotBlank(courseNumber) && !requestParameters.isEmpty()) {
-
             Booking__c booking = new Booking__c();
             Contact contact;
             Contact partner;
@@ -19,7 +18,7 @@ public with sharing class CourseCreateEnquiryUtility {
 
             if (contacts.isEmpty()) {
                 contact = new Contact(
-                    RecordTypeId = '0124E000000E44A',   //Contact record type
+                    RecordTypeId = getContactRecordTypeByAPIName(CONTACT_RECORDTYPE_NAME),
                     Salutation = requestParameters.get('title'),
                     FirstName = requestParameters.get('first_name'),
                     LastName = requestParameters.get('last_name'),
@@ -30,7 +29,6 @@ public with sharing class CourseCreateEnquiryUtility {
                     MailingCountry = requestParameters.get('county'),
                     MailingStreet = requestParameters.get('adress_line1') + requestParameters.get('address_line2')
                 );
-                System.debug(contact);
                 insert contact;
             } else {
                 contact = contacts[0];
@@ -54,18 +52,18 @@ public with sharing class CourseCreateEnquiryUtility {
                 }
                 booking.Partner_Contact__c = partner.Id;
             }
-
             booking.Primary_Contact__c = contact.Id;
             booking.Birth_Due_Date__c = Date.parse((requestParameters.get('duedate')));
-    
             booking.First_Baby__c = parseBooleanParameterToPicklistValue(requestParameters.get('firstbaby'));
             booking.Multiple_Birth__c = parseBooleanParameterToPicklistValue(requestParameters.get('twinsexpected'));
             booking.Course__c = courseNumber;
             booking.How_Heard__c = requestParameters.get('hearaboutus');
-
             insert booking;
         }
-        
+    }
+
+    private static Id getContactRecordTypeByAPIName(String recordTypeName) {
+        return SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(recordTypeName).getRecordTypeId();
     }
 
     private static String parseBooleanParameterToPicklistValue(String value) {
@@ -73,10 +71,11 @@ public with sharing class CourseCreateEnquiryUtility {
     }
 
     public static String getCourseIdFromHeaders() {
-        // String refererUrl = requestHeaders.get('Referer');
-        // return refererUrl.substring(refererUrl.lastIndexOf('/') + 1);
-
         List<Course__c> availableCourses = [SELECT Id FROM Course__c WHERE Remaining_Places__c > 0];
-        return availableCourses[0].Id;
+        if (!availableCourses.isEmpty()) {
+            return availableCourses[0].Id;
+        } else {
+            return null;
+        }
     }
 }
