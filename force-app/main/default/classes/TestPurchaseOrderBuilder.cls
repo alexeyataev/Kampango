@@ -40,8 +40,9 @@ public class TestPurchaseOrderBuilder {
 				Zumzum__Type__c = this.type
 		);
 
-		if(insertRecord)
+		if(insertRecord) {
 			insert testPurchaseOrder;
+		}
 
 		return testPurchaseOrder;
 	}
