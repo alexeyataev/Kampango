@@ -1,63 +1,69 @@
-public class CourseSearchUtility {
-    public static Course__c getCourseById(String courseId, Boolean isFromWebSite){
-        Course__c result = null;
-        
-        // ToDo use Database.query instead to do filtering inside of SOQL query itself.
-        List<Course__c> inCourses = [
-        	SELECT Id, Name, Hide_From_Course_Finder__c
-            FROM Course__c
-            WHERE Id = :courseId
-        ];
-        
-        List<Course__c> courses = new List<Course__c>();
-        for (Course__c course : inCourses){
-            if(isFromWebSite == true){
-                if (course.Hide_From_Course_Finder__c == true){
-                    // do not add
-                } else {
-                    courses.add(course);
-                }
+public without sharing class CourseSearchUtility {
+
+    private static List<String> howHeard = getHowHeardValues();
+
+    public static CourseFinderModel getCourseByReference(String courseId, Boolean isFromWebsite) {
+        if (isFromWebsite == true) {
+            //Description__c, Session_Type__c, PostcodeArea, Notes__c
+            List<Course__c> courses = [
+                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,  
+                    Branch__r.Name, Branch__r.Branch_Key__c, Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, 
+                    Main_Practitioner__r.Email, Main_Practitioner__r.Phone, Main_Venue__r.Name, Main_Venue__r.Town__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Map_Link__c, Branch__c,
+                    (
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c 
+                        FROM Sessions__r
+                    )
+                FROM Course__c
+                WHERE Id = :courseId
+                ];
+
+            if(!courses.isEmpty()) {
+                CourseFinderModel courseFinderModel  =  new CourseFinderModel(courses[0]);                   					
+                courseFinderModel.HowHeardTexts = howHeard;
+                return courseFinderModel;
             } else {
-                courses.add(course);
+                return null;
             }
-        }
-        
-        if (!courses.isEmpty() && courses.size() == 1){
-            result = courses[0];
-        }
-        
-        return result;
-    }
-    
-    public static RestResponse getCourseById(String courseId){
-        RestResponse response = new RestResponse();
-        Course__c course = getCourseById(courseId, true);
-        
-        if (course != null) {
-            CourseFinderModel model = new CourseFinderModel(course);
-            response.statusCode = 200;
-            response.responseBody = Blob.valueOf(JSON.serializePretty(model));
+
         } else {
-            response.statusCode = 404;
-            response.responseBody = Blob.valueOf('{ "Error" : course does not exist }');
+            return null;
         }
-        
-        return response;
-    }
-    
-    public static List<Course__c> getCoursesByBranchId(String branchId, Boolean isFromWebSite){
-        return null;
-    }
-    
-    public static RestResponse getCoursesByBranchId(String branchId){
-        return null;
-    }
-    
-    public static List<Course__c> GetCoursesByDateDistance(/*ToDo: parameters to be defined, */ Boolean isFromWebSite){
-        return null;
-    }
-    
-    public static RestResponse GetCoursesByDateDistance(/*ToDo: parameters to be defined, */ ){
-        return null;
+    } 
+
+    public static List<CourseFinderModel> getCourseByBranch(String branchId) { 
+        //Description__c, Session_Type__c, PostcodeArea, Notes__c
+        List<Course__c> courses = [
+            SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,   
+                Branch__r.Name, Branch__r.Branch_Key__c, Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, 
+                Main_Practitioner__r.Email, Main_Practitioner__r.Phone, Main_Venue__r.Name, Main_Venue__r.Town__c,
+                Main_Venue__r.County__c, Main_Venue__r.Map_Link__c, Branch__c,
+                (
+                    SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c 
+                    FROM Sessions__r
+                )
+            FROM Course__c
+            WHERE Branch__c = :branchId
+            ];
+
+        List<CourseFinderModel> courseFinderModels = new List<CourseFinderModel>();
+
+        if(!courses.isEmpty()) {
+            for (Course__c course : courses) {
+                CourseFinderModel courseFinderModel  =  new CourseFinderModel(course);                   					
+                courseFinderModel.HowHeardTexts = howHeard;
+                courseFinderModels.add(courseFinderModel); 
+            } 
+        }
+        return courseFinderModels;                 					
+    } 
+
+    private static List<String> getHowHeardValues() {
+        List<String> howHeardValues= new List<String>();
+        Schema.DescribeFieldResult fieldResult = Booking__c.How_Heard__c.getDescribe();
+        for (Schema.PicklistEntry value : fieldResult.getPicklistValues()) {
+            howHeardValues.add(value.getLabel());
+        }     
+        return howHeardValues;
     }
 }
