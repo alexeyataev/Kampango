@@ -48,8 +48,9 @@ public class TestPurchaseInvoiceBuilder {
 				Zumzum__Status__c = this.status
 		);
 
-		if(insertRecord)
+		if(insertRecord) {
 			insert testPurchaseInvoice;
+		}
 
 		return testPurchaseInvoice;
 	}
