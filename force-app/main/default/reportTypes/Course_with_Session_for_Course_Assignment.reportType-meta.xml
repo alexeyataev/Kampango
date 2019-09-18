@@ -26,11 +26,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Bracket_Course__c</field>
-            <table>Course__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Branch__c</field>
             <table>Course__c</table>
         </columns>
