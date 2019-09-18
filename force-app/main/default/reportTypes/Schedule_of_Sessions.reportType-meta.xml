@@ -7,13 +7,13 @@
     <join>
         <join>
             <join>
-                <outerJoin>true</outerJoin>
+                <outerJoin>false</outerJoin>
                 <relationship>Sessions__r</relationship>
             </join>
-            <outerJoin>true</outerJoin>
+            <outerJoin>false</outerJoin>
             <relationship>Courses__r</relationship>
         </join>
-        <outerJoin>true</outerJoin>
+        <outerJoin>false</outerJoin>
         <relationship>Licences_To_Practice__r</relationship>
     </join>
     <label>Schedule of Sessions</label>
@@ -64,6 +64,11 @@
             <field>Main_Practitioner__c</field>
             <table>Contact.Licences_To_Practice__r.Courses__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Status__c</field>
+            <table>Contact.Licences_To_Practice__r.Courses__r</table>
+        </columns>
         <masterLabel>Courses</masterLabel>
     </sections>
     <sections>
@@ -110,6 +115,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Status__c</field>
+            <table>Contact.Licences_To_Practice__r.Courses__r.Sessions__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Practitioner__c</field>
             <table>Contact.Licences_To_Practice__r.Courses__r.Sessions__r</table>
         </columns>
         <masterLabel>Sessions</masterLabel>
