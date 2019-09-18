@@ -54,8 +54,9 @@ public class TestPurchaseOrderLineItemBuilder {
 						Zumzum__Narrative__c = this.narrative
 		);
 
-		if(insertRecord)
+		if(insertRecord) {
 			insert testPurchaseOrderLineItems;
+		}
 
 		return testPurchaseOrderLineItems;
 	}
