@@ -80,7 +80,7 @@
         <members>Venue_Contact__c</members>
         <name>CustomObject</name>
     </types>
-     <types>
+    <types>
         <members>Parent_Community</members>
         <members>Practitioners</members>
         <name>CustomSite</name>
@@ -136,8 +136,8 @@
         <members>Contact_Record_Page</members>
         <members>Course_Assignment_Record_Page</members>
         <members>Course_Record_Page</members>
-    	<members>Room_Record_Page</members>
-	<members>Session_Record_Page</members>
+        <members>Room_Record_Page</members>
+        <members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
         <name>FlexiPage</name>
     </types>
@@ -192,7 +192,7 @@
         <name>Layout</name>
     </types>
     <types>
-    	<members>courseDetailsComponent</members>
+        <members>courseDetailsComponent</members>
         <members>failurePaymentPage</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
@@ -209,7 +209,7 @@
         <name>NetworkBranding</name>
     </types>
     <types>
-    	<members>Practitioner_Management</members>
+        <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
@@ -234,6 +234,7 @@
         <members>Contact.Clients</members>
         <members>Contact.Contact</members>
         <members>Contact.Practitioner</members>
+        <members>Course_with_Session_for_Course_Assignment</members>
         <name>RecordType</name>
     </types>
     <types>
