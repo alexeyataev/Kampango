@@ -54,8 +54,9 @@ public class TestPurchaseInvoiceLineItemBuilder {
 				Zumzum__Total_Gross__c = this.gross
 		);
 
-		if(insertRecord)
+		if(insertRecord) {
 			insert testPurchaseInvoiceLineItem;
+		}
 
 		return testPurchaseInvoiceLineItem;
 	}
