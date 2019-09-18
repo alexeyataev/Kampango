@@ -40,23 +40,7 @@ public class TestAccountBuilder {
     public TestAccountBuilder withBillingPostalCode(String postalCode) {
         this.billingPostalCode = postalCode;
         return this;
-    }
-    
-    public TestAccountBuilder withType(string type) {
-        this.type = type;
-        return this;
-    }
-    
-    public TestAccountBuilder withAccountNumber(string accountNumber) {
-        this.accountNumber = accountNumber;
-        return this;
-    }
-    
-    public TestAccountBuilder withBillingEmail(string billingEmail) {
-        this.billingEmail = billingEmail;
-        return this;
-    }
-    
+    }    
     
     public TestAccountBuilder withBankSortCode(string bankSortCode) {
         this.bankSortCode = bankSortCode;
