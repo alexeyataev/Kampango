@@ -40,8 +40,9 @@ public class TestBankPaymentBuilder {
 				Zumzum__Batch_Bank_Payment__c = this.batchBankPaymentId
 		);
 
-		if(insertRecord)
+		if(insertRecord) {
 			insert testBankPayment;
+		}
 
 		return testBankPayment;
 	}
