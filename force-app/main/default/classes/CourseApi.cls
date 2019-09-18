@@ -37,10 +37,9 @@ global class CourseApi {
     }
     
     @HttpPost
-    global static String createEnquiry(){
+    global static void createEnquiry() {
         RestRequest request = RestContext.request;
         String courseNumber = CourseCreateEnquiryUtility.getCourseIdFromHeaders();
         CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);
-        return null;
     }
 }
