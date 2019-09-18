@@ -21,8 +21,9 @@ public class TestProductBuilder {
 				IsActive = this.isActive
 		);
 
-		if(insertRecord)
+		if(insertRecord) {
 			insert testProduct;
+		}
 
 		return testProduct;
 	}
