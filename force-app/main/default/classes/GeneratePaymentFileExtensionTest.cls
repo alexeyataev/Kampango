@@ -84,7 +84,7 @@ private class GeneratePaymentFileExtensionTest {
 	}
 
 	@IsTest
-	public static void generatePaymentFile_BankPaymentApproved_FileGenerated() {
+	public static void generatePaymentFileBankPaymentApprovedFileGenerated() {
 
 		PageReference paymentFileRef = Page.GeneratePaymentFile;
 		Test.setCurrentPage(paymentFileRef);
@@ -149,7 +149,7 @@ private class GeneratePaymentFileExtensionTest {
 	}
 
 	@IsTest
-	public static void generatePaymentFile_BankPaymentNotApproved_ShowErrorMessage() {
+	public static void generatePaymentFileBankPaymentNotApprovedShowErrorMessage() {
 
 		PageReference paymentFileRef = Page.GeneratePaymentFile;
 		Test.setCurrentPage(paymentFileRef);
