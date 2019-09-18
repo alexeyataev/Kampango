@@ -95,6 +95,7 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
+        <members>Booking__c.Suggested_Cancellation_Fee__c</members>
         <members>Contact.AccountId</members>
         <members>Contact.Current_Fee_Band_Effective_From__c</members>
         <members>Contact.Fee_Band__c</members>
@@ -109,6 +110,8 @@
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Booking__c.Cancellation_reason__c</members>
+        <members>Booking__c.Status__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -151,8 +154,13 @@
         <members>Session_assignment_flow</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Main_Venue_on_Course</members>
+        <members>Set_Number_of_Places_Based_on_Course_Type</members>
+        <members>Update_Partner_Community_Contact</members>
+        <members>Update_Practitioner_Licence_on_Sessions_related_to_Course</members>
         <members>Update_Practitioner_on_Sessions</members>
+        <members>Update_Related_Sessions</members>
         <members>Update_service_field_on_session</members>
+        <members>Update_Venue_on_Sessions_related_to_Course</members>
         <name>Flow</name>
     </types>
     <types>

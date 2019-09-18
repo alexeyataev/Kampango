@@ -144,7 +144,7 @@
         <label>Booking Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Number_of_places__c</field>
             </layoutItems>
             <layoutItems>
@@ -309,9 +309,12 @@
         <relatedList>Estimated_Costs__c.Course__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
         <fields>Practitioner_Name__c</fields>
         <fields>Status__c</fields>
         <relatedList>Course_Assignment__c.Course__c</relatedList>
+        <sortField>NAME</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

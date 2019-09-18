@@ -4,7 +4,7 @@
         <field>Venue__c.Sessions__r$Date__c</field>
     </columns>
     <columns>
-	<field>Venue__c.Sessions__r$Course__c.Status__c</field>
+        <field>Venue__c.Sessions__r$Status__c</field>
     </columns>
     <columns>
         <field>Venue__c.Sessions__r$Day_of_Week__c</field>
@@ -29,13 +29,7 @@
             <column>Venue__c.Sessions__r$Course__c.Status__c</column>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
-            <value>Cancelling</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Venue__c.Sessions__r$Course__c.Status__c</column>
-            <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value>Cancelled</value>
+            <value>Cancelling,Cancelled</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
