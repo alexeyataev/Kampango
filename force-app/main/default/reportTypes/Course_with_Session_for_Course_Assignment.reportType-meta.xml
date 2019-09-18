@@ -71,11 +71,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Course_Assignment_Exist__c</field>
-            <table>Course__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Id</field>
             <table>Course__c</table>
         </columns>
