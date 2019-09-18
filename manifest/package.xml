@@ -8,10 +8,15 @@
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
+        <members>SESSION_InvalidateCAs_TDTM</members>
+        <members>SESSION_InvalidateCAs_TDTM_TEST</members>
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
+        <members>SESSION_RevertToProvisional_TDTM</members>
+        <members>SESSION_RevertToProvisional_TDTM_TEST</members>
         <members>StepOrangeCardPaymentProvider</members>
         <members>TestAccountBuilder</members>
         <members>TestContactBuilder</members>
+        <members>TestCourseAssignmentBuilder</members>
         <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
@@ -19,6 +24,7 @@
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
+        <members>TestUserBuilder</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -61,6 +67,7 @@
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
+        <members>gaid__Gift_Aid_Declaration__c</members>
         <members>Estimated_Costs__c</members>
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
@@ -88,6 +95,7 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
+        <members>Booking__c.Suggested_Cancellation_Fee__c</members>
         <members>Contact.AccountId</members>
         <members>Contact.Current_Fee_Band_Effective_From__c</members>
         <members>Contact.Fee_Band__c</members>
@@ -99,8 +107,11 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Booking__c.Cancellation_reason__c</members>
+        <members>Booking__c.Status__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -111,6 +122,7 @@
     <types>
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
+        <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
         <name>EmailTemplate</name>
     </types>
     <types>
@@ -134,14 +146,21 @@
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
+        <members>Create_Gift_Aid_Declaration</members>
+        <members>Invalidate_Withdraw_CA_when_key_information_changes</members>
         <members>Populate_Practitioner_Name</members>
         <members>Resend_Offer_Email</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Main_Venue_on_Course</members>
+        <members>Set_Number_of_Places_Based_on_Course_Type</members>
+        <members>Update_Partner_Community_Contact</members>
+        <members>Update_Practitioner_Licence_on_Sessions_related_to_Course</members>
         <members>Update_Practitioner_on_Sessions</members>
+        <members>Update_Related_Sessions</members>
         <members>Update_service_field_on_session</members>
+        <members>Update_Venue_on_Sessions_related_to_Course</members>
         <name>Flow</name>
     </types>
     <types>
@@ -159,6 +178,7 @@
         <members>Contact-Practitioner Read Only Layout</members>
         <members>Course_Assignment__c-Course Assignment Layout</members>
         <members>Course__c-Course Layout</members>
+        <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
         <members>Product2-Practitioner Product Page</members>
@@ -206,8 +226,8 @@
     </types>
     <types>
         <members>Booking__c.Send_Offer_Email</members>
-        <members>Zumzum__NewTask</members>            
-        <name>QuickAction</name>  
+        <members>Zumzum__NewTask</members>
+        <name>QuickAction</name>
     </types>
     <types>
         <members>Account.Branch</members>
@@ -261,6 +281,9 @@
         <members>Session__c.End_time_should_not_be_before_start_time</members>
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
+        <members>Zumzum__Bank_Account__c.Account_number_must_be_8_numeric_digits</members>
+        <members>Zumzum__Bank_Account__c.Check_Bank_Account_Name</members>
+        <members>Zumzum__Bank_Account__c.Sort_code_must_be_6_numeric_digits</members>
         <name>ValidationRule</name>
     </types>
     <types>

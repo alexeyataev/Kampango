@@ -7,6 +7,9 @@
         <locationY>226</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
+        <connector>
+            <targetReference>Create_Task</targetReference>
+        </connector>
         <inputParameters>
             <name>type</name>
             <value>
@@ -23,7 +26,7 @@
     <actionCalls>
         <name>Sent_Email</name>
         <label>Send Email</label>
-        <locationX>352</locationX>
+        <locationX>350</locationX>
         <locationY>208</locationY>
         <actionName>Booking__c.SendEmailToClient</actionName>
         <actionType>emailAlert</actionType>
@@ -115,10 +118,65 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Task</name>
+        <label>Create Task</label>
+        <locationX>833</locationX>
+        <locationY>376</locationY>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsRecurrence</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsReminderSet</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>curBooking.CreatedById</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>Low</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <stringValue>Booking confirmation email resent</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>curBooking.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+    </recordCreates>
     <recordLookups>
         <name>Get_Booking_Record</name>
         <label>Get Booking Record By Id</label>
-        <locationX>201</locationX>
+        <locationX>178</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -136,6 +194,7 @@
         <queriedFields>Id</queriedFields>
         <queriedFields>First_Name__c</queriedFields>
         <queriedFields>Last_Name__c</queriedFields>
+        <queriedFields>CreatedById</queriedFields>
     </recordLookups>
     <screens>
         <name>Confirm_Send_Email_Screen</name>

@@ -36,6 +36,11 @@
                 <default>false</default>
                 <label>Invalidated</label>
             </value>
+            <value>
+                <fullName>Withdrawn</fullName>
+                <default>false</default>
+                <label>Withdrawn</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

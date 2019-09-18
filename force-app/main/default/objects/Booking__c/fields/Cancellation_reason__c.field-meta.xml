@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cancellation_reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Cancellation reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Status__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No suitable course (location)</fullName>
+                <default>false</default>
+                <label>No suitable course (location)</label>
+            </value>
+            <value>
+                <fullName>No suitable course (format)</fullName>
+                <default>false</default>
+                <label>No suitable course (format)</label>
+            </value>
+            <value>
+                <fullName>No suitable course (dates)</fullName>
+                <default>false</default>
+                <label>No suitable course (dates)</label>
+            </value>
+            <value>
+                <fullName>No suitable course (content)</fullName>
+                <default>false</default>
+                <label>No suitable course (content)</label>
+            </value>
+            <value>
+                <fullName>No suitable course (other)</fullName>
+                <default>false</default>
+                <label>No suitable course (other)</label>
+            </value>
+            <value>
+                <fullName>Too expensive</fullName>
+                <default>false</default>
+                <label>Too expensive</label>
+            </value>
+            <value>
+                <fullName>Lost baby</fullName>
+                <default>false</default>
+                <label>Lost baby</label>
+            </value>
+            <value>
+                <fullName>Personal tragedy</fullName>
+                <default>false</default>
+                <label>Personal tragedy</label>
+            </value>
+            <value>
+                <fullName>Early baby</fullName>
+                <default>false</default>
+                <label>Early baby</label>
+            </value>
+            <value>
+                <fullName>Health problems</fullName>
+                <default>false</default>
+                <label>Health problems</label>
+            </value>
+            <value>
+                <fullName>Moving</fullName>
+                <default>false</default>
+                <label>Moving</label>
+            </value>
+            <value>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+                <label>Complaint</label>
+            </value>
+            <value>
+                <fullName>NCT cancelled course</fullName>
+                <default>false</default>
+                <label>NCT cancelled course</label>
+            </value>
+            <value>
+                <fullName>No response after chasing by PSA</fullName>
+                <default>false</default>
+                <label>No response after chasing by PSA</label>
+            </value>
+            <value>
+                <fullName>Other NCT course</fullName>
+                <default>false</default>
+                <label>Other NCT course</label>
+            </value>
+            <value>
+                <fullName>Other NHS course</fullName>
+                <default>false</default>
+                <label>Other NHS course</label>
+            </value>
+            <value>
+                <fullName>Other private course</fullName>
+                <default>false</default>
+                <label>Other private course</label>
+            </value>
+            <value>
+                <fullName>Other unknown course</fullName>
+                <default>false</default>
+                <label>Other unknown course</label>
+            </value>
+            <value>
+                <fullName>Dual offer</fullName>
+                <default>false</default>
+                <label>Dual offer</label>
+            </value>
+            <value>
+                <fullName>Duplicate entry</fullName>
+                <default>false</default>
+                <label>Duplicate entry</label>
+            </value>
+            <value>
+                <fullName>Client - too early to book</fullName>
+                <default>false</default>
+                <label>Client - too early to book</label>
+            </value>
+            <value>
+                <fullName>Client - unhappy with small group size</fullName>
+                <default>false</default>
+                <label>Client - unhappy with small group size</label>
+            </value>
+            <value>
+                <fullName>NCT changed course</fullName>
+                <default>false</default>
+                <label>NCT changed course</label>
+            </value>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <label>Unknown</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>No suitable course (location)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>No suitable course (format)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>No suitable course (dates)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>No suitable course (content)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>No suitable course (other)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Too expensive</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Lost baby</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Personal tragedy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Early baby</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Health problems</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Moving</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Complaint</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>NCT cancelled course</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>No response after chasing by PSA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Other NCT course</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Other NHS course</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Other private course</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Other unknown course</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Dual offer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Duplicate entry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Client - too early to book</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Client - unhappy with small group size</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>NCT changed course</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Unknown</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>
