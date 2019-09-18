@@ -1,27 +1,45 @@
-@RestResource(urlMapping='/course')
-global without sharing class CourseAPI {
-
-    global static String getCourseById() {
-
-        return null;
-
+@RestResource(urlMapping='/courses/*')
+global class CourseApi {
+    @HttpGet
+    global static void getCourseStaff() {
+        Set <String> paramsSet = RestContext.request.params.keySet();
+        
+        if (paramsSet.contains('course')){
+			String courseId = RestContext.request.params.get('course');
+            RestResponse response = CourseSearchUtility.getCourseById(courseId);
+            RestContext.response.statusCode = response.statusCode;
+            RestContext.response.responseBody = response.responseBody;
+        } else if (paramsSet.contains('branch')) {
+            // CourseSearchUtility.getCourseByBranchName(String branchName);
+        } else if (isByLocation(paramsSet)) {
+            // CourseSearchUtility.getCourseByDateDistance(next params viewports, radius, location birth);
+        } else {
+            RestContext.response.statusCode = 404;
+            RestContext.response.responseBody = Blob.valueOf('{ "Error" : course does not exist }');
+        }
+        
+        RestContext.response.addHeader('Content-Type', 'application/json');
     }
-    global static String getCourseByBranch() {
+    
+    private static Boolean isByLocation(Set<String> paramsSet){
+        Boolean result = false;
 
-        return null;
+        if (
+            paramsSet.contains('viewports') &&
+            paramsSet.contains('radius') &&
+            paramsSet.contains('location') &&
+            paramsSet.contains('birth')
+        ) {
+        	result = true;
+        }
 
+        return result;
     }
-    global static String getCourseByDateDistance() {
-
-        return null;
-
-    }
+    
     @HttpPost
-    global static String createEnquiry() {
+    global static String createEnquiry(){
         RestRequest request = RestContext.request;
         String courseNumber = CourseCreateEnquiryUtility.getCourseIdFromHeaders();
-        System.debug(JSON.serialize(request.headers));
-        System.debug(JSON.serialize(request.params));
         CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);
         return null;
     }
