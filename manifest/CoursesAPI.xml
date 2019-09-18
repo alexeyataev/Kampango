@@ -4,6 +4,8 @@
     <types>
         <members>CourseApi</members>
         <members>CourseSearchUtility</members>
+        <members>CourseCreateEnquiryUtility</members>
+        <members>CourseCreateEnquiryUtilityTest</members>
         <members>CourseFinderModel</members>
         <name>ApexClass</name>
     </types>

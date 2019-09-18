@@ -4,6 +4,8 @@
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
         <members>CourseApi</members>
+        <members>CourseCreateEnquiryUtility</members>
+        <members>CourseCreateEnquiryUtilityTest</members>
         <members>CourseDetailController</members>
         <members>CourseDetailControllerTest</members>
         <members>CourseFinderModel</members>
