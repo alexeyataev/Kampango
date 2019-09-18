@@ -8,43 +8,32 @@ public class TestPurchaseInvoiceBuilder {
 	private Id purchaseOrderId;
 	private String status;
 
-	public TestPurchaseInvoiceBuilder withAccount(Id accountId)
-	{
+	public TestPurchaseInvoiceBuilder withAccount(Id accountId) {
 		this.accountId = accountId;
-
 		return this;
 	}
 
-	public TestPurchaseInvoiceBuilder withInvoiceDate(Date invoiceDate)
-	{
+	public TestPurchaseInvoiceBuilder withInvoiceDate(Date invoiceDate) {
 		this.invoiceDate = invoiceDate;
-
 		return this;
 	}
 
-	public TestPurchaseInvoiceBuilder withDueDate(Date dueDate)
-	{
+	public TestPurchaseInvoiceBuilder withDueDate(Date dueDate) {
 		this.dueDate = dueDate;
-
 		return this;
 	}
 
-	public TestPurchaseInvoiceBuilder withPurchaseOrder(Id purchaseOrderId)
-	{
+	public TestPurchaseInvoiceBuilder withPurchaseOrder(Id purchaseOrderId) {
 		this.purchaseOrderId = purchaseOrderId;
-
 		return this;
 	}
 
-	public TestPurchaseInvoiceBuilder withStatus(String status)
-	{
+	public TestPurchaseInvoiceBuilder withStatus(String status) {
 		this.status = status;
-
 		return this;
 	}
 
-	public TestPurchaseInvoiceBuilder insertRecord(Boolean insertRecord)
-	{
+	public TestPurchaseInvoiceBuilder insertRecord(Boolean insertRecord) {
 		this.insertRecord = insertRecord;
 		return this;
 	}
@@ -56,12 +45,11 @@ public class TestPurchaseInvoiceBuilder {
 				Zumzum__Invoice_Date__c =this.invoiceDate,
 				Zumzum__Invoice_Due_Date__c =  this.dueDate,
 				Zumzum__Purchase_Order__c = this.purchaseOrderId,
-				Zumzum__Status__c = this.status);
+				Zumzum__Status__c = this.status
+		);
 
 		if(insertRecord)
-		{
 			insert testPurchaseInvoice;
-		}
 
 		return testPurchaseInvoice;
 	}
