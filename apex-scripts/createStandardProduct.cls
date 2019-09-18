@@ -12,7 +12,8 @@ if (coursePlaceProduct.size() != 1) {
 }
 
 Product2 newProduct = new Product2(
-    Name = productName
+    Name = productName,
+    IsActive = true
 );
 insert newProduct;
 
