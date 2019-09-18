@@ -7,42 +7,32 @@ public class TestPurchaseOrderBuilder {
 	private Id supplierId;
 	private String type;
 
-	public TestPurchaseOrderBuilder withType(String type)
-	{
+	public TestPurchaseOrderBuilder withType(String type) {
 		this.type = type;
-
 		return this;
 	}
 
-	public TestPurchaseOrderBuilder withStatus(String status)
-	{
+	public TestPurchaseOrderBuilder withStatus(String status) {
 		this.status = status;
-
 		return this;
 	}
 
-	public TestPurchaseOrderBuilder withSupplier(Id supplierId)
-	{
+	public TestPurchaseOrderBuilder withSupplier(Id supplierId) {
 		this.supplierId = supplierId;
-
 		return this;
 	}
 
-	public TestPurchaseOrderBuilder withOrderDate(Date orderDate)
-	{
+	public TestPurchaseOrderBuilder withOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
-
 		return this;
 	}
 
-	public TestPurchaseOrderBuilder insertRecord(Boolean insertRecord)
-	{
+	public TestPurchaseOrderBuilder insertRecord(Boolean insertRecord) {
 		this.insertRecord = insertRecord;
 		return this;
 	}
 
 	public Zumzum__Purchase_Order__c build(){
-
 		Zumzum__Purchase_Order__c testPurchaseOrder = new Zumzum__Purchase_Order__c (
 				Zumzum__Account__c = this.supplierId,
 				Zumzum__Order_Date__c = this.orderDate,
@@ -51,9 +41,7 @@ public class TestPurchaseOrderBuilder {
 		);
 
 		if(insertRecord)
-		{
 			insert testPurchaseOrder;
-		}
 
 		return testPurchaseOrder;
 	}
