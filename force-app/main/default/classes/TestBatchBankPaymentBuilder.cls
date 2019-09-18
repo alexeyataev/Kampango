@@ -33,8 +33,9 @@ public class TestBatchBankPaymentBuilder {
 				Zumzum__Status__c = this.status,
 				Zumzum__Payment_Type__c = this.paymentType);
 
-		if(insertRecord)
+		if(insertRecord) {
 			insert testBatchBankPayment;
+		}
 
 		return testBatchBankPayment;
 	}
