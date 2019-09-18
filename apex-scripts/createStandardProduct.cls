@@ -8,6 +8,7 @@ List<Product2> coursePlaceProduct = [
 ];
 
 if (coursePlaceProduct.size() != 1) {
+    System.debug('Product with name Course Place already exists');
     return;
 }
 
@@ -16,4 +17,4 @@ Product2 newProduct = new Product2(
     IsActive = true
 );
 insert newProduct;
-
+System.debug('Product with name Course Place created succesfully');
