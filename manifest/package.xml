@@ -238,6 +238,9 @@
     </types>
     <types>
         <members>Capacity_PSA</members>
+        <members>Capacity_PSA/CADs_awaiting_practitioner_response</members>
+        <members>Capacity_PSA/CADs_rejected_or_invalidated</members>
+        <members>Capacity_PSA/CADs_to_issue</members>
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
         <name>Report</name>
