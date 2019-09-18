@@ -4,9 +4,4 @@
     <availableInTouch>true</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
     <label>GeneratePaymentFile</label>
-    <packageVersions>
-        <majorNumber>1</majorNumber>
-        <minorNumber>325</minorNumber>
-        <namespace>Zumzum</namespace>
-    </packageVersions>
 </ApexPage>
