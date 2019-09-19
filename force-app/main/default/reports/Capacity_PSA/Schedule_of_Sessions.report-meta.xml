@@ -43,12 +43,6 @@
             <operator>notEqual</operator>
             <value>Cancelling,Cancelled</value>
         </criteriaItems>
-        <criteriaItems>
-            <column>Contact.Licences_To_Practice__r.Courses__r$Status__c</column>
-            <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value>Cancelling,Cancelled</value>
-        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
