@@ -2,11 +2,13 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Home_PSA__c</fullName>
     <externalId>false</externalId>
-    <formula>TEXT( Account.PSA_Area__c )</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Home PSA</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>PSA_Areas</valueSetName>
+    </valueSet>
 </CustomField>
