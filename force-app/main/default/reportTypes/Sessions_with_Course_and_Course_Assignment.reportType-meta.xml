@@ -3,8 +3,8 @@
     <baseObject>Session__c</baseObject>
     <category>other</category>
     <deployed>true</deployed>
-    <description>&#39;Sessions with Course and Course Assignment</description>
-    <label>&#39;Sessions with Course and Course Assignment</label>
+    <description>Sessions with Course and Course Assignment</description>
+    <label>Sessions with Course and Course Assignment</label>
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
