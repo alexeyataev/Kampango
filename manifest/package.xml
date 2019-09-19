@@ -4,6 +4,7 @@
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
         <members>CourseApi</members>
+        <members>CourseApiTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>CourseDetailController</members>
@@ -30,7 +31,6 @@
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
         <members>TestUserBuilder</members>
-        <members>CourseApiTest</members>
         <name>ApexClass</name>
     </types>
     <types>
