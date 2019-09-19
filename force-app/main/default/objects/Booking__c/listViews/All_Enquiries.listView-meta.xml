@@ -3,8 +3,8 @@
     <fullName>All_Enquiries</fullName>
     <columns>NAME</columns>
     <columns>Course__c</columns>
-    <columns>CREATED_DATE</columns>
     <columns>PSA_Office__c</columns>
+    <columns>CREATED_DATE</columns>
     <columns>Primary_Contact__c</columns>
     <columns>Status__c</columns>
     <filterScope>Everything</filterScope>
