@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
+        <field>Session__c$Name</field>
+    </columns>
+    <columns>
         <field>Session__c$Practitioner__c</field>
     </columns>
     <columns>
@@ -33,11 +36,13 @@
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>Custom_Sessions_Report_Type__c</reportType>
+    <reportType>Sessions_with_Course_and_Course_Assignment__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
+    <sortColumn>Session__c$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Session__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

@@ -3,8 +3,8 @@
     <baseObject>Session__c</baseObject>
     <category>other</category>
     <deployed>true</deployed>
-    <description>Custom Session Report Type</description>
-    <label>Custom Sessions Report Type</label>
+    <description>&#39;Sessions with Course and Course Assignment</description>
+    <label>&#39;Sessions with Course and Course Assignment</label>
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>

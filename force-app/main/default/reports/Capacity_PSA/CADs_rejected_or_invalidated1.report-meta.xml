@@ -4,6 +4,9 @@
         <field>Session__c$Course_Assignment__c</field>
     </columns>
     <columns>
+        <field>Session__c$Name</field>
+    </columns>
+    <columns>
         <field>Session__c$Course_Assignment__c.Practitioner_Name__c</field>
     </columns>
     <columns>
@@ -39,7 +42,7 @@
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>Custom_Sessions_Report_Type__c</reportType>
+    <reportType>Sessions_with_Course_and_Course_Assignment__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
