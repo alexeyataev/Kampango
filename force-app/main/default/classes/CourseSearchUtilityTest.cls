@@ -14,23 +14,43 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void CourseSearch_ByReference() {
+    static void CourseSearch_ById() {
+        Course__c course = [
+            SELECT Id
+            FROM Course__c
+            LIMIT 1
+            ];
+ 
+        Test.startTest();
+        RestResponse response = new RestResponse();
+        response = CourseSearchUtility.getCourseById(course.Id);
+        Test.stopTest();
+       
+        CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(response.responseBody.toString(), CourseFinderModel.class );
+        System.assertEquals(200, response.statusCode);
+        System.assertEquals(course.Id, model.Id);                             
+    }
+
+    @isTest
+    static void CourseSearch_ById_IfNoCourse() {
         Course__c course = [
             SELECT Id 
             FROM Course__c 
             LIMIT 1
             ];
-
+        delete course;
         Test.startTest();
-        CourseFinderModel courseFinderModel = CourseSearchUtility.getCourseByReference(course.Id, true);
+        RestResponse response = new RestResponse();
+        response = CourseSearchUtility.getCourseById(course.Id);
         Test.stopTest();
 
-        System.assertNotEquals(null, courseFinderModel);                             
+        System.assertEquals(404, response.statusCode);                             
     }
 
     @isTest
     static void CourseSearch_ByBranchId() {
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+        
         Account account = [
             SELECT Id 
             FROM Account
@@ -39,10 +59,39 @@ private class CourseSearchUtilityTest {
             ];
 
         Test.startTest();
-        List<CourseFinderModel> courseFinderModels = CourseSearchUtility.getCourseByBranch(account.Id);
-        System.debug(courseFinderModels);
+        RestResponse response = new RestResponse();
+        response = CourseSearchUtility.getCoursesByBranch(account.Id);
+        Test.stopTest();
+        List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(response.responseBody.toString());
+
+        System.assertEquals(200, response.statusCode);
+        System.assertEquals(2, responseObjects.size());                             
+    }
+
+    @isTest
+    static void CourseSearch_ByBranchId_IfNoBranchCourses() {
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+    
+        Account account = [
+            SELECT Id 
+            FROM Account
+            WHERE RecordTypeId = :recordTypeId 
+            LIMIT 1
+            ];
+            
+        List<Course__c> courses = [
+            SELECT Id
+            FROM Course__c
+            WHERE Branch__c = :account.Id
+        ];
+
+        delete courses;
+
+        Test.startTest();
+        RestResponse response = new RestResponse();
+        response = CourseSearchUtility.getCoursesByBranch(account.Id);
         Test.stopTest();
 
-        System.assertEquals(2, courseFinderModels.size());                             
-    }	 	 
+        System.assertEquals(404, response.statusCode);                             
+    }	 	 	 
 }

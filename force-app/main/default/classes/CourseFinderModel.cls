@@ -1,4 +1,5 @@
 public with sharing virtual class CourseFinderModel {
+    @TestVisible
     private String Id;
     private String Reference;
     private String Title;
@@ -52,17 +53,17 @@ public with sharing virtual class CourseFinderModel {
         private String Town;
         private String County;
         private String PostcodeArea;
-        private List<Decimal> Location;
+        private Location Location;
         
         private Venue (Course__c course) {
             this.Name = course.Main_Venue__r.Name;
             this.Town = course.Main_Venue__r.Town__c;
             this.County = course.Main_Venue__r.County__c; 
             this.PostcodeArea = course.PSA_Area__c; 
-            //this.Location = venue.Map_Link__c;   //?????????????
+            this.Location = course.Main_Venue__r.Location__c;   
         }
     }
-
+  
     private without sharing class Session {
         private String Session_Date;
         private String Start;

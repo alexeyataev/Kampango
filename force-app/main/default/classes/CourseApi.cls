@@ -3,14 +3,17 @@ global class CourseApi {
     @HttpGet
     global static void getCourseStaff() {
         Set <String> paramsSet = RestContext.request.params.keySet();
-        
+
         if (paramsSet.contains('course')){
 			String courseId = RestContext.request.params.get('course');
             RestResponse response = CourseSearchUtility.getCourseById(courseId);
             RestContext.response.statusCode = response.statusCode;
             RestContext.response.responseBody = response.responseBody;
         } else if (paramsSet.contains('branch')) {
-            // CourseSearchUtility.getCourseByBranchName(String branchName);
+            String branchId = RestContext.request.params.get('branch');
+            RestResponse response = CourseSearchUtility.getCoursesByBranch(branchId);
+            RestContext.response.statusCode = response.statusCode;
+            RestContext.response.responseBody = response.responseBody;
         } else if (isByLocation(paramsSet)) {
             // CourseSearchUtility.getCourseByDateDistance(next params viewports, radius, location birth);
         } else {
