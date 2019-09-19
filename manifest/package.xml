@@ -246,7 +246,7 @@
         <name>Report</name>
     </types>
     <types>
-        <members>Course_with_Session_for_Course_Assignment</members>
+        <members>Custom_Sessions_Report_Type</members>
         <members>Sessions_on_venues</members>
         <members>Schedule_of_Sessions</members>
         <name>ReportType</name>
