@@ -3,7 +3,7 @@
     <fullName>AccountId</fullName>
     <lookupFilter>
         <active>true</active>
-        <booleanFilter>(1 AND 2) OR 3</booleanFilter>
+        <booleanFilter>(1 AND 2 AND 4) OR 3</booleanFilter>
         <filterItems>
             <field>$Source.RecordTypeId</field>
             <operation>equals</operation>
@@ -12,15 +12,21 @@
         <filterItems>
             <field>Account.RecordTypeId</field>
             <operation>equals</operation>
-            <value>Branch</value>
+            <value>Organization</value>
         </filterItems>
         <filterItems>
             <field>$Source.RecordTypeId</field>
             <operation>notEqual</operation>
             <value>Practitioner</value>
         </filterItems>
+        <filterItems>
+            <field>Account.Type</field>
+            <operation>equals</operation>
+            <value>Supplier</value>
+        </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Lookup</type>
 </CustomField>
