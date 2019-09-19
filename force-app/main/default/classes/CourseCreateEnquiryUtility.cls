@@ -8,30 +8,19 @@ public without sharing class CourseCreateEnquiryUtility {
             Booking__c booking = new Booking__c();
             Contact contact;
 
-            List<Contact> contacts = [
-                SELECT Salutation, FirstName, LastName, Email, MobilePhone, MailingAddress
-                FROM Contact
-                WHERE Email =: requestParameters.get('email')
-                LIMIT 1
-            ];
-
-            if (contacts.isEmpty()) {
-                contact = new Contact(
-                    RecordTypeId = getContactRecordTypeByAPIName(CONTACT_RECORDTYPE_NAME),
-                    Salutation = requestParameters.get('title'),
-                    FirstName = requestParameters.get('first_name'),
-                    LastName = requestParameters.get('last_name'),
-                    Email = requestParameters.get('email'),
-                    Phone = requestParameters.get('mobile'),
-                    MailingCity = requestParameters.get('town'),
-                    MailingPostalCode = requestParameters.get('postcode'),
-                    MailingCountry = requestParameters.get('county'),
-                    MailingStreet = requestParameters.get('address_line1') + requestParameters.get('address_line2')
-                );
-                insert contact;
-            } else {
-                contact = contacts[0];
-            }
+            contact = new Contact(
+                RecordTypeId = getContactRecordTypeByAPIName(CONTACT_RECORDTYPE_NAME),
+                Salutation = requestParameters.get('title'),
+                FirstName = requestParameters.get('first_name'),
+                LastName = requestParameters.get('last_name'),
+                Email = requestParameters.get('email'),
+                Phone = requestParameters.get('mobile'),
+                MailingCity = requestParameters.get('town'),
+                MailingPostalCode = requestParameters.get('postcode'),
+                MailingCountry = requestParameters.get('county'),
+                MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2')
+            );
+            upsert contact Contact.fields.Email;
 
             Contact partner;
             if (isPartnerPresent) {
@@ -49,7 +38,7 @@ public without sharing class CourseCreateEnquiryUtility {
                     );
                     insert partner;
                 } else {
-                    partner = contacts[0];
+                    partner = partners[0];
                 }
                 booking.Partner_Contact__c = partner.Id;
             }
@@ -59,6 +48,7 @@ public without sharing class CourseCreateEnquiryUtility {
             booking.Multiple_Birth__c = parseBooleanParameterToPicklistValue(requestParameters.get('twinsexpected'));
             booking.Course__c = courseNumber;
             booking.How_Heard__c = requestParameters.get('hearaboutus');
+            booking.Info_for_Practitioner__c = requestParameters.get('additioninfo');
             insert booking;
         }
     }
