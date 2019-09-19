@@ -110,6 +110,8 @@
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Booking__c.Cancellation_reason__c</members>
+        <members>Booking__c.Status__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -261,7 +263,8 @@
     </types>
     <types>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
-        <members>Booking__c.ExpiredDataCanNotBeLess</members>
+        <members>Booking__c.ExpirationDateCannotBeInPast</members>
+        <members>Booking__c.ExpiryDateCantBeMoreThanDateStartCourse</members>
         <members>Booking__c.FeeOverrideAmountRestriction</members>
         <members>Booking__c.FeeOverrideRestriction</members>
         <members>Booking__c.InappropriateStatusTransition</members>

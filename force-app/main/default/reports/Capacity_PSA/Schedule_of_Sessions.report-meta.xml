@@ -66,6 +66,6 @@
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Date__c</dateColumn>
-        <interval>INTERVAL_CURNEXT3</interval>
+        <interval>INTERVAL_CURNEXT3Q</interval>
     </timeFrameFilter>
 </Report>
