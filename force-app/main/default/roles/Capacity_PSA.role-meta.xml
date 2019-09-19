@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseAccessLevel>false</caseAccessLevel>
-    <contactAccessLevel>false</contactAccessLevel>
+    <caseAccessLevel>Read</caseAccessLevel>
+    <contactAccessLevel>Read</contactAccessLevel>
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>Capacity PSA</name>
-    <opportunityAccessLevel>false</opportunityAccessLevel>
+    <opportunityAccessLevel>Read</opportunityAccessLevel>
 </Role>
