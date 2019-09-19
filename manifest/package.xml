@@ -80,7 +80,7 @@
         <members>Venue_Contact__c</members>
         <name>CustomObject</name>
     </types>
-     <types>
+    <types>
         <members>Parent_Community</members>
         <members>Practitioners</members>
         <name>CustomSite</name>
@@ -136,8 +136,8 @@
         <members>Contact_Record_Page</members>
         <members>Course_Assignment_Record_Page</members>
         <members>Course_Record_Page</members>
-    	<members>Room_Record_Page</members>
-	<members>Session_Record_Page</members>
+        <members>Room_Record_Page</members>
+        <members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
         <name>FlexiPage</name>
     </types>
@@ -192,7 +192,7 @@
         <name>Layout</name>
     </types>
     <types>
-    	<members>courseDetailsComponent</members>
+        <members>courseDetailsComponent</members>
         <members>failurePaymentPage</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
@@ -209,7 +209,7 @@
         <name>NetworkBranding</name>
     </types>
     <types>
-    	<members>Practitioner_Management</members>
+        <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
@@ -238,14 +238,24 @@
     </types>
     <types>
         <members>Capacity_PSA</members>
+        <members>Capacity_PSA/CADs_awaiting_practitioner_response</members>
+        <members>Capacity_PSA/CADs_rejected_or_invalidated</members>
+        <members>Capacity_PSA/CADs_to_issue</members>
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
         <name>Report</name>
     </types>
     <types>
+        <members>Custom_Sessions_Report_Type</members>
         <members>Sessions_on_venues</members>
         <members>Schedule_of_Sessions</members>
         <name>ReportType</name>
+    </types>
+    <types>
+        <members>Capacity_PSA</members>
+       	<members>Enquiries_PSA</members>
+        <members>Finance</members>
+        <name>Role</name>
     </types>
     <types>
         <members>Parent_Community1</members>
