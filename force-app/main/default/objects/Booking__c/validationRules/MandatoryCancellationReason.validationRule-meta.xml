@@ -5,5 +5,5 @@
     <errorConditionFormula>ISPICKVAL(Status__c, &quot;Cancelled&quot;) &amp;&amp;
 ISBLANK(TEXT(Cancellation_reason__c))</errorConditionFormula>
     <errorDisplayField>Cancellation_reason__c</errorDisplayField>
-    <errorMessage>Please select a reason for cancellation</errorMessage>
+    <errorMessage>Please select a cancellation reason</errorMessage>
 </ValidationRule>
