@@ -9,5 +9,9 @@
         <members>CourseFinderModel</members>
         <name>ApexClass</name>
     </types>
+    <types>
+        <members>Booking.First_Baby__c</members>
+        <name>CustomField</name>
+    </types>
     <version>46.0</version>
 </Package>

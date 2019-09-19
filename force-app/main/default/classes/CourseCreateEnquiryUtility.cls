@@ -7,7 +7,6 @@ public without sharing class CourseCreateEnquiryUtility {
         if (String.isNotBlank(courseNumber) && !requestParameters.isEmpty()) {
             Booking__c booking = new Booking__c();
             Contact contact;
-            Contact partner;
 
             List<Contact> contacts = [
                 SELECT Salutation, FirstName, LastName, Email, MobilePhone, MailingAddress
@@ -34,6 +33,7 @@ public without sharing class CourseCreateEnquiryUtility {
                 contact = contacts[0];
             }
 
+            Contact partner;
             if (isPartnerPresent) {
                 List<Contact> partners = [
                     SELECT Name, FirstName, LastName
@@ -44,7 +44,8 @@ public without sharing class CourseCreateEnquiryUtility {
                     partner = new Contact(
                         FirstName = requestParameters.get('partner_first_name'),
                         LastName = requestParameters.get('partner_last_name'),
-                        Email = requestParameters.get('partner_email')
+                        Email = requestParameters.get('partner_email'),
+                        RecordTypeId = getContactRecordTypeByAPIName(CONTACT_RECORDTYPE_NAME)
                     );
                     insert partner;
                 } else {
