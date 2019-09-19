@@ -3,6 +3,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>CourseApi</members>
+        <members>CourseApiTest</members>
         <members>CourseSearchUtility</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>

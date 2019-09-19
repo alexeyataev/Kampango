@@ -30,6 +30,7 @@
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
         <members>TestUserBuilder</members>
+        <members>CourseApiTest</members>
         <name>ApexClass</name>
     </types>
     <types>
