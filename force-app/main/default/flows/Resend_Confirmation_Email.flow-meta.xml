@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>Resend Confirmation Email {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Resend Confirmation Email</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Reunion_Session_by_Course</name>
+        <label>Get Reunion Session by Course</label>
+        <locationX>230</locationX>
+        <locationY>50</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Confirm_Send_Email_Screen</targetReference>
+        </connector>
+        <filters>
+            <field>Course__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>course.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Reunion</stringValue>
+            </value>
+        </filters>
+        <object>Session__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Course__c</queriedFields>
+        <queriedFields>Venue__c</queriedFields>
+        <queriedFields>Practitioner__c</queriedFields>
+    </recordLookups>
+    <screens>
+        <name>Confirm_Send_Email_Screen</name>
+        <label>Confirm Send Email Screen</label>
+        <locationX>399</locationX>
+        <locationY>50</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Confirm_Text</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76); background-color: rgb(255, 255, 255);&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;font-size: 18px; color: rgb(47, 47, 47); background-color: rgb(255, 255, 255);&quot;&gt;reunion session participants&lt;/b&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76); background-color: rgb(255, 255, 255);&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <startElementReference>Get_Reunion_Session_by_Course</startElementReference>
+    <status>Draft</status>
+    <variables>
+        <name>course</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Course__c</objectType>
+    </variables>
+</Flow>
