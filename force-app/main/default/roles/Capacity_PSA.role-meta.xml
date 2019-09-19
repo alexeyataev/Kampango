@@ -4,5 +4,5 @@
     <contactAccessLevel>Read</contactAccessLevel>
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>Capacity PSA</name>
-    <opportunityAccessLevel>Esit</opportunityAccessLevel>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
 </Role>
