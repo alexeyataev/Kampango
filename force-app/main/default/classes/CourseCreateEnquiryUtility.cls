@@ -26,7 +26,7 @@ public without sharing class CourseCreateEnquiryUtility {
                     MailingCity = requestParameters.get('town'),
                     MailingPostalCode = requestParameters.get('postcode'),
                     MailingCountry = requestParameters.get('county'),
-                    MailingStreet = requestParameters.get('adress_line1') + requestParameters.get('address_line2')
+                    MailingStreet = requestParameters.get('address_line1') + requestParameters.get('address_line2')
                 );
                 insert contact;
             } else {
@@ -64,7 +64,7 @@ public without sharing class CourseCreateEnquiryUtility {
     }
 
     private static Id getContactRecordTypeByAPIName(String recordTypeName) {
-        return SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(recordTypeName).getRecordTypeId();
+        return SObjectType.Contact.getRecorTypeInfosByDeveloperName().get(recordTypeName).getRecordTypeId();
     }
 
     private static String parseBooleanParameterToPicklistValue(String value) {
