@@ -55,7 +55,6 @@
         <members>Contact.Mailing_Street__c</members>
         <members>Contact.Phone_1__c</members>
         <members>Contact.Phone_2__c</members>
-        <members>Contact.Home_PSA__c</members>
         <members>Course__c.Additional_Course_Finder_Information__c</members>
         <members>Course__c.Antenatal_Sessions__c</members>
         <members>Course__c.Available_Places__c</members>
