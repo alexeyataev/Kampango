@@ -2,7 +2,7 @@
 private class CourseFinderModelTest {
 
     @TestSetup
-    private static void SetupTestData() {
+    private static void setupTestData() {
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
         testDataFactory.buildBranchAccount()
                        .buildOrganizationAccount('acc5')

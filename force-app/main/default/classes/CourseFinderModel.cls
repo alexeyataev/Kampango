@@ -1,5 +1,5 @@
 public with sharing virtual class CourseFinderModel {
-    @TestVisible
+    @testVisible
     private String Id;
     private String Reference;
     private String Title;

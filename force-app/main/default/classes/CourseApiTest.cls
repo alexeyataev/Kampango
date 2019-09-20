@@ -5,7 +5,7 @@ public without sharing class CourseApiTest {
     private static String methodGet = 'GET';
 
     @TestSetup
-    private static void SetupTestData() {
+    private static void setupTestData() {
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
         testDataFactory.buildBranchAccount()
                        .buildOrganizationAccount('acc5')
@@ -17,7 +17,7 @@ public without sharing class CourseApiTest {
     }
 
     @isTest
-    static void SearchCourseById() {
+    static void searchCourseById() {
         Course__c course = [
             SELECT Id
             FROM Course__c
@@ -45,7 +45,7 @@ public without sharing class CourseApiTest {
     }
 
     @isTest
-    static void SearchCourseByBranch() {
+    static void searchCourseByBranch() {
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
         Account account = [
             SELECT Id 
