@@ -3,9 +3,16 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>CourseApi</members>
+        <members>CourseApiTest</members>
         <members>CourseSearchUtility</members>
+        <members>CourseCreateEnquiryUtility</members>
+        <members>CourseCreateEnquiryUtilityTest</members>
         <members>CourseFinderModel</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Booking.First_Baby__c</members>
+        <name>CustomField</name>
     </types>
     <version>46.0</version>
 </Package>
