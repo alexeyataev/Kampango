@@ -7,7 +7,7 @@ List<Product2> coursePlaceProduct = [
     LIMIT 1
 ];
 
-if (coursePlaceProduct.size() < 1) {
+if (!coursePlaceProduct.isEmpty()) {
     System.debug('Product with name Course Place already exists');
     return;
 }
