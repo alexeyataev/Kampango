@@ -199,6 +199,6 @@ private class CourseCreateEnquiryUtilityTest {
             SELECT Name
             FROM Booking__c
         ];
-        System.assertEquals(1, bookings.size());
+        System.assertEquals(0, bookings.size());
     }
 }

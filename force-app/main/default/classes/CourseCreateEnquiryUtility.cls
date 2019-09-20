@@ -54,7 +54,7 @@ public without sharing class CourseCreateEnquiryUtility {
     }
 
     private static Id getContactRecordTypeByAPIName(String recordTypeName) {
-        return SObjectType.Contact.getRecorTypeInfosByDeveloperName().get(recordTypeName).getRecordTypeId();
+        return SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(recordTypeName).getRecordTypeId();
     }
 
     private static String parseBooleanParameterToPicklistValue(String value) {
