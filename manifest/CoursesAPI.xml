@@ -6,13 +6,16 @@
         <members>CourseApiTest</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
+        <members>CourseCreateEnquiryUtility</members>
+        <members>CourseCreateEnquiryUtilityTest</members>
         <members>CourseFinderModel</members>
         <members>CourseFinderModelTest</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>Venue__c.Location__c</members>
-        <name>ApexClass</name>
+        <members>Booking.First_Baby__c</members>
+        <name>CustomField</name>
     </types>
     <version>46.0</version>
 </Package>
