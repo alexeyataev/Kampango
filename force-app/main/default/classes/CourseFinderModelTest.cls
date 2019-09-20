@@ -26,7 +26,7 @@ private class CourseFinderModelTest {
                 )
             FROM Course__c
             LIMIT 1
-            ];
+        ];
 
         Test.startTest();
         CourseFinderModel courseFinderModel = new CourseFinderModel(course);

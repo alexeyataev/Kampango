@@ -793,6 +793,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Venue__c.Location__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Venue__c.Set_Up_Tidy_Time_Included__c</field>
         <readable>true</readable>
     </fieldPermissions>

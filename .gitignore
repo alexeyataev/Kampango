@@ -29,3 +29,6 @@ $RECYCLE.BIN/
 
 #NCT Specific
 .vscode/
+
+#lws files
+**/jsconfig.json

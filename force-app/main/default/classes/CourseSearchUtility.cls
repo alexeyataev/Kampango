@@ -99,14 +99,6 @@ public without sharing class CourseSearchUtility {
         }        
         return response;
     }
-    
-    public static List<Course__c> GetCoursesByDateDistance(/*ToDo: parameters to be defined, */ Boolean isFromWebSite){
-        return null;
-    }
-    
-    public static RestResponse GetCoursesByDateDistance(/*ToDo: parameters to be defined, */ ){
-        return null;
-    }
 
     private static List<String> getHowHeardValues() {
         List<String> howHeardValues= new List<String>();

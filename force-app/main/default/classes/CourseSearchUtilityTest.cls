@@ -19,7 +19,7 @@ private class CourseSearchUtilityTest {
             SELECT Id
             FROM Course__c
             LIMIT 1
-            ];
+        ];
  
         Test.startTest();
         RestResponse response = new RestResponse();
@@ -37,7 +37,7 @@ private class CourseSearchUtilityTest {
             SELECT Id 
             FROM Course__c 
             LIMIT 1
-            ];
+        ];
         delete course;
         Test.startTest();
         RestResponse response = new RestResponse();
@@ -56,7 +56,7 @@ private class CourseSearchUtilityTest {
             FROM Account
             WHERE RecordTypeId = :recordTypeId 
             LIMIT 1
-            ];
+        ];
 
         Test.startTest();
         RestResponse response = new RestResponse();
@@ -77,7 +77,7 @@ private class CourseSearchUtilityTest {
             FROM Account
             WHERE RecordTypeId = :recordTypeId 
             LIMIT 1
-            ];
+        ];
             
         List<Course__c> courses = [
             SELECT Id

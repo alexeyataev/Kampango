@@ -5,7 +5,7 @@ global class CourseApi {
         Set <String> paramsSet = RestContext.request.params.keySet();
 
         if (paramsSet.contains('course')){
-			String courseId = RestContext.request.params.get('course');
+            String courseId = RestContext.request.params.get('course');
             RestResponse response = CourseSearchUtility.getCourseById(courseId);
             RestContext.response.statusCode = response.statusCode;
             RestContext.response.responseBody = response.responseBody;
@@ -14,8 +14,6 @@ global class CourseApi {
             RestResponse response = CourseSearchUtility.getCoursesByBranch(branchId);
             RestContext.response.statusCode = response.statusCode;
             RestContext.response.responseBody = response.responseBody;
-        } else if (isByLocation(paramsSet)) {
-            // CourseSearchUtility.getCourseByDateDistance(next params viewports, radius, location birth);
         } else {
             RestContext.response.statusCode = 404;
             RestContext.response.responseBody = Blob.valueOf('{ "Error" : course does not exist }');
@@ -33,9 +31,8 @@ global class CourseApi {
             paramsSet.contains('location') &&
             paramsSet.contains('birth')
         ) {
-        	result = true;
+            result = true;
         }
-
         return result;
     }
     

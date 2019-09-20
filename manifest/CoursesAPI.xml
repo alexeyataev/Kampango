@@ -1,13 +1,17 @@
 
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>       
+    <types>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
         <members>CourseFinderModel</members>
         <members>CourseFinderModelTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Venue__c.Location__c</members>
         <name>ApexClass</name>
     </types>
     <version>46.0</version>

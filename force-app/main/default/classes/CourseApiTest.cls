@@ -52,7 +52,7 @@ public without sharing class CourseApiTest {
             FROM Account
             WHERE RecordTypeId = :recordTypeId 
             LIMIT 1
-            ];
+        ];
 
         RestRequest req = new RestRequest();
         req.requestURI = URI;
