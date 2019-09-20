@@ -967,7 +967,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
-        <layout>Account-Branch Read Only Layout</layout>
+        <layout>Account-Branch Layout</layout>
         <recordType>Account.Branch</recordType>
     </layoutAssignments>
     <layoutAssignments>
