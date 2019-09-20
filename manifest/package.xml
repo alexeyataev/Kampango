@@ -222,6 +222,7 @@
         <members>Parent Community Profile</members>
         <members>Payment API User</members>
         <members>Practitioner</members>
+        <members>PSA Manager</members>
         <name>Profile</name>
     </types>
     <types>
