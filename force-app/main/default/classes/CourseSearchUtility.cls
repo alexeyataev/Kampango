@@ -19,7 +19,8 @@ public without sharing class CourseSearchUtility {
         ];
 
         List<Course__c> courses = new List<Course__c>();
-        for (Course__c course : inCourses){
+        for (Course__c course : inCourses) {
+            if (course.Remaining_Places__c == 0) continue;
             if(isFromWebSite == true){
                 if (course.Hide_From_Course_Finder__c != true) {
                     courses.add(course);
@@ -68,6 +69,7 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
+                if (course.Remaining_Places__c == 0) continue;
                 if(isFromWebSite == true){
                     if (course.Hide_From_Course_Finder__c != true) {
                         courses.add(course);

@@ -1,7 +1,6 @@
 @isTest
 private class CourseSearchUtilityTest {
     
-    @TestSetup
     private static void setupTestData() {
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
         testDataFactory.buildBranchAccount()
@@ -15,6 +14,8 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void courseSearchById() {
+        setupTestData();
+
         Course__c course = [
             SELECT Id
             FROM Course__c
@@ -33,6 +34,8 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void courseSearchByIdIfNoCourse() {
+        setupTestData();
+
         Course__c course = [
             SELECT Id 
             FROM Course__c 
@@ -49,6 +52,8 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void courseSearchByBranchId() {
+        setupTestData();
+
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
         
         Account account = [
@@ -70,6 +75,8 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void courseSearchByBranchIdIfNoBranchCourses() {
+        setupTestData();
+        
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
     
         Account account = [

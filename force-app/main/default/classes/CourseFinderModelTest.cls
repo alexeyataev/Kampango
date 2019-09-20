@@ -1,7 +1,6 @@
 @isTest
 private class CourseFinderModelTest {
 
-    @TestSetup
     private static void setupTestData() {
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
         testDataFactory.buildBranchAccount()
@@ -15,6 +14,7 @@ private class CourseFinderModelTest {
 
     @isTest
     static void CreateInstenceCourseFinderModel() {
+        setupTestData();
         Course__c course = [
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,  
                 Branch__r.Name, Branch__r.Branch_Key__c, Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, 
