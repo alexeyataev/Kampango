@@ -123,6 +123,7 @@
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
+        <members>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</members>
         <name>EmailTemplate</name>
     </types>
     <types>
@@ -222,6 +223,7 @@
         <members>Parent Community Profile</members>
         <members>Payment API User</members>
         <members>Practitioner</members>
+        <members>PSA Manager</members>
         <name>Profile</name>
     </types>
     <types>

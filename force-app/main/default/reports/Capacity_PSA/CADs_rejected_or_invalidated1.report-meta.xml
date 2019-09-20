@@ -4,6 +4,9 @@
         <field>Session__c$Course_Assignment__c</field>
     </columns>
     <columns>
+        <field>Session__c$Course_Assignment__c.CreatedDate</field>
+    </columns>
+    <columns>
         <field>Session__c$Name</field>
     </columns>
     <columns>
