@@ -24,22 +24,13 @@ public without sharing class CourseCreateEnquiryUtility {
 
             Contact partner;
             if (isPartnerPresent) {
-                List<Contact> partners = [
-                    SELECT Name, FirstName, LastName
-                    FROM Contact
-                    WHERE Email =: requestParameters.get('partner_email')
-                ];
-                if (partners.isEmpty()) {
                     partner = new Contact(
                         FirstName = requestParameters.get('partner_first_name'),
                         LastName = requestParameters.get('partner_last_name'),
                         Email = requestParameters.get('partner_email'),
                         RecordTypeId = getContactRecordTypeByAPIName(CONTACT_RECORDTYPE_NAME)
                     );
-                    insert partner;
-                } else {
-                    partner = partners[0];
-                }
+                upsert partner Contact.fields.Email;
                 booking.Partner_Contact__c = partner.Id;
             }
             booking.Primary_Contact__c = contact.Id;
@@ -57,8 +48,8 @@ public without sharing class CourseCreateEnquiryUtility {
         return SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(recordTypeName).getRecordTypeId();
     }
 
-    private static String parseBooleanParameterToPicklistValue(String value) {
-        return Boolean.valueOf(value) ? 'Yes' : 'No';
+    private static String parseParameterToPicklistValue(String value) {
+        return value == '1' ? 'Yes' : 'No';
     }
 
     public static String getCourseIdFromHeaders() {
