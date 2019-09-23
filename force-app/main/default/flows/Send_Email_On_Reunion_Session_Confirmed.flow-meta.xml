@@ -265,7 +265,7 @@
         <queriedFields>Host__c</queriedFields>
     </recordLookups>
     <startElementReference>Get_course</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>Booking</name>
         <dataType>SObject</dataType>
