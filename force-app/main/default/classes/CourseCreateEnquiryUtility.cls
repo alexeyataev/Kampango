@@ -2,7 +2,6 @@ public without sharing class CourseCreateEnquiryUtility {
     private static final String CONTACT_RECORDTYPE_NAME = 'Contact';
 
     public static void createEnquiry(String courseNumber, Map<String, String> requestParameters) {
-        List<String> errros = new List<String>();
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
 
         if (String.isNotBlank(courseNumber) && !requestParameters.isEmpty()) {
