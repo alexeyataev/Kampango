@@ -80,7 +80,13 @@ public without sharing class CourseCreateEnquiryUtility {
     }
 
     public static String getCourseIdFromHeaders() {
-        List<Course__c> availableCourses = [SELECT Id FROM Course__c WHERE Remaining_Places__c > 0];
+        List<Course__c> availableCourses = [
+            SELECT Id 
+            FROM Course__c 
+            WHERE Remaining_Places__c > 0
+            WITH SECURITY_ENFORCED
+        ];
+        
         if (!availableCourses.isEmpty()) {
             return availableCourses[0].Id;
         } else {

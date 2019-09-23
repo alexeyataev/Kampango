@@ -16,6 +16,7 @@ public without sharing class CourseSearchUtility {
                 )
             FROM Course__c
             WHERE Id = :courseId
+            WITH SECURITY_ENFORCED
         ];
 
         List<Course__c> courses = new List<Course__c>();
@@ -65,6 +66,7 @@ public without sharing class CourseSearchUtility {
                 )
             FROM Course__c
             WHERE Branch__c = :branchId
+            WITH SECURITY_ENFORCED
         ];
 
         List<Course__c> courses = new List<Course__c>();
