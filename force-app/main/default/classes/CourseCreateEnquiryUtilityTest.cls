@@ -175,30 +175,4 @@ private class CourseCreateEnquiryUtilityTest {
         System.assertEquals(1, partners.size());
         System.assertEquals(1, bookings.size());
     }
-
-    @isTest
-    static void createEnquiry() {
-        RestRequest request = new RestRequest();
-        RestResponse response = new RestResponse();
-        request.httpMethod = 'POST';
-        request.requestURI = '/services/apexrest/courses/';
-        Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(params, Map<String, String>.class);
-        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(params, Map<String, String>.class);
-        for (String parameter : paramsMap.keySet()) {
-            request.addParameter(parameter, paramsMap.get(parameter));
-        }
-        for (String header : headersMap.keySet()) {
-            request.addHeader(header, paramsMap.get(header));
-        }
-        RestContext.request = request;
-        RestContext.response = response;
-        Test.startTest();
-        CourseAPI.createEnquiry();
-        Test.stopTest();
-        List<Booking__c> bookings = [
-            SELECT Name
-            FROM Booking__c
-        ];
-        System.assertEquals(1, bookings.size());
-    }
 }
