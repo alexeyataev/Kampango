@@ -20,7 +20,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         TestDataFactory.getInstance()
             .buildBranchAccount()
             .buildOrganizationAccount('acc1')
-            .buildPractitioner(PRACTITIONER_LASTNAME_ONE, null)
+            .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
@@ -301,7 +301,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
             .buildOrganizationAccount('acc2')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, null);
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO);
 
         CreateTriggerSystemHandlerRecord();
 
@@ -366,7 +366,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
             .buildOrganizationAccount('acc3')
-            .buildPractitioner(PRACTITIONER_LASTNAME_ONE, null)
+            .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
@@ -416,7 +416,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
             .buildOrganizationAccount('acc4')
-            .buildPractitioner(PRACTITIONER_LASTNAME_ONE, null)
+            .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()

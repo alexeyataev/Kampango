@@ -59,6 +59,10 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public TestDataFactory buildPractitioner(String lastName) {
+        return buildPractitioner(lastName, null);
+    }
+
     public TestDataFactory buildPractitioner(String lastName, String email) {
         TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
         practitioners.add(practitionerContactBuilder
