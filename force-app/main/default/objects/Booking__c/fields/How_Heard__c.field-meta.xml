@@ -57,11 +57,6 @@
                 <default>false</default>
                 <label>Don&#39;t remember</label>
             </value>
-            <value>
-                <fullName>Dual offer</fullName>
-                <default>false</default>
-                <label>Dual offer</label>
-            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
