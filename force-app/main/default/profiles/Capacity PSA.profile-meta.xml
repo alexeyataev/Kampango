@@ -540,7 +540,7 @@
         <editable>false</editable>
         <field>Product2.Description</field>
         <readable>true</readable>
-    </fieldPermissions> 
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Product2.ProductCode</field>
@@ -1198,6 +1198,10 @@
     <tabVisibilities>
         <tab>Booking__c</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Course_Assignment__c</tab>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Venue__c</tab>

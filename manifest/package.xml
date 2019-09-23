@@ -72,8 +72,31 @@
         <name>CustomApplication</name>
     </types>
     <types>
-      <members>*</members>
-      <name>CustomLabels</name>
+        <members>Asset.Loaned_Date__c</members>
+        <members>Asset.Product2Id</members>
+        <members>Asset.Returned_Date__c</members>
+        <members>Booking__c.Suggested_Cancellation_Fee__c</members>
+        <members>Contact.AccountId</members>
+        <members>Contact.Current_Fee_Band_Effective_From__c</members>
+        <members>Contact.Fee_Band__c</members>
+        <members>Contact.Home_PSA__c</members>
+        <members>Contact.NCT_Number__c</members>
+        <members>Contact.Practitioner_Re_Registration_Amount__c</members>
+        <members>Contact.Practitioner_Re_Registration_Date__c</members>
+        <members>Contact.Secondary_Email__c</members>
+        <members>Contact.Second_Home_PSA__c</members>
+        <members>Contact.Schedule_of_Sessions__c</members>
+        <members>Contact.Total_Open_Bookings__c</members>
+        <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
+        <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Booking__c.Cancellation_reason__c</members>
+        <members>Booking__c.Status__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomLabels</name>
     </types>
     <types>
         <members>Account</members>
@@ -106,6 +129,7 @@
     </types>
     <types>
         <members>Booking__c</members>
+        <members>Course_Assignment__c</members>
         <members>npsp__Trigger_Handler__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
@@ -143,6 +167,7 @@
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
+        <members>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</members>
         <name>EmailTemplate</name>
     </types>
     <types>
@@ -197,6 +222,7 @@
         <members>Contact-Practitioner Page Layout</members>
         <members>Contact-Practitioner Read Only Layout</members>
         <members>Course_Assignment__c-Course Assignment Layout</members>
+        <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
@@ -242,6 +268,7 @@
         <members>Parent Community Profile</members>
         <members>Payment API User</members>
         <members>Practitioner</members>
+        <members>PSA Manager</members>
         <name>Profile</name>
     </types>
     <types>
