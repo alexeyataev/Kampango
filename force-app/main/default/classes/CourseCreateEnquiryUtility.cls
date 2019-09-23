@@ -20,7 +20,16 @@ public without sharing class CourseCreateEnquiryUtility {
                 MailingCountry = requestParameters.get('county'),
                 MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2')
             );
-            upsert contact Contact.fields.Email;
+            try {
+                upsert contact Contact.fields.Email;
+            } catch (DmlException ex) {
+                System.debug(
+                    ex.getTypeName() + ' ' +
+                    ex.getStackTraceString() + ' ' +
+                    ex.getMessage() + ' ' +
+                    ex.getStackTraceString()
+                );
+            }
 
             Contact partner;
             if (isPartnerPresent) {
@@ -30,17 +39,35 @@ public without sharing class CourseCreateEnquiryUtility {
                         Email = requestParameters.get('partner_email'),
                         RecordTypeId = getContactRecordTypeByAPIName(CONTACT_RECORDTYPE_NAME)
                     );
-                upsert partner Contact.fields.Email;
+                    try {
+                        upsert partner Contact.fields.Email;
+                    } catch (DmlException ex) {
+                        System.debug(
+                        ex.getTypeName() + ' ' +
+                        ex.getStackTraceString() + ' ' +
+                        ex.getMessage() + ' ' +
+                        ex.getStackTraceString()
+                    );
+                }
                 booking.Partner_Contact__c = partner.Id;
             }
             booking.Primary_Contact__c = contact.Id;
             booking.Birth_Due_Date__c = Date.parse((requestParameters.get('duedate')));
-            booking.First_Baby__c = parseBooleanParameterToPicklistValue(requestParameters.get('firstbaby'));
-            booking.Multiple_Birth__c = parseBooleanParameterToPicklistValue(requestParameters.get('twinsexpected'));
+            booking.First_Baby__c = parseParameterToPicklistValue(requestParameters.get('firstbaby'));
+            booking.Multiple_Birth__c = parseParameterToPicklistValue(requestParameters.get('twinsexpected'));
             booking.Course__c = courseNumber;
             booking.How_Heard__c = requestParameters.get('hearaboutus');
             booking.Info_for_Practitioner__c = requestParameters.get('additioninfo');
-            insert booking;
+            try {
+                insert booking;
+            } catch (DmlException ex) {
+                System.debug(
+                    ex.getTypeName() + ' ' +
+                    ex.getStackTraceString() + ' ' +
+                    ex.getMessage() + ' ' +
+                    ex.getStackTraceString()
+                );
+            }
         }
     }
 
