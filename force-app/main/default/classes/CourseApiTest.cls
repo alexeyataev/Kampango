@@ -1,7 +1,7 @@
 @isTest
 public without sharing class CourseApiTest {
 
-    private static String URI = URL.getSalesforceBaseUrl().toExternalForm()+'/services/apexrest/courses';
+    private static String strURI = URL.getSalesforceBaseUrl().toExternalForm()+'/services/apexrest/courses';
     private static String methodGet = 'GET';
 
     private static void setupTestData() {
@@ -25,7 +25,7 @@ public without sharing class CourseApiTest {
         ];
 
         RestRequest req = new RestRequest();
-        req.requestURI = URI;
+        req.requestURI = strURI;
         req.httpMethod = methodGet;
         req.addHeader('Content-Type', 'application/json');
         req.addParameter('course', course.Id);
@@ -57,7 +57,7 @@ public without sharing class CourseApiTest {
         ];
 
         RestRequest req = new RestRequest();
-        req.requestURI = URI;
+        req.requestURI = strURI;
         req.httpMethod = methodGet;
         req.addHeader('Content-Type', 'application/json');
         req.addParameter('branch', account.Id);

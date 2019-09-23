@@ -1,4 +1,4 @@
-public without sharing virtual class CourseFinderModel {
+public without sharing class CourseFinderModel {
     @testVisible
     private String Id;
     private String Reference;
