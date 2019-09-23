@@ -5,7 +5,7 @@ public with sharing class TestContactBuilder {
 	private string firstName = 'John';
 	private string lastName = 'Smith';
 	private Account account;
-	private String email = 'partnerCommunityUser@ncttest.com';
+	private String email = 'johnsmith@ncttest.com';
 	private Boolean insertRecord = false;
 
 	public TestContactBuilder withRecordType(string recordTypeName) {
@@ -34,6 +34,15 @@ public with sharing class TestContactBuilder {
     	this.lastName = lastName;
     	
     	return this;
+    }
+
+    public TestContactBuilder withEmail(string email) {
+
+        if (!String.isEmpty(email)) {
+            this.email = email;
+        }
+
+        return this;
     }
 
     public TestContactBuilder insertRecord(Boolean insertRecord)
