@@ -3619,7 +3619,7 @@
         <showHeader>false</showHeader>
     </screens>
     <startElementReference>Is_individual_assigned</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>bookingId</name>
         <dataType>String</dataType>
