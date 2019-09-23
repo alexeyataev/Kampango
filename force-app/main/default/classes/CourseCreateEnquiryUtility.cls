@@ -30,7 +30,7 @@ public without sharing class CourseCreateEnquiryUtility {
                         Email = requestParameters.get('partner_email'),
                         RecordTypeId = getContactRecordTypeByAPIName(CONTACT_RECORDTYPE_NAME)
                     );
-                    upsert partner Contact.fields.Email;
+                upsert partner Contact.fields.Email;
                 booking.Partner_Contact__c = partner.Id;
             }
             booking.Primary_Contact__c = contact.Id;
