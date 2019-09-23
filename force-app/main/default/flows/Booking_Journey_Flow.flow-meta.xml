@@ -155,7 +155,28 @@
         <queriedFields>MailingCountry</queriedFields>
         <queriedFields>MailingState</queriedFields>
         <queriedFields>MailingStreet</queriedFields>
+        <queriedFields>IndividualId</queriedFields>
     </recordLookups>
+    <recordUpdates>
+        <name>SetBookingStatusToConfirmed</name>
+        <label>SetBookingStatusToConfirmed</label>
+        <locationX>641</locationX>
+        <locationY>360</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>bookingRecord.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Confirmed</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Booking__c</object>
+    </recordUpdates>
     <screens>
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>
