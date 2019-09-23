@@ -755,7 +755,7 @@
         <recordType>Contact.Practitioner</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course_Assignment__c-Course Assignment Layout</layout>
+        <layout>Course_Assignment__c-Course Assignment Practitioner Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Course__c-Course Layout</layout>
@@ -878,6 +878,10 @@
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>Booking__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Course_Assignment__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
