@@ -22,7 +22,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Cancellation_reason__c</field>
+                <field>Cancellation_Reason__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
