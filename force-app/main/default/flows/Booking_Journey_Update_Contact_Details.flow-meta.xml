@@ -2269,7 +2269,7 @@
         </fields>
         <fields>
             <name>under_18_help2</name>
-            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2536,7 +2536,7 @@
         </fields>
         <fields>
             <name>under_18_help4</name>
-            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -3181,7 +3181,7 @@
         </fields>
         <fields>
             <name>under_18_help3</name>
-            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -3619,7 +3619,7 @@
         <showHeader>false</showHeader>
     </screens>
     <startElementReference>Is_individual_assigned</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>bookingId</name>
         <dataType>String</dataType>
