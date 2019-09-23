@@ -31,8 +31,8 @@
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
-        <label>step 1</label>
-        <name>step_1</name>
+        <label>Practitioner Approval</label>
+        <name>Practitioner_Approval</name>
         <rejectionActions>
             <action>
                 <name>UpdateStatusToRejected</name>

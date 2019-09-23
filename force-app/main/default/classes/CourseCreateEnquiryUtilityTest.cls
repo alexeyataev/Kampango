@@ -216,4 +216,3 @@ private class CourseCreateEnquiryUtilityTest {
         System.assertEquals(1, partners.size());
         System.assertEquals(1, bookings.size());
     }
-}
