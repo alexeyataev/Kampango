@@ -52,6 +52,27 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <actionCalls>
+        <name>Update_Primary_Contact0</name>
+        <label>Update Primary Contact</label>
+        <locationX>324</locationX>
+        <locationY>1046</locationY>
+        <actionName>BookingJourneyHelper</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>AreCouplesAllowed</targetReference>
+        </connector>
+        <inputParameters>
+            <name>contacts</name>
+            <value>
+                <elementReference>PrimaryContactRecord</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>PrimaryContactRecord</assignToReference>
+            <name>output</name>
+        </outputParameters>
+    </actionCalls>
     <assignments>
         <name>Assign_Booking_Partner</name>
         <label>Assign Booking Partner</label>
@@ -597,7 +618,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>AreCouplesAllowed</targetReference>
+            <targetReference>Update_Primary_Contact0</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -2269,7 +2290,7 @@
         </fields>
         <fields>
             <name>under_18_help2</name>
-            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2536,7 +2557,7 @@
         </fields>
         <fields>
             <name>under_18_help4</name>
-            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -3181,7 +3202,7 @@
         </fields>
         <fields>
             <name>under_18_help3</name>
-            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
