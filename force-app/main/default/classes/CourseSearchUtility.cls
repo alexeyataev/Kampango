@@ -16,26 +16,20 @@ public without sharing class CourseSearchUtility {
                 )
             FROM Course__c
             WHERE Id = :courseId
+            AND Remaining_Places__c < 1
             WITH SECURITY_ENFORCED
         ];
-
-        List<Course__c> courses = new List<Course__c>();
-        for (Course__c course : inCourses) {
-            if (course.Remaining_Places__c < 1) {
-                continue; 
-            }
-            if(isFromWebSite == true){
-                if (course.Hide_From_Course_Finder__c != true) {
-                    courses.add(course);
-                }
-            } else {
-                courses.add(course);
-            }
-        }
         
-        if (!courses.isEmpty() && courses.size() == 1){
-            result = courses[0];
-        }       
+        if (!inCourses.isEmpty() && isFromWebSite == true) {
+            if (inCourses[0].Hide_From_Course_Finder__c != true) {
+                result = inCourses[0];
+            }
+        } else if (!inCourses.isEmpty() && isFromWebSite != true) {
+            result = inCourses[0];
+        } else {
+            return null;
+        }
+
         return result;
     }
     
