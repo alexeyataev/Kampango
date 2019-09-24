@@ -5,7 +5,7 @@
     <name>Course Assignment Rejected</name>
     <style>none</style>
     <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
-    <textOnly>Dear {!Course_Assignment__c.OwnerFirstName},   {!ApprovalRequest.Comments}   Please log in to the Practitioner community to review and sign this assignment.   King Regards,   {!Course_Assignment__c.CreatedBy}  Course Organazer</textOnly>
+    <textOnly>Dear {!Course_Assignment__c.OwnerFirstName},   {!Course_Assignment__c.Name}, relating to Course {!Course_Assignment__c.Course__c}, has been rejected by {!Course_Assignment__c.OwnerFullName} with the following comments: {!ApprovalRequest.Comments}   King Regards,   {!Course_Assignment__c.CreatedBy}  Course Organazer</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
