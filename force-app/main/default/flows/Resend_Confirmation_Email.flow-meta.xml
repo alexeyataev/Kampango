@@ -1,5 +1,296 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Show_status</name>
+        <label>Show status</label>
+        <locationX>923</locationX>
+        <locationY>903</locationY>
+        <actionName>c:showToast</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <elementReference>subflow_status</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>output_message</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Warn_null_input</name>
+        <label>Warn null input</label>
+        <locationX>56</locationX>
+        <locationY>662</locationY>
+        <actionName>c:showToast</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Error: empty input</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <elementReference>STATUS_ERROR</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Empty_message</name>
+        <label>Empty message</label>
+        <locationX>1058</locationX>
+        <locationY>597</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_EMPTY</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Show_status</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Error_message</name>
+        <label>Error message</label>
+        <locationX>1059</locationX>
+        <locationY>721</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_ERROR</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>subflow_status</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Show_status</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_error_course_not_final</name>
+        <label>Set error course not final</label>
+        <locationX>915</locationX>
+        <locationY>333</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>STATUS_ERROR</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_COURSE_STATUS</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Show_status</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Success_message</name>
+        <label>Success message</label>
+        <locationX>1058</locationX>
+        <locationY>460</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_SUCCESS</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Show_status</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>MESSAGE_COURSE_STATUS</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Course status must be final</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>MESSAGE_EMPTY</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Booking list is empty</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>MESSAGE_ERROR</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>There was a problem during the process. Please try again later.</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>MESSAGE_SUCCESS</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Successfully sent!</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>STATUS_EMPTY</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>empty</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>STATUS_ERROR</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>error</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>STATUS_SUCCESS</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>success</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <name>Check_Course_status_is_final</name>
+        <label>Check Course status is final</label>
+        <locationX>389</locationX>
+        <locationY>464</locationY>
+        <defaultConnector>
+            <targetReference>Set_error_course_not_final</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Course_final</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Course_by_Booking.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Final</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Is Course final?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_input_parameter</name>
+        <label>Check input parameter</label>
+        <locationX>152</locationX>
+        <locationY>213</locationY>
+        <defaultConnector>
+            <targetReference>Get_Booking_by_Id</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Id is correct</defaultConnectorLabel>
+        <rules>
+            <name>Record_Id_is_empty</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>recordId</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Warn_null_input</targetReference>
+            </connector>
+            <label>Record Id is empty</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_reunion_session_exists</name>
+        <label>Check reunion session exists</label>
+        <locationX>309</locationX>
+        <locationY>809</locationY>
+        <defaultConnector>
+            <targetReference>Warn_null_input</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Session_exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Reunion_Session_by_Course</leftValueReference>
+                <operator>WasVisited</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Confirm_Send_Email_Screen</targetReference>
+            </connector>
+            <label>Session exists?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Decide_on_status</name>
+        <label>Decide on status</label>
+        <locationX>821</locationX>
+        <locationY>586</locationY>
+        <defaultConnector>
+            <targetReference>Show_status</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_success</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_SUCCESS</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Success_message</targetReference>
+            </connector>
+            <label>Is success?</label>
+        </rules>
+        <rules>
+            <name>Empty_list</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_EMPTY</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Empty_message</targetReference>
+            </connector>
+            <label>Empty list</label>
+        </rules>
+        <rules>
+            <name>Is_error</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>STATUS_ERROR</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_message</targetReference>
+            </connector>
+            <label>Is error?</label>
+        </rules>
+    </decisions>
     <interviewLabel>Resend Confirmation Email {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Resend Confirmation Email</label>
     <processMetadataValues>
@@ -16,19 +307,60 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
-        <name>Get_Reunion_Session_by_Course</name>
-        <label>Get Reunion Session by Course</label>
-        <locationX>230</locationX>
-        <locationY>50</locationY>
+        <name>Get_Booking_by_Id</name>
+        <label>Get Booking by Id</label>
+        <locationX>318</locationX>
+        <locationY>215</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Confirm_Send_Email_Screen</targetReference>
+            <targetReference>Get_Course_by_Booking</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Booking__c</object>
+        <outputReference>booking</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Course__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Course_by_Booking</name>
+        <label>Get Course by Booking</label>
+        <locationX>317</locationX>
+        <locationY>333</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Reunion_Session_by_Course</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>booking.Course__c</elementReference>
+            </value>
+        </filters>
+        <object>Course__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Status__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Reunion_Session_by_Course</name>
+        <label>Get Reunion Session by Course</label>
+        <locationX>317</locationX>
+        <locationY>651</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_reunion_session_exists</targetReference>
         </connector>
         <filters>
             <field>Course__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>course.Id</elementReference>
+                <elementReference>Get_Course_by_Booking.Id</elementReference>
             </value>
         </filters>
         <filters>
@@ -40,18 +372,18 @@
         </filters>
         <object>Session__c</object>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Course__c</queriedFields>
-        <queriedFields>Venue__c</queriedFields>
-        <queriedFields>Practitioner__c</queriedFields>
     </recordLookups>
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Confirm Send Email Screen</label>
-        <locationX>399</locationX>
-        <locationY>50</locationY>
+        <locationX>468</locationX>
+        <locationY>584</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Execute_sending_emails</targetReference>
+        </connector>
         <fields>
             <name>Confirm_Text</name>
             <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76); background-color: rgb(255, 255, 255);&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;font-size: 18px; color: rgb(47, 47, 47); background-color: rgb(255, 255, 255);&quot;&gt;reunion session participants&lt;/b&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76); background-color: rgb(255, 255, 255);&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
@@ -60,14 +392,69 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Get_Reunion_Session_by_Course</startElementReference>
+    <startElementReference>Check_input_parameter</startElementReference>
     <status>Draft</status>
+    <subflows>
+        <name>Execute_sending_emails</name>
+        <label>Execute sending emails</label>
+        <locationX>661</locationX>
+        <locationY>584</locationY>
+        <connector>
+            <targetReference>Decide_on_status</targetReference>
+        </connector>
+        <flowName>Send_Email_On_Reunion_Session_Confirmed</flowName>
+        <inputAssignments>
+            <name>sessionId</name>
+            <value>
+                <elementReference>Get_Reunion_Session_by_Course.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>subflow_status</assignToReference>
+            <name>subflow_status</name>
+        </outputAssignments>
+    </subflows>
+    <variables>
+        <name>booking</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Booking__c</objectType>
+    </variables>
     <variables>
         <name>course</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
-        <isInput>true</isInput>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Course__c</objectType>
+    </variables>
+    <variables>
+        <name>output_message</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Unknown result: </stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>subflow_status</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>unknown</stringValue>
+        </value>
     </variables>
 </Flow>

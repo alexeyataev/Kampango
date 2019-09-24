@@ -1,149 +1,602 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Client_Public_Venue</name>
-        <label>Client Public Venue</label>
-        <locationX>994</locationX>
-        <locationY>263</locationY>
-        <actionName>Contact.Send_reunion_session_email_to_attendee</actionName>
-        <actionType>emailAlert</actionType>
-        <connector>
-            <targetReference>Send_to_clients_public_venue</targetReference>
-        </connector>
-        <inputParameters>
-            <name>SObjectRowId</name>
-            <value>
-                <elementReference>Booking.Primary_Contact__c</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <name>Send_to_attendee_in_host_venue</name>
-        <label>Send to attendee in host venue</label>
-        <locationX>1171</locationX>
-        <locationY>412</locationY>
-        <actionName>Contact.Send_reunion_session_email_to_attendee_in_host_venue</actionName>
-        <actionType>emailAlert</actionType>
+        <name>Send_email_to_client_in_private_venue</name>
+        <label>Send email to client in private venue</label>
+        <locationX>1497</locationX>
+        <locationY>1135</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
         <connector>
             <targetReference>Send_to_client_host</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_email_alert</targetReference>
+        </faultConnector>
         <inputParameters>
-            <name>SObjectRowId</name>
+            <name>emailBody</name>
             <value>
-                <elementReference>Booking.Primary_Contact__c</elementReference>
+                <elementReference>TEMPLATE_CLIENT_IN_PRIVATE_VENUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>SUBJECT_DEFAULT</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>booking.Primary_Contact_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>Get_branch_Account_by_Course.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
     <actionCalls>
-        <name>Send_to_course_leader</name>
-        <label>Send to course leader</label>
-        <locationX>301</locationX>
-        <locationY>236</locationY>
-        <actionName>Contact.Send_reunion_session_email_to_practitioner</actionName>
-        <actionType>emailAlert</actionType>
+        <name>Send_email_to_host</name>
+        <label>Send email to host</label>
+        <locationX>1367</locationX>
+        <locationY>1051</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Send_to_client_host</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_email_alert</targetReference>
+        </faultConnector>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>TEMPLATE_HOST</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>SUBJECT_DEFAULT</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>booking.Primary_Contact_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>Get_branch_Account_by_Course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_email_to_practitioner</name>
+        <label>Send email to practitioner</label>
+        <locationX>783</locationX>
+        <locationY>530</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
         <connector>
             <targetReference>Is_Public_Venue</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get_record</targetReference>
+        </faultConnector>
         <inputParameters>
-            <name>SObjectRowId</name>
+            <name>emailBody</name>
             <value>
-                <elementReference>session.Practitioner__c</elementReference>
+                <elementReference>TEMPLATE_PRACTITIONER</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>subject_practitioner</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Get_practitioner_record.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>Get_branch_Account_by_Course.Capacity_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
     <actionCalls>
-        <name>Send_to_host</name>
-        <label>Send to host</label>
-        <locationX>1183</locationX>
-        <locationY>548</locationY>
-        <actionName>Venue__c.Send_reunion_session_email_to_host</actionName>
-        <actionType>emailAlert</actionType>
+        <name>Send_email_to_public</name>
+        <label>Send email to public</label>
+        <locationX>1370</locationX>
+        <locationY>428</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
         <connector>
-            <targetReference>Send_to_client_host</targetReference>
+            <targetReference>Send_to_clients_public_venue</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_email_alert</targetReference>
+        </faultConnector>
         <inputParameters>
-            <name>SObjectRowId</name>
+            <name>emailBody</name>
             <value>
-                <elementReference>venue.Id</elementReference>
+                <elementReference>TEMPLATE_PUBLIC</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>SUBJECT_DEFAULT</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>booking.Primary_Contact_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>Get_branch_Account_by_Course.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
+    <assignments>
+        <name>Assign_name_bookingList_for_output</name>
+        <label>Assign name bookingList for output</label>
+        <locationX>233</locationX>
+        <locationY>1050</locationY>
+        <assignmentItems>
+            <assignToReference>empty_entity_name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NAME_BOOKINGLIST</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Return_error_on_null_value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_name_practit_email_for_output</name>
+        <label>Assign name practit email for output</label>
+        <locationX>390</locationX>
+        <locationY>965</locationY>
+        <assignmentItems>
+            <assignToReference>empty_entity_name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NAME_PRACTITIONER_EMAIL</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Return_error_on_null_value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_name_venue_for_output</name>
+        <label>Assign name venue for output</label>
+        <locationX>665</locationX>
+        <locationY>1037</locationY>
+        <assignmentItems>
+            <assignToReference>empty_entity_name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NAME_VENUE</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Return_error_on_null_value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Build_subject_for_practitioner_email</name>
+        <label>Build subject for practitioner email</label>
+        <locationX>564</locationX>
+        <locationY>824</locationY>
+        <assignmentItems>
+            <assignToReference>subject_practitioner</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>NCT course reunion confirmation - </stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>subject_practitioner</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>course.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Venue</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Return_error_on_email_alert</name>
+        <label>Return error</label>
+        <locationX>1537</locationX>
+        <locationY>523</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>error_on_email_alert</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Return_error_on_get_record</name>
+        <label>Return error</label>
+        <locationX>495</locationX>
+        <locationY>404</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>error_on_get_record</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Return_error_on_null_value</name>
+        <label>Return error</label>
+        <locationX>391</locationX>
+        <locationY>1101</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Value is empty: </stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>NAME_VENUE</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Return_success</name>
+        <label>Return success</label>
+        <locationX>1417</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>success</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_part_success_status</name>
+        <label>Set part success status</label>
+        <locationX>871</locationX>
+        <locationY>50</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>STATUS_PART_SUCCESS</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_to_clients_public_venue</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>NAME_BOOKINGLIST</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Booking list</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>NAME_EMAIL</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Email</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>NAME_PRACTITIONER_EMAIL</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Practitioner email</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>NAME_VENUE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Venue</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>STATUS_ERROR</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>error</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>STATUS_PART_SUCCESS</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>part_success</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>STATUS_SUCCESS</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>success</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>SUBJECT_DEFAULT</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>NCT Course Reunion Confirmation</stringValue>
+        </value>
+    </constants>
     <decisions>
-        <name>Is_Host</name>
-        <label>Is Host</label>
-        <locationX>761</locationX>
-        <locationY>615</locationY>
+        <name>Check_Bookings_List_is_not_null</name>
+        <label>Check Bookings List is not null</label>
+        <locationX>224</locationX>
+        <locationY>857</locationY>
         <defaultConnector>
-            <targetReference>Send_to_attendee_in_host_venue</targetReference>
+            <targetReference>Assign_name_bookingList_for_output</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Is_Contact_Host</name>
+            <name>Bookings_null</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>venue.Host__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>BookingList</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <elementReference>Booking.Primary_Contact__c</elementReference>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_to_host</targetReference>
+                <targetReference>Check_Practitioner_email_is_not_null</targetReference>
             </connector>
-            <label>Is Contact Host</label>
+            <label>Bookings not null?</label>
         </rules>
     </decisions>
     <decisions>
-        <name>Is_not_Cancelled_Host_Venue</name>
-        <label>Is not Cancelled Host Venue</label>
-        <locationX>567</locationX>
-        <locationY>608</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Is_not_Cancelled_host</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Booking.Status__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Cancelled</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Is_Host</targetReference>
-            </connector>
-            <label>Is not Cancelled</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_not_Cancelled_public_venue</name>
-        <label>Is not Cancelled public venue</label>
-        <locationX>864</locationX>
-        <locationY>79</locationY>
+        <name>Check_input_booking</name>
+        <label>Check input booking</label>
+        <locationX>1135</locationX>
+        <locationY>315</locationY>
+        <defaultConnector>
+            <targetReference>Is_not_part_success_already</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Is_not_Cancelled</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Booking.Status__c</leftValueReference>
+                <leftValueReference>booking.Status__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <stringValue>Cancelled</stringValue>
+                    <stringValue>Confirmed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>booking.Primary_Contact_Email__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Client_Public_Venue</targetReference>
+                <targetReference>Send_email_to_public</targetReference>
             </connector>
             <label>Is not Cancelled</label>
         </rules>
     </decisions>
     <decisions>
+        <name>Check_input_booking2</name>
+        <label>Check input booking</label>
+        <locationX>1080</locationX>
+        <locationY>1275</locationY>
+        <defaultConnector>
+            <targetReference>Send_to_client_host</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_not_Cancelled_host</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>booking.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Confirmed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>booking.Primary_Contact_Email__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_is_host</targetReference>
+            </connector>
+            <label>Is not Cancelled</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_is_host</name>
+        <label>Check is host</label>
+        <locationX>1359</locationX>
+        <locationY>1278</locationY>
+        <defaultConnector>
+            <targetReference>Send_email_to_client_in_private_venue</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_host</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>venue.Host__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>booking.Primary_Contact__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_email_to_host</targetReference>
+            </connector>
+            <label>Is host?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_not_part_success</name>
+        <label>Check not part success</label>
+        <locationX>1146</locationX>
+        <locationY>574</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Was_errors_during_iterations</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_PART_SUCCESS</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Return_success</targetReference>
+            </connector>
+            <label>Was no errors during iterations?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Practitioner_email_is_not_null</name>
+        <label>Check Practitioner email is not null</label>
+        <locationX>381</locationX>
+        <locationY>764</locationY>
+        <defaultConnector>
+            <targetReference>Assign_name_practit_email_for_output</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Practitioner_email_is_not_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_practitioner_record.Email</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Build_subject_for_practitioner_email</targetReference>
+            </connector>
+            <label>Practitioner email is not null?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Session_Id</name>
+        <label>Check Session Id</label>
+        <locationX>82</locationX>
+        <locationY>312</locationY>
+        <defaultConnector>
+            <targetReference>Get_practitioner_record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_a_subflow</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>sessionId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_session</targetReference>
+            </connector>
+            <label>Is a subflow?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_venue_if_null</name>
+        <label>Check venue if null</label>
+        <locationX>679</locationX>
+        <locationY>667</locationY>
+        <defaultConnector>
+            <targetReference>Send_email_to_practitioner</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Venue_is_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>venue</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_name_venue_for_output</targetReference>
+            </connector>
+            <label>Venue is null?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_not_part_success_already</name>
+        <label>Is not part success already</label>
+        <locationX>1163</locationX>
+        <locationY>103</locationY>
+        <defaultConnector>
+            <targetReference>Send_to_clients_public_venue</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Part_success</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_PART_SUCCESS</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_part_success_status</targetReference>
+            </connector>
+            <label>Not part success?</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_Public_Venue</name>
         <label>Is Public Venue</label>
-        <locationX>421</locationX>
-        <locationY>242</locationY>
+        <locationX>925</locationX>
+        <locationY>780</locationY>
         <defaultConnector>
-            <targetReference>Get_Venue</targetReference>
+            <targetReference>Send_to_client_host</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -162,31 +615,57 @@
             <label>Public Venue</label>
         </rules>
     </decisions>
+    <formulas>
+        <name>map_link_formula</name>
+        <dataType>String</dataType>
+        <expression>HYPERLINK({!venue.Map_Url__c}, &#39;Click&#39;)</expression>
+    </formulas>
+    <formulas>
+        <name>partner_name_formula</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!booking.First_Name_Partner__c}), &#39;&#39;, &#39; and &#39;+{!booking.First_Name_Partner__c})</expression>
+    </formulas>
+    <formulas>
+        <name>time_to_text_end</name>
+        <dataType>String</dataType>
+        <expression>{!session.End__c}</expression>
+    </formulas>
+    <formulas>
+        <name>time_to_text_start</name>
+        <dataType>String</dataType>
+        <expression>{!session.Start__c}</expression>
+    </formulas>
     <interviewLabel>Send Email On Reunion Session Confirmed</interviewLabel>
     <label>Send Email On Reunion Session Confirmed</label>
     <loops>
         <name>Send_to_client_host</name>
         <label>Send to client host</label>
-        <locationX>579</locationX>
-        <locationY>411</locationY>
-        <assignNextValueToReference>Booking</assignNextValueToReference>
+        <locationX>934</locationX>
+        <locationY>1051</locationY>
+        <assignNextValueToReference>booking</assignNextValueToReference>
         <collectionReference>BookingList</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Is_not_Cancelled_Host_Venue</targetReference>
+            <targetReference>Check_input_booking2</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Return_success</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <loops>
         <name>Send_to_clients_public_venue</name>
         <label>Send to clients public venue</label>
-        <locationX>717</locationX>
-        <locationY>261</locationY>
-        <assignNextValueToReference>Booking</assignNextValueToReference>
+        <locationX>932</locationX>
+        <locationY>436</locationY>
+        <assignNextValueToReference>booking</assignNextValueToReference>
         <collectionReference>BookingList</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Is_not_Cancelled_public_venue</targetReference>
+            <targetReference>Check_input_booking</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Check_not_part_success</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -204,17 +683,27 @@
     <recordLookups>
         <name>Get_bookings</name>
         <label>Get bookings</label>
-        <locationX>174</locationX>
-        <locationY>236</locationY>
+        <locationX>97</locationX>
+        <locationY>914</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Send_to_course_leader</targetReference>
+            <targetReference>Check_Bookings_List_is_not_null</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get_record</targetReference>
+        </faultConnector>
         <filters>
             <field>Course__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>course.Id</elementReference>
+                <elementReference>session.Course__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Cancelled</stringValue>
             </value>
         </filters>
         <object>Booking__c</object>
@@ -222,16 +711,51 @@
         <queriedFields>Id</queriedFields>
         <queriedFields>Primary_Contact__c</queriedFields>
         <queriedFields>Status__c</queriedFields>
+        <queriedFields>Primary_Contact_Email__c</queriedFields>
+        <queriedFields>First_Name_Partner__c</queriedFields>
+        <queriedFields>First_Name__c</queriedFields>
+        <queriedFields>Name</queriedFields>
     </recordLookups>
     <recordLookups>
-        <name>Get_course</name>
-        <label>Get course</label>
-        <locationX>47</locationX>
-        <locationY>236</locationY>
+        <name>Get_branch_Account_by_Course</name>
+        <label>Get branch Account by Course</label>
+        <locationX>90</locationX>
+        <locationY>774</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_bookings</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get_record</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>course.Branch__c</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Capacity_PSA__c</queriedFields>
+        <queriedFields>Capacity_PSA_Email__c</queriedFields>
+        <queriedFields>Capacity_PSA_Phone__c</queriedFields>
+        <queriedFields>Enquiries_PSA__c</queriedFields>
+        <queriedFields>Enquiries_PSA_Email__c</queriedFields>
+        <queriedFields>Enquiries_PSA_Phone__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Course</name>
+        <label>Get Course</label>
+        <locationX>90</locationX>
+        <locationY>617</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_branch_Account_by_Course</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get_record</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -242,16 +766,80 @@
         <object>Course__c</object>
         <outputReference>course</outputReference>
         <queriedFields>Id</queriedFields>
+        <queriedFields>Sub_Type__c</queriedFields>
+        <queriedFields>Branch__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_practitioner_record</name>
+        <label>Get practitioner record</label>
+        <locationX>90</locationX>
+        <locationY>480</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Course</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>session.Practitioner__c</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>FirstName</queriedFields>
+        <queriedFields>Phone</queriedFields>
+        <queriedFields>Email</queriedFields>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_session</name>
+        <label>Get session</label>
+        <locationX>293</locationX>
+        <locationY>321</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_practitioner_record</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get_record</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>sessionId</elementReference>
+            </value>
+        </filters>
+        <object>Session__c</object>
+        <outputReference>session</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Course__c</queriedFields>
+        <queriedFields>Practitioner__c</queriedFields>
+        <queriedFields>Venue__c</queriedFields>
+        <queriedFields>Day_of_Week__c</queriedFields>
+        <queriedFields>Date__c</queriedFields>
+        <queriedFields>Start__c</queriedFields>
+        <queriedFields>End__c</queriedFields>
+        <queriedFields>Capacity_PSA_Name__c</queriedFields>
+        <queriedFields>Enquiries_PSA_Name__c</queriedFields>
+        <queriedFields>IsPublicVenue__c</queriedFields>
+        <queriedFields>Start_Text__c</queriedFields>
+        <queriedFields>End_Text__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Venue</name>
         <label>Get Venue</label>
-        <locationX>421</locationX>
-        <locationY>411</locationY>
+        <locationX>564</locationX>
+        <locationY>665</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Send_to_client_host</targetReference>
+            <targetReference>Check_venue_if_null</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get_record</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -263,11 +851,128 @@
         <outputReference>venue</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Host__c</queriedFields>
+        <queriedFields>Type__c</queriedFields>
+        <queriedFields>Town__c</queriedFields>
+        <queriedFields>Street_Address__c</queriedFields>
+        <queriedFields>Map_Link__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Map_Url__c</queriedFields>
     </recordLookups>
-    <startElementReference>Get_course</startElementReference>
+    <startElementReference>Check_Session_Id</startElementReference>
     <status>Draft</status>
+    <textTemplates>
+        <name>TEMPLATE_CLIENT_IN_PRIVATE_VENUE</name>
+        <text>Booking reference: {!booking.Name}
+Course reference: {!course.Name}
+
+
+Dear {!booking.First_Name__c}{!partner_name_formula},
+
+I&#39;m delighted to confirm the details for your {!course.Sub_Type__c} course reunion which will be held on {!session.Day_of_Week__c} {!session.Date__c} from {!session.Start_Text__c} to {!session.End_Text__c}.
+
+We are very grateful to Mary and John Smith who have offered to host the session at their home:
+{!venue.Town__c}, {!venue.Street_Address__c}
+
+Click here to see this on a map
+{!venue.Map_Url__c}
+
+
+The reunion will be facilitated by {!session.Capacity_PSA_Name__c} who may be contacted on {!Get_branch_Account_by_Course.Capacity_PSA_Phone__c} or at {!Get_branch_Account_by_Course.Capacity_PSA_Email__c}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
+
+We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
+Find a postnatal course
+
+
+Kind Regards,
+{!session.Enquiries_PSA_Name__c}
+Course organizer
+Email: {!Get_branch_Account_by_Course.Enquiries_PSA_Email__c}
+Tel: {!Get_branch_Account_by_Course.Enquiries_PSA_Phone__c}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>TEMPLATE_HOST</name>
+        <text>Booking Ref: {!booking.Name}
+
+
+Dear {!booking.First_Name__c}{!partner_name_formula},
+
+I&#39;m delighted to confirm the details for your {!course.Sub_Type__c} course reunion which will be held on {!session.Day_of_Week__c} {!session.Date__c} from {!session.Start_Text__c} to {!session.End_Text__c}.
+
+Thank you for offering to host the session at your home:
+{!venue.Town__c}, {!venue.Street_Address__c}
+
+Click here to see this on a map
+{!venue.Map_Url__c}
+
+
+The reunion will be facilitated by {!Get_practitioner_record.Name} who may be contacted on {!Get_practitioner_record.Phone} or at {!Get_practitioner_record.Email}. Should any changes be made to the reunion your NCT course leader will be in touch with you directly nearer the time.
+
+We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
+Find a postnatal course
+
+
+Kind regards,
+{!session.Enquiries_PSA_Name__c}
+Course organizer
+Email: {!Get_branch_Account_by_Course.Enquiries_PSA_Email__c}
+Tel: {!Get_branch_Account_by_Course.Enquiries_PSA_Phone__c}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>TEMPLATE_PRACTITIONER</name>
+        <text>Course reference: {!course.Name}
+
+
+Dear {!Get_practitioner_record.FirstName},
+
+Thank you for agreeing to facilitate the {!course.Sub_Type__c} course reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {!session.Day_of_Week__c} {!session.Date__c} from {!session.Start_Text__c} to {!session.End_Text__c} at:
+
+{!venue.Name}
+{!venue.Town__c}, {!venue.Street_Address__c}
+
+*Click here to see this on a map*
+{!venue.Map_Url__c}
+
+
+If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.
+
+
+Kind regards,
+{!session.Capacity_PSA_Name__c}
+Course organizer
+Email: {!Get_branch_Account_by_Course.Capacity_PSA_Email__c}
+Tel: {!Get_branch_Account_by_Course.Capacity_PSA_Phone__c}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>TEMPLATE_PUBLIC</name>
+        <text>Booking reference: {!booking.Name}
+Course reference: {!course.Name}
+
+
+Dear {!booking.First_Name__c}{!partner_name_formula},
+
+I&#39;m delighted to confirm the details for your {!course.Sub_Type__c} course reunion which will be held on {!session.Day_of_Week__c} {!session.Date__c} from from {!session.Start_Text__c} to {!session.End_Text__c}.
+
+It will be held at:
+{!venue.Town__c}, {!venue.Street_Address__c}
+
+Click here to see this on a map
+{!venue.Map_Url__c}
+
+
+The reunion will be facilitated by {!Get_practitioner_record.Name} who may be contacted on{!Get_practitioner_record.Phone} or at {!Get_practitioner_record.Email}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
+
+We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
+Find a postnatal course
+
+
+Kind regards,
+{!session.Enquiries_PSA_Name__c}
+Course organizer
+Email: {!Get_branch_Account_by_Course.Enquiries_PSA_Email__c}
+Tel: {!Get_branch_Account_by_Course.Phone}</text>
+    </textTemplates>
     <variables>
-        <name>Booking</name>
+        <name>booking</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -291,12 +996,53 @@
         <objectType>Course__c</objectType>
     </variables>
     <variables>
+        <name>empty_entity_name</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>field or object</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>partner_name</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>session</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>Session__c</objectType>
+    </variables>
+    <variables>
+        <name>sessionId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>subflow_status</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>unknown</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>subject_practitioner</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>venue</name>

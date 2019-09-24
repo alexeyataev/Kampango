@@ -628,6 +628,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Capacity_PSA_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Course_Assignment__c</field>
         <readable>true</readable>
@@ -635,6 +640,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Day_of_Week__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Enquiries_PSA_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.IsPublicVenue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -670,6 +685,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Specific_Attendee_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Start_Text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.End_Text__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -810,6 +835,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Venue__c.Map_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Map_Url__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
