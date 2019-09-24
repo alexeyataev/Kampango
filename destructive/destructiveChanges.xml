@@ -38,7 +38,6 @@
         <members>Booking__c.Companion__c</members>
         <members>Booking__c.Do_Not_Include_on_Class_List__c</members>
         <members>Booking__c.Do_Not_Send_Further_Information__c</members>
-        <members>Booking__c.First_Baby__c</members>
         <members>Booking__c.First_Heard__c</members>
         <members>Booking__c.Membership_Choice__c</members>
         <members>Booking__c.Membership_Payment_Method__c</members>
