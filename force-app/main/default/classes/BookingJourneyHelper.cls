@@ -14,12 +14,28 @@ public without sharing class BookingJourneyHelper {
                     Label.ContactUpdateException + ' ' +
                     ex.getTypeName() + ' ' +
                     ex.getStackTraceString() + ' ' +
-                    ex.getMessage() + ' ' +
-                    ex.getStackTraceString()
+                    ex.getMessage()
                 );
             }
         }
         return contacts;
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static Individual retrieveMarketingPreferences(String individualId){
+        List<Individual> individuals = new List<Individual>();
+        if(String.isNotBlank(individualId)){
+            individuals = [
+                SELECT Has_Opted_Out_Email__c, Has_Opted_Out_Post__c, Has_Opted_Out_SMS__c,
+                    Has_Opted_Out_Telephone__c
+                FROM Individual
+                WHERE Id = :individualId
+            ];
+        }
+        if(individuals != null && !individuals.isEmpty()){
+            return individuals[0];
+        } else return null;
+        
     }
 
 }

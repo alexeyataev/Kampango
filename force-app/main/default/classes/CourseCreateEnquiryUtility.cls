@@ -78,7 +78,7 @@ public without sharing class CourseCreateEnquiryUtility {
     private static String parseParameterToPicklistValue(String value) {
         return value == '1' ? 'Yes' : 'No';
     }
-
+  
     public static String getCourseIdFromHeaders(Map<String, String> headers) {
         return headers.get('Referer').substring(headers.get('Referer').lastIndexOf('/') + 1);
     }

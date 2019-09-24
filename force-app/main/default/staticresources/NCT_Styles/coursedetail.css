@@ -99,3 +99,42 @@ th, td {
 .border-bottom_grey{
     border-bottom: 1px solid gainsboro;
 }
+.nct-input-label{
+    font-size: 1.13rem;
+    font-weight: 400;
+    font-family: "Raleway",arial,sans-serif;
+    margin-top: 1rem;
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+.nct-page-text{
+    font-family: 'Lato', arial, sans-serif;
+    font-size: 1.13rem;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.nct-header-text {
+    color: #00886a;
+    font-family: 'Raleway', arial, sans-serif;
+    font-size: 1.3125rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+.nct-link-text{
+    font-family: 'Lato', arial, sans-serif;
+    font-weight: 400;
+    color: #3AA43B;
+    background-color: transparent;
+}
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.mt-5{
+    margin-top: 3rem;
+}

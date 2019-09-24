@@ -1,8 +1,11 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #9 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 private class SESSION_InvalidateCAs_TDTM_TEST {
 
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
+    private static final String PRACTITIONER_EMAIL_ADDRESS = 'partnerCommunityUser@ncttest.com';
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
 
     @TestSetup
@@ -10,7 +13,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
       TestDataFactory.getInstance()
             .buildOrganizationAccount('acc1')
             .buildBranchAccount()
-            .buildPractitioner(PRACTITIONER_LASTNAME)
+            .buildPractitioner(PRACTITIONER_LASTNAME, PRACTITIONER_EMAIL_ADDRESS)
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
@@ -27,7 +30,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
         TestDataFactory.getInstance()
             .buildOrganizationAccount('acc2')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO);
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
 
         CreateTriggerSystemHandlerRecord();
 
@@ -224,7 +227,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         TestDataFactory.getInstance()
             .buildOrganizationAccount('acc3')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO);
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
 
         List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c LIMIT 1];
         Set<Id> courseAssignmentIds = new Set<Id>();

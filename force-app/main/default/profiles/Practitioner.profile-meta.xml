@@ -57,6 +57,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.Cancellation_Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Confirmed_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -283,6 +288,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course_Assignment__c.PSA_Area__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course_Assignment__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -637,6 +647,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Venue__c.Location__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Venue__c.Lunch_Available_Locally__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -750,7 +765,7 @@
         <recordType>Contact.Practitioner</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course_Assignment__c-Course Assignment Layout</layout>
+        <layout>Course_Assignment__c-Course Assignment Practitioner Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Course__c-Course Layout</layout>
@@ -873,6 +888,10 @@
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>Booking__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Course_Assignment__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>

@@ -3,19 +3,20 @@ global class CourseApi {
     @HttpGet
     global static void getCourseStaff() {
         Set <String> paramsSet = RestContext.request.params.keySet();
-        
+
         if (paramsSet.contains('course')){
-			String courseId = RestContext.request.params.get('course');
+            String courseId = RestContext.request.params.get('course');
             RestResponse response = CourseSearchUtility.getCourseById(courseId);
             RestContext.response.statusCode = response.statusCode;
             RestContext.response.responseBody = response.responseBody;
         } else if (paramsSet.contains('branch')) {
-            // CourseSearchUtility.getCourseByBranchName(String branchName);
-        } else if (isByLocation(paramsSet)) {
-            // CourseSearchUtility.getCourseByDateDistance(next params viewports, radius, location birth);
+            String branchId = RestContext.request.params.get('branch');
+            RestResponse response = CourseSearchUtility.getCoursesByBranch(branchId);
+            RestContext.response.statusCode = response.statusCode;
+            RestContext.response.responseBody = response.responseBody;
         } else {
             RestContext.response.statusCode = 404;
-            RestContext.response.responseBody = Blob.valueOf('{ "Error" : course does not exist }');
+            RestContext.response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }
         
         RestContext.response.addHeader('Content-Type', 'application/json');
@@ -30,9 +31,8 @@ global class CourseApi {
             paramsSet.contains('location') &&
             paramsSet.contains('birth')
         ) {
-        	result = true;
+            result = true;
         }
-
         return result;
     }
     

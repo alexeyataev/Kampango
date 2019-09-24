@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionCalls>
+        <name>Update_Individual</name>
+        <label>Update Individual</label>
+        <locationX>1964</locationX>
+        <locationY>2434</locationY>
+        <actionName>IndividualBookingJourneyHelper</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>individual</name>
+            <value>
+                <elementReference>individualRecord</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Update_Partner_Contact</name>
         <label>Update Partner Contact</label>
         <locationX>2248</locationX>
@@ -37,6 +51,27 @@
                 <elementReference>PrimaryContactRecord</elementReference>
             </value>
         </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Update_Primary_Contact0</name>
+        <label>Update Primary Contact</label>
+        <locationX>324</locationX>
+        <locationY>1046</locationY>
+        <actionName>BookingJourneyHelper</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>AreCouplesAllowed</targetReference>
+        </connector>
+        <inputParameters>
+            <name>contacts</name>
+            <value>
+                <elementReference>PrimaryContactRecord</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>PrimaryContactRecord</assignToReference>
+            <name>output</name>
+        </outputParameters>
     </actionCalls>
     <assignments>
         <name>Assign_Booking_Partner</name>
@@ -571,6 +606,22 @@
         </connector>
     </assignments>
     <assignments>
+        <name>AssignIndividualToPrimaryContact</name>
+        <label>AssignIndividualToPrimaryContact</label>
+        <locationX>324</locationX>
+        <locationY>795</locationY>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.IndividualId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>individualId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Primary_Contact0</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>SetHowHeard</name>
         <label>SetHowHeard</label>
         <locationX>1593</locationX>
@@ -664,6 +715,50 @@
         </assignmentItems>
         <connector>
             <targetReference>AssignChangedValues_2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>SetIndividual</name>
+        <label>SetIndividual</label>
+        <locationX>1964</locationX>
+        <locationY>2241</locationY>
+        <assignmentItems>
+            <assignToReference>individualRecord.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PrimaryContactRecord.IndividualId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>individualRecord.Has_Opted_Out_Email__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>emailFinal</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>individualRecord.Has_Opted_Out_Post__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>postFinal</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>individualRecord.Has_Opted_Out_SMS__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>smsFinal</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>individualRecord.Has_Opted_Out_Telephone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>phoneFinal</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Individual</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -1040,6 +1135,37 @@
                 <targetReference>SetHowHeard_2</targetReference>
             </connector>
             <label>HowHeardNotNone</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_individual_assigned</name>
+        <label>Is individual assigned?</label>
+        <locationX>322</locationX>
+        <locationY>368</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>IndividualAssigned</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>PrimaryContactRecord.IndividualId</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>AreCouplesAllowed</targetReference>
+            </connector>
+            <label>IndividualAssigned</label>
+        </rules>
+        <rules>
+            <name>IndividualNotAssigned</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>PrimaryContactRecord.IndividualId</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Create_Individual</targetReference>
+            </connector>
+            <label>IndividualNotAssigned</label>
         </rules>
     </decisions>
     <decisions>
@@ -1526,9 +1652,29 @@
         </outputAssignments>
     </dynamicChoiceSets>
     <formulas>
+        <name>emailFinal</name>
+        <dataType>Boolean</dataType>
+        <expression>!{!marketingEmail}</expression>
+    </formulas>
+    <formulas>
         <name>MobileRequiered</name>
         <dataType>Boolean</dataType>
         <expression>{!Preferred_Phone_Primary} = {!Home}</expression>
+    </formulas>
+    <formulas>
+        <name>phoneFinal</name>
+        <dataType>Boolean</dataType>
+        <expression>!{!marketingPhone}</expression>
+    </formulas>
+    <formulas>
+        <name>postFinal</name>
+        <dataType>Boolean</dataType>
+        <expression>!{!marketingPost}</expression>
+    </formulas>
+    <formulas>
+        <name>smsFinal</name>
+        <dataType>Boolean</dataType>
+        <expression>!{!marketingSMS}</expression>
     </formulas>
     <interviewLabel>Booking Journey Update Contact Details {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Update Contact Details</label>
@@ -1545,6 +1691,35 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Individual</name>
+        <label>Create Individual</label>
+        <locationX>324</locationX>
+        <locationY>594</locationY>
+        <assignRecordIdToReference>individualId</assignRecordIdToReference>
+        <connector>
+            <targetReference>AssignIndividualToPrimaryContact</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>FirstName</field>
+            <value>
+                <elementReference>PrimaryContactRecord.FirstName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LastName</field>
+            <value>
+                <elementReference>PrimaryContactRecord.LastName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Salutation</field>
+            <value>
+                <elementReference>PrimaryContactRecord.Salutation</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Individual</object>
+    </recordCreates>
     <recordLookups>
         <name>GetPartnerContact</name>
         <label>GetPartnerContact</label>
@@ -1574,6 +1749,9 @@
         <label>Update Booking</label>
         <locationX>1964</locationX>
         <locationY>2076</locationY>
+        <connector>
+            <targetReference>SetIndividual</targetReference>
+        </connector>
         <inputReference>bookingRecord</inputReference>
     </recordUpdates>
     <screens>
@@ -1872,6 +2050,34 @@
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
         </fields>
+        <fields>
+            <name>marketing_1</name>
+            <extensionName>c:marketingPreferencesComponent</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>individualId</name>
+                <value>
+                    <elementReference>PrimaryContactRecord.IndividualId</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>marketingEmail</assignToReference>
+                <name>email</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingSMS</assignToReference>
+                <name>sms</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingPhone</assignToReference>
+                <name>phone</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingPost</assignToReference>
+                <name>post</name>
+            </outputParameters>
+        </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
@@ -2084,7 +2290,7 @@
         </fields>
         <fields>
             <name>under_18_help2</name>
-            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2106,6 +2312,34 @@
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
         </fields>
+        <fields>
+            <name>marketing_4</name>
+            <extensionName>c:marketingPreferencesComponent</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>individualId</name>
+                <value>
+                    <elementReference>PrimaryContactRecord.IndividualId</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>marketingEmail</assignToReference>
+                <name>email</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingPhone</assignToReference>
+                <name>phone</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingPost</assignToReference>
+                <name>post</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingSMS</assignToReference>
+                <name>sms</name>
+            </outputParameters>
+        </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
@@ -2113,7 +2347,7 @@
         <name>HomeIssue</name>
         <label>Home Issue</label>
         <locationX>555</locationX>
-        <locationY>1626</locationY>
+        <locationY>1625</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2323,7 +2557,7 @@
         </fields>
         <fields>
             <name>under_18_help4</name>
-            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2349,6 +2583,58 @@
             <fieldText>How did you hear about us?</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>marketing_6</name>
+            <extensionName>c:marketingPreferencesComponent</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>email</name>
+                <value>
+                    <elementReference>marketingEmail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>individualId</name>
+                <value>
+                    <elementReference>PrimaryContactRecord.IndividualId</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>phone</name>
+                <value>
+                    <elementReference>marketingPhone</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>post</name>
+                <value>
+                    <elementReference>marketingPost</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sms</name>
+                <value>
+                    <elementReference>marketingSMS</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>marketingEmail</assignToReference>
+                <name>email</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingPhone</assignToReference>
+                <name>phone</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingPost</assignToReference>
+                <name>post</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingSMS</assignToReference>
+                <name>sms</name>
+            </outputParameters>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -2647,6 +2933,58 @@
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
         </fields>
+        <fields>
+            <name>marketing_3</name>
+            <extensionName>c:marketingPreferencesComponent</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>email</name>
+                <value>
+                    <elementReference>marketingEmail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>individualId</name>
+                <value>
+                    <elementReference>PrimaryContactRecord.IndividualId</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>phone</name>
+                <value>
+                    <elementReference>marketingPhone</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>post</name>
+                <value>
+                    <elementReference>marketingPost</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sms</name>
+                <value>
+                    <elementReference>marketingSMS</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>marketingEmail</assignToReference>
+                <name>email</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingPhone</assignToReference>
+                <name>phone</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingPost</assignToReference>
+                <name>post</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingSMS</assignToReference>
+                <name>sms</name>
+            </outputParameters>
+        </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
@@ -2654,7 +2992,7 @@
         <name>MobileIssue</name>
         <label>MobileIssue</label>
         <locationX>834</locationX>
-        <locationY>1441</locationY>
+        <locationY>1442</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2864,7 +3202,7 @@
         </fields>
         <fields>
             <name>under_18_help3</name>
-            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Please ONLY tick here if you or your birthing partner will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Please ONLY tick here if you will be under 18 years old at the start of the course {!courseRecord.Start_Date__c}.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2890,6 +3228,58 @@
             <fieldText>How did you hear about us?</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>marketing_5</name>
+            <extensionName>c:marketingPreferencesComponent</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>email</name>
+                <value>
+                    <elementReference>marketingEmail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>individualId</name>
+                <value>
+                    <elementReference>PrimaryContactRecord.IndividualId</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>phone</name>
+                <value>
+                    <elementReference>marketingPhone</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>post</name>
+                <value>
+                    <elementReference>marketingPost</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sms</name>
+                <value>
+                    <elementReference>marketingSMS</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>marketingEmail</assignToReference>
+                <name>email</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingEmail</assignToReference>
+                <name>phone</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingPost</assignToReference>
+                <name>post</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingSMS</assignToReference>
+                <name>sms</name>
+            </outputParameters>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -3194,10 +3584,62 @@
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
         </fields>
+        <fields>
+            <name>marketing_2</name>
+            <extensionName>c:marketingPreferencesComponent</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>email</name>
+                <value>
+                    <elementReference>marketingEmail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>individualId</name>
+                <value>
+                    <elementReference>PrimaryContactRecord.IndividualId</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>phone</name>
+                <value>
+                    <elementReference>marketingPhone</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>post</name>
+                <value>
+                    <elementReference>marketingPost</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sms</name>
+                <value>
+                    <elementReference>marketingSMS</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>marketingEmail</assignToReference>
+                <name>email</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingPhone</assignToReference>
+                <name>phone</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingPost</assignToReference>
+                <name>post</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>marketingSMS</assignToReference>
+                <name>sms</name>
+            </outputParameters>
+        </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>AreCouplesAllowed</startElementReference>
+    <startElementReference>Is_individual_assigned</startElementReference>
     <status>Active</status>
     <variables>
         <name>bookingId</name>
@@ -3272,8 +3714,51 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>individualId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>individualRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Individual</objectType>
+    </variables>
+    <variables>
         <name>lNamePartner</name>
         <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>marketingEmail</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>marketingPhone</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>marketingPost</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>marketingSMS</name>
+        <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
