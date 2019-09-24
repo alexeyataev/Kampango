@@ -61,6 +61,8 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
+        <members>Booking__c.Cancellation_Reason__c</members>
+        <members>Booking__c.Status__c</members>
         <members>Booking__c.Suggested_Cancellation_Fee__c</members>
         <members>Contact.AccountId</members>
         <members>Contact.Current_Fee_Band_Effective_From__c</members>
@@ -76,8 +78,6 @@
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
-        <members>Booking__c.Cancellation_Reason__c</members>
-        <members>Booking__c.Status__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -257,8 +257,7 @@
         <name>ReportType</name>
     </types>
     <types>
-        <members>Capacity_PSA</members>
-       	<members>Enquiries_PSA</members>
+        <members>PSA</members>
         <members>Finance</members>
         <name>Role</name>
     </types>
