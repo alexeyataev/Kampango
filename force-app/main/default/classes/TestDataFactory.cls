@@ -60,11 +60,16 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildPractitioner(String lastName) {
+        return buildPractitioner(lastName, null);
+    }
+
+    public TestDataFactory buildPractitioner(String lastName, String email) {
         TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
         practitioners.add(practitionerContactBuilder
             .withRecordType(PRACTITIONER_RECORDTYPE_NAME)
             .withAccount(organizationAccount)
             .withLastName(lastName)
+            .withEmail(email)
             .insertRecord(true)
             .build());
         return this;

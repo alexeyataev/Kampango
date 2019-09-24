@@ -25,7 +25,7 @@
         <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Course__c</field>
     </columns>
     <columns>
-        <field>Contact.Licences_To_Practice__r$Licence__c</field>
+        <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Practitioner_Licence__c.Licence__c</field>
     </columns>
     <columns>
         <field>Contact.Licences_To_Practice__r.Courses__r$Main_Practitioner__c</field>
@@ -36,12 +36,6 @@
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value/>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Contact.Licences_To_Practice__r.Courses__r$Status__c</column>
-            <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value>Cancelling,Cancelled</value>
         </criteriaItems>
         <criteriaItems>
             <column>Contact.Licences_To_Practice__r.Courses__r$Status__c</column>

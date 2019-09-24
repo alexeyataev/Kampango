@@ -33,6 +33,16 @@ public class BookingJourneyHelperTest {
         return partnerContact.Id;
     }
 
+    public static String createIndividual(){
+        TestIndividualBuilder individualBuilder = new TestIndividualBuilder();
+        Individual individual = individualBuilder.withFirstName('FirstName')
+            .withLastName('LastName')
+            .withSalutation('Mr.')
+            .insertRecord(true)
+            .build();
+        return individual.Id;
+    }
+
     @IsTest
     static void updateContact_primaryContact_contactUpdated(){
         String primaryId = BookingJourneyHelperTest.createPrimaryContact();
@@ -127,6 +137,23 @@ public class BookingJourneyHelperTest {
                 WHERE LastModifiedDate > :timeStamp
             ].isEmpty()
         );
+    }
+
+    @IsTest
+    static void retrieveIndividual_individualId_individualRetrieved(){
+        String individualId = createIndividual();
+        Test.startTest();
+        Individual individual = BookingJourneyHelper.retrieveMarketingPreferences(individualId);
+        Test.stopTest();
+        System.assertEquals(individualId, individual.Id);
+    }
+
+    @IsTest
+    static void retrieveIndividual_null_nullReturned(){
+        Test.startTest();
+        Individual individual = BookingJourneyHelper.retrieveMarketingPreferences(null);
+        Test.stopTest();
+        System.assertEquals(null, individual);
     }
 
 

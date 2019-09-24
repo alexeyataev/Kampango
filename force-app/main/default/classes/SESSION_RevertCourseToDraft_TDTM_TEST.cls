@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #9 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
