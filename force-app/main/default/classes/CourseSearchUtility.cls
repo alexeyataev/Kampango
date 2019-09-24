@@ -20,15 +20,15 @@ public without sharing class CourseSearchUtility {
             WITH SECURITY_ENFORCED
         ];
         
-        if (!inCourses.isEmpty() && isFromWebSite == true) {
-            if (inCourses[0].Hide_From_Course_Finder__c != true) {
+        if(!inCourses.isEmpty()) {           
+            if(isFromWebSite == true) {
+                if (inCourses[0].Hide_From_Course_Finder__c != true) {
+                    result = inCourses[0];
+                }
+            } else {
                 result = inCourses[0];
             }
-        } else if (!inCourses.isEmpty() && isFromWebSite != true) {
-            result = inCourses[0];
-        } else {
-            return null;
-        }
+        } 
 
         return result;
     }
