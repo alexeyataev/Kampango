@@ -45,7 +45,7 @@
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
-            <name>Course_Assignement_Rejection</name>
+            <name>Course_Assignment_Rejection</name>
             <type>Alert</type>
         </action>
     </finalRejectionActions>
