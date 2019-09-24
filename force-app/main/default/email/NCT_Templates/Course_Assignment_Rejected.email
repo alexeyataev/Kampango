@@ -1,0 +1,13 @@
+Dear {!Course_Assignment__c.OwnerFirstName},
+</br>
+</br>
+{!Course_Assignment__c.Name}, relating to Course {!Course_Assignment__c.Course__c}, has been rejected by {!Course_Assignment__c.OwnerFullName} with the following comments: {!ApprovalRequest.Comments}
+</br>
+</br>
+King Regards,  
+</br>
+</br>
+{!Course_Assignment__c.CreatedBy}
+</br>
+Course Organazer
+</br>
