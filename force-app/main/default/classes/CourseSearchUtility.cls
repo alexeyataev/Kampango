@@ -21,7 +21,7 @@ public without sharing class CourseSearchUtility {
 
         List<Course__c> courses = new List<Course__c>();
         for (Course__c course : inCourses) {
-            if (course.Remaining_Places__c == 0) {
+            if (course.Remaining_Places__c < 1) {
                 continue; 
             }
             if(isFromWebSite == true){
@@ -49,7 +49,7 @@ public without sharing class CourseSearchUtility {
             response.responseBody = Blob.valueOf(JSON.serializePretty(model));
         } else {
             response.statusCode = 404;
-            response.responseBody = Blob.valueOf('{ "Error" : course does not exist }');
+            response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }       
         return response;
     }
@@ -73,7 +73,7 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                if (course.Remaining_Places__c == 0) {
+                if (course.Remaining_Places__c < 1) {
                     continue; 
                 }
                 if(isFromWebSite == true){
@@ -103,7 +103,7 @@ public without sharing class CourseSearchUtility {
             response.responseBody = Blob.valueOf(JSON.serializePretty(models));
         } else {
             response.statusCode = 404;
-            response.responseBody = Blob.valueOf('{ "Error" : branch does not exist }');
+            response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }        
         return response;
     }
