@@ -108,7 +108,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Cancellation_reason__c</field>
+        <field>Booking__c.Cancellation_Reason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
