@@ -256,7 +256,7 @@
         <name>ReportType</name>
     </types>
     <types>
-       	    <members>PSA</members>
+    <members>PSA</members>
         <members>Finance</members>
         <name>Role</name>
     </types>
