@@ -16,7 +16,7 @@ global class CourseApi {
             RestContext.response.responseBody = response.responseBody;
         } else {
             RestContext.response.statusCode = 404;
-            RestContext.response.responseBody = Blob.valueOf('{ "Error" : course does not exist }');
+            RestContext.response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }
         
         RestContext.response.addHeader('Content-Type', 'application/json');
