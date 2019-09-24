@@ -1,4 +1,4 @@
-@SuppressWarnings('PMD.MethodNamingConventions')
+@SuppressWarnings('PMD.VariableNamingConventions')
 //Incident #10 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing virtual class CourseFinderModel {
     @testVisible
