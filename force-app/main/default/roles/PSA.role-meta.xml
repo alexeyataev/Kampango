@@ -3,6 +3,6 @@
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Read</contactAccessLevel>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>Capacity PSA</name>
+    <name>PSA</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
 </Role>
