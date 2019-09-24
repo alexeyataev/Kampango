@@ -17,8 +17,8 @@
     <actionCalls>
         <name>Update_Partner_Contact</name>
         <label>Update Partner Contact</label>
-        <locationX>2248</locationX>
-        <locationY>1921</locationY>
+        <locationX>2238</locationX>
+        <locationY>2177</locationY>
         <actionName>BookingJourneyHelper</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -87,6 +87,29 @@
         </assignmentItems>
         <connector>
             <targetReference>Update_Primary_Contact</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Partner_to_Household_Account</name>
+        <label>Assign Partner to Household Account</label>
+        <locationX>2246</locationX>
+        <locationY>1925</locationY>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.AccountId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PrimaryContactRecord.AccountId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PrimaryContactRecord.RecordTypeId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Partner_Contact</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -1185,7 +1208,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Partner_Contact</targetReference>
+                <targetReference>Assign_Partner_to_Household_Account</targetReference>
             </connector>
             <label>PartnerIsValid</label>
         </rules>
