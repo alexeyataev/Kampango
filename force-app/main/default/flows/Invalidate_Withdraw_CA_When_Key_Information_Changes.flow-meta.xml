@@ -170,7 +170,7 @@
             <label>If course status changes to Cancelled</label>
         </rules>
     </decisions>
-    <interviewLabel>Invalidate_Withdraw_CA_When_Key_Information_Changes-1_InterviewLabel</interviewLabel>
+    <interviewLabel>Invalidate_Withdraw_CA_When_Key_Information_Changes-3_InterviewLabel</interviewLabel>
     <label>Invalidate/Withdraw CA When Key Information Changes</label>
     <processMetadataValues>
         <name>ObjectType</name>
