@@ -16,7 +16,7 @@ public without sharing class CourseSearchUtility {
                 )
             FROM Course__c
             WHERE Id = :courseId
-            AND Remaining_Places__c < 1
+            AND Remaining_Places__c > 0
             WITH SECURITY_ENFORCED
         ];
         
@@ -60,6 +60,7 @@ public without sharing class CourseSearchUtility {
                 )
             FROM Course__c
             WHERE Branch__c = :branchId
+            AND Remaining_Places__c > 0
             WITH SECURITY_ENFORCED
         ];
 
@@ -67,10 +68,7 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                if (course.Remaining_Places__c < 1) {
-                    continue; 
-                }
-                if(isFromWebSite == true){
+                if(isFromWebSite == true) {
                     if (course.Hide_From_Course_Finder__c != true) {
                         courses.add(course);
                     }
