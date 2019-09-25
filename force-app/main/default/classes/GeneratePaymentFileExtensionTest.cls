@@ -107,10 +107,10 @@ private class GeneratePaymentFileExtensionTest {
 
 		System.assert(!generatePaymentFileController.showError);
 
-		Date cd = Date.today();
-		String day = String.valueOf(cd.day()).leftPad(2, '0');
-		String month = String.valueOf(cd.month()).leftPad(2, '0');
-		String fileName = GeneratePaymentFileUtil.FILE_PREFIX + day + month + cd.year() + GeneratePaymentFileUtil.FILE_EXTENSION;
+		Date todaysDate = Date.today();
+		String day = String.valueOf(todaysDate.day()).leftPad(2, '0');
+		String month = String.valueOf(todaysDate.month()).leftPad(2, '0');
+		String fileName = GeneratePaymentFileUtil.FILE_PREFIX + day + month + todaysDate.year() + GeneratePaymentFileUtil.FILE_EXTENSION;
 
 		System.assertEquals(contentType, 'text/plain#' + fileName);
 
