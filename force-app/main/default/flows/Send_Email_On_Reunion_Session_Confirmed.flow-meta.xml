@@ -224,6 +224,45 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Common_error_message</name>
+        <label>Common error message</label>
+        <locationX>1994</locationX>
+        <locationY>1157</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_ERROR</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Empty_list_message</name>
+        <label>Empty list message</label>
+        <locationX>2216</locationX>
+        <locationY>966</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_EMPTY</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Part_success_message</name>
+        <label>Part success message</label>
+        <locationX>1989</locationX>
+        <locationY>764</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_PART_SUCCESS</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
         <name>Return_error_on_email_alert</name>
         <label>Return error</label>
         <locationX>1537</locationX>
@@ -235,6 +274,9 @@
                 <stringValue>error_on_email_alert</stringValue>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Decide_on_status</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Return_error_on_get_record</name>
@@ -268,6 +310,9 @@
                 <elementReference>NAME_VENUE</elementReference>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Decide_on_status</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Return_success</name>
@@ -281,6 +326,9 @@
                 <stringValue>success</stringValue>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Decide_on_status</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Set_part_success_status</name>
@@ -298,6 +346,60 @@
             <targetReference>Send_to_clients_public_venue</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Success_message</name>
+        <label>Success message</label>
+        <locationX>1986</locationX>
+        <locationY>616</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_SUCCESS</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Unknown_status_message</name>
+        <label>Unknown status message</label>
+        <locationX>1799</locationX>
+        <locationY>972</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>subflow_status</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <constants>
+        <name>MESSAGE_EMPTY</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Booking list is empty</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>MESSAGE_ERROR</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>There was a problem during the process. Please try again later.</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>MESSAGE_PART_SUCCESS</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Some emails wasn&#39;t sent succesfully. Please check if recipients&#39; emails are set</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>MESSAGE_SUCCESS</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Successfully sent!</stringValue>
+        </value>
+    </constants>
     <constants>
         <name>NAME_BOOKINGLIST</name>
         <dataType>String</dataType>
@@ -324,6 +426,13 @@
         <dataType>String</dataType>
         <value>
             <stringValue>Venue</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>STATUS_EMPTY</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>error_empty</stringValue>
         </value>
     </constants>
     <constants>
@@ -382,8 +491,8 @@
     <decisions>
         <name>Check_input_booking</name>
         <label>Check input booking</label>
-        <locationX>1135</locationX>
-        <locationY>315</locationY>
+        <locationX>1138</locationX>
+        <locationY>316</locationY>
         <defaultConnector>
             <targetReference>Is_not_part_success_already</targetReference>
         </defaultConnector>
@@ -392,17 +501,17 @@
             <name>Is_not_Cancelled</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>booking.Status__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Confirmed</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
                 <leftValueReference>booking.Primary_Contact_Email__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>booking.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Confirmed</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -473,6 +582,9 @@
         <label>Check not part success</label>
         <locationX>1146</locationX>
         <locationY>574</locationY>
+        <defaultConnector>
+            <targetReference>Decide_on_status</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Was_errors_during_iterations</name>
@@ -566,6 +678,86 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Decide_on_error_status</name>
+        <label>Decide on error status</label>
+        <locationX>1984</locationX>
+        <locationY>964</locationY>
+        <defaultConnector>
+            <targetReference>Common_error_message</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_empty_list_error</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>MESSAGE_EMPTY</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Empty_list_message</targetReference>
+            </connector>
+            <label>Is empty list error?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Decide_on_status</name>
+        <label>Decide on status</label>
+        <locationX>1789</locationX>
+        <locationY>769</locationY>
+        <defaultConnector>
+            <targetReference>Unknown_status_message</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_success</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_SUCCESS</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Success_message</targetReference>
+            </connector>
+            <label>Is success?</label>
+        </rules>
+        <rules>
+            <name>Is_Error</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_ERROR</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Decide_on_error_status</targetReference>
+            </connector>
+            <label>Is Error?</label>
+        </rules>
+        <rules>
+            <name>Is_part_success</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_PART_SUCCESS</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Part_success_message</targetReference>
+            </connector>
+            <label>Is part success?</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_not_part_success_already</name>
         <label>Is not part success already</label>
         <locationX>1163</locationX>
@@ -635,7 +827,7 @@
         <dataType>String</dataType>
         <expression>{!session.Start__c}</expression>
     </formulas>
-    <interviewLabel>Send Email On Reunion Session Confirmed</interviewLabel>
+    <interviewLabel>Send Email On Reunion Session Confirmed {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Send Email On Reunion Session Confirmed</label>
     <loops>
         <name>Send_to_client_host</name>
@@ -861,10 +1053,35 @@
         <queriedFields>Map_Url__c</queriedFields>
     </recordLookups>
     <startElementReference>Check_Session_Id</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <textTemplates>
         <name>TEMPLATE_CLIENT_IN_PRIVATE_VENUE</name>
-        <text>&lt;p&gt;Booking reference: {!booking.Name}&lt;/p&gt;&lt;p&gt;Course reference: {!course.Name}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Dear {!booking.First_Name__c}{!partner_name_formula},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;I&#39;m delighted to confirm the details for your {!course.Sub_Type__c} course reunion which will be held on {!session.Day_of_Week__c} {!session.Date__c} from {!session.Start_Text__c} to {!session.End_Text__c}.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;We are very grateful to Mary and John Smith who have offered to host the session at their home:&lt;/p&gt;&lt;p&gt;{!venue.Town__c}, {!venue.Street_Address__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Click here to see this on a map&lt;/p&gt;&lt;p&gt;{!venue.Map_Url__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The reunion will be facilitated by {!practitioner.Name} who may be contacted on {!practitioner.Phone} or at {!practitioner.Email}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:&lt;/p&gt;&lt;p&gt;Find a postnatal course&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind Regards,&lt;/p&gt;&lt;p&gt;{!session.Enquiries_PSA_Name__c}&lt;/p&gt;&lt;p&gt;Course organizer&lt;/p&gt;&lt;p&gt;Email: {!{!branch_account}.Enquiries_PSA_Email__c}&lt;/p&gt;&lt;p&gt;Tel: {!{!branch_account}.Enquiries_PSA_Phone__c}&lt;/p&gt;</text>
+        <text>Booking reference: {!booking.Name}
+Course reference: {!course.Name}
+
+
+Dear {!booking.First_Name__c}{!partner_name_formula},
+
+I&#39;m delighted to confirm the details for your {!course.Sub_Type__c} course reunion which will be held on {!session.Day_of_Week__c} {!session.Date__c} from {!session.Start_Text__c} to {!session.End_Text__c}.
+
+We are very grateful to Mary and John Smith who have offered to host the session at their home:
+{!venue.Town__c}, {!venue.Street_Address__c}
+
+Click here to see this on a map
+{!venue.Map_Url__c}
+
+
+The reunion will be facilitated by {!practitioner.Name} who may be contacted on {!practitioner.Phone} or at {!practitioner.Email}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
+
+We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
+Find a postnatal course
+
+
+Kind Regards,
+{!session.Enquiries_PSA_Name__c}
+Course organizer
+Email: {!{!branch_account}.Enquiries_PSA_Email__c}
+Tel: {!{!branch_account}.Enquiries_PSA_Phone__c}</text>
     </textTemplates>
     <textTemplates>
         <name>TEMPLATE_HOST</name>
@@ -988,6 +1205,16 @@ Tel: {!branch_account.Enquiries_PSA_Phone__c}</text>
         <isOutput>false</isOutput>
         <value>
             <stringValue>field or object</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>output_message</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>Unknown result: </stringValue>
         </value>
     </variables>
     <variables>
