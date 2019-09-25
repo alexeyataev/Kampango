@@ -61,6 +61,11 @@
         <field>Account.Zumzum__Billing_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Home_PSA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Branch and PSA Management</label>
     <objectPermissions>
