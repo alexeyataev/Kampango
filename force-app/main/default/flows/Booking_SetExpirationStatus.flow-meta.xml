@@ -14,7 +14,7 @@
         <actionName>Booking__c.SendEmailToClient</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myWait_myRule_1</targetReference>
+            <targetReference>myRule_1_A3</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -269,7 +269,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_2_myRule_1_2124009474</elementReference>
+                    <elementReference>formula_2_myRule_1_8421982547</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -593,7 +593,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_2_myRule_1_2124009474</elementReference>
+                    <elementReference>formula_2_myRule_1_8421982547</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -829,7 +829,7 @@
                 <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_3_myRule_1_pmetrule_6722033904</elementReference>
+                    <elementReference>formula_3_myRule_1_pmetrule_1915090190</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -968,7 +968,7 @@
                 <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_2124009474</name>
+        <name>formula_2_myRule_1_8421982547</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE({!myVariable_current.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -979,7 +979,7 @@
                 <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_pmetrule_6722033904</name>
+        <name>formula_3_myRule_1_pmetrule_1915090190</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE({!myVariable_old.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -990,7 +990,7 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A1_8639545434</name>
+        <name>formula_8_myRule_7_A1_6967225787</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -999,7 +999,7 @@
         <dataType>Boolean</dataType>
         <expression>true</expression>
     </formulas>
-    <interviewLabel>Booking_SetExpirationStatus-59_InterviewLabel</interviewLabel>
+    <interviewLabel>Booking_SetExpirationStatus-63_InterviewLabel</interviewLabel>
     <label>Booking:SetExpirationStatus</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -1026,6 +1026,178 @@
         </value>
     </processMetadataValues>
     <processType>Workflow</processType>
+    <recordCreates>
+        <name>myRule_1_A3</name>
+        <label>Create Task</label>
+        <locationX>100</locationX>
+        <locationY>400</locationY>
+        <connector>
+            <targetReference>myWait_myRule_1</targetReference>
+        </connector>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Assigned To ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>myVariable_current.CreatedById</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Priority</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Priority</field>
+            <value>
+                <stringValue>Low</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Status</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Subject</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Subject</field>
+            <value>
+                <stringValue>Offer email resent</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Related To ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Account;Asset;AssetRelationship;Booking__c;Campaign;Case;ChannelProgram;ChannelProgramLevel;ContactRequest;Contract;GW_Volunteers__Volunteer_Hours__c;GW_Volunteers__Volunteer_Job__c;GW_Volunteers__Volunteer_Shift__c;ITS__c;ListEmail;Opportunity;Order;PartnerFundAllocation;PartnerFundClaim;PartnerFundRequest;PartnerMarketingBudget;Product2;Program_Increment__c;Quote;Solution;Zumzum__Bank_Payment__c;Zumzum__Bank_Receipt__c;Zumzum__Bank__c;Zumzum__Batch_Sales_Invoice_Job_Item__c;Zumzum__Batch_Sales_Invoice_Job__c;Zumzum__Company__c;Zumzum__Currency_Rates__c;Zumzum__Currency__c;Zumzum__Dispatch_Line__c;Zumzum__Dispatch__c;Zumzum__Expense_Sheet__c;Zumzum__Inbound_Stock_Movement__c;Zumzum__Journal_Line_Item__c;Zumzum__Journal__c;Zumzum__Location__c;Zumzum__Outbound_Stock_Movement__c;Zumzum__Product_Sales_Invoice_Plan_Template__c;Zumzum__Purchase_Invoice__c;Zumzum__Purchase_Order_Inventory_Movement__c;Zumzum__Purchase_Order__c;Zumzum__Purchase_Requisition__c;Zumzum__Purchase_Requisitions_Line_Item__c;Zumzum__Revenue_Recognition_Schedule__c;Zumzum__Sales_Invoice_Plan_Template__c;Zumzum__Sales_Invoice__c;Zumzum__Sales_Order_Stock_Movement__c;Zumzum__Sales_Order__c;Zumzum__Stock_Balance__c;Zumzum__Stock_Ledger__c;Zumzum__Time_Sheet__c;Zumzum__VAT_Obligation__c;Zumzum__VAT_Submission_Result__c;Zumzum__Warehouse__c;agf__ADM_Epic__c;agf__ADM_Priority__c;agf__ADM_Release_Event__c;agf__ADM_Release_Stamp_Cache__c;agf__ADM_Release__c;agf__ADM_Severity_Type__c;agf__ADM_Severity__c;agf__ADM_Sprint__c;agf__ADM_Type__c;agf__ADM_Work__c;agf__Environments_Order__c;agf__Headcount__c;agf__Locking_Record__c;agf__OMOpportunity__c;agf__QA_Test_Case__c;agf__QA_Test_Execution__c;agf__QA_Test_Plan__c;agf__RCA__c;agf__Release_Signoff_Infrastructure__c;agf__Retrospective__c;cpm__Mandate__c;cpm__Payment__c;cpm__Recurring_Payment__c;cpm__Reference_Generator_Run__c;gaid__Gift_Aid_Declaration__c;npo02__Household__c;npsp__Engagement_Plan_Template__c;npsp__Engagement_Plan__c;npsp__Fund__c;npsp__General_Accounting_Unit__c;npsp__Grant_Deadline__c;proh__File__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>WhatId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+    </recordCreates>
     <recordUpdates>
         <processMetadataValues>
             <name>evaluationType</name>
@@ -1187,7 +1359,7 @@
             </processMetadataValues>
             <field>Offer_Email_Date__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_8639545434</elementReference>
+                <elementReference>formula_8_myRule_7_A1_6967225787</elementReference>
             </value>
         </inputAssignments>
         <object>Booking__c</object>
@@ -2364,7 +2536,7 @@
             <inputParameters>
                 <name>TimeOffset</name>
                 <value>
-                    <numberValue>0.0</numberValue>
+                    <numberValue>1.0</numberValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -2410,7 +2582,7 @@
             <inputParameters>
                 <name>TimeOffset</name>
                 <value>
-                    <numberValue>10.0</numberValue>
+                    <numberValue>11.0</numberValue>
                 </value>
             </inputParameters>
             <label>myWaitEvent_myWait_myRule_10_event_1</label>
@@ -2450,7 +2622,7 @@
             <inputParameters>
                 <name>TimeOffset</name>
                 <value>
-                    <numberValue>5.0</numberValue>
+                    <numberValue>6.0</numberValue>
                 </value>
             </inputParameters>
             <label>myWaitEvent_myWait_myRule_10_event_2</label>
@@ -2496,7 +2668,7 @@
             <inputParameters>
                 <name>TimeOffset</name>
                 <value>
-                    <numberValue>0.0</numberValue>
+                    <numberValue>1.0</numberValue>
                 </value>
             </inputParameters>
             <inputParameters>
