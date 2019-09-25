@@ -7,4 +7,12 @@
         <shortDescription>ContactUpdateException</shortDescription>
         <value>An error occurred during details update.</value>
     </labels>
+    <labels>
+        <fullName>CourseAPIcourseNotExists</fullName>
+        <categories>CourseAPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Label For Set Error Search</shortDescription>
+        <value>&quot;Error&quot; : course does not exist</value>
+    </labels>
 </CustomLabels>
