@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>Account.Account_No_must_be_8_numeric_digits</members>
+        <members>Account.Check_Bank_Account_Name</members>
+        <members>Account.Sort_code_must_be_6_numeric_digits</members>
+        <name>ValidationRule</name>
+    </types>
+    <version>46.0</version>
+</Package>
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
         <members>CourseApi</members>
@@ -285,7 +296,10 @@
         <name>StaticResource</name>
     </types>
     <types>
+        <members>Account.Account_No_must_be_8_numeric_digits</members>
         <members>Account.Billing_Email_Required_For_Suppliers</members>
+        <members>Account.Check_Bank_Account_Name</members>
+        <members>Account.Sort_code_must_be_6_numeric_digits</members>
         <members>Booking__c.ExpirationDateCannotBeInPast</members>
         <members>Booking__c.ExpiryDateCantBeMoreThanDateStartCourse</members>
         <members>Booking__c.FeeOverrideAmountRestriction</members>
@@ -306,9 +320,6 @@
         <members>Session__c.End_time_should_not_be_before_start_time</members>
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
-        <members>Zumzum__Bank_Account__c.Account_number_must_be_8_numeric_digits</members>
-        <members>Zumzum__Bank_Account__c.Check_Bank_Account_Name</members>
-        <members>Zumzum__Bank_Account__c.Sort_code_must_be_6_numeric_digits</members>
         <name>ValidationRule</name>
     </types>
     <types>
