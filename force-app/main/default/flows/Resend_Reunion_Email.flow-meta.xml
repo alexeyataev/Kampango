@@ -4,7 +4,7 @@
         <name>Show_status</name>
         <label>Show status</label>
         <locationX>876</locationX>
-        <locationY>584</locationY>
+        <locationY>639</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <inputParameters>
@@ -28,30 +28,53 @@
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <inputParameters>
-            <name>message</name>
-            <value>
-                <stringValue>Error: empty input</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>type</name>
             <value>
                 <elementReference>STATUS_ERROR</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>MESSAGE_NULL_REUNION</elementReference>
+            </value>
+        </inputParameters>
     </actionCalls>
-    <constants>
-        <name>MESSAGE_EMPTY</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Booking list is empty</stringValue>
-        </value>
-    </constants>
+    <assignments>
+        <name>Warn_Reunion_is_not_confirmed</name>
+        <label>Warn Reunion is not confirmed</label>
+        <locationX>876</locationX>
+        <locationY>478</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_WRONG_INPUT</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>STATUS_ERROR</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Show_status</targetReference>
+        </connector>
+    </assignments>
     <constants>
         <name>MESSAGE_ERROR</name>
         <dataType>String</dataType>
         <value>
             <stringValue>There was a problem during the process. Please try again later.</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>MESSAGE_NULL_REUNION</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Error: cannot find the reunion session</stringValue>
         </value>
     </constants>
     <constants>
@@ -62,10 +85,10 @@
         </value>
     </constants>
     <constants>
-        <name>STATUS_EMPTY</name>
+        <name>MESSAGE_WRONG_INPUT</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>empty</stringValue>
+            <stringValue>Reunion session must be confirmed to send the emails</stringValue>
         </value>
     </constants>
     <constants>
@@ -85,30 +108,33 @@
     <decisions>
         <name>Check_input_parameter</name>
         <label>Check input parameter</label>
-        <locationX>152</locationX>
-        <locationY>213</locationY>
+        <locationX>296</locationX>
+        <locationY>484</locationY>
         <defaultConnector>
-            <targetReference>Get_Reunion_Session_by_Course</targetReference>
+            <targetReference>Warn_Reunion_is_not_confirmed</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Id is correct</defaultConnectorLabel>
+        <defaultConnectorLabel>Warn user</defaultConnectorLabel>
         <rules>
-            <name>Record_Id_is_empty</name>
+            <name>Is_Reunion_Session_confirmed</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>recordId</leftValueReference>
+                <leftValueReference>session.Status__c</leftValueReference>
                 <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Confirmed</stringValue>
+                </rightValue>
             </conditions>
             <connector>
-                <targetReference>Warn_null_input</targetReference>
+                <targetReference>Check_reunion_session_exists</targetReference>
             </connector>
-            <label>Record Id is empty</label>
+            <label>Is Reunion Session confirmed?</label>
         </rules>
     </decisions>
     <decisions>
         <name>Check_reunion_session_exists</name>
         <label>Check reunion session exists</label>
-        <locationX>309</locationX>
-        <locationY>809</locationY>
+        <locationX>296</locationX>
+        <locationY>646</locationY>
         <defaultConnector>
             <targetReference>Warn_null_input</targetReference>
         </defaultConnector>
@@ -147,11 +173,11 @@
     <recordLookups>
         <name>Get_Reunion_Session_by_Course</name>
         <label>Get Reunion Session by Course</label>
-        <locationX>317</locationX>
-        <locationY>651</locationY>
+        <locationX>310</locationX>
+        <locationY>331</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_reunion_session_exists</targetReference>
+            <targetReference>Check_input_parameter</targetReference>
         </connector>
         <filters>
             <field>Course__c</field>
@@ -175,7 +201,7 @@
         <name>Confirm_Send_Email_Screen</name>
         <label>Confirm Send Email Screen</label>
         <locationX>468</locationX>
-        <locationY>584</locationY>
+        <locationY>639</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -190,13 +216,13 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Check_input_parameter</startElementReference>
+    <startElementReference>Get_Reunion_Session_by_Course</startElementReference>
     <status>Active</status>
     <subflows>
         <name>Execute_sending_emails</name>
         <label>Execute sending emails</label>
         <locationX>670</locationX>
-        <locationY>584</locationY>
+        <locationY>639</locationY>
         <connector>
             <targetReference>Show_status</targetReference>
         </connector>
