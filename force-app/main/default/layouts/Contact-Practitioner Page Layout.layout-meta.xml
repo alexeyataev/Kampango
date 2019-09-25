@@ -68,7 +68,7 @@
                 <field>Practitioner_Re_Registration_Amount__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Home_PSA__c</field>
             </layoutItems>
             <layoutItems>
