@@ -785,10 +785,10 @@
     <decisions>
         <name>Is_Public_Venue</name>
         <label>Is Public Venue</label>
-        <locationX>925</locationX>
-        <locationY>780</locationY>
+        <locationX>926</locationX>
+        <locationY>693</locationY>
         <defaultConnector>
-            <targetReference>Send_to_client_host</targetReference>
+            <targetReference>Return_success</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -805,6 +805,21 @@
                 <targetReference>Send_to_clients_public_venue</targetReference>
             </connector>
             <label>Public Venue</label>
+        </rules>
+        <rules>
+            <name>Not_volunteer_venue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>venue.Type__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Volunteer Home</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_to_client_host</targetReference>
+            </connector>
+            <label>Not volunteer venue</label>
         </rules>
     </decisions>
     <formulas>
