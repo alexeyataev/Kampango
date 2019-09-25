@@ -42,8 +42,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
     private Set<Id> IdsOfCourseAssignmentsToChangeIfSessionsUpdated(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
         Set<Id> courseAssignmentIds = new Set<Id>();
         for(Integer i = 0; i<newSessionList.size(); i++) {
-            if (newSessionList[i].Course_Assignment__c != NULL) {
-                if ((newSessionList[i].Type__c != 'Reunion' &&
+            if(newSessionList[i].Course_Assignment__c != NULL) {
+                if((newSessionList[i].Type__c != 'Reunion' &&
                     (newSessionList[i].Date__c != oldSessionList[i].Date__c ||
                         newSessionList[i].Start__c != oldSessionList[i].Start__c ||
                         newSessionList[i].End__c != oldSessionList[i].End__c ||
