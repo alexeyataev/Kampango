@@ -9,7 +9,7 @@ public without sharing class CourseSearchUtility {
 
         List<Course__c> inCourses = getCourses(paramToSearch);
         
-        if(!inCourses.isEmpty()) {           
+        if(!inCourses.isEmpty()) {
             if(isFromWebSite == true) {
                 if (inCourses[0].Hide_From_Course_Finder__c != true) {
                     result = inCourses[0];
