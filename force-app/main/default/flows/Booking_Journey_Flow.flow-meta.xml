@@ -155,6 +155,9 @@
         <queriedFields>MailingCountry</queriedFields>
         <queriedFields>MailingState</queriedFields>
         <queriedFields>MailingStreet</queriedFields>
+        <queriedFields>IndividualId</queriedFields>
+        <queriedFields>AccountId</queriedFields>
+        <queriedFields>RecordTypeId</queriedFields>
     </recordLookups>
     <screens>
         <name>Course_Summary_Details_Screen</name>

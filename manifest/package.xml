@@ -3,8 +3,16 @@
     <types>
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
+        <members>CourseApi</members>
+        <members>CourseApiTest</members>
         <members>CourseDetailController</members>
         <members>CourseDetailControllerTest</members>
+        <members>CourseFinderModel</members>
+        <members>CourseFinderModelTest</members>
+        <members>CourseSearchUtility</members>
+        <members>CourseSearchUtilityTest</members>
+        <members>CourseCreateEnquiryUtility</members>
+        <members>CourseCreateEnquiryUtilityTest</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
@@ -58,8 +66,32 @@
         <name>CustomApplication</name>
     </types>
     <types>
-      <members>*</members>
-      <name>CustomLabels</name>
+        <members>Asset.Loaned_Date__c</members>
+        <members>Asset.Product2Id</members>
+        <members>Asset.Returned_Date__c</members>
+        <members>Booking__c.First_Baby__c</members>      
+        <members>Booking__c.Cancellation_Reason__c</members>
+        <members>Booking__c.Status__c</members>
+        <members>Booking__c.Suggested_Cancellation_Fee__c</members>
+        <members>Contact.AccountId</members>
+        <members>Contact.Current_Fee_Band_Effective_From__c</members>
+        <members>Contact.Fee_Band__c</members>
+        <members>Contact.Home_PSA__c</members>
+        <members>Contact.NCT_Number__c</members>
+        <members>Contact.Practitioner_Re_Registration_Amount__c</members>
+        <members>Contact.Practitioner_Re_Registration_Date__c</members>
+        <members>Contact.Secondary_Email__c</members>
+        <members>Contact.Second_Home_PSA__c</members>
+        <members>Contact.Schedule_of_Sessions__c</members>
+        <members>Contact.Total_Open_Bookings__c</members>
+        <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
+        <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomLabels</name>
     </types>
     <types>
         <members>Account</members>
@@ -87,32 +119,10 @@
     </types>
     <types>
         <members>Booking__c</members>
+        <members>Course_Assignment__c</members>
         <members>npsp__Trigger_Handler__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
-    </types>
-    <types>
-        <members>Asset.Loaned_Date__c</members>
-        <members>Asset.Product2Id</members>
-        <members>Asset.Returned_Date__c</members>
-        <members>Booking__c.Suggested_Cancellation_Fee__c</members>
-        <members>Contact.AccountId</members>
-        <members>Contact.Current_Fee_Band_Effective_From__c</members>
-        <members>Contact.Fee_Band__c</members>
-        <members>Contact.Home_PSA__c</members>
-        <members>Contact.NCT_Number__c</members>
-        <members>Contact.Practitioner_Re_Registration_Amount__c</members>
-        <members>Contact.Practitioner_Re_Registration_Date__c</members>
-        <members>Contact.Secondary_Email__c</members>
-        <members>Contact.Second_Home_PSA__c</members>
-        <members>Contact.Schedule_of_Sessions__c</members>
-        <members>Contact.Total_Open_Bookings__c</members>
-        <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
-        <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
-        <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
-        <members>Booking__c.Cancellation_reason__c</members>
-        <members>Booking__c.Status__c</members>
-        <name>CustomField</name>
     </types>
     <types>
         <members>Communities_Shared_Document_Folder</members>
@@ -122,7 +132,9 @@
     <types>
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
+        <members>NCT_Templates/Course_Assignment_Rejected</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
+        <members>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</members>
         <name>EmailTemplate</name>
     </types>
     <types>
@@ -177,6 +189,7 @@
         <members>Contact-Practitioner Page Layout</members>
         <members>Contact-Practitioner Read Only Layout</members>
         <members>Course_Assignment__c-Course Assignment Layout</members>
+        <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
@@ -222,6 +235,7 @@
         <members>Parent Community Profile</members>
         <members>Payment API User</members>
         <members>Practitioner</members>
+        <members>PSA Manager</members>
         <name>Profile</name>
     </types>
     <types>
@@ -252,8 +266,7 @@
         <name>ReportType</name>
     </types>
     <types>
-        <members>Capacity_PSA</members>
-       	<members>Enquiries_PSA</members>
+        <members>PSA</members>
         <members>Finance</members>
         <name>Role</name>
     </types>
@@ -285,6 +298,7 @@
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
+        <members>Course_Assingment__c.Course_can_not_be_changed_on_CA_record</members>
         <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
         <members>Licence_To_Practice__c.End_date_should_not_be_blank</members>

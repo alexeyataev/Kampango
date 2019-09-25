@@ -16,40 +16,10 @@
             <name>myRule_1</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideReferenceTo</name>
-                    <value>
-                        <stringValue>Contact</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>ID</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.ContactId</leftValueReference>
-                <operator>IsNull</operator>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -59,7 +29,18 @@
         </rules>
     </decisions>
     <description>Partner Contact updates when Community User changes profile details</description>
-    <interviewLabel>Update_Partner_Community_Contact-1_InterviewLabel</interviewLabel>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>NOT(ISNULL([User].ContactId)) &amp;&amp; [User].IsActive &amp;&amp; NOT(ISNEW() ) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(ISNULL({!myVariable_current.ContactId})) &amp;&amp; {!myVariable_current.IsActive} &amp;&amp; NOT(ISNEW() )</expression>
+    </formulas>
+    <interviewLabel>Update_Partner_Community_Contact-4_InterviewLabel</interviewLabel>
     <label>Update Partner Community Contact</label>
     <processMetadataValues>
         <name>ObjectType</name>

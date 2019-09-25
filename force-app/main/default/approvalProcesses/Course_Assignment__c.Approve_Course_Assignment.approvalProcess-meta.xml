@@ -28,8 +28,8 @@
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
-        <label>step 1</label>
-        <name>step_1</name>
+        <label>Practitioner Approval</label>
+        <name>Practitioner_Approval</name>
         <rejectionActions>
             <action>
                 <name>UpdateStatusToRejected</name>
@@ -40,6 +40,12 @@
     <emailTemplate>NCT_Templates/Course_Assignment_is_Ready_for_Approval</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Course_Assignment_Rejection</name>
+            <type>Alert</type>
+        </action>
+    </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
