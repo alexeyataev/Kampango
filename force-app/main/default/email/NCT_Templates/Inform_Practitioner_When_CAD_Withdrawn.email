@@ -4,7 +4,7 @@ Dear {!Course_Assignment__c.OwnerFirstName},
 You are no longer required to attend this course as <a href = "{!$Setup.Practitioner_Community_Settings__c.Base_Url__c}/s/detail/{!Course_Assignment__c.Id}" target = "_blank">your assignment</a> has been withdrawn.
 </br>
 </br>
-King Regards,  
+Kind Regards,  
 </br>
 </br>
 {!Course_Assignment__c.CreatedBy}

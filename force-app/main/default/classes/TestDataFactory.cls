@@ -120,6 +120,19 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public TestDataFactory buildCourseWithTypeAndSubType(String type, String subtype) {
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        course = courseBuilder
+            .withAccount(branchAccount)
+            .withPractitioner(practitioners[0])
+            .withLicenceToPractice(licenceToPractice)
+            .withType(type)
+            .withSubType(subtype)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
     public TestDataFactory buildSession() {
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         session = sessionBuilder

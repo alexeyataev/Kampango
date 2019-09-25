@@ -4,20 +4,21 @@ public without sharing class CourseApiTest {
     private static String strURI = URL.getSalesforceBaseUrl().toExternalForm()+'/services/apexrest/courses';
     private static String methodGet = 'GET';
 
+    @TestSetup
     private static void setupTestData() {
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-        testDataFactory.buildBranchAccount()
-                       .buildOrganizationAccount('acc5')
-                       .buildPractitioner('Test')
-                       .buildVenue()
-                       .buildRoom()
-                       .buildLicenceToPractice()
-                       .buildCoursesWithSessions(2, 2);
+        TestDataFactory.getInstance()
+            .buildBranchAccount()
+            .buildOrganizationAccount('acc5')
+            .buildPractitioner('Test')
+            .buildVenue()
+            .buildRoom()
+            .buildLicenceToPractice()
+            .buildCoursesWithSessions(2, 2);
     }
 
     @isTest
     static void searchCourseById() {
-        setupTestData();
+
         Course__c course = [
             SELECT Id
             FROM Course__c
@@ -46,8 +47,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void searchCourseByBranch() {
-        setupTestData();
-        
+
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
         Account account = [
             SELECT Id 

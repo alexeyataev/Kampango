@@ -7,7 +7,7 @@ NCT has sent you this email so that you securely sign your assignment for this c
 <a href = "{!$Setup.Practitioner_Community_Settings__c.Base_Url__c}/s/detail/{!Course_Assignment__c.Id}" target = "_blank">Please log in to the Practitioner community to review and sign this assignment.</a>
 </br>
 </br>
-King Regards,  
+Kind Regards,  
 </br>
 </br>
 {!Course_Assignment__c.CreatedBy}
