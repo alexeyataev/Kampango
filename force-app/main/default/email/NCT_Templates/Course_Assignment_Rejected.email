@@ -4,5 +4,5 @@ Dear Capacity PSA,
 {!Course_Assignment__c.Name}, relating to Course {!Course_Assignment__c.Course__c}, has been rejected by {!Course_Assignment__c.OwnerFullName} with the following comments: '{!ApprovalRequest.Comments}'
 </br>
 </br>
-King Regards
+Kind Regards
 </br>
