@@ -1079,7 +1079,7 @@
         <layout>Course_Assignment__c-Course Assignment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course__c-Course Layout</layout>
+        <layout>Course__c-Admin Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
