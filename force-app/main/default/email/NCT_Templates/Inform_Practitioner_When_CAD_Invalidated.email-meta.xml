@@ -5,7 +5,7 @@
     <name>Inform Practitioner When CAD Invalidated</name>
     <style>none</style>
     <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
-    <textOnly>Dear {!Course_Assignment__c.OwnerFirstName}, This CAD has been invalidated as one or more key details of the course have changed, or are changing. Please contact your Capacity PSA if you need any further information.  King Regards,  {!Course_Assignment__c.CreatedBy} Course Organazer</textOnly>
+    <textOnly>Dear {!Course_Assignment__c.OwnerFirstName}, This CAD has been invalidated as one or more key details of the course have changed, or are changing. Please contact your Capacity PSA if you need any further information.  Kind Regards,  {!Course_Assignment__c.CreatedBy} Course Organazer</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

@@ -115,6 +115,11 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>Capacity_PSA</members>
+        <members>Enquiries_PSA</members>
+        <name>Role</name>
+    </types>
+    <types>
         <members>Contact.Contact_Preferred_Email</members>
         <members>Contact.Contact_Preferred_Phone</members>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>

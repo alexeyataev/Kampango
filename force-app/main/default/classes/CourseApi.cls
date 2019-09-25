@@ -39,7 +39,7 @@ global class CourseApi {
     @HttpPost
     global static void createEnquiry() {
         RestRequest request = RestContext.request;
-        String courseNumber = CourseCreateEnquiryUtility.getCourseIdFromHeaders();
+        String courseNumber = CourseCreateEnquiryUtility.getCourseIdFromHeaders(request.headers);
         CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);
     }
 }
