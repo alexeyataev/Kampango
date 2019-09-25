@@ -42,17 +42,17 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
     private Set<Id> IdsOfCourseAssignmentsToChangeIfSessionsUpdated(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
         Set<Id> courseAssignmentIds = new Set<Id>();
         for(Integer i = 0; i<newSessionList.size(); i++) {
-            if(newSessionList[i].Course_Assignment__c != NULL) {
-                if (newSessionList[i].Type__c != 'Reunion' &&
+            if (newSessionList[i].Course_Assignment__c != NULL) {
+                if ((newSessionList[i].Type__c != 'Reunion' &&
                     (newSessionList[i].Date__c != oldSessionList[i].Date__c ||
                         newSessionList[i].Start__c != oldSessionList[i].Start__c ||
                         newSessionList[i].End__c != oldSessionList[i].End__c ||
                         newSessionList[i].Lunch_Break_Minutes__c != oldSessionList[i].Lunch_Break_Minutes__c ||
                         newSessionList[i].Venue__c != oldSessionList[i].Venue__c ||
-                        newSessionList[i].Room__c != oldSessionList[i].Room__c) ||
-                    newSessionList[i].Type__c == 'Reunion' && (newSessionList[i].Status__c == 'Confirmed'
+                        newSessionList[i].Room__c != oldSessionList[i].Room__c)) ||
+                    (newSessionList[i].Type__c == 'Reunion' && newSessionList[i].Status__c == 'Confirmed'
                         && oldSessionList[i].Status__c == 'Provisional') ||
-                    newSessionList[i].Practitioner__c != oldSessionList[i].Practitioner__c) {
+                    (newSessionList[i].Practitioner__c != oldSessionList[i].Practitioner__c)) {
                     courseAssignmentIds.add(newSessionList[i].Course_Assignment__c);
                 }
             }
