@@ -180,7 +180,7 @@
             <name>Is_Course_final</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_Course_by_Booking.Status__c</leftValueReference>
+                <leftValueReference>course.Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Final</stringValue>
@@ -224,10 +224,10 @@
             <name>Session_exists</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_Reunion_Session_by_Course</leftValueReference>
-                <operator>WasVisited</operator>
+                <leftValueReference>session</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -344,6 +344,7 @@
             </value>
         </filters>
         <object>Course__c</object>
+        <outputReference>course</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Status__c</queriedFields>
     </recordLookups>
@@ -360,7 +361,7 @@
             <field>Course__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Get_Course_by_Booking.Id</elementReference>
+                <elementReference>course.Id</elementReference>
             </value>
         </filters>
         <filters>
@@ -371,6 +372,7 @@
             </value>
         </filters>
         <object>Session__c</object>
+        <outputReference>session</outputReference>
         <queriedFields>Id</queriedFields>
     </recordLookups>
     <screens>
@@ -406,7 +408,7 @@
         <inputAssignments>
             <name>sessionId</name>
             <value>
-                <elementReference>Get_Reunion_Session_by_Course.Id</elementReference>
+                <elementReference>session.Id</elementReference>
             </value>
         </inputAssignments>
         <outputAssignments>
@@ -446,6 +448,14 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>session</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Session__c</objectType>
     </variables>
     <variables>
         <name>subflow_status</name>

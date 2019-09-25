@@ -14,9 +14,15 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>emailBody</name>
+            <name>emailAddresses</name>
             <value>
-                <elementReference>TEMPLATE_CLIENT_IN_PRIVATE_VENUE</elementReference>
+                <elementReference>booking.Primary_Contact_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>branch_account.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -26,15 +32,9 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>emailAddresses</name>
+            <name>emailBody</name>
             <value>
-                <elementReference>booking.Primary_Contact_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>senderAddress</name>
-            <value>
-                <elementReference>Get_branch_Account_by_Course.Enquiries_PSA_Email__c</elementReference>
+                <elementReference>TEMPLATE_CLIENT_IN_PRIVATE_VENUE</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -52,9 +52,15 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>emailBody</name>
+            <name>emailAddresses</name>
             <value>
-                <elementReference>TEMPLATE_HOST</elementReference>
+                <elementReference>booking.Primary_Contact_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>branch_account.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -64,15 +70,9 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>emailAddresses</name>
+            <name>emailBody</name>
             <value>
-                <elementReference>booking.Primary_Contact_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>senderAddress</name>
-            <value>
-                <elementReference>Get_branch_Account_by_Course.Enquiries_PSA_Email__c</elementReference>
+                <elementReference>TEMPLATE_HOST</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -90,9 +90,15 @@
             <targetReference>Return_error_on_get_record</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>emailBody</name>
+            <name>emailAddresses</name>
             <value>
-                <elementReference>TEMPLATE_PRACTITIONER</elementReference>
+                <elementReference>practitioner.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>branch_account.Capacity_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -102,15 +108,9 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>emailAddresses</name>
+            <name>emailBody</name>
             <value>
-                <elementReference>Get_practitioner_record.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>senderAddress</name>
-            <value>
-                <elementReference>Get_branch_Account_by_Course.Capacity_PSA_Email__c</elementReference>
+                <elementReference>TEMPLATE_PRACTITIONER</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -128,9 +128,15 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>emailBody</name>
+            <name>emailAddresses</name>
             <value>
-                <elementReference>TEMPLATE_PUBLIC</elementReference>
+                <elementReference>booking.Primary_Contact_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>branch_account.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -140,15 +146,9 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>emailAddresses</name>
+            <name>emailBody</name>
             <value>
-                <elementReference>booking.Primary_Contact_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>senderAddress</name>
-            <value>
-                <elementReference>Get_branch_Account_by_Course.Enquiries_PSA_Email__c</elementReference>
+                <elementReference>TEMPLATE_PUBLIC</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -503,7 +503,7 @@
             <name>Practitioner_email_is_not_null</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_practitioner_record.Email</leftValueReference>
+                <leftValueReference>practitioner.Email</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -736,6 +736,7 @@
             </value>
         </filters>
         <object>Account</object>
+        <outputReference>branch_account</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Capacity_PSA__c</queriedFields>
         <queriedFields>Capacity_PSA_Email__c</queriedFields>
@@ -787,6 +788,7 @@
             </value>
         </filters>
         <object>Contact</object>
+        <outputReference>practitioner</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>FirstName</queriedFields>
         <queriedFields>Phone</queriedFields>
@@ -862,32 +864,7 @@
     <status>Draft</status>
     <textTemplates>
         <name>TEMPLATE_CLIENT_IN_PRIVATE_VENUE</name>
-        <text>Booking reference: {!booking.Name}
-Course reference: {!course.Name}
-
-
-Dear {!booking.First_Name__c}{!partner_name_formula},
-
-I&#39;m delighted to confirm the details for your {!course.Sub_Type__c} course reunion which will be held on {!session.Day_of_Week__c} {!session.Date__c} from {!session.Start_Text__c} to {!session.End_Text__c}.
-
-We are very grateful to Mary and John Smith who have offered to host the session at their home:
-{!venue.Town__c}, {!venue.Street_Address__c}
-
-Click here to see this on a map
-{!venue.Map_Url__c}
-
-
-The reunion will be facilitated by {!session.Capacity_PSA_Name__c} who may be contacted on {!Get_branch_Account_by_Course.Capacity_PSA_Phone__c} or at {!Get_branch_Account_by_Course.Capacity_PSA_Email__c}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
-
-We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
-Find a postnatal course
-
-
-Kind Regards,
-{!session.Enquiries_PSA_Name__c}
-Course organizer
-Email: {!Get_branch_Account_by_Course.Enquiries_PSA_Email__c}
-Tel: {!Get_branch_Account_by_Course.Enquiries_PSA_Phone__c}</text>
+        <text>&lt;p&gt;Booking reference: {!booking.Name}&lt;/p&gt;&lt;p&gt;Course reference: {!course.Name}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Dear {!booking.First_Name__c}{!partner_name_formula},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;I&#39;m delighted to confirm the details for your {!course.Sub_Type__c} course reunion which will be held on {!session.Day_of_Week__c} {!session.Date__c} from {!session.Start_Text__c} to {!session.End_Text__c}.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;We are very grateful to Mary and John Smith who have offered to host the session at their home:&lt;/p&gt;&lt;p&gt;{!venue.Town__c}, {!venue.Street_Address__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Click here to see this on a map&lt;/p&gt;&lt;p&gt;{!venue.Map_Url__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The reunion will be facilitated by {!practitioner.Name} who may be contacted on {!practitioner.Phone} or at {!practitioner.Email}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:&lt;/p&gt;&lt;p&gt;Find a postnatal course&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind Regards,&lt;/p&gt;&lt;p&gt;{!session.Enquiries_PSA_Name__c}&lt;/p&gt;&lt;p&gt;Course organizer&lt;/p&gt;&lt;p&gt;Email: {!{!branch_account}.Enquiries_PSA_Email__c}&lt;/p&gt;&lt;p&gt;Tel: {!{!branch_account}.Enquiries_PSA_Phone__c}&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>TEMPLATE_HOST</name>
@@ -905,7 +882,7 @@ Click here to see this on a map
 {!venue.Map_Url__c}
 
 
-The reunion will be facilitated by {!Get_practitioner_record.Name} who may be contacted on {!Get_practitioner_record.Phone} or at {!Get_practitioner_record.Email}. Should any changes be made to the reunion your NCT course leader will be in touch with you directly nearer the time.
+The reunion will be facilitated by {!practitioner.Name} who may be contacted on {!practitioner.Phone} or at {!practitioner.Email}. Should any changes be made to the reunion your NCT course leader will be in touch with you directly nearer the time.
 
 We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
 Find a postnatal course
@@ -914,15 +891,15 @@ Find a postnatal course
 Kind regards,
 {!session.Enquiries_PSA_Name__c}
 Course organizer
-Email: {!Get_branch_Account_by_Course.Enquiries_PSA_Email__c}
-Tel: {!Get_branch_Account_by_Course.Enquiries_PSA_Phone__c}</text>
+Email: {!branch_account.Enquiries_PSA_Email__c}
+Tel: {!branch_account.Enquiries_PSA_Phone__c}</text>
     </textTemplates>
     <textTemplates>
         <name>TEMPLATE_PRACTITIONER</name>
         <text>Course reference: {!course.Name}
 
 
-Dear {!Get_practitioner_record.FirstName},
+Dear {!practitioner.FirstName},
 
 Thank you for agreeing to facilitate the {!course.Sub_Type__c} course reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {!session.Day_of_Week__c} {!session.Date__c} from {!session.Start_Text__c} to {!session.End_Text__c} at:
 
@@ -939,8 +916,8 @@ If you need to make any future change to the reunion please arrange this yoursel
 Kind regards,
 {!session.Capacity_PSA_Name__c}
 Course organizer
-Email: {!Get_branch_Account_by_Course.Capacity_PSA_Email__c}
-Tel: {!Get_branch_Account_by_Course.Capacity_PSA_Phone__c}</text>
+Email: {!branch_account.Capacity_PSA_Email__c}
+Tel: {!branch_account.Capacity_PSA_Phone__c}</text>
     </textTemplates>
     <textTemplates>
         <name>TEMPLATE_PUBLIC</name>
@@ -959,7 +936,7 @@ Click here to see this on a map
 {!venue.Map_Url__c}
 
 
-The reunion will be facilitated by {!Get_practitioner_record.Name} who may be contacted on{!Get_practitioner_record.Phone} or at {!Get_practitioner_record.Email}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
+The reunion will be facilitated by {!practitioner.Name} who may be contacted on {!practitioner.Phone} or at {!practitioner.Email}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
 
 We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
 Find a postnatal course
@@ -968,8 +945,8 @@ Find a postnatal course
 Kind regards,
 {!session.Enquiries_PSA_Name__c}
 Course organizer
-Email: {!Get_branch_Account_by_Course.Enquiries_PSA_Email__c}
-Tel: {!Get_branch_Account_by_Course.Phone}</text>
+Email: {!branch_account.Enquiries_PSA_Email__c}
+Tel: {!branch_account.Enquiries_PSA_Phone__c}</text>
     </textTemplates>
     <variables>
         <name>booking</name>
@@ -986,6 +963,14 @@ Tel: {!Get_branch_Account_by_Course.Phone}</text>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Booking__c</objectType>
+    </variables>
+    <variables>
+        <name>branch_account</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Account</objectType>
     </variables>
     <variables>
         <name>course</name>
@@ -1011,6 +996,14 @@ Tel: {!Get_branch_Account_by_Course.Phone}</text>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>practitioner</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
     </variables>
     <variables>
         <name>session</name>
