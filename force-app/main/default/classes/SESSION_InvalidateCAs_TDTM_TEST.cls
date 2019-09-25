@@ -298,7 +298,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         List<Session__c> sessions = [
             SELECT Id, Course_Assignment__c
-            FROM Session__c LIMIT 1
+            FROM Session__c
+            LIMIT 1
         ];
         Set<Id> courseAssignmentIds = new Set<Id>();
 
@@ -308,9 +309,11 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         }
         update sessions;
 
-        Contact practitioner2 = [SELECT LastName
-        FROM Contact
-        WHERE LastName = :PRACTITIONER_LASTNAME_TWO];
+        Contact practitioner2 = [
+            SELECT LastName
+            FROM Contact
+            WHERE LastName = :PRACTITIONER_LASTNAME_TWO
+        ];
 
         test.startTest();
 
