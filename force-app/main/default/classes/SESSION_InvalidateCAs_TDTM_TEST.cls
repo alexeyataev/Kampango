@@ -255,6 +255,48 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
 
+    @isTest
+    static void InvalidateCourseAssignmentStatus_InsertNewSessionOnCA_CourseAssignmentStatusInvalidated() {
+
+        CreateTriggerSystemHandlerRecord();
+
+        Course_Assignment__c courseAssignment = [SELECT Status__c, Course__c FROM Course_Assignment__c WHERE Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS LIMIT 1];
+        Course__c course = [SELECT Id FROM Course__c WHERE Id =:courseAssignment.Course__c];
+        Session__c existingSession = [SELECT Date__c, End__c, Start__c FROM Session__c LIMIT 1];
+        Session__c session  = existingSession.clone();
+
+        test.startTest();
+
+        session.Course_Assignment__c = courseAssignment.Id;
+        session.Course__c = course.Id;
+
+        insert session;
+
+        test.stopTest();
+
+        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id =:courseAssignment.Id LIMIT 1];
+
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
+    }
+
+    @isTest
+    static void InvalidateCourseAssignmentStatus_DeleteSessionFromCA_CourseAssignmentStatusInvalidated() {
+
+        CreateTriggerSystemHandlerRecord();
+
+        Course_Assignment__c courseAssignment = [SELECT Status__c, Course__c, (SELECT Id FROM Sessions__r) FROM Course_Assignment__c WHERE Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS LIMIT 1];
+
+        test.startTest();
+
+        delete courseAssignment.Sessions__r[0];
+
+        test.stopTest();
+
+        Course_Assignment__c courseAssignmentToTest = [SELECT Status__c FROM Course_Assignment__c WHERE Id =:courseAssignment.Id LIMIT 1];
+
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
+    }
+
     private static void  ChangeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {
 
         List<Course_Assignment__c> courseAssignments = [SELECT OwnerId, Course__c FROM Course_Assignment__c LIMIT 100];
@@ -273,7 +315,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         th.Name = 'SESSION_InvalidateCAs_TDTM';
         th.npsp__Class__c = 'SESSION_InvalidateCAs_TDTM';
         th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterUpdate';
+        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete';
         th.npsp__Active__c = true;
         th.npsp__Load_Order__c = 1;
         th.npsp__Asynchronous__c = false;
