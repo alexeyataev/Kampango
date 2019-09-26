@@ -27,6 +27,7 @@ public without sharing class TestDataFactory {
     private Licence_To_Practice__c licenceToPractice;
     private Course__c course;
     private Session__c session;
+    private Session__c reunion;
 
     private static TestDataFactory instance;
 
@@ -137,6 +138,21 @@ public without sharing class TestDataFactory {
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         session = sessionBuilder
             .withCourse(course)
+            .withVenue(venue)
+            .withRoom(room)
+            .withStatus(SESSION_PROVISIONAL_STATUS)
+            .withPractitioner(practitioners[0])
+            .withPractitionerLicence(licenceToPractice)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildReunion() {
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        reunion = sessionBuilder
+            .withCourse(course)
+            .withType('Reunion')
             .withVenue(venue)
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)
@@ -267,6 +283,14 @@ public without sharing class TestDataFactory {
             aSession.Status__c = 'Confirmed';
         }
         update sessions;
+        return this;
+    }
+
+    public TestDataFactory SetCoursesToFinal(List<Course__c> courses){
+        for(Course__c course : courses){
+            course.Status__c = 'Final';
+        }
+        update courses;
         return this;
     }
 }

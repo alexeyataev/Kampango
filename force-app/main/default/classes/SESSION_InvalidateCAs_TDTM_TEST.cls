@@ -10,17 +10,24 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @TestSetup
     private static void SetupTestData() {
-      TestDataFactory.getInstance()
-            .buildOrganizationAccount('acc1')
-            .buildBranchAccount()
-            .buildPractitioner(PRACTITIONER_LASTNAME, PRACTITIONER_EMAIL_ADDRESS)
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession()
-            .buildCourseAssignment();
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory .buildOrganizationAccount('acc1')
+                    .buildBranchAccount()
+                    .buildPractitioner(PRACTITIONER_LASTNAME, PRACTITIONER_EMAIL_ADDRESS)
+                    .buildVenue()
+                    .buildRoom()
+                    .buildLicenceToPractice()
+                    .buildCourse()
+                    .buildEstimatedCosts()
+                    .buildSession()
+                    .buildReunion();
+
+        List<Session__c> provisionalNonReunionSessions = [SELECT Id FROM Session__c WHERE Status__c = 'Provisional' AND Type__c <> 'Reunion'];    
+        List<Course__c> listDraftCourses = [SELECT Id FROM Course__c WHERE Status__c = 'Draft'];
+
+        dataFactory .SetSessionsToConfirmed(provisionalNonReunionSessions)
+                    .SetCoursesToFinal(listDraftCourses)
+                    .buildCourseAssignment();
 
         User practitionerCommunityUser = TestDataFactory.convertPractitionerToPartnerCommunityUser();
         changeOwnerOfCAandRunSession_assignment_flow(practitionerCommunityUser);
@@ -30,13 +37,15 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
         TestDataFactory.getInstance()
             .buildOrganizationAccount('acc2')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS)
+            .buildLicenceToPractice();
 
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c WHERE Type__c <> 'Reunion' LIMIT 1];
 
         Contact practitioner2 = [SELECT Id, LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME_TWO];
+        Licence_To_Practice__c licence2 = [SELECT Id FROM Licence_To_Practice__c WHERE Contact__c =:practitioner2.Id];
 
         Set<Id> courseAssignmentIds = new Set<Id>();
 
@@ -44,7 +53,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         for(Session__c aSession : sessions) {
             aSession.Practitioner__c = practitioner2.Id;
-            aSession.Practitioner_Licence__c = NULL;
+            aSession.Practitioner_Licence__c = licence2.Id;
             courseAssignmentIds.add(aSession.Course_Assignment__c);
         }
         update sessions;
@@ -61,7 +70,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c WHERE Type__c <> 'Reunion' LIMIT 1];
 
         Set<Id> courseAssignmentIds = new Set<Id>();
 
@@ -85,7 +94,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c WHERE Type__c <> 'Reunion' LIMIT 1];
 
         Set<Id> courseAssignmentIds = new Set<Id>();
 
@@ -109,7 +118,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c WHERE Type__c <> 'Reunion' LIMIT 1];
 
         Set<Id> courseAssignmentIds = new Set<Id>();
 
@@ -132,7 +141,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c WHERE Type__c <> 'Reunion' LIMIT 1];
 
         Set<Id> courseAssignmentIds = new Set<Id>();
 
@@ -159,7 +168,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Venue__c venue;
         Room__c room;
 
-        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c WHERE Type__c <> 'Reunion' LIMIT 1];
 
         Set<Id> courseAssignmentIds = new Set<Id>();
 
@@ -196,14 +205,9 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [SELECT Id, Status__c, Course_Assignment__c FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id, Status__c, Course_Assignment__c FROM Session__c WHERE Type__c = 'Reunion' LIMIT 1];
 
         Set<Id> courseAssignmentIds = new Set<Id>();
-
-        for (Session__c aSession : sessions) {
-            aSession.Type__c = 'Reunion';
-        }
-        update sessions;
 
         test.startTest();
 
@@ -229,14 +233,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             .buildOrganizationAccount('acc3')
             .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
 
-        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id, Course_Assignment__c FROM Session__c WHERE Type__c = 'Reunion' LIMIT 1];
         Set<Id> courseAssignmentIds = new Set<Id>();
 
         for (Session__c aSession : sessions) {
-            aSession.Type__c = 'Reunion';
             courseAssignmentIds.add(aSession.Course_Assignment__c);
         }
-        update sessions;
 
         Contact practitioner2 = [SELECT LastName FROM Contact WHERE LastName = :PRACTITIONER_LASTNAME_TWO];
 
