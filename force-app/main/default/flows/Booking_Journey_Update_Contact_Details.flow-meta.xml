@@ -453,20 +453,6 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>partnerContactRecord.FirstName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>FirstName</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>partnerContactRecord.LastName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Last_Name</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>bookingRecord.Under_18__c</assignToReference>
             <operator>Assign</operator>
             <value>
@@ -550,20 +536,6 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>SalutationPartner</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>partnerContactRecord.FirstName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>First_Name3</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>partnerContactRecord.LastName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Last_Name3</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -742,6 +714,98 @@
         </assignmentItems>
         <connector>
             <targetReference>Update_Primary_Contact0</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignNotRequired</name>
+        <label>AssignNotRequired</label>
+        <locationX>2844</locationX>
+        <locationY>693</locationY>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fNamePartner</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lNamePartner</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>AssignChangedValues5</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignNotRequired_0</name>
+        <label>AssignNotRequired</label>
+        <locationX>2256</locationX>
+        <locationY>635</locationY>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fNamePartner</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lNamePartner</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>AssignChangedValues4</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignRequired</name>
+        <label>AssignRequired</label>
+        <locationX>3191</locationX>
+        <locationY>670</locationY>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>First_Name3</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Last_Name3</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>AssignChangedValues5</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignRequired_0</name>
+        <label>AssignRequired</label>
+        <locationX>2603</locationX>
+        <locationY>612</locationY>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FirstName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Last_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>AssignChangedValues4</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -1453,6 +1517,80 @@
         </rules>
     </decisions>
     <decisions>
+        <name>IsPartnerRequired1</name>
+        <label>IsPartnerRequired?</label>
+        <locationX>2939</locationX>
+        <locationY>351</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isPartnerRequired</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignNotRequired</targetReference>
+            </connector>
+            <label>No</label>
+        </rules>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isPartnerRequired</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignRequired</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IsPartnerRequired1_0</name>
+        <label>IsPartnerRequired?</label>
+        <locationX>2330</locationX>
+        <locationY>491</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isPartnerRequired</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignNotRequired_0</targetReference>
+            </connector>
+            <label>No</label>
+        </rules>
+        <rules>
+            <name>Yes_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isPartnerRequired</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignRequired_0</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>IsPartnerValid</name>
         <label>IsPartnerValid?</label>
         <locationX>2242</locationX>
@@ -1846,8 +1984,8 @@
     <decisions>
         <name>Phone_Validation3</name>
         <label>Phone Validation</label>
-        <locationX>1941</locationX>
-        <locationY>352</locationY>
+        <locationX>1943</locationX>
+        <locationY>349</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>HomeNotEntered3</name>
@@ -2422,6 +2560,30 @@
                 <name>individualId</name>
                 <value>
                     <elementReference>PrimaryContactRecord.IndividualId</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>email</name>
+                <value>
+                    <elementReference>marketingEmail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>phone</name>
+                <value>
+                    <elementReference>marketingPhone</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>post</name>
+                <value>
+                    <elementReference>marketingPost</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sms</name>
+                <value>
+                    <elementReference>marketingSMS</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -3006,6 +3168,30 @@
                     <elementReference>PrimaryContactRecord.IndividualId</elementReference>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>email</name>
+                <value>
+                    <elementReference>marketingEmail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>phone</name>
+                <value>
+                    <elementReference>marketingPhone</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>post</name>
+                <value>
+                    <elementReference>marketingPost</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sms</name>
+                <value>
+                    <elementReference>marketingSMS</elementReference>
+                </value>
+            </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>marketingEmail</assignToReference>
@@ -3326,13 +3512,13 @@
     <screens>
         <name>HomeIssue_0</name>
         <label>Home Issue</label>
-        <locationX>2462</locationX>
-        <locationY>547</locationY>
+        <locationX>2512</locationX>
+        <locationY>350</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>AssignChangedValues5</targetReference>
+            <targetReference>IsPartnerRequired1</targetReference>
         </connector>
         <fields>
             <name>Full_Name_Primary_2_0</name>
@@ -4058,13 +4244,13 @@
     <screens>
         <name>MobileIssue_0</name>
         <label>MobileIssue</label>
-        <locationX>2106</locationX>
+        <locationX>2107</locationX>
         <locationY>538</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>AssignChangedValues4</targetReference>
+            <targetReference>IsPartnerRequired1_0</targetReference>
         </connector>
         <fields>
             <name>Full_Name_Primary_0_0_0</name>
@@ -4443,6 +4629,16 @@
                 <assignToReference>emailPartner</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>isPartnerRequired</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>How_Heard_Default_0</name>
