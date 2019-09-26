@@ -3,8 +3,8 @@
     <assignments>
         <name>add</name>
         <label>Add in new list</label>
-        <locationX>783</locationX>
-        <locationY>245</locationY>
+        <locationX>1219</locationX>
+        <locationY>146</locationY>
         <assignmentItems>
             <assignToReference>sessions2</assignToReference>
             <operator>AddAtStart</operator>
@@ -17,10 +17,26 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Add_to_list_to_update</name>
+        <label>Add to list to update</label>
+        <locationX>500</locationX>
+        <locationY>162</locationY>
+        <assignmentItems>
+            <assignToReference>ExistingSessionsToUpdate</assignToReference>
+            <operator>AddAtStart</operator>
+            <value>
+                <elementReference>ExistingSession</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Existing_Sessions</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_new_course_assignment_to_session</name>
         <label>Assign new course assignment to session</label>
-        <locationX>1044</locationX>
-        <locationY>57</locationY>
+        <locationX>1006</locationX>
+        <locationY>250</locationY>
         <assignmentItems>
             <assignToReference>session.Course_Assignment__c</assignToReference>
             <operator>Assign</operator>
@@ -32,13 +48,30 @@
             <targetReference>add</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <description>Detatch all existing sessions from this CA record</description>
+        <name>Remove_Course_Assignment_Id</name>
+        <label>Remove Course Assignment Id</label>
+        <locationX>357</locationX>
+        <locationY>277</locationY>
+        <assignmentItems>
+            <assignToReference>ExistingSession.Course_Assignment__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_list_to_update</targetReference>
+        </connector>
+    </assignments>
     <interviewLabel>Session assignment flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Session assignment flow</label>
     <loops>
         <name>Iterate_through_sessions</name>
         <label>Iterate through sessions</label>
-        <locationX>532</locationX>
-        <locationY>52</locationY>
+        <locationX>999</locationX>
+        <locationY>48</locationY>
         <assignNextValueToReference>session</assignNextValueToReference>
         <collectionReference>sessions</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -47,6 +80,21 @@
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Update_Sessions</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Through_Existing_Sessions</name>
+        <label>Loop Through Existing Sessions</label>
+        <locationX>359</locationX>
+        <locationY>49</locationY>
+        <assignNextValueToReference>ExistingSession</assignNextValueToReference>
+        <collectionReference>ExistingSessions</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Remove_Course_Assignment_Id</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Existing_Sessions</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -63,10 +111,32 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
+        <description>Get all sessions already associated to this Course Assignment record</description>
+        <name>Get_Existing_Sessions</name>
+        <label>Get Existing Sessions</label>
+        <locationX>198</locationX>
+        <locationY>49</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Through_Existing_Sessions</targetReference>
+        </connector>
+        <filters>
+            <field>Course_Assignment__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>CA_Id_from_PB</elementReference>
+            </value>
+        </filters>
+        <object>Session__c</object>
+        <outputReference>ExistingSessions</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Course_Assignment__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <name>Get_sessions</name>
         <label>Get sessions</label>
-        <locationX>298</locationX>
-        <locationY>51</locationY>
+        <locationX>743</locationX>
+        <locationY>48</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Iterate_through_sessions</targetReference>
@@ -91,13 +161,23 @@
         <queriedFields>Course_Assignment__c</queriedFields>
     </recordLookups>
     <recordUpdates>
+        <name>Update_Existing_Sessions</name>
+        <label>Update Existing Sessions</label>
+        <locationX>607</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Get_sessions</targetReference>
+        </connector>
+        <inputReference>ExistingSessionsToUpdate</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_Sessions</name>
         <label>Update Sessions</label>
-        <locationX>534</locationX>
-        <locationY>394</locationY>
+        <locationX>1503</locationX>
+        <locationY>40</locationY>
         <inputReference>sessions2</inputReference>
     </recordUpdates>
-    <startElementReference>Get_sessions</startElementReference>
+    <startElementReference>Get_Existing_Sessions</startElementReference>
     <status>Active</status>
     <variables>
         <name>CA_Id_from_PB</name>
@@ -112,6 +192,30 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>ExistingSession</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Session__c</objectType>
+    </variables>
+    <variables>
+        <name>ExistingSessions</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Session__c</objectType>
+    </variables>
+    <variables>
+        <name>ExistingSessionsToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Session__c</objectType>
     </variables>
     <variables>
         <name>Owner_Id_From_PB</name>
