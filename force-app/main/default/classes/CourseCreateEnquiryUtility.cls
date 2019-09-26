@@ -18,7 +18,7 @@ public without sharing class CourseCreateEnquiryUtility {
                 MailingCity = requestParameters.get('town'),
                 MailingPostalCode = requestParameters.get('postcode'),
                 MailingCountry = requestParameters.get('county'),
-                MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2')
+                MailingStreet = requestParameters.get('address_line1') + ', ' + requestParameters.get('address_line2')
             );
             try {
                 upsert contact Contact.fields.Email;
