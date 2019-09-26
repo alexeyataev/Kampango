@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Birth_Due_Date__c</fullName>
     <externalId>false</externalId>
-    <label>Birth Due Date</label>
+    <label>Birth/Due Date</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>

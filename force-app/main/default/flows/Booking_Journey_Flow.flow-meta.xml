@@ -72,7 +72,7 @@
         <queriedFields>Partner_Contact__c</queriedFields>
         <queriedFields>How_Heard__c</queriedFields>
         <queriedFields>Primary_Contact__c</queriedFields>
-        <queriedFields>Birth_Or_Due_Date__c</queriedFields>
+        <queriedFields>Birth_Due_Date__c</queriedFields>
         <queriedFields>Postcode__c</queriedFields>
         <queriedFields>Street_Address__c</queriedFields>
         <queriedFields>Under_18__c</queriedFields>
