@@ -335,34 +335,27 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_InsertNewSessionOnCA_CourseAssignmentStatusInvalidated() {
+    static void InvalidateCourseAssignmentStatus_InsertNewSession_CourseAssignmentStatusInvalidated() {
 
         CreateTriggerSystemHandlerRecord();
 
         Course_Assignment__c courseAssignment = [
-            SELECT Status__c, Course__c
+            SELECT Status__c, Course__c, OwnerId
             FROM Course_Assignment__c
             WHERE Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS
             LIMIT 1
         ];
-        Course__c course = [
-            SELECT Id
-            FROM Course__c
-            WHERE Id =:courseAssignment.Course__c
-        ];
 
         Session__c existingSession = [
-            SELECT Date__c, End__c, Start__c
+            SELECT Date__c, End__c, Start__c, Practitioner__c
             FROM Session__c
-            LIMIT 1
         ];
+
         Session__c session  = existingSession.clone();
 
         test.startTest();
 
-        session.Course_Assignment__c = courseAssignment.Id;
-        session.Course__c = course.Id;
-
+        session.Course__c = courseAssignment.Course__c;
         insert session;
 
         test.stopTest();
@@ -378,12 +371,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_DeleteSessionFromCA_CourseAssignmentStatusInvalidated() {
+    static void InvalidateCourseAssignmentStatus_DeleteSession_CourseAssignmentStatusInvalidated() {
 
         CreateTriggerSystemHandlerRecord();
 
         Course_Assignment__c courseAssignment = [
-            SELECT Status__c, Course__c,
+            SELECT Status__c, Course__c, OwnerId,
                 (SELECT Id FROM Sessions__r)
             FROM Course_Assignment__c
             WHERE Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS

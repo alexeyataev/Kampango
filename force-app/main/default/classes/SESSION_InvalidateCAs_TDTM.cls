@@ -6,31 +6,13 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         List<Session__c> newSessionList = (List<Session__c>) triggerNew;
         List<Session__c> oldSessionList = (List<Session__c>) triggerOld;
         List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
-        Set<Id> courseAssignmentIds = new Set<Id>();
 
         if (triggerAction == npsp.TDTM_Runnable.Action.AfterUpdate) {
-            courseAssignmentIds.addAll(IdsOfCourseAssignmentsToChangeIfSessionsUpdated(newSessionList, oldSessionList));
+            courseAssignmentsToUpdate.addAll(IdsOfCourseAssignmentsToChangeIfSessionsUpdated(newSessionList, oldSessionList));
         }else if (triggerAction == npsp.TDTM_Runnable.Action.AfterInsert){
-            courseAssignmentIds.addAll(IdsOfCourseAssignmentsToChangeIfSessionsInserted(newSessionList));
+            courseAssignmentsToUpdate.addAll(IdsOfCourseAssignmentsToChangeIfSessionsInsertedOrDeleted(newSessionList));
         }else if(triggerAction == npsp.TDTM_Runnable.Action.AfterDelete){
-            courseAssignmentIds.addAll(IdsOfCourseAssignmentsToChangeIfSessionsDeleted(oldSessionList));
-        }
-
-        List<Course_Assignment__c> courseAssignments = [
-            SELECT Status__c
-            FROM Course_Assignment__c
-            WHERE Id IN : courseAssignmentIds
-                AND Status__c != :CA_INVALIDATED_STATUS
-            WITH SECURITY_ENFORCED
-        ];
-        //NOPMD
-        //Incident #4 - https://confluence.nct.org.uk:8443/x/EoSO
-
-        if(!courseAssignments.isEmpty()) {
-            for(Course_Assignment__c assignment : courseAssignments){
-                assignment.Status__c = CA_INVALIDATED_STATUS;
-                courseAssignmentsToUpdate.add(assignment);
-            }
+            courseAssignmentsToUpdate.addAll(IdsOfCourseAssignmentsToChangeIfSessionsInsertedOrDeleted(oldSessionList));
         }
 
         dmlWrapper.objectsToUpdate.addAll(courseAssignmentsToUpdate);
@@ -39,8 +21,9 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
     //NOPMD
     //Incident #5 - https://confluence.nct.org.uk:8443/x/EoSO
 
-    private Set<Id> IdsOfCourseAssignmentsToChangeIfSessionsUpdated(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
+    private List<Course_Assignment__c> IdsOfCourseAssignmentsToChangeIfSessionsUpdated(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
         Set<Id> courseAssignmentIds = new Set<Id>();
+        List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
         for(Integer i = 0; i<newSessionList.size(); i++) {
             if(newSessionList[i].Course_Assignment__c != NULL) {
                 if((newSessionList[i].Type__c != 'Reunion' &&
@@ -57,27 +40,52 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                 }
             }
         }
-        return courseAssignmentIds;
-    }
 
-    private Set<Id> IdsOfCourseAssignmentsToChangeIfSessionsInserted(List<Session__c> newSessionList) {
-        Set<Id> courseAssignmentIds = new Set<Id>();
-        for(Session__c aSession : newSessionList) {
-            if(aSession.Course_Assignment__c != NULL) {
-                courseAssignmentIds.add(aSession.Course_Assignment__c);
+        List<Course_Assignment__c> courseAssignments = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id IN : courseAssignmentIds
+            AND Status__c != :CA_INVALIDATED_STATUS
+            WITH SECURITY_ENFORCED
+        ];
+        //NOPMD
+        //Incident #4 - https://confluence.nct.org.uk:8443/x/EoSO
+        if(!courseAssignments.isEmpty()) {
+            for(Course_Assignment__c assignment : courseAssignments){
+                assignment.Status__c = CA_INVALIDATED_STATUS;
+                courseAssignmentsToUpdate.add(assignment);
             }
         }
-        return courseAssignmentIds;
+        return courseAssignmentsToUpdate;
     }
 
-    private Set<Id> IdsOfCourseAssignmentsToChangeIfSessionsDeleted(List<Session__c> oldSessionList) {
-        Set<Id> courseAssignmentIds = new Set<Id>();
-        for(Session__c aSession : oldSessionList) {
-            if(aSession.Course_Assignment__c != NULL) {
-                courseAssignmentIds.add(aSession.Course_Assignment__c);
+    private List<Course_Assignment__c> IdsOfCourseAssignmentsToChangeIfSessionsInsertedOrDeleted(List<Session__c> sessionsToIterate) {
+        List<Course_Assignment__c> courseAssignments = new List<Course_Assignment__c>();
+        Set<Id> practitionerIds = new Set<Id>();
+        Set<Id> courseIds = new Set<Id>();
+        for(Session__c aSession : sessionsToIterate) {
+            practitionerIds.add(aSession.Practitioner__c);
+            courseIds.add(aSession.Course__c);
+        }
+        List<User> partnerCommunityUsers =[SELECT Id FROM User WHERE ContactId IN :practitionerIds];
+
+        List<Course__c> courseWithCAs = [
+            SELECT OwnerId,
+                (SELECT Status__c
+                FROM Course_Assignments__r
+                WHERE OwnerId IN :partnerCommunityUsers
+                AND Status__c != :CA_INVALIDATED_STATUS)
+            FROM Course__c
+            WHERE Id IN :courseIds
+        ];
+
+        for(Course__c aCourse : courseWithCAs){
+            for(Course_Assignment__c courseAssignment : aCourse.Course_Assignments__r){
+                courseAssignment.Status__c = CA_INVALIDATED_STATUS;
+                courseAssignments.add(courseAssignment);
             }
         }
-        return courseAssignmentIds;
+        return courseAssignments;
     }
 }
 //NOPMD
