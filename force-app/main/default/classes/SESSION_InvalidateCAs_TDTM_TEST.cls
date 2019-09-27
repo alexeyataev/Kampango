@@ -67,13 +67,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
-                (SELECT Status__c
-                FROM Course_Assignments__r
-                WHERE OwnerId =:partnerCommunityUser.Id
-                    AND Id =:session.Course_Assignment__c),
-                (SELECT Id
-                FROM Sessions__r
-                WHERE Practitioner__c =:oldPractitionerId)
+                (
+                    SELECT Status__c
+                    FROM Course_Assignments__r
+                    WHERE OwnerId =:partnerCommunityUser.Id
+                        AND Id =:session.Course_Assignment__c
+                ),
+                (
+                    SELECT Id
+                    FROM Sessions__r
+                    WHERE Practitioner__c =:oldPractitionerId
+                )
             FROM Course__c
             WHERE Id =:session.Course__c
         ];
@@ -125,13 +129,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
-                (SELECT Status__c
-                FROM Course_Assignments__r
-                WHERE OwnerId =:partnerCommunityUser.Id
-                    AND Id =:session.Course_Assignment__c),
-                (SELECT Id
-                FROM Sessions__r
-                WHERE Practitioner__c =:oldPractitionerId)
+                (
+                    SELECT Status__c
+                    FROM Course_Assignments__r
+                    WHERE OwnerId =:partnerCommunityUser.Id
+                        AND Id =:session.Course_Assignment__c
+                ),
+                (
+                    SELECT Id
+                    FROM Sessions__r
+                    WHERE Practitioner__c =:oldPractitionerId
+                )
             FROM Course__c
             WHERE Id =:session.Course__c
         ];
@@ -183,13 +191,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
-                (SELECT Status__c
-                FROM Course_Assignments__r
-                WHERE OwnerId =:partnerCommunityUser.Id
-                    AND Id =:session.Course_Assignment__c),
-                (SELECT Id
-                FROM Sessions__r
-                WHERE Practitioner__c =:oldPractitionerId)
+                (
+                    SELECT Status__c
+                    FROM Course_Assignments__r
+                    WHERE OwnerId =:partnerCommunityUser.Id
+                        AND Id =:session.Course_Assignment__c
+                ),
+                (
+                    SELECT Id
+                    FROM Sessions__r
+                    WHERE Practitioner__c =:oldPractitionerId
+                )
             FROM Course__c
             WHERE Id =:session.Course__c
         ];
@@ -433,7 +445,10 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         Course_Assignment__c courseAssignment = [
             SELECT Status__c, Course__c, OwnerId,
-                (SELECT Id, Practitioner__c FROM Sessions__r)
+                (
+                    SELECT Id, Practitioner__c
+                    FROM Sessions__r
+                )
             FROM Course_Assignment__c
             WHERE Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS
             LIMIT 1
@@ -462,13 +477,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
-                (SELECT Status__c
-                FROM Course_Assignments__r
-                WHERE OwnerId =:partnerCommunityUser.Id
-                    AND Id =:session.Course_Assignment__c),
-                (SELECT Id
-                FROM Sessions__r
-                WHERE Practitioner__c =:session.Practitioner__c)
+                (
+                    SELECT Status__c
+                    FROM Course_Assignments__r
+                    WHERE OwnerId =:partnerCommunityUser.Id
+                        AND Id =:session.Course_Assignment__c
+                ),
+                (
+                    SELECT Id
+                    FROM Sessions__r
+                    WHERE Practitioner__c =:session.Practitioner__c
+                )
             FROM Course__c
             WHERE Id =:session.Course__c
         ];
@@ -484,7 +503,10 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         Course_Assignment__c courseAssignment = [
             SELECT Status__c, Course__c, OwnerId,
-                (SELECT Id, Practitioner__c, Course__c, Course_Assignment__c FROM Sessions__r)
+                (
+                    SELECT Id, Practitioner__c, Course__c, Course_Assignment__c
+                    FROM Sessions__r
+                )
             FROM Course_Assignment__c
             WHERE Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS
             LIMIT 1
@@ -504,13 +526,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
-                (SELECT Status__c
-                FROM Course_Assignments__r
-                WHERE OwnerId =:partnerCommunityUser.Id
-                AND Id =:courseAssignment.Sessions__r[0].Course_Assignment__c),
-                (SELECT Id
-                FROM Sessions__r
-                WHERE Practitioner__c =:courseAssignment.Sessions__r[0].Course_Assignment__c)
+                (
+                    SELECT Status__c
+                    FROM Course_Assignments__r
+                    WHERE OwnerId =:partnerCommunityUser.Id
+                    AND Id =:courseAssignment.Sessions__r[0].Course_Assignment__c
+                ),
+                (
+                    SELECT Id
+                    FROM Sessions__r
+                    WHERE Practitioner__c =:courseAssignment.Sessions__r[0].Course_Assignment__c
+                )
             FROM Course__c
             WHERE Id =:courseAssignment.Sessions__r[0].Course__c
         ];

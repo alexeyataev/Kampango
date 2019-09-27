@@ -47,17 +47,26 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        List<User> partnerCommunityUsers =[SELECT Id FROM User WHERE ContactId IN :practitionerIds WITH SECURITY_ENFORCED];
+        List<User> partnerCommunityUsers = [
+            SELECT Id
+            FROM User
+            WHERE ContactId IN :practitionerIds
+            WITH SECURITY_ENFORCED
+        ];
 
         List<Course__c> coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
-                    (SELECT Status__c
-                    FROM Course_Assignments__r
-                    WHERE OwnerId IN :partnerCommunityUsers
-                        AND Status__c != :COURSE_ASSIGNMENT_WITHDRAWN_STATUS),
-                    (SELECT Id
-                    FROM Sessions__r
-                    WHERE Practitioner__c IN:practitionerIds)
+                    (
+                        SELECT Status__c
+                        FROM Course_Assignments__r
+                        WHERE OwnerId IN :partnerCommunityUsers
+                            AND Status__c != :COURSE_ASSIGNMENT_WITHDRAWN_STATUS
+                    ),
+                    (
+                        SELECT Id
+                        FROM Sessions__r
+                        WHERE Practitioner__c IN :practitionerIds
+                    )
             FROM Course__c
             WHERE Id IN :courseIds
             WITH SECURITY_ENFORCED
@@ -78,7 +87,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         List<Course_Assignment__c> courseAssignmentsToInvalidate = [
             SELECT Status__c
             FROM Course_Assignment__c
-            WHERE Id IN : courseAssignmentIds
+            WHERE Id IN :courseAssignmentIds
                 AND Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS
             WITH SECURITY_ENFORCED
         ];
@@ -105,28 +114,38 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         List<Course_Assignment__c> courseAssignments = new List<Course_Assignment__c>();
         Set<Id> practitionerIds = new Set<Id>();
         Set<Id> courseIds = new Set<Id>();
+
         for(Session__c aSession : sessionsToIterate) {
             practitionerIds.add(aSession.Practitioner__c);
             courseIds.add(aSession.Course__c);
         }
 
-        List<User> partnerCommunityUsers =[SELECT Id FROM User WHERE ContactId IN :practitionerIds WITH SECURITY_ENFORCED];
+        List<User> partnerCommunityUsers =[
+            SELECT Id
+            FROM User
+            WHERE ContactId IN :practitionerIds
+            WITH SECURITY_ENFORCED
+        ];
 
         List<Course__c> coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
-                (SELECT Status__c
-                FROM Course_Assignments__r
-                WHERE OwnerId IN :partnerCommunityUsers
-                    AND Status__c != :COURSE_ASSIGNMENT_WITHDRAWN_STATUS),
-                (SELECT Id
-                FROM Sessions__r
-                WHERE Practitioner__c IN:practitionerIds)
+                (
+                    SELECT Status__c
+                    FROM Course_Assignments__r
+                    WHERE OwnerId IN :partnerCommunityUsers
+                    AND Status__c != :COURSE_ASSIGNMENT_WITHDRAWN_STATUS
+                ),
+                (
+                    SELECT Id
+                    FROM Sessions__r
+                    WHERE Practitioner__c IN :practitionerIds
+                )
             FROM Course__c
             WHERE Id IN :courseIds
             WITH SECURITY_ENFORCED
         ];
 
-        for(Course__c aCourse : coursesSessionsAndCourseAssignmentsToWithdrawn){
+        for(Course__c aCourse : coursesSessionsAndCourseAssignmentsToWithdrawn) {
             for(Course_Assignment__c courseAssignment : aCourse.Course_Assignments__r){
                 if(aCourse.Sessions__r.isEmpty()){
                     courseAssignment.Status__c = COURSE_ASSIGNMENT_WITHDRAWN_STATUS;
