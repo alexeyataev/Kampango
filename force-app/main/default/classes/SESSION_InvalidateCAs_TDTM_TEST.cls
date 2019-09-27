@@ -40,7 +40,13 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             FROM Session__c
             LIMIT 1
         ];
-        User partnerCommunityUser =[SELECT Id FROM User WHERE ContactId = :session.Practitioner__c];
+
+        User partnerCommunityUser = [
+            SELECT Id
+            FROM User
+            WHERE ContactId = :session.Practitioner__c
+        ];
+
         Id oldPractitionerId = session.Practitioner__c;
 
         Contact practitioner2 = [
@@ -91,7 +97,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
         ];
 
-        User partnerCommunityUser =[SELECT Id FROM User WHERE ContactId = :session.Practitioner__c];
+        User partnerCommunityUser =[
+            SELECT Id
+            FROM User
+            WHERE ContactId = :session.Practitioner__c
+        ];
+
         Id oldPractitionerId = session.Practitioner__c;
 
         Contact practitioner2 = [
@@ -99,7 +110,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             FROM Contact
             WHERE LastName =:PRACTITIONER_LASTNAME_TWO
         ];
-
 
         session.Type__c = 'Reunion';
         update session;
@@ -148,7 +158,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Session__c newSessionOnCourseAndPractitioner  = session.clone();
         insert newSessionOnCourseAndPractitioner;
 
-        User partnerCommunityUser = [SELECT Id FROM User WHERE ContactId = :session.Practitioner__c];
+        User partnerCommunityUser = [
+            SELECT Id
+            FROM User
+            WHERE ContactId = :session.Practitioner__c
+        ];
+
         Id oldPractitionerId = session.Practitioner__c;
 
         Contact practitioner2 = [
@@ -168,13 +183,13 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
-            (SELECT Status__c
-            FROM Course_Assignments__r
-            WHERE OwnerId =:partnerCommunityUser.Id
-            AND Id =:session.Course_Assignment__c),
-            (SELECT Id
-            FROM Sessions__r
-            WHERE Practitioner__c =:oldPractitionerId)
+                (SELECT Status__c
+                FROM Course_Assignments__r
+                WHERE OwnerId =:partnerCommunityUser.Id
+                    AND Id =:session.Course_Assignment__c),
+                (SELECT Id
+                FROM Sessions__r
+                WHERE Practitioner__c =:oldPractitionerId)
             FROM Course__c
             WHERE Id =:session.Course__c
         ];
@@ -433,7 +448,11 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Session__c newSessionOnCourseAndPractitioner  = session.clone();
         insert newSessionOnCourseAndPractitioner;
 
-        User partnerCommunityUser =[SELECT Id FROM User WHERE ContactId = :session.Practitioner__c];
+        User partnerCommunityUser =[
+            SELECT Id
+            FROM User
+            WHERE ContactId = :session.Practitioner__c
+        ];
 
         test.startTest();
 
@@ -471,7 +490,11 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
         ];
 
-        User partnerCommunityUser =[SELECT Id FROM User WHERE ContactId = :courseAssignment.Sessions__r[0].Practitioner__c];
+        User partnerCommunityUser =[
+            SELECT Id
+            FROM User
+            WHERE ContactId = :courseAssignment.Sessions__r[0].Practitioner__c
+        ];
 
         test.startTest();
 
