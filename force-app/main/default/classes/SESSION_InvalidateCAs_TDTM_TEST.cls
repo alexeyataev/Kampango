@@ -7,6 +7,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
     private static final String PRACTITIONER_EMAIL_ADDRESS = 'partnerCommunityUser@ncttest.com';
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
+    private static final String COURSE_ASSIGNMENT_WITHDRAWN_STATUS = 'Withdrawn';
 
     @TestSetup
     private static void SetupTestData() {
@@ -27,18 +28,20 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+    static void WithdrawCourseAssignmentStatus_PractitionerChangesOnLastNonReunionSessionOnCourse_CourseAssignmentStatusWithdrawn() {
         TestDataFactory.getInstance()
             .buildOrganizationAccount('acc2')
             .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
 
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [
-            SELECT Id, Course_Assignment__c
+        Session__c session = [
+            SELECT Id, Course__c, Practitioner__c, Course_Assignment__c
             FROM Session__c
             LIMIT 1
         ];
+        User partnerCommunityUser =[SELECT Id FROM User WHERE ContactId = :session.Practitioner__c];
+        Id oldPractitionerId = session.Practitioner__c;
 
         Contact practitioner2 = [
             SELECT Id, LastName
@@ -46,27 +49,138 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             WHERE LastName =:PRACTITIONER_LASTNAME_TWO
         ];
 
-        Set<Id> courseAssignmentIds = new Set<Id>();
-
         test.startTest();
 
-        for(Session__c aSession : sessions) {
-            aSession.Practitioner__c = practitioner2.Id;
-            aSession.Practitioner_Licence__c = NULL;
-            courseAssignmentIds.add(aSession.Course_Assignment__c);
-        }
-        update sessions;
+
+        session.Practitioner__c = practitioner2.Id;
+        session.Practitioner_Licence__c = NULL;
+
+        update session;
 
         test.stopTest();
 
-        Course_Assignment__c courseAssignmentToTest = [
-            SELECT Status__c
-            FROM Course_Assignment__c
-            WHERE Id IN :courseAssignmentIds
+        Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
+            SELECT Id,
+                (SELECT Status__c
+                FROM Course_Assignments__r
+                WHERE OwnerId =:partnerCommunityUser.Id
+                    AND Id =:session.Course_Assignment__c),
+                (SELECT Id
+                FROM Sessions__r
+                WHERE Practitioner__c =:oldPractitionerId)
+            FROM Course__c
+            WHERE Id =:session.Course__c
+        ];
+
+        System.assertEquals(0, coursesSessionsAndCourseAssignmentsToWithdrawn.Sessions__r.size());
+        System.assertEquals(COURSE_ASSIGNMENT_WITHDRAWN_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
+    }
+
+    @isTest
+    static void WithdrawCourseAssignmentStatus_PractitionerChangesOnLastReunionSessionOnCourse_CourseAssignmentStatusWithdrawn() {
+
+        CreateTriggerSystemHandlerRecord();
+
+        TestDataFactory.getInstance()
+            .buildOrganizationAccount('acc3')
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
+
+        Session__c session = [
+            SELECT Id, Course__c, Practitioner__c, Course_Assignment__c
+            FROM Session__c
             LIMIT 1
         ];
 
-        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
+        User partnerCommunityUser =[SELECT Id FROM User WHERE ContactId = :session.Practitioner__c];
+        Id oldPractitionerId = session.Practitioner__c;
+
+        Contact practitioner2 = [
+            SELECT Id, LastName
+            FROM Contact
+            WHERE LastName =:PRACTITIONER_LASTNAME_TWO
+        ];
+
+
+        session.Type__c = 'Reunion';
+        update session;
+
+        test.startTest();
+
+        session.Practitioner__c = practitioner2.Id;
+        session.Practitioner_Licence__c = NULL;
+
+        update session;
+
+        test.stopTest();
+
+        Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
+            SELECT Id,
+                (SELECT Status__c
+                FROM Course_Assignments__r
+                WHERE OwnerId =:partnerCommunityUser.Id
+                    AND Id =:session.Course_Assignment__c),
+                (SELECT Id
+                FROM Sessions__r
+                WHERE Practitioner__c =:oldPractitionerId)
+            FROM Course__c
+            WHERE Id =:session.Course__c
+        ];
+
+        System.assertEquals(0, coursesSessionsAndCourseAssignmentsToWithdrawn.Sessions__r.size());
+        System.assertEquals(COURSE_ASSIGNMENT_WITHDRAWN_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
+    }
+
+    @isTest
+    static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNotLastSessionOnCourse_CourseAssignmentStatusInvalidated() {
+
+        CreateTriggerSystemHandlerRecord();
+
+        TestDataFactory.getInstance()
+            .buildOrganizationAccount('acc3')
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
+
+        Session__c session = [
+            SELECT  Date__c, End__c, Start__c,Course__c, Practitioner__c, Course_Assignment__c
+            FROM Session__c
+            LIMIT 1
+        ];
+
+        Session__c newSessionOnCourseAndPractitioner  = session.clone();
+        insert newSessionOnCourseAndPractitioner;
+
+        User partnerCommunityUser = [SELECT Id FROM User WHERE ContactId = :session.Practitioner__c];
+        Id oldPractitionerId = session.Practitioner__c;
+
+        Contact practitioner2 = [
+            SELECT Id, LastName
+            FROM Contact
+            WHERE LastName =:PRACTITIONER_LASTNAME_TWO
+        ];
+
+        test.startTest();
+
+        session.Practitioner__c = practitioner2.Id;
+        session.Practitioner_Licence__c = NULL;
+
+        update session;
+
+        test.stopTest();
+
+        Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
+            SELECT Id,
+            (SELECT Status__c
+            FROM Course_Assignments__r
+            WHERE OwnerId =:partnerCommunityUser.Id
+            AND Id =:session.Course_Assignment__c),
+            (SELECT Id
+            FROM Sessions__r
+            WHERE Practitioner__c =:oldPractitionerId)
+            FROM Course__c
+            WHERE Id =:session.Course__c
+        ];
+
+        System.assertEquals(1, coursesSessionsAndCourseAssignmentsToWithdrawn.Sessions__r.size());
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
     }
 
     @isTest
@@ -74,28 +188,24 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [
+        Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
             LIMIT 1
         ];
 
-        Set<Id> courseAssignmentIds = new Set<Id>();
-
         test.startTest();
 
-        for (Session__c aSession : sessions) {
-            aSession.Date__c = Date.today() + 15;
-            courseAssignmentIds.add(aSession.Course_Assignment__c);
-        }
-        update sessions;
+        session.Date__c = Date.today() + 15;
+
+        update session;
 
         test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
             FROM Course_Assignment__c
-            WHERE Id IN :courseAssignmentIds
+            WHERE Id =:session.Course_Assignment__c
             LIMIT 1
         ];
 
@@ -107,28 +217,24 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [
+        Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
             LIMIT 1
         ];
 
-        Set<Id> courseAssignmentIds = new Set<Id>();
-
         test.startTest();
 
-        for (Session__c aSession : sessions) {
-            aSession.Start__c = Time.newInstance(09, 00, 0, 0);
-            courseAssignmentIds.add(aSession.Course_Assignment__c);
-        }
-        update sessions;
+        session.Start__c = Time.newInstance(09, 00, 0, 0);
+
+        update session;
 
         test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
             FROM Course_Assignment__c
-            WHERE Id IN :courseAssignmentIds
+            WHERE Id =:session.Course_Assignment__c
             LIMIT 1
         ];
 
@@ -140,28 +246,24 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [
+        Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
             LIMIT 1
         ];
 
-        Set<Id> courseAssignmentIds = new Set<Id>();
-
         test.startTest();
 
-        for(Session__c aSession : sessions) {
-            aSession.End__c = Time.newInstance(23, 00, 0, 0);
-            courseAssignmentIds.add(aSession.Course_Assignment__c);
-        }
-        update sessions;
+        session.End__c = Time.newInstance(23, 00, 0, 0);
+
+        update session;
 
         test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
             FROM Course_Assignment__c
-            WHERE Id IN :courseAssignmentIds
+            WHERE Id =:session.Course_Assignment__c
             LIMIT 1
         ];
 
@@ -170,30 +272,27 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [
+        Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
             LIMIT 1
         ];
 
-        Set<Id> courseAssignmentIds = new Set<Id>();
-
         test.startTest();
 
-        for (Session__c aSession : sessions) {
-            aSession.Lunch_Break_Minutes__c = 45;
-            courseAssignmentIds.add(aSession.Course_Assignment__c);
-        }
-        update sessions;
+        session.Lunch_Break_Minutes__c = 45;
+
+        update session;
 
         test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
             FROM Course_Assignment__c
-            WHERE Id IN :courseAssignmentIds
+            WHERE Id =:session.Course_Assignment__c
             LIMIT 1
         ];
 
@@ -208,13 +307,11 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Venue__c venue;
         Room__c room;
 
-        List<Session__c> sessions = [
+        Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
             LIMIT 1
         ];
-
-        Set<Id> courseAssignmentIds = new Set<Id>();
 
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         venue = venueBuilder
@@ -229,20 +326,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         test.startTest();
 
-        for (Session__c aSession : sessions) {
-            aSession.Venue__c = venue.Id;
-            aSession.Room__c = room.Id;
-            courseAssignmentIds.add(aSession.Course_Assignment__c);
-        }
+        session.Venue__c = venue.Id;
+        session.Room__c = room.Id;
 
-        update sessions;
+        update session;
 
         test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
             FROM Course_Assignment__c
-            WHERE Id IN :courseAssignmentIds
+            WHERE Id =:session.Course_Assignment__c
             LIMIT 1
         ];
 
@@ -254,82 +348,29 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         CreateTriggerSystemHandlerRecord();
 
-        List<Session__c> sessions = [
+        Session__c session = [
             SELECT Id, Status__c, Course_Assignment__c
             FROM Session__c
             LIMIT 1
         ];
 
-        Set<Id> courseAssignmentIds = new Set<Id>();
-
-        for (Session__c aSession : sessions) {
-            aSession.Type__c = 'Reunion';
-        }
-        update sessions;
+        session.Type__c = 'Reunion';
+        update session;
 
         test.startTest();
 
-        for (Session__c aSession : sessions) {
-            aSession.Status__c = 'Confirmed';
-            courseAssignmentIds.add(aSession.Course_Assignment__c);
-        }
-        update sessions;
+        session.Status__c = 'Confirmed';
+
+        update session;
 
         test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
             FROM Course_Assignment__c
-            WHERE Id IN :courseAssignmentIds
+            WHERE Id =:session.Course_Assignment__c
             LIMIT 1
         ];
-
-        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
-    }
-
-    @isTest
-    static void InvalidateCourseAssignmentStatus_PractitionerChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
-
-        CreateTriggerSystemHandlerRecord();
-
-        TestDataFactory.getInstance()
-            .buildOrganizationAccount('acc3')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
-
-        List<Session__c> sessions = [
-            SELECT Id, Course_Assignment__c
-            FROM Session__c
-            LIMIT 1
-        ];
-        Set<Id> courseAssignmentIds = new Set<Id>();
-
-        for (Session__c aSession : sessions) {
-            aSession.Type__c = 'Reunion';
-            courseAssignmentIds.add(aSession.Course_Assignment__c);
-        }
-        update sessions;
-
-        Contact practitioner2 = [
-            SELECT LastName
-            FROM Contact
-            WHERE LastName = :PRACTITIONER_LASTNAME_TWO
-        ];
-
-        test.startTest();
-
-        for (Session__c aSession : sessions) {
-            aSession.Practitioner__c = practitioner2.Id;
-            aSession.Practitioner_Licence__c = NULL;
-        }
-        update sessions;
-
-        test.stopTest();
-
-        Course_Assignment__c courseAssignmentToTest = [
-            SELECT Status__c
-            FROM Course_Assignment__c
-            WHERE Id IN :courseAssignmentIds
-            LIMIT 1];
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
@@ -371,17 +412,28 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
-    static void InvalidateCourseAssignmentStatus_DeleteSession_CourseAssignmentStatusInvalidated() {
+    static void InvalidateCourseAssignmentStatus_DeleteNotLastSession_CourseAssignmentStatusInvalidated() {
 
         CreateTriggerSystemHandlerRecord();
 
         Course_Assignment__c courseAssignment = [
             SELECT Status__c, Course__c, OwnerId,
-                (SELECT Id FROM Sessions__r)
+                (SELECT Id, Practitioner__c FROM Sessions__r)
             FROM Course_Assignment__c
             WHERE Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS
             LIMIT 1
         ];
+
+        Session__c session = [
+            SELECT  Date__c, End__c, Start__c,Course__c, Practitioner__c, Course_Assignment__c
+            FROM Session__c
+            LIMIT 1
+        ];
+
+        Session__c newSessionOnCourseAndPractitioner  = session.clone();
+        insert newSessionOnCourseAndPractitioner;
+
+        User partnerCommunityUser =[SELECT Id FROM User WHERE ContactId = :session.Practitioner__c];
 
         test.startTest();
 
@@ -389,14 +441,59 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         test.stopTest();
 
-        Course_Assignment__c courseAssignmentToTest = [
-            SELECT Status__c
+        Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
+            SELECT Id,
+                (SELECT Status__c
+                FROM Course_Assignments__r
+                WHERE OwnerId =:partnerCommunityUser.Id
+                    AND Id =:session.Course_Assignment__c),
+                (SELECT Id
+                FROM Sessions__r
+                WHERE Practitioner__c =:session.Practitioner__c)
+            FROM Course__c
+            WHERE Id =:session.Course__c
+        ];
+
+        System.assertEquals(1, coursesSessionsAndCourseAssignmentsToWithdrawn.Sessions__r.size());
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
+    }
+
+    @isTest
+    static void InvalidateCourseAssignmentStatus_DeleteLastSession_CourseAssignmentStatusInvalidated() {
+
+        CreateTriggerSystemHandlerRecord();
+
+        Course_Assignment__c courseAssignment = [
+            SELECT Status__c, Course__c, OwnerId,
+                (SELECT Id, Practitioner__c, Course__c, Course_Assignment__c FROM Sessions__r)
             FROM Course_Assignment__c
-            WHERE Id =:courseAssignment.Id
+            WHERE Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS
             LIMIT 1
         ];
 
-        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
+        User partnerCommunityUser =[SELECT Id FROM User WHERE ContactId = :courseAssignment.Sessions__r[0].Practitioner__c];
+
+        test.startTest();
+
+        delete courseAssignment.Sessions__r[0];
+
+        test.stopTest();
+
+        Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
+            SELECT Id,
+                (SELECT Status__c
+                FROM Course_Assignments__r
+                WHERE OwnerId =:partnerCommunityUser.Id
+                AND Id =:courseAssignment.Sessions__r[0].Course_Assignment__c),
+                (SELECT Id
+                FROM Sessions__r
+                WHERE Practitioner__c =:courseAssignment.Sessions__r[0].Course_Assignment__c)
+            FROM Course__c
+            WHERE Id =:courseAssignment.Sessions__r[0].Course__c
+        ];
+
+        System.assertEquals(0, coursesSessionsAndCourseAssignmentsToWithdrawn.Sessions__r.size());
+        System.assertEquals(COURSE_ASSIGNMENT_WITHDRAWN_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
     }
 
     private static void  ChangeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {
