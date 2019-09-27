@@ -859,8 +859,8 @@
     <assignments>
         <name>SetHowHeard5</name>
         <label>SetHowHeard</label>
-        <locationX>3192</locationX>
-        <locationY>1668</locationY>
+        <locationX>3184</locationX>
+        <locationY>1667</locationY>
         <assignmentItems>
             <assignToReference>bookingRecord.How_Heard__c</assignToReference>
             <operator>Assign</operator>
@@ -1894,7 +1894,7 @@
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>HomeNotEntered</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
             <conditions>
                 <leftValueReference>PrimaryContactRecord.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -1909,6 +1909,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>homePhone</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>HomeIssue</targetReference>
             </connector>
@@ -1916,7 +1920,7 @@
         </rules>
         <rules>
             <name>MobileNotEntered</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
             <conditions>
                 <leftValueReference>PrimaryContactRecord.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -1930,6 +1934,10 @@
                 <rightValue>
                     <stringValue/>
                 </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>mobilePhone</leftValueReference>
+                <operator>EqualTo</operator>
             </conditions>
             <connector>
                 <targetReference>MobileIssue</targetReference>
@@ -1953,6 +1961,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>homePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>Update_Primary_Contact</targetReference>
             </connector>
@@ -1975,6 +1987,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>mobilePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>Update_Primary_Contact</targetReference>
             </connector>
@@ -1989,7 +2005,7 @@
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>HomeNotEntered3</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
             <conditions>
                 <leftValueReference>PrimaryContactRecord.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -2004,6 +2020,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>homePhone</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>HomeIssue_0</targetReference>
             </connector>
@@ -2011,7 +2031,7 @@
         </rules>
         <rules>
             <name>MobileNotEntered3</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
             <conditions>
                 <leftValueReference>PrimaryContactRecord.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -2026,6 +2046,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>mobilePhone</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>MobileIssue_0</targetReference>
             </connector>
@@ -2033,7 +2057,7 @@
         </rules>
         <rules>
             <name>PartnerNameIssueOnly</name>
-            <conditionLogic>((1 AND 4) OR (2 AND 3)) AND 5</conditionLogic>
+            <conditionLogic>((1 AND 4 AND 7) OR (2 AND 3 AND 6)) AND 5</conditionLogic>
             <conditions>
                 <leftValueReference>PrimaryContactRecord.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -2069,6 +2093,14 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>homePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>mobilePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>Client_Details_0</targetReference>
             </connector>
@@ -2091,6 +2123,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>homePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>IsPartnerValid</targetReference>
             </connector>
@@ -2112,6 +2148,10 @@
                 <rightValue>
                     <stringValue/>
                 </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>mobilePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
             </conditions>
             <connector>
                 <targetReference>IsPartnerValid</targetReference>
