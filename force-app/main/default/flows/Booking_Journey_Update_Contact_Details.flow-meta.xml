@@ -2305,7 +2305,7 @@
         </fields>
         <fields>
             <name>Name_Primary</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2656,7 +2656,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0_0_0_0_0_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2976,7 +2976,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -3262,7 +3262,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0_0_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -3558,7 +3558,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0_0_0_0_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -3994,7 +3994,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -4244,7 +4244,7 @@
     <screens>
         <name>MobileIssue_0</name>
         <label>MobileIssue</label>
-        <locationX>2107</locationX>
+        <locationX>2108</locationX>
         <locationY>538</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -4290,7 +4290,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0_0_0_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
