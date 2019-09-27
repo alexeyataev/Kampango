@@ -809,6 +809,22 @@
         </connector>
     </assignments>
     <assignments>
+        <name>PartnerIsSet</name>
+        <label>PartnerIsSet</label>
+        <locationX>549</locationX>
+        <locationY>50</locationY>
+        <assignmentItems>
+            <assignToReference>isPartnerSet</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_individual_assigned</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>SetHowHeard</name>
         <label>SetHowHeard</label>
         <locationX>1593</locationX>
@@ -859,8 +875,8 @@
     <assignments>
         <name>SetHowHeard5</name>
         <label>SetHowHeard</label>
-        <locationX>3184</locationX>
-        <locationY>1667</locationY>
+        <locationX>3183</locationX>
+        <locationY>1668</locationY>
         <assignmentItems>
             <assignToReference>bookingRecord.How_Heard__c</assignToReference>
             <operator>Assign</operator>
@@ -1591,6 +1607,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>isPartnerSet1</name>
+        <label>isPartnerSet</label>
+        <locationX>321</locationX>
+        <locationY>52</locationY>
+        <defaultConnector>
+            <targetReference>Is_individual_assigned</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>bookingRecord.Partner_Contact__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>bookingRecord.Partner_Contact__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue/>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>PartnerIsSet</targetReference>
+            </connector>
+            <label>Set</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>IsPartnerValid</name>
         <label>IsPartnerValid?</label>
         <locationX>2242</locationX>
@@ -2000,7 +2045,7 @@
     <decisions>
         <name>Phone_Validation3</name>
         <label>Phone Validation</label>
-        <locationX>1943</locationX>
+        <locationX>1946</locationX>
         <locationY>349</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -2057,7 +2102,7 @@
         </rules>
         <rules>
             <name>PartnerNameIssueOnly</name>
-            <conditionLogic>((1 AND 4 AND 7) OR (2 AND 3 AND 6)) AND 5</conditionLogic>
+            <conditionLogic>((1 AND 4 AND 7) OR (2 AND 3 AND 6)) AND 5 AND 8</conditionLogic>
             <conditions>
                 <leftValueReference>PrimaryContactRecord.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -2100,6 +2145,13 @@
             <conditions>
                 <leftValueReference>mobilePhone</leftValueReference>
                 <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>isPartnerSet</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
             </conditions>
             <connector>
                 <targetReference>Client_Details_0</targetReference>
@@ -2300,7 +2352,7 @@
         <name>Client_Details</name>
         <label>Client Details</label>
         <locationX>1458</locationX>
-        <locationY>1021</locationY>
+        <locationY>1023</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2551,6 +2603,12 @@
                     <elementReference>partnerContactRecord.LastName</elementReference>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <elementReference>isPartnerSet</elementReference>
+                </value>
+            </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>fNamePartner</assignToReference>
@@ -2575,6 +2633,18 @@
                 <name>value</name>
                 <value>
                     <elementReference>partnerContactRecord.Email</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <elementReference>isPartnerSet</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>false</booleanValue>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -2880,6 +2950,40 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
+            <name>name_readonly2</name>
+            <extensionName>flowruntime:name</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>firstName</name>
+                <value>
+                    <elementReference>partnerContactRecord.FirstName</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>lastName</name>
+                <value>
+                    <elementReference>partnerContactRecord.LastName</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>isPartnerSet</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
             <name>First_Name</name>
             <dataType>String</dataType>
             <defaultValue>
@@ -2888,6 +2992,16 @@
             <fieldText>First Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>isPartnerSet</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Last_Name1</name>
@@ -2898,15 +3012,25 @@
             <fieldText>Last Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>isPartnerSet</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
-            <name>Email_Partner_0</name>
+            <name>email_readonly2</name>
             <extensionName>flowruntime:email</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
-                <name>label</name>
+                <name>disabled</name>
                 <value>
-                    <stringValue>Email</stringValue>
+                    <elementReference>isPartnerSet</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -2918,7 +3042,7 @@
             <inputParameters>
                 <name>required</name>
                 <value>
-                    <booleanValue>true</booleanValue>
+                    <elementReference>isPartnerRequired</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -3552,7 +3676,7 @@
     <screens>
         <name>HomeIssue_0</name>
         <label>Home Issue</label>
-        <locationX>2512</locationX>
+        <locationX>2509</locationX>
         <locationY>350</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -3794,7 +3918,84 @@
                         <booleanValue>true</booleanValue>
                     </rightValue>
                 </conditions>
+                <conditions>
+                    <leftValueReference>isPartnerSet</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
             </visibilityRule>
+        </fields>
+        <fields>
+            <name>name_readonly4</name>
+            <extensionName>flowruntime:name</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <elementReference>isPartnerSet</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>lastName</name>
+                <value>
+                    <elementReference>partnerContactRecord.LastName</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>firstName</name>
+                <value>
+                    <elementReference>partnerContactRecord.FirstName</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>fNamePartner</assignToReference>
+                <name>firstName</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>lNamePartner</assignToReference>
+                <name>lastName</name>
+            </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>isPartnerRequired</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>email_readonly4</name>
+            <extensionName>flowruntime:email</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <elementReference>isPartnerSet</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <elementReference>partnerContactRecord.Email</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <elementReference>isPartnerRequired</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>emailPartner</assignToReference>
+                <name>value</name>
+            </outputParameters>
         </fields>
         <fields>
             <name>First_Name3</name>
@@ -3835,86 +4036,6 @@
                     </rightValue>
                 </conditions>
             </visibilityRule>
-        </fields>
-        <fields>
-            <name>Email_partner4</name>
-            <extensionName>flowruntime:email</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>required</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>value</name>
-                <value>
-                    <elementReference>partnerContactRecord.Email</elementReference>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>emailPartner</assignToReference>
-                <name>value</name>
-            </outputParameters>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>isPartnerRequired</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>partnerName2</name>
-            <extensionName>flowruntime:name</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>fieldsToDisplayList</name>
-                <value>
-                    <stringValue>firstName,lastName</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>firstName</name>
-                <value>
-                    <elementReference>partnerContactRecord.FirstName</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>lastName</name>
-                <value>
-                    <elementReference>partnerContactRecord.LastName</elementReference>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>fNamePartner</assignToReference>
-                <name>firstName</name>
-            </outputParameters>
-            <outputParameters>
-                <assignToReference>lNamePartner</assignToReference>
-                <name>lastName</name>
-            </outputParameters>
-        </fields>
-        <fields>
-            <name>Email_partner3</name>
-            <extensionName>flowruntime:email</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>value</name>
-                <value>
-                    <elementReference>partnerContactRecord.Email</elementReference>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>emailPartner</assignToReference>
-                <name>value</name>
-            </outputParameters>
         </fields>
         <fields>
             <name>How_Heard_Default_1_0</name>
@@ -4284,7 +4405,7 @@
     <screens>
         <name>MobileIssue_0</name>
         <label>MobileIssue</label>
-        <locationX>2108</locationX>
+        <locationX>2106</locationX>
         <locationY>538</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -4526,16 +4647,23 @@
                         <booleanValue>true</booleanValue>
                     </rightValue>
                 </conditions>
+                <conditions>
+                    <leftValueReference>isPartnerSet</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
             </visibilityRule>
         </fields>
         <fields>
-            <name>partnerName3</name>
+            <name>name_readOnly3</name>
             <extensionName>flowruntime:name</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
-                <name>fieldsToDisplayList</name>
+                <name>disabled</name>
                 <value>
-                    <stringValue>firstName,lastName</stringValue>
+                    <elementReference>isPartnerSet</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -4629,7 +4757,13 @@
             <inputParameters>
                 <name>required</name>
                 <value>
-                    <booleanValue>false</booleanValue>
+                    <elementReference>isPartnerRequired</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <elementReference>isPartnerSet</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -4637,48 +4771,6 @@
                 <assignToReference>emailPartner</assignToReference>
                 <name>value</name>
             </outputParameters>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>isPartnerRequired</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>false</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>Email</name>
-            <extensionName>flowruntime:email</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>required</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>value</name>
-                <value>
-                    <elementReference>partnerContactRecord.Email</elementReference>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>emailPartner</assignToReference>
-                <name>value</name>
-            </outputParameters>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>isPartnerRequired</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
         </fields>
         <fields>
             <name>How_Heard_Default_0</name>
@@ -4749,7 +4841,7 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Is_individual_assigned</startElementReference>
+    <startElementReference>isPartnerSet1</startElementReference>
     <status>Active</status>
     <variables>
         <name>bookingId</name>
@@ -4840,6 +4932,16 @@
     </variables>
     <variables>
         <name>isPartnerRequired</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>isPartnerSet</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
