@@ -22,6 +22,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Cancellation_Reason__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Birth_Due_Date__c</field>
             </layoutItems>
             <layoutItems>
@@ -43,6 +47,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Course_Fee__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Suggested_Cancellation_Fee__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -204,11 +212,6 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>FeedItem.TextPost</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>0</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>Booking__c.Send_Offer_Email</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>1</sortOrder>
@@ -267,6 +270,11 @@
             <actionName>PrintableView</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>12</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>FeedItem.TextPost</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>0</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
