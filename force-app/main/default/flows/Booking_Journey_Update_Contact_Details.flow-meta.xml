@@ -1483,7 +1483,7 @@
         <defaultConnectorLabel>Ok</defaultConnectorLabel>
         <rules>
             <name>PartnerAdded_Invalid</name>
-            <conditionLogic>(1 OR 2 OR 3) AND (4 OR 5 OR 6)</conditionLogic>
+            <conditionLogic>(1 OR 2 OR 3) AND (4 OR 5 OR 6) AND 7</conditionLogic>
             <conditions>
                 <leftValueReference>fNamePartner</leftValueReference>
                 <operator>NotEqualTo</operator>
@@ -1524,6 +1524,13 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue/>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>isPartnerSet</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -3970,34 +3977,6 @@
             </visibilityRule>
         </fields>
         <fields>
-            <name>email_readonly4</name>
-            <extensionName>flowruntime:email</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>disabled</name>
-                <value>
-                    <elementReference>isPartnerSet</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>value</name>
-                <value>
-                    <elementReference>partnerContactRecord.Email</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>required</name>
-                <value>
-                    <elementReference>isPartnerRequired</elementReference>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>emailPartner</assignToReference>
-                <name>value</name>
-            </outputParameters>
-        </fields>
-        <fields>
             <name>First_Name3</name>
             <dataType>String</dataType>
             <defaultValue>
@@ -4036,6 +4015,34 @@
                     </rightValue>
                 </conditions>
             </visibilityRule>
+        </fields>
+        <fields>
+            <name>email_readonly4</name>
+            <extensionName>flowruntime:email</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <elementReference>isPartnerSet</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <elementReference>partnerContactRecord.Email</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <elementReference>isPartnerRequired</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>emailPartner</assignToReference>
+                <name>value</name>
+            </outputParameters>
         </fields>
         <fields>
             <name>How_Heard_Default_1_0</name>
