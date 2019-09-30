@@ -58,7 +58,7 @@ private class CourseCreateEnquiryUtilityTest {
             MailingPostalCode = 'E1 7AE',
             Phone = '+447911123456',
             AccountId = account.Id,
-            RecordTypeId = Schema.sObjectType.Contact.getRecordTypeInfosByName().get('Client').getRecordTypeId()
+            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
         insert existingContact;
         Id avaliableCourse = [
@@ -101,7 +101,7 @@ private class CourseCreateEnquiryUtilityTest {
             MailingPostalCode = 'E1 7AE',
             Phone = '+447911123456',
             AccountId = account.Id,
-            RecordTypeId = Schema.sObjectType.Contact.getRecordTypeInfosByName().get('Client').getRecordTypeId()
+            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
         insert existingContact;
         Id avaliableCourse = [
@@ -160,7 +160,7 @@ private class CourseCreateEnquiryUtilityTest {
             MailingPostalCode = 'E1 7AE',
             Phone = '+447911123456',
             AccountId = account.Id,
-            RecordTypeId = Schema.sObjectType.Contact.getRecordTypeInfosByName().get('Client').getRecordTypeId()
+            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
         insert existingContact;
         Id avaliableCourse = [
@@ -206,7 +206,7 @@ private class CourseCreateEnquiryUtilityTest {
             MailingPostalCode = 'E1 7AE',
             Phone = '+447911123456',
             AccountId = account.Id,
-            RecordTypeId = Schema.sObjectType.Contact.getRecordTypeInfosByName().get('Client').getRecordTypeId()
+            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
         insert existingContact;
         Id avaliableCourse = [
