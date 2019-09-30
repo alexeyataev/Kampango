@@ -6090,19 +6090,6 @@
         <apexPage>Zumzum.stocktransfer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    <applicationVisibilities>
-        <application>Report</application>
-        <default>false</default>
-        <visible>true</visible>
-    </applicationVisibilities>
-     <applicationVisibilities>
-        <application>Report</application>
-        <default>false</default>
-        <visible>true</visible>
-    </applicationVisibilities>
-
-
-
 
     <recordTypeVisibilities>
         <default>false</default>
@@ -6120,6 +6107,7 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>Booking__c</tab>
         <tab>standard-Account</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -6310,11 +6298,20 @@
         <tab>Warehouses</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>Venue__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>npsp__Trigger_Handler__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
     <applicationVisibilities>
         <application>Zumzum__Zumzum_Financials_L</application>
         <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>
+
     <applicationVisibilities>
         <application>Zumzum__Zumzum_Financials</application>
         <default>false</default>
