@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Course_Assignment_Rejection</fullName>
+        <description>Course Assignment Rejection</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>NCT_Templates/Course_Assignment_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>SendEmailToPractitioner</fullName>
+        <description>SendEmailToPractitioner</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</template>
+    </alerts>
+    <alerts>
         <fullName>Send_Email_When_CAD_Withdrawn</fullName>
         <description>Send Email When CAD Withdrawn</description>
         <protected>false</protected>
@@ -39,7 +59,7 @@
     </fieldUpdates>
     <rules>
         <fullName>InformPractitionerWhenCADInvalidated</fullName>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Course_Assignment__c.Status__c</field>
             <operation>equals</operation>

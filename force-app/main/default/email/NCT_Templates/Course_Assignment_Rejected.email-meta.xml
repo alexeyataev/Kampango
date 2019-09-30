@@ -2,10 +2,10 @@
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>Inform Practitioner When CAD Withdrawn</name>
+    <name>Course Assignment Rejected</name>
     <style>none</style>
     <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
-    <textOnly>Dear {!Course_Assignment__c.OwnerFirstName},  You are no longer required to attend this course as your assignment has been withdrawn.  Kind Regards,  {!Course_Assignment__c.CreatedBy} Course Organazer</textOnly>
+    <textOnly>Dear Capacity PSA,   {!Course_Assignment__c.Name}, relating to Course {!Course_Assignment__c.Course__c}, has been rejected by {!Course_Assignment__c.OwnerFullName} with the following comments: &#39;{!ApprovalRequest.Comments}&#39;   Kind Regards</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

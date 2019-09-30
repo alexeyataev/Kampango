@@ -38,7 +38,6 @@
         <members>Booking__c.Companion__c</members>
         <members>Booking__c.Do_Not_Include_on_Class_List__c</members>
         <members>Booking__c.Do_Not_Send_Further_Information__c</members>
-        <members>Booking__c.First_Baby__c</members>
         <members>Booking__c.First_Heard__c</members>
         <members>Booking__c.Membership_Choice__c</members>
         <members>Booking__c.Membership_Payment_Method__c</members>
@@ -116,9 +115,17 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>Capacity_PSA</members>
+        <members>Enquiries_PSA</members>
+        <name>Role</name>
+    </types>
+    <types>
         <members>Contact.Contact_Preferred_Email</members>
         <members>Contact.Contact_Preferred_Phone</members>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
+        <members>Zumzum__Bank_Account__c.Account_number_must_be_8_numeric_digits</members>
+        <members>Zumzum__Bank_Account__c.Check_Bank_Account_Name</members>
+        <members>Zumzum__Bank_Account__c.Sort_code_must_be_6_numeric_digits</members>
         <name>ValidationRule</name>
     </types>
     <types>

@@ -54,6 +54,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Capacity_PSA_Phone__c</field>
+        <field>Booking__c.Birth_Due_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -855,6 +856,11 @@
         <editable>false</editable>
         <field>Booking__c.Preferred_Phone__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Location__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

@@ -1,4 +1,4 @@
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import NCT_STYLES from '@salesforce/resourceUrl/NCT_Styles';
 import { loadStyle } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -70,7 +70,7 @@ export default class MarketingPreferencesComponent extends LightningElement {
                 }
                 this.dispatchEvent(
                     new ShowToastEvent({
-                        title: 'Error loading marketing preferences',
+                        title: 'Error occured while loading marketing preferences',
                         message,
                         variant: 'error'
                     })
@@ -79,6 +79,10 @@ export default class MarketingPreferencesComponent extends LightningElement {
         }
 
         handleChange(event){
+            this.email = false;
+            this.post = false;
+            this.sms = false;
+            this.phone = false;
             this.marketingValues = event.detail.value;
             if(this.marketingValues.includes('email')){
                 this.email = true;
