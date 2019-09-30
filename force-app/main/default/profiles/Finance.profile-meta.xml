@@ -1113,11 +1113,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Capacity_PSA_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Session__c.Contact_Hours__c</field>
         <readable>false</readable>
     </fieldPermissions>
