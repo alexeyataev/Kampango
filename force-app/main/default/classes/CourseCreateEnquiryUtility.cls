@@ -1,5 +1,5 @@
 public without sharing class CourseCreateEnquiryUtility {
-    private static final String CONTACT_RECORDTYPE_NAME = 'Contact';
+    private static final String CLIENT_RECORDTYPE_NAME = 'Clients';
 
     public static void createEnquiry(String courseNumber, Map<String, String> requestParameters) {
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
@@ -9,7 +9,7 @@ public without sharing class CourseCreateEnquiryUtility {
             Contact contact;
 
             contact = new Contact(
-                RecordTypeId = getContactRecordTypeByAPIName(CONTACT_RECORDTYPE_NAME),
+                RecordTypeId = getContactRecordTypeByAPIName(CLIENT_RECORDTYPE_NAME),
                 Salutation = requestParameters.get('title'),
                 FirstName = requestParameters.get('first_name'),
                 LastName = requestParameters.get('last_name'),
@@ -37,7 +37,7 @@ public without sharing class CourseCreateEnquiryUtility {
                         FirstName = requestParameters.get('partner_first_name'),
                         LastName = requestParameters.get('partner_last_name'),
                         Email = requestParameters.get('partner_email'),
-                        RecordTypeId = getContactRecordTypeByAPIName(CONTACT_RECORDTYPE_NAME)
+                        RecordTypeId = getContactRecordTypeByAPIName(CLIENT_RECORDTYPE_NAME)
                     );
                     try {
                         upsert partner Contact.fields.Email;
