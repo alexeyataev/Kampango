@@ -6323,8 +6323,6 @@
         <visible>true</visible>
     </applicationVisibilities>
 
-
-
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
