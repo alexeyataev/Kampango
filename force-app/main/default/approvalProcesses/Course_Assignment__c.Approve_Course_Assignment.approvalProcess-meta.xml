@@ -5,9 +5,6 @@
     <allowedSubmitters>
         <type>creator</type>
     </allowedSubmitters>
-    <allowedSubmitters>
-        <type>owner</type>
-    </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
         <field>Owner</field>
@@ -43,6 +40,12 @@
     <emailTemplate>NCT_Templates/Course_Assignment_is_Ready_for_Approval</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Course_Assignment_Rejection</name>
+            <type>Alert</type>
+        </action>
+    </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>

@@ -3,9 +3,9 @@
     <fullName>Check_Bank_Account_Name</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
-NOT(ISBLANK(Name)),
-NOT(REGEX(Name, &quot;^[A-Z0-9-/.&amp; ]+$&quot;))
+NOT(ISBLANK(Zumzum__Bank_Account_Name__c)),
+NOT(REGEX(Zumzum__Bank_Account_Name__c, &quot;^[A-Z0-9-/.&amp; ]+$&quot;))
 )</errorConditionFormula>
-    <errorDisplayField>Name</errorDisplayField>
+    <errorDisplayField>Zumzum__Bank_Account_Name__c</errorDisplayField>
     <errorMessage>Bank Account Name must only contain uppercase letters, numbers, spaces, hyphens, full stops, ampersands and soliduses.</errorMessage>
 </ValidationRule>

@@ -1507,6 +1507,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Venue__c.Location__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>cpm__Installment__c.Account_Key__c</field>
         <readable>true</readable>
     </fieldPermissions>

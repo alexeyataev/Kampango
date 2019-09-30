@@ -28,6 +28,13 @@
                 <elementReference>newVenueId</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>currentSession.Room__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Collect_Sessions_For_Update</targetReference>
         </connector>
@@ -89,6 +96,7 @@
         <outputReference>sessions</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Venue__c</queriedFields>
+        <queriedFields>Room__c</queriedFields>
     </recordLookups>
     <recordUpdates>
         <name>Update_Sessions</name>
