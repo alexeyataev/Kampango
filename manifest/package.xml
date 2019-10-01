@@ -9,6 +9,9 @@
         <members>CourseDetailControllerTest</members>
         <members>CourseFinderModel</members>
         <members>CourseFinderModelTest</members>
+        <members>CourseFinderModelOrdered</members>
+        <members>CourseFinderModelOrderedTest</members>
+        <members>CoursesDateDistanceModel</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
@@ -33,6 +36,8 @@
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
         <members>TestUserBuilder</members>
+        <members>ViewPort</members>
+        <members>ViewPortTest</members>
         <name>ApexClass</name>
     </types>
     <types>
