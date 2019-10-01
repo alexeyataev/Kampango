@@ -6730,883 +6730,883 @@
     <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
      <pageAccesses>
-        <apexPage>Zumzum.AccountActivity</apexPage>
+        <apexPage>Zumzum__AccountActivity</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.AccountCreditnPayment</apexPage>
+        <apexPage>Zumzum__AccountCreditnPayment</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.AgedPayable</apexPage>
+        <apexPage>Zumzum__AgedPayable</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.AgedReceivables</apexPage>
+        <apexPage>Zumzum__AgedReceivables</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.AgedRecivables</apexPage>
+        <apexPage>Zumzum__AgedRecivables</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.AgedRecivablesExcel</apexPage>
+        <apexPage>Zumzum__AgedRecivablesExcel</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Aged_Payable_Excel</apexPage>
+        <apexPage>Zumzum__Aged_Payable_Excel</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.AmendmentList</apexPage>
+        <apexPage>Zumzum__AmendmentList</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ApproveExpenseSheet</apexPage>
+        <apexPage>Zumzum__ApproveExpenseSheet</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ApprovePI</apexPage>
+        <apexPage>Zumzum__ApprovePI</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.AttachmentDeleter	</apexPage>
+        <apexPage>Zumzum__AttachmentDeleter	</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.AutocompleteTest</apexPage>
+        <apexPage>Zumzum__AutocompleteTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.BankMenu</apexPage>
+        <apexPage>Zumzum__BankMenu</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.BankPayments_New</apexPage>
+        <apexPage>Zumzum__BankPayments_New</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.BankReceipt_New</apexPage>
+        <apexPage>Zumzum__BankReceipt_New</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.BankReconcileAccounts</apexPage>
+        <apexPage>Zumzum__BankReconcileAccounts</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.BankReconcileDraftRecords</apexPage>
+        <apexPage>Zumzum__BankReconcileDraftRecords</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.BankReconcileRecords</apexPage>
+        <apexPage>Zumzum__BankReconcileRecords</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.BankRecurringTransaction</apexPage>
+        <apexPage>Zumzum__BankRecurringTransaction</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.BankTransfer</apexPage>
+        <apexPage>Zumzum__BankTransfer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CloneJournalConfirmationPage</apexPage>
+        <apexPage>Zumzum__CloneJournalConfirmationPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ClonePurchaseInvoice</apexPage>
+        <apexPage>Zumzum__ClonePurchaseInvoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CloneRecurringTransaction</apexPage>
+        <apexPage>Zumzum__CloneRecurringTransaction</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CompanyVATTransfer</apexPage>
+        <apexPage>Zumzum__CompanyVATTransfer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CompanyVatReturn</apexPage>
+        <apexPage>Zumzum__CompanyVatReturn</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CorrectLedgerEntries</apexPage>
+        <apexPage>Zumzum__CorrectLedgerEntries</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CstmrRpt</apexPage>
+        <apexPage>Zumzum__CstmrRpt</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CurrencySymbol</apexPage>
+        <apexPage>Zumzum__CurrencySymbol</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CustomReports</apexPage>
+        <apexPage>Zumzum__CustomReports</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Customer</apexPage>
+        <apexPage>Zumzum__Customer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CustomerActivity</apexPage>
+        <apexPage>Zumzum__CustomerActivity</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CustomerReceiptPayment</apexPage>
+        <apexPage>Zumzum__CustomerReceiptPayment</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
     <pageAccesses>
-        <apexPage>Zumzum.CustomerReceiptPayment_Proto</apexPage>
+        <apexPage>Zumzum__CustomerReceiptPayment_Proto</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CustomerRefund</apexPage>
+        <apexPage>Zumzum__CustomerRefund</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Customer_Activity_Statement</apexPage>
+        <apexPage>Zumzum__Customer_Activity_Statement</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Customer_Opening_Balances</apexPage>
+        <apexPage>Zumzum__Customer_Opening_Balances</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Customer_Outstanding_Statement</apexPage>
+        <apexPage>Zumzum__Customer_Outstanding_Statement</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Customer_Statement</apexPage>
+        <apexPage>Zumzum__Customer_Statement</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.CustomersOnAcctt</apexPage>
+        <apexPage>Zumzum__CustomersOnAcctt</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DashBoardAgedPayable</apexPage>
+        <apexPage>Zumzum__DashBoardAgedPayable</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DashBoardAgedRecieveables</apexPage>
+        <apexPage>Zumzum__DashBoardAgedRecieveables</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DashBoardCashFlow</apexPage>
+        <apexPage>Zumzum__DashBoardCashFlow</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DashBoardDSO</apexPage>
+        <apexPage>Zumzum__DashBoardDSO</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DashBoardProfitandLoss</apexPage>
+        <apexPage>Zumzum__DashBoardProfitandLoss</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DashBoardPurchaseReport</apexPage>
+        <apexPage>Zumzum__DashBoardPurchaseReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DashBoard_Balance_Sheet</apexPage>
+        <apexPage>Zumzum__DashBoard_Balance_Sheet</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DashboardSalesReport</apexPage>
+        <apexPage>Zumzum__DashboardSalesReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DaysSalesOutstanding</apexPage>
+        <apexPage>Zumzum__DaysSalesOutstanding</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DeleteDespatch</apexPage>
+        <apexPage>Zumzum__DeleteDespatch</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DeleteExpanseSheet</apexPage>
+        <apexPage>Zumzum__DeleteExpanseSheet</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DeletePurchaseInvoice</apexPage>
+        <apexPage>Zumzum__DeletePurchaseInvoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DeletePurchaseOrder</apexPage>
+        <apexPage>Zumzum__DeletePurchaseOrder</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DeleteReconcileDraft</apexPage>
+        <apexPage>Zumzum__DeleteReconcileDraft</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DeleteSalesInvoice</apexPage>
+        <apexPage>Zumzum__DeleteSalesInvoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DeleteSalesOrder</apexPage>
+        <apexPage>Zumzum__DeleteSalesOrder</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DeleteTimeSheet</apexPage>
+        <apexPage>Zumzum__DeleteTimeSheet</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DetailStock</apexPage>
+        <apexPage>Zumzum__DetailStock</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DispatchedSO</apexPage>
+        <apexPage>Zumzum__DispatchedSO</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.DocumentTemplate_New</apexPage>
+        <apexPage>Zumzum__DocumentTemplate_New</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ECSL_Report</apexPage>
+        <apexPage>Zumzum__ECSL_Report</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ESPending</apexPage>
+        <apexPage>Zumzum__ESPending</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ESViewPdf</apexPage>
+        <apexPage>Zumzum__ESViewPdf</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.EditCompanySetup</apexPage>
+        <apexPage>Zumzum__EditCompanySetup</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.EditControlAccounts</apexPage>
+        <apexPage>Zumzum__EditControlAccounts</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.EditDelManageStock</apexPage>
+        <apexPage>Zumzum__EditDelManageStock</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.EditDelReconcile</apexPage>
+        <apexPage>Zumzum__EditDelReconcile</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.EditNominalCategory</apexPage>
+        <apexPage>Zumzum__EditNominalCategory</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.EditPurchaseInvoice</apexPage>
+        <apexPage>Zumzum__EditPurchaseInvoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.EditSalesInvoice</apexPage>
+        <apexPage>Zumzum__EditSalesInvoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.EditSalesOrder</apexPage>
+        <apexPage>Zumzum__EditSalesOrder</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.EditScheduleStatements</apexPage>
+        <apexPage>Zumzum__EditScheduleStatements</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.EditTimeSheet</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-      <pageAccesses>
-        <apexPage>Zumzum.EditTimeSheet</apexPage>
+        <apexPage>Zumzum__EditTimeSheet</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Edit_Expense_Sheet</apexPage>
+        <apexPage>Zumzum__EditTimeSheet</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Edit_Process_Scheduled_Sales_Invoice</apexPage>
+        <apexPage>Zumzum__Edit_Expense_Sheet</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Edit_Purchase_Order</apexPage>
+        <apexPage>Zumzum__Edit_Process_Scheduled_Sales_Invoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Excel_Customer</apexPage>
+        <apexPage>Zumzum__Edit_Purchase_Order</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Excel_NominalsWithRanges</apexPage>
+        <apexPage>Zumzum__Excel_Customer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Excel_PurchaseReport</apexPage>
+        <apexPage>Zumzum__Excel_NominalsWithRanges</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Excel_SalesByContactReport</apexPage>
+        <apexPage>Zumzum__Excel_PurchaseReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Excel_SalesReport</apexPage>
+        <apexPage>Zumzum__Excel_SalesByContactReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Excel_Supplier</apexPage>
+        <apexPage>Zumzum__Excel_SalesReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Expense_Sheet_Pdf_View</apexPage>
+        <apexPage>Zumzum__Excel_Supplier</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Export_Epayment_Batch_CSV</apexPage>
+        <apexPage>Zumzum__Expense_Sheet_Pdf_View</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.Export_ePayment_File_CSV</apexPage>
+        <apexPage>Zumzum__Export_Epayment_Batch_CSV</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.FirstRun</apexPage>
+        <apexPage>Zumzum__Export_ePayment_File_CSV</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
       <pageAccesses>
-        <apexPage>Zumzum.GSetupNewPage</apexPage>
+        <apexPage>Zumzum__FirstRun</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+      <pageAccesses>
+        <apexPage>Zumzum__GSetupNewPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.GeneralJournal</apexPage>
+        <apexPage>Zumzum__GeneralJournal</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.InsertingNominals</apexPage>
+        <apexPage>Zumzum__InsertingNominals</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.InvalidOperationEs</apexPage>
+        <apexPage>Zumzum__InvalidOperationEs</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.InvalidOperationExpensehistory</apexPage>
+        <apexPage>Zumzum__InvalidOperationExpensehistory</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.InvalidOperationJournalLineItems</apexPage>
+        <apexPage>Zumzum__InvalidOperationJournalLineItems</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.InvalidOperationPI</apexPage>
+        <apexPage>Zumzum__InvalidOperationPI</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.InvalidOperationPO</apexPage>
+        <apexPage>Zumzum__InvalidOperationPO</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.InvalidOperationPR</apexPage>
+        <apexPage>Zumzum__InvalidOperationPR</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.InvalidOperationSI</apexPage>
+        <apexPage>Zumzum__InvalidOperationSI</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.InvalidOperationTS</apexPage>
+        <apexPage>Zumzum__InvalidOperationTS</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Invalid_OperationSO</apexPage>
+        <apexPage>Zumzum__Invalid_OperationSO</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.LedgerReportBalanceSheet</apexPage>
+        <apexPage>Zumzum__LedgerReportBalanceSheet</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.LedgerReportBalanceSheet_Excel</apexPage>
+        <apexPage>Zumzum__LedgerReportBalanceSheet_Excel</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.LedgerReportBalanceSheet_V1</apexPage>
+        <apexPage>Zumzum__LedgerReportBalanceSheet_V1</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.LedgerReportBalanceSheet_V1_Excel</apexPage>
+        <apexPage>Zumzum__LedgerReportBalanceSheet_V1_Excel</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.LedgerReportProfitAndLoss</apexPage>
+        <apexPage>Zumzum__LedgerReportProfitAndLoss</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.LedgerReportProfitAndLoss_Excel</apexPage>
+        <apexPage>Zumzum__LedgerReportProfitAndLoss_Excel</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.LedgerReportTrailBalance</apexPage>
+        <apexPage>Zumzum__LedgerReportTrailBalance</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.LedgerReportTrailBalance_V1</apexPage>
+        <apexPage>Zumzum__LedgerReportTrailBalance_V1</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.LedgerReportTrialBalance_Excel</apexPage>
+        <apexPage>Zumzum__LedgerReportTrialBalance_Excel</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.LedgerReportTrialBalance_V1_Excel</apexPage>
+        <apexPage>Zumzum__LedgerReportTrialBalance_V1_Excel</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.LedgerWithBalance</apexPage>
+        <apexPage>Zumzum__LedgerWithBalance</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.MTDforVATRedirectPage</apexPage>
+        <apexPage>Zumzum__MTDforVATRedirectPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.MTDforVAT_Classic</apexPage>
+        <apexPage>Zumzum__MTDforVAT_Classic</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ManageStock</apexPage>
+        <apexPage>Zumzum__ManageStock</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NewBatchPayment</apexPage>
+        <apexPage>Zumzum__NewBatchPayment</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NewControlAccount</apexPage>
+        <apexPage>Zumzum__NewControlAccount</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NewPOReceiveGoods</apexPage>
+        <apexPage>Zumzum__NewPOReceiveGoods</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NewPurchaseInvoice</apexPage>
+        <apexPage>Zumzum__NewPurchaseInvoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NewPurchaseOrder</apexPage>
+        <apexPage>Zumzum__NewPurchaseOrder</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NewSalesInvoice</apexPage>
+        <apexPage>Zumzum__NewSalesInvoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NewSalesOrder</apexPage>
+        <apexPage>Zumzum__NewSalesOrder</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.New_Expense_Sheet</apexPage>
+        <apexPage>Zumzum__New_Expense_Sheet</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.New_Time_Sheet</apexPage>
+        <apexPage>Zumzum__New_Time_Sheet</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NominalAccountSearchPage</apexPage>
+        <apexPage>Zumzum__NominalAccountSearchPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NominalActivity</apexPage>
+        <apexPage>Zumzum__NominalActivity</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NominalBudgetRecording</apexPage>
+        <apexPage>Zumzum__NominalBudgetRecording</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NominalCategoryNew</apexPage>
+        <apexPage>Zumzum__NominalCategoryNew</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NominalCodeSearchTest</apexPage>
+        <apexPage>Zumzum__NominalCodeSearchTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.NominalsWithRanges</apexPage>
+        <apexPage>Zumzum__NominalsWithRanges</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.OpeningBalances</apexPage>
+        <apexPage>Zumzum__OpeningBalances</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.PIPDFPending</apexPage>
+        <apexPage>Zumzum__PIPDFPending</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.PIViewPdf</apexPage>
+        <apexPage>Zumzum__PIViewPdf</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.POPDFPending</apexPage>
+        <apexPage>Zumzum__POPDFPending</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.POSTES</apexPage>
+        <apexPage>Zumzum__POSTES</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.PackSaleItems</apexPage>
+        <apexPage>Zumzum__PackSaleItems</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.PostInvoice</apexPage>
+        <apexPage>Zumzum__PostInvoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.PostPurchaseInvoice</apexPage>
+        <apexPage>Zumzum__PostPurchaseInvoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Process_Scheduled_Sales_Invoice</apexPage>
+        <apexPage>Zumzum__Process_Scheduled_Sales_Invoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Product_ManageStock</apexPage>
+        <apexPage>Zumzum__Product_ManageStock</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.PurchaseInvoicePdf</apexPage>
+        <apexPage>Zumzum__PurchaseInvoicePdf</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.PurchaseOrderSendtoEmail</apexPage>
+        <apexPage>Zumzum__PurchaseOrderSendtoEmail</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.PurchaseRecurringInvoice</apexPage>
+        <apexPage>Zumzum__PurchaseRecurringInvoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.PurchaseReport</apexPage>
+        <apexPage>Zumzum__PurchaseReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.PurchaseReqToPO</apexPage>
+        <apexPage>Zumzum__PurchaseReqToPO</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Purchase_Order</apexPage>
+        <apexPage>Zumzum__Purchase_Order</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Purchase_Order_Pdf_View</apexPage>
+        <apexPage>Zumzum__Purchase_Order_Pdf_View</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Purchase_Requisition</apexPage>
+        <apexPage>Zumzum__Purchase_Requisition</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Purchases</apexPage>
+        <apexPage>Zumzum__Purchases</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Recievegoods</apexPage>
+        <apexPage>Zumzum__Recievegoods</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ReconcileNowBtn</apexPage>
+        <apexPage>Zumzum__ReconcileNowBtn</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.RecurringInvoice</apexPage>
+        <apexPage>Zumzum__RecurringInvoice</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ReminderforGoodsRecieved</apexPage>
+        <apexPage>Zumzum__ReminderforGoodsRecieved</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Reminders</apexPage>
+        <apexPage>Zumzum__Reminders</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ReportBalanceSheet</apexPage>
+        <apexPage>Zumzum__ReportBalanceSheet</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ReportBalanceSheet_Excel</apexPage>
+        <apexPage>Zumzum__ReportBalanceSheet_Excel</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ReportCashFlow</apexPage>
+        <apexPage>Zumzum__ReportCashFlow</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ReportProfitAndLoss</apexPage>
+        <apexPage>Zumzum__ReportProfitAndLoss</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ReportProfitAndLoss_Excel</apexPage>
+        <apexPage>Zumzum__ReportProfitAndLoss_Excel</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ReportTrialBalance</apexPage>
+        <apexPage>Zumzum__ReportTrialBalance</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ReportTrialBalancePDF</apexPage>
+        <apexPage>Zumzum__ReportTrialBalancePDF</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ReportTrialBalance_Excel</apexPage>
+        <apexPage>Zumzum__ReportTrialBalance_Excel</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ReserveStock</apexPage>
+        <apexPage>Zumzum__ReserveStock</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SIPDFPending</apexPage>
+        <apexPage>Zumzum__SIPDFPending</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SIviewPdf</apexPage>
+        <apexPage>Zumzum__SIviewPdf</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SOEmailDelivery</apexPage>
+        <apexPage>Zumzum__SOEmailDelivery</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SOEmailDlyPDF</apexPage>
+        <apexPage>Zumzum__SOEmailDlyPDF</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SOPDFPending</apexPage>
+        <apexPage>Zumzum__SOPDFPending</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SOPdf_WLUK</apexPage>
+        <apexPage>Zumzum__SOPdf_WLUK</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SalesByContactReport</apexPage>
+        <apexPage>Zumzum__SalesByContactReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SalesInvoicePDF2</apexPage>
+        <apexPage>Zumzum__SalesInvoicePDF2</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SalesInvoicePDf</apexPage>
+        <apexPage>Zumzum__SalesInvoicePDf</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SalesMenu</apexPage>
+        <apexPage>Zumzum__SalesMenu</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SalesOrderAddEdit</apexPage>
+        <apexPage>Zumzum__SalesOrderAddEdit</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SalesOrderSendtoEmail</apexPage>
+        <apexPage>Zumzum__SalesOrderSendtoEmail</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SalesReport</apexPage>
+        <apexPage>Zumzum__SalesReport</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Sales_Order_Pdf_Veiw</apexPage>
+        <apexPage>Zumzum__Sales_Order_Pdf_Veiw</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Scan</apexPage>
+        <apexPage>Zumzum__Scan</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ScheduleStatements</apexPage>
+        <apexPage>Zumzum__ScheduleStatements</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SendExpenseAsEmail</apexPage>
+        <apexPage>Zumzum__SendExpenseAsEmail</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SendPurchaseInvoiceAsEmail</apexPage>
+        <apexPage>Zumzum__SendPurchaseInvoiceAsEmail</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SendReminders</apexPage>
+        <apexPage>Zumzum__SendReminders</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SendRemindersforGoods</apexPage>
+        <apexPage>Zumzum__SendRemindersforGoods</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SendSalesInvoiceAsEmail</apexPage>
+        <apexPage>Zumzum__SendSalesInvoiceAsEmail</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SendTimeSheettoEmail</apexPage>
+        <apexPage>Zumzum__SendTimeSheettoEmail</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Serialise_Dispatch_Item</apexPage>
+        <apexPage>Zumzum__Serialise_Dispatch_Item</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Setup</apexPage>
+        <apexPage>Zumzum__Setup</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SetupOrganisationVariables</apexPage>
+        <apexPage>Zumzum__SetupOrganisationVariables</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SplrRpt</apexPage>
+        <apexPage>Zumzum__SplrRpt</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.StockReceiveOrder</apexPage>
+        <apexPage>Zumzum__StockReceiveOrder</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Stock_Balance_Export_CSV</apexPage>
+        <apexPage>Zumzum__Stock_Balance_Export_CSV</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Stock_Balance_Report_Container</apexPage>
+        <apexPage>Zumzum__Stock_Balance_Report_Container</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SubmitMTDforVAT_Classic</apexPage>
+        <apexPage>Zumzum__SubmitMTDforVAT_Classic</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SupplierPayment</apexPage>
+        <apexPage>Zumzum__SupplierPayment</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SupplierPayment_Proto</apexPage>
+        <apexPage>Zumzum__SupplierPayment_Proto</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.SupplierRefund</apexPage>
+        <apexPage>Zumzum__SupplierRefund</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Supplier_Opening_Balances</apexPage>
+        <apexPage>Zumzum__Supplier_Opening_Balances</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.TSPending</apexPage>
+        <apexPage>Zumzum__TSPending</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Time_Sheet_Pdf_View</apexPage>
+        <apexPage>Zumzum__Time_Sheet_Pdf_View</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.TopProducts</apexPage>
+        <apexPage>Zumzum__TopProducts</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.TransactionsMenu</apexPage>
+        <apexPage>Zumzum__TransactionsMenu</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.TransferResult</apexPage>
+        <apexPage>Zumzum__TransferResult</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.Update_PI</apexPage>
+        <apexPage>Zumzum__Update_PI</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.VAT_Return</apexPage>
+        <apexPage>Zumzum__VAT_Return</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.VAT_Return_Edit</apexPage>
+        <apexPage>Zumzum__VAT_Return_Edit</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.VAT_Transfer</apexPage>
+        <apexPage>Zumzum__VAT_Transfer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.VatReturnPDF</apexPage>
+        <apexPage>Zumzum__VatReturnPDF</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.WHActionReserveStock</apexPage>
+        <apexPage>Zumzum__WHActionReserveStock</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.WH_ActionAddPart</apexPage>
+        <apexPage>Zumzum__WH_ActionAddPart</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.WH_ActionReserveStock</apexPage>
+        <apexPage>Zumzum__WH_ActionReserveStock</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ZF_Reports</apexPage>
+        <apexPage>Zumzum__ZF_Reports</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.ZumZumFinancials</apexPage>
+        <apexPage>Zumzum__ZumZumFinancials</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.companySetup</apexPage>
+        <apexPage>Zumzum__companySetup</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Zumzum.companySetup</apexPage>
+        <apexPage>Zumzum__companySetup</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
     <pageAccesses>
-        <apexPage>Zumzum.controlAccounts</apexPage>
+        <apexPage>Zumzum__controlAccounts</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
     <pageAccesses>
-        <apexPage>Zumzum.dashboardTopFiveCustomer</apexPage>
+        <apexPage>Zumzum__dashboardTopFiveCustomer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
     <pageAccesses>
-        <apexPage>Zumzum.editDespatchDetails</apexPage>
+        <apexPage>Zumzum__editDespatchDetails</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
     <pageAccesses>
-        <apexPage>Zumzum.editNomAcctt</apexPage>
+        <apexPage>Zumzum__editNomAcctt</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
     <pageAccesses>
-        <apexPage>Zumzum.editNominalAcctt</apexPage>
+        <apexPage>Zumzum__editNominalAcctt</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
     <pageAccesses>
-        <apexPage>Zumzum.selectSIPdf</apexPage>
+        <apexPage>Zumzum__selectSIPdf</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
     <pageAccesses>
-        <apexPage>Zumzum.stocktransfer</apexPage>
+        <apexPage>Zumzum__stocktransfer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 
