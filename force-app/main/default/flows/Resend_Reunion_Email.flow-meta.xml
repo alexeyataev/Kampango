@@ -4,7 +4,7 @@
         <name>Show_status</name>
         <label>Show status</label>
         <locationX>876</locationX>
-        <locationY>639</locationY>
+        <locationY>633</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <inputParameters>
@@ -23,8 +23,8 @@
     <actionCalls>
         <name>Warn_null_input</name>
         <label>Warn null input</label>
-        <locationX>56</locationX>
-        <locationY>662</locationY>
+        <locationX>98</locationX>
+        <locationY>227</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <inputParameters>
@@ -108,8 +108,8 @@
     <decisions>
         <name>Check_input_parameter</name>
         <label>Check input parameter</label>
-        <locationX>296</locationX>
-        <locationY>484</locationY>
+        <locationX>282</locationX>
+        <locationY>440</locationY>
         <defaultConnector>
             <targetReference>Warn_Reunion_is_not_confirmed</targetReference>
         </defaultConnector>
@@ -125,7 +125,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Check_reunion_session_exists</targetReference>
+                <targetReference>Confirm_Send_Email_Screen</targetReference>
             </connector>
             <label>Is Reunion Session confirmed?</label>
         </rules>
@@ -133,8 +133,8 @@
     <decisions>
         <name>Check_reunion_session_exists</name>
         <label>Check reunion session exists</label>
-        <locationX>296</locationX>
-        <locationY>646</locationY>
+        <locationX>286</locationX>
+        <locationY>230</locationY>
         <defaultConnector>
             <targetReference>Warn_null_input</targetReference>
         </defaultConnector>
@@ -150,7 +150,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Confirm_Send_Email_Screen</targetReference>
+                <targetReference>Check_input_parameter</targetReference>
             </connector>
             <label>Session exists?</label>
         </rules>
@@ -173,11 +173,11 @@
     <recordLookups>
         <name>Get_Reunion_Session_by_Course</name>
         <label>Get Reunion Session by Course</label>
-        <locationX>310</locationX>
-        <locationY>331</locationY>
+        <locationX>294</locationX>
+        <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_input_parameter</targetReference>
+            <targetReference>Check_reunion_session_exists</targetReference>
         </connector>
         <filters>
             <field>Course__c</field>
@@ -196,17 +196,18 @@
         <object>Session__c</object>
         <outputReference>session</outputReference>
         <queriedFields>Id</queriedFields>
+        <queriedFields>Status__c</queriedFields>
     </recordLookups>
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Confirm Send Email Screen</label>
-        <locationX>468</locationX>
-        <locationY>639</locationY>
+        <locationX>466</locationX>
+        <locationY>591</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Execute_sending_emails</targetReference>
+            <targetReference>Prepare_and_send</targetReference>
         </connector>
         <fields>
             <name>Confirm_Text</name>
@@ -219,18 +220,18 @@
     <startElementReference>Get_Reunion_Session_by_Course</startElementReference>
     <status>Active</status>
     <subflows>
-        <name>Execute_sending_emails</name>
-        <label>Execute sending emails</label>
-        <locationX>670</locationX>
-        <locationY>639</locationY>
+        <name>Prepare_and_send</name>
+        <label>Prepare and send</label>
+        <locationX>668</locationX>
+        <locationY>591</locationY>
         <connector>
             <targetReference>Show_status</targetReference>
         </connector>
-        <flowName>Send_Email_On_Reunion_Session_Confirmed</flowName>
+        <flowName>Reunion_Query_details_and_Update_Course</flowName>
         <inputAssignments>
-            <name>sessionId</name>
+            <name>recordId</name>
             <value>
-                <elementReference>session.Id</elementReference>
+                <elementReference>recordId</elementReference>
             </value>
         </inputAssignments>
         <outputAssignments>
@@ -239,7 +240,7 @@
         </outputAssignments>
         <outputAssignments>
             <assignToReference>subflow_status</assignToReference>
-            <name>subflow_status</name>
+            <name>output_status</name>
         </outputAssignments>
     </subflows>
     <variables>

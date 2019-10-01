@@ -10,20 +10,20 @@
         <processMetadataValues>
             <name>flowSelection</name>
             <value>
-                <stringValue>Send Email On Reunion Session Confirmed</stringValue>
+                <stringValue>Reunion Query details and Update Course</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>Send emails</label>
+        <label>Run flow</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
-        <actionName>Send_Email_On_Reunion_Session_Confirmed</actionName>
+        <actionName>Reunion_Query_details_and_Update_Course</actionName>
         <actionType>flow</actionType>
         <inputParameters>
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
-                    <stringValue>SObject</stringValue>
+                    <stringValue>String</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -35,7 +35,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>session</stringValue>
+                    <stringValue>recordId</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -47,18 +47,18 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue>Session__c</stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>SObject</stringValue>
+                    <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <name>session</name>
+            <name>recordId</name>
             <value>
-                <elementReference>myVariable_current</elementReference>
+                <elementReference>myVariable_current.Course__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -208,9 +208,8 @@
             <label>If reunion session is confirmed</label>
         </rules>
     </decisions>
-    <description>Send emails with info about reunion session to attendee, host and course leader</description>
-    <interviewLabel>Reunion_sessions_sending_emails-5_InterviewLabel</interviewLabel>
-    <label>Reunion sessions: sending emails</label>
+    <interviewLabel>Reunion_Prepare_Sending_Process-2_InterviewLabel</interviewLabel>
+    <label>Reunion Prepare Sending Process</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>

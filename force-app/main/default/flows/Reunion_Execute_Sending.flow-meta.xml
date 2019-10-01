@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Send_email_to_client_in_private_venue</name>
-        <label>Send email to client in private venue</label>
-        <locationX>1497</locationX>
-        <locationY>1135</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
+        <name>Send_to_Client</name>
+        <label>Send to Client</label>
+        <locationX>1694</locationX>
+        <locationY>1130</locationY>
+        <actionName>Booking__c.Reunion_Session_Confirmed_Not_A_Host</actionName>
+        <actionType>emailAlert</actionType>
         <connector>
             <targetReference>Send_to_client_host</targetReference>
         </connector>
@@ -14,37 +14,19 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>emailAddresses</name>
+            <name>SObjectRowId</name>
             <value>
-                <elementReference>booking.Primary_Contact_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>senderAddress</name>
-            <value>
-                <elementReference>branch_account.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <elementReference>SUBJECT_DEFAULT</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <elementReference>TEMPLATE_CLIENT_IN_PRIVATE_VENUE</elementReference>
+                <elementReference>booking.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
     <actionCalls>
-        <name>Send_email_to_host</name>
-        <label>Send email to host</label>
-        <locationX>1367</locationX>
+        <name>Send_to_Host</name>
+        <label>Send to Host</label>
+        <locationX>1523</locationX>
         <locationY>1051</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
+        <actionName>Booking__c.Reunion_Session_Confirmed_Host</actionName>
+        <actionType>emailAlert</actionType>
         <connector>
             <targetReference>Send_to_client_host</targetReference>
         </connector>
@@ -52,75 +34,36 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>emailAddresses</name>
+            <name>SObjectRowId</name>
             <value>
-                <elementReference>booking.Primary_Contact_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>senderAddress</name>
-            <value>
-                <elementReference>branch_account.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <elementReference>SUBJECT_DEFAULT</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <elementReference>TEMPLATE_HOST</elementReference>
+                <elementReference>booking.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
     <actionCalls>
-        <name>Send_email_to_practitioner</name>
-        <label>Send email to practitioner</label>
-        <locationX>783</locationX>
-        <locationY>530</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
+        <name>Send_to_Practitioner</name>
+        <label>Send to Practitioner</label>
+        <locationX>989</locationX>
+        <locationY>796</locationY>
+        <actionName>Session__c.Reunion_Session_Confirmed_Practitioner</actionName>
+        <actionType>emailAlert</actionType>
         <connector>
             <targetReference>Is_Public_Venue</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>Return_error_on_get_record</targetReference>
-        </faultConnector>
         <inputParameters>
-            <name>emailAddresses</name>
+            <name>SObjectRowId</name>
             <value>
-                <elementReference>practitioner.Email</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>senderAddress</name>
-            <value>
-                <elementReference>branch_account.Capacity_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <elementReference>subject_practitioner</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <elementReference>TEMPLATE_PRACTITIONER</elementReference>
+                <elementReference>session.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
     <actionCalls>
-        <name>Send_email_to_public</name>
-        <label>Send email to public</label>
-        <locationX>1370</locationX>
+        <name>Send_to_Public</name>
+        <label>Send to Public</label>
+        <locationX>1530</locationX>
         <locationY>428</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
+        <actionName>Booking__c.Reunion_Session_Confirmed_Public</actionName>
+        <actionType>emailAlert</actionType>
         <connector>
             <targetReference>Send_to_clients_public_venue</targetReference>
         </connector>
@@ -128,34 +71,16 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>emailAddresses</name>
+            <name>SObjectRowId</name>
             <value>
-                <elementReference>booking.Primary_Contact_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>senderAddress</name>
-            <value>
-                <elementReference>branch_account.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <elementReference>SUBJECT_DEFAULT</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <elementReference>TEMPLATE_PUBLIC</elementReference>
+                <elementReference>booking.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
     <assignments>
         <name>Assign_name_bookingList_for_output</name>
         <label>Assign name bookingList for output</label>
-        <locationX>233</locationX>
+        <locationX>389</locationX>
         <locationY>1050</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
@@ -171,7 +96,7 @@
     <assignments>
         <name>Assign_name_practit_email_for_output</name>
         <label>Assign name practit email for output</label>
-        <locationX>390</locationX>
+        <locationX>546</locationX>
         <locationY>965</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
@@ -187,7 +112,7 @@
     <assignments>
         <name>Assign_name_venue_for_output</name>
         <label>Assign name venue for output</label>
-        <locationX>665</locationX>
+        <locationX>821</locationX>
         <locationY>1037</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
@@ -203,7 +128,7 @@
     <assignments>
         <name>Build_subject_for_practitioner_email</name>
         <label>Build subject for practitioner email</label>
-        <locationX>564</locationX>
+        <locationX>720</locationX>
         <locationY>824</locationY>
         <assignmentItems>
             <assignToReference>subject_practitioner</assignToReference>
@@ -224,9 +149,25 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Clear_the_checkbox</name>
+        <label>Clear the checkbox</label>
+        <locationX>50</locationX>
+        <locationY>629</locationY>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Is_Ready_To_Send_Emails__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Course_with_checkbox</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Common_error_message</name>
         <label>Common error message</label>
-        <locationX>1994</locationX>
+        <locationX>2150</locationX>
         <locationY>1157</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
@@ -239,7 +180,7 @@
     <assignments>
         <name>Empty_list_message</name>
         <label>Empty list message</label>
-        <locationX>2216</locationX>
+        <locationX>2372</locationX>
         <locationY>966</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
@@ -252,7 +193,7 @@
     <assignments>
         <name>Part_success_message</name>
         <label>Part success message</label>
-        <locationX>1989</locationX>
+        <locationX>2145</locationX>
         <locationY>764</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
@@ -265,7 +206,7 @@
     <assignments>
         <name>Return_error_on_email_alert</name>
         <label>Return error</label>
-        <locationX>1537</locationX>
+        <locationX>1693</locationX>
         <locationY>523</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
@@ -281,7 +222,7 @@
     <assignments>
         <name>Return_error_on_get_record</name>
         <label>Return error</label>
-        <locationX>495</locationX>
+        <locationX>651</locationX>
         <locationY>404</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
@@ -294,7 +235,7 @@
     <assignments>
         <name>Return_error_on_null_value</name>
         <label>Return error</label>
-        <locationX>391</locationX>
+        <locationX>547</locationX>
         <locationY>1101</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
@@ -317,7 +258,7 @@
     <assignments>
         <name>Return_success</name>
         <label>Return success</label>
-        <locationX>1417</locationX>
+        <locationX>1573</locationX>
         <locationY>695</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
@@ -333,7 +274,7 @@
     <assignments>
         <name>Set_part_success_status</name>
         <label>Set part success status</label>
-        <locationX>871</locationX>
+        <locationX>1027</locationX>
         <locationY>50</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
@@ -349,7 +290,7 @@
     <assignments>
         <name>Success_message</name>
         <label>Success message</label>
-        <locationX>1986</locationX>
+        <locationX>2142</locationX>
         <locationY>616</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
@@ -362,7 +303,7 @@
     <assignments>
         <name>Unknown_status_message</name>
         <label>Unknown status message</label>
-        <locationX>1799</locationX>
+        <locationX>1955</locationX>
         <locationY>972</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
@@ -466,7 +407,7 @@
     <decisions>
         <name>Check_Bookings_List_is_not_null</name>
         <label>Check Bookings List is not null</label>
-        <locationX>224</locationX>
+        <locationX>380</locationX>
         <locationY>857</locationY>
         <defaultConnector>
             <targetReference>Assign_name_bookingList_for_output</targetReference>
@@ -491,8 +432,8 @@
     <decisions>
         <name>Check_input_booking</name>
         <label>Check input booking</label>
-        <locationX>1138</locationX>
-        <locationY>316</locationY>
+        <locationX>1295</locationX>
+        <locationY>317</locationY>
         <defaultConnector>
             <targetReference>Is_not_part_success_already</targetReference>
         </defaultConnector>
@@ -515,7 +456,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_email_to_public</targetReference>
+                <targetReference>Send_to_Public</targetReference>
             </connector>
             <label>Is not Cancelled</label>
         </rules>
@@ -523,7 +464,7 @@
     <decisions>
         <name>Check_input_booking2</name>
         <label>Check input booking</label>
-        <locationX>1080</locationX>
+        <locationX>1236</locationX>
         <locationY>1275</locationY>
         <defaultConnector>
             <targetReference>Send_to_client_host</targetReference>
@@ -555,10 +496,10 @@
     <decisions>
         <name>Check_is_host</name>
         <label>Check is host</label>
-        <locationX>1359</locationX>
+        <locationX>1515</locationX>
         <locationY>1278</locationY>
         <defaultConnector>
-            <targetReference>Send_email_to_client_in_private_venue</targetReference>
+            <targetReference>Send_to_Client</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -572,7 +513,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_email_to_host</targetReference>
+                <targetReference>Send_to_Host</targetReference>
             </connector>
             <label>Is host?</label>
         </rules>
@@ -580,7 +521,7 @@
     <decisions>
         <name>Check_not_part_success</name>
         <label>Check not part success</label>
-        <locationX>1146</locationX>
+        <locationX>1302</locationX>
         <locationY>574</locationY>
         <defaultConnector>
             <targetReference>Decide_on_status</targetReference>
@@ -605,7 +546,7 @@
     <decisions>
         <name>Check_Practitioner_email_is_not_null</name>
         <label>Check Practitioner email is not null</label>
-        <locationX>381</locationX>
+        <locationX>537</locationX>
         <locationY>764</locationY>
         <defaultConnector>
             <targetReference>Assign_name_practit_email_for_output</targetReference>
@@ -630,7 +571,7 @@
     <decisions>
         <name>Check_Session_Id</name>
         <label>Check Session Id</label>
-        <locationX>82</locationX>
+        <locationX>239</locationX>
         <locationY>312</locationY>
         <defaultConnector>
             <targetReference>Get_practitioner_record</targetReference>
@@ -655,10 +596,10 @@
     <decisions>
         <name>Check_venue_if_null</name>
         <label>Check venue if null</label>
-        <locationX>679</locationX>
+        <locationX>835</locationX>
         <locationY>667</locationY>
         <defaultConnector>
-            <targetReference>Send_email_to_practitioner</targetReference>
+            <targetReference>Send_to_Practitioner</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -680,7 +621,7 @@
     <decisions>
         <name>Decide_on_error_status</name>
         <label>Decide on error status</label>
-        <locationX>1984</locationX>
+        <locationX>2140</locationX>
         <locationY>964</locationY>
         <defaultConnector>
             <targetReference>Common_error_message</targetReference>
@@ -705,7 +646,7 @@
     <decisions>
         <name>Decide_on_status</name>
         <label>Decide on status</label>
-        <locationX>1789</locationX>
+        <locationX>1945</locationX>
         <locationY>769</locationY>
         <defaultConnector>
             <targetReference>Unknown_status_message</targetReference>
@@ -760,7 +701,7 @@
     <decisions>
         <name>Is_not_part_success_already</name>
         <label>Is not part success already</label>
-        <locationX>1163</locationX>
+        <locationX>1317</locationX>
         <locationY>103</locationY>
         <defaultConnector>
             <targetReference>Send_to_clients_public_venue</targetReference>
@@ -785,7 +726,7 @@
     <decisions>
         <name>Is_Public_Venue</name>
         <label>Is Public Venue</label>
-        <locationX>926</locationX>
+        <locationX>1082</locationX>
         <locationY>693</locationY>
         <defaultConnector>
             <targetReference>Return_success</targetReference>
@@ -842,12 +783,12 @@
         <dataType>String</dataType>
         <expression>{!session.Start__c}</expression>
     </formulas>
-    <interviewLabel>Send Email On Reunion Session Confirmed {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Send Email On Reunion Session Confirmed</label>
+    <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Reunion Execute Sending Flow</label>
     <loops>
         <name>Send_to_client_host</name>
         <label>Send to client host</label>
-        <locationX>934</locationX>
+        <locationX>1090</locationX>
         <locationY>1051</locationY>
         <assignNextValueToReference>booking</assignNextValueToReference>
         <collectionReference>BookingList</collectionReference>
@@ -862,7 +803,7 @@
     <loops>
         <name>Send_to_clients_public_venue</name>
         <label>Send to clients public venue</label>
-        <locationX>932</locationX>
+        <locationX>1088</locationX>
         <locationY>436</locationY>
         <assignNextValueToReference>booking</assignNextValueToReference>
         <collectionReference>BookingList</collectionReference>
@@ -890,7 +831,7 @@
     <recordLookups>
         <name>Get_bookings</name>
         <label>Get bookings</label>
-        <locationX>97</locationX>
+        <locationX>253</locationX>
         <locationY>914</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -926,7 +867,7 @@
     <recordLookups>
         <name>Get_branch_Account_by_Course</name>
         <label>Get branch Account by Course</label>
-        <locationX>90</locationX>
+        <locationX>246</locationX>
         <locationY>774</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -955,11 +896,11 @@
     <recordLookups>
         <name>Get_Course</name>
         <label>Get Course</label>
-        <locationX>90</locationX>
+        <locationX>246</locationX>
         <locationY>617</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_branch_Account_by_Course</targetReference>
+            <targetReference>Clear_the_checkbox</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -981,7 +922,7 @@
     <recordLookups>
         <name>Get_practitioner_record</name>
         <label>Get practitioner record</label>
-        <locationX>90</locationX>
+        <locationX>246</locationX>
         <locationY>480</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1005,7 +946,7 @@
     <recordLookups>
         <name>Get_session</name>
         <label>Get session</label>
-        <locationX>293</locationX>
+        <locationX>449</locationX>
         <locationY>321</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1040,7 +981,7 @@
     <recordLookups>
         <name>Get_Venue</name>
         <label>Get Venue</label>
-        <locationX>564</locationX>
+        <locationX>720</locationX>
         <locationY>665</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1067,6 +1008,16 @@
         <queriedFields>Name</queriedFields>
         <queriedFields>Map_Url__c</queriedFields>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_Course_with_checkbox</name>
+        <label>Update Course with checkbox</label>
+        <locationX>50</locationX>
+        <locationY>765</locationY>
+        <connector>
+            <targetReference>Get_branch_Account_by_Course</targetReference>
+        </connector>
+        <inputReference>course</inputReference>
+    </recordUpdates>
     <startElementReference>Check_Session_Id</startElementReference>
     <status>Active</status>
     <textTemplates>
