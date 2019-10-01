@@ -1,0 +1,18 @@
+Course reference: {!Course__c.Name}<br><br>
+Dear {!Course__c.Reunion_Practitioner_Name__c},<br><br>
+
+Thank you for agreeing to facilitate the {!Course__c.Sub_Type__c} course reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {!Course__c.Reunion_Session_Day_Of_Week__c} {!Course__c.Reunion_Session_Date__c} from {!Course__c.Reunion_Start__c} to {!Course__c.Reunion_End__c} at:<br><br>
+
+{!Course__c.Reunion_Venue_Name__c}<br>
+{!Course__c.Reunion_Venue_Town__c}<br>
+{!Course__c.Reunion_Venue_Street_Address__c} <br><br>
+
+<a href="{!Course__c.Reunion_Venue_Map_Url__c}">Please click  here to see this on a map</a> <br><br>
+
+If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.<br><br>
+
+Kind regards,<br>
+{!Course__c.Reunion_Capacity_PSA_Name__c}<br>
+Course organizer<br><br>
+Email: {!Course__c.Reunion_Capacity_PSA_Email__c}<br>
+Tel: {!Course__c.Reunion_Capacity_PSA_Phone__c}
