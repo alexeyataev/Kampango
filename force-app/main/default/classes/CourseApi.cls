@@ -14,26 +14,16 @@ global class CourseApi {
             RestResponse response = CourseSearchUtility.getCoursesByBranch(branchId);
             RestContext.response.statusCode = response.statusCode;
             RestContext.response.responseBody = response.responseBody;
+        } else if (paramsSet.contains('location')) {
+            RestResponse response = CourseSearchUtility.getCoursesByDateDistance(RestContext.request.params);
+            RestContext.response.statusCode = response.statusCode;
+            RestContext.response.responseBody = response.responseBody;
         } else {
             RestContext.response.statusCode = 404;
             RestContext.response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }
         
         RestContext.response.addHeader('Content-Type', 'application/json');
-    }
-    
-    private static Boolean isByLocation(Set<String> paramsSet){
-        Boolean result = false;
-
-        if (
-            paramsSet.contains('viewports') &&
-            paramsSet.contains('radius') &&
-            paramsSet.contains('location') &&
-            paramsSet.contains('birth')
-        ) {
-            result = true;
-        }
-        return result;
     }
     
     @HttpPost
