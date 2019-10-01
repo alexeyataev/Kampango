@@ -4,5 +4,5 @@ public class CoursesDateDistanceModel {
     public List<List<Double>> ViewPort {get; set;}
     public Integer LowestRankIncluded {get; set;}
     public Integer SuggestedLowestRank {get; set;}
-    public List<CourseFinderModelOrdered> courseModels {get; set;}
+    public List<CourseFinderModelOrdered> Courses {get; set;}
 }

@@ -178,7 +178,7 @@ public without sharing class CourseSearchUtility {
             }
             
             CoursesDateDistanceModel sortedModel = new CoursesDateDistanceModel();
-            sortedModel.courseModels = models;
+            sortedModel.Courses = models;
             sortedModel.LowestRankIncluded = 5;
             sortedModel.SuggestedLowestRank = 5;
             sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
