@@ -59,7 +59,7 @@
     </fieldUpdates>
     <rules>
         <fullName>InformPractitionerWhenCADInvalidated</fullName>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Course_Assignment__c.Status__c</field>
             <operation>equals</operation>
