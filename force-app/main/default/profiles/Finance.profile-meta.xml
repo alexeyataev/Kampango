@@ -842,7 +842,7 @@
         <readable>true</readable>
     </fieldPermissions>
   
-     <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__API_Log__c.Zumzum__Action__c</field>
         <readable>true</readable>
@@ -2919,6 +2919,201 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Company_Currency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Company_Gross_Total__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Company_Net_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Company_Net_Total__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Company_Tax_Total__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Company_Tax__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Company_To_Corporate_Rate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Company__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Corporate_Currency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Custom_Rate_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Custom_Rate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Dimension_1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Dimension_2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Dimension_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Dimension_4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Dimension_5__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Dimension_6__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Foreign_Currency_Rate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Foreign_Gross__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Foreign_Net_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Foreign_Net_Total__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Foreign_Tax_Total__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Foreign_Tax__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Item_Received__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Narrative__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Nominal_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Opportunity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Purchase_Order_Line_Item__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Purchase_Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Quantity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Ready_To_Pay__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Serial_No__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Tax_Rate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Total_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Total_Net__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Total_VAT__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Transaction_Currency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__UID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Invoice__c.Zumzum__Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3105,247 +3300,317 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Order_Inventory_Movement__c.Zumzum__Location__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Inventory_Movement__c.Zumzum__Movement_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Order_Inventory_Movement__c.Zumzum__ProductId__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Order_Inventory_Movement__c.Zumzum__Product__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Inventory_Movement__c.Zumzum__Quantity__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Inventory_Movement__c.Zumzum__Serial_Number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Inventory_Movement__c.Zumzum__Unit_Cost__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Order_Inventory_Movement__c.Zumzum__Warehouse__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Delete__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Item_Received__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Nominal_Account__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Opportunity__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Product__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Project__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Purchase_Requisitions_Line_Item__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Quantity_Received__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Quantity_Unreceived__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Serial_No__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Tax_Rate__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Total_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__Total_VAT__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Order_Line_Items__c.Zumzum__UID__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Account_Shipping_Address__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Account__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Comments__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Contact__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Order_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Purchase_Requisition__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Ship_to_Address__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Supplier_Reference__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Total_Gross__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Total_Net_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Total_Net__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Total_VAT__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Order__c.Zumzum__Use_Billing_Address__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Budget_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Budget_Status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Case__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Comments__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Hold_from_Further_Processing__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Purchase_Requisition_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Requester__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Required_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Total_Gross__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Total_Net__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Requisition__c.Zumzum__Total_VAT__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Budget_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Case__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Narrative__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Nominal_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Product_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Product__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Quantity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Sales_Order_Line_Item__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Tax_Rate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Total_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Total_Gross__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Requisitions_Line_Item__c.Zumzum__Total_VAT__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -5762,7 +6027,7 @@
         <field>gaid__Gift_Aid_Declaration__c.gaid__Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <objectPermissions>
+  <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
@@ -6110,7 +6375,61 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>Zumzum__Purchase_Invoice_Line_Item__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>Zumzum__Purchase_Invoice__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Zumzum__Purchase_Order_Inventory_Movement__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Zumzum__Purchase_Order_Line_Items__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Zumzum__Purchase_Order__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Zumzum__Purchase_Requisition__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Zumzum__Purchase_Requisitions_Line_Item__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -7331,186 +7650,231 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Bank</tab>
+        <tab>Zumzum__Bank__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Bank Accounts</tab>
+        <tab>Zumzum__Bank_Account__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Bank Payments</tab>
+        <tab>Zumzum__Bank_Payment__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Bank Receipts</tab>
+        <tab>Zumzum__Bank_Receipt__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>BankReconcile</tab>
+        <tab>Zumzum__BankReconcile__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Bank Transfer</tab>
+        <tab>Zumzum__BankTransfer__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Batch Bank Payments</tab>
+        <tab>Zumzum__Batch_Bank_Payment__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Batch Bank Receipts</tab>
+        <tab>Zumzum__Batch_Bank_Receipt__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Batch Sales Invoice Jobs</tab>
+        <tab>Zumzum__Batch_Sales_Invoice_Job__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Companies</tab>
+        <tab>Zumzum__Company__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Company Setup</tab>
+        <tab>Zumzum__Company_Setup__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
         <tabVisibilities>
-        <tab>Control Accounts</tab>
+        <tab>Zumzum__Control_Account__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 
     <tabVisibilities>
-        <tab>Despatch Details</tab>
+        <tab>Zumzum__Despatch_Detail__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 
     <tabVisibilities>
-        <tab>Dimensions</tab>
+        <tab>Zumzum__Dimension__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 
     <tabVisibilities>
-        <tab>Document Template</tab>
+        <tab>Zumzum__Invoice_Template__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 
     <tabVisibilities>
-        <tab>Expense Sheet</tab>
+        <tab>Zumzum__Expense_Sheet__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 
     <tabVisibilities>
-        <tab>General Setup</tab>
+        <tab>Zumzum__General_Setup__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 
     <tabVisibilities>
-        <tab>Getting Started (Zumzum)</tab>
+        <tab>Zumzum__Financial_Reports</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 
     <tabVisibilities>
-        <tab>Journals</tab>
+        <tab>Zumzum__Journal__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 
     <tabVisibilities>
-        <tab>Ledger</tab>
+        <tab>Zumzum__Ledger__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 
     <tabVisibilities>
-        <tab>Nominal Accounts</tab>
+        <tab>Zumzum__Nominal_Account__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 
     <tabVisibilities>
-        <tab>Nominal Budgets</tab>
+        <tab>Zumzum__Nominal_Budget__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
 
     <tabVisibilities>
-        <tab>Nominal Categories</tab>
+        <tab>Zumzum__Nominal_Categories__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
      <tabVisibilities>
-        <tab>Purchase Invoices</tab>
+        <tab>Zumzum__Purchase_Invoice__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
      <tabVisibilities>
-        <tab>RecurringTransaction</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-     <tabVisibilities>
-        <tab>Revenue Recognition Rules</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-     <tabVisibilities>
-        <tab>Revenue Recognition Rule Settings</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-     <tabVisibilities>
-        <tab>Revenue Recognition Schedules</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-     <tabVisibilities>
-        <tab>Sales Invoices</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-     <tabVisibilities>
-        <tab>Sales Orders</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-     <tabVisibilities>
-        <tab>Schedule Reminders</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-     <tabVisibilities>
-        <tab>Schedule Statements</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-     <tabVisibilities>
-        <tab>Setup (Zumzum)</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-     <tabVisibilities>
-        <tab>Stock Balances</tab>
+        <tab>Zumzum__Purchase_Order__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Sub Category</tab>
+        <tab>Zumzum__Purchase_Requisition__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+     <tabVisibilities>
+        <tab>Zumzum__Purchase_Requisition__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Tax</tab>
+        <tab>Zumzum__Purchasing</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+     <tabVisibilities>
+        <tab>Zumzum__RecurringTransaction__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+     <tabVisibilities>
+        <tab>Zumzum__Revenue_Recognition_Rule__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+     <tabVisibilities>
+        <tab>Zumzum__Revenue_Recognition_Rule_Setting__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+     <tabVisibilities>
+        <tab>Zumzum__Revenue_Recognition_Schedule__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+     <tabVisibilities>
+        <tab>Zumzum__Sales_Invoice__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Time Sheets</tab>
+        <tab>Zumzum__Sales_Invoice_Plan_Template_Line__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>VAT Gateway</tab>
+        <tab>Zumzum__Sales_Invoice_Plan_Template__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+      <tabVisibilities>
+        <tab>Zumzum__Sales_Invoice_Plan__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>VAT Liabilities</tab>
+        <tab>Zumzum__Sales</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+     <tabVisibilities>
+        <tab>Zumzum__Sales_Order__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+     <tabVisibilities>
+        <tab>Zumzum__Schedule_Reminders__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+     <tabVisibilities>
+        <tab>Zumzum__Schedule_Statements__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>VAT Obligations</tab>
+        <tab>Zumzum__Scheduled_Sales_Invoice__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    
+     <tabVisibilities>
+        <tab>Zumzum__Setup</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+     <tabVisibilities>
+        <tab>Zumzum__Stock_Balance__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>VAT Payments</tab>
+        <tab>Zumzum__Sub_Category__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>VAT Return</tab>
+        <tab>Zumzum__Tax_Rate__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Warehouses</tab>
+        <tab>Zumzum__Time_Sheet__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Zumzum__Transactions</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Zumzum__VAT_Gateway__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Zumzum__VAT_Liabilities__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Zumzum__VAT_Obligation__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Zumzum__VAT_Payments__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Zumzum__VAT_Return__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Zumzum__Warehouse__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Zumzum__ZumZum_Financials</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
      <tabVisibilities>

@@ -187,6 +187,6 @@
         <searchResultsAdditionalFields>Zumzum__Case__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Zumzum__Comments__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
