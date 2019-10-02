@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Send_to_Client</name>
-        <label>Send to Client</label>
-        <locationX>1694</locationX>
-        <locationY>1130</locationY>
-        <actionName>Booking__c.Reunion_Session_Confirmed_Not_A_Host</actionName>
-        <actionType>emailAlert</actionType>
-        <connector>
-            <targetReference>Send_to_client_host</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Return_error_on_email_alert</targetReference>
-        </faultConnector>
-        <inputParameters>
-            <name>SObjectRowId</name>
-            <value>
-                <elementReference>booking.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <name>Send_to_Host</name>
-        <label>Send to Host</label>
-        <locationX>1523</locationX>
-        <locationY>1051</locationY>
-        <actionName>Booking__c.Reunion_Session_Confirmed_Host</actionName>
-        <actionType>emailAlert</actionType>
-        <connector>
-            <targetReference>Send_to_client_host</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Return_error_on_email_alert</targetReference>
-        </faultConnector>
-        <inputParameters>
-            <name>SObjectRowId</name>
-            <value>
-                <elementReference>booking.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
         <name>Send_to_Practitioner</name>
         <label>Send to Practitioner</label>
         <locationX>971</locationX>
@@ -50,30 +10,13 @@
         <connector>
             <targetReference>Is_Public_Venue</targetReference>
         </connector>
-        <inputParameters>
-            <name>SObjectRowId</name>
-            <value>
-                <elementReference>session.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <name>Send_to_Public</name>
-        <label>Send to Public</label>
-        <locationX>1530</locationX>
-        <locationY>428</locationY>
-        <actionName>Booking__c.Reunion_Session_Confirmed_Public</actionName>
-        <actionType>emailAlert</actionType>
-        <connector>
-            <targetReference>Send_to_clients_public_venue</targetReference>
-        </connector>
         <faultConnector>
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
             <name>SObjectRowId</name>
             <value>
-                <elementReference>booking.Id</elementReference>
+                <elementReference>session.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -96,13 +39,13 @@
     <assignments>
         <name>Assign_name_practit_email_for_output</name>
         <label>Assign name practit email for output</label>
-        <locationX>546</locationX>
-        <locationY>965</locationY>
+        <locationX>598</locationX>
+        <locationY>1006</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>NAME_PRACTITIONER_EMAIL</elementReference>
+                <elementReference>NAME_PRACTITIONER</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -113,7 +56,7 @@
         <name>Assign_name_venue_for_output</name>
         <label>Assign name venue for output</label>
         <locationX>821</locationX>
-        <locationY>1037</locationY>
+        <locationY>1038</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -128,20 +71,27 @@
     <assignments>
         <name>Build_error_on_null_value</name>
         <label>Build error</label>
-        <locationX>547</locationX>
-        <locationY>1101</locationY>
+        <locationX>598</locationX>
+        <locationY>1175</locationY>
         <assignmentItems>
-            <assignToReference>subflow_status</assignToReference>
+            <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Value is empty: </stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>subflow_status</assignToReference>
+            <assignToReference>output_message</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>NAME_VENUE</elementReference>
+                <elementReference>empty_entity_name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>STATUS_ERROR</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -151,8 +101,8 @@
     <assignments>
         <name>Common_error_message</name>
         <label>Common error message</label>
-        <locationX>2150</locationX>
-        <locationY>1157</locationY>
+        <locationX>1798</locationX>
+        <locationY>1188</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -164,8 +114,8 @@
     <assignments>
         <name>Empty_list_message</name>
         <label>Empty list message</label>
-        <locationX>2372</locationX>
-        <locationY>966</locationY>
+        <locationX>2019</locationX>
+        <locationY>983</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -177,8 +127,8 @@
     <assignments>
         <name>Part_success_message</name>
         <label>Part success message</label>
-        <locationX>2145</locationX>
-        <locationY>764</locationY>
+        <locationX>1791</locationX>
+        <locationY>780</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -190,8 +140,8 @@
     <assignments>
         <name>Return_error_on_email_alert</name>
         <label>Return error</label>
-        <locationX>1693</locationX>
-        <locationY>523</locationY>
+        <locationX>970</locationX>
+        <locationY>965</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -217,42 +167,10 @@
         </assignmentItems>
     </assignments>
     <assignments>
-        <name>Return_success</name>
-        <label>Return success</label>
-        <locationX>1573</locationX>
-        <locationY>695</locationY>
-        <assignmentItems>
-            <assignToReference>subflow_status</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>success</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Decide_on_status</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Set_part_success_status</name>
-        <label>Set part success status</label>
-        <locationX>1027</locationX>
-        <locationY>50</locationY>
-        <assignmentItems>
-            <assignToReference>subflow_status</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>STATUS_PART_SUCCESS</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Send_to_clients_public_venue</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Success_message</name>
         <label>Success message</label>
-        <locationX>2142</locationX>
-        <locationY>616</locationY>
+        <locationX>1789</locationX>
+        <locationY>633</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -264,8 +182,8 @@
     <assignments>
         <name>Unknown_status_message</name>
         <label>Unknown status message</label>
-        <locationX>1955</locationX>
-        <locationY>972</locationY>
+        <locationX>1601</locationX>
+        <locationY>990</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Add</operator>
@@ -317,10 +235,10 @@
         </value>
     </constants>
     <constants>
-        <name>NAME_PRACTITIONER_EMAIL</name>
+        <name>NAME_PRACTITIONER</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>Practitioner email</stringValue>
+            <stringValue>Practitioner</stringValue>
         </value>
     </constants>
     <constants>
@@ -361,8 +279,8 @@
     <decisions>
         <name>Check_Bookings_List_is_not_null</name>
         <label>Check Bookings List is not null</label>
-        <locationX>380</locationX>
-        <locationY>892</locationY>
+        <locationX>370</locationX>
+        <locationY>848</locationY>
         <defaultConnector>
             <targetReference>Assign_name_bookingList_for_output</targetReference>
         </defaultConnector>
@@ -384,124 +302,10 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Check_input_booking</name>
-        <label>Check input booking</label>
-        <locationX>1295</locationX>
-        <locationY>317</locationY>
-        <defaultConnector>
-            <targetReference>Is_not_part_success_already</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Is_not_Cancelled</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>booking.Primary_Contact_Email__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>booking.Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Confirmed</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Send_to_Public</targetReference>
-            </connector>
-            <label>Is not Cancelled</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Check_input_booking2</name>
-        <label>Check input booking</label>
-        <locationX>1236</locationX>
-        <locationY>1275</locationY>
-        <defaultConnector>
-            <targetReference>Send_to_client_host</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Is_not_Cancelled_host</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>booking.Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Confirmed</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>booking.Primary_Contact_Email__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Check_is_host</targetReference>
-            </connector>
-            <label>Is not Cancelled</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Check_is_host</name>
-        <label>Check is host</label>
-        <locationX>1515</locationX>
-        <locationY>1278</locationY>
-        <defaultConnector>
-            <targetReference>Send_to_Client</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Is_host</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>venue.Host__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>booking.Primary_Contact__c</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Send_to_Host</targetReference>
-            </connector>
-            <label>Is host?</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Check_not_part_success</name>
-        <label>Check not part success</label>
-        <locationX>1302</locationX>
-        <locationY>574</locationY>
-        <defaultConnector>
-            <targetReference>Decide_on_status</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Was_errors_during_iterations</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>subflow_status</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>STATUS_PART_SUCCESS</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Return_success</targetReference>
-            </connector>
-            <label>Was no errors during iterations?</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Check_Practitioner_email_is_not_null</name>
         <label>Check Practitioner email is not null</label>
-        <locationX>494</locationX>
-        <locationY>766</locationY>
+        <locationX>590</locationX>
+        <locationY>843</locationY>
         <defaultConnector>
             <targetReference>Assign_name_practit_email_for_output</targetReference>
         </defaultConnector>
@@ -510,7 +314,7 @@
             <name>Practitioner_email_is_not_null</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>practitioner.Email</leftValueReference>
+                <leftValueReference>session.Practitioner__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -525,10 +329,10 @@
     <decisions>
         <name>Check_Session_Id</name>
         <label>Check Session Id</label>
-        <locationX>239</locationX>
-        <locationY>432</locationY>
+        <locationX>368</locationX>
+        <locationY>435</locationY>
         <defaultConnector>
-            <targetReference>Get_Course</targetReference>
+            <targetReference>Get_bookings</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
         <rules>
@@ -575,11 +379,8 @@
     <decisions>
         <name>Decide_on_error_status</name>
         <label>Decide on error status</label>
-        <locationX>2140</locationX>
-        <locationY>964</locationY>
-        <defaultConnector>
-            <targetReference>Common_error_message</targetReference>
-        </defaultConnector>
+        <locationX>1786</locationX>
+        <locationY>980</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Is_empty_list_error</name>
@@ -596,12 +397,27 @@
             </connector>
             <label>Is empty list error?</label>
         </rules>
+        <rules>
+            <name>Is_Error_message_blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>output_message</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Common_error_message</targetReference>
+            </connector>
+            <label>Is Error message blank</label>
+        </rules>
     </decisions>
     <decisions>
         <name>Decide_on_status</name>
         <label>Decide on status</label>
-        <locationX>1945</locationX>
-        <locationY>769</locationY>
+        <locationX>1591</locationX>
+        <locationY>785</locationY>
         <defaultConnector>
             <targetReference>Unknown_status_message</targetReference>
         </defaultConnector>
@@ -653,38 +469,10 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Is_not_part_success_already</name>
-        <label>Is not part success already</label>
-        <locationX>1317</locationX>
-        <locationY>103</locationY>
-        <defaultConnector>
-            <targetReference>Send_to_clients_public_venue</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Part_success</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>subflow_status</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>STATUS_PART_SUCCESS</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Set_part_success_status</targetReference>
-            </connector>
-            <label>Not part success?</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Is_Public_Venue</name>
         <label>Is Public Venue</label>
-        <locationX>1082</locationX>
+        <locationX>1150</locationX>
         <locationY>693</locationY>
-        <defaultConnector>
-            <targetReference>Return_success</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Public_Venue</name>
@@ -697,7 +485,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_to_clients_public_venue</targetReference>
+                <targetReference>Send_to_public</targetReference>
             </connector>
             <label>Public Venue</label>
         </rules>
@@ -712,7 +500,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_to_client_host</targetReference>
+                <targetReference>Send_to_Private</targetReference>
             </connector>
             <label>Not volunteer venue</label>
         </rules>
@@ -739,36 +527,6 @@
     </formulas>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
-    <loops>
-        <name>Send_to_client_host</name>
-        <label>Send to client host</label>
-        <locationX>1090</locationX>
-        <locationY>1051</locationY>
-        <assignNextValueToReference>booking</assignNextValueToReference>
-        <collectionReference>BookingList</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Check_input_booking2</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Return_success</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-    <loops>
-        <name>Send_to_clients_public_venue</name>
-        <label>Send to clients public venue</label>
-        <locationX>1088</locationX>
-        <locationY>436</locationY>
-        <assignNextValueToReference>booking</assignNextValueToReference>
-        <collectionReference>BookingList</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Check_input_booking</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Check_not_part_success</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -785,8 +543,8 @@
     <recordLookups>
         <name>Get_bookings</name>
         <label>Get bookings</label>
-        <locationX>255</locationX>
-        <locationY>751</locationY>
+        <locationX>377</locationX>
+        <locationY>640</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_Bookings_List_is_not_null</targetReference>
@@ -803,9 +561,9 @@
         </filters>
         <filters>
             <field>Status__c</field>
-            <operator>NotEqualTo</operator>
+            <operator>EqualTo</operator>
             <value>
-                <stringValue>Cancelled</stringValue>
+                <stringValue>Confirmed</stringValue>
             </value>
         </filters>
         <object>Booking__c</object>
@@ -819,39 +577,13 @@
         <queriedFields>Name</queriedFields>
     </recordLookups>
     <recordLookups>
-        <name>Get_Course</name>
-        <label>Get Course</label>
-        <locationX>255</locationX>
-        <locationY>620</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_bookings</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Return_error_on_get_record</targetReference>
-        </faultConnector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>session.Course__c</elementReference>
-            </value>
-        </filters>
-        <object>Course__c</object>
-        <outputReference>course</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Sub_Type__c</queriedFields>
-        <queriedFields>Branch__c</queriedFields>
-        <queriedFields>Name</queriedFields>
-    </recordLookups>
-    <recordLookups>
         <name>Get_session</name>
         <label>Get session</label>
         <locationX>545</locationX>
         <locationY>485</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Course</targetReference>
+            <targetReference>Get_bookings</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -910,7 +642,83 @@
         <queriedFields>Map_Url__c</queriedFields>
     </recordLookups>
     <startElementReference>Check_Session_Id</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
+    <subflows>
+        <name>Send_to_Private</name>
+        <label>Send to Private</label>
+        <locationX>1160</locationX>
+        <locationY>869</locationY>
+        <connector>
+            <targetReference>Decide_on_status</targetReference>
+        </connector>
+        <flowName>Reunion_Execute_Sending_Private_Subflow</flowName>
+        <inputAssignments>
+            <name>bookingList</name>
+            <value>
+                <elementReference>BookingList</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>session</name>
+            <value>
+                <elementReference>session</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>status_error</name>
+            <value>
+                <elementReference>STATUS_ERROR</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>status_success</name>
+            <value>
+                <elementReference>STATUS_SUCCESS</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>subflow_status</assignToReference>
+            <name>subflow_status</name>
+        </outputAssignments>
+    </subflows>
+    <subflows>
+        <name>Send_to_public</name>
+        <label>Send to public</label>
+        <locationX>1158</locationX>
+        <locationY>511</locationY>
+        <connector>
+            <targetReference>Decide_on_status</targetReference>
+        </connector>
+        <flowName>Reunion_Execute_Sending_Public_Subflow</flowName>
+        <inputAssignments>
+            <name>bookingList</name>
+            <value>
+                <elementReference>BookingList</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>status_error</name>
+            <value>
+                <elementReference>STATUS_ERROR</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>status_part_success</name>
+            <value>
+                <elementReference>STATUS_PART_SUCCESS</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>status_success</name>
+            <value>
+                <elementReference>STATUS_SUCCESS</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>subflow_status</assignToReference>
+            <name>subflow_status</name>
+        </outputAssignments>
+    </subflows>
     <variables>
         <name>booking</name>
         <dataType>SObject</dataType>
