@@ -3,6 +3,7 @@
 public class CourseFinderModelOrdered extends CourseFinderModel {
     public Integer Rank {get; set;}
     public Integer Order {get; set;}
+    public transient Integer groupRank {get; set;}
     private List<CourseTypeRank> courseTypeRanks;
     
     public CourseFinderModelOrdered(Course__c course, Date birthDueDate) {
@@ -129,6 +130,10 @@ public class CourseFinderModelOrdered extends CourseFinderModel {
         courseTypeRanks.add(courseTypeRank46);
 
         return courseTypeRanks; 
+    }
+  
+    private void calculateGroupRank(){
+        groupRank = 2;
     }
 
     public class CourseTypeRank {
