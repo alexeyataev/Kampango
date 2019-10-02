@@ -1,5 +1,5 @@
 public without sharing class CourseCreateEnquiryUtility {
-    private static final String CONTACT_RECORDTYPE_NAME = 'Contact';
+    public static final String RECORDTYPE_NAME = 'Clients';
 
     public static void createEnquiry(String courseNumber, Map<String, String> requestParameters) {
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
@@ -9,7 +9,7 @@ public without sharing class CourseCreateEnquiryUtility {
             Contact contact;
 
             contact = new Contact(
-                RecordTypeId = getContactRecordTypeByAPIName(CONTACT_RECORDTYPE_NAME),
+                RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME),
                 Salutation = requestParameters.get('title'),
                 FirstName = requestParameters.get('first_name'),
                 LastName = requestParameters.get('last_name'),
@@ -18,7 +18,7 @@ public without sharing class CourseCreateEnquiryUtility {
                 MailingCity = requestParameters.get('town'),
                 MailingPostalCode = requestParameters.get('postcode'),
                 MailingCountry = requestParameters.get('county'),
-                MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2')
+                MailingStreet = requestParameters.get('address_line1') + ', ' + requestParameters.get('address_line2')
             );
             try {
                 upsert contact Contact.fields.Email;
@@ -37,7 +37,7 @@ public without sharing class CourseCreateEnquiryUtility {
                         FirstName = requestParameters.get('partner_first_name'),
                         LastName = requestParameters.get('partner_last_name'),
                         Email = requestParameters.get('partner_email'),
-                        RecordTypeId = getContactRecordTypeByAPIName(CONTACT_RECORDTYPE_NAME)
+                        RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME)
                     );
                     try {
                         upsert partner Contact.fields.Email;

@@ -9,6 +9,9 @@
         <members>CourseDetailControllerTest</members>
         <members>CourseFinderModel</members>
         <members>CourseFinderModelTest</members>
+        <members>CourseFinderModelOrdered</members>
+        <members>CourseFinderModelOrderedTest</members>
+        <members>CoursesDateDistanceModel</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
@@ -33,6 +36,8 @@
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
         <members>TestUserBuilder</members>
+        <members>ViewPort</members>
+        <members>ViewPortTest</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -167,6 +172,8 @@
         <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Main_Venue_on_Course</members>
         <members>Set_Number_of_Places_Based_on_Course_Type</members>
+        <members>Update_Address_in_Gift_Aid_Declaration</members>
+        <members>Update_Address_in_Gift_Aid_Declarations</members>
         <members>Update_Partner_Community_Contact</members>
         <members>Update_Practitioner_Licence_on_Sessions_related_to_Course</members>
         <members>Update_Practitioner_on_Sessions</members>
