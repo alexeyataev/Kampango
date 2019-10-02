@@ -43,8 +43,8 @@
     <actionCalls>
         <name>Send_to_Practitioner</name>
         <label>Send to Practitioner</label>
-        <locationX>989</locationX>
-        <locationY>796</locationY>
+        <locationX>971</locationX>
+        <locationY>794</locationY>
         <actionName>Session__c.Reunion_Session_Confirmed_Practitioner</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -90,7 +90,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Return_error_on_null_value</targetReference>
+            <targetReference>Build_error_on_null_value</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -106,7 +106,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Return_error_on_null_value</targetReference>
+            <targetReference>Build_error_on_null_value</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -122,46 +122,30 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Return_error_on_null_value</targetReference>
+            <targetReference>Build_error_on_null_value</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>Build_subject_for_practitioner_email</name>
-        <label>Build subject for practitioner email</label>
-        <locationX>720</locationX>
-        <locationY>824</locationY>
+        <name>Build_error_on_null_value</name>
+        <label>Build error</label>
+        <locationX>547</locationX>
+        <locationY>1101</locationY>
         <assignmentItems>
-            <assignToReference>subject_practitioner</assignToReference>
+            <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>NCT course reunion confirmation - </stringValue>
+                <stringValue>Value is empty: </stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>subject_practitioner</assignToReference>
+            <assignToReference>subflow_status</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>course.Name</elementReference>
+                <elementReference>NAME_VENUE</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Get_Venue</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Clear_the_checkbox</name>
-        <label>Clear the checkbox</label>
-        <locationX>50</locationX>
-        <locationY>629</locationY>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Is_Ready_To_Send_Emails__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_Course_with_checkbox</targetReference>
+            <targetReference>Decide_on_status</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -222,8 +206,8 @@
     <assignments>
         <name>Return_error_on_get_record</name>
         <label>Return error</label>
-        <locationX>651</locationX>
-        <locationY>404</locationY>
+        <locationX>546</locationX>
+        <locationY>642</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -231,29 +215,6 @@
                 <stringValue>error_on_get_record</stringValue>
             </value>
         </assignmentItems>
-    </assignments>
-    <assignments>
-        <name>Return_error_on_null_value</name>
-        <label>Return error</label>
-        <locationX>547</locationX>
-        <locationY>1101</locationY>
-        <assignmentItems>
-            <assignToReference>subflow_status</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Value is empty: </stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>subflow_status</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>NAME_VENUE</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Decide_on_status</targetReference>
-        </connector>
     </assignments>
     <assignments>
         <name>Return_success</name>
@@ -397,18 +358,11 @@
             <stringValue>success</stringValue>
         </value>
     </constants>
-    <constants>
-        <name>SUBJECT_DEFAULT</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>NCT Course Reunion Confirmation</stringValue>
-        </value>
-    </constants>
     <decisions>
         <name>Check_Bookings_List_is_not_null</name>
         <label>Check Bookings List is not null</label>
         <locationX>380</locationX>
-        <locationY>857</locationY>
+        <locationY>892</locationY>
         <defaultConnector>
             <targetReference>Assign_name_bookingList_for_output</targetReference>
         </defaultConnector>
@@ -546,8 +500,8 @@
     <decisions>
         <name>Check_Practitioner_email_is_not_null</name>
         <label>Check Practitioner email is not null</label>
-        <locationX>537</locationX>
-        <locationY>764</locationY>
+        <locationX>494</locationX>
+        <locationY>766</locationY>
         <defaultConnector>
             <targetReference>Assign_name_practit_email_for_output</targetReference>
         </defaultConnector>
@@ -563,7 +517,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Build_subject_for_practitioner_email</targetReference>
+                <targetReference>Get_Venue</targetReference>
             </connector>
             <label>Practitioner email is not null?</label>
         </rules>
@@ -572,9 +526,9 @@
         <name>Check_Session_Id</name>
         <label>Check Session Id</label>
         <locationX>239</locationX>
-        <locationY>312</locationY>
+        <locationY>432</locationY>
         <defaultConnector>
-            <targetReference>Get_practitioner_record</targetReference>
+            <targetReference>Get_Course</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
         <rules>
@@ -831,8 +785,8 @@
     <recordLookups>
         <name>Get_bookings</name>
         <label>Get bookings</label>
-        <locationX>253</locationX>
-        <locationY>914</locationY>
+        <locationX>255</locationX>
+        <locationY>751</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_Bookings_List_is_not_null</targetReference>
@@ -865,42 +819,13 @@
         <queriedFields>Name</queriedFields>
     </recordLookups>
     <recordLookups>
-        <name>Get_branch_Account_by_Course</name>
-        <label>Get branch Account by Course</label>
-        <locationX>246</locationX>
-        <locationY>774</locationY>
+        <name>Get_Course</name>
+        <label>Get Course</label>
+        <locationX>255</locationX>
+        <locationY>620</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_bookings</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Return_error_on_get_record</targetReference>
-        </faultConnector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>course.Branch__c</elementReference>
-            </value>
-        </filters>
-        <object>Account</object>
-        <outputReference>branch_account</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Capacity_PSA__c</queriedFields>
-        <queriedFields>Capacity_PSA_Email__c</queriedFields>
-        <queriedFields>Capacity_PSA_Phone__c</queriedFields>
-        <queriedFields>Enquiries_PSA__c</queriedFields>
-        <queriedFields>Enquiries_PSA_Email__c</queriedFields>
-        <queriedFields>Enquiries_PSA_Phone__c</queriedFields>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Course</name>
-        <label>Get Course</label>
-        <locationX>246</locationX>
-        <locationY>617</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Clear_the_checkbox</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -920,37 +845,13 @@
         <queriedFields>Name</queriedFields>
     </recordLookups>
     <recordLookups>
-        <name>Get_practitioner_record</name>
-        <label>Get practitioner record</label>
-        <locationX>246</locationX>
-        <locationY>480</locationY>
+        <name>Get_session</name>
+        <label>Get session</label>
+        <locationX>545</locationX>
+        <locationY>485</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Course</targetReference>
-        </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>session.Practitioner__c</elementReference>
-            </value>
-        </filters>
-        <object>Contact</object>
-        <outputReference>practitioner</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>FirstName</queriedFields>
-        <queriedFields>Phone</queriedFields>
-        <queriedFields>Email</queriedFields>
-        <queriedFields>Name</queriedFields>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_session</name>
-        <label>Get session</label>
-        <locationX>449</locationX>
-        <locationY>321</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_practitioner_record</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -1008,129 +909,8 @@
         <queriedFields>Name</queriedFields>
         <queriedFields>Map_Url__c</queriedFields>
     </recordLookups>
-    <recordUpdates>
-        <name>Update_Course_with_checkbox</name>
-        <label>Update Course with checkbox</label>
-        <locationX>50</locationX>
-        <locationY>765</locationY>
-        <connector>
-            <targetReference>Get_branch_Account_by_Course</targetReference>
-        </connector>
-        <inputReference>course</inputReference>
-    </recordUpdates>
     <startElementReference>Check_Session_Id</startElementReference>
-    <status>Active</status>
-    <textTemplates>
-        <name>TEMPLATE_CLIENT_IN_PRIVATE_VENUE</name>
-        <text>Booking reference: {!booking.Name}
-Course reference: {!course.Name}
-
-
-Dear {!booking.First_Name__c}{!partner_name_formula},
-
-I&#39;m delighted to confirm the details for your {!course.Sub_Type__c} course reunion which will be held on {!session.Day_of_Week__c} {!session.Date__c} from {!session.Start_Text__c} to {!session.End_Text__c}.
-
-We are very grateful to Mary and John Smith who have offered to host the session at their home:
-{!venue.Town__c}, {!venue.Street_Address__c}
-
-Click here to see this on a map
-{!venue.Map_Url__c}
-
-
-The reunion will be facilitated by {!practitioner.Name} who may be contacted on {!practitioner.Phone} or at {!practitioner.Email}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
-
-We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
-Find a postnatal course
-
-
-Kind Regards,
-{!session.Enquiries_PSA_Name__c}
-Course organizer
-Email: {!{!branch_account}.Enquiries_PSA_Email__c}
-Tel: {!{!branch_account}.Enquiries_PSA_Phone__c}</text>
-    </textTemplates>
-    <textTemplates>
-        <name>TEMPLATE_HOST</name>
-        <text>Booking Ref: {!booking.Name}
-
-
-Dear {!booking.First_Name__c}{!partner_name_formula},
-
-I&#39;m delighted to confirm the details for your {!course.Sub_Type__c} course reunion which will be held on {!session.Day_of_Week__c} {!session.Date__c} from {!session.Start_Text__c} to {!session.End_Text__c}.
-
-Thank you for offering to host the session at your home:
-{!venue.Town__c}, {!venue.Street_Address__c}
-
-Click here to see this on a map
-{!venue.Map_Url__c}
-
-
-The reunion will be facilitated by {!practitioner.Name} who may be contacted on {!practitioner.Phone} or at {!practitioner.Email}. Should any changes be made to the reunion your NCT course leader will be in touch with you directly nearer the time.
-
-We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
-Find a postnatal course
-
-
-Kind regards,
-{!session.Enquiries_PSA_Name__c}
-Course organizer
-Email: {!branch_account.Enquiries_PSA_Email__c}
-Tel: {!branch_account.Enquiries_PSA_Phone__c}</text>
-    </textTemplates>
-    <textTemplates>
-        <name>TEMPLATE_PRACTITIONER</name>
-        <text>Course reference: {!course.Name}
-
-
-Dear {!practitioner.FirstName},
-
-Thank you for agreeing to facilitate the {!course.Sub_Type__c} course reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {!session.Day_of_Week__c} {!session.Date__c} from {!session.Start_Text__c} to {!session.End_Text__c} at:
-
-{!venue.Name}
-{!venue.Town__c}, {!venue.Street_Address__c}
-
-*Click here to see this on a map*
-{!venue.Map_Url__c}
-
-
-If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.
-
-
-Kind regards,
-{!session.Capacity_PSA_Name__c}
-Course organizer
-Email: {!branch_account.Capacity_PSA_Email__c}
-Tel: {!branch_account.Capacity_PSA_Phone__c}</text>
-    </textTemplates>
-    <textTemplates>
-        <name>TEMPLATE_PUBLIC</name>
-        <text>Booking reference: {!booking.Name}
-Course reference: {!course.Name}
-
-
-Dear {!booking.First_Name__c}{!partner_name_formula},
-
-I&#39;m delighted to confirm the details for your {!course.Sub_Type__c} course reunion which will be held on {!session.Day_of_Week__c} {!session.Date__c} from from {!session.Start_Text__c} to {!session.End_Text__c}.
-
-It will be held at:
-{!venue.Town__c}, {!venue.Street_Address__c}
-
-Click here to see this on a map
-{!venue.Map_Url__c}
-
-
-The reunion will be facilitated by {!practitioner.Name} who may be contacted on {!practitioner.Phone} or at {!practitioner.Email}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
-
-We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
-Find a postnatal course
-
-
-Kind regards,
-{!session.Enquiries_PSA_Name__c}
-Course organizer
-Email: {!branch_account.Enquiries_PSA_Email__c}
-Tel: {!branch_account.Enquiries_PSA_Phone__c}</text>
-    </textTemplates>
+    <status>Draft</status>
     <variables>
         <name>booking</name>
         <dataType>SObject</dataType>
@@ -1146,14 +926,6 @@ Tel: {!branch_account.Enquiries_PSA_Phone__c}</text>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Booking__c</objectType>
-    </variables>
-    <variables>
-        <name>branch_account</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Account</objectType>
     </variables>
     <variables>
         <name>course</name>
@@ -1222,13 +994,6 @@ Tel: {!branch_account.Enquiries_PSA_Phone__c}</text>
         <value>
             <stringValue>unknown</stringValue>
         </value>
-    </variables>
-    <variables>
-        <name>subject_practitioner</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>venue</name>
