@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Reunion_Session_Confirmed_Host</fullName>
+        <description>Reunion Session Confirmed Host</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>NCT_Templates/Reunion_Confirmed_Host_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Reunion_Session_Confirmed_Not_A_Host</fullName>
+        <description>Reunion Session Confirmed Not A Host</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>NCT_Templates/Reunion_Confirmed_Not_A_Host_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Reunion_Session_Confirmed_Public</fullName>
+        <description>Reunion Session Confirmed Public</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>NCT_Templates/Reunion_Confirmed_Public_Template</template>
+    </alerts>
+    <alerts>
         <fullName>SendEmailToClient</fullName>
         <description>SendEmailToClient</description>
         <protected>false</protected>
@@ -54,6 +87,15 @@
         <name>SetOfferEmailDate</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Booking_to_Lapsed</fullName>
+        <field>Status__c</field>
+        <literalValue>Lapsed</literalValue>
+        <name>Set Booking to Lapsed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
 </Workflow>
