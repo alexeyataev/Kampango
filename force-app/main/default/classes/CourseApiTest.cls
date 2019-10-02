@@ -16,6 +16,46 @@ public without sharing class CourseApiTest {
             .buildCoursesWithSessions(2, 2);
     }
 
+
+    @isTest
+    static void searchWrongLocation(){
+        RestRequest req = new RestRequest();
+        req.requestURI = strURI;
+        req.httpMethod = methodGet;
+        req.addHeader('Content-Type', 'application/json');
+        req.addParameter('location', 'dummy');
+
+        RestResponse res = new RestResponse();
+        RestContext.request = req;
+        RestContext.response = res;
+
+        Test.startTest();
+        CourseApi.getCourseStaff();
+        Test.stopTest();
+
+        System.assertEquals(404, res.statusCode);
+    }
+
+    @isTest
+    static void searchWithoutParams(){
+        RestRequest req = new RestRequest();
+        req.requestURI = strURI;
+        req.httpMethod = methodGet;
+        req.addHeader('Content-Type', 'application/json');
+        req.addParameter('dummy', 'dummy');
+
+        RestResponse res = new RestResponse();
+        RestContext.request = req;
+        RestContext.response = res;
+
+        Test.startTest();
+        CourseApi.getCourseStaff();
+        Test.stopTest();
+
+        System.assertEquals(404, res.statusCode);
+    }
+
+
     @isTest
     static void searchCourseById() {
 
