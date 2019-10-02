@@ -13,6 +13,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>AccountId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>HomePhone</field>
             </layoutItems>
             <layoutItems>
