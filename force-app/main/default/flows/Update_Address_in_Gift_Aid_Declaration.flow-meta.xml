@@ -103,6 +103,48 @@
                 <elementReference>myVariable_current.MailingStreet</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>MailingPostalCode</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>MailingPostalCode</name>
+            <value>
+                <elementReference>myVariable_current.MailingPostalCode</elementReference>
+            </value>
+        </inputParameters>
     </actionCalls>
     <decisions>
         <processMetadataValues>
@@ -174,7 +216,10 @@
             <name>originalFormula</name>
             <value>
                 <stringValue>AND (
-    ISCHANGED([Contact].MailingStreet ) ,
+ OR(
+    ISCHANGED([Contact].MailingStreet) ,
+    ISCHANGED([Contact].MailingPostalCode)
+ ),
     [Contact].RecordType.Name = &quot;Client&quot;
 )</stringValue>
             </value>
@@ -182,7 +227,10 @@
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
         <expression>AND (
-    ISCHANGED({!myVariable_current.MailingStreet} ) ,
+ OR(
+    ISCHANGED({!myVariable_current.MailingStreet}) ,
+    ISCHANGED({!myVariable_current.MailingPostalCode})
+ ),
     {!myVariable_current.RecordType.Name} = &quot;Client&quot;
 )</expression>
     </formulas>
@@ -191,7 +239,10 @@
             <name>originalFormula</name>
             <value>
                 <stringValue>AND (
-    ISCHANGED([Contact].MailingStreet ) ,
+ OR(
+    ISCHANGED([Contact].MailingStreet) ,
+    ISCHANGED([Contact].MailingPostalCode)
+ ),
     [Contact].RecordType.Name = &quot;Client&quot;
 )</stringValue>
             </value>
@@ -199,11 +250,14 @@
         <name>formula_myRule_1_pmetrule</name>
         <dataType>Boolean</dataType>
         <expression>AND (
-    ISCHANGED({!myVariable_old.MailingStreet} ) ,
+ OR(
+    ISCHANGED({!myVariable_old.MailingStreet}) ,
+    ISCHANGED({!myVariable_old.MailingPostalCode})
+ ),
     {!myVariable_old.RecordType.Name} = &quot;Client&quot;
 )</expression>
     </formulas>
-    <interviewLabel>Update_Address_in_Gift_Aid_Declaration-11_InterviewLabel</interviewLabel>
+    <interviewLabel>Update_Address_in_Gift_Aid_Declaration-13_InterviewLabel</interviewLabel>
     <label>Update Address in Gift Aid Declaration</label>
     <processMetadataValues>
         <name>ObjectType</name>
