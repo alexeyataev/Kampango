@@ -110,7 +110,7 @@ public without sharing class CourseSearchUtility {
         return courses;
     }
 
-    public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Boolean isFromWebSite){
+    public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Date birthDueDate, Boolean isFromWebSite){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
         if (location == null){
             return null;
@@ -119,6 +119,8 @@ public without sharing class CourseSearchUtility {
         if (radius == null || radius <= 0) {
             radius = DEFAULT_RADIUS; 
         }
+
+        // ToDo Use Date birthDueDate, if needed.
 
         //  getCourses() were not used, as it was not found how to manage this geoQuery
         List<Course__c> inCourses = [
@@ -152,29 +154,59 @@ public without sharing class CourseSearchUtility {
         return courses;
     }
     
-    public static RestResponse getCoursesByDateDistance(Map <String, String> params){
+    private static RestResponse getWrongResponse(){
         RestResponse response = new RestResponse();
-        if (params == null){
             response.statusCode = 404;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
             return response;
         }
 
-        Location location = validateLocation(params.get('location'));
-        Integer radius = validateRadius(params.get('radius'));
+    public static RestResponse getCoursesByDateDistance(Map <String, String> params){
+        RestResponse response = new RestResponse();
+        if (params == null){
+            return getWrongResponse();
+        }
+
+        Location location;
+        try {
+            location = validateLocation(params.get('location'));
+        } catch (TypeException te){
+            return getWrongResponse();
+        }
         
-        List<Course__c> courses = getCoursesByDateDistance(location, radius, true);        
+        Date birthDueDate;
+        try {
+            birthDueDate = validateBirthDueDate(params.get('birth'));
+        } catch (TypeException te){
+            return getWrongResponse();
+        } 
+
+        Integer radius = getRadius(params.get('radius'));
+        
+        List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
         
         if (courses != null && !courses.isEmpty()) {
             List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
             Integer i = 0;
             for (Course__c course : courses) {
-                CourseFinderModelOrdered model = new CourseFinderModelOrdered(course);
+                CourseFinderModelOrdered model = new CourseFinderModelOrdered(course, birthDueDate);
                 i++;
+                if (birthDueDate == null){
                 model.Rank = 1;
                 model.Order = i;
+                } 
                 model.HowHeardTexts = howHeard;
                 models.add(model);
+            }
+            
+            // Sort models according rank, group rank and date;
+            models.sort();
+
+            // update Orders accorting to the sorting order;
+            i = 0;
+            for (CourseFinderModelOrdered model : models){
+                i++;
+                model.Order = i;
             }
             
             CoursesDateDistanceModel sortedModel = new CoursesDateDistanceModel();
@@ -206,14 +238,14 @@ public without sharing class CourseSearchUtility {
                 Double longitude = Double.valueOf(latLong[1]);
                 result = Location.newInstance(latitude, longitude);
             } catch (Exception e){
-                result = null;
+                throw new TypeException(e);
             }
         }
         
         return result;
     }
     
-    private static Integer validateRadius(String strRadius){
+    private static Integer getRadius(String strRadius){
         Integer result;
         if (String.isEmpty(strRadius)){
             return null;
@@ -225,6 +257,21 @@ public without sharing class CourseSearchUtility {
             result = null;
         }
         
+        return result;
+    }
+
+    private static Date validateBirthDueDate(String strBirthDueDate) {
+        Date result;
+        if (String.isEmpty(strBirthDueDate)){
+            return null;
+        }
+
+        try {
+            result = Date.valueOf(strBirthDueDate);
+        } catch (Exception e){
+            throw new TypeException(e);
+        }
+
         return result;
     }
 
