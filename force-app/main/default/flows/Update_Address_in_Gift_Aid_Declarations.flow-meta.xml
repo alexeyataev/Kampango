@@ -28,6 +28,13 @@
                 <elementReference>Mailing_Street</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>GAD_Record.gaid__Postalcode__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MailingPostalCode</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_to_new_GAD_List</targetReference>
         </connector>
@@ -137,6 +144,13 @@
     </variables>
     <variables>
         <name>Mailing_Street</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>MailingPostalCode</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
