@@ -7,6 +7,91 @@
                 <stringValue>SendEmailToClient</stringValue>
             </value>
         </processMetadataValues>
+        <name>myRule_10_A1</name>
+        <label>Send Email</label>
+        <locationX>1000</locationX>
+        <locationY>200</locationY>
+        <actionName>Booking__c.SendEmailToClient</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>myRule_10_A2</targetReference>
+        </connector>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>ActionCallType</name>
+            <value>
+                <stringValue>process</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>flowSelection</name>
+            <value>
+                <stringValue>Create Task for Booking</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_10_A2</name>
+        <label>Create Task</label>
+        <locationX>1000</locationX>
+        <locationY>300</locationY>
+        <actionName>Create_Task_For_Booking</actionName>
+        <actionType>flow</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>SObject</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>SObject</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue>Booking__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>SObject</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>SObject</name>
+            <value>
+                <elementReference>myVariable_current</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>SendEmailToClient</stringValue>
+            </value>
+        </processMetadataValues>
         <name>myRule_1_A2</name>
         <label>Sent Email</label>
         <locationX>100</locationX>
@@ -20,6 +105,71 @@
             <name>SObjectRowId</name>
             <value>
                 <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>ActionCallType</name>
+            <value>
+                <stringValue>process</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>flowSelection</name>
+            <value>
+                <stringValue>Create Task for Booking</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A3</name>
+        <label>Create Task</label>
+        <locationX>100</locationX>
+        <locationY>400</locationY>
+        <actionName>Create_Task_For_Booking</actionName>
+        <actionType>flow</actionType>
+        <connector>
+            <targetReference>myWait_myRule_1</targetReference>
+        </connector>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>SObject</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>SObject</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue>Booking__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>SObject</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>SObject</name>
+            <value>
+                <elementReference>myVariable_current</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -128,15 +278,15 @@
         </connector>
     </assignments>
     <assignments>
-        <name>myWaitAssignment_myWait_myRule_10</name>
-        <label>myWaitAssignment_myWait_myRule_10</label>
+        <name>myWaitAssignment_myWait_myRule_12</name>
+        <label>myWaitAssignment_myWait_myRule_12</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>cancelWaits</assignToReference>
             <operator>Add</operator>
             <value>
-                <stringValue>myWait_myRule_10</stringValue>
+                <stringValue>myWait_myRule_12</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -144,67 +294,67 @@
         </connector>
     </assignments>
     <assignments>
-        <name>myWaitEvent_myWait_myRule_10_event_0_postWaitExecutionAssignment</name>
-        <label>myWaitEvent_myWait_myRule_10_event_0_postWaitExecutionAssignment</label>
+        <name>myWaitEvent_myWait_myRule_12_event_0_postWaitExecutionAssignment</name>
+        <label>myWaitEvent_myWait_myRule_12_event_0_postWaitExecutionAssignment</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myWaitEvent_myWait_myRule_10_event_0_postActionExecutionVariable</assignToReference>
+            <assignToReference>myWaitEvent_myWait_myRule_12_event_0_postActionExecutionVariable</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>myWait_myRule_10</targetReference>
+            <targetReference>myWait_myRule_12</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>myWaitEvent_myWait_myRule_10_event_1_postWaitExecutionAssignment</name>
-        <label>myWaitEvent_myWait_myRule_10_event_1_postWaitExecutionAssignment</label>
+        <name>myWaitEvent_myWait_myRule_12_event_1_postWaitExecutionAssignment</name>
+        <label>myWaitEvent_myWait_myRule_12_event_1_postWaitExecutionAssignment</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myWaitEvent_myWait_myRule_10_event_1_postActionExecutionVariable</assignToReference>
+            <assignToReference>myWaitEvent_myWait_myRule_12_event_1_postActionExecutionVariable</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>myWait_myRule_10</targetReference>
+            <targetReference>myWait_myRule_12</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>myWaitEvent_myWait_myRule_10_event_2_postWaitExecutionAssignment</name>
-        <label>myWaitEvent_myWait_myRule_10_event_2_postWaitExecutionAssignment</label>
+        <name>myWaitEvent_myWait_myRule_12_event_2_postWaitExecutionAssignment</name>
+        <label>myWaitEvent_myWait_myRule_12_event_2_postWaitExecutionAssignment</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myWaitEvent_myWait_myRule_10_event_2_postActionExecutionVariable</assignToReference>
+            <assignToReference>myWaitEvent_myWait_myRule_12_event_2_postActionExecutionVariable</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>myWait_myRule_10</targetReference>
+            <targetReference>myWait_myRule_12</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>myWaitEvent_myWait_myRule_10_event_3_postWaitExecutionAssignment</name>
-        <label>myWaitEvent_myWait_myRule_10_event_3_postWaitExecutionAssignment</label>
+        <name>myWaitEvent_myWait_myRule_12_event_3_postWaitExecutionAssignment</name>
+        <label>myWaitEvent_myWait_myRule_12_event_3_postWaitExecutionAssignment</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>myWaitEvent_myWait_myRule_10_event_3_postActionExecutionVariable</assignToReference>
+            <assignToReference>myWaitEvent_myWait_myRule_12_event_3_postActionExecutionVariable</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>myWait_myRule_10</targetReference>
+            <targetReference>myWait_myRule_12</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -269,7 +419,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_2_myRule_1_1017248913</elementReference>
+                    <elementReference>formula_2_myRule_1_8050873430</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -338,6 +488,58 @@
                 <targetReference>myRule_1_pmetdec</targetReference>
             </connector>
             <label>Status Expired and Expiration Date is Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>4.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision11</name>
+        <label>myDecision11</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_12</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Reserved</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_12_pmetdec</targetReference>
+            </connector>
+            <label>ExpirationDateChanged?</label>
         </rules>
     </decisions>
     <decisions>
@@ -437,58 +639,37 @@
         <label>myDecision9</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision11</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_10</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Status__c</leftValueReference>
+                <leftValueReference>formula_myRule_10</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Reserved</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_10_pmetdec</targetReference>
+                <targetReference>myRule_10_A1</targetReference>
             </connector>
-            <label>ExpirationDateChanged?</label>
+            <label>Set activity is status switch to reserved</label>
         </rules>
     </decisions>
     <decisions>
-        <name>myPostWaitDecision_myWaitEvent_myWait_myRule_10_event_0</name>
-        <label>myPostWaitDecision_myWaitEvent_myWait_myRule_10_event_0</label>
+        <name>myPostWaitDecision_myWaitEvent_myWait_myRule_12_event_0</name>
+        <label>myPostWaitDecision_myWaitEvent_myWait_myRule_12_event_0</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myWaitEvent_myWait_myRule_10_event_0_postWaitExecutionAssignment</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_12_event_0_postWaitExecutionAssignment</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myPostWaitRule_myWaitEvent_myWait_myRule_10_event_0</name>
+            <name>myPostWaitRule_myWaitEvent_myWait_myRule_12_event_0</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
@@ -498,22 +679,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myWaitEvent_myWait_myRule_10_event_0_SA1</targetReference>
+                <targetReference>myWaitEvent_myWait_myRule_12_event_0_SA1</targetReference>
             </connector>
-            <label>myPostWaitRule_myWaitEvent_myWait_myRule_10_event_0</label>
+            <label>myPostWaitRule_myWaitEvent_myWait_myRule_12_event_0</label>
         </rules>
     </decisions>
     <decisions>
-        <name>myPostWaitDecision_myWaitEvent_myWait_myRule_10_event_3</name>
-        <label>myPostWaitDecision_myWaitEvent_myWait_myRule_10_event_3</label>
+        <name>myPostWaitDecision_myWaitEvent_myWait_myRule_12_event_3</name>
+        <label>myPostWaitDecision_myWaitEvent_myWait_myRule_12_event_3</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myWaitEvent_myWait_myRule_10_event_3_postWaitExecutionAssignment</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_12_event_3_postWaitExecutionAssignment</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myPostWaitRule_myWaitEvent_myWait_myRule_10_event_3</name>
+            <name>myPostWaitRule_myWaitEvent_myWait_myRule_12_event_3</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
@@ -523,9 +704,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myWaitEvent_myWait_myRule_10_event_3_SA1</targetReference>
+                <targetReference>myWaitEvent_myWait_myRule_12_event_3_SA1</targetReference>
             </connector>
-            <label>myPostWaitRule_myWaitEvent_myWait_myRule_10_event_3</label>
+            <label>myPostWaitRule_myWaitEvent_myWait_myRule_12_event_3</label>
         </rules>
     </decisions>
     <decisions>
@@ -593,7 +774,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_2_myRule_1_1017248913</elementReference>
+                    <elementReference>formula_2_myRule_1_8050873430</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -665,16 +846,16 @@
         </rules>
     </decisions>
     <decisions>
-        <name>myPreWaitDecision_myWait_myRule_10</name>
-        <label>myPreWaitDecision_myWait_myRule_10</label>
+        <name>myPreWaitDecision_myWait_myRule_12</name>
+        <label>myPreWaitDecision_myWait_myRule_12</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myWaitAssignment_myWait_myRule_10</targetReference>
+            <targetReference>myWaitAssignment_myWait_myRule_12</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myPreWaitRule_myWait_myRule_10</name>
+            <name>myPreWaitRule_myWait_myRule_12</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -710,20 +891,20 @@
             <connector>
                 <targetReference>myPreWaitDecision_myWait_myRule_1</targetReference>
             </connector>
-            <label>myPreWaitRule_myWait_myRule_10</label>
+            <label>myPreWaitRule_myWait_myRule_12</label>
         </rules>
     </decisions>
     <decisions>
-        <name>myRule_10_pmetdec</name>
+        <name>myRule_12_pmetdec</name>
         <label>Previously Met Decision</label>
-        <locationX>1000</locationX>
+        <locationX>1200</locationX>
         <locationY>100</locationY>
         <defaultConnector>
-            <targetReference>myWait_myRule_10</targetReference>
+            <targetReference>myWait_myRule_12</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
         <rules>
-            <name>myRule_10_pmetnullrule</name>
+            <name>myRule_12_pmetnullrule</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -733,12 +914,12 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myWait_myRule_10</targetReference>
+                <targetReference>myWait_myRule_12</targetReference>
             </connector>
             <label>Previously Met - Null</label>
         </rules>
         <rules>
-            <name>myRule_10_pmetrule</name>
+            <name>myRule_12_pmetrule</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -829,7 +1010,7 @@
                 <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_3_myRule_1_pmetrule_9029372788</elementReference>
+                    <elementReference>formula_3_myRule_1_pmetrule_7816641398</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -968,7 +1149,7 @@
                 <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_1017248913</name>
+        <name>formula_2_myRule_1_8050873430</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE({!myVariable_current.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -979,7 +1160,7 @@
                 <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_pmetrule_9029372788</name>
+        <name>formula_3_myRule_1_pmetrule_7816641398</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE({!myVariable_old.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -990,16 +1171,33 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A1_4503485799</name>
+        <name>formula_8_myRule_7_A1_5532965456</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+NOT(ISPICKVAL(PRIORVALUE([Booking__c].Status__c ), &quot;Enquiry&quot;)),
+ISPICKVAL([Booking__c].Status__c, &quot;Reserved&quot;)
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_10</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT(ISPICKVAL(PRIORVALUE({!myVariable_current.Status__c} ), &quot;Enquiry&quot;)),
+ISPICKVAL({!myVariable_current.Status__c}, &quot;Reserved&quot;)
+)</expression>
     </formulas>
     <formulas>
         <name>formula_myRule_5</name>
         <dataType>Boolean</dataType>
         <expression>true</expression>
     </formulas>
-    <interviewLabel>Booking_SetExpirationStatus-64_InterviewLabel</interviewLabel>
+    <interviewLabel>Booking_SetExpirationStatus-70_InterviewLabel</interviewLabel>
     <label>Booking:SetExpirationStatus</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -1026,178 +1224,6 @@
         </value>
     </processMetadataValues>
     <processType>Workflow</processType>
-    <recordCreates>
-        <name>myRule_1_A3</name>
-        <label>Create Task</label>
-        <locationX>100</locationX>
-        <locationY>400</locationY>
-        <connector>
-            <targetReference>myWait_myRule_1</targetReference>
-        </connector>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Assigned To ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>OwnerId</field>
-            <value>
-                <elementReference>myVariable_current.CreatedById</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Priority</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Priority</field>
-            <value>
-                <stringValue>Low</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Status</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Status</field>
-            <value>
-                <stringValue>Completed</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Subject</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue/>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Subject</field>
-            <value>
-                <stringValue>Expiry date was extended</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Related To ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue>Account;Asset;AssetRelationship;Booking__c;Campaign;Case;ChannelProgram;ChannelProgramLevel;ContactRequest;Contract;GW_Volunteers__Volunteer_Hours__c;GW_Volunteers__Volunteer_Job__c;GW_Volunteers__Volunteer_Shift__c;ITS__c;ListEmail;Opportunity;Order;PartnerFundAllocation;PartnerFundClaim;PartnerFundRequest;PartnerMarketingBudget;Product2;Program_Increment__c;Quote;Solution;Zumzum__Bank_Payment__c;Zumzum__Bank_Receipt__c;Zumzum__Bank__c;Zumzum__Batch_Sales_Invoice_Job_Item__c;Zumzum__Batch_Sales_Invoice_Job__c;Zumzum__Company__c;Zumzum__Currency_Rates__c;Zumzum__Currency__c;Zumzum__Dispatch_Line__c;Zumzum__Dispatch__c;Zumzum__Expense_Sheet__c;Zumzum__Inbound_Stock_Movement__c;Zumzum__Journal_Line_Item__c;Zumzum__Journal__c;Zumzum__Location__c;Zumzum__Outbound_Stock_Movement__c;Zumzum__Product_Sales_Invoice_Plan_Template__c;Zumzum__Purchase_Invoice__c;Zumzum__Purchase_Order_Inventory_Movement__c;Zumzum__Purchase_Order__c;Zumzum__Purchase_Requisition__c;Zumzum__Purchase_Requisitions_Line_Item__c;Zumzum__Revenue_Recognition_Schedule__c;Zumzum__Sales_Invoice_Plan_Template__c;Zumzum__Sales_Invoice__c;Zumzum__Sales_Order_Stock_Movement__c;Zumzum__Sales_Order__c;Zumzum__Stock_Balance__c;Zumzum__Stock_Ledger__c;Zumzum__Time_Sheet__c;Zumzum__VAT_Obligation__c;Zumzum__VAT_Submission_Result__c;Zumzum__Warehouse__c;agf__ADM_Epic__c;agf__ADM_Priority__c;agf__ADM_Release_Event__c;agf__ADM_Release_Stamp_Cache__c;agf__ADM_Release__c;agf__ADM_Severity_Type__c;agf__ADM_Severity__c;agf__ADM_Sprint__c;agf__ADM_Type__c;agf__ADM_Work__c;agf__Environments_Order__c;agf__Headcount__c;agf__Locking_Record__c;agf__OMOpportunity__c;agf__QA_Test_Case__c;agf__QA_Test_Execution__c;agf__QA_Test_Plan__c;agf__RCA__c;agf__Release_Signoff_Infrastructure__c;agf__Retrospective__c;cpm__Mandate__c;cpm__Payment__c;cpm__Recurring_Payment__c;cpm__Reference_Generator_Run__c;gaid__Gift_Aid_Declaration__c;npo02__Household__c;npsp__Engagement_Plan_Template__c;npsp__Engagement_Plan__c;npsp__Fund__c;npsp__General_Accounting_Unit__c;npsp__Grant_Deadline__c;proh__File__c</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>WhatId</field>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <object>Task</object>
-    </recordCreates>
     <recordUpdates>
         <processMetadataValues>
             <name>evaluationType</name>
@@ -1359,7 +1385,7 @@
             </processMetadataValues>
             <field>Offer_Email_Date__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_4503485799</elementReference>
+                <elementReference>formula_8_myRule_7_A1_5532965456</elementReference>
             </value>
         </inputAssignments>
         <object>Booking__c</object>
@@ -1389,12 +1415,12 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myWaitEvent_myWait_myRule_10_event_0_SA1</name>
+        <name>myWaitEvent_myWait_myRule_12_event_0_SA1</name>
         <label>SetStatusToExpired1</label>
-        <locationX>1000</locationX>
+        <locationX>1200</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myWaitEvent_myWait_myRule_10_event_0_postWaitExecutionAssignment</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_12_event_0_postWaitExecutionAssignment</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -1616,12 +1642,12 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myWaitEvent_myWait_myRule_10_event_1_SA1</name>
+        <name>myWaitEvent_myWait_myRule_12_event_1_SA1</name>
         <label>SetStatusToExpired2</label>
-        <locationX>1000</locationX>
+        <locationX>1200</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myWaitEvent_myWait_myRule_10_event_1_postWaitExecutionAssignment</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_12_event_1_postWaitExecutionAssignment</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -1843,12 +1869,12 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myWaitEvent_myWait_myRule_10_event_2_SA1</name>
+        <name>myWaitEvent_myWait_myRule_12_event_2_SA1</name>
         <label>SetStatusToExpired3</label>
-        <locationX>1000</locationX>
+        <locationX>1200</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myWaitEvent_myWait_myRule_10_event_2_postWaitExecutionAssignment</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_12_event_2_postWaitExecutionAssignment</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -2070,12 +2096,12 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myWaitEvent_myWait_myRule_10_event_3_SA1</name>
+        <name>myWaitEvent_myWait_myRule_12_event_3_SA1</name>
         <label>SetStatusToExpired4</label>
-        <locationX>1000</locationX>
+        <locationX>1200</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myWaitEvent_myWait_myRule_10_event_3_postWaitExecutionAssignment</targetReference>
+            <targetReference>myWaitEvent_myWait_myRule_12_event_3_postWaitExecutionAssignment</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -2355,7 +2381,7 @@
         </inputAssignments>
         <object>Booking__c</object>
     </recordUpdates>
-    <startElementReference>myPreWaitDecision_myWait_myRule_10</startElementReference>
+    <startElementReference>myPreWaitDecision_myWait_myRule_12</startElementReference>
     <status>Active</status>
     <variables>
         <name>cancelWaits</name>
@@ -2381,7 +2407,7 @@
         <objectType>Booking__c</objectType>
     </variables>
     <variables>
-        <name>myWaitEvent_myWait_myRule_10_event_0_postActionExecutionVariable</name>
+        <name>myWaitEvent_myWait_myRule_12_event_0_postActionExecutionVariable</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -2391,7 +2417,7 @@
         </value>
     </variables>
     <variables>
-        <name>myWaitEvent_myWait_myRule_10_event_1_postActionExecutionVariable</name>
+        <name>myWaitEvent_myWait_myRule_12_event_1_postActionExecutionVariable</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -2401,7 +2427,7 @@
         </value>
     </variables>
     <variables>
-        <name>myWaitEvent_myWait_myRule_10_event_2_postActionExecutionVariable</name>
+        <name>myWaitEvent_myWait_myRule_12_event_2_postActionExecutionVariable</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -2411,7 +2437,7 @@
         </value>
     </variables>
     <variables>
-        <name>myWaitEvent_myWait_myRule_10_event_3_postActionExecutionVariable</name>
+        <name>myWaitEvent_myWait_myRule_12_event_3_postActionExecutionVariable</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -2490,8 +2516,8 @@
         </waitEvents>
     </waits>
     <waits>
-        <name>myWait_myRule_10</name>
-        <label>myWait_myRule_10</label>
+        <name>myWait_myRule_12</name>
+        <label>myWait_myRule_12</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>defaultLabel</defaultConnectorLabel>
@@ -2502,17 +2528,17 @@
                     <stringValue>referenced</stringValue>
                 </value>
             </processMetadataValues>
-            <name>myWaitEvent_myWait_myRule_10_event_0</name>
+            <name>myWaitEvent_myWait_myRule_12_event_0</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>myWaitEvent_myWait_myRule_10_event_0_postActionExecutionVariable</leftValueReference>
+                <leftValueReference>myWaitEvent_myWait_myRule_12_event_0_postActionExecutionVariable</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myPostWaitDecision_myWaitEvent_myWait_myRule_10_event_0</targetReference>
+                <targetReference>myPostWaitDecision_myWaitEvent_myWait_myRule_12_event_0</targetReference>
             </connector>
             <eventType>DateRefAlarmEvent</eventType>
             <inputParameters>
@@ -2545,7 +2571,7 @@
                     <stringValue>Reservation_Expiry_Date__c</stringValue>
                 </value>
             </inputParameters>
-            <label>myWaitEvent_myWait_myRule_10_event_0</label>
+            <label>myWaitEvent_myWait_myRule_12_event_0</label>
         </waitEvents>
         <waitEvents>
             <processMetadataValues>
@@ -2554,17 +2580,17 @@
                     <stringValue>now</stringValue>
                 </value>
             </processMetadataValues>
-            <name>myWaitEvent_myWait_myRule_10_event_1</name>
+            <name>myWaitEvent_myWait_myRule_12_event_1</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>myWaitEvent_myWait_myRule_10_event_1_postActionExecutionVariable</leftValueReference>
+                <leftValueReference>myWaitEvent_myWait_myRule_12_event_1_postActionExecutionVariable</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myWaitEvent_myWait_myRule_10_event_1_SA1</targetReference>
+                <targetReference>myWaitEvent_myWait_myRule_12_event_1_SA1</targetReference>
             </connector>
             <eventType>AlarmEvent</eventType>
             <inputParameters>
@@ -2585,7 +2611,7 @@
                     <numberValue>11.0</numberValue>
                 </value>
             </inputParameters>
-            <label>myWaitEvent_myWait_myRule_10_event_1</label>
+            <label>myWaitEvent_myWait_myRule_12_event_1</label>
         </waitEvents>
         <waitEvents>
             <processMetadataValues>
@@ -2594,17 +2620,17 @@
                     <stringValue>now</stringValue>
                 </value>
             </processMetadataValues>
-            <name>myWaitEvent_myWait_myRule_10_event_2</name>
+            <name>myWaitEvent_myWait_myRule_12_event_2</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>myWaitEvent_myWait_myRule_10_event_2_postActionExecutionVariable</leftValueReference>
+                <leftValueReference>myWaitEvent_myWait_myRule_12_event_2_postActionExecutionVariable</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myWaitEvent_myWait_myRule_10_event_2_SA1</targetReference>
+                <targetReference>myWaitEvent_myWait_myRule_12_event_2_SA1</targetReference>
             </connector>
             <eventType>AlarmEvent</eventType>
             <inputParameters>
@@ -2625,7 +2651,7 @@
                     <numberValue>6.0</numberValue>
                 </value>
             </inputParameters>
-            <label>myWaitEvent_myWait_myRule_10_event_2</label>
+            <label>myWaitEvent_myWait_myRule_12_event_2</label>
         </waitEvents>
         <waitEvents>
             <processMetadataValues>
@@ -2634,17 +2660,17 @@
                     <stringValue>referenced</stringValue>
                 </value>
             </processMetadataValues>
-            <name>myWaitEvent_myWait_myRule_10_event_3</name>
+            <name>myWaitEvent_myWait_myRule_12_event_3</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>myWaitEvent_myWait_myRule_10_event_3_postActionExecutionVariable</leftValueReference>
+                <leftValueReference>myWaitEvent_myWait_myRule_12_event_3_postActionExecutionVariable</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myPostWaitDecision_myWaitEvent_myWait_myRule_10_event_3</targetReference>
+                <targetReference>myPostWaitDecision_myWaitEvent_myWait_myRule_12_event_3</targetReference>
             </connector>
             <eventType>DateRefAlarmEvent</eventType>
             <inputParameters>
@@ -2677,7 +2703,7 @@
                     <stringValue>Reservation_Expiry_Date__c</stringValue>
                 </value>
             </inputParameters>
-            <label>myWaitEvent_myWait_myRule_10_event_3</label>
+            <label>myWaitEvent_myWait_myRule_12_event_3</label>
         </waitEvents>
     </waits>
 </Flow>
