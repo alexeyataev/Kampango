@@ -14,11 +14,12 @@ public without sharing class CourseCreateEnquiryUtility {
                 FirstName = requestParameters.get('first_name'),
                 LastName = requestParameters.get('last_name'),
                 Email = requestParameters.get('email'),
-                Phone = requestParameters.get('mobile'),
+                MobilePhone = requestParameters.get('mobile'),
                 MailingCity = requestParameters.get('town'),
                 MailingPostalCode = requestParameters.get('postcode'),
                 MailingCountry = requestParameters.get('county'),
-                MailingStreet = requestParameters.get('address_line1') + ', ' + requestParameters.get('address_line2')
+                MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
+                npe01__PreferredPhone__c = 'Mobile'
             );
             try {
                 upsert contact Contact.fields.Email;
