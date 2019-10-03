@@ -4,13 +4,14 @@ public without sharing class CourseCreateEnquiryUtility {
     public static void createEnquiry(String courseNumber, Map<String, String> requestParameters) {
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
 
-        Id courseId = [
+        List<Course__c> course = [
             SELECT Id, Name
             FROM Course__c
             WHERE Name =: courseNumber
             LIMIT 1
-        ].Id;
-        if (String.isNotBlank(courseId) && !requestParameters.isEmpty()) {
+        ];
+        if (!course.isEmpty() && !requestParameters.isEmpty()) {
+            Id courseId = course[0].Id;
             Booking__c booking = new Booking__c();
             Contact contact;
 
