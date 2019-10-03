@@ -12,7 +12,7 @@ private class GeneratePaymentFileExtensionTest {
 				.withBillingEmail('tets@gmail.com')
 				.withBankSortCode('572899')
 				.withBankAccountNumber('03456123')
-				.withBankAccountName('AMERICAN BANK ACCOUNT')
+				.withBankAccountName('TEST BANK ACCOUNT')
 				.insertRecord(true)
 				.build();
 
