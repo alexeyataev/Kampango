@@ -26,8 +26,7 @@ public without sharing class BookingJourneyHelper {
         List<Individual> individuals = new List<Individual>();
         if(String.isNotBlank(individualId)){
             individuals = [
-                SELECT Has_Opted_Out_Email__c, Has_Opted_Out_Post__c, Has_Opted_Out_SMS__c,
-                    Has_Opted_Out_Telephone__c
+                SELECT Email__c, Post__c, SMS__c, Telephone__c
                 FROM Individual
                 WHERE Id = :individualId
             ];
