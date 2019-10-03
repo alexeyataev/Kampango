@@ -12,14 +12,12 @@ private class CourseFinderModelOrderedTest {
                        .buildCoursesWithSessions(1, 2);
     }
 
-    @isTest
-    static void createInstenceCourseFinderModel() {
-        setupTestData();
+    private static Course__c getCourse() {
         Course__c course = [
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,  
                 Branch__r.Name, Branch__r.Branch_Key__c, Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, 
                 Main_Practitioner__r.Email, Main_Practitioner__r.Phone, Main_Venue__r.Name, Main_Venue__r.Town__c,
-                Main_Venue__r.County__c, Main_Venue__r.Location__c, Main_Venue__r.Map_Link__c, 
+                Main_Venue__r.County__c, Main_Venue__r.Location__c, Main_Venue__r.Map_Link__c, Start_Date__c, End_Date__c, 
                 (
                     SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c 
                     FROM Sessions__r
@@ -28,14 +26,92 @@ private class CourseFinderModelOrderedTest {
             LIMIT 1
         ];
 
+        return course;
+    }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfOneToOne() {
+        setupTestData();
+        Course__c course = getCourse();
+
         Test.startTest();
-        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course);
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, Date.today());
         modelOrdered.Order = 1;
-        modelOrdered.Rank = 1;
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(1, modelOrdered.Order);
+        System.assertEquals(null, modelOrdered.Rank);
+    }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfNCTSignatureAntenatalIfGap30Days() {
+        setupTestData();
+        Course__c course = getCourse();
+
+        course.Sub_Type__c = 'NCT Signature Antenatal';
+    
+        update course;
+
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, Date.today().addDays(30));
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
         System.assertEquals(1, modelOrdered.Rank);
+    }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfNCTSignatureAntenatalIfGap100Days() {
+        setupTestData();
+        Course__c course = getCourse();
+
+        course.Sub_Type__c = 'NCT Signature Antenatal';
+    
+        update course;
+
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, Date.today().addDays(100));
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(5, modelOrdered.Rank);
+    }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfBabyMassageIfGap30Days() {
+        setupTestData();
+        Course__c course = getCourse();
+
+        course.Type__c = 'Postnatal';
+        course.Sub_Type__c = 'Baby Massage';
+        update course;
+
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, Date.today().addDays(30));
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(1, modelOrdered.Rank);
+    }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfBabyMassageIfGap100Days() {
+        setupTestData();
+        Course__c course = getCourse();
+
+        course.Type__c = 'Postnatal';
+        course.Sub_Type__c = 'Baby Massage';
+        update course;
+       
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, Date.today().addDays(100));
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(7, modelOrdered.Rank);
     }
 }
