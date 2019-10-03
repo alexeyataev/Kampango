@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Send_to_Practitioner</name>
         <label>Send to Practitioner</label>
-        <locationX>971</locationX>
-        <locationY>794</locationY>
+        <locationX>1164</locationX>
+        <locationY>958</locationY>
         <actionName>Session__c.Reunion_Session_Confirmed_Practitioner</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -23,8 +23,8 @@
     <assignments>
         <name>Assign_name_bookingList_for_output</name>
         <label>Assign name bookingList for output</label>
-        <locationX>389</locationX>
-        <locationY>1050</locationY>
+        <locationX>378</locationX>
+        <locationY>1168</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -39,8 +39,8 @@
     <assignments>
         <name>Assign_name_practit_email_for_output</name>
         <label>Assign name practit email for output</label>
-        <locationX>598</locationX>
-        <locationY>1006</locationY>
+        <locationX>599</locationX>
+        <locationY>1176</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -55,8 +55,8 @@
     <assignments>
         <name>Assign_name_venue_for_output</name>
         <label>Assign name venue for output</label>
-        <locationX>821</locationX>
-        <locationY>1038</locationY>
+        <locationX>823</locationX>
+        <locationY>1156</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -71,8 +71,8 @@
     <assignments>
         <name>Build_error_on_null_value</name>
         <label>Build error</label>
-        <locationX>598</locationX>
-        <locationY>1175</locationY>
+        <locationX>1613</locationX>
+        <locationY>1333</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -101,8 +101,8 @@
     <assignments>
         <name>Common_error_message</name>
         <label>Common error message</label>
-        <locationX>1798</locationX>
-        <locationY>1188</locationY>
+        <locationX>2443</locationX>
+        <locationY>1439</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -110,12 +110,26 @@
                 <elementReference>MESSAGE_ERROR</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>: </stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>subflow_status</elementReference>
+            </value>
+        </assignmentItems>
     </assignments>
     <assignments>
         <name>Empty_list_message</name>
         <label>Empty list message</label>
-        <locationX>2019</locationX>
-        <locationY>983</locationY>
+        <locationX>2663</locationX>
+        <locationY>1234</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -127,8 +141,8 @@
     <assignments>
         <name>Part_success_message</name>
         <label>Part success message</label>
-        <locationX>1791</locationX>
-        <locationY>780</locationY>
+        <locationX>2293</locationX>
+        <locationY>945</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -140,8 +154,8 @@
     <assignments>
         <name>Return_error_on_email_alert</name>
         <label>Return error</label>
-        <locationX>970</locationX>
-        <locationY>965</locationY>
+        <locationX>1476</locationX>
+        <locationY>1235</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -156,8 +170,8 @@
     <assignments>
         <name>Return_error_on_get_record</name>
         <label>Return error</label>
-        <locationX>546</locationX>
-        <locationY>642</locationY>
+        <locationX>1028</locationX>
+        <locationY>326</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -165,12 +179,133 @@
                 <stringValue>error_on_get_record</stringValue>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Decide_on_status</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Return_error_on_update_record</name>
+        <label>Return error</label>
+        <locationX>1968</locationX>
+        <locationY>819</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>error_on_update_record</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Decide_on_status</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_course_fields</name>
+        <label>Set course fields</label>
+        <locationX>995</locationX>
+        <locationY>941</locationY>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Start__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>session.Start_Text__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>course.Reunion_End__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>session.End_Text__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Session_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>session.Date__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Session_Day_Of_Week__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>session.Day_of_Week__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Venue_Name__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>venue.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Venue_Map_Url__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>venue.Map_Url__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Venue_Town__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>venue.Town__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Venue_Street_Address__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>venue.Street_Address__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Practitioner_Name__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>practitioner.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Practitioner_Email__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>practitioner.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Practitioner_Phone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>practitioner.Phone</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Course</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_status_error</name>
+        <label>Set status error</label>
+        <locationX>2290</locationX>
+        <locationY>1224</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>STATUS_ERROR</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Decide_on_error_status</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Success_message</name>
         <label>Success message</label>
-        <locationX>1789</locationX>
-        <locationY>633</locationY>
+        <locationX>2295</locationX>
+        <locationY>789</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -182,8 +317,8 @@
     <assignments>
         <name>Unknown_status_message</name>
         <label>Unknown status message</label>
-        <locationX>1601</locationX>
-        <locationY>990</locationY>
+        <locationX>2103</locationX>
+        <locationY>1229</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Add</operator>
@@ -280,7 +415,7 @@
         <name>Check_Bookings_List_is_not_null</name>
         <label>Check Bookings List is not null</label>
         <locationX>370</locationX>
-        <locationY>848</locationY>
+        <locationY>835</locationY>
         <defaultConnector>
             <targetReference>Assign_name_bookingList_for_output</targetReference>
         </defaultConnector>
@@ -296,7 +431,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Check_Practitioner_email_is_not_null</targetReference>
+                <targetReference>Get_practitioner</targetReference>
             </connector>
             <label>Bookings not null?</label>
         </rules>
@@ -304,8 +439,8 @@
     <decisions>
         <name>Check_Practitioner_email_is_not_null</name>
         <label>Check Practitioner email is not null</label>
-        <locationX>590</locationX>
-        <locationY>843</locationY>
+        <locationX>708</locationX>
+        <locationY>840</locationY>
         <defaultConnector>
             <targetReference>Assign_name_practit_email_for_output</targetReference>
         </defaultConnector>
@@ -352,35 +487,35 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Check_venue_if_null</name>
-        <label>Check venue if null</label>
+        <name>Check_venue_if_not_null</name>
+        <label>Check venue if not null</label>
         <locationX>835</locationX>
-        <locationY>667</locationY>
+        <locationY>668</locationY>
         <defaultConnector>
-            <targetReference>Send_to_Practitioner</targetReference>
+            <targetReference>Assign_name_venue_for_output</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Venue_is_null</name>
+            <name>Venue_is_not_null</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>venue</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Assign_name_venue_for_output</targetReference>
+                <targetReference>Get_Course</targetReference>
             </connector>
-            <label>Venue is null?</label>
+            <label>Venue is not null?</label>
         </rules>
     </decisions>
     <decisions>
         <name>Decide_on_error_status</name>
         <label>Decide on error status</label>
-        <locationX>1786</locationX>
-        <locationY>980</locationY>
+        <locationX>2433</locationX>
+        <locationY>1229</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Is_empty_list_error</name>
@@ -416,8 +551,8 @@
     <decisions>
         <name>Decide_on_status</name>
         <label>Decide on status</label>
-        <locationX>1591</locationX>
-        <locationY>785</locationY>
+        <locationX>2103</locationX>
+        <locationY>935</locationY>
         <defaultConnector>
             <targetReference>Unknown_status_message</targetReference>
         </defaultConnector>
@@ -442,13 +577,13 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>subflow_status</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>Contains</operator>
                 <rightValue>
                     <elementReference>STATUS_ERROR</elementReference>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Decide_on_error_status</targetReference>
+                <targetReference>Set_status_error</targetReference>
             </connector>
             <label>Is Error?</label>
         </rules>
@@ -471,8 +606,8 @@
     <decisions>
         <name>Is_Public_Venue</name>
         <label>Is Public Venue</label>
-        <locationX>1150</locationX>
-        <locationY>693</locationY>
+        <locationX>1396</locationX>
+        <locationY>954</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Public_Venue</name>
@@ -505,26 +640,6 @@
             <label>Not volunteer venue</label>
         </rules>
     </decisions>
-    <formulas>
-        <name>map_link_formula</name>
-        <dataType>String</dataType>
-        <expression>HYPERLINK({!venue.Map_Url__c}, &#39;Click&#39;)</expression>
-    </formulas>
-    <formulas>
-        <name>partner_name_formula</name>
-        <dataType>String</dataType>
-        <expression>IF(ISBLANK({!booking.First_Name_Partner__c}), &#39;&#39;, &#39; and &#39;+{!booking.First_Name_Partner__c})</expression>
-    </formulas>
-    <formulas>
-        <name>time_to_text_end</name>
-        <dataType>String</dataType>
-        <expression>{!session.End__c}</expression>
-    </formulas>
-    <formulas>
-        <name>time_to_text_start</name>
-        <dataType>String</dataType>
-        <expression>{!session.Start__c}</expression>
-    </formulas>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -543,7 +658,7 @@
     <recordLookups>
         <name>Get_bookings</name>
         <label>Get bookings</label>
-        <locationX>377</locationX>
+        <locationX>378</locationX>
         <locationY>640</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -575,6 +690,57 @@
         <queriedFields>First_Name_Partner__c</queriedFields>
         <queriedFields>First_Name__c</queriedFields>
         <queriedFields>Name</queriedFields>
+        <queriedFields>Last_Name__c</queriedFields>
+        <queriedFields>Last_Name_Partner__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Course</name>
+        <label>Get Course</label>
+        <locationX>924</locationX>
+        <locationY>753</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_course_fields</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get_record</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>session.Course__c</elementReference>
+            </value>
+        </filters>
+        <object>Course__c</object>
+        <outputReference>course</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_practitioner</name>
+        <label>Get practitioner</label>
+        <locationX>563</locationX>
+        <locationY>838</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Practitioner_email_is_not_null</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get_record</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>session.Practitioner__c</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputReference>practitioner</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Email</queriedFields>
+        <queriedFields>Phone</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_session</name>
@@ -603,10 +769,6 @@
         <queriedFields>Venue__c</queriedFields>
         <queriedFields>Day_of_Week__c</queriedFields>
         <queriedFields>Date__c</queriedFields>
-        <queriedFields>Start__c</queriedFields>
-        <queriedFields>End__c</queriedFields>
-        <queriedFields>Capacity_PSA_Name__c</queriedFields>
-        <queriedFields>Enquiries_PSA_Name__c</queriedFields>
         <queriedFields>IsPublicVenue__c</queriedFields>
         <queriedFields>Start_Text__c</queriedFields>
         <queriedFields>End_Text__c</queriedFields>
@@ -618,7 +780,7 @@
         <locationY>665</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_venue_if_null</targetReference>
+            <targetReference>Check_venue_if_not_null</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -633,21 +795,32 @@
         <object>Venue__c</object>
         <outputReference>venue</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Host__c</queriedFields>
         <queriedFields>Type__c</queriedFields>
         <queriedFields>Town__c</queriedFields>
         <queriedFields>Street_Address__c</queriedFields>
-        <queriedFields>Map_Link__c</queriedFields>
         <queriedFields>Name</queriedFields>
         <queriedFields>Map_Url__c</queriedFields>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_Course</name>
+        <label>Update Course</label>
+        <locationX>1046</locationX>
+        <locationY>751</locationY>
+        <connector>
+            <targetReference>Send_to_Practitioner</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_update_record</targetReference>
+        </faultConnector>
+        <inputReference>course</inputReference>
+    </recordUpdates>
     <startElementReference>Check_Session_Id</startElementReference>
     <status>Active</status>
     <subflows>
         <name>Send_to_Private</name>
         <label>Send to Private</label>
-        <locationX>1160</locationX>
-        <locationY>869</locationY>
+        <locationX>1405</locationX>
+        <locationY>1114</locationY>
         <connector>
             <targetReference>Decide_on_status</targetReference>
         </connector>
@@ -656,6 +829,12 @@
             <name>bookingList</name>
             <value>
                 <elementReference>BookingList</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>course</name>
+            <value>
+                <elementReference>course</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -677,6 +856,10 @@
             </value>
         </inputAssignments>
         <outputAssignments>
+            <assignToReference>course</assignToReference>
+            <name>course</name>
+        </outputAssignments>
+        <outputAssignments>
             <assignToReference>subflow_status</assignToReference>
             <name>subflow_status</name>
         </outputAssignments>
@@ -684,8 +867,8 @@
     <subflows>
         <name>Send_to_public</name>
         <label>Send to public</label>
-        <locationX>1158</locationX>
-        <locationY>511</locationY>
+        <locationX>1406</locationX>
+        <locationY>794</locationY>
         <connector>
             <targetReference>Decide_on_status</targetReference>
         </connector>
@@ -762,13 +945,6 @@
         <value>
             <stringValue>Unknown result: </stringValue>
         </value>
-    </variables>
-    <variables>
-        <name>partner_name</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>practitioner</name>

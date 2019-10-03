@@ -20,34 +20,31 @@
             </value>
         </inputParameters>
     </actionCalls>
-    <assignments>
-        <name>Set_null_input_message</name>
-        <label>Set null input message</label>
-        <locationX>931</locationX>
-        <locationY>350</locationY>
-        <assignmentItems>
-            <assignToReference>output_message</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>MESSAGE_NULL_REUNION</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>subflow_status</assignToReference>
-            <operator>Assign</operator>
+    <actionCalls>
+        <name>Warn_null_input</name>
+        <label>Warn null input</label>
+        <locationX>98</locationX>
+        <locationY>227</locationY>
+        <actionName>c:showToast</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>type</name>
             <value>
                 <elementReference>STATUS_ERROR</elementReference>
             </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Show_status</targetReference>
-        </connector>
-    </assignments>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>MESSAGE_NULL_REUNION</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <assignments>
         <name>Warn_Reunion_is_not_confirmed</name>
         <label>Warn Reunion is not confirmed</label>
-        <locationX>803</locationX>
-        <locationY>430</locationY>
+        <locationX>876</locationX>
+        <locationY>478</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -139,7 +136,7 @@
         <locationX>286</locationX>
         <locationY>230</locationY>
         <defaultConnector>
-            <targetReference>Set_null_input_message</targetReference>
+            <targetReference>Warn_null_input</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -221,20 +218,20 @@
         <showHeader>false</showHeader>
     </screens>
     <startElementReference>Get_Reunion_Session_by_Course</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <name>Prepare_and_send</name>
         <label>Prepare and send</label>
-        <locationX>668</locationX>
-        <locationY>591</locationY>
+        <locationX>691</locationX>
+        <locationY>590</locationY>
         <connector>
             <targetReference>Show_status</targetReference>
         </connector>
-        <flowName>Reunion_Query_details_and_Update_Course</flowName>
+        <flowName>Reunion_Execute_Sending</flowName>
         <inputAssignments>
-            <name>recordId</name>
+            <name>sessionId</name>
             <value>
-                <elementReference>recordId</elementReference>
+                <elementReference>session.Id</elementReference>
             </value>
         </inputAssignments>
         <outputAssignments>
@@ -243,7 +240,7 @@
         </outputAssignments>
         <outputAssignments>
             <assignToReference>subflow_status</assignToReference>
-            <name>output_status</name>
+            <name>subflow_status</name>
         </outputAssignments>
     </subflows>
     <variables>

@@ -10,14 +10,14 @@
         <processMetadataValues>
             <name>flowSelection</name>
             <value>
-                <stringValue>Reunion Query details and Update Course</stringValue>
+                <stringValue>Reunion Execute Sending Flow</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>Run flow</label>
+        <label>Run Flow</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
-        <actionName>Reunion_Query_details_and_Update_Course</actionName>
+        <actionName>Reunion_Execute_Sending</actionName>
         <actionType>flow</actionType>
         <inputParameters>
             <processMetadataValues>
@@ -35,7 +35,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>recordId</stringValue>
+                    <stringValue>sessionId</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -56,9 +56,9 @@
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <name>recordId</name>
+            <name>sessionId</name>
             <value>
-                <elementReference>myVariable_current.Course__c</elementReference>
+                <elementReference>myVariable_current.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
