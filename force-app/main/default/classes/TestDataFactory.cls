@@ -60,11 +60,16 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildPractitioner(String lastName) {
+        return buildPractitioner(lastName, null);
+    }
+
+    public TestDataFactory buildPractitioner(String lastName, String email) {
         TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
         practitioners.add(practitionerContactBuilder
             .withRecordType(PRACTITIONER_RECORDTYPE_NAME)
             .withAccount(organizationAccount)
             .withLastName(lastName)
+            .withEmail(email)
             .insertRecord(true)
             .build());
         return this;
@@ -110,6 +115,19 @@ public without sharing class TestDataFactory {
         TestCourseAssignmentBuilder courseAssignmentBuilder = new TestCourseAssignmentBuilder();
         courseAssignment = courseAssignmentBuilder
             .withCourse(course)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildCourseWithTypeAndSubType(String type, String subtype) {
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        course = courseBuilder
+            .withAccount(branchAccount)
+            .withPractitioner(practitioners[0])
+            .withLicenceToPractice(licenceToPractice)
+            .withType(type)
+            .withSubType(subtype)
             .insertRecord(true)
             .build();
         return this;

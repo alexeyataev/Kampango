@@ -72,7 +72,7 @@
         <queriedFields>Partner_Contact__c</queriedFields>
         <queriedFields>How_Heard__c</queriedFields>
         <queriedFields>Primary_Contact__c</queriedFields>
-        <queriedFields>Birth_Or_Due_Date__c</queriedFields>
+        <queriedFields>Birth_Due_Date__c</queriedFields>
         <queriedFields>Postcode__c</queriedFields>
         <queriedFields>Street_Address__c</queriedFields>
         <queriedFields>Under_18__c</queriedFields>
@@ -156,27 +156,9 @@
         <queriedFields>MailingState</queriedFields>
         <queriedFields>MailingStreet</queriedFields>
         <queriedFields>IndividualId</queriedFields>
+        <queriedFields>AccountId</queriedFields>
+        <queriedFields>RecordTypeId</queriedFields>
     </recordLookups>
-    <recordUpdates>
-        <name>SetBookingStatusToConfirmed</name>
-        <label>SetBookingStatusToConfirmed</label>
-        <locationX>641</locationX>
-        <locationY>360</locationY>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>bookingRecord.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Status__c</field>
-            <value>
-                <stringValue>Confirmed</stringValue>
-            </value>
-        </inputAssignments>
-        <object>Booking__c</object>
-    </recordUpdates>
     <screens>
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>

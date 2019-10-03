@@ -109,11 +109,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Booking__c.Birth_Date__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Booking__c.Birth_Due_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -124,7 +119,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Booking__c.Cancellation_reason__c</field>
+        <field>Booking__c.Cancellation_Reason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -160,6 +155,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Email_Template_Utility_Field__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Enquiries_PSA_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -200,6 +200,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.First_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Has_Opted_Out_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Has_Opted_Out_Post__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Has_Opted_Out_SMS__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Has_Opted_Out_Telephone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -800,6 +820,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Venue__c.Kitchen_Available__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Location__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
