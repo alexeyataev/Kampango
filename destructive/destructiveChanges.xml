@@ -31,6 +31,10 @@
         <members>Booking__c.Bank_Sort_Code__c</members>
         <members>Booking__c.Enquiry_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_First_Name__c</members>
+        <members>Booking__c.Has_Opted_Out_Email__c</members>
+        <members>Booking__c.Has_Opted_Out_Post__c</members>
+        <members>Booking__c.Has_Opted_Out_SMS__c</members>
+        <members>Booking__c.Has_Opted_Out_Telephone__c</members>
         <members>Booking__c.Twins_or_more__c</members>
         <members>Booking__c.Confirm_DD_Authorisation__c</members>
         <members>Booking__c.Client_Gift_Aid__c</members>
@@ -78,6 +82,10 @@
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
         <members>Course__c.End_Time__c</members>
+        <members>Individual.Has_Opted_Out_Email__c</members>
+        <members>Individual.Has_Opted_Out_Post__c</members>
+        <members>Individual.Has_Opted_Out_SMS__c</members>
+        <members>Individual.Has_Opted_Out_Telephone__c</members>
         <members>Room__c.Display_Name__c</members>
         <members>Session__c.Attendee_Type__c</members>
         <members>Session__c.Confirmed__c</members>
