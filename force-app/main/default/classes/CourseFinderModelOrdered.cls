@@ -33,7 +33,7 @@ public class CourseFinderModelOrdered extends CourseFinderModel {
         return false;
     }
 
-    public List<CourseTypeRank> createOrderToRank() {
+    private List<CourseTypeRank> createOrderToRank() {
         List<CourseTypeRank> courseTypeRanks = new List<CourseTypeRank>();
 
         CourseTypeRank courseTypeRank1 = new CourseTypeRank('NCT Signature Antenatal', 1, new List<CompareValue>{new CompareValue(21, 49)});
@@ -131,28 +131,24 @@ public class CourseFinderModelOrdered extends CourseFinderModel {
 
         return courseTypeRanks; 
     }
-  
-    private void calculateGroupRank(){
-        groupRank = 2;
-    }
 
-    public class CourseTypeRank {
-        public String courseType;
-        public Integer rank;
-        public List<CompareValue> compareValues;
+    private class CourseTypeRank {
+        private String courseType;
+        private Integer rank;
+        private List<CompareValue> compareValues;
 
-        public CourseTypeRank(String courseType, Integer rank, List<CompareValue> compareValues) {
+        private CourseTypeRank(String courseType, Integer rank, List<CompareValue> compareValues) {
             this.courseType = courseType;
             this.rank = rank;
             this.compareValues = compareValues;
         }
     }
 
-    public class CompareValue {
+    private class CompareValue {
         private Integer minNumber;
         private Integer maxNumber;
 
-        public CompareValue(Integer minNumber, Integer maxNumber) {
+        private CompareValue(Integer minNumber, Integer maxNumber) {
             this.minNumber = minNumber;
             this.maxNumber = maxNumber;
         }
