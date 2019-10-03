@@ -184,21 +184,21 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Has_Opted_Out_Email__c</field>
+                <field>Email__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Has_Opted_Out_Post__c</field>
+                <field>Post__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Has_Opted_Out_SMS__c</field>
+                <field>SMS__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Has_Opted_Out_Telephone__c</field>
+                <field>Telephone__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

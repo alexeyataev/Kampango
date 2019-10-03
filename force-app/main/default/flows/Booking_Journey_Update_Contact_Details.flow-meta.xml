@@ -949,28 +949,28 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>individualRecord.Has_Opted_Out_Email__c</assignToReference>
+            <assignToReference>individualRecord.Email__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>emailFinal</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>individualRecord.Has_Opted_Out_Post__c</assignToReference>
+            <assignToReference>individualRecord.Post__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>postFinal</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>individualRecord.Has_Opted_Out_SMS__c</assignToReference>
+            <assignToReference>individualRecord.SMS__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>smsFinal</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>individualRecord.Has_Opted_Out_Telephone__c</assignToReference>
+            <assignToReference>individualRecord.Telephone__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>phoneFinal</elementReference>
@@ -2255,7 +2255,7 @@
     <formulas>
         <name>emailFinal</name>
         <dataType>Boolean</dataType>
-        <expression>!{!marketingEmail}</expression>
+        <expression>{!marketingEmail}</expression>
     </formulas>
     <formulas>
         <name>MobileRequiered</name>
@@ -2265,17 +2265,17 @@
     <formulas>
         <name>phoneFinal</name>
         <dataType>Boolean</dataType>
-        <expression>!{!marketingPhone}</expression>
+        <expression>{!marketingPhone}</expression>
     </formulas>
     <formulas>
         <name>postFinal</name>
         <dataType>Boolean</dataType>
-        <expression>!{!marketingPost}</expression>
+        <expression>{!marketingPost}</expression>
     </formulas>
     <formulas>
         <name>smsFinal</name>
         <dataType>Boolean</dataType>
-        <expression>!{!marketingSMS}</expression>
+        <expression>{!marketingSMS}</expression>
     </formulas>
     <interviewLabel>Booking Journey Update Contact Details {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Update Contact Details</label>
