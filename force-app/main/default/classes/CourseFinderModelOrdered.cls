@@ -3,24 +3,28 @@
 public class CourseFinderModelOrdered extends CourseFinderModel {
     public Integer Rank {get; set;}
     public Integer Order {get; set;}
-    public transient Integer groupRank {get; set;}
+    public Integer groupRank {get; set;}
     private List<CourseTypeRank> courseTypeRanks;
     
     public CourseFinderModelOrdered(Course__c course, Date birthDueDate) {
         super(course);
         this.courseTypeRanks = createOrderToRank();
         this.Rank = getCourseRank(course, birthDueDate);
+        this.groupRank = getCourseGroupRank(course);
     }
 
     private Integer getCourseRank(Course__c course, Date birthDueDate) {
         Integer numberDays = 0;
-        numberDays = course.Type__c == 'Antenatal' ? course.End_Date__c.daysBetween(birthDueDate) : course.Start_Date__c.daysBetween(birthDueDate);
+        if (birthDueDate != null && course.End_Date__c != null && course.Start_Date__c != null) {
+            numberDays = course.Type__c == 'Antenatal' ? course.End_Date__c.daysBetween(birthDueDate) : course.Start_Date__c.daysBetween(birthDueDate);
 
-        for (CourseTypeRank courseTypeRank : courseTypeRanks) {
-            if (courseTypeRank.courseType == course.Sub_Type__c && isAppropriateRank(courseTypeRank.compareValues, numberDays)) {
-                return courseTypeRank.rank;
-            }
-        }
+            for (CourseTypeRank courseTypeRank : courseTypeRanks) {
+                if (courseTypeRank.courseType == course.Sub_Type__c && isAppropriateRank(courseTypeRank.compareValues, numberDays)) {
+                    return courseTypeRank.rank;
+                }
+            } 
+        } 
+
         return null;
     }
 
@@ -31,6 +35,21 @@ public class CourseFinderModelOrdered extends CourseFinderModel {
             } 
         }
         return false;
+    }
+
+    private Integer getCourseGroupRank(Course__c course) {
+        Date today = date.today();
+        if (course.Remaining_Places__c > 0 && course.Start_Date__c > today) {
+            return RankCourseConstants.AVAILABLE_NOT_STARTED;
+        } else if (course.Remaining_Places__c <= 0 && course.Start_Date__c > today) {
+            return RankCourseConstants.FULL_NOT_STARTED;
+        } else if (course.Remaining_Places__c > 0 && course.Start_Date__c <= today) {
+            return RankCourseConstants.AVAILABLE_SOME_SESSION_MISSED;
+        } else if (course.Remaining_Places__c <= 0 && course.Start_Date__c <= today) {
+            return RankCourseConstants.FULL_SOME_SESSION_MISSED;
+        } else {
+            return null;
+        }
     }
 
     private List<CourseTypeRank> createOrderToRank() {

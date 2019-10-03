@@ -44,6 +44,62 @@ private class CourseFinderModelOrderedTest {
     }
 
     @isTest
+    static void createInstanceCourseFinderModelIfBirthDueDateEqualNull() {
+        setupTestData();
+        Course__c course = getCourse();
+
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, null);
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(null, modelOrdered.Rank);
+    }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfStartDateNull() {
+        setupTestData();
+        Course__c course = getCourse();
+        List<Session__c> sessions = [
+            SELECT Date__c 
+            FROM Session__c
+            WHERE Course__c =: course.Id
+        ];
+
+        delete sessions;
+
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, Date.today());
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(null, modelOrdered.Rank);
+    }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfEndDateNull() {
+        setupTestData();
+        Course__c course = getCourse();
+        List<Session__c> sessions = [
+            SELECT Date__c 
+            FROM Session__c
+            WHERE Course__c =: course.Id
+        ];
+
+        delete sessions;
+
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, Date.today());
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(null, modelOrdered.Rank);
+    }
+
+    @isTest
     static void createInstanceCourseFinderModelIfNCTSignatureAntenatalIfGap30Days() {
         setupTestData();
         Course__c course = getCourse();
