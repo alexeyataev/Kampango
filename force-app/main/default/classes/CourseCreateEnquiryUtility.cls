@@ -4,7 +4,13 @@ public without sharing class CourseCreateEnquiryUtility {
     public static void createEnquiry(String courseNumber, Map<String, String> requestParameters) {
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
 
-        if (String.isNotBlank(courseNumber) && !requestParameters.isEmpty()) {
+        Id courseId = [
+            SELECT Id, Name
+            FROM Course__c
+            WHERE Name =: courseNumber
+            LIMIT 1
+        ].Id;
+        if (String.isNotBlank(courseId) && !requestParameters.isEmpty()) {
             Booking__c booking = new Booking__c();
             Contact contact;
 
@@ -24,12 +30,7 @@ public without sharing class CourseCreateEnquiryUtility {
             try {
                 upsert contact Contact.fields.Email;
             } catch (DmlException ex) {
-                System.debug(
-                    ex.getTypeName() + ' ' +
-                    ex.getStackTraceString() + ' ' +
-                    ex.getMessage() + ' ' +
-                    ex.getStackTraceString()
-                );
+                throw new CreateEnquiryException(ex.getMessage());
             }
 
             Contact partner;
@@ -43,31 +44,21 @@ public without sharing class CourseCreateEnquiryUtility {
                     try {
                         upsert partner Contact.fields.Email;
                     } catch (DmlException ex) {
-                        System.debug(
-                        ex.getTypeName() + ' ' +
-                        ex.getStackTraceString() + ' ' +
-                        ex.getMessage() + ' ' +
-                        ex.getStackTraceString()
-                    );
-                }
+                        throw new CreateEnquiryException(ex.getMessage());
+                    }
                 booking.Partner_Contact__c = partner.Id;
             }
             booking.Primary_Contact__c = contact.Id;
             booking.Birth_Due_Date__c = Date.parse((requestParameters.get('duedate')));
             booking.First_Baby__c = parseParameterToPicklistValue(requestParameters.get('firstbaby'));
             booking.Multiple_Birth__c = parseParameterToPicklistValue(requestParameters.get('twinsexpected'));
-            booking.Course__c = courseNumber;
+            booking.Course__c = courseId;
             booking.How_Heard__c = requestParameters.get('hearaboutus');
             booking.Info_for_Practitioner__c = requestParameters.get('additioninfo');
             try {
                 insert booking;
             } catch (DmlException ex) {
-                System.debug(
-                    ex.getTypeName() + ' ' +
-                    ex.getStackTraceString() + ' ' +
-                    ex.getMessage() + ' ' +
-                    ex.getStackTraceString()
-                );
+                throw new CreateEnquiryException(ex.getMessage());
             }
         }
     }
@@ -76,11 +67,12 @@ public without sharing class CourseCreateEnquiryUtility {
         return SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(recordTypeName).getRecordTypeId();
     }
 
-    private static String parseParameterToPicklistValue(String value) {
-        return value == '1' ? 'Yes' : 'No';
+    private static String parseParameterToPicklistValue(String parameter) {
+        return parameter == '1' ? 'Yes' : 'No';
     }
   
     public static String getCourseIdFromHeaders(Map<String, String> headers) {
         return headers.get('Referer').substring(headers.get('Referer').lastIndexOf('/') + 1);
     }
+    public class CreateEnquiryException extends Exception {}
 }

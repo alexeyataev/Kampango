@@ -1,17 +1,17 @@
 public without sharing class CourseSearchUtility {
 
     private static List<String> howHeard = getHowHeardValues();
-
+    
     public static Course__c getCourseById(String courseId, Boolean isFromWebSite){
         Course__c result = null;
 
-        String paramToSearch = 'Id = \'' + courseId + '\'';
+        String paramToSearch = 'Name = \'' + courseId + '\'';
 
         List<Course__c> inCourses = getCourses(paramToSearch);
         
         if(!inCourses.isEmpty()) {
             if(isFromWebSite == true) {
-                if (inCourses[0].Hide_From_Course_Finder__c != true) {
+                if (inCourses[0].Hide_From_Course_Finder__c != true ) {
                     result = inCourses[0];
                 }
             } else {
@@ -88,144 +88,29 @@ public without sharing class CourseSearchUtility {
         return howHeardValues;
     }
 
-    private static List<Course__c> getCourses(String param) {
+    public static List<Course__c> getCourses(String param) {
         List<Course__c> courses = new List<Course__c>();
 
         String query = 'SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c, '  
-            + 'Branch__r.Name, Branch__r.Branch_Key__c, Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, '  
-            + 'Main_Practitioner__r.Email, Main_Practitioner__r.Phone, Main_Venue__r.Name, Main_Venue__r.Town__c, ' 
+            + 'Branch__r.Name, Branch__r.Branch_Key__c, Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, '
+            + 'Branch__r.Enquiries_PSA_Phone__c, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, '  
+            + 'Main_Venue__r.Name, Main_Venue__r.Town__c, ' 
             + 'Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c, Hide_From_Course_Finder__c, ' 
             + '( ' 
-                + 'SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c ' 
+                + 'SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c ' 
                 + 'FROM Sessions__r ' 
             + ') ' 
             + 'FROM Course__c ' 
             + 'WHERE ' 
-            + param 
-            + ' AND Remaining_Places__c > 0 ' 
-            + 'WITH SECURITY_ENFORCED';
+            + param
+            + ' AND Status__c != \'Cancelling\''
+            + ' AND Status__c != \'Cancelled\''
+            + ' AND Start_Date__c > TODAY'
+            + ' AND (Remaining_Places__c > 0 OR (Remaining_Places__c < 0 AND Overbooking_allowed__c = true))'
+            + ' WITH SECURITY_ENFORCED';
 
         courses = Database.query(query);
 
         return courses;
     }
-
-    public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Boolean isFromWebSite){
-        final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
-        if (location == null){
-            return null;
-        }
-        
-        if (radius == null || radius <= 0) {
-            radius = DEFAULT_RADIUS; 
-        }
-
-        //  getCourses() were not used, as it was not found how to manage this geoQuery
-        List<Course__c> inCourses = [
-            SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,   
-                Branch__r.Name, Branch__r.Branch_Key__c, Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, 
-                Main_Practitioner__r.Email, Main_Practitioner__r.Phone, Main_Venue__r.Name, Main_Venue__r.Town__c,
-                Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c, Hide_From_Course_Finder__c, 
-                (
-                    SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c 
-                    FROM Sessions__r
-                )
-            FROM Course__c
-            WHERE Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi') < :radius
-            WITH SECURITY_ENFORCED
-        ];
-
-        List<Course__c> courses = new List<Course__c>();
-
-        if(!inCourses.isEmpty()) {
-            for (Course__c course : inCourses) {
-                if(isFromWebSite == true){
-                    if (course.Hide_From_Course_Finder__c != true) {
-                        courses.add(course);
-                    }
-                } else {
-                    courses.add(course);
-                }
-            }
-        }
-        
-        return courses;
-    }
-    
-    public static RestResponse getCoursesByDateDistance(Map <String, String> params){
-        RestResponse response = new RestResponse();
-        if (params == null){
-            response.statusCode = 404;
-            response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
-            return response;
-        }
-
-        Location location = validateLocation(params.get('location'));
-        Integer radius = validateRadius(params.get('radius'));
-        
-        List<Course__c> courses = getCoursesByDateDistance(location, radius, true);        
-        
-        if (courses != null && !courses.isEmpty()) {
-            List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
-            Integer i = 0;
-            for (Course__c course : courses) {
-                CourseFinderModelOrdered model = new CourseFinderModelOrdered(course);
-                i++;
-                model.Rank = 1;
-                model.Order = i;
-                model.HowHeardTexts = howHeard;
-                models.add(model);
-            }
-            
-            CoursesDateDistanceModel sortedModel = new CoursesDateDistanceModel();
-            sortedModel.Courses = models;
-            sortedModel.LowestRankIncluded = 5;
-            sortedModel.SuggestedLowestRank = 5;
-            sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
-            
-            response.statusCode = 200;
-            response.responseBody = Blob.valueOf(JSON.serializePretty(sortedModel));
-        } else {
-            response.statusCode = 404;
-            response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
-        }        
-        return response;
-    }
-    
-    private static Location validateLocation(String strLocation){
-        Location result;
-        if (String.isEmpty(strLocation)){
-            return null;
-        }
-            
-        List<String> latLong = strLocation.split(',');
-        
-        if (latLong.size() == 2){
-            try {
-                Double latitude = Double.valueOf(latLong[0]);
-                Double longitude = Double.valueOf(latLong[1]);
-                result = Location.newInstance(latitude, longitude);
-            } catch (Exception e){
-                result = null;
-            }
-        }
-        
-        return result;
-    }
-    
-    private static Integer validateRadius(String strRadius){
-        Integer result;
-        if (String.isEmpty(strRadius)){
-            return null;
-        }
-        
-        try {
-            result = Integer.valueOf(strRadius);
-        } catch (Exception e){
-            result = null;
-        }
-        
-        return result;
-    }
-
 }
