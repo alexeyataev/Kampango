@@ -170,4 +170,135 @@ private class CourseFinderModelOrderedTest {
         System.assertNotEquals(null, modelOrdered);
         System.assertEquals(7, modelOrdered.Rank);
     }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfBabyMassageIfRemainingPlacesMoreZero() {
+        setupTestData();
+        Course__c course = getCourse();
+
+        course.Type__c = 'Postnatal';
+        course.Sub_Type__c = 'Baby Massage';
+        course.Number_of_places__c = 10;
+        update course;
+       
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, Date.today().addDays(100));
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(RankCourseConstants.AVAILABLE_NOT_STARTED, modelOrdered.groupRank);
+    }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfBabyMassageIfStartDateLessToday() {
+        setupTestData();
+        
+        Course__c course = getCourse();
+        course.Type__c = 'Postnatal';
+        course.Sub_Type__c = 'Baby Massage';
+        
+        update course;
+
+        List<Session__c> sessions = [
+            SELECT Date__c 
+            FROM Session__c
+            WHERE Course__c =: course.Id
+        ];
+        sessions[0].Date__c = Date.today().addDays(-100);
+        update sessions;
+        Course__c course1 = getCourse();
+
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course1, Date.today());
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(RankCourseConstants.AVAILABLE_SOME_SESSION_MISSED, modelOrdered.groupRank);
+    }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfBabyMassageIfStartDateLessTodayRemainingPlasesLessZero() {
+        setupTestData();
+        
+        Course__c course = getCourse();
+        course.Type__c = 'Postnatal';
+        course.Sub_Type__c = 'Baby Massage';
+        course.Number_of_places__c = -1;
+        update course;
+
+        List<Session__c> sessions = [
+            SELECT Date__c 
+            FROM Session__c
+            WHERE Course__c =: course.Id
+        ];
+        sessions[0].Date__c = Date.today().addDays(-100);
+        update sessions;
+        Course__c course1 = getCourse();
+
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course1, Date.today());
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(RankCourseConstants.FULL_SOME_SESSION_MISSED, modelOrdered.groupRank);
+    }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfBabyMassageIfStartDateMoreTodayRemainingPlasesLessZero() {
+        setupTestData();
+        
+        Course__c course = getCourse();
+        course.Type__c = 'Postnatal';
+        course.Sub_Type__c = 'Baby Massage';
+        course.Number_of_places__c = -1;
+        update course;
+
+        List<Session__c> sessions = [
+            SELECT Date__c 
+            FROM Session__c
+            WHERE Course__c =: course.Id
+        ];
+        sessions[0].Date__c = Date.today().addDays(100);
+        update sessions;
+        Course__c course1 = getCourse();
+
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course1, Date.today());
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(RankCourseConstants.FULL_NOT_STARTED, modelOrdered.groupRank);
+    }
+
+    @isTest
+    static void createInstanceCourseFinderModelIfBabyMassageIfStartDateNull() {
+        setupTestData();
+        
+        Course__c course = getCourse();
+        course.Type__c = 'Postnatal';
+        course.Sub_Type__c = 'Baby Massage';
+
+        update course;
+
+        List<Session__c> sessions = [
+            SELECT Date__c 
+            FROM Session__c
+            WHERE Course__c =: course.Id
+        ];
+        
+        delete sessions;
+        Course__c course1 = getCourse();
+
+        Test.startTest();
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course1, Date.today());
+        modelOrdered.Order = 1;
+        Test.stopTest();
+
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(null, modelOrdered.groupRank);
+    }
 }
