@@ -3,14 +3,14 @@
 public class CourseFinderModelOrdered extends CourseFinderModel {
     public Integer Rank {get; set;}
     public Integer Order {get; set;}
-    public Integer groupRank {get; set;}
-    private List<CourseTypeRank> courseTypeRanks;
+    public transient Integer groupRank {get; set;}
+    private transient List<CourseTypeRank> courseTypeRanks;
     
     public CourseFinderModelOrdered(Course__c course, Date birthDueDate) {
         super(course);
         this.courseTypeRanks = createOrderToRank();
         this.Rank = getCourseRank(course, birthDueDate);
-        this.groupRank = getCourseGroupRank(course);
+        this.groupRank = new CourseGrouper(course).getCourseGroupRank();
     }
 
     private Integer getCourseRank(Course__c course, Date birthDueDate) {
@@ -35,21 +35,6 @@ public class CourseFinderModelOrdered extends CourseFinderModel {
             } 
         }
         return false;
-    }
-
-    private Integer getCourseGroupRank(Course__c course) {
-        Date today = date.today();
-        if (course.Remaining_Places__c > 0 && course.Start_Date__c > today) {
-            return RankCourseConstants.AVAILABLE_NOT_STARTED;
-        } else if (course.Remaining_Places__c <= 0 && course.Start_Date__c > today) {
-            return RankCourseConstants.FULL_NOT_STARTED;
-        } else if (course.Remaining_Places__c > 0 && course.Start_Date__c <= today) {
-            return RankCourseConstants.AVAILABLE_SOME_SESSION_MISSED;
-        } else if (course.Remaining_Places__c <= 0 && course.Start_Date__c <= today) {
-            return RankCourseConstants.FULL_SOME_SESSION_MISSED;
-        } else {
-            return null;
-        }
     }
 
     private List<CourseTypeRank> createOrderToRank() {
@@ -170,6 +155,34 @@ public class CourseFinderModelOrdered extends CourseFinderModel {
         private CompareValue(Integer minNumber, Integer maxNumber) {
             this.minNumber = minNumber;
             this.maxNumber = maxNumber;
+        }
+    }
+
+    private class CourseGrouper {
+        private Course__c course;
+        private final Integer AVAILABLE_NOT_STARTED = 1;
+        private final Integer AVAILABLE_SOME_SESSION_MISSED = 2;
+        private final Integer FULL_NOT_STARTED = 3;
+        private final Integer FULL_SOME_SESSION_MISSED = 4;
+        private final Integer NOT_DEFINED_GROUPE = 5;
+        
+        private CourseGrouper(Course__c course) {
+            this.course = course;
+        }
+
+        private Integer getCourseGroupRank() {
+            Date today = date.today();
+            if (course.Remaining_Places__c > 0 && course.Start_Date__c > today) {
+                return AVAILABLE_NOT_STARTED;
+            } else if (course.Remaining_Places__c <= 0 && course.Start_Date__c > today) {
+                return FULL_NOT_STARTED;
+            } else if (course.Remaining_Places__c > 0 && course.Start_Date__c <= today) {
+                return AVAILABLE_SOME_SESSION_MISSED;
+            } else if (course.Remaining_Places__c <= 0 && course.Start_Date__c <= today) {
+                return FULL_SOME_SESSION_MISSED;
+            } else {
+                return NOT_DEFINED_GROUPE;
+            }
         }
     }
 }

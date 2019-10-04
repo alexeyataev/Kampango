@@ -187,7 +187,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(RankCourseConstants.AVAILABLE_NOT_STARTED, modelOrdered.groupRank);
+        System.assertEquals(1, modelOrdered.groupRank);
     }
 
     @isTest
@@ -215,7 +215,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(RankCourseConstants.AVAILABLE_SOME_SESSION_MISSED, modelOrdered.groupRank);
+        System.assertEquals(2, modelOrdered.groupRank);
     }
 
     @isTest
@@ -243,7 +243,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(RankCourseConstants.FULL_SOME_SESSION_MISSED, modelOrdered.groupRank);
+        System.assertEquals(4, modelOrdered.groupRank);
     }
 
     @isTest
@@ -271,7 +271,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(RankCourseConstants.FULL_NOT_STARTED, modelOrdered.groupRank);
+        System.assertEquals(3, modelOrdered.groupRank);
     }
 
     @isTest
@@ -299,6 +299,6 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(null, modelOrdered.groupRank);
+        System.assertEquals(5, modelOrdered.groupRank);
     }
 }
