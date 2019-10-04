@@ -138,7 +138,6 @@ public without sharing class CourseApiTest {
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
         ][0].Name;
         RestRequest request = new RestRequest();
         RestResponse response = new RestResponse();

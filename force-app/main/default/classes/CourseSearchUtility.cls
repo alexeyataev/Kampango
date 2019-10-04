@@ -1,6 +1,8 @@
 public without sharing class CourseSearchUtility {
 
-   public static Course__c getCourseById(String courseId, Boolean isFromWebSite){
+    private static List<String> howHeard = getHowHeardValues();
+
+    public static Course__c getCourseById(String courseId, Boolean isFromWebSite){
         Course__c result = null;
 
         String paramToSearch = 'Name = \'' + courseId + '\'';
@@ -104,14 +106,12 @@ public without sharing class CourseSearchUtility {
             + ' AND Status__c != \'Cancelling\''
             + ' AND Status__c != \'Cancelled\''
             + ' AND Start_Date__c > TODAY'
-            + ' AND (Remaining_Places__c > 0 OR (Remaining_Places__c < 0 AND Overbooking_allowed__c = true))'
             + ' WITH SECURITY_ENFORCED';
 
         courses = Database.query(query);
 
         return courses;
     }
-}
 
     public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Boolean isFromWebSite){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
@@ -230,5 +230,4 @@ public without sharing class CourseSearchUtility {
         
         return result;
     }
-
 }

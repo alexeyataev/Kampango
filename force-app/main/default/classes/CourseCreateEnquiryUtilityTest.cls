@@ -22,7 +22,6 @@ private class CourseCreateEnquiryUtilityTest {
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
@@ -64,7 +63,6 @@ private class CourseCreateEnquiryUtilityTest {
         String avaliableCourse = [
             SELECT Id, Name 
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(params, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
@@ -107,7 +105,6 @@ private class CourseCreateEnquiryUtilityTest {
         String avaliableCourse = [
             SELECT Id, Name 
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
@@ -166,7 +163,6 @@ private class CourseCreateEnquiryUtilityTest {
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
@@ -212,7 +208,6 @@ private class CourseCreateEnquiryUtilityTest {
         String avaliableCourse = [
             SELECT Id, Name 
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);

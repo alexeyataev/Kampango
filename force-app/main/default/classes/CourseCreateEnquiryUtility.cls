@@ -1,17 +1,22 @@
 public without sharing class CourseCreateEnquiryUtility {
     public static final String RECORDTYPE_NAME = 'Clients';
 
-    public static void createEnquiry(String courseNumber, Map<String, String> requestParameters) {
+    public static void createEnquiry(String courseName, Map<String, String> requestParameters) {
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
+        List<Course__c> courses;
+        if (courseName != null) {
+            courses = [
+                SELECT Id, Name
+                FROM Course__c
+                WHERE Name =: courseName
+                LIMIT 1
+            ];
+        } else {
+            throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
+        }
 
-        List<Course__c> course = [
-            SELECT Id, Name
-            FROM Course__c
-            WHERE Name =: courseNumber
-            LIMIT 1
-        ];
-        if (!course.isEmpty() && !requestParameters.isEmpty()) {
-            Id courseId = course[0].Id;
+        if (!courses.isEmpty() && !requestParameters.isEmpty()) {
+            Id courseId = courses[0].Id;
             Booking__c booking = new Booking__c();
             Contact contact;
 

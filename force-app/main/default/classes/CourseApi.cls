@@ -37,3 +37,4 @@ global class CourseApi {
             RestContext.response.responseBody = Blob.valueOf(ex.getMessage());
         }
     }
+}
