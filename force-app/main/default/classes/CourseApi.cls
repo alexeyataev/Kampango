@@ -30,6 +30,11 @@ global class CourseApi {
     global static void createEnquiry() {
         RestRequest request = RestContext.request;
         String courseNumber = CourseCreateEnquiryUtility.getCourseIdFromHeaders(request.headers);
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);
+        try {
+            CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);      
+        } catch (CourseCreateEnquiryUtility.CreateEnquiryException ex) {
+            RestContext.response.statusCode = 500;
+            RestContext.response.responseBody = Blob.valueOf(ex.getMessage());
+        }
     }
 }
