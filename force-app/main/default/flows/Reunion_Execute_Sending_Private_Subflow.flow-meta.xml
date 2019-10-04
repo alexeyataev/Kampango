@@ -332,7 +332,7 @@
         <locationX>483</locationX>
         <locationY>578</locationY>
         <connector>
-            <targetReference>Loop_to_set_host_names</targetReference>
+            <targetReference>Loop_through_bookings</targetReference>
         </connector>
         <inputReference>course</inputReference>
     </recordUpdates>
