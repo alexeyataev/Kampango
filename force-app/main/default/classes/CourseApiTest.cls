@@ -145,7 +145,7 @@ public without sharing class CourseApiTest {
         request.requestURI = '/services/apexrest/courses/';
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
-        headersMap.put('Referer', 'https://www.nct.org.uk/course/' + avaliableCourse);
+        paramsMap.put('courseId', avaliableCourse);
         for (String parameter : paramsMap.keySet()) {
             request.addParameter(parameter, paramsMap.get(parameter));
         }
