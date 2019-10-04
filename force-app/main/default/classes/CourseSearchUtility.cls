@@ -2,10 +2,10 @@ public without sharing class CourseSearchUtility {
 
     private static List<String> howHeard = getHowHeardValues();
 
-    public static Course__c getCourseById(String courseId, Boolean isFromWebSite){
+    public static Course__c getCourseById(String courseName, Boolean isFromWebSite){
         Course__c result = null;
 
-        String paramToSearch = 'Name = \'' + courseId + '\'';
+        String paramToSearch = 'Name = \'' + courseName + '\'';
 
         List<Course__c> inCourses = getCourses(paramToSearch);
         
@@ -22,9 +22,9 @@ public without sharing class CourseSearchUtility {
         return result;
     }
     
-    public static RestResponse getCourseById(String courseId){
+    public static RestResponse getCourseById(String courseName){
         RestResponse response = new RestResponse();
-        Course__c course = getCourseById(courseId, true);
+        Course__c course = getCourseById(courseName, true);
         if (course != null) {
             CourseFinderModel model = new CourseFinderModel(course);
             model.HowHeardTexts = howHeard;
