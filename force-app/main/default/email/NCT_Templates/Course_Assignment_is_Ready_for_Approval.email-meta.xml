@@ -14,7 +14,7 @@ Please log in to the Practitioner community to review and sign this assignment.
 Kind Regards, 
 
 {!Course_Assignment__c.CreatedBy}
-Course Organazer</textOnly>
+Course Organizer</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

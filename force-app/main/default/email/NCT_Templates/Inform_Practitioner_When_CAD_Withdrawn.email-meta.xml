@@ -5,7 +5,7 @@
     <name>Inform Practitioner When CAD Withdrawn</name>
     <style>none</style>
     <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
-    <textOnly>Dear {!Course_Assignment__c.OwnerFirstName},  You are no longer required to attend this course as your assignment has been withdrawn.  Kind Regards,  {!Course_Assignment__c.CreatedBy} Course Organazer</textOnly>
+    <textOnly>Dear {!Course_Assignment__c.OwnerFirstName},  You are no longer required to attend this course as your assignment has been withdrawn.  Kind Regards,  {!Course_Assignment__c.CreatedBy} Course Organizer</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
