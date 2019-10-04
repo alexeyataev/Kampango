@@ -110,6 +110,8 @@ public without sharing class CourseSearchUtility {
         return courses;
     }
 
+
+
     public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Date birthDueDate, Boolean isFromWebSite){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
         if (location == null){
@@ -127,7 +129,7 @@ public without sharing class CourseSearchUtility {
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,   
                 Branch__r.Name, Branch__r.Branch_Key__c, Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, 
                 Main_Practitioner__r.Email, Main_Practitioner__r.Phone, Main_Venue__r.Name, Main_Venue__r.Town__c,
-                Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c, Hide_From_Course_Finder__c, 
+                Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c, Hide_From_Course_Finder__c, Start_Date__c, End_Date__c,
                 (
                     SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c 
                     FROM Sessions__r
@@ -154,12 +156,6 @@ public without sharing class CourseSearchUtility {
         return courses;
     }
     
-    private static RestResponse getWrongResponse(){
-        RestResponse response = new RestResponse();
-            response.statusCode = 404;
-            response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
-            return response;
-        }
 
     public static RestResponse getCoursesByDateDistance(Map <String, String> params){
         RestResponse response = new RestResponse();
@@ -181,27 +177,36 @@ public without sharing class CourseSearchUtility {
             return getWrongResponse();
         } 
 
-        Integer radius = getRadius(params.get('radius'));
+        Integer radius;
+        try {
+            radius = validateRadius(params.get('radius'));
+        } catch (TypeException te){
+            return getWrongResponse();
+        }
         
         List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
         
         if (courses != null && !courses.isEmpty()) {
             List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
             Integer i = 0;
+            Integer LowestRankIncluded = 1;
             for (Course__c course : courses) {
                 CourseFinderModelOrdered model = new CourseFinderModelOrdered(course, birthDueDate);
                 i++;
-                if (birthDueDate == null){
-                model.Rank = 1;
-                model.Order = i;
-                } 
+
                 model.HowHeardTexts = howHeard;
+
+                if (model.Rank <= 5) { // filtering by rank
                 models.add(model);
+                    if (LowestRankIncluded > model.Rank){
+                        LowestRankIncluded = model.Rank;
+                    }
+                }
+
             }
             
             // Sort models according rank, group rank and date;
             models.sort();
-
             // update Orders accorting to the sorting order;
             i = 0;
             for (CourseFinderModelOrdered model : models){
@@ -211,8 +216,8 @@ public without sharing class CourseSearchUtility {
             
             CoursesDateDistanceModel sortedModel = new CoursesDateDistanceModel();
             sortedModel.Courses = models;
-            sortedModel.LowestRankIncluded = 5;
-            sortedModel.SuggestedLowestRank = 5;
+            sortedModel.LowestRankIncluded = LowestRankIncluded;
+            sortedModel.SuggestedLowestRank = getSuggestedLowestRank(LowestRankIncluded, radius);
             sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
             
             response.statusCode = 200;
@@ -224,6 +229,24 @@ public without sharing class CourseSearchUtility {
         return response;
     }
     
+    private static Integer getSuggestedLowestRank(Integer radius, Integer LowestRankIncluded){
+        Integer result;
+        
+        if (radius <= 10) {
+            result = 3;
+        } else if (radius <= 20) {
+            result = 4;
+        } else {
+            result = 5;
+        }
+        
+        if (result > LowestRankIncluded) {
+            result = LowestRankIncluded;
+        }
+        
+        return result;
+    }
+
     private static Location validateLocation(String strLocation){
         Location result;
         if (String.isEmpty(strLocation)){
@@ -245,7 +268,7 @@ public without sharing class CourseSearchUtility {
         return result;
     }
     
-    private static Integer getRadius(String strRadius){
+    private static Integer validateRadius(String strRadius){
         Integer result;
         if (String.isEmpty(strRadius)){
             return null;
@@ -254,7 +277,7 @@ public without sharing class CourseSearchUtility {
         try {
             result = Integer.valueOf(strRadius);
         } catch (Exception e){
-            result = null;
+            throw new TypeException(e);
         }
         
         return result;
@@ -263,7 +286,7 @@ public without sharing class CourseSearchUtility {
     private static Date validateBirthDueDate(String strBirthDueDate) {
         Date result;
         if (String.isEmpty(strBirthDueDate)){
-            return null;
+            return getDefaultBirthDueDate();
         }
 
         try {
@@ -273,6 +296,21 @@ public without sharing class CourseSearchUtility {
         }
 
         return result;
+    }
+
+
+    private static Date getDefaultBirthDueDate(){
+        final Integer DIFFERENCE_FROM_TODAY = 30;
+        return Date.today() + DIFFERENCE_FROM_TODAY;
+    }
+
+
+    
+    private static RestResponse getWrongResponse(){
+        RestResponse response = new RestResponse();
+        response.statusCode = 404;
+        response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
+        return response;
     }
 
 }

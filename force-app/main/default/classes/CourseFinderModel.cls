@@ -2,7 +2,7 @@
 //Incident #10 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing virtual class CourseFinderModel {
     @testVisible
-    private String Id;
+    public String Id {get; set;}
     private String Reference;
     private String Title;
     private String Summary;

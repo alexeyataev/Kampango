@@ -1,6 +1,6 @@
 @SuppressWarnings('PMD.VariableNamingConventions')
 //Incident #10 - https://confluence.nct.org.uk:8443/x/EoSO
-public class CourseFinderModelOrdered extends CourseFinderModel {
+public class CourseFinderModelOrdered extends CourseFinderModel implements Comparable {
     public Integer Rank {get; set;}
     public Integer Order {get; set;}
     public transient Integer groupRank {get; set;}
@@ -182,6 +182,28 @@ public class CourseFinderModelOrdered extends CourseFinderModel {
                 return FULL_SOME_SESSION_MISSED;
             } else {
                 return NOT_DEFINED_GROUPE;
+            }
+        }
+    }
+    public Integer CompareTo(Object compareTo){
+        CourseFinderModelOrdered compareToModel = (CourseFinderModelOrdered) compareTo;
+        
+        if (this.Rank > compareToModel.Rank){
+            return 1;
+        } else if (this.Rank < compareToModel.Rank) {
+            return -1;
+        } else {// comparting the same rank
+            if (this.groupRank > compareToModel.groupRank){
+                return 1;
+            } else if (this.groupRank < compareToModel.groupRank) {
+                return -1;
+            } else {//Comparing the same groupRank
+                /* Temporary logic, as critetia are not defined*/
+                if (this.Id > compareToModel.Id){
+                    return 1;
+                } else {
+                    return -1;
+                }
             }
         }
     }
