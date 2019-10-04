@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>BookingJourneyHelper</members>
         <members>BookCourseController</members>
         <members>BookCourseControllerModel</members>
         <members>BookCourseControllerTest</members>
@@ -10,7 +11,9 @@
         <members>DisplayDdScheduleController</members>
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
+        <members>IndividualBookingJourneyHelperTest</members>
         <members>TestBookingBuilder</members>
+        <members>TestIndividualBuilder</members>
         <name>ApexClass</name>
     </types>
     <types>
