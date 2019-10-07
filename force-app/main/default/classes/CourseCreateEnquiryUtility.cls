@@ -77,8 +77,8 @@ public without sharing class CourseCreateEnquiryUtility {
         return parameter == '1' ? 'Yes' : 'No';
     }
   
-    public static String getCourseIdFromHeaders(Map<String, String> headers) {
-        return headers.get('Referer').substring(headers.get('Referer').lastIndexOf('/') + 1);
+    public static String getCourseName(Map<String, String> params) {
+        return params.get('courseId').trim();
     }
     public class CreateEnquiryException extends Exception {}
 }
