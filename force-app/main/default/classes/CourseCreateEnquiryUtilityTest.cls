@@ -19,16 +19,15 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithoutExistingContact() {
-        Id avaliableCourse = [
-            SELECT Id 
+        String avaliableCourse = [
+            SELECT Id, Name
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
-        ][0].Id;
+        ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
-        headersMap.put('Referer', 'https://www.nct.org.uk/course/' + avaliableCourse);
-        Id courseId = CourseCreateEnquiryUtility.getCourseIdFromHeaders(headersMap);
-        CourseCreateEnquiryUtility.createEnquiry(courseId, paramsMap);
+        paramsMap.put('courseId', avaliableCourse);
+        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
         List<Contact> createdContact = [
             SELECT Name, Email 
             FROM Contact 
@@ -58,19 +57,18 @@ private class CourseCreateEnquiryUtilityTest {
             MailingPostalCode = 'E1 7AE',
             Phone = '+447911123456',
             AccountId = account.Id,
-            RecordTypeId = Schema.sObjectType.Contact.getRecordTypeInfosByName().get('Contact').getRecordTypeId()
+            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
         insert existingContact;
-        Id avaliableCourse = [
-            SELECT Id 
+        String avaliableCourse = [
+            SELECT Id, Name 
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
-        ][0].Id;
+        ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(params, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
-        headersMap.put('Referer', 'https://www.nct.org.uk/course/' + avaliableCourse);
-        Id courseId = CourseCreateEnquiryUtility.getCourseIdFromHeaders(headersMap);
-        CourseCreateEnquiryUtility.createEnquiry(courseId, paramsMap);
+        paramsMap.put('courseId', avaliableCourse);
+        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
         List<Booking__c> bookings = [
             SELECT Name 
             FROM Booking__c 
@@ -101,20 +99,19 @@ private class CourseCreateEnquiryUtilityTest {
             MailingPostalCode = 'E1 7AE',
             Phone = '+447911123456',
             AccountId = account.Id,
-            RecordTypeId = Schema.sObjectType.Contact.getRecordTypeInfosByName().get('Contact').getRecordTypeId()
+            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
         insert existingContact;
-        Id avaliableCourse = [
-            SELECT Id 
+        String avaliableCourse = [
+            SELECT Id, Name 
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
-        ][0].Id;
+        ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
-        headersMap.put('Referer', 'https://www.nct.org.uk/course/' + avaliableCourse);
-        Id courseId = CourseCreateEnquiryUtility.getCourseIdFromHeaders(headersMap);
+        paramsMap.put('courseId', avaliableCourse);
+        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
         paramsMap.put('first_name', 'Updated'); 
-        CourseCreateEnquiryUtility.createEnquiry(courseId, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
         List<Booking__c> bookings = [
             SELECT Name 
             FROM Booking__c 
@@ -160,22 +157,21 @@ private class CourseCreateEnquiryUtilityTest {
             MailingPostalCode = 'E1 7AE',
             Phone = '+447911123456',
             AccountId = account.Id,
-            RecordTypeId = Schema.sObjectType.Contact.getRecordTypeInfosByName().get('Contact').getRecordTypeId()
+            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
         insert existingContact;
-        Id avaliableCourse = [
-            SELECT Id 
+        String avaliableCourse = [
+            SELECT Id, Name
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
-        ][0].Id;
+        ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
-        headersMap.put('Referer', 'https://www.nct.org.uk/course/' + avaliableCourse);
-        Id courseId = CourseCreateEnquiryUtility.getCourseIdFromHeaders(headersMap);
+        paramsMap.put('courseId', avaliableCourse);
+        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
-        CourseCreateEnquiryUtility.createEnquiry(courseId, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact
@@ -206,22 +202,21 @@ private class CourseCreateEnquiryUtilityTest {
             MailingPostalCode = 'E1 7AE',
             Phone = '+447911123456',
             AccountId = account.Id,
-            RecordTypeId = Schema.sObjectType.Contact.getRecordTypeInfosByName().get('Contact').getRecordTypeId()
+            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
         insert existingContact;
-        Id avaliableCourse = [
-            SELECT Id 
+        String avaliableCourse = [
+            SELECT Id, Name 
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
-        ][0].Id;
+        ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
-        headersMap.put('Referer', 'https://www.nct.org.uk/course/' + avaliableCourse);
-        Id courseId = CourseCreateEnquiryUtility.getCourseIdFromHeaders(headersMap);
+        paramsMap.put('courseId', avaliableCourse);
+        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
-        CourseCreateEnquiryUtility.createEnquiry(courseId, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact
