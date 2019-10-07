@@ -2,16 +2,16 @@ public without sharing class CourseSearchUtility {
 
     private static List<String> howHeard = getHowHeardValues();
 
-    public static Course__c getCourseById(String courseId, Boolean isFromWebSite){
+    public static Course__c getCourseById(String courseName, Boolean isFromWebSite){
         Course__c result = null;
 
-        String paramToSearch = 'Id = \'' + courseId + '\'';
+        String paramToSearch = 'Name = \'' + courseName + '\'';
 
         List<Course__c> inCourses = getCourses(paramToSearch);
         
         if(!inCourses.isEmpty()) {
             if(isFromWebSite == true) {
-                if (inCourses[0].Hide_From_Course_Finder__c != true) {
+                if (inCourses[0].Hide_From_Course_Finder__c != true ) {
                     result = inCourses[0];
                 }
             } else {
@@ -22,9 +22,9 @@ public without sharing class CourseSearchUtility {
         return result;
     }
     
-    public static RestResponse getCourseById(String courseId){
+    public static RestResponse getCourseById(String courseName){
         RestResponse response = new RestResponse();
-        Course__c course = getCourseById(courseId, true);
+        Course__c course = getCourseById(courseName, true);
         if (course != null) {
             CourseFinderModel model = new CourseFinderModel(course);
             model.HowHeardTexts = howHeard;
@@ -88,22 +88,25 @@ public without sharing class CourseSearchUtility {
         return howHeardValues;
     }
 
-    private static List<Course__c> getCourses(String param) {
+    public static List<Course__c> getCourses(String param) {
         List<Course__c> courses = new List<Course__c>();
 
         String query = 'SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c, '  
-            + 'Branch__r.Name, Branch__r.Branch_Key__c, Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, '  
-            + 'Main_Practitioner__r.Email, Main_Practitioner__r.Phone, Main_Venue__r.Name, Main_Venue__r.Town__c, ' 
+            + 'Branch__r.Name, Branch__r.Branch_Key__c, Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, '
+            + 'Branch__r.Enquiries_PSA_Phone__c, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, '  
+            + 'Main_Venue__r.Name, Main_Venue__r.Town__c, Main_Venue__r.Postcode__c, ' 
             + 'Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c, Hide_From_Course_Finder__c, ' 
-            + '( ' 
-                + 'SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c ' 
+             + '( ' 
+                + 'SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c ' 
                 + 'FROM Sessions__r ' 
             + ') ' 
             + 'FROM Course__c ' 
             + 'WHERE ' 
-            + param 
-            + ' AND Remaining_Places__c > 0 ' 
-            + 'WITH SECURITY_ENFORCED';
+            + param
+            + ' AND Status__c != \'Cancelling\''
+            + ' AND Status__c != \'Cancelled\''
+            + ' AND Start_Date__c > TODAY'
+            + ' WITH SECURITY_ENFORCED';
 
         courses = Database.query(query);
 
@@ -126,12 +129,13 @@ public without sharing class CourseSearchUtility {
 
         //  getCourses() were not used, as it was not found how to manage this geoQuery
         List<Course__c> inCourses = [
-            SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,   
-                Branch__r.Name, Branch__r.Branch_Key__c, Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, 
+            SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,  
+                Branch__r.Name, Branch__r.Branch_Key__c, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
+                Fee__c, Remaining_Places__c, Main_Practitioner__r.Name, Branch__r.Enquiries_PSA_Phone__c,
                 Main_Practitioner__r.Email, Main_Practitioner__r.Phone, Main_Venue__r.Name, Main_Venue__r.Town__c,
-                Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c, Hide_From_Course_Finder__c, Start_Date__c, End_Date__c,
+                Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c, Start_Date__c, End_Date__c,
                 (
-                    SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c 
+                    SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c 
                     FROM Sessions__r
                 )
             FROM Course__c
@@ -283,7 +287,7 @@ public without sharing class CourseSearchUtility {
         return result;
     }
 
-    private static Date validateBirthDueDate(String strBirthDueDate) {
+  private static Date validateBirthDueDate(String strBirthDueDate) {
         Date result;
         if (String.isEmpty(strBirthDueDate)){
             return getDefaultBirthDueDate();
