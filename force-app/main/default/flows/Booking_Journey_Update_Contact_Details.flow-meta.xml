@@ -453,20 +453,6 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>partnerContactRecord.FirstName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>FirstName</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>partnerContactRecord.LastName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Last_Name</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>bookingRecord.Under_18__c</assignToReference>
             <operator>Assign</operator>
             <value>
@@ -550,20 +536,6 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>SalutationPartner</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>partnerContactRecord.FirstName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>First_Name3</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>partnerContactRecord.LastName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Last_Name3</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -745,6 +717,114 @@
         </connector>
     </assignments>
     <assignments>
+        <name>AssignNotRequired</name>
+        <label>AssignNotRequired</label>
+        <locationX>2844</locationX>
+        <locationY>693</locationY>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fNamePartner</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lNamePartner</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>AssignChangedValues5</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignNotRequired_0</name>
+        <label>AssignNotRequired</label>
+        <locationX>2256</locationX>
+        <locationY>635</locationY>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fNamePartner</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lNamePartner</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>AssignChangedValues4</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignRequired</name>
+        <label>AssignRequired</label>
+        <locationX>3191</locationX>
+        <locationY>670</locationY>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>First_Name3</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Last_Name3</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>AssignChangedValues5</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignRequired_0</name>
+        <label>AssignRequired</label>
+        <locationX>2603</locationX>
+        <locationY>612</locationY>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FirstName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Last_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>AssignChangedValues4</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>PartnerIsSet</name>
+        <label>PartnerIsSet</label>
+        <locationX>549</locationX>
+        <locationY>50</locationY>
+        <assignmentItems>
+            <assignToReference>isPartnerSet</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_individual_assigned</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>SetHowHeard</name>
         <label>SetHowHeard</label>
         <locationX>1593</locationX>
@@ -795,7 +875,7 @@
     <assignments>
         <name>SetHowHeard5</name>
         <label>SetHowHeard</label>
-        <locationX>3192</locationX>
+        <locationX>3183</locationX>
         <locationY>1668</locationY>
         <assignmentItems>
             <assignToReference>bookingRecord.How_Heard__c</assignToReference>
@@ -869,28 +949,28 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>individualRecord.Has_Opted_Out_Email__c</assignToReference>
+            <assignToReference>individualRecord.Email__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>emailFinal</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>individualRecord.Has_Opted_Out_Post__c</assignToReference>
+            <assignToReference>individualRecord.Post__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>postFinal</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>individualRecord.Has_Opted_Out_SMS__c</assignToReference>
+            <assignToReference>individualRecord.SMS__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>smsFinal</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>individualRecord.Has_Opted_Out_Telephone__c</assignToReference>
+            <assignToReference>individualRecord.Telephone__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>phoneFinal</elementReference>
@@ -1403,7 +1483,7 @@
         <defaultConnectorLabel>Ok</defaultConnectorLabel>
         <rules>
             <name>PartnerAdded_Invalid</name>
-            <conditionLogic>(1 OR 2 OR 3) AND (4 OR 5 OR 6)</conditionLogic>
+            <conditionLogic>(1 OR 2 OR 3) AND (4 OR 5 OR 6) AND 7</conditionLogic>
             <conditions>
                 <leftValueReference>fNamePartner</leftValueReference>
                 <operator>NotEqualTo</operator>
@@ -1444,12 +1524,122 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue/>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>isPartnerSet</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>SetPartnerToRequired</targetReference>
             </connector>
             <label>PartnerAdded_Invalid</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IsPartnerRequired1</name>
+        <label>IsPartnerRequired?</label>
+        <locationX>2939</locationX>
+        <locationY>351</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isPartnerRequired</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignNotRequired</targetReference>
+            </connector>
+            <label>No</label>
+        </rules>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isPartnerRequired</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignRequired</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IsPartnerRequired1_0</name>
+        <label>IsPartnerRequired?</label>
+        <locationX>2330</locationX>
+        <locationY>491</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isPartnerRequired</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignNotRequired_0</targetReference>
+            </connector>
+            <label>No</label>
+        </rules>
+        <rules>
+            <name>Yes_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isPartnerRequired</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignRequired_0</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>isPartnerSet1</name>
+        <label>isPartnerSet</label>
+        <locationX>321</locationX>
+        <locationY>52</locationY>
+        <defaultConnector>
+            <targetReference>Is_individual_assigned</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>bookingRecord.Partner_Contact__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>bookingRecord.Partner_Contact__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue/>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>PartnerIsSet</targetReference>
+            </connector>
+            <label>Set</label>
         </rules>
     </decisions>
     <decisions>
@@ -1756,7 +1946,7 @@
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>HomeNotEntered</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
             <conditions>
                 <leftValueReference>PrimaryContactRecord.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -1771,6 +1961,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>homePhone</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>HomeIssue</targetReference>
             </connector>
@@ -1778,7 +1972,7 @@
         </rules>
         <rules>
             <name>MobileNotEntered</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
             <conditions>
                 <leftValueReference>PrimaryContactRecord.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -1792,6 +1986,10 @@
                 <rightValue>
                     <stringValue/>
                 </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>mobilePhone</leftValueReference>
+                <operator>EqualTo</operator>
             </conditions>
             <connector>
                 <targetReference>MobileIssue</targetReference>
@@ -1815,6 +2013,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>homePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>Update_Primary_Contact</targetReference>
             </connector>
@@ -1837,6 +2039,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>mobilePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>Update_Primary_Contact</targetReference>
             </connector>
@@ -1846,12 +2052,12 @@
     <decisions>
         <name>Phone_Validation3</name>
         <label>Phone Validation</label>
-        <locationX>1941</locationX>
-        <locationY>352</locationY>
+        <locationX>1946</locationX>
+        <locationY>349</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>HomeNotEntered3</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
             <conditions>
                 <leftValueReference>PrimaryContactRecord.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -1866,6 +2072,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>homePhone</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>HomeIssue_0</targetReference>
             </connector>
@@ -1873,7 +2083,7 @@
         </rules>
         <rules>
             <name>MobileNotEntered3</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
             <conditions>
                 <leftValueReference>PrimaryContactRecord.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -1888,6 +2098,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>mobilePhone</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>MobileIssue_0</targetReference>
             </connector>
@@ -1895,7 +2109,7 @@
         </rules>
         <rules>
             <name>PartnerNameIssueOnly</name>
-            <conditionLogic>((1 AND 4) OR (2 AND 3)) AND 5</conditionLogic>
+            <conditionLogic>((1 AND 4 AND 7) OR (2 AND 3 AND 6)) AND 5 AND 8</conditionLogic>
             <conditions>
                 <leftValueReference>PrimaryContactRecord.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -1931,6 +2145,21 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>homePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>mobilePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>isPartnerSet</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Client_Details_0</targetReference>
             </connector>
@@ -1953,6 +2182,10 @@
                     <stringValue/>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>homePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>IsPartnerValid</targetReference>
             </connector>
@@ -1974,6 +2207,10 @@
                 <rightValue>
                     <stringValue/>
                 </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>mobilePhone</leftValueReference>
+                <operator>NotEqualTo</operator>
             </conditions>
             <connector>
                 <targetReference>IsPartnerValid</targetReference>
@@ -2018,7 +2255,7 @@
     <formulas>
         <name>emailFinal</name>
         <dataType>Boolean</dataType>
-        <expression>!{!marketingEmail}</expression>
+        <expression>{!marketingEmail}</expression>
     </formulas>
     <formulas>
         <name>MobileRequiered</name>
@@ -2028,17 +2265,17 @@
     <formulas>
         <name>phoneFinal</name>
         <dataType>Boolean</dataType>
-        <expression>!{!marketingPhone}</expression>
+        <expression>{!marketingPhone}</expression>
     </formulas>
     <formulas>
         <name>postFinal</name>
         <dataType>Boolean</dataType>
-        <expression>!{!marketingPost}</expression>
+        <expression>{!marketingPost}</expression>
     </formulas>
     <formulas>
         <name>smsFinal</name>
         <dataType>Boolean</dataType>
-        <expression>!{!marketingSMS}</expression>
+        <expression>{!marketingSMS}</expression>
     </formulas>
     <interviewLabel>Booking Journey Update Contact Details {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Update Contact Details</label>
@@ -2122,7 +2359,7 @@
         <name>Client_Details</name>
         <label>Client Details</label>
         <locationX>1458</locationX>
-        <locationY>1021</locationY>
+        <locationY>1023</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2167,7 +2404,7 @@
         </fields>
         <fields>
             <name>Name_Primary</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2373,6 +2610,12 @@
                     <elementReference>partnerContactRecord.LastName</elementReference>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <elementReference>isPartnerSet</elementReference>
+                </value>
+            </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>fNamePartner</assignToReference>
@@ -2399,6 +2642,18 @@
                     <elementReference>partnerContactRecord.Email</elementReference>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <elementReference>isPartnerSet</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>emailPartner</assignToReference>
@@ -2422,6 +2677,30 @@
                 <name>individualId</name>
                 <value>
                     <elementReference>PrimaryContactRecord.IndividualId</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>email</name>
+                <value>
+                    <elementReference>marketingEmail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>phone</name>
+                <value>
+                    <elementReference>marketingPhone</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>post</name>
+                <value>
+                    <elementReference>marketingPost</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sms</name>
+                <value>
+                    <elementReference>marketingSMS</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -2494,7 +2773,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0_0_0_0_0_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2678,6 +2957,40 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
+            <name>name_readonly2</name>
+            <extensionName>flowruntime:name</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>firstName</name>
+                <value>
+                    <elementReference>partnerContactRecord.FirstName</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>lastName</name>
+                <value>
+                    <elementReference>partnerContactRecord.LastName</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>isPartnerSet</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
             <name>First_Name</name>
             <dataType>String</dataType>
             <defaultValue>
@@ -2686,6 +2999,16 @@
             <fieldText>First Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>isPartnerSet</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Last_Name1</name>
@@ -2696,15 +3019,25 @@
             <fieldText>Last Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>isPartnerSet</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
-            <name>Email_Partner_0</name>
+            <name>email_readonly2</name>
             <extensionName>flowruntime:email</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
-                <name>label</name>
+                <name>disabled</name>
                 <value>
-                    <stringValue>Email</stringValue>
+                    <elementReference>isPartnerSet</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -2716,7 +3049,7 @@
             <inputParameters>
                 <name>required</name>
                 <value>
-                    <booleanValue>true</booleanValue>
+                    <elementReference>isPartnerRequired</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -2814,7 +3147,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -3006,6 +3339,30 @@
                     <elementReference>PrimaryContactRecord.IndividualId</elementReference>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>email</name>
+                <value>
+                    <elementReference>marketingEmail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>phone</name>
+                <value>
+                    <elementReference>marketingPhone</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>post</name>
+                <value>
+                    <elementReference>marketingPost</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sms</name>
+                <value>
+                    <elementReference>marketingSMS</elementReference>
+                </value>
+            </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>marketingEmail</assignToReference>
@@ -3076,7 +3433,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0_0_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -3326,13 +3683,13 @@
     <screens>
         <name>HomeIssue_0</name>
         <label>Home Issue</label>
-        <locationX>2462</locationX>
-        <locationY>547</locationY>
+        <locationX>2509</locationX>
+        <locationY>350</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>AssignChangedValues5</targetReference>
+            <targetReference>IsPartnerRequired1</targetReference>
         </connector>
         <fields>
             <name>Full_Name_Primary_2_0</name>
@@ -3372,7 +3729,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0_0_0_0_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -3568,6 +3925,55 @@
                         <booleanValue>true</booleanValue>
                     </rightValue>
                 </conditions>
+                <conditions>
+                    <leftValueReference>isPartnerSet</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>name_readonly4</name>
+            <extensionName>flowruntime:name</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <elementReference>isPartnerSet</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>lastName</name>
+                <value>
+                    <elementReference>partnerContactRecord.LastName</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>firstName</name>
+                <value>
+                    <elementReference>partnerContactRecord.FirstName</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>fNamePartner</assignToReference>
+                <name>firstName</name>
+            </outputParameters>
+            <outputParameters>
+                <assignToReference>lNamePartner</assignToReference>
+                <name>lastName</name>
+            </outputParameters>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>isPartnerRequired</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
             </visibilityRule>
         </fields>
         <fields>
@@ -3611,77 +4017,25 @@
             </visibilityRule>
         </fields>
         <fields>
-            <name>Email_partner4</name>
+            <name>email_readonly4</name>
             <extensionName>flowruntime:email</extensionName>
             <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <elementReference>isPartnerSet</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <elementReference>partnerContactRecord.Email</elementReference>
+                </value>
+            </inputParameters>
             <inputParameters>
                 <name>required</name>
                 <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>value</name>
-                <value>
-                    <elementReference>partnerContactRecord.Email</elementReference>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>emailPartner</assignToReference>
-                <name>value</name>
-            </outputParameters>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>isPartnerRequired</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>partnerName2</name>
-            <extensionName>flowruntime:name</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>fieldsToDisplayList</name>
-                <value>
-                    <stringValue>firstName,lastName</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>firstName</name>
-                <value>
-                    <elementReference>partnerContactRecord.FirstName</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>lastName</name>
-                <value>
-                    <elementReference>partnerContactRecord.LastName</elementReference>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>fNamePartner</assignToReference>
-                <name>firstName</name>
-            </outputParameters>
-            <outputParameters>
-                <assignToReference>lNamePartner</assignToReference>
-                <name>lastName</name>
-            </outputParameters>
-        </fields>
-        <fields>
-            <name>Email_partner3</name>
-            <extensionName>flowruntime:email</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>value</name>
-                <value>
-                    <elementReference>partnerContactRecord.Email</elementReference>
+                    <elementReference>isPartnerRequired</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -3808,7 +4162,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -4064,7 +4418,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>AssignChangedValues4</targetReference>
+            <targetReference>IsPartnerRequired1_0</targetReference>
         </connector>
         <fields>
             <name>Full_Name_Primary_0_0_0</name>
@@ -4104,7 +4458,7 @@
         </fields>
         <fields>
             <name>Name_Primary_0_0_0_0</name>
-            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Or_Due_Date__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Birth/Due date&lt;/p&gt;&lt;p&gt;{!bookingRecord.Birth_Due_Date__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -4300,16 +4654,23 @@
                         <booleanValue>true</booleanValue>
                     </rightValue>
                 </conditions>
+                <conditions>
+                    <leftValueReference>isPartnerSet</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
             </visibilityRule>
         </fields>
         <fields>
-            <name>partnerName3</name>
+            <name>name_readOnly3</name>
             <extensionName>flowruntime:name</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
-                <name>fieldsToDisplayList</name>
+                <name>disabled</name>
                 <value>
-                    <stringValue>firstName,lastName</stringValue>
+                    <elementReference>isPartnerSet</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -4403,39 +4764,13 @@
             <inputParameters>
                 <name>required</name>
                 <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>emailPartner</assignToReference>
-                <name>value</name>
-            </outputParameters>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>isPartnerRequired</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>false</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>Email</name>
-            <extensionName>flowruntime:email</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>required</name>
-                <value>
-                    <booleanValue>true</booleanValue>
+                    <elementReference>isPartnerRequired</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
-                <name>value</name>
+                <name>disabled</name>
                 <value>
-                    <elementReference>partnerContactRecord.Email</elementReference>
+                    <elementReference>isPartnerSet</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -4513,7 +4848,7 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Is_individual_assigned</startElementReference>
+    <startElementReference>isPartnerSet1</startElementReference>
     <status>Active</status>
     <variables>
         <name>bookingId</name>
@@ -4604,6 +4939,16 @@
     </variables>
     <variables>
         <name>isPartnerRequired</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>isPartnerSet</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

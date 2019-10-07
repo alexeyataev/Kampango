@@ -17,19 +17,19 @@ private class CourseSearchUtilityTest {
         setupTestData();
 
         Course__c course = [
-            SELECT Id
+            SELECT Id, Name
             FROM Course__c
             LIMIT 1
         ];
  
         Test.startTest();
         RestResponse response = new RestResponse();
-        response = CourseSearchUtility.getCourseById(course.Id);
+        response = CourseSearchUtility.getCourseById(course.Name);
         Test.stopTest();
-       
+
         CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(response.responseBody.toString(), CourseFinderModel.class );
         System.assertEquals(200, response.statusCode);
-        System.assertEquals(course.Id, model.Id);                             
+        System.assertEquals(course.Name, model.Id);                             
     }
 
     @isTest
@@ -67,10 +67,10 @@ private class CourseSearchUtilityTest {
         RestResponse response = new RestResponse();
         response = CourseSearchUtility.getCoursesByBranch(account.Id);
         Test.stopTest();
-        List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(response.responseBody.toString());
 
+        List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(response.responseBody.toString());
         System.assertEquals(200, response.statusCode);
-        System.assertEquals(2, responseObjects.size());                             
+        System.assertEquals(1, responseObjects.size());                             
     }
 
     @isTest
@@ -100,5 +100,112 @@ private class CourseSearchUtilityTest {
         Test.stopTest();
 
         System.assertEquals(404, response.statusCode);                             
-    }	 	 	 
+    }
+
+    @isTest
+    static void courseSearchByIdIfCancelled() {
+        setupTestData();
+
+        Course__c course = [
+            SELECT Id, Status__c, Branch__r.Enquiries_PSA_Phone__c, Branch__r.Enquiries_PSA__r.Name,
+                   Branch__r.Enquiries_PSA_Email__c
+            FROM Course__c
+            LIMIT 1
+        ];
+
+        course.Status__c = 'Cancelled';
+        update course;
+
+        Test.startTest();
+        RestResponse response = new RestResponse();
+        response = CourseSearchUtility.getCourseById(course.Id);
+        Test.stopTest();
+       
+        System.assertEquals(404, response.statusCode);
+    }
+
+    @isTest
+    static void courseSearchByIdIfStarted() {
+        setupTestData();
+
+        Session__c session = [
+            SELECT Id, Date__c, Course__c
+            FROM Session__c
+            LIMIT 1
+        ];
+
+        session.Date__c = Date.today() - 5;
+        update session;
+
+        Test.startTest();
+        RestResponse response = new RestResponse();
+        response = CourseSearchUtility.getCourseById(session.Course__c);
+        Test.stopTest();
+
+        System.assertEquals(404, response.statusCode);
+    }
+
+    @isTest
+    static void courseSearchByLocationParams(){
+        Map<String, String> params = null;
+        CourseSearchUtility.getCoursesByDateDistance(params);
+
+        params = new Map<String, String>{'location' => ''};
+        CourseSearchUtility.getCoursesByDateDistance(params);
+
+        params.put('location', '50.a,-0.1');
+        CourseSearchUtility.getCoursesByDateDistance(params);
+
+        params.put('location', '50.5,-0.1');
+        CourseSearchUtility.getCoursesByDateDistance(params);
+
+        params.put('radius', '');
+        CourseSearchUtility.getCoursesByDateDistance(params);
+
+        params.put('radius', 'b');
+        CourseSearchUtility.getCoursesByDateDistance(params);
+
+        params.put('radius', '50');
+        RestResponse response = CourseSearchUtility.getCoursesByDateDistance(params);
+
+        System.assertEquals(404, response.statusCode);
+    }
+
+    private static void addLocationToVenue(){
+        List<Venue__c> venues = [
+            SELECT Id, Location__c
+            FROM
+            Venue__c
+        ];
+
+        System.assertEquals(1, venues.size());
+        Location loc = Location.newInstance(50.501, -0.101);
+        venues[0].Location__latitude__s = loc.latitude;
+        venues[0].Location__longitude__s = loc.longitude;
+        update venues;
+    }
+
+    @isTest
+    static void courseSearchByLocation(){
+        setupTestData();
+        addLocationToVenue();
+
+        Map<String, String> params = new Map<String, String>{
+            'location' => '50.5,-0.1',
+            'radius' => '50'
+        };
+        RestResponse response = CourseSearchUtility.getCoursesByDateDistance(params);
+
+        System.assertEquals(200, response.statusCode);
+    }
+
+    @isTest
+    static void courseSearchByLocationInternal(){
+        setupTestData();
+        addLocationToVenue();
+
+        Location loc = Location.newInstance(50.501, -0.101);
+        List<Course__c> courses = CourseSearchUtility.getCoursesByDateDistance(loc, 50, false);
+        System.assertEquals(1, courses.size());
+    }
 }

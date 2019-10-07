@@ -18,6 +18,13 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
+            <componentName>ltngsharing:lightningSharingBuilderWrapper</componentName>
+        </componentInstances>
+        <name>Facet-c0b096ec-bc1e-4615-97ae-63c168405ccb</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
             <componentInstanceProperties>
                 <name>relatedListComponentOverride</name>
                 <value>ADVGRID</value>
@@ -45,6 +52,17 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-c0b096ec-bc1e-4615-97ae-63c168405ccb</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Sharing</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>

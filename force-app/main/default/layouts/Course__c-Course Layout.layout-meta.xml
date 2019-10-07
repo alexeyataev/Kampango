@@ -293,7 +293,6 @@
         <fields>Status__c</fields>
         <fields>Last_Name__c</fields>
         <fields>First_Name__c</fields>
-        <fields>Birth_Date__c</fields>
         <fields>Birth_Due_Date__c</fields>
         <relatedList>Booking__c.Course__c</relatedList>
         <sortField>Status__c</sortField>

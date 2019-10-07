@@ -21,6 +21,16 @@
         <template>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</template>
     </alerts>
     <alerts>
+        <fullName>Send_Email_When_CAD_Invalidated</fullName>
+        <description>Send Email When CAD Invalidated</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</template>
+    </alerts>
+    <alerts>
         <fullName>Send_Email_When_CAD_Withdrawn</fullName>
         <description>Send Email When CAD Withdrawn</description>
         <protected>false</protected>
@@ -59,7 +69,11 @@
     </fieldUpdates>
     <rules>
         <fullName>InformPractitionerWhenCADInvalidated</fullName>
-        <active>false</active>
+        <actions>
+            <name>Send_Email_When_CAD_Invalidated</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
         <criteriaItems>
             <field>Course_Assignment__c.Status__c</field>
             <operation>equals</operation>

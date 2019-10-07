@@ -14,6 +14,10 @@ global class CourseApi {
             RestResponse response = CourseSearchUtility.getCoursesByBranch(branchId);
             RestContext.response.statusCode = response.statusCode;
             RestContext.response.responseBody = response.responseBody;
+        } else if (paramsSet.contains('location')) {
+            RestResponse response = CourseSearchUtility.getCoursesByDateDistance(RestContext.request.params);
+            RestContext.response.statusCode = response.statusCode;
+            RestContext.response.responseBody = response.responseBody;
         } else {
             RestContext.response.statusCode = 404;
             RestContext.response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
@@ -22,24 +26,15 @@ global class CourseApi {
         RestContext.response.addHeader('Content-Type', 'application/json');
     }
     
-    private static Boolean isByLocation(Set<String> paramsSet){
-        Boolean result = false;
-
-        if (
-            paramsSet.contains('viewports') &&
-            paramsSet.contains('radius') &&
-            paramsSet.contains('location') &&
-            paramsSet.contains('birth')
-        ) {
-            result = true;
-        }
-        return result;
-    }
-    
     @HttpPost
     global static void createEnquiry() {
         RestRequest request = RestContext.request;
-        String courseNumber = CourseCreateEnquiryUtility.getCourseIdFromHeaders(request.headers);
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);
+        String courseNumber = CourseCreateEnquiryUtility.getCourseName(request.params);
+        try {
+            CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);      
+        } catch (CourseCreateEnquiryUtility.CreateEnquiryException ex) {
+            RestContext.response.statusCode = 500;
+            RestContext.response.responseBody = Blob.valueOf(ex.getMessage());
+        }
     }
 }
