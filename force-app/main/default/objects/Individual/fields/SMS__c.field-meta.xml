@@ -3,7 +3,7 @@
     <fullName>SMS__c</fullName>
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
-    <label>SMS</label>
+    <label>SMS text</label>
     <trackHistory>false</trackHistory>
     <type>Checkbox</type>
 </CustomField>
