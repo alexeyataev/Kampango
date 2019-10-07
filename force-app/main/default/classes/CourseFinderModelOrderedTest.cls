@@ -1,5 +1,5 @@
 @isTest
-private class CourseFinderModelTest {
+private class CourseFinderModelOrderedTest {
 
     private static void setupTestData() {
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
@@ -30,9 +30,13 @@ private class CourseFinderModelTest {
         ];
 
         Test.startTest();
-        CourseFinderModel courseFinderModel = new CourseFinderModel(course);
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course);
+        modelOrdered.Order = 1;
+        modelOrdered.Rank = 1;
         Test.stopTest();
 
-        System.assertNotEquals(null, courseFinderModel);                             
+        System.assertNotEquals(null, modelOrdered);
+        System.assertEquals(1, modelOrdered.Order);
+        System.assertEquals(1, modelOrdered.Rank);
     }
 }
