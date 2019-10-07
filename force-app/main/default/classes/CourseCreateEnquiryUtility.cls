@@ -78,7 +78,7 @@ public without sharing class CourseCreateEnquiryUtility {
     }
   
     public static String getCourseName(Map<String, String> params) {
-        return params.get('courseId');
+        return params.get('courseId').trim();
     }
     public class CreateEnquiryException extends Exception {}
 }
