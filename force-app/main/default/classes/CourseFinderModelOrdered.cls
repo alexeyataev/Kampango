@@ -3,14 +3,12 @@
 public class CourseFinderModelOrdered extends CourseFinderModel implements Comparable {
     public Integer Rank {get; set;}
     public Integer Order {get; set;}
-    public transient Integer groupRank {get; set;}
     private transient List<CourseTypeRank> courseTypeRanks;
     
     public CourseFinderModelOrdered(Course__c course, Date birthDueDate) {
         super(course);
         this.courseTypeRanks = createOrderToRank();
         this.Rank = getCourseRank(course, birthDueDate);
-        this.groupRank = new CourseGrouper(course).getCourseGroupRank();
     }
 
     private Integer getCourseRank(Course__c course, Date birthDueDate) {
@@ -38,100 +36,294 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
     }
 
     private List<CourseTypeRank> createOrderToRank() {
+
+        final String NCT_SIGNATURE_ANTENATAL = 'NCT Signature Antenatal';
+        final String NCT_SIGNATURE_ESSENTIALS = 'NCT Essentials Antenatal';
+        final String NCT_ANTENATAL_REFRESHER = 'NCT Antenatal Refresher';
+        final String TWINS_AND_MULTIPLES = 'Twins and Multiples';
+        final String WATERBIRTH = 'Waterbirth';
+        final String EARLY_DAYS = 'Early Days';
+        final String INTRODUCING_SOLIDS = 'Introducing Solids';
+        final String BABY_MASSAGE = 'Baby Massage';
+
+        final Integer FIRST_RANK = 1;
+        final Integer SECOND_RANK = 2;
+        final Integer THIRD_RANK = 3;
+        final Integer FOURTH_RANK = 4;
+        final Integer FIFTH_RANK = 5;
+        final Integer SIXTH_RANK = 6;
+        final Integer SEVENTH_RANK = 7;
+
+        final Integer NCT_SIGNATURE_ANTENATAL_FIRST_RANK_MIN = 21; 
+        final Integer NCT_SIGNATURE_ANTENATAL_FIRST_RANK_MAX = 49;
+        final Integer NCT_SIGNATURE_ANTENATAL_SECOND_RANK_MIN_RANGE_FIRST = 14;
+        final Integer NCT_SIGNATURE_ANTENATAL_SECOND_RANK_MAX_RANGE_FIRST = 20;
+        final Integer NCT_SIGNATURE_ANTENATAL_SECOND_RANK_MIN_RANGE_SECOND = 50;
+        final Integer NCT_SIGNATURE_ANTENATAL_SECOND_RANK_MAX_RANGE_SECOND = 63;
+        final Integer NCT_SIGNATURE_ANTENATAL_THIRD_RANK_MIN_RANGE_FIRST = 7; 
+        final Integer NCT_SIGNATURE_ANTENATAL_THIRD_RANK_MAX_RANGE_FIRST = 14;
+        final Integer NCT_SIGNATURE_ANTENATAL_THIRD_RANK_MIN_RANGE_SECOND = 64; 
+        final Integer NCT_SIGNATURE_ANTENATAL_THIRD_RANK_MAX_RANGE_SECOND = 84;
+        final Integer NCT_SIGNATURE_ANTENATAL_FOURTH_RANK_MIN = 0; 
+        final Integer NCT_SIGNATURE_ANTENATAL_FOURTH_RANK_MAX = 6;
+        final Integer NCT_SIGNATURE_ANTENATAL_FIFTH_RANK_MIN = 85; 
+        final Integer NCT_SIGNATURE_ANTENATAL_FIFTH_RANK_MAX = 126;
+        final Integer NCT_SIGNATURE_ANTENATAL_SIXTH_RANK_MIN = -1000; 
+        final Integer NCT_SIGNATURE_ANTENATAL_SIXTH_RANK_MAX = -1;
+        final Integer NCT_SIGNATURE_ANTENATAL_SEVENTH_RANK_MIN = 127; 
+        final Integer NCT_SIGNATURE_ANTENATAL_SEVENTH_RANK_MAX = 1000;
+
+        final Integer NCT_SIGNATURE_ESSENTIALS_FIRST_RANK_MIN = 21; 
+        final Integer NCT_SIGNATURE_ESSENTIALS_FIRST_RANK_MAX = 49;
+        final Integer NCT_SIGNATURE_ESSENTIALS_SECOND_RANK_MIN_RANGE_FIRST = 14;
+        final Integer NCT_SIGNATURE_ESSENTIALS_SECOND_RANK_MAX_RANGE_FIRST = 20;
+        final Integer NCT_SIGNATURE_ESSENTIALS_SECOND_RANK_MIN_RANGE_SECOND = 50;
+        final Integer NCT_SIGNATURE_ESSENTIALS_SECOND_RANK_MAX_RANGE_SECOND = 63;
+        final Integer NCT_SIGNATURE_ESSENTIALS_THIRD_RANK_MIN_RANGE_FIRST = 7; 
+        final Integer NCT_SIGNATURE_ESSENTIALS_THIRD_RANK_MAX_RANGE_FIRST = 14;
+        final Integer NCT_SIGNATURE_ESSENTIALS_THIRD_RANK_MIN_RANGE_SECOND = 64; 
+        final Integer NCT_SIGNATURE_ESSENTIALS_THIRD_RANK_MAX_RANGE_SECOND = 84;
+        final Integer NCT_SIGNATURE_ESSENTIALS_FOURTH_RANK_MIN = 0; 
+        final Integer NCT_SIGNATURE_ESSENTIALS_FOURTH_RANK_MAX = 6;
+        final Integer NCT_SIGNATURE_ESSENTIALS_FIFTH_RANK_MIN = 85; 
+        final Integer NCT_SIGNATURE_ESSENTIALS_FIFTH_RANK_MAX = 126;
+        final Integer NCT_SIGNATURE_ESSENTIALS_SIXTH_RANK_MIN = -1000; 
+        final Integer NCT_SIGNATURE_ESSENTIALS_SIXTH_RANK_MAX = -1;
+        final Integer NCT_SIGNATURE_ESSENTIALS_SEVENTH_RANK_MIN = 127; 
+        final Integer NCT_SIGNATURE_ESSENTIALS_SEVENTH_RANK_MAX = 1000;
+
+        final Integer NCT_ANTENATAL_REFRESHER_FIRST_RANK_MIN = 21; 
+        final Integer NCT_ANTENATAL_REFRESHER_FIRST_RANK_MAX = 56;
+        final Integer NCT_ANTENATAL_REFRESHER_SECOND_RANK_MIN_RANGE_FIRST = 14;
+        final Integer NCT_ANTENATAL_REFRESHER_SECOND_RANK_MAX_RANGE_FIRST = 20;
+        final Integer NCT_ANTENATAL_REFRESHER_SECOND_RANK_MIN_RANGE_SECOND = 57;
+        final Integer NCT_ANTENATAL_REFRESHER_SECOND_RANK_MAX_RANGE_SECOND = 84;
+        final Integer NCT_ANTENATAL_REFRESHER_THIRD_RANK_MIN = 7; 
+        final Integer NCT_ANTENATAL_REFRESHER_THIRD_RANK_MAX = 13;
+        final Integer NCT_ANTENATAL_REFRESHER_FOURTH_RANK_MIN = 0; 
+        final Integer NCT_ANTENATAL_REFRESHER_FOURTH_RANK_MAX = 6;
+        final Integer NCT_ANTENATAL_REFRESHER_FIFTH_RANK_MIN = 85; 
+        final Integer NCT_ANTENATAL_REFRESHER_FIFTH_RANK_MAX = 126;
+        final Integer NCT_ANTENATAL_REFRESHER_SIXTH_RANK_MIN = -1000; 
+        final Integer NCT_ANTENATAL_REFRESHER_SIXTH_RANK_MAX = -1;
+        final Integer NCT_ANTENATAL_REFRESHER_SEVENTH_RANK_MIN = 127; 
+        final Integer NCT_ANTENATAL_REFRESHER_SEVENTH_RANK_MAX = 1000;
+
+        final Integer TWINS_AND_MULTIPLES_FIRST_RANK_MIN = 42; 
+        final Integer TWINS_AND_MULTIPLES_FIRST_RANK_MAX = 70;
+        final Integer TWINS_AND_MULTIPLES_SECOND_RANK_MIN_RANGE_FIRST = 28;
+        final Integer TWINS_AND_MULTIPLES_SECOND_RANK_MAX_RANGE_FIRST = 41;
+        final Integer TWINS_AND_MULTIPLES_SECOND_RANK_MIN_RANGE_SECOND = 57;
+        final Integer TWINS_AND_MULTIPLES_SECOND_RANK_MAX_RANGE_SECOND = 84;
+        final Integer TWINS_AND_MULTIPLES_THIRD_RANK_MIN = 85; 
+        final Integer TWINS_AND_MULTIPLES_THIRD_RANK_MAX = 98;
+        final Integer TWINS_AND_MULTIPLES_FOURTH_RANK_MIN = 0; 
+        final Integer TWINS_AND_MULTIPLES_FOURTH_RANK_MAX = 27;
+        final Integer TWINS_AND_MULTIPLES_FIFTH_RANK_MIN = 99; 
+        final Integer TWINS_AND_MULTIPLES_FIFTH_RANK_MAX = 126;
+        final Integer TWINS_AND_MULTIPLES_SIXTH_RANK_MIN = -1000; 
+        final Integer TWINS_AND_MULTIPLES_SIXTH_RANK_MAX = -1;
+        final Integer TWINS_AND_MULTIPLES_SEVENTH_RANK_MIN = 127; 
+        final Integer TWINS_AND_MULTIPLES_SEVENTH_RANK_MAX = 1000;
+
+        final Integer WATERBIRTH_FIRST_RANK_MIN = 14; 
+        final Integer WATERBIRTH_FIRST_RANK_MAX = 91;
+        final Integer WATERBIRTH_SECOND_RANK_MIN = 7;
+        final Integer WATERBIRTH_SECOND_RANK_MAX = 13;
+        final Integer WATERBIRTH_THIRD_RANK_MIN = 0; 
+        final Integer WATERBIRTH_THIRD_RANK_MAX = 6;
+        final Integer WATERBIRTH_FOURTH_RANK_MIN = 92; 
+        final Integer WATERBIRTH_FOURTH_RANK_MAX = 126;
+        final Integer WATERBIRTH_SIXTH_RANK_MIN = -1000; 
+        final Integer WATERBIRTH_SIXTH_RANK_MAX = -1;
+        final Integer WATERBIRTH_SEVENTH_RANK_MIN = 127; 
+        final Integer WATERBIRTH_SEVENTH_RANK_MAX = 1000;
+
+        final Integer EARLY_DAYS_FIRST_RANK_MIN = 42; 
+        final Integer EARLY_DAYS_FIRST_RANK_MAX = 84;
+        final Integer EARLY_DAYS_SECOND_RANK_MIN = 85;
+        final Integer EARLY_DAYS_SECOND_RANK_MAX = 126;
+        final Integer EARLY_DAYS_THIRD_RANK_MIN_RANGE_FIRST = 0; 
+        final Integer EARLY_DAYS_THIRD_RANK_MAX_RANGE_FIRST = 41;
+        final Integer EARLY_DAYS_THIRD_RANK_MIN_RANGE_SECOND = 127; 
+        final Integer EARLY_DAYS_THIRD_RANK_MAX_RANGE_SECOND = 182;
+        final Integer EARLY_DAYS_SIXTH_RANK_MIN = -1000; 
+        final Integer EARLY_DAYS_SIXTH_RANK_MAX = -1;
+        final Integer EARLY_DAYS_SEVENTH_RANK_MIN = 182; 
+        final Integer EARLY_DAYS_SEVENTH_RANK_MAX = 1000;
+
+        final Integer INTRODUCING_SOLIDS_FIRST_RANK_MIN = 91; 
+        final Integer INTRODUCING_SOLIDS_FIRST_RANK_MAX = 182;
+        final Integer INTRODUCING_SOLIDS_SECOND_RANK_MIN = 56;
+        final Integer INTRODUCING_SOLIDS_SECOND_RANK_MAX = 90;
+        final Integer INTRODUCING_SOLIDS_THIRD_RANK_MIN = 183; 
+        final Integer INTRODUCING_SOLIDS_THIRD_RANK_MAX = 210;
+        final Integer INTRODUCING_SOLIDS_SEVENTH_RANK_MIN_RANGE_FIRST = -1000; 
+        final Integer INTRODUCING_SOLIDS_SEVENTH_RANK_MAX_RANGE_FIRST = 55;
+        final Integer INTRODUCING_SOLIDS_SEVENTH_RANK_MIN_RANGE_SECOND = 211; 
+        final Integer INTRODUCING_SOLIDS_SEVENTH_RANK_MAX_RANGE_SECOND = 1000;
+
+        final Integer BABY_MASSAGE_FIRST_RANK_MIN = 42; 
+        final Integer BABY_MASSAGE_FIRST_RANK_MAX = 140;
+        final Integer BABY_MASSAGE_SECOND_RANK_MIN = 141;
+        final Integer BABY_MASSAGE_SECOND_RANK_MAX = 252;
+        final Integer BABY_MASSAGE_SIXTH_RANK_MIN = -1000; 
+        final Integer BABY_MASSAGE_SIXTH_RANK_MAX = 41;
+        final Integer BABY_MASSAGE_SEVENTH_RANK_MIN = 252; 
+        final Integer BABY_MASSAGE_SEVENTH_RANK_MAX = 1000;
+        
+
         List<CourseTypeRank> courseTypeRanks = new List<CourseTypeRank>();
 
-        CourseTypeRank courseTypeRank1 = new CourseTypeRank('NCT Signature Antenatal', 1, new List<CompareValue>{new CompareValue(21, 49)});
+        CourseTypeRank courseTypeRank1 = new CourseTypeRank(NCT_SIGNATURE_ANTENATAL, FIRST_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ANTENATAL_FIRST_RANK_MIN, NCT_SIGNATURE_ANTENATAL_FIRST_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank1);
-        CourseTypeRank courseTypeRank2 = new CourseTypeRank('NCT Signature Antenatal', 2, new List<CompareValue>{new CompareValue(14, 20), new CompareValue(50, 63)});
+        CourseTypeRank courseTypeRank2 = new CourseTypeRank(NCT_SIGNATURE_ANTENATAL, SECOND_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ANTENATAL_SECOND_RANK_MIN_RANGE_FIRST, NCT_SIGNATURE_ANTENATAL_SECOND_RANK_MAX_RANGE_FIRST), 
+            new CompareValue(NCT_SIGNATURE_ANTENATAL_SECOND_RANK_MIN_RANGE_SECOND, NCT_SIGNATURE_ANTENATAL_SECOND_RANK_MAX_RANGE_SECOND)});
         courseTypeRanks.add(courseTypeRank2);
-        CourseTypeRank courseTypeRank3 = new CourseTypeRank('NCT Signature Antenatal', 3, new List<CompareValue>{new CompareValue(7, 14), new CompareValue(64, 84)});
+        CourseTypeRank courseTypeRank3 = new CourseTypeRank(NCT_SIGNATURE_ANTENATAL, THIRD_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ANTENATAL_THIRD_RANK_MIN_RANGE_FIRST, NCT_SIGNATURE_ANTENATAL_THIRD_RANK_MAX_RANGE_FIRST), 
+            new CompareValue(NCT_SIGNATURE_ANTENATAL_THIRD_RANK_MIN_RANGE_SECOND, NCT_SIGNATURE_ANTENATAL_THIRD_RANK_MAX_RANGE_SECOND)});
         courseTypeRanks.add(courseTypeRank3);
-        CourseTypeRank courseTypeRank4 = new CourseTypeRank('NCT Signature Antenatal', 4, new List<CompareValue>{new CompareValue(0, 6)});
+        CourseTypeRank courseTypeRank4 = new CourseTypeRank(NCT_SIGNATURE_ANTENATAL, FOURTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ANTENATAL_FOURTH_RANK_MIN, NCT_SIGNATURE_ANTENATAL_FOURTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank4);
-        CourseTypeRank courseTypeRank5 = new CourseTypeRank('NCT Signature Antenatal', 5, new List<CompareValue>{new CompareValue(85, 126)});
+        CourseTypeRank courseTypeRank5 = new CourseTypeRank(NCT_SIGNATURE_ANTENATAL, FIFTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ANTENATAL_FIFTH_RANK_MIN, NCT_SIGNATURE_ANTENATAL_FIFTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank5);
-        CourseTypeRank courseTypeRank6 = new CourseTypeRank('NCT Signature Antenatal', 6, new List<CompareValue>{new CompareValue(-1000, -1)});
+        CourseTypeRank courseTypeRank6 = new CourseTypeRank(NCT_SIGNATURE_ANTENATAL, SIXTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ANTENATAL_SIXTH_RANK_MIN, NCT_SIGNATURE_ANTENATAL_SIXTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank6);
-        CourseTypeRank courseTypeRank7 = new CourseTypeRank('NCT Signature Antenatal', 7, new List<CompareValue>{new CompareValue(126, 1000)});
+        CourseTypeRank courseTypeRank7 = new CourseTypeRank(NCT_SIGNATURE_ANTENATAL, SEVENTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ANTENATAL_SEVENTH_RANK_MIN, NCT_SIGNATURE_ANTENATAL_SEVENTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank7);
-        CourseTypeRank courseTypeRank8 = new CourseTypeRank('NCT Essentials Antenatal', 1, new List<CompareValue>{new CompareValue(21, 56)});
+        CourseTypeRank courseTypeRank8 = new CourseTypeRank(NCT_SIGNATURE_ESSENTIALS, FIRST_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ESSENTIALS_FIRST_RANK_MIN, NCT_SIGNATURE_ESSENTIALS_FIRST_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank8);
-        CourseTypeRank courseTypeRank9 = new CourseTypeRank('NCT Essentials Antenatal', 2, new List<CompareValue>{new CompareValue(14, 20), new CompareValue(50, 63)});
+        CourseTypeRank courseTypeRank9 = new CourseTypeRank(NCT_SIGNATURE_ESSENTIALS, SECOND_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ESSENTIALS_SECOND_RANK_MIN_RANGE_FIRST, NCT_SIGNATURE_ESSENTIALS_SECOND_RANK_MAX_RANGE_FIRST), 
+            new CompareValue(NCT_SIGNATURE_ESSENTIALS_SECOND_RANK_MIN_RANGE_SECOND, NCT_SIGNATURE_ESSENTIALS_SECOND_RANK_MAX_RANGE_SECOND)});
         courseTypeRanks.add(courseTypeRank9);
-        CourseTypeRank courseTypeRank10 = new CourseTypeRank('NCT Essentials Antenatal', 3, new List<CompareValue>{new CompareValue(14, 20), new CompareValue(50, 63)});
+        CourseTypeRank courseTypeRank10 = new CourseTypeRank(NCT_SIGNATURE_ESSENTIALS, THIRD_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ESSENTIALS_THIRD_RANK_MIN_RANGE_FIRST, NCT_SIGNATURE_ESSENTIALS_THIRD_RANK_MAX_RANGE_FIRST), 
+            new CompareValue(NCT_SIGNATURE_ESSENTIALS_THIRD_RANK_MIN_RANGE_SECOND, NCT_SIGNATURE_ESSENTIALS_THIRD_RANK_MAX_RANGE_SECOND)});
         courseTypeRanks.add(courseTypeRank10);
-        CourseTypeRank courseTypeRank11 = new CourseTypeRank('NCT Essentials Antenatal', 4, new List<CompareValue>{new CompareValue(0, 6)});
+        CourseTypeRank courseTypeRank11 = new CourseTypeRank(NCT_SIGNATURE_ESSENTIALS, FOURTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ESSENTIALS_FOURTH_RANK_MIN, NCT_SIGNATURE_ESSENTIALS_FOURTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank11);
-        CourseTypeRank courseTypeRank12 = new CourseTypeRank('NCT Essentials Antenatal', 5, new List<CompareValue>{new CompareValue(85, 126)});
+        CourseTypeRank courseTypeRank12 = new CourseTypeRank(NCT_SIGNATURE_ESSENTIALS, FIFTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ESSENTIALS_FIFTH_RANK_MIN, NCT_SIGNATURE_ESSENTIALS_FIFTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank12);
-        CourseTypeRank courseTypeRank13 = new CourseTypeRank('NCT Essentials Antenatal', 6, new List<CompareValue>{new CompareValue(-1000, -1)});
+        CourseTypeRank courseTypeRank13 = new CourseTypeRank(NCT_SIGNATURE_ESSENTIALS, SIXTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ESSENTIALS_SIXTH_RANK_MIN, NCT_SIGNATURE_ESSENTIALS_SIXTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank13);
-        CourseTypeRank courseTypeRank14 = new CourseTypeRank('NCT Essentials Antenatal', 7, new List<CompareValue>{new CompareValue(126, 1000)});
+        CourseTypeRank courseTypeRank14 = new CourseTypeRank(NCT_SIGNATURE_ESSENTIALS, SEVENTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_SIGNATURE_ESSENTIALS_SEVENTH_RANK_MIN, NCT_SIGNATURE_ESSENTIALS_SEVENTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank14);
-        CourseTypeRank courseTypeRank15 = new CourseTypeRank('NCT Antenatal Refresher', 1, new List<CompareValue>{new CompareValue(21, 56)});
+        CourseTypeRank courseTypeRank15 = new CourseTypeRank(NCT_ANTENATAL_REFRESHER, FIRST_RANK, new List<CompareValue>{
+            new CompareValue(NCT_ANTENATAL_REFRESHER_FIRST_RANK_MIN, NCT_ANTENATAL_REFRESHER_FIRST_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank15);
-        CourseTypeRank courseTypeRank16 = new CourseTypeRank('NCT Antenatal Refresher', 2, new List<CompareValue>{new CompareValue(14, 20), new CompareValue(57, 84)});
+        CourseTypeRank courseTypeRank16 = new CourseTypeRank(NCT_ANTENATAL_REFRESHER, SECOND_RANK, new List<CompareValue>{
+            new CompareValue(NCT_ANTENATAL_REFRESHER_SECOND_RANK_MIN_RANGE_FIRST, NCT_ANTENATAL_REFRESHER_SECOND_RANK_MAX_RANGE_FIRST), 
+            new CompareValue(NCT_ANTENATAL_REFRESHER_SECOND_RANK_MIN_RANGE_SECOND, NCT_ANTENATAL_REFRESHER_SECOND_RANK_MAX_RANGE_SECOND)});
         courseTypeRanks.add(courseTypeRank16);
-        CourseTypeRank courseTypeRank17 = new CourseTypeRank('NCT Antenatal Refresher', 3, new List<CompareValue>{new CompareValue(7, 14)});
+        CourseTypeRank courseTypeRank17 = new CourseTypeRank(NCT_ANTENATAL_REFRESHER, THIRD_RANK, new List<CompareValue>{
+            new CompareValue(NCT_ANTENATAL_REFRESHER_THIRD_RANK_MIN, NCT_ANTENATAL_REFRESHER_THIRD_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank17);
-        CourseTypeRank courseTypeRank18 = new CourseTypeRank('NCT Antenatal Refresher', 4, new List<CompareValue>{new CompareValue(0, 6)});
+        CourseTypeRank courseTypeRank18 = new CourseTypeRank(NCT_ANTENATAL_REFRESHER, FOURTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_ANTENATAL_REFRESHER_FOURTH_RANK_MIN, NCT_ANTENATAL_REFRESHER_FOURTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank18);
-        CourseTypeRank courseTypeRank19 = new CourseTypeRank('NCT Antenatal Refresher', 5, new List<CompareValue>{new CompareValue(85, 126)});
+        CourseTypeRank courseTypeRank19 = new CourseTypeRank(NCT_ANTENATAL_REFRESHER, FIFTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_ANTENATAL_REFRESHER_FIFTH_RANK_MIN, NCT_ANTENATAL_REFRESHER_FIFTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank19);
-        CourseTypeRank courseTypeRank20 = new CourseTypeRank('NCT Antenatal Refresher', 6, new List<CompareValue>{new CompareValue(-1000, -1)});
+        CourseTypeRank courseTypeRank20 = new CourseTypeRank(NCT_ANTENATAL_REFRESHER, SIXTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_ANTENATAL_REFRESHER_SIXTH_RANK_MIN, NCT_ANTENATAL_REFRESHER_SIXTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank20);
-        CourseTypeRank courseTypeRank21 = new CourseTypeRank('NCT Antenatal Refresher', 7, new List<CompareValue>{new CompareValue(126, 1000)});
+        CourseTypeRank courseTypeRank21 = new CourseTypeRank(NCT_ANTENATAL_REFRESHER, SEVENTH_RANK, new List<CompareValue>{
+            new CompareValue(NCT_ANTENATAL_REFRESHER_SEVENTH_RANK_MIN, NCT_ANTENATAL_REFRESHER_SEVENTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank21);
-        CourseTypeRank courseTypeRank22 = new CourseTypeRank('Twins and Multiples', 1, new List<CompareValue>{new CompareValue(42, 70)});
+        CourseTypeRank courseTypeRank22 = new CourseTypeRank(TWINS_AND_MULTIPLES, FIRST_RANK, new List<CompareValue>{
+            new CompareValue(TWINS_AND_MULTIPLES_FIRST_RANK_MIN, TWINS_AND_MULTIPLES_FIRST_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank22);
-        CourseTypeRank courseTypeRank23 = new CourseTypeRank('Twins and Multiples', 2, new List<CompareValue>{new CompareValue(28, 41), new CompareValue(71, 84)});
+        CourseTypeRank courseTypeRank23 = new CourseTypeRank(TWINS_AND_MULTIPLES, SECOND_RANK, new List<CompareValue>{
+            new CompareValue(TWINS_AND_MULTIPLES_SECOND_RANK_MIN_RANGE_FIRST, TWINS_AND_MULTIPLES_SECOND_RANK_MAX_RANGE_FIRST), 
+            new CompareValue(TWINS_AND_MULTIPLES_SECOND_RANK_MIN_RANGE_SECOND, TWINS_AND_MULTIPLES_SECOND_RANK_MAX_RANGE_SECOND)});
         courseTypeRanks.add(courseTypeRank23);
-        CourseTypeRank courseTypeRank24 = new CourseTypeRank('Twins and Multiples', 3, new List<CompareValue>{new CompareValue(85, 98)});
+        CourseTypeRank courseTypeRank24 = new CourseTypeRank(TWINS_AND_MULTIPLES, THIRD_RANK, new List<CompareValue>{
+            new CompareValue(TWINS_AND_MULTIPLES_THIRD_RANK_MIN, TWINS_AND_MULTIPLES_THIRD_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank24);
-        CourseTypeRank courseTypeRank25 = new CourseTypeRank('Twins and Multiples', 4, new List<CompareValue>{new CompareValue(0, 27)});
+        CourseTypeRank courseTypeRank25 = new CourseTypeRank(TWINS_AND_MULTIPLES, FOURTH_RANK, new List<CompareValue>{
+            new CompareValue(TWINS_AND_MULTIPLES_FOURTH_RANK_MIN, TWINS_AND_MULTIPLES_FOURTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank25);
-        CourseTypeRank courseTypeRank26 = new CourseTypeRank('Twins and Multiples', 5, new List<CompareValue>{new CompareValue(99, 126)});
+        CourseTypeRank courseTypeRank26 = new CourseTypeRank(TWINS_AND_MULTIPLES, FIFTH_RANK, new List<CompareValue>{
+            new CompareValue(TWINS_AND_MULTIPLES_FIFTH_RANK_MIN, TWINS_AND_MULTIPLES_FIFTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank26);
-        CourseTypeRank courseTypeRank27 = new CourseTypeRank('Twins and Multiples', 6, new List<CompareValue>{new CompareValue(-1000, -1)});
+        CourseTypeRank courseTypeRank27 = new CourseTypeRank(TWINS_AND_MULTIPLES, SIXTH_RANK, new List<CompareValue>{
+            new CompareValue(TWINS_AND_MULTIPLES_SIXTH_RANK_MIN, TWINS_AND_MULTIPLES_SIXTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank27);
-        CourseTypeRank courseTypeRank28 = new CourseTypeRank('Twins and Multiples', 7, new List<CompareValue>{new CompareValue(127, 1000)});
+        CourseTypeRank courseTypeRank28 = new CourseTypeRank(TWINS_AND_MULTIPLES, SEVENTH_RANK, new List<CompareValue>{
+            new CompareValue(TWINS_AND_MULTIPLES_SEVENTH_RANK_MIN, TWINS_AND_MULTIPLES_SEVENTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank28);
-        CourseTypeRank courseTypeRank29 = new CourseTypeRank('Waterbirth', 1, new List<CompareValue>{new CompareValue(14, 91)});
+        CourseTypeRank courseTypeRank29 = new CourseTypeRank(WATERBIRTH, FIRST_RANK, new List<CompareValue>{
+            new CompareValue(WATERBIRTH_FIRST_RANK_MIN, WATERBIRTH_FIRST_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank29);
-        CourseTypeRank courseTypeRank30 = new CourseTypeRank('Waterbirth', 2, new List<CompareValue>{new CompareValue(7, 13)});
+        CourseTypeRank courseTypeRank30 = new CourseTypeRank(WATERBIRTH, SECOND_RANK, new List<CompareValue>{
+            new CompareValue(WATERBIRTH_SECOND_RANK_MIN, WATERBIRTH_SECOND_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank30);
-        CourseTypeRank courseTypeRank31 = new CourseTypeRank('Waterbirth', 3, new List<CompareValue>{new CompareValue(0, 6)});
+        CourseTypeRank courseTypeRank31 = new CourseTypeRank(WATERBIRTH, THIRD_RANK, new List<CompareValue>{
+            new CompareValue(WATERBIRTH_THIRD_RANK_MIN, WATERBIRTH_THIRD_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank31);
-        CourseTypeRank courseTypeRank32 = new CourseTypeRank('Waterbirth', 4, new List<CompareValue>{new CompareValue(92, 126)});
+        CourseTypeRank courseTypeRank32 = new CourseTypeRank(WATERBIRTH, FOURTH_RANK, new List<CompareValue>{
+            new CompareValue(WATERBIRTH_FOURTH_RANK_MIN, WATERBIRTH_FOURTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank32);
-        CourseTypeRank courseTypeRank33 = new CourseTypeRank('Waterbirth', 6, new List<CompareValue>{new CompareValue(-1000, -1)});
+        CourseTypeRank courseTypeRank33 = new CourseTypeRank(WATERBIRTH, SIXTH_RANK, new List<CompareValue>{
+            new CompareValue(WATERBIRTH_SIXTH_RANK_MIN, WATERBIRTH_SIXTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank33);
-        CourseTypeRank courseTypeRank34 = new CourseTypeRank('Waterbirth', 7, new List<CompareValue>{new CompareValue(127, 1000)});
+        CourseTypeRank courseTypeRank34 = new CourseTypeRank(WATERBIRTH, SEVENTH_RANK, new List<CompareValue>{
+            new CompareValue(WATERBIRTH_SEVENTH_RANK_MIN, WATERBIRTH_SEVENTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank34);
-        CourseTypeRank courseTypeRank35 = new CourseTypeRank('Early Days', 1, new List<CompareValue>{new CompareValue(42, 84)});
+        CourseTypeRank courseTypeRank35 = new CourseTypeRank(EARLY_DAYS, FIRST_RANK, new List<CompareValue>{
+            new CompareValue(EARLY_DAYS_FIRST_RANK_MIN, EARLY_DAYS_FIRST_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank35);
-        CourseTypeRank courseTypeRank36 = new CourseTypeRank('Early Days', 2, new List<CompareValue>{new CompareValue(85, 126)});
+        CourseTypeRank courseTypeRank36 = new CourseTypeRank(EARLY_DAYS, SECOND_RANK, new List<CompareValue>{
+            new CompareValue(EARLY_DAYS_SECOND_RANK_MIN, EARLY_DAYS_SECOND_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank36);
-        CourseTypeRank courseTypeRank37 = new CourseTypeRank('Early Days', 3, new List<CompareValue>{new CompareValue(127, 182), new CompareValue(0, 41)});
+        CourseTypeRank courseTypeRank37 = new CourseTypeRank(EARLY_DAYS, THIRD_RANK, new List<CompareValue>{
+            new CompareValue(EARLY_DAYS_THIRD_RANK_MIN_RANGE_FIRST, EARLY_DAYS_THIRD_RANK_MAX_RANGE_FIRST), 
+            new CompareValue(EARLY_DAYS_THIRD_RANK_MIN_RANGE_SECOND, EARLY_DAYS_THIRD_RANK_MAX_RANGE_SECOND)});
         courseTypeRanks.add(courseTypeRank37);
-        CourseTypeRank courseTypeRank38 = new CourseTypeRank('Early Days', 6, new List<CompareValue>{new CompareValue(-1000, -1)});
+        CourseTypeRank courseTypeRank38 = new CourseTypeRank(EARLY_DAYS, SIXTH_RANK, new List<CompareValue>{
+            new CompareValue(EARLY_DAYS_SIXTH_RANK_MIN, EARLY_DAYS_SIXTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank38);
-        CourseTypeRank courseTypeRank39 = new CourseTypeRank('Early Days', 7, new List<CompareValue>{new CompareValue(183, 1000)});
+        CourseTypeRank courseTypeRank39 = new CourseTypeRank(EARLY_DAYS, SEVENTH_RANK, new List<CompareValue>{
+            new CompareValue(EARLY_DAYS_SEVENTH_RANK_MIN, EARLY_DAYS_SEVENTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank39);
-        CourseTypeRank courseTypeRank40 = new CourseTypeRank('Introducing Solids', 1, new List<CompareValue>{new CompareValue(91, 182)});
+        CourseTypeRank courseTypeRank40 = new CourseTypeRank(INTRODUCING_SOLIDS, FIRST_RANK, new List<CompareValue>{
+            new CompareValue(INTRODUCING_SOLIDS_FIRST_RANK_MIN, INTRODUCING_SOLIDS_FIRST_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank40);
-        CourseTypeRank courseTypeRank41 = new CourseTypeRank('Introducing Solids', 2, new List<CompareValue>{new CompareValue(56, 90)});
+        CourseTypeRank courseTypeRank41 = new CourseTypeRank(INTRODUCING_SOLIDS, SECOND_RANK, new List<CompareValue>{
+            new CompareValue(INTRODUCING_SOLIDS_SECOND_RANK_MIN, INTRODUCING_SOLIDS_SECOND_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank41);
-        CourseTypeRank courseTypeRank42 = new CourseTypeRank('Introducing Solids', 3, new List<CompareValue>{new CompareValue(183, 210)});
+        CourseTypeRank courseTypeRank42 = new CourseTypeRank(INTRODUCING_SOLIDS, THIRD_RANK, new List<CompareValue>{
+            new CompareValue(INTRODUCING_SOLIDS_THIRD_RANK_MIN, INTRODUCING_SOLIDS_THIRD_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank42);
-        CourseTypeRank courseTypeRank43 = new CourseTypeRank('Introducing Solids', 7, new List<CompareValue>{new CompareValue(-1000, 55), new CompareValue(210, 1000)});
+        CourseTypeRank courseTypeRank43 = new CourseTypeRank(INTRODUCING_SOLIDS, SEVENTH_RANK, new List<CompareValue>{
+            new CompareValue(INTRODUCING_SOLIDS_SEVENTH_RANK_MIN_RANGE_FIRST, INTRODUCING_SOLIDS_SEVENTH_RANK_MAX_RANGE_FIRST), 
+            new CompareValue(INTRODUCING_SOLIDS_SEVENTH_RANK_MIN_RANGE_SECOND, INTRODUCING_SOLIDS_SEVENTH_RANK_MAX_RANGE_SECOND)});
         courseTypeRanks.add(courseTypeRank43);
-        CourseTypeRank courseTypeRank44 = new CourseTypeRank('Baby Massage', 1, new List<CompareValue>{new CompareValue(0, 91)});
+        CourseTypeRank courseTypeRank44 = new CourseTypeRank(BABY_MASSAGE, FIRST_RANK, new List<CompareValue>{
+            new CompareValue(BABY_MASSAGE_FIRST_RANK_MIN, BABY_MASSAGE_FIRST_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank44);
-        CourseTypeRank courseTypeRank45 = new CourseTypeRank('Baby Massage', 6, new List<CompareValue>{new CompareValue(-1000, -1)});
+        CourseTypeRank courseTypeRank45 = new CourseTypeRank(BABY_MASSAGE, SECOND_RANK, new List<CompareValue>{
+            new CompareValue(BABY_MASSAGE_SECOND_RANK_MIN, BABY_MASSAGE_SECOND_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank45);
-        CourseTypeRank courseTypeRank46 = new CourseTypeRank('Baby Massage', 7, new List<CompareValue>{new CompareValue(92, 1000)});
+        CourseTypeRank courseTypeRank46 = new CourseTypeRank(BABY_MASSAGE, SIXTH_RANK, new List<CompareValue>{
+            new CompareValue(BABY_MASSAGE_SIXTH_RANK_MIN, BABY_MASSAGE_SIXTH_RANK_MAX)});
         courseTypeRanks.add(courseTypeRank46);
+        CourseTypeRank courseTypeRank47 = new CourseTypeRank(BABY_MASSAGE, SEVENTH_RANK, new List<CompareValue>{
+            new CompareValue(BABY_MASSAGE_SEVENTH_RANK_MIN, BABY_MASSAGE_SEVENTH_RANK_MAX)});
+        courseTypeRanks.add(courseTypeRank47);
 
         return courseTypeRanks; 
     }
@@ -158,34 +350,7 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
         }
     }
 
-    private class CourseGrouper {
-        private Course__c course;
-        private final Integer AVAILABLE_NOT_STARTED = 1;
-        private final Integer AVAILABLE_SOME_SESSION_MISSED = 2;
-        private final Integer FULL_NOT_STARTED = 3;
-        private final Integer FULL_SOME_SESSION_MISSED = 4;
-        private final Integer NOT_DEFINED_GROUPE = 5;
-        
-        private CourseGrouper(Course__c course) {
-            this.course = course;
-        }
-
-        private Integer getCourseGroupRank() {
-            Date today = date.today();
-            if (course.Remaining_Places__c > 0 && course.Start_Date__c > today) {
-                return AVAILABLE_NOT_STARTED;
-            } else if (course.Remaining_Places__c <= 0 && course.Start_Date__c > today) {
-                return FULL_NOT_STARTED;
-            } else if (course.Remaining_Places__c > 0 && course.Start_Date__c <= today) {
-                return AVAILABLE_SOME_SESSION_MISSED;
-            } else if (course.Remaining_Places__c <= 0 && course.Start_Date__c <= today) {
-                return FULL_SOME_SESSION_MISSED;
-            } else {
-                return NOT_DEFINED_GROUPE;
-            }
-        }
-    }
-    public Integer CompareTo(Object compareTo){
+    public Integer CompareTo(Object compareTo) {
         CourseFinderModelOrdered compareToModel = (CourseFinderModelOrdered) compareTo;
         
         if (this.Rank > compareToModel.Rank){
@@ -193,18 +358,11 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
         } else if (this.Rank < compareToModel.Rank) {
             return -1;
         } else {// comparting the same rank
-            if (this.groupRank > compareToModel.groupRank){
+            if (this.Id > compareToModel.Id){
                 return 1;
-            } else if (this.groupRank < compareToModel.groupRank) {
+            } else {
                 return -1;
-            } else {//Comparing the same groupRank
-                /* Temporary logic, as critetia are not defined*/
-                if (this.Id > compareToModel.Id){
-                    return 1;
-                } else {
-                    return -1;
-                }
-            }
+            }   
         }
     }
 }
