@@ -3,6 +3,7 @@
 public without sharing virtual class CourseFinderModel {
     @testVisible
     public String Id {get; set;}
+    public transient Date StartDate {get; set;}
     private String Reference;
     private String Title;
     private String Summary;
@@ -31,7 +32,7 @@ public without sharing virtual class CourseFinderModel {
         this.CourseOrganiser = new CourseOrganiser(course);
         this.Venue = new Venue(course);
         this.Sessions = collectSessionsToList(course.Sessions__r);
-
+        this.StartDate = course.Start_Date__c;
     }
 
     private without sharing class CourseOrganiser {

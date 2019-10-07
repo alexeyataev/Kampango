@@ -357,12 +357,18 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
             return 1;
         } else if (this.Rank < compareToModel.Rank) {
             return -1;
-        } else {// comparting the same rank
-            if (this.Id > compareToModel.Id){
+        } else {// comparting the same rank by StartDate
+            if (this.StartDate > compareToModel.StartDate){
                 return 1;
-            } else {
+            } else if (this.StartDate < compareToModel.StartDate) {
                 return -1;
-            }   
+            } else {//Comparing course numbers
+                if (this.Id > compareToModel.Id){
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
         }
     }
 }
