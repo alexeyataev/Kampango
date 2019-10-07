@@ -16,7 +16,6 @@ public without sharing class CourseApiTest {
             .buildCoursesWithSessions(2, 2);
     }
 
-
     @isTest
     static void searchWrongLocation(){
         RestRequest req = new RestRequest();
@@ -55,12 +54,11 @@ public without sharing class CourseApiTest {
         System.assertEquals(404, res.statusCode);
     }
 
-
     @isTest
     static void searchCourseById() {
 
         Course__c course = [
-            SELECT Id
+            SELECT Id, Name
             FROM Course__c
             LIMIT 1
         ];
@@ -69,7 +67,7 @@ public without sharing class CourseApiTest {
         req.requestURI = strURI;
         req.httpMethod = methodGet;
         req.addHeader('Content-Type', 'application/json');
-        req.addParameter('course', course.Id);
+        req.addParameter('course', course.Name);
 
         RestResponse res = new RestResponse();
         RestContext.request = req;
@@ -82,7 +80,7 @@ public without sharing class CourseApiTest {
         CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(res.responseBody.toString(), CourseFinderModel.class );
 
         System.assertEquals(200, res.statusCode);
-        System.assertEquals(course.Id, model.Id);      
+        System.assertEquals(course.Name, model.Id);      
     }
 
     @isTest
@@ -113,7 +111,7 @@ public without sharing class CourseApiTest {
         List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(res.responseBody.toString());
 
         System.assertEquals(200, res.statusCode);
-        System.assertEquals(2, responseObjects.size());
+        System.assertEquals(1, responseObjects.size());
       
     }      
 
@@ -137,18 +135,17 @@ public without sharing class CourseApiTest {
     @isTest
     static void createEnquiry() {
         prepareSetupData();
-        Id avaliableCourse = [
-            SELECT Id 
+        String avaliableCourse = [
+            SELECT Id, Name
             FROM Course__c 
-            WHERE Remaining_Places__c > 0
-        ][0].Id;
+        ][0].Name;
         RestRequest request = new RestRequest();
         RestResponse response = new RestResponse();
         request.httpMethod = 'POST';
         request.requestURI = '/services/apexrest/courses/';
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
-        headersMap.put('Referer', 'https://www.nct.org.uk/course/' + avaliableCourse);
+        paramsMap.put('courseId', avaliableCourse);
         for (String parameter : paramsMap.keySet()) {
             request.addParameter(parameter, paramsMap.get(parameter));
         }

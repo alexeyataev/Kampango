@@ -29,7 +29,12 @@ global class CourseApi {
     @HttpPost
     global static void createEnquiry() {
         RestRequest request = RestContext.request;
-        String courseNumber = CourseCreateEnquiryUtility.getCourseIdFromHeaders(request.headers);
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);
+        String courseNumber = CourseCreateEnquiryUtility.getCourseName(request.params);
+        try {
+            CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);      
+        } catch (CourseCreateEnquiryUtility.CreateEnquiryException ex) {
+            RestContext.response.statusCode = 500;
+            RestContext.response.responseBody = Blob.valueOf(ex.getMessage());
+        }
     }
 }
