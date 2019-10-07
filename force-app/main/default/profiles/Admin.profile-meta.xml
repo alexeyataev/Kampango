@@ -715,11 +715,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Session__c.Capacity_PSA_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Course_Assignment__c</field>
         <readable>true</readable>
@@ -727,11 +722,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Day_of_Week__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Session__c.Enquiries_PSA_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
