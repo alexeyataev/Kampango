@@ -10,5 +10,5 @@ OR(
 )
 )</errorConditionFormula>
     <errorDisplayField>Reservation_Expiry_Date__c</errorDisplayField>
-    <errorMessage>Expiration date cannot be reduced</errorMessage>
+    <errorMessage>Expiry date cannot be reduced</errorMessage>
 </ValidationRule>
