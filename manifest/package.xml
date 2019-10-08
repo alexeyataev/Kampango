@@ -280,6 +280,10 @@
         <name>Role</name>
     </types>
     <types>
+        <members>Practitioners</members>
+        <name>SharingSet</name>
+    </types>
+    <types>
         <members>Parent_Community1</members>
         <members>Practitioners1</members>
         <name>SiteDotCom</name>
