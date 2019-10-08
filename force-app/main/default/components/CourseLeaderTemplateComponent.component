@@ -1,0 +1,16 @@
+<apex:component id="CourseLeaderTemplateComponent" controller="GetInfoForCourseLeaderTemplate" access="global">
+  <apex:attribute name="confirmedSessionId" type="Id" description="Confirmed Session Id" assignTo="{!sessionId}"/>
+    Dear, {!sessionInfo.Practitioner__r.FirstName} <br/>
+    Thank you for agreeing to facilitate the {!courseInfo.Sub_Type__c} course reunion.
+    All the confirmed clients on the course have now received a reunion confirmation email.
+    They have been informed that the reunion will be held on {!sessionInfo.Day_of_Week__c} {!sessionDate} from {!sessionStartTime} to {!sessionEndTime} at:<br/><br/>
+    {!venueInfo.Town__c}<br/>
+    {!venueInfo.Street_Address__c}<br/>
+    <a href="{!venueInfo.Map_Url__c}"> Please click  here to see this on a map</a> <br/><br/>
+    If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.<br/><br/>
+    Kind regards,<br/>
+    {!courseInfo.Branch__r.Capacity_PSA__r.Name}<br/>
+    Course organizer<br/><br/>
+    Email: {!courseInfo.Branch__r.Capacity_PSA_Email__c}<br/>
+    Tel: {!courseInfo.Branch__r.Capacity_PSA_Phone__c}
+  </apex:component>

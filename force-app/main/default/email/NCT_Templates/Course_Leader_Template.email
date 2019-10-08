@@ -1,0 +1,7 @@
+<messaging:emailTemplate recipientType="Contact"
+                         relatedToType="Session__c"
+                         subject="NCT course reunion confirmation">
+  <messaging:htmlEmailBody>
+    <c:CourseLeaderTemplateComponent confirmedSessionId="{!relatedTo.Id}"/>
+  </messaging:htmlEmailBody>
+</messaging:emailTemplate>
