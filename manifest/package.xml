@@ -172,6 +172,8 @@
         <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Main_Venue_on_Course</members>
         <members>Set_Number_of_Places_Based_on_Course_Type</members>
+        <members>Update_Address_in_Gift_Aid_Declaration</members>
+        <members>Update_Address_in_Gift_Aid_Declarations</members>
         <members>Update_Partner_Community_Contact</members>
         <members>Update_Practitioner_Licence_on_Sessions_related_to_Course</members>
         <members>Update_Practitioner_on_Sessions</members>
@@ -191,6 +193,7 @@
         <members>Booking__c-Enquiry PSA Booking Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
+        <members>Contact-Practitioner Community Layout</members>
         <members>Contact-Practitioner Page Layout</members>
         <members>Contact-Practitioner Read Only Layout</members>
         <members>Course_Assignment__c-Course Assignment Layout</members>
@@ -212,6 +215,7 @@
     <types>
         <members>courseDetailsComponent</members>
         <members>failurePaymentPage</members>
+        <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
         <name>LightningComponentBundle</name>
@@ -294,7 +298,7 @@
         <members>Account.Billing_Email_Required_For_Suppliers</members>
         <members>Account.Check_Bank_Account_Name</members>
         <members>Account.Sort_code_must_be_6_numeric_digits</members>
-        <members>Booking__c.ExpirationDateCannotBeInPast</members>
+        <members>Booking__c.ExpirationDateCannotBeReduced</members>
         <members>Booking__c.ExpiryDateCantBeMoreThanDateStartCourse</members>
         <members>Booking__c.FeeOverrideAmountRestriction</members>
         <members>Booking__c.FeeOverrideRestriction</members>
