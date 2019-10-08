@@ -1,6 +1,6 @@
 @isTest
 private class CourseSearchUtilityTest {
-    
+
     private static void setupTestData() {
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
         testDataFactory.buildBranchAccount()
@@ -17,11 +17,11 @@ private class CourseSearchUtilityTest {
         setupTestData();
 
         Course__c course = [
-            SELECT Id, Name
-            FROM Course__c
-            LIMIT 1
+                SELECT Id, Name
+                FROM Course__c
+                LIMIT 1
         ];
- 
+
         Test.startTest();
         RestResponse response = new RestResponse();
         response = CourseSearchUtility.getCourseById(course.Name);
@@ -29,7 +29,7 @@ private class CourseSearchUtilityTest {
 
         CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(response.responseBody.toString(), CourseFinderModel.class );
         System.assertEquals(200, response.statusCode);
-        System.assertEquals(course.Name, model.Id);                             
+        System.assertEquals(course.Name, model.Id);
     }
 
     @isTest
@@ -37,9 +37,9 @@ private class CourseSearchUtilityTest {
         setupTestData();
 
         Course__c course = [
-            SELECT Id 
-            FROM Course__c 
-            LIMIT 1
+                SELECT Id
+                FROM Course__c
+                LIMIT 1
         ];
         delete course;
         Test.startTest();
@@ -47,7 +47,7 @@ private class CourseSearchUtilityTest {
         response = CourseSearchUtility.getCourseById(course.Id);
         Test.stopTest();
 
-        System.assertEquals(404, response.statusCode);                             
+        System.assertEquals(404, response.statusCode);
     }
 
     @isTest
@@ -55,12 +55,12 @@ private class CourseSearchUtilityTest {
         setupTestData();
 
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
-        
+
         Account account = [
-            SELECT Id 
-            FROM Account
-            WHERE RecordTypeId = :recordTypeId 
-            LIMIT 1
+                SELECT Id
+                FROM Account
+                WHERE RecordTypeId = :recordTypeId
+                LIMIT 1
         ];
 
         Test.startTest();
@@ -70,26 +70,26 @@ private class CourseSearchUtilityTest {
 
         List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(response.responseBody.toString());
         System.assertEquals(200, response.statusCode);
-        System.assertEquals(1, responseObjects.size());                             
+        System.assertEquals(1, responseObjects.size());
     }
 
     @isTest
     static void courseSearchByBranchIdIfNoBranchCourses() {
         setupTestData();
-        
+
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
-    
+
         Account account = [
-            SELECT Id 
-            FROM Account
-            WHERE RecordTypeId = :recordTypeId 
-            LIMIT 1
+                SELECT Id
+                FROM Account
+                WHERE RecordTypeId = :recordTypeId
+                LIMIT 1
         ];
-            
+
         List<Course__c> courses = [
-            SELECT Id
-            FROM Course__c
-            WHERE Branch__c = :account.Id
+                SELECT Id
+                FROM Course__c
+                WHERE Branch__c = :account.Id
         ];
 
         delete courses;
@@ -99,7 +99,7 @@ private class CourseSearchUtilityTest {
         response = CourseSearchUtility.getCoursesByBranch(account.Id);
         Test.stopTest();
 
-        System.assertEquals(404, response.statusCode);                             
+        System.assertEquals(404, response.statusCode);
     }
 
     @isTest
@@ -107,10 +107,10 @@ private class CourseSearchUtilityTest {
         setupTestData();
 
         Course__c course = [
-            SELECT Id, Status__c, Branch__r.Enquiries_PSA_Phone__c, Branch__r.Enquiries_PSA__r.Name,
-                   Branch__r.Enquiries_PSA_Email__c
-            FROM Course__c
-            LIMIT 1
+                SELECT Id, Status__c, Branch__r.Enquiries_PSA_Phone__c, Branch__r.Enquiries_PSA__r.Name,
+                        Branch__r.Enquiries_PSA_Email__c
+                FROM Course__c
+                LIMIT 1
         ];
 
         course.Status__c = 'Cancelled';
@@ -120,7 +120,7 @@ private class CourseSearchUtilityTest {
         RestResponse response = new RestResponse();
         response = CourseSearchUtility.getCourseById(course.Id);
         Test.stopTest();
-       
+
         System.assertEquals(404, response.statusCode);
     }
 
@@ -129,9 +129,9 @@ private class CourseSearchUtilityTest {
         setupTestData();
 
         Session__c session = [
-            SELECT Id, Date__c, Course__c
-            FROM Session__c
-            LIMIT 1
+                SELECT Id, Date__c, Course__c
+                FROM Session__c
+                LIMIT 1
         ];
 
         session.Date__c = Date.today() - 5;
@@ -173,9 +173,9 @@ private class CourseSearchUtilityTest {
 
     private static void addLocationToVenue(){
         List<Venue__c> venues = [
-            SELECT Id, Location__c
-            FROM
-            Venue__c
+                SELECT Id, Location__c
+                FROM
+                        Venue__c
         ];
 
         System.assertEquals(1, venues.size());
@@ -191,8 +191,8 @@ private class CourseSearchUtilityTest {
         addLocationToVenue();
 
         Map<String, String> params = new Map<String, String>{
-            'location' => '50.5,-0.1',
-            'radius' => '50'
+                'location' => '50.5,-0.1',
+                'radius' => '50'
         };
         RestResponse response = CourseSearchUtility.getCoursesByDateDistance(params);
 
@@ -205,7 +205,7 @@ private class CourseSearchUtilityTest {
         addLocationToVenue();
 
         Location loc = Location.newInstance(50.501, -0.101);
-        List<Course__c> courses = CourseSearchUtility.getCoursesByDateDistance(loc, 50, false);
+        List<Course__c> courses = CourseSearchUtility.getCoursesByDateDistance(loc, 50, Date.today().addDays(7), false);
         System.assertEquals(1, courses.size());
     }
 }
