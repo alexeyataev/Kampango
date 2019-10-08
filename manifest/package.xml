@@ -4,6 +4,7 @@
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
         <members>CourseApi</members>
+        <members>CourseApiConstants</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
         <members>CourseDetailControllerTest</members>
