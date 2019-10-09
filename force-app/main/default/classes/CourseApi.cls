@@ -1,7 +1,7 @@
 @RestResource(urlMapping='/courses/*')
 global class CourseApi {
     @HttpGet
-    global static void getCourseStaff() {
+    global static void getCourseData() {
         Set <String> paramsSet = RestContext.request.params.keySet();
 
         if (paramsSet.contains('course')){
