@@ -128,6 +128,7 @@
         <name>Role</name>
     </types>
     <types>
+        <members>Booking__c.ExpirationDateCannotBeInPast</members>
         <members>Contact.Contact_Preferred_Email</members>
         <members>Contact.Contact_Preferred_Phone</members>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>

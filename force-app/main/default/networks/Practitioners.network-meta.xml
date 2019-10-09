@@ -56,7 +56,7 @@
     </networkPageOverrides>
     <picassoSite>Practitioners1</picassoSite>
     <selfRegistration>false</selfRegistration>
-    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <sendWelcomeEmail>false</sendWelcomeEmail>
     <site>Practitioners</site>
     <status>Live</status>
     <tabs>
