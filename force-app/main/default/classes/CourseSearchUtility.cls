@@ -28,10 +28,10 @@ public without sharing class CourseSearchUtility {
         if (course != null) {
             CourseFinderModel model = new CourseFinderModel(course);
             model.HowHeardTexts = howHeard;
-            response.statusCode = CourseApiConstants.HTTP_RESPONSE_OK;
+            response.statusCode = HttpStatusCode.OK;
             response.responseBody = Blob.valueOf(JSON.serializePretty(model));
         } else {
-            response.statusCode = CourseApiConstants.HTTP_RESPONSE_NOT_FOUND;
+            response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }       
         return response;
@@ -70,10 +70,10 @@ public without sharing class CourseSearchUtility {
                 model.HowHeardTexts = howHeard;
                 models.add(model);
             }
-            response.statusCode = CourseApiConstants.HTTP_RESPONSE_OK;
+            response.statusCode = HttpStatusCode.OK;
             response.responseBody = Blob.valueOf(JSON.serializePretty(models));
         } else {
-            response.statusCode = CourseApiConstants.HTTP_RESPONSE_NOT_FOUND;
+            response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }        
         return response;
@@ -160,7 +160,7 @@ public without sharing class CourseSearchUtility {
     public static RestResponse getCoursesByDateDistance(Map <String, String> params){
         RestResponse response = new RestResponse();
         if (params == null){
-            response.statusCode = CourseApiConstants.HTTP_RESPONSE_NOT_FOUND;
+            response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
             return response;
         }
@@ -188,10 +188,10 @@ public without sharing class CourseSearchUtility {
             sortedModel.SuggestedLowestRank = 5;
             sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
             
-            response.statusCode = CourseApiConstants.HTTP_RESPONSE_OK;
+            response.statusCode = HttpStatusCode.OK;
             response.responseBody = Blob.valueOf(JSON.serializePretty(sortedModel));
         } else {
-            response.statusCode = CourseApiConstants.HTTP_RESPONSE_NOT_FOUND;
+            response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }        
         return response;

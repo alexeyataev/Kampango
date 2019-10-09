@@ -19,7 +19,7 @@ global class CourseApi {
             RestContext.response.statusCode = response.statusCode;
             RestContext.response.responseBody = response.responseBody;
         } else {
-            RestContext.response.statusCode = CourseApiConstants.HTTP_RESPONSE_NOT_FOUND;
+            RestContext.response.statusCode = HttpStatusCode.NOT_FOUND;
             RestContext.response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }
         
@@ -33,7 +33,7 @@ global class CourseApi {
         try {
             CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);      
         } catch (CourseCreateEnquiryUtility.CreateEnquiryException ex) {
-            RestContext.response.statusCode = CourseApiConstants.HTTP_RESPONSE_SERVER_ERROR;
+            RestContext.response.statusCode = HttpStatusCode.SERVER_ERROR;
             RestContext.response.responseBody = Blob.valueOf(ex.getMessage());
         }
     }
