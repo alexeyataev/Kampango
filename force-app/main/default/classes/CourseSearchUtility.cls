@@ -44,10 +44,10 @@ public without sharing class CourseSearchUtility {
         if (course != null) {
             CourseFinderModel model = new CourseFinderModel(course);
             model.HowHeardTexts = howHeard;
-            response.statusCode = 200;
+            response.statusCode = HttpStatusCode.OK;
             response.responseBody = Blob.valueOf(JSON.serializePretty(model));
         } else {
-            response.statusCode = 404;
+            response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }       
         return response;
@@ -102,10 +102,10 @@ public without sharing class CourseSearchUtility {
                 model.HowHeardTexts = howHeard;
                 models.add(model);
             }
-            response.statusCode = 200;
+            response.statusCode = HttpStatusCode.OK;
             response.responseBody = Blob.valueOf(JSON.serializePretty(models));
         } else {
-            response.statusCode = 404;
+            response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }        
         return response;
@@ -213,7 +213,7 @@ public without sharing class CourseSearchUtility {
         try {
             radius = validateRadius(params.get('radius'));
         } catch (TypeException te){
-            return getWrongResponse();
+            return getWrongRadiusResponse();
         }
         
         List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
@@ -252,24 +252,31 @@ public without sharing class CourseSearchUtility {
             sortedModel.SuggestedLowestRank = getSuggestedLowestRank(LowestRankIncluded, radius);
             sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
             
-            response.statusCode = 200;
+            response.statusCode = HttpStatusCode.OK;
             response.responseBody = Blob.valueOf(JSON.serializePretty(sortedModel));
         } else {
-            response.statusCode = 404;
+            response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }        
         return response;
     }
-    
+
     private static Integer getSuggestedLowestRank(Integer radius, Integer LowestRankIncluded){
         Integer result;
+
+        final Integer RANK_3 = 3;
+        final Integer RANK_4 = 4;
+        final Integer RANK_5 = 5;
+
+        final Integer RANK_3_MAX_RADIUS = 10;
+        final Integer RANK_4_MAX_RADIUS = 20;
         
-        if (radius <= 10) {
-            result = 3;
-        } else if (radius <= 20) {
-            result = 4;
+        if (radius <= RANK_3_MAX_RADIUS) {
+            result = RANK_3;
+        } else if (radius <=RANK_4_MAX_RADIUS) {
+            result = RANK_4;
         } else {
-            result = 5;
+            result = RANK_5;
         }
         
         if (result > LowestRankIncluded) {
@@ -308,6 +315,9 @@ public without sharing class CourseSearchUtility {
         
         try {
             result = Integer.valueOf(strRadius);
+            if (result <= 0) {
+                throw new TypeException();
+            }
         } catch (Exception e){
             throw new TypeException(e);
         }
@@ -315,7 +325,7 @@ public without sharing class CourseSearchUtility {
         return result;
     }
 
-  private static Date validateBirthDueDate(String strBirthDueDate) {
+    private static Date validateBirthDueDate(String strBirthDueDate) {
         Date result;
         if (String.isEmpty(strBirthDueDate)){
             return getDefaultBirthDueDate();
@@ -340,9 +350,15 @@ public without sharing class CourseSearchUtility {
     
     private static RestResponse getWrongResponse(){
         RestResponse response = new RestResponse();
-        response.statusCode = 404;
-        response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
+        response.statusCode = HttpStatusCode.NOT_FOUND;
+        response.responseBody = Blob.valueOf(Label.CourseAPIcourseNotExists);
         return response;
     }
 
+    private static RestResponse getWrongRadiusResponse(){
+        RestResponse response = new RestResponse();
+        response.statusCode = HttpStatusCode.SERVER_ERROR;
+        response.responseBody = Blob.valueOf(Label.CourseAPIradiusIsNotValid);
+        return response;
+    }
 }

@@ -16,6 +16,7 @@
         <members>CourseSearchUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
+        <members>HttpStatusCode</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
@@ -280,6 +281,10 @@
         <name>Role</name>
     </types>
     <types>
+        <members>Practitioners</members>
+        <name>SharingSet</name>
+    </types>
+    <types>
         <members>Parent_Community1</members>
         <members>Practitioners1</members>
         <name>SiteDotCom</name>
@@ -298,7 +303,7 @@
         <members>Account.Billing_Email_Required_For_Suppliers</members>
         <members>Account.Check_Bank_Account_Name</members>
         <members>Account.Sort_code_must_be_6_numeric_digits</members>
-        <members>Booking__c.ExpirationDateCannotBeInPast</members>
+        <members>Booking__c.ExpirationDateCannotBeReduced</members>
         <members>Booking__c.ExpiryDateCantBeMoreThanDateStartCourse</members>
         <members>Booking__c.FeeOverrideAmountRestriction</members>
         <members>Booking__c.FeeOverrideRestriction</members>
