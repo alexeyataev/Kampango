@@ -347,11 +347,9 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Session__c session = [
             SELECT Id, Status__c, Course_Assignment__c
             FROM Session__c
+            WHERE Type__c = 'Reunion'
             LIMIT 1
         ];
-
-        session.Type__c = 'Reunion';
-        update session;
 
         test.startTest();
 
