@@ -213,7 +213,7 @@ public without sharing class CourseSearchUtility {
         try {
             radius = validateRadius(params.get('radius'));
         } catch (TypeException te){
-            return getWrongResponse();
+            return getWrongRadiusResponse();
         }
         
         List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
@@ -308,6 +308,9 @@ public without sharing class CourseSearchUtility {
         
         try {
             result = Integer.valueOf(strRadius);
+            if (result <= 0) {
+                throw new TypeException();
+            }
         } catch (Exception e){
             throw new TypeException(e);
         }
@@ -315,7 +318,7 @@ public without sharing class CourseSearchUtility {
         return result;
     }
 
-  private static Date validateBirthDueDate(String strBirthDueDate) {
+    private static Date validateBirthDueDate(String strBirthDueDate) {
         Date result;
         if (String.isEmpty(strBirthDueDate)){
             return getDefaultBirthDueDate();
@@ -341,8 +344,14 @@ public without sharing class CourseSearchUtility {
     private static RestResponse getWrongResponse(){
         RestResponse response = new RestResponse();
         response.statusCode = 404;
-        response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
+        response.responseBody = Blob.valueOf(Label.CourseAPIcourseNotExists);
         return response;
     }
 
+    private static RestResponse getWrongRadiusResponse(){
+        RestResponse response = new RestResponse();
+        response.statusCode = HttpStatusCode.SERVER_ERROR;
+        response.responseBody = Blob.valueOf(Label.CourseAPIradiusIsNotValid);
+        return response;
+    }
 }
