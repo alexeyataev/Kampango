@@ -3072,7 +3072,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Home Phone</stringValue>
+                    <stringValue>Home phone</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -3226,7 +3226,7 @@
             <inputParameters>
                 <name>disabled</name>
                 <value>
-                    <elementReference>isPartnerSet</elementReference>
+                    <booleanValue>false</booleanValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -3456,7 +3456,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Home Phone</stringValue>
+                    <stringValue>Home phone</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -3762,7 +3762,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Home Phone</stringValue>
+                    <stringValue>Home phone</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -4083,7 +4083,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Home Phone</stringValue>
+                    <stringValue>Home phone</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -4285,7 +4285,7 @@
             <inputParameters>
                 <name>disabled</name>
                 <value>
-                    <elementReference>isPartnerSet</elementReference>
+                    <booleanValue>false</booleanValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -4536,7 +4536,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Home Phone</stringValue>
+                    <stringValue>Home phone</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -4897,7 +4897,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Home Phone</stringValue>
+                    <stringValue>Home phone</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -5218,7 +5218,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Home Phone</stringValue>
+                    <stringValue>Home phone</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -5539,7 +5539,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Home Phone</stringValue>
+                    <stringValue>Home phone</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -5759,7 +5759,7 @@
             <inputParameters>
                 <name>disabled</name>
                 <value>
-                    <elementReference>isPartnerSet</elementReference>
+                    <booleanValue>false</booleanValue>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -5998,7 +5998,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Home Phone</stringValue>
+                    <stringValue>Home phone</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -6175,7 +6175,7 @@
             <inputParameters>
                 <name>disabled</name>
                 <value>
-                    <elementReference>isPartnerSet</elementReference>
+                    <booleanValue>false</booleanValue>
                 </value>
             </inputParameters>
             <inputParameters>
