@@ -260,16 +260,23 @@ public without sharing class CourseSearchUtility {
         }        
         return response;
     }
-    
+
     private static Integer getSuggestedLowestRank(Integer radius, Integer LowestRankIncluded){
         Integer result;
+
+        final Integer RANK_3 = 3;
+        final Integer RANK_4 = 4;
+        final Integer RANK_5 = 5;
+
+        final Integer RANK_3_MAX_RADIUS = 10;
+        final Integer RANK_4_MAX_RADIUS = 20;
         
-        if (radius <= 10) {
-            result = 3;
-        } else if (radius <= 20) {
-            result = 4;
+        if (radius <= RANK_3_MAX_RADIUS) {
+            result = RANK_3;
+        } else if (radius <=RANK_4_MAX_RADIUS) {
+            result = RANK_4;
         } else {
-            result = 5;
+            result = RANK_5;
         }
         
         if (result > LowestRankIncluded) {
