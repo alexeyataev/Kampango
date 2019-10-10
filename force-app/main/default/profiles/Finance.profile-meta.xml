@@ -861,32 +861,6 @@
         <field>gaid__Gift_Aid_Declaration__c.gaid__Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
-  
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__API_Log__c.Zumzum__Action__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__API_Log__c.Zumzum__Company__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__API_Log__c.Zumzum__Log_Details__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__API_Log__c.Zumzum__Stack_Trace__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__API_Log__c.Zumzum__Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__BankReconcile__c.Zumzum__Bank_Account__c</field>
@@ -6097,15 +6071,6 @@
         <field>Zumzum__VAT_Submission_Result__c.Zumzum__VAT_Gateway__c</field>
         <readable>true</readable>
     </fieldPermissions>
-   <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>Zumzum__API_Log__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
