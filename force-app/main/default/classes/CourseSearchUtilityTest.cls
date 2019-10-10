@@ -13,6 +13,7 @@ private class CourseSearchUtilityTest {
     }
 
     private static void setupTestDataForTestingSorting() {
+        
         TestDataFactory testDataFactor = TestDataFactory.getInstance();
         testDataFactor.buildBranchAccount()
                        .buildOrganizationAccount('acc5')
@@ -30,49 +31,87 @@ private class CourseSearchUtilityTest {
             FROM Course__c
             LIMIT 10
         ];
-        
-        System.runAs(TestDataFactory.createSysAdminUser()) {
 
-            ChangerCourse changerCourse0 = new ChangerCourse(courses[0]);
-            changerCourse0.changeType('NCT Signature Antenatal')
-                        .changeLocation(Location.newInstance(50.501, -0.101))
-                        .changeStartDate(Date.today().addDays(5))
-                        .changeEndDate(Date.today().addDays(30));
-            ChangerCourse changerCourse1 = new ChangerCourse(courses[1]);
-            changerCourse1.changeType('NCT Essentials Antenatal')
-                        .changeLocation(Location.newInstance(50.501, -0.101))
-                        .changeStartDate(Date.today().addDays(10))
-                        .changeEndDate(Date.today().addDays(40));
-            ChangerCourse changerCourse2 = new ChangerCourse(courses[2]);
-            changerCourse2.changeType('NCT Antenatal Refresher')
-                        .changeLocation(Location.newInstance(50.501, -0.101))
-                        .changeStartDate(Date.today().addDays(70))
-                        .changeEndDate(Date.today().addDays(100));
-            ChangerCourse changerCourse3 = new ChangerCourse(courses[3]);
-            changerCourse3.changeType('Twins and Multiples')
-                        .changeLocation(Location.newInstance(50.501, -0.101))
-                        .changeStartDate(Date.today().addDays(1))
-                        .changeEndDate(Date.today().addDays(20));
-            ChangerCourse changerCourse4 = new ChangerCourse(courses[4]);
-            changerCourse4.changeType('Waterbirth')
-                        .changeLocation(Location.newInstance(50.501, -0.101))
-                        .changeStartDate(Date.today().addDays(-25))
-                        .changeEndDate(Date.today().addDays(50));
-            ChangerCourse changerCourse5 = new ChangerCourse(courses[5]);
-            changerCourse5.changeType('NCT Essentials Antenatal')
-                        .changeLocation(Location.newInstance(50.501, -0.101))
-                        .changeStartDate(Date.today().addDays(1))
-                        .changeEndDate(Date.today().addDays(30));
-            ChangerCourse changerCourse6 = new ChangerCourse(courses[6]);
-            changerCourse6.changeType('NCT Essentials Antenatal')
-                        .changeLocation(Location.newInstance(50.501, -0.101))
-                        .changeStartDate(Date.today().addDays(5))
-                        .changeEndDate(Date.today().addDays(35));
-            ChangerCourse changerCourse7 = new ChangerCourse(courses[7]);
-            changerCourse7.changeType('Early Days')
-                        .changeLocation(Location.newInstance(50.501, -0.101))
-                        .changeStartDate(Date.today().addDays(-5))
-                        .changeEndDate(Date.today().addDays(30));
+        List<Course__c> coursesToUpdate = new List<Course__c>();
+        List<Session__c> sessionsToUpdate = new List<Session__c>();
+        Set<Venue__c> venuesToUpdate = new Set<Venue__c>(); 
+
+        ChangerCourse changerCourse0 = new ChangerCourse(courses[0]);
+        changerCourse0.changeType('NCT Signature Antenatal')
+                    .changeLocation(Location.newInstance(50.501, -0.101))
+                    .changeStartDate(Date.today().addDays(5))
+                    .changeEndDate(Date.today().addDays(30));
+        coursesToUpdate.add(changerCourse0.course);
+        sessionsToUpdate.addAll(changerCourse0.sessions);
+        venuesToUpdate.add(changerCourse0.venue);
+
+        ChangerCourse changerCourse1 = new ChangerCourse(courses[1]);
+        changerCourse1.changeType('NCT Essentials Antenatal')
+                    .changeLocation(Location.newInstance(50.501, -0.101))
+                    .changeStartDate(Date.today().addDays(10))
+                    .changeEndDate(Date.today().addDays(40));
+        coursesToUpdate.add(changerCourse1.course);
+        sessionsToUpdate.addAll(changerCourse1.sessions);
+        venuesToUpdate.add(changerCourse1.venue);
+
+        ChangerCourse changerCourse2 = new ChangerCourse(courses[2]);
+        changerCourse2.changeType('NCT Antenatal Refresher')
+                    .changeLocation(Location.newInstance(50.501, -0.101))
+                    .changeStartDate(Date.today().addDays(70))
+                    .changeEndDate(Date.today().addDays(100));
+        coursesToUpdate.add(changerCourse2.course);
+        sessionsToUpdate.addAll(changerCourse2.sessions);
+        venuesToUpdate.add(changerCourse2.venue);
+
+        ChangerCourse changerCourse3 = new ChangerCourse(courses[3]);
+        changerCourse3.changeType('Twins and Multiples')
+                    .changeLocation(Location.newInstance(50.501, -0.101))
+                    .changeStartDate(Date.today().addDays(1))
+                    .changeEndDate(Date.today().addDays(20));
+        coursesToUpdate.add(changerCourse3.course);
+        sessionsToUpdate.addAll(changerCourse3.sessions);
+        venuesToUpdate.add(changerCourse3.venue);
+
+        ChangerCourse changerCourse4 = new ChangerCourse(courses[4]);
+        changerCourse4.changeType('Waterbirth')
+                    .changeLocation(Location.newInstance(50.501, -0.101))
+                    .changeStartDate(Date.today().addDays(-25))
+                    .changeEndDate(Date.today().addDays(50));
+        coursesToUpdate.add(changerCourse4.course);
+        sessionsToUpdate.addAll(changerCourse4.sessions);
+        venuesToUpdate.add(changerCourse4.venue);
+
+        ChangerCourse changerCourse5 = new ChangerCourse(courses[5]);
+        changerCourse5.changeType('NCT Essentials Antenatal')
+                    .changeLocation(Location.newInstance(50.501, -0.101))
+                    .changeStartDate(Date.today().addDays(1))
+                    .changeEndDate(Date.today().addDays(30));
+        coursesToUpdate.add(changerCourse5.course);
+        sessionsToUpdate.addAll(changerCourse5.sessions);
+        venuesToUpdate.add(changerCourse5.venue);
+
+        ChangerCourse changerCourse6 = new ChangerCourse(courses[6]);
+        changerCourse6.changeType('NCT Essentials Antenatal')
+                    .changeLocation(Location.newInstance(50.501, -0.101))
+                    .changeStartDate(Date.today().addDays(5))
+                    .changeEndDate(Date.today().addDays(35));
+        coursesToUpdate.add(changerCourse6.course);
+        sessionsToUpdate.addAll(changerCourse6.sessions);
+        venuesToUpdate.add(changerCourse6.venue);
+
+        ChangerCourse changerCourse7 = new ChangerCourse(courses[7]);
+        changerCourse7.changeType('Early Days')
+                    .changeLocation(Location.newInstance(50.501, -0.101))
+                    .changeStartDate(Date.today().addDays(-5))
+                    .changeEndDate(Date.today().addDays(30));
+        coursesToUpdate.add(changerCourse7.course);
+        sessionsToUpdate.addAll(changerCourse7.sessions);
+        venuesToUpdate.add(changerCourse7.venue);
+
+        System.runAs(TestDataFactory.createSysAdminUser()) {
+            update coursesToUpdate;
+            update sessionsToUpdate;
+            update new List<Venue__c>(venuesToUpdate);
         }
                  
     }
@@ -455,22 +494,22 @@ private class CourseSearchUtilityTest {
 
     private class ChangerCourse {
         private Course__c course;
+        private List<Session__c> sessions = new List<Session__c>();
+        private Venue__c venue;
 
         private ChangerCourse(Course__c course) {
             this.course = course;
         }
 
         private ChangerCourse changeEndDate(Date endDate) {
-            Session__c session = course.Sessions__r[course.Sessions__r.size() - 1];
-            session.Date__c = endDate;
-            update session;
+            course.Sessions__r[course.Sessions__r.size() - 1].Date__c = endDate;
+            sessions.add(course.Sessions__r[course.Sessions__r.size() - 1]);
             return this;
         }
 
         private ChangerCourse changeStartDate(Date startDate) {
-            Session__c session = course.Sessions__r[0];
-            session.Date__c = startDate;
-            update session;
+            course.Sessions__r[0].Date__c = startDate;
+            sessions.add(course.Sessions__r[0]);
             return this;
         }
 
@@ -484,12 +523,12 @@ private class CourseSearchUtilityTest {
                 course.Type__c = 'Postnatal';
             }
             course.Sub_Type__c = type;
-            update course;
+
             return this;
         }
 
         private ChangerCourse changeLocation(Location loc) {           
-            Venue__c venue = [
+            venue = [
                 SELECT Location__c
                 FROM Venue__c
                 WHERE Id = :course.Main_Venue__c];
@@ -497,7 +536,6 @@ private class CourseSearchUtilityTest {
             venue.Location__latitude__s = loc.latitude;
             venue.Location__longitude__s = loc.longitude;
 
-            update venue;
             return this;
         }
     }
