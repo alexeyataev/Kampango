@@ -13,8 +13,8 @@ private class CourseSearchUtilityTest {
     }
 
     private static void setupTestDataForTestingSorting() {
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-        testDataFactory.buildBranchAccount()
+        TestDataFactory testDataFactor = TestDataFactory.getInstance();
+        testDataFactor.buildBranchAccount()
                        .buildOrganizationAccount('acc5')
                        .buildPractitioner('Test')
                        .buildVenue()
@@ -30,47 +30,50 @@ private class CourseSearchUtilityTest {
             FROM Course__c
             LIMIT 10
         ];
+        
+        System.runAs(TestDataFactory.createSysAdminUser()) {
 
-        ChangerCourse changerCourse0 = new ChangerCourse(courses[0]);
-        changerCourse0.changeType('NCT Signature Antenatal')
-                      .changeLocation(Location.newInstance(50.501, -0.101))
-                      .changeStartDate(Date.today().addDays(5))
-                      .changeEndDate(Date.today().addDays(30));
-        ChangerCourse changerCourse1 = new ChangerCourse(courses[1]);
-        changerCourse1.changeType('NCT Essentials Antenatal')
-                      .changeLocation(Location.newInstance(50.501, -0.101))
-                      .changeStartDate(Date.today().addDays(10))
-                      .changeEndDate(Date.today().addDays(40));
-        ChangerCourse changerCourse2 = new ChangerCourse(courses[2]);
-        changerCourse2.changeType('NCT Antenatal Refresher')
-                      .changeLocation(Location.newInstance(50.501, -0.101))
-                      .changeStartDate(Date.today().addDays(70))
-                      .changeEndDate(Date.today().addDays(100));
-        ChangerCourse changerCourse3 = new ChangerCourse(courses[3]);
-        changerCourse3.changeType('Twins and Multiples')
-                      .changeLocation(Location.newInstance(50.501, -0.101))
-                      .changeStartDate(Date.today().addDays(1))
-                      .changeEndDate(Date.today().addDays(20));
-        ChangerCourse changerCourse4 = new ChangerCourse(courses[4]);
-        changerCourse4.changeType('Waterbirth')
-                      .changeLocation(Location.newInstance(50.501, -0.101))
-                      .changeStartDate(Date.today().addDays(-25))
-                      .changeEndDate(Date.today().addDays(50));
-        ChangerCourse changerCourse5 = new ChangerCourse(courses[5]);
-        changerCourse5.changeType('NCT Essentials Antenatal')
-                      .changeLocation(Location.newInstance(50.501, -0.101))
-                      .changeStartDate(Date.today().addDays(1))
-                      .changeEndDate(Date.today().addDays(30));
-        ChangerCourse changerCourse6 = new ChangerCourse(courses[6]);
-        changerCourse6.changeType('NCT Essentials Antenatal')
-                      .changeLocation(Location.newInstance(50.501, -0.101))
-                      .changeStartDate(Date.today().addDays(5))
-                      .changeEndDate(Date.today().addDays(35));
-        ChangerCourse changerCourse7 = new ChangerCourse(courses[7]);
-        changerCourse7.changeType('Early Days')
-                      .changeLocation(Location.newInstance(50.501, -0.101))
-                      .changeStartDate(Date.today().addDays(-5))
-                      .changeEndDate(Date.today().addDays(30));
+            ChangerCourse changerCourse0 = new ChangerCourse(courses[0]);
+            changerCourse0.changeType('NCT Signature Antenatal')
+                        .changeLocation(Location.newInstance(50.501, -0.101))
+                        .changeStartDate(Date.today().addDays(5))
+                        .changeEndDate(Date.today().addDays(30));
+            ChangerCourse changerCourse1 = new ChangerCourse(courses[1]);
+            changerCourse1.changeType('NCT Essentials Antenatal')
+                        .changeLocation(Location.newInstance(50.501, -0.101))
+                        .changeStartDate(Date.today().addDays(10))
+                        .changeEndDate(Date.today().addDays(40));
+            ChangerCourse changerCourse2 = new ChangerCourse(courses[2]);
+            changerCourse2.changeType('NCT Antenatal Refresher')
+                        .changeLocation(Location.newInstance(50.501, -0.101))
+                        .changeStartDate(Date.today().addDays(70))
+                        .changeEndDate(Date.today().addDays(100));
+            ChangerCourse changerCourse3 = new ChangerCourse(courses[3]);
+            changerCourse3.changeType('Twins and Multiples')
+                        .changeLocation(Location.newInstance(50.501, -0.101))
+                        .changeStartDate(Date.today().addDays(1))
+                        .changeEndDate(Date.today().addDays(20));
+            ChangerCourse changerCourse4 = new ChangerCourse(courses[4]);
+            changerCourse4.changeType('Waterbirth')
+                        .changeLocation(Location.newInstance(50.501, -0.101))
+                        .changeStartDate(Date.today().addDays(-25))
+                        .changeEndDate(Date.today().addDays(50));
+            ChangerCourse changerCourse5 = new ChangerCourse(courses[5]);
+            changerCourse5.changeType('NCT Essentials Antenatal')
+                        .changeLocation(Location.newInstance(50.501, -0.101))
+                        .changeStartDate(Date.today().addDays(1))
+                        .changeEndDate(Date.today().addDays(30));
+            ChangerCourse changerCourse6 = new ChangerCourse(courses[6]);
+            changerCourse6.changeType('NCT Essentials Antenatal')
+                        .changeLocation(Location.newInstance(50.501, -0.101))
+                        .changeStartDate(Date.today().addDays(5))
+                        .changeEndDate(Date.today().addDays(35));
+            ChangerCourse changerCourse7 = new ChangerCourse(courses[7]);
+            changerCourse7.changeType('Early Days')
+                        .changeLocation(Location.newInstance(50.501, -0.101))
+                        .changeStartDate(Date.today().addDays(-5))
+                        .changeEndDate(Date.today().addDays(30));
+        }
                  
     }
 
