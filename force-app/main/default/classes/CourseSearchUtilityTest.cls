@@ -458,16 +458,16 @@ private class CourseSearchUtilityTest {
         }
 
         private ChangerCourse changeEndDate(Date endDate) {
-
-            course.Sessions__r[course.Sessions__r.size() - 1].Date__c = endDate;
-            update course.Sessions__r[course.Sessions__r.size() - 1];
+            Session__c session = course.Sessions__r[course.Sessions__r.size() - 1];
+            session.Date__c = endDate;
+            update session;
             return this;
         }
 
         private ChangerCourse changeStartDate(Date startDate) {
-
-            course.Sessions__r[0].Date__c = startDate;
-            update course.Sessions__r[0];
+            Session__c session = course.Sessions__r[0];
+            session.Date__c = startDate;
+            update session;
             return this;
         }
 
