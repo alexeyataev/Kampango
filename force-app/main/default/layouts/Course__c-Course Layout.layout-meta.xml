@@ -96,6 +96,14 @@
                 <behavior>Edit</behavior>
                 <field>Main_Venue__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Practitioner_Fee_Discount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Practitioner_Fee_Uplift__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -293,6 +301,7 @@
         <fields>Status__c</fields>
         <fields>Last_Name__c</fields>
         <fields>First_Name__c</fields>
+        <fields>Birth_Date__c</fields>
         <fields>Birth_Due_Date__c</fields>
         <relatedList>Booking__c.Course__c</relatedList>
         <sortField>Status__c</sortField>
