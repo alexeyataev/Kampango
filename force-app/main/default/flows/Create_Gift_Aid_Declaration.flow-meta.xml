@@ -313,7 +313,7 @@
         <showHeader>false</showHeader>
     </screens>
     <startElementReference>Check_Partner</startElementReference>
-    <status>Active</status>
+    <status>Obsolete</status>
     <textTemplates>
         <name>Individual_Declaration_Description_Template</name>
         <text>I am a UK taxpayer.  Please treat all donations and subscriptions I make or have made to NCT for the past 4 years as Gift Aid donations until further notice.</text>
