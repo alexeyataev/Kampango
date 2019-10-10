@@ -11,10 +11,12 @@ NCT has sent you this email so that you securely sign your assignment for this c
 
 Please log in to the Practitioner community to review and sign this assignment.
 
+The following comments (if any) were included in the approval request: &#39;{!ApprovalRequest.Comments}&#39;
+
 Kind Regards, 
 
 {!Course_Assignment__c.CreatedBy}
-Course Organiser</textOnly>
+Capacity PSA - {!Course__c.PSA_Area__c}</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
