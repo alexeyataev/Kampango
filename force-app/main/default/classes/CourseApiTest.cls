@@ -29,7 +29,7 @@ public without sharing class CourseApiTest {
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseStaff();
+        CourseApi.getCourseData();
         Test.stopTest();
 
         System.assertEquals(404, res.statusCode);
@@ -48,7 +48,7 @@ public without sharing class CourseApiTest {
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseStaff();
+        CourseApi.getCourseData();
         Test.stopTest();
 
         System.assertEquals(404, res.statusCode);
@@ -74,7 +74,7 @@ public without sharing class CourseApiTest {
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseStaff();
+        CourseApi.getCourseData();
         Test.stopTest();
 
         CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(res.responseBody.toString(), CourseFinderModel.class );
@@ -105,7 +105,7 @@ public without sharing class CourseApiTest {
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseStaff();
+        CourseApi.getCourseData();
         Test.stopTest();
 
         List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(res.responseBody.toString());
