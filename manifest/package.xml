@@ -115,6 +115,58 @@
         <members>Session__c</members>
         <members>Venue__c</members>
         <members>Venue_Contact__c</members>
+        <members>Zumzum__Activity_Code__c</members>
+        <members>Zumzum__Bank__c</members>
+        <members>Zumzum__Bank_Account__c</members>
+        <members>Zumzum__Bank_Receipt__c</members>
+        <members>Zumzum__BankTransfer__c</members>
+        <members>Zumzum__BankReconcile__c</members>
+        <members>Zumzum__Batch_Bank_Payment__c</members>
+        <members>Zumzum__Batch_Bank_Receipt__c</members>
+        <members>Zumzum__Batch_Sales_Invoice_Job__c</members>
+        <members>Zumzum__Company__c</members>
+        <members>Zumzum__Company_Setup__c</members>
+        <members>Zumzum__Control_Account__c</members>
+        <members>Zumzum__Currency__c</members>
+        <members>Zumzum__CurrencyField__c</members>
+        <members>Zumzum__CustomerLookup__c</members>
+        <members>Zumzum__DataTypeHelper__c</members>
+        <members>Zumzum__Despatch_Detail__c</members>
+        <members>Zumzum__Dimension__c</members>
+        <members>Zumzum__Invoice_Template__c</members>
+        <members>Zumzum__Expense_Sheet__c</members>
+        <members>Zumzum__General_Setup__c</members>
+        <members>Zumzum__Journal__c</members>
+        <members>Zumzum__Ledger__c</members>
+        <members>Zumzum__Location__c</members>
+        <members>Zumzum__My_Addresses__c</members>
+        <members>Zumzum__Nominal_Account__c</members>
+        <members>Zumzum__Nominal_Categories__c</members>
+        <members>Zumzum__Purchase_Invoice__c</members>
+        <members>Zumzum__Purchase_Order__c</members>
+        <members>Zumzum__Purchase_Requisition__c</members>
+        <members>Zumzum__Recurring_Invoice__c</members>
+        <members>Zumzum__RecurringTransaction__c</members>
+        <members>Zumzum__Revenue_Recognition_Rule__c</members>
+        <members>Zumzum__Revenue_Recognition_Rule_Setting__c</members>
+        <members>Zumzum__Revenue_Recognition_Schedule__c</members>
+        <members>Zumzum__Sales_Invoice__c</members>
+        <members>Zumzum__Sales_Invoice_Plan__c</members>
+        <members>Zumzum__Sales_Invoice_Plan_Template__c</members>
+        <members>Zumzum__Sales_Order__c</members>
+        <members>Zumzum__Schedule_Reminders__c</members>
+        <members>Zumzum__Schedule_Statements__c</members>
+        <members>Zumzum__Stock_Balance__c</members>
+        <members>Zumzum__Stock_Ledger__c</members>
+        <members>Zumzum__Tax_Rate__c</members>
+        <members>Zumzum__Time_Sheet__c</members>
+        <members>Zumzum__VAT_API_Log__c</members>
+        <members>Zumzum__VAT_Gateway__c</members>
+        <members>Zumzum__VAT_Obligation__c</members>
+        <members>Zumzum__VAT_Return__c</members>
+        <members>Zumzum__VAT_Submission_Result__c</members>
+        <members>Zumzum__Warehouse__c</members>
+        <members>Zumzum__Batch_Bank_Payment__c</members>
         <name>CustomObject</name>
     </types>
     <types>
