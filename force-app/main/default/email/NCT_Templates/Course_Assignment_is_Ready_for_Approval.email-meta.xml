@@ -15,8 +15,8 @@ The following comments (if any) were included in the approval request: &#39;{!Ap
 
 Kind Regards, 
 
-{!Course_Assignment__c.CreatedBy}
-Capacity PSA - {!Course__c.PSA_Area__c}</textOnly>
+{!Course_Assignment__c.LastModifiedBy}
+Capacity PSA - {!Course_Assignment__c.PSA_Area__c}</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
