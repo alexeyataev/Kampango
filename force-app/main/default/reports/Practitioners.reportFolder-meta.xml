@@ -10,10 +10,5 @@
         <sharedTo>AllPartnerUsers</sharedTo>
         <sharedToType>AllPrmUsers</sharedToType>
     </folderShares>
-    <folderShares>
-        <accessLevel>Manage</accessLevel>
-        <sharedTo>rich@kampango.co.uk.nct</sharedTo>
-        <sharedToType>User</sharedToType>
-    </folderShares>
     <name>Practitioners</name>
 </ReportFolder>
