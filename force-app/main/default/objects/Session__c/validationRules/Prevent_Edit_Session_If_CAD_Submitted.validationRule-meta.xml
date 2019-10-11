@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Edit_Session_If_CAD_Submitted</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(NOT(ISBLANK(Course_Assignment__c)), ISPICKVAL(Course_Assignment__r.Status__c, &#39;Submitted or Approved&#39;))</errorConditionFormula>
+    <errorMessage>This session is linked to a submitted course assignment record. Please invalidate the course assignment before editing the session.</errorMessage>
+</ValidationRule>

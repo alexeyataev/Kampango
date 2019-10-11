@@ -141,7 +141,7 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Session_Compact_Layout</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -155,9 +155,9 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Session</label>
     <nameField>
-        <displayFormat>S-{0000000}</displayFormat>
-        <label>Session Name</label>
-        <trackHistory>false</trackHistory>
+        <displayFormat>S{0000000}</displayFormat>
+        <label>Session Number</label>
+        <trackHistory>true</trackHistory>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Sessions</pluralLabel>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>SendEmailToClient</fullName>
+        <description>SendEmailToClient</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>NCT_Templates/BookingNotificationEmail</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>SetExpDate</fullName>
+        <field>Reservation_Expiry_Date__c</field>
+        <formula>Course__r.Start_Date__c - 1</formula>
+        <name>SetExpDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SetExpDateTo5Days</fullName>
+        <field>Reservation_Expiry_Date__c</field>
+        <formula>TODAY() + 5</formula>
+        <name>SetExpDateTo5Days</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SetExpDateToTenDays</fullName>
+        <field>Reservation_Expiry_Date__c</field>
+        <formula>TODAY() + 10</formula>
+        <name>SetExpDateToTenDays</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SetExpirationDate_Less5</fullName>
+        <field>Reservation_Expiry_Date__c</field>
+        <formula>Course__r.Start_Date__c - 1</formula>
+        <name>SetExpirationDate_Less5</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SetOfferEmailDate</fullName>
+        <field>Offer_Email_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>SetOfferEmailDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+</Workflow>

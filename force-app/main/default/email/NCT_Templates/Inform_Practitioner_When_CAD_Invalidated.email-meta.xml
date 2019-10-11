@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Inform Practitioner When CAD Invalidated</name>
+    <style>none</style>
+    <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
+    <textOnly>Dear {!Course_Assignment__c.OwnerFirstName}, This CAD has been invalidated as one or more key details of the course have changed, or are changing. Please contact your Capacity PSA if you need any further information.  Kind Regards,  {!Course_Assignment__c.LastModifiedBy}
+Capacity PSA - {!Course_Assignment__c.PSA_Area__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -3,7 +3,7 @@
     <fullName>Overbooking_allowed__c</fullName>
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
-    <label>Overbooking allowed</label>
+    <label>Overbooking Allowed</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
