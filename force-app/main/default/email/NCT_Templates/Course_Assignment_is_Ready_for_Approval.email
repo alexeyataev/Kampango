@@ -13,7 +13,7 @@ The following comments (if any) were included in the approval request: '{!Approv
 Kind Regards,  
 </br>
 </br>
-{!Course_Assignment__c.CreatedBy}
+{!Course_Assignment__c.LastModifiedBy}
 </br>
-Capacity PSA - {!Course__c.PSA_Area__c}
+Capacity PSA - {!Course_Assignment__c.PSA_Area__c}
 </br>
