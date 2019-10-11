@@ -2839,6 +2839,11 @@
         <expression>ISPICKVAL({!bookingRecord.How_Heard__c}, &#39;&#39;)</expression>
     </formulas>
     <formulas>
+        <name>isPartnerEmailRequired</name>
+        <dataType>Boolean</dataType>
+        <expression>OR({!isPartnerRequired}, !ISBLANK({!bookingRecord.Partner_Contact__c}))</expression>
+    </formulas>
+    <formulas>
         <name>MobileRequiered</name>
         <dataType>Boolean</dataType>
         <expression>{!Preferred_Phone_Primary} = {!Home}</expression>
@@ -3232,7 +3237,7 @@
             <inputParameters>
                 <name>required</name>
                 <value>
-                    <booleanValue>false</booleanValue>
+                    <elementReference>isPartnerSet</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -4297,7 +4302,7 @@
             <inputParameters>
                 <name>required</name>
                 <value>
-                    <elementReference>isPartnerRequired</elementReference>
+                    <elementReference>isPartnerEmailRequired</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -4676,7 +4681,7 @@
             <inputParameters>
                 <name>required</name>
                 <value>
-                    <elementReference>isPartnerRequired</elementReference>
+                    <elementReference>isPartnerEmailRequired</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -5753,7 +5758,7 @@
             <inputParameters>
                 <name>required</name>
                 <value>
-                    <elementReference>isPartnerRequired</elementReference>
+                    <elementReference>isPartnerEmailRequired</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -6187,7 +6192,7 @@
             <inputParameters>
                 <name>required</name>
                 <value>
-                    <elementReference>isPartnerRequired</elementReference>
+                    <elementReference>isPartnerEmailRequired</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>

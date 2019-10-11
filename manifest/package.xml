@@ -16,6 +16,7 @@
         <members>CourseSearchUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
+        <members>HttpStatusCode</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
