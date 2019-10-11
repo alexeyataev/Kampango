@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing class CourseSearchUtility {
 
     private static List<String> howHeard = getHowHeardValues();
@@ -217,7 +219,7 @@ public without sharing class CourseSearchUtility {
         if (courses != null && !courses.isEmpty()) {
             List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
             Integer i = 0;
-            Integer LowestRankIncluded = 1;
+            Integer lowestRankIncluded = 1;
             for (Course__c course : courses) {
                 CourseFinderModelOrdered model = new CourseFinderModelOrdered(course, birthDueDate);
                 i++;
@@ -226,8 +228,8 @@ public without sharing class CourseSearchUtility {
 
                 if (model.Rank <= 5) { // filtering by rank
                 models.add(model);
-                    if (LowestRankIncluded > model.Rank){
-                        LowestRankIncluded = model.Rank;
+                    if (lowestRankIncluded > model.Rank){
+                        lowestRankIncluded = model.Rank;
                     }
                 }
 
@@ -244,8 +246,8 @@ public without sharing class CourseSearchUtility {
             
             CoursesDateDistanceModel sortedModel = new CoursesDateDistanceModel();
             sortedModel.Courses = models;
-            sortedModel.LowestRankIncluded = LowestRankIncluded;
-            sortedModel.SuggestedLowestRank = getSuggestedLowestRank(radius, LowestRankIncluded);
+            sortedModel.LowestRankIncluded = lowestRankIncluded;
+            sortedModel.SuggestedLowestRank = getSuggestedLowestRank(radius, lowestRankIncluded);
             sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
             
             response.statusCode = HttpStatusCode.OK;
@@ -257,7 +259,7 @@ public without sharing class CourseSearchUtility {
         return response;
     }
 
-    private static Integer getSuggestedLowestRank(Integer radius, Integer LowestRankIncluded){
+    private static Integer getSuggestedLowestRank(Integer radius, Integer lowestRankIncluded){
         Integer result;
 
         final Integer RANK_3 = 3;
@@ -275,8 +277,8 @@ public without sharing class CourseSearchUtility {
             result = RANK_5;
         }
         
-        if (result > LowestRankIncluded) {
-            result = LowestRankIncluded;
+        if (result > lowestRankIncluded) {
+            result = lowestRankIncluded;
         }
         
         return result;
