@@ -41,6 +41,14 @@
             <target>Course_Assignment__c</target>
             <type>SalesforceObject</type>
         </navigationMenuItem>
+        <navigationMenuItem>
+            <defaultListViewId>AllReports</defaultListViewId>
+            <label>Reports</label>
+            <position>3</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>Report</target>
+            <type>SalesforceObject</type>
+        </navigationMenuItem>
     </navigationLinkSet>
     <networkMemberGroups>
         <permissionSet>Practitioner_Management</permissionSet>
