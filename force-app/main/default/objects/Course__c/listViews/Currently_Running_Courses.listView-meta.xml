@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Courses_Currently_Running</fullName>
+    <fullName>Currently_Running_Courses</fullName>
     <columns>PSA_Area__c</columns>
     <columns>NAME</columns>
     <columns>Sub_Type__c</columns>
@@ -30,5 +30,5 @@
         <operation>greaterOrEqual</operation>
         <value>TODAY</value>
     </filters>
-    <label>Courses Currently Running</label>
+    <label>Currently Running Courses</label>
 </ListView>
