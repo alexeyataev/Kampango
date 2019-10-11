@@ -15,7 +15,7 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
         Integer numberDays = 0;
         if (birthDueDate != null && course.End_Date__c != null && course.Start_Date__c != null) {
             numberDays = course.Type__c == 'Antenatal' ? course.End_Date__c.daysBetween(birthDueDate) : course.Start_Date__c.daysBetween(birthDueDate);
-
+            numberDays = Math.abs(numberDays);
             for (CourseTypeRank courseTypeRank : courseTypeRanks) {
                 if (courseTypeRank.courseType == course.Sub_Type__c && isAppropriateRank(courseTypeRank.compareValues, numberDays)) {
                     return courseTypeRank.rank;
