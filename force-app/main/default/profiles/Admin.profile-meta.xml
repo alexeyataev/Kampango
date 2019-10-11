@@ -491,7 +491,7 @@
         <editable>true</editable>
         <field>Course__c.Fee__c</field>
         <readable>true</readable>
-    </fieldPermissions>Final_Session_Date__c
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Final_Session_Date__c</field>
