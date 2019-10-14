@@ -10,7 +10,7 @@ private class CourseSearchUtilityTest {
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(2, 2);
-        testDataFactory.SetCoursesToFinal([SELECT Status__c FROM Course__c]]);
+        testDataFactory.SetCoursesToFinal([SELECT Status__c FROM Course__c]);
     }
 
     private static void setupTestDataForTestingSorting() {
