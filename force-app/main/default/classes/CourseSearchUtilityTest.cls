@@ -10,6 +10,7 @@ private class CourseSearchUtilityTest {
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(2, 2);
+        testDataFactory.SetCoursesToFinal([SELECT Status__c FROM Course__c]]);
     }
 
     private static void setupTestDataForTestingSorting() {
@@ -22,7 +23,7 @@ private class CourseSearchUtilityTest {
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(8, 16);
-
+        testDataFactory.SetCoursesToFinal([SELECT Status__c FROM Course__c]]);
         List<Course__c> courses = [
             SELECT Type__c, Sub_Type__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
                 (
