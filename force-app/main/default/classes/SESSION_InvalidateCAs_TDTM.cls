@@ -41,12 +41,13 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                     (session.Type__c == 'Reunion' && session.Status__c == 'Confirmed' &&
                             oldSessionMap.get(session.Id).Status__c == 'Provisional')) {
                 courseAssignmentIds.add(session.Course_Assignment__c);
-            } else if (session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c || 
-                       session.Course_assignment__c != oldSessionMap.get(session.Id).Course_Assignment__c) {
+            } else if (session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c) {
                 newPractitionerIds.add(session.Practitioner__c);
                 oldPractitionerIds.add(oldSessionMap.get(session.Id).Practitioner__c);
                 courseIds.add(oldSessionMap.get(session.Id).Course__c);
-            } 
+            } else if (session.Course_assignment__c != oldSessionMap.get(session.Id).Course_Assignment__c) {
+                courseAssignmentIds.add(oldSessionMap.get(session.Id).Course_Assignment__c);                
+            }
         }
 
         SetCourseAssignmentsStatus(newPractitionerIds, courseIds, courseAssignmentsToUpdate);
