@@ -13,6 +13,7 @@ public without sharing class CourseApiTest {
             .buildPractitioner('Test')
             .buildVenue()
             .buildRoom()
+            .buildEstimatedCosts()
             .buildLicenceToPractice()
             .buildCoursesWithSessions(2, 2);
         
