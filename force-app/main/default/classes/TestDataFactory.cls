@@ -23,7 +23,6 @@ public without sharing class TestDataFactory {
     private static Account organizationAccount;
     private Course_Assignment__c courseAssignment;
     private Venue__c venue;
-    private Venue__c mainVenue;
     private Room__c room;
     private Licence_To_Practice__c licenceToPractice;
     private Course__c course;
@@ -80,13 +79,6 @@ public without sharing class TestDataFactory {
     public TestDataFactory buildVenue() {
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         venue = venueBuilder
-            .insertRecord(true)
-            .build();
-        return this;
-    }
-    public TestDataFactory buildMainVenue() {
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        mainVenue = venueBuilder
             .insertRecord(true)
             .build();
         return this;
@@ -197,7 +189,6 @@ public TestDataFactory buildReunion() {
                 .withAccount(branchAccount)
                 .withPractitioner(practitioners[0])
                 .withLicenceToPractice(licenceToPractice)
-                .withMainVenue(mainVenue)
                 .insertRecord(true)
                 .build());
         }
@@ -246,7 +237,7 @@ public TestDataFactory buildReunion() {
         return users[0];
     }
 
-    public static User ConvertPractitionerToPartnerCommunityUser() {
+    public static User convertPractitionerToPartnerCommunityUser() {
 
         System.runAs(createSysAdminUser()) {
             UserRole testRole = new UserRole(Name = 'testRole');
@@ -295,7 +286,7 @@ public TestDataFactory buildReunion() {
         return this;
     }
 
-    public TestDataFactory setCoursesToFinal(List<Course__c> courses){
+    public TestDataFactory SetCoursesToFinal(List<Course__c> courses){
         for(Course__c course : courses){
             course.Status__c = 'Final';
         }
