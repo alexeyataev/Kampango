@@ -5,7 +5,6 @@ public with sharing class TestCourseBuilder {
     private Integer fee = 100;
     private Integer numberOfPlaces = 1;
     private String status = 'Draft';
-    private Venue__c mainVenue;
     private Account account;
     private Licence_To_Practice__c licenceToPractice;
     private Boolean insertRecord = false;
@@ -54,10 +53,6 @@ public with sharing class TestCourseBuilder {
         this.practitioner = practitioner;
         return this;
     }
-    public TestCourseBuilder withMainVenue(Venue__c mainVenue) {
-        this.mainVenue = mainVenue;
-        return this;
-    }
     public TestCourseBuilder insertRecord(Boolean insertRecord)
     {
         this.insertRecord = insertRecord;
@@ -74,8 +69,7 @@ public with sharing class TestCourseBuilder {
             Number_of_places__c = this.numberOfPlaces,
             Branch__c = this.account.Id,
             Main_Practitioner__c = this.practitioner.Id,
-            Main_Practitioner_Licence__c = this.licenceToPractice.Id,
-            Main_Venue__c = this.mainVenue.Id
+            Main_Practitioner_Licence__c = this.licenceToPractice.Id
         );
 
         if(insertRecord)
