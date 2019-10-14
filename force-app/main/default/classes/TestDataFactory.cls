@@ -198,7 +198,7 @@ public TestDataFactory buildReunion() {
                 .withAccount(branchAccount)
                 .withPractitioner(practitioners[0])
                 .withLicenceToPractice(licenceToPractice)
-                .withMainVenue()
+                .withMainVenue(mainVenue)
                 .insertRecord(true)
                 .build());
         }
