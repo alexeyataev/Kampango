@@ -166,7 +166,6 @@
         <members>Zumzum__VAT_Return__c</members>
         <members>Zumzum__VAT_Submission_Result__c</members>
         <members>Zumzum__Warehouse__c</members>
-        <members>Zumzum__Batch_Bank_Payment__c</members>
         <name>CustomObject</name>
     </types>
     <types>
