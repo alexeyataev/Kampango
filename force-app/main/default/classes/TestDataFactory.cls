@@ -196,6 +196,7 @@ public TestDataFactory buildReunion() {
         for(Integer i = 0; i < numberOfCourses; i++) {
             courses.add(courseBuilder
                 .withAccount(branchAccount)
+                .withFee(100)
                 .withPractitioner(practitioners[0])
                 .withLicenceToPractice(licenceToPractice)
                 .withMainVenue(mainVenue)
