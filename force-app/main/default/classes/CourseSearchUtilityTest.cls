@@ -13,7 +13,7 @@ private class CourseSearchUtilityTest {
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         Venue__c mainVenue = venueBuilder.insertRecord(true)
                                          .build();
-        List<Course> courses = [SELECT Name, Main_Venue__c FROM Course];
+        List<Course__c> courses = [SELECT Name, Main_Venue__c FROM Course__c];
         for (Course__c course : courses) {
             course.Main_Venue__c = mainVenue.Id;
             course.Status__c = 'Final';
@@ -36,12 +36,12 @@ private class CourseSearchUtilityTest {
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         Venue__c mainVenue = venueBuilder.insertRecord(true)
                                          .build();
-        List<Course> courses = [SELECT Name, Main_Venue__c FROM Course];
-        for (Course__c course : courses) {
+        List<Course__c> courses1 = [SELECT Name, Main_Venue__c FROM Course__c];
+        for (Course__c course : courses1) {
             course.Main_Venue__c = mainVenue.Id;
             course.Status__c = 'Final';
         }
-        update courses;
+        update courses1;
 
         List<Course__c> courses = [
             SELECT Type__c, Sub_Type__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
