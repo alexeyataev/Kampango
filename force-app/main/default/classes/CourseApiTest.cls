@@ -17,7 +17,8 @@ public without sharing class CourseApiTest {
             .buildCoursesWithSessions(2, 2);
         
         List<Course__c> coursesToFinal = [SELECT Status__c FROM Course__c];
-        TestDataFactory.setCoursesToFinal(coursesToFinal);
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory.setCoursesToFinal(coursesToFinal);
     }
 
     @isTest
