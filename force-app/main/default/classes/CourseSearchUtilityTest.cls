@@ -10,6 +10,16 @@ private class CourseSearchUtilityTest {
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(2, 2);
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        Venue__c mainVenue = venueBuilder.insertRecord(true)
+                                         .build();
+        List<Course> courses = [SELECT Name, Main_Venue__c FROM Course];
+        for (Course__c course : courses) {
+            course.Main_Venue__c = mainVenue.Id;
+            course.Status__c = 'Final';
+        }
+        update courses;
+
     }
 
     private static void setupTestDataForTestingSorting() {
@@ -22,6 +32,16 @@ private class CourseSearchUtilityTest {
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(8, 16);
+
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        Venue__c mainVenue = venueBuilder.insertRecord(true)
+                                         .build();
+        List<Course> courses = [SELECT Name, Main_Venue__c FROM Course];
+        for (Course__c course : courses) {
+            course.Main_Venue__c = mainVenue.Id;
+            course.Status__c = 'Final';
+        }
+        update courses;
 
         List<Course__c> courses = [
             SELECT Type__c, Sub_Type__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
