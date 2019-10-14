@@ -237,7 +237,7 @@ public TestDataFactory buildReunion() {
         return users[0];
     }
 
-    public static User ConvertPractitionerToPartnerCommunityUser() {
+    public static User convertPractitionerToPartnerCommunityUser() {
 
         System.runAs(createSysAdminUser()) {
             UserRole testRole = new UserRole(Name = 'testRole');
@@ -278,7 +278,7 @@ public TestDataFactory buildReunion() {
         return users[2];
     }
 
-    public TestDataFactory SetSessionsToConfirmed(List<Session__c> sessions){
+    public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
         for(Session__c aSession : sessions){
             aSession.Status__c = 'Confirmed';
         }
@@ -286,7 +286,7 @@ public TestDataFactory buildReunion() {
         return this;
     }
 
-    public TestDataFactory SetCoursesToFinal(List<Course__c> courses){
+    public TestDataFactory setCoursesToFinal(List<Course__c> courses){
         for(Course__c course : courses){
             course.Status__c = 'Final';
         }
