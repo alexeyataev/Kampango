@@ -230,7 +230,6 @@ public TestDataFactory buildReunion() {
                 .withRoom(room)
                 .withPractitioner(practitioners[0])
                 .withPractitionerLicence(licenceToPractice)
-                .withStatus('Draft')
                 .insertRecord(true)
                 .build());
         }
