@@ -10,14 +10,10 @@ public without sharing class CourseApiTest {
             .buildBranchAccount()
             .buildOrganizationAccount('acc5')
             .buildPractitioner('Test')
-            .buildMainVenue()
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
             .buildCoursesWithSessions(2, 2);
-        List<Course__c> courses = [SELECT Name, Status__c FROM Course__c];
-        TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory.SetCoursesToFinal(courses);
     }
 
     @isTest

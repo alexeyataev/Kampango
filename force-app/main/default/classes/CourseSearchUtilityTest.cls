@@ -10,9 +10,6 @@ private class CourseSearchUtilityTest {
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(2, 2);
-        
-        List<Course__c> courses = [SELECT Name, Status__c FROM Course__c];
-        testDataFactory.SetCoursesToFinal(courses);
     }
 
     private static void setupTestDataForTestingSorting() {
@@ -34,9 +31,6 @@ private class CourseSearchUtilityTest {
             FROM Course__c
             LIMIT 10
         ];
-
-        testDataFactor.SetCoursesToFinal(courses);
-
 
         List<Course__c> coursesToUpdate = new List<Course__c>();
         List<Session__c> sessionsToUpdate = new List<Session__c>();
