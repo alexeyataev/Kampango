@@ -10,20 +10,19 @@ private class CourseSearchUtilityTest {
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(2, 2);
-        testDataFactory.SetCoursesToFinal([SELECT Status__c FROM Course__c]);
+        
     }
 
     private static void setupTestDataForTestingSorting() {
         
-        TestDataFactory testDataFactor = TestDataFactory.getInstance();
-        testDataFactor.buildBranchAccount()
+        TestDataFactory testDataFactory = TestDataFactory.getInstance();
+        testDataFactory.buildBranchAccount()
                        .buildOrganizationAccount('acc5')
                        .buildPractitioner('Test')
                        .buildVenue()
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(8, 16);
-        testDataFactory.SetCoursesToFinal([SELECT Status__c FROM Course__c]]);
         List<Course__c> courses = [
             SELECT Type__c, Sub_Type__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
                 (
@@ -32,6 +31,8 @@ private class CourseSearchUtilityTest {
             FROM Course__c
             LIMIT 10
         ];
+
+        testDataFactory.setCoursesToFinal(courses);
 
         List<Course__c> coursesToUpdate = new List<Course__c>();
         List<Session__c> sessionsToUpdate = new List<Session__c>();
