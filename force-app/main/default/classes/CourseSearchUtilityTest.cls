@@ -10,16 +10,9 @@ private class CourseSearchUtilityTest {
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(2, 2);
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        Venue__c mainVenue = venueBuilder.insertRecord(true)
-                                         .build();
-        List<Course__c> courses = [SELECT Name, Main_Venue__c FROM Course__c];
-        for (Course__c course : courses) {
-            course.Main_Venue__c = mainVenue.Id;
-            course.Status__c = 'Final';
-        }
-        update courses;
-
+        
+        List<Course__c> courses = [SELECT Name, Status__c FROM Course__c];
+        testDataFactory.SetCoursesToFinal(courses);
     }
 
     private static void setupTestDataForTestingSorting() {
@@ -33,16 +26,6 @@ private class CourseSearchUtilityTest {
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(8, 16);
 
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        Venue__c mainVenue = venueBuilder.insertRecord(true)
-                                         .build();
-        List<Course__c> courses1 = [SELECT Name, Main_Venue__c FROM Course__c];
-        for (Course__c course : courses1) {
-            course.Main_Venue__c = mainVenue.Id;
-            course.Status__c = 'Final';
-        }
-        update courses1;
-
         List<Course__c> courses = [
             SELECT Type__c, Sub_Type__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
                 (
@@ -51,6 +34,9 @@ private class CourseSearchUtilityTest {
             FROM Course__c
             LIMIT 10
         ];
+
+        testDataFactor.SetCoursesToFinal(courses);
+
 
         List<Course__c> coursesToUpdate = new List<Course__c>();
         List<Session__c> sessionsToUpdate = new List<Session__c>();
