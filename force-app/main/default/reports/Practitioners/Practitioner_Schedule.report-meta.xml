@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
+        <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Name</field>
+    </columns>
+    <columns>
         <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Date__c</field>
     </columns>
     <columns>
@@ -14,6 +17,9 @@
     </columns>
     <columns>
         <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Venue__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Room__c</field>
     </columns>
     <columns>
         <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Status__c</field>
