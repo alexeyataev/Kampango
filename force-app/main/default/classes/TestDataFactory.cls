@@ -23,6 +23,7 @@ public without sharing class TestDataFactory {
     private static Account organizationAccount;
     private Course_Assignment__c courseAssignment;
     private Venue__c venue;
+    private Venue__c mainVenue;
     private Room__c room;
     private Licence_To_Practice__c licenceToPractice;
     private Course__c course;
@@ -79,6 +80,14 @@ public without sharing class TestDataFactory {
     public TestDataFactory buildVenue() {
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         venue = venueBuilder
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+    
+    public TestDataFactory buildMainVenue() {
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        mainVenue = venueBuilder
             .insertRecord(true)
             .build();
         return this;
@@ -189,6 +198,7 @@ public TestDataFactory buildReunion() {
                 .withAccount(branchAccount)
                 .withPractitioner(practitioners[0])
                 .withLicenceToPractice(licenceToPractice)
+                .withMainVenue()
                 .insertRecord(true)
                 .build());
         }
