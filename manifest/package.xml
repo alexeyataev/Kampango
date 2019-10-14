@@ -222,6 +222,7 @@
         <members>Resend_Offer_Email</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
+        <members>Set_Booking_Expiration_Status</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Main_Venue_on_Course</members>
         <members>Set_Number_of_Places_Based_on_Course_Type</members>
@@ -319,6 +320,8 @@
         <members>Capacity_PSA/CADs_to_issue</members>
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
+        <members>Practitioners</members>
+        <members>Practitioners/All_Courses</members>
         <name>Report</name>
     </types>
     <types>
