@@ -119,7 +119,6 @@
         <members>Zumzum__Activity_Code__c</members>
         <members>Zumzum__Bank__c</members>
         <members>Zumzum__Bank_Account__c</members>
-        <members>Zumzum__Bank_Receipt__c</members>
         <members>Zumzum__BankTransfer__c</members>
         <members>Zumzum__BankReconcile__c</members>
         <members>Zumzum__Batch_Bank_Payment__c</members>
