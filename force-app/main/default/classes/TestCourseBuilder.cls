@@ -4,7 +4,7 @@ public with sharing class TestCourseBuilder {
     private String subType  ='One to One';
     private Integer fee = 100;
     private Integer numberOfPlaces = 1;
-    private String status = 'Draft';
+    private String status = 'Final';
     private Account account;
     private Licence_To_Practice__c licenceToPractice;
     private Boolean insertRecord = false;
