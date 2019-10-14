@@ -7,6 +7,7 @@ private class CourseSearchUtilityTest {
                        .buildOrganizationAccount('acc5')
                        .buildPractitioner('Test')
                        .buildVenue()
+                       .buildMainVenue()
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(2, 2);
