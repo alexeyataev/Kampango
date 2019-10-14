@@ -13,12 +13,14 @@ public without sharing class CourseApiTest {
             .buildPractitioner('Test')
             .buildVenue()
             .buildRoom()
-            .buildEstimatedCosts()
             .buildLicenceToPractice()
             .buildCoursesWithSessions(2, 2);
-        
-        List<Course__c> coursesToFinal = [SELECT Status__c FROM Course__c];
+
         TestDataFactory dataFactory = TestDataFactory.getInstance();
+        List<Course__c> coursesToFinal = [SELECT Status__c FROM Course__c];
+        for (Course__c course : coursesToFinal) {
+            dataFactory.setSessionsToConfirmed(course.Sessions__r);
+        }
         dataFactory.setCoursesToFinal(coursesToFinal);
     }
 
