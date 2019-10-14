@@ -8,6 +8,7 @@ public with sharing class TestCourseBuilder {
     private Account account;
     private Licence_To_Practice__c licenceToPractice;
     private Boolean insertRecord = false;
+    private Venue__c mainVenue;
     private Contact practitioner;
 
     public TestCourseBuilder withType(String type)
@@ -41,6 +42,11 @@ public with sharing class TestCourseBuilder {
     public TestCourseBuilder withAccount(Account account)
     {
         this.account = account;
+        return this;
+    }
+    public TestCourseBuilder withMainVenue(Venue__c mainVenue)
+    {
+        this.mainVenue = mainVenue;
         return this;
     }
     public TestCourseBuilder withLicenceToPractice(Licence_To_Practice__c licenceToPractice)

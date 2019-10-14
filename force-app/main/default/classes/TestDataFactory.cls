@@ -23,6 +23,7 @@ public without sharing class TestDataFactory {
     private static Account organizationAccount;
     private Course_Assignment__c courseAssignment;
     private Venue__c venue;
+    private Venue__c mainVenue;
     private Room__c room;
     private Licence_To_Practice__c licenceToPractice;
     private Course__c course;
@@ -79,6 +80,14 @@ public without sharing class TestDataFactory {
     public TestDataFactory buildVenue() {
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         venue = venueBuilder
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildMainVenue() {
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        mainVenue = venueBuilder
             .insertRecord(true)
             .build();
         return this;
@@ -189,6 +198,7 @@ public TestDataFactory buildReunion() {
                 .withAccount(branchAccount)
                 .withPractitioner(practitioners[0])
                 .withLicenceToPractice(licenceToPractice)
+                .withMainVenue(mainVenue)
                 .insertRecord(true)
                 .build());
         }
@@ -218,9 +228,9 @@ public TestDataFactory buildReunion() {
                 .withCourse(courses[i / 2])
                 .withVenue(venue)
                 .withRoom(room)
-                .withStatus('Provisional')
                 .withPractitioner(practitioners[0])
                 .withPractitionerLicence(licenceToPractice)
+                .withStatus('Confirmed')
                 .insertRecord(true)
                 .build());
         }
@@ -278,7 +288,7 @@ public TestDataFactory buildReunion() {
         return users[2];
     }
 
-    public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
+    public static TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
         for(Session__c aSession : sessions){
             aSession.Status__c = 'Confirmed';
         }
@@ -286,7 +296,7 @@ public TestDataFactory buildReunion() {
         return this;
     }
 
-    public TestDataFactory SetCoursesToFinal(List<Course__c> courses){
+    public static TestDataFactory setCoursesToFinal(List<Course__c> courses){
         for(Course__c course : courses){
             course.Status__c = 'Final';
         }

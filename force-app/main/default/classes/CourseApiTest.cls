@@ -8,12 +8,16 @@ public without sharing class CourseApiTest {
     private static void setupTestData() {
         TestDataFactory.getInstance()
             .buildBranchAccount()
+            .buildMainVenue()
             .buildOrganizationAccount('acc5')
             .buildPractitioner('Test')
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
             .buildCoursesWithSessions(2, 2);
+        
+        List<Course__c> coursesToFinal = [SELECT Status__c FROM Course__c];
+        TestDataFactory.setCoursesToFinal(coursesToFinal);
     }
 
     @isTest
