@@ -9,7 +9,7 @@ public without sharing class CourseSearchUtility {
 
         List<Course__c> inCourses = [
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Branch_Key__c, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c, Branch__c,
                     Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c,
@@ -46,7 +46,7 @@ public without sharing class CourseSearchUtility {
             CourseFinderModel model = new CourseFinderModel(course);
             model.HowHeardTexts = howHeard;
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(JSON.serializePretty(model));
+            response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(model)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
@@ -58,7 +58,7 @@ public without sharing class CourseSearchUtility {
 
         List<Course__c> inCourses = [
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Branch_Key__c, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c,
@@ -103,7 +103,7 @@ public without sharing class CourseSearchUtility {
                 models.add(model);
             }
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(JSON.serializePretty(models));
+            response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(models)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
@@ -135,7 +135,7 @@ public without sharing class CourseSearchUtility {
         if (isFromWebSite) {
             inCourses = [
                 SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Branch_Key__c, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c,
@@ -155,7 +155,7 @@ public without sharing class CourseSearchUtility {
         } else {
             inCourses = [
                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Branch_Key__c, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c,
@@ -251,7 +251,7 @@ public without sharing class CourseSearchUtility {
             sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
             
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(JSON.serializePretty(sortedModel));
+            response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(sortedModel)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
@@ -344,8 +344,10 @@ public without sharing class CourseSearchUtility {
         return Date.today() + DIFFERENCE_FROM_TODAY;
     }
 
-
-    
+    private static String replaseModelFilds(String model) {
+        return model.replace('Session_Date', 'Date').replace('Session_End', 'End');
+    }
+   
     private static RestResponse getWrongResponse(){
         RestResponse response = new RestResponse();
         response.statusCode = HttpStatusCode.NOT_FOUND;
