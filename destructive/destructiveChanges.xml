@@ -25,6 +25,8 @@
     <types>
         <members>Account.Account_Number__c</members>
         <members>Account.Account_Key__c</members>
+        <members>Account.Branch__c</members>
+        <members>Account.Branch_Code__c</members>
         <members>Account.Branch_Key__c</members>
         <members>Booking__c.Client_Name__c</members>
         <members>Booking__c.Due_Date__c</members>
