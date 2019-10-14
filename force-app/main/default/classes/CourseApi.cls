@@ -1,7 +1,7 @@
 @RestResource(urlMapping='/courses/*')
 global class CourseApi {
     @HttpGet
-    global static void getCourseStaff() {
+    global static void getCourseData() {
         Set <String> paramsSet = RestContext.request.params.keySet();
 
         if (paramsSet.contains('course')){
@@ -19,7 +19,7 @@ global class CourseApi {
             RestContext.response.statusCode = response.statusCode;
             RestContext.response.responseBody = response.responseBody;
         } else {
-            RestContext.response.statusCode = 404;
+            RestContext.response.statusCode = HttpStatusCode.NOT_FOUND;
             RestContext.response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }
         
@@ -33,7 +33,7 @@ global class CourseApi {
         try {
             CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);      
         } catch (CourseCreateEnquiryUtility.CreateEnquiryException ex) {
-            RestContext.response.statusCode = 500;
+            RestContext.response.statusCode = HttpStatusCode.SERVER_ERROR;
             RestContext.response.responseBody = Blob.valueOf(ex.getMessage());
         }
     }
