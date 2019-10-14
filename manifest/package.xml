@@ -217,6 +217,7 @@
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Create_Gift_Aid_Declaration</members>
+        <members>Create_Task_For_Booking</members>
         <members>Invalidate_Withdraw_CA_when_key_information_changes</members>
         <members>Populate_Practitioner_Name</members>
         <members>Resend_Offer_Email</members>
@@ -224,6 +225,7 @@
         <members>Session_assignment_flow</members>
         <members>Set_Booking_Expiration_Status</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
+        <members>Set_Deactivate_Date_GAD</members>
         <members>Set_Main_Venue_on_Course</members>
         <members>Set_Number_of_Places_Based_on_Course_Type</members>
         <members>Update_Address_in_Gift_Aid_Declaration</members>
