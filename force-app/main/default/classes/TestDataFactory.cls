@@ -218,7 +218,7 @@ public TestDataFactory buildReunion() {
                 .withCourse(courses[i / 2])
                 .withVenue(venue)
                 .withRoom(room)
-                .withStatus('Provisional')
+                .withStatus('Confirmed')
                 .withPractitioner(practitioners[0])
                 .withPractitionerLicence(licenceToPractice)
                 .insertRecord(true)
