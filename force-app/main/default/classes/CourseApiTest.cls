@@ -15,7 +15,8 @@ public without sharing class CourseApiTest {
             .buildLicenceToPractice()
             .buildCoursesWithSessions(2, 2);
         List<Course__c> courses = [SELECT Name, Status__c FROM Course__c];
-        testDataFactory.SetCoursesToFinal(courses);
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory.SetCoursesToFinal(courses);
     }
 
     @isTest
