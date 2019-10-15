@@ -204,6 +204,10 @@
         <name>GlobalValueSet</name>
     </types>
     <types>
+        <members>Parent_Community_Group</members>
+        <name>Group</name>
+    </types>
+    <types>
         <members>Contact_Record_Page</members>
         <members>Course_Assignment_Record_Page</members>
         <members>Course_Record_Page</members>
@@ -301,6 +305,10 @@
         <members>Practitioner</members>
         <members>PSA Manager</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>Account.ShareAllAccountsWithParents</members>
+         <name>SharingCriteriaRule</name>
     </types>
     <types>
         <members>Booking__c.Send_Offer_Email</members>
