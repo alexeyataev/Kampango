@@ -62,12 +62,8 @@ private class CourseSearchUtilityTest {
 
         testDataFactor.setMainVenueToCourses(mainVenue, courses);
 
-
-        for (Course__c course : courses) {
-            if (!course.Sessions__r.isEmpty()) {
-                testDataFactor.setSessionsToConfirmed(course.Sessions__r);   
-            }
-        }
+        testDataFactor.setCoursesToFinalAndSessionsToConfirmed(courses);
+        
         testDataFactor.setCoursesToFinal(courses);
 
         List<Course__c> coursesToUpdate = new List<Course__c>();

@@ -298,6 +298,24 @@ public TestDataFactory buildReunion() {
         return this;
     }
 
+    public TestDataFactory setCoursesToFinalAndSessionsToConfirmed(List<Course__c> courses) {
+        List<Session__c> sessions = new List<Session__c>();
+        for (Course__c course : courses) {
+            course.Status__c = 'Final';
+            if (course.Sessions__r.isEmpty()) {
+                continue;
+            } else {
+                sessions.addAll(course.Sessions__r);
+            }
+        }
+        for (Session__c session : sessions) {
+            session.Status__c = 'Confirmed';
+        }
+        update sessions;
+        update courses;
+        return this;
+    }
+
     public TestDataFactory setCoursesToFinal(List<Course__c> courses){
         for(Course__c course : courses){
             if (course.Sessions__r.isEmpty()) {
