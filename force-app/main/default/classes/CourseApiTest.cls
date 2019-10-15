@@ -8,7 +8,6 @@ public without sharing class CourseApiTest {
     private static void setupTestData() {
         TestDataFactory.getInstance()
             .buildBranchAccount()
-            .buildMainVenue()
             .buildOrganizationAccount('acc5')
             .buildPractitioner('Test')
             .buildVenue()
@@ -24,6 +23,12 @@ public without sharing class CourseApiTest {
             )
             FROM Course__c
         ];
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        Venue__c mainVenue = venueBuilder
+                                .insertRecord(true)
+                                .build();
+
+        dataFactory.setMainVenueToCourses(mainVenue, coursesToFinal);
         for (Course__c course : coursesToFinal) {
             if (!course.Sessions__r.isEmpty()) {
                 dataFactory.setSessionsToConfirmed(course.Sessions__r);   

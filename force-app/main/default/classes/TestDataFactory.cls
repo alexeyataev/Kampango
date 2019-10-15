@@ -308,4 +308,12 @@ public TestDataFactory buildReunion() {
         update courses;
         return this;
     }
+
+    public TestDataFactory setMainVenueToCourses(Venue__c mainVenue, List<Course__c> courses) {
+        for (Course__c course : courses) {
+            course.Main_Venue__c = mainVenue.Id;
+        }
+        update courses;
+        return this;
+    }
 }
