@@ -292,6 +292,7 @@
         <fields>Specific_Attendee_Type__c</fields>
         <fields>Practitioner__c</fields>
         <fields>Venue__c</fields>
+        <fields>Room__c</fields>
         <relatedList>Session__c.Course__c</relatedList>
         <sortField>Date__c</sortField>
         <sortOrder>Asc</sortOrder>
