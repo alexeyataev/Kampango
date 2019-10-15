@@ -130,7 +130,7 @@
     <recordLookups>
         <name>Get_CAD_records</name>
         <label>Get CAD records</label>
-        <locationX>404</locationX>
+        <locationX>403</locationX>
         <locationY>198</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -152,6 +152,7 @@
         </filters>
         <object>Course_Assignment__c</object>
         <queriedFields>Id</queriedFields>
+        <queriedFields>Status__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Session_records</name>
