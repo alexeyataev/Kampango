@@ -1853,7 +1853,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Contact_Hours__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1863,7 +1863,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Day_of_Week__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1903,7 +1903,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Specific_Attendee_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
