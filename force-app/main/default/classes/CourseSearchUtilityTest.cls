@@ -362,7 +362,7 @@ private class CourseSearchUtilityTest {
 
         System.assertEquals(1, sortedModel.Courses.size());
         System.assertEquals(4, sortedModel.LowestRankIncluded);
-        System.assertEquals(1, sortedModel.SuggestedLowestRank);
+        System.assertEquals(4, sortedModel.SuggestedLowestRank);
         System.assertEquals(4, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);
                        
