@@ -299,6 +299,9 @@ public TestDataFactory buildReunion() {
 
     public TestDataFactory setCoursesToFinal(List<Course__c> courses){
         for(Course__c course : courses){
+            if (course.Sessions__r.isEmpty()) {
+                continue;
+            }
             course.Status__c = 'Final';
         }
         update courses;

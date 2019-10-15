@@ -2,35 +2,59 @@
 private class CourseSearchUtilityTest {
     
     private static void setupTestData() {
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-        testDataFactory.buildBranchAccount()
+        TestDataFactory.getInstance()
+                       .buildBranchAccount()
+                       .buildMainVenue()
                        .buildOrganizationAccount('acc5')
                        .buildPractitioner('Test')
                        .buildVenue()
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(2, 2);
+
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        List<Course__c> coursesToFinal = [
+            SELECT Status__c, Count_of_Estimated_Travel_Costs__c, Count_of_Estimated_Venue_Costs__c, Main_Venue__c, Fee__c,
+            (
+                SELECT Status__c FROM Sessions__r
+            )
+            FROM Course__c
+        ];
+        for (Course__c course : coursesToFinal) {
+            if (!course.Sessions__r.isEmpty()) {
+                dataFactory.setSessionsToConfirmed(course.Sessions__r);   
+            }
+        }
+        dataFactory.setCoursesToFinal(coursesToFinal);
     }
 
     private static void setupTestDataForTestingSorting() {
         
         TestDataFactory testDataFactor = TestDataFactory.getInstance();
         testDataFactor.buildBranchAccount()
-                       .buildOrganizationAccount('acc5')
-                       .buildPractitioner('Test')
-                       .buildVenue()
-                       .buildRoom()
-                       .buildLicenceToPractice()
-                       .buildCoursesWithSessions(8, 16);
+                      .buildMainVenue()
+                      .buildOrganizationAccount('acc5')
+                      .buildPractitioner('Test')
+                      .buildVenue()
+                      .buildRoom()
+                      .buildLicenceToPractice()
+                      .buildCoursesWithSessions(8, 16);
 
         List<Course__c> courses = [
-            SELECT Type__c, Sub_Type__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
+            SELECT Type__c, Sub_Type__c, Status__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
                 (
-                    SELECT Date__c FROM Sessions__r    
+                    SELECT Date__c, Status__c FROM Sessions__r    
                 )
             FROM Course__c
             LIMIT 10
         ];
+
+        for (Course__c course : courses) {
+            if (!course.Sessions__r.isEmpty()) {
+                testDataFactor.setSessionsToConfirmed(course.Sessions__r);   
+            }
+        }
+        testDataFactor.setCoursesToFinal(courses);
 
         List<Course__c> coursesToUpdate = new List<Course__c>();
         List<Session__c> sessionsToUpdate = new List<Session__c>();
@@ -280,7 +304,7 @@ private class CourseSearchUtilityTest {
             Venue__c
         ];
 
-        System.assertEquals(1, venues.size());
+        System.assertEquals(2, venues.size());
         Location loc = Location.newInstance(50.501, -0.101);
         venues[0].Location__latitude__s = loc.latitude;
         venues[0].Location__longitude__s = loc.longitude;
@@ -308,7 +332,7 @@ private class CourseSearchUtilityTest {
 
         List<Course__c> courses = CourseSearchUtility.getCoursesByDateDistance(Location.newInstance(50.5, -0.1), 50, null, false);
 
-        System.assertEquals(1, courses.size());
+        System.assertEquals(2, courses.size());
     }
 
     @isTest

@@ -17,9 +17,17 @@ public without sharing class CourseApiTest {
             .buildCoursesWithSessions(2, 2);
 
         TestDataFactory dataFactory = TestDataFactory.getInstance();
-        List<Course__c> coursesToFinal = [SELECT Status__c FROM Course__c];
+        List<Course__c> coursesToFinal = [
+            SELECT Status__c, Count_of_Estimated_Travel_Costs__c, Count_of_Estimated_Venue_Costs__c, Main_Venue__c, Fee__c,
+            (
+                SELECT Status__c FROM Sessions__r
+            )
+            FROM Course__c
+        ];
         for (Course__c course : coursesToFinal) {
-            dataFactory.setSessionsToConfirmed(course.Sessions__r);
+            if (!course.Sessions__r.isEmpty()) {
+                dataFactory.setSessionsToConfirmed(course.Sessions__r);   
+            }
         }
         dataFactory.setCoursesToFinal(coursesToFinal);
     }
@@ -132,17 +140,16 @@ public without sharing class CourseApiTest {
                                          '"town":"London","op":"Send enquiry"}';
 
     private static void prepareSetupData() {
-        TestDataFactory.getInstance()
-            .buildOrganizationAccount('acct1')
-            .buildBranchAccount()
-            .buildPractitioner('Practitioner')
-            .buildLicenceToPractice()
-            .buildCourse();
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory.buildOrganizationAccount('acct1')
+                   .buildBranchAccount()
+                   .buildPractitioner('Practitioner')
+                   .buildLicenceToPractice()
+                   .buildCourse();
     }
 
     @isTest
     static void createEnquiry() {
-        prepareSetupData();
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
