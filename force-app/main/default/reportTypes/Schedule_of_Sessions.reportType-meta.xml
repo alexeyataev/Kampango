@@ -127,6 +127,11 @@
             <field>Practitioner_Licence__c.Licence__c</field>
             <table>Contact.Licences_To_Practice__r.Courses__r.Sessions__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Room__c</field>
+            <table>Contact.Licences_To_Practice__r.Courses__r.Sessions__r</table>
+        </columns>
         <masterLabel>Sessions</masterLabel>
     </sections>
 </ReportType>

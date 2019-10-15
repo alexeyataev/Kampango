@@ -226,7 +226,7 @@ public without sharing class CourseSearchUtility {
 
                 if (model.Rank <= 5) { // filtering by rank
                 models.add(model);
-                    if (LowestRankIncluded > model.Rank){
+                    if (LowestRankIncluded < model.Rank){
                         LowestRankIncluded = model.Rank;
                     }
                 }
