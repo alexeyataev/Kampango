@@ -1,7 +1,7 @@
 @isTest
 public with sharing class TestCourseBuilder {
     private String type = 'Antenatal';
-    private String subType  ='One to One';
+    private String subType  ='NCT Essentials Antenatal';
     private Integer fee = 100;
     private Integer numberOfPlaces = 1;
     private String status = 'Draft';
