@@ -148,6 +148,10 @@
         <name>Flow</name>
     </types>
     <types>
+        <members>Course__c.Courses_Completed</members>
+        <members>Course__c.Courses_Currently_Running</members>
+        <members>Course__c.Courses_Not_Started</members>
+        <members>Course__c.Courses_With_Upcoming_Reunions</members>
         <members>Course__c.Upcoming_Courses</members>
         <name>ListView</name>
     </types>
