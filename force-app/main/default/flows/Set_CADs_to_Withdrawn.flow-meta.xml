@@ -61,7 +61,7 @@
         <name>Session_assigned_to_CAD</name>
         <label>Session assigned to CAD</label>
         <locationX>1170</locationX>
-        <locationY>209</locationY>
+        <locationY>202</locationY>
         <defaultConnector>
             <targetReference>Loop_Through_Course_Assignments</targetReference>
         </defaultConnector>
@@ -105,7 +105,7 @@
         <locationX>621</locationX>
         <locationY>198</locationY>
         <assignNextValueToReference>currentSession</assignNextValueToReference>
-        <collectionReference>Get_Session_records</collectionReference>
+        <collectionReference>SessionsList</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Loop_Through_Course_Assignments</targetReference>
@@ -179,6 +179,7 @@
             </value>
         </filters>
         <object>Session__c</object>
+        <outputReference>SessionsList</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Course_Assignment__c</queriedFields>
     </recordLookups>
@@ -226,6 +227,14 @@
         <name>currentSession</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Session__c</objectType>
+    </variables>
+    <variables>
+        <name>SessionsList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Session__c</objectType>
