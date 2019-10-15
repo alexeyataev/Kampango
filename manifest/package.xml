@@ -120,7 +120,6 @@
         <members>Zumzum__Activity_Code__c</members>
         <members>Zumzum__Bank__c</members>
         <members>Zumzum__Bank_Account__c</members>
-        <members>Zumzum__Bank_Receipt__c</members>
         <members>Zumzum__BankTransfer__c</members>
         <members>Zumzum__BankReconcile__c</members>
         <members>Zumzum__Batch_Bank_Payment__c</members>
@@ -140,8 +139,7 @@
         <members>Zumzum__General_Setup__c</members>
         <members>Zumzum__Journal__c</members>
         <members>Zumzum__Ledger__c</members>
-        <members>Zumzum__Location__c</members>
-        <members>Zumzum__My_Addresses__c</members>
+        <members>Zumzum__Ledger_Payment_History__c</members>
         <members>Zumzum__Nominal_Account__c</members>
         <members>Zumzum__Nominal_Categories__c</members>
         <members>Zumzum__Purchase_Invoice__c</members>
@@ -168,7 +166,6 @@
         <members>Zumzum__VAT_Return__c</members>
         <members>Zumzum__VAT_Submission_Result__c</members>
         <members>Zumzum__Warehouse__c</members>
-        <members>Zumzum__Batch_Bank_Payment__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -225,6 +222,7 @@
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Booking_Expiration_Status</members>
+        <members>Set_CADs_to_Withdrawn</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Deactivate_Date_GAD</members>
         <members>Set_Main_Venue_on_Course</members>
