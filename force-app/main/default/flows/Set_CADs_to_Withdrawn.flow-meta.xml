@@ -87,10 +87,10 @@
     <loops>
         <name>Loop_Through_Course_Assignments</name>
         <label>Loop Through Course Assignments</label>
-        <locationX>899</locationX>
-        <locationY>202</locationY>
+        <locationX>897</locationX>
+        <locationY>201</locationY>
         <assignNextValueToReference>currentCAD</assignNextValueToReference>
-        <collectionReference>Get_CAD_records</collectionReference>
+        <collectionReference>CADsList</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Session_assigned_to_CAD</targetReference>
@@ -151,6 +151,7 @@
             </value>
         </filters>
         <object>Course_Assignment__c</object>
+        <outputReference>CADsList</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Status__c</queriedFields>
     </recordLookups>
@@ -190,6 +191,14 @@
     </recordUpdates>
     <startElementReference>Get_Session_records</startElementReference>
     <status>Active</status>
+    <variables>
+        <name>CADsList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Course_Assignment__c</objectType>
+    </variables>
     <variables>
         <name>CourseAssingmentsToUpdate</name>
         <dataType>SObject</dataType>
