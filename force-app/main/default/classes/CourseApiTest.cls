@@ -34,7 +34,7 @@ public without sharing class CourseApiTest {
                 dataFactory.setSessionsToConfirmed(course.Sessions__r);   
             }
         }
-        dataFactory.setCoursesToFinal(coursesToFinal);
+        dataFactory.setCoursesWithSessionsToFinal(coursesToFinal);
     }
 
     @isTest

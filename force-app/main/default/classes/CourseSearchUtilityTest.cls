@@ -32,7 +32,7 @@ private class CourseSearchUtilityTest {
                 dataFactory.setSessionsToConfirmed(course.Sessions__r);   
             }
         }
-        dataFactory.setCoursesToFinal(coursesToFinal);
+        dataFactory.setCoursesWithSessionsToFinal(coursesToFinal);
     }
 
     private static void setupTestDataForTestingSorting() {
