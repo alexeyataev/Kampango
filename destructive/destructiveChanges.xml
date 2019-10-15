@@ -112,33 +112,12 @@
         <members>cpm__Payment__c.Payment_Profile__c</members>
         <members>cpm__Payment_Profile__c.cpm__Active__c</members>
         <members>cpm__Payment_Profile__c.Start_Date__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Contact__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Account__c</members>
         <members>cpm__Payment_Profile__c.Account_Number__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Credit_Card_Number__c</members>
         <members>cpm__Payment_Profile__c.DD_Reference__c</members>
         <members>cpm__Payment_Profile__c.DirectDebitKey__c</members>
-        <members>cpm__Payment_Profile__c.cpm__CCV__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Expiration_Year__c</members>
         <members>cpm__Payment_Profile__c.Source__c</members>
-        <members>cpm__Payment_Profile__c.cpm__City__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Street__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Token_Issuer__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Holder_Name__c</members>
         <members>cpm__Payment_Profile__c.AccountKey__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Expiration_Date__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Suffix__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Brand__c</members>
-        <members>cpm__Payment_Profile__c.cpm__State_Province__c</members>
         <members>cpm__Payment_Profile__c.Bank_Name__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Zipcode__c</members>
-        <members>cpm__Payment_Profile__c.paybacs__Sort_Code__c</members>
-        <members>cpm__Payment_Profile__c.cpm__BIC_Code__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Token__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Bank_Account__c</members>
-        <members>cpm__Payment_Profile__c.cpm__IBAN__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Country__c</members>
-        <members>cpm__Payment_Profile__c.cpm__Housenumber__c</members>
         <members>cpm__Payment_Profile__c.BookingKey__c</members>
         <members>cpm__Payment_Profile__c.Source_Code__c</members>
         <members>Individual.Has_Opted_Out_Email__c</members>
