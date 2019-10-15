@@ -35,9 +35,7 @@ private class CourseFinderModelOrderedTest {
     static void createInstanceCourseFinderModelIfOneToOne() {
         setupTestData();
         Course__c course = getCourse();
-        course.Sub_Type__c = 'One to One';
-        update course;
-        
+
         Test.startTest();
         CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, Date.today());
         modelOrdered.Order = 1;
@@ -73,10 +71,8 @@ private class CourseFinderModelOrderedTest {
 
         delete sessions;
 
-        Course__c updatedCourse = getCourse();
-        
         Test.startTest();
-        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(updatedCourse, Date.today());
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, Date.today());
         modelOrdered.Order = 1;
         Test.stopTest();
 
@@ -96,10 +92,8 @@ private class CourseFinderModelOrderedTest {
 
         delete sessions;
 
-        Course__c updatedCourse = getCourse();
-
         Test.startTest();
-        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(updatedCourse, Date.today());
+        CourseFinderModelOrdered modelOrdered = new CourseFinderModelOrdered(course, Date.today());
         modelOrdered.Order = 1;
         Test.stopTest();
 
