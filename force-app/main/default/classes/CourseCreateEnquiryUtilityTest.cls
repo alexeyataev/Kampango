@@ -12,6 +12,7 @@ private class CourseCreateEnquiryUtilityTest {
         TestDataFactory.getInstance()
             .buildOrganizationAccount('acct1')
             .buildBranchAccount()
+            .buildMainVenue()
             .buildPractitioner('Practitioner')
             .buildLicenceToPractice()
             .buildCourse();

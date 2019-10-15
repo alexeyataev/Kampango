@@ -115,6 +115,7 @@ public without sharing class TestDataFactory {
         course = courseBuilder
             .withAccount(branchAccount)
             .withPractitioner(practitioners[0])
+            .withMainVenue(mainVenue)
             .withLicenceToPractice(licenceToPractice)
             .insertRecord(true)
             .build();
