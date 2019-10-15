@@ -308,7 +308,7 @@
     </types>
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
-         <name>SharingCriteriaRule</name>
+        <name>SharingCriteriaRule</name>
     </types>
     <types>
         <members>Booking__c.Send_Offer_Email</members>
