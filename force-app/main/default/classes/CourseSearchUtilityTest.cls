@@ -402,7 +402,7 @@ private class CourseSearchUtilityTest {
         CoursesDateDistanceModel sortedModel = (CoursesDateDistanceModel)JSON.deserialize(response.responseBody.toString(), CoursesDateDistanceModel.class);
         
         System.assertEquals(1, sortedModel.Courses.size());
-        System.assertEquals(1, sortedModel.LowestRankIncluded);
+        System.assertEquals(4, sortedModel.LowestRankIncluded);
         System.assertEquals(1, sortedModel.SuggestedLowestRank);
         System.assertEquals(4, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);                     
@@ -425,7 +425,7 @@ private class CourseSearchUtilityTest {
         CoursesDateDistanceModel sortedModel = (CoursesDateDistanceModel)JSON.deserialize(response.responseBody.toString(), CoursesDateDistanceModel.class);
 
         System.assertEquals(5, sortedModel.Courses.size());
-        System.assertEquals(1, sortedModel.LowestRankIncluded);
+        System.assertEquals(2, sortedModel.LowestRankIncluded);
         System.assertEquals(1, sortedModel.SuggestedLowestRank);
         System.assertEquals(1, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);
@@ -450,7 +450,7 @@ private class CourseSearchUtilityTest {
         CoursesDateDistanceModel sortedModel = (CoursesDateDistanceModel)JSON.deserialize(response.responseBody.toString(), CoursesDateDistanceModel.class);
 
         System.assertEquals(5, sortedModel.Courses.size());
-        System.assertEquals(1, sortedModel.LowestRankIncluded);
+        System.assertEquals(2, sortedModel.LowestRankIncluded);
         System.assertEquals(1, sortedModel.SuggestedLowestRank);
         System.assertEquals(1, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);
@@ -494,7 +494,7 @@ private class CourseSearchUtilityTest {
         CoursesDateDistanceModel sortedModel = (CoursesDateDistanceModel)JSON.deserialize(response.responseBody.toString(), CoursesDateDistanceModel.class);
 
         System.assertEquals(5, sortedModel.Courses.size());
-        System.assertEquals(1, sortedModel.LowestRankIncluded);
+        System.assertEquals(2, sortedModel.LowestRankIncluded);
         System.assertEquals(1, sortedModel.SuggestedLowestRank);
         System.assertEquals(1, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);
@@ -519,7 +519,7 @@ private class CourseSearchUtilityTest {
         CoursesDateDistanceModel sortedModel = (CoursesDateDistanceModel)JSON.deserialize(response.responseBody.toString(), CoursesDateDistanceModel.class);
 
         System.assertEquals(5, sortedModel.Courses.size());
-        System.assertEquals(1, sortedModel.LowestRankIncluded);
+        System.assertEquals(2, sortedModel.LowestRankIncluded);
         System.assertEquals(1, sortedModel.SuggestedLowestRank);
         System.assertEquals(1, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);
