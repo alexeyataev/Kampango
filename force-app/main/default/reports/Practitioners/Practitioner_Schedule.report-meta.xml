@@ -16,13 +16,19 @@
         <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$End__c</field>
     </columns>
     <columns>
+        <field>Contact.Licences_To_Practice__r.Courses__r$Sub_Type__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Type__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Specific_Attendee_Type__c</field>
+    </columns>
+    <columns>
         <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Venue__c</field>
     </columns>
     <columns>
         <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Room__c</field>
-    </columns>
-    <columns>
-        <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Status__c</field>
     </columns>
     <columns>
         <field>Contact.Licences_To_Practice__r.Courses__r$PSA_Area__c</field>
@@ -31,7 +37,7 @@
         <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Course__c</field>
     </columns>
     <columns>
-        <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Practitioner_Licence__c.Licence__c</field>
+        <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Status__c</field>
     </columns>
     <columns>
         <field>Contact.Licences_To_Practice__r.Courses__r$Main_Practitioner__c</field>
@@ -48,8 +54,8 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Contact$Name</field>
-        <sortOrder>Desc</sortOrder>
+        <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Practitioner__c</field>
+        <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Practitioner Schedule</name>
     <params>
