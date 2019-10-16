@@ -4,9 +4,6 @@
         <field>CUST_NAME</field>
     </columns>
     <columns>
-        <field>Course_Assignment__c.Course__c</field>
-    </columns>
-    <columns>
         <field>Course_Assignment__c.PSA_Area__c</field>
     </columns>
     <columns>
@@ -25,7 +22,12 @@
         </criteriaItems>
         <language>en_US</language>
     </filter>
-    <format>Tabular</format>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Course_Assignment__c.Course__c</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
     <name>All Course Assignments</name>
     <params>
         <name>co</name>
@@ -36,7 +38,7 @@
     <showDetails>true</showDetails>
     <showGrandTotal>false</showGrandTotal>
     <showSubTotals>false</showSubTotals>
-    <sortColumn>Course_Assignment__c.Course_Start_Date__c</sortColumn>
+    <sortColumn>CUST_NAME</sortColumn>
     <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Course_Assignment__c.Course_Start_Date__c</dateColumn>
