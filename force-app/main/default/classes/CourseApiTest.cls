@@ -15,6 +15,22 @@ public without sharing class CourseApiTest {
             .buildLicenceToPractice()
             .buildCoursesWithSessions(2, 2);
 
+
+        Profile p = [SELECT Id FROM Profile WHERE Name='Website Integration'];
+        String uniqueUserName = 'websiteuser' + DateTime.now().getTime() + '@testorg.com';
+        User u = new User(
+            Alias = 'websiteu',
+            Email='websiteuser@testorg.com',
+            EmailEncodingKey='UTF-8',
+            LastName='websiteuserTesting',
+            LanguageLocaleKey='en_US',
+            LocaleSidKey='en_GB',
+            ProfileId = p.Id,
+            TimeZoneSidKey='Europe/London',
+            UserName=uniqueUserName
+        );  
+        insert u;
+
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         List<Course__c> coursesToFinal = [
             SELECT Status__c, Count_of_Estimated_Travel_Costs__c, Count_of_Estimated_Venue_Costs__c, Main_Venue__c, Fee__c,
@@ -37,6 +53,14 @@ public without sharing class CourseApiTest {
         dataFactory.setCoursesWithSessionsToFinal(coursesToFinal);
     }
 
+    private static User getWebSiteUser(){
+        return [
+            SELECT ID
+            FROM USER 
+            WHERE Email ='websiteuser@testorg.com'
+        ];
+    }
+
     @isTest
     static void searchWrongLocation(){
         RestRequest req = new RestRequest();
@@ -50,7 +74,9 @@ public without sharing class CourseApiTest {
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseData();
+            System.runAs(getWebSiteUser()){
+                CourseApi.getCourseData();
+            }
         Test.stopTest();
 
         System.assertEquals(404, res.statusCode);
@@ -69,7 +95,9 @@ public without sharing class CourseApiTest {
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseData();
+            System.runAs(getWebSiteUser()){
+                CourseApi.getCourseData();
+            }
         Test.stopTest();
 
         System.assertEquals(404, res.statusCode);
@@ -77,7 +105,6 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void searchCourseById() {
-
         Course__c course = [
             SELECT Id, Name
             FROM Course__c
@@ -95,7 +122,9 @@ public without sharing class CourseApiTest {
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseData();
+            System.runAs(getWebSiteUser()){
+                CourseApi.getCourseData();
+            }
         Test.stopTest();
 
         CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(res.responseBody.toString(), CourseFinderModel.class );
@@ -106,7 +135,6 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void searchCourseByBranch() {
-
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
         Account account = [
             SELECT Id 
@@ -126,7 +154,9 @@ public without sharing class CourseApiTest {
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseData();
+            System.runAs(getWebSiteUser()){
+                CourseApi.getCourseData();
+            }
         Test.stopTest();
 
         List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(res.responseBody.toString());
@@ -175,7 +205,9 @@ public without sharing class CourseApiTest {
         RestContext.request = request;
         RestContext.response = response;
         Test.startTest();
-        CourseAPI.createEnquiry();
+            System.runAs(getWebSiteUser()){
+                CourseAPI.createEnquiry();
+            }
         Test.stopTest();
         List<Booking__c> bookings = [
             SELECT Name
