@@ -3,6 +3,8 @@
     <types>
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
+        <members>BookingStatusFlowHelper</members>
+        <members>BookingStatusFlowHelperTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -27,6 +29,7 @@
         <members>SESSION_RevertToProvisional_TDTM_TEST</members>
         <members>StepOrangeCardPaymentProvider</members>
         <members>TestAccountBuilder</members>
+        <members>TestBookingBuilder</members>
         <members>TestContactBuilder</members>
         <members>TestCourseAssignmentBuilder</members>
         <members>TestEstimatedCostsBuilder</members>
