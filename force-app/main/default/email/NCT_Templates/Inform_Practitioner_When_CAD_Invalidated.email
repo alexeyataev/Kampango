@@ -8,5 +8,6 @@ Kind Regards,
 </br>
 </br>
 {!Course_Assignment__c.LastModifiedBy}
+</br>
 Capacity PSA - {!Course_Assignment__c.PSA_Area__c}
 </br>

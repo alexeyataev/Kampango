@@ -24,6 +24,10 @@
     </types>
     <types>
         <members>Account.Account_Number__c</members>
+        <members>Account.Account_Key__c</members>
+        <members>Account.Branch__c</members>
+        <members>Account.Branch_Code__c</members>
+        <members>Account.Branch_Key__c</members>
         <members>Booking__c.Client_Name__c</members>
         <members>Booking__c.Due_Date__c</members>
         <members>Booking__c.Client__c</members>
@@ -50,6 +54,9 @@
         <members>Booking__c.Partner_Gift_Aid__c</members>
         <members>Booking__c.Partner_Membership__c</members>
         <members>Booking__c.Preferred_Payment_Date__c</members>
+        <members>Contact.Account_Key__c</members>
+        <members>Contact.Branch_Key__c</members>
+        <members>Contact.Contact_Key__c</members>
         <members>Contact.Mailing_City__c</members>
         <members>Contact.Mailing_Country__c</members>
         <members>Contact.Mailing_Longtitude__c</members>
@@ -64,6 +71,7 @@
         <members>Course__c.Booked_Places__c</members>
         <members>Course__c.Bracket_Course__c</members>
         <members>Course__c.Breastfeeding_Sessions__c</members>
+        <members>Course__c.Branch_Key__c</members>
         <members>Course__c.Confirmation_Email_Text__c</members>
         <members>Course__c.Course_Index__c</members>
         <members>Course__c.Course_Reference__c</members>
@@ -82,10 +90,40 @@
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
         <members>Course__c.End_Time__c</members>
+        <members>cpm__Installment__c.Account_Key__c</members>
+        <members>cpm__Installment__c.Contact_Key__c</members>
+        <members>cpm__Installment__c.Course_Booking_Key__c</members>
+        <members>cpm__Installment__c.Installment_Key__c</members>
+        <members>cpm__Installment__c.Mandate_Key__c</members>
+        <members>cpm__Installment__c.Opportunity_Key__c</members>
+        <members>cpm__Installment__c.Payment_Profile_Key__c</members>
+        <members>cpm__Installment__c.GiftAid_Declaration_Key__c</members>
+        <members>cpm__Installment__c.Recurring_Donations_Key__c</members> 
+        <members>cpm__Mandate__c.Contact_Key__c</members>
+        <members>cpm__Mandate__c.Mandate_Key__c</members>
+        <members>cpm__Mandate__c.Payment_Profile_Key__c</members>
+        <members>cpm__Payment_Profile__c.Payment_Profile_Key__c</members>
+        <members>cpm__Payment_Profile__c.Contact_Key__c</members>
+        <members>cpm__Payment__c.Account_key__c</members>
+        <members>cpm__Payment__c.Contact_Key__c</members>
+        <members>cpm__Payment__c.Installment_Key__c</members>
+        <members>cpm__Payment__c.Mandate_Key__c</members>
+        <members>cpm__Payment__c.Payment_Key__c</members>
+        <members>cpm__Payment__c.Payment_Profile__c</members>
         <members>Individual.Has_Opted_Out_Email__c</members>
         <members>Individual.Has_Opted_Out_Post__c</members>
         <members>Individual.Has_Opted_Out_SMS__c</members>
         <members>Individual.Has_Opted_Out_Telephone__c</members>
+        <members>npe03__Recurring_Donation__c.Recurring_Donations_Key__c</members>
+        <members>npe03__Recurring_Donation__c.Payment_profile_Key__c</members>
+        <members>npe03__Recurring_Donation__c.First_Contact_Key__c</members>
+        <members>npe03__Recurring_Donation__c.Direct_Debit_Key__c</members>
+        <members>npe03__Recurring_Donation__c.Second_Contact_Key__c</members>
+        <members>Opportunity.Account_Key__c</members>
+        <members>Opportunity.Contact_Key__c</members>
+        <members>Opportunity.Recurring_Donations_Key__c</members>
+        <members>Opportunity.Mandate_Key__c</members>
+        <members>Opportunity.Payment_Profile_Key__c</members>
         <members>Room__c.Display_Name__c</members>
         <members>Session__c.Attendee_Type__c</members>
         <members>Session__c.Confirmed__c</members>
@@ -110,6 +148,10 @@
         <name>Flow</name>
     </types>
     <types>
+        <members>Course__c.Completed_Courses</members>
+        <members>Course__c.Currently_Running_Courses</members>
+        <members>Course__c.Courses_Not_Started</members>
+        <members>Course__c.Courses_With_Upcoming_Reunions</members>
         <members>Course__c.Upcoming_Courses</members>
         <name>ListView</name>
     </types>

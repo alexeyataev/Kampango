@@ -41,12 +41,13 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                     (session.Type__c == 'Reunion' && session.Status__c == 'Confirmed' &&
                             oldSessionMap.get(session.Id).Status__c == 'Provisional')) {
                 courseAssignmentIds.add(session.Course_Assignment__c);
-            } else if (session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c || 
-                       session.Course_assignment__c != oldSessionMap.get(session.Id).Course_Assignment__c) {
+            } else if (session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c) {
                 newPractitionerIds.add(session.Practitioner__c);
                 oldPractitionerIds.add(oldSessionMap.get(session.Id).Practitioner__c);
                 courseIds.add(oldSessionMap.get(session.Id).Course__c);
-            } 
+            } else if (session.Course_assignment__c != oldSessionMap.get(session.Id).Course_Assignment__c) {
+                courseAssignmentIds.add(oldSessionMap.get(session.Id).Course_Assignment__c);                
+            }
         }
 
         SetCourseAssignmentsStatus(newPractitionerIds, courseIds, courseAssignmentsToUpdate);
@@ -56,7 +57,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             SELECT Status__c
             FROM Course_Assignment__c
             WHERE Id IN :courseAssignmentIds
-                AND Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS
+                AND Status__c NOT IN (:COURSE_ASSIGNMENT_INVALIDATED_STATUS, :COURSE_ASSIGNMENT_WITHDRAWN_STATUS)
             WITH SECURITY_ENFORCED
         ];
 
