@@ -121,7 +121,6 @@
         <members>Zumzum__Activity_Code__c</members>
         <members>Zumzum__Bank__c</members>
         <members>Zumzum__Bank_Account__c</members>
-        <members>Zumzum__Bank_Receipt__c</members>
         <members>Zumzum__BankTransfer__c</members>
         <members>Zumzum__BankReconcile__c</members>
         <members>Zumzum__Batch_Bank_Payment__c</members>
@@ -141,8 +140,7 @@
         <members>Zumzum__General_Setup__c</members>
         <members>Zumzum__Journal__c</members>
         <members>Zumzum__Ledger__c</members>
-        <members>Zumzum__Location__c</members>
-        <members>Zumzum__My_Addresses__c</members>
+        <members>Zumzum__Ledger_Payment_History__c</members>
         <members>Zumzum__Nominal_Account__c</members>
         <members>Zumzum__Nominal_Categories__c</members>
         <members>Zumzum__Purchase_Invoice__c</members>
@@ -169,7 +167,6 @@
         <members>Zumzum__VAT_Return__c</members>
         <members>Zumzum__VAT_Submission_Result__c</members>
         <members>Zumzum__Warehouse__c</members>
-        <members>Zumzum__Batch_Bank_Payment__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -204,6 +201,10 @@
         <members>PSA_Areas</members>
         <members>Y_N_UNKNOWN</members>
         <name>GlobalValueSet</name>
+    </types>
+    <types>
+        <members>Parent_Community_Group</members>
+        <name>Group</name>
     </types>
     <types>
         <members>Contact_Record_Page</members>
@@ -309,6 +310,10 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>Account.ShareAllAccountsWithParents</members>
+        <name>SharingCriteriaRule</name>
+    </types>
+    <types>
         <members>Booking__c.Send_Offer_Email</members>
         <members>Zumzum__NewTask</members>
         <name>QuickAction</name>
@@ -394,6 +399,7 @@
     </types>
     <types>
         <members>Booking__c</members>
+        <members>Course__c</members>
         <members>Course_Assignment__c</members>
         <name>Workflow</name>
     </types>
