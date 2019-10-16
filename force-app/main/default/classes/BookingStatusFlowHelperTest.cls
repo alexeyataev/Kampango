@@ -1,0 +1,122 @@
+@IsTest
+public  class BookingStatusFlowHelperTest {
+    
+    @TestSetup
+    static void makeData(){
+         TestAccountBuilder accountBuilder = new TestAccountBuilder();
+        Account branch =  accountBuilder.withRecordType('Branch')
+            .withName('Test Branch')
+            .withBillingPostalCode('qwerty')
+            .insertRecord(true)
+            .build();
+        TestContactBuilder contactBuilder = new TestContactBuilder();
+        Contact contact = contactBuilder.withRecordType('Practitioner')
+            .withAccount(branch)
+            .withFirstName('Fname')
+            .withLastName('Lname')
+            .insertRecord(true)
+            .build();
+        TestLicenceToPracticeBuilder lisenceBuilder = new TestLicenceToPracticeBuilder();
+        Licence_To_Practice__c lisence = lisenceBuilder.withContact(contact)
+            .withStartDate(System.today())
+            .withStatus('Full')
+            .withLicence('Signature Antenatal Teacher')
+            .insertRecord(true)
+            .build();
+            TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        Course__c course = courseBuilder.withType('Postnatal')
+            .withSubType('Baby Massage')
+            .withFee(100)
+            .withNumberOfPlaces(15)
+            .withStatus('Draft')
+            .withAccount(branch)
+            .withLicenceToPractice(lisence)
+            .withPractitioner(contact)
+            .insertRecord(false)
+            .build();
+        insert course;
+        Account household = new Account(
+            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
+            Name = 'Test Household'
+        );
+        insert household;
+        Contact primaryContact = contactBuilder.withRecordType('Client')
+            .withAccount(household)
+            .withFirstName('Test')
+            .withLastName('Primary')
+            .insertRecord(true)
+            .build();
+        Contact partnerContact = contactBuilder.withRecordType('Client')
+            .withAccount(household)
+            .withFirstName('Test')
+            .withLastName('Partner')
+            .insertRecord(true)
+            .build();
+        TestBookingBuilder bookingBuilder = new TestBookingBuilder();
+        List<Booking__c> bookings = new List<Booking__c>{
+            bookingBuilder.withCourse(course)
+            .withStatus('Reserved')
+            .withPrimaryContact(primaryContact)
+            .withPartnerContact(partnerContact)
+            .withBookingExpiryDate(System.today().addDays(-1))
+            .withStatus('Reserved')
+            .insertRecord(false)
+            .build(),
+            bookingBuilder.withCourse(course)
+            .withStatus('Reserved')
+            .withPrimaryContact(primaryContact)
+            .withPartnerContact(partnerContact)
+            .withBookingExpiryDate(System.today().addDays(1))
+            .insertRecord(false)
+            .build()
+        };
+        insert bookings;
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        List<Venue__c> venues = new List<Venue__c>{
+            venueBuilder.withName('Venue1')
+            .insertRecord(false)
+            .build(),
+            venueBuilder.withName('Venue2')
+            .insertRecord(false)
+            .build()
+        };
+        insert venues;
+        TestRoomBuilder roomBuilder = new TestRoomBuilder();
+        Room__c room = roomBuilder.withVenue(venues[0])
+            .insertRecord(true)
+            .build();
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        List<Session__c> sessions = new List<Session__c>();
+        for(Integer i = 0; i < 12; i++){
+            sessions.add(
+                sessionBuilder.withPractitioner(contact)
+                .withName('Test session')
+                .withType('Standard')
+                .withDate(System.today())
+                .withPractitionerLicence(lisence)
+                .withVenue(venues[0])
+                .withCourse(course)
+                .withRoom(room)
+                .insertRecord(false)
+                .build()
+            );
+        }
+        insert sessions;
+    }
+
+    @IsTest
+    private static void updateBookins_bookings_partlyUpdate(){
+        List<Booking__c> bookings = [
+            SELECT Id, Status__c, Reservation_Expiry_Date__c
+            FROM Booking__c
+        ];
+        System.debug(bookings);
+        System.debug([SELECT Start_Date__c FROM Course__c]);
+        for(Booking__c booking :bookings){
+            booking.Status__c = 'Expired';
+        }
+        Test.startTest();
+        BookingStatusFlowHelper.updateBookings(new List<List<Booking__c>>{bookings});
+        System.assertEquals(2, [SELECT Id FROM Booking__c WHERE Status__c = 'Expired'].size());
+    }
+}
