@@ -166,25 +166,15 @@ public without sharing class CourseApiTest {
       
     }      
 
-
-    private final static String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
-    private final static String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
-                                         '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
-                                         '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                         '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
-                                         '"town":"London","op":"Send enquiry"}';
-
-    private static void prepareSetupData() {
-        TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory.buildOrganizationAccount('acct1')
-                   .buildBranchAccount()
-                   .buildPractitioner('Practitioner')
-                   .buildLicenceToPractice()
-                   .buildCourse();
-    }
-
     @isTest
     static void createEnquiry() {
+        final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
+        final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
+                                            '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
+                                            '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
+                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"town":"London","op":"Send enquiry"}';
+
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
