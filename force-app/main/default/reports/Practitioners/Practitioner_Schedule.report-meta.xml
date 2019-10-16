@@ -54,8 +54,8 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Contact$Name</field>
-        <sortOrder>Desc</sortOrder>
+        <field>Contact.Licences_To_Practice__r.Courses__r.Sessions__r$Practitioner__c</field>
+        <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Practitioner Schedule</name>
     <params>
