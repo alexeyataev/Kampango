@@ -119,11 +119,9 @@ public  class BookingStatusFlowHelperTest {
         for(Booking__c booking :bookings){
             booking.Status__c = 'Expired';
         }
-        bookings[0].Primary_contact__c = null;
         Test.startTest();
         BookingStatusFlowHelper.updateBookings(new List<List<Booking__c>>{bookings});
         Test.stopTest();
-        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = 'Expired'].size());
-        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = 'Reserved'].size());
+        System.assertEquals(2, [SELECT Id FROM Booking__c WHERE Status__c = 'Expired'].size());
     }
 }
