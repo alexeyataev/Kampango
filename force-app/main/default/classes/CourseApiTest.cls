@@ -1,6 +1,6 @@
 @isTest
 public without sharing class CourseApiTest {
-
+    // recheck
     private static String strURI = URL.getSalesforceBaseUrl().toExternalForm()+'/services/apexrest/courses';
     private static String methodGet = 'GET';
 
