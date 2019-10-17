@@ -15,6 +15,7 @@ public  class BookingStatusFlowHelperTest {
             .withType('Supplier')
             .insertRecord(true)
             .withBillingEmail('test@test.com')
+            .withAccountNumber('test acc number')
             .build();
         TestContactBuilder contactBuilder = new TestContactBuilder();
         Contact contact = contactBuilder.withRecordType('Practitioner')
