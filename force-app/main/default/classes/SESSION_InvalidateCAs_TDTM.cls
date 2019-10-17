@@ -73,7 +73,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
     //Incident #4 - https://confluence.nct.org.uk:8443/x/EoSO
 
     private List<Course_Assignment__c> CourseAssignmentsToChangeIfSessionsInsertedOrDeleted(List<Session__c> sessionsToIterate) {
-        List<Course_Assignment__c> courseAssignments = new List<Course_Assignment__c>();
+        List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
         Set<Id> practitionerIds = new Set<Id>();
         Set<Id> courseIds = new Set<Id>();
 
@@ -82,43 +82,9 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             courseIds.add(aSession.Course__c);
         }
 
-        List<User> partnerCommunityUsers =[
-            SELECT Id
-            FROM User
-            WHERE ContactId IN :practitionerIds
-            WITH SECURITY_ENFORCED
-        ];
-
-        List<Course__c> coursesSessionsAndCourseAssignmentsToWithdrawn = [
-            SELECT Id,
-                (
-                    SELECT Status__c
-                    FROM Course_Assignments__r
-                    WHERE OwnerId IN :partnerCommunityUsers
-                    AND Status__c != :COURSE_ASSIGNMENT_WITHDRAWN_STATUS
-                ),
-                (
-                    SELECT Id
-                    FROM Sessions__r
-                    WHERE Practitioner__c IN :practitionerIds
-                )
-            FROM Course__c
-            WHERE Id IN :courseIds
-            WITH SECURITY_ENFORCED
-        ];
-
-        for(Course__c aCourse : coursesSessionsAndCourseAssignmentsToWithdrawn) {
-            for(Course_Assignment__c courseAssignment : aCourse.Course_Assignments__r){
-                if(aCourse.Sessions__r.isEmpty()){
-                    courseAssignment.Status__c = COURSE_ASSIGNMENT_WITHDRAWN_STATUS;
-                    courseAssignments.add(courseAssignment);
-                }else{
-                    courseAssignment.Status__c = COURSE_ASSIGNMENT_INVALIDATED_STATUS;
-                    courseAssignments.add(courseAssignment);
-                }
-            }
-        }
-        return courseAssignments;
+        SetCourseAssignmentsStatus(practitionerIds, courseIds, courseAssignmentsToUpdate);
+        
+        return courseAssignmentsToUpdate;
     }
     //NOPMD
     //Incident #6 - https://confluence.nct.org.uk:8443/x/EoSO
@@ -135,7 +101,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         List<Course__c> coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
                     (
-                        SELECT Status__c
+                        SELECT Status__c, Number_of_Sessions__c, Name
                         FROM Course_Assignments__r
                         WHERE OwnerId IN :partnerCommunityUsers
                             AND Status__c != :COURSE_ASSIGNMENT_WITHDRAWN_STATUS
@@ -152,7 +118,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
 
         for(Course__c aCourse : coursesSessionsAndCourseAssignmentsToWithdrawn){
             for(Course_Assignment__c assignment : aCourse.Course_Assignments__r){
-                if(aCourse.Sessions__r.isEmpty()) {
+                if(aCourse.Sessions__r.isEmpty() && assignment.Number_of_Sessions__c != 0) {
                     assignment.Status__c = COURSE_ASSIGNMENT_WITHDRAWN_STATUS;
                     courseAssignmentsToUpdate.add(assignment);
                 } else {
