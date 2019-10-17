@@ -3,15 +3,22 @@ public  class BookingStatusFlowHelperTest {
     
     @TestSetup
     static void makeData(){
-         TestAccountBuilder accountBuilder = new TestAccountBuilder();
+        TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account branch =  accountBuilder.withRecordType('Branch')
             .withName('Test Branch')
             .withBillingPostalCode('qwerty')
             .insertRecord(true)
             .build();
+        accountBuilder = new TestAccountBuilder();
+        Account organization = accountBuilder.withRecordType('Organization')
+            .withName('Test Organization')           
+            .withType('Supplier')
+            .insertRecord(true)
+            .withBillingEmail('test@test.com')
+            .build();
         TestContactBuilder contactBuilder = new TestContactBuilder();
         Contact contact = contactBuilder.withRecordType('Practitioner')
-            .withAccount(branch)
+            .withAccount(organization)
             .withFirstName('Fname')
             .withLastName('Lname')
             .insertRecord(true)
