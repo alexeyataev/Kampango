@@ -90,7 +90,6 @@ public  class BookingStatusFlowHelperTest {
         for(Integer i = 0; i < 12; i++){
             sessions.add(
                 sessionBuilder.withPractitioner(contact)
-                .withName('Test session')
                 .withType('Standard')
                 .withDate(System.today())
                 .withPractitionerLicence(lisence)
@@ -115,8 +114,10 @@ public  class BookingStatusFlowHelperTest {
         for(Booking__c booking :bookings){
             booking.Status__c = 'Expired';
         }
+        bookings[0].Reservation_Expiry_Date__c = System.today().addMonths(3);
         Test.startTest();
         BookingStatusFlowHelper.updateBookings(new List<List<Booking__c>>{bookings});
-        System.assertEquals(2, [SELECT Id FROM Booking__c WHERE Status__c = 'Expired'].size());
+        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = 'Expired'].size());
+        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = 'Reserved'].size());
     }
 }
