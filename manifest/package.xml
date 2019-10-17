@@ -16,6 +16,7 @@
         <members>CourseSearchUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
+        <members>dlrs_SessionTest</members>
         <members>HttpStatusCode</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
@@ -100,11 +101,16 @@
         <name>CustomLabels</name>
     </types>
     <types>
+        <members>dlrs__LookupRollupSummary2.CourseAssignmentNumberOfSessions</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
         <members>Account</members>
         <members>Booking__c</members>
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
+        <members>dlrs__LookupRollupSummary2__mdt</members>
         <members>gaid__Gift_Aid_Declaration__c</members>
         <members>Estimated_Costs__c</members>
         <members>Individual</members>
