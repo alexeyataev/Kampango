@@ -66,15 +66,14 @@ public  class BookingStatusFlowHelperTest {
             .withStatus('Reserved')
             .withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
-            .withBookingExpiryDate(System.today().addDays(-1))
-            .withStatus('Reserved')
+            .withBookingExpiryDate(System.today().addDays(-10))
             .insertRecord(false)
             .build(),
             bookingBuilder.withCourse(course)
             .withStatus('Reserved')
             .withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
-            .withBookingExpiryDate(System.today().addDays(1))
+            .withBookingExpiryDate(System.today().addDays(10))
             .insertRecord(false)
             .build()
         };
@@ -117,14 +116,13 @@ public  class BookingStatusFlowHelperTest {
             SELECT Id, Status__c, Reservation_Expiry_Date__c
             FROM Booking__c
         ];
-        System.debug(bookings);
-        System.debug([SELECT Start_Date__c FROM Course__c]);
         for(Booking__c booking :bookings){
             booking.Status__c = 'Expired';
         }
-        bookings[0].Reservation_Expiry_Date__c = System.today().addMonths(3);
+        bookings[0].Primary_contact__c = null;
         Test.startTest();
         BookingStatusFlowHelper.updateBookings(new List<List<Booking__c>>{bookings});
+        Test.stopTest();
         System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = 'Expired'].size());
         System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = 'Reserved'].size());
     }
