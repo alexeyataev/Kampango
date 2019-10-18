@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #11 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class GeneratePaymentFileUtil {
 
 	public static final String FILE_PREFIX = PaymentFileSettings__c.getInstance(UserInfo.getProfileId()).PSA_File_Prefix__c;
@@ -74,9 +76,8 @@ public with sharing class GeneratePaymentFileUtil {
 				FROM Zumzum__Bank_Payment__c
 				WHERE Zumzum__Batch_Bank_Payment__c = :batchBankPaymentId
 				WITH SECURITY_ENFORCED
-		]; //NOPMD
-        	   //Incident #12 - https://confluence.nct.org.uk:8443/x/EoSO
-
+		]; 
+		
 		return payments;
 	}
 
