@@ -74,9 +74,8 @@ public with sharing class GeneratePaymentFileUtil {
 				FROM Zumzum__Bank_Payment__c
 				WHERE Zumzum__Batch_Bank_Payment__c = :batchBankPaymentId
 				WITH SECURITY_ENFORCED
-		];
-		//NOPMD
-        	//Incident #12 - https://confluence.nct.org.uk:8443/x/EoSO
+		]; //NOPMD
+        	   //Incident #12 - https://confluence.nct.org.uk:8443/x/EoSO
 
 		return payments;
 	}
