@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Send_to_Practitioner</name>
-        <label>Send to Practitioner</label>
-        <locationX>1164</locationX>
-        <locationY>958</locationY>
-        <actionName>Session__c.Reunion_Session_Confirmed_Practitioner</actionName>
-        <actionType>emailAlert</actionType>
+        <name>Send_email_to_practitioner</name>
+        <label>Send email to practitioner</label>
+        <locationX>1163</locationX>
+        <locationY>961</locationY>
+        <actionName>SendHTMLEmailPlugin</actionName>
+        <actionType>apex</actionType>
         <connector>
             <targetReference>Is_Public_Venue</targetReference>
         </connector>
@@ -14,7 +14,25 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>SObjectRowId</name>
+            <name>templateId</name>
+            <value>
+                <elementReference>practitionerTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>session.Practitioner__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Capacity_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
             </value>
@@ -202,8 +220,8 @@
     <assignments>
         <name>Set_course_fields</name>
         <label>Set course fields</label>
-        <locationX>995</locationX>
-        <locationY>941</locationY>
+        <locationX>986</locationX>
+        <locationY>920</locationY>
         <assignmentItems>
             <assignToReference>course.Reunion_Start__c</assignToReference>
             <operator>Assign</operator>
@@ -409,6 +427,13 @@
         <dataType>String</dataType>
         <value>
             <stringValue>success</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>TEMPLATE_PRACTITIONER_DEV_NAME</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Reunion_Confirmed_Practitioner</stringValue>
         </value>
     </constants>
     <decisions>
@@ -715,6 +740,8 @@
         <object>Course__c</object>
         <outputReference>course</outputReference>
         <queriedFields>Id</queriedFields>
+        <queriedFields>Capacity_PSA_Email__c</queriedFields>
+        <queriedFields>Enquiries_PSA_Email__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_practitioner</name>
@@ -741,6 +768,29 @@
         <queriedFields>Name</queriedFields>
         <queriedFields>Email</queriedFields>
         <queriedFields>Phone</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_practitioner_template</name>
+        <label>Get practitioner template</label>
+        <locationX>1162</locationX>
+        <locationY>823</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Send_email_to_practitioner</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TEMPLATE_PRACTITIONER_DEV_NAME</elementReference>
+            </value>
+        </filters>
+        <object>EmailTemplate</object>
+        <outputReference>practitionerTemplate</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Subject</queriedFields>
+        <queriedFields>Body</queriedFields>
+        <queriedFields>HtmlValue</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_session</name>
@@ -807,7 +857,7 @@
         <locationX>1046</locationX>
         <locationY>751</locationY>
         <connector>
-            <targetReference>Send_to_Practitioner</targetReference>
+            <targetReference>Get_practitioner_template</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_update_record</targetReference>
@@ -815,7 +865,7 @@
         <inputReference>course</inputReference>
     </recordUpdates>
     <startElementReference>Check_Session_Id</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <subflows>
         <name>Send_to_Private</name>
         <label>Send to Private</label>
@@ -877,6 +927,18 @@
             <name>bookingList</name>
             <value>
                 <elementReference>BookingList</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>senderEmail</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>sessionId</name>
+            <value>
+                <elementReference>session.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -953,6 +1015,14 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>practitionerTemplate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailTemplate</objectType>
     </variables>
     <variables>
         <name>session</name>

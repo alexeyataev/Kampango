@@ -3,10 +3,10 @@
     <actionCalls>
         <name>Send_to_client</name>
         <label>Send to client</label>
-        <locationX>348</locationX>
-        <locationY>1090</locationY>
-        <actionName>Booking__c.Reunion_Session_Confirmed_Not_A_Host</actionName>
-        <actionType>emailAlert</actionType>
+        <locationX>386</locationX>
+        <locationY>1035</locationY>
+        <actionName>SendHTMLEmailPlugin</actionName>
+        <actionType>apex</actionType>
         <connector>
             <targetReference>Loop_through_bookings</targetReference>
         </connector>
@@ -14,19 +14,37 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>SObjectRowId</name>
+            <name>templateId</name>
             <value>
-                <elementReference>booking.Id</elementReference>
+                <elementReference>clientTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>booking.Primary_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>session.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
     <actionCalls>
-        <name>Send_to_Host</name>
-        <label>Send to Host</label>
-        <locationX>405</locationX>
-        <locationY>828</locationY>
-        <actionName>Booking__c.Reunion_Session_Confirmed_Host</actionName>
-        <actionType>emailAlert</actionType>
+        <name>Send_to_host</name>
+        <label>Send to host</label>
+        <locationX>501</locationX>
+        <locationY>890</locationY>
+        <actionName>SendHTMLEmailPlugin</actionName>
+        <actionType>apex</actionType>
         <connector>
             <targetReference>Loop_through_bookings</targetReference>
         </connector>
@@ -34,9 +52,27 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>SObjectRowId</name>
+            <name>templateId</name>
             <value>
-                <elementReference>booking.Id</elementReference>
+                <elementReference>hostTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>booking.Primary_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>session.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -119,6 +155,20 @@
             <targetReference>Check_hosts_are_not_blank</targetReference>
         </connector>
     </assignments>
+    <constants>
+        <name>TEMPLATE_HOST_DEV_NAME</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Reunion_Confirmed_Host</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>TEMPLATE_NOT_A_HOST_DEV_NAME</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Reunion_Confirmed_Not_A_Host</stringValue>
+        </value>
+    </constants>
     <decisions>
         <name>Check_are_not_blank_names</name>
         <label>Check are not blank names</label>
@@ -177,7 +227,7 @@
         <name>Check_input_booking</name>
         <label>Check input booking</label>
         <locationX>225</locationX>
-        <locationY>952</locationY>
+        <locationY>953</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Is_email_not_blank</name>
@@ -215,7 +265,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_to_Host</targetReference>
+                <targetReference>Send_to_host</targetReference>
             </connector>
             <label>Is host?</label>
         </rules>
@@ -223,8 +273,8 @@
     <decisions>
         <name>Check_is_host_0</name>
         <label>Check is host</label>
-        <locationX>403</locationX>
-        <locationY>455</locationY>
+        <locationX>406</locationX>
+        <locationY>436</locationY>
         <defaultConnector>
             <targetReference>Loop_to_set_host_names</targetReference>
         </defaultConnector>
@@ -249,8 +299,8 @@
         <name>host_names</name>
         <dataType>String</dataType>
         <expression>IF(ISBLANK({!partner_lastname}), 
-{!primary_firstname} &amp; &#39; &#39; &amp; {!primary_lastname}, 
-{!primary_firstname} &amp; &#39; &#39; &amp; {!primary_lastname} &amp; &#39; and &#39; &amp; {!partner_firstname} &amp; &#39; &#39; &amp; {!partner_lastname}
+{!primary_firstname} &amp; &#39; &#39; &amp; {!primary_lastname} &amp; &#39; who has&#39;, 
+{!primary_firstname} &amp; &#39; &#39; &amp; {!primary_lastname} &amp; &#39; and &#39; &amp; {!partner_firstname} &amp; &#39; &#39; &amp; {!partner_lastname} &amp; &#39; who have&#39;
 )</expression>
     </formulas>
     <interviewLabel>Reunion Execute Sending Private Subflow {!$Flow.CurrentDateTime}</interviewLabel>
@@ -258,8 +308,8 @@
     <loops>
         <name>Loop_through_bookings</name>
         <label>Loop through bookings</label>
-        <locationX>233</locationX>
-        <locationY>736</locationY>
+        <locationX>240</locationX>
+        <locationY>765</locationY>
         <assignNextValueToReference>booking</assignNextValueToReference>
         <collectionReference>bookingList</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -274,16 +324,13 @@
         <name>Loop_to_set_host_names</name>
         <label>Loop to set host names</label>
         <locationX>234</locationX>
-        <locationY>567</locationY>
+        <locationY>488</locationY>
         <assignNextValueToReference>booking</assignNextValueToReference>
         <collectionReference>bookingList</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Check_is_host_0</targetReference>
         </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Loop_through_bookings</targetReference>
-        </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -298,6 +345,52 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_client_template</name>
+        <label>Get client template</label>
+        <locationX>119</locationX>
+        <locationY>765</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_bookings</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TEMPLATE_NOT_A_HOST_DEV_NAME</elementReference>
+            </value>
+        </filters>
+        <object>EmailTemplate</object>
+        <outputReference>clientTemplate</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>HtmlValue</queriedFields>
+        <queriedFields>Body</queriedFields>
+        <queriedFields>Subject</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_host_template</name>
+        <label>Get host template</label>
+        <locationX>118</locationX>
+        <locationY>588</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_client_template</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TEMPLATE_HOST_DEV_NAME</elementReference>
+            </value>
+        </filters>
+        <object>EmailTemplate</object>
+        <outputReference>hostTemplate</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>HtmlValue</queriedFields>
+        <queriedFields>Body</queriedFields>
+        <queriedFields>Subject</queriedFields>
+    </recordLookups>
     <recordLookups>
         <name>Get_VenueContact</name>
         <label>Get VenueContact</label>
@@ -329,10 +422,10 @@
     <recordUpdates>
         <name>Update_course</name>
         <label>Update course</label>
-        <locationX>483</locationX>
-        <locationY>578</locationY>
+        <locationX>576</locationX>
+        <locationY>588</locationY>
         <connector>
-            <targetReference>Loop_through_bookings</targetReference>
+            <targetReference>Get_host_template</targetReference>
         </connector>
         <inputReference>course</inputReference>
     </recordUpdates>
@@ -355,12 +448,28 @@
         <objectType>Booking__c</objectType>
     </variables>
     <variables>
+        <name>clientTemplate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailTemplate</objectType>
+    </variables>
+    <variables>
         <name>course</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
         <objectType>Course__c</objectType>
+    </variables>
+    <variables>
+        <name>hostTemplate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailTemplate</objectType>
     </variables>
     <variables>
         <name>partner_firstname</name>

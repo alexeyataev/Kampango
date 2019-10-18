@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Send_to_Public</name>
-        <label>Send to Public</label>
-        <locationX>743</locationX>
-        <locationY>195</locationY>
-        <actionName>Booking__c.Reunion_Session_Confirmed_Public</actionName>
-        <actionType>emailAlert</actionType>
+        <name>Send_to_public</name>
+        <label>Send to public</label>
+        <locationX>755</locationX>
+        <locationY>197</locationY>
+        <actionName>SendHTMLEmailPlugin</actionName>
+        <actionType>apex</actionType>
         <connector>
             <targetReference>Loop_through_bookings</targetReference>
         </connector>
@@ -14,9 +14,27 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>SObjectRowId</name>
+            <name>targetObjectId</name>
             <value>
-                <elementReference>booking.Id</elementReference>
+                <elementReference>booking.Primary_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>sessionId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>publicTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>senderEmail</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -59,6 +77,13 @@
             </value>
         </assignmentItems>
     </assignments>
+    <constants>
+        <name>TEMPLATE_PUBLIC_DEV_NAME</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Reunion_Confirmed_Public</stringValue>
+        </value>
+    </constants>
     <decisions>
         <name>Check_input_booking</name>
         <label>Check input booking</label>
@@ -79,7 +104,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_to_Public</targetReference>
+                <targetReference>Send_to_public</targetReference>
             </connector>
             <label>Is email not blank</label>
         </rules>
@@ -89,7 +114,7 @@
     <loops>
         <name>Loop_through_bookings</name>
         <label>Loop through bookings</label>
-        <locationX>233</locationX>
+        <locationX>323</locationX>
         <locationY>204</locationY>
         <assignNextValueToReference>booking</assignNextValueToReference>
         <collectionReference>bookingList</collectionReference>
@@ -114,7 +139,30 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <startElementReference>Loop_through_bookings</startElementReference>
+    <recordLookups>
+        <name>Get_public_template</name>
+        <label>Get public template</label>
+        <locationX>189</locationX>
+        <locationY>205</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_bookings</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TEMPLATE_PUBLIC_DEV_NAME</elementReference>
+            </value>
+        </filters>
+        <object>EmailTemplate</object>
+        <outputReference>publicTemplate</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>HtmlValue</queriedFields>
+        <queriedFields>Body</queriedFields>
+        <queriedFields>Subject</queriedFields>
+    </recordLookups>
+    <startElementReference>Get_public_template</startElementReference>
     <status>Active</status>
     <variables>
         <name>booking</name>
@@ -131,6 +179,28 @@
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>Booking__c</objectType>
+    </variables>
+    <variables>
+        <name>publicTemplate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailTemplate</objectType>
+    </variables>
+    <variables>
+        <name>senderEmail</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>sessionId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>status_error</name>
