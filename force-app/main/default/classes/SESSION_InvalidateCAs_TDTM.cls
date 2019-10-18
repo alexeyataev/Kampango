@@ -11,9 +11,9 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         if (triggerAction == npsp.TDTM_Runnable.Action.AfterUpdate) {
             courseAssignmentsToUpdate.addAll(CourseAssignmentsToChangeIfSessionsUpdated(newSessionList, oldSessionList));
         }else if (triggerAction == npsp.TDTM_Runnable.Action.AfterInsert){
-            courseAssignmentsToUpdate.addAll(CourseAssignmentsToChangeIfSessionsInsertedOrDeleted(newSessionList));
+            courseAssignmentsToUpdate.addAll(CourseAssignmentsToChangeIfSessionsInserted(newSessionList));
         }else if(triggerAction == npsp.TDTM_Runnable.Action.AfterDelete){
-            courseAssignmentsToUpdate.addAll(CourseAssignmentsToChangeIfSessionsInsertedOrDeleted(oldSessionList));
+            courseAssignmentsToUpdate.addAll(CourseAssignmentsToChangeIfSessionsDeleted(oldSessionList));
         }
 
         dmlWrapper.objectsToUpdate.addAll(courseAssignmentsToUpdate);
@@ -50,8 +50,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        SetCourseAssignmentsStatus(newPractitionerIds, courseIds, courseAssignmentsToUpdate);
-        SetCourseAssignmentsStatus(oldPractitionerIds, courseIds, courseAssignmentsToUpdate);
+        SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(newPractitionerIds, courseIds, courseAssignmentsToUpdate);
+        SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(oldPractitionerIds, courseIds, courseAssignmentsToUpdate);
         
         List<Course_Assignment__c> courseAssignmentsToInvalidate = [
             SELECT Status__c
@@ -67,12 +67,14 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                 courseAssignmentsToUpdate.add(assignment);
             }
         }
+
+        
         return courseAssignmentsToUpdate;
     }
     //NOPMD
     //Incident #4 - https://confluence.nct.org.uk:8443/x/EoSO
 
-    private List<Course_Assignment__c> CourseAssignmentsToChangeIfSessionsInsertedOrDeleted(List<Session__c> sessionsToIterate) {
+    private List<Course_Assignment__c> CourseAssignmentsToChangeIfSessionsInserted(List<Session__c> sessionsToIterate) {
         List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
         Set<Id> practitionerIds = new Set<Id>();
         Set<Id> courseIds = new Set<Id>();
@@ -82,14 +84,27 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             courseIds.add(aSession.Course__c);
         }
 
-        SetCourseAssignmentsStatus(practitionerIds, courseIds, courseAssignmentsToUpdate);
-        
+        SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(practitionerIds, courseIds, courseAssignmentsToUpdate);
+
+        return courseAssignmentsToUpdate;
+    }
+
+    private List<Course_Assignment__c> CourseAssignmentsToChangeIfSessionsDeleted(List<Session__c> sessionsToIterate) {
+        List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
+        Set<Id> courseAssignmentIds = new Set<Id>();
+
+        for(Session__c aSession : sessionsToIterate) {
+            courseAssignmentIds.add(aSession.Course_Assignment__c);
+        }
+
+        SetCourseAssignmentsStatusDependOnWhetherAssignedSessions(courseAssignmentIds, courseAssignmentsToUpdate);
+
         return courseAssignmentsToUpdate;
     }
     //NOPMD
     //Incident #6 - https://confluence.nct.org.uk:8443/x/EoSO
     
-    private static List<Course_Assignment__c> SetCourseAssignmentsStatus(Set<Id> practitionerIds, Set<Id> courseIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
+    private static List<Course_Assignment__c> SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(Set<Id> practitionerIds, Set<Id> courseIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
     
     List<User> partnerCommunityUsers = [
             SELECT Id
@@ -101,7 +116,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         List<Course__c> coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
                     (
-                        SELECT Status__c, Number_of_Sessions__c, Name
+                        SELECT Status__c, Number_of_Sessions__c
                         FROM Course_Assignments__r
                         WHERE OwnerId IN :partnerCommunityUsers
                             AND Status__c != :COURSE_ASSIGNMENT_WITHDRAWN_STATUS
@@ -116,8 +131,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             WITH SECURITY_ENFORCED
         ];
 
-        for(Course__c aCourse : coursesSessionsAndCourseAssignmentsToWithdrawn){
-            for(Course_Assignment__c assignment : aCourse.Course_Assignments__r){
+        for(Course__c aCourse : coursesSessionsAndCourseAssignmentsToWithdrawn) {
+            for(Course_Assignment__c assignment : aCourse.Course_Assignments__r) {
                 if(aCourse.Sessions__r.isEmpty() && assignment.Number_of_Sessions__c != 0) {
                     assignment.Status__c = COURSE_ASSIGNMENT_WITHDRAWN_STATUS;
                     courseAssignmentsToUpdate.add(assignment);
@@ -127,6 +142,33 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                 }
             }
         }
+        return courseAssignmentsToUpdate;
+	}
+
+    private static List<Course_Assignment__c> SetCourseAssignmentsStatusDependOnWhetherAssignedSessions(Set<Id> courseAssignmentIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
+    
+    List<Course_Assignment__c> coursesAssignmentsToChangeStatus = [
+            SELECT Status__c,
+                (
+                    SELECT Id
+                    FROM Sessions__r
+                )
+            FROM Course_Assignment__c
+            WHERE Id IN :courseAssignmentIds
+                AND Status__c != :COURSE_ASSIGNMENT_WITHDRAWN_STATUS
+            WITH SECURITY_ENFORCED
+        ];
+
+        for (Course_Assignment__c courseAssignment : coursesAssignmentsToChangeStatus) {
+            if(courseAssignment.Sessions__r.isEmpty()) {
+                courseAssignment.Status__c = COURSE_ASSIGNMENT_WITHDRAWN_STATUS;
+                courseAssignmentsToUpdate.add(courseAssignment);
+            } else {
+                courseAssignment.Status__c = COURSE_ASSIGNMENT_INVALIDATED_STATUS;
+                courseAssignmentsToUpdate.add(courseAssignment);
+            }                 
+        }
+
         return courseAssignmentsToUpdate;
 	}
 }
