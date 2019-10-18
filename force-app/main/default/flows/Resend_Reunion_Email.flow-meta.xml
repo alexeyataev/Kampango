@@ -24,7 +24,7 @@
         <name>Warn_null_input</name>
         <label>Warn null input</label>
         <locationX>98</locationX>
-        <locationY>227</locationY>
+        <locationY>228</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <inputParameters>
@@ -74,7 +74,7 @@
         <name>MESSAGE_NULL_REUNION</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>Error: cannot find the reunion session</stringValue>
+            <stringValue>There must be a confirmed reunion session to send emails</stringValue>
         </value>
     </constants>
     <constants>
@@ -88,7 +88,7 @@
         <name>MESSAGE_WRONG_INPUT</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>Reunion session must be confirmed to send the emails</stringValue>
+            <stringValue>There must be a confirmed reunion session to send emails</stringValue>
         </value>
     </constants>
     <constants>
@@ -125,7 +125,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Confirm_Send_Email_Screen</targetReference>
+                <targetReference>Prepare_and_send</targetReference>
             </connector>
             <label>Is Reunion Session confirmed?</label>
         </rules>
@@ -133,8 +133,8 @@
     <decisions>
         <name>Check_reunion_session_exists</name>
         <label>Check reunion session exists</label>
-        <locationX>286</locationX>
-        <locationY>230</locationY>
+        <locationX>287</locationX>
+        <locationY>239</locationY>
         <defaultConnector>
             <targetReference>Warn_null_input</targetReference>
         </defaultConnector>
@@ -177,7 +177,7 @@
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_reunion_session_exists</targetReference>
+            <targetReference>Confirm_Send_Email_Screen</targetReference>
         </connector>
         <filters>
             <field>Course__c</field>
@@ -201,17 +201,17 @@
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Confirm Send Email Screen</label>
-        <locationX>466</locationX>
-        <locationY>591</locationY>
+        <locationX>444</locationX>
+        <locationY>140</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Prepare_and_send</targetReference>
+            <targetReference>Check_reunion_session_exists</targetReference>
         </connector>
         <fields>
             <name>Confirm_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76); background-color: rgb(255, 255, 255);&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;font-size: 18px; color: rgb(47, 47, 47); background-color: rgb(255, 255, 255);&quot;&gt;reunion session participants&lt;/b&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76); background-color: rgb(255, 255, 255);&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); color: rgb(47, 47, 47); font-size: 18px;&quot;&gt;reunion session participants&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;. If you don&#39;t want to to send emails, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
