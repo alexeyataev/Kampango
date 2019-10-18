@@ -52,7 +52,22 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
 
         SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(newPractitionerIds, courseIds, courseAssignmentsToUpdate);
         SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(oldPractitionerIds, courseIds, courseAssignmentsToUpdate);
-        SetCourseAssignmentsStatusDependOnWhetherAssignedSessions(courseAssignmentIds, courseAssignmentsToUpdate);
+        
+        List<Course_Assignment__c> courseAssignmentsToInvalidate = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id IN :courseAssignmentIds
+                AND Status__c NOT IN (:COURSE_ASSIGNMENT_INVALIDATED_STATUS, :COURSE_ASSIGNMENT_WITHDRAWN_STATUS)
+            WITH SECURITY_ENFORCED
+        ];
+
+        if(!courseAssignmentsToInvalidate.isEmpty()) {
+            for(Course_Assignment__c assignment : courseAssignmentsToInvalidate){
+                assignment.Status__c = COURSE_ASSIGNMENT_INVALIDATED_STATUS;
+                courseAssignmentsToUpdate.add(assignment);
+            }
+        }
+
         
         return courseAssignmentsToUpdate;
     }
