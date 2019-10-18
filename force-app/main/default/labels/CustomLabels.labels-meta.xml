@@ -20,6 +20,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Label For Set Error Search</shortDescription>
-        <value>&quot;Error&quot; : course does not exist</value>
+        <value>{&quot;Error&quot; : course does not exist}</value>
+    </labels>
+    <labels>
+        <fullName>CourseAPIradiusIsNotValid</fullName>
+        <categories>CourseAPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Radius is not valid response</shortDescription>
+        <value>{&quot;Error&quot; : radius is not a whole number of miles}</value>
     </labels>
 </CustomLabels>

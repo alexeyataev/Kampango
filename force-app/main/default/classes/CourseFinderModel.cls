@@ -2,7 +2,8 @@
 //Incident #10 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing virtual class CourseFinderModel {
     @testVisible
-    private String Id;
+    public String Id {get; set;}
+    public transient Date StartDate {get; set;}
     private String Reference;
     private String Title;
     private String Summary;
@@ -12,30 +13,26 @@ public without sharing virtual class CourseFinderModel {
     private String BranchNumber;
     private Decimal Price;
     private Integer PlacesAvailable;
-    private String Description;
     private CourseOrganiser CourseOrganiser;
     private Venue Venue;
     private List<Session> Sessions;
     public List<String> HowHeardTexts;
-    private List<String> BirthingLocations;
-
 
     public CourseFinderModel(Course__c course) {
-        this.Id = course.Id;
+        this.Id = course.Name;
         this.Reference = course.PSA_Area__c + '/' + course.Name;
         this.Title = 'field is colected';
         this.Summary = 'field is colected';
         this.Type = course.Sub_Type__c;
         this.CouplesAllowed = course.Couples_Allowed__c;
         this.WomenOnly = course.Women_Only__c;
-        this.BranchNumber = String.valueOf(course.Branch__r.Branch_Key__c);
+        this.BranchNumber = String.valueOf(course.Branch__r.Id);
         this.Price = course.Fee__c;
         this.PlacesAvailable = Integer.valueOf(course.Number_of_places__c);
-        this.Description = 'field is deleted';
         this.CourseOrganiser = new CourseOrganiser(course);
         this.Venue = new Venue(course);
         this.Sessions = collectSessionsToList(course.Sessions__r);
-
+        this.StartDate = course.Start_Date__c;
     }
 
     private without sharing class CourseOrganiser {
@@ -44,9 +41,9 @@ public without sharing virtual class CourseFinderModel {
         private String Telephone;
         
         private CourseOrganiser (Course__c course) {
-            this.Name = course.Main_Practitioner__r.Name;
-            this.Email = course.Main_Practitioner__r.Email;
-            this.Telephone = course.Main_Practitioner__r.Phone;   
+            this.Name = course.Branch__r.Enquiries_PSA__r.Name;
+            this.Email = course.Branch__r.Enquiries_PSA_Email__c;
+            this.Telephone = course.Branch__r.Enquiries_PSA_Phone__c;
         }
     }
 
@@ -61,8 +58,12 @@ public without sharing virtual class CourseFinderModel {
             this.Name = course.Main_Venue__r.Name;
             this.Town = course.Main_Venue__r.Town__c;
             this.County = course.Main_Venue__r.County__c; 
-            this.PostcodeArea = course.PSA_Area__c; 
+            this.PostcodeArea = getLeftPartOfPostcode(course.Main_Venue__r.Postcode__c);
             this.Location = course.Main_Venue__r.Location__c;   
+        }
+
+        private String getLeftPartOfPostcode(String postcode) {
+            return !String.isEmpty(postcode) ? postcode.split(' ')[0] : 'SW1A';
         }
     }
   
@@ -72,16 +73,14 @@ public without sharing virtual class CourseFinderModel {
         private String Session_End;
         private Boolean WomenOnly;
         private Boolean Breastfeeding;
-        private Boolean Postnatal;
         private String Notes;
         
         private Session (Session__c session) {
             this.Session_Date = session.Name;
             this.Start = String.valueOf(session.Start__c);
             this.Session_End = String.valueOf(session.End__c); 
-            this.WomenOnly = WomenOnly;  
+            this.WomenOnly = session.Specific_Attendee_Type__c == 'Women Only' ? true : false;  
             this.Breastfeeding = session.Type__c == 'Breastfeeding' ? true : false;  
-            this.Postnatal = true; // Session_Type__c == 'Postnatal' ? true : false; //field is deleted
             this.Notes = 'field is deleted';  
         }
     }

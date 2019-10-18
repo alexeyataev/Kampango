@@ -7,7 +7,7 @@ You are no longer required to attend this course as <a href = "{!$Setup.Practiti
 Kind Regards,  
 </br>
 </br>
-{!Course_Assignment__c.CreatedBy}
+{!Course_Assignment__c.LastModifiedBy}
 </br>
-Course Organazer
+Capacity PSA - {!Course_Assignment__c.PSA_Area__c}
 </br>
