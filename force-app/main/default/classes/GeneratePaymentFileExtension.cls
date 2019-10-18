@@ -20,6 +20,8 @@ public with sharing class GeneratePaymentFileExtension {
 				WHERE id = :this.recordId
 				WITH SECURITY_ENFORCED
 		];
+		//NOPMD
+        	//Incident #11 - https://confluence.nct.org.uk:8443/x/EoSO
 
 		this.showError = batchBankPayment.Zumzum__Status__c != VALID_BATCH_BANK_PAYMENT_STATUS;
 
