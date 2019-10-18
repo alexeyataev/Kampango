@@ -18,6 +18,7 @@
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
+        <members>SendHTMLEmailPlugin</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM_TEST</members>
@@ -89,6 +90,23 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>Course__c.Reunion_Host_Contact_Names__c</members>
+        <members>Course__c.Reunion_Practitioner_Email__c</members>
+        <members>Course__c.Reunion_Practitioner_Name__c</members>
+        <members>Course__c.Reunion_Practitioner_Phone__c</members>
+        <members>Course__c.Reunion_Venue_Map_Url__c</members>
+        <members>Course__c.Reunion_Venue_Name__c</members>
+        <members>Course__c.Reunion_Venue_Street_Address__c</members>
+        <members>Course__c.Reunion_Venue_Town__c</members>
+        <members>Course__c.Capacity_PSA_Name__c</members>
+        <members>Course__c.Capacity_PSA_Email__c</members>
+        <members>Course__c.Capacity_PSA_Phone__c</members>
+        <members>Course__c.Enquiries_PSA_Email__c</members>
+        <members>Course__c.Enquiries_PSA_Name__c</members>
+        <members>Course__c.Enquiries_PSA_Phone__c</members>
+        <members>Session__c.Start_Text__c</members>
+        <members>Session__c.End_Text__c</members>
+        <members>Venue__c.Map_Url__c</members>
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
@@ -167,6 +185,11 @@
         <members>Invalidate_Withdraw_CA_when_key_information_changes</members>
         <members>Populate_Practitioner_Name</members>
         <members>Resend_Offer_Email</members>
+        <members>Reunion_Prepare_Sending_Process</members>
+        <members>Resend_Reunion_Email</members>
+        <members>Reunion_Execute_Sending_Private_Subflow</members>
+        <members>Reunion_Execute_Sending_Public_Subflow</members>
+        <members>Reunion_Execute_Sending</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
@@ -199,6 +222,8 @@
         <members>Course_Assignment__c-Course Assignment Layout</members>
         <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
+        <members>Course__c-Capacity PSA Course Layout</members>
+        <members>Course__c-Admin Course Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
@@ -249,6 +274,7 @@
     </types>
     <types>
         <members>Booking__c.Send_Offer_Email</members>
+        <members>Course__c.Resend_Reunion_Email</members>
         <members>Zumzum__NewTask</members>
         <name>QuickAction</name>
     </types>
