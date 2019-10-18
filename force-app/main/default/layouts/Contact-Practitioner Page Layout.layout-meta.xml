@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-<excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>RequestUseSfdc</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -90,7 +90,7 @@
     </layoutSections>
     <platformActionList>
         <actionListContext>Record</actionListContext>
-<platformActionListItems>
+        <platformActionListItems>
             <actionName>Clone</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>0</sortOrder>
