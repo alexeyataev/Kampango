@@ -243,6 +243,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Branch_Weighting__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.Current_Fee_Band_Effective_From__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -445,6 +450,11 @@
         <editable>false</editable>
         <field>Licence_To_Practice__c.Practitioner_Name__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Practitioner_Band__c.End_Date__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6077,6 +6087,24 @@
         <readable>true</readable>
     </fieldPermissions>
     <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Branch_Weighting__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Practitioner_Band__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
@@ -7641,42 +7669,34 @@
         <apexPage>Zumzum__companySetup</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
     <pageAccesses>
         <apexPage>Zumzum__controlAccounts</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
     <pageAccesses>
         <apexPage>Zumzum__dashboardTopFiveCustomer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
     <pageAccesses>
         <apexPage>Zumzum__editDespatchDetails</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
     <pageAccesses>
         <apexPage>Zumzum__editNomAcctt</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
     <pageAccesses>
         <apexPage>Zumzum__editNominalAcctt</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
     <pageAccesses>
         <apexPage>Zumzum__selectSIPdf</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
     <pageAccesses>
         <apexPage>Zumzum__stocktransfer</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Branch</recordType>
@@ -7764,66 +7784,55 @@
         <tab>Zumzum__Control_Account__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-
     <tabVisibilities>
         <tab>Zumzum__Despatch_Detail__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-
     <tabVisibilities>
         <tab>Zumzum__Dimension__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-
     <tabVisibilities>
         <tab>Zumzum__Invoice_Template__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-
     <tabVisibilities>
         <tab>Zumzum__Expense_Sheet__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-
     <tabVisibilities>
         <tab>Zumzum__General_Setup__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-
     <tabVisibilities>
         <tab>Zumzum__Financial_Reports</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-
     <tabVisibilities>
         <tab>Zumzum__Journal__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-
     <tabVisibilities>
         <tab>Zumzum__Ledger__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-
     <tabVisibilities>
         <tab>Zumzum__Nominal_Account__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-
     <tabVisibilities>
         <tab>Zumzum__Nominal_Budget__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-
     <tabVisibilities>
         <tab>Zumzum__Nominal_Categories__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Purchase_Invoice__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Purchase_Order__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -7831,7 +7840,7 @@
         <tab>Zumzum__Purchase_Requisition__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Purchase_Requisition__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -7839,23 +7848,23 @@
         <tab>Zumzum__Purchasing</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__RecurringTransaction__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Revenue_Recognition_Rule__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Revenue_Recognition_Rule_Setting__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Revenue_Recognition_Schedule__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Sales_Invoice__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -7875,15 +7884,15 @@
         <tab>Zumzum__Sales</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Sales_Order__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Schedule_Reminders__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Schedule_Statements__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -7891,12 +7900,11 @@
         <tab>Zumzum__Scheduled_Sales_Invoice__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-    
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Setup</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-     <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Stock_Balance__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -7965,7 +7973,6 @@
         <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>
-
     <applicationVisibilities>
         <application>Zumzum__Zumzum_Financials</application>
         <default>false</default>
@@ -7977,6 +7984,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Booking__c-Booking Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Branch_Weighting__c-Branch Weighting Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-Client Layout</layout>
@@ -8000,6 +8010,9 @@
         <layout>Licence_To_Practice__c-Licence To Practice Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Practitioner_Band__c-Practitioner Band Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -8017,8 +8030,6 @@
     <layoutAssignments>
         <layout>Venue__c-Venue Layout</layout>
     </layoutAssignments>
-  
-   
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
