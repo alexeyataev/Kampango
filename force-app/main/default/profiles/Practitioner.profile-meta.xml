@@ -346,12 +346,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Course_Assignment__c.Total_Fees__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Course_Assignment__c.Total_Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
