@@ -138,11 +138,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Course__c.Main_Practitioner_Name__c</field>
-            <table>Session__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Course__c.Sub_Type__c</field>
             <table>Session__c</table>
         </columns>
