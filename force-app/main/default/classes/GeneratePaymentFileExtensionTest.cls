@@ -121,7 +121,6 @@ private class GeneratePaymentFileExtensionTest {
 						Zumzum__Amount__c,
 						Zumzum__Supplier__r.Zumzum__Bank_Account_Name__c,
 						Name,
-						Zumzum__Supplier__r.Branch__r.Name,
 						Zumzum__Supplier__r.PSA_Area__c,
 						Payment_Reference__c
 				FROM Zumzum__Bank_Payment__c
