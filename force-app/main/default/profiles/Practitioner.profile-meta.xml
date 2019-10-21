@@ -242,6 +242,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Branch_Weighting__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.AccountId</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -504,6 +509,11 @@
         <editable>false</editable>
         <field>Licence_To_Practice__c.Practitioner_Name__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Practitioner_Band__c.End_Date__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -813,6 +823,9 @@
         <layout>Booking__c-Booking Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Branch_Weighting__c-Branch Weighting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Contact-Client Layout</layout>
         <recordType>Contact.Clients</recordType>
     </layoutAssignments>
@@ -835,6 +848,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Licence_To_Practice__c-Licence To Practice Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Practitioner_Band__c-Practitioner Band Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</layout>
@@ -870,6 +886,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Booking__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Branch_Weighting__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -915,6 +940,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Licence_To_Practice__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Practitioner_Band__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
