@@ -209,7 +209,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Primary_Contact_Email__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -234,6 +234,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Booking__c.Under_18__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Validation_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -979,7 +984,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Additional_Offer_Information__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1021,6 +1026,11 @@
         <field>Course__c.Couples_Allowed__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Course_Duration__c</field>
+        <readable>true</readable>
+    </fieldPermissions> 	
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.End_Date__c</field>

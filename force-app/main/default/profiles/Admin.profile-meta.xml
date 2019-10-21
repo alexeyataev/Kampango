@@ -338,6 +338,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Validation_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Branch_Weighting__c.End_Date__c</field>
         <readable>true</readable>
@@ -492,6 +497,11 @@
         <field>Course__c.Couples_Allowed__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Course_Duration__c</field>
+        <readable>true</readable>
+    </fieldPermissions> 
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.End_Date__c</field>
