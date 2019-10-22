@@ -20,10 +20,18 @@ public without sharing class CareAddMembershipTest {
             .withLastName('Partner')
             .insertRecord(true)
             .build();
+        TestPaymentProfileBuilder paymentProfileBuilder = new TestPaymentProfileBuilder();
+        cpm__Payment_Profile__c paymentProfile = paymentProfileBuilder.withContact(primaryContact)
+            .withSortCode('1111')
+            .withBankAccount('2222')
+            .withHolderName('test')
+            .insertRecord(true)
+            .build();
         TestInstallmentBuilder installmentBuilder = new TestInstallmentBuilder();
         cpm__Installment__c installment = installmentBuilder.withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
             .withBankDetailsNumber('12345')
+            .withPaymentProfile(paymentProfile)
             .insertRecord(true)
             .build();
     }
