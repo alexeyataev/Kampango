@@ -1,4 +1,4 @@
-public class CareAddBankDetailsHandler {
+public with sharing class CareAddBankDetailsHandler {
     @InvocableMethod
     public static List<MembershipResultObject> addBankDetails(List<cpm__Installment__c> installment) {
         try {
@@ -9,11 +9,13 @@ public class CareAddBankDetailsHandler {
                 SELECT Id, FirstName, LastName, NCT_Number__c, Gender__c, MailingPostalCode, Email, MailingStreet, MailingCity, MailingCountry 
                 FROM Contact 
                 WHERE Id =: contactId
+                WITH SECURITY_ENFORCED
             ];
             cpm__Payment_Profile__c paymentProfile = [
                 SELECT Id, paybacs__Sort_Code__c, cpm__Bank_Account__c, cpm__Holder_Name__c
                 FROM cpm__Payment_Profile__c
                 WHERE Id =: installment[0].cpm__Payment_Profile__c
+                WITH SECURITY_ENFORCED
             ];
             System.debug(paymentProfile);
             String bankDetailNumber = CareHelper.sendBankDetails(paymentProfile, cont, nctNumber);

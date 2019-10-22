@@ -1,9 +1,9 @@
-public class CareHelper {
-    public static final String AUTH_KEY = Care_Settings__c.getOrgDefaults().Auth_Key__c;//'p1Fm0Y48P4iCehUKyzbsxY9-i78gdx7rG2Iu';
-    public static final String SF_ENVIRONMENT_NAME = Care_Settings__c.getOrgDefaults().SF_Environment_Name__c;//'SalesforceSBASandbox';
-    public static final String SOURCE = Care_Settings__c.getOrgDefaults().Source__c;//'SALESFORCE';
-    private static final String BRANCH_NUMBER = Care_Settings__c.getOrgDefaults().Branch_Number__c;//'240';
-    private static final String USER_LOG_NAME = Care_Settings__c.getOrgDefaults().User_Log_Name__c;//'xSalesforce';
+public with sharing class CareHelper {
+    public static final String authKey = Care_Settings__c.getOrgDefaults().Auth_Key__c;//'p1Fm0Y48P4iCehUKyzbsxY9-i78gdx7rG2Iu';
+    public static final String sfEnvironmentName = Care_Settings__c.getOrgDefaults().SF_Environment_Name__c;//'SalesforceSBASandbox';
+    public static final String source = Care_Settings__c.getOrgDefaults().Source__c;//'SALESFORCE';
+    private static final String branchNumber = Care_Settings__c.getOrgDefaults().Branch_Number__c;//'240';
+    private static final String userLogname = Care_Settings__c.getOrgDefaults().User_Log_Name__c;//'xSalesforce';
     public static List<Contact> updateContactList = new List<Contact>();
     public static String sendContact(Contact cont) {
         HttpRequest req = new HttpRequest();
@@ -12,8 +12,8 @@ public class CareHelper {
         Http http = new Http();
         req.setEndpoint('https://careforce.nct.org.uk:1443/AuthParentForceTest/SFAddUpdateContactWS.pl');
         req.setMethod('POST');
-        req.setBody('source=' + SOURCE
-            + '&Branch=' + BRANCH_NUMBER
+        req.setBody('source=' + source
+            + '&Branch=' + branchNumber
             + '&surname=' + cont.LastName
             + '&firstName=' + cont.FirstName
             + (cont.NCT_Number__c != null ? '&contactNumber=' + cont.NCT_Number__c : '')
@@ -23,9 +23,9 @@ public class CareHelper {
             + '&address=' + cont.MailingStreet
             + '&town=' + cont.MailingCity
             + '&country=' + cont.MailingCountry
-            + '&userLogname=' + BRANCH_NUMBER
-            + '&authKey=' + AUTH_KEY 
-            + '&pagename=' + SF_ENVIRONMENT_NAME
+            + '&userLogname=' + userLogname
+            + '&authKey=' + authKey 
+            + '&pagename=' + sfEnvironmentName
         );
         /*AddUpdateContactRequest addUpdateContactRequest = new AddUpdateContactRequest();
         addUpdateContactRequest.authKey = authKey;
@@ -60,10 +60,10 @@ public class CareHelper {
         req.setEndpoint('https://careforce.nct.org.uk:1443/AuthParentForceTest/SFAddBankDetailsWS.pl');
         req.setMethod('GET');
         req.setBody('contactKey=' + (cont.NCT_Number__c != null ? cont.NCT_Number__c : nctNumber)
-            + '&authKey=' + AUTH_KEY
-            + '&pageName=' + SF_ENVIRONMENT_NAME
-            + '&userLogname=' + BRANCH_NUMBER
-            + '&source=' + SOURCE
+            + '&authKey=' + authKey
+            + '&pageName=' + sfEnvironmentName
+            + '&userLogname=' + userLogname
+            + '&source=' + source
             + '&sortCode=' + paymentProfile.paybacs__Sort_Code__c
             + '&acctNumber=' + paymentProfile.cpm__Bank_Account__c
             + '&acctName=' + paymentProfile.cpm__Holder_Name__c
@@ -89,7 +89,7 @@ public class CareHelper {
     
         req.setEndpoint('https://careforce.nct.org.uk:1443/AuthParentForceTest/SFAddMembershipWS.pl');
         req.setMethod('GET');
-        req.setBody('authKey=' + AUTH_KEY
+        req.setBody('authKey=' + authKey
             + (paymentMethod != null ? '&paymentMethod=' + paymentMethod : '')
             + (installment.Bank_Details_Number__c != null ? '&bankDetailNumber=' + installment.Bank_Details_Number__c : '')
             + '&claimDay=3'
@@ -99,10 +99,10 @@ public class CareHelper {
             + (installment.Partner_Contact__r.NCT_Number__c != null ? '&contactKey2=' + installment.Partner_Contact__r.NCT_Number__c : '')
             + (installment.Membership_Type__c != null ? '&mType=' + installment.Membership_Type__c : '')
             + '&amount=' + String.valueOf(installment.cpm__Amount__c)
-            + '&source=' + SOURCE
+            + '&source=' + source
             + '&txCode=' + installment.Id
-            + '&userLogname=' + BRANCH_NUMBER
-            + '&pageName=' + SF_ENVIRONMENT_NAME
+            + '&userLogname=' + userLogname
+            + '&pageName=' + sfEnvironmentName
         );
         system.debug('###addMembership ' + req.getBody());
         res = http.send(req);
@@ -122,14 +122,14 @@ public class CareHelper {
     public static void updateContacts() {
         update updateContactList;
     }
-    /*private abstract class CareBaseRequest {
+    private abstract class CareBaseRequest {
         private String authKey {get;set;}
         private String pagename {get;set;}
         private String source {get;set;}
         private String branch {get;set;}
         private String userLogname {get;set;}
     }
-    private class AddUpdateContactRequest extends CareBaseRequest {
+    /*private class AddUpdateContactRequest extends CareBaseRequest {
         private String surname {get;set;}
         private String firstName {get;set;}
         private String contactNumber {get;set;}
