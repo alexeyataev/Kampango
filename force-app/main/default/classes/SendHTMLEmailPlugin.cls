@@ -16,128 +16,109 @@ public with sharing class SendHTMLEmailPlugin {
         List<String> bccEmails = requests[0].bccEmailAddresses;
         String orgWide = requests[0].orgWideEmailAddress;
         
+        List<Response> responseList = new List<Response>();
+        Messaging.SingleEmailMessage message = new  Messaging.SingleEmailMessage();
+        
+        Boolean hasRecipient = (targetObjId != null || bccEmails != null || ccEmails != null);
+        if (hasRecipient) {
+
+            setEmailCapacity(targetObjId, ccEmails, bccEmails);
+
+            message.setTargetObjectId(targetObjId);
+            message.setTemplateId(templateId);
+            message.setWhatId(mergeObjId);
+    
+      		// Set Priority
+            List<String> priorities = new List<String> {'Highest', 'High', 'Low', 'Lowest'};
+            if (priorities.contains(priority)) {
+                message.setEmailPriority(priority);
+            }
+            
+            // Save as activity?
+            if (saveAsActivity == null || !saveAsActivity) {
+                message.setSaveAsActivity(false);
+            }
+            
+            // Set sender address (cannot be used both)
+            if (orgWide != null) {
+                Id orgWideEmail = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: orgWide].Id;
+                message.setOrgWideEmailAddressId(orgWideEmail);
+            } else if (senderDisplay != null){
+                message.setSenderDisplayName(senderDisplay);
+            }
+            message.setReplyTo(senderAddress);
+            message.setCcAddresses(ccEmails);
+            message.setBccAddresses(bccEmails);
+
+            system.debug('Email invocations before send: ' + Limits.getEmailInvocations());   
+            system.debug(message);
+            
+            Response response;
+            String error;
+            // Send the email you have created.
+            try {
+                Messaging.SendEmailResult[] emailResponse = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { message });
+                System.debug('emailResponse is: ' + emailResponse);
+                //report back the results
+                response = createResponseAfterSending(emailResponse);
+            } catch (Exception e){
+                error = e.getMessage();
+                System.debug ('exception occured: ' + e.getMessage());
+                response = createErrorResponse(error);
+            }
+            responseList.add(response);
+
+            system.debug('Email invocations after send: ' + Limits.getEmailInvocations());
+        } else {
+            Response response = createErrorResponse('Recipient is not assigned');
+            responseList.add(response);
+        }
+
+        return responseList;
+    }
+
+    private static void setEmailCapacity(String targetObjId, List<String> ccEmails, List<String> bccEmails) {
         Integer emailCount = 0;
-        if(targetObjId != null) {
+        if (targetObjId != null) {
             emailCount++;
         }
         
-        if(ccEmails != null){
+        if (ccEmails != null){
             for(String s : ccEmails){
                 emailCount++;
             }
         }
-        if(bccEmails != null) {
+        if (bccEmails != null) {
             for(String s : bccEmails){
                 emailCount++;
             }
         }
         system.debug('Email count : ' + emailCount);
         Messaging.reserveSingleEmailCapacity(emailCount);
-        
-        List<Response> responseList = new List<Response>();
-        
-        Messaging.SingleEmailMessage message = new  Messaging.SingleEmailMessage();
-        if (targetObjId != null || bccEmails != null || ccEmails != null){
-            // Set the target object Id
-            if (targetObjId != null){
-                message.setTargetObjectId(targetObjId);
-            }
-            
-            
-            if (templateId != null) {
-                message.setTemplateId(templateId);
-            } else {
-                System.debug('incorrect input in template and target object');
-            }
-            message.setWhatId(mergeObjId);
-    
-      		// Set Priority            
-            if(priority!= null && (priority == 'Highest' || priority =='High' || priority =='Low' || priority == 'Lowest')){
-                message.setEmailPriority(priority);
-            }
-            
-            // Save as activity?
-            if(saveAsActivity != null && saveAsActivity && targetObjId != null) {
-                message.setSaveAsActivity(true);
-            } else {
-                message.setSaveAsActivity(false);
-            }
-            
-            // Set sender address (cannot be used both)
-            if(orgWide != null){
-                Id orgWideEmail = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: orgWide].Id;
-                message.SetorgWideEmailAddressId(orgWideEmail);
-            }else if(senderDisplay != null){
-                message.setSenderDisplayName(senderDisplay);
-            }
-            
-            
-            if(senderAddress != null){
-                message.setReplyTo(senderAddress);
-            }
-            
-            // Set cc email
-            if(ccEmails != null){
-                message.setCcAddresses(ccEmails);
-            }
-            
-            // Set bcc email
-            if(bccEmails != null){
-                message.setBccAddresses(bccEmails);
-            }
-            system.debug('Email invocations before send: ' + Limits.getEmailInvocations());   
-            system.debug(message);
-            
-            
-            Messaging.SendEmailResult[] emailResponse;
-            Boolean completed;
-            String error;
-            // Send the email you have created.
-            try {
-                emailResponse = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { message });
-                System.debug('emailResponse is: ' + emailResponse);
-                completed = true;
-            } catch (FlowEmailActionException e){
-                System.debug ('exception occured: ' + e.getMessage());
-                completed = false;
-                error = e.getMessage();
-            } catch (System.EmailException e){
-                System.debug ('exception occured: ' + e.getMessage());
-                completed = false;
-                error = e.getMessage();
-            }
-           
-            //report back the results
-            Response response = new Response();
-            if (Test.isRunningTest()) {
-                response.isSuccess = completed;
-            } else if (completed) {
-                if (emailResponse[0].isSuccess() != true) {
-                    Messaging.SendEmailError[] curErrors = emailResponse[0].getErrors();
-                    String errorReport = '';
-                    for(Messaging.SendEmailError curError : curErrors ) {
-                        errorReport = errorReport + curError.getMessage() + '/n';
-                    }
-                    response.errors = errorReport;
-                    response.isSuccess = false;
-                } else {
-                    response.isSuccess = true;
-                }
-            } else {
-                response.errors = error;
-                response.isSuccess = false;
-                }
-            responseList.add(response);
-        } else {
-            Response response = new Response();
-            response.isSuccess = false;
-            response.errors = 'Recipient is not assigned';
-            responseList.add(response);
-        }
+    }
 
-        
-        system.debug('Email invocations after send: ' + Limits.getEmailInvocations());
-        return responseList;
+    private static Response createResponseAfterSending(Messaging.SendEmailResult[] emailResponse) {
+        Boolean success = emailResponse[0].isSuccess();
+        Messaging.SendEmailError[] curErrors = emailResponse[0].getErrors();
+        Response response;
+        if (!success) {
+            String errorReport = '';
+            for (Messaging.SendEmailError curError : curErrors) {
+                errorReport = errorReport + curError.getMessage() + '/n';
+            }
+            response = createErrorResponse(errorReport);
+        } else {
+            response = new Response();
+            response.isSuccess = true;
+        }
+        return response;
+    }
+
+    private static Response createErrorResponse(String errors) {
+        Response response = new Response();
+        response.isSuccess = false;
+        response.errors = errors;
+        return response;
     }
     
     public class Request {
