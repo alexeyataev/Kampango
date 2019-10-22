@@ -14,6 +14,7 @@ Thank you for agreeing to facilitate the {!Course__c.Sub_Type__c} course reunion
 {!Course__c.Reunion_Venue_Name__c}
 {!Course__c.Reunion_Venue_Street_Address__c}
 {!Course__c.Reunion_Venue_Town__c}
+{!Course__c.Reunion_Venue_Postcode__c}
 
 Please click here to see this on a map
 {!Course__c.Reunion_Venue_Map_Url__c}

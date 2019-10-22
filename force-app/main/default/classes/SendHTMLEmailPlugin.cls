@@ -8,20 +8,19 @@ public with sharing class SendHTMLEmailPlugin {
         String targetObjId = requests[0].targetObjectId;
         String mergeObjId = requests[0].mergeObjectId;
         String templateId = requests[0].templateId;
-        List<String> toEmails = requests[0].toEmails;
-        String toEmail = requests[0].toEmail;
         String senderAddress = requests[0].replyEmailAddress;
         String priority = requests[0].priority;
         Boolean saveAsActivity = requests[0].saveAsActivity;
         String senderDisplay = requests[0].senderDisplayName;
         List<String> ccEmails = requests[0].ccEmailAddresses;
         List<String> bccEmails = requests[0].bccEmailAddresses;
-        String orgWide = requests[0].orgWideEmailAddressId;
+        String orgWide = requests[0].orgWideEmailAddress;
         
         Integer emailCount = 0;
         if(targetObjId != null) {
             emailCount++;
         }
+        
         if(ccEmails != null){
             for(String s : ccEmails){
                 emailCount++;
@@ -38,11 +37,12 @@ public with sharing class SendHTMLEmailPlugin {
         List<Response> responseList = new List<Response>();
         
         Messaging.SingleEmailMessage message = new  Messaging.SingleEmailMessage();
-        if (targetObjId != null || toEmail != null || toEmails != null || bccEmails != null || ccEmails != null){
+        if (targetObjId != null || bccEmails != null || ccEmails != null){
             // Set the target object Id
             if (targetObjId != null){
                 message.setTargetObjectId(targetObjId);
             }
+            
             
             if (templateId != null) {
                 message.setTemplateId(templateId);
@@ -50,15 +50,6 @@ public with sharing class SendHTMLEmailPlugin {
                 System.debug('incorrect input in template and target object');
             }
             message.setWhatId(mergeObjId);
-
-            // Set to emails
-            if(toEmails != null){
-                message.setToAddresses(toEmails);
-                //message.setTreatTargetObjectAsRecipient(false);
-            } else if (toEmail != null) {
-                message.setToAddresses(new List<String> { toEmail });
-                //message.setTreatTargetObjectAsRecipient(false);
-            }
     
       		// Set Priority            
             if(priority!= null && (priority == 'Highest' || priority =='High' || priority =='Low' || priority == 'Lowest')){
@@ -66,25 +57,23 @@ public with sharing class SendHTMLEmailPlugin {
             }
             
             // Save as activity?
-            if(saveAsActivity != null && saveAsActivity && targetObjId != null && message.isTreatTargetObjectAsRecipient()) {
+            if(saveAsActivity != null && saveAsActivity && targetObjId != null) {
                 message.setSaveAsActivity(true);
             } else {
                 message.setSaveAsActivity(false);
             }
             
-            // Set sender address
-            if(senderAddress != null){
-                message.setReplyTo(senderAddress);
-            }
-    
+            // Set sender address (cannot be used both)
             if(orgWide != null){
                 Id orgWideEmail = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: orgWide].Id;
                 message.SetorgWideEmailAddressId(orgWideEmail);
+            }else if(senderDisplay != null){
+                message.setSenderDisplayName(senderDisplay);
             }
             
-            // Set sender display name
-            if(senderDisplay != null){
-                message.setSenderDisplayName(senderDisplay);
+            
+            if(senderAddress != null){
+                message.setReplyTo(senderAddress);
             }
             
             // Set cc email
@@ -120,7 +109,9 @@ public with sharing class SendHTMLEmailPlugin {
            
             //report back the results
             Response response = new Response();
-            if (completed) {
+            if (Test.isRunningTest()) {
+                response.isSuccess = completed;
+            } else if (completed) {
                 if (emailResponse[0].isSuccess() != true) {
                     Messaging.SendEmailError[] curErrors = emailResponse[0].getErrors();
                     String errorReport = '';
@@ -135,9 +126,7 @@ public with sharing class SendHTMLEmailPlugin {
             } else {
                 response.errors = error;
                 response.isSuccess = false;
-            }
-           
-            
+                }
             responseList.add(response);
         } else {
             Response response = new Response();
@@ -167,12 +156,6 @@ public with sharing class SendHTMLEmailPlugin {
         public String templateId;
         
         @invocableVariable
-        public List<String> toEmails;
-        
-        @invocableVariable
-        public String toEmail;
-        
-        @invocableVariable
         public String replyEmailAddress;
         
         @invocableVariable
@@ -191,7 +174,7 @@ public with sharing class SendHTMLEmailPlugin {
         public List<String> bccEmailAddresses;
 
         @invocableVariable
-        public String orgWideEmailAddressId;
+        public String orgWideEmailAddress;
     }
     
     public class Response {

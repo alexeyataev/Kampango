@@ -14,27 +14,33 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>practitionerTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>session.Practitioner__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>replyEmailAddress</name>
             <value>
                 <elementReference>course.Capacity_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>course.Capacity_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>practitionerTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>session.Practitioner__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -297,6 +303,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>practitioner.Phone</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>course.Reunion_Venue_Postcode__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>venue.Postcode__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -717,6 +730,7 @@
         <queriedFields>Name</queriedFields>
         <queriedFields>Last_Name__c</queriedFields>
         <queriedFields>Last_Name_Partner__c</queriedFields>
+        <queriedFields>Partner_Contact__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Course</name>
@@ -742,6 +756,7 @@
         <queriedFields>Id</queriedFields>
         <queriedFields>Capacity_PSA_Email__c</queriedFields>
         <queriedFields>Enquiries_PSA_Email__c</queriedFields>
+        <queriedFields>Branch__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_practitioner</name>
@@ -772,12 +787,15 @@
     <recordLookups>
         <name>Get_practitioner_template</name>
         <label>Get practitioner template</label>
-        <locationX>1162</locationX>
-        <locationY>823</locationY>
+        <locationX>1163</locationX>
+        <locationY>658</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Send_email_to_practitioner</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get_record</targetReference>
+        </faultConnector>
         <filters>
             <field>DeveloperName</field>
             <operator>EqualTo</operator>
@@ -850,6 +868,7 @@
         <queriedFields>Street_Address__c</queriedFields>
         <queriedFields>Name</queriedFields>
         <queriedFields>Map_Url__c</queriedFields>
+        <queriedFields>Postcode__c</queriedFields>
     </recordLookups>
     <recordUpdates>
         <name>Update_Course</name>
@@ -930,9 +949,9 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <name>senderEmail</name>
+            <name>course</name>
             <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+                <elementReference>course</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

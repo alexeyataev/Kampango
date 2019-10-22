@@ -3,26 +3,26 @@
     <actionCalls>
         <name>Send_to_public</name>
         <label>Send to public</label>
-        <locationX>755</locationX>
-        <locationY>197</locationY>
+        <locationX>894</locationX>
+        <locationY>164</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Loop_through_bookings</targetReference>
+            <targetReference>Check_partner_exists</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>targetObjectId</name>
+            <name>replyEmailAddress</name>
             <value>
-                <elementReference>booking.Primary_Contact__c</elementReference>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>mergeObjectId</name>
+            <name>orgWideEmailAddress</name>
             <value>
-                <elementReference>sessionId</elementReference>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -32,17 +32,67 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>sessionId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>booking.Primary_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_to_public_partner</name>
+        <label>Send to public partner</label>
+        <locationX>727</locationX>
+        <locationY>345</locationY>
+        <actionName>SendHTMLEmailPlugin</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Loop_through_bookings</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_email_alert</targetReference>
+        </faultConnector>
+        <inputParameters>
             <name>replyEmailAddress</name>
             <value>
-                <elementReference>senderEmail</elementReference>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>publicTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>sessionId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>booking.Partner_Contact__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
     <assignments>
         <name>Return_error_on_email_alert</name>
         <label>Return error</label>
-        <locationX>1019</locationX>
-        <locationY>368</locationY>
+        <locationX>1156</locationX>
+        <locationY>266</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -54,7 +104,7 @@
     <assignments>
         <name>Return_part_success</name>
         <label>Return part success</label>
-        <locationX>1018</locationX>
+        <locationX>1155</locationX>
         <locationY>50</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
@@ -67,8 +117,8 @@
     <assignments>
         <name>Return_success</name>
         <label>Return success</label>
-        <locationX>555</locationX>
-        <locationY>372</locationY>
+        <locationX>684</locationX>
+        <locationY>521</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -87,7 +137,7 @@
     <decisions>
         <name>Check_input_booking</name>
         <label>Check input booking</label>
-        <locationX>501</locationX>
+        <locationX>638</locationX>
         <locationY>60</locationY>
         <defaultConnector>
             <targetReference>Return_part_success</targetReference>
@@ -109,13 +159,39 @@
             <label>Is email not blank</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Check_partner_exists</name>
+        <label>Check partner exists</label>
+        <locationX>719</locationX>
+        <locationY>174</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_bookings</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_partner_contact_exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>booking.Partner_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_to_public_partner</targetReference>
+            </connector>
+            <label>Is partner contact exists</label>
+        </rules>
+    </decisions>
+    <description>Added partner email</description>
     <interviewLabel>Reunion Execute Sending Private Subflow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Public Subflow</label>
     <loops>
         <name>Loop_through_bookings</name>
         <label>Loop through bookings</label>
-        <locationX>323</locationX>
-        <locationY>204</locationY>
+        <locationX>454</locationX>
+        <locationY>345</locationY>
         <assignNextValueToReference>booking</assignNextValueToReference>
         <collectionReference>bookingList</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -142,8 +218,8 @@
     <recordLookups>
         <name>Get_public_template</name>
         <label>Get public template</label>
-        <locationX>189</locationX>
-        <locationY>205</locationY>
+        <locationX>183</locationX>
+        <locationY>345</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_through_bookings</targetReference>
@@ -181,19 +257,20 @@
         <objectType>Booking__c</objectType>
     </variables>
     <variables>
+        <name>course</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Course__c</objectType>
+    </variables>
+    <variables>
         <name>publicTemplate</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>EmailTemplate</objectType>
-    </variables>
-    <variables>
-        <name>senderEmail</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>sessionId</name>

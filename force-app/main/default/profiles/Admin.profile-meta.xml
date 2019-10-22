@@ -553,6 +553,43 @@
         <readable>true</readable>
     </fieldPermissions>
 
+    <!-- To remove -->
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Reunion_Capacity_PSA_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Reunion_Capacity_PSA_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Reunion_Capacity_PSA_Phone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Reunion_Enquiries_PSA_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Reunion_Enquiries_PSA_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Reunion_Enquiries_PSA_Phone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Reunion_End__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Reunion_Session_Day_Of_Week__c</field>
@@ -568,31 +605,7 @@
         <field>Course__c.Reunion_Start__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_End__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Venue_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Venue_Town__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Venue_Street_Address__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Venue_Map_Url__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    <!-- To remove end -->
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Reunion_Practitioner_Name__c</field>
@@ -610,32 +623,32 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.Reunion_Capacity_PSA_Name__c</field>
+        <field>Course__c.Reunion_Venue_Map_Url__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.Reunion_Capacity_PSA_Email__c</field>
+        <field>Course__c.Reunion_Venue_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.Reunion_Capacity_PSA_Phone__c</field>
+        <field>Course__c.Reunion_Venue_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.Reunion_Enquiries_PSA_Name__c</field>
+        <field>Course__c.Reunion_Venue_Postcode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.Reunion_Enquiries_PSA_Email__c</field>
+        <field>Course__c.Reunion_Venue_Street_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.Reunion_Enquiries_PSA_Phone__c</field>
+        <field>Course__c.Reunion_Venue_Town__c</field>
         <readable>true</readable>
     </fieldPermissions>
     

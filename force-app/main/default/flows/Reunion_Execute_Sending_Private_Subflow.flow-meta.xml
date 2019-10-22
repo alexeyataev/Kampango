@@ -3,16 +3,28 @@
     <actionCalls>
         <name>Send_to_client</name>
         <label>Send to client</label>
-        <locationX>386</locationX>
-        <locationY>1035</locationY>
+        <locationX>9</locationX>
+        <locationY>1559</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Loop_through_bookings</targetReference>
+            <targetReference>Check_client_partner_exists</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
         <inputParameters>
             <name>templateId</name>
             <value>
@@ -20,29 +32,23 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>booking.Primary_Contact__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>replyEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>booking.Primary_Contact__c</elementReference>
+            </value>
+        </inputParameters>
     </actionCalls>
     <actionCalls>
-        <name>Send_to_host</name>
-        <label>Send to host</label>
-        <locationX>501</locationX>
-        <locationY>890</locationY>
+        <name>Send_to_client_partner</name>
+        <label>Send to client partner</label>
+        <locationX>265</locationX>
+        <locationY>1231</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -52,21 +58,21 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>hostTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>booking.Primary_Contact__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>replyEmailAddress</name>
             <value>
                 <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>clientTemplate.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -75,12 +81,106 @@
                 <elementReference>session.Id</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>booking.Partner_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_to_host</name>
+        <label>Send to host</label>
+        <locationX>427</locationX>
+        <locationY>1567</locationY>
+        <actionName>SendHTMLEmailPlugin</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Check_host_partner_exists</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_email_alert</targetReference>
+        </faultConnector>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>hostTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>session.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>booking.Primary_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_to_host_partner</name>
+        <label>Send to host partner</label>
+        <locationX>623</locationX>
+        <locationY>1213</locationY>
+        <actionName>SendHTMLEmailPlugin</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Loop_through_bookings</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_email_alert</targetReference>
+        </faultConnector>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>hostTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>session.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>booking.Partner_Contact__c</elementReference>
+            </value>
+        </inputParameters>
     </actionCalls>
     <assignments>
         <name>Return_error_on_email_alert</name>
         <label>Return error</label>
-        <locationX>883</locationX>
-        <locationY>960</locationY>
+        <locationX>1007</locationX>
+        <locationY>1397</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -92,8 +192,8 @@
     <assignments>
         <name>Return_success</name>
         <label>Return success</label>
-        <locationX>1089</locationX>
-        <locationY>740</locationY>
+        <locationX>941</locationX>
+        <locationY>1019</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -105,8 +205,8 @@
     <assignments>
         <name>Set_host_names</name>
         <label>Set host names</label>
-        <locationX>236</locationX>
-        <locationY>172</locationY>
+        <locationX>308</locationX>
+        <locationY>171</locationY>
         <assignmentItems>
             <assignToReference>partner_firstname</assignToReference>
             <operator>Assign</operator>
@@ -142,7 +242,7 @@
     <assignments>
         <name>Set_hostnames_for_output</name>
         <label>Set hostnames for output</label>
-        <locationX>236</locationX>
+        <locationX>308</locationX>
         <locationY>50</locationY>
         <assignmentItems>
             <assignToReference>course.Reunion_Host_Contact_Names__c</assignToReference>
@@ -172,8 +272,8 @@
     <decisions>
         <name>Check_are_not_blank_names</name>
         <label>Check are not blank names</label>
-        <locationX>226</locationX>
-        <locationY>325</locationY>
+        <locationX>298</locationX>
+        <locationY>324</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Names_are_not_blank</name>
@@ -199,10 +299,60 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_client_partner_exists</name>
+        <label>Check client partner exists</label>
+        <locationX>269</locationX>
+        <locationY>1677</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_bookings</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_client_partner_exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>booking.Partner_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_to_client_partner</targetReference>
+            </connector>
+            <label>Is client partner exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_host_partner_exists</name>
+        <label>Check host partner exists</label>
+        <locationX>603</locationX>
+        <locationY>1675</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_bookings</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_host_partner_exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>booking.Partner_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_to_host_partner</targetReference>
+            </connector>
+            <label>Is host partner exists</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_hosts_are_not_blank</name>
         <label>Check hosts are not blank</label>
         <locationX>668</locationX>
-        <locationY>235</locationY>
+        <locationY>321</locationY>
         <defaultConnector>
             <targetReference>Return_error_on_email_alert</targetReference>
         </defaultConnector>
@@ -226,8 +376,8 @@
     <decisions>
         <name>Check_input_booking</name>
         <label>Check input booking</label>
-        <locationX>225</locationX>
-        <locationY>953</locationY>
+        <locationX>175</locationX>
+        <locationY>1033</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Is_email_not_blank</name>
@@ -248,8 +398,8 @@
     <decisions>
         <name>Check_is_host</name>
         <label>Check is host</label>
-        <locationX>388</locationX>
-        <locationY>1398</locationY>
+        <locationX>173</locationX>
+        <locationY>1478</locationY>
         <defaultConnector>
             <targetReference>Send_to_client</targetReference>
         </defaultConnector>
@@ -273,8 +423,8 @@
     <decisions>
         <name>Check_is_host_0</name>
         <label>Check is host</label>
-        <locationX>406</locationX>
-        <locationY>436</locationY>
+        <locationX>520</locationX>
+        <locationY>406</locationY>
         <defaultConnector>
             <targetReference>Loop_to_set_host_names</targetReference>
         </defaultConnector>
@@ -295,6 +445,7 @@
             <label>Is host?</label>
         </rules>
     </decisions>
+    <description>Added partner email</description>
     <formulas>
         <name>host_names</name>
         <dataType>String</dataType>
@@ -308,8 +459,8 @@
     <loops>
         <name>Loop_through_bookings</name>
         <label>Loop through bookings</label>
-        <locationX>240</locationX>
-        <locationY>765</locationY>
+        <locationX>409</locationX>
+        <locationY>1027</locationY>
         <assignNextValueToReference>booking</assignNextValueToReference>
         <collectionReference>bookingList</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -323,8 +474,8 @@
     <loops>
         <name>Loop_to_set_host_names</name>
         <label>Loop to set host names</label>
-        <locationX>234</locationX>
-        <locationY>488</locationY>
+        <locationX>309</locationX>
+        <locationY>468</locationY>
         <assignNextValueToReference>booking</assignNextValueToReference>
         <collectionReference>bookingList</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -348,8 +499,8 @@
     <recordLookups>
         <name>Get_client_template</name>
         <label>Get client template</label>
-        <locationX>119</locationX>
-        <locationY>765</locationY>
+        <locationX>345</locationX>
+        <locationY>717</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_through_bookings</targetReference>
@@ -371,8 +522,8 @@
     <recordLookups>
         <name>Get_host_template</name>
         <label>Get host template</label>
-        <locationX>118</locationX>
-        <locationY>588</locationY>
+        <locationX>480</locationX>
+        <locationY>717</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_client_template</targetReference>
@@ -394,8 +545,8 @@
     <recordLookups>
         <name>Get_VenueContact</name>
         <label>Get VenueContact</label>
-        <locationX>43</locationX>
-        <locationY>463</locationY>
+        <locationX>116</locationX>
+        <locationY>438</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_to_set_host_names</targetReference>
@@ -422,8 +573,8 @@
     <recordUpdates>
         <name>Update_course</name>
         <label>Update course</label>
-        <locationX>576</locationX>
-        <locationY>588</locationY>
+        <locationX>639</locationX>
+        <locationY>716</locationY>
         <connector>
             <targetReference>Get_host_template</targetReference>
         </connector>
