@@ -35,15 +35,23 @@
             <type>SalesforceObject</type>
         </navigationMenuItem>
         <navigationMenuItem>
-            <defaultListViewId>All</defaultListViewId>
-            <label>Venues</label>
+            <label>Course Assignments</label>
             <position>2</position>
             <publiclyAvailable>false</publiclyAvailable>
-            <target>Venue__c</target>
+            <target>Course_Assignment__c</target>
+            <type>SalesforceObject</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
+            <defaultListViewId>AllReports</defaultListViewId>
+            <label>Reports</label>
+            <position>3</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>Report</target>
             <type>SalesforceObject</type>
         </navigationMenuItem>
     </navigationLinkSet>
     <networkMemberGroups>
+        <permissionSet>Practitioner_Management</permissionSet>
         <profile>Admin</profile>
         <profile>Practitioner</profile>
     </networkMemberGroups>
@@ -56,9 +64,9 @@
     </networkPageOverrides>
     <picassoSite>Practitioners1</picassoSite>
     <selfRegistration>false</selfRegistration>
-    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <sendWelcomeEmail>false</sendWelcomeEmail>
     <site>Practitioners</site>
-    <status>UnderConstruction</status>
+    <status>Live</status>
     <tabs>
         <defaultTab>home</defaultTab>
         <standardTab>Chatter</standardTab>

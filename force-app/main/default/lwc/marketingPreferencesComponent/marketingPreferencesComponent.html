@@ -1,0 +1,29 @@
+<template>
+    <div class="container mt-5">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12 slds-medium-size_7-of-12 slds-small-size_1-of-1">
+                <div class="nct-header-text">
+                    Communication preferences
+                </div>
+                <div class="nct-page-text">
+                    We'd like to keep in touch with you about our services, support, events, campaigns and fundraising. We'll only contact you in the ways you want, and we'll <a class="nct-link-text" href="https://www.nct.org.uk/privacy" target="_blank">keep your data safe</a>.
+                </div>
+                <div class="nct-page-text">
+                    Your current preferences are:
+                </div>
+                <div>
+                    <lightning if:true={optionsLoaded}>
+                        <lightning-checkbox-group name="marketingPreferences"
+                            options={MARKETING_OPTIONS}
+                            value={marketingValues}
+                            onchange={handleChange}>
+                        </lightning-checkbox-group>
+                    </lightning>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-12 slds-medium-size_5-of-12 slds-small-size_1-of-1">
+
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
+        <apexClass>SESSION_InvalidateCAs_TDTM</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SESSION_RevertCourseToDraft_TDTM</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SESSION_RevertToProvisional_TDTM</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -10,8 +18,8 @@
     </classAccesses>
     <custom>false</custom>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Account_Number__c</field>
+        <editable>true</editable>
+        <field>Account.AccountNumber</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -101,17 +109,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Booking__c.Birth_Date__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Booking__c.Birth_Due_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Booking__c.Branch__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.Cancellation_Reason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -151,6 +159,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.Enquiries_PSA_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Enquiries_PSA_First_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -170,6 +183,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Final_Fee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Booking__c.First_Baby__c</field>
         <readable>true</readable>
@@ -182,6 +200,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.First_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Post__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.SMS__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Telephone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -201,7 +239,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Booking__c.Info_For_Practitioner__c</field>
+        <field>Booking__c.Info_for_Practitioner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -245,6 +283,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.PSA_Office__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Booking__c.Partner_Contact__c</field>
         <readable>true</readable>
@@ -276,6 +319,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.Suggested_Cancellation_Fee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Total_Open_Bookings__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -286,17 +334,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.Current_Fee_Band_Effective_From__c</field>
+        <field>Booking__c.Under_18__c</field>
         <readable>true</readable>
-     </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.Email</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Validation_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.Fee_Band__c</field>
+        <field>Branch_Weighting__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Email</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -346,12 +399,57 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contact.Schedule_of_Sessions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.Total_Open_Bookings__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.npe01__PreferredPhone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course_Assignment__c.Course_Start_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course_Assignment__c.Number_of_Places__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course_Assignment__c.Number_of_Sessions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course_Assignment__c.Practitioner_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course_Assignment__c.PSA_Area__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course_Assignment__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course_Assignment__c.Total_Fees__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course_Assignment__c.Total_Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -362,11 +460,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Additional_Offer_Information__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Bracket_Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -406,12 +499,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Course_Duration__c</field>
+        <readable>true</readable>
+    </fieldPermissions> 
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Fee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Final_Session_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -425,13 +528,13 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Main_Practitioner_Name__c</field>
+        <editable>true</editable>
+        <field>Course__c.Main_Venue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Main_Venue__c</field>
+        <editable>false</editable>
+        <field>Course__c.Number_of_Places__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -442,6 +545,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Overbooking_allowed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Practitioner_Fee_Discount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Practitioner_Fee_Uplift__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -506,12 +619,42 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Individual.Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Individual.Post__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Individual.SMS__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Individual.Telephone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Licence_To_Practice__c.End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Licence_To_Practice__c.Practitioner_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Practitioner_Band__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Practitioner_Fee_Rate__c.End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -560,6 +703,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Course_Assignment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Day_of_Week__c</field>
         <readable>true</readable>
@@ -570,8 +718,28 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Hourly_Rate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.PSA_Area__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Practitioner_Chosen__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Practitioner_Fees__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Practitioner_Fee_Rate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -581,7 +749,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Practitoner_Name__c</field>
+        <field>Session__c.Practitioner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -726,6 +894,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Venue__c.Location__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Venue__c.Lunch_Available_Locally__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -819,6 +992,136 @@
         <field>Venue__c.When_is_Venue_Available__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Bank_Payment__c.Payment_Reference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.AccountKey__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.ContactKey__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.Declaration_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.Declaration_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.EndDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.GiftAid_Declaration_Key__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.Owner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.Source_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Acquisition_Method__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Date_Made__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__First_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Firstname__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Housename_or_number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Last_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Lastname__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Overseas__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Postalcode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Reason_for_Deactivation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Start_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>gaid__Gift_Aid_Declaration__c.gaid__Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Branch Layout</layout>
         <recordType>Account.Branch</recordType>
@@ -832,7 +1135,10 @@
         <recordType>Account.Organization</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Booking__c-Booking Layout</layout>
+        <layout>Booking__c-Admin Booking Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Branch_Weighting__c-Branch Weighting Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-Contact Layout</layout>
@@ -843,6 +1149,9 @@
         <recordType>Contact.Practitioner</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Course_Assignment__c-Course Assignment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Course__c-Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -850,6 +1159,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Licence_To_Practice__c-Licence To Practice Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Practitioner_Band__c-Practitioner Band Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</layout>
@@ -896,6 +1208,24 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Branch_Weighting__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Course_Assignment__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Course__c</object>
         <viewAllRecords>true</viewAllRecords>
@@ -909,6 +1239,15 @@
         <object>Estimated_Costs__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+        <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Individual</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -916,6 +1255,24 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Licence_To_Practice__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Branch_Weighting__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Practitioner_Fee_Rate__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -981,6 +1338,15 @@
         <object>Venue__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>gaid__Gift_Aid_Declaration__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Branch</recordType>
@@ -1016,7 +1382,23 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>standard-Individual</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Course_Assignment__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Practitioner_Fee_Rate__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Venue__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>npsp__Trigger_Handler__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>

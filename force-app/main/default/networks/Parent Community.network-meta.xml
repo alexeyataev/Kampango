@@ -37,7 +37,7 @@
     </networkPageOverrides>
     <picassoSite>Parent_Community1</picassoSite>
     <selfRegistration>false</selfRegistration>
-    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <sendWelcomeEmail>false</sendWelcomeEmail>
     <site>Parent_Community</site>
     <status>Live</status>
     <tabs>

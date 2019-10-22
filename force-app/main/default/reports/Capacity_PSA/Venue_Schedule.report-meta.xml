@@ -4,6 +4,9 @@
         <field>Venue__c.Sessions__r$Date__c</field>
     </columns>
     <columns>
+        <field>Venue__c.Sessions__r$Status__c</field>
+    </columns>
+    <columns>
         <field>Venue__c.Sessions__r$Day_of_Week__c</field>
     </columns>
     <columns>
@@ -16,18 +19,23 @@
         <field>Venue__c.Sessions__r$Room__c</field>
     </columns>
     <columns>
-        <field>Venue__c.Sessions__r$Practitoner_Name__c</field>
+        <field>Venue__c.Sessions__r$Practitioner__c</field>
     </columns>
     <columns>
         <field>Venue__c.Sessions__r$Course__c</field>
     </columns>
     <filter>
-        <booleanFilter>1</booleanFilter>
         <criteriaItems>
             <column>Venue__c$Id</column>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value/>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Venue__c.Sessions__r$Course__c.Status__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Cancelling,Cancelled</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
@@ -47,10 +55,10 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
+    <sortColumn>Venue__c.Sessions__r$Date__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Venue__c.Sessions__r$Date__c</dateColumn>
-        <endDate>2019-12-10</endDate>
-        <interval>INTERVAL_CUSTOM</interval>
-        <startDate>2019-01-01</startDate>
+        <interval>INTERVAL_NEXT120</interval>
     </timeFrameFilter>
 </Report>

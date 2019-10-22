@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="marketingPreferencesComponent">
+    <apiVersion>47.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+      <target>lightning__FlowScreen</target>
+      <target>lightningCommunity__Page</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="individualId" type="String"/>
+            <property name="email" type="Boolean"/>
+            <property name="sms" type="Boolean"/>
+            <property name="post" type="Boolean"/>
+            <property name="phone" type="Boolean"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

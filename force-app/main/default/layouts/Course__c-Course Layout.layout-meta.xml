@@ -37,10 +37,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Bracket_Course__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Hide_From_Course_Finder__c</field>
             </layoutItems>
         </layoutColumns>
@@ -87,8 +83,8 @@
         <label>Practitioner and Venue Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Main_Practitioner_Name__c</field>
+                <behavior>Required</behavior>
+                <field>Main_Practitioner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -99,6 +95,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Main_Venue__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Practitioner_Fee_Discount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Practitioner_Fee_Uplift__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -148,7 +152,7 @@
         <label>Booking Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Number_of_places__c</field>
             </layoutItems>
             <layoutItems>
@@ -286,16 +290,18 @@
         <fields>End__c</fields>
         <fields>Type__c</fields>
         <fields>Specific_Attendee_Type__c</fields>
-        <fields>Practitoner_Name__c</fields>
+        <fields>Practitioner__c</fields>
         <fields>Venue__c</fields>
+        <fields>Room__c</fields>
         <relatedList>Session__c.Course__c</relatedList>
+        <sortField>Date__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Status__c</fields>
         <fields>Last_Name__c</fields>
         <fields>First_Name__c</fields>
-        <fields>Birth_Date__c</fields>
         <fields>Birth_Due_Date__c</fields>
         <relatedList>Booking__c.Course__c</relatedList>
         <sortField>Status__c</sortField>
@@ -309,6 +315,14 @@
         <fields>Type__c</fields>
         <fields>Amount__c</fields>
         <relatedList>Estimated_Costs__c.Course__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Practitioner_Name__c</fields>
+        <fields>Status__c</fields>
+        <relatedList>Course_Assignment__c.Course__c</relatedList>
+        <sortField>NAME</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

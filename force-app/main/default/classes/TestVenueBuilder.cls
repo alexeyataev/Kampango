@@ -5,7 +5,7 @@ public with sharing class TestVenueBuilder {
     private String streetAddress = '221B Baker Street';
     private String town = 'London';
     private String postcode = 'NW1 6XE';
-    private String type = 'Commercial';
+    private String type = 'Commercial/Community';
     private String subtype = 'Primary';
     private Boolean insertRecord = false;
 
@@ -59,12 +59,12 @@ public with sharing class TestVenueBuilder {
     public Venue__c build(){
 
         Venue__c testVenue = new Venue__c(
-            Name = this.Name,
-            Street_Address__c = this.StreetAddress,
-            Postcode__c = this.Postcode,
-            Type__c = this.Type,
-            Town__c = this.Town,
-            Subtype__c = this.Subtype
+            Name = this.name,
+            Street_Address__c = this.streetAddress,
+            Postcode__c = this.postcode,
+            Type__c = this.type,
+            Town__c = this.town,
+            Subtype__c = this.subtype
         );
 
         if(this.insertRecord){
