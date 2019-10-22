@@ -30,6 +30,15 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Course_Assignment_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Course_Assignment__c</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Room_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
@@ -47,7 +56,6 @@
     </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
-        <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
     <formFactors>Large</formFactors>
@@ -66,14 +74,10 @@
     <tabs>Booking__c</tabs>
     <tabs>Course__c</tabs>
     <tabs>standard-Contact</tabs>
+    <tabs>standard-Individual</tabs>
     <tabs>standard-Account</tabs>
     <tabs>Venue__c</tabs>
     <tabs>standard-report</tabs>
-    <tabs>ITS__c</tabs>
-    <tabs>agf__QA_Test_Case__c</tabs>
-    <tabs>agf__QA_Test_Plan__c</tabs>
-    <tabs>Test_Steps__c</tabs>
-    <tabs>agf__QA_Test_Execution__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>NCT_Courses_UtilityBar</utilityBar>
 </CustomApplication>

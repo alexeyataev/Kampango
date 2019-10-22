@@ -1,13 +1,15 @@
 @isTest
 public with sharing class TestCourseBuilder {
     private String type = 'Antenatal';
-    private String subType  ='One to One';
+    private String subType  ='NCT Essentials Antenatal';
     private Integer fee = 100;
     private Integer numberOfPlaces = 1;
     private String status = 'Draft';
     private Account account;
     private Licence_To_Practice__c licenceToPractice;
     private Boolean insertRecord = false;
+    private Venue__c mainVenue;
+    private Contact practitioner;
 
     public TestCourseBuilder withType(String type)
     {
@@ -42,9 +44,19 @@ public with sharing class TestCourseBuilder {
         this.account = account;
         return this;
     }
+    public TestCourseBuilder withMainVenue(Venue__c mainVenue)
+    {
+        this.mainVenue = mainVenue;
+        return this;
+    }
     public TestCourseBuilder withLicenceToPractice(Licence_To_Practice__c licenceToPractice)
     {
         this.licenceToPractice = licenceToPractice;
+        return this;
+    }
+    public TestCourseBuilder withPractitioner(Contact practitioner)
+    {
+        this.practitioner = practitioner;
         return this;
     }
     public TestCourseBuilder insertRecord(Boolean insertRecord)
@@ -62,6 +74,7 @@ public with sharing class TestCourseBuilder {
             Status__c = this.status,
             Number_of_places__c = this.numberOfPlaces,
             Branch__c = this.account.Id,
+            Main_Practitioner__c = this.practitioner.Id,
             Main_Practitioner_Licence__c = this.licenceToPractice.Id
         );
 

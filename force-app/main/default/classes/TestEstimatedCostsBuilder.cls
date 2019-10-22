@@ -1,3 +1,4 @@
+@isTest
 public with sharing class TestEstimatedCostsBuilder {
 
     private String type = 'Travel';

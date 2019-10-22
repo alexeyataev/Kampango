@@ -107,7 +107,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Venue terms</label>
+        <label>Venue Terms</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -165,6 +165,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Key_Holders__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Location__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -236,7 +240,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Venue transport information</label>
+        <label>Venue Transport Information</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -365,6 +369,11 @@
             <actionType>StandardButton</actionType>
             <sortOrder>14</sortOrder>
         </platformActionListItems>
+	<platformActionListItems>
+            <actionName>FeedItem.ContentNote</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>15</sortOrder>
+        </platformActionListItems>
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
@@ -391,14 +400,14 @@
         <fields>Start__c</fields>
         <fields>End__c</fields>
         <fields>Room__c</fields>
-        <fields>Practitoner_Name__c</fields>
+        <fields>Practitioner__c</fields>
         <fields>Course__c</fields>
         <relatedList>Session__c.Venue__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Sub_Type__c</fields>
-        <fields>Main_Practitioner_Name__c</fields>
+        <fields>Main_Practitioner__c</fields>
         <fields>Start_Date__c</fields>
         <fields>End_Date__c</fields>
         <relatedList>Course__c.Main_Venue__c</relatedList>

@@ -152,7 +152,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <label>Course</label>
     <nameField>
         <displayFormat>C{000000}</displayFormat>
@@ -168,7 +168,7 @@
         <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Target_Group__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Main_Practitioner_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Main_Practitioner__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Confirmed_Places__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Remaining_Places__c</searchResultsAdditionalFields>

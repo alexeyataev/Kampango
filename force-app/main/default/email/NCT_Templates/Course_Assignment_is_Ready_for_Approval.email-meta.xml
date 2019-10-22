@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Course Assignment is Ready for Approval</name>
+    <style>none</style>
+    <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
+    <textOnly>Dear {!Course_Assignment__c.OwnerFirstName}, 
+
+NCT has sent you this email so that you securely sign your assignment for this course online.
+
+Please log in to the Practitioner community to review and sign this assignment.
+
+The following comments (if any) were included in the approval request: &#39;{!ApprovalRequest.Comments}&#39;
+
+Kind Regards, 
+
+{!Course_Assignment__c.LastModifiedBy}
+Capacity PSA - {!Course_Assignment__c.PSA_Area__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

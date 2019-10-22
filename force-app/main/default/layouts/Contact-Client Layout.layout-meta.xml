@@ -10,6 +10,7 @@
     <excludeButtons>EnablePrmSuperUser</excludeButtons>
     <excludeButtons>EnableSelfService</excludeButtons>
     <excludeButtons>RequestUpdate</excludeButtons>
+    <excludeButtons>RequestUseSfdc</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <excludeButtons>ViewPartnerPortalUser</excludeButtons>
@@ -36,6 +37,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Total_Open_Bookings__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IndividualId</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -263,6 +268,13 @@
             </layoutItem>
         </relatedContentItems>
     </relatedContent>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>gaid__Type__c</fields>
+        <fields>gaid__Date_Made__c</fields>
+        <fields>gaid__Active__c</fields>
+        <relatedList>gaid__Gift_Aid_Declaration__c.gaid__Contact__c</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>npe4__Relationship__c.npe4__Contact__c</relatedList>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Check_Bank_Account_Name</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+NOT(ISBLANK(Zumzum__Bank_Account_Name__c)),
+NOT(REGEX(Zumzum__Bank_Account_Name__c, &quot;^[A-Z0-9-/.&amp; ]{6,18}+$&quot;))
+)</errorConditionFormula>
+    <errorDisplayField>Zumzum__Bank_Account_Name__c</errorDisplayField>
+    <errorMessage>Bank Account Name must be from 6 to 18 characters and only contain uppercase letters, numbers, spaces, and the symbols - , . , &amp; and /.</errorMessage>
+</ValidationRule>
