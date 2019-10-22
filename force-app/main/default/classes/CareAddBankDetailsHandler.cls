@@ -1,4 +1,4 @@
-@SuppressWarnings('PMD.MethodNamingConventions')
+@SuppressWarnings('PMD.ApexCRUDViolation')
 public with sharing class CareAddBankDetailsHandler {
     @InvocableMethod
     public static List<MembershipResultObject> addBankDetails(List<cpm__Installment__c> installment) {
