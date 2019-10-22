@@ -1228,6 +1228,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Session__c.Session_Info_For_Flow__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Session__c.Specific_Attendee_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1444,6 +1449,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Venue__c.Venue_Website__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Venue__c.Venue_Info_For_Flow__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

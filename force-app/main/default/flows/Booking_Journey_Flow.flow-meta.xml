@@ -275,7 +275,7 @@
             <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0); font-size: 22px;&quot;&gt;Incorrect URL.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
-        <showFooter>true</showFooter>
+        <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <start>
