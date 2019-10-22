@@ -1,3 +1,4 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
 public with sharing class CareAddContactHandler {
     @InvocableMethod
     public static List<MembershipResultObject> addContact(List<String> contactId) {

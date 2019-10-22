@@ -1,3 +1,4 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
 public with sharing class CareHelper {
     public static final String authKey = Care_Settings__c.getOrgDefaults().Auth_Key__c;//'p1Fm0Y48P4iCehUKyzbsxY9-i78gdx7rG2Iu';
     public static final String sfEnvironmentName = Care_Settings__c.getOrgDefaults().SF_Environment_Name__c;//'SalesforceSBASandbox';
