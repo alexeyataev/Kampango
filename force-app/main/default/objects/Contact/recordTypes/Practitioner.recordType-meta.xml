@@ -6,7 +6,6 @@
     <description>A contact representing a course practitioner</description>
     <label>Practitioner</label>
     <picklistValues>
-    <picklistValues>
         <picklist>LeadSource</picklist>
         <values>
             <fullName>Other</fullName>
