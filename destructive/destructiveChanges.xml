@@ -146,10 +146,6 @@
         <name>CustomField</name>
     </types>
     <types>
-        <members>Fee_Band</members>
-        <name>GlobalValueSet</name>
-    </types>
-    <types>
         <members>Update_Practitioner_Licence</members>
         <name>Flow</name>
     </types>
