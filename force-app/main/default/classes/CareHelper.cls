@@ -1,4 +1,3 @@
-@SuppressWarnings('PMD.ApexCRUDViolation')
 public with sharing class CareHelper {
     public static final String AUTH_KEY = Care_Settings__c.getOrgDefaults().Auth_Key__c;//'p1Fm0Y48P4iCehUKyzbsxY9-i78gdx7rG2Iu';
     public static final String SF_ENVIRONMENT_NAME = Care_Settings__c.getOrgDefaults().SF_Environment_Name__c;//'SalesforceSBASandbox';
