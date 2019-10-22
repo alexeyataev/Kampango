@@ -77,6 +77,10 @@
         <recordType>Contact.Practitioner</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <tabSettings>
+        <tab>Practitioner_Fee_Rate__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <userPermissions>
         <enabled>true</enabled>
         <name>ManagePartners</name>
