@@ -347,19 +347,9 @@
         <field>Branch_Weighting__c.End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.Current_Fee_Band_Effective_From__c</field>
-        <readable>true</readable>
-     </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Email</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.Fee_Band__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
