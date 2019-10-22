@@ -105,6 +105,8 @@
     </types>
     <types>
         <members>dlrs__LookupRollupSummary2.CourseAssignmentNumberOfSessions</members>
+        <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalFeesAmount</members>
+        <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalHours</members>
         <name>CustomMetadata</name>
     </types>
     <types>
