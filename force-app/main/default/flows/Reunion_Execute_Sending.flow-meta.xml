@@ -884,7 +884,7 @@
         <inputReference>course</inputReference>
     </recordUpdates>
     <startElementReference>Check_Session_Id</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <name>Send_to_Private</name>
         <label>Send to Private</label>
