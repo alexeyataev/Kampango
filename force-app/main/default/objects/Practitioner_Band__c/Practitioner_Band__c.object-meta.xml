@@ -155,7 +155,7 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Practitioner Band</label>
     <nameField>
-        <displayFormat>PB{00000}</displayFormat>
+        <displayFormat>PB{000000}</displayFormat>
         <label>Practitioner Band Name</label>
         <type>AutoNumber</type>
     </nameField>
