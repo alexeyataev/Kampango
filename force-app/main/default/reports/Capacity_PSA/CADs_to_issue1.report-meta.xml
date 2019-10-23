@@ -28,6 +28,11 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
+        <field>Session__c$PSA_Area__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
         <field>Session__c$Course__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
@@ -39,8 +44,8 @@
     <reportType>Sessions_with_Course_and_Course_Assignment__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
-    <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>true</showSubTotals>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
     <sortColumn>Session__c$Name</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>

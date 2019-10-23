@@ -56,7 +56,6 @@
     </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
-        <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
     <formFactors>Large</formFactors>
@@ -79,12 +78,6 @@
     <tabs>standard-Account</tabs>
     <tabs>Venue__c</tabs>
     <tabs>standard-report</tabs>
-    <tabs>ITS__c</tabs>
-    <tabs>agf__QA_Test_Case__c</tabs>
-    <tabs>agf__QA_Test_Plan__c</tabs>
-    <tabs>Test_Steps__c</tabs>
-    <tabs>agf__QA_Test_Execution__c</tabs>
-    <tabs>npsp__Trigger_Handler__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>NCT_Courses_UtilityBar</utilityBar>
 </CustomApplication>

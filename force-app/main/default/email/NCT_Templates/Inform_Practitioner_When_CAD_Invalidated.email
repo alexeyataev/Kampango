@@ -4,10 +4,10 @@ Dear {!Course_Assignment__c.OwnerFirstName},
 This CAD has been invalidated as one or more key details of the course have changed, or are changing. Please contact your Capacity PSA if you need any further information.
 </br>
 </br>
-King Regards,  
+Kind Regards,  
 </br>
 </br>
-{!Course_Assignment__c.CreatedBy}
+{!Course_Assignment__c.LastModifiedBy}
 </br>
-Course Organazer
+Capacity PSA - {!Course_Assignment__c.PSA_Area__c}
 </br>

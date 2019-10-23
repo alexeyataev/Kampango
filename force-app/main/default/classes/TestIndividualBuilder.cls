@@ -56,10 +56,10 @@ public class TestIndividualBuilder {
             LastName = this.lastName,
             FirstName = this.firstName,
             Salutation = this.salutation,
-            Has_Opted_Out_Email__c = this.emailOptOut,
-            Has_Opted_Out_Post__c = this.postOptOut,
-            Has_Opted_Out_SMS__c = this.smsOptOut,
-            Has_Opted_Out_Telephone__c = this.phoneOptOut
+            Email__c = this.emailOptOut,
+            Post__c = this.postOptOut,
+            SMS__c = this.smsOptOut,
+            Telephone__c = this.phoneOptOut
         );
         if(this.insertRecord){
             insert individual;
