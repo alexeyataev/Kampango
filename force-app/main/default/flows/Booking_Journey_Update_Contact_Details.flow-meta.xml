@@ -4745,6 +4745,30 @@
                     <elementReference>PrimaryContactRecord.IndividualId</elementReference>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>email</name>
+                <value>
+                    <elementReference>marketingEmail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>phone</name>
+                <value>
+                    <elementReference>marketingPhone</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>post</name>
+                <value>
+                    <elementReference>marketingPost</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sms</name>
+                <value>
+                    <elementReference>marketingSMS</elementReference>
+                </value>
+            </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>marketingEmail</assignToReference>
@@ -6248,6 +6272,30 @@
                 <name>individualId</name>
                 <value>
                     <elementReference>PrimaryContactRecord.IndividualId</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>email</name>
+                <value>
+                    <elementReference>marketingEmail</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>phone</name>
+                <value>
+                    <elementReference>marketingPhone</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>post</name>
+                <value>
+                    <elementReference>marketingPost</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>sms</name>
+                <value>
+                    <elementReference>marketingSMS</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>

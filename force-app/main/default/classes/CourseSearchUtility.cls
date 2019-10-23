@@ -21,6 +21,7 @@ public without sharing class CourseSearchUtility {
             WHERE Name =: courseName
             AND Status__c != 'Cancelling'
             AND Status__c != 'Cancelled'
+            AND Status__c != 'Draft'
             AND Start_Date__c > TODAY
             AND (Remaining_Places__c > 0 OR (Remaining_Places__c <= 0 AND Overbooking_allowed__c = true))
             WITH SECURITY_ENFORCED
@@ -70,6 +71,7 @@ public without sharing class CourseSearchUtility {
             WHERE Branch__c =: branchId
             AND Status__c != 'Cancelling'
             AND Status__c != 'Cancelled'
+            AND Status__c != 'Draft'
             AND Start_Date__c > TODAY
             AND (Remaining_Places__c > 0 OR (Remaining_Places__c <= 0 AND Overbooking_allowed__c = true))
             WITH SECURITY_ENFORCED
@@ -147,6 +149,7 @@ public without sharing class CourseSearchUtility {
                 WHERE Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi') < :radius
                 AND Status__c != 'Cancelling'
                 AND Status__c != 'Cancelled'
+                AND Status__c != 'Draft'
                 AND Start_Date__c > TODAY
                 AND (Remaining_Places__c > 0 OR (Remaining_Places__c <= 0 AND Overbooking_allowed__c = true))
                 AND ((Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) OR (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate))
@@ -228,7 +231,7 @@ public without sharing class CourseSearchUtility {
 
                 if (model.Rank <= 5) { // filtering by rank
                 models.add(model);
-                    if (lowestRankIncluded > model.Rank){
+                    if (lowestRankIncluded < model.Rank){
                         lowestRankIncluded = model.Rank;
                     }
                 }
