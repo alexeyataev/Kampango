@@ -11,119 +11,83 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @TestSetup
     private static void SetupTestData() {
-      TestDataFactory.getInstance()
-            .buildOrganizationAccount('acc1')
-            .buildBranchAccount()
-            .buildPractitioner(PRACTITIONER_LASTNAME, PRACTITIONER_EMAIL_ADDRESS)
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourse()
-            .buildEstimatedCosts()
-            .buildSession()
-            .buildCourseAssignment();
+    TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory .buildOrganizationAccount('acc1')
+                    .buildBranchAccount()
+                    .buildPractitioner(PRACTITIONER_LASTNAME, PRACTITIONER_EMAIL_ADDRESS)
+                    .buildVenue()
+                    .buildRoom()
+                    .buildLicenceToPractice()
+                    .buildCourse()
+                    .buildEstimatedCosts()
+                    .buildSession()
+                    .buildReunion();
+
+        List<Session__c> provisionalNonReunionSessions = [
+            SELECT Id 
+            FROM Session__c 
+            WHERE Status__c = 'Provisional' 
+                AND Type__c <> 'Reunion'
+            ];    
+
+        List<Course__c> listDraftCourses = [
+            SELECT Id 
+            FROM Course__c 
+            WHERE Status__c = 'Draft'];
+
+        dataFactory .SetSessionsToConfirmed(provisionalNonReunionSessions)
+                    .SetCoursesToFinal(listDraftCourses)
+                    .buildCourseAssignment();
 
         User practitionerCommunityUser = TestDataFactory.convertPractitionerToPartnerCommunityUser();
         changeOwnerOfCAandRunSession_assignment_flow(practitionerCommunityUser);
     }
 
     @isTest
-    static void WithdrawCourseAssignmentStatus_PractitionerChangesOnLastNonReunionSessionOnCourse_CourseAssignmentStatusWithdrawn() {
+    static void WithdrawCourseAssignmentStatus_PractitionerChangesOnLastSessionOnCourse_CourseAssignmentStatusWithdrawn() {
         TestDataFactory.getInstance()
             .buildOrganizationAccount('acc2')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS)
+            .buildLicenceToPractice();
 
         CreateTriggerSystemHandlerRecord();
 
-        Session__c session = [
+        List<Session__c> sessions = [
             SELECT Id, Course__c, Practitioner__c, Course_Assignment__c
             FROM Session__c
-            LIMIT 1
         ];
 
         User partnerCommunityUser = [
             SELECT Id
             FROM User
-            WHERE ContactId = :session.Practitioner__c
-        ];
-
-        Id oldPractitionerId = session.Practitioner__c;
-
-        Contact practitioner2 = [
-            SELECT Id, LastName
-            FROM Contact
-            WHERE LastName =:PRACTITIONER_LASTNAME_TWO
-        ];
-
-        test.startTest();
-
-
-        session.Practitioner__c = practitioner2.Id;
-        session.Practitioner_Licence__c = NULL;
-
-        update session;
-
-        test.stopTest();
-
-        Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
-            SELECT Id,
-                (
-                    SELECT Status__c
-                    FROM Course_Assignments__r
-                    WHERE OwnerId =:partnerCommunityUser.Id
-                        AND Id =:session.Course_Assignment__c
-                ),
-                (
-                    SELECT Id
-                    FROM Sessions__r
-                    WHERE Practitioner__c =:oldPractitionerId
-                )
-            FROM Course__c
-            WHERE Id =:session.Course__c
-        ];
-
-        System.assertEquals(0, coursesSessionsAndCourseAssignmentsToWithdrawn.Sessions__r.size());
-        System.assertEquals(COURSE_ASSIGNMENT_WITHDRAWN_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
-    }
-
-    @isTest
-    static void WithdrawCourseAssignmentStatus_PractitionerChangesOnLastReunionSessionOnCourse_CourseAssignmentStatusWithdrawn() {
-
-        CreateTriggerSystemHandlerRecord();
-
-        TestDataFactory.getInstance()
-            .buildOrganizationAccount('acc3')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
-
-        Session__c session = [
-            SELECT Id, Course__c, Practitioner__c, Course_Assignment__c
-            FROM Session__c
+            WHERE ContactId = :sessions[0].Practitioner__c
             LIMIT 1
         ];
 
-        User partnerCommunityUser =[
-            SELECT Id
-            FROM User
-            WHERE ContactId = :session.Practitioner__c
-        ];
-
-        Id oldPractitionerId = session.Practitioner__c;
+        Id oldPractitionerId = sessions[0].Practitioner__c;
 
         Contact practitioner2 = [
             SELECT Id, LastName
             FROM Contact
             WHERE LastName =:PRACTITIONER_LASTNAME_TWO
+            LIMIT 1
         ];
 
-        session.Type__c = 'Reunion';
-        update session;
+        Licence_To_Practice__c licence2 = [
+            SELECT Id 
+            FROM Licence_To_Practice__c 
+            WHERE Contact__c =:practitioner2.Id
+            LIMIT 1
+            ];
 
         test.startTest();
 
-        session.Practitioner__c = practitioner2.Id;
-        session.Practitioner_Licence__c = NULL;
+        for (Session__c session : sessions) {
+            session.Practitioner__c = practitioner2.Id;
+            session.Practitioner_Licence__c = licence2.Id; 
+        }
 
-        update session;
+        update sessions;
 
         test.stopTest();
 
@@ -133,7 +97,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                     SELECT Status__c
                     FROM Course_Assignments__r
                     WHERE OwnerId =:partnerCommunityUser.Id
-                        AND Id =:session.Course_Assignment__c
+                        AND Id =:sessions[0].Course_Assignment__c
                 ),
                 (
                     SELECT Id
@@ -141,10 +105,9 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                     WHERE Practitioner__c =:oldPractitionerId
                 )
             FROM Course__c
-            WHERE Id =:session.Course__c
+            WHERE Id =:sessions[0].Course__c
         ];
 
-        System.assertEquals(0, coursesSessionsAndCourseAssignmentsToWithdrawn.Sessions__r.size());
         System.assertEquals(COURSE_ASSIGNMENT_WITHDRAWN_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
     }
 
@@ -155,16 +118,14 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         TestDataFactory.getInstance()
             .buildOrganizationAccount('acc3')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS)
+            .buildLicenceToPractice();
 
         Session__c session = [
             SELECT  Date__c, End__c, Start__c,Course__c, Practitioner__c, Course_Assignment__c
             FROM Session__c
             LIMIT 1
         ];
-
-        Session__c newSessionOnCourseAndPractitioner  = session.clone();
-        insert newSessionOnCourseAndPractitioner;
 
         User partnerCommunityUser = [
             SELECT Id
@@ -174,16 +135,25 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         Id oldPractitionerId = session.Practitioner__c;
 
+
         Contact practitioner2 = [
             SELECT Id, LastName
             FROM Contact
             WHERE LastName =:PRACTITIONER_LASTNAME_TWO
+            LIMIT 1
+        ];
+
+        Licence_To_Practice__c licence2 = [
+            SELECT Id 
+            FROM Licence_To_Practice__c 
+            WHERE Contact__c =:practitioner2.Id
+            LIMIT 1
         ];
 
         test.startTest();
 
         session.Practitioner__c = practitioner2.Id;
-        session.Practitioner_Licence__c = NULL;
+        session.Practitioner_Licence__c = licence2.Id;
 
         update session;
 
@@ -206,7 +176,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             WHERE Id =:session.Course__c
         ];
 
-        System.assertEquals(1, coursesSessionsAndCourseAssignmentsToWithdrawn.Sessions__r.size());
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
     }
 
@@ -378,11 +347,9 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Session__c session = [
             SELECT Id, Status__c, Course_Assignment__c
             FROM Session__c
+            WHERE Type__c = 'Reunion'
             LIMIT 1
         ];
-
-        session.Type__c = 'Reunion';
-        update session;
 
         test.startTest();
 
@@ -414,12 +381,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
         ];
 
-        Session__c existingSession = [
+        List<Session__c> existingSessions = [
             SELECT Date__c, End__c, Start__c, Practitioner__c
             FROM Session__c
         ];
 
-        Session__c session  = existingSession.clone();
+        Session__c session  = existingSessions[0].clone();
 
         test.startTest();
 
@@ -460,9 +427,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
         ];
 
-        Session__c newSessionOnCourseAndPractitioner  = session.clone();
-        insert newSessionOnCourseAndPractitioner;
-
         User partnerCommunityUser =[
             SELECT Id
             FROM User
@@ -492,7 +456,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             WHERE Id =:session.Course__c
         ];
 
-        System.assertEquals(1, coursesSessionsAndCourseAssignmentsToWithdrawn.Sessions__r.size());
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
     }
 
@@ -519,8 +482,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         ];
 
         test.startTest();
-
-        delete courseAssignment.Sessions__r[0];
+        
+        delete courseAssignment.Sessions__r;
 
         test.stopTest();
 
@@ -530,7 +493,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                     SELECT Status__c
                     FROM Course_Assignments__r
                     WHERE OwnerId =:partnerCommunityUser.Id
-                    AND Id =:courseAssignment.Sessions__r[0].Course_Assignment__c
+                        AND Id =:courseAssignment.Sessions__r[0].Course_Assignment__c
                 ),
                 (
                     SELECT Id
@@ -541,8 +504,55 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             WHERE Id =:courseAssignment.Sessions__r[0].Course__c
         ];
 
-        System.assertEquals(0, coursesSessionsAndCourseAssignmentsToWithdrawn.Sessions__r.size());
         System.assertEquals(COURSE_ASSIGNMENT_WITHDRAWN_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
+    }
+
+    @isTest
+    static void InvalidateCourseAssignmentStatus_ReassignSession_CourseAssignmentStatusInvalidated() {
+
+        CreateTriggerSystemHandlerRecord();
+
+        Session__c session = [
+            SELECT Id, Course_Assignment__c
+            FROM Session__c
+            LIMIT 1
+        ];
+
+        Course_Assignment__c courseAssignment = [
+            SELECT Status__c, Course__c, OwnerId,
+                (
+                    SELECT Id, Practitioner__c, Course__c, Course_Assignment__c
+                    FROM Sessions__r
+                    WHERE Id = :session.Id
+                )
+            FROM Course_Assignment__c
+            WHERE Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS
+            LIMIT 1
+        ];
+
+        Course_Assignment__c courseAssignmentNew = courseAssignment.Clone();
+        insert courseAssignmentNew;
+
+        User partnerCommunityUser =[
+            SELECT Id
+            FROM User
+            WHERE ContactId = :courseAssignment.Sessions__r[0].Practitioner__c
+        ];
+
+        test.startTest();
+        
+        session.Course_Assignment__c = courseAssignmentNew.Id;
+        update session;
+
+        test.stopTest();
+
+        Course_Assignment__c courseAssignmentToCheck = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id = :courseAssignment.Id
+        ]; 
+
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToCheck.Status__c);
     }
 
     private static void  ChangeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {

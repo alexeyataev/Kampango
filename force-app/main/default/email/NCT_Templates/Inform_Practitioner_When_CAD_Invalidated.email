@@ -7,7 +7,7 @@ This CAD has been invalidated as one or more key details of the course have chan
 Kind Regards,  
 </br>
 </br>
-{!Course_Assignment__c.CreatedBy}
+{!Course_Assignment__c.LastModifiedBy}
 </br>
-Course Organiser
+Capacity PSA - {!Course_Assignment__c.PSA_Area__c}
 </br>

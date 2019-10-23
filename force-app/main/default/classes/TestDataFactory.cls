@@ -23,10 +23,12 @@ public without sharing class TestDataFactory {
     private static Account organizationAccount;
     private Course_Assignment__c courseAssignment;
     private Venue__c venue;
+    private Venue__c mainVenue;
     private Room__c room;
     private Licence_To_Practice__c licenceToPractice;
     private Course__c course;
     private Session__c session;
+    private Session__c reunion;
 
     private static TestDataFactory instance;
 
@@ -82,6 +84,14 @@ public without sharing class TestDataFactory {
             .build();
         return this;
     }
+
+    public TestDataFactory buildMainVenue() {
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        mainVenue = venueBuilder
+            .insertRecord(true)
+            .build();
+        return this;
+    }
     public TestDataFactory buildRoom() {
         TestRoomBuilder roomBuilder = new TestRoomBuilder();
         room = roomBuilder
@@ -105,6 +115,7 @@ public without sharing class TestDataFactory {
         course = courseBuilder
             .withAccount(branchAccount)
             .withPractitioner(practitioners[0])
+            .withMainVenue(mainVenue)
             .withLicenceToPractice(licenceToPractice)
             .insertRecord(true)
             .build();
@@ -147,6 +158,21 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+public TestDataFactory buildReunion() {
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        reunion = sessionBuilder
+            .withCourse(course)
+            .withType('Reunion')
+            .withVenue(venue)
+            .withRoom(room)
+            .withStatus(SESSION_PROVISIONAL_STATUS)
+            .withPractitioner(practitioners[0])
+            .withPractitionerLicence(licenceToPractice)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
     public TestDataFactory buildEstimatedCosts() {
         TestEstimatedCostsBuilder estimatedCostsBuilder = new TestEstimatedCostsBuilder();
         estimatedCostsBuilder
@@ -171,8 +197,10 @@ public without sharing class TestDataFactory {
         for(Integer i = 0; i < numberOfCourses; i++) {
             courses.add(courseBuilder
                 .withAccount(branchAccount)
+                .withFee(100)
                 .withPractitioner(practitioners[0])
                 .withLicenceToPractice(licenceToPractice)
+                .withMainVenue(mainVenue)
                 .insertRecord(true)
                 .build());
         }
@@ -202,9 +230,9 @@ public without sharing class TestDataFactory {
                 .withCourse(courses[i / 2])
                 .withVenue(venue)
                 .withRoom(room)
-                .withStatus('Provisional')
                 .withPractitioner(practitioners[0])
                 .withPractitionerLicence(licenceToPractice)
+                .withStatus('Provisional')
                 .insertRecord(true)
                 .build());
         }
@@ -221,7 +249,7 @@ public without sharing class TestDataFactory {
         return users[0];
     }
 
-    public static User ConvertPractitionerToPartnerCommunityUser() {
+    public static User convertPractitionerToPartnerCommunityUser() {
 
         System.runAs(createSysAdminUser()) {
             UserRole testRole = new UserRole(Name = 'testRole');
@@ -262,11 +290,56 @@ public without sharing class TestDataFactory {
         return users[2];
     }
 
-    public TestDataFactory SetSessionsToConfirmed(List<Session__c> sessions){
+    public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
         for(Session__c aSession : sessions){
             aSession.Status__c = 'Confirmed';
         }
         update sessions;
+        return this;
+    }
+
+    public TestDataFactory setCoursesToFinalAndSessionsToConfirmed(List<Course__c> courses) {
+        List<Session__c> sessions = new List<Session__c>();
+        for (Course__c course : courses) {
+            course.Status__c = 'Final';
+            if (course.Sessions__r.isEmpty()) {
+                continue;
+            } else {
+                sessions.addAll(course.Sessions__r);
+            }
+        }
+        for (Session__c session : sessions) {
+            session.Status__c = 'Confirmed';
+        }
+        update sessions;
+        update courses;
+        return this;
+    }
+
+    public TestDataFactory setCoursesToFinal(List<Course__c> courses){
+        for(Course__c course : courses){
+            course.Status__c = 'Final';
+        }
+        update courses;
+        return this;
+    }
+    
+    public TestDataFactory setCoursesWithSessionsToFinal(List<Course__c> courses){
+        for(Course__c course : courses){
+            if (course.Sessions__r.isEmpty()) {
+                continue;
+            }
+            course.Status__c = 'Final';
+        }
+        update courses;
+        return this;
+    }
+
+    public TestDataFactory setMainVenueToCourses(Venue__c mainVenue, List<Course__c> courses) {
+        for (Course__c course : courses) {
+            course.Main_Venue__c = mainVenue.Id;
+        }
+        update courses;
         return this;
     }
 }
