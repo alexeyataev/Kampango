@@ -1368,6 +1368,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Practitioner_Fee_Rate__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Venue__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
