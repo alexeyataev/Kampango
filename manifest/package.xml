@@ -80,14 +80,12 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
-        <members>Booking__c.Ad_hoc_Payable_Amount__c</members> 
+        <members>Booking__c.Ad_hoc_Payable_Amount__c</members>
         <members>Booking__c.First_Baby__c</members>      
         <members>Booking__c.Cancellation_Reason__c</members>
         <members>Booking__c.Status__c</members>
         <members>Booking__c.Suggested_Cancellation_Fee__c</members>
         <members>Contact.AccountId</members>
-        <members>Contact.Current_Fee_Band_Effective_From__c</members>
-        <members>Contact.Fee_Band__c</members>
         <members>Contact.Home_PSA__c</members>
         <members>Contact.NCT_Number__c</members>
         <members>Contact.Practitioner_Re_Registration_Amount__c</members>
@@ -107,11 +105,14 @@
     </types>
     <types>
         <members>dlrs__LookupRollupSummary2.CourseAssignmentNumberOfSessions</members>
+        <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalFeesAmount</members>
+        <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalHours</members>
         <name>CustomMetadata</name>
     </types>
     <types>
         <members>Account</members>
         <members>Booking__c</members>
+        <members>Branch_Weighting__c</members>
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
@@ -121,6 +122,7 @@
         <members>Individual</members>
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
+        <members>Practitioner_Band__c</members>
         <members>Practitioner_Community_Settings__c</members>
         <members>Practitioner_Fee_Rate__c</members>
         <members>Practitioner_Travel_Cost__c</members>
@@ -208,7 +210,8 @@
     </types>
     <types>
         <members>Course_Sub_Type</members>
-        <members>Fee_Band</members>
+        <members>Geographical_Weightings</members>
+        <members>Practitioner_Bands</members>
         <members>PSA_Areas</members>
         <members>Y_N_UNKNOWN</members>
         <name>GlobalValueSet</name>
@@ -264,6 +267,7 @@
         <members>Booking__c-Admin Booking Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Booking__c-Enquiry PSA Booking Layout</members>
+        <members>Branch_Weighting__c-Branch Weighting Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
         <members>Contact-Practitioner Community Layout</members>
@@ -275,9 +279,10 @@
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
-        <members>Product2-Practitioner Product Page</members>
-        <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
+        <members>Practitioner_Band__c-Practitioner Band Layout</members>
         <members>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</members>
+        <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
+        <members>Product2-Practitioner Product Page</members>
         <members>Rate__c-Rate Layout</members>
         <members>Room__c-Room Layout</members>
         <members>Session__c-Session Layout</members>
