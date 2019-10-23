@@ -11,6 +11,17 @@
         <senderType>CurrentUser</senderType>
         <template>NCT_Templates/BookingNotificationEmail</template>
     </alerts>
+    <alerts>
+        <fullName>SendTransferEmailToClient</fullName>
+        <description>SendTransferEmailToClient</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>NCT_Templates/BookingTransferNotificationEmail</template>
+    </alerts>
     <fieldUpdates>
         <fullName>SetExpDate</fullName>
         <field>Reservation_Expiry_Date__c</field>
