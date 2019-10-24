@@ -1,0 +1,122 @@
+<template>
+  <template if:true={valuesLoaded}>
+    <div class="heading_2 lato-font">
+      Course Booking Payment
+    </div>
+    <br>
+    <div class="nct-page-text">
+      To pay for your course using the secure World Pay payment system just check the details below and click
+      'Proceed to payment'. You will be redirected to the World Pay site to complete your payment. NCT will at no time see or
+      store any of your card details.<br><br>
+      Please note that credit cards levy higher charges on the charity than debit cards. We would be grateful to you
+      for supporting the charity by using a debit card if possible.
+    </div> <br>
+    <div class="heading_2 lato-font">
+      Course Summary
+    </div> <br>
+    <div class="nct-page-text">
+      {coursePSA}/ {courseName}
+    </div>
+    <div class="heading_3 lato-font nct-header-text">
+      {coursetype}
+    </div> <br><br>
+
+    <table class="slds-table_header-hidden">
+      <thead>
+      <tr class="slds-line-height_reset ">
+        <th class="" scope="col">
+          <div class="slds-truncate nct-header-text" title="Starts">Starts</div>
+        </th>
+        <th class="" scope="col">
+          <div class="slds-truncate nct-header-text" title="Ends">Ends</div>
+        </th>
+        <th class="" scope="col">
+          <div class="slds-truncate nct-header-text" title="Course Leader">Course Leader</div>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="nct-page-text">
+        <th scope="row">
+          <div class="nct-page-text">
+            {startDate}
+          </div>
+        </th>
+        <th scope="row">
+          <div class="nct-page-text">
+            {endDate}
+          </div>
+        </th>
+        <th>
+          <div class="nct-page-text">
+            {courseLeader}
+          </div>
+        </th>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="slds-grid slds-wrap">
+      <div
+        class="regular-text lato-font slds-col slds-size_1-of-1 slds-large-size_5-of-6 slds-medium-size_5-of-6 slds-small-size_1-of-1">
+      </div>
+    </div>
+    <br><br>
+    <div class="row-flex">
+      <div class="padding-right_30 col-flex">
+        <div class="border-top_grey border-bottom_grey height_100">
+          <div class="padding-top_1">
+            <div class="lato-font heading_3 nct-header-text">Venues</div>
+            <div>
+              <template for:each={venues} for:item="venue">
+                <p class="lato-font regular-text padding-top_1 padding-bottom_1" key={venue.id}>
+                  <b>{venue.name}</b> ({venue.sessions})<br/>
+                  {venue.street}<br/>
+                  {venue.town}<br/>
+                  {venue.postcode}
+                </p>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row-flex">
+      <div class="col-flex">
+        <div class="border-top_grey border-bottom_grey height_100">
+          <div class="padding-top_1 padding-bottom_1">
+            <div class="lato-font heading_3 nct-header-text">Sessions</div>
+            <div class="lato-font regular-text">
+              <template if:true={formattedSessions}>
+                <lightning-datatable
+                  key-field="id"
+                  data={formattedSessions}
+                  columns={sessionColumns}
+                  hide-checkbox-column
+                  resize-column-disabled
+                  hide-table-header>
+                </lightning-datatable>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="heading_2 lato-font">
+      Reunion session
+    </div>
+    <br>
+    <div class="nct-page-text">
+      There is also a 2 hour reunion for all course participants with their new baby after the births.
+      Your course leader will agree a date, time and location for this with you.
+    </div>
+    <div class="heading_2 lato-font ">
+      Amount to be Paid - &#163;
+      <lightning-formatted-number value={courseFee} minimum-fraction-digits="0"></lightning-formatted-number>
+    </div>
+  </template>
+  <template if:false={valuesLoaded}>
+    <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+  </template>
+</template>
