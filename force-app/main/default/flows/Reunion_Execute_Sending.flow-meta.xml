@@ -226,36 +226,8 @@
     <assignments>
         <name>Set_course_fields</name>
         <label>Set course fields</label>
-        <locationX>986</locationX>
+        <locationX>987</locationX>
         <locationY>920</locationY>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Start__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>session.Start_Text__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>course.Reunion_End__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>session.End_Text__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Session_Date__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>session.Date__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Session_Day_Of_Week__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>session.Day_of_Week__c</elementReference>
-            </value>
-        </assignmentItems>
         <assignmentItems>
             <assignToReference>course.Reunion_Venue_Name__c</assignToReference>
             <operator>Assign</operator>
