@@ -4,6 +4,7 @@ public without sharing class CourseSearchUtility {
 
     private static List<String> howHeard = getHowHeardValues();
 
+    //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static Course__c getCourseById(String courseName, Boolean isFromWebSite){
         Course__c result = null;
 
@@ -53,7 +54,8 @@ public without sharing class CourseSearchUtility {
         }       
         return response;
     }
-    
+
+    //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByBranch(String branchId, Boolean isFromWebSite){
 
         List<Course__c> inCourses = [
@@ -120,6 +122,7 @@ public without sharing class CourseSearchUtility {
         return howHeardValues;
     }
 
+    //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Date birthDueDate, Boolean isFromWebSite){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
         if (location == null){
