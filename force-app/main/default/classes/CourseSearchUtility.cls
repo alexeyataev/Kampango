@@ -1,12 +1,14 @@
-@SuppressWarnings('PMD.ApexCRUDViolation')
 public without sharing class CourseSearchUtility {
 
     private static List<String> howHeard = getHowHeardValues();
-
+    
+    @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static Course__c getCourseById(String courseName, Boolean isFromWebSite){
         Course__c result = null;
-
+        
+        @SuppressWarnings('PMD.ApexCRUDViolation')
+        //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
         List<Course__c> inCourses = [
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
@@ -55,6 +57,7 @@ public without sharing class CourseSearchUtility {
         return response;
     }
 
+    @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByBranch(String branchId, Boolean isFromWebSite){
 
@@ -123,6 +126,7 @@ public without sharing class CourseSearchUtility {
         return howHeardValues;
     }
 
+    @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Date birthDueDate, Boolean isFromWebSite){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
