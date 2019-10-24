@@ -1224,7 +1224,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Session_Info_For_Flow__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1234,7 +1234,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Venue__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1449,7 +1449,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Venue__c.Venue_Info_For_Flow__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
