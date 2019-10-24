@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
-        <fullName>Zero</fullName>
-        <default>false</default>
-        <label>Zero</label>
-    </customValue>
-    <customValue>
         <fullName>A</fullName>
         <default>false</default>
         <label>A</label>
@@ -25,6 +20,11 @@
         <default>false</default>
         <label>D</label>
     </customValue>
-    <masterLabel>Fee Band</masterLabel>
+    <customValue>
+        <fullName>ZERO</fullName>
+        <default>false</default>
+        <label>ZERO</label>
+    </customValue>
+    <masterLabel>Practitioner Bands</masterLabel>
     <sorted>false</sorted>
 </GlobalValueSet>

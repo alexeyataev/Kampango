@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>Is_Validation_Code_Correct</name>
+        <label>Is Validation Code Correct?</label>
+        <locationX>50</locationX>
+        <locationY>203</locationY>
+        <defaultConnector>
+            <targetReference>error_screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Correct</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>validationCode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>bookingRecord.Validation_Code__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Course_Data</targetReference>
+            </connector>
+            <label>Correct</label>
+        </rules>
+    </decisions>
     <interviewLabel>Booking {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Flow</label>
     <processMetadataValues>
@@ -18,7 +43,7 @@
     <recordCreates>
         <name>Create_Gift_Aid_Declaration</name>
         <label>Create Gift Aid Declaration</label>
-        <locationX>429</locationX>
+        <locationX>669</locationX>
         <locationY>360</locationY>
         <faultConnector>
             <targetReference>Declaration_Error</targetReference>
@@ -28,7 +53,7 @@
     <recordLookups>
         <name>Get_Account_Data</name>
         <label>Get Account Data</label>
-        <locationX>51</locationX>
+        <locationX>291</locationX>
         <locationY>403</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -51,11 +76,11 @@
     <recordLookups>
         <name>Get_Booking_Data</name>
         <label>Get Booking Data</label>
-        <locationX>50</locationX>
+        <locationX>290</locationX>
         <locationY>161</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Course_Data</targetReference>
+            <targetReference>Is_Validation_Code_Correct</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -76,11 +101,14 @@
         <queriedFields>Postcode__c</queriedFields>
         <queriedFields>Street_Address__c</queriedFields>
         <queriedFields>Under_18__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Primary_Contact_Email__c</queriedFields>
+        <queriedFields>Validation_Code__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Course_Data</name>
         <label>Get Course Data</label>
-        <locationX>50</locationX>
+        <locationX>290</locationX>
         <locationY>284</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -102,11 +130,16 @@
         <queriedFields>Status__c</queriedFields>
         <queriedFields>Couples_Allowed__c</queriedFields>
         <queriedFields>Start_Date__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>End_Date__c</queriedFields>
+        <queriedFields>Course_Duration__c</queriedFields>
+        <queriedFields>Additional_Offer_Information__c</queriedFields>
+        <queriedFields>Main_Practitioner__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_User_Data</name>
         <label>Get User Data</label>
-        <locationX>51</locationX>
+        <locationX>291</locationX>
         <locationY>519</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -127,7 +160,7 @@
     <recordLookups>
         <name>GetPrimaryContactData</name>
         <label>GetPrimaryContactData</label>
-        <locationX>252</locationX>
+        <locationX>492</locationX>
         <locationY>519</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -162,7 +195,7 @@
     <screens>
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>
-        <locationX>252</locationX>
+        <locationX>492</locationX>
         <locationY>207</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -192,7 +225,7 @@
     <screens>
         <name>Declaration_Error</name>
         <label>Declaration Error</label>
-        <locationX>429</locationX>
+        <locationX>669</locationX>
         <locationY>509</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
@@ -213,7 +246,7 @@
     <screens>
         <name>Details_Payment</name>
         <label>Details Payment</label>
-        <locationX>429</locationX>
+        <locationX>669</locationX>
         <locationY>200</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -229,12 +262,34 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Get_Booking_Data</startElementReference>
+    <screens>
+        <name>error_screen</name>
+        <label>error screen</label>
+        <locationX>55</locationX>
+        <locationY>420</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ValidationError</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0); font-size: 22px;&quot;&gt;Incorrect URL.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>290</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Booking_Data</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <subflows>
         <name>Booking_Journey_Available</name>
         <label>Booking Journey Available</label>
-        <locationX>252</locationX>
+        <locationX>492</locationX>
         <locationY>341</locationY>
         <connector>
             <targetReference>Course_Summary_Details_Screen</targetReference>
@@ -268,7 +323,7 @@
     <subflows>
         <name>Contact_Details_Flow</name>
         <label>Contact Details Flow</label>
-        <locationX>252</locationX>
+        <locationX>492</locationX>
         <locationY>63</locationY>
         <connector>
             <targetReference>Gift_Aid_Declaration</targetReference>
@@ -302,7 +357,7 @@
     <subflows>
         <name>Gift_Aid_Declaration</name>
         <label>Gift Aid Declaration</label>
-        <locationX>429</locationX>
+        <locationX>669</locationX>
         <locationY>63</locationY>
         <connector>
             <targetReference>Details_Payment</targetReference>
@@ -383,5 +438,12 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>User</objectType>
+    </variables>
+    <variables>
+        <name>validationCode</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
     </variables>
 </Flow>

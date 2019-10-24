@@ -507,6 +507,54 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         System.assertEquals(COURSE_ASSIGNMENT_WITHDRAWN_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
     }
 
+    @isTest
+    static void InvalidateCourseAssignmentStatus_ReassignSession_CourseAssignmentStatusInvalidated() {
+
+        CreateTriggerSystemHandlerRecord();
+
+        Session__c session = [
+            SELECT Id, Course_Assignment__c
+            FROM Session__c
+            LIMIT 1
+        ];
+
+        Course_Assignment__c courseAssignment = [
+            SELECT Status__c, Course__c, OwnerId,
+                (
+                    SELECT Id, Practitioner__c, Course__c, Course_Assignment__c
+                    FROM Sessions__r
+                    WHERE Id = :session.Id
+                )
+            FROM Course_Assignment__c
+            WHERE Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS
+            LIMIT 1
+        ];
+
+        Course_Assignment__c courseAssignmentNew = courseAssignment.Clone();
+        insert courseAssignmentNew;
+
+        User partnerCommunityUser =[
+            SELECT Id
+            FROM User
+            WHERE ContactId = :courseAssignment.Sessions__r[0].Practitioner__c
+        ];
+
+        test.startTest();
+        
+        session.Course_Assignment__c = courseAssignmentNew.Id;
+        update session;
+
+        test.stopTest();
+
+        Course_Assignment__c courseAssignmentToCheck = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id = :courseAssignment.Id
+        ]; 
+
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToCheck.Status__c);
+    }
+
     private static void  ChangeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {
 
         List<Course_Assignment__c> courseAssignments = [

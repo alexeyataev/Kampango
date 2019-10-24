@@ -5,29 +5,6 @@
     <description>Used for general contacts such as those who are the bookings or emergency contact at a venue.</description>
     <label>Contact</label>
     <picklistValues>
-        <picklist>Fee_Band__c</picklist>
-        <values>
-            <fullName>A</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>B</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>C</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>D</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Zero</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>GW_Volunteers__Volunteer_Availability__c</picklist>
         <values>
             <fullName>Afternoon</fullName>
