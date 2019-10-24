@@ -15,7 +15,7 @@ public with sharing class SendHTMLEmailPluginTest {
         
         
         Id orgTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Organization').getRecordTypeId();
-        User thisUser = [ select Id from User where Id = :UserInfo.getUserId() ];
+        User thisUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
         System.runAs ( thisUser ) {
             Account a = new Account(
                 Name = 'A', 
@@ -25,12 +25,14 @@ public with sharing class SendHTMLEmailPluginTest {
                 Billing_Email__c = 'aa@bb.cc'
             );
             insert a;
-            Contact recipient = new Contact(
-                LastName = 'Black', 
-                AccountId = a.Id,
-                Email = 'john.black@example.com'
-            );
-            insert recipient;
+            TestContactBuilder contactBuilder = new TestContactBuilder();
+            Contact recipient = contactBuilder.withRecordType('Client')
+                .withAccount(a)
+                .withFirstName('Test')
+                .withLastName('Black')
+                .withEmail('john.black@example.com')
+                .insertRecord(true)
+                .build();
         }
     }
 
