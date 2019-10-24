@@ -1,5 +1,4 @@
 @SuppressWarnings('PMD.ApexCRUDViolation')
-//Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing class CourseSearchUtility {
 
     private static List<String> howHeard = getHowHeardValues();
