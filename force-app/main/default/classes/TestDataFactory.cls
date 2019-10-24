@@ -225,16 +225,18 @@ public TestDataFactory buildReunion() {
         }
 
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
-        for(Integer i = 0; i < numberOfSessions; i++) {
-            sessions.add(sessionBuilder
-                .withCourse(courses[i / 2])
-                .withVenue(venue)
-                .withRoom(room)
-                .withPractitioner(practitioners[0])
-                .withPractitionerLicence(licenceToPractice)
-                .withStatus('Provisional')
-                .insertRecord(true)
-                .build());
+        for(Integer iCourses = 0; iCourses < numberOfCourses; iCourses++) {
+            for(Integer iSessions = 0; iSessions < numberOfSessions; iSessions++) {
+                sessions.add(sessionBuilder
+                    .withCourse(courses[iCourses])
+                    .withVenue(venue)
+                    .withRoom(room)
+                    .withPractitioner(practitioners[0])
+                    .withPractitionerLicence(licenceToPractice)
+                    .withStatus('Provisional')
+                    .insertRecord(true)
+                    .build());
+            }
         }
         return this;
     }
