@@ -116,8 +116,7 @@ public without sharing class CourseSearchUtility {
         return howHeardValues;
     }
 
-    @SuppressWarnings('PMD.ApexCRUDViolation')
-    @SuppressWarnings('PMD.ExcessiveParameterList')
+    @SuppressWarnings('PMD.ApexCRUDViolation, PMD.ExcessiveParameterList')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Date birthDueDate, Boolean isFromWebSite){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
