@@ -14,8 +14,8 @@ public without sharing class CourseCreateEnquiryUtility {
         } else {
             throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
         }
-
-        if (!courses.isEmpty() && !requestParameters.isEmpty()) {
+        Boolean areParamsNotEmpty = !courses.isEmpty() && !requestParameters.isEmpty();
+        if (areParamsNotEmpty) {
             Id courseId = courses[0].Id;
             Booking__c booking = new Booking__c();
             Contact contact;
@@ -38,22 +38,11 @@ public without sharing class CourseCreateEnquiryUtility {
             } catch (DmlException ex) {
                 throw new CreateEnquiryException(ex.getMessage());
             }
-
-            Contact partner;
             if (isPartnerPresent) {
-                    partner = new Contact(
-                        FirstName = requestParameters.get('partner_first_name'),
-                        LastName = requestParameters.get('partner_last_name'),
-                        Email = requestParameters.get('partner_email'),
-                        RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME)
-                    );
-                    try {
-                        upsert partner Contact.fields.Email;
-                    } catch (DmlException ex) {
-                        throw new CreateEnquiryException(ex.getMessage());
-                    }
-                booking.Partner_Contact__c = partner.Id;
+                Id partnerId = createPartnerContact(requestParameters);
+                booking.Partner_Contact__c = partnerId;
             }
+            
             booking.Primary_Contact__c = contact.Id;
             booking.Birth_Due_Date__c = Date.parse((requestParameters.get('duedate')));
             booking.First_Baby__c = parseParameterToPicklistValue(requestParameters.get('firstbaby'));
@@ -67,6 +56,21 @@ public without sharing class CourseCreateEnquiryUtility {
                 throw new CreateEnquiryException(ex.getMessage());
             }
         }
+    }
+
+    private static Id createPartnerContact(Map<String, String> requestParameters) {
+        Contact partner = new Contact(
+            FirstName = requestParameters.get('partner_first_name'),
+            LastName = requestParameters.get('partner_last_name'),
+            Email = requestParameters.get('partner_email'),
+            RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME)
+        );
+        try {
+            upsert partner Contact.fields.Email;
+        } catch (DmlException ex) {
+            throw new CreateEnquiryException(ex.getMessage());
+        }
+        return partner.Id;
     }
 
     private static Id getContactRecordTypeByAPIName(String recordTypeName) {
