@@ -1,10 +1,12 @@
 public without sharing class CourseSearchUtility {
 
     private static List<String> howHeard = getHowHeardValues();
-
+    
+    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static Course__c getCourseById(String courseName, Boolean isFromWebSite){
         Course__c result = null;
-
+        
         List<Course__c> inCourses = [
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
@@ -52,7 +54,9 @@ public without sharing class CourseSearchUtility {
         }       
         return response;
     }
-    
+
+    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByBranch(String branchId, Boolean isFromWebSite){
 
         List<Course__c> inCourses = [
@@ -120,6 +124,8 @@ public without sharing class CourseSearchUtility {
         return howHeardValues;
     }
 
+    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Date birthDueDate, Boolean isFromWebSite){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
         if (location == null){
@@ -220,7 +226,7 @@ public without sharing class CourseSearchUtility {
         if (courses != null && !courses.isEmpty()) {
             List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
             Integer i = 0;
-            Integer LowestRankIncluded = 1;
+            Integer lowestRankIncluded = 1;
             for (Course__c course : courses) {
                 CourseFinderModelOrdered model = new CourseFinderModelOrdered(course, birthDueDate);
                 i++;
@@ -229,8 +235,8 @@ public without sharing class CourseSearchUtility {
 
                 if (model.Rank <= 5) { // filtering by rank
                 models.add(model);
-                    if (LowestRankIncluded < model.Rank){
-                        LowestRankIncluded = model.Rank;
+                    if (lowestRankIncluded < model.Rank){
+                        lowestRankIncluded = model.Rank;
                     }
                 }
 
@@ -247,8 +253,8 @@ public without sharing class CourseSearchUtility {
             
             CoursesDateDistanceModel sortedModel = new CoursesDateDistanceModel();
             sortedModel.Courses = models;
-            sortedModel.LowestRankIncluded = LowestRankIncluded;
-            sortedModel.SuggestedLowestRank = getSuggestedLowestRank(radius, LowestRankIncluded);
+            sortedModel.LowestRankIncluded = lowestRankIncluded;
+            sortedModel.SuggestedLowestRank = getSuggestedLowestRank(radius, lowestRankIncluded);
             sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
             
             response.statusCode = HttpStatusCode.OK;
@@ -260,7 +266,7 @@ public without sharing class CourseSearchUtility {
         return response;
     }
 
-    private static Integer getSuggestedLowestRank(Integer radius, Integer LowestRankIncluded){
+    private static Integer getSuggestedLowestRank(Integer radius, Integer lowestRankIncluded){
         Integer result;
 
         final Integer RANK_3 = 3;
@@ -278,8 +284,8 @@ public without sharing class CourseSearchUtility {
             result = RANK_5;
         }
         
-        if (result > LowestRankIncluded) {
-            result = LowestRankIncluded;
+        if (result > lowestRankIncluded) {
+            result = lowestRankIncluded;
         }
         
         return result;
