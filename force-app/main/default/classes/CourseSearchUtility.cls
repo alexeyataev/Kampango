@@ -1,3 +1,4 @@
+@SuppressWarnings('PMD.CyclomaticComplexity')
 public without sharing class CourseSearchUtility {
 
     private static List<String> howHeard = getHowHeardValues();
@@ -198,7 +199,7 @@ public without sharing class CourseSearchUtility {
             radius = validateRadius(params.get('radius'));
         } catch (RadiusTypeException te){
             return getWrongRadiusResponse();
-        } catch (TypeException te){
+        } catch (CustomTypeException te){
             return getWrongResponse();
         }
         
@@ -350,9 +351,11 @@ public without sharing class CourseSearchUtility {
         return response;
     }
 
-    public class DateTypeException extends Exception {}
+    public virtual class CustomTypeException extends Exception {} 
 
-    public class LocationTypeException extends Exception {}
+    public class DateTypeException extends CustomTypeException {}
 
-    public class RadiusTypeException extends Exception {}
+    public class LocationTypeException extends CustomTypeException {}
+
+    public class RadiusTypeException extends CustomTypeException {}
 }
