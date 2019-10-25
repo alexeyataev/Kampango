@@ -11,22 +11,22 @@ public with sharing class TestBranchWeightingBuilder {
         return this;
     }
 
-    public TestBranchWeightingBuilder branch(Account branch){
+    public TestBranchWeightingBuilder withBranch(Account branch){
         this.branch = branch;
         return this;
     }
 
-    public TestBranchWeightingBuilder geographicalWeighting(String geographicalWeighting){
+    public TestBranchWeightingBuilder withWeighting(String geographicalWeighting){
         this.geographicalWeighting = geographicalWeighting;
         return this;
     }
 
-    public TestBranchWeightingBuilder startDate(Date startDate){
+    public TestBranchWeightingBuilder withStartDate(Date startDate){
         this.startDate = startDate;
         return this;
     }
 
-    public TestBranchWeightingBuilder endDate(Date endDate){
+    public TestBranchWeightingBuilder withEndDate(Date endDate){
         this.endDate = endDate;
         return this;
     }

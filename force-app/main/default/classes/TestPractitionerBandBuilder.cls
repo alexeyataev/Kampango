@@ -11,22 +11,22 @@ public with sharing class TestPractitionerBandBuilder {
         return this;
     }
 
-    public TestPractitionerBandBuilder practitioner(Contact practitioner) {
+    public TestPractitionerBandBuilder withPractitioner(Contact practitioner) {
         this.practitioner = practitioner;
         return this;
     }
 
-    public TestPractitionerBandBuilder band(String band) {
+    public TestPractitionerBandBuilder withBand(String band) {
         this.band = band;
         return this;
     }
 
-    public TestPractitionerBandBuilder startDate(Date startDate) {
+    public TestPractitionerBandBuilder withStartDate(Date startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public TestPractitionerBandBuilder endDate(Date endDate) {
+    public TestPractitionerBandBuilder withEndDate(Date endDate) {
         this.endDate = endDate;
         return this;
     }
