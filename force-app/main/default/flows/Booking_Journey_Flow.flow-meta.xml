@@ -135,8 +135,6 @@
         <queriedFields>Course_Duration__c</queriedFields>
         <queriedFields>Additional_Offer_Information__c</queriedFields>
         <queriedFields>Main_Practitioner__c</queriedFields>
-        <queriedFields>Course_Start_Formatted__c</queriedFields>
-        <queriedFields>Course_End_Formatted__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_User_Data</name>
