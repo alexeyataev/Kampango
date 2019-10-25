@@ -332,18 +332,8 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Contact.Current_Fee_Band_Effective_From__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Email</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contact.Fee_Band__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -622,6 +612,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Practitioner_Fee_Rate__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Practitioner_Travel_Cost__c.Return_Travel_Cost__c</field>
         <readable>true</readable>
@@ -694,6 +689,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Practitioner_Chosen__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Practitioner_Fee_Rate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Practitioner_Fees__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1032,7 +1037,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>trufalsee</editable>
+        <editable>false</editable>
         <field>gaid__Gift_Aid_Declaration__c.gaid__Firstname__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1128,6 +1133,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Practitioner_Band__c-Practitioner Band Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</layout>
@@ -1229,6 +1237,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Practitioner_Band__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Practitioner_Fee_Rate__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1349,6 +1366,10 @@
     <tabVisibilities>
         <tab>Course_Assignment__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Practitioner_Fee_Rate__c</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Venue__c</tab>

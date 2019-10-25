@@ -22,7 +22,7 @@ public class TestBookingBuilder {
         return this;
     }
 
-    public TestBookingBuilder withStatus(String Status){
+    public TestBookingBuilder withStatus(String status){
         this.status = status;
         return this;
     }

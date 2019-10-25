@@ -57,6 +57,8 @@
         <members>Contact.Account_Key__c</members>
         <members>Contact.Branch_Key__c</members>
         <members>Contact.Contact_Key__c</members>
+        <members>Contact.Current_Fee_Band_Effective_From__c</members>
+        <members>Contact.Fee_Band__c</members>
         <members>Contact.Mailing_City__c</members>
         <members>Contact.Mailing_Country__c</members>
         <members>Contact.Mailing_Longtitude__c</members>
@@ -142,6 +144,10 @@
         <members>Venue__c.Venue_Keys__c</members>
         <members>Venue__c.Venue_Suitability__c</members>
         <name>CustomField</name>
+    </types>
+    <types>
+        <members>Fee_Band</members>
+        <name>GlobalValueSet</name>
     </types>
     <types>
         <members>Update_Practitioner_Licence</members>

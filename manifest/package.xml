@@ -59,6 +59,7 @@
         <members>ParentCommunityLogoContainer</members>
         <members>showToast</members>
         <members>SuccessPaymentsPage</members>
+        <members>TranferDetailComponent</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
@@ -79,13 +80,12 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
+        <members>Booking__c.Ad_hoc_Payable_Amount__c</members>
         <members>Booking__c.First_Baby__c</members>      
         <members>Booking__c.Cancellation_Reason__c</members>
         <members>Booking__c.Status__c</members>
         <members>Booking__c.Suggested_Cancellation_Fee__c</members>
         <members>Contact.AccountId</members>
-        <members>Contact.Current_Fee_Band_Effective_From__c</members>
-        <members>Contact.Fee_Band__c</members>
         <members>Contact.Home_PSA__c</members>
         <members>Contact.NCT_Number__c</members>
         <members>Contact.Practitioner_Re_Registration_Amount__c</members>
@@ -210,7 +210,6 @@
     </types>
     <types>
         <members>Course_Sub_Type</members>
-        <members>Fee_Band</members>
         <members>Geographical_Weightings</members>
         <members>Practitioner_Bands</members>
         <members>PSA_Areas</members>
@@ -256,6 +255,7 @@
         <members>Update_Related_Sessions</members>
         <members>Update_service_field_on_session</members>
         <members>Update_Venue_on_Sessions_related_to_Course</members>
+        <members>Booking_Tranfer_Flow</members>
         <name>Flow</name>
     </types>
     <types>
@@ -280,9 +280,9 @@
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
         <members>Practitioner_Band__c-Practitioner Band Layout</members>
-        <members>Product2-Practitioner Product Page</members>
-        <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
         <members>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</members>
+        <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
+        <members>Product2-Practitioner Product Page</members>
         <members>Rate__c-Rate Layout</members>
         <members>Room__c-Room Layout</members>
         <members>Session__c-Session Layout</members>
@@ -298,6 +298,7 @@
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
+        <members>courseTransferDetails</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
