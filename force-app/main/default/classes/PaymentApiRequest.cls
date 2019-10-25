@@ -6,15 +6,28 @@ public class PaymentApiRequest{
     private Payment payment {get;set;}
     private PaymentMethod paymentMethod {get;set;}
     private SourceConnector sourceConnector {get;set;}
-    public PaymentApiRequest(String successURL, String failureURL, String origin, Payer payer, Payment payment, PaymentMethod paymentMethod, SourceConnector sourceConnector) {
-        this.successURL = successURL;
-        this.failureURL = failureURL;
-        this.origin = origin;
-        this.payer = payer;
-        this.payment = payment;
-        this.paymentMethod = paymentMethod;
-        this.sourceConnector = sourceConnector;
+
+    public PaymentApiRequest(String apiRequestParams) {
+        PaymentApiRequestParams paymentParams = (PaymentApiRequestParams)JSON.deserialize(apiRequestParams,PaymentApiRequestParams.class);
+        this.successURL = paymentParams.successURL;
+        this.failureURL = paymentParams.failureURL;
+        this.origin = paymentParams.origin;
+        this.payer = paymentParams.payer;
+        this.payment = paymentParams.payment;
+        this.paymentMethod = paymentParams.paymentMethod;
+        this.sourceConnector = paymentParams.sourceConnector;
     }
+
+    public class PaymentApiRequestParams {
+        private String successURL { get; set; }
+        private String failureURL { get; set; }
+        private String origin { get; set; }
+        private Payer payer { get; set; }
+        private Payment payment { get; set; }
+        private PaymentMethod paymentMethod { get; set; }
+        private SourceConnector sourceConnector { get; set; }
+    }
+
     public class Payer {
         private Contact contact {get;set;}
         private String contactUpdate {get;set;}

@@ -6,6 +6,17 @@ public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
     private static final String ERROR_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + '/s/failure';
     private static final String API_TOKEN = Parentforce_Community_Settings__c.getOrgDefaults().API_Token__c;
     private static final String ORIGIN = 'BookingJourney';
+
+    public class PaymentApiRequestParams {
+        private String successURL { get; set; }
+        private String failureURL { get; set; }
+        private String origin { get; set; }
+        private PaymentApiRequest.Payer payer { get; set; }
+        private PaymentApiRequest.Payment payment { get; set; }
+        private PaymentApiRequest.PaymentMethod paymentMethod { get; set; }
+        private PaymentApiRequest.SourceConnector sourceConnector { get; set; }
+    }
+
     public static String getCardPaymentURL(String contactId, String feeAmount) {
         PaymentApiRequest paymentBody = createPaymentBody(contactId, feeAmount);
         String installmentPayRequest = JSON.serialize(paymentBody, true);
@@ -23,11 +34,15 @@ public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
     }
     private static PaymentApiRequest createPaymentBody(String contactId, String feeValue) {
         PaymentApiRequest.Contact contact = new PaymentApiRequest.Contact(contactId);
-        PaymentApiRequest.Payer payer = new PaymentApiRequest.Payer(contact, PAYER_CONTACT_UPDATE);
-        PaymentApiRequest.Payment payment = new PaymentApiRequest.Payment(feeValue);
-        PaymentApiRequest.PaymentMethod paymentMethod = new PaymentApiRequest.PaymentMethod(PAYMENT_METHOD);
-        PaymentApiRequest.SourceConnector sourceConnector = new PaymentApiRequest.SourceConnector(SOURCE_CONNECTOR);
-        PaymentApiRequest paymentBody = new PaymentApiRequest(SUCCESS_PAGE, ERROR_PAGE, ORIGIN, payer, payment, paymentMethod, sourceConnector);
+        PaymentApiRequestParams paymentApiParams = new PaymentApiRequestParams();
+        paymentApiParams.successURL = SUCCESS_PAGE;
+        paymentApiParams.failureURL = ERROR_PAGE;
+        paymentApiParams.origin = ORIGIN;
+        paymentApiParams.payer = new PaymentApiRequest.Payer(contact, PAYER_CONTACT_UPDATE);
+        paymentApiParams.payment = new PaymentApiRequest.Payment(feeValue);
+        paymentApiParams.paymentMethod = new PaymentApiRequest.PaymentMethod(PAYMENT_METHOD);
+        paymentApiParams.sourceConnector = new PaymentApiRequest.SourceConnector(SOURCE_CONNECTOR);
+        PaymentApiRequest paymentBody = new PaymentApiRequest(JSON.serialize(paymentApiParams));
         return paymentBody;
     }
 }
