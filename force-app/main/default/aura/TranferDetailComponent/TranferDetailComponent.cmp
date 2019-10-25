@@ -2,7 +2,7 @@
     <aura:attribute name="bookingId" type="String" access="global" />
     <aura:if isTrue="{!v.bookingId}">
         <c:courseTransferDetails bookingId="{!v.bookingId}" /> <br/><br/>
-        <button class="slds-button slds-button_success slds-align_absolute-center transfer-proceed_to_payment" onclick="{!c.handleChange}">Proceed to Payment</button>
+        <button class="slds-button slds-button_success slds-align_absolute-center transfer-proceed_to_payment_button" onclick="{!c.handleChange}">Proceed to Payment</button>
         <aura:set attribute="else">
             <lightning:spinner alternativeText="Loading" size="large" />
         </aura:set>
