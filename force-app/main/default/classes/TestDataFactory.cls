@@ -315,7 +315,7 @@ public TestDataFactory buildReunion() {
         update courses;
         return this;
     }
-
+  
     public TestDataFactory setCoursesToFinal(List<Course__c> courses){
         for(Course__c course : courses){
             course.Status__c = 'Final';
