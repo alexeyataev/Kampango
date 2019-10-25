@@ -484,6 +484,7 @@
         <editable>false</editable>
         <field>Course__c.Total_Contact_Hours__c</field>
         <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Women_Only__c</field>
