@@ -7,25 +7,33 @@ public class PaymentApiRequest{
     private PaymentMethod paymentMethod {get;set;}
     private SourceConnector sourceConnector {get;set;}
 
-    public PaymentApiRequest(String apiRequestParams) {
-        PaymentApiRequestParams paymentParams = (PaymentApiRequestParams)JSON.deserialize(apiRequestParams,PaymentApiRequestParams.class);
-        this.successURL = paymentParams.successURL;
-        this.failureURL = paymentParams.failureURL;
-        this.origin = paymentParams.origin;
-        this.payer = paymentParams.payer;
-        this.payment = paymentParams.payment;
-        this.paymentMethod = paymentParams.paymentMethod;
-        this.sourceConnector = paymentParams.sourceConnector;
+    public PaymentApiRequest(PaymentApiRequestParams apiRequestParams) {
+        this.successURL = apiRequestParams.URLs.successURL;
+        this.failureURL = apiRequestParams.URLs.failureURL;
+        this.origin = apiRequestParams.URLs.origin;
+        this.payer = apiRequestParams.payer;
+        this.payment = apiRequestParams.payment;
+        this.paymentMethod = apiRequestParams.paymentMethod;
+        this.sourceConnector = apiRequestParams.sourceConnector;
     }
 
     public class PaymentApiRequestParams {
-        public String successURL { get; set; }
-        public String failureURL { get; set; }
-        public String origin { get; set; }
+        public URLs urls { get; set; }
         public Payer payer { get; set; }
         public Payment payment { get; set; }
         public PaymentMethod paymentMethod { get; set; }
         public SourceConnector sourceConnector { get; set; }
+    }
+
+    public class URLs {
+        private String successURL { get; set; }
+        private String failureURL { get; set; }
+        private String origin { get; set; }
+        public Urls(String successURL, String failureURL, String origin) {
+            this.successURL = successURL;
+            this.failureURL = failureURL;
+            this.origin = origin;
+        }
     }
 
     public class Payer {

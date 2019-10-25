@@ -25,14 +25,12 @@ public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
     private static PaymentApiRequest createPaymentBody(String contactId, String feeValue) {
         PaymentApiRequest.Contact contact = new PaymentApiRequest.Contact(contactId);
         PaymentApiRequest.PaymentApiRequestParams paymentApiParams = new PaymentApiRequest.PaymentApiRequestParams();
-        paymentApiParams.successURL = SUCCESS_PAGE;
-        paymentApiParams.failureURL = ERROR_PAGE;
-        paymentApiParams.origin = ORIGIN;
+        paymentApiParams.URLs = new PaymentApiRequest.URLs(SUCCESS_PAGE, ERROR_PAGE, ORIGIN);
         paymentApiParams.payer = new PaymentApiRequest.Payer(contact, PAYER_CONTACT_UPDATE);
         paymentApiParams.payment = new PaymentApiRequest.Payment(feeValue);
         paymentApiParams.paymentMethod = new PaymentApiRequest.PaymentMethod(PAYMENT_METHOD);
         paymentApiParams.sourceConnector = new PaymentApiRequest.SourceConnector(SOURCE_CONNECTOR);
-        PaymentApiRequest paymentBody = new PaymentApiRequest(JSON.serialize(paymentApiParams));
+        PaymentApiRequest paymentBody = new PaymentApiRequest(paymentApiParams);
         return paymentBody;
     }
 }
