@@ -350,7 +350,7 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
         }
     }
 
-    public Integer CompareTo(Object compareTo) {
+    public Integer compareTo(Object compareTo) {
         CourseFinderModelOrdered compareToModel = (CourseFinderModelOrdered) compareTo;
         
         if (this.Rank > compareToModel.Rank){
