@@ -193,16 +193,18 @@ public without sharing class CourseSearchUtility {
         Date birthDueDate;
         Integer radius;
         try {
-            location = validateLocation(params.get('location'));
             birthDueDate = validateBirthDueDate(params.get('birth'));
+            location = validateLocation(params.get('location'));
             radius = validateRadius(params.get('radius'));
+        } catch (RadiusTypeException te){
+            return getWrongRadiusResponse();
         } catch (TypeException te){
             return getWrongResponse();
         }
         
         List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
-        
-        if (courses != null && !courses.isEmpty()) {
+        Boolean isCoursesHasData = (courses != null && !courses.isEmpty());
+        if (isCoursesHasData) {
             List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
             Integer i = 0;
             Integer lowestRankIncluded = 1;
@@ -284,7 +286,7 @@ public without sharing class CourseSearchUtility {
                 Double longitude = Double.valueOf(latLong[1]);
                 result = Location.newInstance(latitude, longitude);
             } catch (Exception e){
-                throw new TypeException(e);
+                throw new LocationTypeException(e);
             }
         }
         
@@ -300,10 +302,10 @@ public without sharing class CourseSearchUtility {
         try {
             result = Integer.valueOf(strRadius);
             if (result <= 0) {
-                throw new TypeException();
+                throw new RadiusTypeException();
             }
         } catch (Exception e){
-            throw new TypeException(e);
+            throw new RadiusTypeException(e);
         }
         
         return result;
@@ -318,7 +320,7 @@ public without sharing class CourseSearchUtility {
         try {
             result = Date.valueOf(strBirthDueDate);
         } catch (Exception e){
-            throw new TypeException(e);
+            throw new DateTypeException(e);
         }
 
         return result;
@@ -347,4 +349,10 @@ public without sharing class CourseSearchUtility {
         response.responseBody = Blob.valueOf(Label.CourseAPIradiusIsNotValid);
         return response;
     }
+
+    public class DateTypeException extends Exception {}
+
+    public class LocationTypeException extends Exception {}
+
+    public class RadiusTypeException extends Exception {}
 }
