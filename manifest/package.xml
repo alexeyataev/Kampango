@@ -59,6 +59,7 @@
         <members>ParentCommunityLogoContainer</members>
         <members>showToast</members>
         <members>SuccessPaymentsPage</members>
+        <members>TranferDetailComponent</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
@@ -79,6 +80,7 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
+        <members>Booking__c.Ad_hoc_Payable_Amount__c</members>
         <members>Booking__c.First_Baby__c</members>      
         <members>Booking__c.Cancellation_Reason__c</members>
         <members>Booking__c.Status__c</members>
@@ -253,6 +255,7 @@
         <members>Update_Related_Sessions</members>
         <members>Update_service_field_on_session</members>
         <members>Update_Venue_on_Sessions_related_to_Course</members>
+        <members>Booking_Tranfer_Flow</members>
         <name>Flow</name>
     </types>
     <types>
@@ -294,6 +297,7 @@
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
+        <members>courseTransferDetails</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
