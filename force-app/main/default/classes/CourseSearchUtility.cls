@@ -119,6 +119,7 @@ public without sharing class CourseSearchUtility {
 
     @SuppressWarnings('PMD.ApexCRUDViolation, PMD.ExcessiveParameterList')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
+    //Incident #17 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Date birthDueDate, Boolean isFromWebSite){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
         if (location == null){
@@ -359,3 +360,5 @@ public without sharing class CourseSearchUtility {
 
     public class RadiusTypeException extends CustomTypeException {}
 }
+//NOPMD
+//Incident #18 - https://confluence.nct.org.uk:8443/x/EoSO
