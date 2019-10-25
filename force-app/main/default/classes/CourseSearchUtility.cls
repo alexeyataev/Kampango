@@ -23,18 +23,13 @@ public without sharing class CourseSearchUtility {
             AND Status__c != 'Cancelled'
             AND Status__c != 'Draft'
             AND Start_Date__c > TODAY
-            AND (Remaining_Places__c > 0 OR (Remaining_Places__c <= 0 AND Overbooking_allowed__c = true))
+            AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
             WITH SECURITY_ENFORCED
         ];
         
-        if(!inCourses.isEmpty()) {
-            if(isFromWebSite == true) {
-                if (inCourses[0].Hide_From_Course_Finder__c != true ) {
-                    result = inCourses[0];
-                }
-            } else {
-                result = inCourses[0];
-            }
+        Boolean isCourseHidden = inCourses.isEmpty() || (isFromWebSite && inCourses[0].Hide_From_Course_Finder__c);
+        if(!isCourseHidden) {
+            result = inCourses[0];
         } 
 
         return result;
@@ -83,12 +78,9 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                if(isFromWebSite == true) {
-                    if (course.Hide_From_Course_Finder__c != true) {
+                Boolean isCourseHidden = isFromWebSite && inCourses[0].Hide_From_Course_Finder__c;
+                if(!isCourseHidden) {
                         courses.add(course);
-                    }
-                } else {
-                    courses.add(course);
                 }
             } 
         }
@@ -125,6 +117,7 @@ public without sharing class CourseSearchUtility {
     }
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
+    @SuppressWarnings('PMD.ExcessiveParameterList')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Date birthDueDate, Boolean isFromWebSite){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
@@ -181,11 +174,8 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                if(isFromWebSite == true){
-                    if (course.Hide_From_Course_Finder__c != true) {
-                        courses.add(course);
-                    }
-                } else {
+                Boolean isCourseHidden = isFromWebSite && inCourses[0].Hide_From_Course_Finder__c;
+                if(!isCourseHidden) {
                     courses.add(course);
                 }
             }
@@ -201,24 +191,14 @@ public without sharing class CourseSearchUtility {
         }
 
         Location location;
-        try {
-            location = validateLocation(params.get('location'));
-        } catch (TypeException te){
-            return getWrongResponse();
-        }
-        
         Date birthDueDate;
-        try {
-            birthDueDate = validateBirthDueDate(params.get('birth'));
-        } catch (TypeException te){
-            return getWrongResponse();
-        } 
-
         Integer radius;
         try {
+            location = validateLocation(params.get('location'));
+            birthDueDate = validateBirthDueDate(params.get('birth'));
             radius = validateRadius(params.get('radius'));
         } catch (TypeException te){
-            return getWrongRadiusResponse();
+            return getWrongResponse();
         }
         
         List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
