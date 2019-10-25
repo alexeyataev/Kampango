@@ -47,7 +47,7 @@
                 <name>bookingId</name>
             </outputParameters>
         </fields>
-        <showFooter>true</showFooter>
+        <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <screens>
