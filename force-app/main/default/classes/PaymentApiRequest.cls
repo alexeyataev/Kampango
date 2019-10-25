@@ -19,13 +19,13 @@ public class PaymentApiRequest{
     }
 
     public class PaymentApiRequestParams {
-        private String successURL { get; set; }
-        private String failureURL { get; set; }
-        private String origin { get; set; }
-        private Payer payer { get; set; }
-        private Payment payment { get; set; }
-        private PaymentMethod paymentMethod { get; set; }
-        private SourceConnector sourceConnector { get; set; }
+        public String successURL { get; set; }
+        public String failureURL { get; set; }
+        public String origin { get; set; }
+        public Payer payer { get; set; }
+        public Payment payment { get; set; }
+        public PaymentMethod paymentMethod { get; set; }
+        public SourceConnector sourceConnector { get; set; }
     }
 
     public class Payer {
