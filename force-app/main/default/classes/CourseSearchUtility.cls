@@ -188,7 +188,7 @@ public without sharing class CourseSearchUtility {
     public static RestResponse getCoursesByDateDistance(Map <String, String> params){
         RestResponse response = new RestResponse();
         if (params == null){
-            return getErrorResponse(Label.CourseAPInoResultsFound);
+            return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
         }
 
         Location location;
@@ -199,11 +199,11 @@ public without sharing class CourseSearchUtility {
             location = validateLocation(params.get('location'));
             radius = validateRadius(params.get('radius'));
         } catch (RadiusTypeException rte){
-            return getServerErrorResponse(Label.CourseAPIradiusIsNotValid);
+            return createResponse(HttpStatusCode.SERVER_ERROR, Label.CourseAPIradiusIsNotValid);
         } catch (DateTypeException dte){
-            return getErrorResponse(Label.CourseAPInoResultsFound);
+            return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
         } catch (LocationTypeException lte) {
-            return getErrorResponse(Label.CourseAPInoResultsFound);
+            return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
         }
         
         List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
@@ -340,16 +340,9 @@ public without sharing class CourseSearchUtility {
         return model.replace('Session_Date', 'Date').replace('Session_End', 'End');
     }
    
-    private static RestResponse getErrorResponse(String label){
+    private static RestResponse createResponse(Integer statusCode, String label){
         RestResponse response = new RestResponse();
-        response.statusCode = HttpStatusCode.NOT_FOUND;
-        response.responseBody = Blob.valueOf(label);
-        return response;
-    }
-
-    private static RestResponse getServerErrorResponse(String label){
-        RestResponse response = new RestResponse();
-        response.statusCode = HttpStatusCode.SERVER_ERROR;
+        response.statusCode = statusCode;
         response.responseBody = Blob.valueOf(label);
         return response;
     }
