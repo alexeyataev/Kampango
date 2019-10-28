@@ -188,7 +188,7 @@ public without sharing class CourseSearchUtility {
     public static RestResponse getCoursesByDateDistance(Map <String, String> params){
         RestResponse response = new RestResponse();
         if (params == null){
-            return getWrongResponse();
+            return getErrorResponse();
         }
 
         Location location;
@@ -199,11 +199,11 @@ public without sharing class CourseSearchUtility {
             location = validateLocation(params.get('location'));
             radius = validateRadius(params.get('radius'));
         } catch (RadiusTypeException rte){
-            return getWrongRadiusResponse(Label.CourseAPIradiusIsNotValid);
+            return getServerErrorResponse(Label.CourseAPIradiusIsNotValid);
         } catch (DateTypeException dte){
-            return getWrongResponse(Label.CourseAPInoResultsFound);
+            return getErrorResponse(Label.CourseAPInoResultsFound);
         } catch (LocationTypeException lte) {
-            return getWrongResponse(Label.CourseAPInoResultsFound);
+            return getErrorResponse(Label.CourseAPInoResultsFound);
         }
         
         List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
@@ -340,14 +340,14 @@ public without sharing class CourseSearchUtility {
         return model.replace('Session_Date', 'Date').replace('Session_End', 'End');
     }
    
-    private static RestResponse getWrongResponse(String label){
+    private static RestResponse getErrorResponse(String label){
         RestResponse response = new RestResponse();
         response.statusCode = HttpStatusCode.NOT_FOUND;
         response.responseBody = Blob.valueOf(label);
         return response;
     }
 
-    private static RestResponse getWrongRadiusResponse(String label){
+    private static RestResponse getServerErrorResponse(String label){
         RestResponse response = new RestResponse();
         response.statusCode = HttpStatusCode.SERVER_ERROR;
         response.responseBody = Blob.valueOf(label);
