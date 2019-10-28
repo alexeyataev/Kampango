@@ -1,3 +1,4 @@
+@SuppressWarnings('PMD.AvoidGlobalModifier')
 global without sharing class IndividualBookingJourneyHelper {
 
     @InvocableMethod(label='Update Individual')
@@ -19,3 +20,5 @@ global without sharing class IndividualBookingJourneyHelper {
     }
 
 }
+//NOPMD
+//Incident #16 - https://confluence.nct.org.uk:8443/x/EoSO
