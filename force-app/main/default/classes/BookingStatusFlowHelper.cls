@@ -1,3 +1,4 @@
+@SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class BookingStatusFlowHelper {
     
     @InvocableMethod(Label='Update Bookings (Database)')
@@ -21,3 +22,5 @@ global with sharing class BookingStatusFlowHelper {
 
     } 
 }
+//NOPMD
+//Incident #15 - https://confluence.nct.org.uk:8443/x/EoSO

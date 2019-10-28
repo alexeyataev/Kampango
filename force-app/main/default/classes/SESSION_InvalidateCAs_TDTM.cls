@@ -31,7 +31,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         Map<Id, Session__c> oldSessionMap = new Map<Id, Session__c>(oldSessionList);
 
         for (Session__c session : newSessionList) {
-            if (session.Course_Assignment__c != NULL && (session.Type__c != 'Reunion' &&
+            Boolean condition = session.Course_Assignment__c != NULL && (session.Type__c != 'Reunion' &&
                     (session.Date__c != oldSessionMap.get(session.Id).Date__c ||
                             session.Start__c != oldSessionMap.get(session.Id).Start__c ||
                             session.End__c != oldSessionMap.get(session.Id).End__c ||
@@ -39,7 +39,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                             session.Venue__c != oldSessionMap.get(session.Id).Venue__c ||
                             session.Room__c != oldSessionMap.get(session.Id).Room__c)) ||
                     (session.Type__c == 'Reunion' && session.Status__c == 'Confirmed' &&
-                            oldSessionMap.get(session.Id).Status__c == 'Provisional')) {
+                            oldSessionMap.get(session.Id).Status__c == 'Provisional');
+            if (condition) {
                 courseAssignmentIds.add(session.Course_Assignment__c);
             } else if (session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c) {
                 newPractitionerIds.add(session.Practitioner__c);
