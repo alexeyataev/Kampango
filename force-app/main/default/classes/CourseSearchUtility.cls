@@ -103,7 +103,7 @@ public without sharing class CourseSearchUtility {
             response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(models)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
-            response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
+            response.responseBody = Blob.valueOf(System.Label.CourseAPInoResultsFound);
         }        
         return response;
     }
@@ -198,10 +198,12 @@ public without sharing class CourseSearchUtility {
             birthDueDate = validateBirthDueDate(params.get('birth'));
             location = validateLocation(params.get('location'));
             radius = validateRadius(params.get('radius'));
-        } catch (RadiusTypeException te){
-            return getWrongRadiusResponse();
-        } catch (CustomTypeException te){
-            return getWrongResponse();
+        } catch (RadiusTypeException rte){
+            return getWrongRadiusResponse(Label.CourseAPIradiusIsNotValid);
+        } catch (DateTypeException dte){
+            return getWrongResponse(Label.CourseAPInoResultsFound);
+        } catch (LocationTypeException lte) {
+            return getWrongResponse(Label.CourseAPInoResultsFound);
         }
         
         List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
@@ -338,17 +340,17 @@ public without sharing class CourseSearchUtility {
         return model.replace('Session_Date', 'Date').replace('Session_End', 'End');
     }
    
-    private static RestResponse getWrongResponse(){
+    private static RestResponse getWrongResponse(String label){
         RestResponse response = new RestResponse();
         response.statusCode = HttpStatusCode.NOT_FOUND;
-        response.responseBody = Blob.valueOf(Label.CourseAPIcourseNotExists);
+        response.responseBody = Blob.valueOf(label);
         return response;
     }
 
-    private static RestResponse getWrongRadiusResponse(){
+    private static RestResponse getWrongRadiusResponse(String label){
         RestResponse response = new RestResponse();
         response.statusCode = HttpStatusCode.SERVER_ERROR;
-        response.responseBody = Blob.valueOf(Label.CourseAPIradiusIsNotValid);
+        response.responseBody = Blob.valueOf(label);
         return response;
     }
 
