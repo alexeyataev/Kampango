@@ -10,6 +10,7 @@ public without sharing class CourseApiTest {
             .buildBranchAccount()
             .buildOrganizationAccount('acc5')
             .buildPractitioner('Test')
+            .buildPractitionerFeeRate()
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()

@@ -15,6 +15,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         dataFactory .buildOrganizationAccount('acc1')
                     .buildBranchAccount()
                     .buildPractitioner(PRACTITIONER_LASTNAME, PRACTITIONER_EMAIL_ADDRESS)
+                    .buildPractitionerFeeRate()
                     .buildVenue()
                     .buildRoom()
                     .buildLicenceToPractice()
