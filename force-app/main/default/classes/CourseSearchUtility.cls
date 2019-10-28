@@ -188,7 +188,7 @@ public without sharing class CourseSearchUtility {
     public static RestResponse getCoursesByDateDistance(Map <String, String> params){
         RestResponse response = new RestResponse();
         if (params == null){
-            return getErrorResponse();
+            return getErrorResponse(Label.CourseAPInoResultsFound);
         }
 
         Location location;
