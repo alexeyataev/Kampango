@@ -7,6 +7,7 @@ public with sharing class CourseDetailControllerTest {
             .buildBranchAccount()
             .buildOrganizationAccount('acc1')
             .buildPractitioner('Smith')
+            .buildPractitionerFeeRate()
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()

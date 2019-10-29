@@ -1003,11 +1003,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Count_of_Estimated_Practitioner_Fees__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Course__c.Count_of_Estimated_Travel_Costs__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1119,11 +1114,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Total_Contact_Hours__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Total_Estimated_Costs__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
