@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Zumzum__Send_as_Email</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <height>600</height>
+    <linkType>page</linkType>
+    <masterLabel>Send as Email</masterLabel>
+    <openType>noSidebar</openType>
+    <page>Zumzum__SendPurchaseInvoiceAsEmail</page>
+    <protected>false</protected>
+</WebLink>

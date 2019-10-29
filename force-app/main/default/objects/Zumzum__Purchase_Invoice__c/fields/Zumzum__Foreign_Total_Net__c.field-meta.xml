@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Zumzum__Foreign_Total_Net__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Foreign Total Net</label>
+    <summarizedField>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Foreign_Net_Total__c</summarizedField>
+    <summaryForeignKey>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Purchase_Invoice__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Zumzum__Dimension3_Type_and_Active</fullName>
+    <active>true</active>
+    <description>Validate the Dimension Type is 3 and Active.</description>
+    <errorConditionFormula>AND( 
+OR( 
+     Zumzum__Dimension_3__r.Zumzum__Active__c = FALSE, 
+IF( 
+ISPICKVAL(Zumzum__Dimension_3__r.Zumzum__Type__c, &quot;Dimension 3&quot;), FALSE, TRUE) 
+), 
+NOT(ISBLANK( Zumzum__Dimension_3__c  ) 
+) 
+)</errorConditionFormula>
+    <errorDisplayField>Zumzum__Dimension_3__c</errorDisplayField>
+    <errorMessage>Please make sure that the Dimension is &quot;Active&quot; and &quot;Type&quot; Dimension 3.</errorMessage>
+</ValidationRule>
