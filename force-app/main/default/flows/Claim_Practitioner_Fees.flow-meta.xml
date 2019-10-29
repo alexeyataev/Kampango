@@ -283,6 +283,7 @@
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>true</showHeader>
@@ -322,7 +323,13 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <startElementReference>getAccountAndContactId</startElementReference>
+    <start>
+        <locationX>19</locationX>
+        <locationY>137</locationY>
+        <connector>
+            <targetReference>getAccountAndContactId</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>contactId</name>
