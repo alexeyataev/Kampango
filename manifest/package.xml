@@ -160,6 +160,7 @@
         <members>Zumzum__Purchase_Order__c</members>
         <members>Zumzum__Purchase_Requisition__c</members>
         <members>Zumzum__Recurring_Invoice__c</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c</members>
         <members>Zumzum__RecurringTransaction__c</members>
         <members>Zumzum__Revenue_Recognition_Rule__c</members>
         <members>Zumzum__Revenue_Recognition_Rule_Setting__c</members>
@@ -234,6 +235,7 @@
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
+        <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
         <members>Create_Task_For_Booking</members>
         <members>Invalidate_Withdraw_CA_when_key_information_changes</members>
@@ -294,6 +296,7 @@
     </types>
     <types>
         <members>courseDetailsComponent</members>
+        <members>claimFeesDatatable</members>
         <members>failurePaymentPage</members>
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>

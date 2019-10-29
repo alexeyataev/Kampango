@@ -42,9 +42,16 @@
             <type>SalesforceObject</type>
         </navigationMenuItem>
         <navigationMenuItem>
+            <label>Claim Fee</label>
+            <position>3</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>/claim-fees</target>
+            <type>InternalLink</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
             <defaultListViewId>AllReports</defaultListViewId>
             <label>Reports</label>
-            <position>3</position>
+            <position>4</position>
             <publiclyAvailable>false</publiclyAvailable>
             <target>Report</target>
             <type>SalesforceObject</type>
