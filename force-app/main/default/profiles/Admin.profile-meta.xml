@@ -1169,6 +1169,9 @@
         <layout>Practitioner_Band__c-Practitioner Band Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</layout>
     </layoutAssignments>
     <layoutAssignments>

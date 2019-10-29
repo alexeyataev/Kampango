@@ -12,6 +12,9 @@ const BOOKING_FIELDS = [
     'Booking__c.Last_Name__c',
     'Booking__c.Final_Fee__c',
     'Booking__c.Course__r.Sub_Type__c',
+    'Booking__c.Course__r.Name',
+    'Booking__c.Course__r.PSA_Area__c',
+    'Booking__c.Course__r.Main_Practitioner__r.Name',
     'Booking__c.Course__r.Branch__r.Name',
     'Booking__c.Course__r.Main_Venue__r.Name',
     'Booking__c.Course__r.Start_Date__c',
@@ -31,6 +34,11 @@ export default class CourseDetailsComponent extends LightningElement {
     @api endDate;
     sessions;
     @api formattedSessions;
+
+    @api courseName;
+    @api coursePSA;
+    @api courseLeader;
+
     @api courseFee;
     @api coursetype;
     @api mainTown;
@@ -42,15 +50,7 @@ export default class CourseDetailsComponent extends LightningElement {
     sessionColumns = [{
             fieldName: 'row',
             type: 'number',
-            cellAttributes: { alignment: 'center' }
-        },
-        {
-            label: 'Day',
-            fieldName: 'Date__c',
-            type: 'date',
-            typeAttributes: {
-                weekday: 'short'
-            }
+            cellAttributes: { alignment: 'left' }
         },
         {
             label: 'Date',
@@ -58,24 +58,9 @@ export default class CourseDetailsComponent extends LightningElement {
             type: 'string'
         },
         {
-            label: 'Starts',
-            fieldName: 'Start__c',
-            type: 'date',
-            typeAttributes: {
-                hour: '2-digit',
-                minute: '2-digit',
-                timeZone: 'GMT'
-            }
-        },
-        {
-            label: 'Ends',
-            fieldName: 'End__c',
-            type: 'date',
-            typeAttributes: {
-                hour: '2-digit',
-                minute: '2-digit',
-                timeZone: 'GMT'
-            }
+            label: 'Time',
+            fieldName: 'timeFormatted',
+            type: 'string'
         }
     ];
 
@@ -103,6 +88,9 @@ export default class CourseDetailsComponent extends LightningElement {
             this.firstName = this.bookingRecord.fields.First_Name__c.value;
             this.lastName = this.bookingRecord.fields.Last_Name__c.value;
             this.courseId = this.bookingRecord.fields.Course__c.value;
+            this.courseName = this.bookingRecord.fields.Course__r.value.fields.Name.value;
+            this.coursePSA = this.bookingRecord.fields.Course__r.value.fields.PSA_Area__c.value;
+            this.courseLeader = this.bookingRecord.fields.Course__r.value.fields.Main_Practitioner__r.value.fields.Name.value;
             this.courseFee = this.bookingRecord.fields.Ad_hoc_Payable_Amount__c.value;
             console.log(this.bookingRecord.fields);
             this.coursetype = this.bookingRecord.fields.Course__r.value.fields.Sub_Type__c.value;
@@ -110,10 +98,10 @@ export default class CourseDetailsComponent extends LightningElement {
             this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
             date = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
             date = new Date(date);
-            this.startDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
+            this.startDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'short' }).replace('.','').charAt(0).toUpperCase()+date.toLocaleString('default', { month: 'short' }).replace('.','').slice(1) + ' ' + date.getFullYear();
             date = this.bookingRecord.fields.Course__r.value.fields.End_Date__c.value;
             date = new Date(date);
-            this.endDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
+            this.endDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'short' }).replace('.','').charAt(0).toUpperCase() + date.toLocaleString('default', { month: 'short' }).replace('.','').slice(1) + ' ' + date.getFullYear();
             this.retrieveSessions(this.courseId);
         }
     }
@@ -123,7 +111,7 @@ export default class CourseDetailsComponent extends LightningElement {
             .then(data => {
                 this.sessions = data.map(
                     function(row, index) {
-                        return Object.assign({ Date__c: row.Date__c }, { dateFormatted: row.Date__c }, { Start__c: row.Start__c }, { End__c: row.End__c }, { row: index + 1 }, { id: row.Id });
+                    	return Object.assign( { dateFormatted: row.Date__c }, { Start__c: row.Start__c }, { End__c: row.End__c }, { row: index + 1 }, { id: row.Id });
                     }
                 );
                 this.formatSessions();
@@ -177,15 +165,33 @@ export default class CourseDetailsComponent extends LightningElement {
         this.allVenues = array;
     }
 
+    convertMlsToTime(time) {
+        let ms = time % 1000;
+        time = (time - ms) / 1000;
+        let secs = time % 60;
+        time = (time - secs) / 60;
+        let minutes = time % 60;
+        let hours = (time - minutes) / 60;
+        let ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        let strTime = hours + ':' + minutes + ampm;
+        return strTime;
+    }
+
     formatSessions() {
-        let array = this.sessions,
+         let array = this.sessions,
+           days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
             monthDay;
         array.forEach(
             (row) => {
                 let date = new Date(row.dateFormatted);
-                monthDay = date.getDate().toString();
-                let dateStr = monthDay + ' ' + date.toLocaleString('default', { month: 'long' });
+                 monthDay = date.getDate().toString();
+                let dateStr =  days[date.getDay()] + ' ' + monthDay + ' ' + date.toLocaleString('default', { month: 'short'}).replace('.','').charAt(0).toUpperCase() + date.toLocaleString('default', { month: 'short' }).replace('.','').slice(1);
                 row.dateFormatted = dateStr;
+                let timeStr = this.convertMlsToTime(row.Start__c) + ' - ' +  this.convertMlsToTime(row.End__c);
+                row.timeFormatted = timeStr;
             }
         );
         this.formattedSessions = array;
