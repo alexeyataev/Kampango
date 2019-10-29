@@ -22,6 +22,8 @@
         <members>HttpStatusCode</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
+        <members>SendHTMLEmailPlugin</members>
+        <members>SendHTMLEmailPluginTest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM_TEST</members>
@@ -80,11 +82,6 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
-        <members>Booking__c.Ad_hoc_Payable_Amount__c</members>
-        <members>Booking__c.First_Baby__c</members>      
-        <members>Booking__c.Cancellation_Reason__c</members>
-        <members>Booking__c.Status__c</members>
-        <members>Booking__c.Suggested_Cancellation_Fee__c</members>
         <members>Contact.AccountId</members>
         <members>Contact.Home_PSA__c</members>
         <members>Contact.NCT_Number__c</members>
@@ -239,6 +236,11 @@
         <members>Invalidate_Withdraw_CA_when_key_information_changes</members>
         <members>Populate_Practitioner_Name</members>
         <members>Resend_Offer_Email</members>
+        <members>Reunion_Prepare_Sending_Process</members>
+        <members>Resend_Reunion_Email</members>
+        <members>Reunion_Execute_Sending_Private_Subflow</members>
+        <members>Reunion_Execute_Sending_Public_Subflow</members>
+        <members>Reunion_Execute_Sending</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Booking_Expiration_Status</members>
@@ -276,6 +278,8 @@
         <members>Course_Assignment__c-Course Assignment Layout</members>
         <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
+        <members>Course__c-Capacity PSA Course Layout</members>
+        <members>Course__c-Admin Course Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
@@ -289,6 +293,7 @@
         <members>Venue__c-Venue Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
+        <members>Zumzum__Batch_Bank_Payment__c-Zumzum__Batch Bank Payment Layout</members>
         <name>Layout</name>
     </types>
     <types>
@@ -333,6 +338,7 @@
     </types>
     <types>
         <members>Booking__c.Send_Offer_Email</members>
+        <members>Course__c.Resend_Reunion_Email</members>
         <members>Zumzum__NewTask</members>
         <name>QuickAction</name>
     </types>
