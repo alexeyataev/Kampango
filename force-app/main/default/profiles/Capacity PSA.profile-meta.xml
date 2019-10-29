@@ -1037,7 +1037,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>trufalsee</editable>
+        <editable>false</editable>
         <field>gaid__Gift_Aid_Declaration__c.gaid__Firstname__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1123,7 +1123,7 @@
         <layout>Course_Assignment__c-Course Assignment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course__c-Course Layout</layout>
+        <layout>Course__c-Capacity PSA Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
