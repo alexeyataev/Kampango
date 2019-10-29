@@ -6,6 +6,7 @@ private class CourseFinderModelTest {
         testDataFactory.buildBranchAccount()
                        .buildOrganizationAccount('acc5')
                        .buildPractitioner('Test')
+                       .buildPractitionerFeeRate()
                        .buildVenue()
                        .buildRoom()
                        .buildLicenceToPractice()
