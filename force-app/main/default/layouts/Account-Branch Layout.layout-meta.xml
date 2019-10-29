@@ -27,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>PSA_Area__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Branch_Number__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
