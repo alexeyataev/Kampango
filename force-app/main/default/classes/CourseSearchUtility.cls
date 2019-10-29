@@ -1,10 +1,13 @@
+@SuppressWarnings('PMD.CyclomaticComplexity')
 public without sharing class CourseSearchUtility {
 
     private static List<String> howHeard = getHowHeardValues();
-
+    
+    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static Course__c getCourseById(String courseName, Boolean isFromWebSite){
         Course__c result = null;
-
+        
         List<Course__c> inCourses = [
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
@@ -21,18 +24,13 @@ public without sharing class CourseSearchUtility {
             AND Status__c != 'Cancelled'
             AND Status__c != 'Draft'
             AND Start_Date__c > TODAY
-            AND (Remaining_Places__c > 0 OR (Remaining_Places__c <= 0 AND Overbooking_allowed__c = true))
+            AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
             WITH SECURITY_ENFORCED
         ];
         
-        if(!inCourses.isEmpty()) {
-            if(isFromWebSite == true) {
-                if (inCourses[0].Hide_From_Course_Finder__c != true ) {
-                    result = inCourses[0];
-                }
-            } else {
-                result = inCourses[0];
-            }
+        Boolean isCourseHidden = inCourses.isEmpty() || (isFromWebSite && inCourses[0].Hide_From_Course_Finder__c);
+        if(!isCourseHidden) {
+            result = inCourses[0];
         } 
 
         return result;
@@ -52,7 +50,9 @@ public without sharing class CourseSearchUtility {
         }       
         return response;
     }
-    
+
+    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByBranch(String branchId, Boolean isFromWebSite){
 
         List<Course__c> inCourses = [
@@ -79,12 +79,9 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                if(isFromWebSite == true) {
-                    if (course.Hide_From_Course_Finder__c != true) {
+                Boolean isCourseHidden = isFromWebSite && inCourses[0].Hide_From_Course_Finder__c;
+                if(!isCourseHidden) {
                         courses.add(course);
-                    }
-                } else {
-                    courses.add(course);
                 }
             } 
         }
@@ -120,6 +117,9 @@ public without sharing class CourseSearchUtility {
         return howHeardValues;
     }
 
+    @SuppressWarnings('PMD.ApexCRUDViolation, PMD.ExcessiveParameterList')
+    //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
+    //Incident #17 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Date birthDueDate, Boolean isFromWebSite){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
         if (location == null){
@@ -175,11 +175,8 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                if(isFromWebSite == true){
-                    if (course.Hide_From_Course_Finder__c != true) {
-                        courses.add(course);
-                    }
-                } else {
+                Boolean isCourseHidden = isFromWebSite && inCourses[0].Hide_From_Course_Finder__c;
+                if(!isCourseHidden) {
                     courses.add(course);
                 }
             }
@@ -195,32 +192,24 @@ public without sharing class CourseSearchUtility {
         }
 
         Location location;
-        try {
-            location = validateLocation(params.get('location'));
-        } catch (TypeException te){
-            return getWrongResponse();
-        }
-        
         Date birthDueDate;
-        try {
-            birthDueDate = validateBirthDueDate(params.get('birth'));
-        } catch (TypeException te){
-            return getWrongResponse();
-        } 
-
         Integer radius;
         try {
+            birthDueDate = validateBirthDueDate(params.get('birth'));
+            location = validateLocation(params.get('location'));
             radius = validateRadius(params.get('radius'));
-        } catch (TypeException te){
+        } catch (RadiusTypeException te){
             return getWrongRadiusResponse();
+        } catch (CustomTypeException te){
+            return getWrongResponse();
         }
         
         List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
-        
-        if (courses != null && !courses.isEmpty()) {
+        Boolean isCoursesHasData = (courses != null && !courses.isEmpty());
+        if (isCoursesHasData) {
             List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
             Integer i = 0;
-            Integer LowestRankIncluded = 1;
+            Integer lowestRankIncluded = 1;
             for (Course__c course : courses) {
                 CourseFinderModelOrdered model = new CourseFinderModelOrdered(course, birthDueDate);
                 i++;
@@ -229,8 +218,8 @@ public without sharing class CourseSearchUtility {
 
                 if (model.Rank <= 5) { // filtering by rank
                 models.add(model);
-                    if (LowestRankIncluded < model.Rank){
-                        LowestRankIncluded = model.Rank;
+                    if (lowestRankIncluded < model.Rank){
+                        lowestRankIncluded = model.Rank;
                     }
                 }
 
@@ -247,8 +236,8 @@ public without sharing class CourseSearchUtility {
             
             CoursesDateDistanceModel sortedModel = new CoursesDateDistanceModel();
             sortedModel.Courses = models;
-            sortedModel.LowestRankIncluded = LowestRankIncluded;
-            sortedModel.SuggestedLowestRank = getSuggestedLowestRank(radius, LowestRankIncluded);
+            sortedModel.LowestRankIncluded = lowestRankIncluded;
+            sortedModel.SuggestedLowestRank = getSuggestedLowestRank(radius, lowestRankIncluded);
             sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
             
             response.statusCode = HttpStatusCode.OK;
@@ -260,7 +249,7 @@ public without sharing class CourseSearchUtility {
         return response;
     }
 
-    private static Integer getSuggestedLowestRank(Integer radius, Integer LowestRankIncluded){
+    private static Integer getSuggestedLowestRank(Integer radius, Integer lowestRankIncluded){
         Integer result;
 
         final Integer RANK_3 = 3;
@@ -278,8 +267,8 @@ public without sharing class CourseSearchUtility {
             result = RANK_5;
         }
         
-        if (result > LowestRankIncluded) {
-            result = LowestRankIncluded;
+        if (result > lowestRankIncluded) {
+            result = lowestRankIncluded;
         }
         
         return result;
@@ -299,7 +288,7 @@ public without sharing class CourseSearchUtility {
                 Double longitude = Double.valueOf(latLong[1]);
                 result = Location.newInstance(latitude, longitude);
             } catch (Exception e){
-                throw new TypeException(e);
+                throw new LocationTypeException(e);
             }
         }
         
@@ -315,10 +304,10 @@ public without sharing class CourseSearchUtility {
         try {
             result = Integer.valueOf(strRadius);
             if (result <= 0) {
-                throw new TypeException();
+                throw new RadiusTypeException();
             }
         } catch (Exception e){
-            throw new TypeException(e);
+            throw new RadiusTypeException(e);
         }
         
         return result;
@@ -333,7 +322,7 @@ public without sharing class CourseSearchUtility {
         try {
             result = Date.valueOf(strBirthDueDate);
         } catch (Exception e){
-            throw new TypeException(e);
+            throw new DateTypeException(e);
         }
 
         return result;
@@ -362,4 +351,14 @@ public without sharing class CourseSearchUtility {
         response.responseBody = Blob.valueOf(Label.CourseAPIradiusIsNotValid);
         return response;
     }
+
+    public virtual class CustomTypeException extends Exception {} 
+
+    public class DateTypeException extends CustomTypeException {}
+
+    public class LocationTypeException extends CustomTypeException {}
+
+    public class RadiusTypeException extends CustomTypeException {}
 }
+//NOPMD
+//Incident #18 - https://confluence.nct.org.uk:8443/x/EoSO
