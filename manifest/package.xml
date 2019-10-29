@@ -335,6 +335,7 @@
         <members>Payment API User</members>
         <members>Practitioner</members>
         <members>PSA Manager</members>
+        <members>Website Integration</members>
         <name>Profile</name>
     </types>
     <types>
