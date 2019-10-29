@@ -30,6 +30,11 @@
                 <default>false</default>
                 <label>Alternate Emergency</label>
             </value>
+            <value>
+                <fullName>Parent Host</fullName>
+                <default>false</default>
+                <label>Parent Host</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

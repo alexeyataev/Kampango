@@ -18,10 +18,13 @@
         <members>CourseSearchUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
+        <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
         <members>HttpStatusCode</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
+        <members>SendHTMLEmailPlugin</members>
+        <members>SendHTMLEmailPluginTest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM_TEST</members>
@@ -46,6 +49,7 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>dlrs_Estimated_CostsTrigger</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
     </types>
@@ -80,11 +84,6 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
-        <members>Booking__c.Ad_hoc_Payable_Amount__c</members>
-        <members>Booking__c.First_Baby__c</members>      
-        <members>Booking__c.Cancellation_Reason__c</members>
-        <members>Booking__c.Status__c</members>
-        <members>Booking__c.Suggested_Cancellation_Fee__c</members>
         <members>Contact.AccountId</members>
         <members>Contact.Home_PSA__c</members>
         <members>Contact.NCT_Number__c</members>
@@ -109,6 +108,9 @@
         <members>dlrs__LookupRollupSummary2.CourseAssignmentNumberOfSessions</members>
         <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalFeesAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalHours</members>
+        <members>dlrs__LookupRollupSummary2.CourseEstimatedTravelCostsTotalAmount</members>
+        <members>dlrs__LookupRollupSummary2.CourseEstimatedVenueCostsTotalAmount</members>
+        <members>dlrs__LookupRollupSummary2.CourseNumberOfSessionsWithoutFeeRates</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -237,12 +239,18 @@
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
+        <members>Booking_Tranfer_Flow</members>
         <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
         <members>Create_Task_For_Booking</members>
         <members>Invalidate_Withdraw_CA_when_key_information_changes</members>
         <members>Populate_Practitioner_Name</members>
         <members>Resend_Offer_Email</members>
+        <members>Reunion_Prepare_Sending_Process</members>
+        <members>Resend_Reunion_Email</members>
+        <members>Reunion_Execute_Sending_Private_Subflow</members>
+        <members>Reunion_Execute_Sending_Public_Subflow</members>
+        <members>Reunion_Execute_Sending</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Booking_Expiration_Status</members>
@@ -259,7 +267,6 @@
         <members>Update_Related_Sessions</members>
         <members>Update_service_field_on_session</members>
         <members>Update_Venue_on_Sessions_related_to_Course</members>
-        <members>Booking_Tranfer_Flow</members>
         <name>Flow</name>
     </types>
     <types>
@@ -280,6 +287,8 @@
         <members>Course_Assignment__c-Course Assignment Layout</members>
         <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
+        <members>Course__c-Capacity PSA Course Layout</members>
+        <members>Course__c-Admin Course Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
@@ -339,6 +348,7 @@
     </types>
     <types>
         <members>Booking__c.Send_Offer_Email</members>
+        <members>Course__c.Resend_Reunion_Email</members>
         <members>Zumzum__NewTask</members>
         <name>QuickAction</name>
     </types>
@@ -449,3 +459,4 @@
     </types>
     <version>46.0</version>
 </Package>
+

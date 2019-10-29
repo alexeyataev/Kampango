@@ -6,6 +6,7 @@ private class CourseSearchUtilityTest {
                        .buildBranchAccount()
                        .buildOrganizationAccount('acc5')
                        .buildPractitioner('Test')
+                       .buildPractitionerFeeRate()
                        .buildVenue()
                        .buildRoom()
                        .buildLicenceToPractice()
@@ -41,6 +42,7 @@ private class CourseSearchUtilityTest {
         testDataFactor.buildBranchAccount()
                       .buildOrganizationAccount('acc5')
                       .buildPractitioner('Test')
+                      .buildPractitionerFeeRate()
                       .buildVenue()
                       .buildRoom()
                       .buildLicenceToPractice()
@@ -218,9 +220,12 @@ private class CourseSearchUtilityTest {
             LIMIT 1
         ];
 
+        account.Branch_Number__c = '123';
+        update account;
+
         Test.startTest();
         RestResponse response = new RestResponse();
-        response = CourseSearchUtility.getCoursesByBranch(account.Id);
+        response = CourseSearchUtility.getCoursesByBranch(account.Branch_Number__c);
         Test.stopTest();
         List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(response.responseBody.toString());
 
@@ -241,8 +246,11 @@ private class CourseSearchUtilityTest {
             LIMIT 1
         ];
 
+        account.Branch_Number__c = '123';
+        update account;
+
         Test.startTest();
-        List<Course__c> courses = CourseSearchUtility.getCoursesByBranch(account.Id, false);
+        List<Course__c> courses = CourseSearchUtility.getCoursesByBranch(account.Branch_Number__c, false);
         Test.stopTest();
 
         System.assertEquals(1, courses.size());
@@ -261,6 +269,9 @@ private class CourseSearchUtilityTest {
             WHERE RecordTypeId = :recordTypeId 
             LIMIT 1
         ];
+
+        account.Branch_Number__c = '123';
+        update account;        
             
         List<Course__c> courses = [
             SELECT Id
@@ -272,7 +283,7 @@ private class CourseSearchUtilityTest {
 
         Test.startTest();
         RestResponse response = new RestResponse();
-        response = CourseSearchUtility.getCoursesByBranch(account.Id);
+        response = CourseSearchUtility.getCoursesByBranch(account.Branch_Number__c);
         Test.stopTest();
 
         System.assertEquals(404, response.statusCode);                             
