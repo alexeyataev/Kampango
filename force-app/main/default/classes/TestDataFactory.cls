@@ -203,35 +203,39 @@ public TestDataFactory buildReunion() {
     }
 
     public TestDataFactory buildCoursesWithSessions(Integer numberOfCourses, Integer numberOfSessions) {
+        List<Course__c> coursesToInsert = new List<Course__c>();
+        List<Session__c> sessionsToInsert = new List<Session__c>();
+        List<Estimated_Costs__c> costsToInsert = new List<Estimated_Costs__c>();
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         for(Integer i = 0; i < numberOfCourses; i++) {
-            courses.add(courseBuilder
+            coursesToInsert.add(courseBuilder
                 .withAccount(branchAccount)
                 .withFee(100)
                 .withPractitioner(practitioners[0])
                 .withLicenceToPractice(licenceToPractice)
                 .withMainVenue(mainVenue)
-                .insertRecord(true)
+                .insertRecord(false)
                 .build());
         }
-
+        insert coursesToInsert;
+        courses.addAll(coursesToInsert);
         for(Integer i = 0; i < numberOfCourses; i++) {
             TestEstimatedCostsBuilder estimatedCostsBuilder = new TestEstimatedCostsBuilder();
-            estimatedCostsBuilder
+            costsToInsert.add(estimatedCostsBuilder
                 .withCourse(courses[i])
                 .withType('Travel')
-                .insertRecord(true)
-                .build();
-            estimatedCostsBuilder
+                .insertRecord(false)
+                .build());
+            costsToInsert.add(estimatedCostsBuilder
                 .withCourse(courses[i])
                 .withType('Venue')
-                .insertRecord(true)
-                .build();
+                .insertRecord(false)
+                .build());
         }
-
+        insert costsToInsert;
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         for(Integer i = 0; i < numberOfSessions; i++) {
-            sessions.add(sessionBuilder
+            sessionsToInsert.add(sessionBuilder
                 .withCourse(courses[i / 2])
                 .withVenue(venue)
                 .withRoom(room)
@@ -239,9 +243,11 @@ public TestDataFactory buildReunion() {
                 .withPractitionerFeeRate(practitionerFeeRate)
                 .withPractitionerLicence(licenceToPractice)
                 .withStatus('Provisional')
-                .insertRecord(true)
+                .insertRecord(false)
                 .build());
         }
+        insert sessionsToInsert;
+        sessions.addAll(sessionsToInsert);
         return this;
     }
 
