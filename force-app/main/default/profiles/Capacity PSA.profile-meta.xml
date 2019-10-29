@@ -93,6 +93,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.Ad_hoc_Payable_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Acceptance_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -453,11 +458,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Count_of_Estimated_Practitioner_Fees__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Course__c.Count_of_Estimated_Travel_Costs__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -489,6 +489,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Estimated_Travel_Costs__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Estimated_Venue_Costs__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -568,7 +578,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Total_Estimated_Costs__c</field>
+        <field>Course__c.Total_Practitioner_Fees__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

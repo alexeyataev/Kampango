@@ -24,6 +24,12 @@ public  class BookingStatusFlowHelperTest {
             .withLastName('Lname')
             .insertRecord(true)
             .build();
+        TestPractitionerFeeRateBuilder feeRateBuilder = new TestPractitionerFeeRateBuilder();
+        Practitioner_Fee_Rate__c practitionerFeeRate = feeRateBuilder
+            .withBand('A')
+            .withWeighting('Standard')
+            .insertRecord(true)
+            .build();
         TestLicenceToPracticeBuilder lisenceBuilder = new TestLicenceToPracticeBuilder();
         Licence_To_Practice__c lisence = lisenceBuilder.withContact(contact)
             .withStartDate(System.today())
@@ -31,7 +37,7 @@ public  class BookingStatusFlowHelperTest {
             .withLicence('Signature Antenatal Teacher')
             .insertRecord(true)
             .build();
-            TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
         Course__c course = courseBuilder.withType('Postnatal')
             .withSubType('Baby Massage')
             .withFee(100)
@@ -100,6 +106,7 @@ public  class BookingStatusFlowHelperTest {
                 .withType('Standard')
                 .withDate(System.today())
                 .withPractitionerLicence(lisence)
+                .withPractitionerFeeRate(practitionerFeeRate)
                 .withVenue(venues[0])
                 .withCourse(course)
                 .withRoom(room)
