@@ -19,9 +19,9 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         dmlWrapper.objectsToUpdate.addAll(courseAssignmentsToUpdate);
         return dmlWrapper;
     }
-    //NOPMD
-    //Incident #5 - https://confluence.nct.org.uk:8443/x/EoSO
 
+     @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #22 - https://confluence.nct.org.uk:8443/x/EoSO
     private List<Course_Assignment__c> CourseAssignmentsToChangeIfSessionsUpdated(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
         Set<Id> courseAssignmentIds = new Set<Id>();
         Set<Id> newPractitionerIds = new Set<Id>();
@@ -101,9 +101,9 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
 
         return courseAssignmentsToUpdate;
     }
-    //NOPMD
-    //Incident #6 - https://confluence.nct.org.uk:8443/x/EoSO
-    
+ 
+    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #19, 20 - https://confluence.nct.org.uk:8443/x/EoSO
     private static List<Course_Assignment__c> SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(Set<Id> practitionerIds, Set<Id> courseIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
     
     List<User> partnerCommunityUsers = [
@@ -145,6 +145,9 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         return courseAssignmentsToUpdate;
 	}
 
+
+    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #21 - https://confluence.nct.org.uk:8443/x/EoSO
     private static List<Course_Assignment__c> SetCourseAssignmentsStatusDependOnWhetherAssignedSessions(Set<Id> courseAssignmentIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
     
     List<Course_Assignment__c> coursesAssignmentsToChangeStatus = [
