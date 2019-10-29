@@ -3,6 +3,11 @@
     <custom>true</custom>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Branch_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Enquiries_PSA_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
