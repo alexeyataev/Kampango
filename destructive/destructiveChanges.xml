@@ -210,7 +210,7 @@
         <members>Booking__c.SetExpDateTo5Days</members>
         <members>Booking__c.SetExpDateToTenDays</members>
         <members>Booking__c.SetExpirationDate_Less5</members>
-            <members>Booking__c.SetOfferEmailDate</members>
+        <members>Booking__c.SetOfferEmailDate</members>
         <name>WorkflowFieldUpdate</name>
     </types>
 </Package>
