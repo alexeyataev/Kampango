@@ -30,4 +30,12 @@
         <shortDescription>Radius is not valid response</shortDescription>
         <value>{&quot;Error&quot; : radius is not a whole number of miles}</value>
     </labels>
+    <labels>
+        <fullName>CourseAPInoResultsFound</fullName>
+        <categories>CourseAPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No results found</shortDescription>
+        <value>{&quot;Error&quot; : no results match your search criteria}</value>
+    </labels>
 </CustomLabels>

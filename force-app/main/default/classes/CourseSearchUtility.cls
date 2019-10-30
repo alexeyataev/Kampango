@@ -11,7 +11,7 @@ public without sharing class CourseSearchUtility {
         List<Course__c> inCourses = [
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
-                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c, Branch__c,
+                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c, Branch__r.Branch_Number__c,
                     Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c,
                     (
@@ -60,13 +60,13 @@ public without sharing class CourseSearchUtility {
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c,
             (
                     SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
                     FROM Sessions__r
             )
             FROM Course__c
-            WHERE Branch__c =: branchId
+            WHERE Branch__r.Branch_Number__c =: branchId
             AND Status__c != 'Cancelling'
             AND Status__c != 'Cancelled'
             AND Status__c != 'Draft'
@@ -103,7 +103,7 @@ public without sharing class CourseSearchUtility {
             response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(models)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
-            response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
+            response.responseBody = Blob.valueOf(System.Label.CourseAPInoResultsFound);
         }        
         return response;
     }
@@ -138,7 +138,7 @@ public without sharing class CourseSearchUtility {
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c,
                 (
                     SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
                     FROM Sessions__r
@@ -159,7 +159,7 @@ public without sharing class CourseSearchUtility {
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c,
                 (
                     SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
                     FROM Sessions__r
@@ -188,7 +188,7 @@ public without sharing class CourseSearchUtility {
     public static RestResponse getCoursesByDateDistance(Map <String, String> params){
         RestResponse response = new RestResponse();
         if (params == null){
-            return getWrongResponse();
+            return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
         }
 
         Location location;
@@ -198,10 +198,12 @@ public without sharing class CourseSearchUtility {
             birthDueDate = validateBirthDueDate(params.get('birth'));
             location = validateLocation(params.get('location'));
             radius = validateRadius(params.get('radius'));
-        } catch (RadiusTypeException te){
-            return getWrongRadiusResponse();
-        } catch (CustomTypeException te){
-            return getWrongResponse();
+        } catch (RadiusTypeException rte){
+            return createResponse(HttpStatusCode.SERVER_ERROR, Label.CourseAPIradiusIsNotValid);
+        } catch (DateTypeException dte){
+            return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
+        } catch (LocationTypeException lte) {
+            return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
         }
         
         List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
@@ -338,17 +340,10 @@ public without sharing class CourseSearchUtility {
         return model.replace('Session_Date', 'Date').replace('Session_End', 'End');
     }
    
-    private static RestResponse getWrongResponse(){
+    private static RestResponse createResponse(Integer statusCode, String label){
         RestResponse response = new RestResponse();
-        response.statusCode = HttpStatusCode.NOT_FOUND;
-        response.responseBody = Blob.valueOf(Label.CourseAPIcourseNotExists);
-        return response;
-    }
-
-    private static RestResponse getWrongRadiusResponse(){
-        RestResponse response = new RestResponse();
-        response.statusCode = HttpStatusCode.SERVER_ERROR;
-        response.responseBody = Blob.valueOf(Label.CourseAPIradiusIsNotValid);
+        response.statusCode = statusCode;
+        response.responseBody = Blob.valueOf(label);
         return response;
     }
 
