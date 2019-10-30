@@ -10,6 +10,7 @@ public without sharing class CourseApiTest {
             .buildBranchAccount()
             .buildOrganizationAccount('acc5')
             .buildPractitioner('Test')
+            .buildPractitionerFeeRate()
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
@@ -143,11 +144,14 @@ public without sharing class CourseApiTest {
             LIMIT 1
         ];
 
+        account.Branch_Number__c = '123';
+        update account;
+
         RestRequest req = new RestRequest();
         req.requestURI = strURI;
         req.httpMethod = methodGet;
         req.addHeader('Content-Type', 'application/json');
-        req.addParameter('branch', account.Id);
+        req.addParameter('branch', account.Branch_Number__c);
 
         RestResponse res = new RestResponse();
         RestContext.request = req;
