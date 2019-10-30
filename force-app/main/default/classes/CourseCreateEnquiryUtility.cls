@@ -4,7 +4,10 @@ public without sharing class CourseCreateEnquiryUtility {
     public static void createEnquiry(String courseName, Map<String, String> requestParameters) {
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
         List<Course__c> courses;
-        if (courseName != null) {
+        if (courseName != null &&
+                Schema.sObjectType.Course__c.isAccessible() &&
+                Schema.sObjectType.Course__c.fields.Id.isAccessible() &&
+                Schema.sObjectType.Course__c.fields.Name.isAccessible()) {
             courses = [
                 SELECT Id, Name
                 FROM Course__c
@@ -34,7 +37,13 @@ public without sharing class CourseCreateEnquiryUtility {
                 npe01__PreferredPhone__c = 'Mobile'
             );
             try {
-                upsert contact Contact.fields.Email;
+                if (Schema.sObjectType.Contact.isAccessible() &&
+                    Schema.sObjectType.Contact.fields.Email.isUpdateable() &&
+                    Schema.sObjectType.Contact.fields.Email.isCreateable()) {
+                    
+                    upsert contact Contact.fields.Email;
+                }
+//                upsert contact Contact.fields.Email;
             } catch (DmlException ex) {
                 throw new CreateEnquiryException(ex.getMessage());
             }
@@ -51,7 +60,9 @@ public without sharing class CourseCreateEnquiryUtility {
             booking.How_Heard__c = requestParameters.get('hearaboutus');
             booking.Info_for_Practitioner__c = requestParameters.get('additioninfo');
             try {
-                insert booking;
+                if (Schema.sObjectType.Booking__c.isCreateable()) {
+                    insert booking;
+                }
             } catch (DmlException ex) {
                 throw new CreateEnquiryException(ex.getMessage());
             }
@@ -66,7 +77,12 @@ public without sharing class CourseCreateEnquiryUtility {
             RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME)
         );
         try {
-            upsert partner Contact.fields.Email;
+            if (Schema.sObjectType.Contact.isAccessible() &&
+                    Schema.sObjectType.Contact.fields.Email.isUpdateable() &&
+                    Schema.sObjectType.Contact.fields.Email.isCreateable()) {
+
+                upsert partner Contact.fields.Email;
+            }
         } catch (DmlException ex) {
             throw new CreateEnquiryException(ex.getMessage());
         }
