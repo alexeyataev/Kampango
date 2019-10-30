@@ -4,8 +4,6 @@ import { FlowAttributeChangeEvent, FlowNavigationNextEvent } from 'lightning/flo
 const columns = [
     { label: 'Name', fieldName: 'Name'},
     { label: 'Course', fieldName: 'Course_Name__c'},
-    { label: 'Start', fieldName: 'Start__c', type: 'date', typeAttributes:{ hour: "2-digit", minute: "2-digit"} },
-    { label: 'End', fieldName: 'End__c', type: 'date', typeAttributes:{ hour: "2-digit", minute: "2-digit"} },
     { label: 'Date', fieldName: 'Date__c', type: 'date-local', typeAttributes: { year:"numeric", month:"numeric", day:"numeric"}},
     { label: 'Fee', fieldName: 'Practitioner_Fees__c', type: 'currency', cellAttributes: { alignment: 'left' }},
 ];

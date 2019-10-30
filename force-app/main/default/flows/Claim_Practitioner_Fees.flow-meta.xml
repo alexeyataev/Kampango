@@ -19,8 +19,8 @@
     <assignments>
         <name>Assign_Single_Line_Item</name>
         <label>Assign Single Line Item</label>
-        <locationX>944</locationX>
-        <locationY>572</locationY>
+        <locationX>984</locationX>
+        <locationY>595</locationY>
         <assignmentItems>
             <assignToReference>singlePurchaseInvoiceLineItem.Session__c</assignToReference>
             <operator>Assign</operator>
@@ -77,6 +77,13 @@
                 <elementReference>tempCurrentSession.Practitioner_Fees__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>singlePurchaseInvoiceLineItem.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lastPILIname</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Assign_Created_Line_Items_To_Collection</targetReference>
         </connector>
@@ -84,8 +91,8 @@
     <assignments>
         <name>Assing_Checked_Sessions</name>
         <label>Assign Checked Sessions</label>
-        <locationX>808</locationX>
-        <locationY>171</locationY>
+        <locationX>828</locationX>
+        <locationY>163</locationY>
         <assignmentItems>
             <assignToReference>sessionsToClaim</assignToReference>
             <operator>Assign</operator>
@@ -94,13 +101,23 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>createPurchaseInvoice</targetReference>
+            <targetReference>Get_Last_PI_Number</targetReference>
         </connector>
     </assignments>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>lastPILIname</name>
+        <dataType>String</dataType>
+        <expression>&#39;PILIUID-&#39; + TEXT(VALUE(RIGHT({!Get_Last_PILI_Number.Name}, 10)) + 1)</expression>
+    </formulas>
+    <formulas>
+        <name>lastPInumber</name>
+        <dataType>String</dataType>
+        <expression>&#39;0&#39; + IF(ISNUMBER( TEXT(VALUE({!Get_Last_PI_Number.Name}) + 1)), TEXT(VALUE({!Get_Last_PI_Number.Name}) + 1), &#39;3000&#39;)</expression>
     </formulas>
     <formulas>
         <name>lastThreeMonths</name>
@@ -112,8 +129,8 @@
     <loops>
         <name>Loop_Selected_Sessions</name>
         <label>Loop Selected Sessions</label>
-        <locationX>744</locationX>
-        <locationY>484</locationY>
+        <locationX>757</locationX>
+        <locationY>497</locationY>
         <assignNextValueToReference>tempCurrentSession</assignNextValueToReference>
         <collectionReference>sessionsToClaim</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -150,12 +167,18 @@
     <recordCreates>
         <name>createPurchaseInvoice</name>
         <label>Create Purchase Invoice</label>
-        <locationX>435</locationX>
-        <locationY>345</locationY>
+        <locationX>494</locationX>
+        <locationY>367</locationY>
         <assignRecordIdToReference>PurchaseInvoiceID</assignRecordIdToReference>
         <connector>
-            <targetReference>Loop_Selected_Sessions</targetReference>
+            <targetReference>Get_Last_PILI_Number</targetReference>
         </connector>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>lastPInumber</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>Zumzum__Account__c</field>
             <value>
@@ -183,9 +206,39 @@
         <object>Zumzum__Purchase_Invoice__c</object>
     </recordCreates>
     <recordLookups>
+        <name>Get_Last_PI_Number</name>
+        <label>Get Last PI Number</label>
+        <locationX>494</locationX>
+        <locationY>205</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>createPurchaseInvoice</targetReference>
+        </connector>
+        <object>Zumzum__Purchase_Invoice__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Last_PILI_Number</name>
+        <label>Get Last PILI Number</label>
+        <locationX>615</locationX>
+        <locationY>496</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Selected_Sessions</targetReference>
+        </connector>
+        <object>Zumzum__Purchase_Invoice_Line_Item__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+    </recordLookups>
+    <recordLookups>
         <name>getAccountAndContactId</name>
         <label>Get Account And Contact</label>
-        <locationX>261</locationX>
+        <locationX>295</locationX>
         <locationY>56</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -248,8 +301,6 @@
         <object>Session__c</object>
         <outputReference>listSessions</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Start__c</queriedFields>
-        <queriedFields>End__c</queriedFields>
         <queriedFields>Name</queriedFields>
         <queriedFields>Practitioner_Fees__c</queriedFields>
         <queriedFields>Course_Name__c</queriedFields>
@@ -269,7 +320,7 @@
         </connector>
         <fields>
             <name>helpText</name>
-            <fieldText>&lt;p&gt;Please select the fees from the table below you wish to claim. You may select specific sessions or select all available sessions for payment. When you then proceed these will be converted into a payment, and queued for the next available payment run.&lt;/p&gt;&lt;p&gt;Sessions available for claim from {!lastThreeMonths} to {!$Flow.CurrentDate}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Please select the fees from the table below you wish to claim. You may select specific sessions or select all available sessions for payment. When you then proceed these will be converted into a payment, and queued for the next available payment run. &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Sessions available for claim from {!lastThreeMonths} to {!$Flow.CurrentDate}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -283,7 +334,6 @@
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>true</showHeader>
@@ -323,13 +373,7 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <start>
-        <locationX>19</locationX>
-        <locationY>137</locationY>
-        <connector>
-            <targetReference>getAccountAndContactId</targetReference>
-        </connector>
-    </start>
+    <startElementReference>getAccountAndContactId</startElementReference>
     <status>Active</status>
     <variables>
         <name>contactId</name>
