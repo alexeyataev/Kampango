@@ -109,11 +109,23 @@
                 <behavior>Edit</behavior>
                 <field>Include_Additional_Admin_Cost__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Break_Even_Number_Of_Places__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Total_Practitioner_Fees__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Estimated_Travel_Costs__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Estimated_Venue_Costs__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -330,7 +342,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h4E000000pkPS</masterLabel>
+        <masterLabel>00h6E000000sv5V</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
