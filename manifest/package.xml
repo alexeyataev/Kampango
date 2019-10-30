@@ -111,6 +111,7 @@
         <members>dlrs__LookupRollupSummary2.CourseEstimatedTravelCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseEstimatedVenueCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseNumberOfSessionsWithoutFeeRates</members>
+        <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
         <name>CustomMetadata</name>
     </types>
     <types>

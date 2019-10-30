@@ -208,7 +208,7 @@
     <recordLookups>
         <name>Get_Last_PI_Number</name>
         <label>Get Last PI Number</label>
-        <locationX>494</locationX>
+        <locationX>493</locationX>
         <locationY>205</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -324,7 +324,7 @@
         </connector>
         <fields>
             <name>helpText</name>
-            <fieldText>&lt;p&gt;Please select the fees from the table below you wish to claim. You may select specific sessions or select all available sessions for payment. When you then proceed these will be converted into a payment, and queued for the next available payment run. &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Sessions available for claim from {!lastThreeMonths} to {!$Flow.CurrentDate}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;The table below shows all sessions that are available to claim from the last 3 months. Please ensure you are checking back regularly to claim your completed sessions.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -362,7 +362,7 @@
     <screens>
         <name>Show_Total_Fees</name>
         <label>Show Total Fees</label>
-        <locationX>701</locationX>
+        <locationX>702</locationX>
         <locationY>56</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -372,7 +372,7 @@
         </connector>
         <fields>
             <name>totalFeeScreen</name>
-            <fieldText>&lt;p&gt;Total Fee: £ {!claimFees.totalFee}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgba(var(--sk_primary_foreground,29,28,29),1);&quot;&gt;The total value of fees included in this claim are:&lt;/span&gt; £{!claimFees.totalFee}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
