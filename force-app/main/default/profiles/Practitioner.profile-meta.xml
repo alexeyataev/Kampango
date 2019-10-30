@@ -1276,6 +1276,9 @@
         <layout>Venue__c-Venue Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Zumzum__Purchase_Invoice__c-Practitioner Purchase Invoice Layout</layout>
     </layoutAssignments>
     <objectPermissions>
