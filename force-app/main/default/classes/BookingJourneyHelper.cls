@@ -21,20 +21,17 @@ public without sharing class BookingJourneyHelper {
         return contacts;
     }
 
+    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #25 - https://confluence.nct.org.uk:8443/x/EoSO
     @AuraEnabled(cacheable=true)
     public static Individual retrieveMarketingPreferences(String individualId){
         List<Individual> individuals = new List<Individual>();
-        if (String.isNotBlank(individualId) &&
-                Schema.sObjectType.Individual.isAccessible() &&
-                Schema.sObjectType.Individual.fields.Email__c.isAccessible() &&
-                Schema.sObjectType.Individual.fields.Post__c.isAccessible() &&
-                Schema.sObjectType.Individual.fields.SMS__c.isAccessible() &&
-                Schema.sObjectType.Individual.fields.Telephone__c.isAccessible()) {
-
+        if (String.isNotBlank(individualId)) {
             individuals = [
-                SELECT Email__c, Post__c, SMS__c, Telephone__c
-                FROM Individual
-                WHERE Id = :individualId
+                    SELECT Email__c, Post__c, SMS__c, Telephone__c
+                    FROM Individual
+                    WHERE Id = :individualId
+                    WITH SECURITY_ENFORCED
             ];
         }
         if (individuals != null && !individuals.isEmpty()) {
