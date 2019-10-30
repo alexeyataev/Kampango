@@ -1275,6 +1275,9 @@
     <layoutAssignments>
         <layout>Venue__c-Venue Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>Zumzum__Purchase_Invoice__c-Zumzum__Purchase Invoice Layout</layout>
+    </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
