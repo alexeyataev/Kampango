@@ -306,6 +306,7 @@
         <members>Venue_Contact__c-Venue Contact Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
         <members>Zumzum__Batch_Bank_Payment__c-Zumzum__Batch Bank Payment Layout</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
         <name>Layout</name>
     </types>
     <types>
