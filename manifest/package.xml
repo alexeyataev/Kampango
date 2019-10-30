@@ -369,7 +369,7 @@
         <name>Report</name>
     </types>
     <types>
-        <members>Custom_Sessions_Report_Type</members>
+        <members>Sessions_with_Course_and_Course_Assignment</members>
         <members>Sessions_on_venues</members>
         <members>Schedule_of_Sessions</members>
         <members>Sessions</members>
