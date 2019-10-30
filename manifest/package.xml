@@ -95,6 +95,8 @@
         <members>Contact.Total_Open_Bookings__c</members>
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Session__c.Eligible_for_Claim__c</members>
+        <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
+        <members>Session__c.Purchase_Line_Items_Amount__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
