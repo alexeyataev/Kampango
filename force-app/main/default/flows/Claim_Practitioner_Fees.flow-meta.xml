@@ -117,7 +117,7 @@
     <formulas>
         <name>lastPInumber</name>
         <dataType>String</dataType>
-        <expression>&#39;0&#39; + IF(ISNUMBER( TEXT(VALUE({!Get_Last_PI_Number.Name}) + 1)), TEXT(VALUE({!Get_Last_PI_Number.Name}) + 1), &#39;3000&#39;)</expression>
+        <expression>&#39;0&#39; + IF(ISNUMBER( TEXT(VALUE({!lastPIname}) + 1)), TEXT(VALUE({!lastPIname}) + 1), &#39;3000&#39;)</expression>
     </formulas>
     <formulas>
         <name>lastThreeMonths</name>
@@ -167,7 +167,7 @@
     <recordCreates>
         <name>createPurchaseInvoice</name>
         <label>Create Purchase Invoice</label>
-        <locationX>494</locationX>
+        <locationX>493</locationX>
         <locationY>367</locationY>
         <assignRecordIdToReference>PurchaseInvoiceID</assignRecordIdToReference>
         <connector>
@@ -215,8 +215,10 @@
             <targetReference>createPurchaseInvoice</targetReference>
         </connector>
         <object>Zumzum__Purchase_Invoice__c</object>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Name</queriedFields>
+        <outputAssignments>
+            <assignToReference>lastPIname</assignToReference>
+            <field>Name</field>
+        </outputAssignments>
         <sortField>CreatedDate</sortField>
         <sortOrder>Desc</sortOrder>
     </recordLookups>
@@ -229,11 +231,13 @@
         <connector>
             <targetReference>Loop_Selected_Sessions</targetReference>
         </connector>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Zumzum__Purchase_Invoice_Line_Item__c</object>
         <queriedFields>Id</queriedFields>
         <queriedFields>Name</queriedFields>
         <sortField>CreatedDate</sortField>
         <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>getAccountAndContactId</name>
@@ -334,6 +338,7 @@
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>true</showHeader>
@@ -373,7 +378,13 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <startElementReference>getAccountAndContactId</startElementReference>
+    <start>
+        <locationX>92</locationX>
+        <locationY>190</locationY>
+        <connector>
+            <targetReference>getAccountAndContactId</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>contactId</name>
@@ -401,6 +412,13 @@
     </variables>
     <variables>
         <name>currentUserContactId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>lastPIname</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
