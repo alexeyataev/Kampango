@@ -199,7 +199,7 @@
     </types>
     <types>
         <members>Communities_Shared_Document_Folder</members>
-        <members>Communities_Shared_Document_Folder/social_logo_png.png</members>
+        <members>Communities_Shared_Document_Folder/social_logo_png</members>
         <name>Document</name>
     </types>
     <types>
@@ -317,7 +317,7 @@
     </types>
     <types>
         <members>cbParent_Community</members>
-        <members>cbPractitioners.networkBranding</members>
+        <members>cbPractitioners</members>
         <name>NetworkBranding</name>
     </types>
     <types>
