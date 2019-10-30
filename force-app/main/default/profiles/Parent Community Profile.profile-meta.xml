@@ -1079,7 +1079,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.PSA_Area__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
