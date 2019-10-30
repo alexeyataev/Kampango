@@ -24,14 +24,20 @@ public without sharing class BookingJourneyHelper {
     @AuraEnabled(cacheable=true)
     public static Individual retrieveMarketingPreferences(String individualId){
         List<Individual> individuals = new List<Individual>();
-        if(String.isNotBlank(individualId)){
+        if (String.isNotBlank(individualId) &&
+                Schema.sObjectType.Individual.isAccessible() &&
+                Schema.sObjectType.Individual.fields.Email__c.isAccessible() &&
+                Schema.sObjectType.Individual.fields.Post__c.isAccessible() &&
+                Schema.sObjectType.Individual.fields.SMS__c.isAccessible() &&
+                Schema.sObjectType.Individual.fields.Telephone__c.isAccessible()) {
+
             individuals = [
                 SELECT Email__c, Post__c, SMS__c, Telephone__c
                 FROM Individual
                 WHERE Id = :individualId
             ];
         }
-        if(individuals != null && !individuals.isEmpty()){
+        if (individuals != null && !individuals.isEmpty()) {
             return individuals[0];
         } else {
             return null;
