@@ -66,6 +66,10 @@
                 <field>Practitioner_Licence__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Practitioner_Fee_Rate__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Contact_Hours__c</field>
             </layoutItems>
