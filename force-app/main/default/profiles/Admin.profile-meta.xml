@@ -1025,7 +1025,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Venue__c.Map_Url__c</field>
         <readable>true</readable>
     </fieldPermissions>
