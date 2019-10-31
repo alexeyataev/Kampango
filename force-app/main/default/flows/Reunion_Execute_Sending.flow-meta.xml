@@ -121,7 +121,7 @@
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Value is empty: </stringValue>
+                <elementReference>MESSAGE_EMPTY</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -159,6 +159,19 @@
         </assignmentItems>
     </assignments>
     <assignments>
+        <name>Query_or_update_message</name>
+        <label>Query or update message</label>
+        <locationX>2663</locationX>
+        <locationY>1271</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_ERROR_QUERY_OR_UPDATE</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
         <name>Return_error_on_email_alert</name>
         <label>Return error</label>
         <locationX>1469</locationX>
@@ -183,7 +196,7 @@
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>error_on_get_record</stringValue>
+                <elementReference>STATUS_ERROR_QUERY</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -324,7 +337,7 @@
         <name>MESSAGE_EMPTY</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>Booking list is empty</stringValue>
+            <stringValue>Value is empty: </stringValue>
         </value>
     </constants>
     <constants>
@@ -335,10 +348,17 @@
         </value>
     </constants>
     <constants>
+        <name>MESSAGE_ERROR_QUERY_OR_UPDATE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Error on query or update record(s)</stringValue>
+        </value>
+    </constants>
+    <constants>
         <name>MESSAGE_ERROR_SEND_EMAIL</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>The system was unable to send the email</stringValue>
+            <stringValue>The system was unable to send the email. Some fields may be incorrect</stringValue>
         </value>
     </constants>
     <constants>
@@ -409,6 +429,13 @@
         <dataType>String</dataType>
         <value>
             <stringValue>error_send_email</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>STATUS_ERROR_QUERY</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>error_on_get_record</stringValue>
         </value>
     </constants>
     <constants>
@@ -571,6 +598,21 @@
             </connector>
             <label>Is send email error?</label>
         </rules>
+        <rules>
+            <name>Is_query_or_update_error</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_ERROR_QUERY</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Query_or_update_message</targetReference>
+            </connector>
+            <label>Is query or update error?</label>
+        </rules>
     </decisions>
     <decisions>
         <name>Decide_on_status</name>
@@ -664,6 +706,7 @@
             <label>Not volunteer venue</label>
         </rules>
     </decisions>
+    <description>Improved output, integrated changes of the Private flow</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -826,6 +869,7 @@
         <queriedFields>IsPublicVenue__c</queriedFields>
         <queriedFields>Start_Text__c</queriedFields>
         <queriedFields>End_Text__c</queriedFields>
+        <queriedFields>Parent_Host__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Venue</name>
@@ -905,9 +949,21 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <name>status_error</name>
+            <name>status_error_general</name>
             <value>
                 <elementReference>STATUS_ERROR_ON_SEND_EMAIL</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>status_error_get_record</name>
+            <value>
+                <elementReference>MESSAGE_ERROR_QUERY_OR_UPDATE</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>status_part_success</name>
+            <value>
+                <elementReference>MESSAGE_PART_SUCCESS</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
