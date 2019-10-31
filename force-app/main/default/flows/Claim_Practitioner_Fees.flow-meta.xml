@@ -289,17 +289,17 @@
             </value>
         </filters>
         <filters>
+            <field>Practitioner_Fees_to_Claim__c</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </filters>
+        <filters>
             <field>Practitioner__c</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>currentUserContactId</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Purchase_Line_Items_Amount__c</field>
-            <operator>GreaterThan</operator>
-            <value>
-                <numberValue>0.0</numberValue>
             </value>
         </filters>
         <object>Session__c</object>
