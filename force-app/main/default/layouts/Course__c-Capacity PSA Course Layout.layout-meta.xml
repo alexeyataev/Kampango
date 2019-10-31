@@ -109,11 +109,23 @@
                 <behavior>Edit</behavior>
                 <field>Include_Additional_Admin_Cost__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Break_Even_Number_Of_Places__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Break_Even_Number_Of_Places__c</field>
+                <field>Total_Practitioner_Fees__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Estimated_Travel_Costs__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Estimated_Venue_Costs__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
