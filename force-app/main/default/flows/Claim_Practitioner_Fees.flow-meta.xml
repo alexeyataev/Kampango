@@ -387,16 +387,6 @@
     </start>
     <status>Active</status>
     <variables>
-        <name>contactId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <stringValue>0034E00000xANds</stringValue>
-        </value>
-    </variables>
-    <variables>
         <name>createdLineItems</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
@@ -462,16 +452,6 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Zumzum__Purchase_Invoice_Line_Item__c</objectType>
-    </variables>
-    <variables>
-        <name>supplierId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <stringValue>0014E000015WQZy</stringValue>
-        </value>
     </variables>
     <variables>
         <name>tempCurrentSession</name>
