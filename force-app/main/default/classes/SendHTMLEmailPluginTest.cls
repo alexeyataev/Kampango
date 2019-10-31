@@ -38,8 +38,9 @@ public with sharing class SendHTMLEmailPluginTest {
 
     @isTest
     public static void noErrorOrgWideEmail () {
-        if (emailsFeatureEnabled()) {
-            String orgWideEmail = [SELECT Id, Address FROM OrgWideEmailAddress LIMIT 1].Address;
+        List<OrgWideEmailAddress> orgEmailObject = [SELECT Id, Address FROM OrgWideEmailAddress LIMIT 1];
+        if (emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
+            String orgWideEmail = orgEmailObject[0].Address;
             Contact recipient = [SELECT Id, AccountId FROM Contact LIMIT 1];
             Id templateId = [SELECT Id FROM EmailTemplate LIMIT 1].Id;
             
@@ -63,8 +64,9 @@ public with sharing class SendHTMLEmailPluginTest {
     
     @isTest
     public static void noErrorSenderDisplayName () {
-        if (emailsFeatureEnabled()) {
-            String orgWideEmail = [SELECT Id, Address FROM OrgWideEmailAddress LIMIT 1].Address;
+        List<OrgWideEmailAddress> orgEmailObject = [SELECT Id, Address FROM OrgWideEmailAddress LIMIT 1];
+        if (emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
+            String orgWideEmail = orgEmailObject[0].Address;
             Contact recipient = [SELECT Id, AccountId FROM Contact LIMIT 1];
             Id templateId = [SELECT Id FROM EmailTemplate LIMIT 1].Id;
             
