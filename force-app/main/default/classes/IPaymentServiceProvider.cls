@@ -1,3 +1,3 @@
 public interface IPaymentServiceProvider {
-    String getCardPaymentURL(String contactId, String feeAmount);
+    String getCardPaymentURL(String contactId, String installmentId);
 }

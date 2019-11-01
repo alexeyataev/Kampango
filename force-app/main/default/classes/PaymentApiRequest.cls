@@ -6,7 +6,15 @@ public class PaymentApiRequest{
     private Payment payment {get;set;}
     private PaymentMethod paymentMethod {get;set;}
     private SourceConnector sourceConnector {get;set;}
-
+    /*public PaymentApiRequest(String successURL, String failureURL, String origin, Payer payer, Payment payment, PaymentMethod paymentMethod, SourceConnector sourceConnector) {
+        this.successURL = successURL;
+        this.failureURL = failureURL;
+        this.origin = origin;
+        this.payer = payer;
+        this.payment = payment;
+        this.paymentMethod = paymentMethod;
+        this.sourceConnector = sourceConnector;
+    }*/
     public PaymentApiRequest(PaymentApiRequestParams apiRequestParams) {
         this.successURL = apiRequestParams.URLs.successURL;
         this.failureURL = apiRequestParams.URLs.failureURL;
@@ -34,7 +42,6 @@ public class PaymentApiRequest{
             this.failureURL = failureURL;
         }
     }
-
     public class Payer {
         private Contact contact {get;set;}
         private String contactUpdate {get;set;}
@@ -50,9 +57,11 @@ public class PaymentApiRequest{
         }
     }
     public class Payment {
-        private String amount {get;set;}
-        public Payment(String amount) {
-            this.amount = amount;
+        //private String amount {get;set;}
+        private String installmentId {get;set;}
+        public Payment(String installmentId) {
+            //this.amount = amount;
+            this.installmentId = installmentId;
         }
     }
     public class PaymentMethod {
