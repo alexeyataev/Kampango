@@ -993,7 +993,7 @@
             <targetReference>Check_Session_Id</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <name>Send_to_Private</name>
         <label>Send to Private</label>
