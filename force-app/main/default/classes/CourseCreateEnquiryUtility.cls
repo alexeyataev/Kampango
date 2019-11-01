@@ -1,11 +1,12 @@
 public without sharing class CourseCreateEnquiryUtility {
     public static final String RECORDTYPE_NAME = 'Clients';
 
-
     public static void createEnquiry(String courseName, Map<String, String> requestParameters) {
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
         List<Course__c> courses;
         if (courseName != null) {
+            //NOPMD
+            //Incident #24 - https://confluence.nct.org.uk:8443/x/EoSO
             courses = [
                 SELECT Id, Name
                 FROM Course__c
@@ -13,8 +14,7 @@ public without sharing class CourseCreateEnquiryUtility {
                 WITH SECURITY_ENFORCED
                 LIMIT 1
             ];
-            //NOPMD
-            //Incident #24 - https://confluence.nct.org.uk:8443/x/EoSO
+           
         } else {
             throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
         }
