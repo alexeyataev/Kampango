@@ -38,10 +38,19 @@ public without sharing class CareAddMembershipTest {
 
     @isTest static void testAddMembershipBatch() {
         Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock('{"Membership": {"Status": "Success"}}'));
+        Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock('{"Status": "Success"}'));
         CareAddMembershipBatch camb = new CareAddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();
         System.assertEquals([SELECT Care_Membership_Added__c FROM cpm__Installment__c LIMIT 1].Care_Membership_Added__c, true);
+    }
+
+    @isTest static void testAddMembershipBatchError() {
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock('{"Error": [{"Error" : "Error"}]}'));
+        CareAddMembershipBatch camb = new CareAddMembershipBatch();
+        Database.executeBatch(camb, 10);
+        Test.stopTest();
+        System.assertEquals([SELECT Care_Membership_Added__c FROM cpm__Installment__c LIMIT 1].Care_Membership_Added__c, false);
     }
 }

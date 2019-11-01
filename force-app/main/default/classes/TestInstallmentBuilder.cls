@@ -40,7 +40,7 @@ public with sharing class TestInstallmentBuilder {
     public cpm__Installment__c build()
     {
         cpm__Installment__c installment = new cpm__Installment__c(
-            cpm__Payment_Profile__c = paymentProfile.Id,
+            cpm__Payment_Profile__c = this.paymentProfile.Id,
             cpm__Contact__c = this.primaryContact.Id,
             Partner_Contact__c = this.partnerContact.Id,
             Bank_Details_Number__c = this.bankDetailsNumber

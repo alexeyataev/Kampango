@@ -7,12 +7,11 @@ public class CareAddMembershipBatch implements Database.Batchable<sObject>, Data
     public void execute(Database.BatchableContext bc, List<cpm__Installment__c> scope){
         List<cpm__Installment__c> installmentUpdateList = new List<cpm__Installment__c>();
         for(cpm__Installment__c installment : scope) {
-            List<MembershipResultObject> addMembershipResult = CareHelper.addMembership(installment);
-            if(addMembershipResult[0].messageType != 'error') {
+            CareHelper.AddMembershipStatus addMembershipStatus = CareHelper.addMembership(installment);
+            if(addMembershipStatus == CareHelper.AddMembershipStatus.SUCCESS) {
                 installment.Care_Membership_Added__c = true;
                 installmentUpdateList.add(installment);
             }
-            system.debug(addMembershipResult);
         }
         update installmentUpdateList;
     }

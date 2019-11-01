@@ -1,16 +1,21 @@
-public class CareAddContactBatch implements Database.Batchable<sObject>, Database.AllowsCallouts{
+global class CareAddContactBatch implements Database.Batchable<sObject>, Database.AllowsCallouts{
 
-    public Database.QueryLocator start(Database.BatchableContext bc){
+    global Database.QueryLocator start(Database.BatchableContext BC){
         return Database.getQueryLocator('SELECT Id, FirstName, LastName, NCT_Number__c, Gender__c, Email, MailingPostalCode, MailingStreet, MailingCity, MailingCountry FROM Contact WHERE RecordType.Name = \'Client\' AND NCT_Number__c = null');
     }
 
-    public void execute(Database.BatchableContext bc, List<Contact> scope){
+    global void execute(Database.BatchableContext BC, List<Contact> scope){
+        List<Contact> contUpdateList = new List<Contact>();
         for(Contact cont : scope) {
-            String contNumber = CareHelper.sendContact(cont);
+            String nctNumber = CareHelper.sendContact(cont);
+            if(nctNumber != null) {
+                cont.NCT_Number__c = nctNumber;
+                contUpdateList.add(cont);
+            }
         }
-        CareHelper.updateContacts();
+        update contUpdateList;
     }
 
-   public void finish(Database.BatchableContext bc){
+   global void finish(Database.BatchableContext BC){
    }
 }

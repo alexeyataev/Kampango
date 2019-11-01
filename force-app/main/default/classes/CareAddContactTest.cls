@@ -23,7 +23,7 @@ public without sharing class CareAddContactTest {
         List<String> contactIds = new List<String> {testContactList[0].Id};
         List<MembershipResultObject> membershipResultObjectList = CareAddContactHandler.addContact(contactIds);
         Test.stopTest();
-        System.assertEquals(membershipResultObjectList[0].messageType, 'success');
+        System.assertEquals(membershipResultObjectList[0].messageType, CareAddContactHandler.MESSAGE_TYPE_SUCCESS);
         System.assertEquals(membershipResultObjectList[0].messageText, '3325461');
     }
 
@@ -34,8 +34,8 @@ public without sharing class CareAddContactTest {
         List<String> contactIds = new List<String> {testContactList[0].Id};
         List<MembershipResultObject> membershipResultObjectList = CareAddContactHandler.addContact(contactIds);
         Test.stopTest();
-        System.assertEquals(membershipResultObjectList[0].messageType, 'error');
-        System.assertEquals(membershipResultObjectList[0].messageText, 'error!');
+        System.assertEquals(membershipResultObjectList[0].messageType, CareAddContactHandler.MESSAGE_TYPE_ERROR);
+        System.assertEquals(membershipResultObjectList[0].messageText, CareAddContactHandler.MESSAGE_TEXT_ERROR);
     }
 
     @isTest static void testAddContactBatch() {

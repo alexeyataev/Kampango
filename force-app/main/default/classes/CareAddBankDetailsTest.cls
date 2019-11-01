@@ -41,7 +41,7 @@ public without sharing class CareAddBankDetailsTest {
         List<cpm__Installment__c> testInstallmentList = [SELECT Id, cpm__Payment_Profile__c, NCT_Number_Parent__c, cpm__Contact__c FROM cpm__Installment__c LIMIT 1];
         List<MembershipResultObject> membershipResultObjectList = CareAddBankDetailsHandler.addBankDetails(testInstallmentList);
         Test.stopTest();
-        System.assertEquals(membershipResultObjectList[0].messageType, 'success');
+        System.assertEquals(membershipResultObjectList[0].messageType, CareAddBankDetailsHandler.MESSAGE_TYPE_SUCCESS);
         System.assertEquals(membershipResultObjectList[0].messageText, '331257');
     }
 
@@ -51,7 +51,7 @@ public without sharing class CareAddBankDetailsTest {
         List<cpm__Installment__c> testInstallmentList = [SELECT Id, NCT_Number_Parent__c, cpm__Contact__c FROM cpm__Installment__c LIMIT 1];
         List<MembershipResultObject> membershipResultObjectList = CareAddBankDetailsHandler.addBankDetails(testInstallmentList);
         Test.stopTest();
-        System.assertEquals(membershipResultObjectList[0].messageType, 'error');
-        System.assertEquals(membershipResultObjectList[0].messageText, 'error!');
+        System.assertEquals(membershipResultObjectList[0].messageType, CareAddBankDetailsHandler.MESSAGE_TYPE_ERROR);
+        System.assertEquals(membershipResultObjectList[0].messageText, CareAddBankDetailsHandler.MESSAGE_TEXT_ERROR);
     }
 }
