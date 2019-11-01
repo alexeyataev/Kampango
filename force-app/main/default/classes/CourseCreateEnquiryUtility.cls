@@ -1,7 +1,7 @@
 public without sharing class CourseCreateEnquiryUtility {
     public static final String RECORDTYPE_NAME = 'Clients';
 
-    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //NOPMD
     //Incident #24 - https://confluence.nct.org.uk:8443/x/EoSO
     public static void createEnquiry(String courseName, Map<String, String> requestParameters) {
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
@@ -43,7 +43,6 @@ public without sharing class CourseCreateEnquiryUtility {
                 }  else {
                     throw new CreateEnquiryException(System.Label.ContactUpdateException);
                 }
-//                upsert contact Contact.fields.Email;
             } catch (DmlException ex) {
                 throw new CreateEnquiryException(ex.getMessage());
             }
