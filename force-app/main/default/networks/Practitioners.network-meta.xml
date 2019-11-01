@@ -68,7 +68,7 @@
     <networkMemberGroups>
         <permissionSet>Practitioner_Management</permissionSet>
         <profile>admin</profile>
-        <profile>Practitioner</profile>
+        <profile>practitioner</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
