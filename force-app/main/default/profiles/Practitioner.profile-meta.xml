@@ -597,7 +597,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Purchase_Line_Items_Amount__c</field>
+        <field>Session__c.Practitioner_Fees_to_Claim__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
