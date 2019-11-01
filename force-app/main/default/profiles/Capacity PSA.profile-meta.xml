@@ -787,6 +787,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Parent_Host__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.PSA_Area__c</field>
         <readable>true</readable>
@@ -797,7 +802,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Session__c.Practitioner_Fee_Rate__c</field>
         <readable>true</readable>
     </fieldPermissions>
