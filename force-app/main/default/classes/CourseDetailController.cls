@@ -1,6 +1,6 @@
 public with sharing class CourseDetailController {
 
-    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //NOPMD
     //Incident #26 - https://confluence.nct.org.uk:8443/x/EoSO
     @AuraEnabled(cacheable=true)
     public static List<Session__c> retrieveRelatedSessions(String courseId){

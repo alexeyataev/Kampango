@@ -37,11 +37,11 @@ public without sharing class CourseCreateEnquiryUtility {
                 npe01__PreferredPhone__c = 'Mobile'
             );
             try {
-                if (Schema.sObjectType.Contact.isAccessible() &&
-                    Schema.sObjectType.Contact.fields.Email.isUpdateable() &&
-                    Schema.sObjectType.Contact.fields.Email.isCreateable()) {
-                    
+                if (Schema.sObjectType.Contact.isUpdateable() &&
+                    Schema.sObjectType.Contact.isCreateable()) {
                     upsert contact Contact.fields.Email;
+                }  else {
+                    throw new CreateEnquiryException(System.Label.ContactUpdateException);
                 }
 //                upsert contact Contact.fields.Email;
             } catch (DmlException ex) {
@@ -62,6 +62,8 @@ public without sharing class CourseCreateEnquiryUtility {
             try {
                 if (Schema.sObjectType.Booking__c.isCreateable()) {
                     insert booking;
+                } else {
+                    throw new CreateEnquiryException(System.Label.BookingInsertException);
                 }
             } catch (DmlException ex) {
                 throw new CreateEnquiryException(ex.getMessage());
@@ -77,11 +79,11 @@ public without sharing class CourseCreateEnquiryUtility {
             RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME)
         );
         try {
-            if (Schema.sObjectType.Contact.isAccessible() &&
-                    Schema.sObjectType.Contact.fields.Email.isUpdateable() &&
-                    Schema.sObjectType.Contact.fields.Email.isCreateable()) {
-
+            if (Schema.sObjectType.Contact.isUpdateable() &&
+                Schema.sObjectType.Contact.isCreateable()) {
                 upsert partner Contact.fields.Email;
+            } else {
+                throw new CreateEnquiryException(System.Label.ContactUpdateException);
             }
         } catch (DmlException ex) {
             throw new CreateEnquiryException(ex.getMessage());

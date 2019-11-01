@@ -21,7 +21,7 @@ public without sharing class BookingJourneyHelper {
         return contacts;
     }
 
-    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //NOPMD
     //Incident #25 - https://confluence.nct.org.uk:8443/x/EoSO
     @AuraEnabled(cacheable=true)
     public static Individual retrieveMarketingPreferences(String individualId){
