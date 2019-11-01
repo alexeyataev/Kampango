@@ -1,8 +1,7 @@
 public without sharing class CourseCreateEnquiryUtility {
     public static final String RECORDTYPE_NAME = 'Clients';
 
-    //NOPMD
-    //Incident #24 - https://confluence.nct.org.uk:8443/x/EoSO
+
     public static void createEnquiry(String courseName, Map<String, String> requestParameters) {
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
         List<Course__c> courses;
@@ -69,6 +68,8 @@ public without sharing class CourseCreateEnquiryUtility {
             }
         }
     }
+     //NOPMD
+     //Incident #24 - https://confluence.nct.org.uk:8443/x/EoSO
 
     private static Id createPartnerContact(Map<String, String> requestParameters) {
         Contact partner = new Contact(
