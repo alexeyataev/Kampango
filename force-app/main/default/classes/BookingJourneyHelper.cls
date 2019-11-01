@@ -21,8 +21,6 @@ public without sharing class BookingJourneyHelper {
         return contacts;
     }
 
-    //NOPMD
-    //Incident #25 - https://confluence.nct.org.uk:8443/x/EoSO
     @AuraEnabled(cacheable=true)
     public static Individual retrieveMarketingPreferences(String individualId){
         List<Individual> individuals = new List<Individual>();
@@ -36,10 +34,8 @@ public without sharing class BookingJourneyHelper {
         }
         if (individuals != null && !individuals.isEmpty()) {
             return individuals[0];
-        } else {
-            return null;
-        }
-        
+        } else return null;
     }
-
+    //NOPMD
+    //Incident #25 - https://confluence.nct.org.uk:8443/x/EoSO
 }

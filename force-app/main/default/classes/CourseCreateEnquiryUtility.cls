@@ -13,6 +13,8 @@ public without sharing class CourseCreateEnquiryUtility {
                 WITH SECURITY_ENFORCED
                 LIMIT 1
             ];
+            //NOPMD
+            //Incident #24 - https://confluence.nct.org.uk:8443/x/EoSO
         } else {
             throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
         }
@@ -68,8 +70,6 @@ public without sharing class CourseCreateEnquiryUtility {
             }
         }
     }
-     //NOPMD
-     //Incident #24 - https://confluence.nct.org.uk:8443/x/EoSO
 
     private static Id createPartnerContact(Map<String, String> requestParameters) {
         Contact partner = new Contact(
