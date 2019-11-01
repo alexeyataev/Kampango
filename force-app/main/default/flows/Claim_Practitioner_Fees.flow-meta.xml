@@ -53,7 +53,7 @@
             <assignToReference>singlePurchaseInvoiceLineItem.Zumzum__Nominal_Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>a4K4E0000005JT4UAM</stringValue>
+                <elementReference>Get_Nominal_Account.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -225,11 +225,11 @@
     <recordLookups>
         <name>Get_Last_PILI_Number</name>
         <label>Get Last PILI Number</label>
-        <locationX>615</locationX>
-        <locationY>496</locationY>
+        <locationX>483</locationX>
+        <locationY>552</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Loop_Selected_Sessions</targetReference>
+            <targetReference>Get_Nominal_Account</targetReference>
         </connector>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Zumzum__Purchase_Invoice_Line_Item__c</object>
@@ -240,10 +240,31 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Get_Nominal_Account</name>
+        <label>Get Nominal Account</label>
+        <locationX>614</locationX>
+        <locationY>514</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Selected_Sessions</targetReference>
+        </connector>
+        <filters>
+            <field>Zumzum__Nominal_Code__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Sub-Contractors</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Zumzum__Nominal_Account__c</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>getAccountAndContactId</name>
         <label>Get Account And Contact</label>
-        <locationX>295</locationX>
-        <locationY>56</locationY>
+        <locationX>292</locationX>
+        <locationY>51</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>getSessions</targetReference>
@@ -268,8 +289,8 @@
     <recordLookups>
         <name>getSessions</name>
         <label>getSessions</label>
-        <locationX>431</locationX>
-        <locationY>56</locationY>
+        <locationX>448</locationX>
+        <locationY>51</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Claim_Fees_Datatable</targetReference>
@@ -314,8 +335,8 @@
     <screens>
         <name>Claim_Fees_Datatable</name>
         <label>Claim Fees Datatable</label>
-        <locationX>560</locationX>
-        <locationY>55</locationY>
+        <locationX>666</locationX>
+        <locationY>50</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -362,8 +383,8 @@
     <screens>
         <name>Show_Total_Fees</name>
         <label>Show Total Fees</label>
-        <locationX>702</locationX>
-        <locationY>56</locationY>
+        <locationX>827</locationX>
+        <locationY>50</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
