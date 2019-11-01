@@ -5,14 +5,14 @@ public without sharing class CourseCreateEnquiryUtility {
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') && String.isNotBlank(requestParameters.get('partner_email'));
         List<Course__c> courses;
         if (courseName != null) {
-            //NOPMD
+
             //Incident #24 - https://confluence.nct.org.uk:8443/x/EoSO
-            courses = [
-                SELECT Id, Name
-                FROM Course__c
-                WHERE Name =: courseName
-                WITH SECURITY_ENFORCED
-                LIMIT 1
+            courses = [                     //NOPMD
+                    SELECT Id, Name
+                    FROM Course__c
+                    WHERE Name = :courseName     
+                    WITH SECURITY_ENFORCED
+                    LIMIT 1
             ];
            
         } else {
