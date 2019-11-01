@@ -42,9 +42,24 @@
             <type>SalesforceObject</type>
         </navigationMenuItem>
         <navigationMenuItem>
+            <defaultListViewId>Paid</defaultListViewId>
+            <label>Invoice History</label>
+            <position>3</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>/invoices</target>
+            <type>InternalLink</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
+            <label>Claim Fees</label>
+            <position>4</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>/claim-fees</target>
+            <type>InternalLink</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
             <defaultListViewId>AllReports</defaultListViewId>
             <label>Reports</label>
-            <position>3</position>
+            <position>5</position>
             <publiclyAvailable>false</publiclyAvailable>
             <target>Report</target>
             <type>SalesforceObject</type>
@@ -52,7 +67,7 @@
     </navigationLinkSet>
     <networkMemberGroups>
         <permissionSet>Practitioner_Management</permissionSet>
-        <profile>Admin</profile>
+        <profile>admin</profile>
         <profile>Practitioner</profile>
     </networkMemberGroups>
     <networkPageOverrides>

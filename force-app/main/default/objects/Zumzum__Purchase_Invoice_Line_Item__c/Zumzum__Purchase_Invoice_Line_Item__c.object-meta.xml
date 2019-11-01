@@ -141,11 +141,13 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>Session_Compact_Layout</compactLayoutAssignment>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableFeeds>false</enableFeeds>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
@@ -153,14 +155,14 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
-    <label>Session</label>
+    <label>Purchase Invoice Line Item</label>
     <nameField>
-        <displayFormat>S{0000000}</displayFormat>
-        <label>Session Number</label>
+        <label>Purchase lnvoice Lineitem Name</label>
+        <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
-    <pluralLabel>Sessions</pluralLabel>
+    <pluralLabel>Purchase Invoice Line Items</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
