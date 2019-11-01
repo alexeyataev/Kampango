@@ -10,9 +10,8 @@ public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
         PaymentApiRequest paymentBody = createPaymentBody(contactId, installmentId);
         String installmentPayRequest = JSON.serialize(paymentBody, true);
         HttpRequest req = new HttpRequest();
-        //req.setEndpoint('callout:Step_Orange_Auth');
         req.setEndpoint('callout:Step_Orange_Auth_Anonymous');
-        req.setBody(installmentPayRequest);system.debug(installmentPayRequest);
+        req.setBody(installmentPayRequest);
         req.setHeader('Content-Type', 'application/json;charset=UTF-8');
         req.setHeader('api_token', API_TOKEN);
         req.setMethod('POST');
