@@ -191,6 +191,10 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>Override_Booking_Validation</members>
+        <name>CustomPermission</name>
+    </types>
+    <types>
         <members>Parent_Community</members>
         <members>Practitioners</members>
         <name>CustomSite</name>
@@ -330,6 +334,7 @@
         <name>NetworkBranding</name>
     </types>
     <types>
+        <members>Override_Booking_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <members>Branch_and_PSA_Management</members>
