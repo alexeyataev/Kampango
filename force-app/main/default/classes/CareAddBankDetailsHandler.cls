@@ -2,6 +2,8 @@ public with sharing class CareAddBankDetailsHandler {
     public static final String MESSAGE_TYPE_SUCCESS = 'success';
     public static final String MESSAGE_TYPE_ERROR = 'error';
     public static final String MESSAGE_TEXT_ERROR = 'error!';
+    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //
     @InvocableMethod
     public static List<MembershipResultObject> addBankDetails(List<cpm__Installment__c> installment) {
         try {
@@ -13,7 +15,6 @@ public with sharing class CareAddBankDetailsHandler {
                 WHERE Id =: contactId
                 WITH SECURITY_ENFORCED
             ];
-            //NOPMD
             cpm__Payment_Profile__c paymentProfile = [
                 SELECT Id, paybacs__Sort_Code__c, cpm__Bank_Account__c, cpm__Holder_Name__c
                 FROM cpm__Payment_Profile__c
