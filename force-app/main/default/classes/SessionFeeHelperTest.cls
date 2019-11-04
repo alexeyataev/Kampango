@@ -82,18 +82,22 @@ public with sharing class SessionFeeHelperTest {
             branchWeightings.add(branchWeightingBuilder
                                     .withBranch(branch)
                                     .withWeighting('London')
+                                    .withStartDate(Date.today() - 3)
                                     .insertRecord(false)
                                     .build());
         }
 
         insert branchWeightings;
+
+        Practitioner_Fee_Rate__c standardARate = practitionerFeeRates[0];
+        Practitioner_Fee_Rate__c londonBRate = practitionerFeeRates[9];
         
         Test.startTest();
         List<Session__c> sessionsTestResult = SessionFeeHelper.assignFeeRatesToSessions(sessionsToTest);
         Test.stopTest();
 
-        System.assertNotEquals(practitionerFeeRates[0].Id, sessionsTestResult[0].Practitioner_Fee_Rate__c);
-        System.assertEquals(practitionerFeeRates[1].Id, sessionsTestResult[0].Practitioner_Fee_Rate__c);
+        System.assertNotEquals(standardARate.Id, sessionsTestResult[0].Practitioner_Fee_Rate__c);
+        System.assertEquals(londonBRate.Id, sessionsTestResult[0].Practitioner_Fee_Rate__c);
     }
 
     @isTest

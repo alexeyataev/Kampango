@@ -33,7 +33,7 @@ public without sharing class TestDataFactory {
     private Course__c course;
     private Session__c session;
     private Session__c reunion;
-      private Practitioner_Fee_Rate__c practitionerFeeRate;
+    private Practitioner_Fee_Rate__c practitionerFeeRate;
     private List<Practitioner_Fee_Rate__c> practitionerFeeRates = new List<Practitioner_Fee_Rate__c>();
     private List<Practitioner_Band__c> practitionerBands = new List<Practitioner_Band__c>();
     private Branch_Weighting__c branchWeighting;
