@@ -20,9 +20,7 @@ public with sharing class SessionFeeHelperTest {
                     .buildLicenceToPractice()
                     .buildCourse()
                     .buildEstimatedCosts()
-                    .buildSession()
-                    .buildPractitionerBands()
-                    .buildBranchWeighting();
+                    .buildSession();
     }
 
     @isTest

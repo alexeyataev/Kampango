@@ -3,7 +3,7 @@ public with sharing class TestBranchWeightingBuilder {
     private Boolean insertRecord = false;
     private Account branch;
     private String geographicalWeighting = 'Standard';
-    private Date startDate = Date.today() - 5;
+    private Date startDate = Date.today() - 50;
     private Date endDate = null;
 
     public TestBranchWeightingBuilder insertRecord(Boolean insertRecord){

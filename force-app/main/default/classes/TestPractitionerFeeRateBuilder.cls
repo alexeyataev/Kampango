@@ -4,7 +4,7 @@ public with sharing class TestPractitionerFeeRateBuilder {
     private String geographicalWeighting = 'Standard';
     private String practitionerBand = 'A';
     private Decimal hourlyRate = 30.00;
-    private Date startDate = Date.today() - 5;
+    private Date startDate = Date.today() - 50;
     private Date endDate = null;
 
     public TestPractitionerFeeRateBuilder insertRecord(Boolean insertRecord){
