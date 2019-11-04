@@ -11,7 +11,7 @@
             <targetReference>Check_client_partner_exists</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Return_error_on_email_alert</targetReference>
+            <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
             <name>replyEmailAddress</name>
@@ -55,7 +55,7 @@
             <targetReference>Loop_through_bookings</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Return_error_on_email_alert</targetReference>
+            <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
             <name>replyEmailAddress</name>
@@ -99,7 +99,7 @@
             <targetReference>Check_host_partner_exists</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Return_error_on_email_alert</targetReference>
+            <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
             <name>replyEmailAddress</name>
@@ -143,7 +143,7 @@
             <targetReference>Loop_through_bookings</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Return_error_on_email_alert</targetReference>
+            <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
             <name>replyEmailAddress</name>
@@ -177,17 +177,46 @@
         </inputParameters>
     </actionCalls>
     <assignments>
-        <name>Return_error_on_email_alert</name>
-        <label>Return error</label>
+        <name>Return_error_no_host</name>
+        <label>Return error no host</label>
+        <locationX>484</locationX>
+        <locationY>492</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>status_error_no_host</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Return_error_on_get</name>
+        <label>Return error on get</label>
+        <locationX>483</locationX>
+        <locationY>900</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>status_error_get_record</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Return_error_part_success</name>
+        <label>Return error part success</label>
         <locationX>1007</locationX>
         <locationY>1397</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>status_error</elementReference>
+                <elementReference>status_part_success</elementReference>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_bookings</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Return_success</name>
@@ -354,7 +383,7 @@
         <locationX>668</locationX>
         <locationY>321</locationY>
         <defaultConnector>
-            <targetReference>Return_error_on_email_alert</targetReference>
+            <targetReference>Return_error_no_host</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -411,7 +440,7 @@
                 <leftValueReference>booking.Primary_Contact__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <elementReference>venueContact.Contact__c</elementReference>
+                    <elementReference>session.Parent_Host__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -423,8 +452,8 @@
     <decisions>
         <name>Check_is_host_0</name>
         <label>Check is host</label>
-        <locationX>520</locationX>
-        <locationY>406</locationY>
+        <locationX>300</locationX>
+        <locationY>584</locationY>
         <defaultConnector>
             <targetReference>Loop_to_set_host_names</targetReference>
         </defaultConnector>
@@ -436,7 +465,7 @@
                 <leftValueReference>booking.Primary_Contact__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <elementReference>venueContact.Contact__c</elementReference>
+                    <elementReference>session.Parent_Host__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -445,7 +474,7 @@
             <label>Is host?</label>
         </rules>
     </decisions>
-    <description>Added partner email</description>
+    <description>Replaced VenueContact with Lookup on Session, improved output</description>
     <formulas>
         <name>host_names</name>
         <dataType>String</dataType>
@@ -474,14 +503,17 @@
     <loops>
         <name>Loop_to_set_host_names</name>
         <label>Loop to set host names</label>
-        <locationX>309</locationX>
-        <locationY>468</locationY>
+        <locationX>117</locationX>
+        <locationY>504</locationY>
         <assignNextValueToReference>booking</assignNextValueToReference>
         <collectionReference>bookingList</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Check_is_host_0</targetReference>
         </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Return_error_no_host</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -505,6 +537,9 @@
         <connector>
             <targetReference>Loop_through_bookings</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get</targetReference>
+        </faultConnector>
         <filters>
             <field>DeveloperName</field>
             <operator>EqualTo</operator>
@@ -528,6 +563,9 @@
         <connector>
             <targetReference>Get_client_template</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get</targetReference>
+        </faultConnector>
         <filters>
             <field>DeveloperName</field>
             <operator>EqualTo</operator>
@@ -542,34 +580,6 @@
         <queriedFields>Body</queriedFields>
         <queriedFields>Subject</queriedFields>
     </recordLookups>
-    <recordLookups>
-        <name>Get_VenueContact</name>
-        <label>Get VenueContact</label>
-        <locationX>116</locationX>
-        <locationY>438</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Loop_to_set_host_names</targetReference>
-        </connector>
-        <filters>
-            <field>Type__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Parent Host</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Venue__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>session.Venue__c</elementReference>
-            </value>
-        </filters>
-        <object>Venue_Contact__c</object>
-        <outputReference>venueContact</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Contact__c</queriedFields>
-    </recordLookups>
     <recordUpdates>
         <name>Update_course</name>
         <label>Update course</label>
@@ -578,9 +588,18 @@
         <connector>
             <targetReference>Get_host_template</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get</targetReference>
+        </faultConnector>
         <inputReference>course</inputReference>
     </recordUpdates>
-    <startElementReference>Get_VenueContact</startElementReference>
+    <start>
+        <locationX>116</locationX>
+        <locationY>326</locationY>
+        <connector>
+            <targetReference>Loop_to_set_host_names</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>booking</name>
@@ -659,11 +678,41 @@
         <objectType>Session__c</objectType>
     </variables>
     <variables>
-        <name>status_error</name>
+        <name>status_error_general</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>status_error_get_record</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>status_error_general</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <name>status_error_no_host</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>status_error_general</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <name>status_part_success</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>status_error_general</elementReference>
+        </value>
     </variables>
     <variables>
         <name>status_success</name>

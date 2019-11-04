@@ -620,6 +620,11 @@
 
     <fieldPermissions>
         <editable>true</editable>
+        <field>Course__c.Reunion_Host_Contact_Names__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Course__c.Reunion_Practitioner_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -825,6 +830,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Parent_Host__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.PSA_Area__c</field>
         <readable>true</readable>
@@ -1020,7 +1030,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Venue__c.Map_Url__c</field>
         <readable>true</readable>
     </fieldPermissions>

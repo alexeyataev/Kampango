@@ -148,6 +148,10 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>Ignore_Booking_Confirmation_Restriction</members>
+        <name>CustomPermission</name>
+    </types>
+    <types>
         <members>Fee_Band</members>
         <name>GlobalValueSet</name>
     </types>
@@ -164,6 +168,10 @@
         <members>Course__c.Courses_With_Upcoming_Reunions</members>
         <members>Course__c.Upcoming_Courses</members>
         <name>ListView</name>
+    </types>
+    <types>
+        <members>Allow_Confirmed_Bookings</members>
+        <name>PermissionSet</name>
     </types>
     <types>
         <members>Executive Management</members>
