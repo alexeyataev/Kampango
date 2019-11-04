@@ -7,12 +7,12 @@ public with sharing class CareAddBankDetailsHandler {
         try {
             String nctNumber = installment[0].NCT_Number_Parent__c;
             String contactId = installment[0].cpm__Contact__c;
-            Contact cont = [
+            Contact cont = [ //NOPMD
                 SELECT Id, FirstName, LastName, NCT_Number__c, Gender__c, MailingPostalCode, Email, MailingStreet, MailingCity, MailingCountry 
                 FROM Contact 
                 WHERE Id =: contactId
                 WITH SECURITY_ENFORCED
-            ]; //NOPMD
+            ];
             cpm__Payment_Profile__c paymentProfile = [
                 SELECT Id, paybacs__Sort_Code__c, cpm__Bank_Account__c, cpm__Holder_Name__c
                 FROM cpm__Payment_Profile__c
