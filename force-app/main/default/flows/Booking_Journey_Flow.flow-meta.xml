@@ -364,9 +364,9 @@
         </connector>
         <flowName>Create_Gift_Aid_Declaration</flowName>
         <inputAssignments>
-            <name>BookingRecord</name>
+            <name>bookingId</name>
             <value>
-                <elementReference>bookingRecord</elementReference>
+                <elementReference>bookingId</elementReference>
             </value>
         </inputAssignments>
         <outputAssignments>
