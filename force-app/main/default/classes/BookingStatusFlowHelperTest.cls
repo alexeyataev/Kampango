@@ -37,6 +37,16 @@ public  class BookingStatusFlowHelperTest {
             .withLicence('Signature Antenatal Teacher')
             .insertRecord(true)
             .build();
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        List<Venue__c> venues = new List<Venue__c>{
+            venueBuilder.withName('Venue1')
+            .insertRecord(false)
+            .build(),
+            venueBuilder.withName('Venue2')
+            .insertRecord(false)
+            .build()
+        };
+        insert venues;
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         Course__c course = courseBuilder.withType('Postnatal')
             .withSubType('Baby Massage')
@@ -46,6 +56,7 @@ public  class BookingStatusFlowHelperTest {
             .withAccount(branch)
             .withLicenceToPractice(lisence)
             .withPractitioner(contact)
+            .withMainVenue(venues[0])
             .insertRecord(false)
             .build();
         insert course;
@@ -84,16 +95,6 @@ public  class BookingStatusFlowHelperTest {
             .build()
         };
         insert bookings;
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        List<Venue__c> venues = new List<Venue__c>{
-            venueBuilder.withName('Venue1')
-            .insertRecord(false)
-            .build(),
-            venueBuilder.withName('Venue2')
-            .insertRecord(false)
-            .build()
-        };
-        insert venues;
         TestRoomBuilder roomBuilder = new TestRoomBuilder();
         Room__c room = roomBuilder.withVenue(venues[0])
             .insertRecord(true)
