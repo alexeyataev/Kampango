@@ -46,14 +46,14 @@
             <label>Invoice History</label>
             <position>3</position>
             <publiclyAvailable>false</publiclyAvailable>
-            <target>/invoices</target>
-            <type>InternalLink</type>
+            <target>Zumzum__Purchase_Invoice__c</target>
+            <type>SalesforceObject</type>
         </navigationMenuItem>
         <navigationMenuItem>
             <label>Claim Fees</label>
             <position>4</position>
             <publiclyAvailable>false</publiclyAvailable>
-            <target>/claim-fees</target>
+            <target>/flow/Claim_Practitioner_Fees</target>
             <type>InternalLink</type>
         </navigationMenuItem>
         <navigationMenuItem>
@@ -68,7 +68,7 @@
     <networkMemberGroups>
         <permissionSet>Practitioner_Management</permissionSet>
         <profile>admin</profile>
-        <profile>Practitioner</profile>
+        <profile>practitioner</profile>
     </networkMemberGroups>
     <networkPageOverrides>
         <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
