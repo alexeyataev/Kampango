@@ -3,7 +3,7 @@ global class SessionFeeHelper {
     private static Date latestSessionDate;
 
     @InvocableMethod
-    public static List<Session__c> assignFeeRatesToSessions(List<Session__c> sessions){
+    public static void assignFeeRatesToSessions(List<Session__c> sessions){
         sessions = getExtraSessionData(sessions);
         
         setEarliestAndLatestSessionDates(sessions);
@@ -22,10 +22,10 @@ global class SessionFeeHelper {
                                                             AND (End_Date__c = NULL or End_Date__c >= :earliestSessionDate)
                                                         ORDER BY Start_Date__c DESC]);
     
-        return assignFeeRatesToSessions(sessions, branchIdToWeightings, practitionerIdToBands, feeRates);
+        assignFeeRatesToSessions(sessions, branchIdToWeightings, practitionerIdToBands, feeRates);
     }
 
-    private static List<Session__c> assignFeeRatesToSessions(List<Session__c> sessions, 
+    private static void assignFeeRatesToSessions(List<Session__c> sessions, 
                                                                 Map<Id, List<Branch_Weighting__c>> branchIdToWeightings,
                                                                 Map<Id, List<Practitioner_Band__c>> practitionerIdToBands,
                                                                 Map<Id, Practitioner_Fee_Rate__c> feeRates){
@@ -42,7 +42,7 @@ global class SessionFeeHelper {
                 session.Practitioner_Fee_Rate__c = null;
             }
         }                                                         
-        return sessions;                                                            
+        update sessions;                                                            
     }
 
     private static Branch_Weighting__c getWeightingForSession(Session__c session, List<Branch_Weighting__c> possibleWeightings){
