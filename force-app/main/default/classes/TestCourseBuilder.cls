@@ -75,7 +75,8 @@ public with sharing class TestCourseBuilder {
             Number_of_places__c = this.numberOfPlaces,
             Branch__c = this.account.Id,
             Main_Practitioner__c = this.practitioner.Id,
-            Main_Practitioner_Licence__c = this.licenceToPractice.Id
+            Main_Practitioner_Licence__c = this.licenceToPractice.Id,
+            Main_Venue__c = mainVenue.Id
         );
 
         if(insertRecord)
