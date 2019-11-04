@@ -1,4 +1,3 @@
-@SuppressWarnings('PMD.ApexCRUDViolation')
 public with sharing class CareAddBankDetailsHandler {
     public static final String MESSAGE_TYPE_SUCCESS = 'success';
     public static final String MESSAGE_TYPE_ERROR = 'error';
@@ -6,7 +5,6 @@ public with sharing class CareAddBankDetailsHandler {
     @InvocableMethod
     public static List<MembershipResultObject> addBankDetails(List<cpm__Installment__c> installment) {
         try {
-            System.debug(installment);
             String nctNumber = installment[0].NCT_Number_Parent__c;
             String contactId = installment[0].cpm__Contact__c;
             Contact cont = [
@@ -14,14 +12,13 @@ public with sharing class CareAddBankDetailsHandler {
                 FROM Contact 
                 WHERE Id =: contactId
                 WITH SECURITY_ENFORCED
-            ];
+            ]; //NOPMD
             cpm__Payment_Profile__c paymentProfile = [
                 SELECT Id, paybacs__Sort_Code__c, cpm__Bank_Account__c, cpm__Holder_Name__c
                 FROM cpm__Payment_Profile__c
                 WHERE Id =: installment[0].cpm__Payment_Profile__c
                 WITH SECURITY_ENFORCED
             ];
-            System.debug(paymentProfile);
             String bankDetailNumber = CareHelper.sendBankDetails(paymentProfile, cont, nctNumber);
             MembershipResultObject membershipResultObject = new MembershipResultObject();
             membershipResultObject.messageType = MESSAGE_TYPE_SUCCESS;
