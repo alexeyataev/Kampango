@@ -21,7 +21,6 @@ public with sharing class SessionFeeHelperTest {
                     .buildCourse()
                     .buildEstimatedCosts()
                     .buildSession()
-                    .buildPractitionerBands()
                     .buildBranchWeighting();
     }
 

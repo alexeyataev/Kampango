@@ -35,7 +35,6 @@ public without sharing class TestDataFactory {
     private Session__c reunion;
     private Practitioner_Fee_Rate__c practitionerFeeRate;
     private List<Practitioner_Fee_Rate__c> practitionerFeeRates = new List<Practitioner_Fee_Rate__c>();
-    private List<Practitioner_Band__c> practitionerBands = new List<Practitioner_Band__c>();
     private Branch_Weighting__c branchWeighting;
 
     private static TestDataFactory instance;
@@ -85,25 +84,25 @@ public without sharing class TestDataFactory {
 
     public TestDataFactory buildPractitioner(String lastName, String email) {
         TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
-        practitioners.add(practitionerContactBuilder
+        Contact practitioner = practitionerContactBuilder
             .withRecordType(PRACTITIONER_RECORDTYPE_NAME)
             .withAccount(organizationAccount)
             .withLastName(lastName)
             .withEmail(email)
             .insertRecord(true)
-            .build());
-        return this;
-    }
+            .build();
+        
+        practitioners.add(practitioner);
 
-    public TestDataFactory buildPractitionerBands(){
         TestPractitionerBandBuilder practitionerBandBuilder = new TestPractitionerBandBuilder();
-        for(Contact practitioner : practitioners){
-            practitionerBands.add(practitionerBandBuilder
-                                    .withPractitioner(practitioner)
-                                    .withBand(PRACTITIONER_BAND)
-                                    .insertRecord(true)
-                                    .build());
-        }
+        Practitioner_Band__c practitionerBand = practitionerBandBuilder     
+            .withPractitioner(practitioner)
+            .withBand(PRACTITIONER_BAND)
+            .insertRecord(true)
+            .build();
+        
+        practitionerBands.add(practitionerBand);
+
         return this;
     }
 
