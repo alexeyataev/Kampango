@@ -17,11 +17,10 @@ global class SessionFeeHelper {
         Map<Id, List<Practitioner_Band__c>> practitionerIdToBands = getMapPractitionerIdToBands(practitionerIds);
 
         Map<Id, Practitioner_Fee_Rate__c> feeRates = new Map<Id, Practitioner_Fee_Rate__c>([SELECT Id, Geographical_Weighting__c, Practitioner_Band__c, Start_Date__c, End_Date__c
-                                                                                            FROM Practitioner_Fee_Rate__c
-                                                                                            WHERE Start_Date__c <= :earliestSessionDate 
-                                                                                                AND (End_Date__c = NULL or End_Date__c >= :earliestSessionDate)
-                                                                                            ORDER BY Start_Date__c DESC
-                                                                                            ]);
+                                                        FROM Practitioner_Fee_Rate__c
+                                                        WHERE Start_Date__c <= :earliestSessionDate 
+                                                            AND (End_Date__c = NULL or End_Date__c >= :earliestSessionDate)
+                                                        ORDER BY Start_Date__c DESC]);
     
         return assignFeeRatesToSessions(sessions, branchIdToWeightings, practitionerIdToBands, feeRates);
     }
