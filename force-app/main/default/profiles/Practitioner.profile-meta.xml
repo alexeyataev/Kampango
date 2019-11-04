@@ -563,7 +563,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Eligible_for_Claim__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>    
     <fieldPermissions>
         <editable>false</editable>
