@@ -14,12 +14,6 @@ public without sharing class CareAddBankDetailsTest {
             .withLastName('Primary')
             .insertRecord(true)
             .build();
-        Contact partnerContact = contactBuilder.withRecordType('Client')
-            .withAccount(account)
-            .withFirstName('Test')
-            .withLastName('Partner')
-            .insertRecord(true)
-            .build();
         TestPaymentProfileBuilder paymentProfileBuilder = new TestPaymentProfileBuilder();
         cpm__Payment_Profile__c paymentProfile = paymentProfileBuilder.withContact(primaryContact)
             .withSortCode('1111')
@@ -29,7 +23,6 @@ public without sharing class CareAddBankDetailsTest {
             .build();
         TestInstallmentBuilder installmentBuilder = new TestInstallmentBuilder();
         cpm__Installment__c installment = installmentBuilder.withPrimaryContact(primaryContact)
-            .withPartnerContact(partnerContact)
             .withPaymentProfile(paymentProfile)
             .insertRecord(true)
             .build();
@@ -41,7 +34,7 @@ public without sharing class CareAddBankDetailsTest {
         List<cpm__Installment__c> testInstallmentList = [SELECT Id, cpm__Payment_Profile__c, NCT_Number_Parent__c, cpm__Contact__c FROM cpm__Installment__c LIMIT 1];
         List<MembershipResultObject> membershipResultObjectList = CareAddBankDetailsHandler.addBankDetails(testInstallmentList);
         Test.stopTest();
-        System.assertEquals(membershipResultObjectList[0].messageType, CareAddBankDetailsHandler.MESSAGE_TYPE_SUCCESS);
+        System.assertEquals(membershipResultObjectList[0].messageType, CareRequestBodyUtil.MESSAGE_TYPE_SUCCESS);
         System.assertEquals(membershipResultObjectList[0].messageText, '331257');
     }
 
@@ -51,7 +44,7 @@ public without sharing class CareAddBankDetailsTest {
         List<cpm__Installment__c> testInstallmentList = [SELECT Id, NCT_Number_Parent__c, cpm__Contact__c FROM cpm__Installment__c LIMIT 1];
         List<MembershipResultObject> membershipResultObjectList = CareAddBankDetailsHandler.addBankDetails(testInstallmentList);
         Test.stopTest();
-        System.assertEquals(membershipResultObjectList[0].messageType, CareAddBankDetailsHandler.MESSAGE_TYPE_ERROR);
-        System.assertEquals(membershipResultObjectList[0].messageText, CareAddBankDetailsHandler.MESSAGE_TEXT_ERROR);
+        System.assertEquals(membershipResultObjectList[0].messageType, CareRequestBodyUtil.MESSAGE_TYPE_ERROR);
+        System.assertEquals(membershipResultObjectList[0].messageText, CareRequestBodyUtil.MESSAGE_TEXT_ERROR);
     }
 }

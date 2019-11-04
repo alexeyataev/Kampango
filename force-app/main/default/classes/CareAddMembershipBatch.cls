@@ -5,15 +5,15 @@ public class CareAddMembershipBatch implements Database.Batchable<sObject>, Data
     }
 
     public void execute(Database.BatchableContext bc, List<cpm__Installment__c> scope){
-        List<cpm__Installment__c> installmentUpdateList = new List<cpm__Installment__c>();
         for(cpm__Installment__c installment : scope) {
-            CareHelper.AddMembershipStatus addMembershipStatus = CareHelper.addMembership(installment);
-            if(addMembershipStatus == CareHelper.AddMembershipStatus.SUCCESS) {
+            CareRequestBodyUtil.MembershipOjbect membershipOjbect = CareHelper.addMembership(installment);
+            if(membershipOjbect.error == null) {
                 installment.Care_Membership_Added__c = true;
-                installmentUpdateList.add(installment);
+            } else {
+                installment.Care_Error_Log__c = String.valueOf(membershipOjbect.error[0]);
             }
         }
-        update installmentUpdateList;
+        update scope;
     }
 
    public void finish(Database.BatchableContext bc){

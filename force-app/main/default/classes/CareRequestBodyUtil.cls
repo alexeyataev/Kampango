@@ -5,7 +5,10 @@ public with sharing class CareRequestBodyUtil {
     private static final String BRANCH_NUMBER = Care_Settings__c.getOrgDefaults().Branch_Number__c;//'240';
     private static final String USER_LOG_NAME = Care_Settings__c.getOrgDefaults().User_Log_Name__c;//'xSalesforce';
     private static final String CLAIM_DAY = '3';
-    private static final String URL = 'https://careforce.nct.org.uk:1443/AuthParentForceTest/';
+    public static final String MESSAGE_TYPE_SUCCESS = 'success';
+    public static final String MESSAGE_TYPE_ERROR = 'error';
+    public static final String MESSAGE_TEXT_ERROR = 'error!';
+    public static final String URL = 'https://careforce.nct.org.uk:1443/AuthParentForceTest/';
     public static String createSendContactBody(Contact cont) {
         AddUpdateContactRequest addUpdateContactRequest = new AddUpdateContactRequest();
         addUpdateContactRequest.authKey = AUTH_KEY;
@@ -24,7 +27,7 @@ public with sharing class CareRequestBodyUtil {
         addUpdateContactRequest.country = cont.MailingCountry;
         return JSON.serialize(addUpdateContactRequest, true);
     }
-    public static String createSendBankDetailsBody(cpm__Payment_Profile__c paymentProfile, Contact cont, String nctNumber) {
+    public static String createSendBankDetailsBody(cpm__Payment_Profile__c paymentProfile, Contact cont) {
         AddBankDetailsRequest addBankDetailsRequest = new AddBankDetailsRequest();
         addBankDetailsRequest.authKey = AUTH_KEY;
         addBankDetailsRequest.pagename = SF_ENVIRONMENT_NAME;
@@ -34,7 +37,7 @@ public with sharing class CareRequestBodyUtil {
         addBankDetailsRequest.sortCode = paymentProfile.paybacs__Sort_Code__c;
         addBankDetailsRequest.acctNumber = paymentProfile.cpm__Bank_Account__c;
         addBankDetailsRequest.acctName = paymentProfile.cpm__Holder_Name__c;
-        addBankDetailsRequest.contactKey = cont.NCT_Number__c != null ? cont.NCT_Number__c : nctNumber;
+        addBankDetailsRequest.contactKey = cont.NCT_Number__c;
         return JSON.serialize(addBankDetailsRequest, true);
     }
     public static String createAddMembershipBody(cpm__Installment__c installment) {

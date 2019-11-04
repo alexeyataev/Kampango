@@ -14,12 +14,6 @@ public without sharing class CareAddMembershipTest {
             .withLastName('Primary')
             .insertRecord(true)
             .build();
-        Contact partnerContact = contactBuilder.withRecordType('Client')
-            .withAccount(account)
-            .withFirstName('Test')
-            .withLastName('Partner')
-            .insertRecord(true)
-            .build();
         TestPaymentProfileBuilder paymentProfileBuilder = new TestPaymentProfileBuilder();
         cpm__Payment_Profile__c paymentProfile = paymentProfileBuilder.withContact(primaryContact)
             .withSortCode('1111')
@@ -29,7 +23,6 @@ public without sharing class CareAddMembershipTest {
             .build();
         TestInstallmentBuilder installmentBuilder = new TestInstallmentBuilder();
         cpm__Installment__c installment = installmentBuilder.withPrimaryContact(primaryContact)
-            .withPartnerContact(partnerContact)
             .withBankDetailsNumber('12345')
             .withPaymentProfile(paymentProfile)
             .insertRecord(true)
@@ -51,6 +44,8 @@ public without sharing class CareAddMembershipTest {
         CareAddMembershipBatch camb = new CareAddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();
-        System.assertEquals([SELECT Care_Membership_Added__c FROM cpm__Installment__c LIMIT 1].Care_Membership_Added__c, false);
+        cpm__Installment__c testInstallment = [SELECT Care_Membership_Added__c, Care_Error_Log__c FROM cpm__Installment__c LIMIT 1];
+        System.assertEquals(testInstallment.Care_Membership_Added__c, false);
+        System.assertEquals(testInstallment.Care_Error_Log__c, '{Error=Error}');
     }
 }
