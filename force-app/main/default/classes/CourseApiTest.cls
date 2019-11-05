@@ -166,7 +166,7 @@ public without sharing class CourseApiTest {
         List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(res.responseBody.toString());
 
         System.assertEquals(200, res.statusCode);
-        System.assertEquals(1, responseObjects.size());
+        System.assertEquals(2, responseObjects.size(), 'There should be 2 Course records with at least 1 allocated Session record');
       
     }      
 

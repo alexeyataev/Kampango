@@ -14,6 +14,7 @@ private class CourseCreateEnquiryUtilityTest {
             .buildBranchAccount()
             .buildPractitioner('Practitioner')
             .buildLicenceToPractice()
+            .buildVenue()
             .buildCourse();
     }
 
