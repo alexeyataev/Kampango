@@ -1,4 +1,4 @@
-//@SuppressWarnings('PMD.ApexCRUDViolation')
+@SuppressWarnings('PMD.ApexCRUDViolation')
 //Incident #14 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class CareAddContactHandler {
     @InvocableMethod
