@@ -162,6 +162,10 @@
         <name>Flow</name>
     </types>
     <types>
+        <members>Course__c-Admin Course Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
         <members>Course__c.Completed_Courses</members>
         <members>Course__c.Currently_Running_Courses</members>
         <members>Course__c.Courses_Not_Started</members>
