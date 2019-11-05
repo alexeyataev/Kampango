@@ -9,6 +9,7 @@ public class CareAddMembershipBatch implements Database.Batchable<sObject>, Data
             CareRequestBodyUtil.MembershipOjbect membershipOjbect = CareHelper.addMembership(installment);
             if(membershipOjbect.error == null) {
                 installment.Care_Membership_Added__c = true;
+                installment.Care_Error_Log__c = '';
             } else {
                 installment.Care_Error_Log__c = String.valueOf(membershipOjbect.error[0]);
             }
