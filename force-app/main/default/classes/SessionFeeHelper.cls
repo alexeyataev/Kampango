@@ -22,10 +22,10 @@ global class SessionFeeHelper {
                                                             AND (End_Date__c = NULL or End_Date__c >= :earliestSessionDate)
                                                         ORDER BY Start_Date__c DESC]);
     
-        assignFeeRatesToSessions(sessions, branchIdToWeightings, practitionerIdToBands, feeRates);
+        assignAppropriateFeeRatesToSessions(sessions, branchIdToWeightings, practitionerIdToBands, feeRates);
     }
 
-    private static void assignFeeRatesToSessions(List<Session__c> sessions, 
+    private static void assignAppropriateFeeRatesToSessions(List<Session__c> sessions, 
                                                                 Map<Id, List<Branch_Weighting__c>> branchIdToWeightings,
                                                                 Map<Id, List<Practitioner_Band__c>> practitionerIdToBands,
                                                                 Map<Id, Practitioner_Fee_Rate__c> feeRates){

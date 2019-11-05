@@ -34,9 +34,9 @@ public with sharing class SessionFeeHelperTest {
 
         Test.startTest();
         SessionFeeHelper.assignFeeRatesToSessions(sessionsToTest);
-        List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];
         Test.stopTest();
 
+        List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];
         System.assertEquals(practitionerFeeRates[0].Id, sessionsTestResult[0].Practitioner_Fee_Rate__c);
     }
     
@@ -92,9 +92,9 @@ public with sharing class SessionFeeHelperTest {
         
         Test.startTest();
         SessionFeeHelper.assignFeeRatesToSessions(sessionsToTest);
-        List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];
         Test.stopTest();
 
+        List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];
         System.assertNotEquals(standardARate.Id, sessionsTestResult[0].Practitioner_Fee_Rate__c);
         System.assertEquals(londonBRate.Id, sessionsTestResult[0].Practitioner_Fee_Rate__c);
     }
@@ -105,9 +105,9 @@ public with sharing class SessionFeeHelperTest {
 
         Test.startTest();
         SessionFeeHelper.assignFeeRatesToSessions(sessionsToTest);
-        List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];
         Test.stopTest();
 
+        List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];
         System.assertEquals(null, sessionsTestResult[0].Practitioner_Fee_Rate__c);
 
     }
@@ -125,9 +125,9 @@ public with sharing class SessionFeeHelperTest {
 
         Test.startTest();
         SessionFeeHelper.assignFeeRatesToSessions(sessionsToTest);
-        List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];
         Test.stopTest();
 
+        List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];
         System.assertEquals(null, sessionsTestResult[0].Practitioner_Fee_Rate__c);
 
     }
@@ -145,9 +145,9 @@ public with sharing class SessionFeeHelperTest {
 
         Test.startTest();
         SessionFeeHelper.assignFeeRatesToSessions(sessionsToTest);
-        List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];
         Test.stopTest();
 
+        List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];
         System.assertEquals(null, sessionsTestResult[0].Practitioner_Fee_Rate__c);
 
     }
