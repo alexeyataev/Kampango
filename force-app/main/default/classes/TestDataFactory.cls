@@ -91,7 +91,7 @@ public without sharing class TestDataFactory {
        practitioners.add(practitioner);
        TestPractitionerBandBuilder practitionerBandBuilder = new TestPractitionerBandBuilder();
        Practitioner_Band__c practitionerBand = practitionerBandBuilder
-           .withPractitioner(practitioner)
+           .withPractitionerContact(practitioner)
            .withBand(PRACTITIONER_BAND)
            .insertRecord(true)
            .build();

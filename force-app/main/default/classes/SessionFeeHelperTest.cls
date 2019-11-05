@@ -64,7 +64,7 @@ public with sharing class SessionFeeHelperTest {
         TestPractitionerBandBuilder practitionerBandBuilder = new TestPractitionerBandBuilder();
         for(Contact practitioner : practitioners){
             practitionerBands.add(practitionerBandBuilder
-                                    .withPractitioner(practitioner)
+                                    .withPractitionerContact(practitioner)
                                     .withBand(PRACTITIONER_BAND)
                                     .withStartDate(Date.today() - 3)
                                     .insertRecord(false)

@@ -12,7 +12,7 @@ public with sharing class TestPractitionerBandBuilder {
         return this;
     }
 
-    public TestPractitionerBandBuilder withPractitioner(Contact practitioner) {
+    public TestPractitionerBandBuilder withPractitionerContact(Contact practitioner) {
         this.practitioner = practitioner;
         return this;
     }
