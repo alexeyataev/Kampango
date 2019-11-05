@@ -31,15 +31,19 @@
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
         <members>SESSION_RevertToProvisional_TDTM</members>
         <members>SESSION_RevertToProvisional_TDTM_TEST</members>
+        <members>SessionFeeHelper</members>
+        <members>SessionFeeHelperTest</members>
         <members>StepOrangeCardPaymentProvider</members>
         <members>TestAccountBuilder</members>
         <members>TestBookingBuilder</members>
+        <members>TestBranchWeightingBuilder</members>
         <members>TestContactBuilder</members>
         <members>TestCourseAssignmentBuilder</members>
         <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
         <members>TestLicenceToPracticeBuilder</members>
+        <members>TestPractitionerBandBuilder</members>
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
@@ -94,8 +98,12 @@
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
+        <members>Session__c.Eligible_for_Claim__c</members>
+        <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
+        <members>Session__c.Practitioner_Fees_to_Claim__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -109,7 +117,7 @@
         <members>dlrs__LookupRollupSummary2.CourseEstimatedTravelCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseEstimatedVenueCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseNumberOfSessionsWithoutFeeRates</members>
-        <members>dlrs__LookupRollupSummary2.CoursePractitionerFeesTotalAmount</members>
+        <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -163,6 +171,7 @@
         <members>Zumzum__Purchase_Order__c</members>
         <members>Zumzum__Purchase_Requisition__c</members>
         <members>Zumzum__Recurring_Invoice__c</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c</members>
         <members>Zumzum__RecurringTransaction__c</members>
         <members>Zumzum__Revenue_Recognition_Rule__c</members>
         <members>Zumzum__Revenue_Recognition_Rule_Setting__c</members>
@@ -184,6 +193,10 @@
         <members>Zumzum__VAT_Submission_Result__c</members>
         <members>Zumzum__Warehouse__c</members>
         <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Override_Booking_Validation</members>
+        <name>CustomPermission</name>
     </types>
     <types>
         <members>Parent_Community</members>
@@ -238,6 +251,7 @@
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Booking_Tranfer_Flow</members>
+        <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
         <members>Create_Task_For_Booking</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
@@ -300,10 +314,12 @@
         <members>Venue_Contact__c-Venue Contact Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
         <members>Zumzum__Batch_Bank_Payment__c-Zumzum__Batch Bank Payment Layout</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
         <name>Layout</name>
     </types>
     <types>
         <members>courseDetailsComponent</members>
+        <members>claimFeesDatatable</members>
         <members>failurePaymentPage</members>
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
@@ -322,6 +338,7 @@
         <name>NetworkBranding</name>
     </types>
     <types>
+        <members>Override_Booking_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <members>Branch_and_PSA_Management</members>
