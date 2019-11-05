@@ -1,7 +1,7 @@
 public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
     private static final String PAYER_CONTACT_UPDATE = 'none';
     private static final String PAYMENT_METHOD = 'Creditcard';
-    private static final String SOURCE_CONNECTOR = 'PaymentHub-for-NPSP';
+    private static final String SOURCE_CONNECTOR = 'PaymentHub';
     private static final String SUCCESS_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + '/s/success';
     private static final String ERROR_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + '/s/failure';
     private static final String API_TOKEN = Parentforce_Community_Settings__c.getOrgDefaults().API_Token__c;
