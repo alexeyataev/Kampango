@@ -107,7 +107,7 @@ public with sharing class TestSessionBuilder {
 			Status__c = this.status,
 			Practitioner__c = this.practitioner.Id,
 			Practitioner_Licence__c = this.practitionerLicence.Id,
-			Practitioner_Fee_Rate__c = this.practitionerFeeRate.Id
+			Practitioner_Fee_Rate__c = this.practitionerFeeRate != Null ? this.practitionerFeeRate.Id : Null
 
 		);
 

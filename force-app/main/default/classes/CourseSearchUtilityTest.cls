@@ -46,7 +46,7 @@ private class CourseSearchUtilityTest {
                       .buildVenue()
                       .buildRoom()
                       .buildLicenceToPractice()
-                      .buildCoursesWithSessions(8, 16);
+                      .buildCoursesWithSessions(8, 2);
 
         List<Course__c> courses = [
             SELECT Type__c, Sub_Type__c, Status__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
@@ -230,7 +230,7 @@ private class CourseSearchUtilityTest {
         List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(response.responseBody.toString());
 
         System.assertEquals(200, response.statusCode);
-        System.assertEquals(1, responseObjects.size());                             
+        System.assertEquals(2, responseObjects.size(), 'There should be 2 Course records with at least 1 allocated Session record');                             
     }
 
     @isTest
@@ -253,7 +253,7 @@ private class CourseSearchUtilityTest {
         List<Course__c> courses = CourseSearchUtility.getCoursesByBranch(account.Branch_Number__c, false);
         Test.stopTest();
 
-        System.assertEquals(1, courses.size());
+        System.assertEquals(2, courses.size(), 'There should be 2 Course records with at least 1 allocated Session record');
         System.assertEquals(account.Id, courses[0].Branch__c);                            
     }
 
