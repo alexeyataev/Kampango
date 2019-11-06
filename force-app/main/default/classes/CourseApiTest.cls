@@ -198,15 +198,96 @@ public without sharing class CourseApiTest {
         }
         RestContext.request = request;
         RestContext.response = response;
-        Test.startTest();
-            System.runAs(getWebSiteUser()){
-                CourseAPI.createEnquiry();
-            }
-        Test.stopTest();
+
+        System.runAs(getWebSiteUser()){
+            CourseAPI.createEnquiry();
+        }
+
         List<Booking__c> bookings = [
             SELECT Name
             FROM Booking__c
         ];
         System.assertEquals(1, bookings.size());
     }
+
+    @isTest
+    static void createEnquiryEmptyCourseName() {
+        final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
+        final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
+                                            '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
+                                            '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
+                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"town":"London","op":"Send enquiry"}';
+
+        String avaliableCourse = ''; // missed course name 
+        RestRequest request = new RestRequest();
+        RestResponse response = new RestResponse();
+        request.httpMethod = 'POST';
+        request.requestURI = '/services/apexrest/courses/';
+        Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
+        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
+        paramsMap.put('courseId', avaliableCourse);
+        for (String parameter : paramsMap.keySet()) {
+            request.addParameter(parameter, paramsMap.get(parameter));
+        }
+        for (String header : headersMap.keySet()) {
+            request.addHeader(header, headersMap.get(header));
+        }
+        RestContext.request = request;
+        RestContext.response = response;
+
+        System.runAs(getWebSiteUser()){
+           CourseAPI.createEnquiry();
+           System.assertEquals(HttpStatusCode.SERVER_ERROR, response.statusCode, 'There should be server error');
+           Blob responseBlob = (Blob)response.responseBody;
+           System.assertEquals(Label.CourseAPIcourseNotExists, responseBlob.toString());
+        }
+
+        List<Booking__c> bookings = [
+            SELECT Name
+            FROM Booking__c
+        ];
+        System.assertEquals(0, bookings.size());
+    }
+
+    @isTest
+    static void createEnquiryNotValidCourseName() {
+        final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
+        final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
+                                            '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
+                                            '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
+                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"town":"London","op":"Send enquiry"}';
+
+        String avaliableCourse = 'NotValidCourseName'; // not valid course name 
+        RestRequest request = new RestRequest();
+        RestResponse response = new RestResponse();
+        request.httpMethod = 'POST';
+        request.requestURI = '/services/apexrest/courses/';
+        Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
+        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
+        paramsMap.put('courseId', avaliableCourse);
+        for (String parameter : paramsMap.keySet()) {
+            request.addParameter(parameter, paramsMap.get(parameter));
+        }
+        for (String header : headersMap.keySet()) {
+            request.addHeader(header, headersMap.get(header));
+        }
+        RestContext.request = request;
+        RestContext.response = response;
+
+        System.runAs(getWebSiteUser()){
+           CourseAPI.createEnquiry();
+           System.assertEquals(HttpStatusCode.SERVER_ERROR, response.statusCode, 'There should be server error');
+           Blob responseBlob = (Blob)response.responseBody;
+           System.assertEquals(Label.CourseAPIcourseNotExists, responseBlob.toString());
+        }
+
+        List<Booking__c> bookings = [
+            SELECT Name
+            FROM Booking__c
+        ];
+        System.assertEquals(0, bookings.size());
+    }
+
 }
