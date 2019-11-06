@@ -21,10 +21,10 @@ public without sharing class CareAddContactTest {
         Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock('{"Contact": {"Action":"Create","ContactKey": "3325461","AddressNumber": "26663388","ContactNumber": "3325461"}}'));
         List<Contact> testContactList = [SELECT Id FROM Contact LIMIT 1];
         List<String> contactIds = new List<String> {testContactList[0].Id};
-        List<MembershipResultObject> membershipResultObjectList = CareAddContactHandler.addContact(contactIds);
+        List<BookingJourneyInvocableResult> resultList = CareAddContactHandler.addContact(contactIds);
         Test.stopTest();
-        System.assertEquals(membershipResultObjectList[0].messageType, CareRequestBodyUtil.MESSAGE_TYPE_SUCCESS);
-        System.assertEquals(membershipResultObjectList[0].messageText, '3325461');
+        System.assertEquals(resultList[0].messageType, CareRequestBodyUtil.MESSAGE_TYPE_SUCCESS);
+        System.assertEquals(resultList[0].messageText, '3325461');
     }
 
     @isTest static void testAddContactError() {
@@ -32,10 +32,10 @@ public without sharing class CareAddContactTest {
         Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock('{"Error"}'));
         List<Contact> testContactList = [SELECT Id FROM Contact LIMIT 1];
         List<String> contactIds = new List<String> {testContactList[0].Id};
-        List<MembershipResultObject> membershipResultObjectList = CareAddContactHandler.addContact(contactIds);
+        List<BookingJourneyInvocableResult> resultList = CareAddContactHandler.addContact(contactIds);
         Test.stopTest();
-        System.assertEquals(membershipResultObjectList[0].messageType, CareRequestBodyUtil.MESSAGE_TYPE_ERROR);
-        System.assertEquals(membershipResultObjectList[0].messageText, CareRequestBodyUtil.MESSAGE_TEXT_ERROR);
+        System.assertEquals(resultList[0].messageType, CareRequestBodyUtil.MESSAGE_TYPE_ERROR);
+        System.assertEquals(resultList[0].messageText, CareRequestBodyUtil.MESSAGE_TEXT_ERROR);
     }
 
     @isTest static void testAddContactBatch() {

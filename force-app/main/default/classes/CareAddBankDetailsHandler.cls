@@ -2,7 +2,7 @@
 //Incident #13 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class CareAddBankDetailsHandler {
     @InvocableMethod
-    public static List<MembershipResultObject> addBankDetails(List<cpm__Installment__c> installment) {
+    public static List<BookingJourneyInvocableResult> addBankDetails(List<cpm__Installment__c> installment) {
         try {
             String contactId = installment[0].cpm__Contact__c;
             Contact cont = [
@@ -18,15 +18,15 @@ public with sharing class CareAddBankDetailsHandler {
                 WITH SECURITY_ENFORCED
             ];
             String bankDetailNumber = CareHelper.sendBankDetails(paymentProfile, cont);
-            MembershipResultObject membershipResultObject = new MembershipResultObject();
-            membershipResultObject.messageType = CareRequestBodyUtil.MESSAGE_TYPE_SUCCESS;
-            membershipResultObject.messageText = bankDetailNumber;
-            return new List<MembershipResultObject> {membershipResultObject};
+            BookingJourneyInvocableResult result = new BookingJourneyInvocableResult();
+            result.messageType = CareRequestBodyUtil.MESSAGE_TYPE_SUCCESS;
+            result.messageText = bankDetailNumber;
+            return new List<BookingJourneyInvocableResult> {result};
         } catch(Exception e) {
-            MembershipResultObject membershipResultObject = new MembershipResultObject();
-            membershipResultObject.messageType = CareRequestBodyUtil.MESSAGE_TYPE_ERROR;
-            membershipResultObject.messageText = CareRequestBodyUtil.MESSAGE_TEXT_ERROR;
-            return new List<MembershipResultObject> {membershipResultObject};
+            BookingJourneyInvocableResult result = new BookingJourneyInvocableResult();
+            result.messageType = CareRequestBodyUtil.MESSAGE_TYPE_ERROR;
+            result.messageText = CareRequestBodyUtil.MESSAGE_TEXT_ERROR;
+            return new List<BookingJourneyInvocableResult> {result};
         }
     }
 }
