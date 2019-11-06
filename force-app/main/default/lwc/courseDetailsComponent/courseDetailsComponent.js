@@ -127,7 +127,8 @@ export default class CourseDetailsComponent extends LightningElement {
                         {Start__c: row.Start__c},
                         {End__c: row.End__c},
                         {row: index + 1},
-                        {id: row.Id}
+                        {id: row.Id},
+                        {additionalInfo: row.Additional_Information__c}
                     );
                 }
             );
@@ -174,7 +175,7 @@ export default class CourseDetailsComponent extends LightningElement {
                 if(row.Venue__c){
                     let county = '';
                     if(row.Venue__r.County__c){
-                        county = row.Venue__r.County__c + ',';
+                        county = row.Venue__r.County__c;
                     }
                     return Object.assign(
                         {street: row.Venue__r.Street_Address__c},
@@ -192,13 +193,20 @@ export default class CourseDetailsComponent extends LightningElement {
 
     formatSessions(){
         let array = this.sessions,
-            monthDay;
+            weekdays = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'),
+            monthDay,
+            weekday,
+            month;
         array.forEach(
             (row) => {
                 let date = new Date(row.dateFormatted);
-                monthDay = date.getDate().toString();
-                let dateStr = monthDay + ' ' + date.toLocaleString('default', { month: 'long' });
+                monthDay = date.toLocaleString('default', {day: '2-digit'});
+                weekday = weekdays[date.getDay()];
+                month = date.toLocaleString('default', {month: 'short'});
+                let dateStr = weekday + ' ' + monthDay + ' ' + month;
                 row.dateFormatted = dateStr;
+                row.Start__c = Math.floor(row.Start__c / 3600000) + ':' + (row.Start__c % 3600000 / 60000).toString().padEnd(2, '0');
+                row.End__c = Math.floor(row.End__c / 3600000) + ':' + (row.End__c % 3600000 / 60000).toString().padEnd(2, '0');
             }
         );
         this.formattedSessions = array;
