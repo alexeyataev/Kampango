@@ -13,7 +13,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Enquery Parameters are specified not correctly</shortDescription>
-        <value>{Error: Enquery Parameters are specified not correctly}</value>
+        <value>{&quot;Error&quot; : Enquery Parameters are specified not correctly}</value>
     </labels>
     <labels>
         <fullName>CourseAPIcourseNotExists</fullName>
