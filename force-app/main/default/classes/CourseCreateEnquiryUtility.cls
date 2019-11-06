@@ -2,23 +2,26 @@ public without sharing class CourseCreateEnquiryUtility {
     public static final String RECORDTYPE_NAME = 'Clients';
 
     public static void createEnquiry(String courseName, Map<String, String> requestParameters) {
-        List<Course__c> courses;
-        if (courseName != null) {
-            courses = [
+        Course__c course;
+        if (String.isEmpty(courseName)) {
+            throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
+        }
+
+        try {
+            course = [
                 SELECT Id, Name
                 FROM Course__c
                 WHERE Name =: courseName
                 LIMIT 1
             ];
-        } else {
+        } catch (System.QueryException e){
             throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
         }
-        Boolean areParamsEmpty = courses.isEmpty() || requestParameters.isEmpty();
-        if (areParamsEmpty) {
-            throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
+
+        if (requestParameters.isEmpty()) {
+            throw new CreateEnquiryException(System.Label.CourseAPIEnqueryParametersSpecifiedNotCorrectly);
         }
         
-        Id courseId = courses[0].Id;
         Booking__c booking = new Booking__c();
         Contact contact = new Contact(
             RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME),
@@ -49,7 +52,7 @@ public without sharing class CourseCreateEnquiryUtility {
         booking.Birth_Due_Date__c = Date.parse((requestParameters.get('duedate')));
         booking.First_Baby__c = parseParameterToPicklistValue(requestParameters.get('firstbaby'));
         booking.Multiple_Birth__c = parseParameterToPicklistValue(requestParameters.get('twinsexpected'));
-        booking.Course__c = courseId;
+        booking.Course__c = course.Id;
         booking.How_Heard__c = requestParameters.get('hearaboutus');
         booking.Info_for_Practitioner__c = requestParameters.get('additioninfo');
         try {
