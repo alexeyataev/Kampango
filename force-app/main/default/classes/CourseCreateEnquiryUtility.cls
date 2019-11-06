@@ -1,12 +1,17 @@
 public without sharing class CourseCreateEnquiryUtility {
     public static final String RECORDTYPE_NAME = 'Clients';
 
-    public static void createEnquiry(String courseName, Map<String, String> requestParameters) {
-        Course__c course;
+    public static void createEnquiry(Map<String, String> requestParameters) {
+        if (requestParameters.isEmpty()) {
+            throw new CreateEnquiryException(System.Label.CourseAPIEnqueryParametersSpecifiedNotCorrectly);
+        }
+
+        String courseName = requestParameters.get('courseId').trim();
         if (String.isEmpty(courseName)) {
             throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
         }
 
+        Course__c course;
         try {
             course = [
                 SELECT Id, Name
@@ -16,10 +21,6 @@ public without sharing class CourseCreateEnquiryUtility {
             ];
         } catch (System.QueryException e){
             throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
-        }
-
-        if (requestParameters.isEmpty()) {
-            throw new CreateEnquiryException(System.Label.CourseAPIEnqueryParametersSpecifiedNotCorrectly);
         }
         
         Booking__c booking = new Booking__c();
@@ -85,8 +86,5 @@ public without sharing class CourseCreateEnquiryUtility {
         return parameter == '1' ? 'Yes' : 'No';
     }
   
-    public static String getCourseName(Map<String, String> params) {
-        return params.get('courseId').trim();
-    }
     public class CreateEnquiryException extends Exception {}
 }
