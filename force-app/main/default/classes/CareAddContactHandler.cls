@@ -22,5 +22,4 @@ public with sharing class CareAddContactHandler {
             return new List<BookingJourneyInvocableResult> {result};
         }
     }
-    private class AddContactException extends Exception {}
 }
