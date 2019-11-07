@@ -23,6 +23,8 @@
         <members>HttpStatusCode</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
+        <members>PractitionerBandFeeHelper</members>
+        <members>PractitionerBandFeeHelperTest</members
         <members>SendHTMLEmailPlugin</members>
         <members>SendHTMLEmailPluginTest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
@@ -278,6 +280,7 @@
         <members>Update_Practitioner_on_Sessions</members>
         <members>Update_Related_Sessions</members>
         <members>Update_service_field_on_session</members>
+        <members>Update_Session_Fee_Rates_When_Practitioner_Band_Changes</members>
         <members>Update_Venue_on_Sessions_related_to_Course</members>
         <name>Flow</name>
     </types>
@@ -300,7 +303,6 @@
         <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Course__c-Capacity PSA Course Layout</members>
-        <members>Course__c-Admin Course Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
