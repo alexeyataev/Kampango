@@ -5,7 +5,8 @@ public with sharing class BranchWeightingHelperTest {
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
     private static final String BRANCH_RECORDTYPE_NAME  = 'Branch';
     private static final String PRACTITIONER_BAND = 'B';
-    private static final String BRANCH_WEIGHTING = 'London';
+    private static final String STANDARD_BRANCH_WEIGHTING = 'Standard';
+    private static final String LONDON_BRANCH_WEIGHTING = 'London';
 
     private static Integer daysBeforeToday = 3;
     private static Integer daysAfterToday = 15;
@@ -30,8 +31,21 @@ public with sharing class BranchWeightingHelperTest {
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildPractitionerFeeRate();
         
-        List<Branch_Weighting__c> branchWeightings = [SELECT Id, Branch__c, Start_Date__c FROM Branch_Weighting__c];
+        List<Account> branches = [SELECT Id FROM Account WHERE RecordType.Name =:BRANCH_RECORDTYPE_NAME];
         List<Practitioner_Fee_Rate__c> practitionerFeeRates = [SELECT Id FROM Practitioner_Fee_Rate__c];
+
+        List<Branch_Weighting__c> branchWeightings = new List<Branch_Weighting__c>();
+        TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
+        for(Account branch : branches) {
+            branchWeightings.add(branchWeightingBuilder
+                                    .withBranch(branch)
+                                    .withWeighting(STANDARD_BRANCH_WEIGHTING)
+                                    .withStartDate(Date.today() - daysBeforeToday)
+                                    .insertRecord(false)
+                                    .build());
+        }
+
+        insert branchWeightings;
 
         Test.startTest();
         BranchWeightingHelper.updateFeesOnAffectedSessions(branchWeightings);
@@ -79,7 +93,7 @@ public with sharing class BranchWeightingHelperTest {
         for(Account branch : branches) {
             branchWeightings.add(branchWeightingBuilder
                                     .withBranch(branch)
-                                    .withWeighting(BRANCH_WEIGHTING)
+                                    .withWeighting(LONDON_BRANCH_WEIGHTING)
                                     .withStartDate(Date.today() - daysBeforeToday)
                                     .insertRecord(false)
                                     .build());
@@ -98,20 +112,33 @@ public with sharing class BranchWeightingHelperTest {
     }
 
     @isTest
-    private static void PractitionerHasExistingSession_BranchWeightingRecordBackedDatedCreated_SessionFeeRateRemainsNull(){
+    private static void BranchWeightingRecordFutureDatedCreated(){
     
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildPractitionerFeeRate();
         
-        List<Branch_Weighting__c> branchWeightings = [SELECT Id, Branch__c, Start_Date__c FROM Branch_Weighting__c];
-        branchWeightings[0].Start_Date__c = Date.today() + daysAfterToday;
-        update branchWeightings;
+        List<Account> branches = [SELECT Id FROM Account WHERE RecordType.Name =:BRANCH_RECORDTYPE_NAME];
+        List<Practitioner_Fee_Rate__c> practitionerFeeRates = [SELECT Id, Practitioner_Band__c, Geographical_Weighting__c FROM Practitioner_Fee_Rate__c];
+        Practitioner_Fee_Rate__c initialRate = practitionerFeeRates[0];
+
+        List<Branch_Weighting__c> branchWeightings = new List<Branch_Weighting__c>();
+        TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
+        for(Account branch : branches) {
+            branchWeightings.add(branchWeightingBuilder
+                                    .withBranch(branch)
+                                    .withWeighting(STANDARD_BRANCH_WEIGHTING)
+                                    .withStartDate(Date.today() + daysAfterToday)
+                                    .insertRecord(false)
+                                    .build());
+        }
+
+        insert branchWeightings;
 
         Test.startTest();
         BranchWeightingHelper.updateFeesOnAffectedSessions(branchWeightings);
         Test.stopTest();
 
         List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];
-        System.assertEquals(null, sessionsTestResult[0].Practitioner_Fee_Rate__c);
+        System.assertEquals(initialRate.Id, sessionsTestResult[0].Practitioner_Fee_Rate__c);
     }
 }
