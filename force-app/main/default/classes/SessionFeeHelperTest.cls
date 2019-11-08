@@ -24,7 +24,7 @@ public with sharing class SessionFeeHelperTest {
     }
 
     @isTest
-    private static void PassInListOfSessions_WithoutFeesAlreadyAssigned_AppropriateFeesAssigned(){
+    private static void passInListOfSessions_WithoutFeesAlreadyAssigned_AppropriateFeesAssigned(){
     
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildPractitionerFeeRate();
@@ -43,7 +43,7 @@ public with sharing class SessionFeeHelperTest {
     
 
     @isTest
-    private static void FeesAlreadyAssigned_CreateNewBranchWeighting_SessionsCorrectlyReassigned(){
+    private static void feesAlreadyAssigned_CreateNewBranchWeighting_SessionsCorrectlyReassigned(){
 
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildPractitionerFeeRateSet();
@@ -99,7 +99,7 @@ public with sharing class SessionFeeHelperTest {
     }
 
     @isTest
-    private static void PassInListOfSessions_WithoutFeesAlreadyAssigned_WithoutPractitionerFeeRateCreated(){
+    private static void passInListOfSessions_WithoutFeesAlreadyAssigned_WithoutPractitionerFeeRateCreated(){
         List<Session__c> sessionsToTest = [SELECT Id FROM Session__c];
 
         Test.startTest();
@@ -112,7 +112,7 @@ public with sharing class SessionFeeHelperTest {
     }
 
     @isTest
-    private static void PassInListOfSessions_WithoutFeesAlreadyAssigned_WithoutPractitionerBand(){
+    private static void passInListOfSessions_WithoutFeesAlreadyAssigned_WithoutPractitionerBand(){
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildPractitionerFeeRate();
         
@@ -132,7 +132,7 @@ public with sharing class SessionFeeHelperTest {
     }
 
     @isTest
-    private static void PassInListOfSessions_WithoutFeesAlreadyAssigned_WithoutBranchWeighting(){
+    private static void passInListOfSessions_WithoutFeesAlreadyAssigned_WithoutBranchWeighting(){
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildPractitionerFeeRate();
         

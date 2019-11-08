@@ -26,7 +26,7 @@ public with sharing class BranchWeightingHelperTest {
     }
 
     @isTest
-    private static void PractitionerHasExistingSession_BranchWeightingRecordCreated_SessionGetsAssignedToAppropriateFeeRate(){
+    private static void practitionerHasExistingSession_BranchWeightingRecordCreated_SessionGetsAssignedToAppropriateFeeRate(){
     
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildPractitionerFeeRate();
@@ -57,7 +57,7 @@ public with sharing class BranchWeightingHelperTest {
     }
 
     @isTest
-    private static void PractitionerHasExistingSession_NewBackDatedBranchWeightingCreated_SessionGetsReassignedToAppropriateFeeRate(){
+    private static void practitionerHasExistingSession_NewBackDatedBranchWeightingCreated_SessionGetsReassignedToAppropriateFeeRate(){
     
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildPractitionerFeeRateSet();
@@ -112,7 +112,7 @@ public with sharing class BranchWeightingHelperTest {
     }
 
     @isTest
-    private static void PractitionerHasExistingSession_BranchWeightingRecordFutureDatedCreated_SessionFeeRateRemainsInitial(){
+    private static void practitionerHasExistingSession_BranchWeightingRecordFutureDatedCreated_SessionFeeRateRemainsInitial(){
     
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildPractitionerFeeRate();

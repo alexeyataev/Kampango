@@ -21,7 +21,7 @@ public with sharing class PractitionerBandFeeHelperTest {
                                                 
     }
     @isTest
-    private static void PractitionerHasExistingSession_GetsPromoted_SessionAfterPromotionGetsAssignedToNewRate(){
+    private static void practitionerHasExistingSession_GetsPromoted_SessionAfterPromotionGetsAssignedToNewRate(){
         Contact practitioner = getPractitioner();
         Practitioner_Band__c practitionerOriginalBand = getOriginalPractitionerBand(practitioner);
 
@@ -62,7 +62,7 @@ public with sharing class PractitionerBandFeeHelperTest {
     }
 
     @isTest
-    private static void PractitionerHasExistingSession_GetsFutureDatedPromotion_SessionRemainsOnExistingBand(){
+    private static void practitionerHasExistingSession_GetsFutureDatedPromotion_SessionRemainsOnExistingBand(){
         Contact practitioner = getPractitioner();
         Practitioner_Band__c practitionerOriginalBand = getOriginalPractitionerBand(practitioner);
 
