@@ -43,7 +43,11 @@ public with sharing class PractitionerBandFeeHelperTest {
                                                                                 Band__c = PRACTITIONER_PROMOTED_BAND,
                                                                                 Practitioner__c = practitioner.Id);
 
-        insert practitionerNewBand;                                                                            
+        insert practitionerNewBand;
+
+        List<Practitioner_Band__c> bandsToProcess = new List<Practitioner_Band__c>{practitionerOriginalBand, practitionerNewBand};
+
+        PractitionerBandFeeHelper.updateFeesOnAffectedSessions(bandsToProcess);                                                                            
 
         test.stopTest();
 
@@ -71,7 +75,11 @@ public with sharing class PractitionerBandFeeHelperTest {
                                                                                 Band__c = PRACTITIONER_PROMOTED_BAND,
                                                                                 Practitioner__c = practitioner.Id);
 
-        insert practitionerNewBand;                                                                            
+        insert practitionerNewBand;  
+
+        List<Practitioner_Band__c> bandsToProcess = new List<Practitioner_Band__c>{practitionerOriginalBand, practitionerNewBand};
+
+        PractitionerBandFeeHelper.updateFeesOnAffectedSessions(bandsToProcess);                                                                                  
 
         test.stopTest();
 
@@ -93,7 +101,11 @@ public with sharing class PractitionerBandFeeHelperTest {
         test.startTest();
 
         practitionerOriginalBand.End_Date__c = bandEndDate;
-        update practitionerOriginalBand;                                                                          
+        update practitionerOriginalBand;    
+
+        List<Practitioner_Band__c> bandsToProcess = new List<Practitioner_Band__c>{practitionerOriginalBand};
+
+        PractitionerBandFeeHelper.updateFeesOnAffectedSessions(bandsToProcess);                                                                              
 
         test.stopTest();
 
