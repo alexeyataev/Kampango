@@ -112,7 +112,7 @@ public with sharing class BranchWeightingHelperTest {
     }
 
     @isTest
-    private static void BranchWeightingRecordFutureDatedCreated(){
+    private static void PractitionerHasExistingSession_BranchWeightingRecordFutureDatedCreated_SessionFeeRateRemainsInitial(){
     
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildPractitionerFeeRate();
