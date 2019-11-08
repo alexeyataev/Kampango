@@ -4,14 +4,14 @@
         <processMetadataValues>
             <name>apexSelection</name>
             <value>
-                <stringValue>BranchWeightingHelper</stringValue>
+                <stringValue>PractitionerFeeRateHelper</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>BranchWeightingHelper</label>
+        <label>PractitionerFeeRateHelper</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
-        <actionName>BranchWeightingHelper</actionName>
+        <actionName>PractitionerFeeRateHelper</actionName>
         <actionType>apex</actionType>
         <inputParameters>
             <processMetadataValues>
@@ -29,7 +29,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>updatedAndNewWeightings</stringValue>
+                    <stringValue>updatedAndNewRates</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -41,7 +41,7 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue>Branch_Weighting__c</stringValue>
+                    <stringValue>Practitioner_Fee_Rate__c</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -50,7 +50,7 @@
                     <stringValue>SObject</stringValue>
                 </value>
             </processMetadataValues>
-            <name>updatedAndNewWeightings</name>
+            <name>updatedAndNewRates</name>
             <value>
                 <elementReference>myVariable_current</elementReference>
             </value>
@@ -84,16 +84,17 @@
             <label>New Record Or Key Information Change</label>
         </rules>
     </decisions>
-    <description>If a new Branch Weighting created or Date changes, then it will need to be passed into BranchWeightingHelper to update Sessions</description>
+    <description>If a new Practitioner Fee Rate created or changes, then it will need to be passed into PractitionerFeeRateHelper to update Sessions</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
                 <stringValue>OR(
 ISNEW(),
-ISCHANGED([Branch_Weighting__c].Geographical_Weighting__c),
-ISCHANGED([Branch_Weighting__c].Start_Date__c),
-ISCHANGED([Branch_Weighting__c].End_Date__c)
+ISCHANGED([Practitioner_Fee_Rate__c].Geographical_Weighting__c),
+ISCHANGED([Practitioner_Fee_Rate__c].Practitioner_Band__c),
+ISCHANGED([Practitioner_Fee_Rate__c].Start_Date__c),
+ISCHANGED([Practitioner_Fee_Rate__c].End_Date__c)
 ) </stringValue>
             </value>
         </processMetadataValues>
@@ -102,16 +103,17 @@ ISCHANGED([Branch_Weighting__c].End_Date__c)
         <expression>OR(
 ISNEW(),
 ISCHANGED({!myVariable_current.Geographical_Weighting__c}),
+ISCHANGED({!myVariable_current.Practitioner_Band__c}),
 ISCHANGED({!myVariable_current.Start_Date__c}),
 ISCHANGED({!myVariable_current.End_Date__c})
 )</expression>
     </formulas>
-    <interviewLabel>Update_Session_Fee_Rate_When_Branch_Weighting_Changes-1_InterviewLabel</interviewLabel>
-    <label>Update Session Fee Rate When Branch Weighting Changes</label>
+    <interviewLabel>Update_Session_Fee_Rate_When_Practitioner_Fee_Rate_Changes-1_InterviewLabel</interviewLabel>
+    <label>Update Session Fee Rate When Practitioner Fee Rate Changes</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
-            <stringValue>Branch_Weighting__c</stringValue>
+            <stringValue>Practitioner_Fee_Rate__c</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -141,7 +143,7 @@ ISCHANGED({!myVariable_current.End_Date__c})
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
-        <objectType>Branch_Weighting__c</objectType>
+        <objectType>Practitioner_Fee_Rate__c</objectType>
     </variables>
     <variables>
         <name>myVariable_old</name>
@@ -149,6 +151,6 @@ ISCHANGED({!myVariable_current.End_Date__c})
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
-        <objectType>Branch_Weighting__c</objectType>
+        <objectType>Practitioner_Fee_Rate__c</objectType>
     </variables>
 </Flow>
