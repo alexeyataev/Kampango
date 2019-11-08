@@ -3,6 +3,8 @@
     <types>
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
+        <members>BookingStatusFlowHelper</members>
+        <members>BookingStatusFlowHelperTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -16,23 +18,32 @@
         <members>CourseSearchUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
+        <members>dlrs_Estimated_CostsTest</members>
+        <members>dlrs_SessionTest</members>
         <members>HttpStatusCode</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
+        <members>SendHTMLEmailPlugin</members>
+        <members>SendHTMLEmailPluginTest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM_TEST</members>
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
         <members>SESSION_RevertToProvisional_TDTM</members>
         <members>SESSION_RevertToProvisional_TDTM_TEST</members>
+        <members>SessionFeeHelper</members>
+        <members>SessionFeeHelperTest</members>
         <members>StepOrangeCardPaymentProvider</members>
         <members>TestAccountBuilder</members>
+        <members>TestBookingBuilder</members>
+        <members>TestBranchWeightingBuilder</members>
         <members>TestContactBuilder</members>
         <members>TestCourseAssignmentBuilder</members>
         <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
         <members>TestLicenceToPracticeBuilder</members>
+        <members>TestPractitionerBandBuilder</members>
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
@@ -42,6 +53,7 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>dlrs_Estimated_CostsTrigger</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
     </types>
@@ -55,11 +67,12 @@
         <members>ParentCommunityLogoContainer</members>
         <members>showToast</members>
         <members>SuccessPaymentsPage</members>
+        <members>TranferDetailComponent</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
         <members>Contact.Practitioner_Compact_layout</members>
-       	<members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
+        <members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
         <members>Session__c.Session_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
@@ -75,13 +88,7 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
-        <members>Booking__c.First_Baby__c</members>      
-        <members>Booking__c.Cancellation_Reason__c</members>
-        <members>Booking__c.Status__c</members>
-        <members>Booking__c.Suggested_Cancellation_Fee__c</members>
         <members>Contact.AccountId</members>
-        <members>Contact.Current_Fee_Band_Effective_From__c</members>
-        <members>Contact.Fee_Band__c</members>
         <members>Contact.Home_PSA__c</members>
         <members>Contact.NCT_Number__c</members>
         <members>Contact.Practitioner_Re_Registration_Amount__c</members>
@@ -91,8 +98,12 @@
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
+        <members>Session__c.Eligible_for_Claim__c</members>
+        <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
+        <members>Session__c.Practitioner_Fees_to_Claim__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -100,16 +111,31 @@
         <name>CustomLabels</name>
     </types>
     <types>
+        <members>dlrs__LookupRollupSummary2.CourseAssignmentNumberOfSessions</members>
+        <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalFeesAmount</members>
+        <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalHours</members>
+        <members>dlrs__LookupRollupSummary2.CourseEstimatedTravelCostsTotalAmount</members>
+        <members>dlrs__LookupRollupSummary2.CourseEstimatedVenueCostsTotalAmount</members>
+        <members>dlrs__LookupRollupSummary2.CourseNumberOfSessionsWithoutFeeRates</members>
+        <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
         <members>Account</members>
         <members>Booking__c</members>
+        <members>Branch_Weighting__c</members>
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
+        <members>dlrs__LookupRollupSummary2__mdt</members>
         <members>gaid__Gift_Aid_Declaration__c</members>
         <members>Estimated_Costs__c</members>
+        <members>Individual</members>
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
+        <members>Practitioner_Band__c</members>
         <members>Practitioner_Community_Settings__c</members>
+        <members>Practitioner_Fee_Rate__c</members>
         <members>Practitioner_Travel_Cost__c</members>
         <members>Rate__c</members>
         <members>Room__c</members>
@@ -119,7 +145,6 @@
         <members>Zumzum__Activity_Code__c</members>
         <members>Zumzum__Bank__c</members>
         <members>Zumzum__Bank_Account__c</members>
-        <members>Zumzum__Bank_Receipt__c</members>
         <members>Zumzum__BankTransfer__c</members>
         <members>Zumzum__BankReconcile__c</members>
         <members>Zumzum__Batch_Bank_Payment__c</members>
@@ -139,14 +164,14 @@
         <members>Zumzum__General_Setup__c</members>
         <members>Zumzum__Journal__c</members>
         <members>Zumzum__Ledger__c</members>
-        <members>Zumzum__Location__c</members>
-        <members>Zumzum__My_Addresses__c</members>
+        <members>Zumzum__Ledger_Payment_History__c</members>
         <members>Zumzum__Nominal_Account__c</members>
         <members>Zumzum__Nominal_Categories__c</members>
         <members>Zumzum__Purchase_Invoice__c</members>
         <members>Zumzum__Purchase_Order__c</members>
         <members>Zumzum__Purchase_Requisition__c</members>
         <members>Zumzum__Recurring_Invoice__c</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c</members>
         <members>Zumzum__RecurringTransaction__c</members>
         <members>Zumzum__Revenue_Recognition_Rule__c</members>
         <members>Zumzum__Revenue_Recognition_Rule_Setting__c</members>
@@ -167,8 +192,11 @@
         <members>Zumzum__VAT_Return__c</members>
         <members>Zumzum__VAT_Submission_Result__c</members>
         <members>Zumzum__Warehouse__c</members>
-        <members>Zumzum__Batch_Bank_Payment__c</members>
         <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Override_Booking_Validation</members>
+        <name>CustomPermission</name>
     </types>
     <types>
         <members>Parent_Community</members>
@@ -179,12 +207,13 @@
         <members>Booking__c</members>
         <members>Course_Assignment__c</members>
         <members>npsp__Trigger_Handler__c</members>
+        <members>Practitioner_Fee_Rate__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
     </types>
     <types>
         <members>Communities_Shared_Document_Folder</members>
-        <members>Communities_Shared_Document_Folder/social_logo_png.png</members>
+        <members>Communities_Shared_Document_Folder/social_logo_png</members>
         <name>Document</name>
     </types>
     <types>
@@ -197,10 +226,15 @@
     </types>
     <types>
         <members>Course_Sub_Type</members>
-        <members>Fee_Band</members>
+        <members>Geographical_Weightings</members>
+        <members>Practitioner_Bands</members>
         <members>PSA_Areas</members>
         <members>Y_N_UNKNOWN</members>
         <name>GlobalValueSet</name>
+    </types>
+    <types>
+        <members>Parent_Community_Group</members>
+        <name>Group</name>
     </types>
     <types>
         <members>Contact_Record_Page</members>
@@ -212,18 +246,29 @@
         <name>FlexiPage</name>
     </types>
     <types>
+        <members>Assign_Practitioner_Fee_Rate_to_Session</members>
         <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
+        <members>Booking_Tranfer_Flow</members>
+        <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
-        <members>Invalidate_Withdraw_CA_when_key_information_changes</members>
+        <members>Create_Task_For_Booking</members>
+        <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Populate_Practitioner_Name</members>
         <members>Resend_Offer_Email</members>
+        <members>Reunion_Prepare_Sending_Process</members>
+        <members>Resend_Reunion_Email</members>
+        <members>Reunion_Execute_Sending_Private_Subflow</members>
+        <members>Reunion_Execute_Sending_Public_Subflow</members>
+        <members>Reunion_Execute_Sending</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Booking_Expiration_Status</members>
+        <members>Set_CADs_to_Withdrawn</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
+        <members>Set_Deactivate_Date_GAD</members>
         <members>Set_Main_Venue_on_Course</members>
         <members>Set_Number_of_Places_Based_on_Course_Type</members>
         <members>Update_Address_in_Gift_Aid_Declaration</members>
@@ -245,6 +290,7 @@
         <members>Booking__c-Admin Booking Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Booking__c-Enquiry PSA Booking Layout</members>
+        <members>Branch_Weighting__c-Branch Weighting Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
         <members>Contact-Practitioner Community Layout</members>
@@ -253,25 +299,33 @@
         <members>Course_Assignment__c-Course Assignment Layout</members>
         <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
+        <members>Course__c-Capacity PSA Course Layout</members>
+        <members>Course__c-Admin Course Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
-        <members>Product2-Practitioner Product Page</members>
+        <members>Practitioner_Band__c-Practitioner Band Layout</members>
+        <members>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
+        <members>Product2-Practitioner Product Page</members>
         <members>Rate__c-Rate Layout</members>
         <members>Room__c-Room Layout</members>
         <members>Session__c-Session Layout</members>
         <members>Venue__c-Venue Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
+        <members>Zumzum__Batch_Bank_Payment__c-Zumzum__Batch Bank Payment Layout</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
         <name>Layout</name>
     </types>
     <types>
         <members>courseDetailsComponent</members>
+        <members>claimFeesDatatable</members>
         <members>failurePaymentPage</members>
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
+        <members>courseTransferDetails</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
@@ -281,10 +335,11 @@
     </types>
     <types>
         <members>cbParent_Community</members>
-        <members>cbPractitioners.networkBranding</members>
+        <members>cbPractitioners</members>
         <name>NetworkBranding</name>
     </types>
     <types>
+        <members>Override_Booking_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <members>Branch_and_PSA_Management</members>
@@ -299,10 +354,16 @@
         <members>Payment API User</members>
         <members>Practitioner</members>
         <members>PSA Manager</members>
+        <members>Website Integration</members>
         <name>Profile</name>
     </types>
     <types>
+        <members>Account.ShareAllAccountsWithParents</members>
+        <name>SharingCriteriaRule</name>
+    </types>
+    <types>
         <members>Booking__c.Send_Offer_Email</members>
+        <members>Course__c.Resend_Reunion_Email</members>
         <members>Zumzum__NewTask</members>
         <name>QuickAction</name>
     </types>
@@ -315,19 +376,22 @@
     </types>
     <types>
         <members>Capacity_PSA</members>
-        <members>Capacity_PSA/CADs_awaiting_practitioner_response</members>
-        <members>Capacity_PSA/CADs_rejected_or_invalidated</members>
-        <members>Capacity_PSA/CADs_to_issue</members>
+        <members>Capacity_PSA/CADs_awaiting_practitioner_response1</members>
+        <members>Capacity_PSA/CADs_rejected_or_invalidated1</members>
+        <members>Capacity_PSA/CADs_to_issue1</members>
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
         <members>Practitioners</members>
         <members>Practitioners/All_Courses</members>
+        <members>Practitioners/All_Course_Assignments</members>
+        <members>Practitioners/Practitioner_Schedule</members>
         <name>Report</name>
     </types>
     <types>
-        <members>Custom_Sessions_Report_Type</members>
+        <members>Sessions_with_Course_and_Course_Assignment</members>
         <members>Sessions_on_venues</members>
         <members>Schedule_of_Sessions</members>
+        <members>Sessions</members>
         <name>ReportType</name>
     </types>
     <types>
@@ -371,8 +435,9 @@
         <members>Course__c.Check_Fee_Discount_Uplift_fields</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
+        <members>Course__c.Fee_Disc_Uplift_fields_can_not_be_less_0</members>
         <members>Course_Assignment__c.CA_Can_Only_Be_Created_For_Final_Courses</members>
-        <members>Course_Assingment__c.Course_can_not_be_changed_on_CA_record</members>
+        <members>Course_Assignment__c.Course_can_not_be_changed_on_CA_record</members>
         <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
         <members>Licence_To_Practice__c.End_date_should_not_be_blank</members>
@@ -384,6 +449,7 @@
     </types>
     <types>
         <members>Booking__c</members>
+        <members>Course__c</members>
         <members>Course_Assignment__c</members>
         <name>Workflow</name>
     </types>
@@ -408,3 +474,4 @@
     </types>
     <version>46.0</version>
 </Package>
+

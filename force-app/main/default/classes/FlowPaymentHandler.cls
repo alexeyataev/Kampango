@@ -1,6 +1,6 @@
 public class FlowPaymentHandler {
     @InvocableMethod
-    public static List<String> GetPaymentLink(List<List<String>> params) {
+    public static List<String> getPaymentLink(List<List<String>> params) {
         try {
             IPaymentServiceProvider paymentServiceProvider = new StepOrangeCardPaymentProvider();
             String contactId = params[0][0];

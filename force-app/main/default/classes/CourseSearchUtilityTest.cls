@@ -2,35 +2,71 @@
 private class CourseSearchUtilityTest {
     
     private static void setupTestData() {
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-        testDataFactory.buildBranchAccount()
+        TestDataFactory.getInstance()
+                       .buildBranchAccount()
                        .buildOrganizationAccount('acc5')
                        .buildPractitioner('Test')
+                       .buildPractitionerFeeRate()
                        .buildVenue()
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(2, 2);
+
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        List<Course__c> coursesToFinal = [
+            SELECT Status__c, Count_of_Estimated_Travel_Costs__c, Count_of_Estimated_Venue_Costs__c, Main_Venue__c, Fee__c,
+            (
+                SELECT Status__c FROM Sessions__r
+            )
+            FROM Course__c
+        ];
+
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        Venue__c mainVenue = venueBuilder
+                                .insertRecord(true)
+                                .build();
+
+        dataFactory.setMainVenueToCourses(mainVenue, coursesToFinal);
+
+        for (Course__c course : coursesToFinal) {
+            if (!course.Sessions__r.isEmpty()) {
+                dataFactory.setSessionsToConfirmed(course.Sessions__r);   
+            }
+        }
+        dataFactory.setCoursesWithSessionsToFinal(coursesToFinal);
     }
 
     private static void setupTestDataForTestingSorting() {
         
         TestDataFactory testDataFactor = TestDataFactory.getInstance();
         testDataFactor.buildBranchAccount()
-                       .buildOrganizationAccount('acc5')
-                       .buildPractitioner('Test')
-                       .buildVenue()
-                       .buildRoom()
-                       .buildLicenceToPractice()
-                       .buildCoursesWithSessions(8, 16);
+                      .buildOrganizationAccount('acc5')
+                      .buildPractitioner('Test')
+                      .buildPractitionerFeeRate()
+                      .buildVenue()
+                      .buildRoom()
+                      .buildLicenceToPractice()
+                      .buildCoursesWithSessions(8, 2);
 
         List<Course__c> courses = [
-            SELECT Type__c, Sub_Type__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
+            SELECT Type__c, Sub_Type__c, Status__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
                 (
-                    SELECT Date__c FROM Sessions__r    
+                    SELECT Date__c, Status__c FROM Sessions__r    
                 )
             FROM Course__c
             LIMIT 10
         ];
+
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        Venue__c mainVenue = venueBuilder
+                                .insertRecord(true)
+                                .build();
+
+        testDataFactor.setMainVenueToCourses(mainVenue, courses);
+
+        testDataFactor.setCoursesToFinalAndSessionsToConfirmed(courses);
+        
+        testDataFactor.setCoursesToFinal(courses);
 
         List<Course__c> coursesToUpdate = new List<Course__c>();
         List<Session__c> sessionsToUpdate = new List<Session__c>();
@@ -184,14 +220,17 @@ private class CourseSearchUtilityTest {
             LIMIT 1
         ];
 
+        account.Branch_Number__c = '123';
+        update account;
+
         Test.startTest();
         RestResponse response = new RestResponse();
-        response = CourseSearchUtility.getCoursesByBranch(account.Id);
+        response = CourseSearchUtility.getCoursesByBranch(account.Branch_Number__c);
         Test.stopTest();
         List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(response.responseBody.toString());
 
         System.assertEquals(200, response.statusCode);
-        System.assertEquals(1, responseObjects.size());                             
+        System.assertEquals(2, responseObjects.size(), 'There should be 2 Course records with at least 1 allocated Session record');                             
     }
 
     @isTest
@@ -207,11 +246,14 @@ private class CourseSearchUtilityTest {
             LIMIT 1
         ];
 
+        account.Branch_Number__c = '123';
+        update account;
+
         Test.startTest();
-        List<Course__c> courses = CourseSearchUtility.getCoursesByBranch(account.Id, false);
+        List<Course__c> courses = CourseSearchUtility.getCoursesByBranch(account.Branch_Number__c, false);
         Test.stopTest();
 
-        System.assertEquals(1, courses.size());
+        System.assertEquals(2, courses.size(), 'There should be 2 Course records with at least 1 allocated Session record');
         System.assertEquals(account.Id, courses[0].Branch__c);                            
     }
 
@@ -227,6 +269,9 @@ private class CourseSearchUtilityTest {
             WHERE RecordTypeId = :recordTypeId 
             LIMIT 1
         ];
+
+        account.Branch_Number__c = '123';
+        update account;        
             
         List<Course__c> courses = [
             SELECT Id
@@ -238,7 +283,7 @@ private class CourseSearchUtilityTest {
 
         Test.startTest();
         RestResponse response = new RestResponse();
-        response = CourseSearchUtility.getCoursesByBranch(account.Id);
+        response = CourseSearchUtility.getCoursesByBranch(account.Branch_Number__c);
         Test.stopTest();
 
         System.assertEquals(404, response.statusCode);                             
@@ -280,7 +325,7 @@ private class CourseSearchUtilityTest {
             Venue__c
         ];
 
-        System.assertEquals(1, venues.size());
+        System.assertEquals(2, venues.size());
         Location loc = Location.newInstance(50.501, -0.101);
         venues[0].Location__latitude__s = loc.latitude;
         venues[0].Location__longitude__s = loc.longitude;
@@ -298,7 +343,7 @@ private class CourseSearchUtilityTest {
         };
         RestResponse response = CourseSearchUtility.getCoursesByDateDistance(params);
 
-        System.assertEquals(200, response.statusCode);
+        System.assertEquals(404, response.statusCode);
     }
 
     @isTest
@@ -308,7 +353,7 @@ private class CourseSearchUtilityTest {
 
         List<Course__c> courses = CourseSearchUtility.getCoursesByDateDistance(Location.newInstance(50.5, -0.1), 50, null, false);
 
-        System.assertEquals(1, courses.size());
+        System.assertEquals(0, courses.size());
     }
 
     @isTest
@@ -327,8 +372,8 @@ private class CourseSearchUtilityTest {
         CoursesDateDistanceModel sortedModel = (CoursesDateDistanceModel)JSON.deserialize(response.responseBody.toString(), CoursesDateDistanceModel.class);
 
         System.assertEquals(1, sortedModel.Courses.size());
-        System.assertEquals(1, sortedModel.LowestRankIncluded);
-        System.assertEquals(1, sortedModel.SuggestedLowestRank);
+        System.assertEquals(4, sortedModel.LowestRankIncluded);
+        System.assertEquals(4, sortedModel.SuggestedLowestRank);
         System.assertEquals(4, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);
                        
@@ -368,8 +413,8 @@ private class CourseSearchUtilityTest {
         CoursesDateDistanceModel sortedModel = (CoursesDateDistanceModel)JSON.deserialize(response.responseBody.toString(), CoursesDateDistanceModel.class);
         
         System.assertEquals(1, sortedModel.Courses.size());
-        System.assertEquals(1, sortedModel.LowestRankIncluded);
-        System.assertEquals(1, sortedModel.SuggestedLowestRank);
+        System.assertEquals(4, sortedModel.LowestRankIncluded);
+        System.assertEquals(4, sortedModel.SuggestedLowestRank);
         System.assertEquals(4, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);                     
     }
@@ -391,8 +436,8 @@ private class CourseSearchUtilityTest {
         CoursesDateDistanceModel sortedModel = (CoursesDateDistanceModel)JSON.deserialize(response.responseBody.toString(), CoursesDateDistanceModel.class);
 
         System.assertEquals(5, sortedModel.Courses.size());
-        System.assertEquals(1, sortedModel.LowestRankIncluded);
-        System.assertEquals(1, sortedModel.SuggestedLowestRank);
+        System.assertEquals(2, sortedModel.LowestRankIncluded);
+        System.assertEquals(2, sortedModel.SuggestedLowestRank);
         System.assertEquals(1, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);
         System.assertEquals(5, sortedModel.Courses[4].Order);                      
@@ -416,8 +461,8 @@ private class CourseSearchUtilityTest {
         CoursesDateDistanceModel sortedModel = (CoursesDateDistanceModel)JSON.deserialize(response.responseBody.toString(), CoursesDateDistanceModel.class);
 
         System.assertEquals(5, sortedModel.Courses.size());
-        System.assertEquals(1, sortedModel.LowestRankIncluded);
-        System.assertEquals(1, sortedModel.SuggestedLowestRank);
+        System.assertEquals(2, sortedModel.LowestRankIncluded);
+        System.assertEquals(2, sortedModel.SuggestedLowestRank);
         System.assertEquals(1, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);
         System.assertEquals(5, sortedModel.Courses[4].Order);                      
@@ -460,8 +505,8 @@ private class CourseSearchUtilityTest {
         CoursesDateDistanceModel sortedModel = (CoursesDateDistanceModel)JSON.deserialize(response.responseBody.toString(), CoursesDateDistanceModel.class);
 
         System.assertEquals(5, sortedModel.Courses.size());
-        System.assertEquals(1, sortedModel.LowestRankIncluded);
-        System.assertEquals(1, sortedModel.SuggestedLowestRank);
+        System.assertEquals(2, sortedModel.LowestRankIncluded);
+        System.assertEquals(2, sortedModel.SuggestedLowestRank);
         System.assertEquals(1, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);
         System.assertEquals(5, sortedModel.Courses[4].Order);                      
@@ -485,8 +530,8 @@ private class CourseSearchUtilityTest {
         CoursesDateDistanceModel sortedModel = (CoursesDateDistanceModel)JSON.deserialize(response.responseBody.toString(), CoursesDateDistanceModel.class);
 
         System.assertEquals(5, sortedModel.Courses.size());
-        System.assertEquals(1, sortedModel.LowestRankIncluded);
-        System.assertEquals(1, sortedModel.SuggestedLowestRank);
+        System.assertEquals(2, sortedModel.LowestRankIncluded);
+        System.assertEquals(2, sortedModel.SuggestedLowestRank);
         System.assertEquals(1, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);
         System.assertEquals(5, sortedModel.Courses[4].Order);                      

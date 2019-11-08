@@ -14,6 +14,11 @@ public without sharing class TestDataFactory {
     private static final String COMMUNITY_NICKNAME_TWO = 'NICKNAME_TWO';
     private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
     private static final String ACCOUNT_ORGANIZATION_RECORDTYPE = 'Organization';
+    private static final String PRACTITIONER_BAND = 'A';
+    private static final String BRANCH_WEIGHTING = 'Standard';
+    private static final Set<String> PRACTITIONER_BAND_SET = new Set<String>{'A', 'B', 'C', 'D'}; 
+    private static final Set<String> BRANCH_WEIGHTING_SET = new Set<String>{'Standard', 'Fringe', 'London'};
+    private static final Decimal BASIC_PRACTITIONER_HOURLY_RATE = 30; 
 
     public static List<Course__c> courses = new List<Course__c>();
     public static List<Session__c> sessions = new List<Session__c>();
@@ -28,6 +33,10 @@ public without sharing class TestDataFactory {
     private Course__c course;
     private Session__c session;
     private Session__c reunion;
+    private Practitioner_Fee_Rate__c practitionerFeeRate;
+    private List<Practitioner_Fee_Rate__c> practitionerFeeRates = new List<Practitioner_Fee_Rate__c>();
+    private List<Practitioner_Band__c> practitionerBands = new List<Practitioner_Band__c>();
+    private Branch_Weighting__c branchWeighting;
 
     private static TestDataFactory instance;
 
@@ -44,6 +53,12 @@ public without sharing class TestDataFactory {
             .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
             .insertRecord(true)
             .build();
+    TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
+        branchWeighting = branchWeightingBuilder
+            .withBranch(branchAccount)
+            .withWeighting(BRANCH_WEIGHTING)
+            .insertRecord(true)
+            .build();    
         return this;
     }
 
@@ -65,14 +80,55 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildPractitioner(String lastName, String email) {
-        TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
-        practitioners.add(practitionerContactBuilder
-            .withRecordType(PRACTITIONER_RECORDTYPE_NAME)
-            .withAccount(organizationAccount)
-            .withLastName(lastName)
-            .withEmail(email)
+       TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
+       Contact practitioner = practitionerContactBuilder
+           .withRecordType(PRACTITIONER_RECORDTYPE_NAME)
+           .withAccount(organizationAccount)
+           .withLastName(lastName)
+           .withEmail(email)
+           .insertRecord(true)
+           .build();
+       practitioners.add(practitioner);
+       TestPractitionerBandBuilder practitionerBandBuilder = new TestPractitionerBandBuilder();
+       Practitioner_Band__c practitionerBand = practitionerBandBuilder
+           .withPractitionerContact(practitioner)
+           .withBand(PRACTITIONER_BAND)
+           .insertRecord(true)
+           .build();
+       practitionerBands.add(practitionerBand);
+       return this;
+   }
+
+    public TestDataFactory buildPractitionerFeeRate(){
+        TestPractitionerFeeRateBuilder feeRateBuilder = new TestPractitionerFeeRateBuilder();
+        practitionerFeeRate = feeRateBuilder
+            .withBand(PRACTITIONER_BAND)
+            .withWeighting(BRANCH_WEIGHTING)
             .insertRecord(true)
-            .build());
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildPractitionerFeeRateSet(){
+        List<Practitioner_Fee_Rate__c> practitionerFeeRatesToInsert = new List<Practitioner_Fee_Rate__c>();
+        Decimal weightingCorrection = 0;
+        TestPractitionerFeeRateBuilder feeRateBuilder = new TestPractitionerFeeRateBuilder();
+        for (String weighting: BRANCH_WEIGHTING_SET) {
+            Decimal bandCorrection = 0;
+            for (String band : PRACTITIONER_BAND_SET) {
+                practitionerFeeRatesToInsert.add(feeRateBuilder
+                .withBand(band)
+                .withWeighting(weighting)
+                .withHourlyRate(BASIC_PRACTITIONER_HOURLY_RATE + weightingCorrection + bandCorrection)
+                .insertRecord(false)
+                .build());
+                bandCorrection += 5;
+            }
+            weightingCorrection += 1;
+        }
+
+        insert practitionerFeeRatesToInsert;
+        practitionerFeeRates.addAll(practitionerFeeRatesToInsert);
         return this;
     }
 
@@ -83,6 +139,7 @@ public without sharing class TestDataFactory {
             .build();
         return this;
     }
+
     public TestDataFactory buildRoom() {
         TestRoomBuilder roomBuilder = new TestRoomBuilder();
         room = roomBuilder
@@ -106,6 +163,7 @@ public without sharing class TestDataFactory {
         course = courseBuilder
             .withAccount(branchAccount)
             .withPractitioner(practitioners[0])
+            .withMainVenue(venue)
             .withLicenceToPractice(licenceToPractice)
             .insertRecord(true)
             .build();
@@ -129,6 +187,7 @@ public without sharing class TestDataFactory {
             .withLicenceToPractice(licenceToPractice)
             .withType(type)
             .withSubType(subtype)
+            .withMainVenue(venue)
             .insertRecord(true)
             .build();
         return this;
@@ -142,6 +201,7 @@ public without sharing class TestDataFactory {
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)
             .withPractitioner(practitioners[0])
+            .withPractitionerFeeRate(practitionerFeeRate)
             .withPractitionerLicence(licenceToPractice)
             .insertRecord(true)
             .build();
@@ -157,6 +217,7 @@ public TestDataFactory buildReunion() {
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)
             .withPractitioner(practitioners[0])
+            .withPractitionerFeeRate(practitionerFeeRate)
             .withPractitionerLicence(licenceToPractice)
             .insertRecord(true)
             .build();
@@ -174,56 +235,59 @@ public TestDataFactory buildReunion() {
             .withType('Venue')
             .insertRecord(true)
             .build();
-        estimatedCostsBuilder
-            .withCourse(course)
-            .withType('Practitioner Fee')
-            .insertRecord(true)
-            .build();
         return this;
     }
 
     public TestDataFactory buildCoursesWithSessions(Integer numberOfCourses, Integer numberOfSessions) {
+        List<Course__c> coursesToInsert = new List<Course__c>();
+        List<Session__c> sessionsToInsert = new List<Session__c>();
+        List<Estimated_Costs__c> costsToInsert = new List<Estimated_Costs__c>();
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         for(Integer i = 0; i < numberOfCourses; i++) {
-            courses.add(courseBuilder
+            coursesToInsert.add(courseBuilder
                 .withAccount(branchAccount)
+                .withFee(100)
                 .withPractitioner(practitioners[0])
                 .withLicenceToPractice(licenceToPractice)
-                .insertRecord(true)
+                .withMainVenue(venue)
+                .insertRecord(false)
                 .build());
         }
+        insert coursesToInsert;
 
+        courses.addAll(coursesToInsert);
         for(Integer i = 0; i < numberOfCourses; i++) {
             TestEstimatedCostsBuilder estimatedCostsBuilder = new TestEstimatedCostsBuilder();
-            estimatedCostsBuilder
+            costsToInsert.add(estimatedCostsBuilder
                 .withCourse(courses[i])
                 .withType('Travel')
-                .insertRecord(true)
-                .build();
-            estimatedCostsBuilder
+                .insertRecord(false)
+                .build());
+            costsToInsert.add(estimatedCostsBuilder
                 .withCourse(courses[i])
                 .withType('Venue')
-                .insertRecord(true)
-                .build();
-            estimatedCostsBuilder
-                .withCourse(courses[i])
-                .withType('Practitioner Fee')
-                .insertRecord(true)
-                .build();
-        }
-
-        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
-        for(Integer i = 0; i < numberOfSessions; i++) {
-            sessions.add(sessionBuilder
-                .withCourse(courses[i / 2])
-                .withVenue(venue)
-                .withRoom(room)
-                .withStatus('Provisional')
-                .withPractitioner(practitioners[0])
-                .withPractitionerLicence(licenceToPractice)
-                .insertRecord(true)
+                .insertRecord(false)
                 .build());
         }
+        insert costsToInsert;
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        for(Integer iCourses = 0; iCourses < numberOfCourses; iCourses++) {
+            for(Integer iSessions = 0; iSessions < numberOfSessions; iSessions++) {
+                sessionsToInsert.add(sessionBuilder
+                    .withCourse(courses[iCourses])
+                    .withVenue(venue)
+                    .withRoom(room)
+                    .withPractitioner(practitioners[0])
+                    .withPractitionerFeeRate(practitionerFeeRate)
+                    .withPractitionerLicence(licenceToPractice)
+                    .withStatus('Provisional')
+                    .insertRecord(false)
+                    .build());
+            }
+        }
+
+        insert sessionsToInsert;
+        sessions.addAll(sessionsToInsert);
         return this;
     }
 
@@ -237,7 +301,7 @@ public TestDataFactory buildReunion() {
         return users[0];
     }
 
-    public static User ConvertPractitionerToPartnerCommunityUser() {
+    public static User convertPractitionerToPartnerCommunityUser() {
 
         System.runAs(createSysAdminUser()) {
             UserRole testRole = new UserRole(Name = 'testRole');
@@ -278,7 +342,7 @@ public TestDataFactory buildReunion() {
         return users[2];
     }
 
-    public TestDataFactory SetSessionsToConfirmed(List<Session__c> sessions){
+    public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
         for(Session__c aSession : sessions){
             aSession.Status__c = 'Confirmed';
         }
@@ -286,9 +350,46 @@ public TestDataFactory buildReunion() {
         return this;
     }
 
-    public TestDataFactory SetCoursesToFinal(List<Course__c> courses){
+    public TestDataFactory setCoursesToFinalAndSessionsToConfirmed(List<Course__c> courses) {
+        List<Session__c> sessions = new List<Session__c>();
+        for (Course__c course : courses) {
+            course.Status__c = 'Final';
+            if (course.Sessions__r.isEmpty()) {
+                continue;
+            } else {
+                sessions.addAll(course.Sessions__r);
+            }
+        }
+        for (Session__c session : sessions) {
+            session.Status__c = 'Confirmed';
+        }
+        update sessions;
+        update courses;
+        return this;
+    }
+  
+    public TestDataFactory setCoursesToFinal(List<Course__c> courses){
         for(Course__c course : courses){
             course.Status__c = 'Final';
+        }
+        update courses;
+        return this;
+    }
+    
+    public TestDataFactory setCoursesWithSessionsToFinal(List<Course__c> courses){
+        for(Course__c course : courses){
+            if (course.Sessions__r.isEmpty()) {
+                continue;
+            }
+            course.Status__c = 'Final';
+        }
+        update courses;
+        return this;
+    }
+
+    public TestDataFactory setMainVenueToCourses(Venue__c venue, List<Course__c> courses) {
+        for (Course__c course : courses) {
+            course.Main_Venue__c = venue.Id;
         }
         update courses;
         return this;

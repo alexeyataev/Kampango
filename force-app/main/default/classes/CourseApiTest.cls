@@ -1,6 +1,6 @@
 @isTest
 public without sharing class CourseApiTest {
-
+    // recheck
     private static String strURI = URL.getSalesforceBaseUrl().toExternalForm()+'/services/apexrest/courses';
     private static String methodGet = 'GET';
 
@@ -10,10 +10,56 @@ public without sharing class CourseApiTest {
             .buildBranchAccount()
             .buildOrganizationAccount('acc5')
             .buildPractitioner('Test')
+            .buildPractitionerFeeRate()
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
             .buildCoursesWithSessions(2, 2);
+
+
+        Profile p = [SELECT Id FROM Profile WHERE Name='Website Integration'];
+        String uniqueUserName = 'websiteuser' + DateTime.now().getTime() + '@testorg.com';
+        User u = new User(
+            Alias = 'websiteu',
+            Email='websiteuser@testorg.com',
+            EmailEncodingKey='UTF-8',
+            LastName='websiteuserTesting',
+            LanguageLocaleKey='en_US',
+            LocaleSidKey='en_GB',
+            ProfileId = p.Id,
+            TimeZoneSidKey='Europe/London',
+            UserName=uniqueUserName
+        );  
+        insert u;
+
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        List<Course__c> coursesToFinal = [
+            SELECT Status__c, Count_of_Estimated_Travel_Costs__c, Count_of_Estimated_Venue_Costs__c, Main_Venue__c, Fee__c,
+            (
+                SELECT Status__c FROM Sessions__r
+            )
+            FROM Course__c
+        ];
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        Venue__c mainVenue = venueBuilder
+                                .insertRecord(true)
+                                .build();
+
+        dataFactory.setMainVenueToCourses(mainVenue, coursesToFinal);
+        for (Course__c course : coursesToFinal) {
+            if (!course.Sessions__r.isEmpty()) {
+                dataFactory.setSessionsToConfirmed(course.Sessions__r);   
+            }
+        }
+        dataFactory.setCoursesWithSessionsToFinal(coursesToFinal);
+    }
+
+    private static User getWebSiteUser(){
+        return [
+            SELECT ID
+            FROM USER 
+            WHERE Email ='websiteuser@testorg.com'
+        ];
     }
 
     @isTest
@@ -29,7 +75,9 @@ public without sharing class CourseApiTest {
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseData();
+            System.runAs(getWebSiteUser()){
+                CourseApi.getCourseData();
+            }
         Test.stopTest();
 
         System.assertEquals(404, res.statusCode);
@@ -48,7 +96,9 @@ public without sharing class CourseApiTest {
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseData();
+            System.runAs(getWebSiteUser()){
+                CourseApi.getCourseData();
+            }
         Test.stopTest();
 
         System.assertEquals(404, res.statusCode);
@@ -56,7 +106,6 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void searchCourseById() {
-
         Course__c course = [
             SELECT Id, Name
             FROM Course__c
@@ -74,7 +123,9 @@ public without sharing class CourseApiTest {
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseData();
+            System.runAs(getWebSiteUser()){
+                CourseApi.getCourseData();
+            }
         Test.stopTest();
 
         CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(res.responseBody.toString(), CourseFinderModel.class );
@@ -85,7 +136,6 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void searchCourseByBranch() {
-
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
         Account account = [
             SELECT Id 
@@ -94,47 +144,41 @@ public without sharing class CourseApiTest {
             LIMIT 1
         ];
 
+        account.Branch_Number__c = '123';
+        update account;
+
         RestRequest req = new RestRequest();
         req.requestURI = strURI;
         req.httpMethod = methodGet;
         req.addHeader('Content-Type', 'application/json');
-        req.addParameter('branch', account.Id);
+        req.addParameter('branch', account.Branch_Number__c);
 
         RestResponse res = new RestResponse();
         RestContext.request = req;
         RestContext.response = res;
 
         Test.startTest();
-        CourseApi.getCourseData();
+            System.runAs(getWebSiteUser()){
+                CourseApi.getCourseData();
+            }
         Test.stopTest();
 
         List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(res.responseBody.toString());
 
         System.assertEquals(200, res.statusCode);
-        System.assertEquals(1, responseObjects.size());
+        System.assertEquals(2, responseObjects.size(), 'There should be 2 Course records with at least 1 allocated Session record');
       
     }      
 
-
-    private final static String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
-    private final static String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
-                                         '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
-                                         '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                         '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
-                                         '"town":"London","op":"Send enquiry"}';
-
-    private static void prepareSetupData() {
-        TestDataFactory.getInstance()
-            .buildOrganizationAccount('acct1')
-            .buildBranchAccount()
-            .buildPractitioner('Practitioner')
-            .buildLicenceToPractice()
-            .buildCourse();
-    }
-
     @isTest
     static void createEnquiry() {
-        prepareSetupData();
+        final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
+        final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
+                                            '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
+                                            '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
+                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"town":"London","op":"Send enquiry"}';
+
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
@@ -155,7 +199,9 @@ public without sharing class CourseApiTest {
         RestContext.request = request;
         RestContext.response = response;
         Test.startTest();
-        CourseAPI.createEnquiry();
+            System.runAs(getWebSiteUser()){
+                CourseAPI.createEnquiry();
+            }
         Test.stopTest();
         List<Booking__c> bookings = [
             SELECT Name

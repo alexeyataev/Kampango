@@ -23,13 +23,13 @@
     <assignments>
         <name>GAD_for_Parent</name>
         <label>GAD for Parent</label>
-        <locationX>604</locationX>
-        <locationY>294</locationY>
+        <locationX>605</locationX>
+        <locationY>295</locationY>
         <assignmentItems>
             <assignToReference>ParentGAD.gaid__Contact__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>BookingRecord.Primary_Contact__c</elementReference>
+                <elementReference>Get_Booking.Primary_Contact__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -50,14 +50,14 @@
             <assignToReference>ParentGAD.gaid__Housename_or_number__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>BookingRecord.Street_Address__c</elementReference>
+                <elementReference>Get_Booking.Street_Address__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>ParentGAD.gaid__Postalcode__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>BookingRecord.Postcode__c</elementReference>
+                <elementReference>Get_Booking.Postcode__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -87,7 +87,7 @@
             <assignToReference>PartnerGAD.gaid__Contact__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>BookingRecord.Partner_Contact__c</elementReference>
+                <elementReference>Get_Booking.Partner_Contact__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -115,14 +115,14 @@
             <assignToReference>PartnerGAD.gaid__Housename_or_number__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>BookingRecord.Street_Address__c</elementReference>
+                <elementReference>Get_Booking.Street_Address__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>PartnerGAD.gaid__Postalcode__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>BookingRecord.Postcode__c</elementReference>
+                <elementReference>Get_Booking.Postcode__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -208,8 +208,8 @@
     <decisions>
         <name>Check_Partner</name>
         <label>Check Partner</label>
-        <locationX>178</locationX>
-        <locationY>204</locationY>
+        <locationX>182</locationX>
+        <locationY>199</locationY>
         <defaultConnector>
             <targetReference>Gift_Aid_Screen_With_Partner</targetReference>
         </defaultConnector>
@@ -218,7 +218,7 @@
             <name>Without_Partner</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>BookingRecord.Partner_Contact__c</leftValueReference>
+                <leftValueReference>Get_Booking.Partner_Contact__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -245,10 +245,54 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Booking</name>
+        <label>Get Booking</label>
+        <locationX>62</locationX>
+        <locationY>197</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Partner</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Booking__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Partner_Contact__c</queriedFields>
+        <queriedFields>Primary_Contact__c</queriedFields>
+        <queriedFields>Postcode__c</queriedFields>
+        <queriedFields>Street_Address__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>63</locationX>
+        <locationY>371</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Error_Message</name>
+            <fieldText>&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <screens>
         <name>Gift_Aid_Screen_With_Partner</name>
         <label>Gift Aid Screen With Partner</label>
-        <locationX>308</locationX>
+        <locationX>307</locationX>
         <locationY>368</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -269,6 +313,18 @@
                 <name>imageName</name>
                 <value>
                     <stringValue>gift_aid_logo</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>imageCSS</name>
+                <value>
+                    <stringValue>float:right;</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>imageWidth</name>
+                <value>
+                    <stringValue>20rem;</stringValue>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
@@ -317,6 +373,18 @@
                     <stringValue>gift_aid_logo</stringValue>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>imageCSS</name>
+                <value>
+                    <stringValue>float:right;</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>imageWidth</name>
+                <value>
+                    <stringValue>20rem;</stringValue>
+                </value>
+            </inputParameters>
             <isRequired>true</isRequired>
         </fields>
         <fields>
@@ -336,7 +404,13 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Check_Partner</startElementReference>
+    <start>
+        <locationX>61</locationX>
+        <locationY>59</locationY>
+        <connector>
+            <targetReference>Get_Booking</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <textTemplates>
         <name>Individual_Declaration_Description_Template</name>
@@ -346,6 +420,13 @@
         <name>Join_Declaration_Description_Template</name>
         <text>​We are both UK taxpayers and I confirm I am signing on both individuals behalf. Please treat all donations and subscriptions we make or have made to NCT for the past 4 years as Gift Aid donations until further notice.</text>
     </textTemplates>
+    <variables>
+        <name>bookingId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>BookingRecord</name>
         <dataType>SObject</dataType>

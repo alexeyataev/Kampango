@@ -2,7 +2,8 @@
 public with sharing class TestSessionBuilder {
 
 	private String type = 'Standard';
-	private Date sessionDate  = Date.today() + 5;
+	private Integer daysAfterToday = 5;
+	private Date sessionDate  = Date.today() + daysAfterToday;
 	private Time startTime = Time.newInstance(18, 30, 0, 0);
 	private Time endTime = Time.newInstance(19, 30, 0, 00);
 	private String specificAttendeeType = 'Women only';
@@ -13,10 +14,17 @@ public with sharing class TestSessionBuilder {
 	private Room__c room;
 	private Contact practitioner;
 	private Boolean insertRecord = false;
+	private Practitioner_Fee_Rate__c practitionerFeeRate;
 
 	public TestSessionBuilder withPractitioner(Contact practitioner)
 	{
 		this.practitioner = practitioner;
+		return this;
+	}
+
+	public TestSessionBuilder withPractitionerFeeRate(Practitioner_Fee_Rate__c practitionerFeeRate)
+	{
+		this.practitionerFeeRate = practitionerFeeRate;
 		return this;
 	}
 
@@ -99,7 +107,8 @@ public with sharing class TestSessionBuilder {
 			Room__c = this.room.Id,
 			Status__c = this.status,
 			Practitioner__c = this.practitioner.Id,
-			Practitioner_Licence__c = this.practitionerLicence.Id
+			Practitioner_Licence__c = this.practitionerLicence.Id,
+			Practitioner_Fee_Rate__c = this.practitionerFeeRate != Null ? this.practitionerFeeRate.Id : Null
 
 		);
 

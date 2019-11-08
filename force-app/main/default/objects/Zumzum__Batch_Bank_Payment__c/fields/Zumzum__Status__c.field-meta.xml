@@ -17,14 +17,24 @@
                 <label>Draft</label>
             </value>
             <value>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+                <label>Submitted</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
                 <fullName>File Generated</fullName>
                 <default>false</default>
                 <label>File Generated</label>
             </value>
             <value>
-                <fullName>Submitted</fullName>
+                <fullName>Posted</fullName>
                 <default>false</default>
-                <label>Submitted</label>
+                <label>Posted</label>
             </value>
         </valueSetDefinition>
     </valueSet>
