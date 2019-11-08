@@ -5,6 +5,8 @@
         <members>BookingJourneyHelperTest</members>
         <members>BookingStatusFlowHelper</members>
         <members>BookingStatusFlowHelperTest</members>
+        <members>BranchWeightingHelper</members>
+        <members>BranchWeightingHelperTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -280,6 +282,7 @@
         <members>Update_Practitioner_on_Sessions</members>
         <members>Update_Related_Sessions</members>
         <members>Update_service_field_on_session</members>
+        <members>Update_Session_Fee_Rate_When_Branch_Weighting_Changes</members>
         <members>Update_Session_Fee_Rates_When_Practitioner_Band_Changes</members>
         <members>Update_Venue_on_Sessions_related_to_Course</members>
         <name>Flow</name>
