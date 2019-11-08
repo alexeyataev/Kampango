@@ -2,7 +2,8 @@
 public with sharing class TestSessionBuilder {
 
 	private String type = 'Standard';
-	private Date sessionDate  = Date.today() + 5;
+	private Integer daysAfterToday = 5;
+	private Date sessionDate  = Date.today() + daysAfterToday;
 	private Time startTime = Time.newInstance(18, 30, 0, 0);
 	private Time endTime = Time.newInstance(19, 30, 0, 00);
 	private String specificAttendeeType = 'Women only';

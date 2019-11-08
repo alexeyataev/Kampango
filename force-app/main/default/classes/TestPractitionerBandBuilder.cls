@@ -3,7 +3,8 @@ public with sharing class TestPractitionerBandBuilder {
     private Boolean insertRecord = false;
     private Contact practitioner;
     private String band = 'A';
-    private Date startDate = Date.today() - 5;
+    private Integer daysBeforeToday = 50;
+    private Date startDate = Date.today() - daysBeforeToday;
     private Date endDate = null;
     
     public TestPractitionerBandBuilder insertRecord(Boolean insertRecord) {
@@ -11,7 +12,7 @@ public with sharing class TestPractitionerBandBuilder {
         return this;
     }
 
-    public TestPractitionerBandBuilder withPractitioner(Contact practitioner) {
+    public TestPractitionerBandBuilder withPractitionerContact(Contact practitioner) {
         this.practitioner = practitioner;
         return this;
     }
