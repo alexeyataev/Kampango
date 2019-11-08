@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #27 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 public with sharing class PractitionerBandFeeHelperTest {
 
@@ -93,7 +95,7 @@ public with sharing class PractitionerBandFeeHelperTest {
 
     }
     @isTest
-    private static void PractitionerHasExistingSession_ExistingBandRecordGetsBackEndDated_SessionGetsAssignedToNullRate(){
+    private static void practitionerHasExistingSession_ExistingBandRecordGetsBackEndDated_SessionGetsAssignedToNullRate(){
         Date bandEndDate = Date.today() - 50;
         Contact practitioner = getPractitioner();
         Practitioner_Band__c practitionerOriginalBand = getOriginalPractitionerBand(practitioner);
