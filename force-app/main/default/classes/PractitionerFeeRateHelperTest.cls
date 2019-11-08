@@ -22,7 +22,7 @@ public with sharing class PractitionerFeeRateHelperTest {
     }
 
     @isTest
-    private static void practitionerHasExistingSession_PractitionerFeeRateCreated_SessionFallsIntoDateRange(){
+    private static void newPractitionerFeeRateCreated_SessionFallsIntoDateRange_SessionReassignedToNewFeeRate(){
     
         List<Practitioner_Fee_Rate__c> practitionerFeeRatesToInsert = new List<Practitioner_Fee_Rate__c>();
         TestPractitionerFeeRateBuilder feeRateBuilder = new TestPractitionerFeeRateBuilder();
@@ -43,7 +43,7 @@ public with sharing class PractitionerFeeRateHelperTest {
     }
 
     @isTest
-    private static void practitionerHasExistingSession_PractitionerFeeRateCreated_SessionDoesNotFallIntoDateRange(){
+    private static void newPractitionerFeeRateCreated_SessionDoesNotFallIntoDateRange_SessionNotReassignedToNewFeeRate(){
 
         List<Practitioner_Fee_Rate__c> practitionerFeeRatesToInsert = new List<Practitioner_Fee_Rate__c>();
         TestPractitionerFeeRateBuilder feeRateBuilder = new TestPractitionerFeeRateBuilder();
