@@ -23,7 +23,7 @@ public with sharing class PractitionerBandFeeHelperTest {
                                                 
     }
     @isTest
-    private static void practitionerHasExistingSession_GetsPromoted_SessionAfterPromotionGetsAssignedToNewRate(){
+    private static void PractitionerHasExistingSession_GetsPromoted_SessionAfterPromotionGetsAssignedToNewRate(){
         Contact practitioner = getPractitioner();
         Practitioner_Band__c practitionerOriginalBand = getOriginalPractitionerBand(practitioner);
 
@@ -64,7 +64,7 @@ public with sharing class PractitionerBandFeeHelperTest {
     }
 
     @isTest
-    private static void practitionerHasExistingSession_GetsFutureDatedPromotion_SessionRemainsOnExistingBand(){
+    private static void PractitionerHasExistingSession_GetsFutureDatedPromotion_SessionRemainsOnExistingBand(){
         Contact practitioner = getPractitioner();
         Practitioner_Band__c practitionerOriginalBand = getOriginalPractitionerBand(practitioner);
 
@@ -95,7 +95,7 @@ public with sharing class PractitionerBandFeeHelperTest {
 
     }
     @isTest
-    private static void practitionerHasExistingSession_ExistingBandRecordGetsBackEndDated_SessionGetsAssignedToNullRate(){
+    private static void PractitionerHasExistingSession_ExistingBandRecordGetsBackEndDated_SessionGetsAssignedToNullRate(){
         Date bandEndDate = Date.today() - 50;
         Contact practitioner = getPractitioner();
         Practitioner_Band__c practitionerOriginalBand = getOriginalPractitionerBand(practitioner);
