@@ -246,6 +246,7 @@
         <name>FlexiPage</name>
     </types>
     <types>
+        <members>Assign_Practitioner_Fee_Rate_to_Session</members>
         <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>

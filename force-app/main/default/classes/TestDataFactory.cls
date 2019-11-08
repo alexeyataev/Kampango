@@ -53,16 +53,12 @@ public without sharing class TestDataFactory {
             .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
             .insertRecord(true)
             .build();
-        return this;
-    }
-
-    public TestDataFactory buildBranchWeighting(){
-        TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
+    TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
         branchWeighting = branchWeightingBuilder
             .withBranch(branchAccount)
             .withWeighting(BRANCH_WEIGHTING)
             .insertRecord(true)
-            .build();
+            .build();    
         return this;
     }
 
@@ -84,28 +80,24 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildPractitioner(String lastName, String email) {
-        TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
-        practitioners.add(practitionerContactBuilder
-            .withRecordType(PRACTITIONER_RECORDTYPE_NAME)
-            .withAccount(organizationAccount)
-            .withLastName(lastName)
-            .withEmail(email)
-            .insertRecord(true)
-            .build());
-        return this;
-    }
-
-    public TestDataFactory buildPractitionerBands(){
-        TestPractitionerBandBuilder practitionerBandBuilder = new TestPractitionerBandBuilder();
-        for(Contact practitioner : practitioners){
-            practitionerBands.add(practitionerBandBuilder
-                                    .withPractitioner(practitioner)
-                                    .withBand(PRACTITIONER_BAND)
-                                    .insertRecord(true)
-                                    .build());
-        }
-        return this;
-    }
+       TestContactBuilder practitionerContactBuilder = new TestContactBuilder();
+       Contact practitioner = practitionerContactBuilder
+           .withRecordType(PRACTITIONER_RECORDTYPE_NAME)
+           .withAccount(organizationAccount)
+           .withLastName(lastName)
+           .withEmail(email)
+           .insertRecord(true)
+           .build();
+       practitioners.add(practitioner);
+       TestPractitionerBandBuilder practitionerBandBuilder = new TestPractitionerBandBuilder();
+       Practitioner_Band__c practitionerBand = practitionerBandBuilder
+           .withPractitionerContact(practitioner)
+           .withBand(PRACTITIONER_BAND)
+           .insertRecord(true)
+           .build();
+       practitionerBands.add(practitionerBand);
+       return this;
+   }
 
     public TestDataFactory buildPractitionerFeeRate(){
         TestPractitionerFeeRateBuilder feeRateBuilder = new TestPractitionerFeeRateBuilder();
