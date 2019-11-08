@@ -57,7 +57,7 @@ public with sharing class BranchWeightingHelperTest {
     }
 
     @isTest
-    private static void PractitionerHasExistingSession_BranchWeightingFutureDatedAtNewGeographicalWeighting_SessionGetsReassignedToAppropriateFeeRate(){
+    private static void PractitionerHasExistingSession_ NewBackDatedBranchWeightingCreated_SessionGetsReassignedToAppropriateFeeRate(){
     
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildPractitionerFeeRateSet();
