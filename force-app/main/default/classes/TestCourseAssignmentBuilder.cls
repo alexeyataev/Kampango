@@ -33,8 +33,6 @@ public with sharing class TestCourseAssignmentBuilder {
         );
 
         if(insertRecord) {
-            System.debug(testCourseAssignment);
-            System.debug(course);
             insert testCourseAssignment;
         }
 
