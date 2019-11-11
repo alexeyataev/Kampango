@@ -133,7 +133,7 @@
         <queriedFields>Name</queriedFields>
         <queriedFields>End_Date__c</queriedFields>
         <queriedFields>Course_Duration__c</queriedFields>
-        <queriedFields>Additional_Offer_Information__c</queriedFields>
+        <queriedFields>Additional_Confirmation_Information__c</queriedFields>
         <queriedFields>Main_Practitioner__c</queriedFields>
     </recordLookups>
     <recordLookups>
