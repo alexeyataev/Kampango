@@ -6,6 +6,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
     private static final String PRACTITIONER_EMAIL_ADDRESS = 'partnerCommunityUser@ncttest.com';
+    private static final String HOST_LASTNAME = 'Black';
+    private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
     private static final String COURSE_ASSIGNMENT_WITHDRAWN_STATUS = 'Withdrawn';
 
@@ -22,6 +24,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                     .buildCourse()
                     .buildEstimatedCosts()
                     .buildSession()
+                    .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
                     .buildReunion();
 
         List<Session__c> provisionalNonReunionSessions = [

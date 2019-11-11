@@ -3,6 +3,7 @@ public without sharing class TestDataFactory {
 
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
+    private static final String CLIENT_RECORDTYPE_NAME  = 'Client';
     private static final String PRACTITIONER_PROFILE_NAME = 'Practitioner';
     private static final String PRACTITIONER_USERNAME = 'ncttest@test.com';
     private static final String PORTAL_ACCOUNT_OWNER_USERNAME = 'portalAccountOwner@ncttest.com';
@@ -33,6 +34,7 @@ public without sharing class TestDataFactory {
     private Course__c course;
     private Session__c session;
     private Session__c reunion;
+    private Contact parentHost;
     private Practitioner_Fee_Rate__c practitionerFeeRate;
     private List<Practitioner_Fee_Rate__c> practitionerFeeRates = new List<Practitioner_Fee_Rate__c>();
     private List<Practitioner_Band__c> practitionerBands = new List<Practitioner_Band__c>();
@@ -70,6 +72,17 @@ public without sharing class TestDataFactory {
             .withType('Supplier')
             .withAccountNumber(accountNumber)
             .withBillingEmail(TEST_BILLING_EMAIL)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildParentHost(String lastName, String email) {
+        TestContactBuilder parentHostBuilder = new TestContactBuilder();
+        parentHost = parentHostBuilder
+            .withRecordType(CLIENT_RECORDTYPE_NAME)
+            .withEmail(email)
+            .withLastName(lastName)
             .insertRecord(true)
             .build();
         return this;
@@ -213,6 +226,7 @@ public TestDataFactory buildReunion() {
         reunion = sessionBuilder
             .withCourse(course)
             .withType('Reunion')
+            .withParentHost(parentHost)
             .withVenue(venue)
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)
