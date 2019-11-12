@@ -53,7 +53,7 @@
             <assignToReference>singlePurchaseInvoiceLineItem.Zumzum__Nominal_Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Get_Nominal_Account.Id</elementReference>
+                <elementReference>nominalAccountId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -123,6 +123,11 @@
         <name>lastThreeMonths</name>
         <dataType>Date</dataType>
         <expression>IF(MONTH(TODAY()) = 1, DATE(YEAR(TODAY()) - 1, 12, 01),DATE(YEAR(TODAY()), MONTH(TODAY()) - 3, 01))</expression>
+    </formulas>
+    <formulas>
+        <name>nominalAccountId</name>
+        <dataType>String</dataType>
+        <expression>{!$Setup.Financial_Settings__c.Nominal_Account_Id__c}</expression>
     </formulas>
     <interviewLabel>Claim Practitioner Fees {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Claim Practitioner Fees</label>
@@ -225,40 +230,17 @@
     <recordLookups>
         <name>Get_Last_PILI_Number</name>
         <label>Get Last PILI Number</label>
-        <locationX>483</locationX>
-        <locationY>552</locationY>
+        <locationX>493</locationX>
+        <locationY>548</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Nominal_Account</targetReference>
+            <targetReference>Loop_Selected_Sessions</targetReference>
         </connector>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Zumzum__Purchase_Invoice_Line_Item__c</object>
         <queriedFields>Id</queriedFields>
         <queriedFields>Name</queriedFields>
         <sortField>CreatedDate</sortField>
         <sortOrder>Desc</sortOrder>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Nominal_Account</name>
-        <label>Get Nominal Account</label>
-        <locationX>614</locationX>
-        <locationY>514</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Loop_Selected_Sessions</targetReference>
-        </connector>
-        <filters>
-            <field>Zumzum__Nominal_Code__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Sub-Contractors</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Zumzum__Nominal_Account__c</object>
-        <queriedFields>Id</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>getAccountAndContactId</name>
@@ -359,7 +341,6 @@
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>true</showHeader>
@@ -399,13 +380,7 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <start>
-        <locationX>92</locationX>
-        <locationY>190</locationY>
-        <connector>
-            <targetReference>getAccountAndContactId</targetReference>
-        </connector>
-    </start>
+    <startElementReference>getAccountAndContactId</startElementReference>
     <status>Active</status>
     <variables>
         <name>createdLineItems</name>
