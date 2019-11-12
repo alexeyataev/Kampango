@@ -601,7 +601,7 @@
             <targetReference>Get_Main_Practitioner</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>Booking_Message</name>
         <dataType>String</dataType>
