@@ -441,6 +441,7 @@
         <members>Booking__c.MandatoryPrimaryContactFields</members>
         <members>Booking__c.PreventConfirmedBookingCreation</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
+        <members>Course__c.Check_Course_Status_field</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Fee_Discount_Uplift_fields</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
