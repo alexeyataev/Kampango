@@ -1968,11 +1968,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cpm__Installment__c.Account_Key__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cpm__Installment__c.Amount_Outstanding__c</field>
         <readable>false</readable>
     </fieldPermissions>
