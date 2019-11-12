@@ -2623,11 +2623,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cpm__Payment__c.Account_key__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cpm__Payment__c.Contact_Key__c</field>
         <readable>false</readable>
     </fieldPermissions>
