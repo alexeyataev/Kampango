@@ -38,8 +38,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                             session.End__c != oldSessionMap.get(session.Id).End__c ||
                             session.Lunch_Break_Minutes__c != oldSessionMap.get(session.Id).Lunch_Break_Minutes__c ||
                             session.Venue__c != oldSessionMap.get(session.Id).Venue__c ||
-                            session.Room__c != oldSessionMap.get(session.Id).Room__c ||
-                            oldSessionMap.get(session.Id).Status__c == 'Provisional'));
+                            session.Room__c != oldSessionMap.get(session.Id).Room__c) ||
+                    (session.Status__c == 'Confirmed' && oldSessionMap.get(session.Id).Status__c == 'Provisional'));
             if (condition) {
                 courseAssignmentIds.add(session.Course_Assignment__c);
             } else if (session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c) {
