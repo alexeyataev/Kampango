@@ -341,6 +341,7 @@
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>true</showHeader>
