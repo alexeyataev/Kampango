@@ -104,6 +104,7 @@
             <targetReference>Get_Last_PI_Number</targetReference>
         </connector>
     </assignments>
+    <description>Fixing sObjectOutputReference error</description>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
@@ -112,7 +113,7 @@
     <formulas>
         <name>lastPILIname</name>
         <dataType>String</dataType>
-        <expression>&#39;PILIUID-&#39; + TEXT(VALUE(RIGHT({!Get_Last_PILI_Number.Name}, 10)) + 1)</expression>
+        <expression>&#39;PILIUID-&#39; + TEXT(VALUE(RIGHT({!lastPILInumber.Name}, 10)) + 1)</expression>
     </formulas>
     <formulas>
         <name>lastPInumber</name>
@@ -237,6 +238,7 @@
             <targetReference>Loop_Selected_Sessions</targetReference>
         </connector>
         <object>Zumzum__Purchase_Invoice_Line_Item__c</object>
+        <outputReference>lastPILInumber</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Name</queriedFields>
         <sortField>CreatedDate</sortField>
@@ -381,7 +383,13 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <startElementReference>getAccountAndContactId</startElementReference>
+    <start>
+        <locationX>92</locationX>
+        <locationY>190</locationY>
+        <connector>
+            <targetReference>getAccountAndContactId</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>createdLineItems</name>
@@ -403,6 +411,14 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>lastPILInumber</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Zumzum__Purchase_Invoice_Line_Item__c</objectType>
     </variables>
     <variables>
         <name>lastPIname</name>
