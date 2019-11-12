@@ -2323,27 +2323,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>cpm__Mandate__c.Contact_Key__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>cpm__Mandate__c.DD_Reference__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>cpm__Mandate__c.DirectDebitKey__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>cpm__Mandate__c.Mandate_Key__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>cpm__Mandate__c.Payment_Profile_Key__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2583,11 +2568,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cpm__Payment__c.Contact_Key__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cpm__Payment__c.Eligible_for_Gift_Aid__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2599,26 +2579,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Payment__c.Include__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Payment__c.Installment_Key__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Payment__c.Mandate_Key__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Payment__c.Payment_Key__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Payment__c.Payment_Profile_Key__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2783,22 +2743,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cpm__Payment_Profile__c.Contact_Key__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cpm__Payment_Profile__c.DD_Reference__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Payment_Profile__c.DirectDebitKey__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Payment_Profile__c.Payment_Profile_Key__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
