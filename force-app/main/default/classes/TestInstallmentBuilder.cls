@@ -5,6 +5,13 @@ public with sharing class TestInstallmentBuilder {
     private String bankDetailsNumber;
     private cpm__Payment_Profile__c paymentProfile;
     private Boolean insertRecord = false;
+    private Integer amount;
+
+    public TestInstallmentBuilder withAmount(Integer amount)
+    {
+        this.amount = amount;
+        return this;
+    }
 
     public TestInstallmentBuilder withPrimaryContact(Contact primaryContact)
     {
@@ -33,6 +40,7 @@ public with sharing class TestInstallmentBuilder {
     public cpm__Installment__c build()
     {
         cpm__Installment__c installment = new cpm__Installment__c(
+            cpm__Amount__c = this.amount,
             cpm__Payment_Profile__c = this.paymentProfile.Id,
             cpm__Contact__c = this.primaryContact.Id,
             Bank_Details_Number__c = this.bankDetailsNumber
