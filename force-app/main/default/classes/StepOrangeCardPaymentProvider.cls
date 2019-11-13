@@ -1,34 +1,46 @@
 public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
-    private static final String PAYER_CONTACT_UPDATE = 'none';
-    private static final String PAYMENT_METHOD = 'Creditcard';
-    private static final String SOURCE_CONNECTOR = 'PaymentHub';
     private static final String SUCCESS_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + '/s/success';
     private static final String ERROR_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + '/s/failure';
     private static final String API_TOKEN = Parentforce_Community_Settings__c.getOrgDefaults().API_Token__c;
+    private static final String PAYER_CONTACT_UPDATE = 'none';
+    private static final String PAYMENT_METHOD = 'Creditcard';
+    private static final String SOURCE_CONNECTOR = 'PaymentHub';
     private static final String ORIGIN = 'BookingJourney';
-
-    public static String getCardPaymentURL(String contactId, String feeAmount) {
-        PaymentApiRequest paymentBody = createPaymentBody(contactId, feeAmount);
+    private static final String REQUEST_URI = '/services/apexrest/v1.0/Payment/';
+    private static final String METHOD_TYPE = 'POST';
+    public static CardPaymentUrlResult getCardPaymentURL(cpm__Installment__c installment) {
+        PaymentApiRequest paymentBody = createPaymentBody(installment);
         String installmentPayRequest = JSON.serialize(paymentBody, true);
-        HttpRequest req = new HttpRequest();
-        req.setEndpoint('callout:Step_Orange_Auth');
-        req.setBody(installmentPayRequest);
-        req.setHeader('Content-Type', 'application/json;charset=UTF-8');
-        req.setHeader('api_token', API_TOKEN);
-        req.setMethod('POST');
-        req.setTimeout(120000);
-        Http http = new Http();
-        HttpResponse resp = http.send(req);
-        cpm.API_Request_Response.PaymentPostRequest request = (cpm.API_Request_Response.PaymentPostRequest)JSON.deserializeStrict(resp.getBody(), cpm.API_Request_Response.PaymentPostRequest.class);
-        return request.RedirectURL;
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+        req.addHeader('api_token', API_TOKEN);
+        req.requestURI = REQUEST_URI;
+        req.httpMethod = METHOD_TYPE;    
+        req.requestBody = Blob.valueof(installmentPayRequest);
+        RestContext.request = req;
+        RestContext.response = res;
+        cpm.API_Payment_V1_0.postPayment();
+        cpm.API_Request_Response.PaymentPostResponse response = (cpm.API_Request_Response.PaymentPostResponse)JSON.deserializeStrict(
+            RestContext.response.responseBody.toString(), 
+            cpm.API_Request_Response.PaymentPostResponse.class
+        );
+        CardPaymentUrlResult cardPaymentUrlResult = createPaymentUrlResult(response);
+        return cardPaymentUrlResult;
     }
-    private static PaymentApiRequest createPaymentBody(String contactId, String feeValue) {
-        PaymentApiRequest.Contact contact = new PaymentApiRequest.Contact(contactId);
+    private static CardPaymentUrlResult createPaymentUrlResult(cpm.API_Request_Response.PaymentPostResponse response) {
+        CardPaymentUrlResult cardPaymentUrlResult = new CardPaymentUrlResult();
+        cardPaymentUrlResult.url = response.RedirectURL;
+        return cardPaymentUrlResult;
+    }
+    private static PaymentApiRequest createPaymentBody(cpm__Installment__c installment) {
+        PaymentApiRequest.Contact contact = new PaymentApiRequest.Contact(installment.cpm__Contact__c);
         PaymentApiRequest.PaymentApiRequestParams paymentApiParams = new PaymentApiRequest.PaymentApiRequestParams();
         paymentApiParams.origin = ORIGIN;
         paymentApiParams.URLs = new PaymentApiRequest.URLs(SUCCESS_PAGE, ERROR_PAGE);
         paymentApiParams.payer = new PaymentApiRequest.Payer(contact, PAYER_CONTACT_UPDATE);
-        paymentApiParams.payment = new PaymentApiRequest.Payment(feeValue);
+        Map<String, String> customFields = new Map<String, String>();
+        customFields.put('Sales_Invoice__c', installment.Sales_Invoice__c);
+        paymentApiParams.payment = new PaymentApiRequest.Payment(String.valueOf(installment.cpm__Amount__c), customFields);
         paymentApiParams.paymentMethod = new PaymentApiRequest.PaymentMethod(PAYMENT_METHOD);
         paymentApiParams.sourceConnector = new PaymentApiRequest.SourceConnector(SOURCE_CONNECTOR);
         PaymentApiRequest paymentBody = new PaymentApiRequest(paymentApiParams);
