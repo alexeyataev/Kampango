@@ -15,7 +15,8 @@ const BOOKING_FIELDS = [
         'Booking__c.Course__r.Branch__r.Name',
         'Booking__c.Course__r.Main_Venue__r.Name',
         'Booking__c.Course__r.Start_Date__c',
-        'Booking__c.Course__r.End_Date__c'
+        'Booking__c.Course__r.End_Date__c',
+        'Booking__c.Course__r.Course_Duration__c'
     ];
 
 export default class CourseDetailsComponent extends LightningElement {
@@ -37,6 +38,7 @@ export default class CourseDetailsComponent extends LightningElement {
     @api mainVenueName;
     allVenues;
     @api stylesLoaded = false;
+    @api courseDuration;
     @api get valuesLoaded(){return this.bookingId && this.courseId && this.stylesLoaded;}
     sessionColumns = [
         {
@@ -106,6 +108,7 @@ export default class CourseDetailsComponent extends LightningElement {
             this.coursetype = this.bookingRecord.fields.Course__r.value.fields.Sub_Type__c.value;
             this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Branch__r.value.fields.Name.value;
             this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
+            this.courseDuration = this.bookingRecord.fields.Course__r.value.fields.Course_Duration__c.value;
             date = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
             date = new Date(date);
             this.startDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
