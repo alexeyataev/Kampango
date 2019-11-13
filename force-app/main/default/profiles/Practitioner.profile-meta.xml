@@ -559,6 +559,11 @@
         <editable>false</editable>
         <field>Session__c.Course_Name__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Course_Status__c</field>
+        <readable>true</readable>
     </fieldPermissions>    
     <fieldPermissions>
         <editable>false</editable>
