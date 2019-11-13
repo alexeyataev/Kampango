@@ -202,6 +202,7 @@
     </types>
     <types>
         <members>Override_Booking_Validation</members>
+        <members>Override_Course_Validation</members>
         <name>CustomPermission</name>
     </types>
     <types>
@@ -350,6 +351,7 @@
     </types>
     <types>
         <members>Override_Booking_Validation</members>
+        <members>Override_Course_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <members>Branch_and_PSA_Management</members>
