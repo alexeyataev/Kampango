@@ -53,7 +53,7 @@
             <assignToReference>singlePurchaseInvoiceLineItem.Zumzum__Nominal_Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Get_Nominal_Account.Id</elementReference>
+                <elementReference>nominalAccountId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -104,6 +104,7 @@
             <targetReference>Get_Last_PI_Number</targetReference>
         </connector>
     </assignments>
+    <description>Changed Nominal Account Id API Name</description>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
@@ -112,7 +113,7 @@
     <formulas>
         <name>lastPILIname</name>
         <dataType>String</dataType>
-        <expression>&#39;PILIUID-&#39; + TEXT(VALUE(RIGHT({!Get_Last_PILI_Number.Name}, 10)) + 1)</expression>
+        <expression>&#39;PILIUID-&#39; + TEXT(VALUE(RIGHT({!lastPILInumber.Name}, 10)) + 1)</expression>
     </formulas>
     <formulas>
         <name>lastPInumber</name>
@@ -123,6 +124,11 @@
         <name>lastThreeMonths</name>
         <dataType>Date</dataType>
         <expression>IF(MONTH(TODAY()) = 1, DATE(YEAR(TODAY()) - 1, 12, 01),DATE(YEAR(TODAY()), MONTH(TODAY()) - 3, 01))</expression>
+    </formulas>
+    <formulas>
+        <name>nominalAccountId</name>
+        <dataType>String</dataType>
+        <expression>{!$Setup.Financial_Settings__c.PI_Nominal_Account_Id__c}</expression>
     </formulas>
     <interviewLabel>Claim Practitioner Fees {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Claim Practitioner Fees</label>
@@ -225,40 +231,18 @@
     <recordLookups>
         <name>Get_Last_PILI_Number</name>
         <label>Get Last PILI Number</label>
-        <locationX>483</locationX>
-        <locationY>552</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Nominal_Account</targetReference>
-        </connector>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Zumzum__Purchase_Invoice_Line_Item__c</object>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Name</queriedFields>
-        <sortField>CreatedDate</sortField>
-        <sortOrder>Desc</sortOrder>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Nominal_Account</name>
-        <label>Get Nominal Account</label>
-        <locationX>614</locationX>
-        <locationY>514</locationY>
+        <locationX>493</locationX>
+        <locationY>548</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Selected_Sessions</targetReference>
         </connector>
-        <filters>
-            <field>Zumzum__Nominal_Code__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Sub-Contractors</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Zumzum__Nominal_Account__c</object>
+        <object>Zumzum__Purchase_Invoice_Line_Item__c</object>
+        <outputReference>lastPILInumber</outputReference>
         <queriedFields>Id</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <queriedFields>Name</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordLookups>
         <name>getAccountAndContactId</name>
@@ -427,6 +411,14 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>lastPILInumber</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Zumzum__Purchase_Invoice_Line_Item__c</objectType>
     </variables>
     <variables>
         <name>lastPIname</name>
