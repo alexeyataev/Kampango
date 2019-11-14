@@ -1,5 +1,5 @@
 @IsTest
-public class CardPaymentHandlerTest implements IPaymentServiceProvider
+public class CardPaymentHandlerTest
 {
     @testSetup static void createInstallment() {
         Parentforce_Community_Settings__c parentforceCommunitySettings = new Parentforce_Community_Settings__c();
@@ -32,11 +32,6 @@ public class CardPaymentHandlerTest implements IPaymentServiceProvider
             .withPaymentProfile(paymentProfile)
             .insertRecord(true)
             .build();
-    }
-    public static CardPaymentUrlResult getCardPaymentURL(cpm__Installment__c installment) {
-        CardPaymentUrlResult cpur = new CardPaymentUrlResult();
-        cpur.url = 'test';
-        return cpur;
     }
     @IsTest
     static void testGetPaymentLink(){
