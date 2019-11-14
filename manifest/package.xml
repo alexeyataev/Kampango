@@ -451,6 +451,7 @@
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Fee_Discount_Uplift_fields</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
+        <members>Course__c.Check_Session_Fee_Rates</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
         <members>Course__c.Fee_Disc_Uplift_fields_can_not_be_less_0</members>
         <members>Course__c.Prevent_Cancelling_Course_With_Bookings</members>
