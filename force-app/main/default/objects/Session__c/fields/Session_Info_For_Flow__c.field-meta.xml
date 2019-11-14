@@ -5,13 +5,13 @@
     <externalId>false</externalId>
     <formula>CASE(
 WEEKDAY(Date__c),
-2, &#39;MON&#39;,
-3, &#39;TUE&#39;,
-4, &#39;WED&#39;,
-5, &#39;THU&#39;,
-6, &#39;FRI&#39;,
-7, &#39;SAT&#39;,
-1, &#39;SUN&#39;,
+2, &#39;Mon&#39;,
+3, &#39;Tue&#39;,
+4, &#39;Wed&#39;,
+5, &#39;Thu&#39;,
+6, &#39;Fri&#39;,
+7, &#39;Sat&#39;,
+1, &#39;Sun&#39;,
 NULL
 )
 + &#39; &#39; +
@@ -41,9 +41,9 @@ RPAD(TEXT(MINUTE(Start__c)), 2, &#39;0&#39;)
 TEXT(HOUR(End__c))
 + &#39;:&#39; +
 RPAD(TEXT(MINUTE(End__c)), 2, &#39;0&#39;)
-+ IF(AND(Lunch_Break_Minutes__c != 0, !ISNULL(Lunch_Break_Minutes__c)), &#39; Includes a &#39; &amp; TEXT(Lunch_Break_Minutes__c)  &amp; &#39; min break. &#39;, &#39; &#39;)
-+ IF( ISPICKVAL(Specific_Attendee_Type__c, &#39;&#39;), &#39; &#39;, TEXT(Specific_Attendee_Type__c) &amp; &#39;. &#39;)
++ IF(AND(Lunch_Break_Minutes__c != 0, !ISNULL(Lunch_Break_Minutes__c)), &#39; Includes a &#39; &amp; TEXT(Lunch_Break_Minutes__c) &amp; &#39; min break. &#39;, &#39; &#39;)
 + IF(OR( ISPICKVAL(Type__c, &#39;Reunion&#39;), ISPICKVAL(Type__c, &#39;Breastfeeding&#39;) ), TEXT(Type__c) &amp; &#39; session. &#39;, &#39; &#39;)
++ IF(ISPICKVAL(Specific_Attendee_Type__c, &#39;&#39;), &#39; &#39;, TEXT(Specific_Attendee_Type__c) &amp; &#39;. &#39;)
 + BR()</formula>
     <label>Session Info For Flow</label>
     <required>false</required>

@@ -300,6 +300,38 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
+    static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
+
+        CreateTriggerSystemHandlerRecord();
+
+        Session__c session = [
+            SELECT Id, Course_Assignment__c
+            FROM Session__c
+            WHERE Type__c = 'Reunion'
+            LIMIT 1
+        ];
+
+        test.startTest();
+
+        session.Lunch_Break_Minutes__c = 45;
+        session.Status__c = 'Confirmed';
+
+        update session;
+
+        test.stopTest();
+
+        Course_Assignment__c courseAssignmentToTest = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id =:session.Course_Assignment__c
+            LIMIT 1
+        ];
+
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
+    }
+
+
+    @isTest
     static void InvalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
 
         CreateTriggerSystemHandlerRecord();

@@ -140,12 +140,14 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Status__c</fields>
         <fields>Date__c</fields>
         <fields>Day_of_Week__c</fields>
         <fields>Start__c</fields>
         <fields>End__c</fields>
         <fields>Practitioner__c</fields>
         <fields>Course__c</fields>
+        <fields>Course_Status__c</fields>
         <relatedList>Session__c.Room__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

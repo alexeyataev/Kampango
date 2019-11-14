@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Information__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(AND(Lunch_Break_Minutes__c != 0, !ISNULL(Lunch_Break_Minutes__c)), &#39; Includes a &#39; &amp; TEXT(Lunch_Break_Minutes__c) &amp; &#39; min break. &#39;, &#39; &#39;)
++ IF(OR( ISPICKVAL(Type__c, &#39;Reunion&#39;), ISPICKVAL(Type__c, &#39;Breastfeeding&#39;) ), TEXT(Type__c) &amp; &#39; session. &#39;, &#39; &#39;)
++ IF(ISPICKVAL(Specific_Attendee_Type__c, &#39;&#39;), &#39; &#39;, TEXT(Specific_Attendee_Type__c) &amp; &#39;. &#39;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Additional Information</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

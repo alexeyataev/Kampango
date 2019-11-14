@@ -462,6 +462,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Cancellation_Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Capacity_PSA_Email__c</field>
         <readable>true</readable>
@@ -749,6 +754,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Room__c.Type_of_Space__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Course_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

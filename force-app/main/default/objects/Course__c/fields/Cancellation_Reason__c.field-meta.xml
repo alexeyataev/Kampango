@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cancellation_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Cancellation Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Status__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Low bookings - 0 bookings</fullName>
+                <default>false</default>
+                <label>Low bookings - 0 bookings</label>
+            </value>
+            <value>
+                <fullName>Low bookings - 1 bookings</fullName>
+                <default>false</default>
+                <label>Low bookings - 1 bookings</label>
+            </value>
+            <value>
+                <fullName>Low bookings - 2 bookings</fullName>
+                <default>false</default>
+                <label>Low bookings - 2 bookings</label>
+            </value>
+            <value>
+                <fullName>Low bookings - 3 bookings</fullName>
+                <default>false</default>
+                <label>Low bookings - 3 bookings</label>
+            </value>
+            <value>
+                <fullName>Low bookings - 4 or more bookings</fullName>
+                <default>false</default>
+                <label>Low bookings - 4 or more bookings</label>
+            </value>
+            <value>
+                <fullName>Low bookings - client not happy with small group</fullName>
+                <default>false</default>
+                <label>Low bookings - client not happy with small group</label>
+            </value>
+            <value>
+                <fullName>Practitioner resigned</fullName>
+                <default>false</default>
+                <label>Practitioner resigned</label>
+            </value>
+            <value>
+                <fullName>Practitioner withdrew - no LtP</fullName>
+                <default>false</default>
+                <label>Practitioner withdrew - no LtP</label>
+            </value>
+            <value>
+                <fullName>Practitioner withdrew - other</fullName>
+                <default>false</default>
+                <label>Practitioner withdrew - other</label>
+            </value>
+            <value>
+                <fullName>Student / probationer withdrew - no LtP</fullName>
+                <default>false</default>
+                <label>Student / probationer withdrew - no LtP</label>
+            </value>
+            <value>
+                <fullName>Student / probationer withdrew - other</fullName>
+                <default>false</default>
+                <label>Student / probationer withdrew - other</label>
+            </value>
+            <value>
+                <fullName>Over capacity</fullName>
+                <default>false</default>
+                <label>Over capacity</label>
+            </value>
+            <value>
+                <fullName>Service withdrawn</fullName>
+                <default>false</default>
+                <label>Service withdrawn</label>
+            </value>
+            <value>
+                <fullName>Course added in error</fullName>
+                <default>false</default>
+                <label>Course added in error</label>
+            </value>
+            <value>
+                <fullName>Private session cancelled by client</fullName>
+                <default>false</default>
+                <label>Private session cancelled by client</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Low bookings - 0 bookings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Low bookings - 1 bookings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Low bookings - 2 bookings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Low bookings - 3 bookings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Low bookings - 4 or more bookings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Low bookings - client not happy with small group</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Practitioner resigned</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Practitioner withdrew - no LtP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Practitioner withdrew - other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Student / probationer withdrew - no LtP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Student / probationer withdrew - other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Over capacity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Service withdrawn</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Course added in error</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Private session cancelled by client</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>
