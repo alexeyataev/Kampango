@@ -3,7 +3,7 @@
     <apiVersion>46.0</apiVersion>
     <packageVersions>
         <majorNumber>2</majorNumber>
-        <minorNumber>0</minorNumber>
+        <minorNumber>7</minorNumber>
         <namespace>cpm</namespace>
     </packageVersions>
     <packageVersions>
