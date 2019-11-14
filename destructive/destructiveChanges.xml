@@ -10,7 +10,12 @@
         <members>DisplayDdScheduleController</members>
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
-        <members>TestBookingBuilder</members>
+        <members>FlowPaymentHandler</members>
+        <members>PaymentLinkGeneratorTestPageController</members>
+        <members>PaymentLinkGeneratorTestPageMock</members>
+        <members>PaymentLinkGeneratorTestPageTest</members>
+        <members>PaymentProviderHttpResponseMock</members>
+        <members>PaymentProviderTest</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -20,6 +25,7 @@
     </types>
     <types>
         <members>BookCourse</members>
+        <members>PaymentLinkGeneratorTestPage</members>
         <name>ApexPage</name>
     </types>
     <types>

@@ -7,6 +7,9 @@
         <members>BookingStatusFlowHelperTest</members>
         <members>BranchWeightingHelper</members>
         <members>BranchWeightingHelperTest</members>
+        <members>CardPaymentHandler</members>
+        <members>CardPaymentHandlerTest</members>
+        <members>CardPaymentUrlResult</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -48,7 +51,9 @@
         <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
+        <members>TestInstallmentBuilder</members>
         <members>TestLicenceToPracticeBuilder</members>
+        <members>TestPaymentProfileBuilder</members>
         <members>TestPractitionerBandBuilder</members>
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
@@ -350,11 +355,12 @@
         <name>NetworkBranding</name>
     </types>
     <types>
+        <members>Branch_and_PSA_Management</members>
+        <members>Create_Public_Lists</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
-        <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
     </types>
     <types>
@@ -368,10 +374,6 @@
         <members>PSA Manager</members>
         <members>Website Integration</members>
         <name>Profile</name>
-    </types>
-    <types>
-        <members>Account.ShareAllAccountsWithParents</members>
-        <name>SharingCriteriaRule</name>
     </types>
     <types>
         <members>Booking__c.Send_Offer_Email</members>
@@ -412,6 +414,10 @@
         <name>Role</name>
     </types>
     <types>
+        <members>Account.ShareAllAccountsWithParents</members>
+        <name>SharingCriteriaRule</name>
+    </types>
+    <types>
         <members>Practitioners</members>
         <name>SharingSet</name>
     </types>
@@ -450,6 +456,7 @@
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Fee_Discount_Uplift_fields</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
+        <members>Course__c.Check_Session_Fee_Rates</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
         <members>Course__c.Fee_Disc_Uplift_fields_can_not_be_less_0</members>
         <members>Course__c.Prevent_Cancelling_Course_With_Bookings</members>
