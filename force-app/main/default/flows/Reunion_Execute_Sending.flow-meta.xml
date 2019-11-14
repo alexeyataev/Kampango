@@ -116,10 +116,26 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Empty_booking_list_message</name>
+        <label>Empty booking list message</label>
+        <locationX>3002</locationX>
+        <locationY>741</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_ERROR_EMPTY_BOOKINGLIST</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_status_error</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Empty_value_message</name>
         <label>Empty value message</label>
-        <locationX>2648</locationX>
-        <locationY>990</locationY>
+        <locationX>2983</locationX>
+        <locationY>973</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -141,8 +157,8 @@
     <assignments>
         <name>Error_send_email_message</name>
         <label>Error send email message</label>
-        <locationX>2659</locationX>
-        <locationY>1119</locationY>
+        <locationX>2670</locationX>
+        <locationY>1237</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -170,8 +186,8 @@
     <assignments>
         <name>Query_or_update_message</name>
         <label>Query or update message</label>
-        <locationX>2663</locationX>
-        <locationY>1271</locationY>
+        <locationX>2668</locationX>
+        <locationY>1391</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -389,6 +405,13 @@
         </value>
     </constants>
     <constants>
+        <name>MESSAGE_ERROR_EMPTY_BOOKINGLIST</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Email will only be sent to confirmed bookings</stringValue>
+        </value>
+    </constants>
+    <constants>
         <name>MESSAGE_ERROR_QUERY_OR_UPDATE</name>
         <dataType>String</dataType>
         <value>
@@ -533,6 +556,31 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_empty_field_name</name>
+        <label>Check empty field name</label>
+        <locationX>2668</locationX>
+        <locationY>967</locationY>
+        <defaultConnector>
+            <targetReference>Empty_value_message</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Empty_field_is_booking_list</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>empty_entity_name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>NAME_BOOKINGLIST</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Empty_booking_list_message</targetReference>
+            </connector>
+            <label>Empty field is booking list</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_Practitioner_email_is_not_null</name>
         <label>Check Practitioner email is not null</label>
         <locationX>708</locationX>
@@ -652,7 +700,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Empty_value_message</targetReference>
+                <targetReference>Check_empty_field_name</targetReference>
             </connector>
             <label>Is empty list error?</label>
         </rules>
@@ -779,7 +827,7 @@
             <label>Not volunteer venue</label>
         </rules>
     </decisions>
-    <description>Improved output (bugs and messages), host validation</description>
+    <description>Fixed output message for empty booking list error</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
