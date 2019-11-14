@@ -72,54 +72,6 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_Cancelled</name>
-        <label>Assign Cancelled</label>
-        <locationX>1420</locationX>
-        <locationY>232</locationY>
-        <assignmentItems>
-            <assignToReference>Booking_Message</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>{!COURSE_CANCELLED_OR_CANCELLING}  {!courseStatusToLowerCase}</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Booking_Journey_Available_Screen</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Confirmed</name>
-        <label>Assign Confirmed</label>
-        <locationX>1414</locationX>
-        <locationY>97</locationY>
-        <assignmentItems>
-            <assignToReference>Booking_Message</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>{!COURSE_CONFIRMED} {!bookingStatusToLowerCase}</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Booking_Journey_Available_Screen</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Link_Expired</name>
-        <label>Assign Link Expired</label>
-        <locationX>1417</locationX>
-        <locationY>381</locationY>
-        <assignmentItems>
-            <assignToReference>Booking_Message</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>{!LINK_EXPIRED} {!bookingStatusToLowerCase}</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Booking_Journey_Available_Screen</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>assign_provisional_breasfeeding</name>
         <label>assign provisional breasfeeding</label>
         <locationX>534</locationX>
@@ -212,7 +164,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Assign_Link_Expired</targetReference>
+                <targetReference>Booking_Journey_Available_Screen</targetReference>
             </connector>
             <label>Link Is Expired</label>
         </rules>
@@ -234,7 +186,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Assign_Cancelled</targetReference>
+                <targetReference>Booking_Journey_Available_Screen</targetReference>
             </connector>
             <label>Course Is Cancelled</label>
         </rules>
@@ -475,14 +427,14 @@
     <screens>
         <name>Booking_Journey_Available_Screen</name>
         <label>Booking Journey Available Screen</label>
-        <locationX>1683</locationX>
-        <locationY>232</locationY>
+        <locationX>1465</locationX>
+        <locationY>239</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <fields>
             <name>Booking_Journey_Available_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Your {!curCourse.Sub_Type__c} reservation is no longer available. Please contact your local administrator for support -&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curUser.Name}﻿&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curAccount.Enquiries_PSA_Phone__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;{!curAccount.Enquiries_PSA_Email__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Your {!curCourse.Sub_Type__c} reservation is no longer available. Please contact your local administrator for support -&amp;nbsp;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curBooking.Enquiries_PSA_First_Name__c}﻿&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curBooking.Enquiries_PSA_Phone__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curBooking.Enquiries_PSA_Email__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
@@ -610,14 +562,6 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>curAccount</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Account</objectType>
-    </variables>
-    <variables>
         <name>curBooking</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -632,14 +576,6 @@
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>Course__c</objectType>
-    </variables>
-    <variables>
-        <name>curUser</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <objectType>User</objectType>
     </variables>
     <variables>
         <name>includesProfvisionalOther</name>

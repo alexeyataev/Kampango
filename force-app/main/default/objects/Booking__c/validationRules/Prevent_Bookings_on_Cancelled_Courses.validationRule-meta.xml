@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Bookings_on_Cancelled_Courses</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    OR(IsNew(),
+       AND(IsChanged(Status__c),
+           OR(ISPICKVAL(PRIORVALUE(Status__c), &quot;Expired&quot;),
+              ISPICKVAL(PRIORVALUE(Status__c), &quot;Cancelled&quot;)),
+           NOT(OR(ISPICKVAL(Status__c, &quot;Expired&quot;),
+                  ISPICKVAL(Status__c, &quot;Cancelled&quot;))))),
+    OR(ISPICKVAL(Course__r.Status__c, &quot;Cancelling&quot;), 
+       ISPICKVAL(Course__r.Status__c, &quot;Cancelled&quot;)),
+    NOT($Permission.Override_Booking_Validation))</errorConditionFormula>
+    <errorMessage>Bookings cannot be added to a course where the course status is cancelling or cancelled.</errorMessage>
+</ValidationRule>
