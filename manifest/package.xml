@@ -350,11 +350,12 @@
         <name>NetworkBranding</name>
     </types>
     <types>
+        <members>Branch_and_PSA_Management</members>
+        <members>Create_Public_Lists</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
-        <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
     </types>
     <types>
@@ -368,10 +369,6 @@
         <members>PSA Manager</members>
         <members>Website Integration</members>
         <name>Profile</name>
-    </types>
-    <types>
-        <members>Account.ShareAllAccountsWithParents</members>
-        <name>SharingCriteriaRule</name>
     </types>
     <types>
         <members>Booking__c.Send_Offer_Email</members>
@@ -410,6 +407,10 @@
         <members>PSA</members>
         <members>Finance</members>
         <name>Role</name>
+    </types>
+    <types>
+        <members>Account.ShareAllAccountsWithParents</members>
+        <name>SharingCriteriaRule</name>
     </types>
     <types>
         <members>Practitioners</members>
