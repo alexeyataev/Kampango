@@ -1,41 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <name>Primary_Contact_Add_Bank_Details</name>
-        <label>Primary Contact Add Bank Details</label>
-        <locationX>1301</locationX>
-        <locationY>1096</locationY>
-        <actionName>CareAddBankDetailsHandler</actionName>
-        <actionType>apex</actionType>
-        <inputParameters>
-            <name>installment</name>
-            <value>
-                <elementReference>Installment_Object</elementReference>
-            </value>
-        </inputParameters>
-        <outputParameters>
-            <assignToReference>MembershipResultText</assignToReference>
-            <name>messageText</name>
-        </outputParameters>
-        <outputParameters>
-            <assignToReference>MembershipResultType</assignToReference>
-            <name>messageType</name>
-        </outputParameters>
-    </actionCalls>
-    <actionCalls>
-        <name>Update_NCT_Number_to_Contacts</name>
-        <label>Update NCT Number to Contacts</label>
-        <locationX>291</locationX>
-        <locationY>1496</locationY>
-        <actionName>BookingFlowUpdateNctNumber</actionName>
-        <actionType>apex</actionType>
-        <inputParameters>
-            <name>contacts</name>
-            <value>
-                <elementReference>Contact_List</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
     <assignments>
         <name>Add_Payment_Profile_Id</name>
         <label>Add Payment Profile Id</label>
@@ -437,7 +401,7 @@ CC and CC = Credit Card for Course and Credit Card for Membership;</description>
             <label>Payment CC and DD</label>
         </rules>
     </decisions>
-    <description>Beta v1</description>
+    <description>Beta v2</description>
     <formulas>
         <name>Total_Amount</name>
         <dataType>Currency</dataType>

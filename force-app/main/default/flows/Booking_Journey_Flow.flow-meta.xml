@@ -50,6 +50,7 @@
             <label>Correct</label>
         </rules>
     </decisions>
+    <description>Beta 2</description>
     <interviewLabel>Booking {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Flow</label>
     <processMetadataValues>
@@ -242,39 +243,6 @@
                 <elementReference>courseRecord</elementReference>
             </value>
         </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>Checking_NCT_Number_on_Contact</name>
-        <label>Checking NCT Number on Contact</label>
-        <locationX>866</locationX>
-        <locationY>551</locationY>
-        <flowName>Checking_NCT_Number_on_Contact</flowName>
-        <inputAssignments>
-            <name>bookingId</name>
-            <value>
-                <elementReference>bookingId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Installment_Object</name>
-            <value>
-                <elementReference>Installment_Object</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Membership_With_Partner</name>
-            <value>
-                <elementReference>Membership_With_Partner</elementReference>
-            </value>
-        </inputAssignments>
-        <outputAssignments>
-            <assignToReference>Contact_List</assignToReference>
-            <name>Contact_List</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>Installment_Object</assignToReference>
-            <name>Installment_Object</name>
-        </outputAssignments>
     </subflows>
     <subflows>
         <name>Contact_Details_Flow</name>
