@@ -16,15 +16,15 @@ Thank you for agreeing to facilitate the {!Course__c.Sub_Type__c} course reunion
 {!Course__c.Reunion_Venue_Town__c}
 {!Course__c.Reunion_Venue_Postcode__c}
 
-Please click here to see this on a map
+Click here to see this on a map
 {!Course__c.Reunion_Venue_Map_Url__c}
 
 If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.
 
 Kind regards,
+
 {!Course__c.Capacity_PSA_Name__c}
 Course organiser
-
 Email: {!Course__c.Capacity_PSA_Email__c}
 Tel: {!Course__c.Capacity_PSA_Phone__c}</textOnly>
     <type>custom</type>
