@@ -16,6 +16,7 @@
         <members>PaymentLinkGeneratorTestPageTest</members>
         <members>PaymentProviderHttpResponseMock</members>
         <members>PaymentProviderTest</members>
+        <members>TestBookingBuilder</members>
         <name>ApexClass</name>
     </types>
     <types>
