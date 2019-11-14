@@ -3,13 +3,10 @@
     <actionCalls>
         <name>Primary_Contact_Add_Bank_Details</name>
         <label>Primary Contact Add Bank Details</label>
-        <locationX>1296</locationX>
-        <locationY>966</locationY>
+        <locationX>1301</locationX>
+        <locationY>1096</locationY>
         <actionName>CareAddBankDetailsHandler</actionName>
         <actionType>apex</actionType>
-        <connector>
-            <targetReference>Is_Add_Banks_True</targetReference>
-        </connector>
         <inputParameters>
             <name>installment</name>
             <value>
@@ -28,13 +25,10 @@
     <actionCalls>
         <name>Update_NCT_Number_to_Contacts</name>
         <label>Update NCT Number to Contacts</label>
-        <locationX>253</locationX>
-        <locationY>1498</locationY>
+        <locationX>291</locationX>
+        <locationY>1496</locationY>
         <actionName>BookingFlowUpdateNctNumber</actionName>
         <actionType>apex</actionType>
-        <connector>
-            <targetReference>Set_status_to_Pending</targetReference>
-        </connector>
         <inputParameters>
             <name>contacts</name>
             <value>
@@ -55,7 +49,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Primary_Contact_Add_Bank_Details</targetReference>
+            <targetReference>Is_Add_Banks_True</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -263,9 +257,6 @@
                 <leftValueReference>Contact_List</leftValueReference>
                 <operator>NotEqualTo</operator>
             </conditions>
-            <connector>
-                <targetReference>Update_NCT_Number_to_Contacts</targetReference>
-            </connector>
             <label>Is Not Empty</label>
         </rules>
     </decisions>

@@ -246,11 +246,8 @@
     <subflows>
         <name>Checking_NCT_Number_on_Contact</name>
         <label>Checking NCT Number on Contact</label>
-        <locationX>869</locationX>
-        <locationY>541</locationY>
-        <connector>
-            <targetReference>Payment_Details</targetReference>
-        </connector>
+        <locationX>866</locationX>
+        <locationY>551</locationY>
         <flowName>Checking_NCT_Number_on_Contact</flowName>
         <inputAssignments>
             <name>bookingId</name>
@@ -316,10 +313,10 @@
     <subflows>
         <name>Gift_Aid_Declaration</name>
         <label>Gift Aid Declaration</label>
-        <locationX>869</locationX>
-        <locationY>318</locationY>
+        <locationX>871</locationX>
+        <locationY>425</locationY>
         <connector>
-            <targetReference>Checking_NCT_Number_on_Contact</targetReference>
+            <targetReference>Payment_Details</targetReference>
         </connector>
         <flowName>Create_Gift_Aid_Declaration</flowName>
         <inputAssignments>
