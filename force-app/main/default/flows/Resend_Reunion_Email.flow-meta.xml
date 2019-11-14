@@ -4,9 +4,12 @@
         <name>Show_status</name>
         <label>Show status</label>
         <locationX>876</locationX>
-        <locationY>633</locationY>
+        <locationY>632</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
+        <connector>
+            <targetReference>Check_if_success</targetReference>
+        </connector>
         <inputParameters>
             <name>type</name>
             <value>
@@ -106,6 +109,28 @@
         </value>
     </constants>
     <decisions>
+        <name>Check_if_success</name>
+        <label>Check if success</label>
+        <locationX>1024</locationX>
+        <locationY>634</locationY>
+        <defaultConnectorLabel>Is not success</defaultConnectorLabel>
+        <rules>
+            <name>Is_success</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_SUCCESS</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_task</targetReference>
+            </connector>
+            <label>Is success?</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_input_parameter</name>
         <label>Check input parameter</label>
         <locationX>282</locationX>
@@ -155,6 +180,7 @@
             <label>Session exists?</label>
         </rules>
     </decisions>
+    <description>Added task creation if resend was successful</description>
     <interviewLabel>Resend Reunion {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Resend Reunion Email</label>
     <processMetadataValues>
@@ -170,6 +196,61 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_task</name>
+        <label>Create task</label>
+        <locationX>1223</locationX>
+        <locationY>635</locationY>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsRecurrence</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsReminderSet</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>session.CreatedById</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>Low</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <stringValue>Reunion confirmation email resent</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>session.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+    </recordCreates>
     <recordLookups>
         <name>Get_Reunion_Session_by_Course</name>
         <label>Get Reunion Session by Course</label>
@@ -217,7 +298,13 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Get_Reunion_Session_by_Course</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Reunion_Session_by_Course</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <subflows>
         <name>Prepare_and_send</name>
