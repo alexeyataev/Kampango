@@ -103,10 +103,19 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>cpm__Installment__c.ga_decl_1__c</members>
+        <members>cpm__Installment__c.ga_decl_2__c</members>
+        <members>cpm__Installment__c.Sales_Invoice__c</members>
+        <members>cpm__Installment__c.Partner_Contact__c</members>
+        <members>cpm__Installment__c.Bank_Details_Number__c</members>
+        <members>cpm__Installment__c.Partner_Contact__c</members>
+        <members>cpm__Installment__c.Care_Membership_Added__c</members>
+        <members>cpm__Installment__c.Membership_Type__c</members>
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Session__c.Eligible_for_Claim__c</members>
         <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
         <members>Session__c.Practitioner_Fees_to_Claim__c</members>
+        <members>Zumzum__Bank_Payment__c.Booking__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
@@ -133,6 +142,7 @@
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
+        <members>cpm__Installment__c</members>
         <members>dlrs__LookupRollupSummary2__mdt</members>
         <members>gaid__Gift_Aid_Declaration__c</members>
         <members>Estimated_Costs__c</members>
@@ -263,6 +273,10 @@
         <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
         <members>Create_Task_For_Booking</members>
+        <members>Get_Payment_Link</members>
+        <members>Installment_Process</members>
+        <members>Membership_Option</members>
+		<members>Payment_Details</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Populate_Practitioner_Name</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
@@ -333,6 +347,7 @@
         <members>courseDetailsComponent</members>
         <members>claimFeesDatatable</members>
         <members>failurePaymentPage</members>
+        <members>linkToPaymentComponent</members>
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
@@ -451,6 +466,7 @@
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Fee_Discount_Uplift_fields</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
+        <members>Course__c.Check_Session_Fee_Rates</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
         <members>Course__c.Fee_Disc_Uplift_fields_can_not_be_less_0</members>
         <members>Course__c.Prevent_Cancelling_Course_With_Bookings</members>
