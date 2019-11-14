@@ -478,6 +478,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Cancellation_Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>fales</editable>
         <field>Course__c.Capacity_PSA_Name__c</field>
         <readable>true</readable>
@@ -617,7 +622,6 @@
         <field>Course__c.Private_Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
-
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Reunion_Host_Contact_Names__c</field>
@@ -668,7 +672,6 @@
         <field>Course__c.Reunion_Venue_Town__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Start_Date__c</field>
@@ -812,6 +815,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Course_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Course_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
