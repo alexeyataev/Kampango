@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Get_Payment_Link</name>
+        <label>Get Payment Link</label>
+        <locationX>222</locationX>
+        <locationY>50</locationY>
+        <actionName>CardPaymentHandler</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>installment</name>
+            <value>
+                <elementReference>Installment_Object</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>paymentError</assignToReference>
+            <name>error</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>installmentId</assignToReference>
+            <name>installmentId</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>paymentUrl</assignToReference>
+            <name>url</name>
+        </outputParameters>
+    </actionCalls>
+    <description>Will return a link for credit card payment
+Parameters:  
+input -&gt;  Installment record(cpm_Installment__c)
+output -&gt; Message result or Payment Link or &quot;error&quot;</description>
+    <interviewLabel>Get Payment Link {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Get Payment Link</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Payment_Link</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>This is variable will contain cpm_Installment__c record.</description>
+        <name>Installment_Object</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>cpm__Installment__c</objectType>
+    </variables>
+    <variables>
+        <name>installmentId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>paymentError</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>paymentUrl</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>
