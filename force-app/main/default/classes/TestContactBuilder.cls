@@ -87,7 +87,6 @@ public with sharing class TestContactBuilder {
 			RecordTypeId = this.recordTypeId,
 			FirstName = this.firstName,
 			LastName = this.lastName,
-			AccountId = this.account.Id,
 			Email = this.email,
 			npe01__PreferredPhone__c = this.preferredPhone,
 			MobilePhone = this.mobilePhone,
@@ -97,6 +96,9 @@ public with sharing class TestContactBuilder {
 			MailingCountry = this.mailingCountry,
 			MailingPostalCode = this.mailingPostalCode
 		);
+		if (account != null) {
+			testContact.AccountId = this.account.Id;
+		}
 		if(insertRecord){
 			insert testContact;
 		}
