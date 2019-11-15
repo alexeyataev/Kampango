@@ -24,10 +24,14 @@ public class CardPaymentHandlerTest
             .withPrimaryContact(primaryContact.Id)
             .insertRecord(true)
             .build();
+        cpm__Installment__c installment2 = installmentBuilder.withAmount(50)
+            .withPrimaryContact(primaryContact.Id)
+            .insertRecord(true)
+            .build();
     }
     @IsTest
     static void testGetPaymentLink(){
-        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c, Sales_Invoice__c FROM cpm__Installment__c];
+        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c, Sales_Invoice__c FROM cpm__Installment__c LIMIT 1];
         PaymentApiRequest paymentBody = StepOrangeCardPaymentProvider.createPaymentBody(installmentList[0]);
         StepOrangeCardPaymentProvider.createPaymentRequest(paymentBody);
         String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
@@ -42,10 +46,20 @@ public class CardPaymentHandlerTest
     static void testGetPaymentLinkError(){
         String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
         Test.startTest();
-        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c FROM cpm__Installment__c];
+        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c FROM cpm__Installment__c  LIMIT 1];
         List<CardPaymentUrlResult> result = CardPaymentHandler.getPaymentLink(installmentList);
         Test.stopTest();
         System.assertNotEquals(result[0].url, responseUrl);
         System.assertEquals(result[0].error, 'SObject row was retrieved via SOQL without querying the requested field: cpm__Installment__c.Sales_Invoice__c');
+    }
+    @IsTest
+    static void testGetPaymentLinkNot1RecordError(){
+        String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
+        Test.startTest();
+        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c FROM cpm__Installment__c];
+        List<CardPaymentUrlResult> result = CardPaymentHandler.getPaymentLink(installmentList);
+        Test.stopTest();
+        System.assertNotEquals(result[0].url, responseUrl);
+        System.assertEquals(result[0].error, 'List must contain 1 record');
     }
 }
