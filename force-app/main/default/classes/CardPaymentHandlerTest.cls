@@ -38,9 +38,12 @@ public class CardPaymentHandlerTest
         String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
         Test.startTest();
         List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c, Sales_Invoice__c FROM cpm__Installment__c];
-        List<CardPaymentUrlResult> result = CardPaymentHandler.getPaymentLink(installmentList);
-        //System.assertEquals(result[0].url, null);
-        //System.assertNotEquals(result[0].error, null);
+        PaymentApiRequest paymentBody = StepOrangeCardPaymentProvider.createPaymentBody(installmentList[0]);
+        StepOrangeCardPaymentProvider.createPaymentRequest(paymentBody);
+        RestContext.response.responseBody = Blob.valueof('{"ResponseCode":"001","IsSuccess":true,"SourceConnector":{"Name":"PaymentHub"},"RedirectURL":"' + responseUrl + '","PaymentMethod":{"Processor":"PaymentHub-WorldPay","Name":"CreditCard"},"Payment":{"InstallmentId":"a2b6E000000IVqQQAW"},"Payer":{"ContactId":"0036E00000quniyQAA","ContactDeduplicated":false,"AccountDeduplicated":false}}');
+        CardPaymentUrlResult result = StepOrangeCardPaymentProvider.createPaymentUrlResult();
+        System.assertEquals(result.url, responseUrl);
+        System.assertEquals(result.error, null);
         Test.stopTest();
     }
     @IsTest
@@ -49,8 +52,8 @@ public class CardPaymentHandlerTest
         Test.startTest();
         List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c FROM cpm__Installment__c];
         List<CardPaymentUrlResult> result = CardPaymentHandler.getPaymentLink(installmentList);
-        //System.assertEquals(result[0].url, null);
-        //System.assertNotEquals(result[0].error, null);
+        System.assertEquals(result[0].url, null);
+        System.assertNotEquals(result[0].error, null);
         Test.stopTest();
     }
 }
