@@ -232,6 +232,10 @@
         <name>Dashboard</name>
     </types>
     <types>
+        <members>Enquiries_PSA</members>
+        <name>DashboardFolder</name>
+    </types>
+    <types>
         <members>Communities_Shared_Document_Folder</members>
         <members>Communities_Shared_Document_Folder/social_logo_png</members>
         <name>Document</name>
@@ -410,6 +414,10 @@
         <members>Practitioners/All_Course_Assignments</members>
         <members>Practitioners/Practitioner_Schedule</members>
         <name>Report</name>
+    </types>
+    <types>
+        <members>Enquiries_PSA</members>
+        <name>ReportFolder</name>
     </types>
     <types>
         <members>Sessions_with_Course_and_Course_Assignment</members>

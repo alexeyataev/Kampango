@@ -208,6 +208,21 @@
             </connector>
             <label>true</label>
         </rules>
+        <rules>
+            <name>provisional_other</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>session.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Provisional</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Session_Loop</targetReference>
+            </connector>
+            <label>provisional other</label>
+        </rules>
     </decisions>
     <decisions>
         <name>IsBabyMassage</name>
@@ -491,7 +506,7 @@ Course reference: {!curCourse.PSA_Area__c} / {!curCourse.Name}
 
 Dear {!bookingFirstName} {!bookingUtilityField}
 
-Thank you for your payments for this NCT {!curCourse.Sub_Type__c} course:
+Thank you for your payments for this {!curCourse.Sub_Type__c} course:
 
 The course will be facilitated by {!practitionerRecord.FirstName} {!practitionerRecord.LastName} at:
 
