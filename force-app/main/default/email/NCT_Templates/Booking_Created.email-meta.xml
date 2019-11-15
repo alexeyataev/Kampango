@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Booking Created</name>
+    <style>none</style>
+    <subject>NCT Course Enquiry</subject>
+    <textOnly>Dear {!Booking__c.Contact_Names__c}
+
+Thank you for enquiring about an NCT course. By joining one of our courses, you are helping to support the work of the UK’s largest charity for parents. We’re really looking forward to welcoming you, and we’re here to support you through the early years of your parenting journey.
+
+We’ll be back in touch within two working days with more details about your course, and a link to book and confirm your place.
+
+Best wishes
+
+
+{!Course__c.Enquiries_PSA_Name__c}
+{!Course__c.Enquiries_PSA_Phone__c}
+{!Course__c.Enquiries_PSA_Email__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

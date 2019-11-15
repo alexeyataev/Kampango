@@ -233,6 +233,7 @@
         <name>Document</name>
     </types>
     <types>
+        <members>NCT_Templates/Booking_Created</members>
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <members>NCT_Templates/Course_Assignment_Rejected</members>
@@ -266,6 +267,8 @@
         <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
+        <members>Booking_Send_Email_On_Enquiry_Created_Process</members>
+        <members>Booking_Send_Email_On_Enquiry_Created_Flow</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Booking_Tranfer_Flow</members>
         <members>BookingConfirmationNotificationSend</members>
