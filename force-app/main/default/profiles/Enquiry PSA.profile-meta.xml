@@ -438,6 +438,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Cancellation_Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Count_of_Estimated_Travel_Costs__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -649,6 +654,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Contact_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Course_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
