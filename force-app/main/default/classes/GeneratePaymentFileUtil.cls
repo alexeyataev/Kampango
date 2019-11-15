@@ -49,7 +49,7 @@ public with sharing class GeneratePaymentFileUtil {
 			BankPaymentWrapper bankPaymentWrapper = new BankPaymentWrapper(bankPayment);
 			rows.add(String.join(bankPaymentWrapper.getColumns(), ' ').trim());
 		}
-		String result = String.join(rows,'\n').trim();
+		String result = String.join(rows,'\r\n').trim();
 		return result;
 	}
 

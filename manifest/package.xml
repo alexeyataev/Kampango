@@ -7,6 +7,9 @@
         <members>BookingStatusFlowHelperTest</members>
         <members>BranchWeightingHelper</members>
         <members>BranchWeightingHelperTest</members>
+        <members>CardPaymentHandler</members>
+        <members>CardPaymentHandlerTest</members>
+        <members>CardPaymentUrlResult</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -48,7 +51,9 @@
         <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
+        <members>TestInstallmentBuilder</members>
         <members>TestLicenceToPracticeBuilder</members>
+        <members>TestPaymentProfileBuilder</members>
         <members>TestPractitionerBandBuilder</members>
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
