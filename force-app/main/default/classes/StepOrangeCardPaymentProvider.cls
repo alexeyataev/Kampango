@@ -1,13 +1,10 @@
 public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
-    private static final String SUCCESS_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + '/s/success';
     private static final String ERROR_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + '/s/failure';
-    public static final String API_TOKEN = Parentforce_Community_Settings__c.getOrgDefaults().API_Token__c;
+    private static final String ORIGIN = 'BookingJourney';
     private static final String PAYER_CONTACT_UPDATE = 'none';
     private static final String PAYMENT_METHOD = 'Creditcard';
     private static final String SOURCE_CONNECTOR = 'PaymentHub';
-    private static final String ORIGIN = 'BookingJourney';
-    @TestVisible private static final String REQUEST_URI = '/services/apexrest/v1.0/Payment/';
-    @TestVisible private static final String METHOD_TYPE = 'POST';
+    private static final String SUCCESS_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + '/s/success';
     public static CardPaymentUrlResult getCardPaymentURL(cpm__Installment__c installment) {
         PaymentApiRequest paymentBody = createPaymentBody(installment);
         createPaymentRequest(paymentBody);
@@ -15,7 +12,8 @@ public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
         CardPaymentUrlResult cardPaymentUrlResult = createPaymentUrlResult();
         return cardPaymentUrlResult;
     }
-    @TestVisible private static PaymentApiRequest createPaymentBody(cpm__Installment__c installment) {
+    @TestVisible
+    private static PaymentApiRequest createPaymentBody(cpm__Installment__c installment) {
         PaymentApiRequest.Contact contact = new PaymentApiRequest.Contact(installment.cpm__Contact__c);
         PaymentApiRequest.PaymentApiRequestParams paymentApiParams = new PaymentApiRequest.PaymentApiRequestParams();
         paymentApiParams.origin = ORIGIN;
@@ -29,18 +27,17 @@ public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
         PaymentApiRequest paymentBody = new PaymentApiRequest(paymentApiParams);
         return paymentBody;
     }
-    @TestVisible private static void createPaymentRequest(PaymentApiRequest paymentBody) {
+    @TestVisible
+    private static void createPaymentRequest(PaymentApiRequest paymentBody) {
         String installmentPayRequest = JSON.serialize(paymentBody, true);
         RestRequest req = new RestRequest();
         RestResponse res = new RestResponse();
-        req.addHeader('api_token', API_TOKEN);
-        req.requestURI = REQUEST_URI;
-        req.httpMethod = METHOD_TYPE;    
         req.requestBody = Blob.valueof(installmentPayRequest);
         RestContext.request = req;
         RestContext.response = res;
     }
-    @TestVisible private static CardPaymentUrlResult createPaymentUrlResult() {
+    @TestVisible
+    private static CardPaymentUrlResult createPaymentUrlResult() {
         cpm.API_Request_Response.PaymentPostResponse response = (cpm.API_Request_Response.PaymentPostResponse)JSON.deserializeStrict(
             RestContext.response.responseBody.toString(), 
             cpm.API_Request_Response.PaymentPostResponse.class

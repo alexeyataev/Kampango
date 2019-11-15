@@ -19,32 +19,24 @@ public class CardPaymentHandlerTest
             .withLastName('Primary')
             .insertRecord(true)
             .build();
-        TestPaymentProfileBuilder paymentProfileBuilder = new TestPaymentProfileBuilder();
-        cpm__Payment_Profile__c paymentProfile = paymentProfileBuilder.withContact(primaryContact)
-            .withSortCode('1111')
-            .withBankAccount('2222')
-            .withHolderName('test')
-            .insertRecord(true)
-            .build();
         TestInstallmentBuilder installmentBuilder = new TestInstallmentBuilder();
         cpm__Installment__c installment = installmentBuilder.withAmount(50)
-            .withPrimaryContact(primaryContact)
-            .withPaymentProfile(paymentProfile)
+            .withPrimaryContact(primaryContact.Id)
             .insertRecord(true)
             .build();
     }
     @IsTest
     static void testGetPaymentLink(){
-        String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
-        Test.startTest();
         List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c, Sales_Invoice__c FROM cpm__Installment__c];
         PaymentApiRequest paymentBody = StepOrangeCardPaymentProvider.createPaymentBody(installmentList[0]);
         StepOrangeCardPaymentProvider.createPaymentRequest(paymentBody);
+        String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
         RestContext.response.responseBody = Blob.valueof('{"ResponseCode":"001","IsSuccess":true,"SourceConnector":{"Name":"PaymentHub"},"RedirectURL":"' + responseUrl + '","PaymentMethod":{"Processor":"PaymentHub-WorldPay","Name":"CreditCard"},"Payment":{"InstallmentId":"a2b6E000000IVqQQAW"},"Payer":{"ContactId":"0036E00000quniyQAA","ContactDeduplicated":false,"AccountDeduplicated":false}}');
+        Test.startTest();
         CardPaymentUrlResult result = StepOrangeCardPaymentProvider.createPaymentUrlResult();
+        Test.stopTest();
         System.assertEquals(result.url, responseUrl);
         System.assertEquals(result.error, null);
-        Test.stopTest();
     }
     @IsTest
     static void testGetPaymentLinkError(){
@@ -52,8 +44,8 @@ public class CardPaymentHandlerTest
         Test.startTest();
         List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c FROM cpm__Installment__c];
         List<CardPaymentUrlResult> result = CardPaymentHandler.getPaymentLink(installmentList);
-        System.assertEquals(result[0].url, null);
-        System.assertNotEquals(result[0].error, null);
         Test.stopTest();
+        System.assertNotEquals(result[0].url, responseUrl);
+        System.assertEquals(result[0].error, 'SObject row was retrieved via SOQL without querying the requested field: cpm__Installment__c.Sales_Invoice__c');
     }
 }
