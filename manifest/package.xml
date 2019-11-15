@@ -59,6 +59,15 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>CourseSummraryCourseDetails</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>CourseSummary</members>
+        <members>CourseSummaryPDF</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
@@ -259,6 +268,7 @@
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Booking_Tranfer_Flow</members>
+        <members>BookingConfirmationNotificationSend</members>
         <members>CAD_Recalculate_Practitioner_Fees</members>
         <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
