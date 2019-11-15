@@ -4,7 +4,7 @@
         <name>Send_email_to_practitioner</name>
         <label>Send email to practitioner</label>
         <locationX>1163</locationX>
-        <locationY>961</locationY>
+        <locationY>951</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -96,7 +96,7 @@
         <name>Common_error_message</name>
         <label>Common error message</label>
         <locationX>2304</locationX>
-        <locationY>1445</locationY>
+        <locationY>1497</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -111,12 +111,31 @@
                 <stringValue>({!subflow_status})</stringValue>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Set_status_error</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Empty_booking_list_message</name>
+        <label>Empty booking list message</label>
+        <locationX>3002</locationX>
+        <locationY>741</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_ERROR_EMPTY_BOOKINGLIST</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_status_error</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Empty_value_message</name>
         <label>Empty value message</label>
-        <locationX>2648</locationX>
-        <locationY>990</locationY>
+        <locationX>2983</locationX>
+        <locationY>973</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -131,12 +150,15 @@
                 <elementReference>empty_entity_name</elementReference>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Set_status_error</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Error_send_email_message</name>
         <label>Error send email message</label>
-        <locationX>2658</locationX>
-        <locationY>1117</locationY>
+        <locationX>2670</locationX>
+        <locationY>1237</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -144,12 +166,15 @@
                 <elementReference>MESSAGE_ERROR_SEND_EMAIL</elementReference>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Set_status_error</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Part_success_message</name>
         <label>Part success message</label>
-        <locationX>2398</locationX>
-        <locationY>945</locationY>
+        <locationX>2320</locationX>
+        <locationY>940</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -161,8 +186,8 @@
     <assignments>
         <name>Query_or_update_message</name>
         <label>Query or update message</label>
-        <locationX>2663</locationX>
-        <locationY>1271</locationY>
+        <locationX>2668</locationX>
+        <locationY>1391</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -170,12 +195,15 @@
                 <elementReference>MESSAGE_ERROR_QUERY_OR_UPDATE</elementReference>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Set_status_error</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Return_error_on_email_alert</name>
         <label>Return error</label>
-        <locationX>1469</locationX>
-        <locationY>1235</locationY>
+        <locationX>1162</locationX>
+        <locationY>1253</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -204,10 +232,26 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Return_error_on_no_host</name>
+        <label>Return error</label>
+        <locationX>1315</locationX>
+        <locationY>1343</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>STATUS_ERROR_NO_HOST</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Decide_on_status</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Return_error_on_update_record</name>
         <label>Return error</label>
-        <locationX>1968</locationX>
-        <locationY>819</locationY>
+        <locationX>1823</locationX>
+        <locationY>754</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -301,10 +345,23 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Set_status_error</name>
+        <label>Set_status_error</label>
+        <locationX>3178</locationX>
+        <locationY>1532</locationY>
+        <assignmentItems>
+            <assignToReference>subflow_status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>error</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
         <name>Success_message</name>
         <label>Success message</label>
-        <locationX>2402</locationX>
-        <locationY>790</locationY>
+        <locationX>2319</locationX>
+        <locationY>797</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -345,6 +402,13 @@
         <dataType>String</dataType>
         <value>
             <stringValue>There was a problem during the process. Please try again later</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>MESSAGE_ERROR_EMPTY_BOOKINGLIST</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Email will only be sent to confirmed bookings</stringValue>
         </value>
     </constants>
     <constants>
@@ -425,6 +489,13 @@
         </value>
     </constants>
     <constants>
+        <name>STATUS_ERROR_NO_HOST</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>error_no_host</stringValue>
+        </value>
+    </constants>
+    <constants>
         <name>STATUS_ERROR_ON_SEND_EMAIL</name>
         <dataType>String</dataType>
         <value>
@@ -485,6 +556,31 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_empty_field_name</name>
+        <label>Check empty field name</label>
+        <locationX>2668</locationX>
+        <locationY>967</locationY>
+        <defaultConnector>
+            <targetReference>Empty_value_message</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Empty_field_is_booking_list</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>empty_entity_name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>NAME_BOOKINGLIST</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Empty_booking_list_message</targetReference>
+            </connector>
+            <label>Empty field is booking list</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_Practitioner_email_is_not_null</name>
         <label>Check Practitioner email is not null</label>
         <locationX>708</locationX>
@@ -507,6 +603,31 @@
                 <targetReference>Get_Venue</targetReference>
             </connector>
             <label>Practitioner email is not null?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_session_has_host</name>
+        <label>Check session has host</label>
+        <locationX>1327</locationX>
+        <locationY>1125</locationY>
+        <defaultConnector>
+            <targetReference>Return_error_on_no_host</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Session_has_host</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>session.Parent_Host__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_to_Private</targetReference>
+            </connector>
+            <label>Session has host?</label>
         </rules>
     </decisions>
     <decisions>
@@ -579,7 +700,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Empty_value_message</targetReference>
+                <targetReference>Check_empty_field_name</targetReference>
             </connector>
             <label>Is empty list error?</label>
         </rules>
@@ -701,12 +822,12 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_to_Private</targetReference>
+                <targetReference>Check_session_has_host</targetReference>
             </connector>
             <label>Not volunteer venue</label>
         </rules>
     </decisions>
-    <description>Improved output, integrated changes of the Private flow</description>
+    <description>Fixed output message for empty booking list error</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -924,8 +1045,8 @@
     <subflows>
         <name>Send_to_Private</name>
         <label>Send to Private</label>
-        <locationX>1405</locationX>
-        <locationY>1115</locationY>
+        <locationX>1540</locationX>
+        <locationY>1124</locationY>
         <connector>
             <targetReference>Decide_on_status</targetReference>
         </connector>
@@ -957,13 +1078,13 @@
         <inputAssignments>
             <name>status_error_get_record</name>
             <value>
-                <elementReference>MESSAGE_ERROR_QUERY_OR_UPDATE</elementReference>
+                <elementReference>STATUS_ERROR_QUERY</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>status_part_success</name>
             <value>
-                <elementReference>MESSAGE_PART_SUCCESS</elementReference>
+                <elementReference>STATUS_PART_SUCCESS</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
