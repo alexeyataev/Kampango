@@ -186,7 +186,7 @@ private class CourseSearchUtilityTest {
         Course__c recievedCourse = CourseSearchUtility.getCourseById(course.Name, false);
         Test.stopTest();
         
-        System.assertEquals(course.Name, recievedCourse.Name);                             
+        System.assertEquals(course.Name, recievedCourse.Name);
     }
 
     @isTest
