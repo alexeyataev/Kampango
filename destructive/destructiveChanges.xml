@@ -108,6 +108,7 @@
         <members>cpm__Installment__c.Mandate_Key__c</members>
         <members>cpm__Installment__c.Opportunity_Key__c</members>
         <members>cpm__Installment__c.Payment_Profile_Key__c</members>
+        <members>cpm__Installment__c.Partial_Gift_Amount_Beta__c</members>
         <members>cpm__Installment__c.GiftAid_Declaration_Key__c</members>
         <members>cpm__Installment__c.Recurring_Donations_Key__c</members> 
         <members>cpm__Mandate__c.Contact_Key__c</members>
