@@ -169,7 +169,7 @@ private class CourseSearchUtilityTest {
         CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(response.responseBody.toString(), CourseFinderModel.class );
         
         System.assertEquals(200, response.statusCode);
-        System.assertEquals(course.Name, model.Id);                             
+        System.assertEquals(course.Name, model.Id);
     }
 
     @isTest
@@ -186,7 +186,7 @@ private class CourseSearchUtilityTest {
         Course__c recievedCourse = CourseSearchUtility.getCourseById(course.Name, false);
         Test.stopTest();
         
-        System.assertEquals(course.Name, recievedCourse.Name);                             
+        System.assertEquals(course.Name, recievedCourse.Name);
     }
 
     @isTest
@@ -227,10 +227,10 @@ private class CourseSearchUtilityTest {
         RestResponse response = new RestResponse();
         response = CourseSearchUtility.getCoursesByBranch(account.Branch_Number__c);
         Test.stopTest();
-        List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(response.responseBody.toString());
-
+        
+        CoursesBranchModel branchModel = (CoursesBranchModel)JSON.deserialize(response.responseBody.toString(), CoursesBranchModel.class);
         System.assertEquals(200, response.statusCode);
-        System.assertEquals(2, responseObjects.size(), 'There should be 2 Course records with at least 1 allocated Session record');                             
+        System.assertEquals(2, branchModel.Courses.size(), 'There should be 2 Course records with at least 1 allocated Session record');                             
     }
 
     @isTest
@@ -254,7 +254,7 @@ private class CourseSearchUtilityTest {
         Test.stopTest();
 
         System.assertEquals(2, courses.size(), 'There should be 2 Course records with at least 1 allocated Session record');
-        System.assertEquals(account.Id, courses[0].Branch__c);                            
+        System.assertEquals(account.Id, courses[0].Branch__c);
     }
 
     @isTest
@@ -287,7 +287,7 @@ private class CourseSearchUtilityTest {
         Test.stopTest();
 
         System.assertEquals(404, response.statusCode);                             
-    }	 	 	 
+    }
 
     @isTest
     static void courseSearchByLocationParams(){
@@ -572,7 +572,7 @@ private class CourseSearchUtilityTest {
             return this;
         }
 
-        private ChangerCourse changeLocation(Location loc) {           
+        private ChangerCourse changeLocation(Location loc) {
             venue = [
                 SELECT Location__c
                 FROM Venue__c
