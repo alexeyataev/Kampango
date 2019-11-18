@@ -13,6 +13,7 @@ public with sharing class TestSessionBuilder {
 	private Course__c course;
 	private Room__c room;
 	private Contact practitioner;
+	private Contact parentHost;
 	private Boolean insertRecord = false;
 	private Practitioner_Fee_Rate__c practitionerFeeRate;
 
@@ -31,6 +32,11 @@ public with sharing class TestSessionBuilder {
 	public TestSessionBuilder withType(String type)
 	{
 		this.type = type;
+		return this;
+	}
+
+	public TestSessionBuilder withParentHost(Contact parentHost) {
+		this.parentHost = parentHost;
 		return this;
 	}
 
@@ -109,8 +115,11 @@ public with sharing class TestSessionBuilder {
 			Practitioner__c = this.practitioner.Id,
 			Practitioner_Licence__c = this.practitionerLicence.Id,
 			Practitioner_Fee_Rate__c = this.practitionerFeeRate != Null ? this.practitionerFeeRate.Id : Null
-
 		);
+		if (parentHost != null) {
+			session.Parent_Host__c = this.parentHost.Id;
+		}
+
 
 		if(insertRecord)
 		{

@@ -7,6 +7,9 @@
         <members>BookingStatusFlowHelperTest</members>
         <members>BranchWeightingHelper</members>
         <members>BranchWeightingHelperTest</members>
+        <members>CardPaymentHandler</members>
+        <members>CardPaymentHandlerTest</members>
+        <members>CardPaymentUrlResult</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -26,7 +29,9 @@
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
         <members>PractitionerBandFeeHelper</members>
-        <members>PractitionerBandFeeHelperTest</members
+        <members>PractitionerBandFeeHelperTest</members>
+        <members>PractitionerFeeRateHelper</members>
+        <members>PractitionerFeeRateHelperTest</members>
         <members>SendHTMLEmailPlugin</members>
         <members>SendHTMLEmailPluginTest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
@@ -46,7 +51,9 @@
         <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
+        <members>TestInstallmentBuilder</members>
         <members>TestLicenceToPracticeBuilder</members>
+        <members>TestPaymentProfileBuilder</members>
         <members>TestPractitionerBandBuilder</members>
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
@@ -55,6 +62,15 @@
         <members>ViewPort</members>
         <members>ViewPortTest</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>CourseSummraryCourseDetails</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>CourseSummary</members>
+        <members>CourseSummaryPDF</members>
+        <name>ApexPage</name>
     </types>
     <types>
         <members>dlrs_Estimated_CostsTrigger</members>
@@ -200,6 +216,7 @@
     </types>
     <types>
         <members>Override_Booking_Validation</members>
+        <members>Override_Course_Validation</members>
         <name>CustomPermission</name>
     </types>
     <types>
@@ -256,17 +273,20 @@
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Booking_Tranfer_Flow</members>
+        <members>BookingConfirmationNotificationSend</members>
+        <members>CAD_Recalculate_Practitioner_Fees</members>
         <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
         <members>Create_Task_For_Booking</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Populate_Practitioner_Name</members>
+        <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Offer_Email</members>
-        <members>Reunion_Prepare_Sending_Process</members>
         <members>Resend_Reunion_Email</members>
         <members>Reunion_Execute_Sending_Private_Subflow</members>
         <members>Reunion_Execute_Sending_Public_Subflow</members>
         <members>Reunion_Execute_Sending</members>
+        <members>Reunion_Prepare_Sending_Process</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Booking_Expiration_Status</members>
@@ -284,6 +304,7 @@
         <members>Update_service_field_on_session</members>
         <members>Update_Session_Fee_Rate_When_Branch_Weighting_Changes</members>
         <members>Update_Session_Fee_Rates_When_Practitioner_Band_Changes</members>
+        <members>Update_Session_Fee_Rate_When_Practitioner_Fee_Rate_Changes</members>
         <members>Update_Venue_on_Sessions_related_to_Course</members>
         <name>Flow</name>
     </types>
@@ -344,10 +365,12 @@
         <name>NetworkBranding</name>
     </types>
     <types>
+        <members>Branch_and_PSA_Management</members>
+        <members>Create_Public_Lists</members>
         <members>Override_Booking_Validation</members>
+        <members>Override_Course_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
-        <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
     </types>
     <types>
@@ -361,10 +384,6 @@
         <members>PSA Manager</members>
         <members>Website Integration</members>
         <name>Profile</name>
-    </types>
-    <types>
-        <members>Account.ShareAllAccountsWithParents</members>
-        <name>SharingCriteriaRule</name>
     </types>
     <types>
         <members>Booking__c.Send_Offer_Email</members>
@@ -405,6 +424,10 @@
         <name>Role</name>
     </types>
     <types>
+        <members>Account.ShareAllAccountsWithParents</members>
+        <name>SharingCriteriaRule</name>
+    </types>
+    <types>
         <members>Practitioners</members>
         <name>SharingSet</name>
     </types>
@@ -433,14 +456,20 @@
         <members>Booking__c.FeeOverrideRestriction</members>
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
+        <members>Booking__c.MandatoryCancellationReason</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
+        <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
+        <members>Booking__c.Prevent_Overbooking_Of_Course</members>
         <members>Booking__c.PreventConfirmedBookingCreation</members>
+        <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Fee_Discount_Uplift_fields</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
+        <members>Course__c.Check_Session_Fee_Rates</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
         <members>Course__c.Fee_Disc_Uplift_fields_can_not_be_less_0</members>
+        <members>Course__c.Prevent_Cancelling_Course_With_Bookings</members>
         <members>Course_Assignment__c.CA_Can_Only_Be_Created_For_Final_Courses</members>
         <members>Course_Assignment__c.Course_can_not_be_changed_on_CA_record</members>
         <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
@@ -479,4 +508,3 @@
     </types>
     <version>46.0</version>
 </Package>
-

@@ -2,14 +2,14 @@ Your booking reference: {!Course__c.PSA_Area__c} / {!Booking__c.Name}<br><br>
 
 Your course reference: {!Course__c.PSA_Area__c} / {!Course__c.Name}<br><br>
 
-Dear {!Booking__c.First_Name__c},<br><br>
+Dear {!Booking__c.First_Name__c}  {!Booking__c.Email_Template_Utility_Field__c} <br><br>
 
 Thank you for enquiring about our {!Course__c.Sub_Type__c} course. By joining one of our courses, you are helping to support the work of the UK’s largest charity for parents. We’re really looking forward to welcoming you, and we’re here to support you through the early years of your parenting journey.<br><br>
 
 To review your booking and pay the balance of your course fees, please 
 <a href="{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}/s/transferbooking?bookingId={!Booking__c.Id}">click here.</a><br><br>
 
-This link is to your personal booking and shouldn't be widely shared.<br><br>
+This is your personal booking link and intended for your use only. Please do not share with others. If you do so, NCT cannot be held responsible for any errors or omissions and accepts no liability whatsoever for any loss or damage howsoever arising.<br><br>
 
 If this course isn’t suitable, do come back to me by email or give me a call so we can look at alternatives.<br><br>
 

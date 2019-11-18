@@ -15,7 +15,8 @@ const BOOKING_FIELDS = [
         'Booking__c.Course__r.Branch__r.Name',
         'Booking__c.Course__r.Main_Venue__r.Name',
         'Booking__c.Course__r.Start_Date__c',
-        'Booking__c.Course__r.End_Date__c'
+        'Booking__c.Course__r.End_Date__c',
+        'Booking__c.Course__r.Course_Duration__c'
     ];
 
 export default class CourseDetailsComponent extends LightningElement {
@@ -37,6 +38,7 @@ export default class CourseDetailsComponent extends LightningElement {
     @api mainVenueName;
     allVenues;
     @api stylesLoaded = false;
+    @api courseDuration;
     @api get valuesLoaded(){return this.bookingId && this.courseId && this.stylesLoaded;}
     sessionColumns = [
         {
@@ -106,6 +108,7 @@ export default class CourseDetailsComponent extends LightningElement {
             this.coursetype = this.bookingRecord.fields.Course__r.value.fields.Sub_Type__c.value;
             this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Branch__r.value.fields.Name.value;
             this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
+            this.courseDuration = this.bookingRecord.fields.Course__r.value.fields.Course_Duration__c.value;
             date = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
             date = new Date(date);
             this.startDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
@@ -127,7 +130,8 @@ export default class CourseDetailsComponent extends LightningElement {
                         {Start__c: row.Start__c},
                         {End__c: row.End__c},
                         {row: index + 1},
-                        {id: row.Id}
+                        {id: row.Id},
+                        {additionalInfo: row.Additional_Information__c}
                     );
                 }
             );
@@ -174,7 +178,7 @@ export default class CourseDetailsComponent extends LightningElement {
                 if(row.Venue__c){
                     let county = '';
                     if(row.Venue__r.County__c){
-                        county = row.Venue__r.County__c + ',';
+                        county = row.Venue__r.County__c;
                     }
                     return Object.assign(
                         {street: row.Venue__r.Street_Address__c},
@@ -192,13 +196,20 @@ export default class CourseDetailsComponent extends LightningElement {
 
     formatSessions(){
         let array = this.sessions,
-            monthDay;
+            weekdays = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'),
+            monthDay,
+            weekday,
+            month;
         array.forEach(
             (row) => {
                 let date = new Date(row.dateFormatted);
-                monthDay = date.getDate().toString();
-                let dateStr = monthDay + ' ' + date.toLocaleString('default', { month: 'long' });
+                monthDay = date.toLocaleString('default', {day: '2-digit'});
+                weekday = weekdays[date.getDay()];
+                month = date.toLocaleString('default', {month: 'short'});
+                let dateStr = weekday + ' ' + monthDay + ' ' + month;
                 row.dateFormatted = dateStr;
+                row.Start__c = Math.floor(row.Start__c / 3600000) + ':' + (row.Start__c % 3600000 / 60000).toString().padEnd(2, '0');
+                row.End__c = Math.floor(row.End__c / 3600000) + ':' + (row.End__c % 3600000 / 60000).toString().padEnd(2, '0');
             }
         );
         this.formattedSessions = array;

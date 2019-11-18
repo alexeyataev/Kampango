@@ -1,71 +1,127 @@
 <template>
-    <template if:true={valuesLoaded}>
-        <div class="heading_2 lato-font">
-            Hi {firstName},
+  <template if:true={valuesLoaded}>
+    <div class="heading_2 lato-font">
+      Hi {firstName},
+    </div>
+    <div class="heading_4 lato-font slds-p-top_medium slds-p-bottom_large">
+      We're holding your place on the following course until {expirationDate}.
+      Complete your booking now to secure your place.
+    </div>
+    <div class="heading_2 lato-font">
+      Your booking
+    </div>
+    <div class="nct-primary-header-text">
+      {coursetype} course for {courseDuration}
+    </div>
+    <div class="heading_5 lato-font">
+      at {mainVenueName} ({startDate}
+      <span> - </span>
+      {endDate})
+    </div>
+    <div class="slds-grid slds-wrap">
+      <div
+        class="regular-text lato-font slds-col slds-size_1-of-1 slds-large-size_5-of-6 slds-medium-size_5-of-6 slds-small-size_1-of-1"
+      ></div>
+    </div>
+    <div class="slds-grid slds-wrap">
+      <div class="slds-col slds-size_1-of-1">
+        <div class="height_100">
+          <div>
+            <div class="nct-header-text header-text-margin">Locations</div>
+            <lightning-layout
+              multiple-rows="true"
+              vertical-align="stretch"
+              horizontal-align="spread"
+            >
+              <template for:each={venues} for:item="venue">
+                <lightning-layout-item
+                  class="lato-font regular-text padding-top_1 padding-bottom_1"
+                  key={venue.id}
+                  size="12"
+                  small-device-size="12"
+                  medium-device-size="6"
+                  large-device-size="4"
+                >
+                  <p class="margin-bottom_half-rem">
+                    <b>{venue.name}</b> ({venue.sessions})<br />
+                  </p>
+                  <p class="margin-bottom_quarter-rem">{venue.street}</p>
+                  <p class="margin-bottom_quarter-rem">{venue.town}</p>
+                  <p class="margin-bottom_quarter-rem">{venue.county}</p>
+                  <p class="margin-bottom_quarter-rem">{venue.postcode}</p>
+                </lightning-layout-item>
+              </template>
+            </lightning-layout>
+          </div>
         </div>
-        <div class="heading_4 lato-font">
-            We've held you a place on the following course...
-        </div>
-        <br>
-        <div class="heading_3 lato-font">
-            {coursetype} course {mainTown}
-        </div>
-        <div class="heading_5 lato-font">
-            at {mainVenueName} ({startDate}
-            <span> - </span>
-            {endDate})
-        </div>
-        <div class="slds-grid slds-wrap">
-            <div class="regular-text lato-font slds-col slds-size_1-of-1 slds-large-size_5-of-6 slds-medium-size_5-of-6 slds-small-size_1-of-1">
+      </div>
+      <div class="slds-col slds-size_1-of-1">
+        <div class="slds-grid">
+          <div
+            class="padding-bottom_1 slds-col slds-small-size_1-of-1 slds-medium-size_7-of-12 slds-large-size_7-of-12"
+          >
+            <div class="nct-header-text header-text-margin">Sessions</div>
+            <div class="lato-font regular-text padding-top_1">
+              <template if:true={formattedSessions}>
+                <template for:each={formattedSessions} for:item="session">
+                  <div class="border-bottom_grey" key={session.id}>
+                    <lightning-layout
+                      class="slds-p-bottom_x-small slds-p-top_x-small"
+                    >
+                      <lightning-layout-item
+                        size="1"
+                        class="slds-m-right_xx-small"
+                        >{session.row}</lightning-layout-item
+                      >
+                      <lightning-layout-item size="11">
+                        <lightning-layout multiple-rows="true">
+                          <lightning-layout-item
+                            class="slds-m-bottom_xx-small"
+                            size="6"
+                            small-device-size="6"
+                            medium-device-size="3"
+                            large-device-size="3"
+                          >
+                            {session.dateFormatted}
+                          </lightning-layout-item>
+                          <lightning-layout-item
+                            class="slds-m-bottom_xx-small"
+                            size="6"
+                            small-device-size="6"
+                            medium-device-size="3"
+                            large-device-size="3"
+                          >
+                            {session.Start__c} - {session.End__c}
+                          </lightning-layout-item>
+                          <lightning-layout-item
+                            size="12"
+                            small-device-size="12"
+                            medium-device-size="6"
+                            large-device-size="6"
+                          >
+                            {session.additionalInfo}
+                          </lightning-layout-item>
+                        </lightning-layout>
+                      </lightning-layout-item>
+                    </lightning-layout>
+                  </div>
+                </template>
+              </template>
             </div>
+          </div>
         </div>
-        <br><br>
-        <div class="row-flex">
-            <div class="padding-right_30 col-flex">
-                <div class="border-top_grey border-bottom_grey height_100">
-                    <div class="padding-top_1">
-                        <div class="lato-font heading_3">Location</div>
-                        <div>
-                            <template for:each={venues} for:item="venue">
-                                    <p class="lato-font regular-text padding-top_1 padding-bottom_1" key={venue.id}>
-                                        <b>{venue.name}</b> ({venue.sessions})<br/>
-                                        {venue.street}, {venue.town}, {venue.county}<br/>
-                                        {venue.postcode}
-                                    </p>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="padding-left_30 col-flex">
-                <div class="border-top_grey border-bottom_grey height_100">
-                    <div class="padding-top_1 padding-bottom_1">
-                        <div class="lato-font heading_3">Schedule</div>
-                        <div class="lato-font regular-text">
-                            <template if:true={formattedSessions}>
-                                <lightning-datatable
-                                    key-field="id"
-                                    data={formattedSessions}
-                                    columns={sessionColumns}
-                                    hide-checkbox-column
-                                    resize-column-disabled
-                                    hide-table-header>
-                                </lightning-datatable>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="heading_2 lato-font">
-            Total - &#163;
-            <lightning-formatted-number 
-                value={courseFee} 
-                minimum-fraction-digits="0">
-            </lightning-formatted-number>
-        </div>
-    </template>
-    <template if:false={valuesLoaded}>
-        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
-    </template>
+      </div>
+    </div>
+    <div class="heading_2 lato-font">
+      Total - &#163;
+      <lightning-formatted-number value={courseFee} minimum-fraction-digits="0">
+      </lightning-formatted-number>
+    </div>
+  </template>
+  <template if:false={valuesLoaded}>
+    <lightning-spinner
+      alternative-text="Loading"
+      size="large"
+    ></lightning-spinner>
+  </template>
 </template>
