@@ -254,7 +254,7 @@ private class CourseSearchUtilityTest {
         Test.stopTest();
 
         System.assertEquals(2, courses.size(), 'There should be 2 Course records with at least 1 allocated Session record');
-        System.assertEquals(account.Id, courses[0].Branch__c);                            
+        System.assertEquals(account.Id, courses[0].Branch__c);
     }
 
     @isTest
