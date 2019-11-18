@@ -295,9 +295,9 @@
         <members>Create_Task_For_Booking</members>
         <members>Get_Payment_Link</members>
         <members>Installment_Process</members>
+        <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Membership_Option</members>
         <members>Payment_Details</members>
-        <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Populate_Practitioner_Name</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Offer_Email</members>
