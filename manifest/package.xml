@@ -234,6 +234,11 @@
         <name>CustomTab</name>
     </types>
     <types>
+        <members>Enquiries_PSA</members>
+        <members>Enquiries_PSA/Enquiries_PSA_Reports</members>
+        <name>Dashboard</name>
+    </types>
+    <types>
         <members>Communities_Shared_Document_Folder</members>
         <members>Communities_Shared_Document_Folder/social_logo_png</members>
         <name>Document</name>
@@ -406,6 +411,8 @@
         <members>Capacity_PSA/CADs_to_issue1</members>
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
+        <members>Enquiries_PSA</members>
+        <members>Enquiries_PSA/Confirmed_Bookings</members>
         <members>Practitioners</members>
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>
