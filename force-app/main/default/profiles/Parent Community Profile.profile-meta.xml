@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Profile xmlns="http://soap.sforce.com/2006/04/metadata"> 
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>true</custom>
     <fieldPermissions>
         <editable>false</editable>
@@ -2314,7 +2314,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.gaid__Contact_has_Active_GAD__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
