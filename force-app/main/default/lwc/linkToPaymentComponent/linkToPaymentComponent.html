@@ -2,7 +2,7 @@
     <div class="slds-grid slds-grid_align-center">
         <a href={paymentLink} class='paymentLink' onclick={redirectHandler}>Complete Payment</a>
         <template if:true={isRedirect}>
-            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            <lightning-spinner alternative-text="Redirecting to payment..." size="small"></lightning-spinner>
         </template>
     </div>
 </template>
