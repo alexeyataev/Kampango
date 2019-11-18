@@ -6,7 +6,6 @@ public class PaymentApiRequest{
     private Payment payment {get;set;}
     private PaymentMethod paymentMethod {get;set;}
     private SourceConnector sourceConnector {get;set;}
-
     public PaymentApiRequest(PaymentApiRequestParams apiRequestParams) {
         this.successURL = apiRequestParams.URLs.successURL;
         this.failureURL = apiRequestParams.URLs.failureURL;
@@ -34,7 +33,6 @@ public class PaymentApiRequest{
             this.failureURL = failureURL;
         }
     }
-
     public class Payer {
         private Contact contact {get;set;}
         private String contactUpdate {get;set;}
@@ -51,8 +49,10 @@ public class PaymentApiRequest{
     }
     public class Payment {
         private String amount {get;set;}
-        public Payment(String amount) {
+        private Map<String, String> customFields {get;set;}
+        public Payment(String amount, Map<String, String> customFields) {
             this.amount = amount;
+            this.customFields = customFields;
         }
     }
     public class PaymentMethod {
