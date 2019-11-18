@@ -129,10 +129,10 @@
         <members>Session__c.Eligible_for_Claim__c</members>
         <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
         <members>Session__c.Practitioner_Fees_to_Claim__c</members>
-        <members>Zumzum__Bank_Payment__c.Booking__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
+        <members>Zumzum__Sales_Invoice__c.Booking__c</members>
         <name>CustomField</name>
     </types>
     <types>
