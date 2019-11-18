@@ -169,7 +169,7 @@ private class CourseSearchUtilityTest {
         CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(response.responseBody.toString(), CourseFinderModel.class );
         
         System.assertEquals(200, response.statusCode);
-        System.assertEquals(course.Name, model.Id);                             
+        System.assertEquals(course.Name, model.Id);
     }
 
     @isTest
