@@ -162,12 +162,11 @@ public without sharing class CourseApiTest {
             }
         Test.stopTest();
 
-        List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(res.responseBody.toString());
-
+        CoursesBranchModel branchModel = (CoursesBranchModel)JSON.deserialize(res.responseBody.toString(), CoursesBranchModel.class);
         System.assertEquals(200, res.statusCode);
-        System.assertEquals(2, responseObjects.size(), 'There should be 2 Course records with at least 1 allocated Session record');
+        System.assertEquals(2, branchModel.Courses.size(), 'There should be 2 Course records with at least 1 allocated Session record');
       
-    }      
+    }
 
     @isTest
     static void createEnquiry() {

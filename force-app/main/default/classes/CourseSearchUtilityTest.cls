@@ -227,10 +227,10 @@ private class CourseSearchUtilityTest {
         RestResponse response = new RestResponse();
         response = CourseSearchUtility.getCoursesByBranch(account.Branch_Number__c);
         Test.stopTest();
-        List<Object> responseObjects = (List<Object>)JSON.deserializeUntyped(response.responseBody.toString());
-
+        
+        CoursesBranchModel branchModel = (CoursesBranchModel)JSON.deserialize(res.responseBody.toString(), CoursesBranchModel.class);
         System.assertEquals(200, response.statusCode);
-        System.assertEquals(2, responseObjects.size(), 'There should be 2 Course records with at least 1 allocated Session record');                             
+        System.assertEquals(2, branchModel.Courses.size(), 'There should be 2 Course records with at least 1 allocated Session record');                             
     }
 
     @isTest

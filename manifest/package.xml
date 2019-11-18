@@ -18,6 +18,7 @@
         <members>CourseFinderModelTest</members>
         <members>CourseFinderModelOrdered</members>
         <members>CourseFinderModelOrderedTest</members>
+        <members>CoursesBranchModel</members>
         <members>CoursesDateDistanceModel</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
