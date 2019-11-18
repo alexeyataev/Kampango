@@ -27,8 +27,7 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> createdContact = [
             SELECT Name, Email 
             FROM Contact 
@@ -68,8 +67,7 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(params, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Booking__c> bookings = [
             SELECT Name 
             FROM Booking__c 
@@ -110,9 +108,8 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
         paramsMap.put('first_name', 'Updated'); 
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Booking__c> bookings = [
             SELECT Name 
             FROM Booking__c 
@@ -168,11 +165,10 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact
@@ -213,11 +209,10 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact

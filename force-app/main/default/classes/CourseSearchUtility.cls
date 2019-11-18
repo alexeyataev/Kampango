@@ -99,8 +99,10 @@ public without sharing class CourseSearchUtility {
                 model.HowHeardTexts = howHeard;
                 models.add(model);
             }
+            CoursesBranchModel branchModel = new CoursesBranchModel();
+            branchModel.Courses = models;
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(models)));
+            response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(branchModel)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPInoResultsFound);
