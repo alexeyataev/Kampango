@@ -62,9 +62,8 @@
         <numberOfColumns>9</numberOfColumns>
         <rowHeight>36</rowHeight>
     </dashboardGridLayout>
-    <dashboardType>SpecifiedUser</dashboardType>
+    <dashboardType>LoggedInUser</dashboardType>
     <isGridLayout>true</isGridLayout>
-    <runningUser>anastasiya.alekseeva@greencouchconsulting.com.nct</runningUser>
     <textColor>#000000</textColor>
     <title>Enquiries PSA Reports</title>
     <titleColor>#000000</titleColor>
