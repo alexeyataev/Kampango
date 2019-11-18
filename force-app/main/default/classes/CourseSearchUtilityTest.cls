@@ -572,7 +572,7 @@ private class CourseSearchUtilityTest {
             return this;
         }
 
-        private ChangerCourse changeLocation(Location loc) {           
+        private ChangerCourse changeLocation(Location loc) {
             venue = [
                 SELECT Location__c
                 FROM Venue__c
