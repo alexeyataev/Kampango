@@ -287,7 +287,7 @@ private class CourseSearchUtilityTest {
         Test.stopTest();
 
         System.assertEquals(404, response.statusCode);                             
-    }	 	 	 
+    }
 
     @isTest
     static void courseSearchByLocationParams(){
