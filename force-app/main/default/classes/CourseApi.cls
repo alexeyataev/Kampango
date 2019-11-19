@@ -31,6 +31,8 @@ global class CourseApi {
         RestRequest request = RestContext.request;
         try {
             CourseCreateEnquiryUtility.createEnquiry(request.params);
+            RestContext.response.statusCode = HttpStatusCode.CREATED;
+            RestContext.response.responseBody = Blob.valueOf(Label.CourseAPIenquiryCreatedSuccessfully);
         } catch (CourseCreateEnquiryUtility.CreateEnquiryException ex) {
             RestContext.response.statusCode = HttpStatusCode.SERVER_ERROR;
             RestContext.response.responseBody = Blob.valueOf(ex.getMessage());
