@@ -4,7 +4,7 @@
 
     <apex:pageBlock title="Practitioners">
         <apex:pageBlockTable value="{!practitioners}" var="practitioner">
-            <apex:repeat value="{!$ObjectType.Contact.FieldSets.CourseSummaryFields}" var="field">
+            <apex:repeat value="{!$ObjectType.Contact.FieldSets.CourseSummaryPractitionerFields}" var="field">
                 <apex:column value="{!practitioner[field]}"/>
             </apex:repeat>
         </apex:pageBlockTable>
