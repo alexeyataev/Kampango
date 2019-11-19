@@ -123,6 +123,38 @@
         </connector>
     </assignments>
     <assignments>
+        <name>assign_other_provisional_session</name>
+        <label>assign other provisional session</label>
+        <locationX>101</locationX>
+        <locationY>978</locationY>
+        <assignmentItems>
+            <assignToReference>includesProvisionalOther</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Session_Loop</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>assign_provisional_breastfeeding</name>
+        <label>assign provisional breastfeeding</label>
+        <locationX>252</locationX>
+        <locationY>983</locationY>
+        <assignmentItems>
+            <assignToReference>includesProvisionaBreastFeeding</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Session_Loop</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_Reunion</name>
         <label>Set Reunion</label>
         <locationX>50</locationX>
@@ -131,7 +163,7 @@
             <assignToReference>includesReunion</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>True</elementReference>
+                <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
         <connector>
@@ -180,12 +212,34 @@
     <decisions>
         <name>Is_reunion_provisional_session</name>
         <label>Is reunion provisional session?</label>
-        <locationX>269</locationX>
-        <locationY>773</locationY>
+        <locationX>250</locationX>
+        <locationY>780</locationY>
         <defaultConnector>
             <targetReference>Add_Venue_Id</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>provisional_breastfeeding</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>session.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Breastfeeding</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>session.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Provisional</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>assign_provisional_breastfeeding</targetReference>
+            </connector>
+            <label>provisional breastfeeding</label>
+        </rules>
         <rules>
             <name>true2</name>
             <conditionLogic>and</conditionLogic>
@@ -219,7 +273,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Session_Loop</targetReference>
+                <targetReference>assign_other_provisional_session</targetReference>
             </connector>
             <label>provisional other</label>
         </rules>
@@ -280,9 +334,19 @@
         <expression>IF({!includesBabyMassage}, {!babyMassageText}, &#39;&#39; )</expression>
     </formulas>
     <formulas>
+        <name>breastfeedingFormula</name>
+        <dataType>String</dataType>
+        <expression>IF({!includesProvisionaBreastFeeding}, {!breastfeedingTemplate}, &#39;&#39;)</expression>
+    </formulas>
+    <formulas>
         <name>finalBody</name>
         <dataType>String</dataType>
         <expression>SUBSTITUTE(SUBSTITUTE({!emailBody}, &quot;@!$&quot;, &quot;&quot;), &quot;&lt;br&gt;&quot;, &quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>otherSessionFormula</name>
+        <dataType>String</dataType>
+        <expression>IF({!includesProvisionalOther}, {!otherTemplate}, &#39;&#39;)</expression>
     </formulas>
     <formulas>
         <name>postcodeURL</name>
@@ -484,6 +548,7 @@
         <queriedFields>Sub_Type__c</queriedFields>
         <queriedFields>Branch__c</queriedFields>
         <queriedFields>Main_Venue__c</queriedFields>
+        <queriedFields>Additional_Confirmation_Information__c</queriedFields>
     </recordLookups>
     <start>
         <locationX>446</locationX>
@@ -498,6 +563,11 @@
         <text>What you need to know about your course
     · We recommend that your baby has had their 6-8 week medical check up before the course begins. If this appointment is delayed please let us know. Please bring your own massage oil with you to the course, so that you can choose the product most suitable for you and your baby.
     · If you or your baby have any mobility issues, allergies or special requirements please tell us.</text>
+    </textTemplates>
+    <textTemplates>
+        <name>breastfeedingTemplate</name>
+        <text>Breastfeeding session
+In addition to the dates and times shown, there will be a 3-hour breastfeeding session. Further details of this will be confirmed to you by your course leader once finalised.</text>
     </textTemplates>
     <textTemplates>
         <name>emailBody</name>
@@ -520,7 +590,13 @@ Day Date Starts Ends Session notes
 
 {!reunionFormula}
 
+{!breastfeedingFormula}
+
+{!otherSessionFormula}
+
 {!babyMassageFormula}
+
+{!curCourse.Additional_Confirmation_Information__c}
 
 Contact details
 Please do check through the course details carefully. If you’re no longer able to attend the course and wish to discuss other options available, please do contact me as soon as you can.
@@ -541,6 +617,11 @@ Course organiser
         <name>lineBreak</name>
         <text>@!$
 @!$</text>
+    </textTemplates>
+    <textTemplates>
+        <name>otherTemplate</name>
+        <text>Additional session
+In addition to the dates and times shown, there will be a 3-hour session. Further details of this will be confirmed to you by your course leader once finalised.</text>
     </textTemplates>
     <textTemplates>
         <name>reunionSessionText</name>
@@ -620,6 +701,26 @@ There will also be a 2 hour reunion session to meet up again with all your cours
     </variables>
     <variables>
         <name>includesBabyMassage</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>includesProvisionaBreastFeeding</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>includesProvisionalOther</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
