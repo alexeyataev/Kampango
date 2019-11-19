@@ -55,7 +55,25 @@ public without sharing class TestDataFactory {
             .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
             .insertRecord(true)
             .build();
-    TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
+        TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
+        branchWeighting = branchWeightingBuilder
+            .withBranch(branchAccount)
+            .withWeighting(BRANCH_WEIGHTING)
+            .insertRecord(true)
+            .build();    
+        return this;
+    }
+
+    //used for any emails that use Org-Wide Address in "From"
+    public TestDataFactory buildBranchAccountWithEmails(String orgWideAddress) {
+        TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
+        branchAccount =  accountBranchBuilder
+            .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
+            .withCapacityPSAemail(orgWideAddress)
+            .withEnquiriesPSAemail(orgWideAddress)
+            .insertRecord(true)
+            .build();
+        TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
         branchWeighting = branchWeightingBuilder
             .withBranch(branchAccount)
             .withWeighting(BRANCH_WEIGHTING)

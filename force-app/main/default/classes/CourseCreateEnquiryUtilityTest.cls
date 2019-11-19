@@ -9,9 +9,17 @@ private class CourseCreateEnquiryUtilityTest {
                                          '"town":"London","op":"Send enquiry"}';
     @testSetup
     static void createTestData() {
+        List<OrgWideEmailAddress> addresses = [
+            SELECT Id, Address 
+            FROM OrgWideEmailAddress
+            LIMIT 1
+        ];
+
+        String existingAddress = addresses[0].Address;
+
         TestDataFactory.getInstance()
             .buildOrganizationAccount('acct1')
-            .buildBranchAccount()
+            .buildBranchAccountWithEmails(existingAddress)
             .buildPractitioner('Practitioner')
             .buildLicenceToPractice()
             .buildVenue()
