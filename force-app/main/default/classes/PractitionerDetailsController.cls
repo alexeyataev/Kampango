@@ -1,4 +1,4 @@
-public with sharing class PractitionerDetailsController {
+public without sharing class PractitionerDetailsController {
 
     public Course__c courseRecord {get; set;}
 

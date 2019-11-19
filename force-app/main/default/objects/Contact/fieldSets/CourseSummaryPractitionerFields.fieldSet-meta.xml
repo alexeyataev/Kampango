@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>CourseSummaryFields</fullName>
+    <fullName>CourseSummaryPractitionerFields</fullName>
     <description>Primarily used on the Course Summary page, also known as Confidential Class List, exposed to Practitioners in the Community.</description>
     <displayedFields>
         <field>Name</field>
@@ -17,5 +17,5 @@
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
-    <label>CourseSummaryFields</label>
+    <label>CourseSummaryPractitionerFields</label>
 </FieldSet>

@@ -1,6 +1,6 @@
 <apex:component Controller="PractitionerDetailsController">
 
-    <apex:attribute description="The course record for which to display sessions" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
+    <apex:attribute description="The course record for which to display practitioners" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
 
     <apex:pageBlock title="Practitioners">
         <apex:pageBlockTable value="{!practitioners}" var="practitioner">

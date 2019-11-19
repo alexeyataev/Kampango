@@ -3,8 +3,8 @@
 
     <apex:pageBlock title="Sessions">
         <apex:pageBlockTable value="{!course.Sessions__r}" var="session">
-            <apex:repeat value="{!$ObjectType.Session__c.FieldSets.CourseSummaryFields}" var="f">
-                <apex:column value="{!session[f]}"/>
+            <apex:repeat value="{!$ObjectType.Session__c.FieldSets.CourseSummaryFields}" var="field">
+                <apex:column value="{!session[field]}"/>
             </apex:repeat>
         </apex:pageBlockTable>
     </apex:pageBlock>
