@@ -3,12 +3,12 @@
     <actionCalls>
         <name>Send_email_to_practitioner</name>
         <label>Send email to practitioner</label>
-        <locationX>1163</locationX>
-        <locationY>951</locationY>
+        <locationX>1758</locationX>
+        <locationY>1141</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Is_Public_Venue</targetReference>
+            <targetReference>Decide_on_status</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_email_alert</targetReference>
@@ -134,7 +134,7 @@
     <assignments>
         <name>Empty_value_message</name>
         <label>Empty value message</label>
-        <locationX>2983</locationX>
+        <locationX>2984</locationX>
         <locationY>973</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
@@ -164,6 +164,22 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>MESSAGE_ERROR_SEND_EMAIL</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_status_error</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>No_host_message</name>
+        <label>No host message</label>
+        <locationX>2677</locationX>
+        <locationY>1111</locationY>
+        <assignmentItems>
+            <assignToReference>output_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MESSAGE_ERROR_NO_HOST</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -202,8 +218,8 @@
     <assignments>
         <name>Return_error_on_email_alert</name>
         <label>Return error</label>
-        <locationX>1162</locationX>
-        <locationY>1253</locationY>
+        <locationX>1946</locationX>
+        <locationY>1171</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -412,6 +428,13 @@
         </value>
     </constants>
     <constants>
+        <name>MESSAGE_ERROR_NO_HOST</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Please select parent host</stringValue>
+        </value>
+    </constants>
+    <constants>
         <name>MESSAGE_ERROR_QUERY_OR_UPDATE</name>
         <dataType>String</dataType>
         <value>
@@ -581,6 +604,31 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_if_success</name>
+        <label>Check if success</label>
+        <locationX>1597</locationX>
+        <locationY>1000</locationY>
+        <defaultConnector>
+            <targetReference>Decide_on_status</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_subflow_status_success</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_SUCCESS</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_email_to_practitioner</targetReference>
+            </connector>
+            <label>Is subflow status success?</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_Practitioner_email_is_not_null</name>
         <label>Check Practitioner email is not null</label>
         <locationX>708</locationX>
@@ -734,6 +782,21 @@
             </connector>
             <label>Is query or update error?</label>
         </rules>
+        <rules>
+            <name>Is_no_host_error</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_ERROR_NO_HOST</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>No_host_message</targetReference>
+            </connector>
+            <label>Is no host error?</label>
+        </rules>
     </decisions>
     <decisions>
         <name>Decide_on_status</name>
@@ -793,8 +856,8 @@
     <decisions>
         <name>Is_Public_Venue</name>
         <label>Is Public Venue</label>
-        <locationX>1396</locationX>
-        <locationY>954</locationY>
+        <locationX>1327</locationX>
+        <locationY>957</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Public_Venue</name>
@@ -827,7 +890,7 @@
             <label>Not volunteer venue</label>
         </rules>
     </decisions>
-    <description>Fixed output message for empty booking list error</description>
+    <description>Fixed an issue when a Practitioner gets emails when the status is &quot;error&quot; type. Fixed error when no parent host in private session</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -941,7 +1004,7 @@
         <locationY>658</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Send_email_to_practitioner</targetReference>
+            <targetReference>Is_Public_Venue</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -1045,10 +1108,10 @@
     <subflows>
         <name>Send_to_Private</name>
         <label>Send to Private</label>
-        <locationX>1540</locationX>
-        <locationY>1124</locationY>
+        <locationX>1520</locationX>
+        <locationY>1169</locationY>
         <connector>
-            <targetReference>Decide_on_status</targetReference>
+            <targetReference>Check_if_success</targetReference>
         </connector>
         <flowName>Reunion_Execute_Sending_Private_Subflow</flowName>
         <inputAssignments>
@@ -1082,6 +1145,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <name>status_error_no_host</name>
+            <value>
+                <elementReference>MESSAGE_ERROR_NO_HOST</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <name>status_part_success</name>
             <value>
                 <elementReference>STATUS_PART_SUCCESS</elementReference>
@@ -1105,10 +1174,10 @@
     <subflows>
         <name>Send_to_public</name>
         <label>Send to public</label>
-        <locationX>1407</locationX>
-        <locationY>795</locationY>
+        <locationX>1521</locationX>
+        <locationY>862</locationY>
         <connector>
-            <targetReference>Decide_on_status</targetReference>
+            <targetReference>Check_if_success</targetReference>
         </connector>
         <flowName>Reunion_Execute_Sending_Public_Subflow</flowName>
         <inputAssignments>

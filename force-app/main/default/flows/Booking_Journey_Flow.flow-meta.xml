@@ -6,7 +6,7 @@
         <locationX>642</locationX>
         <locationY>318</locationY>
         <defaultConnector>
-            <targetReference>Details_Payment</targetReference>
+            <targetReference>Payment_Details</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Membership Is False</defaultConnectorLabel>
         <rules>
@@ -50,6 +50,7 @@
             <label>Correct</label>
         </rules>
     </decisions>
+    <description>Beta 2</description>
     <interviewLabel>Booking {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Flow</label>
     <processMetadataValues>
@@ -65,16 +66,6 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
-    <recordCreates>
-        <name>Create_Gift_Aid_Declaration</name>
-        <label>Create Gift Aid Declaration</label>
-        <locationX>869</locationX>
-        <locationY>545</locationY>
-        <connector>
-            <targetReference>Details_Payment</targetReference>
-        </connector>
-        <inputReference>GiftAidDeclarationList</inputReference>
-    </recordCreates>
     <recordLookups>
         <name>Get_Booking_Data</name>
         <label>Get Booking Data</label>
@@ -181,7 +172,7 @@
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>
         <locationX>489</locationX>
-        <locationY>302</locationY>
+        <locationY>318</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -203,22 +194,6 @@
                 <assignToReference>bookingId</assignToReference>
                 <name>bookingId</name>
             </outputParameters>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <screens>
-        <name>Details_Payment</name>
-        <label>Details Payment</label>
-        <locationX>657</locationX>
-        <locationY>545</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <fields>
-            <name>DetailsPaymentDescription</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Payment Details:&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -306,10 +281,10 @@
     <subflows>
         <name>Gift_Aid_Declaration</name>
         <label>Gift Aid Declaration</label>
-        <locationX>869</locationX>
-        <locationY>318</locationY>
+        <locationX>871</locationX>
+        <locationY>425</locationY>
         <connector>
-            <targetReference>Create_Gift_Aid_Declaration</targetReference>
+            <targetReference>Payment_Details</targetReference>
         </connector>
         <flowName>Create_Gift_Aid_Declaration</flowName>
         <inputAssignments>
@@ -369,6 +344,37 @@
             <name>Membership_With_Partner</name>
         </outputAssignments>
     </subflows>
+    <subflows>
+        <name>Payment_Details</name>
+        <label>Payment Details</label>
+        <locationX>650</locationX>
+        <locationY>541</locationY>
+        <flowName>Payment_Details</flowName>
+        <inputAssignments>
+            <name>bookingId</name>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Contact_List</name>
+            <value>
+                <elementReference>Contact_List</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>GiftAidDeclarationList</name>
+            <value>
+                <elementReference>GiftAidDeclarationList</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Installment_Object</name>
+            <value>
+                <elementReference>Installment_Object</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <variables>
         <name>accountRecord</name>
         <dataType>SObject</dataType>
@@ -394,6 +400,14 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Booking__c</objectType>
+    </variables>
+    <variables>
+        <name>Contact_List</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
     </variables>
     <variables>
         <name>courseRecord</name>
