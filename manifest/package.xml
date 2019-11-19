@@ -65,7 +65,8 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>CourseSummraryCourseDetails</members>
+        <members>CourseSummaryCourseDetails</members>
+        <members>CourseSummarySessionDetails</members>
         <name>ApexComponent</name>
     </types>
     <types>
