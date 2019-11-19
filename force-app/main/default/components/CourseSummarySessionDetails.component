@@ -2,10 +2,10 @@
     <apex:attribute description="The course record for which to display sessions" name="course" type="Course__c"/>
 
     <apex:pageBlock title="Sessions">
-            <apex:pageBlockTable value="{!course.Sessions__r}" var="session">
-                <apex:repeat value="{!$ObjectType.Session__c.FieldSets.CourseSummaryFields}" var="f">
-                        <apex:column value="{!session[f]}"/>
-                </apex:repeat>
-            </apex:pageBlockTable>
-        </apex:pageBlock>
+        <apex:pageBlockTable value="{!course.Sessions__r}" var="session">
+            <apex:repeat value="{!$ObjectType.Session__c.FieldSets.CourseSummaryFields}" var="f">
+                <apex:column value="{!session[f]}"/>
+            </apex:repeat>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
 </apex:component>
