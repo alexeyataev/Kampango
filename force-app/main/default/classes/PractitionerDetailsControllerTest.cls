@@ -1,8 +1,8 @@
 @isTest
 public with sharing class PractitionerDetailsControllerTest {
 
-	private static final String PRACTITIONER_LASTNAME = 'Smith';
-	private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
+    private static final String PRACTITIONER_LASTNAME = 'Smith';
+    private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
     private static final String HOST_LASTNAME = 'Black';
 
     @TestSetup 
