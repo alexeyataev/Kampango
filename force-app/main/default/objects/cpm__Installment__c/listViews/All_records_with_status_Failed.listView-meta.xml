@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_records_with_status_Failed</fullName>
+    <columns>NAME</columns>
+    <columns>cpm__Contact__c</columns>
+    <columns>cpm__Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>cpm__Status__c</field>
+        <operation>equals</operation>
+        <value>Failed</value>
+    </filters>
+    <label>All records with status &quot;Failed&quot;</label>
+    <language>en_US</language>
+</ListView>

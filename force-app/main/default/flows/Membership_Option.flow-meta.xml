@@ -52,7 +52,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Installment_Object.Partial_Gift_Amount_Beta__c</assignToReference>
+            <assignToReference>Installment_Object.gaid__Gift_Aidable_Amount__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>AMOUNT_48</elementReference>
@@ -86,7 +86,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Installment_Object.Partial_Gift_Amount_Beta__c</assignToReference>
+            <assignToReference>Installment_Object.gaid__Gift_Aidable_Amount__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>AMOUNT_57</elementReference>
@@ -127,7 +127,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Installment_Object.Partial_Gift_Amount_Beta__c</assignToReference>
+            <assignToReference>Installment_Object.gaid__Gift_Aidable_Amount__c</assignToReference>
             <operator>Assign</operator>
         </assignmentItems>
         <assignmentItems>
