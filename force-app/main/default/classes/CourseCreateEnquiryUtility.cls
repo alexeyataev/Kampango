@@ -2,14 +2,11 @@ public without sharing class CourseCreateEnquiryUtility {
     public static final String RECORDTYPE_NAME = 'Clients';
 
     public static void createEnquiry(Map<String, String> requestParameters) {
-        if (requestParameters.isEmpty()) {
+        if (requestParameters.isEmpty() || String.isBlank(requestParameters.get('courseId'))) {
             throw new CreateEnquiryException(System.Label.CourseAPIEnqueryParametersSpecifiedNotCorrectly);
         }
 
         String courseName = requestParameters.get('courseId').trim();
-        if (String.isEmpty(courseName)) {
-            throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
-        }
 
         Course__c course;
         try {
