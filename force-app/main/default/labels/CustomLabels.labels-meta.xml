@@ -12,8 +12,8 @@
         <categories>CourseAPI</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Enquery Parameters are specified not correctly</shortDescription>
-        <value>{&quot;Error&quot; : Enquery Parameters are specified not correctly}</value>
+        <shortDescription>Enquiry Parameters are specified not correctly</shortDescription>
+        <value>{&quot;Error&quot; : Enquiry Parameters are specified not correctly}</value>
     </labels>
     <labels>
         <fullName>CourseAPIcourseNotExists</fullName>
@@ -21,7 +21,15 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Label For Set Error Search</shortDescription>
-        <value>{&quot;Error&quot; : course does not exist}</value>
+        <value>{&quot;Error&quot; : &quot;Course does not exist&quot;}</value>
+    </labels>
+    <labels>
+        <fullName>CourseAPIenquiryCreatedSuccessfully</fullName>
+        <categories>CourseAPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enquiry created successfully</shortDescription>
+        <value>{&quot;Success&quot; : &quot;Enquiry created successfully&quot;}</value>
     </labels>
     <labels>
         <fullName>CourseAPInoResultsFound</fullName>
@@ -29,7 +37,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>No results found</shortDescription>
-        <value>{&quot;Error&quot; : no results match your search criteria}</value>
+        <value>{&quot;Error&quot; : &quot;No results match your search criteria&quot;}</value>
     </labels>
     <labels>
         <fullName>CourseAPIradiusIsNotValid</fullName>
@@ -37,7 +45,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Radius is not valid response</shortDescription>
-        <value>{&quot;Error&quot; : radius is not a whole number of miles}</value>
+        <value>{&quot;Error&quot; : &quot;Radius is not a whole number of miles&quot;}</value>
     </labels>
     <labels>
         <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
