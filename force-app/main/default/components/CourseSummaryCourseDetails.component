@@ -1,5 +1,5 @@
 <apex:component>
-    <apex:attribute name="course" description="Course record" type="Course__C" required="true"/>
+    <apex:attribute name="course" description="The course record for which to display sessions" type="Course__C" required="true"/>
     
     <apex:pageBlock title="Course Details" tabStyle="Course__c">
         <apex:pageBlockSection columns="2">
