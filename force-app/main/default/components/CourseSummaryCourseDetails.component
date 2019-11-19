@@ -1,3 +1,11 @@
-<apex:component >
-
-</apex:component>
+<apex:component>
+    <apex:attribute name="course" description="Course record" type="Course__C" required="true"/>
+    
+    <apex:pageBlock title="Course Details" tabStyle="Course__c">
+        <apex:pageBlockSection columns="2">
+            <apex:repeat value="{!$ObjectType.Course__c.FieldSets.CourseSummaryFields}" var="field">                    
+                <apex:outputField value="{!course[field]}"/>
+            </apex:repeat>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:component>                      
