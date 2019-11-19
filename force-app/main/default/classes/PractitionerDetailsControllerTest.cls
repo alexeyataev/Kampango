@@ -40,7 +40,6 @@ public with sharing class PractitionerDetailsControllerTest {
 					WHERE Course__c = :course.Id)
 		];
 
-
 		PractitionerDetailsController practitionerDetailsController = new PractitionerDetailsController();
 		practitionerDetailsController.courseRecord = course;
 
