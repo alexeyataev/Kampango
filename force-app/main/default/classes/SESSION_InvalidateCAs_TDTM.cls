@@ -32,7 +32,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
 
         for (Session__c session : newSessionList) {
             Boolean condition = session.Course_Assignment__c != NULL &&
-                    (session.Type__c != 'Reunion' || session.Status__c == 'Confirmed') &&
+                    (session.Type__c != 'Reunion' || session.Status__c == 'Confirmed' ||
+                            oldSessionMap.get(session.Id).Status__c == 'Confirmed') &&
                     (session.Date__c != oldSessionMap.get(session.Id).Date__c ||
                             session.Start__c != oldSessionMap.get(session.Id).Start__c ||
                             session.End__c != oldSessionMap.get(session.Id).End__c ||

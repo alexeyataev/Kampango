@@ -165,6 +165,7 @@
     <types>
         <members>Course__c.Revert_Course_To_Draft_After_Cost_Deletion</members>
         <members>Course__c.Revert_Course_To_Draft_When_Key_Info_Changes</members>
+        <members>Installment_Process</members>
         <members>Update_Practitioner_Licence</members>
         <name>Flow</name>
     </types>

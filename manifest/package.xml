@@ -18,6 +18,7 @@
         <members>CourseFinderModelTest</members>
         <members>CourseFinderModelOrdered</members>
         <members>CourseFinderModelOrderedTest</members>
+        <members>CoursesBranchModel</members>
         <members>CoursesDateDistanceModel</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
@@ -64,6 +65,15 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>CourseSummraryCourseDetails</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>CourseSummary</members>
+        <members>CourseSummaryPDF</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
@@ -108,6 +118,14 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>cpm__Installment__c.ga_decl_1__c</members>
+        <members>cpm__Installment__c.ga_decl_2__c</members>
+        <members>cpm__Installment__c.Sales_Invoice__c</members>
+        <members>cpm__Installment__c.Partner_Contact__c</members>
+        <members>cpm__Installment__c.Bank_Details_Number__c</members>
+        <members>cpm__Installment__c.Partner_Contact__c</members>
+        <members>cpm__Installment__c.Care_Membership_Added__c</members>
+        <members>cpm__Installment__c.Membership_Type__c</members>
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Session__c.Eligible_for_Claim__c</members>
         <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
@@ -115,6 +133,7 @@
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
+        <members>Zumzum__Sales_Invoice__c.Booking__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -138,6 +157,7 @@
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
+        <members>cpm__Installment__c</members>
         <members>dlrs__LookupRollupSummary2__mdt</members>
         <members>gaid__Gift_Aid_Declaration__c</members>
         <members>Estimated_Costs__c</members>
@@ -224,6 +244,11 @@
         <name>CustomTab</name>
     </types>
     <types>
+        <members>Enquiries_PSA</members>
+        <members>Enquiries_PSA/Enquiries_PSA_Reports</members>
+        <name>Dashboard</name>
+    </types>
+    <types>
         <members>Communities_Shared_Document_Folder</members>
         <members>Communities_Shared_Document_Folder/social_logo_png</members>
         <name>Document</name>
@@ -269,7 +294,10 @@
         <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
         <members>Create_Task_For_Booking</members>
+        <members>Get_Payment_Link</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
+        <members>Membership_Option</members>
+        <members>Payment_Details</members>
         <members>Populate_Practitioner_Name</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Offer_Email</members>
@@ -339,6 +367,7 @@
         <members>courseDetailsComponent</members>
         <members>claimFeesDatatable</members>
         <members>failurePaymentPage</members>
+        <members>linkToPaymentComponent</members>
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
@@ -396,6 +425,8 @@
         <members>Capacity_PSA/CADs_to_issue1</members>
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
+        <members>Enquiries_PSA</members>
+        <members>Enquiries_PSA/Confirmed_Bookings</members>
         <members>Practitioners</members>
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>

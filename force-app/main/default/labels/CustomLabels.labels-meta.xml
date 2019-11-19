@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-        <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Generate Payment File Invalid Batch Bank Payment Status Message</shortDescription>
-        <value>Batch Bank Payment should be approved to generate Payment File.</value>
-    </labels>
-    <labels>    
         <fullName>ContactUpdateException</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ContactUpdateException</shortDescription>
         <value>An error occurred during details update.</value>
+    </labels>
+    <labels>
+        <fullName>CourseAPIEnqueryParametersSpecifiedNotCorrectly</fullName>
+        <categories>CourseAPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enquery Parameters are specified not correctly</shortDescription>
+        <value>{&quot;Error&quot; : Enquery Parameters are specified not correctly}</value>
     </labels>
     <labels>
         <fullName>CourseAPIcourseNotExists</fullName>
@@ -23,6 +24,14 @@
         <value>{&quot;Error&quot; : course does not exist}</value>
     </labels>
     <labels>
+        <fullName>CourseAPInoResultsFound</fullName>
+        <categories>CourseAPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No results found</shortDescription>
+        <value>{&quot;Error&quot; : no results match your search criteria}</value>
+    </labels>
+    <labels>
         <fullName>CourseAPIradiusIsNotValid</fullName>
         <categories>CourseAPI</categories>
         <language>en_US</language>
@@ -31,11 +40,10 @@
         <value>{&quot;Error&quot; : radius is not a whole number of miles}</value>
     </labels>
     <labels>
-        <fullName>CourseAPInoResultsFound</fullName>
-        <categories>CourseAPI</categories>
+        <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>No results found</shortDescription>
-        <value>{&quot;Error&quot; : no results match your search criteria}</value>
+        <shortDescription>Generate Payment File Invalid Batch Bank Payment Status Message</shortDescription>
+        <value>Batch Bank Payment should be approved to generate Payment File.</value>
     </labels>
 </CustomLabels>

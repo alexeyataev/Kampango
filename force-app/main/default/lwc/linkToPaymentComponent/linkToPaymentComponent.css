@@ -1,0 +1,22 @@
+.paymentLink {
+    display: inline-block;
+    font: 1.2em 'Lato', arial, sans-serif;
+    line-height: 2.5rem;
+    background-color: #3AA43B;
+    padding: 0 1.875rem;
+    border-radius: 1.25rem;
+}
+
+.paymentLink:hover {
+    background-color: #00886a;
+}
+
+.paymentLink,
+.paymentLink:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.paymentLink:active {
+    transform:scale(0.98);
+}
