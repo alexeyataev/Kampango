@@ -301,6 +301,7 @@
         <members>Payment_Details</members>
         <members>Populate_Practitioner_Name</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
+        <members>Resend_Confirmation_Email</members>
         <members>Resend_Offer_Email</members>
         <members>Resend_Reunion_Email</members>
         <members>Reunion_Execute_Sending_Private_Subflow</members>
@@ -407,6 +408,7 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Offer_Email</members>
         <members>Course__c.Resend_Reunion_Email</members>
         <members>Zumzum__NewTask</members>
