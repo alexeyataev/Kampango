@@ -918,6 +918,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Session_Info_For_Flow__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Venue__c</field>
         <readable>true</readable>
@@ -1135,6 +1140,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Venue__c.Venue_Website__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Venue__c.Venue_Info_For_Flow__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
