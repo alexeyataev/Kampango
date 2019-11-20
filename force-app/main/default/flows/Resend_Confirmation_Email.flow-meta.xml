@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Result_Sending_Email</name>
         <label>Result Sending Email</label>
-        <locationX>695</locationX>
-        <locationY>208</locationY>
+        <locationX>672</locationX>
+        <locationY>234</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <connector>
@@ -20,23 +20,6 @@
             <name>message</name>
             <value>
                 <elementReference>TOAST_MESSAGE</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <name>Sent_Email</name>
-        <label>Send Email</label>
-        <locationX>501</locationX>
-        <locationY>203</locationY>
-        <actionName>Booking__c.SendEmailToClient</actionName>
-        <actionType>emailAlert</actionType>
-        <connector>
-            <targetReference>Result_Sending_Email</targetReference>
-        </connector>
-        <inputParameters>
-            <name>SObjectRowId</name>
-            <value>
-                <elementReference>recordId</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -57,30 +40,30 @@
     <decisions>
         <name>Check_Status</name>
         <label>Check Status</label>
-        <locationX>165</locationX>
-        <locationY>181</locationY>
+        <locationX>169</locationX>
+        <locationY>203</locationY>
         <defaultConnector>
             <targetReference>Confirm_Send_Email_Screen</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Status is Reserved</defaultConnectorLabel>
+        <defaultConnectorLabel>Status is Confirmed</defaultConnectorLabel>
         <rules>
-            <name>Status_is_not_Reserved</name>
+            <name>Status_is_not_Confirmed</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>curBooking.Status__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <stringValue>Reserved</stringValue>
+                    <stringValue>Confirmed</stringValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>Sent_Email_Not_Availablr_Screen</targetReference>
             </connector>
-            <label>Status is not Reserved</label>
+            <label>Status is not Confirmed</label>
         </rules>
     </decisions>
-    <interviewLabel>Resend Offer Email {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Resend Offer Email</label>
+    <interviewLabel>Resend Confirmation Email {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Resend Confirmation Email</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -97,8 +80,8 @@
     <recordCreates>
         <name>Create_Task</name>
         <label>Create Task</label>
-        <locationX>695</locationX>
-        <locationY>377</locationY>
+        <locationX>672</locationX>
+        <locationY>389</locationY>
         <inputAssignments>
             <field>ActivityDate</field>
             <value>
@@ -144,7 +127,7 @@
         <inputAssignments>
             <field>Subject</field>
             <value>
-                <stringValue>Offer email resent</stringValue>
+                <stringValue>Confirmation email resent</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -158,11 +141,11 @@
     <recordLookups>
         <name>Get_Booking_Record</name>
         <label>Get Booking Record By Id</label>
-        <locationX>50</locationX>
-        <locationY>179</locationY>
+        <locationX>44</locationX>
+        <locationY>162</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_Status</targetReference>
+            <targetReference>Get_Course</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -178,17 +161,44 @@
         <queriedFields>Last_Name__c</queriedFields>
         <queriedFields>CreatedById</queriedFields>
         <queriedFields>Status__c</queriedFields>
+        <queriedFields>Course__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Enquiries_PSA_First_Name__c</queriedFields>
+        <queriedFields>Primary_Contact_Email__c</queriedFields>
+        <queriedFields>Email_Template_Utility_Field__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Course</name>
+        <label>Get Course</label>
+        <locationX>52</locationX>
+        <locationY>368</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Status</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>curBooking.Course__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Course__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Main_Practitioner__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Screen of  Confirm</label>
-        <locationX>355</locationX>
-        <locationY>307</locationY>
+        <locationX>320</locationX>
+        <locationY>381</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Sent_Email</targetReference>
+            <targetReference>Sent_Confirmation_Notification</targetReference>
         </connector>
         <fields>
             <name>Confirm_Text</name>
@@ -207,27 +217,85 @@
     <screens>
         <name>Sent_Email_Not_Availablr_Screen</name>
         <label>Screen Send Email Not Available</label>
-        <locationX>345</locationX>
-        <locationY>66</locationY>
+        <locationX>318</locationX>
+        <locationY>42</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
             <name>Can_Not_Sent_Email</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;You can&#39;t resend the offer email when the status of booking is not &quot;Reserved&quot;.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;You can&#39;t send a resend confirmation email when the status of booking is not &quot;Confirmed&quot;.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
+        <locationX>44</locationX>
+        <locationY>23</locationY>
         <connector>
             <targetReference>Get_Booking_Record</targetReference>
         </connector>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Sent_Confirmation_Notification</name>
+        <label>Sent Confirmation Notification</label>
+        <locationX>485</locationX>
+        <locationY>234</locationY>
+        <connector>
+            <targetReference>Result_Sending_Email</targetReference>
+        </connector>
+        <flowName>BookingConfirmationNotificationSend</flowName>
+        <inputAssignments>
+            <name>bookingFirstName</name>
+            <value>
+                <elementReference>curBooking.First_Name__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>bookingId</name>
+            <value>
+                <elementReference>curBooking.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>bookingName</name>
+            <value>
+                <elementReference>curBooking.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>bookingUtilityField</name>
+            <value>
+                <elementReference>curBooking.Email_Template_Utility_Field__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>courseId</name>
+            <value>
+                <elementReference>curBooking.Course__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>emailAddress</name>
+            <value>
+                <elementReference>curBooking.Primary_Contact_Email__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>enquiryName</name>
+            <value>
+                <elementReference>curBooking.Enquiries_PSA_First_Name__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>mainPractitionerId</name>
+            <value>
+                <elementReference>Get_Course.Main_Practitioner__c</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <variables>
         <name>curBooking</name>
         <dataType>SObject</dataType>
