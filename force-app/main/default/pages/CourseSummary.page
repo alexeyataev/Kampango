@@ -1,3 +1,4 @@
-<apex:page >
-    <c:CourseSummaryCourseDetails/>
+<apex:page standardController="Course__c">
+    <c:CourseSummaryCourseDetails course="{!Course__c}"/>
+    <c:CourseSummarySessionDetails course="{!Course__c}"/>
 </apex:page>

@@ -31,6 +31,8 @@
         <members>PaymentApiRequest</members>
         <members>PractitionerBandFeeHelper</members>
         <members>PractitionerBandFeeHelperTest</members>
+        <members>PractitionerDetailsController</members>
+        <members>PractitionerDetailsControllerTest</members>
         <members>PractitionerFeeRateHelper</members>
         <members>PractitionerFeeRateHelperTest</members>
         <members>SendHTMLEmailPlugin</members>
@@ -66,6 +68,7 @@
     </types>
     <types>
         <members>CourseSummaryCourseDetails</members>
+        <members>CourseSummaryPractitionerDetails</members>
         <members>CourseSummarySessionDetails</members>
         <name>ApexComponent</name>
     </types>
@@ -283,6 +286,10 @@
         <members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
         <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Contact.CourseSummaryPractitionerFields</members>
+        <name>FieldSet</name>
     </types>
     <types>
         <members>Assign_Practitioner_Fee_Rate_to_Session</members>
