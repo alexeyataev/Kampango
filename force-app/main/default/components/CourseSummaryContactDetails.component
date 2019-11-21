@@ -1,0 +1,13 @@
+<apex:component Controller="ContactDetailsController">
+
+    <apex:attribute description="The course record for which to display Contacts" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
+    <apex:attribute description="The API name of contact fieldset" name="fieldset" type="String[]" required="true"/>    
+
+    <apex:pageBlock>
+        <apex:pageBlockTable value="{!contacts}" var="contact">
+            <apex:repeat value="{!fieldset}" var="field">
+                <apex:column value="{!contact[field]}"/>
+            </apex:repeat>
+        </apex:pageBlockTable>
+    </apex:pageBlock>    
+</apex:component>

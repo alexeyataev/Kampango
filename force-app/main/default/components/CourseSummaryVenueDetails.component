@@ -1,0 +1,21 @@
+<apex:component controller="VenueDetailsController">
+
+    <apex:attribute description="The course record for which to display venues" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
+
+    <apex:pageBlock title="Venues">
+        <apex:pageBlockTable value="{!venues}" var="venue">
+            <!--><apex:repeat value="{!$ObjectType.Venue__c.FieldSets.CourseSummaryVenueFields}" var="field">
+                <apex:column value="{!venue[field]}" headerClass="headerStyle"/>
+            </apex:repeat><-->
+
+            <apex:column value="{!venue.name}" headerValue="Name"/>
+            <apex:column headerValue="Main Venue">
+                <apex:image url="{!$Resource.Tick}" width="30" height="30" rendered="{!venue.isMainVenue}"/>
+            </apex:column>
+            <apex:column value="{!venue.address}" headerValue="Address"/>
+            <apex:column headerValue="Emergency Contact">
+                <c:CourseSummaryContactDetails course="{!course}" fieldset="{!$ObjectType.Contact.FieldSets.CourseSummaryEmergencyContactFields}"/>
+            </apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlock>    
+</apex:component>
