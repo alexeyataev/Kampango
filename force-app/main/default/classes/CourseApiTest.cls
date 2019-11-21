@@ -5,8 +5,16 @@ public without sharing class CourseApiTest {
 
     @TestSetup
     private static void setupTestData() {
+        List<OrgWideEmailAddress> addresses = [
+            SELECT Id, Address 
+            FROM OrgWideEmailAddress
+            LIMIT 1
+        ];
+
+        String existingAddress = addresses[0].Address;
+        
         TestDataFactory.getInstance()
-            .buildBranchAccount()
+            .buildBranchAccountWithEmails(existingAddress)
             .buildOrganizationAccount('acc5')
             .buildPractitioner('Test')
             .buildPractitionerFeeRate()

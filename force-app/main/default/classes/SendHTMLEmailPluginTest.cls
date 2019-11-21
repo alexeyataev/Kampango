@@ -48,7 +48,7 @@ public with sharing class SendHTMLEmailPluginTest {
             LIMIT 1
         ];
 
-        if (emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
+        if (SendHTMLEmailPlugin.emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
             String orgWideEmail = orgEmailObject[0].Address;
             Contact recipient = [
                 SELECT Id, AccountId 
@@ -90,7 +90,7 @@ public with sharing class SendHTMLEmailPluginTest {
             LIMIT 1
         ];
 
-        if (emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
+        if (SendHTMLEmailPlugin.emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
             String orgWideEmail = orgEmailObject[0].Address;
             Contact recipient = [
                 SELECT Id, AccountId 
@@ -126,7 +126,7 @@ public with sharing class SendHTMLEmailPluginTest {
     
     @isTest
     public static void errorIfNoRecipient () {
-		if (emailsFeatureEnabled()) {
+		if (SendHTMLEmailPlugin.emailsFeatureEnabled()) {
             Contact recipient = [
                 SELECT Id, AccountId 
                 FROM Contact 
@@ -156,7 +156,7 @@ public with sharing class SendHTMLEmailPluginTest {
 	
     @isTest
     public static void errorIfNoTemplate () {
-		if (emailsFeatureEnabled()) {
+		if (SendHTMLEmailPlugin.emailsFeatureEnabled()) {
             Contact recipient = [
                 SELECT Id, AccountId 
                 FROM Contact 
@@ -182,14 +182,5 @@ public with sharing class SendHTMLEmailPluginTest {
             List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
             System.assertEquals(false, testResponseList[0].isSuccess, 'Email without a template can not be sent');
         }
-    }
-    
-    private static Boolean emailsFeatureEnabled() {
-        try {
-            Messaging.reserveSingleEmailCapacity(1);
-        } catch (System.NoAccessException e) {
-            return false;
-        }
-        return true;
     }
 }
