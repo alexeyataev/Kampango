@@ -214,7 +214,7 @@
         <allowPause>true</allowPause>
         <fields>
             <name>Can_Not_Sent_Email</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;You can&#39;t resend the offer email when the status of booking is not &quot;Reserved&quot;.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Unable to send offer email - booking status is not &quot;Reserved&quot;&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
