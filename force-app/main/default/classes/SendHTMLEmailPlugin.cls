@@ -20,7 +20,7 @@ public with sharing class SendHTMLEmailPlugin {
         Messaging.SingleEmailMessage message = new  Messaging.SingleEmailMessage();
         
         Boolean hasRecipient = (targetObjId != null || bccEmails != null || ccEmails != null);
-        if (hasRecipient) {
+        if (emailsFeatureEnabled() && hasRecipient) {
 
             setEmailCapacity(targetObjId, ccEmails, bccEmails);
 
@@ -70,7 +70,7 @@ public with sharing class SendHTMLEmailPlugin {
 
             system.debug('Email invocations after send: ' + Limits.getEmailInvocations());
         } else {
-            Response response = createErrorResponse('Recipient is not assigned');
+            Response response = createErrorResponse('Messaging is not supported or recipient is not assigned');
             responseList.add(response);
         }
 
@@ -119,6 +119,15 @@ public with sharing class SendHTMLEmailPlugin {
         response.isSuccess = false;
         response.errors = errors;
         return response;
+    }
+    
+    public static Boolean emailsFeatureEnabled() {
+        try {
+            Messaging.reserveSingleEmailCapacity(1);
+        } catch (System.NoAccessException e) {
+            return false;
+        }
+        return true;
     }
     
     public class Request {
