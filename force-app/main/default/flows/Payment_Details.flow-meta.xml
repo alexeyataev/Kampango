@@ -20,7 +20,7 @@
         <name>Calculate_Sum</name>
         <label>Calculate of sum(Course Fee + Membership Fee)</label>
         <locationX>812</locationX>
-        <locationY>650</locationY>
+        <locationY>648</locationY>
         <assignmentItems>
             <assignToReference>Installment_Object.cpm__Amount__c</assignToReference>
             <operator>Assign</operator>
@@ -66,22 +66,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Type_Of_Payment</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Set_status_to_Pending</name>
-        <label>Set status to Pending</label>
-        <locationX>527</locationX>
-        <locationY>1625</locationY>
-        <assignmentItems>
-            <assignToReference>Installment_Object.cpm__Status__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Pending</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_Membership_Added</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -211,7 +195,7 @@
         <locationX>520</locationX>
         <locationY>1388</locationY>
         <defaultConnector>
-            <targetReference>Set_status_to_Pending</targetReference>
+            <targetReference>Is_Membership_Added</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Is Empty</defaultConnectorLabel>
         <rules>
@@ -246,8 +230,8 @@
     <decisions>
         <name>Is_Membership_Added</name>
         <label>Is Membership Added</label>
-        <locationX>754</locationX>
-        <locationY>1627</locationY>
+        <locationX>520</locationX>
+        <locationY>1641</locationY>
         <defaultConnector>
             <targetReference>Create_Invoice_Item_for_Membership</targetReference>
         </defaultConnector>
@@ -340,7 +324,7 @@ CC and DD = Credit Card for Course and Direct Debit for Membership;
 CC and CC = Credit Card for Course and Credit Card for Membership;</description>
         <name>Type_Of_Payment</name>
         <label>Type Of Payment</label>
-        <locationX>521</locationX>
+        <locationX>519</locationX>
         <locationY>217</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
