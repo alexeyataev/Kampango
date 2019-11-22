@@ -40,7 +40,7 @@ public with sharing class SendHTMLEmailPlugin {
             }
             
             // Set sender address (cannot be used both)
-            if (orgWide != null) {
+            if (orgWide != null && orgWide != '') {
                 Id orgWideEmail = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: orgWide].Id;
                 message.setOrgWideEmailAddressId(orgWideEmail);
             } else if (senderDisplay != null){
