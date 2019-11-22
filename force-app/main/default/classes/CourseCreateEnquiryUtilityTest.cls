@@ -18,12 +18,51 @@ private class CourseCreateEnquiryUtilityTest {
         String existingAddress = addresses[0].Address;
 
         TestDataFactory.getInstance()
-            .buildOrganizationAccount('acct1')
             .buildBranchAccountWithEmails(existingAddress)
-            .buildPractitioner('Practitioner')
-            .buildLicenceToPractice()
+            .buildOrganizationAccount('acct1')
+            .buildPractitioner('Test')
+            .buildPractitionerFeeRate()
             .buildVenue()
-            .buildCourse();
+            .buildRoom()
+            .buildLicenceToPractice()
+            .buildCoursesWithSessions(2, 2);
+
+
+        Profile p = [SELECT Id FROM Profile WHERE Name='Website Integration'];
+        String uniqueUserName = 'websiteuser' + DateTime.now().getTime() + '@testorg.com';
+        User u = new User(
+            Alias = 'websiteu',
+            Email='websiteuser@testorg.com',
+            EmailEncodingKey='UTF-8',
+            LastName='websiteuserTesting',
+            LanguageLocaleKey='en_US',
+            LocaleSidKey='en_GB',
+            ProfileId = p.Id,
+            TimeZoneSidKey='Europe/London',
+            UserName=uniqueUserName
+        );  
+        insert u;
+
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        List<Course__c> coursesToFinal = [
+            SELECT Status__c, Count_of_Estimated_Travel_Costs__c, Count_of_Estimated_Venue_Costs__c, Main_Venue__c, Fee__c,
+            (
+                SELECT Status__c FROM Sessions__r
+            )
+            FROM Course__c
+        ];
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        Venue__c mainVenue = venueBuilder
+                                .insertRecord(true)
+                                .build();
+
+        dataFactory.setMainVenueToCourses(mainVenue, coursesToFinal);
+        for (Course__c course : coursesToFinal) {
+            if (!course.Sessions__r.isEmpty()) {
+                dataFactory.setSessionsToConfirmed(course.Sessions__r);   
+            }
+        }
+        dataFactory.setCoursesWithSessionsToFinal(coursesToFinal);
     }
 
     @isTest

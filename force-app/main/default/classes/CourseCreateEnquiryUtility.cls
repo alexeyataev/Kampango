@@ -8,15 +8,8 @@ public without sharing class CourseCreateEnquiryUtility {
 
         String courseName = requestParameters.get('courseId').trim();
 
-        Course__c course;
-        try {
-            course = [
-                SELECT Id, Name
-                FROM Course__c
-                WHERE Name =: courseName
-                LIMIT 1
-            ];
-        } catch (System.QueryException e){
+        Course__c course =  CourseSearchUtility.getCourseById(courseName, true);
+        if (course == null) {
             throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
         }
         
@@ -30,7 +23,7 @@ public without sharing class CourseCreateEnquiryUtility {
             MobilePhone = requestParameters.get('mobile'),
             MailingCity = requestParameters.get('town'),
             MailingPostalCode = requestParameters.get('postcode'),
-            MailingCountry = requestParameters.get('county'),
+            MailingState = requestParameters.get('county'), // 'county' is not a 'countRy'
             MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
             npe01__PreferredPhone__c = 'Mobile'
         );
