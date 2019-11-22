@@ -20,6 +20,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         return dmlWrapper;
     }
 
+
      @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #22 - https://confluence.nct.org.uk:8443/x/EoSO
     private List<Course_Assignment__c> CourseAssignmentsToChangeIfSessionsUpdated(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
@@ -70,12 +71,12 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        
+        UnlockCourseAssignmentsWithAllocatedSessionsInvolvedInApprovalProcess(courseAssignmentsToUpdate);
+
         return courseAssignmentsToUpdate;
     }
-    //NOPMD
-    //Incident #4 - https://confluence.nct.org.uk:8443/x/EoSO
 
+    
     private List<Course_Assignment__c> CourseAssignmentsToChangeIfSessionsInserted(List<Session__c> sessionsToIterate) {
         List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
         Set<Id> practitionerIds = new Set<Id>();
@@ -87,9 +88,11 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         }
 
         SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(practitionerIds, courseIds, courseAssignmentsToUpdate);
+        UnlockCourseAssignmentsWithAllocatedSessionsInvolvedInApprovalProcess(courseAssignmentsToUpdate);
 
         return courseAssignmentsToUpdate;
     }
+
 
     private List<Course_Assignment__c> CourseAssignmentsToChangeIfSessionsDeleted(List<Session__c> sessionsToIterate) {
         List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
@@ -100,9 +103,11 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         }
 
         SetCourseAssignmentsStatusDependOnWhetherAssignedSessions(courseAssignmentIds, courseAssignmentsToUpdate);
+        UnlockCourseAssignmentsWithAllocatedSessionsInvolvedInApprovalProcess(courseAssignmentsToUpdate);
 
         return courseAssignmentsToUpdate;
     }
+    
  
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #19, 20 - https://confluence.nct.org.uk:8443/x/EoSO
@@ -144,6 +149,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                 }
             }
         }
+        
         return courseAssignmentsToUpdate;
 	}
 
@@ -176,4 +182,20 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
 
         return courseAssignmentsToUpdate;
 	}
+
+
+    private static void UnlockCourseAssignmentsWithAllocatedSessionsInvolvedInApprovalProcess(List<Course_Assignment__c> courseAssignmentsToUpdate) {
+
+        List<Course_Assignment__c> courseAssignmentsToUnlock = new List<Course_Assignment__c>();
+        for(Course_Assignment__c assignment : courseAssignmentsToUpdate){
+            if(assignment.Status__c == COURSE_ASSIGNMENT_INVALIDATED_STATUS && Approval.isLocked(assignment.Id)){
+                courseAssignmentsToUnlock.add(assignment);
+            }
+        }
+    
+        if(!courseAssignmentsToUnlock.isEmpty()){
+            List<Approval.UnlockResult> ulrList = Approval.unlock(courseAssignmentsToUnlock, false);
+        }
+    }
+
 }

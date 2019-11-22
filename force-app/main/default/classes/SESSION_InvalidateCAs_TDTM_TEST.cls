@@ -457,6 +457,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
         ];
 
+        Approval.lock(courseAssignment.Id, false);
+
         Session__c session = [
             SELECT  Date__c, End__c, Start__c,Course__c, Practitioner__c, Course_Assignment__c
             FROM Session__c
