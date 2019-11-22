@@ -175,6 +175,13 @@
         <searchFilterFields>cpm__Mandatory_payment__c</searchFilterFields>
         <searchFilterFields>cpm__Status__c</searchFilterFields>
         <searchFilterFields>cpm__Payment_Method__c</searchFilterFields>
+        <searchResultsAdditionalFields>cpm__Amount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>cpm__Contact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>cpm__Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
