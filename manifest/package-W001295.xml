@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Claim_Practitioner_Fees</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>Financial_Settings__c</members>
+        <name>CustomObject</name>
+    </types>
+    <version>46.0</version>
+</Package>
