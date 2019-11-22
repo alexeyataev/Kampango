@@ -47,7 +47,13 @@ public without sharing class CourseCreateEnquiryUtility {
         }
         
         booking.Primary_Contact__c = contact.Id;
-        booking.Birth_Due_Date__c = Date.parse((requestParameters.get('duedate')));
+
+        try {
+            booking.Birth_Due_Date__c = getDate(requestParameters.get('duedate'));
+        } catch (Exception e){
+            throw new CreateEnquiryException(e.getMessage());
+        }
+        
         booking.First_Baby__c = parseParameterToPicklistValue(requestParameters.get('firstbaby'));
         booking.Multiple_Birth__c = parseParameterToPicklistValue(requestParameters.get('twinsexpected'));
         booking.Course__c = course.Id;
@@ -58,6 +64,18 @@ public without sharing class CourseCreateEnquiryUtility {
         } catch (DmlException ex) {
             throw new CreateEnquiryException(ex.getMessage());
         }
+    }
+
+    private static Date getDate(String dateString){
+        Date result;
+        try {
+            // process date format like '12/27/2009'
+            result = Date.parse(dateString);
+        } catch (Exception e){
+            // process date format like '2009-12-27'
+            result = Date.valueOf(dateString);
+        }
+        return result;
     }
 
     private static Id createPartnerContact(Map<String, String> requestParameters) {
