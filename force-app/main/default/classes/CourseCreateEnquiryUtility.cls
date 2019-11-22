@@ -30,7 +30,7 @@ public without sharing class CourseCreateEnquiryUtility {
             MobilePhone = requestParameters.get('mobile'),
             MailingCity = requestParameters.get('town'),
             MailingPostalCode = requestParameters.get('postcode'),
-            MailingCountry = requestParameters.get('county'),
+            MailingState = requestParameters.get('county'), // 'county' is not a 'countRy'
             MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
             npe01__PreferredPhone__c = 'Mobile'
         );
