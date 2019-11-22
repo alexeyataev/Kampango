@@ -166,3 +166,6 @@ th, td {
 .margin-bottom_half-rem{
     margin-bottom: 0.5rem;
 }
+display-row {
+    display: table-row;
+}
