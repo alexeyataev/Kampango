@@ -26,33 +26,9 @@
     <div class="slds-grid slds-wrap">
       <div class="slds-col slds-size_1-of-1">
         <div class="height_100">
-          <div>
-            <div class="nct-header-text header-text-margin">Locations</div>
-            <lightning-layout
-              multiple-rows="true"
-              vertical-align="stretch"
-              horizontal-align="spread"
-            >
-              <template for:each={venues} for:item="venue">
-                <lightning-layout-item
-                  class="lato-font regular-text padding-top_1 padding-bottom_1"
-                  key={venue.id}
-                  size="12"
-                  small-device-size="12"
-                  medium-device-size="6"
-                  large-device-size="4"
-                >
-                  <p class="margin-bottom_half-rem">
-                    <b>{venue.name}</b> ({venue.sessions})<br />
-                  </p>
-                  <p class="margin-bottom_quarter-rem">{venue.street}</p>
-                  <p class="margin-bottom_quarter-rem">{venue.town}</p>
-                  <p class="margin-bottom_quarter-rem">{venue.county}</p>
-                  <p class="margin-bottom_quarter-rem">{venue.postcode}</p>
-                </lightning-layout-item>
-              </template>
-            </lightning-layout>
-          </div>
+          <template if:true={venuesLoaded}>
+            <c-locations venues={allVenues} sessions={sessions} location-header="Locations"></c-locations>
+          </template>
         </div>
       </div>
       <div class="slds-col slds-size_1-of-1">
@@ -60,54 +36,9 @@
           <div
             class="padding-bottom_1 slds-col slds-small-size_1-of-1 slds-medium-size_7-of-12 slds-large-size_7-of-12"
           >
-            <div class="nct-header-text header-text-margin">Sessions</div>
-            <div class="lato-font regular-text padding-top_1">
-              <template if:true={formattedSessions}>
-                <template for:each={formattedSessions} for:item="session">
-                  <div class="border-bottom_grey" key={session.id}>
-                    <lightning-layout
-                      class="slds-p-bottom_x-small slds-p-top_x-small"
-                    >
-                      <lightning-layout-item
-                        size="1"
-                        class="slds-m-right_xx-small"
-                        >{session.row}</lightning-layout-item
-                      >
-                      <lightning-layout-item size="11">
-                        <lightning-layout multiple-rows="true">
-                          <lightning-layout-item
-                            class="slds-m-bottom_xx-small"
-                            size="6"
-                            small-device-size="6"
-                            medium-device-size="3"
-                            large-device-size="3"
-                          >
-                            {session.dateFormatted}
-                          </lightning-layout-item>
-                          <lightning-layout-item
-                            class="slds-m-bottom_xx-small"
-                            size="6"
-                            small-device-size="6"
-                            medium-device-size="3"
-                            large-device-size="3"
-                          >
-                            {session.Start__c} - {session.End__c}
-                          </lightning-layout-item>
-                          <lightning-layout-item
-                            size="12"
-                            small-device-size="12"
-                            medium-device-size="6"
-                            large-device-size="6"
-                          >
-                            {session.additionalInfo}
-                          </lightning-layout-item>
-                        </lightning-layout>
-                      </lightning-layout-item>
-                    </lightning-layout>
-                  </div>
-                </template>
-              </template>
-            </div>
+          <template if:true={venuesLoaded}>
+             <c-sessions sessions={sessions} session-header="Sessions"></c-sessions>
+          </template>
           </div>
         </div>
       </div>
