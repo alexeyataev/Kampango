@@ -10,5 +10,5 @@
     OR(ISPICKVAL(Course__r.Status__c, &quot;Cancelling&quot;), 
        ISPICKVAL(Course__r.Status__c, &quot;Cancelled&quot;)),
     NOT($Permission.Override_Booking_Validation))</errorConditionFormula>
-    <errorMessage>You cannot progress bookings on this course any further as it is in the process of being cancelled.</errorMessage>
+    <errorMessage>Invalid action. Course is being cancelled.</errorMessage>
 </ValidationRule>
