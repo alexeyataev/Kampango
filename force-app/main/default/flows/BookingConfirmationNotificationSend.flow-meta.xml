@@ -157,13 +157,20 @@
     <assignments>
         <name>Set_Reunion</name>
         <label>Set Reunion</label>
-        <locationX>50</locationX>
-        <locationY>778</locationY>
+        <locationX>25</locationX>
+        <locationY>745</locationY>
         <assignmentItems>
             <assignToReference>includesReunion</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Reunion_Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>session.Status__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -356,7 +363,7 @@
     <formulas>
         <name>reunionFormula</name>
         <dataType>String</dataType>
-        <expression>IF({!includesReunion}, {!reunionSessionText}, &#39;&#39;)</expression>
+        <expression>IF({!includesReunion} &amp;&amp; {!Reunion_Status} = &#39;Confirmed&#39; ,&#39;&#39;, {!reunionSessionText})</expression>
     </formulas>
     <formulas>
         <name>venueFinal</name>
@@ -772,6 +779,13 @@ There will also be a 2 hour reunion session to meet up again with all your cours
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>Reunion_Status</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>session</name>
