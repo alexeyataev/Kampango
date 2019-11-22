@@ -14,33 +14,33 @@
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>replyEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>orgWideEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>clientTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>orgWideAddress</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>targetObjectId</name>
             <value>
                 <elementReference>booking.Primary_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>clientTemplate.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -58,33 +58,33 @@
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>replyEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>orgWideEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>clientTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>orgWideAddress</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>targetObjectId</name>
             <value>
                 <elementReference>booking.Partner_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>clientTemplate.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -102,33 +102,33 @@
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>replyEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>orgWideEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>hostTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>orgWideAddress</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>targetObjectId</name>
             <value>
                 <elementReference>booking.Primary_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>hostTemplate.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -146,33 +146,33 @@
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>replyEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>orgWideEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>hostTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>orgWideAddress</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>targetObjectId</name>
             <value>
                 <elementReference>booking.Partner_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>hostTemplate.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -474,7 +474,7 @@
             <label>Is host?</label>
         </rules>
     </decisions>
-    <description>Replaced VenueContact with Lookup on Session, improved output</description>
+    <description>Separated Org-Wide Address from Account Capacity/Enquiries emails</description>
     <formulas>
         <name>host_names</name>
         <dataType>String</dataType>
@@ -640,6 +640,13 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>EmailTemplate</objectType>
+    </variables>
+    <variables>
+        <name>orgWideAddress</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>partner_firstname</name>

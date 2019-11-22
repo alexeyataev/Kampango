@@ -14,18 +14,6 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>replyEmailAddress</name>
-            <value>
-                <elementReference>course.Capacity_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>orgWideEmailAddress</name>
-            <value>
-                <elementReference>course.Capacity_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>templateId</name>
             <value>
                 <elementReference>practitionerTemplate.Id</elementReference>
@@ -35,6 +23,12 @@
             <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Capacity_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -282,8 +276,8 @@
     <assignments>
         <name>Set_course_fields</name>
         <label>Set course fields</label>
-        <locationX>987</locationX>
-        <locationY>920</locationY>
+        <locationX>990</locationX>
+        <locationY>921</locationY>
         <assignmentItems>
             <assignToReference>course.Reunion_Venue_Name__c</assignToReference>
             <operator>Assign</operator>
@@ -498,6 +492,10 @@
         </value>
     </constants>
     <constants>
+        <name>ORG_WIDE_ADDRESS_DISPLAY_NAME</name>
+        <dataType>String</dataType>
+    </constants>
+    <constants>
         <name>STATUS_EMPTY</name>
         <dataType>String</dataType>
         <value>
@@ -606,8 +604,8 @@
     <decisions>
         <name>Check_if_success</name>
         <label>Check if success</label>
-        <locationX>1597</locationX>
-        <locationY>1000</locationY>
+        <locationX>1513</locationX>
+        <locationY>1033</locationY>
         <defaultConnector>
             <targetReference>Decide_on_status</targetReference>
         </defaultConnector>
@@ -890,7 +888,7 @@
             <label>Not volunteer venue</label>
         </rules>
     </decisions>
-    <description>Fixed an issue when a Practitioner gets emails when the status is &quot;error&quot; type. Fixed error when no parent host in private session</description>
+    <description>Turned off Org-Wide Address, moved merge fields from Course</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -937,22 +935,21 @@
         <queriedFields>Id</queriedFields>
         <queriedFields>Primary_Contact__c</queriedFields>
         <queriedFields>Status__c</queriedFields>
-        <queriedFields>Primary_Contact_Email__c</queriedFields>
         <queriedFields>First_Name_Partner__c</queriedFields>
         <queriedFields>First_Name__c</queriedFields>
-        <queriedFields>Name</queriedFields>
         <queriedFields>Last_Name__c</queriedFields>
         <queriedFields>Last_Name_Partner__c</queriedFields>
         <queriedFields>Partner_Contact__c</queriedFields>
+        <queriedFields>Primary_Contact_Email__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Course</name>
         <label>Get Course</label>
-        <locationX>924</locationX>
-        <locationY>753</locationY>
+        <locationX>932</locationX>
+        <locationY>759</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Set_course_fields</targetReference>
+            <targetReference>Get_practitioner_template</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -970,6 +967,31 @@
         <queriedFields>Capacity_PSA_Email__c</queriedFields>
         <queriedFields>Enquiries_PSA_Email__c</queriedFields>
         <queriedFields>Branch__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <description>We consider the only one is in the system</description>
+        <name>Get_Organization_Wide_Address</name>
+        <label>Get Organization-Wide Address</label>
+        <locationX>1335</locationX>
+        <locationY>491</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Public_Venue</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_get_record</targetReference>
+        </faultConnector>
+        <filters>
+            <field>DisplayName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_DISPLAY_NAME</elementReference>
+            </value>
+        </filters>
+        <object>OrgWideEmailAddress</object>
+        <outputReference>orgWideAddress</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Address</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_practitioner</name>
@@ -1048,11 +1070,7 @@
         <queriedFields>Course__c</queriedFields>
         <queriedFields>Practitioner__c</queriedFields>
         <queriedFields>Venue__c</queriedFields>
-        <queriedFields>Day_of_Week__c</queriedFields>
-        <queriedFields>Date__c</queriedFields>
         <queriedFields>IsPublicVenue__c</queriedFields>
-        <queriedFields>Start_Text__c</queriedFields>
-        <queriedFields>End_Text__c</queriedFields>
         <queriedFields>Parent_Host__c</queriedFields>
     </recordLookups>
     <recordLookups>
@@ -1087,11 +1105,8 @@
     <recordUpdates>
         <name>Update_Course</name>
         <label>Update Course</label>
-        <locationX>1046</locationX>
-        <locationY>751</locationY>
-        <connector>
-            <targetReference>Get_practitioner_template</targetReference>
-        </connector>
+        <locationX>1074</locationX>
+        <locationY>921</locationY>
         <faultConnector>
             <targetReference>Return_error_on_update_record</targetReference>
         </faultConnector>
@@ -1222,14 +1237,6 @@
         </outputAssignments>
     </subflows>
     <variables>
-        <name>booking</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Booking__c</objectType>
-    </variables>
-    <variables>
         <name>BookingList</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
@@ -1254,6 +1261,14 @@
         <value>
             <stringValue>field or object</stringValue>
         </value>
+    </variables>
+    <variables>
+        <name>orgWideAddress</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OrgWideEmailAddress</objectType>
     </variables>
     <variables>
         <name>output_message</name>
