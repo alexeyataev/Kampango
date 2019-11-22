@@ -8,15 +8,8 @@ public without sharing class CourseCreateEnquiryUtility {
 
         String courseName = requestParameters.get('courseId').trim();
 
-        Course__c course;
-        try {
-            course = [
-                SELECT Id, Name
-                FROM Course__c
-                WHERE Name =: courseName
-                LIMIT 1
-            ];
-        } catch (System.QueryException e){
+        Course__c course =  CourseSearchUtility.getCourseById(courseName, true);
+        if (course == null) {
             throw new CreateEnquiryException(System.Label.CourseAPIcourseNotExists);
         }
         
