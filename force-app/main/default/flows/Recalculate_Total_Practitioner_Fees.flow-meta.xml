@@ -13,9 +13,6 @@
         <locationY>200</locationY>
         <actionName>dlrs__RollupActionCalculate</actionName>
         <actionType>apex</actionType>
-        <connector>
-            <targetReference>myRule_1_A2</targetReference>
-        </connector>
         <inputParameters>
             <processMetadataValues>
                 <name>dataType</name>
@@ -98,68 +95,6 @@
             <name>RollupSummaryUniqueName</name>
             <value>
                 <stringValue>CoursePractitionerFeesTotalAmount</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <processMetadataValues>
-            <name>ActionCallType</name>
-            <value>
-                <stringValue>flow</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>flowSelection</name>
-            <value>
-                <stringValue>Recalculate CAD Total Fees</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_1_A2</name>
-        <label>CAD - Recalculate Total Fees</label>
-        <locationX>100</locationX>
-        <locationY>300</locationY>
-        <actionName>Recalculate_CAD_Total_Fees</actionName>
-        <actionType>flow</actionType>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>SObject</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>course</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>1.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue>Course__c</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>SObject</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>course</name>
-            <value>
-                <elementReference>myVariable_current</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -311,7 +246,7 @@
         </rules>
     </decisions>
     <description>Recalculate Total Practitioner Fees if Discount or Uplift change</description>
-    <interviewLabel>Recalculate_Total_Practitioner_Fees-2_InterviewLabel</interviewLabel>
+    <interviewLabel>Recalculate_Total_Practitioner_Fees-3_InterviewLabel</interviewLabel>
     <label>Recalculate Total Practitioner Fees</label>
     <processMetadataValues>
         <name>ObjectType</name>
