@@ -727,7 +727,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Session__c.Day_of_Week__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -799,6 +799,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Start_Text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Times__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
