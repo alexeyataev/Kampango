@@ -1,0 +1,17 @@
+<template>
+    <lightning-layout-item
+        class="lato-font regular-text padding-top_1 padding-bottom_1"
+        size="12"
+        small-device-size="12"
+        medium-device-size="6"
+        large-device-size="4"
+    >
+        <p class="margin-bottom_half-rem">
+          <b>{venue.Name}</b> ({venue.sessions})<br />
+        </p>
+        <p class="margin-bottom_quarter-rem">{venue.Street_Address__c}</p>
+        <p class="margin-bottom_quarter-rem">{venue.Town__c}</p>
+        <p class="margin-bottom_quarter-rem">{venue.County__c}</p>
+        <p class="margin-bottom_quarter-rem">{venue.Postcode__c}</p>
+  </lightning-layout-item> 
+</template>
