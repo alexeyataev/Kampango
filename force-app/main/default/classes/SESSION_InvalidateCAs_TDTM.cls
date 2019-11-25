@@ -19,7 +19,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         dmlWrapper.objectsToUpdate.addAll(courseAssignmentsToUpdate);
         return dmlWrapper;
     }
-
+    
 
      @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #22 - https://confluence.nct.org.uk:8443/x/EoSO
@@ -41,7 +41,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                             session.Lunch_Break_Minutes__c != oldSessionMap.get(session.Id).Lunch_Break_Minutes__c ||
                             session.Venue__c != oldSessionMap.get(session.Id).Venue__c ||
                             session.Room__c != oldSessionMap.get(session.Id).Room__c ||
-                            session.Status__c != oldSessionMap.get(session.Id).Status__c);
+                            session.Status__c != oldSessionMap.get(session.Id).Status__c ||
+                            session.Practitioner_Fee_Rate__c != oldSessionMap.get(session.Id).Practitioner_Fee_Rate__c);
             if (condition) {
                 courseAssignmentIds.add(session.Course_Assignment__c);
             } else if (session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c) {
@@ -71,12 +72,11 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        unlockCourseAssignmentsWithAllocatedSessionsInvolvedInApprovalProcess(courseAssignmentsToUpdate);
-
+        
         return courseAssignmentsToUpdate;
     }
 
-    
+
     private List<Course_Assignment__c> courseAssignmentsToChangeIfSessionsInserted(List<Session__c> sessionsToIterate) {
         List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
         Set<Id> practitionerIds = new Set<Id>();
@@ -88,7 +88,6 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         }
 
         setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(practitionerIds, courseIds, courseAssignmentsToUpdate);
-        unlockCourseAssignmentsWithAllocatedSessionsInvolvedInApprovalProcess(courseAssignmentsToUpdate);
 
         return courseAssignmentsToUpdate;
     }
@@ -103,7 +102,6 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         }
 
         setCourseAssignmentsStatusDependOnWhetherAssignedSessions(courseAssignmentIds, courseAssignmentsToUpdate);
-        unlockCourseAssignmentsWithAllocatedSessionsInvolvedInApprovalProcess(courseAssignmentsToUpdate);
 
         return courseAssignmentsToUpdate;
     }
@@ -149,7 +147,6 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                 }
             }
         }
-        
         return courseAssignmentsToUpdate;
 	}
 
@@ -182,20 +179,4 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
 
         return courseAssignmentsToUpdate;
 	}
-
-
-    private static void unlockCourseAssignmentsWithAllocatedSessionsInvolvedInApprovalProcess(List<Course_Assignment__c> courseAssignmentsToUpdate) {
-
-        List<Course_Assignment__c> courseAssignmentsToUnlock = new List<Course_Assignment__c>();
-        for(Course_Assignment__c assignment : courseAssignmentsToUpdate){
-            if(assignment.Status__c == COURSE_ASSIGNMENT_INVALIDATED_STATUS && Approval.isLocked(assignment.Id)){
-                courseAssignmentsToUnlock.add(assignment);
-            }
-        }
-    
-        if(!courseAssignmentsToUnlock.isEmpty()){
-            List<Approval.UnlockResult> ulrList = Approval.unlock(courseAssignmentsToUnlock, false);
-        }
-    }
-
 }
