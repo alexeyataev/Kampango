@@ -162,7 +162,6 @@
         <name>GlobalValueSet</name>
     </types>
     <types>
-        <members>Reunion_sessions_sending_emails</members>
         <members>Course__c.Revert_Course_To_Draft_After_Cost_Deletion</members>
         <members>Course__c.Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Installment_Process</members>
