@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Selection_parent_host_venue_rule</fullName>
+    <active>true</active>
+    <description>Only one value should be selected</description>
+    <errorConditionFormula>ISNULL(Parent_Host__c) &amp;&amp; ISNULL(Venue__c) 
+|| NOT( ISNULL(Venue__c) ) &amp;&amp; NOT( ISNULL(Parent_Host__c) )</errorConditionFormula>
+    <errorMessage>Either Parent Host or Venue should be selected.</errorMessage>
+</ValidationRule>
