@@ -3,6 +3,6 @@
     <fullName>Selection_parent_host_venue_rule</fullName>
     <active>true</active>
     <description>Only one value should be selected</description>
-    <errorConditionFormula>NOT( ISNULL(Venue__c) ) &amp;&amp; NOT( ISNULL(Parent_Host__c) )</errorConditionFormula>
+    <errorConditionFormula>NOT( ISBLANK(Venue__c) ) &amp;&amp; NOT( ISBLANK(Parent_Host__c) )</errorConditionFormula>
     <errorMessage>Either Parent Host or Venue should be selected.</errorMessage>
 </ValidationRule>
