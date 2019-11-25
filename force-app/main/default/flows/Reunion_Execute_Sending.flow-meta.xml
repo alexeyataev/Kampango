@@ -261,7 +261,7 @@
         <name>Return_error_on_update_record</name>
         <label>Return error</label>
         <locationX>1823</locationX>
-        <locationY>754</locationY>
+        <locationY>753</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -271,71 +271,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Decide_on_status</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Set_course_fields</name>
-        <label>Set course fields</label>
-        <locationX>990</locationX>
-        <locationY>921</locationY>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Venue_Name__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>venue.Name</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Venue_Map_Url__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>venue.Map_Url__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Venue_Town__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>venue.Town__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Venue_Street_Address__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>venue.Street_Address__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Practitioner_Name__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>practitioner.Name</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Practitioner_Email__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>practitioner.Email</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Practitioner_Phone__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>practitioner.Phone</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>course.Reunion_Venue_Postcode__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>venue.Postcode__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_Course</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -888,7 +823,7 @@
             <label>Not volunteer venue</label>
         </rules>
     </decisions>
-    <description>Turned off Org-Wide Address, moved merge fields from Course</description>
+    <description>Replaced Venue fields with one</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -1096,22 +1031,7 @@
         <outputReference>venue</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Type__c</queriedFields>
-        <queriedFields>Town__c</queriedFields>
-        <queriedFields>Street_Address__c</queriedFields>
-        <queriedFields>Name</queriedFields>
-        <queriedFields>Map_Url__c</queriedFields>
-        <queriedFields>Postcode__c</queriedFields>
     </recordLookups>
-    <recordUpdates>
-        <name>Update_Course</name>
-        <label>Update Course</label>
-        <locationX>1074</locationX>
-        <locationY>921</locationY>
-        <faultConnector>
-            <targetReference>Return_error_on_update_record</targetReference>
-        </faultConnector>
-        <inputReference>course</inputReference>
-    </recordUpdates>
     <start>
         <locationX>376</locationX>
         <locationY>264</locationY>
