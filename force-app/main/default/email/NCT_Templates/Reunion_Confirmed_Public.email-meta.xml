@@ -13,17 +13,15 @@ I&#39;m delighted to confirm the details for your {!Course__c.Sub_Type__c} cours
 
 It will be held at:
 
-{!Session__c.Venue_Name__c}
-{!Session__c.Venue_Street_Address__c}
-{!Session__c.Venue_Town__c}
-{!Session__c.Venue_Postcode__c}
-&lt;a href=&quot;{!Session__c.Venue_Map_Url__c}&quot;&gt;Click  here to see this on a map&lt;/a&gt;
+{!Session__c.Venue_Address__c} Click  here to see this on a map
+{!Session__c.Venue_Map_Url__c}
 
 The reunion will be facilitated by {!Session__c.Practitioner_Name__c} who may be contacted on {!Session__c.Practitioner_Phone__c} or at {!Session__c.Practitioner_Email__c}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
 
 We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
 
-&lt;a href=&quot;https://www.nct.org.uk&quot;&gt;Find a postnatal course&lt;/a&gt;
+Find a postnatal course
+https://www.nct.org.uk
 
 Kind regards,
 

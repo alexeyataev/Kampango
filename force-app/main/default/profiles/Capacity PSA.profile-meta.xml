@@ -827,24 +827,10 @@
         <field>Session__c.Venue_Map_Url__c</field>
         <readable>true</readable>
     </fieldPermissions>
+
     <fieldPermissions>
         <editable>true</editable>
-        <field>Session__c.Venue_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Session__c.Venue_Postcode__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Session__c.Venue_Street_Address__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Session__c.Venue_Town__c</field>
+        <field>Session__c.Venue_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <!---->
