@@ -317,7 +317,6 @@
         <members>Reunion_Execute_Sending_Private_Subflow</members>
         <members>Reunion_Execute_Sending_Public_Subflow</members>
         <members>Reunion_Execute_Sending</members>
-        <members>Reunion_Prepare_Sending_Process</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Booking_Expiration_Status</members>

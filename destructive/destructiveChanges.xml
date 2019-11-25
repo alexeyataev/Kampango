@@ -16,7 +16,6 @@
         <members>PaymentLinkGeneratorTestPageTest</members>
         <members>PaymentProviderHttpResponseMock</members>
         <members>PaymentProviderTest</members>
-        <members>TestBookingBuilder</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -155,6 +154,13 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>NCT_Templates/Reunion_Session_Attendees_Not_Client_Host_Email</members>
+        <members>NCT_Templates/Reunion_Session_Attendees_Public_Venue_Email</members>
+        <members>NCT_Templates/Reunion_Session_Course_Leader_Email</members>
+        <members>NCT_Templates/Reunion_Session_Client_Hoster_Email</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
         <members>Ignore_Booking_Confirmation_Restriction</members>
         <name>CustomPermission</name>
     </types>
@@ -163,6 +169,8 @@
         <name>GlobalValueSet</name>
     </types>
     <types>
+        <members>Reunion_sessions_sending_emails</members>
+        <members>Send_Email_On_Reunion_Session_Confirmed</members>
         <members>Course__c.Revert_Course_To_Draft_After_Cost_Deletion</members>
         <members>Course__c.Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Installment_Process</members>
@@ -227,6 +235,10 @@
         <name>WorkflowAlert</name>
     </types>
     <types>
+        <members>Booking__c.Send_reunion_session_email_to_attendee_in_host_venue</members>
+        <members>Booking__c.Send_reunion_session_email_to_attendee</members>
+        <members>Booking__c.Send_reunion_session_email_to_host</members>
+        <members>Booking__c.Send_reunion_session_email_to_practitioner</members>
         <members>Booking__c.Set_Offer_Email_Sent_Time</members>
         <members>Booking__c.SetExpDate</members>
         <members>Booking__c.SetExpDateTo5Days</members>
