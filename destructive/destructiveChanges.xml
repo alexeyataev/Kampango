@@ -166,7 +166,7 @@
         <members>Course__c.Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Installment_Process</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
-        <members>Reunion_sessions_sending_emails</members>
+        <members>Recalculate_CAD_Total_Fees</members>
         <members>Update_Practitioner_Licence</members>
         <name>Flow</name>
     </types>
