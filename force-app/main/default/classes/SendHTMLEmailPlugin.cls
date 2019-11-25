@@ -35,15 +35,17 @@ public with sharing class SendHTMLEmailPlugin {
             }
             
             // Save as activity?
-            if (saveAsActivity == null || !saveAsActivity) {
+            Boolean isSaveAsActivityNotSet = (saveAsActivity == null || !saveAsActivity);
+            if (isSaveAsActivityNotSet) {
                 message.setSaveAsActivity(false);
             }
             
             // Set sender address (cannot be used both)
-            if (orgWide != null) {
+            Boolean isOrgWideSet = (orgWide != null && orgWide != '');
+            if (isOrgWideSet) {
                 Id orgWideEmail = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: orgWide].Id;
                 message.setOrgWideEmailAddressId(orgWideEmail);
-            } else if (senderDisplay != null){
+            } else if (senderDisplay != null) {
                 message.setSenderDisplayName(senderDisplay);
             }
             message.setReplyTo(senderAddress);
