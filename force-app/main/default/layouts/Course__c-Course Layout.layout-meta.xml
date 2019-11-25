@@ -300,8 +300,8 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Date__c</fields>
         <fields>Day_of_Week__c</fields>
+        <fields>Date__c</fields>
         <fields>Times__c</fields>
         <fields>Type__c</fields>
         <fields>Specific_Attendee_Type__c</fields>
