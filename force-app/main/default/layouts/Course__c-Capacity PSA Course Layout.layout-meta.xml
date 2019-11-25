@@ -273,7 +273,7 @@
             <sortOrder>7</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-        <actionName>NewTask</actionName>
+            <actionName>NewTask</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>8</sortOrder>
         </platformActionListItems>
@@ -305,15 +305,15 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Day_of_Week__c</fields>
         <fields>Date__c</fields>
-        <fields>Start__c</fields>
-        <fields>End__c</fields>
+        <fields>Day_of_Week__c</fields>
+        <fields>Times__c</fields>
         <fields>Type__c</fields>
         <fields>Specific_Attendee_Type__c</fields>
         <fields>Practitioner__c</fields>
         <fields>Venue__c</fields>
         <fields>Room__c</fields>
+        <fields>Status__c</fields>
         <relatedList>Session__c.Course__c</relatedList>
         <sortField>Date__c</sortField>
         <sortOrder>Asc</sortOrder>
