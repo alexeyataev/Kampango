@@ -544,5 +544,5 @@
         <members>Booking__c.Send Reservation Email</members>
         <name>WorkflowRule</name>
     </types>
-    <version>47.0</version>
+    <version>46.0</version>
 </Package>
