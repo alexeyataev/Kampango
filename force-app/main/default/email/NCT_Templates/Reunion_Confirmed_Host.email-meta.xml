@@ -9,20 +9,17 @@
 
 Dear {!Contact.FirstName},
 
-I&#39;m delighted to confirm the details for your {!Course__c.Sub_Type__c} course reunion which will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c}.&lt;br&gt;&lt;br&gt;
+I&#39;m delighted to confirm the details for your {!Course__c.Sub_Type__c} course reunion which will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c}.
 
 Thank you for offering to host the session at your home:
-{!Course__c.Reunion_Venue_Name__c}
-{!Course__c.Reunion_Venue_Street_Address__c}
-{!Course__c.Reunion_Venue_Town__c}
-{!Course__c.Reunion_Venue_Postcode__c}
+{!Session__c.Venue_Address__c}
 
 Please click  here to see this on a map
-{!Course__c.Reunion_Venue_Map_Url__c}
+{!Session__c.Venue_Map_Url__c}
 
-The reunion will be facilitated by {!Course__c.Reunion_Practitioner_Name__c} who may be contacted on {!Course__c.Reunion_Practitioner_Phone__c} or at {!Course__c.Reunion_Practitioner_Email__c}. Should any changes be made to the reunion your NCT course leader will be in touch with you directly nearer the time.
+The reunion will be facilitated by {!Session__c.Practitioner_Name__c} who may be contacted on {!Session__c.Practitioner_Phone__c} or at {!Session__c.Practitioner_Email__c}. Should any changes be made to the reunion your NCT course leader will be in touch with you directly nearer the time.
 
-{!Course__c.Additional_Confirmation_Information__c}&lt;br&gt;&lt;br&gt;
+{!Course__c.Additional_Confirmation_Information__c}
 
 We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
 https://www.nct.org.uk
