@@ -76,12 +76,11 @@ public without sharing virtual class CourseFinderModel {
         private String Notes;
         
         private Session (Session__c session) {
-            this.Session_Date = session.Name;
+            this.Session_Date = session.Date__c;
             this.Start = String.valueOf(session.Start__c);
             this.Session_End = String.valueOf(session.End__c); 
             this.WomenOnly = session.Specific_Attendee_Type__c == 'Women Only' ? true : false;  
             this.Breastfeeding = session.Type__c == 'Breastfeeding' ? true : false;  
-            this.Notes = 'field is deleted';  
         }
     }
 
