@@ -28,7 +28,7 @@ public without sharing virtual class CourseFinderModel {
         this.WomenOnly = course.Women_Only__c;
         this.BranchNumber = course.Branch__r.Branch_Number__c;
         this.Price = course.Fee__c;
-        this.PlacesAvailable = Integer.valueOf(course.Number_of_places__c);
+        this.PlacesAvailable = Integer.valueOf(course.Remaining_Places__c);
         this.CourseOrganiser = new CourseOrganiser(course);
         this.Venue = new Venue(course);
         this.Sessions = collectSessionsToList(course.Sessions__r);
