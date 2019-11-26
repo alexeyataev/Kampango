@@ -15,9 +15,9 @@ The reunion will be facilitated by {!Session__c.Practitioner_Name__c} who may be
 We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:<br>
 <a href="https://www.nct.org.uk">Find a postnatal course</a> <br><br>
 
-Kind regards,<br>
-{!Course__c.Enquiries_PSA_Name__c}<br>
-Course organiser<br><br>
+Kind regards,<br><br>
 
+{!Course__c.Enquiries_PSA_Name__c}<br>
+Course organiser<br>
 Email: {!Course__c.Enquiries_PSA_Email__c}<br>
 Tel: {!Course__c.Enquiries_PSA_Phone__c}

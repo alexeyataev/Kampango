@@ -16,6 +16,7 @@ We have a range of Postnatal courses and workshops running in your area. For fur
 <a href="https://www.nct.org.uk">Find a postnatal course</a> <br><br>
 
 Kind regards,<br><br>
+
 {!Course__c.Enquiries_PSA_Name__c}<br>
 Course organiser<br>
 Email: {!Course__c.Enquiries_PSA_Email__c}<br>
