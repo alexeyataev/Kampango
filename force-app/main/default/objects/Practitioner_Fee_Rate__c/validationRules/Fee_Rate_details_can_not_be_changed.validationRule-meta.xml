@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fee_Rate_details_can_not_be_changed</fullName>
+    <active>true</active>
+    <description>Hourly Rate, Start Date, Band &amp; Weighting fields are prevented from being changed.</description>
+    <errorConditionFormula>AND(NOT(ISNEW()),
+    OR(ISCHANGED(Geographical_Weighting__c),
+       ISCHANGED(Hourly_Rate__c),
+       ISCHANGED(Practitioner_Band__c),
+       ISCHANGED(Start_Date__c)),
+    NOT($Permission.Override_Practitioner_Fee_Rate_Validation)
+)</errorConditionFormula>
+    <errorMessage>You cannot change details on practitioner fee rates records, other than the end date. In the event of a mistake, please apply an end date, equal to the start date, to this practitioner fee rate and then create a new practitioner fee rate record with the c</errorMessage>
+</ValidationRule>
