@@ -10,5 +10,5 @@
        ISCHANGED(Start_Date__c)),
     NOT($Permission.Override_Practitioner_Fee_Rate_Validation)
 )</errorConditionFormula>
-    <errorMessage>You cannot change details on practitioner fee rates records, other than the end date. In the event of a mistake, please apply an end date, equal to the start date, to this practitioner fee rate and then create a new practitioner fee rate record with the c</errorMessage>
+    <errorMessage>The only field you can change on a Practitioner Fee Rate Record is the end date. If you need to change any other field please apply an end date, equal to the start date, to this Record and then create a new Record with the correct details.</errorMessage>
 </ValidationRule>
