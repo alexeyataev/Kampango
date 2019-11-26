@@ -29,57 +29,17 @@ export default class CourseDetailsComponent extends LightningElement {
     @api lastName;
     @api startDate;
     @api endDate;
-    sessions;
-    @api formattedSessions;
+    @api sessions;
     @api courseFee;
     @api coursetype;
     @api mainTown;
     @api venues;
     @api mainVenueName;
-    allVenues;
+    @api allVenues;
     @api stylesLoaded = false;
     @api courseDuration;
     @api get valuesLoaded(){return this.bookingId && this.courseId && this.stylesLoaded;}
-    sessionColumns = [
-        {
-            fieldName: 'row',
-            type: 'number',
-            cellAttributes: { alignment: 'center' }
-        },
-        {
-            label: 'Day',
-            fieldName: 'Date__c',
-            type: 'date',
-            typeAttributes:{
-                weekday: 'short'
-            }
-        },
-        {
-            label: 'Date',
-            fieldName: 'dateFormatted',
-            type: 'string'
-        },
-        {
-            label: 'Starts',
-            fieldName: 'Start__c',
-            type: 'date',
-            typeAttributes: {
-                hour: '2-digit',
-                minute: '2-digit',
-                timeZone: 'GMT'
-            }
-        },
-        {
-            label: 'Ends',
-            fieldName: 'End__c',
-            type: 'date',
-            typeAttributes: {
-                hour: '2-digit',
-                minute: '2-digit',
-                timeZone: 'GMT'
-            }
-        }
-    ];
+    @api get venuesLoaded(){return this.allVenues && this.sessions;}
 
     @wire (getRecord, {recordId: '$bookingId', fields: BOOKING_FIELDS})
     retrieveRecord({error, data}){
@@ -122,22 +82,8 @@ export default class CourseDetailsComponent extends LightningElement {
     retrieveSessions(id){
         retrieveRelatedSessions({courseId: id})
         .then(data => {
-            this.sessions = data.map(
-                function(row, index){
-                    return Object.assign(
-                        {Date__c: row.Date__c},
-                        {dateFormatted: row.Date__c},
-                        {Start__c: row.Start__c},
-                        {End__c: row.End__c},
-                        {row: index + 1},
-                        {id: row.Id},
-                        {additionalInfo: row.Additional_Information__c}
-                    );
-                }
-            );
-            this.formatSessions();
-            this.getVenues(data);
-            this.formatVenues();
+            this.sessions = data;
+            this.getVenues(this.sessions);
         })
         .catch(error => {
             let message = 'Unknown error';
@@ -174,45 +120,23 @@ export default class CourseDetailsComponent extends LightningElement {
 
     getVenues(sessions){
         var array = sessions.map (
-            function(row, index){
+            row => {
                 if(row.Venue__c){
                     let county = '';
                     if(row.Venue__r.County__c){
                         county = row.Venue__r.County__c;
                     }
                     return Object.assign(
-                        {street: row.Venue__r.Street_Address__c},
-                        {town: row.Venue__r.Town__c},
-                        {county: county},
-                        {postcode: row.Venue__r.Postcode__c},
-                        {id: row.Venue__c},
-                        {name: row.Venue__r.Name},
-                        {sessions: index + 1}
+                        {Street_Address__c: row.Venue__r.Street_Address__c},
+                        {Town__c: row.Venue__r.Town__c},
+                        {County__c: county},
+                        {Postcode__c: row.Venue__r.Postcode__c},
+                        {Id: row.Venue__c},
+                        {Name: row.Venue__r.Name}
                     );
                 }
         });
         this.allVenues = array;
-    }
-
-    formatSessions(){
-        let array = this.sessions,
-            weekdays = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'),
-            monthDay,
-            weekday,
-            month;
-        array.forEach(
-            (row) => {
-                let date = new Date(row.dateFormatted);
-                monthDay = date.toLocaleString('default', {day: '2-digit'});
-                weekday = weekdays[date.getDay()];
-                month = date.toLocaleString('default', {month: 'short'});
-                let dateStr = weekday + ' ' + monthDay + ' ' + month;
-                row.dateFormatted = dateStr;
-                row.Start__c = Math.floor(row.Start__c / 3600000) + ':' + (row.Start__c % 3600000 / 60000).toString().padEnd(2, '0');
-                row.End__c = Math.floor(row.End__c / 3600000) + ':' + (row.End__c % 3600000 / 60000).toString().padEnd(2, '0');
-            }
-        );
-        this.formattedSessions = array;
     }
 
     addDateOrdinal(monthDay){
@@ -239,32 +163,6 @@ export default class CourseDetailsComponent extends LightningElement {
                 monthDay += 'th';
         }
         return monthDay;
-    }
-
-    formatVenues(array){
-        var sessionMap = new Map();
-        var array = this.allVenues;
-        array = array.filter(
-            function(row){
-                return row != null;
-            }
-        );
-        array.forEach(
-            function (row){
-                if(sessionMap.has(row.id)){
-                    let record = sessionMap.get(row.id);
-                    if(!record.sessions.includes('sessions')){
-                        record.sessions = record.sessions.replace('session', 'sessions');
-                    }
-                    record.sessions = record.sessions + ', ' + row.sessions;
-                    sessionMap.set(row.id, record);
-                } else {
-                    row.sessions = 'session ' + row.sessions;
-                    sessionMap.set(row.id, row);
-                }
-            }
-        );
-        this.venues = sessionMap.values();
     }
 
 }

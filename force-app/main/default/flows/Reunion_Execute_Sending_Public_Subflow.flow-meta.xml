@@ -14,33 +14,33 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>replyEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>orgWideEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>templateId</name>
             <value>
                 <elementReference>publicTemplate.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>mergeObjectId</name>
-            <value>
-                <elementReference>sessionId</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>targetObjectId</name>
             <value>
                 <elementReference>booking.Primary_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>orgWideAddress</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>sessionId</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -58,33 +58,33 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>replyEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>orgWideEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>templateId</name>
             <value>
                 <elementReference>publicTemplate.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>mergeObjectId</name>
-            <value>
-                <elementReference>sessionId</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>targetObjectId</name>
             <value>
                 <elementReference>booking.Partner_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>orgWideAddress</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>sessionId</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -184,7 +184,7 @@
             <label>Is partner contact exists</label>
         </rules>
     </decisions>
-    <description>Added partner email</description>
+    <description>Separated Org-Wide Address from Account Capacity/Enquiries emails</description>
     <interviewLabel>Reunion Execute Sending Private Subflow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Public Subflow</label>
     <loops>
@@ -218,12 +218,15 @@
     <recordLookups>
         <name>Get_public_template</name>
         <label>Get public template</label>
-        <locationX>183</locationX>
-        <locationY>345</locationY>
+        <locationX>147</locationX>
+        <locationY>301</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_through_bookings</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_email_alert</targetReference>
+        </faultConnector>
         <filters>
             <field>DeveloperName</field>
             <operator>EqualTo</operator>
@@ -238,7 +241,13 @@
         <queriedFields>Body</queriedFields>
         <queriedFields>Subject</queriedFields>
     </recordLookups>
-    <startElementReference>Get_public_template</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_public_template</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>booking</name>
@@ -263,6 +272,13 @@
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>Course__c</objectType>
+    </variables>
+    <variables>
+        <name>orgWideAddress</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>publicTemplate</name>

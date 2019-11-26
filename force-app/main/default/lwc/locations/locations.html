@@ -1,0 +1,13 @@
+<template>
+    <div>
+        <div class="nct-header-text header-text-margin">{locationHeader}</div>
+        <lightning-layout
+          multiple-rows="true"
+          vertical-align="stretch"
+        >
+            <template for:each={venues} for:item="venue">
+                <c-location class="slds-p-right_large" venue={venue} key={venue.Id}></c-location>
+            </template>
+        </lightning-layout>
+    </div>   
+</template>
