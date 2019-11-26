@@ -301,7 +301,6 @@
         <members>Booking_SetExpirationStatus</members>
         <members>Booking_Tranfer_Flow</members>
         <members>BookingConfirmationNotificationSend</members>
-        <members>CAD_Recalculate_Practitioner_Fees</members>
         <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
         <members>Create_Task_For_Booking</members>
