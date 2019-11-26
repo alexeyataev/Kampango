@@ -34,6 +34,8 @@
         <members>Account.Branch__c</members>
         <members>Account.Branch_Code__c</members>
         <members>Account.Branch_Key__c</members>
+        <members>Booking__c.Birth_Date__c</members>
+        <members>Booking__c.Birth_Or_Due_Date__c</members>
         <members>Booking__c.Client_Name__c</members>
         <members>Booking__c.Due_Date__c</members>
         <members>Booking__c.Client__c</members>
@@ -162,7 +164,6 @@
         <name>GlobalValueSet</name>
     </types>
     <types>
-        <members>Reunion_sessions_sending_emails</members>
         <members>Course__c.Revert_Course_To_Draft_After_Cost_Deletion</members>
         <members>Course__c.Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Installment_Process</members>
