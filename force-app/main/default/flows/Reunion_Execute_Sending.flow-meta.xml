@@ -244,8 +244,8 @@
     <assignments>
         <name>Return_error_on_no_host</name>
         <label>Return error</label>
-        <locationX>1315</locationX>
-        <locationY>1343</locationY>
+        <locationX>1316</locationX>
+        <locationY>1319</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -587,31 +587,6 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Check_session_has_host</name>
-        <label>Check session has host</label>
-        <locationX>1327</locationX>
-        <locationY>1125</locationY>
-        <defaultConnector>
-            <targetReference>Return_error_on_no_host</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Session_has_host</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>session.Parent_Host__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Send_to_Private</targetReference>
-            </connector>
-            <label>Session has host?</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Check_Session_Id</name>
         <label>Check Session Id</label>
         <locationX>368</locationX>
@@ -634,31 +609,6 @@
                 <targetReference>Get_session</targetReference>
             </connector>
             <label>Is a subflow?</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Check_venue_if_not_null</name>
-        <label>Check venue if not null</label>
-        <locationX>835</locationX>
-        <locationY>668</locationY>
-        <defaultConnector>
-            <targetReference>Assign_name_venue_for_output</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Venue_is_not_null</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>venue</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Course</targetReference>
-            </connector>
-            <label>Venue is not null?</label>
         </rules>
     </decisions>
     <decisions>
@@ -789,9 +739,24 @@
     <decisions>
         <name>Is_Public_Venue</name>
         <label>Is Public Venue</label>
-        <locationX>1327</locationX>
-        <locationY>957</locationY>
+        <locationX>1309</locationX>
+        <locationY>1017</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Private_Venue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>session.Parent_Host__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_to_Private</targetReference>
+            </connector>
+            <label>Private Venue</label>
+        </rules>
         <rules>
             <name>Public_Venue</name>
             <conditionLogic>and</conditionLogic>
@@ -817,13 +782,10 @@
                     <stringValue>Volunteer Home</stringValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Check_session_has_host</targetReference>
-            </connector>
             <label>Not volunteer venue</label>
         </rules>
     </decisions>
-    <description>Replaced Venue fields with one</description>
+    <description>Changed Flow with adding a validation (Parent Host xor Venue)</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -880,8 +842,8 @@
     <recordLookups>
         <name>Get_Course</name>
         <label>Get Course</label>
-        <locationX>932</locationX>
-        <locationY>759</locationY>
+        <locationX>831</locationX>
+        <locationY>665</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_practitioner_template</targetReference>
@@ -907,8 +869,8 @@
         <description>We consider the only one is in the system</description>
         <name>Get_Organization_Wide_Address</name>
         <label>Get Organization-Wide Address</label>
-        <locationX>1335</locationX>
-        <locationY>491</locationY>
+        <locationX>1069</locationX>
+        <locationY>664</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Public_Venue</targetReference>
@@ -957,8 +919,8 @@
     <recordLookups>
         <name>Get_practitioner_template</name>
         <label>Get practitioner template</label>
-        <locationX>1163</locationX>
-        <locationY>658</locationY>
+        <locationX>949</locationX>
+        <locationY>665</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Public_Venue</targetReference>
@@ -1015,7 +977,7 @@
         <locationY>665</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_venue_if_not_null</targetReference>
+            <targetReference>Get_Course</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
