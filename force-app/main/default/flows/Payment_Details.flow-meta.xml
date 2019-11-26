@@ -213,6 +213,9 @@
         <label>Is Gift Aid Declaration List True</label>
         <locationX>1763</locationX>
         <locationY>1445</locationY>
+        <defaultConnector>
+            <targetReference>Payment_Details_Screen</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>GAD Is False</defaultConnectorLabel>
         <rules>
             <name>Update_Contacts_Is_True</name>
@@ -410,8 +413,8 @@ CC and CC = Credit Card for Course and Credit Card for Membership;</description>
     <recordCreates>
         <name>Create_Gift_Aid_Declaration</name>
         <label>Create Gift Aid Declaration</label>
-        <locationX>1773</locationX>
-        <locationY>1648</locationY>
+        <locationX>2029</locationX>
+        <locationY>1618</locationY>
         <connector>
             <targetReference>Payment_Details_Screen</targetReference>
         </connector>
@@ -632,14 +635,14 @@ CC and CC = Credit Card for Course and Credit Card for Membership;</description>
     <screens>
         <name>Payment_Details_Screen</name>
         <label>Payment Details Screen</label>
-        <locationX>1773</locationX>
-        <locationY>1881</locationY>
+        <locationX>1774</locationX>
+        <locationY>1871</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <fields>
             <name>Payment_Details_Info</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Payment Details&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;Name&lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;: Inna Petrova&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;Bank:&lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt; 123123&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;Card Number&lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;: 402034&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;CouRse&lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;: Test for Test&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;Country&lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 16px;&quot;&gt;: GB&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 16px; color: rgb(0, 0, 0);&quot;&gt;Amount&lt;/b&gt;&lt;span style=&quot;font-size: 16px; color: rgb(0, 0, 0);&quot;&gt;: 300&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Payment Details&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Amount: &lt;/span&gt;&lt;b style=&quot;font-size: 18px;&quot;&gt;{!Installment_Object.cpm__Amount__c} £&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
