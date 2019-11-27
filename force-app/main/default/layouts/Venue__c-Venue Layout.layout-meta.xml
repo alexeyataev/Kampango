@@ -59,10 +59,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
                 <field>Subtype__c</field>
             </layoutItems>
             <layoutItems>
@@ -377,7 +373,6 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Type__c</fields>
         <fields>Contact.CNTC_PHONE1</fields>
         <fields>Contact.CNTC_EMAIL</fields>
         <relatedList>Venue_Contact__c.Venue__c</relatedList>
