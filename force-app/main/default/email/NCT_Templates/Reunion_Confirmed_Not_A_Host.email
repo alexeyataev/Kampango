@@ -4,7 +4,8 @@ Dear {!Contact.FirstName},<br><br>
 
 I'm delighted to confirm the details for your {!Course__c.Sub_Type__c} course reunion which will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c}.<br><br>
 
-We are very grateful to {!Course__c.Reunion_Host_Contact_Names__c} offered to host the session at their home:<br>
+We are very grateful to {!Course__c.Reunion_Host_Contact_Names__c} offered to host the session at their home:<br><br>
+
 {!Session__c.Venue_Address__c}
 
 <a href="{!Session__c.Venue_Map_Url__c}">Please click  here to see this on a map</a> <br><br>
@@ -14,9 +15,9 @@ The reunion will be facilitated by {!Session__c.Practitioner_Name__c} who may be
 We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:<br>
 <a href="https://www.nct.org.uk">Find a postnatal course</a> <br><br>
 
-Kind regards,<br>
-{!Course__c.Enquiries_PSA_Name__c}<br>
-Course organiser<br><br>
+Kind regards,<br><br>
 
+{!Course__c.Enquiries_PSA_Name__c}<br>
+Course organiser<br>
 Email: {!Course__c.Enquiries_PSA_Email__c}<br>
 Tel: {!Course__c.Enquiries_PSA_Phone__c}

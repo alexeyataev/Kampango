@@ -12,6 +12,7 @@ Dear {!Contact.FirstName},
 I&#39;m delighted to confirm the details for your {!Course__c.Sub_Type__c} course reunion which will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c}.
 
 Thank you for offering to host the session at your home:
+
 {!Session__c.Venue_Address__c}
 
 Please click  here to see this on a map
@@ -25,9 +26,9 @@ We have a range of Postnatal courses and workshops running in your area. For fur
 https://www.nct.org.uk
 
 Kind regards,
+
 {!Course__c.Enquiries_PSA_Name__c}
 Course organiser
-
 Email: {!Course__c.Enquiries_PSA_Email__c}
 Tel: {!Course__c.Enquiries_PSA_Phone__c}</textOnly>
     <type>custom</type>
