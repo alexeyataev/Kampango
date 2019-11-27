@@ -4,4 +4,8 @@
         <members>Account.Branch_Key__c</members>
         <name>CustomField</name>
     </types>
+    <types>
+        <members>Fee_Band</members>
+        <name>GlobalValueSet</name>
+    </types>
 </Package>

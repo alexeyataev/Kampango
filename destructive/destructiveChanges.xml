@@ -159,10 +159,6 @@
         <name>CustomPermission</name>
     </types>
     <types>
-        <members>Fee_Band</members>
-        <name>GlobalValueSet</name>
-    </types>
-    <types>
         <members>Course__c.Revert_Course_To_Draft_After_Cost_Deletion</members>
         <members>Course__c.Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Installment_Process</members>
