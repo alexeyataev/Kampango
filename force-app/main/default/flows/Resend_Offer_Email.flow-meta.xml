@@ -192,7 +192,7 @@
         </connector>
         <fields>
             <name>Confirm_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;font-size: 18px; color: rgb(47, 47, 47);&quot;&gt;{!curBooking.First_Name__c} {!curBooking.Last_Name__c}&lt;/b&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 20px; color: rgb(76, 76, 76);&quot;&gt;Please click next to send an email to&lt;/span&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt; &lt;/span&gt;&lt;b style=&quot;font-size: 18px; color: rgb(47, 47, 47);&quot;&gt;{!curBooking.First_Name__c} {!curBooking.Last_Name__c}&lt;/b&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;. &lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -214,7 +214,7 @@
         <allowPause>true</allowPause>
         <fields>
             <name>Can_Not_Sent_Email</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Unable to send offer email - booking status is not &quot;Reserved&quot;&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 20px; color: rgb(76, 76, 76);&quot;&gt;Unable to send offer email - booking status is not &quot;Reserved&quot;&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
