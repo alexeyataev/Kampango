@@ -2,7 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IsPublicVenue__c</fullName>
     <externalId>false</externalId>
-    <formula>NOT(ISPICKVAL(Venue__r.Type__c, &#39;Parent Home&#39;)) &amp;&amp; NOT(ISPICKVAL(Venue__r.Type__c, &#39;Volunteer Home&#39;))</formula>
+    <formula>ISBLANK(Parent_Host__c) &amp;&amp; 
+NOT( ISPICKVAL(Venue__r.Type__c, &#39;Volunteer Home&#39;) )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Is Public Venue</label>
     <trackHistory>false</trackHistory>
