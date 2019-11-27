@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Venue_Address__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( NOT( ISBLANK(Venue__c) ),
+
+  Venue__r.Name &amp; BR()
+&amp; Venue__r.Street_Address__c &amp; BR()
+&amp; Venue__r.Town__c &amp; BR()
+&amp; Venue__r.County__c &amp; BR()
+&amp; Venue__r.Postcode__c &amp; BR() &amp; BR(),
+
+  &#39;Parent Home&#39; &amp; BR()
+&amp; Parent_Host__r.MailingStreet&amp; BR()
+&amp; Parent_Host__r.MailingCity &amp; BR()
+&amp; Parent_Host__r.MailingCountry &amp; BR()
+&amp; Parent_Host__r.MailingPostalCode&amp; BR() &amp; BR()
+)</formula>
+    <label>Venue Address</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

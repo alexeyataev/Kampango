@@ -232,6 +232,7 @@
     <types>
         <members>Override_Booking_Validation</members>
         <members>Override_Course_Validation</members>
+        <members>Override_Practitioner_Fee_Rate_Validation</members>
         <name>CustomPermission</name>
     </types>
     <types>
@@ -301,7 +302,6 @@
         <members>Booking_SetExpirationStatus</members>
         <members>Booking_Tranfer_Flow</members>
         <members>BookingConfirmationNotificationSend</members>
-        <members>CAD_Recalculate_Practitioner_Fees</members>
         <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
         <members>Create_Task_For_Booking</members>
@@ -386,6 +386,10 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
+        <members>Default_Navigation</members>
+        <name>NavigationMenu</name>
+    </types>
+    <types>
         <members>Parent Community</members>
         <members>Practitioners</members>
         <name>Network</name>
@@ -400,6 +404,7 @@
         <members>Create_Public_Lists</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Course_Validation</members>
+        <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <name>PermissionSet</name>

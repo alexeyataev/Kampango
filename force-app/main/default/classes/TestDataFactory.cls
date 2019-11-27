@@ -244,7 +244,6 @@ public TestDataFactory buildReunion() {
         reunion = sessionBuilder
             .withCourse(course)
             .withType('Reunion')
-            .withParentHost(parentHost)
             .withVenue(venue)
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)

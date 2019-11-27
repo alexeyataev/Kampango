@@ -60,7 +60,9 @@ export default class CourseDetailsComponent extends LightningElement {
         } else if (data) {
             let date;
             this.bookingRecord = data;
-            this.expirationDate = this.bookingRecord.fields.Reservation_Expiry_Date__c.value;
+            date = this.bookingRecord.fields.Reservation_Expiry_Date__c.value;
+            date = new Date(date);
+            this.expirationDate = this.formatDate(date) + ' ' + date.toLocaleString('default', { year: 'numeric' });
             this.firstName = this.bookingRecord.fields.First_Name__c.value;
             this.lastName = this.bookingRecord.fields.Last_Name__c.value;
             this.courseId = this.bookingRecord.fields.Course__c.value;
@@ -71,10 +73,10 @@ export default class CourseDetailsComponent extends LightningElement {
             this.courseDuration = this.bookingRecord.fields.Course__r.value.fields.Course_Duration__c.value;
             date = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
             date = new Date(date);
-            this.startDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
+            this.startDate = this.formatDate(date);
             date = this.bookingRecord.fields.Course__r.value.fields.End_Date__c.value;
             date = new Date(date);
-            this.endDate = this.addDateOrdinal(date.getDate().toString()) + ' ' + date.toLocaleString('default', { month: 'long' });
+            this.endDate = this.formatDate(date);
             this.retrieveSessions(this.courseId);
         }
     }
@@ -163,6 +165,10 @@ export default class CourseDetailsComponent extends LightningElement {
                 monthDay += 'th';
         }
         return monthDay;
+    }
+
+    formatDate(dateToBeFormatted){
+        return this.addDateOrdinal(dateToBeFormatted.getDate().toString()) + ' ' + dateToBeFormatted.toLocaleString('default', { month: 'long' });
     }
 
 }
