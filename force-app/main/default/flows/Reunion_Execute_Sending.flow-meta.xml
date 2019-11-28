@@ -73,8 +73,8 @@
     <assignments>
         <name>Assign_name_venue_for_output</name>
         <label>Assign name venue for output</label>
-        <locationX>1095</locationX>
-        <locationY>1446</locationY>
+        <locationX>1317</locationX>
+        <locationY>1372</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -128,7 +128,7 @@
     <assignments>
         <name>Empty_value_message</name>
         <label>Empty value message</label>
-        <locationX>2984</locationX>
+        <locationX>2985</locationX>
         <locationY>973</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
@@ -235,38 +235,6 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>STATUS_ERROR_QUERY</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Decide_on_status</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Return_error_on_no_host</name>
-        <label>Return error</label>
-        <locationX>1316</locationX>
-        <locationY>1319</locationY>
-        <assignmentItems>
-            <assignToReference>subflow_status</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>STATUS_ERROR_NO_HOST</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Decide_on_status</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Return_error_on_update_record</name>
-        <label>Return error</label>
-        <locationX>1823</locationX>
-        <locationY>753</locationY>
-        <assignmentItems>
-            <assignToReference>subflow_status</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>error_on_update_record</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -740,8 +708,11 @@
         <name>Is_Public_Venue</name>
         <label>Is Public Venue</label>
         <locationX>1309</locationX>
-        <locationY>1017</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <locationY>1018</locationY>
+        <defaultConnector>
+            <targetReference>Assign_name_venue_for_output</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
         <rules>
             <name>Private_Venue</name>
             <conditionLogic>and</conditionLogic>
@@ -761,10 +732,10 @@
             <name>Public_Venue</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>session.IsPublicVenue__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>session.Venue__c</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -772,20 +743,8 @@
             </connector>
             <label>Public Venue</label>
         </rules>
-        <rules>
-            <name>Not_volunteer_venue</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>venue.Type__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Volunteer Home</stringValue>
-                </rightValue>
-            </conditions>
-            <label>Not volunteer venue</label>
-        </rules>
     </decisions>
-    <description>Changed Flow with adding a validation (Parent Host xor Venue)</description>
+    <description>Changes with Volunteer home deletion. Removed unnecessary elements.</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
