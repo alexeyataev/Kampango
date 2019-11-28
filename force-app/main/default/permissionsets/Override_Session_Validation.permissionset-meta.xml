@@ -4,11 +4,6 @@
         <enabled>true</enabled>
         <name>Override_Session_Validation</name>
     </customPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Session__c.IsPublicVenue__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Session Validation</label>
     <license>Salesforce</license>
