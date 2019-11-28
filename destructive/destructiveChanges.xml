@@ -33,7 +33,6 @@
         <members>Account.Account_Key__c</members>
         <members>Account.Branch__c</members>
         <members>Account.Branch_Code__c</members>
-        <members>Account.Branch_Key__c</members>
         <members>Booking__c.Birth_Date__c</members>
         <members>Booking__c.Birth_Or_Due_Date__c</members>
         <members>Booking__c.Client_Name__c</members>
@@ -158,10 +157,6 @@
     <types>
         <members>Ignore_Booking_Confirmation_Restriction</members>
         <name>CustomPermission</name>
-    </types>
-    <types>
-        <members>Fee_Band</members>
-        <name>GlobalValueSet</name>
     </types>
     <types>
         <members>Course__c.Revert_Course_To_Draft_After_Cost_Deletion</members>
