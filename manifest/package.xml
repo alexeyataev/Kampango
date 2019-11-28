@@ -233,6 +233,7 @@
         <members>Override_Booking_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
+        <members>Override_Session_Validation</members>
         <name>CustomPermission</name>
     </types>
     <types>
@@ -405,6 +406,7 @@
         <members>Override_Booking_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
+        <members>Override_Session_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <name>PermissionSet</name>
