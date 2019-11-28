@@ -122,6 +122,7 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>Course__c.Title__c</members>
         <members>cpm__Installment__c.ga_decl_1__c</members>
         <members>cpm__Installment__c.ga_decl_2__c</members>
         <members>cpm__Installment__c.Sales_Invoice__c</members>
