@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Post_Deleted_Session_Details</name>
+        <label>Post Deleted Session Details</label>
+        <locationX>375</locationX>
+        <locationY>50</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <connector>
+            <targetReference>Loop_Through_Sessions</targetReference>
+        </connector>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <elementReference>SessionDetails</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>currentSession.Course__c</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <formulas>
+        <name>CADreference</name>
+        <dataType>String</dataType>
+        <expression>If({!currentSession.Course_Assignment__c} != null, {!currentSession.Course_Assignment__r.Name}, &quot;None&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>deletionDate</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>venueInvoicePaid</name>
+        <dataType>String</dataType>
+        <expression>If({!currentSession.Venue_Invoice_Paid__c} == true, &quot;Yes&quot;, &quot;No&quot;)</expression>
+    </formulas>
+    <interviewLabel>Track Deleted Sessions {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Track Deleted Sessions</label>
+    <loops>
+        <name>Loop_Through_Sessions</name>
+        <label>Loop Through Sessions</label>
+        <locationX>197</locationX>
+        <locationY>50</locationY>
+        <assignNextValueToReference>currentSession</assignNextValueToReference>
+        <collectionReference>sessionRecordsToTrack</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Post_Deleted_Session_Details</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Loop_Through_Sessions</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>SessionDetails</name>
+        <text>Session {!currentSession.Name} scheduled for {!currentSession.Date__c}
+deleted on {!deletionDate}
+
+Session date: {!currentSession.Date__c}
+Times: {!currentSession.Times__c}
+Type: {!currentSession.Type__c}
+Specific attendee type: {!currentSession.Specific_Attendee_Type__c}
+Practitioner name: {!currentSession.Practitioner__r.FirstName} {!currentSession.Practitioner__r.LastName}
+Venue: {!currentSession.Venue__r.Name}
+Venue invoice paid?: {!venueInvoicePaid}
+CAD reference: {!CADreference}</text>
+    </textTemplates>
+    <variables>
+        <name>currentSession</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Session__c</objectType>
+    </variables>
+    <variables>
+        <name>sessionRecordsToTrack</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Session__c</objectType>
+    </variables>
+</Flow>

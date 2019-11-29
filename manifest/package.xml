@@ -43,6 +43,8 @@
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
         <members>SESSION_RevertToProvisional_TDTM</members>
         <members>SESSION_RevertToProvisional_TDTM_TEST</members>
+        <members>SESSION_TrackDeletedRecord_TDTM</members>
+        <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
         <members>StepOrangeCardPaymentProvider</members>
@@ -327,6 +329,7 @@
         <members>Set_Deactivate_Date_GAD</members>
         <members>Set_Main_Venue_on_Course</members>
         <members>Set_Number_of_Places_Based_on_Course_Type</members>
+        <members>Track_Deleted_Sessions</members>
         <members>Update_Address_in_Gift_Aid_Declaration</members>
         <members>Update_Address_in_Gift_Aid_Declarations</members>
         <members>Update_Partner_Community_Contact</members>
