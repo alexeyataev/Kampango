@@ -21,7 +21,7 @@ public without sharing virtual class CourseFinderModel {
     public CourseFinderModel(Course__c course) {
         this.Id = course.Name;
         this.Reference = course.PSA_Area__c + '/' + course.Name;
-        this.Title = 'field is colected';
+        this.Title = course.Title__c;
         this.Summary = 'field is colected';
         this.Type = course.Sub_Type__c;
         this.CouplesAllowed = course.Couples_Allowed__c;
