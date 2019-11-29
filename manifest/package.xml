@@ -231,7 +231,10 @@
     </types>
     <types>
         <members>Override_Booking_Validation</members>
+        <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Course_Validation</members>
+        <members>Override_Practitioner_Band_Validation</members>
+        <members>Override_Practitioner_Fee_Rate_Validation</members>
         <name>CustomPermission</name>
     </types>
     <types>
@@ -385,6 +388,10 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
+        <members>Default_Navigation</members>
+        <name>NavigationMenu</name>
+    </types>
+    <types>
         <members>Parent Community</members>
         <members>Practitioners</members>
         <name>Network</name>
@@ -397,8 +404,11 @@
     <types>
         <members>Branch_and_PSA_Management</members>
         <members>Create_Public_Lists</members>
+        <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Course_Validation</members>
+        <members>Override_Practitioner_Band_Validation</members>
+        <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <name>PermissionSet</name>
@@ -494,6 +504,7 @@
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
         <members>Booking__c.Prevent_Overbooking_Of_Course</members>
         <members>Booking__c.PreventConfirmedBookingCreation</members>
+        <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
         <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
@@ -508,6 +519,7 @@
         <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
         <members>Licence_To_Practice__c.End_date_should_not_be_blank</members>
+        <members>Practitioner_Band__c.PractitionerBand_details_cant_be_changed</members>
         <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <members>Session__c.End_time_should_not_be_before_start_time</members>
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
