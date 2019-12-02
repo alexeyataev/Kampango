@@ -60,17 +60,17 @@ public without sharing class CourseSearchUtility {
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c,
-            (
-                    SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
-                    FROM Sessions__r
-            )
+                    (
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
+                        FROM Sessions__r
+                    )
             FROM Course__c
             WHERE Branch__r.Branch_Number__c =: branchId
             AND Status__c != 'Cancelling'
             AND Status__c != 'Cancelled'
             AND Status__c != 'Draft'
             AND Start_Date__c > TODAY
-            AND (Remaining_Places__c > 0 OR (Remaining_Places__c <= 0 AND Overbooking_allowed__c = true))
+            AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
             WITH SECURITY_ENFORCED
         ];
         
@@ -78,7 +78,7 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                Boolean isCourseHidden = isFromWebSite && inCourses[0].Hide_From_Course_Finder__c;
+                Boolean isCourseHidden = isFromWebSite && course.Hide_From_Course_Finder__c;
                 if(!isCourseHidden) {
                         courses.add(course);
                 }
@@ -139,17 +139,17 @@ public without sharing class CourseSearchUtility {
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c,
-                (
-                    SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
-                    FROM Sessions__r
-                )
+                    (
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
+                        FROM Sessions__r
+                    )
                 FROM Course__c
                 WHERE Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi') < :radius
                 AND Status__c != 'Cancelling'
                 AND Status__c != 'Cancelled'
                 AND Status__c != 'Draft'
                 AND Start_Date__c > TODAY
-                AND (Remaining_Places__c > 0 OR (Remaining_Places__c <= 0 AND Overbooking_allowed__c = true))
+                AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                 AND ((Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) OR (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate))
                 WITH SECURITY_ENFORCED
             ];
@@ -160,10 +160,10 @@ public without sharing class CourseSearchUtility {
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c,
-                (
-                    SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
-                    FROM Sessions__r
-                )
+                    (
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
+                        FROM Sessions__r
+                    )
                 FROM Course__c
                 WHERE Distance(Main_Venue__r.Location__c, :location, 'mi') < :radius
                 AND Status__c != 'Cancelled'
@@ -175,7 +175,7 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                Boolean isCourseHidden = isFromWebSite && inCourses[0].Hide_From_Course_Finder__c;
+                Boolean isCourseHidden = isFromWebSite && course.Hide_From_Course_Finder__c;
                 if(!isCourseHidden) {
                     courses.add(course);
                 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Populate_Host_if_Type_Practitioner_Home</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(
+   AND(ISBLANK(Host__c),
+       ISPICKVAL(Type__c, &quot;Practitioner Home&quot;)),
+   AND(NOT(ISBLANK(Host__c)),
+       NOT(ISPICKVAL(Type__c, &quot;Practitioner Home&quot;)))
+   )</errorConditionFormula>
+    <errorDisplayField>Host__c</errorDisplayField>
+    <errorMessage>Host should be populated if, and only if, the Venue is a Practitioner Home.</errorMessage>
+</ValidationRule>
