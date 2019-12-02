@@ -11,12 +11,11 @@ const BOOKING_FIELDS = [
         'Booking__c.First_Name__c',
         'Booking__c.Last_Name__c',
         'Booking__c.Final_Fee__c',
-        'Booking__c.Course__r.Sub_Type__c',
         'Booking__c.Course__r.Branch__r.Name',
         'Booking__c.Course__r.Main_Venue__r.Name',
         'Booking__c.Course__r.Start_Date__c',
         'Booking__c.Course__r.End_Date__c',
-        'Booking__c.Course__r.Course_Duration__c'
+        'Booking__c.Course__r.Title__c'
     ];
 
 export default class CourseDetailsComponent extends LightningElement {
@@ -31,13 +30,12 @@ export default class CourseDetailsComponent extends LightningElement {
     @api endDate;
     @api sessions;
     @api courseFee;
-    @api coursetype;
     @api mainTown;
     @api venues;
     @api mainVenueName;
     @api allVenues;
     @api stylesLoaded = false;
-    @api courseDuration;
+    @api title;
     @api get valuesLoaded(){return this.bookingId && this.courseId && this.stylesLoaded;}
     @api get venuesLoaded(){return this.allVenues && this.sessions;}
 
@@ -67,10 +65,9 @@ export default class CourseDetailsComponent extends LightningElement {
             this.lastName = this.bookingRecord.fields.Last_Name__c.value;
             this.courseId = this.bookingRecord.fields.Course__c.value;
             this.courseFee = this.bookingRecord.fields.Final_Fee__c.value;
-            this.coursetype = this.bookingRecord.fields.Course__r.value.fields.Sub_Type__c.value;
             this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Branch__r.value.fields.Name.value;
             this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
-            this.courseDuration = this.bookingRecord.fields.Course__r.value.fields.Course_Duration__c.value;
+            this.title = this.bookingRecord.fields.Course__r.value.fields.Title__c.value
             date = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
             date = new Date(date);
             this.startDate = this.formatDate(date);
