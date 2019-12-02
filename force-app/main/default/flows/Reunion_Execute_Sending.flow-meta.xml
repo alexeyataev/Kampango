@@ -792,7 +792,7 @@
             <label>Public Venue</label>
         </rules>
     </decisions>
-    <description>Added PSA emails check</description>
+    <description>Changes with Volunteer home deletion. Removed unnecessary elements.</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>

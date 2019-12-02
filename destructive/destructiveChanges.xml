@@ -201,6 +201,7 @@
         <members>Contact.Contact_Preferred_Phone</members>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
+        <members>Session__c.Prevent_private_reunion_confirmation</members>
         <members>Zumzum__Bank_Account__c.Account_number_must_be_8_numeric_digits</members>
         <members>Zumzum__Bank_Account__c.Check_Bank_Account_Name</members>
         <members>Zumzum__Bank_Account__c.Sort_code_must_be_6_numeric_digits</members>
