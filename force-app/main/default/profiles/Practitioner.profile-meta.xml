@@ -848,7 +848,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Venue__c.Venue_Schedule_Link__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
