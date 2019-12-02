@@ -78,7 +78,7 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                Boolean isCourseHidden = isFromWebSite && inCourses[0].Hide_From_Course_Finder__c;
+                Boolean isCourseHidden = isFromWebSite && course.Hide_From_Course_Finder__c;
                 if(!isCourseHidden) {
                         courses.add(course);
                 }
@@ -175,7 +175,7 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                Boolean isCourseHidden = isFromWebSite && inCourses[0].Hide_From_Course_Finder__c;
+                Boolean isCourseHidden = isFromWebSite && course.Hide_From_Course_Finder__c;
                 if(!isCourseHidden) {
                     courses.add(course);
                 }
