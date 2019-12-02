@@ -10,8 +10,7 @@
 &amp; Venue__r.County__c &amp; BR()
 &amp; Venue__r.Postcode__c &amp; BR() &amp; BR(),
 
-  &#39;Parent Home&#39; &amp; BR()
-&amp; Parent_Host__r.MailingStreet&amp; BR()
+Parent_Host__r.MailingStreet &amp; BR()
 &amp; Parent_Host__r.MailingCity &amp; BR()
 &amp; Parent_Host__r.MailingCountry &amp; BR()
 &amp; Parent_Host__r.MailingPostalCode&amp; BR() &amp; BR()
