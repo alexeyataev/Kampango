@@ -164,6 +164,13 @@
                 <elementReference>Get_Amount</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Installment_Object.Booking__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Booking.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Payment_Options_Screen</targetReference>
         </connector>
