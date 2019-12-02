@@ -8,7 +8,7 @@
         <value>An error occurred during details update.</value>
     </labels>
     <labels>
-        <fullName>CourseAPIEnqueryEmailAreEqual</fullName>
+        <fullName>CourseAPIEnqueryEmailsAreEqual</fullName>
         <categories>CourseAPI</categories>
         <language>en_US</language>
         <protected>false</protected>
