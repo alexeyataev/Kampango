@@ -732,6 +732,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Venue__c.Host__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Venue__c.Hot_Drink_Facilities_Available__c</field>
         <readable>true</readable>
     </fieldPermissions>
