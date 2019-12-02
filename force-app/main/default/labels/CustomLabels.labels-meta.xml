@@ -13,7 +13,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Primary and Partner emails must not match</shortDescription>
-        <value>{&quot;Error&quot; : Primary and Partner emails must not match}</value>
+        <value>{&quot;Error&quot; : &quot;Primary and Partner emails must not match&quot;</value>
     </labels>
     <labels>
         <fullName>CourseAPIEnqueryParametersSpecifiedNotCorrectly</fullName>
@@ -21,7 +21,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Enquiry Parameters are specified not correctly</shortDescription>
-        <value>{&quot;Error&quot; : Enquiry Parameters are specified not correctly}</value>
+        <value>{&quot;Error&quot; : &quot;Enquiry Parameters are specified not correctly&quot;}</value>
     </labels>
     <labels>
         <fullName>CourseAPIcourseNotExists</fullName>
