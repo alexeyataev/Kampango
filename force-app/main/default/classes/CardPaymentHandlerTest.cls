@@ -31,7 +31,7 @@ public class CardPaymentHandlerTest
     }
     @IsTest
     static void testGetPaymentLink(){
-        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c, Sales_Invoice__c FROM cpm__Installment__c LIMIT 1];
+        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c,Booking__c, Sales_Invoice__c FROM cpm__Installment__c LIMIT 1];
         PaymentApiRequest paymentBody = StepOrangeCardPaymentProvider.createPaymentBody(installmentList[0]);
         StepOrangeCardPaymentProvider.createPaymentRequest(paymentBody);
         String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
@@ -46,7 +46,7 @@ public class CardPaymentHandlerTest
     static void testGetPaymentLinkError(){
         String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
         Test.startTest();
-        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c FROM cpm__Installment__c  LIMIT 1];
+        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c, Booking__c FROM cpm__Installment__c  LIMIT 1];
         List<CardPaymentUrlResult> result = CardPaymentHandler.getPaymentLink(installmentList);
         Test.stopTest();
         System.assertNotEquals(result[0].url, responseUrl);
