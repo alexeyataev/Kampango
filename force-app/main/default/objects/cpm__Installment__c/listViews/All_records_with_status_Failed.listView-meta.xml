@@ -4,6 +4,7 @@
     <columns>NAME</columns>
     <columns>cpm__Amount__c</columns>
     <columns>cpm__Contact__c</columns>
+    <columns>Booking__c</columns>
     <columns>cpm__Status__c</columns>
     <columns>CREATEDBY_USER</columns>
     <columns>CREATED_DATE</columns>
@@ -16,4 +17,5 @@
         <value>Failed</value>
     </filters>
     <label>All records with status &quot;Failed&quot;</label>
+    <language>en_US</language>
 </ListView>
