@@ -8,6 +8,14 @@
         <value>An error occurred during details update.</value>
     </labels>
     <labels>
+        <fullName>CourseAPIEnqueryEmailAreEqual</fullName>
+        <categories>CourseAPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Primary and Partner emails must not match</shortDescription>
+        <value>{&quot;Error&quot; : Primary and Partner emails must not match}</value>
+    </labels>
+    <labels>
         <fullName>CourseAPIEnqueryParametersSpecifiedNotCorrectly</fullName>
         <categories>CourseAPI</categories>
         <language>en_US</language>
