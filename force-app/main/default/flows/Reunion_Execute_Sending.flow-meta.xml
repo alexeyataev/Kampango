@@ -71,6 +71,22 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Assign_name_PSA_email_for_output</name>
+        <label>Assign name PSA email for output</label>
+        <locationX>1018</locationX>
+        <locationY>1489</locationY>
+        <assignmentItems>
+            <assignToReference>empty_entity_name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NAME_PSA_EMAIL</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_status_empty_value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_name_venue_for_output</name>
         <label>Assign name venue for output</label>
         <locationX>1317</locationX>
@@ -374,17 +390,17 @@
         </value>
     </constants>
     <constants>
-        <name>NAME_EMAIL</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Email</stringValue>
-        </value>
-    </constants>
-    <constants>
         <name>NAME_PRACTITIONER</name>
         <dataType>String</dataType>
         <value>
             <stringValue>Practitioner</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>NAME_PSA_EMAIL</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>PSA Email</stringValue>
         </value>
     </constants>
     <constants>
@@ -552,6 +568,38 @@
                 <targetReference>Get_Venue</targetReference>
             </connector>
             <label>Practitioner email is not null?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_PSA_emails</name>
+        <label>Check PSA emails</label>
+        <locationX>953</locationX>
+        <locationY>1024</locationY>
+        <defaultConnector>
+            <targetReference>Assign_name_PSA_email_for_output</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Are_PSA_emails_set</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>course.Capacity_PSA_Email__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>course.Enquiries_PSA_Email__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_Public_Venue</targetReference>
+            </connector>
+            <label>Are PSA emails set?</label>
         </rules>
     </decisions>
     <decisions>
@@ -832,7 +880,7 @@
         <locationY>664</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Is_Public_Venue</targetReference>
+            <targetReference>Check_PSA_emails</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -882,7 +930,7 @@
         <locationY>665</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Is_Public_Venue</targetReference>
+            <targetReference>Check_PSA_emails</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
