@@ -130,7 +130,6 @@
         <members>cpm__Installment__c.Care_Membership_Added__c</members>
         <members>cpm__Installment__c.Membership_Type__c</members>
         <members>cpm__Installment__c.Partner_Contact__c</members>
-        <members>cpm__Installment__c.Partner_Contact__c</members>
         <members>cpm__Installment__c.Sales_Invoice__c</members>
         <members>cpm__Installment__c.ga_decl_1__c</members>
         <members>cpm__Installment__c.ga_decl_2__c</members>
