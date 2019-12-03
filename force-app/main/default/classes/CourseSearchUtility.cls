@@ -120,8 +120,10 @@ public without sharing class CourseSearchUtility {
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
-    public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Date birthDueDate, Boolean isFromWebSite){
+    public static List<Course__c> getCoursesByDateDistance(LocationRequestParameters locationRequestParameters, Date birthDueDate, Boolean isFromWebSite){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
+        Location location = locationRequestParameters.location;
+        Integer radius = locationRequestParameters.radius;
         if (location == null){
             return null;
         }
@@ -206,7 +208,7 @@ public without sharing class CourseSearchUtility {
             return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
         }
         
-        List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
+        List<Course__c> courses = getCoursesByDateDistance(new LocationRequestParameters(location, radius), birthDueDate, true);        
         Boolean isCoursesHasData = (courses != null && !courses.isEmpty());
         if (isCoursesHasData) {
             List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
@@ -249,6 +251,16 @@ public without sharing class CourseSearchUtility {
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }        
         return response;
+    }
+
+    public class LocationRequestParameters{
+        Location location {get; set;}
+        Integer radius {get; set;}
+
+        public LocationRequestParameters(Location location, Integer radius){
+            this.location = location;
+            this.radius = radius;
+        }
     }
 
     private static Integer getSuggestedLowestRank(Integer radius, Integer lowestRankIncluded){
