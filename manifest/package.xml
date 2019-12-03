@@ -126,7 +126,6 @@
         <members>Contact.Total_Open_Bookings__c</members>
         <members>Course__c.Title__c</members>
         <members>cpm__Installment__c.Bank_Details_Number__c</members>
-        <members>cpm__Installment__c.Booking__c</members>
         <members>cpm__Installment__c.Care_Membership_Added__c</members>
         <members>cpm__Installment__c.Membership_Type__c</members>
         <members>cpm__Installment__c.Partner_Contact__c</members>
