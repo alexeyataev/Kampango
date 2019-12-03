@@ -11,7 +11,7 @@
     Course_Fee__c * 0.5,
     IF(AND(Course_Fee__c &gt; 30, Course_Fee__c &lt; 60),
      30,
-     0
+     Course_Fee__c
     )
    ),
    Course_Fee__c
