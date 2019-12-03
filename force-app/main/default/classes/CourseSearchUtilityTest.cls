@@ -351,7 +351,8 @@ private class CourseSearchUtilityTest {
         setupTestData();
         addLocationToVenue();
 
-        List<Course__c> courses = CourseSearchUtility.getCoursesByDateDistance(Location.newInstance(50.5, -0.1), 50, null, false);
+        CourseSearchUtility.LocationRequestParameters params = new CourseSearchUtility.LocationRequestParameters(Location.newInstance(50.5, -0.1), 50);
+        List<Course__c> courses = CourseSearchUtility.getCoursesByDateDistance(params, null, false);
 
         System.assertEquals(0, courses.size());
     }

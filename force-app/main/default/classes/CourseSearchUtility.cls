@@ -1,10 +1,9 @@
 public without sharing class CourseSearchUtility {
-
     private static List<String> howHeard = getHowHeardValues();
     
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
-    public static Course__c getCourseById(String courseName, Boolean isFromWebSite){
+    public static Course__c getCourseById(String courseName, Boolean hideFromPublicAccess){
         Course__c result = null;
         
         List<Course__c> inCourses = [
@@ -27,7 +26,7 @@ public without sharing class CourseSearchUtility {
             WITH SECURITY_ENFORCED
         ];
         
-        Boolean isCourseHidden = inCourses.isEmpty() || (isFromWebSite && inCourses[0].Hide_From_Course_Finder__c);
+        Boolean isCourseHidden = inCourses.isEmpty() || (hideFromPublicAccess && inCourses[0].Hide_From_Course_Finder__c);
         if(!isCourseHidden) {
             result = inCourses[0];
         } 
@@ -42,7 +41,7 @@ public without sharing class CourseSearchUtility {
             CourseFinderModel model = new CourseFinderModel(course);
             model.HowHeardTexts = howHeard;
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(model)));
+            response.responseBody = Blob.valueOf(replaceModelFilds(JSON.serializePretty(model)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
@@ -52,8 +51,7 @@ public without sharing class CourseSearchUtility {
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
-    public static List<Course__c> getCoursesByBranch(String branchId, Boolean isFromWebSite){
-
+    public static List<Course__c> getCoursesByBranch(String branchId, Boolean hideFromPublicAccess){
         List<Course__c> inCourses = [
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
@@ -78,9 +76,9 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                Boolean isCourseHidden = isFromWebSite && course.Hide_From_Course_Finder__c;
+                Boolean isCourseHidden = hideFromPublicAccess && course.Hide_From_Course_Finder__c;
                 if(!isCourseHidden) {
-                        courses.add(course);
+                    courses.add(course);
                 }
             } 
         }
@@ -101,7 +99,7 @@ public without sharing class CourseSearchUtility {
             CoursesBranchModel branchModel = new CoursesBranchModel();
             branchModel.Courses = models;
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(branchModel)));
+            response.responseBody = Blob.valueOf(replaceModelFilds(JSON.serializePretty(branchModel)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPInoResultsFound);
@@ -109,19 +107,12 @@ public without sharing class CourseSearchUtility {
         return response;
     }
 
-    private static List<String> getHowHeardValues() {
-        List<String> howHeardValues= new List<String>();
-        Schema.DescribeFieldResult fieldResult = Booking__c.How_Heard__c.getDescribe();
-        for (Schema.PicklistEntry value : fieldResult.getPicklistValues()) {
-            howHeardValues.add(value.getLabel());
-        }     
-        return howHeardValues;
-    }
-
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
-    public static List<Course__c> getCoursesByDateDistance(Location location, Integer radius, Date birthDueDate, Boolean isFromWebSite){
+    public static List<Course__c> getCoursesByDateDistance(LocationRequestParameters locationRequestParameters, Date birthDueDate, Boolean hideFromPublicAccess){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
+        Location location = locationRequestParameters.location;
+        Integer radius = locationRequestParameters.radius;
         if (location == null){
             return null;
         }
@@ -132,7 +123,7 @@ public without sharing class CourseSearchUtility {
 
         List<Course__c> inCourses;
 
-        if (isFromWebSite) {
+        if (hideFromPublicAccess) {
             inCourses = [
                 SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
@@ -175,7 +166,7 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                Boolean isCourseHidden = isFromWebSite && course.Hide_From_Course_Finder__c;
+                Boolean isCourseHidden = hideFromPublicAccess && course.Hide_From_Course_Finder__c;
                 if(!isCourseHidden) {
                     courses.add(course);
                 }
@@ -183,7 +174,6 @@ public without sharing class CourseSearchUtility {
         }
         return courses;
     }
-    
 
     public static RestResponse getCoursesByDateDistance(Map <String, String> params){
         RestResponse response = new RestResponse();
@@ -206,7 +196,7 @@ public without sharing class CourseSearchUtility {
             return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
         }
         
-        List<Course__c> courses = getCoursesByDateDistance(location, radius, birthDueDate, true);        
+        List<Course__c> courses = getCoursesByDateDistance(new LocationRequestParameters(location, radius), birthDueDate, true);        
         Boolean isCoursesHasData = (courses != null && !courses.isEmpty());
         if (isCoursesHasData) {
             List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
@@ -224,7 +214,6 @@ public without sharing class CourseSearchUtility {
                         lowestRankIncluded = model.Rank;
                     }
                 }
-
             }
             
             // Sort models according rank, group rank and date;
@@ -243,12 +232,31 @@ public without sharing class CourseSearchUtility {
             sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
             
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(sortedModel)));
+            response.responseBody = Blob.valueOf(replaceModelFilds(JSON.serializePretty(sortedModel)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
         }        
         return response;
+    }
+
+    public class LocationRequestParameters{
+        Location location {get; set;}
+        Integer radius {get; set;}
+
+        public LocationRequestParameters(Location location, Integer radius){
+            this.location = location;
+            this.radius = radius;
+        }
+    }
+
+    private static List<String> getHowHeardValues() {
+        List<String> howHeardValues= new List<String>();
+        Schema.DescribeFieldResult fieldResult = Booking__c.How_Heard__c.getDescribe();
+        for (Schema.PicklistEntry value : fieldResult.getPicklistValues()) {
+            howHeardValues.add(value.getLabel());
+        }
+        return howHeardValues;
     }
 
     private static Integer getSuggestedLowestRank(Integer radius, Integer lowestRankIncluded){
@@ -330,13 +338,12 @@ public without sharing class CourseSearchUtility {
         return result;
     }
 
-
     private static Date getDefaultBirthDueDate(){
         final Integer DIFFERENCE_FROM_TODAY = 30;
         return Date.today() + DIFFERENCE_FROM_TODAY;
     }
 
-    private static String replaseModelFilds(String model) {
+    private static String replaceModelFilds(String model) {
         return model.replace('Session_Date', 'Date').replace('Session_End', 'End');
     }
    
@@ -355,5 +362,3 @@ public without sharing class CourseSearchUtility {
 
     public class RadiusTypeException extends CustomTypeException {}
 }
-//NOPMD
-//Incident #18 - https://confluence.nct.org.uk:8443/x/EoSO
