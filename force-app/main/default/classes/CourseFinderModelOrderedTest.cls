@@ -150,7 +150,7 @@ private class CourseFinderModelOrderedTest {
         Course__c course = getCourse();
 
         course.Type__c = 'Postnatal';
-        course.Sub_Type__c = 'Baby Massage';
+        course.Sub_Type__c = 'NCT Baby Massage';
         update course;
 
         Test.startTest();
@@ -168,7 +168,7 @@ private class CourseFinderModelOrderedTest {
         Course__c course = getCourse();
 
         course.Type__c = 'Postnatal';
-        course.Sub_Type__c = 'Baby Massage';
+        course.Sub_Type__c = 'NCT Baby Massage';
         update course;
        
         Test.startTest();

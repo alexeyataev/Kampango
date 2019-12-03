@@ -561,9 +561,9 @@ private class CourseSearchUtilityTest {
 
         private ChangerCourse changeType(String type) {
             List<String> postnatalCourseTypes = new List<String>{
-                'Early Days',
-                'Introducing Solids',
-                'Baby Massage'
+                'NCT Early Days course',
+                'NCT Introducing Solid Foods workshop',
+                'NCT Baby Massage'
             };
             if (postnatalCourseTypes.contains(type)) {
                 course.Type__c = 'Postnatal';

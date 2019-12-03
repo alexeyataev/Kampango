@@ -44,7 +44,7 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
         final String WATERBIRTH = 'NCT Waterbirth workshop';
         final String EARLY_DAYS = 'NCT Early Days course';
         final String INTRODUCING_SOLIDS = 'NCT Introducing Solid Foods workshop';
-        final String BABY_MASSAGE = 'Baby Massage';
+        final String BABY_MASSAGE = 'NCT Baby Massage';
 
         final Integer FIRST_RANK = 1;
         final Integer SECOND_RANK = 2;
