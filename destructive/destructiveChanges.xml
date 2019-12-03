@@ -221,6 +221,7 @@
     <types>
         <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Reservation_Email</members>
+        <members>Contact.Send_reunion_session_email_to_attendee_in_host_venue</members>
         <name>WorkflowAlert</name>
     </types>
     <types>
