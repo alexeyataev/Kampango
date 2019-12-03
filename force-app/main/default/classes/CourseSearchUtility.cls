@@ -107,15 +107,6 @@ public without sharing class CourseSearchUtility {
         return response;
     }
 
-    private static List<String> getHowHeardValues() {
-        List<String> howHeardValues= new List<String>();
-        Schema.DescribeFieldResult fieldResult = Booking__c.How_Heard__c.getDescribe();
-        for (Schema.PicklistEntry value : fieldResult.getPicklistValues()) {
-            howHeardValues.add(value.getLabel());
-        }     
-        return howHeardValues;
-    }
-
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByDateDistance(LocationRequestParameters locationRequestParameters, Date birthDueDate, Boolean hideFromPublicAccess){
@@ -257,6 +248,15 @@ public without sharing class CourseSearchUtility {
             this.location = location;
             this.radius = radius;
         }
+    }
+
+    private static List<String> getHowHeardValues() {
+        List<String> howHeardValues= new List<String>();
+        Schema.DescribeFieldResult fieldResult = Booking__c.How_Heard__c.getDescribe();
+        for (Schema.PicklistEntry value : fieldResult.getPicklistValues()) {
+            howHeardValues.add(value.getLabel());
+        }
+        return howHeardValues;
     }
 
     private static Integer getSuggestedLowestRank(Integer radius, Integer lowestRankIncluded){
