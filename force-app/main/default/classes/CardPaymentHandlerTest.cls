@@ -12,11 +12,70 @@ public class CardPaymentHandlerTest
             .withRecordType('Household Account')
             .insertRecord(true)
             .build();
-        TestContactBuilder contactBuilder = new TestContactBuilder();
-        Contact primaryContact = contactBuilder.withRecordType('Client')
+        TestAccountBuilder accountBuilderBranch = new TestAccountBuilder();
+        Account branch =  accountBuilderBranch.withRecordType('Branch')
+            .withName('Test Branch')
+            .withBillingPostalCode('qwerty')
+            .insertRecord(true)
+            .build();
+        TestAccountBuilder accountOrganizationBuilder = new TestAccountBuilder();
+        Account organization = accountOrganizationBuilder.withRecordType('Organization')
+            .withName('Test Organization')           
+            .withType('Supplier')
+            .insertRecord(true)
+            .withBillingEmail('test@test.com')
+            .withAccountNumber('test acc number')
+            .build();
+        TestContactBuilder contactPractitionerBuilder = new TestContactBuilder();
+        Contact contact = contactPractitionerBuilder.withRecordType('Practitioner')
+            .withAccount(organization)
+            .withFirstName('Fname')
+            .withLastName('Lname')
+            .insertRecord(true)
+            .build();
+        TestContactBuilder primaryContactBuilder = new TestContactBuilder();
+        Contact primaryContact = primaryContactBuilder.withRecordType('Client')
             .withAccount(account)
             .withFirstName('Test')
             .withLastName('Primary')
+            .insertRecord(true)
+            .build();
+        TestContactBuilder partnerContactBuilder = new TestContactBuilder();
+        Contact partnerContact = partnerContactBuilder.withRecordType('Client')
+            .withAccount(account)
+            .withFirstName('Test')
+            .withLastName('Partner')
+            .insertRecord(true)
+            .build();
+        TestLicenceToPracticeBuilder lisenceBuilder = new TestLicenceToPracticeBuilder();
+        Licence_To_Practice__c lisence = lisenceBuilder.withContact(contact)
+            .withStartDate(System.today())
+            .withStatus('Full')
+            .withLicence('Signature Antenatal Teacher')
+            .insertRecord(true)
+            .build();
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        Venue__c  venue = venueBuilder.withName('Venue1')
+            .insertRecord(true)
+            .build();
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        Course__c course = courseBuilder.withType('Postnatal')
+            .withSubType('Baby Massage')
+            .withFee(100)
+            .withNumberOfPlaces(15)
+            .withStatus('Draft')
+            .withAccount(branch)
+            .withLicenceToPractice(lisence)
+            .withPractitioner(contact)
+            .withMainVenue(venue)
+            .insertRecord(true)
+            .build();
+        TestBookingBuilder  bookingBuilder = new TestBookingBuilder();
+        Booking__c booking = bookingBuilder.withCourse(course)
+            .withStatus('Reserved')
+            .withPrimaryContact(primaryContact)
+            .withPartnerContact(partnerContact)
+            .withBookingExpiryDate(System.today().addDays(10))
             .insertRecord(true)
             .build();
         TestInstallmentBuilder installmentBuilder = new TestInstallmentBuilder();
@@ -31,8 +90,9 @@ public class CardPaymentHandlerTest
     }
     @IsTest
     static void testGetPaymentLink(){
-        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c, Sales_Invoice__c FROM cpm__Installment__c LIMIT 1];
-        PaymentApiRequest paymentBody = StepOrangeCardPaymentProvider.createPaymentBody(installmentList[0]);
+        cpm__Installment__c installment = [SELECT Id, cpm__Amount__c, cpm__Contact__c, Sales_Invoice__c FROM cpm__Installment__c LIMIT 1];
+        String bookingId = [SELECT Id FROM Booking__c LIMIT 1].Id;
+        PaymentApiRequest paymentBody = StepOrangeCardPaymentProvider.createPaymentBody(installment, bookingId);
         StepOrangeCardPaymentProvider.createPaymentRequest(paymentBody);
         String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
         RestContext.response.responseBody = Blob.valueof('{"ResponseCode":"001","IsSuccess":true,"SourceConnector":{"Name":"PaymentHub"},"RedirectURL":"' + responseUrl + '","PaymentMethod":{"Processor":"PaymentHub-WorldPay","Name":"CreditCard"},"Payment":{"InstallmentId":"a2b6E000000IVqQQAW"},"Payer":{"ContactId":"0036E00000quniyQAA","ContactDeduplicated":false,"AccountDeduplicated":false}}');
@@ -46,8 +106,14 @@ public class CardPaymentHandlerTest
     static void testGetPaymentLinkError(){
         String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
         Test.startTest();
-        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c FROM cpm__Installment__c  LIMIT 1];
-        List<CardPaymentUrlResult> result = CardPaymentHandler.getPaymentLink(installmentList);
+        cpm__Installment__c installment = [SELECT Id, cpm__Amount__c, cpm__Contact__c FROM cpm__Installment__c  LIMIT 1];
+        String bookingId = [SELECT Id FROM Booking__c LIMIT 1].Id;
+        CardPaymentUrlRequest params = new CardPaymentUrlRequest();
+        params.installment = installment;
+        params.bookingId = bookingId;
+        List<CardPaymentUrlRequest> paramsFromFlow = new List<CardPaymentUrlRequest>();
+        paramsFromFlow.add(params);
+        List<CardPaymentUrlResult> result = CardPaymentHandler.getPaymentLink(paramsFromFlow);
         Test.stopTest();
         System.assertNotEquals(result[0].url, responseUrl);
         System.assertEquals(result[0].error, 'SObject row was retrieved via SOQL without querying the requested field: cpm__Installment__c.Sales_Invoice__c');
@@ -56,8 +122,7 @@ public class CardPaymentHandlerTest
     static void testGetPaymentLinkNot1RecordError(){
         String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
         Test.startTest();
-        List<cpm__Installment__c> installmentList = [SELECT Id, cpm__Amount__c, cpm__Contact__c FROM cpm__Installment__c];
-        List<CardPaymentUrlResult> result = CardPaymentHandler.getPaymentLink(installmentList);
+        List<CardPaymentUrlResult> result = CardPaymentHandler.getPaymentLink(new List<CardPaymentUrlRequest>());
         Test.stopTest();
         System.assertNotEquals(result[0].url, responseUrl);
         System.assertEquals(result[0].error, 'List must contain 1 record');
