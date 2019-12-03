@@ -362,5 +362,3 @@ public without sharing class CourseSearchUtility {
 
     public class RadiusTypeException extends CustomTypeException {}
 }
-//NOPMD
-//Incident #18 - https://confluence.nct.org.uk:8443/x/EoSO
