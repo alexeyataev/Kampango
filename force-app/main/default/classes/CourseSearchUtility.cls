@@ -80,7 +80,7 @@ public without sharing class CourseSearchUtility {
             for (Course__c course : inCourses) {
                 Boolean isCourseHidden = isFromWebSite && course.Hide_From_Course_Finder__c;
                 if(!isCourseHidden) {
-                        courses.add(course);
+                    courses.add(course);
                 }
             } 
         }
