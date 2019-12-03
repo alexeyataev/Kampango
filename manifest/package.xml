@@ -239,6 +239,7 @@
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
+        <members>Override_Venue_Validation</members>
         <name>CustomPermission</name>
     </types>
     <types>
@@ -415,6 +416,7 @@
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
+        <members>Override_Venue_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <name>PermissionSet</name>
@@ -531,6 +533,7 @@
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
         <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
+        <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <name>ValidationRule</name>
     </types>
     <types>
