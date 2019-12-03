@@ -1,5 +1,4 @@
 public without sharing class CourseSearchUtility {
-
     private static List<String> howHeard = getHowHeardValues();
     
     @SuppressWarnings('PMD.ApexCRUDViolation')
@@ -53,7 +52,6 @@ public without sharing class CourseSearchUtility {
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByBranch(String branchId, Boolean hideFromPublicAccess){
-
         List<Course__c> inCourses = [
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
@@ -185,7 +183,6 @@ public without sharing class CourseSearchUtility {
         }
         return courses;
     }
-    
 
     public static RestResponse getCoursesByDateDistance(Map <String, String> params){
         RestResponse response = new RestResponse();
@@ -226,7 +223,6 @@ public without sharing class CourseSearchUtility {
                         lowestRankIncluded = model.Rank;
                     }
                 }
-
             }
             
             // Sort models according rank, group rank and date;
@@ -341,7 +337,6 @@ public without sharing class CourseSearchUtility {
 
         return result;
     }
-
 
     private static Date getDefaultBirthDueDate(){
         final Integer DIFFERENCE_FROM_TODAY = 30;
