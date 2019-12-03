@@ -60,7 +60,7 @@ public class CardPaymentHandlerTest
             .build();
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         Course__c course = courseBuilder.withType('Postnatal')
-            .withSubType('Baby Massage')
+            .withSubType('NCT Baby Massage')
             .withFee(100)
             .withNumberOfPlaces(15)
             .withStatus('Draft')
@@ -106,11 +106,9 @@ public class CardPaymentHandlerTest
     static void testGetPaymentLinkError(){
         String responseUrl = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
         Test.startTest();
-        cpm__Installment__c installment = [SELECT Id, cpm__Amount__c, cpm__Contact__c FROM cpm__Installment__c  LIMIT 1];
-        String bookingId = [SELECT Id FROM Booking__c LIMIT 1].Id;
         CardPaymentUrlRequest params = new CardPaymentUrlRequest();
-        params.installment = installment;
-        params.bookingId = bookingId;
+        params.installment = [SELECT Id, cpm__Amount__c, cpm__Contact__c FROM cpm__Installment__c  LIMIT 1];
+        params.bookingId   = [SELECT Id FROM Booking__c LIMIT 1].Id;
         List<CardPaymentUrlRequest> paramsFromFlow = new List<CardPaymentUrlRequest>();
         paramsFromFlow.add(params);
         List<CardPaymentUrlResult> result = CardPaymentHandler.getPaymentLink(paramsFromFlow);
