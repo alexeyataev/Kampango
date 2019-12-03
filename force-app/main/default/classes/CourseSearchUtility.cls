@@ -4,7 +4,7 @@ public without sharing class CourseSearchUtility {
     
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
-    public static Course__c getCourseById(String courseName, Boolean isFromWebSite){
+    public static Course__c getCourseById(String courseName, Boolean hideFromPublicAccess){
         Course__c result = null;
         
         List<Course__c> inCourses = [
@@ -27,7 +27,7 @@ public without sharing class CourseSearchUtility {
             WITH SECURITY_ENFORCED
         ];
         
-        Boolean isCourseHidden = inCourses.isEmpty() || (isFromWebSite && inCourses[0].Hide_From_Course_Finder__c);
+        Boolean isCourseHidden = inCourses.isEmpty() || (hideFromPublicAccess && inCourses[0].Hide_From_Course_Finder__c);
         if(!isCourseHidden) {
             result = inCourses[0];
         } 
@@ -52,7 +52,7 @@ public without sharing class CourseSearchUtility {
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
-    public static List<Course__c> getCoursesByBranch(String branchId, Boolean isFromWebSite){
+    public static List<Course__c> getCoursesByBranch(String branchId, Boolean hideFromPublicAccess){
 
         List<Course__c> inCourses = [
             SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
@@ -78,7 +78,7 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                Boolean isCourseHidden = isFromWebSite && course.Hide_From_Course_Finder__c;
+                Boolean isCourseHidden = hideFromPublicAccess && course.Hide_From_Course_Finder__c;
                 if(!isCourseHidden) {
                     courses.add(course);
                 }
@@ -120,7 +120,7 @@ public without sharing class CourseSearchUtility {
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
-    public static List<Course__c> getCoursesByDateDistance(LocationRequestParameters locationRequestParameters, Date birthDueDate, Boolean isFromWebSite){
+    public static List<Course__c> getCoursesByDateDistance(LocationRequestParameters locationRequestParameters, Date birthDueDate, Boolean hideFromPublicAccess){
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
         Location location = locationRequestParameters.location;
         Integer radius = locationRequestParameters.radius;
@@ -134,7 +134,7 @@ public without sharing class CourseSearchUtility {
 
         List<Course__c> inCourses;
 
-        if (isFromWebSite) {
+        if (hideFromPublicAccess) {
             inCourses = [
                 SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
@@ -177,7 +177,7 @@ public without sharing class CourseSearchUtility {
 
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
-                Boolean isCourseHidden = isFromWebSite && course.Hide_From_Course_Finder__c;
+                Boolean isCourseHidden = hideFromPublicAccess && course.Hide_From_Course_Finder__c;
                 if(!isCourseHidden) {
                     courses.add(course);
                 }
