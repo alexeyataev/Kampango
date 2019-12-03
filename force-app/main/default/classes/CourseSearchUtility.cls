@@ -41,7 +41,7 @@ public without sharing class CourseSearchUtility {
             CourseFinderModel model = new CourseFinderModel(course);
             model.HowHeardTexts = howHeard;
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(model)));
+            response.responseBody = Blob.valueOf(replaceModelFilds(JSON.serializePretty(model)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
@@ -99,7 +99,7 @@ public without sharing class CourseSearchUtility {
             CoursesBranchModel branchModel = new CoursesBranchModel();
             branchModel.Courses = models;
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(branchModel)));
+            response.responseBody = Blob.valueOf(replaceModelFilds(JSON.serializePretty(branchModel)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPInoResultsFound);
@@ -241,7 +241,7 @@ public without sharing class CourseSearchUtility {
             sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
             
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(replaseModelFilds(JSON.serializePretty(sortedModel)));
+            response.responseBody = Blob.valueOf(replaceModelFilds(JSON.serializePretty(sortedModel)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
@@ -343,7 +343,7 @@ public without sharing class CourseSearchUtility {
         return Date.today() + DIFFERENCE_FROM_TODAY;
     }
 
-    private static String replaseModelFilds(String model) {
+    private static String replaceModelFilds(String model) {
         return model.replace('Session_Date', 'Date').replace('Session_End', 'End');
     }
    
