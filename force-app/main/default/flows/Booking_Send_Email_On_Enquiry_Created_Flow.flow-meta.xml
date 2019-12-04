@@ -64,7 +64,7 @@
             <label>Is booking null?</label>
         </rules>
     </decisions>
-    <description></description>
+    <description>Sends an email to Primary Contact when Booking in status Enquiry is created</description>
     <interviewLabel>Booking Send Email On Enquiry Created Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Send Email On Enquiry Created Flow</label>
     <processMetadataValues>
