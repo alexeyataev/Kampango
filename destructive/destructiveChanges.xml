@@ -159,6 +159,13 @@
         <name>CustomPermission</name>
     </types>
     <types>
+        <members>NCT_Templates/Reunion_Session_Attendees_Not_Client_Host_Email</members>
+        <members>NCT_Templates/Reunion_Session_Attendees_Public_Venue_Email</members>
+        <members>NCT_Templates/Reunion_Session_Course_Leader_Email</members>
+        <members>NCT_Templates/Reunion_Session_Client_Hoster_Email</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
         <members>Course__c.Revert_Course_To_Draft_After_Cost_Deletion</members>
         <members>Course__c.Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Installment_Process</members>
@@ -221,7 +228,10 @@
     <types>
         <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Reservation_Email</members>
+        <members>Contact.Send_reunion_session_email_to_attendee</members>
         <members>Contact.Send_reunion_session_email_to_attendee_in_host_venue</members>
+        <members>Contact.Send_reunion_session_email_to_practitioner</members>
+        <members>Venue.Send_reunion_session_email_to_host</members>
         <name>WorkflowAlert</name>
     </types>
     <types>
