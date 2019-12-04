@@ -4,17 +4,34 @@
     <externalId>false</externalId>
     <formula>IF( NOT(ISPICKVAL(Status__c, &quot;Confirmed&quot;)),
  0,
- IF( AND(Days_Before_Course_Start__c &gt; 28, Course_Fee__c &gt; 30), 
-  30,
-  IF( AND(Days_Before_Course_Start__c &lt;= 28, Days_Before_Course_Start__c &gt;= 14), 
-   IF(Course_Fee__c &gt;= 60, 
-    Course_Fee__c * 0.5,
-    IF(AND(Course_Fee__c &gt; 30, Course_Fee__c &lt; 60),
-     30,
-     0
-    )
-   ),
-   Course_Fee__c
+ IF( NOT( ISBLANK(Fee_Override__c) ),
+
+  IF( AND(Days_Before_Course_Start__c &gt; 28, Fee_Override__c &gt; 30), 
+   30,
+   IF( AND(Days_Before_Course_Start__c &lt;= 28, Days_Before_Course_Start__c &gt;= 14), 
+    IF(Fee_Override__c&gt;= 60, 
+     Fee_Override__c * 0.5,
+     IF(AND(Fee_Override__c &gt; 30, Fee_Override__c &lt; 60),
+      30,
+      Fee_Override__c
+     )
+    ),
+    Fee_Override__c
+   )
+  ),
+
+  IF( AND(Days_Before_Course_Start__c &gt; 28, Course_Fee__c &gt; 30), 
+   30,
+   IF( AND(Days_Before_Course_Start__c &lt;= 28, Days_Before_Course_Start__c &gt;= 14), 
+    IF(Course_Fee__c &gt;= 60, 
+     Course_Fee__c * 0.5,
+     IF(AND(Course_Fee__c &gt; 30, Course_Fee__c &lt; 60),
+      30,
+      Course_Fee__c
+     )
+    ),
+    Course_Fee__c
+   )
   )
  )
 )</formula>
