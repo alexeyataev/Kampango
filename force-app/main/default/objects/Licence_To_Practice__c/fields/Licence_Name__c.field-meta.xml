@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Practitioner_Name__c</fullName>
+    <fullName>Licence_Name__c</fullName>
     <externalId>false</externalId>
-    <label>Practitioner Name</label>
-    <length>50</length>
+    <formula>TEXT(Licence__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Licence Name</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
