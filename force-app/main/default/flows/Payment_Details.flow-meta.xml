@@ -700,6 +700,12 @@ CC and CC = Credit Card for Course and Credit Card for Membership;</description>
                 <elementReference>Installment_Object</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <name>bookingId</name>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </inputAssignments>
         <outputAssignments>
             <assignToReference>installmentId</assignToReference>
             <name>installmentId</name>

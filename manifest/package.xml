@@ -125,14 +125,13 @@
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
         <members>Course__c.Title__c</members>
-        <members>cpm__Installment__c.ga_decl_1__c</members>
-        <members>cpm__Installment__c.ga_decl_2__c</members>
-        <members>cpm__Installment__c.Sales_Invoice__c</members>
-        <members>cpm__Installment__c.Partner_Contact__c</members>
         <members>cpm__Installment__c.Bank_Details_Number__c</members>
-        <members>cpm__Installment__c.Partner_Contact__c</members>
         <members>cpm__Installment__c.Care_Membership_Added__c</members>
         <members>cpm__Installment__c.Membership_Type__c</members>
+        <members>cpm__Installment__c.Partner_Contact__c</members>
+        <members>cpm__Installment__c.Sales_Invoice__c</members>
+        <members>cpm__Installment__c.ga_decl_1__c</members>
+        <members>cpm__Installment__c.ga_decl_2__c</members>
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Session__c.Eligible_for_Claim__c</members>
         <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
@@ -302,6 +301,7 @@
     <types>
         <members>Assign_Practitioner_Fee_Rate_to_Session</members>
         <members>Booking_Journey_Available</members>
+        <members>Booking_Journey_Success_Page</members>
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_Send_Email_On_Enquiry_Created_Process</members>
