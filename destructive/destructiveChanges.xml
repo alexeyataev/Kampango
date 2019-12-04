@@ -125,6 +125,7 @@
         <members>Individual.Has_Opted_Out_Post__c</members>
         <members>Individual.Has_Opted_Out_SMS__c</members>
         <members>Individual.Has_Opted_Out_Telephone__c</members>
+        <members>Licence_To_Practice__c.Practitioner_Name__c</members>
         <members>npe03__Recurring_Donation__c.Recurring_Donations_Key__c</members>
         <members>npe03__Recurring_Donation__c.Payment_profile_Key__c</members>
         <members>npe03__Recurring_Donation__c.First_Contact_Key__c</members>
@@ -162,6 +163,7 @@
         <members>Course__c.Revert_Course_To_Draft_After_Cost_Deletion</members>
         <members>Course__c.Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Installment_Process</members>
+        <members>Populate_Practitioner_Name</members>
         <members>Update_Practitioner_Licence</members>
         <name>Flow</name>
     </types>
