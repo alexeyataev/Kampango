@@ -37,14 +37,14 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
 
     private List<CourseTypeRank> createOrderToRank() {
 
-        final String NCT_SIGNATURE_ANTENATAL = 'NCT Signature Antenatal';
-        final String NCT_SIGNATURE_ESSENTIALS = 'NCT Essentials Antenatal';
-        final String NCT_ANTENATAL_REFRESHER = 'NCT Antenatal Refresher';
-        final String TWINS_AND_MULTIPLES = 'Twins and Multiples';
-        final String WATERBIRTH = 'Waterbirth';
-        final String EARLY_DAYS = 'Early Days';
-        final String INTRODUCING_SOLIDS = 'Introducing Solids';
-        final String BABY_MASSAGE = 'Baby Massage';
+        final String NCT_SIGNATURE_ANTENATAL = 'NCT Signature antenatal course';
+        final String NCT_SIGNATURE_ESSENTIALS = 'NCT Essentials antenatal course';
+        final String NCT_ANTENATAL_REFRESHER = 'NCT Antenatal refresher course';
+        final String TWINS_AND_MULTIPLES = 'NCT Twins and Multiples workshop';
+        final String WATERBIRTH = 'NCT Waterbirth workshop';
+        final String EARLY_DAYS = 'NCT Early Days course';
+        final String INTRODUCING_SOLIDS = 'NCT Introducing Solid Foods workshop';
+        final String BABY_MASSAGE = 'NCT Baby Massage';
 
         final Integer FIRST_RANK = 1;
         final Integer SECOND_RANK = 2;

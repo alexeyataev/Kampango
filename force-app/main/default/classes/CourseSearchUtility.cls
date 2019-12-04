@@ -1,6 +1,4 @@
 public without sharing class CourseSearchUtility {
-    private static List<String> howHeard = getHowHeardValues();
-    
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static Course__c getCourseById(String courseName, Boolean hideFromPublicAccess){
@@ -39,7 +37,6 @@ public without sharing class CourseSearchUtility {
         Course__c course = getCourseById(courseName, true);
         if (course != null) {
             CourseFinderModel model = new CourseFinderModel(course);
-            model.HowHeardTexts = howHeard;
             response.statusCode = HttpStatusCode.OK;
             response.responseBody = Blob.valueOf(replaceModelFilds(JSON.serializePretty(model)));
         } else {
@@ -92,9 +89,7 @@ public without sharing class CourseSearchUtility {
         if (!courses.isEmpty()) {
             List<CourseFinderModel> models = new List<CourseFinderModel>();
             for (Course__c course : courses) {
-                CourseFinderModel model = new CourseFinderModel(course);
-                model.HowHeardTexts = howHeard;
-                models.add(model);
+                models.add(new CourseFinderModel(course));
             }
             CoursesBranchModel branchModel = new CoursesBranchModel();
             branchModel.Courses = models;
@@ -113,8 +108,10 @@ public without sharing class CourseSearchUtility {
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
         Location location = locationRequestParameters.location;
         Integer radius = locationRequestParameters.radius;
+        List<Course__c> courses = new List<Course__c>();
+
         if (location == null){
-            return null;
+            return courses;
         }
         
         if (radius == null || radius <= 0) {
@@ -162,8 +159,6 @@ public without sharing class CourseSearchUtility {
             ];
         }
 
-        List<Course__c> courses = new List<Course__c>();
-
         if(!inCourses.isEmpty()) {
             for (Course__c course : inCourses) {
                 Boolean isCourseHidden = hideFromPublicAccess && course.Hide_From_Course_Finder__c;
@@ -176,7 +171,6 @@ public without sharing class CourseSearchUtility {
     }
 
     public static RestResponse getCoursesByDateDistance(Map <String, String> params){
-        RestResponse response = new RestResponse();
         if (params == null){
             return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
         }
@@ -197,47 +191,26 @@ public without sharing class CourseSearchUtility {
         }
         
         List<Course__c> courses = getCoursesByDateDistance(new LocationRequestParameters(location, radius), birthDueDate, true);        
-        Boolean isCoursesHasData = (courses != null && !courses.isEmpty());
-        if (isCoursesHasData) {
-            List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
-            Integer i = 0;
-            Integer lowestRankIncluded = 1;
-            for (Course__c course : courses) {
-                CourseFinderModelOrdered model = new CourseFinderModelOrdered(course, birthDueDate);
-                i++;
+        if (courses.isEmpty()) {
+            return createResponse(HttpStatusCode.NOT_FOUND, System.Label.CourseAPIcourseNotExists);
+        }
 
-                model.HowHeardTexts = howHeard;
-
-                if (model.Rank <= 5) { // filtering by rank
+        List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
+        
+        for (Course__c course : courses) {
+            CourseFinderModelOrdered model = new CourseFinderModelOrdered(course, birthDueDate);
+            if (model.Rank <= 5) { // filtering by rank
                 models.add(model);
-                    if (lowestRankIncluded < model.Rank){
-                        lowestRankIncluded = model.Rank;
-                    }
-                }
             }
-            
-            // Sort models according rank, group rank and date;
-            models.sort();
-            // update Orders accorting to the sorting order;
-            i = 0;
-            for (CourseFinderModelOrdered model : models){
-                i++;
-                model.Order = i;
-            }
-            
-            CoursesDateDistanceModel sortedModel = new CoursesDateDistanceModel();
-            sortedModel.Courses = models;
-            sortedModel.LowestRankIncluded = lowestRankIncluded;
-            sortedModel.SuggestedLowestRank = getSuggestedLowestRank(radius, lowestRankIncluded);
-            sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
-            
-            response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(replaceModelFilds(JSON.serializePretty(sortedModel)));
-        } else {
-            response.statusCode = HttpStatusCode.NOT_FOUND;
-            response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
-        }        
-        return response;
+        }
+        
+        models.sort(); // Sort models according rank, group rank and date;
+        Integer lowestRankIncluded = updateModelsOrders(models);
+        
+        CoursesDateDistanceModel sortedModel = new CoursesDateDistanceModel(models, lowestRankIncluded, radius);
+        sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
+        
+        return createResponse(HttpStatusCode.OK, replaceModelFilds(JSON.serializePretty(sortedModel)));
     }
 
     public class LocationRequestParameters{
@@ -250,38 +223,18 @@ public without sharing class CourseSearchUtility {
         }
     }
 
-    private static List<String> getHowHeardValues() {
-        List<String> howHeardValues= new List<String>();
-        Schema.DescribeFieldResult fieldResult = Booking__c.How_Heard__c.getDescribe();
-        for (Schema.PicklistEntry value : fieldResult.getPicklistValues()) {
-            howHeardValues.add(value.getLabel());
-        }
-        return howHeardValues;
-    }
+    private static Integer updateModelsOrders(List<CourseFinderModelOrdered> models){
+        Integer i = 0;
+        Integer lowestRankIncluded = 1;
+        for (CourseFinderModelOrdered model : models){
+            i++;
+            model.Order = i;
 
-    private static Integer getSuggestedLowestRank(Integer radius, Integer lowestRankIncluded){
-        Integer result;
-
-        final Integer RANK_3 = 3;
-        final Integer RANK_4 = 4;
-        final Integer RANK_5 = 5;
-
-        final Integer RANK_3_MAX_RADIUS = 10;
-        final Integer RANK_4_MAX_RADIUS = 20;
-        
-        if (radius <= RANK_3_MAX_RADIUS) {
-            result = RANK_3;
-        } else if (radius <= RANK_4_MAX_RADIUS) {
-            result = RANK_4;
-        } else {
-            result = RANK_5;
+            if (lowestRankIncluded < model.Rank){
+                lowestRankIncluded = model.Rank;
+            }
         }
-        
-        if (result > lowestRankIncluded) {
-            result = lowestRankIncluded;
-        }
-        
-        return result;
+        return lowestRankIncluded;
     }
 
     private static Location validateLocation(String strLocation){
@@ -347,10 +300,10 @@ public without sharing class CourseSearchUtility {
         return model.replace('Session_Date', 'Date').replace('Session_End', 'End');
     }
    
-    private static RestResponse createResponse(Integer statusCode, String label){
+    private static RestResponse createResponse(Integer statusCode, String responseBody){
         RestResponse response = new RestResponse();
         response.statusCode = statusCode;
-        response.responseBody = Blob.valueOf(label);
+        response.responseBody = Blob.valueOf(responseBody);
         return response;
     }
 
