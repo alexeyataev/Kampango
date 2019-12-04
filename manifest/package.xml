@@ -43,6 +43,8 @@
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
         <members>SESSION_RevertToProvisional_TDTM</members>
         <members>SESSION_RevertToProvisional_TDTM_TEST</members>
+        <members>SESSION_TrackDeletedRecord_TDTM</members>
+        <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
         <members>StepOrangeCardPaymentProvider</members>
@@ -236,6 +238,8 @@
         <members>Override_Course_Validation</members>
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
+        <members>Override_Session_Validation</members>
+        <members>Override_Venue_Validation</members>
         <name>CustomPermission</name>
     </types>
     <types>
@@ -312,7 +316,6 @@
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Membership_Option</members>
         <members>Payment_Details</members>
-        <members>Populate_Practitioner_Name</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Confirmation_Email</members>
         <members>Resend_Offer_Email</members>
@@ -328,6 +331,7 @@
         <members>Set_Deactivate_Date_GAD</members>
         <members>Set_Main_Venue_on_Course</members>
         <members>Set_Number_of_Places_Based_on_Course_Type</members>
+        <members>Track_Deleted_Sessions</members>
         <members>Update_Address_in_Gift_Aid_Declaration</members>
         <members>Update_Address_in_Gift_Aid_Declarations</members>
         <members>Update_Partner_Community_Contact</members>
@@ -410,6 +414,8 @@
         <members>Override_Course_Validation</members>
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
+        <members>Override_Session_Validation</members>
+        <members>Override_Venue_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <name>PermissionSet</name>
@@ -525,6 +531,8 @@
         <members>Session__c.End_time_should_not_be_before_start_time</members>
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
+        <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
+        <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <name>ValidationRule</name>
     </types>
     <types>

@@ -125,6 +125,7 @@
         <members>Individual.Has_Opted_Out_Post__c</members>
         <members>Individual.Has_Opted_Out_SMS__c</members>
         <members>Individual.Has_Opted_Out_Telephone__c</members>
+        <members>Licence_To_Practice__c.Practitioner_Name__c</members>
         <members>npe03__Recurring_Donation__c.Recurring_Donations_Key__c</members>
         <members>npe03__Recurring_Donation__c.Payment_profile_Key__c</members>
         <members>npe03__Recurring_Donation__c.First_Contact_Key__c</members>
@@ -159,8 +160,6 @@
         <name>CustomPermission</name>
     </types>
     <types>
-        <members>Course__c.Revert_Course_To_Draft_After_Cost_Deletion</members>
-        <members>Course__c.Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Installment_Process</members>
         <members>Update_Practitioner_Licence</members>
         <name>Flow</name>
@@ -201,6 +200,7 @@
         <members>Contact.Contact_Preferred_Phone</members>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
+        <members>Session__c.Prevent_private_reunion_confirmation</members>
         <members>Zumzum__Bank_Account__c.Account_number_must_be_8_numeric_digits</members>
         <members>Zumzum__Bank_Account__c.Check_Bank_Account_Name</members>
         <members>Zumzum__Bank_Account__c.Sort_code_must_be_6_numeric_digits</members>
