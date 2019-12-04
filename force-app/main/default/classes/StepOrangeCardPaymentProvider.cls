@@ -5,7 +5,7 @@ public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
     private static final String PAYER_CONTACT_UPDATE = 'none';
     private static final String PAYMENT_METHOD = 'Creditcard';
     private static final String SOURCE_CONNECTOR = 'PaymentHub';
-    private static final String SUCCESS_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + '/s/success/?bookingId=';
+    private static final String SUCCESS_PAGE = Parentforce_Community_Settings__c.getOrgDefaults().Base_Url__c + '/s/success/?bookingId={0}';
     public static CardPaymentUrlResult getCardPaymentURL(cpm__Installment__c installment, String bookingId) {
         PaymentApiRequest paymentBody = createPaymentBody(installment, bookingId);
         createPaymentRequest(paymentBody);
@@ -18,7 +18,7 @@ public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
         PaymentApiRequest.Contact contact = new PaymentApiRequest.Contact(installment.cpm__Contact__c);
         PaymentApiRequest.PaymentApiRequestParams paymentApiParams = new PaymentApiRequest.PaymentApiRequestParams();
         paymentApiParams.origin = ORIGIN;
-        paymentApiParams.URLs = new PaymentApiRequest.URLs(SUCCESS_PAGE + bookingId, ERROR_PAGE);
+        paymentApiParams.URLs = new PaymentApiRequest.URLs(String.format(SUCCESS_PAGE, new List<String>{bookingId}), ERROR_PAGE);
         paymentApiParams.payer = new PaymentApiRequest.Payer(contact, PAYER_CONTACT_UPDATE);
         Map<String, String> customFields = new Map<String, String>();
         customFields.put('Sales_Invoice__c', installment.Sales_Invoice__c);

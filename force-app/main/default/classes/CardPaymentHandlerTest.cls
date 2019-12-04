@@ -1,89 +1,28 @@
 @IsTest
 public class CardPaymentHandlerTest
 {
-    @testSetup static void createInstallment() {
+    @testSetup static void SetupTestData() {
         Parentforce_Community_Settings__c parentforceCommunitySettings = new Parentforce_Community_Settings__c();
         parentforceCommunitySettings.Base_Url__c = 'http://mynct.test.com';
         parentforceCommunitySettings.API_Token__c = '12345';
         parentforceCommunitySettings.SetupOwnerId = UserInfo.getOrganizationId();
         insert parentforceCommunitySettings;
-        TestAccountBuilder accountBuilder = new TestAccountBuilder();
-        Account account =  accountBuilder
-            .withRecordType('Household Account')
-            .insertRecord(true)
-            .build();
-        TestAccountBuilder accountBuilderBranch = new TestAccountBuilder();
-        Account branch =  accountBuilderBranch.withRecordType('Branch')
-            .withName('Test Branch')
-            .withBillingPostalCode('qwerty')
-            .insertRecord(true)
-            .build();
-        TestAccountBuilder accountOrganizationBuilder = new TestAccountBuilder();
-        Account organization = accountOrganizationBuilder.withRecordType('Organization')
-            .withName('Test Organization')           
-            .withType('Supplier')
-            .insertRecord(true)
-            .withBillingEmail('test@test.com')
-            .withAccountNumber('test acc number')
-            .build();
-        TestContactBuilder contactPractitionerBuilder = new TestContactBuilder();
-        Contact contact = contactPractitionerBuilder.withRecordType('Practitioner')
-            .withAccount(organization)
-            .withFirstName('Fname')
-            .withLastName('Lname')
-            .insertRecord(true)
-            .build();
-        TestContactBuilder primaryContactBuilder = new TestContactBuilder();
-        Contact primaryContact = primaryContactBuilder.withRecordType('Client')
-            .withAccount(account)
-            .withFirstName('Test')
-            .withLastName('Primary')
-            .insertRecord(true)
-            .build();
-        TestContactBuilder partnerContactBuilder = new TestContactBuilder();
-        Contact partnerContact = partnerContactBuilder.withRecordType('Client')
-            .withAccount(account)
-            .withFirstName('Test')
-            .withLastName('Partner')
-            .insertRecord(true)
-            .build();
-        TestLicenceToPracticeBuilder lisenceBuilder = new TestLicenceToPracticeBuilder();
-        Licence_To_Practice__c lisence = lisenceBuilder.withContact(contact)
-            .withStartDate(System.today())
-            .withStatus('Full')
-            .withLicence('Signature Antenatal Teacher')
-            .insertRecord(true)
-            .build();
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        Venue__c  venue = venueBuilder.withName('Venue1')
-            .insertRecord(true)
-            .build();
-        TestCourseBuilder courseBuilder = new TestCourseBuilder();
-        Course__c course = courseBuilder.withType('Postnatal')
-            .withSubType('NCT Baby Massage')
-            .withFee(100)
-            .withNumberOfPlaces(15)
-            .withStatus('Draft')
-            .withAccount(branch)
-            .withLicenceToPractice(lisence)
-            .withPractitioner(contact)
-            .withMainVenue(venue)
-            .insertRecord(true)
-            .build();
-        TestBookingBuilder  bookingBuilder = new TestBookingBuilder();
-        Booking__c booking = bookingBuilder.withCourse(course)
-            .withStatus('Reserved')
-            .withPrimaryContact(primaryContact)
-            .withPartnerContact(partnerContact)
-            .withBookingExpiryDate(System.today().addDays(10))
-            .insertRecord(true)
-            .build();
+
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory .buildOrganizationAccount('111')
+                    .buildBranchAccount()
+                    .buildPractitioner('John')
+                    .buildVenue()
+                    .buildLicenceToPractice()
+                    .buildCourse()
+                    .buildParentHost('Dina', 'test1@test.com')
+                    .buildPartnertHost('Tim', 'test2@test.com')
+                    .buildBooking('Reserved');
+
+        Contact primaryContact = [SELECT Id, Name FROM Contact LIMIT 1];
+        
         TestInstallmentBuilder installmentBuilder = new TestInstallmentBuilder();
         cpm__Installment__c installment = installmentBuilder.withAmount(50)
-            .withPrimaryContact(primaryContact.Id)
-            .insertRecord(true)
-            .build();
-        cpm__Installment__c installment2 = installmentBuilder.withAmount(50)
             .withPrimaryContact(primaryContact.Id)
             .insertRecord(true)
             .build();
