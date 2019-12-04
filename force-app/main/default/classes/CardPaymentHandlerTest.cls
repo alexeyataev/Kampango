@@ -9,7 +9,7 @@ public class CardPaymentHandlerTest
         insert parentforceCommunitySettings;
 
         TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory .buildOrganizationAccount('111')
+        dataFactory .buildOrganizationAccount('acc1')
                     .buildBranchAccount()
                     .buildPractitioner('John')
                     .buildVenue()
