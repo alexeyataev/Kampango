@@ -64,7 +64,7 @@
             <label>Is booking null?</label>
         </rules>
     </decisions>
-    <description>Turned off orgWideAddress usage</description>
+    <description></description>
     <interviewLabel>Booking Send Email On Enquiry Created Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Send Email On Enquiry Created Flow</label>
     <processMetadataValues>
