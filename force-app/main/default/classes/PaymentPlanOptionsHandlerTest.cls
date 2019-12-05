@@ -57,7 +57,7 @@ public class PaymentPlanOptionsHandlerTest {
             .insertRecord(true)
             .build();
         Course__c course = courseBuilder.withType('Postnatal')
-            .withSubType('Baby Massage')
+            .withSubType('NCT Baby Massage')
             .withFee(200)
             .withNumberOfPlaces(15)
             .withStatus('Draft')
