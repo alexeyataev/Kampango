@@ -88,18 +88,18 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Main_Practitioner__c</field>
+                <field>Main_Practitioner_Licence__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Main_Practitioner_Licence__c</field>
+                <field>Main_Practitioner__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Main_Venue__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Practitioner_Fee_Discount__c</field>
