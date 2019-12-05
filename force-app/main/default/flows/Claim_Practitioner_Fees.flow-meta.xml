@@ -104,7 +104,7 @@
             <targetReference>Get_Last_PI_Number</targetReference>
         </connector>
     </assignments>
-    <description>Git Version</description>
+    <description>Claim Practitioner Fee flow.</description>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
