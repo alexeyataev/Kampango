@@ -52,6 +52,10 @@ public class PaymentPlanOptionsHandlerTest {
             .insertRecord(true)
             .build();
             TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        Venue__c venue = venueBuilder.withName('Venue1')
+            .insertRecord(true)
+            .build();
         Course__c course = courseBuilder.withType('Postnatal')
             .withSubType('Baby Massage')
             .withFee(200)
@@ -60,6 +64,7 @@ public class PaymentPlanOptionsHandlerTest {
             .withAccount(branch)
             .withLicenceToPractice(lisence)
             .withPractitioner(practitioner)
+            .withMainVenue(venue)
             .insertRecord(true)
             .build();
         TestBookingBuilder bookingBuilder = new TestBookingBuilder();
@@ -68,10 +73,6 @@ public class PaymentPlanOptionsHandlerTest {
             .withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
             .withBookingExpiryDate(System.today().addDays(-10))
-            .insertRecord(true)
-            .build();
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        Venue__c venue = venueBuilder.withName('Venue1')
             .insertRecord(true)
             .build();
         TestRoomBuilder roomBuilder = new TestRoomBuilder();
