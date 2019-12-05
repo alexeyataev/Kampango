@@ -192,16 +192,19 @@ public without sharing class CourseSearchUtility {
         
         List<Course__c> courses = getCoursesByDateDistance(new LocationRequestParameters(location, radius), birthDueDate, true);        
         if (courses.isEmpty()) {
-            return createResponse(HttpStatusCode.NOT_FOUND, System.Label.CourseAPIcourseNotExists);
+            return createResponse(HttpStatusCode.NOT_FOUND, System.Label.CourseAPInoResultsFound);
         }
 
         List<CourseFinderModelOrdered> models = new List<CourseFinderModelOrdered>();
-        
+        final Integer LOWEST_RANK_TO_BE_DISPlAYED = 5;
         for (Course__c course : courses) {
             CourseFinderModelOrdered model = new CourseFinderModelOrdered(course, birthDueDate);
-            if (model.Rank <= 5) { // filtering by rank
+            if (model.Rank <= LOWEST_RANK_TO_BE_DISPlAYED) { // filtering by rank
                 models.add(model);
             }
+        }
+        if(models.isEmpty()){
+            return createResponse(HttpStatusCode.NOT_FOUND, System.Label.CourseAPInoResultsFound);
         }
         
         models.sort(); // Sort models according rank, group rank and date;
