@@ -90,7 +90,6 @@ public without sharing virtual class CourseFinderModel {
         for (Schema.PicklistEntry value : fieldResult.getPicklistValues()) {
             howHeardValues.add(value.getLabel());
         }
-        System.debug('getHowHeardValuesCall');
         return howHeardValues;
     }
 
