@@ -1,6 +1,7 @@
 @SuppressWarnings('PMD.VariableNamingConventions')
 //Incident #10 - https://confluence.nct.org.uk:8443/x/EoSO
 public class CourseFinderModelOrdered extends CourseFinderModel implements Comparable {
+    public static final Integer INAPPROPRIATE_RANK = 8; // correct ranks are 1-7
     public Integer Rank {get; set;}
     public Integer Order {get; set;}
     private transient List<CourseTypeRank> courseTypeRanks;
@@ -12,7 +13,6 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
     }
 
     private Integer getCourseRank(Course__c course, Date birthDueDate) {
-        final Integer INAPPROPRIATE_RANK = 8; // correct ranks are 1-7
         Integer numberDays = 0;
         if (birthDueDate != null && course.End_Date__c != null && course.Start_Date__c != null) {
             numberDays = course.Type__c == 'Antenatal' ? course.End_Date__c.daysBetween(birthDueDate) : course.Start_Date__c.daysBetween(birthDueDate);
