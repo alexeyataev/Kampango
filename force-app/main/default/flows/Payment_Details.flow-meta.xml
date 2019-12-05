@@ -642,7 +642,7 @@ CC and CC = Credit Card for Course and Credit Card for Membership;</description>
         <allowPause>false</allowPause>
         <fields>
             <name>Payment_Details_Info</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Payment Details&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Amount: &lt;/span&gt;&lt;b style=&quot;font-size: 18px;&quot;&gt;{!Installment_Object.cpm__Amount__c} £&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 36px;&quot;&gt;Pay by credit/debit card&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;To pay by credit or debit card using the secure Worldpay system, please select &#39;Proceed to payment&#39;. You&#39;ll be redirected to the Worldpay site to complete your payment.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;We don&#39;t see or store any of your debit or credit card information.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Please note: Credit cards levy higher charges on us than debit cards. We&#39;d be grateful to you for supporting our charity by using a debit card if possible.&lt;/span&gt;&lt;/p&gt;&lt;h4&gt;&lt;br&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!Total_Amount_Template}&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -700,6 +700,12 @@ CC and CC = Credit Card for Course and Credit Card for Membership;</description>
                 <elementReference>Installment_Object</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <name>bookingId</name>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </inputAssignments>
         <outputAssignments>
             <assignToReference>installmentId</assignToReference>
             <name>installmentId</name>
@@ -713,6 +719,10 @@ CC and CC = Credit Card for Course and Credit Card for Membership;</description>
             <name>paymentUrl</name>
         </outputAssignments>
     </subflows>
+    <textTemplates>
+        <name>Total_Amount_Template</name>
+        <text>&lt;p&gt;&lt;span style=&quot;font-size: 22px;&quot;&gt;Total amount due:&lt;/span&gt;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&lt;span style=&quot;font-size: 22px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;£&lt;/span&gt;&lt;span style=&quot;font-size: 22px;&quot;&gt;{!Installment_Object.cpm__Amount__c}&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;</text>
+    </textTemplates>
     <variables>
         <name>bookingId</name>
         <dataType>String</dataType>

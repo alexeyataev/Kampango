@@ -4,17 +4,11 @@
         <name>Send_email</name>
         <label>Send email</label>
         <locationX>641</locationX>
-        <locationY>377</locationY>
+        <locationY>378</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
         <inputParameters>
-            <name>mergeObjectId</name>
-            <value>
-                <elementReference>booking.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>orgWideEmailAddress</name>
+            <name>replyEmailAddress</name>
             <value>
                 <elementReference>course.Enquiries_PSA_Email__c</elementReference>
             </value>
@@ -26,9 +20,9 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>replyEmailAddress</name>
+            <name>mergeObjectId</name>
             <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+                <elementReference>booking.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -70,7 +64,7 @@
             <label>Is booking null?</label>
         </rules>
     </decisions>
-    <description>Replaced Contact_Names to Email_Template_Utility_Field</description>
+    <description>Sends an email to Primary Contact when Booking in status Enquiry is created</description>
     <interviewLabel>Booking Send Email On Enquiry Created Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Send Email On Enquiry Created Flow</label>
     <processMetadataValues>
