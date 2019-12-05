@@ -43,6 +43,8 @@
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
         <members>SESSION_RevertToProvisional_TDTM</members>
         <members>SESSION_RevertToProvisional_TDTM_TEST</members>
+        <members>SESSION_TrackDeletedRecord_TDTM</members>
+        <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
         <members>StepOrangeCardPaymentProvider</members>
@@ -122,14 +124,14 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
-        <members>cpm__Installment__c.ga_decl_1__c</members>
-        <members>cpm__Installment__c.ga_decl_2__c</members>
-        <members>cpm__Installment__c.Sales_Invoice__c</members>
-        <members>cpm__Installment__c.Partner_Contact__c</members>
+        <members>Course__c.Title__c</members>
         <members>cpm__Installment__c.Bank_Details_Number__c</members>
-        <members>cpm__Installment__c.Partner_Contact__c</members>
         <members>cpm__Installment__c.Care_Membership_Added__c</members>
         <members>cpm__Installment__c.Membership_Type__c</members>
+        <members>cpm__Installment__c.Partner_Contact__c</members>
+        <members>cpm__Installment__c.Sales_Invoice__c</members>
+        <members>cpm__Installment__c.ga_decl_1__c</members>
+        <members>cpm__Installment__c.ga_decl_2__c</members>
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Session__c.Eligible_for_Claim__c</members>
         <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
@@ -231,8 +233,12 @@
     </types>
     <types>
         <members>Override_Booking_Validation</members>
+        <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Course_Validation</members>
+        <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
+        <members>Override_Session_Validation</members>
+        <members>Override_Venue_Validation</members>
         <name>CustomPermission</name>
     </types>
     <types>
@@ -295,6 +301,7 @@
     <types>
         <members>Assign_Practitioner_Fee_Rate_to_Session</members>
         <members>Booking_Journey_Available</members>
+        <members>Booking_Journey_Success_Page</members>
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_Send_Email_On_Enquiry_Created_Process</members>
@@ -309,7 +316,6 @@
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Membership_Option</members>
         <members>Payment_Details</members>
-        <members>Populate_Practitioner_Name</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Confirmation_Email</members>
         <members>Resend_Offer_Email</members>
@@ -325,6 +331,7 @@
         <members>Set_Deactivate_Date_GAD</members>
         <members>Set_Main_Venue_on_Course</members>
         <members>Set_Number_of_Places_Based_on_Course_Type</members>
+        <members>Track_Deleted_Sessions</members>
         <members>Update_Address_in_Gift_Aid_Declaration</members>
         <members>Update_Address_in_Gift_Aid_Declarations</members>
         <members>Update_Partner_Community_Contact</members>
@@ -402,9 +409,13 @@
     <types>
         <members>Branch_and_PSA_Management</members>
         <members>Create_Public_Lists</members>
+        <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Course_Validation</members>
+        <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
+        <members>Override_Session_Validation</members>
+        <members>Override_Venue_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <name>PermissionSet</name>
@@ -500,6 +511,7 @@
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
         <members>Booking__c.Prevent_Overbooking_Of_Course</members>
         <members>Booking__c.PreventConfirmedBookingCreation</members>
+        <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
         <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
@@ -514,10 +526,13 @@
         <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
         <members>Licence_To_Practice__c.End_date_should_not_be_blank</members>
+        <members>Practitioner_Band__c.PractitionerBand_details_cant_be_changed</members>
         <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <members>Session__c.End_time_should_not_be_before_start_time</members>
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
+        <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
+        <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <name>ValidationRule</name>
     </types>
     <types>
