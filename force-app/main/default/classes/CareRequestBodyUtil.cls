@@ -109,6 +109,7 @@ public with sharing class CareRequestBodyUtil {
     public class ContactDetails {
         public String contactKey {get;set;}
         public String contactNumber {get;set;}
+        public String branch {get;set;}
     }
     public class ContactBankAccountObject extends CareBaseResponse {
         public ContactBankAccountDetails contactBankAccount {get;set;}
