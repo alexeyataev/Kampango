@@ -45,7 +45,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(null, modelOrdered.Rank);
+        System.assertEquals(CourseFinderModelOrdered.INAPPROPRIATE_RANK, modelOrdered.Rank);
     }
 
     @isTest
@@ -59,7 +59,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(null, modelOrdered.Rank);
+        System.assertEquals(CourseFinderModelOrdered.INAPPROPRIATE_RANK, modelOrdered.Rank);
     }
 
     @isTest
@@ -82,7 +82,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(null, modelOrdered.Rank);
+        System.assertEquals(CourseFinderModelOrdered.INAPPROPRIATE_RANK, modelOrdered.Rank);
     }
 
     @isTest
@@ -105,7 +105,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(null, modelOrdered.Rank);
+        System.assertEquals(CourseFinderModelOrdered.INAPPROPRIATE_RANK, modelOrdered.Rank);
     }
 
     @isTest
