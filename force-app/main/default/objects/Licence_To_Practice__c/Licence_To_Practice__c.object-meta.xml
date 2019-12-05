@@ -161,9 +161,8 @@
     </nameField>
     <pluralLabel>Licences To Practice</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Practitioner_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Licence_Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Licence__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
     </searchLayouts>

@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <formula>IF( NOT(ISPICKVAL(Status__c, &quot;Confirmed&quot;)),
  0,
- IF( NOT( ISBLANK(Fee_Override__c) ),
+ IF( NOT( Fee_Override__c == 0 ),
 
   IF( AND(Days_Before_Course_Start__c &gt; 28, Fee_Override__c &gt; 30), 
    30,

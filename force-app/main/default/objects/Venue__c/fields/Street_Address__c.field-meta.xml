@@ -3,7 +3,7 @@
     <fullName>Street_Address__c</fullName>
     <externalId>false</externalId>
     <label>Street Address</label>
-    <required>true</required>
+    <required>false</required>
     <trackTrending>false</trackTrending>
     <type>TextArea</type>
 </CustomField>
