@@ -792,7 +792,9 @@
             <label>Public Venue</label>
         </rules>
     </decisions>
-    <description>Removed Session__c.IsPublicVenue__c field. Previous versions of flow shold be deleted.</description>
+    <description>Sends emails of different types when reunion session becomes &#39;confirmed&#39;.
+Version changes: 
+Removed Session__c.IsPublicVenue__c field. Previous versions of flow shold be deleted.</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
