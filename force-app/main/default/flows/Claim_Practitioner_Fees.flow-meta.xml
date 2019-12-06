@@ -91,8 +91,8 @@
     <assignments>
         <name>Assing_Checked_Sessions</name>
         <label>Assign Checked Sessions</label>
-        <locationX>828</locationX>
-        <locationY>163</locationY>
+        <locationX>817</locationX>
+        <locationY>204</locationY>
         <assignmentItems>
             <assignToReference>sessionsToClaim</assignToReference>
             <operator>Assign</operator>
@@ -104,7 +104,7 @@
             <targetReference>Get_Last_PI_Number</targetReference>
         </connector>
     </assignments>
-    <description>Changed Nominal Account Id API Name</description>
+    <description>Claim Practitioner Fee flow.</description>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
@@ -214,8 +214,8 @@
     <recordLookups>
         <name>Get_Last_PI_Number</name>
         <label>Get Last PI Number</label>
-        <locationX>493</locationX>
-        <locationY>205</locationY>
+        <locationX>494</locationX>
+        <locationY>203</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>createPurchaseInvoice</targetReference>
@@ -245,34 +245,8 @@
         <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordLookups>
-        <name>getAccountAndContactId</name>
-        <label>Get Account And Contact</label>
-        <locationX>292</locationX>
-        <locationY>51</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>getSessions</targetReference>
-        </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>currentUserId</elementReference>
-            </value>
-        </filters>
-        <object>User</object>
-        <outputAssignments>
-            <assignToReference>currentUserAccountId</assignToReference>
-            <field>AccountId</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>currentUserContactId</assignToReference>
-            <field>ContactId</field>
-        </outputAssignments>
-    </recordLookups>
-    <recordLookups>
-        <name>getSessions</name>
-        <label>getSessions</label>
+        <name>Get_Session</name>
+        <label>Get Sessions</label>
         <locationX>448</locationX>
         <locationY>51</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
@@ -281,7 +255,7 @@
         </connector>
         <filters>
             <field>Date__c</field>
-            <operator>GreaterThan</operator>
+            <operator>GreaterThanOrEqualTo</operator>
             <value>
                 <elementReference>lastThreeMonths</elementReference>
             </value>
@@ -315,6 +289,32 @@
         <queriedFields>Course_Name__c</queriedFields>
         <queriedFields>Date__c</queriedFields>
         <queriedFields>Course__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>getAccountAndContactId</name>
+        <label>Get Account And Contact</label>
+        <locationX>292</locationX>
+        <locationY>51</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Session</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>currentUserId</elementReference>
+            </value>
+        </filters>
+        <object>User</object>
+        <outputAssignments>
+            <assignToReference>currentUserAccountId</assignToReference>
+            <field>AccountId</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>currentUserContactId</assignToReference>
+            <field>ContactId</field>
+        </outputAssignments>
     </recordLookups>
     <screens>
         <name>Claim_Fees_Datatable</name>

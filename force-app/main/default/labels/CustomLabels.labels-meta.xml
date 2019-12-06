@@ -29,7 +29,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Label For Set Error Search</shortDescription>
-        <value>{&quot;Error&quot; : &quot;Course does not exist&quot;}</value>
+        <value>{&quot;Error&quot; : &quot;Course does not exist or not allowed for booking&quot;}</value>
     </labels>
     <labels>
         <fullName>CourseAPIenquiryCreatedSuccessfully</fullName>
