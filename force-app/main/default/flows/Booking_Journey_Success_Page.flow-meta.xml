@@ -3,7 +3,7 @@
     <assignments>
         <name>Add_distinct_venue_id</name>
         <label>Add distinct venue id</label>
-        <locationX>892</locationX>
+        <locationX>1315</locationX>
         <locationY>656</locationY>
         <assignmentItems>
             <assignToReference>venueIdsDistinct</assignToReference>
@@ -19,8 +19,8 @@
     <assignments>
         <name>add_selected_row</name>
         <label>add selected row</label>
-        <locationX>1396</locationX>
-        <locationY>695</locationY>
+        <locationX>1731</locationX>
+        <locationY>723</locationY>
         <assignmentItems>
             <assignToReference>venueList</assignToReference>
             <operator>Add</operator>
@@ -35,7 +35,7 @@
     <assignments>
         <name>Add_Session_Line</name>
         <label>Add Session Line</label>
-        <locationX>1041</locationX>
+        <locationX>1464</locationX>
         <locationY>1197</locationY>
         <assignmentItems>
             <assignToReference>sessionText</assignToReference>
@@ -58,8 +58,8 @@
     <assignments>
         <name>Add_Venue_Id</name>
         <label>Add Venue Id</label>
-        <locationX>59</locationX>
-        <locationY>1195</locationY>
+        <locationX>625</locationX>
+        <locationY>1175</locationY>
         <assignmentItems>
             <assignToReference>index</assignToReference>
             <operator>Add</operator>
@@ -74,7 +74,7 @@
     <assignments>
         <name>assign_provisional_breasfeeding</name>
         <label>assign provisional breasfeeding</label>
-        <locationX>534</locationX>
+        <locationX>957</locationX>
         <locationY>792</locationY>
         <assignmentItems>
             <assignToReference>includesProvisionalBreastfeeding</assignToReference>
@@ -90,7 +90,7 @@
     <assignments>
         <name>assign_provisional_other</name>
         <label>assign provisional other</label>
-        <locationX>875</locationX>
+        <locationX>1298</locationX>
         <locationY>1077</locationY>
         <assignmentItems>
             <assignToReference>includesProfvisionalOther</assignToReference>
@@ -106,7 +106,7 @@
     <assignments>
         <name>assign_provisional_reunion</name>
         <label>assign provisional reunion</label>
-        <locationX>691</locationX>
+        <locationX>1114</locationX>
         <locationY>939</locationY>
         <assignmentItems>
             <assignToReference>includesProvisionalReunion</assignToReference>
@@ -122,7 +122,7 @@
     <decisions>
         <name>Doest_list_contain_this_id</name>
         <label>Doest list contain this id?</label>
-        <locationX>1033</locationX>
+        <locationX>1456</locationX>
         <locationY>756</locationY>
         <defaultConnector>
             <targetReference>Add_distinct_venue_id</targetReference>
@@ -145,10 +145,32 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Installment_Check</name>
+        <label>Installment Check</label>
+        <locationX>478</locationX>
+        <locationY>597</locationY>
+        <defaultConnector>
+            <targetReference>Get_Booking_Data</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Is Installment True</defaultConnectorLabel>
+        <rules>
+            <name>Is_Installment_False</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Installment_Record</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Invalid_Page_Screen</targetReference>
+            </connector>
+            <label>Is Installment False</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_provisional_session</name>
         <label>Is provisional session?</label>
-        <locationX>50</locationX>
-        <locationY>665</locationY>
+        <locationX>622</locationX>
+        <locationY>689</locationY>
         <defaultConnector>
             <targetReference>Add_Venue_Id</targetReference>
         </defaultConnector>
@@ -213,13 +235,35 @@
             <label>provisional other</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Sales_Invoice_Check</name>
+        <label>Sales Invoice Check</label>
+        <locationX>570</locationX>
+        <locationY>207</locationY>
+        <defaultConnector>
+            <targetReference>Get_Installment</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Is SalesInvoice True</defaultConnectorLabel>
+        <rules>
+            <name>Is_SalesInvoice_False</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SalesInvoice_Record</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Invalid_Page_Screen</targetReference>
+            </connector>
+            <label>Is SalesInvoice False</label>
+        </rules>
+    </decisions>
     <interviewLabel>Booking Journey Success Page {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Success Page</label>
     <loops>
         <name>For_every_venue_id</name>
         <label>For every venue id</label>
-        <locationX>973</locationX>
-        <locationY>556</locationY>
+        <locationX>1385</locationX>
+        <locationY>550</locationY>
         <assignNextValueToReference>venueId</assignNextValueToReference>
         <collectionReference>venueIdsDistinct</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -227,14 +271,14 @@
             <targetReference>Get_Venues</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>Confirmed_Booking</targetReference>
+            <targetReference>Update_Status_to_Confirmed</targetReference>
         </noMoreValuesConnector>
     </loops>
     <loops>
         <name>Session_Loop</name>
         <label>Session Loop</label>
-        <locationX>699</locationX>
-        <locationY>658</locationY>
+        <locationX>1145</locationX>
+        <locationY>663</locationY>
         <assignNextValueToReference>session</assignNextValueToReference>
         <collectionReference>sessions</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -261,8 +305,8 @@
     <recordLookups>
         <name>Get_Booking_Data</name>
         <label>Get Booking Data</label>
-        <locationX>356</locationX>
-        <locationY>323</locationY>
+        <locationX>751</locationX>
+        <locationY>321</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Course_Data</targetReference>
@@ -292,8 +336,8 @@
     <recordLookups>
         <name>Get_Course_Data</name>
         <label>Get Course Data</label>
-        <locationX>535</locationX>
-        <locationY>322</locationY>
+        <locationX>945</locationX>
+        <locationY>319</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Main_Practitioner</targetReference>
@@ -323,10 +367,33 @@
         <queriedFields>Title__c</queriedFields>
     </recordLookups>
     <recordLookups>
+        <name>Get_Installment</name>
+        <label>Get Installment</label>
+        <locationX>487</locationX>
+        <locationY>395</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Installment_Check</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Invalid_Page_Screen</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Sales_Invoice__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>SalesInvoice_Record.Id</elementReference>
+            </value>
+        </filters>
+        <object>cpm__Installment__c</object>
+        <outputReference>Installment_Record</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Main_Practitioner</name>
         <label>Get Main Practitioner</label>
-        <locationX>698</locationX>
-        <locationY>322</locationY>
+        <locationX>1146</locationX>
+        <locationY>321</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Sessions</targetReference>
@@ -345,10 +412,33 @@
         <queriedFields>LastName</queriedFields>
     </recordLookups>
     <recordLookups>
+        <name>Get_SalesInvoice</name>
+        <label>Get SalesInvoice</label>
+        <locationX>250</locationX>
+        <locationY>103</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Sales_Invoice_Check</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Invalid_Page_Screen</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Booking__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </filters>
+        <object>Zumzum__Sales_Invoice__c</object>
+        <outputReference>SalesInvoice_Record</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Sessions</name>
         <label>Get Sessions</label>
-        <locationX>699</locationX>
-        <locationY>488</locationY>
+        <locationX>1147</locationX>
+        <locationY>496</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Session_Loop</targetReference>
@@ -377,7 +467,7 @@
     <recordLookups>
         <name>Get_Venues</name>
         <label>Get Venues</label>
-        <locationX>1308</locationX>
+        <locationX>1731</locationX>
         <locationY>545</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -399,11 +489,34 @@
         <queriedFields>County__c</queriedFields>
         <queriedFields>Town__c</queriedFields>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_Status_to_Confirmed</name>
+        <label>Update Status to Confirmed</label>
+        <locationX>1388</locationX>
+        <locationY>402</locationY>
+        <connector>
+            <targetReference>Confirmed_Booking</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Confirmed</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Booking__c</object>
+    </recordUpdates>
     <screens>
         <name>Confirmed_Booking</name>
         <label>Confirmed Booking</label>
-        <locationX>978</locationX>
-        <locationY>322</locationY>
+        <locationX>1391</locationX>
+        <locationY>257</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -522,11 +635,27 @@
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
+    <screens>
+        <name>Invalid_Page_Screen</name>
+        <label>Invalid Page Screen</label>
+        <locationX>238</locationX>
+        <locationY>317</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Invalid_Page_Message</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Invalid Page&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
     <start>
-        <locationX>193</locationX>
-        <locationY>322</locationY>
+        <locationX>50</locationX>
+        <locationY>105</locationY>
         <connector>
-            <targetReference>Get_Booking_Data</targetReference>
+            <targetReference>Get_SalesInvoice</targetReference>
         </connector>
     </start>
     <status>Active</status>
@@ -602,12 +731,28 @@
         </value>
     </variables>
     <variables>
+        <name>Installment_Record</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>cpm__Installment__c</objectType>
+    </variables>
+    <variables>
         <name>practitionerRecord</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>SalesInvoice_Record</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Zumzum__Sales_Invoice__c</objectType>
     </variables>
     <variables>
         <name>session</name>
