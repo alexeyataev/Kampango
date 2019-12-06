@@ -2,13 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Title__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(CONTAINS(TEXT(Sub_Type__c), &quot;Twins and Multiples&quot;), &quot;NCT Twins and Multiples workshop &quot; &amp; Target_Group__c, 
-IF(CONTAINS(TEXT(Sub_Type__c), &quot;Waterbirth&quot;), &quot;NCT Waterbirth Workshop &quot; &amp; Target_Group__c, 
-IF(CONTAINS(TEXT(Sub_Type__c), &quot;Early Days&quot;), &quot;NCT Early Days course &quot; &amp; Target_Group__c,
-IF(CONTAINS(TEXT(Sub_Type__c), &quot;Introducing Solids&quot;), &quot;Introducing Solid Foods workshop &quot; &amp; Target_Group__c,
-IF(CONTAINS(TEXT(Sub_Type__c), &quot;Baby Massage&quot;), &quot;NCT Baby Massage course &quot; &amp; Target_Group__c, 
-TEXT(Sub_Type__c) &amp; &quot; &quot; &amp; Target_Group__c
-)))))</formula>
+    <formula>TEXT(Sub_Type__c) &amp; &quot; &quot; &amp; Target_Group__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Title</label>
     <required>false</required>

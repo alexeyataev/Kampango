@@ -85,7 +85,7 @@ public without sharing virtual class CourseFinderModel {
     }
 
     private static List<String> getHowHeardValues() {
-        List<String> howHeardValues= new List<String>();
+        List<String> howHeardValues = new List<String>();
         Schema.DescribeFieldResult fieldResult = Booking__c.How_Heard__c.getDescribe();
         for (Schema.PicklistEntry value : fieldResult.getPicklistValues()) {
             howHeardValues.add(value.getLabel());
