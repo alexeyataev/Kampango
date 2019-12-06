@@ -792,7 +792,7 @@
             <label>Public Venue</label>
         </rules>
     </decisions>
-    <description>Changes with Volunteer home deletion. Removed unnecessary elements.</description>
+    <description>Removed Session__c.IsPublicVenue__c field. Previous versions of flow shold be deleted.</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -974,7 +974,6 @@
         <queriedFields>Course__c</queriedFields>
         <queriedFields>Practitioner__c</queriedFields>
         <queriedFields>Venue__c</queriedFields>
-        <queriedFields>IsPublicVenue__c</queriedFields>
         <queriedFields>Parent_Host__c</queriedFields>
     </recordLookups>
     <recordLookups>
