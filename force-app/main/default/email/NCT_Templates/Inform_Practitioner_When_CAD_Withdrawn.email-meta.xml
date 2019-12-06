@@ -4,15 +4,20 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Inform Practitioner When CAD Withdrawn</name>
     <style>none</style>
-    <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
+    <subject>Cancellation of NCT Course Assignment Document for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
     <textOnly>Dear {!Course_Assignment__c.OwnerFirstName},  
 
-You are no longer required to attend this course as your assignment has been withdrawn.  
+We’re writing to let you know that this Course Assignment Document has been cancelled, meaning you’re no longer required to deliver any sessions of this course. This is either because you’ve let us know that you’re no longer able to facilitate the course or because we’ve had to make the difficult decision to cancel it.
+ 
+If you have any questions about this please contact the Capacity PSA using the email address at the bottom of this email.
+ 
 
 Kind Regards,  
 
-{!Course_Assignment__c.LastModifiedBy} 
-Capacity PSA -  {!Course_Assignment__c.PSA_Area__c}</textOnly>
+{!Course_Assignment__c.LastModifiedBy}
+Capacity PSA – {!Course_Assignment__c.PSA_Area__c}
+Telephone: {!Course_Assignment__c.Capacity_PSA_Phone__c}
+Email: Any reply to this email should be sent to capacity{!Course_Assignment__c.PSA_Area__c}@nct.org.uk</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

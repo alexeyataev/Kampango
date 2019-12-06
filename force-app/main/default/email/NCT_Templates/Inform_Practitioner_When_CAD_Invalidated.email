@@ -1,13 +1,20 @@
 Dear {!Course_Assignment__c.OwnerFirstName},
 </br>
 </br>
-This CAD has been invalidated as one or more key details of the course have changed, or are changing. Please contact your Capacity PSA if you need any further information.
+We’re writing to let you know that this Course Assignment Document is no longer up-to-date and has been invalidated. This is either because some of the course or fee details have changed, in which case a new Course Assignment Document will be issued to you in due course, or because we’ve had to make the difficult decision to cancel the course.
+</br> 
 </br>
+If you have any questions about this please contact the Capacity PSA using the email address at the bottom of this email.
+</br> 
 </br>
 Kind Regards,  
 </br>
 </br>
 {!Course_Assignment__c.LastModifiedBy}
 </br>
-Capacity PSA - {!Course_Assignment__c.PSA_Area__c}
+Capacity PSA – {!Course_Assignment__c.PSA_Area__c}
+</br>
+Telephone: {!Course_Assignment__c.Capacity_PSA_Phone__c}
+</br>
+Email: Any reply to this email should be sent to capacity{!Course_Assignment__c.PSA_Area__c}@nct.org.uk
 </br>

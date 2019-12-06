@@ -1,13 +1,20 @@
 Dear {!Course_Assignment__c.OwnerFirstName},
 </br>
 </br>
-You are no longer required to attend this course as <a href = "{!$Setup.Practitioner_Community_Settings__c.Base_Url__c}/s/detail/{!Course_Assignment__c.Id}" target = "_blank">your assignment</a> has been withdrawn.
+We’re writing to let you know that this Course Assignment Document has been cancelled, meaning you’re no longer required to deliver any sessions of this course. This is either because you’ve let us know that you’re no longer able to facilitate the course or because we’ve had to make the difficult decision to cancel it.
+</br> 
 </br>
+If you have any questions about this please contact the Capacity PSA using the email address at the bottom of this email.
+</br> 
 </br>
 Kind Regards,  
 </br>
 </br>
 {!Course_Assignment__c.LastModifiedBy}
 </br>
-Capacity PSA - {!Course_Assignment__c.PSA_Area__c}
+Capacity PSA – {!Course_Assignment__c.PSA_Area__c}
+</br>
+Telephone: {!Course_Assignment__c.Capacity_PSA_Phone__c}
+</br>
+Email: Any reply to this email should be sent to capacity{!Course_Assignment__c.PSA_Area__c}@nct.org.uk
 </br>
