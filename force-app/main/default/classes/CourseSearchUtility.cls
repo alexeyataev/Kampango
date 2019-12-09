@@ -1,9 +1,9 @@
 public without sharing class CourseSearchUtility {
-    @SuppressWarnings('PMD.ApexCRUDViolation')
-    //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     private static final String COURSE_STATUS_FINAL = 'Final';
     private static final String SESSION_STATUS_CONFIRMED = 'Confirmed';
 
+    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static Course__c getCourseById(String courseName, Boolean hideFromPublicAccess){
         Course__c result = null;
         
