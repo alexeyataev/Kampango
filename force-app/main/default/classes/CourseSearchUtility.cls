@@ -329,11 +329,9 @@ public without sharing class CourseSearchUtility {
         return response;
     }
 
-    public virtual class CustomTypeException extends Exception {} 
+    public class DateTypeException extends Exception {}
 
-    public class DateTypeException extends CustomTypeException {}
+    public class LocationTypeException extends Exception {}
 
-    public class LocationTypeException extends CustomTypeException {}
-
-    public class RadiusTypeException extends CustomTypeException {}
+    public class RadiusTypeException extends Exception {}
 }
