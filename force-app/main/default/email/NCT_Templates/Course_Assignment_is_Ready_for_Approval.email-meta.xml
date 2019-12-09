@@ -4,19 +4,21 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Course Assignment is Ready for Approval</name>
     <style>none</style>
-    <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
+    <subject>NCT Course Assignment Document for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c} ready for review</subject>
     <textOnly>Dear {!Course_Assignment__c.OwnerFirstName}, 
 
-NCT has sent you this email so that you securely sign your assignment for this course online.
+NCT has sent you this email so that you can securely sign your Course Assignment Document for this course online.
 
-Please log in to the Practitioner community to review and sign this assignment.
+Please log in to the Practitioner community to review and sign this Course Assignment Document.
 
-The following comments (if any) were included in the approval request: &#39;{!ApprovalRequest.Comments}&#39;
+The following comments (if any) were included in the approval request: {!ApprovalRequest.Comments}
 
 Kind Regards, 
 
 {!Course_Assignment__c.LastModifiedBy}
-Capacity PSA - {!Course_Assignment__c.PSA_Area__c}</textOnly>
+Capacity PSA – {!Course_Assignment__c.PSA_Area__c}
+Telephone: {!Course_Assignment__c.Capacity_PSA_Phone__c}
+Email: Any reply to this email should be sent to capacity{!Course_Assignment__c.PSA_Area__c}@nct.org.uk</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
