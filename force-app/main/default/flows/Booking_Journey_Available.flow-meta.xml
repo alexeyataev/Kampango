@@ -74,13 +74,20 @@
     <assignments>
         <name>assign_provisional_breasfeeding</name>
         <label>assign provisional breasfeeding</label>
-        <locationX>534</locationX>
-        <locationY>792</locationY>
+        <locationX>544</locationX>
+        <locationY>753</locationY>
         <assignmentItems>
             <assignToReference>includesProvisionalBreastfeeding</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Provisional_Breastfeeding_Time</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>session.Contact_Hours__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -97,6 +104,13 @@
             <operator>Assign</operator>
             <value>
                 <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Additional_Session_Time</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>session.Contact_Hours__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -404,6 +418,7 @@
         <queriedFields>End__c</queriedFields>
         <queriedFields>Date__c</queriedFields>
         <queriedFields>Additional_Information__c</queriedFields>
+        <queriedFields>Contact_Hours__c</queriedFields>
         <sortField>Date__c</sortField>
         <sortOrder>Asc</sortOrder>
     </recordLookups>
@@ -435,8 +450,8 @@
     <screens>
         <name>Booking_Journey_Available_Screen</name>
         <label>Booking Journey Available Screen</label>
-        <locationX>1444</locationX>
-        <locationY>237</locationY>
+        <locationX>1452</locationX>
+        <locationY>231</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -530,7 +545,7 @@
         </fields>
         <fields>
             <name>Provisional_reunion1</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Reunion session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;There is also a 2-hour reunion for all course participants with their new baby after the birth. Your course leader will agree a date, time and location for this with you.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Reunion session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;There is also a 2 hour reunion for all course participants with their new baby after the birth. Your course leader will agree a date, time and location for this with you.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
@@ -545,7 +560,7 @@
         </fields>
         <fields>
             <name>Provisional_breastfeeding</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Breastfeeding session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 8px;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a 3-hour breastfeeding session. Further details of this will be confirmed to you by your course leader once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Breastfeeding session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 8px;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a {!Provisional_Breastfeeding_Time} hours breastfeeding session. Further details of this will be confirmed to you by your course leader once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
@@ -560,7 +575,7 @@
         </fields>
         <fields>
             <name>Privisional_other</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Additional session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a 3-hour session. Further details of this will be confirmed to you by your course leader once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Additional session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a {!Additional_Session_Time} hours session. Further details of this will be confirmed to you by your course leader once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
@@ -589,6 +604,13 @@
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <name>Additional_Session_Time</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>Booking_Message</name>
         <dataType>String</dataType>
@@ -660,6 +682,13 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>Provisional_Breastfeeding_Time</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>session</name>
