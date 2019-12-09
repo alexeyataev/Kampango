@@ -1,4 +1,5 @@
 public without sharing class CourseSearchUtility {
+    private static final String FINAL_STATUS = 'Final';
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static Course__c getCourseById(String courseName, Boolean hideFromPublicAccess){
@@ -15,10 +16,8 @@ public without sharing class CourseSearchUtility {
                     FROM Sessions__r
                 )
             FROM Course__c
-            WHERE Name =: courseName
-            AND Status__c != 'Cancelling'
-            AND Status__c != 'Cancelled'
-            AND Status__c != 'Draft'
+            WHERE Name = :courseName
+            AND Status__c = :FINAL_STATUS
             AND Start_Date__c > TODAY
             AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
             WITH SECURITY_ENFORCED
@@ -60,10 +59,8 @@ public without sharing class CourseSearchUtility {
                     FROM Sessions__r
                 )
             FROM Course__c
-            WHERE Branch__r.Branch_Number__c =: branchId
-            AND Status__c != 'Cancelling'
-            AND Status__c != 'Cancelled'
-            AND Status__c != 'Draft'
+            WHERE Branch__r.Branch_Number__c =:branchId
+            AND Status__c = :FINAL_STATUS
             AND Start_Date__c > TODAY
             AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
             WITH SECURITY_ENFORCED
@@ -131,9 +128,7 @@ public without sharing class CourseSearchUtility {
                     )
                 FROM Course__c
                 WHERE Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi') < :radius
-                AND Status__c != 'Cancelling'
-                AND Status__c != 'Cancelled'
-                AND Status__c != 'Draft'
+                AND Status__c = :FINAL_STATUS
                 AND Start_Date__c > TODAY
                 AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                 AND ((Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) OR (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate))
