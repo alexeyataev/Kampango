@@ -16,19 +16,19 @@ public without sharing virtual class CourseFinderModel {
     private CourseOrganiser CourseOrganiser;
     private Venue Venue;
     private List<Session> Sessions;
-    public List<String> HowHeardTexts;
+    private static List<String> HowHeardTexts = getHowHeardValues(); // will run only once for any number of models
 
     public CourseFinderModel(Course__c course) {
         this.Id = course.Name;
         this.Reference = course.PSA_Area__c + '/' + course.Name;
-        this.Title = 'field is colected';
+        this.Title = course.Title__c;
         this.Summary = 'field is colected';
         this.Type = course.Sub_Type__c;
         this.CouplesAllowed = course.Couples_Allowed__c;
         this.WomenOnly = course.Women_Only__c;
         this.BranchNumber = course.Branch__r.Branch_Number__c;
         this.Price = course.Fee__c;
-        this.PlacesAvailable = Integer.valueOf(course.Number_of_places__c);
+        this.PlacesAvailable = Integer.valueOf(course.Remaining_Places__c);
         this.CourseOrganiser = new CourseOrganiser(course);
         this.Venue = new Venue(course);
         this.Sessions = collectSessionsToList(course.Sessions__r);
@@ -76,13 +76,21 @@ public without sharing virtual class CourseFinderModel {
         private String Notes;
         
         private Session (Session__c session) {
-            this.Session_Date = session.Name;
+            this.Session_Date = String.valueOf(session.Date__c);
             this.Start = String.valueOf(session.Start__c);
             this.Session_End = String.valueOf(session.End__c); 
             this.WomenOnly = session.Specific_Attendee_Type__c == 'Women Only' ? true : false;  
             this.Breastfeeding = session.Type__c == 'Breastfeeding' ? true : false;  
-            this.Notes = 'field is deleted';  
         }
+    }
+
+    private static List<String> getHowHeardValues() {
+        List<String> howHeardValues = new List<String>();
+        Schema.DescribeFieldResult fieldResult = Booking__c.How_Heard__c.getDescribe();
+        for (Schema.PicklistEntry value : fieldResult.getPicklistValues()) {
+            howHeardValues.add(value.getLabel());
+        }
+        return howHeardValues;
     }
 
     private List<Session> collectSessionsToList (List<Session__c> sessions) {

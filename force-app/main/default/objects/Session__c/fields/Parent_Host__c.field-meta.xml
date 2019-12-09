@@ -6,13 +6,13 @@
     <label>Parent Host</label>
     <lookupFilter>
         <active>true</active>
-        <errorMessage>Incorrect input. The Session must be of Type Reunion to set this field</errorMessage>
+        <errorMessage>Incorrect input. The Contact Record type must be Client</errorMessage>
         <filterItems>
-            <field>$Source.Type__c</field>
+            <field>Contact.RecordTypeId</field>
             <operation>equals</operation>
-            <value>Reunion</value>
+            <value>Client</value>
         </filterItems>
-        <infoMessage>The Session must be of Type Reunion to set this field</infoMessage>
+        <infoMessage>The Record type must be Client</infoMessage>
         <isOptional>false</isOptional>
     </lookupFilter>
     <referenceTo>Contact</referenceTo>

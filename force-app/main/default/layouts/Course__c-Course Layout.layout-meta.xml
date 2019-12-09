@@ -88,18 +88,18 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Main_Practitioner__c</field>
+                <field>Main_Practitioner_Licence__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Main_Practitioner_Licence__c</field>
+                <field>Main_Practitioner__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Main_Venue__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Practitioner_Fee_Discount__c</field>
@@ -302,13 +302,13 @@
         <fields>NAME</fields>
         <fields>Day_of_Week__c</fields>
         <fields>Date__c</fields>
-        <fields>Start__c</fields>
-        <fields>End__c</fields>
+        <fields>Times__c</fields>
         <fields>Type__c</fields>
         <fields>Specific_Attendee_Type__c</fields>
         <fields>Practitioner__c</fields>
         <fields>Venue__c</fields>
         <fields>Room__c</fields>
+        <fields>Status__c</fields>
         <relatedList>Session__c.Course__c</relatedList>
         <sortField>Date__c</sortField>
         <sortOrder>Asc</sortOrder>

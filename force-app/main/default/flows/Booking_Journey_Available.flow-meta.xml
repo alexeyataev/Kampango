@@ -17,6 +17,22 @@
         </connector>
     </assignments>
     <assignments>
+        <name>add_selected_row</name>
+        <label>add selected row</label>
+        <locationX>1396</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>venueList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>venueRecord</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>For_every_venue_id</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Add_Session_Line</name>
         <label>Add Session Line</label>
         <locationX>1041</locationX>
@@ -53,22 +69,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Add_Session_Line</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_venues</name>
-        <label>Add venues</label>
-        <locationX>1542</locationX>
-        <locationY>767</locationY>
-        <assignmentItems>
-            <assignToReference>venueText</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>venueRecord.Venue_Info_For_Flow__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>For_every_venue_id</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -400,6 +400,10 @@
         <queriedFields>Session_Info_For_Flow__c</queriedFields>
         <queriedFields>Type__c</queriedFields>
         <queriedFields>Status__c</queriedFields>
+        <queriedFields>Start__c</queriedFields>
+        <queriedFields>End__c</queriedFields>
+        <queriedFields>Date__c</queriedFields>
+        <queriedFields>Additional_Information__c</queriedFields>
         <sortField>Date__c</sortField>
         <sortOrder>Asc</sortOrder>
     </recordLookups>
@@ -410,7 +414,7 @@
         <locationY>545</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Add_venues</targetReference>
+            <targetReference>add_selected_row</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -422,19 +426,23 @@
         <object>Venue__c</object>
         <outputReference>venueRecord</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Venue_Info_For_Flow__c</queriedFields>
+        <queriedFields>Postcode__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Street_Address__c</queriedFields>
+        <queriedFields>County__c</queriedFields>
+        <queriedFields>Town__c</queriedFields>
     </recordLookups>
     <screens>
         <name>Booking_Journey_Available_Screen</name>
         <label>Booking Journey Available Screen</label>
-        <locationX>1465</locationX>
-        <locationY>239</locationY>
+        <locationX>1444</locationX>
+        <locationY>237</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <fields>
             <name>Booking_Journey_Available_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Your {!curCourse.Sub_Type__c} reservation is no longer available. Please contact your local administrator for support -&amp;nbsp;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curBooking.Enquiries_PSA_First_Name__c}﻿&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curBooking.Enquiries_PSA_Phone__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curBooking.Enquiries_PSA_Email__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Your {!curCourse.Sub_Type__c} reservation is no longer available. Please contact your local administrator for support -&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curBooking.Enquiries_PSA_First_Name__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curBooking.Enquiries_PSA_Phone__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curBooking.Enquiries_PSA_Email__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
@@ -443,8 +451,8 @@
     <screens>
         <name>Confirmed_Booking</name>
         <label>Confirmed Booking</label>
-        <locationX>1229</locationX>
-        <locationY>69</locationY>
+        <locationX>1152</locationX>
+        <locationY>47</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -475,7 +483,7 @@
         </fields>
         <fields>
             <name>CourseNumber</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Course # {!curCourse.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 22px;&quot;&gt;{!curCourse.Sub_Type__c} course for {!curCourse.Course_Duration__c} due dates&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Course # {!curCourse.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 22px; color: rgb(0, 136, 106);&quot;&gt;{!curCourse.Title__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -484,13 +492,40 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <name>Venues</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(0, 136, 106);&quot;&gt;Venue&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(0, 0, 0);&quot;&gt;﻿{!venueText}&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
+            <name>Locations</name>
+            <extensionName>c:locations</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>sessions</name>
+                <value>
+                    <elementReference>sessions</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>venues</name>
+                <value>
+                    <elementReference>venueList</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <fields>
-            <name>sessionList</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 18px;&quot;&gt;Sessions&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!sessionText}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <name>SessionList1</name>
+            <extensionName>c:sessions</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>sessions</name>
+                <value>
+                    <elementReference>sessions</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>line_break</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -690,6 +725,14 @@
         <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>venueList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Venue__c</objectType>
     </variables>
     <variables>
         <name>venueRecord</name>

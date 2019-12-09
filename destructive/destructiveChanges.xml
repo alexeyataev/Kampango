@@ -16,7 +16,6 @@
         <members>PaymentLinkGeneratorTestPageTest</members>
         <members>PaymentProviderHttpResponseMock</members>
         <members>PaymentProviderTest</members>
-        <members>TestBookingBuilder</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -34,7 +33,8 @@
         <members>Account.Account_Key__c</members>
         <members>Account.Branch__c</members>
         <members>Account.Branch_Code__c</members>
-        <members>Account.Branch_Key__c</members>
+        <members>Booking__c.Birth_Date__c</members>
+        <members>Booking__c.Birth_Or_Due_Date__c</members>
         <members>Booking__c.Client_Name__c</members>
         <members>Booking__c.Due_Date__c</members>
         <members>Booking__c.Client__c</members>
@@ -125,6 +125,7 @@
         <members>Individual.Has_Opted_Out_Post__c</members>
         <members>Individual.Has_Opted_Out_SMS__c</members>
         <members>Individual.Has_Opted_Out_Telephone__c</members>
+        <members>Licence_To_Practice__c.Practitioner_Name__c</members>
         <members>npe03__Recurring_Donation__c.Recurring_Donations_Key__c</members>
         <members>npe03__Recurring_Donation__c.Payment_profile_Key__c</members>
         <members>npe03__Recurring_Donation__c.First_Contact_Key__c</members>
@@ -143,6 +144,7 @@
         <members>Session__c.Day__c</members>
         <members>Session__c.Duration__c</members>
         <members>Session__c.Duration_Formatted__c</members>
+        <members>Session__c.IsPublicVenue__c</members>
         <members>Session__c.Notes__c</members>
         <members>Session__c.Practitoner_Name__c</members>
         <members>Session__c.Session_Type__c</members>
@@ -159,12 +161,13 @@
         <name>CustomPermission</name>
     </types>
     <types>
-        <members>Fee_Band</members>
-        <name>GlobalValueSet</name>
+        <members>NCT_Templates/Reunion_Session_Attendees_Not_Client_Host_Email</members>
+        <members>NCT_Templates/Reunion_Session_Attendees_Public_Venue_Email</members>
+        <members>NCT_Templates/Reunion_Session_Course_Leader_Email</members>
+        <members>NCT_Templates/Reunion_Session_Client_Hoster_Email</members>
+        <name>EmailTemplate</name>
     </types>
     <types>
-        <members>Course__c.Revert_Course_To_Draft_After_Cost_Deletion</members>
-        <members>Course__c.Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Installment_Process</members>
         <members>Update_Practitioner_Licence</members>
         <name>Flow</name>
@@ -205,6 +208,7 @@
         <members>Contact.Contact_Preferred_Phone</members>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
+        <members>Session__c.Prevent_private_reunion_confirmation</members>
         <members>Zumzum__Bank_Account__c.Account_number_must_be_8_numeric_digits</members>
         <members>Zumzum__Bank_Account__c.Check_Bank_Account_Name</members>
         <members>Zumzum__Bank_Account__c.Sort_code_must_be_6_numeric_digits</members>
@@ -224,6 +228,10 @@
     <types>
         <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Reservation_Email</members>
+        <members>Contact.Send_reunion_session_email_to_attendee</members>
+        <members>Contact.Send_reunion_session_email_to_attendee_in_host_venue</members>
+        <members>Contact.Send_reunion_session_email_to_practitioner</members>
+        <members>Venue.Send_reunion_session_email_to_host</members>
         <name>WorkflowAlert</name>
     </types>
     <types>

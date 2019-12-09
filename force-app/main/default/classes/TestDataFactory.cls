@@ -34,7 +34,9 @@ public without sharing class TestDataFactory {
     private Course__c course;
     private Session__c session;
     private Session__c reunion;
+    private Booking__c booking;
     private Contact parentHost;
+    private Contact partnertHost;
     private Practitioner_Fee_Rate__c practitionerFeeRate;
     private List<Practitioner_Fee_Rate__c> practitionerFeeRates = new List<Practitioner_Fee_Rate__c>();
     private List<Practitioner_Band__c> practitionerBands = new List<Practitioner_Band__c>();
@@ -82,6 +84,18 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public TestDataFactory buildBooking(String status){
+        TestBookingBuilder bookingBuilder = new TestBookingBuilder();
+        booking = bookingBuilder.withCourse(course)
+            .withStatus(status)
+            .withPrimaryContact(parentHost)
+            .withPartnerContact(partnertHost)
+            .withBookingExpiryDate(System.today().addDays(10))
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
     public TestDataFactory buildOrganizationAccount(String accountNumber) {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
         organizationAccount = accountBranchBuilder
@@ -98,6 +112,17 @@ public without sharing class TestDataFactory {
     public TestDataFactory buildParentHost(String lastName, String email) {
         TestContactBuilder parentHostBuilder = new TestContactBuilder();
         parentHost = parentHostBuilder
+            .withRecordType(CLIENT_RECORDTYPE_NAME)
+            .withEmail(email)
+            .withLastName(lastName)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildPartnertHost(String lastName, String email) {
+        TestContactBuilder partnerHostBuilder = new TestContactBuilder();
+        partnertHost = partnerHostBuilder
             .withRecordType(CLIENT_RECORDTYPE_NAME)
             .withEmail(email)
             .withLastName(lastName)
@@ -244,7 +269,6 @@ public TestDataFactory buildReunion() {
         reunion = sessionBuilder
             .withCourse(course)
             .withType('Reunion')
-            .withParentHost(parentHost)
             .withVenue(venue)
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)
@@ -426,4 +450,5 @@ public TestDataFactory buildReunion() {
         update courses;
         return this;
     }
+
 }

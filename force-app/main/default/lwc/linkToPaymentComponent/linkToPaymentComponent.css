@@ -1,9 +1,9 @@
 .paymentLink {
     display: inline-block;
-    font: 1.2em 'Lato', arial, sans-serif;
+    font: 1.4em 'Lato', arial, sans-serif;
     line-height: 2.5rem;
     background-color: #3AA43B;
-    padding: 0 1.875rem;
+    padding: 0 2.1rem;
     border-radius: 1.25rem;
 }
 

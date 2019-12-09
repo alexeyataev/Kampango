@@ -132,6 +132,7 @@
         <queriedFields>Additional_Confirmation_Information__c</queriedFields>
         <queriedFields>Main_Practitioner__c</queriedFields>
         <queriedFields>Fee__c</queriedFields>
+        <queriedFields>Title__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>GetPrimaryContactData</name>
@@ -320,12 +321,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <name>CurrentCourse</name>
-            <value>
-                <elementReference>courseRecord</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <name>Installment_Object</name>
             <value>
                 <elementReference>Installment_Object</elementReference>
@@ -348,7 +343,7 @@
         <name>Payment_Details</name>
         <label>Payment Details</label>
         <locationX>650</locationX>
-        <locationY>541</locationY>
+        <locationY>530</locationY>
         <flowName>Payment_Details</flowName>
         <inputAssignments>
             <name>bookingId</name>

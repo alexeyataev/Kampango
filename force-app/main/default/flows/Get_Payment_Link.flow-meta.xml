@@ -13,17 +13,19 @@
                 <elementReference>Installment_Object</elementReference>
             </value>
         </inputParameters>
-        <outputParameters>
-            <assignToReference>paymentError</assignToReference>
-            <name>error</name>
-        </outputParameters>
-        <outputParameters>
-            <assignToReference>installmentId</assignToReference>
-            <name>installmentId</name>
-        </outputParameters>
+        <inputParameters>
+            <name>bookingId</name>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </inputParameters>
         <outputParameters>
             <assignToReference>paymentUrl</assignToReference>
             <name>url</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>paymentError</assignToReference>
+            <name>error</name>
         </outputParameters>
     </actionCalls>
     <description>Will return a link for credit card payment
@@ -53,6 +55,13 @@ output -&gt; Message result or Payment Link or &quot;error&quot;</description>
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <name>bookingId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <description>This is variable will contain cpm_Installment__c record.</description>
         <name>Installment_Object</name>
