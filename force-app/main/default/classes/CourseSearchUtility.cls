@@ -19,6 +19,7 @@ public without sharing class CourseSearchUtility {
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
                         FROM Sessions__r
                         WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                        ORDER BY Date__c, Start__c
                     )
                 FROM Course__c
                 WHERE Name = :courseName
@@ -81,6 +82,7 @@ public without sharing class CourseSearchUtility {
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
                         FROM Sessions__r
                         WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                        ORDER BY Date__c, Start__c
                     )
                 FROM Course__c
                 WHERE Branch__r.Branch_Number__c =:branchId
@@ -157,6 +159,7 @@ public without sharing class CourseSearchUtility {
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
                         FROM Sessions__r
                         WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                        ORDER BY Date__c, Start__c
                     )
                 FROM Course__c
                 WHERE Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi') < :radius
