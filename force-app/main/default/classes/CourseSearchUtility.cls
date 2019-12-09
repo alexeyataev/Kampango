@@ -2,6 +2,7 @@ public without sharing class CourseSearchUtility {
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     private static final String COURSE_STATUS_FINAL = 'Final';
+    private static final String SESSION_STATUS_CONFIRMED = 'Confirmed';
 
     public static Course__c getCourseById(String courseName, Boolean hideFromPublicAccess){
         Course__c result = null;
@@ -17,6 +18,7 @@ public without sharing class CourseSearchUtility {
                     (
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
                         FROM Sessions__r
+                        WHERE Status__c = :SESSION_STATUS_CONFIRMED
                     )
                 FROM Course__c
                 WHERE Name = :courseName
@@ -78,6 +80,7 @@ public without sharing class CourseSearchUtility {
                     (
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
                         FROM Sessions__r
+                        WHERE Status__c = :SESSION_STATUS_CONFIRMED
                     )
                 FROM Course__c
                 WHERE Branch__r.Branch_Number__c =:branchId
@@ -153,6 +156,7 @@ public without sharing class CourseSearchUtility {
                     (
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
                         FROM Sessions__r
+                        WHERE Status__c = :SESSION_STATUS_CONFIRMED
                     )
                 FROM Course__c
                 WHERE Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi') < :radius
