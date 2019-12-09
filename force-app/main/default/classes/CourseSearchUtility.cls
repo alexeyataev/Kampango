@@ -167,7 +167,11 @@ public without sharing class CourseSearchUtility {
                     AND Hide_From_Course_Finder__c = FALSE
                     AND Start_Date__c > TODAY
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
-                    AND ((Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) OR (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate))
+                    AND (
+                        (Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) 
+                            OR 
+                        (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate)
+                    )
                 WITH SECURITY_ENFORCED
             ];
         } else {
