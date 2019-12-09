@@ -48,35 +48,44 @@ public without sharing class CourseSearchUtility {
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByBranch(String branchId, Boolean hideFromPublicAccess){
-        List<Course__c> inCourses = [
-            SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
-                Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
-                Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c,
-                (
-                    SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
-                    FROM Sessions__r
-                )
-            FROM Course__c
-            WHERE Branch__r.Branch_Number__c =:branchId
-            AND Status__c = :FINAL_STATUS
-            AND Start_Date__c > TODAY
-            AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
-            WITH SECURITY_ENFORCED
-        ];
-        
-        List<Course__c> courses = new List<Course__c>();
-
-        if(!inCourses.isEmpty()) {
-            for (Course__c course : inCourses) {
-                Boolean isCourseHidden = hideFromPublicAccess && course.Hide_From_Course_Finder__c;
-                if(!isCourseHidden) {
-                    courses.add(course);
-                }
-            } 
+        List<Course__c> inCourses;
+        if (hideFromPublicAccess) {
+            inCourses = [
+                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
+                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
+                    Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c,
+                    (
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
+                        FROM Sessions__r
+                    )
+                FROM Course__c
+                WHERE Branch__r.Branch_Number__c =:branchId
+                AND Status__c = :FINAL_STATUS
+                AND Start_Date__c > TODAY
+                AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
+                AND Hide_From_Course_Finder__c <> TRUE
+                WITH SECURITY_ENFORCED
+            ];
+        } else {
+            inCourses = [
+                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
+                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
+                    Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c,
+                    (
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
+                        FROM Sessions__r
+                    )
+                FROM Course__c
+                WHERE Branch__r.Branch_Number__c =:branchId
+                WITH SECURITY_ENFORCED
+            ];
         }
-        return courses;
+
+        return inCourses;
     }
     
     public static RestResponse getCoursesByBranch(String branchId) {
