@@ -48,11 +48,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IsPublicVenue__c</field>
-            <table>Session__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>LastModifiedBy</field>
             <table>Session__c</table>
         </columns>

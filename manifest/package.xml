@@ -125,14 +125,13 @@
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
         <members>Course__c.Title__c</members>
-        <members>cpm__Installment__c.ga_decl_1__c</members>
-        <members>cpm__Installment__c.ga_decl_2__c</members>
-        <members>cpm__Installment__c.Sales_Invoice__c</members>
-        <members>cpm__Installment__c.Partner_Contact__c</members>
         <members>cpm__Installment__c.Bank_Details_Number__c</members>
-        <members>cpm__Installment__c.Partner_Contact__c</members>
         <members>cpm__Installment__c.Care_Membership_Added__c</members>
         <members>cpm__Installment__c.Membership_Type__c</members>
+        <members>cpm__Installment__c.Partner_Contact__c</members>
+        <members>cpm__Installment__c.Sales_Invoice__c</members>
+        <members>cpm__Installment__c.ga_decl_1__c</members>
+        <members>cpm__Installment__c.ga_decl_2__c</members>
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
         <members>Session__c.Eligible_for_Claim__c</members>
         <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
@@ -239,6 +238,7 @@
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
+        <members>Override_Venue_Validation</members>
         <name>CustomPermission</name>
     </types>
     <types>
@@ -301,6 +301,7 @@
     <types>
         <members>Assign_Practitioner_Fee_Rate_to_Session</members>
         <members>Booking_Journey_Available</members>
+        <members>Booking_Journey_Success_Page</members>
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_Send_Email_On_Enquiry_Created_Process</members>
@@ -315,7 +316,6 @@
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Membership_Option</members>
         <members>Payment_Details</members>
-        <members>Populate_Practitioner_Name</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Confirmation_Email</members>
         <members>Resend_Offer_Email</members>
@@ -415,6 +415,7 @@
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
+        <members>Override_Venue_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
         <name>PermissionSet</name>
@@ -531,6 +532,7 @@
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
         <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
+        <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <name>ValidationRule</name>
     </types>
     <types>

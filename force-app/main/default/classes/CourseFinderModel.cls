@@ -16,7 +16,7 @@ public without sharing virtual class CourseFinderModel {
     private CourseOrganiser CourseOrganiser;
     private Venue Venue;
     private List<Session> Sessions;
-    public List<String> HowHeardTexts;
+    private static List<String> HowHeardTexts = getHowHeardValues(); // will run only once for any number of models
 
     public CourseFinderModel(Course__c course) {
         this.Id = course.Name;
@@ -82,6 +82,15 @@ public without sharing virtual class CourseFinderModel {
             this.WomenOnly = session.Specific_Attendee_Type__c == 'Women Only' ? true : false;  
             this.Breastfeeding = session.Type__c == 'Breastfeeding' ? true : false;  
         }
+    }
+
+    private static List<String> getHowHeardValues() {
+        List<String> howHeardValues = new List<String>();
+        Schema.DescribeFieldResult fieldResult = Booking__c.How_Heard__c.getDescribe();
+        for (Schema.PicklistEntry value : fieldResult.getPicklistValues()) {
+            howHeardValues.add(value.getLabel());
+        }
+        return howHeardValues;
     }
 
     private List<Session> collectSessionsToList (List<Session__c> sessions) {

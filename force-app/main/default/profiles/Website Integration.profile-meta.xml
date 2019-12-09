@@ -1807,11 +1807,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.IsPublicVenue__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Session__c.Lunch_Break_Minutes__c</field>
         <readable>false</readable>
     </fieldPermissions>

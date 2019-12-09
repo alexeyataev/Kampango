@@ -45,7 +45,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(null, modelOrdered.Rank);
+        System.assertEquals(CourseFinderModelOrdered.INAPPROPRIATE_RANK, modelOrdered.Rank);
     }
 
     @isTest
@@ -59,7 +59,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(null, modelOrdered.Rank);
+        System.assertEquals(CourseFinderModelOrdered.INAPPROPRIATE_RANK, modelOrdered.Rank);
     }
 
     @isTest
@@ -82,7 +82,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(null, modelOrdered.Rank);
+        System.assertEquals(CourseFinderModelOrdered.INAPPROPRIATE_RANK, modelOrdered.Rank);
     }
 
     @isTest
@@ -105,7 +105,7 @@ private class CourseFinderModelOrderedTest {
         Test.stopTest();
 
         System.assertNotEquals(null, modelOrdered);
-        System.assertEquals(null, modelOrdered.Rank);
+        System.assertEquals(CourseFinderModelOrdered.INAPPROPRIATE_RANK, modelOrdered.Rank);
     }
 
     @isTest
@@ -113,7 +113,7 @@ private class CourseFinderModelOrderedTest {
         setupTestData();
         Course__c course = getCourse();
 
-        course.Sub_Type__c = 'NCT Signature Antenatal';
+        course.Sub_Type__c = 'NCT Signature antenatal course';
     
         update course;
 
@@ -131,7 +131,7 @@ private class CourseFinderModelOrderedTest {
         setupTestData();
         Course__c course = getCourse();
 
-        course.Sub_Type__c = 'NCT Signature Antenatal';
+        course.Sub_Type__c = 'NCT Signature antenatal course';
     
         update course;
 
@@ -150,7 +150,7 @@ private class CourseFinderModelOrderedTest {
         Course__c course = getCourse();
 
         course.Type__c = 'Postnatal';
-        course.Sub_Type__c = 'Baby Massage';
+        course.Sub_Type__c = 'NCT Baby Massage';
         update course;
 
         Test.startTest();
@@ -168,7 +168,7 @@ private class CourseFinderModelOrderedTest {
         Course__c course = getCourse();
 
         course.Type__c = 'Postnatal';
-        course.Sub_Type__c = 'Baby Massage';
+        course.Sub_Type__c = 'NCT Baby Massage';
         update course;
        
         Test.startTest();
