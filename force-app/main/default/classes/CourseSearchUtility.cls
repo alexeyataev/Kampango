@@ -154,7 +154,6 @@ public without sharing class CourseSearchUtility {
                     )
                 FROM Course__c
                 WHERE Distance(Main_Venue__r.Location__c, :location, 'mi') < :radius
-                AND Status__c != 'Cancelled'
                 WITH SECURITY_ENFORCED
             ];
         }
