@@ -108,15 +108,17 @@ public without sharing class CourseSearchUtility {
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
         Location location = locationRequestParameters.location;
         Integer radius = locationRequestParameters.radius;
-        List<Course__c> inCourses = new List<Course__c>(); // to return empty list of courses if nothing were found.
+        List<Course__c> courses = new List<Course__c>();
 
         if (location == null){
-            return inCourses;
+            return courses;
         }
         
         if (radius == null || radius <= 0) {
             radius = DEFAULT_RADIUS; 
         }
+
+        List<Course__c> inCourses;
 
         if (hideFromPublicAccess) {
             inCourses = [
@@ -137,7 +139,7 @@ public without sharing class CourseSearchUtility {
                 AND Start_Date__c > TODAY
                 AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                 AND ((Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) OR (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate))
-                AND Hide_From_Course_Finder__c <> TRUE
+                AND Hide_From_Course_Finder__c = false
                 WITH SECURITY_ENFORCED
             ];
         } else {
@@ -156,7 +158,7 @@ public without sharing class CourseSearchUtility {
                 WITH SECURITY_ENFORCED
             ];
         }
-        return inCourses;
+        return courses;
     }
 
     public static RestResponse getCoursesByDateDistance(Map <String, String> params){
