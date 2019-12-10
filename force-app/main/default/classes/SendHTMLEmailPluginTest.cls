@@ -75,7 +75,7 @@ public with sharing class SendHTMLEmailPluginTest {
                     testReq.priority = 'High';
             testReq.saveAsActivity = true;
             testReq.replyEmailAddress = 'no-reply@example.com';
-            testReq.orgWideEmailAddress = orgWideEmail;
+            testReq.orgWideEmailAddressId = orgWideEmail;
             List<SendHTMLEmailPlugin.Request> reqList = new List<SendHTMLEmailPlugin.Request>();
             reqList.add(testReq);
             
