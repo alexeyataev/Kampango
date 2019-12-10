@@ -54,7 +54,6 @@ public with sharing class PaymentPlanOptionsHandler {
             }
         }
     }
-    @TestVisible
     private static void calculateAmounts(Integer monthCount) {
         if(courseFee >= MIN_FIRST_AMOUNT + MIN_REC_AMOUNT * monthCount && courseFee < MIN_FIRST_AMOUNT * (monthCount + 1)) {
             amountFirst = MIN_FIRST_AMOUNT;
@@ -69,7 +68,6 @@ public with sharing class PaymentPlanOptionsHandler {
             amountFirst += (amountRest - amountRecInstallment * monthCount);
         }
     }
-    @TestVisible
     private static PaymentPlanOption createOption(Integer monthCount) {
         PaymentPlanOption paymentPlanOption = new PaymentPlanOption();
         paymentPlanOption.contactId = contactId;
