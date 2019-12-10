@@ -32,7 +32,7 @@
         <members>PaymentPlanOption</members>
         <members>PaymentPlanOptionsHandler</members>
         <members>PaymentPlanOptionsHandlerTest</members>
-        <members>PaymentPlanParam</members>
+        <members>PaymentPlanParameters</members>
         <members>PractitionerBandFeeHelper</members>
         <members>PractitionerBandFeeHelperTest</members>
         <members>PractitionerDetailsController</members>
