@@ -51,7 +51,7 @@ public with sharing class SendHTMLEmailPluginTest {
         ];
 
         if (SendHTMLEmailPlugin.emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
-            String orgWideEmail = orgEmailObject[0].Id;
+            String orgWideEmailId = orgEmailObject[0].Id;
             Contact recipient = [
                 SELECT Id, AccountId 
                 FROM Contact 
@@ -75,7 +75,7 @@ public with sharing class SendHTMLEmailPluginTest {
                     testReq.priority = 'High';
             testReq.saveAsActivity = true;
             testReq.replyEmailAddress = 'no-reply@example.com';
-            testReq.orgWideEmailAddressId = orgWideEmail;
+            testReq.orgWideEmailAddressId = orgWideEmailId;
             List<SendHTMLEmailPlugin.Request> reqList = new List<SendHTMLEmailPlugin.Request>();
             reqList.add(testReq);
             
