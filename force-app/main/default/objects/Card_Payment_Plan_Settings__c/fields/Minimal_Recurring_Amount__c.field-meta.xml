@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Minimal_Recurring_Amount__c</fullName>
+    <description>Represents the minimal possible amount of the recurring payment when calculating payment plan options</description>
     <externalId>false</externalId>
     <label>Minimal Recurring Amount</label>
     <precision>18</precision>

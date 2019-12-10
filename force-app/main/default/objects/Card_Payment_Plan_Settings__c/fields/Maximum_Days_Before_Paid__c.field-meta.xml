@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Maximum_Days_Before_Paid__c</fullName>
+    <description>Represents the number of days the course fee must be fully paid before the course starts. Otherwise, the payment option is not available.
+This applies to all course types.</description>
     <externalId>false</externalId>
     <label>Maximum Days Before Paid</label>
     <precision>18</precision>

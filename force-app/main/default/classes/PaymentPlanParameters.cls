@@ -1,4 +1,4 @@
-public with sharing class PaymentPlanParam {
+public with sharing class PaymentPlanParameters {
     @AuraEnabled @InvocableVariable public String bookingId;
     @AuraEnabled @InvocableVariable public Decimal courseFee;
     @AuraEnabled @InvocableVariable public String contactId;
