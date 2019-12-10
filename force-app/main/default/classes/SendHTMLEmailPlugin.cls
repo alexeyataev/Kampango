@@ -14,7 +14,7 @@ public with sharing class SendHTMLEmailPlugin {
         String senderDisplay = requests[0].senderDisplayName;
         List<String> ccEmails = requests[0].ccEmailAddresses;
         List<String> bccEmails = requests[0].bccEmailAddresses;
-        String orgWide = requests[0].orgWideEmailAddress;
+        String orgWideAddressId = requests[0].orgWideEmailAddressId;
         
         List<Response> responseList = new List<Response>();
         Messaging.SingleEmailMessage message = new  Messaging.SingleEmailMessage();
@@ -28,23 +28,21 @@ public with sharing class SendHTMLEmailPlugin {
             message.setTemplateId(templateId);
             message.setWhatId(mergeObjId);
     
-      		// Set Priority
             List<String> priorities = new List<String> {'Highest', 'High', 'Low', 'Lowest'};
             if (priorities.contains(priority)) {
                 message.setEmailPriority(priority);
             }
             
-            // Save as activity?
+            // Save as activity is true by default
             Boolean isSaveAsActivityNotSet = (saveAsActivity == null || !saveAsActivity);
             if (isSaveAsActivityNotSet) {
                 message.setSaveAsActivity(false);
             }
             
             // Set sender address (cannot be used both)
-            Boolean isOrgWideSet = (orgWide != null && orgWide != '');
+            Boolean isOrgWideSet = (orgWideAddressId != null && String.isNotBlank(orgWideAddressId));
             if (isOrgWideSet) {
-                Id orgWideEmail = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: orgWide].Id;
-                message.setOrgWideEmailAddressId(orgWideEmail);
+                message.setOrgWideEmailAddressId(orgWideAddressId);
             } else if (senderDisplay != null) {
                 message.setSenderDisplayName(senderDisplay);
             }
@@ -57,11 +55,9 @@ public with sharing class SendHTMLEmailPlugin {
             
             Response response;
             String error;
-            // Send the email you have created.
             try {
                 Messaging.SendEmailResult[] emailResponse = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { message });
                 System.debug('emailResponse is: ' + emailResponse);
-                //report back the results
                 response = createResponseAfterSending(emailResponse);
             } catch (Exception e){
                 error = e.getMessage();
@@ -166,7 +162,7 @@ public with sharing class SendHTMLEmailPlugin {
         public List<String> bccEmailAddresses;
 
         @invocableVariable
-        public String orgWideEmailAddress;
+        public String orgWideEmailAddressId;
     }
     
     public class Response {

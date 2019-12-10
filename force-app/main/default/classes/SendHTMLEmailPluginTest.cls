@@ -1,6 +1,7 @@
 @isTest
 public with sharing class SendHTMLEmailPluginTest {
 
+    private static final String OWA_VALUE = 'nctcourses@nct.org.uk';
     private static final String CONTACT_EMAIL = 'john.black@example.com';
     private static final String TEMPLATE_NAME = 'test';
     private static final String TEMPLATE_DEV_NAME = 'temp';
@@ -45,6 +46,7 @@ public with sharing class SendHTMLEmailPluginTest {
         List<OrgWideEmailAddress> orgEmailObject = [
             SELECT Id, Address 
             FROM OrgWideEmailAddress
+            WHERE Address = :OWA_VALUE
             LIMIT 1
         ];
 
@@ -84,14 +86,7 @@ public with sharing class SendHTMLEmailPluginTest {
     
     @isTest
     public static void noErrorSenderDisplayName () {
-        List<OrgWideEmailAddress> orgEmailObject = [
-            SELECT Id, Address 
-            FROM OrgWideEmailAddress
-            LIMIT 1
-        ];
-
-        if (SendHTMLEmailPlugin.emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
-            String orgWideEmail = orgEmailObject[0].Address;
+        if (SendHTMLEmailPlugin.emailsFeatureEnabled()) {
             Contact recipient = [
                 SELECT Id, AccountId 
                 FROM Contact 
