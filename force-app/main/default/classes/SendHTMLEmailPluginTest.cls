@@ -83,8 +83,7 @@ public with sharing class SendHTMLEmailPluginTest {
                 List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
                 System.assertEquals(true, testResponseList[0].isSuccess, 'Email with Organization-wide address set was not sent');
             } catch (EmailException e) {
-                // commented to workaround the deployment issue
-                // System.assert(false, 'Org-Wide address is not verified');
+                System.assert(false, 'Org-Wide address is not verified. Please refer to step #70 in "Manual Tasks" from Confluence (Set up Organization-Wide Email Address)');
             }
         }
     }
