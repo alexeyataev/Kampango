@@ -97,7 +97,7 @@ public class PaymentPlanOptionsHandlerTest {
         cardPaymentPlanSettings.Minimal_Recurring_Amount__c = 100;
         cardPaymentPlanSettings.Min_Days_Before_First_Recurring_Payment__c = 14;
         insert cardPaymentPlanSettings;
-        PaymentPlanOptionsHandler.firstPaymentDate = THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber);
+        PaymentPlanOptionsHandler.initialPaymentDate = THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber);
         Test.startTest();
         Booking__c booking = [SELECT Id, Course__c, Primary_Contact__c FROM Booking__c LIMIT 1];
         Course__c course = [SELECT Id, Start_Date__c, Fee__c FROM Course__c WHERE Id =: booking.Course__c LIMIT 1];
@@ -105,7 +105,7 @@ public class PaymentPlanOptionsHandlerTest {
         paymentPlanParameters.bookingId = booking.Id;
         paymentPlanParameters.courseFee = course.Fee__c;
         paymentPlanParameters.contactId = booking.Primary_Contact__c;
-        paymentPlanParameters.startDate = course.Start_Date__c;
+        paymentPlanParameters.courseStartDate = course.Start_Date__c;
         List<PaymentPlanOption> options = PaymentPlanOptionsHandler.getOptions(new List<PaymentPlanParameters> {paymentPlanParameters})[0];
         System.assertEquals(options.size(), 0);
         Test.stopTest();
@@ -118,7 +118,7 @@ public class PaymentPlanOptionsHandlerTest {
         cardPaymentPlanSettings.Minimal_Recurring_Amount__c = 10;
         cardPaymentPlanSettings.Min_Days_Before_First_Recurring_Payment__c = 14;
         insert cardPaymentPlanSettings;
-        PaymentPlanOptionsHandler.firstPaymentDate = THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber);
+        PaymentPlanOptionsHandler.initialPaymentDate = THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber);
         Test.startTest();
         Booking__c booking = [SELECT Id, Course__c, Primary_Contact__c FROM Booking__c LIMIT 1];
         Course__c course = [SELECT Id, Start_Date__c, Fee__c FROM Course__c WHERE Id =: booking.Course__c LIMIT 1];
@@ -126,14 +126,15 @@ public class PaymentPlanOptionsHandlerTest {
         paymentPlanParameters.bookingId = booking.Id;
         paymentPlanParameters.courseFee = course.Fee__c;
         paymentPlanParameters.contactId = booking.Primary_Contact__c;
-        paymentPlanParameters.startDate = course.Start_Date__c;
+        paymentPlanParameters.courseStartDate = course.Start_Date__c;
         List<PaymentPlanOption> options = PaymentPlanOptionsHandler.getOptions(new List<PaymentPlanParameters> {paymentPlanParameters})[0];
         System.assertEquals(options.size(), 3);
         System.assertEquals(options[0].startDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(1)));
-        Date lastPaymentDate = THIS_MONTH_START_DATE.addMonths(3);
-        System.assertEquals(options[0].endDate, String.valueOf(lastPaymentDate + Date.daysInMonth(lastPaymentDate.year(), lastPaymentDate.month()) - 1));
+        System.assertEquals(options[0].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(1) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(1).year(), THIS_MONTH_START_DATE.addMonths(1).month()) - 1));
         System.assertEquals(options[0].label, '2 monthly payment of £ 100.00');
+        System.assertEquals(options[1].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(2) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(2).year(), THIS_MONTH_START_DATE.addMonths(2).month()) - 1));
         System.assertEquals(options[1].label, '1 payment of £ 66.68 and 2 monthly payment of £ 66.66');
+        System.assertEquals(options[2].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(3) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(3).year(), THIS_MONTH_START_DATE.addMonths(3).month()) - 1));
         System.assertEquals(options[2].label, '4 monthly payment of £ 50.00');
         Test.stopTest();
     }
@@ -146,7 +147,7 @@ public class PaymentPlanOptionsHandlerTest {
         cardPaymentPlanSettings.Minimal_Recurring_Amount__c = 10;
         cardPaymentPlanSettings.Min_Days_Before_First_Recurring_Payment__c = 14;
         insert cardPaymentPlanSettings;
-        PaymentPlanOptionsHandler.firstPaymentDate = THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber);
+        PaymentPlanOptionsHandler.initialPaymentDate = THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber);
         Test.startTest();
         Booking__c booking = [SELECT Id, Course__c, Primary_Contact__c FROM Booking__c LIMIT 1];
         Course__c course = [SELECT Id, Start_Date__c, Fee__c FROM Course__c WHERE Id =: booking.Course__c LIMIT 1];
@@ -154,14 +155,15 @@ public class PaymentPlanOptionsHandlerTest {
         paymentPlanParameters.bookingId = booking.Id;
         paymentPlanParameters.courseFee = course.Fee__c;
         paymentPlanParameters.contactId = booking.Primary_Contact__c;
-        paymentPlanParameters.startDate = course.Start_Date__c;
+        paymentPlanParameters.courseStartDate = course.Start_Date__c;
         List<PaymentPlanOption> options = PaymentPlanOptionsHandler.getOptions(new List<PaymentPlanParameters> {paymentPlanParameters})[0];
         System.assertEquals(options.size(), 3);
         System.assertEquals(options[0].startDate, String.valueOf(THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber).addMonths(2).toStartOfMonth()));
-        Date lastPaymentDate = THIS_MONTH_START_DATE.addMonths(4);
-        System.assertEquals(options[0].endDate, String.valueOf(lastPaymentDate + Date.daysInMonth(lastPaymentDate.year(), lastPaymentDate.month()) - 1));
+        System.assertEquals(options[0].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(2) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(2).year(), THIS_MONTH_START_DATE.addMonths(2).month()) - 1));
         System.assertEquals(options[0].label, '2 monthly payment of £ 100.00');
+        System.assertEquals(options[1].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(3) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(3).year(), THIS_MONTH_START_DATE.addMonths(3).month()) - 1));
         System.assertEquals(options[1].label, '1 payment of £ 66.68 and 2 monthly payment of £ 66.66');
+        System.assertEquals(options[2].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(4) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(4).year(), THIS_MONTH_START_DATE.addMonths(4).month()) - 1));
         System.assertEquals(options[2].label, '4 monthly payment of £ 50.00');
         Test.stopTest();
     }
@@ -174,7 +176,7 @@ public class PaymentPlanOptionsHandlerTest {
         cardPaymentPlanSettings.Minimal_Recurring_Amount__c = 10;
         cardPaymentPlanSettings.Min_Days_Before_First_Recurring_Payment__c = 14;
         insert cardPaymentPlanSettings;
-        PaymentPlanOptionsHandler.firstPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
+        PaymentPlanOptionsHandler.initialPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
         Test.startTest();
         Booking__c booking = [SELECT Id, Course__c, Primary_Contact__c FROM Booking__c LIMIT 1];
         Course__c course = [SELECT Id, Start_Date__c, Fee__c FROM Course__c WHERE Id =: booking.Course__c LIMIT 1];
@@ -182,12 +184,11 @@ public class PaymentPlanOptionsHandlerTest {
         paymentPlanParameters.bookingId = booking.Id;
         paymentPlanParameters.courseFee = course.Fee__c;
         paymentPlanParameters.contactId = booking.Primary_Contact__c;
-        paymentPlanParameters.startDate = course.Start_Date__c;
+        paymentPlanParameters.courseStartDate = course.Start_Date__c;
         List<PaymentPlanOption> options = PaymentPlanOptionsHandler.getOptions(new List<PaymentPlanParameters> {paymentPlanParameters})[0];
         System.assertEquals(options.size(), 1);
         System.assertEquals(options[0].startDate, String.valueOf(THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber).addMonths(thisMonthDiff + 1).toStartOfMonth()));
-        Date lastPaymentDate = THIS_MONTH_START_DATE.addMonths(5);
-        System.assertEquals(options[0].endDate, String.valueOf(lastPaymentDate + Date.daysInMonth(lastPaymentDate.year(), lastPaymentDate.month()) - 1));
+        System.assertEquals(options[0].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(5) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(5).year(), THIS_MONTH_START_DATE.addMonths(5).month()) - 1));
         System.assertEquals(options[0].label, '2 monthly payment of £ 100.00');
         Test.stopTest();
     }
@@ -200,7 +201,7 @@ public class PaymentPlanOptionsHandlerTest {
         cardPaymentPlanSettings.Minimal_Recurring_Amount__c = 10;
         cardPaymentPlanSettings.Min_Days_Before_First_Recurring_Payment__c = 14;
         insert cardPaymentPlanSettings;
-        PaymentPlanOptionsHandler.firstPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
+        PaymentPlanOptionsHandler.initialPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
         Test.startTest();
         Booking__c booking = [SELECT Id, Course__c, Primary_Contact__c FROM Booking__c LIMIT 1];
         Course__c course = [SELECT Id, Start_Date__c, Fee__c FROM Course__c WHERE Id =: booking.Course__c LIMIT 1];
@@ -208,13 +209,13 @@ public class PaymentPlanOptionsHandlerTest {
         paymentPlanParameters.bookingId = booking.Id;
         paymentPlanParameters.courseFee = course.Fee__c;
         paymentPlanParameters.contactId = booking.Primary_Contact__c;
-        paymentPlanParameters.startDate = course.Start_Date__c;
+        paymentPlanParameters.courseStartDate = course.Start_Date__c;
         List<PaymentPlanOption> options = PaymentPlanOptionsHandler.getOptions(new List<PaymentPlanParameters> {paymentPlanParameters})[0];
         System.assertEquals(options.size(), 2);
         System.assertEquals(options[0].startDate, String.valueOf(THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber).addMonths(thisMonthDiff + 1).toStartOfMonth()));
-        Date lastPaymentDate = THIS_MONTH_START_DATE.addMonths(5);
-        System.assertEquals(options[0].endDate, String.valueOf(lastPaymentDate + Date.daysInMonth(lastPaymentDate.year(), lastPaymentDate.month()) - 1));
+        System.assertEquals(options[0].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(4) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(4).year(), THIS_MONTH_START_DATE.addMonths(4).month()) - 1));
         System.assertEquals(options[0].label, '2 monthly payment of £ 100.00');
+        System.assertEquals(options[1].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(5) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(5).year(), THIS_MONTH_START_DATE.addMonths(5).month()) - 1));
         System.assertEquals(options[1].label, '1 payment of £ 66.68 and 2 monthly payment of £ 66.66');
         Test.stopTest();
     }
@@ -226,7 +227,7 @@ public class PaymentPlanOptionsHandlerTest {
         cardPaymentPlanSettings.Minimal_Recurring_Amount__c = 49;
         cardPaymentPlanSettings.Min_Days_Before_First_Recurring_Payment__c = 14;
         insert cardPaymentPlanSettings;
-        PaymentPlanOptionsHandler.firstPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
+        PaymentPlanOptionsHandler.initialPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
         Test.startTest();
         Booking__c booking = [SELECT Id, Course__c, Primary_Contact__c FROM Booking__c LIMIT 1];
         Course__c course = [SELECT Id, Start_Date__c, Fee__c FROM Course__c WHERE Id =: booking.Course__c LIMIT 1];
@@ -234,12 +235,11 @@ public class PaymentPlanOptionsHandlerTest {
         paymentPlanParameters.bookingId = booking.Id;
         paymentPlanParameters.courseFee = course.Fee__c;
         paymentPlanParameters.contactId = booking.Primary_Contact__c;
-        paymentPlanParameters.startDate = course.Start_Date__c;
+        paymentPlanParameters.courseStartDate = course.Start_Date__c;
         List<PaymentPlanOption> options = PaymentPlanOptionsHandler.getOptions(new List<PaymentPlanParameters> {paymentPlanParameters})[0];
         System.assertEquals(options.size(), 1);
         System.assertEquals(options[0].startDate, String.valueOf(THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber).addMonths(1).toStartOfMonth()));
-        Date lastPaymentDate = THIS_MONTH_START_DATE.addMonths(1);
-        System.assertEquals(options[0].endDate, String.valueOf(lastPaymentDate + Date.daysInMonth(lastPaymentDate.year(), lastPaymentDate.month()) - 1));
+        System.assertEquals(options[0].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(1) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(1).year(), THIS_MONTH_START_DATE.addMonths(1).month()) - 1));
         System.assertEquals(options[0].label, '1 payment of £ 150.00 and 1 monthly payment of £ 50.00');
         Test.stopTest();
     }
@@ -251,7 +251,7 @@ public class PaymentPlanOptionsHandlerTest {
         cardPaymentPlanSettings.Minimal_Recurring_Amount__c = 49;
         cardPaymentPlanSettings.Min_Days_Before_First_Recurring_Payment__c = 14;
         insert cardPaymentPlanSettings;
-        PaymentPlanOptionsHandler.firstPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
+        PaymentPlanOptionsHandler.initialPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
         Test.startTest();
         Booking__c booking = [SELECT Id, Course__c, Primary_Contact__c FROM Booking__c LIMIT 1];
         Course__c course = [SELECT Id, Start_Date__c, Fee__c FROM Course__c WHERE Id =: booking.Course__c LIMIT 1];
@@ -259,13 +259,13 @@ public class PaymentPlanOptionsHandlerTest {
         paymentPlanParameters.bookingId = booking.Id;
         paymentPlanParameters.courseFee = course.Fee__c;
         paymentPlanParameters.contactId = booking.Primary_Contact__c;
-        paymentPlanParameters.startDate = course.Start_Date__c;
+        paymentPlanParameters.courseStartDate = course.Start_Date__c;
         List<PaymentPlanOption> options = PaymentPlanOptionsHandler.getOptions(new List<PaymentPlanParameters> {paymentPlanParameters})[0];
         System.assertEquals(options.size(), 2);
         System.assertEquals(options[0].startDate, String.valueOf(THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber).addMonths(1).toStartOfMonth()));
-        Date lastPaymentDate = THIS_MONTH_START_DATE.addMonths(2);
-        System.assertEquals(options[0].endDate, String.valueOf(lastPaymentDate + Date.daysInMonth(lastPaymentDate.year(), lastPaymentDate.month()) - 1));
+        System.assertEquals(options[0].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(1) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(1).year(), THIS_MONTH_START_DATE.addMonths(1).month()) - 1));
         System.assertEquals(options[0].label, '2 monthly payment of £ 100.00');
+        System.assertEquals(options[1].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(2) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(2).year(), THIS_MONTH_START_DATE.addMonths(2).month()) - 1));
         System.assertEquals(options[1].label, '1 payment of £ 100.00 and 2 monthly payment of £ 50.00');
         Test.stopTest();
     }
@@ -277,7 +277,7 @@ public class PaymentPlanOptionsHandlerTest {
         cardPaymentPlanSettings.Minimal_Recurring_Amount__c = 39;
         cardPaymentPlanSettings.Min_Days_Before_First_Recurring_Payment__c = 14;
         insert cardPaymentPlanSettings;
-        PaymentPlanOptionsHandler.firstPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
+        PaymentPlanOptionsHandler.initialPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
         Test.startTest();
         Booking__c booking = [SELECT Id, Course__c, Primary_Contact__c FROM Booking__c LIMIT 1];
         Course__c course = [SELECT Id, Start_Date__c, Fee__c FROM Course__c WHERE Id =: booking.Course__c LIMIT 1];
@@ -285,14 +285,15 @@ public class PaymentPlanOptionsHandlerTest {
         paymentPlanParameters.bookingId = booking.Id;
         paymentPlanParameters.courseFee = course.Fee__c;
         paymentPlanParameters.contactId = booking.Primary_Contact__c;
-        paymentPlanParameters.startDate = course.Start_Date__c;
+        paymentPlanParameters.courseStartDate = course.Start_Date__c;
         List<PaymentPlanOption> options = PaymentPlanOptionsHandler.getOptions(new List<PaymentPlanParameters> {paymentPlanParameters})[0];
         System.assertEquals(options.size(), 3);
         System.assertEquals(options[0].startDate, String.valueOf(THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber).addMonths(1).toStartOfMonth()));
-        Date lastPaymentDate = THIS_MONTH_START_DATE.addMonths(3);
-        System.assertEquals(options[0].endDate, String.valueOf(lastPaymentDate + Date.daysInMonth(lastPaymentDate.year(), lastPaymentDate.month()) - 1));
+        System.assertEquals(options[0].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(1) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(1).year(), THIS_MONTH_START_DATE.addMonths(1).month()) - 1));
         System.assertEquals(options[0].label, '2 monthly payment of £ 100.00');
+        System.assertEquals(options[1].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(2) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(2).year(), THIS_MONTH_START_DATE.addMonths(2).month()) - 1));
         System.assertEquals(options[1].label, '1 payment of £ 80.00 and 2 monthly payment of £ 60.00');
+        System.assertEquals(options[2].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(3) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(3).year(), THIS_MONTH_START_DATE.addMonths(3).month()) - 1));
         System.assertEquals(options[2].label, '1 payment of £ 80.00 and 3 monthly payment of £ 40.00');
         Test.stopTest();
     }
@@ -304,7 +305,7 @@ public class PaymentPlanOptionsHandlerTest {
         cardPaymentPlanSettings.Minimal_Recurring_Amount__c = 40;
         cardPaymentPlanSettings.Min_Days_Before_First_Recurring_Payment__c = 14;
         insert cardPaymentPlanSettings;
-        PaymentPlanOptionsHandler.firstPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
+        PaymentPlanOptionsHandler.initialPaymentDate = THIS_MONTH_START_DATE.addMonths(thisMonthDiff);
         Test.startTest();
         Booking__c booking = [SELECT Id, Course__c, Primary_Contact__c FROM Booking__c LIMIT 1];
         Course__c course = [SELECT Id, Start_Date__c, Fee__c FROM Course__c WHERE Id =: booking.Course__c LIMIT 1];
@@ -312,14 +313,15 @@ public class PaymentPlanOptionsHandlerTest {
         paymentPlanParameters.bookingId = booking.Id;
         paymentPlanParameters.courseFee = course.Fee__c;
         paymentPlanParameters.contactId = booking.Primary_Contact__c;
-        paymentPlanParameters.startDate = course.Start_Date__c;
+        paymentPlanParameters.courseStartDate = course.Start_Date__c;
         List<PaymentPlanOption> options = PaymentPlanOptionsHandler.getOptions(new List<PaymentPlanParameters> {paymentPlanParameters})[0];
         System.assertEquals(options.size(), 3);
         System.assertEquals(options[0].startDate, String.valueOf(THIS_MONTH_START_DATE.addDays(initialPaymentDayNumber).addMonths(1).toStartOfMonth()));
-        Date lastPaymentDate = THIS_MONTH_START_DATE.addMonths(3);
-        System.assertEquals(options[0].endDate, String.valueOf(lastPaymentDate + Date.daysInMonth(lastPaymentDate.year(), lastPaymentDate.month()) - 1));
+        System.assertEquals(options[0].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(1) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(1).year(), THIS_MONTH_START_DATE.addMonths(1).month()) - 1));
         System.assertEquals(options[0].label, '2 monthly payment of £ 100.00');
+        System.assertEquals(options[1].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(2) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(2).year(), THIS_MONTH_START_DATE.addMonths(2).month()) - 1));
         System.assertEquals(options[1].label, '1 payment of £ 66.68 and 2 monthly payment of £ 66.66');
+        System.assertEquals(options[2].endDate, String.valueOf(THIS_MONTH_START_DATE.addMonths(3) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(3).year(), THIS_MONTH_START_DATE.addMonths(3).month()) - 1));
         System.assertEquals(options[2].label, '4 monthly payment of £ 50.00');
         Test.stopTest();
     }
