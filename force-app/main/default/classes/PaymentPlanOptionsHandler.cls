@@ -71,10 +71,10 @@ public with sharing class PaymentPlanOptionsHandler {
     private static String createOptionLabel(PaymentPlanParameters paymentPlanParameter) {
         String labelText = '';
         if(paymentPlanParameter.amountFirst == paymentPlanParameter.amountRecurring) {
-            String labelTemplate = '{0} monthly payment of £ {1}';
+            String labelTemplate = Label.Payment_Plan_Equal_Amounts_Option_Template;
             labelText = String.format(labelTemplate, new List<Object> {paymentPlanParameter.monthCount + 1, paymentPlanParameter.amountRecurring});
         } else {
-            String labelTemplate = '1 payment of £ {0} and {1} monthly payment of £ {2}';
+            String labelTemplate = Label.Payment_Plan_Different_Amounts_Option_Template;
             labelText = String.format(labelTemplate, new List<Object> {paymentPlanParameter.amountFirst, paymentPlanParameter.monthCount, paymentPlanParameter.amountRecurring});
         }
         return labelText;
