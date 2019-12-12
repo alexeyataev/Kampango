@@ -7,18 +7,9 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/Course_Assignment_Rejected</template>
-    </alerts>
-    <alerts>
-        <fullName>SendEmailToPractitioner</fullName>
-        <description>SendEmailToPractitioner</description>
-        <protected>false</protected>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</template>
     </alerts>
     <alerts>
         <fullName>Send_Email_When_CAD_Invalidated</fullName>
@@ -27,7 +18,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</template>
     </alerts>
     <alerts>
@@ -37,7 +29,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</template>
     </alerts>
     <fieldUpdates>

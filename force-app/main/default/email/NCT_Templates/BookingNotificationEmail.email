@@ -16,6 +16,14 @@ And if you haven't joined yet, make sure you don't miss out on <a href="https://
 
 With very best wishes, and looking forward to welcoming you to NCT, <br><br>
 
-{!Booking__c.Enquiries_PSA_First_Name__c} <br>
-{!Booking__c.Enquiries_PSA_Phone__c}<br>
-{!Booking__c.Enquiries_PSA_Email__c}
+Kind Regards,  
+</br>
+</br>
+{!Booking__c.LastModifiedBy}
+</br>
+Course Organiser
+</br>
+Telephone: {!Booking__c.Enquiries_PSA_Phone__c}
+</br>
+Email: Any reply to this email should be sent to {!Booking__c.Enquiries_PSA_Email__c}
+<br>
