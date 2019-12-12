@@ -1203,7 +1203,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Contact_Hours__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

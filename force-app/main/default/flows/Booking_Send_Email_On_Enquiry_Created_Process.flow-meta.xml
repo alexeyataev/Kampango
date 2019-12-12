@@ -78,34 +78,10 @@
             <name>myRule_1</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Status__c</leftValueReference>
+                <leftValueReference>formula_myRule_1</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Enquiry</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -114,7 +90,24 @@
             <label>Is status enquiry?</label>
         </rules>
     </decisions>
-    <interviewLabel>Booking_Send_Email_On_Enquiry_Created_Process-1_InterviewLabel</interviewLabel>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+ ISPICKVAL([Booking__c].Status__c, &#39;Enquiry&#39;),
+ $Profile.Name = &#39;Website Integration&#39;
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ ISPICKVAL({!myVariable_current.Status__c}, &#39;Enquiry&#39;),
+ {!$Profile.Name} = &#39;Website Integration&#39;
+)</expression>
+    </formulas>
+    <interviewLabel>Booking_Send_Email_On_Enquiry_Created_Process-2_InterviewLabel</interviewLabel>
     <label>Booking Send Email On Enquiry Created Process</label>
     <processMetadataValues>
         <name>ObjectType</name>

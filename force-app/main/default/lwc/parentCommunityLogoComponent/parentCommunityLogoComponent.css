@@ -3,4 +3,5 @@
     height: .6rem;
     background: #34A335;
     clip-path: polygon(0 30%, 0 0, 100% 0, 100% 100%);
+    -webkit-clip-path: polygon(0 30%, 0 0, 100% 0, 100% 100%);
 }
