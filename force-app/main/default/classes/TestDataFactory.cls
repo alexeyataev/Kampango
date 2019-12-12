@@ -90,7 +90,7 @@ public without sharing class TestDataFactory {
             .withStatus(status)
             .withPrimaryContact(parentHost)
             .withPartnerContact(partnertHost)
-            .withBookingExpiryDate(System.today().addDays(10))
+            .withBookingExpiryDate(System.today().addDays(3))
             .insertRecord(true)
             .build();
         return this;

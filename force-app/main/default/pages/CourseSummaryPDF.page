@@ -1,7 +1,36 @@
-<apex:page standardStylesheets="false" renderAs="pdf">
+<apex:page renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
 
-<!-->Read -> https://help.salesforce.com/articleView?id=000324733&type=1&mode=1<-->
+<!-->Read -> Kompango<-->
+
+<html>
+    <head>
+        <style>
+
+            @page {
+                size: A4;
+                margin: 10mm;
+                @top-center {
+                    content: "Sample";
+                }
+                @bottom-center {
+                    content: counter(page);
+                }
+            }
+            .page-break {
+                display:block;
+                page-break-after:always;
+            }
+            body {
+                font-family: Arial Unicode MS;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
 
 
     <apex:include pageName="CourseSummary"/>
+
+    </body>
+    </html>
 </apex:page>
