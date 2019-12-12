@@ -1,5 +1,6 @@
 @isTest
 public without sharing class CourseApiTest {
+    private static final String OWA_VALUE = 'nctcourses@nct.org.uk';
     private static String strURI = URL.getSalesforceBaseUrl().toExternalForm()+'/services/apexrest/courses';
     private static String methodGet = 'GET';
 
@@ -8,6 +9,7 @@ public without sharing class CourseApiTest {
         List<OrgWideEmailAddress> addresses = [
             SELECT Id, Address 
             FROM OrgWideEmailAddress
+            WHERE Address = :OWA_VALUE
             LIMIT 1
         ];
 
