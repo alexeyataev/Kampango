@@ -3,5 +3,5 @@
     <c:CourseSummaryPractitionerDetails course="{!Course__c}"/>
     <c:CourseSummaryVenueDetails course="{!Course__c}"/>
     <c:CourseSummarySessionDetails course="{!Course__c}"/>
-    <c:CourseSummaryBookingDetails course="{!Course__c}"/>
+    <c:CourseSummaryBookingDetails course="{!Course__c}" fieldsetName="CourseSummaryBookingFields"/>
 </apex:page>

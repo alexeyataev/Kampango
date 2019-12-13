@@ -9,7 +9,7 @@ public without sharing class ContactDetailsController {
         for(Schema.FieldSetMember fieldSetMember : Schema.SObjectType.Contact.fieldSets.getMap().get(contactFieldSetName).getFields()) {
             query += fieldSetMember.getFieldPath() + ', ';
         }
-        query += 'Id FROM Contact WHERE Id IN :contactIds';
+        query += 'Id FROM Contact WHERE Id IN :contactIds WITH SECURITY_ENFORCED';
         
         return Database.query(query);
     }

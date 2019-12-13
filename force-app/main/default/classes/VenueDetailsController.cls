@@ -30,7 +30,7 @@ public without sharing class VenueDetailsController {
         }
     }
 
-    public Course__c getCourseMainVenue() {
+    private Course__c getCourseMainVenue() {
         return [
                 SELECT Main_venue__c
                 FROM Course__c
@@ -63,7 +63,7 @@ public without sharing class VenueDetailsController {
     }
 
 
-    public static List<Id> getContactIds(Id venueId) {
+    private static List<Id> getContactIds(Id venueId) {
 
         Set<Id> result = new Set<Id>();
 

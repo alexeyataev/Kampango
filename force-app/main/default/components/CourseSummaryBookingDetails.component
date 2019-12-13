@@ -1,29 +1,21 @@
 <apex:component controller="BookingDetailsController">
 
-        <apex:attribute description="The course record for which to display venues" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
-
-        <apex:pageBlock title="Bookings">
-            <apex:pageBlockTable value="{!bookings}" var="booking">    
-                <apex:column value="{!booking.number}" headerValue="Booking Number"/>
-                <apex:column value="{!booking.dueDate}" headerValue="Due Date"/>
-                <apex:column headerValue="Primary Contact">
-                    <c:CourseSummaryContactDetails fieldset="{!$ObjectType.Contact.FieldSets.CourseSummaryBookingPrimaryContactFields}" 
-                    contactIdSet="{!contactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
-                </apex:column>
-            </apex:pageBlockTable>
-        </apex:pageBlock>    
-
-
-
-
-
     <apex:attribute description="The course record for which to display bookings" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
+    <apex:attribute description="The API name of booking fieldset" name="fieldsetName" type="String" required="true" assignTo="{!bookingFieldSetName}"/> 
 
     <apex:pageBlock title="Bookings">
-        <apex:pageBlockTable value="{!bookings}" var="booking">
+        <apex:pageBlockTable value="{!bookings}" var="book">
             <apex:repeat value="{!$ObjectType.Booking__c.FieldSets.CourseSummaryBookingFields}" var="field">
-                <apex:column value="{!booking[field]}"/> <!-->PDF render failes of the rendered attribute -> create controller to filter Bookings<-->
+                <apex:column value="{!book.booking[field]}"/> 
             </apex:repeat>
+            <apex:column headerValue="Primary Contact">
+                <c:CourseSummaryContactDetails fieldset="{!$ObjectType.Contact.FieldSets.CourseSummaryBookingPrimaryContactFields}" 
+                contactIdSet="{!book.primaryContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
+            </apex:column>
+            <apex:column headerValue="Primary Contact">
+                <c:CourseSummaryContactDetails fieldset="{!$ObjectType.Contact.FieldSets.CourseSummaryBookingPrimaryContactFields}" 
+                contactIdSet="{!book.partnerContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
+            </apex:column>
         </apex:pageBlockTable>
     </apex:pageBlock>
 </apex:component>
