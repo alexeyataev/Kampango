@@ -14,8 +14,7 @@
             </apex:column>
             <apex:column value="{!venue.address}" headerValue="Address"/>
             <apex:column headerValue="Emergency Contact(s)">
-                <c:CourseSummaryContactDetails fieldset="{!$ObjectType.Contact.FieldSets.CourseSummaryEmergencyContactFields}" 
-                contactIdSet="{!venue.emergencyContactIds}" fieldsetName="CourseSummaryEmergencyContactFields"/>
+                <c:CourseSummaryContactDetails contactIdSet="{!venue.emergencyContactIds}" fieldsetName="CourseSummaryEmergencyContactFields"/>
             </apex:column>
         </apex:pageBlockTable>
     </apex:pageBlock>    

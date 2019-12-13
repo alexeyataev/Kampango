@@ -5,17 +5,15 @@
 
     <apex:pageBlock title="Bookings">
         <apex:pageBlockTable value="{!bookings}" var="book">
+            <apex:column headerValue="Primary Contact">
+                <c:CourseSummaryContactDetails contactIdSet="{!book.primaryContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
+            </apex:column>
+            <apex:column headerValue="Partner Contact">
+                <c:CourseSummaryContactDetails contactIdSet="{!book.partnerContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
+            </apex:column>
             <apex:repeat value="{!$ObjectType.Booking__c.FieldSets.CourseSummaryBookingFields}" var="field">
                 <apex:column value="{!book.booking[field]}"/> 
             </apex:repeat>
-            <apex:column headerValue="Primary Contact">
-                <c:CourseSummaryContactDetails fieldset="{!$ObjectType.Contact.FieldSets.CourseSummaryBookingPrimaryContactFields}" 
-                contactIdSet="{!book.primaryContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
-            </apex:column>
-            <apex:column headerValue="Primary Contact">
-                <c:CourseSummaryContactDetails fieldset="{!$ObjectType.Contact.FieldSets.CourseSummaryBookingPrimaryContactFields}" 
-                contactIdSet="{!book.partnerContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
-            </apex:column>
         </apex:pageBlockTable>
     </apex:pageBlock>
 </apex:component>

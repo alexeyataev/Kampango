@@ -1,16 +1,14 @@
 <apex:component Controller="ContactDetailsController">
 
     <apex:attribute description="Set of contactId records to display" name="contactIdSet" type="Id[]" required="true" assignTo="{!contactIds}"/>
-    <apex:attribute description="Contact fieldset" name="fieldset" type="String[]" required="true"/>  
     <apex:attribute description="The API name of contact fieldset" name="fieldsetName" type="String" required="true" assignTo="{!contactFieldSetName}"/>  
 
 	<apex:repeat value="{!contacts}" var="contact">
-        <apex:repeat value="{!fieldset}" var="field">
-            <apex:outputLabel value="{!field}: "/>
+        <apex:repeat value="{!$ObjectType.Contact.FieldSets[fieldsetName]}" var="field">
+            <apex:outputLabel value="{!field.Label}: "/>
             <apex:outputField value="{!contact[field]}"/>
             <br/>
         </apex:repeat>
         <br/>
 	</apex:repeat>
-
 </apex:component>
