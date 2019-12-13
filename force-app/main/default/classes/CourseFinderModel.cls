@@ -1,5 +1,6 @@
 @SuppressWarnings('PMD.VariableNamingConventions')
 //Incident #10 - https://confluence.nct.org.uk:8443/x/EoSO
+// This supression is needed because we need Upper case-started propoerties for serialization to JSON.
 public without sharing virtual class CourseFinderModel {
     @testVisible
     public String Id {get; set;}
