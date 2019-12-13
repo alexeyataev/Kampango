@@ -7,7 +7,7 @@ public without sharing virtual class CourseFinderModel {
     public transient Date StartDate {get; set;}
     private String Reference;
     private String Title;
-    private String Summary;
+    public String Summary;
     private String Type;
     private Boolean CouplesAllowed;
     private Boolean WomenOnly;
@@ -23,7 +23,7 @@ public without sharing virtual class CourseFinderModel {
         this.Id = course.Name;
         this.Reference = course.PSA_Area__c + '/' + course.Name;
         this.Title = course.Title__c;
-        this.Summary = 'field is colected';
+        this.Summary = course.Summary__c;
         this.Type = course.Sub_Type__c;
         this.CouplesAllowed = course.Couples_Allowed__c;
         this.WomenOnly = course.Women_Only__c;
@@ -81,7 +81,8 @@ public without sharing virtual class CourseFinderModel {
             this.Start = String.valueOf(session.Start__c);
             this.Session_End = String.valueOf(session.End__c); 
             this.WomenOnly = session.Specific_Attendee_Type__c == 'Women Only' ? true : false;  
-            this.Breastfeeding = session.Type__c == 'Breastfeeding' ? true : false;  
+            this.Breastfeeding = session.Type__c == 'Breastfeeding' ? true : false;
+            this.Notes = session.Notes__c;
         }
     }
 
