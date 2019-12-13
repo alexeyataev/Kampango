@@ -4,7 +4,7 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>BookingTransferNotificationEmail</name>
     <style>none</style>
-    <subject>Confirm booking [Booking__c.Name] on your [Course__c.Sub_Type__c]</subject>
+    <subject>Confirm booking {!Booking__c.Name} on your {!Course__c.Sub_Type__c}</subject>
     <textOnly>Your booking reference: {!Course__c.PSA_Area__c} / {!Booking__c.Name}
 
 Your course reference: {!Course__c.PSA_Area__c} / {!Course__c.Name}
