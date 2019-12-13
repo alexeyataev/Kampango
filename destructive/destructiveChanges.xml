@@ -101,6 +101,14 @@
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
         <members>Course__c.Total_Estimated_Costs__c</members>
+        <members>Course__c.Reunion_Practitioner_Email__c</members>
+        <members>Course__c.Reunion_Practitioner_Name__c</members>
+        <members>Course__c.Reunion_Practitioner_Phone__c</members>
+        <members>Course__c.Reunion_Venue_Name__c</members>
+        <members>Course__c.Reunion_Venue_Map_Link__c</members>
+        <members>Course__c.Reunion_Venue_Postcode__c</members>
+        <members>Course__c.Reunion_Venue_Street_Address__c</members>
+        <members>Course__c.Reunion_Venue_Town__c</members>
         <members>cpm__Installment__c.Account_Key__c</members>
         <members>cpm__Installment__c.Contact_Key__c</members>
         <members>cpm__Installment__c.Course_Booking_Key__c</members>
