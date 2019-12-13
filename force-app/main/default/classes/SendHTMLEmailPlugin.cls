@@ -59,10 +59,14 @@ public with sharing class SendHTMLEmailPlugin {
                 Messaging.SendEmailResult[] emailResponse = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { message });
                 System.debug('emailResponse is: ' + emailResponse);
                 response = createResponseAfterSending(emailResponse);
-            } catch (Exception e){
+            } catch (EmailException e){
                 error = e.getMessage();
-                System.debug ('exception occured: ' + e.getMessage());
-                response = createErrorResponse(error);
+                if (error.contains('UNVERIFIED_SENDER_ADDRESS')) {
+                    throw e;
+                } else {
+                    System.debug ('exception occured: ' + e.getMessage());
+                    response = createErrorResponse(error);
+                }
             }
             responseList.add(response);
 

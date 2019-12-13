@@ -51,7 +51,7 @@ public with sharing class SendHTMLEmailPluginTest {
         ];
 
         if (SendHTMLEmailPlugin.emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
-            String orgWideEmail = orgEmailObject[0].Address;
+            String orgWideEmailId = orgEmailObject[0].Id;
             Contact recipient = [
                 SELECT Id, AccountId 
                 FROM Contact 
@@ -75,12 +75,16 @@ public with sharing class SendHTMLEmailPluginTest {
                     testReq.priority = 'High';
             testReq.saveAsActivity = true;
             testReq.replyEmailAddress = 'no-reply@example.com';
-            testReq.orgWideEmailAddressId = orgWideEmail;
+            testReq.orgWideEmailAddressId = orgWideEmailId;
             List<SendHTMLEmailPlugin.Request> reqList = new List<SendHTMLEmailPlugin.Request>();
             reqList.add(testReq);
             
-            List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
-            System.assertEquals(true, testResponseList[0].isSuccess, 'Email with Organization-wide address set was not sent');
+            try {
+                List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
+                System.assertEquals(true, testResponseList[0].isSuccess, 'Email with Organization-wide address set was not sent');
+            } catch (EmailException e) {
+                System.assert(false, 'Org-Wide address is not verified. Please refer to step #70 in "Manual Tasks" from Confluence (Set up Organization-Wide Email Address)');
+            }
         }
     }
     

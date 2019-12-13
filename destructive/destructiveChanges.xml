@@ -231,6 +231,7 @@
         <members>Contact.Send_reunion_session_email_to_attendee</members>
         <members>Contact.Send_reunion_session_email_to_attendee_in_host_venue</members>
         <members>Contact.Send_reunion_session_email_to_practitioner</members>
+        <members>Course_Assignment__c.SendEmailToPractitioner</members>
         <members>Venue.Send_reunion_session_email_to_host</members>
         <name>WorkflowAlert</name>
     </types>
