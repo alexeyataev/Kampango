@@ -29,6 +29,7 @@ public without sharing class TestDataFactory {
     private static Account organizationAccount;
     private Course_Assignment__c courseAssignment;
     private Venue__c venue;
+    private Venue_Contact__c venueContact;
     private Room__c room;
     private Licence_To_Practice__c licenceToPractice;
     private Course__c course;
@@ -90,7 +91,7 @@ public without sharing class TestDataFactory {
             .withStatus(status)
             .withPrimaryContact(parentHost)
             .withPartnerContact(partnertHost)
-            .withBookingExpiryDate(System.today().addDays(10))
+            .withBookingExpiryDate(System.today().addDays(3))
             .insertRecord(true)
             .build();
         return this;
@@ -199,6 +200,16 @@ public without sharing class TestDataFactory {
     public TestDataFactory buildRoom() {
         TestRoomBuilder roomBuilder = new TestRoomBuilder();
         room = roomBuilder
+            .withVenue(venue)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildVenueContact() {
+        TestVenueContactBuilder venueContactBuilder = new TestVenueContactBuilder();
+        venueContact = venueContactBuilder
+            .withContact(practitioners[0])
             .withVenue(venue)
             .insertRecord(true)
             .build();
