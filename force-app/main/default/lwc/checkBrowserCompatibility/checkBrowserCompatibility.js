@@ -4,7 +4,7 @@ import { FlowNavigationNextEvent } from 'lightning/flowSupport';
 
 export default class СheckBrowserCompatibility extends LightningElement {
 
-    @track isIE = false;
+    @track isBrowserNotSupported = false;
 
     label = {
         unsupportedBrowserMessage,
@@ -19,9 +19,9 @@ export default class СheckBrowserCompatibility extends LightningElement {
         let msie = userAgent.indexOf('MSIE ');
         //IE 11
         let trident = userAgent.indexOf('Trident/');
-        this.isIE = msie > 0 || trident > 0;
+        this.isBrowserNotSupported = msie > 0 || trident > 0;
 
-        if(!this.isIE) {
+        if(!this.isBrowserNotSupported) {
             this.redirectToNextScreen();
         }
     }
