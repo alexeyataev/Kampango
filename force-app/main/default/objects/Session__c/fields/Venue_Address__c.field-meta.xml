@@ -10,7 +10,7 @@
   &amp; Venue__r.County__c &amp; BR()
   &amp; Venue__r.Postcode__c &amp; BR() &amp; BR(),
 
-    Venue__r.Host__r.FirstName + &#39; &#39; + Venue__r.Host__r.LastName + &quot;&#39;s home&quot; &amp; BR()
+  Venue__r.Name &amp; BR()
   &amp; Venue__r.Host__r.MailingStreet &amp; BR()
   &amp; Venue__r.Host__r.MailingCity &amp; BR()
   &amp; Venue__r.Host__r.MailingCountry &amp; BR()
