@@ -104,6 +104,8 @@
         <name>CompactLayout</name>
     </types>
     <types>
+        <members>Community_Image1</members>
+        <members>logo</members>
         <members>nctlogo</members>
         <name>ContentAsset</name>
     </types>

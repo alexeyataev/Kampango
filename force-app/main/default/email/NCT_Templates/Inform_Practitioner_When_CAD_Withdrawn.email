@@ -16,5 +16,5 @@ Capacity PSA – {!Course_Assignment__c.PSA_Area__c}
 </br>
 Telephone: {!Course_Assignment__c.Capacity_PSA_Phone__c}
 </br>
-Email: Any reply to this email should be sent to capacity{!Course_Assignment__c.PSA_Area__c}@nct.org.uk
+Email: Any reply to this email should be sent to {!Course_Assignment__c.Capacity_PSA_Email__c}
 </br>

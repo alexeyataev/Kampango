@@ -23,12 +23,12 @@ The reunion will be facilitated by {!Session__c.Practitioner_Name__c} who may be
 We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
 https://www.nct.org.uk
 
-Kind regards,
+Kind Regards,
 
 {!Course__c.Enquiries_PSA_Name__c}
-Course organizer
-Email: {!Course__c.Enquiries_PSA_Email__c}
-Tel: {!Course__c.Enquiries_PSA_Phone__c}</textOnly>
+Course Organiser
+Telephone: {!Course__c.Enquiries_PSA_Phone__c}
+Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
