@@ -1,5 +1,5 @@
 @isTest
-public with sharing class PractitionerDetailsControllerTest {
+public with sharing class ContactDetailsControllerTest {
 
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
@@ -23,7 +23,7 @@ public with sharing class PractitionerDetailsControllerTest {
     }
 
     @IsTest
-	public static void generateCourseSummaryPractitionerDetails() {
+	public static void generateCourseSummaryContactDetails() {
 
 		Course__c course = [
 			SELECT Id 
@@ -31,26 +31,28 @@ public with sharing class PractitionerDetailsControllerTest {
 			LIMIT 1
 		];
 
-		List<Contact> practitioners = [
-			SELECT Name, Phone, Email 
+        List<Contact> contacts = [
+			SELECT Id
 			FROM Contact 
-			WHERE Id 
-				IN (SELECT Practitioner__c 
-					FROM Session__c 
-					WHERE Course__c = :course.Id)
 		];
 
-		PractitionerDetailsController practitionerDetailsController = new PractitionerDetailsController();
-		practitionerDetailsController.courseRecord = course;
-		practitionerDetailsController.practitionerFieldSetName = 'CourseSummaryPractitionerFields';
+		List<Id> contactsIds = new List<Id>();
+
+        for (Contact cont : contacts) {
+            contactsIds.add(cont.Id);
+        }
+
+		ContactDetailsController contactDetailsController = new ContactDetailsController();
+		contactDetailsController.contactIds = contactsIds;
+		contactDetailsController.contactFieldSetName = 'CourseSummaryEmergencyContactFields';
 
 		Test.startTest();
 
-		List<Contact> practitionersToTest = practitionerDetailsController.getPractitioners();
+		List<Contact> contactsToTest = contactDetailsController.getContacts();
 
 		Test.stopTest();
 
-		System.assertEquals(practitionersToTest, practitioners);
+		System.assertEquals(contactsToTest[0].Id, contacts[0].Id);
 
 	}
 }

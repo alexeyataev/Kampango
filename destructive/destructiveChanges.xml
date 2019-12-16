@@ -145,7 +145,6 @@
         <members>Session__c.Duration__c</members>
         <members>Session__c.Duration_Formatted__c</members>
         <members>Session__c.IsPublicVenue__c</members>
-        <members>Session__c.Notes__c</members>
         <members>Session__c.Practitoner_Name__c</members>
         <members>Session__c.Session_Type__c</members>
         <members>Session__c.Website_Text__c</members>
@@ -231,6 +230,7 @@
         <members>Contact.Send_reunion_session_email_to_attendee</members>
         <members>Contact.Send_reunion_session_email_to_attendee_in_host_venue</members>
         <members>Contact.Send_reunion_session_email_to_practitioner</members>
+        <members>Course_Assignment__c.SendEmailToPractitioner</members>
         <members>Venue.Send_reunion_session_email_to_host</members>
         <name>WorkflowAlert</name>
     </types>

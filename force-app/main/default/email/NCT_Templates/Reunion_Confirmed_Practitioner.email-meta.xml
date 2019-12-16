@@ -18,12 +18,12 @@ Click here to see this on a map
 
 If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.
 
-Kind regards,
+Kind Regards,
 
 {!Course__c.Capacity_PSA_Name__c}
-Course organiser
-Email: {!Course__c.Capacity_PSA_Email__c}
-Tel: {!Course__c.Capacity_PSA_Phone__c}</textOnly>
+Capacity PSA – {!Course__c.PSA_Area__c}
+Telephone: {!Course__c.Capacity_PSA_Phone__c}
+Email: Any reply to this email should be sent to {!Course__c.Capacity_PSA_Email__c}</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
