@@ -62,4 +62,11 @@
         <shortDescription>Generate Payment File Invalid Batch Bank Payment Status Message</shortDescription>
         <value>Batch Bank Payment should be approved to generate Payment File.</value>
     </labels>
+    <labels>
+        <fullName>Unsupported_Browser_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unsupported browser error message</shortDescription>
+        <value>Sorry, your browser isn`t supported.</value>
+    </labels>
 </CustomLabels>
