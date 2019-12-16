@@ -10,9 +10,8 @@ public without sharing class BookingDetailsController {
         
         public BookingResult(Booking__c booking) {
             this.booking = booking;
-            this.primaryContactIds = getContactIds(booking.Primary_Contact__c);
-            this.partnerContactIds = getContactIds(booking.Partner_Contact__c);
-
+            this.primaryContactIds = new List<Id> {booking.Primary_Contact__c};
+            this.partnerContactIds = new List<Id> {booking.Partner_Contact__c};
         }
     }
 
@@ -32,21 +31,4 @@ public without sharing class BookingDetailsController {
         }
         return result;
     }
-
-    private static List<Id> getContactIds(Id contactId) {
-
-        List<Id> result = new List<Id>();
-
-        for (Contact cont : [
-                SELECT Id
-                FROM Contact
-                WHERE Id = :contactId
-                WITH SECURITY_ENFORCED
-        ]) {
-            result.add(cont.Id);
-        }
-
-        return result;
-    }
-
 }
