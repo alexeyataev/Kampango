@@ -1,7 +1,7 @@
 import { LightningElement, api, track } from 'lwc';
 import { FlowAttributeChangeEvent, FlowNavigationNextEvent } from 'lightning/flowSupport';
 
-const columns = [
+const COLUMNS = [
     { label: 'Name', fieldName: 'Name'},
     { label: 'Course', fieldName: 'Course_Name__c'},
     { label: 'Date', fieldName: 'Date__c', type: 'date-local', typeAttributes: { year:"numeric", month:"numeric", day:"numeric"}},
@@ -18,7 +18,7 @@ export default class ClaimFeesDatatable extends LightningElement {
     @api totalFee;
 
     connectedCallback() {
-        this.columns = columns;
+        this.columns = COLUMNS;
     }
 
     get isDataPresented() {
@@ -30,13 +30,13 @@ export default class ClaimFeesDatatable extends LightningElement {
     }
 
     handleSelectRow(event) {
-        let _totalFee = 0;
+        let totalFee = 0;
         this.checkedRows = event.target.getSelectedRows();
         this.isButtonDisabled = this.checkedRows.length === 0;
         this.checkedRows.forEach(element => {
-            _totalFee += element.Practitioner_Fees__c;
+            totalFee += element.Practitioner_Fees__c;
         });
-        this.totalFee = _totalFee;
+        this.totalFee = totalFee;
         this.dispatchEvent(
             new FlowAttributeChangeEvent('totalFee', this.totalFee)
         );
