@@ -1,5 +1,5 @@
 import { LightningElement, track } from 'lwc';
-import unsupportedBrowserMessage from '@salesforce/label/c.UnsupportedBrowserErrorMessage';
+import unsupportedBrowserMessage from '@salesforce/label/c.Unsupported_Browser_Error_Message';
 import { FlowNavigationNextEvent } from 'lightning/flowSupport';
 
 export default class СheckBrowserCompatibility extends LightningElement {
