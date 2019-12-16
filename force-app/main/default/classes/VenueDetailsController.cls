@@ -11,18 +11,17 @@ public without sharing class VenueDetailsController {
         public VenueResult(Venue__c venue, Course__c courseRecord) {
             this.name = venue.Name;
             this.isMainVenue = (venue.Id == courseRecord.Main_venue__c);
-            //this.address = venue.Street_Address__c + ', ' + venue.Town__c + ', ' + venue.Postcode__c;
 
             for (Schema.FieldSetMember fieldSetMember : Schema.SObjectType.Venue__c.fieldSets.CourseSummaryVenueFields.getFields()) {
-
-                //this.address = String.isBlank(this.address) ? '' : this.address + ', ';
-                
                 if (String.isBlank(this.address)) {
                     this.address = '';
                 } else {
                     this.address += ', ';
                 }
-                this.address += venue.get(fieldSetMember.getFieldPath());
+
+                if (venue.get(fieldSetMember.getFieldPath()) != null) {
+                    this.address += venue.get(fieldSetMember.getFieldPath());
+                }
             }
 
             this.emergencyContactIds = getContactIds(venue.id);
@@ -79,39 +78,5 @@ public without sharing class VenueDetailsController {
 
         return new List<Id>(result);
     }
-
-    
-    /*public Map<Id,List<Id>> getEmergencyContactIds() {
-
-        //Set<Id> result = new Set<Id>();
-        Map<Id,List<Id>> result = new Map<Id,List<Id>>();
-        
-
-        for (Venue_Contact__c venueCont : [
-                SELECT Contact__c, Venue__c
-                FROM Venue_Contact__c
-                WHERE Venue__c
-                        IN (
-                                SELECT Venue__c
-                                FROM Session__c
-                                WHERE Course__c = :courseRecord.Id
-                        )
-                AND Type__c = 'Emergency'
-                WITH SECURITY_ENFORCED
-        ]) {
-            //result.add(venueCont.Contact__c);
-            if (result.containsKey(venueCont.Venue__c)) {
-                result.get(venueCont.Venue__c).add(venueCont.Contact__c);
-            } else {
-                List<Id> conts = new List<Id>();
-                conts.add(venueCont.Contact__c);
-                result.put(venueCont.Venue__c, conts);
-            }
-
-        }
-
-        //return new List<Id>(result);
-        return result;
-    }*/
 }
 

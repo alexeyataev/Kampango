@@ -39,8 +39,18 @@ public with sharing class BookingDetailsControllerTest {
             WHERE Course__c = :course.Id
 		];
 
-        User thisUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
-        PermissionSet overrideBookingValidation = [SELECT Id FROM PermissionSet WHERE Name = 'Override_Booking_Validation'];
+        User thisUser = [
+            SELECT Id 
+            FROM User 
+            WHERE Id = :UserInfo.getUserId()
+            ];
+
+        PermissionSet overrideBookingValidation = [
+            SELECT Id 
+            FROM PermissionSet 
+            WHERE Name = 'Override_Booking_Validation'
+            ];
+
         insert new PermissionSetAssignment(AssigneeId = thisUser.id, PermissionSetId = overrideBookingValidation.Id);
 
         System.runAs ( thisUser ) {
@@ -50,14 +60,15 @@ public with sharing class BookingDetailsControllerTest {
 
 		BookingDetailsController bookingDetailsController = new BookingDetailsController();
 		bookingDetailsController.courseRecord = course;
+        bookingDetailsController.bookingFieldSetName= 'CourseSummaryBookingFields';
 
 		Test.startTest();
 
-		List<Booking__c> bookingsToTest = bookingDetailsController.getBookings();
+		List<BookingDetailsController.BookingResult> bookingsToTest = bookingDetailsController.getBookings();
 
 		Test.stopTest();
 
-		System.assertEquals(bookingsToTest[0].Id, bookings[0].Id);
+		System.assertEquals(bookingsToTest[0].booking.Id, bookings[0].Id);
 
 	}
 }
