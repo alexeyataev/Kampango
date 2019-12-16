@@ -148,7 +148,6 @@
         <members>Session__c.Duration__c</members>
         <members>Session__c.Duration_Formatted__c</members>
         <members>Session__c.IsPublicVenue__c</members>
-        <members>Session__c.Notes__c</members>
         <members>Session__c.Practitoner_Name__c</members>
         <members>Session__c.Session_Type__c</members>
         <members>Session__c.Website_Text__c</members>

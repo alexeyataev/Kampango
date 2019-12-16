@@ -1642,6 +1642,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Count_of_Confirmed_Sessions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Count_of_Estimated_Travel_Costs__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1654,6 +1659,11 @@
         <editable>false</editable>
         <field>Course__c.Count_of_Unconfirmed_Non_Reunion_Session__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Count_of_Unconfirmed_Reunion_Sessions__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1751,6 +1761,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Summary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Target_Group__c</field>
         <readable>true</readable>
@@ -1773,6 +1788,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Women_Only__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Additional_Information_with_Venue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
