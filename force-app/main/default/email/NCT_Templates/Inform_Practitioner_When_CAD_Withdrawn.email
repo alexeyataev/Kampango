@@ -1,20 +1,20 @@
 Dear {!Course_Assignment__c.OwnerFirstName},
-</br>
-</br>
+<br>
+<br>
 We’re writing to let you know that this Course Assignment Document has been cancelled, meaning you’re no longer required to deliver any sessions of this course. This is either because you’ve let us know that you’re no longer able to facilitate the course or because we’ve had to make the difficult decision to cancel it.
-</br> 
-</br>
+<br> 
+<br>
 If you have any questions about this please contact the Capacity PSA using the email address at the bottom of this email.
-</br> 
-</br>
+<br> 
+<br>
 Kind Regards,  
-</br>
-</br>
+<br>
+<br>
 {!Course_Assignment__c.LastModifiedBy}
-</br>
+<br>
 Capacity PSA – {!Course_Assignment__c.PSA_Area__c}
-</br>
+<br>
 Telephone: {!Course_Assignment__c.Capacity_PSA_Phone__c}
-</br>
+<br>
 Email: Any reply to this email should be sent to {!Course_Assignment__c.Capacity_PSA_Email__c}
-</br>
+<br>

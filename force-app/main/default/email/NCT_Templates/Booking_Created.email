@@ -8,13 +8,12 @@ We’ll be back in touch within two working days with more details about your co
 <br>
 <br>
 Kind Regards,  
-</br>
-</br>
-{!Course__c.Enquiries_PSA_Name__c}
-</br>
-Course Organiser
-</br>
-Telephone: {!Course__c.Enquiries_PSA_Phone__c}
-</br>
-Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}
 <br>
+<br>
+{!Course__c.Enquiries_PSA_Name__c}
+<br>
+Course Organiser
+<br>
+Telephone: {!Course__c.Enquiries_PSA_Phone__c}
+<br>
+Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}
