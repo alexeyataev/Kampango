@@ -104,7 +104,6 @@
             <targetReference>Get_Last_PI_Number</targetReference>
         </connector>
     </assignments>
-    <description>Claim Practitioner Fee flow.</description>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
@@ -317,6 +316,26 @@
         </outputAssignments>
     </recordLookups>
     <screens>
+        <name>Check_Browser_Compatibility</name>
+        <label>Check Browser Compatibility</label>
+        <locationX>173</locationX>
+        <locationY>51</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>getAccountAndContactId</targetReference>
+        </connector>
+        <fields>
+            <name>Check_Browser_Compatibility_Component</name>
+            <extensionName>c:checkBrowserCompatibility</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Claim_Fees_Datatable</name>
         <label>Claim Fees Datatable</label>
         <locationX>666</locationX>
@@ -387,7 +406,7 @@
         <locationX>92</locationX>
         <locationY>190</locationY>
         <connector>
-            <targetReference>getAccountAndContactId</targetReference>
+            <targetReference>Check_Browser_Compatibility</targetReference>
         </connector>
     </start>
     <status>Active</status>

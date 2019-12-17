@@ -1,8 +1,8 @@
 Dear Capacity PSA,
-</br>
-</br>
+<br>
+<br>
 {!Course_Assignment__c.Name}, relating to Course {!Course_Assignment__c.Course__c}, has been rejected by {!Course_Assignment__c.OwnerFullName} {!If(ApprovalRequest.Comments != null, "with the following comments:", ".")} <b>{!ApprovalRequest.Comments}</b>
-</br>
-</br>
+<br>
+<br>
 Kind Regards
-</br>
+<br>

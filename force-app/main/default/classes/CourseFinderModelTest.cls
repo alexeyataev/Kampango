@@ -24,7 +24,7 @@ private class CourseFinderModelTest {
                 Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
                 (
                     SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
-                        Specific_Attendee_Type__c, Notes__c
+                        Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                     FROM Sessions__r
                 )
             FROM Course__c
