@@ -27,8 +27,8 @@ Kind Regards,
 
 {!Booking__c.LastModifiedBy}
 Course Organiser
-Telephone: {!Booking__c.Enquiries_PSA_Phone__c}
-Email: Any reply to this email should be sent to {!Booking__c.Enquiries_PSA_Email__c}</textOnly>
+Telephone: {!Course__c.Enquiries_PSA_Phone__c}
+Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
