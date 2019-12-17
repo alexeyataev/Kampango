@@ -44,6 +44,7 @@ public with sharing class BookingDetailsControllerTest {
             SELECT Id 
             FROM User 
             WHERE Profile.Name = 'Enquiry PSA'
+            LIMIT 1
         ];
 
         PermissionSet overrideBookingValidation = [
