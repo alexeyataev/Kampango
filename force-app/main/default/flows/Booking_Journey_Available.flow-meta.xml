@@ -560,7 +560,7 @@
         </fields>
         <fields>
             <name>Provisional_breastfeeding</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Breastfeeding session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 8px;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a {!Provisional_Breastfeeding_Time} hours breastfeeding session. Further details of this will be confirmed to you by your course leader once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Breastfeeding session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 8px;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a {!Provisional_Breastfeeding_Time} hours breastfeeding session. Further details of this will be confirmed to you by your &lt;/span&gt;&lt;span style=&quot;font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;course administrator &lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt; once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
@@ -575,7 +575,7 @@
         </fields>
         <fields>
             <name>Privisional_other</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Additional session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a {!Additional_Session_Time} hours session. Further details of this will be confirmed to you by your course leader once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Additional session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a {!Additional_Session_Time} hours session. Further details of this will be confirmed to you by your &lt;/span&gt;&lt;span style=&quot;font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;course administrator &lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
@@ -592,6 +592,13 @@
             <name>otherInfo</name>
             <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 18px;&quot;&gt;Other information&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curCourse.Additional_Confirmation_Information__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>curCourse.Additional_Confirmation_Information__c</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                </conditions>
+            </visibilityRule>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
