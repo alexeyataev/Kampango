@@ -1,38 +1,38 @@
 @isTest
 public with sharing class VenueDetailsControllerTest {
-    
+
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
     private static final String HOST_LASTNAME = 'Black';
 
-    @TestSetup 
+    @TestSetup
     private static void SetupTestData() {
-    TestDataFactory dataFactory = TestDataFactory.getInstance();
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc1')
-                    .buildBranchAccount()
-                    .buildPractitioner(PRACTITIONER_LASTNAME)
-                    .buildPractitionerFeeRate()
-                    .buildVenue()
-                    .buildRoom()
-                    .buildLicenceToPractice()
-                    .buildCourse()
-                    .buildEstimatedCosts()
-                    .buildSession()
-                    .buildReunion()
-                    .buildVenueContact();
+                .buildBranchAccount()
+                .buildPractitioner(PRACTITIONER_LASTNAME)
+                .buildPractitionerFeeRate()
+                .buildVenue()
+                .buildRoom()
+                .buildLicenceToPractice()
+                .buildCourse()
+                .buildEstimatedCosts()
+                .buildSession()
+                .buildReunion()
+                .buildVenueContact();
     }
 
     @IsTest
-	public static void generateCourseSummaryVenuesDetails() {
+    public static void generateCourseSummaryVenuesDetails() {
 
-		Course__c course = [
-			SELECT Id 
-			FROM Course__c
-			LIMIT 1
-		];
+        Course__c course = [
+                SELECT Id
+                FROM Course__c
+                LIMIT 1
+        ];
 
-		List<Venue__c> venues = [
-			SELECT Name, Street_Address__c, Town__c, Postcode__c
+        List<Venue__c> venues = [
+                SELECT Name, Street_Address__c, Town__c, Postcode__c
                 FROM Venue__c
                 WHERE Id
                         IN (
@@ -40,7 +40,7 @@ public with sharing class VenueDetailsControllerTest {
                                 FROM Session__c
                                 WHERE Course__c = :course.Id
                         )
-		];
+        ];
 
         Set<Id> result = new Set<Id>();
 
@@ -56,17 +56,17 @@ public with sharing class VenueDetailsControllerTest {
 
         List<Id> contactIds = new List<Id>(result);
 
-		VenueDetailsController venueDetailsController = new VenueDetailsController();
-		venueDetailsController.courseRecord = course;
+        VenueDetailsController venueDetailsController = new VenueDetailsController();
+        venueDetailsController.courseRecord = course;
 
-		Test.startTest();
+        Test.startTest();
 
-		List<VenueDetailsController.VenueResult> venuesToTest = venueDetailsController.getVenues();
+        List<VenueDetailsController.VenueResult> venuesToTest = venueDetailsController.getVenues();
 
-		Test.stopTest();
+        Test.stopTest();
 
-		System.assertEquals(venuesToTest[0].Name, venues[0].Name);
+        System.assertEquals(venuesToTest[0].Name, venues[0].Name);
         System.assertEquals(venuesToTest[0].emergencyContactIds, contactIds);
 
-	}
+    }
 }
