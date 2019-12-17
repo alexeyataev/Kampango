@@ -51,7 +51,8 @@ public with sharing class BookingDetailsControllerTest {
             SELECT Id 
             FROM PermissionSet 
             WHERE Name = 'Override_Booking_Validation'
-            ];
+            LIMIT 1
+        ];
 
         insert new PermissionSetAssignment(AssigneeId = thisUser.id, PermissionSetId = overrideBookingValidation.Id);
 
