@@ -182,5 +182,4 @@ private class ClaimFeeHelperTest {
             FROM Zumzum__Purchase_Invoice__c
         ].size());
     }
-
 }
