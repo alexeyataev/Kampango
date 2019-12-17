@@ -882,22 +882,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Zumzum__Currency___c.Zumzum__Symbol__c</field>
+        <field>Zumzum__Currency__c.Zumzum__Symbol__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Zumzum__Currency___c.Zumzum__Is_Active__c</field>
+        <field>Zumzum__Currency__c.Zumzum__Is_Active__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Zumzum__Currency___c.Zumzum__Is_Corporate__c</field>
+        <field>Zumzum__Currency__c.Zumzum__Is_Corporate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Zumzum__Currency___c.Zumzum__ISO_Code__c</field>
+        <field>Zumzum__Currency__c.Zumzum__ISO_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
