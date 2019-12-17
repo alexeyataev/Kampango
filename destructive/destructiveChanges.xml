@@ -40,6 +40,9 @@
         <members>Booking__c.Client__c</members>
         <members>Booking__c.Bank_Account_Number__c</members>
         <members>Booking__c.Bank_Sort_Code__c</members>
+        <members>Booking__c.Enquiries_PSA_First_Name__c</members>
+        <members>Booking__c.Enquiries_PSA_Email__c</members>
+        <members>Booking__c.Enquiries_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_First_Name__c</members>
         <members>Booking__c.Has_Opted_Out_Email__c</members>
