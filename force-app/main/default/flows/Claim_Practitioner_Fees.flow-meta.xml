@@ -260,6 +260,13 @@
             </value>
         </filters>
         <filters>
+            <field>Date__c</field>
+            <operator>LessThanOrEqualTo</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </filters>
+        <filters>
             <field>Eligible_for_Claim__c</field>
             <operator>EqualTo</operator>
             <value>
