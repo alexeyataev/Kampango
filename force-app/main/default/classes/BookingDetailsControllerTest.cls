@@ -38,12 +38,14 @@ public with sharing class BookingDetailsControllerTest {
 			SELECT Id, Status__c
             FROM Booking__c 
             WHERE Course__c = :course.Id
+            LIMIT 1
 		];
 
         User thisUser = [
             SELECT Id 
             FROM User 
             WHERE Profile.Name = 'Enquiry PSA'
+            
         ];
 
         PermissionSet overrideBookingValidation = [
