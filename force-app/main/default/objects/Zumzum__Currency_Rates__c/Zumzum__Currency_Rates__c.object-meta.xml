@@ -153,26 +153,16 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Read</externalSharingModel>
-    <label>Currency</label>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <label>Currency Rates</label>
     <nameField>
-        <label>Currency Name</label>
+        <displayFormat>CRUID-{0000000000}</displayFormat>
+        <label>Currency Rates UID</label>
         <trackHistory>true</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Currencies</pluralLabel>
-    <searchLayouts>
-        <lookupDialogsAdditionalFields>Zumzum__ISO_Code__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Zumzum__Symbol__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Zumzum__Is_Corporate__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Zumzum__ISO_Code__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Zumzum__Symbol__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Zumzum__Is_Corporate__c</lookupPhoneDialogsAdditionalFields>
-        <searchFilterFields>NAME</searchFilterFields>
-        <searchFilterFields>Zumzum__ISO_Code__c</searchFilterFields>
-        <searchFilterFields>Zumzum__Symbol__c</searchFilterFields>
-        <searchFilterFields>Zumzum__Is_Corporate__c</searchFilterFields>
-    </searchLayouts>
-    <sharingModel>Read</sharingModel>
+    <pluralLabel>Currency Rates</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

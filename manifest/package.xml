@@ -10,6 +10,8 @@
         <members>CardPaymentHandler</members>
         <members>CardPaymentHandlerTest</members>
         <members>CardPaymentUrlResult</members>
+        <members>ClaimFeeHelper</members>
+        <members>ClaimFeeHelperTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -118,6 +120,7 @@
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
         <members>Contact.AccountId</members>
+        <members>Contact.Deducted_Practitioner_Fees__c</members>
         <members>Contact.Home_PSA__c</members>
         <members>Contact.NCT_Number__c</members>
         <members>Contact.Practitioner_Re_Registration_Amount__c</members>
@@ -141,6 +144,7 @@
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c.Practitioner__c</members>
         <members>Zumzum__Sales_Invoice__c.Booking__c</members>
         <name>CustomField</name>
     </types>
@@ -155,6 +159,7 @@
         <members>dlrs__LookupRollupSummary2.CourseEstimatedTravelCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseEstimatedVenueCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseNumberOfSessionsWithoutFeeRates</members>
+        <members>dlrs__LookupRollupSummary2.CreditLineItemsAmount</members>
         <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
         <name>CustomMetadata</name>
     </types>
@@ -194,6 +199,7 @@
         <members>Zumzum__Control_Account__c</members>
         <members>Zumzum__Currency__c</members>
         <members>Zumzum__CurrencyField__c</members>
+        <members>Zumzum__Currency_Rates__c</members>
         <members>Zumzum__CustomerLookup__c</members>
         <members>Zumzum__DataTypeHelper__c</members>
         <members>Zumzum__Despatch_Detail__c</members>
@@ -384,6 +390,7 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>checkBrowserCompatibility</members>
         <members>courseDetailsComponent</members>
         <members>claimFeesDatatable</members>
         <members>failurePaymentPage</members>
