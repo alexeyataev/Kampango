@@ -11,9 +11,23 @@ public without sharing class ClaimFeeHelper {
         List<Session__c> sessions = flowData[0].sessions;
 
         Financial_Settings__c financialSettings = Financial_Settings__c.getInstance();
-        User currentUser = [SELECT Name, AccountId, ContactId FROM User WHERE Id =: UserInfo.getUserId()];
-        Id zumzumGBP = [SELECT Id, Name FROM Zumzum__Currency__c WHERE Name =: DEFAULT_CURRENCY].Id;
-        Id zumzumNoVAT = [SELECT Id, Name FROM Zumzum__Tax_Rate__c WHERE Name =: PRACTITIONER_TAX_RATE LIMIT 1].Id;
+        User currentUser = [
+            SELECT Name, AccountId, ContactId 
+            FROM User
+            WHERE Id =: UserInfo.getUserId() 
+            WITH SECURITY_ENFORCED
+        ];
+        Id zumzumGBP = [
+            SELECT Id, Name 
+            FROM Zumzum__Currency__c 
+            WHERE Name =: DEFAULT_CURRENCY
+            WITH SECURITY_ENFORCED
+        ].Id;
+        Id zumzumNoVAT = [
+            SELECT Id, Name 
+            FROM Zumzum__Tax_Rate__c 
+            WHERE Name =: PRACTITIONER_TAX_RATE
+        ].Id;
         
         Zumzum.PurchaseInvoiceService purchaseInvoiceService = new Zumzum.PurchaseInvoiceService();
 
@@ -59,6 +73,8 @@ public without sharing class ClaimFeeHelper {
             new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper>{purchaseInvoice, purchaseCredit}
         );
 
+        System.debug('CreatePurchaseInvoice Response Message: ' + objResponse.ResponseMessage);
+
         Set<Id> purchaseInvoiceIds = new Set<Id>();
         if (objResponse.purchaseInvoices != null) {
             for (Zumzum__Purchase_Invoice__c pi : objResponse.purchaseInvoices) {
@@ -75,7 +91,6 @@ public without sharing class ClaimFeeHelper {
             FROM Zumzum__Purchase_Invoice__c 
             WHERE Id IN :purchaseInvoiceIds
         ];
-
         List<Zumzum__Purchase_Invoice_Line_Item__c> lineItemsToUpdate = new List<Zumzum__Purchase_Invoice_Line_Item__c>();
 
         for (Zumzum__Purchase_Invoice__c pi : purchaseInvoices) {
