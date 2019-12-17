@@ -17,13 +17,13 @@ We have a range of Postnatal courses and workshops running in your area. For fur
 <a href="https://www.nct.org.uk">Find a postnatal course</a> <br><br>
 
 Kind Regards,  
-</br>
-</br>
+<br>
+<br>
 {!Course__c.Enquiries_PSA_Name__c}
-</br>
+<br>
 Course Organiser
-</br>
+<br>
 Telephone: {!Course__c.Enquiries_PSA_Phone__c}
-</br>
+<br>
 Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}
 <br>

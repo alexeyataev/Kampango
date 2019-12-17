@@ -82,7 +82,7 @@ public without sharing virtual class CourseFinderModel {
             this.Session_End = String.valueOf(session.End__c); 
             this.WomenOnly = session.Specific_Attendee_Type__c == 'Women Only' ? true : false;  
             this.Breastfeeding = session.Type__c == 'Breastfeeding' ? true : false;
-            this.Notes = session.Notes__c;
+            this.Notes = session.Additional_Information_with_Venue__c;  
         }
     }
 

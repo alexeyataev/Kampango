@@ -50,7 +50,6 @@
             <label>Correct</label>
         </rules>
     </decisions>
-    <description>Beta 2</description>
     <interviewLabel>Booking {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Flow</label>
     <processMetadataValues>
@@ -97,9 +96,6 @@
         <queriedFields>Name</queriedFields>
         <queriedFields>Primary_Contact_Email__c</queriedFields>
         <queriedFields>Validation_Code__c</queriedFields>
-        <queriedFields>Enquiries_PSA_Email__c</queriedFields>
-        <queriedFields>Enquiries_PSA_First_Name__c</queriedFields>
-        <queriedFields>Enquiries_PSA_Phone__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Course_Data</name>
@@ -133,6 +129,9 @@
         <queriedFields>Main_Practitioner__c</queriedFields>
         <queriedFields>Fee__c</queriedFields>
         <queriedFields>Title__c</queriedFields>
+        <queriedFields>Enquiries_PSA_Email__c</queriedFields>
+        <queriedFields>Enquiries_PSA_Name__c</queriedFields>
+        <queriedFields>Enquiries_PSA_Phone__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>GetPrimaryContactData</name>
