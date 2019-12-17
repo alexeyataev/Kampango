@@ -8,6 +8,7 @@ public without sharing class TestDataFactory {
     private static final String PRACTITIONER_USERNAME = 'ncttest@test.com';
     private static final String PORTAL_ACCOUNT_OWNER_USERNAME = 'portalAccountOwner@ncttest.com';
     private static final String SYSTEM_ADMIN_USERNAME = 'NCTtest.sysAdmin.username@ncttest.com';
+    private static final String ENQUIRY_PSA_USERNAME = 'NCTtest.enquiryPSA.username@ncttest.com';
     private static final String PORTAL_ACCOUNT_USER_EMAIL = 'portalAccountUserNCT@ncttest.com';
     private static final String PARTNER_COMMUNITY_USER_EMAIL = 'partnerCommunityUser@ncttest.com';
     private static final String TEST_BILLING_EMAIL = 'billingEmail@ncttest.com';
@@ -24,6 +25,7 @@ public without sharing class TestDataFactory {
     public static List<Course__c> courses = new List<Course__c>();
     public static List<Session__c> sessions = new List<Session__c>();
     public static List<User> users = new List<User>();
+    public static List<User> enquiryPSA_Users = new List<User>();
     private List<Contact> practitioners = new List<Contact>();
     private Account branchAccount;
     private static Account organizationAccount;
@@ -56,6 +58,22 @@ public without sharing class TestDataFactory {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
         branchAccount =  accountBranchBuilder
             .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
+            .insertRecord(true)
+            .build();
+        TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
+        branchWeighting = branchWeightingBuilder
+            .withBranch(branchAccount)
+            .withWeighting(BRANCH_WEIGHTING)
+            .insertRecord(true)
+            .build();    
+        return this;
+    }
+
+    public TestDataFactory buildBranchAccountWithEnquiryPSA() {
+        TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
+        branchAccount =  accountBranchBuilder
+            .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
+            .withEnquiriesPSA(enquiryPSA_Users[0].Id)
             .insertRecord(true)
             .build();
         TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
@@ -358,6 +376,19 @@ public TestDataFactory buildReunion() {
         return this;
     }
 
+    public TestDataFactory createEnquiryPSA() {
+        TestUserBuilder userBuilder = new TestUserBuilder();
+        enquiryPSA_Users.add(userBuilder
+            .withProfile([SELECT Id FROM Profile WHERE Name = 'Enquiry PSA'].Id)
+            .withUsername(ENQUIRY_PSA_USERNAME)
+            .insertRecord(true)
+            .build());
+
+        System.debug(enquiryPSA_Users);
+
+        return this;
+    }
+    
     public static User createSysAdminUser() {
         TestUserBuilder userBuilder = new TestUserBuilder();
         users.add(userBuilder
