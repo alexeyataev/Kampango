@@ -37,10 +37,10 @@ public with sharing class TestVenueContactBuilder {
     public Venue_Contact__c build() {
 
         Venue_Contact__c testVenueContact = new Venue_Contact__c(
-                Name = this.name,
-                Type__c = this.type,
-                Contact__c = this.contact.Id,
-                Venue__c = this.venue.Id
+            Name = this.name,
+            Type__c = this.type,
+            Contact__c = this.contact.Id,
+            Venue__c = this.venue.Id
         );
 
         if (this.insertRecord) {
