@@ -9,7 +9,8 @@ public with sharing class BookingDetailsControllerTest {
     private static void SetupTestData() {
     TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc1')
-                    .buildBranchAccount()
+                    .createEnquiryPSA()
+                    .buildBranchAccountWithEnquiryPSA()
                     .buildPractitioner(PRACTITIONER_LASTNAME)
                     .buildPractitionerFeeRate()
                     .buildVenue()
@@ -28,7 +29,7 @@ public with sharing class BookingDetailsControllerTest {
 	public static void generateCourseSummaryBookingDetails() {
 
 		Course__c course = [
-			SELECT Id 
+			SELECT Id
 			FROM Course__c
 			LIMIT 1
 		];
@@ -42,8 +43,8 @@ public with sharing class BookingDetailsControllerTest {
         User thisUser = [
             SELECT Id 
             FROM User 
-            WHERE Id = :UserInfo.getUserId()
-            ];
+            WHERE Profile.Name = 'Enquiry PSA'
+        ];
 
         PermissionSet overrideBookingValidation = [
             SELECT Id 
