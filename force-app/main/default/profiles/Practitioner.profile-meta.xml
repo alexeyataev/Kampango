@@ -877,6 +877,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Zumzum__Currency__c.Name</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Currency__c.Zumzum__Symbol__c</field>
         <readable>true</readable>
     </fieldPermissions>

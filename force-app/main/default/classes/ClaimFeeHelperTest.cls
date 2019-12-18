@@ -42,6 +42,10 @@ private class ClaimFeeHelperTest {
         );
         insert zumzumCurrency;
 
+        zumzumCompanySetup.Zumzum__Corporate_Base_Currency__c = zumzumCurrency.Id;
+
+        update zumzumCompanySetup;
+
         Zumzum__Nominal_Account__c zumzumNominalAccount = new Zumzum__Nominal_Account__c(
             Name = 'Staff Salaries',
             Zumzum__Account_Code__c = 7003
