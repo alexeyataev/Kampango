@@ -116,7 +116,7 @@ public with sharing class ClaimFeeHelper {
                 }
             }
         }
-
+  
         System.debug('PILI to update: ' + lineItemsToUpdate);
 
         update lineItemsToUpdate;
