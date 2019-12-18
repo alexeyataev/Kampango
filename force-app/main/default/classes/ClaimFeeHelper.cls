@@ -14,14 +14,12 @@ public with sharing class ClaimFeeHelper {
         User currentUser = [
             SELECT Name, AccountId, ContactId 
             FROM User WHERE Id =: UserInfo.getUserId() 
-            WITH SECURITY_ENFORCED
         ];
 
         Zumzum__Currency__c zumzumCurrency = [
             SELECT Id
             FROM Zumzum__Currency__c 
-            WHERE Zumzum__Is_Active__c = true AND Zumzum__Is_Corporate__c = true
-            WITH SECURITY_ENFORCED
+            WHERE Name =: DEFAULT_CURRENCY
         ];
 
         Zumzum__Tax_Rate__c zumzumNoVAT = [
