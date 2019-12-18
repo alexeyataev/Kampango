@@ -18,9 +18,9 @@ public with sharing class ClaimFeeHelper {
         ];
 
         Zumzum__Currency__c zumzumCurrency = [
-            SELECT Id, Name 
+            SELECT Id
             FROM Zumzum__Currency__c 
-            WHERE Name =: DEFAULT_CURRENCY
+            WHERE Zumzum__Is_Active__c = true AND Zumzum__Is_Corporate__c = true
             WITH SECURITY_ENFORCED
         ];
 
