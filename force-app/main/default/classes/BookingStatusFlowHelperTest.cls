@@ -49,7 +49,7 @@ public  class BookingStatusFlowHelperTest {
         insert venues;
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         Course__c course = courseBuilder.withType('Postnatal')
-            .withSubType('NCT Baby Massage')
+            .withSubType('NCT Baby Massage course')
             .withFee(100)
             .withNumberOfPlaces(15)
             .withStatus('Draft')
