@@ -7,13 +7,11 @@
     Venue__r.Name &amp; BR()
   &amp; Venue__r.Street_Address__c &amp; BR()
   &amp; Venue__r.Town__c &amp; BR()
-  &amp; Venue__r.County__c &amp; BR()
   &amp; Venue__r.Postcode__c &amp; BR() &amp; BR(),
 
   Venue__r.Name &amp; BR()
   &amp; Venue__r.Host__r.MailingStreet &amp; BR()
   &amp; Venue__r.Host__r.MailingCity &amp; BR()
-  &amp; Venue__r.Host__r.MailingCountry &amp; BR()
   &amp; Venue__r.Host__r.MailingPostalCode &amp; BR() &amp; BR()
   ),
 
@@ -21,7 +19,6 @@
   Parent_Host__r.FirstName + &#39; &#39; + Parent_Host__r.LastName + &quot;&#39;s home&quot; &amp; BR()
 &amp; Parent_Host__r.MailingStreet &amp; BR()
 &amp; Parent_Host__r.MailingCity &amp; BR()
-&amp; Parent_Host__r.MailingCountry &amp; BR()
 &amp; Parent_Host__r.MailingPostalCode&amp; BR() &amp; BR()
 )</formula>
     <label>Venue Address</label>
