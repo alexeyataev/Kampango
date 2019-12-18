@@ -29,10 +29,9 @@
         <members>HttpStatusCode</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
+        <members>PaymentPlanGenerator</members>
         <members>PaymentPlanOption</members>
-        <members>PaymentPlanOptionsHandler</members>
-        <members>PaymentPlanOptionsHandlerTest</members>
-        <members>PaymentPlanParameters</members>
+        <members>PaymentPlanOptionsTest</members>
         <members>PractitionerBandFeeHelper</members>
         <members>PractitionerBandFeeHelperTest</members>
         <members>PractitionerDetailsController</members>
@@ -108,6 +107,8 @@
         <name>CompactLayout</name>
     </types>
     <types>
+        <members>Community_Image1</members>
+        <members>logo</members>
         <members>nctlogo</members>
         <name>ContentAsset</name>
     </types>
