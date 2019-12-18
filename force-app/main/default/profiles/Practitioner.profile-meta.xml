@@ -902,11 +902,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Zumzum__Currency_Rates__c.Zumzum__Currency_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Zumzum__Currency_Rates__c.Name</field>
         <readable>true</readable>
     </fieldPermissions>
