@@ -12,7 +12,7 @@ public with sharing class CourseDetailControllerTest {
             .buildRoom()
             .buildLicenceToPractice()
             .buildCourseWithTypeAndSubType('Antenatal','NCT Waterbirth workshop')
-            .buildCourseWithTypeAndSubType('Postnatal','NCT Baby Massage')
+            .buildCourseWithTypeAndSubType('Postnatal','NCT Baby Massage course')
             .buildSession();
 
         Integer coursesToCreate = 6;

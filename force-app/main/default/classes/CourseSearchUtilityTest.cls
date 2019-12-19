@@ -563,7 +563,7 @@ private class CourseSearchUtilityTest {
             List<String> postnatalCourseTypes = new List<String>{
                 'NCT Early Days course',
                 'NCT Introducing Solid Foods workshop',
-                'NCT Baby Massage'
+                'NCT Baby Massage course'
             };
             if (postnatalCourseTypes.contains(type)) {
                 course.Type__c = 'Postnatal';

@@ -20,7 +20,7 @@ And if you haven't joined yet, make sure you don't miss out on <a href="https://
 Kind Regards,
 <br>
 <br>
-{!Booking__c.LastModifiedBy}
+{!Course__c.Enquiries_PSA_Name__c}
 <br>
 Course Organiser
 <br>
