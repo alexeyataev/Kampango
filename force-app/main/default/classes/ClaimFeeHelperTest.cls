@@ -11,8 +11,6 @@ private class ClaimFeeHelperTest {
             .buildRoom()
             .buildLicenceToPractice()
             .buildCoursesWithSessions(2, 2);
-
-        createZumzumSetupRecords();
     }
 
     static void createZumzumSetupRecords() {
@@ -179,6 +177,7 @@ private class ClaimFeeHelperTest {
 
         Test.startTest();
             System.runAs(getPractitionerUser()) {
+                createZumzumSetupRecords();
                 ClaimFeeHelper.createPurchaseInvoice(new List<ClaimFeeHelper.ClaimFeeWrapper> {flowData});
             }
         Test.stopTest();
