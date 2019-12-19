@@ -1,5 +1,9 @@
 @SuppressWarnings('PMD.ApexCRUDViolation')
-//Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
+/** As @SupressWarning annotation cannot be added along with @Invocable one
+  * it was decided to add PMD.ApexCRUDViolation annotation to whole class
+  * Incident #32 - https://confluence.nct.org.uk:8443/x/EoSO
+*/
+
 public without sharing class ClaimFeeHelper {
 
     private static final String PURCHASE_INVOICE = 'Purchase Invoice';
@@ -134,7 +138,9 @@ public without sharing class ClaimFeeHelper {
     private static void postPurchaseInvoices(List<Zumzum__Purchase_Invoice__c> invoices) {
         Zumzum.PurchaseInvoiceService postService = new Zumzum.PurchaseInvoiceService();
         for (Zumzum__Purchase_Invoice__c pi : invoices) {
-            postService.postPurchaseInvoice(pi.Id);
+            if (pi.Zumzum__Type__c == PURCHASE_INVOICE) {
+                postService.postPurchaseInvoice(pi.Id);
+            }
         }
     }
     
