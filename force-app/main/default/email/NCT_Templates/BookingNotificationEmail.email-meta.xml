@@ -27,7 +27,7 @@ And if you haven&#39;t joined yet, make sure you don&#39;t miss out on NCT Membe
 
 Kind Regards,
 
-{!Booking__c.LastModifiedBy}
+{!Course__c.Enquiries_PSA_Name__c}
 Course Organiser
 Telephone: {!Course__c.Enquiries_PSA_Phone__c}
 Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}</textOnly>
