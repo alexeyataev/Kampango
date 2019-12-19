@@ -5,18 +5,16 @@ public with sharing class PaymentPlanGenerator {
     private static final Integer MIN_DAYS_BEFORE_FIRST_RECURRING_PAYMENT = Integer.valueOf(Card_Payment_Plan_Settings__c.getOrgDefaults().Min_Days_Before_First_Recurring_Payment__c);
     private static final Decimal MIN_FIRST_AMOUNT = Card_Payment_Plan_Settings__c.getOrgDefaults().Minimum_First_Amount__c;
     private static final Decimal MIN_REC_AMOUNT = Card_Payment_Plan_Settings__c.getOrgDefaults().Minimum_Recurring_Amount__c;
-    public static List<PaymentPlanOption> getOptions(String bookingId, String contactId, Decimal courseFee, Date courseStartDate) {
+    public static List<PaymentPlanOption> getOptions(Decimal courseFee, Date courseStartDate) {
         Date firstRecurringPaymentDate = getFirstRecurringPaymentDate();
         List<PaymentPlanOption> paymentPlanOptions = new List<PaymentPlanOption>();
         for(Integer i = 1; i <= MAX_RECURRING_INSTALLMENTS_NUMBER; i++) {
             if(isPaidBeforeCourseStartDate(i, courseStartDate, firstRecurringPaymentDate)) {
                 PaymentPlanOption paymentPlanOption = calculateAmounts(courseFee, i);
-                if(paymentPlanOption.amountFirst != null) {
+                if(paymentPlanOption != null) {
                     Date lastPaymentDate = firstRecurringPaymentDate.addMonths(i - 1);
-                    paymentPlanOption.contactId = contactId;
-                    paymentPlanOption.bookingId = bookingId;
-                    paymentPlanOption.startDate = String.valueOf(firstRecurringPaymentDate.toStartOfMonth());
-                    paymentPlanOption.endDate = String.valueOf(lastPaymentDate.toStartOfMonth() + Date.daysInMonth(lastPaymentDate.year(), lastPaymentDate.month()) - 1);
+                    paymentPlanOption.startDate = firstRecurringPaymentDate.toStartOfMonth();
+                    paymentPlanOption.endDate = lastPaymentDate.toStartOfMonth() + Date.daysInMonth(lastPaymentDate.year(), lastPaymentDate.month()) - 1;
                     paymentPlanOption.label = createOptionLabel(paymentPlanOption, i);
                     paymentPlanOption.value = String.valueOf(i);
                     paymentPlanOptions.add(paymentPlanOption);
@@ -52,8 +50,10 @@ public with sharing class PaymentPlanGenerator {
             Decimal amountRest = courseFee - paymentPlanOption.amountFirst;
             paymentPlanOption.amountRecurring = (amountRest/monthCount).setScale(2, System.RoundingMode.DOWN);
             paymentPlanOption.amountFirst += (amountRest - paymentPlanOption.amountRecurring * monthCount);
+            return paymentPlanOption;
+        } else {
+            return null;
         }
-        return paymentPlanOption;
     }
     private static String createOptionLabel(PaymentPlanOption paymentPlanOption, Integer monthCount) {
         String labelText = '';
