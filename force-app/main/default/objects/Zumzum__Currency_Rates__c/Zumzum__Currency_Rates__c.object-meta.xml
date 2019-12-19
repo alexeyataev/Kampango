@@ -144,9 +144,8 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <enableActivities>false</enableActivities>
+    <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableEnhancedLookup>false</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableLicensing>false</enableLicensing>
@@ -154,19 +153,16 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Read</externalSharingModel>
-    <label>Nominal Account</label>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <label>Currency Rates</label>
     <nameField>
-        <label>Nominal Account Name</label>
+        <displayFormat>CRUID-{0000000000}</displayFormat>
+        <label>Currency Rates UID</label>
         <trackHistory>true</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Nominal Accounts</pluralLabel>
-    <searchLayouts>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
-        <lookupDialogsAdditionalFields>Zumzum__Nominal_Code__c</lookupDialogsAdditionalFields>
-        <searchFilterFields>NAME</searchFilterFields>
-    </searchLayouts>
-    <sharingModel>Read</sharingModel>
+    <pluralLabel>Currency Rates</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
