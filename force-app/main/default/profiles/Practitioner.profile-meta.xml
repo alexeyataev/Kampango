@@ -1048,7 +1048,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Narrative__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

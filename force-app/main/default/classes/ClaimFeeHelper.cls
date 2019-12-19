@@ -1,31 +1,38 @@
-public with sharing class ClaimFeeHelper {
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
+public without sharing class ClaimFeeHelper {
 
     private static final String PURCHASE_INVOICE = 'Purchase Invoice';
     private static final String PURCHASE_CREDIT = 'Purchase Credit';
     private static final String DEFAULT_CURRENCY = 'GBP';
     private static final String PRACTITIONER_TAX_RATE = 'No VAT';
+    private static final String API_SUCCESS_MESSAGE = 'Success';
 
     @InvocableMethod(label='Create Purchase Invoice')
     public static void createPurchaseInvoice(List<ClaimFeeWrapper> flowData) {
-
+        
         List<Session__c> sessions = flowData[0].sessions;
-
+        
         Financial_Settings__c financialSettings = Financial_Settings__c.getInstance();
         User currentUser = [
             SELECT Name, AccountId, ContactId 
-            FROM User WHERE Id =: UserInfo.getUserId() 
+            FROM User 
+            WHERE Id =: UserInfo.getUserId()
+            WITH SECURITY_ENFORCED
         ];
 
         Zumzum__Currency__c zumzumCurrency = [
             SELECT Id
             FROM Zumzum__Currency__c 
             WHERE Name =: DEFAULT_CURRENCY
+            WITH SECURITY_ENFORCED
         ];
 
         Zumzum__Tax_Rate__c zumzumNoVAT = [
             SELECT Id, Name 
             FROM Zumzum__Tax_Rate__c 
             WHERE Name =: PRACTITIONER_TAX_RATE
+            WITH SECURITY_ENFORCED
             LIMIT 1
         ];
         
@@ -71,14 +78,13 @@ public with sharing class ClaimFeeHelper {
         
         purchaseCredit.LineItems.add(purchaseCreditLineItem);
 
-        System.debug('Purchase Invoice: ' + purchaseInvoice);
-        System.debug('Purchase Credit: ' + purchaseCredit);
-
         Zumzum.PurchaseInvoiceService.Response objResponse = purchaseInvoiceService.createPurchaseInvoices(
             new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper>{purchaseInvoice, purchaseCredit}
         );
 
-        System.debug('ZumzumAPI response message: ' + objResponse.ResponseMessage);
+        if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
+            throw new CreatePurchaseInvoiceException(objResponse.ResponseMessage);
+        }
 
         Set<Id> purchaseInvoiceIds = new Set<Id>();
 
@@ -87,15 +93,16 @@ public with sharing class ClaimFeeHelper {
                 purchaseInvoiceIds.add(pi.Id);
             }
         }
-
+        
         List<Zumzum__Purchase_Invoice__c> purchaseInvoices = [
             SELECT Id, Zumzum__Type__c,
                 (
                     SELECT Id, Session__c, Zumzum__Narrative__c
                     FROM Zumzum__Purchase_Invoice_Line_Items__r
                 ) 
-            FROM Zumzum__Purchase_Invoice__c 
+            FROM Zumzum__Purchase_Invoice__c
             WHERE Id IN :purchaseInvoiceIds
+            WITH SECURITY_ENFORCED
         ];
 
         List<Zumzum__Purchase_Invoice_Line_Item__c> lineItemsToUpdate = new List<Zumzum__Purchase_Invoice_Line_Item__c>();
@@ -114,10 +121,21 @@ public with sharing class ClaimFeeHelper {
                 }
             }
         }
-  
-        System.debug('PILI to update: ' + lineItemsToUpdate);
 
-        update lineItemsToUpdate;
+        try {
+            update lineItemsToUpdate;
+        } catch (DmlException ex) {
+            throw new ClaimFeeHelper.CreatePurchaseInvoiceException(ex.getMessage());
+        }
+
+        postPurchaseInvoices(purchaseInvoices);
+    }
+
+    private static void postPurchaseInvoices(List<Zumzum__Purchase_Invoice__c> invoices) {
+        Zumzum.PurchaseInvoiceService postService = new Zumzum.PurchaseInvoiceService();
+        for (Zumzum__Purchase_Invoice__c pi : invoices) {
+            postService.postPurchaseInvoice(pi.Id);
+        }
     }
     
     public class ClaimFeeWrapper {
@@ -129,4 +147,5 @@ public with sharing class ClaimFeeHelper {
         public Decimal registrationFee;
 
     }
+    public class CreatePurchaseInvoiceException extends Exception {}
 }
