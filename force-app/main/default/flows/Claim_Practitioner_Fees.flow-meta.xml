@@ -39,7 +39,7 @@
             <targetReference>Create_Purchase_Invoice</targetReference>
         </connector>
     </assignments>
-    <description></description>
+    <description>Deduct Registration Fees for Practitioners with Apex Action</description>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
@@ -259,26 +259,6 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
-        <name>Deduct_IE</name>
-        <label>Deduct IE</label>
-        <locationX>74</locationX>
-        <locationY>50</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>getAccountAndContactId</targetReference>
-        </connector>
-        <fields>
-            <name>Check_Browser_Compatibility</name>
-            <extensionName>c:checkBrowserCompatibility</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <showFooter>false</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
         <name>Show_Total_Fees</name>
         <label>Show Total Fees</label>
         <locationX>703</locationX>
@@ -291,7 +271,7 @@
         </connector>
         <fields>
             <name>totalFeeScreen</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgba(var(--sk_primary_foreground,29,28,29),1);&quot;&gt;The total value of fees included in this claim are:&lt;/span&gt; £{!claimFees.totalFee}&lt;/p&gt;&lt;p&gt;The total value of registration fees included in this claim are: &lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;£{!claimFees.registrationFee}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgba(var(--sk_primary_foreground,29,28,29),1);&quot;&gt;The total value of fees included in this claim are:&lt;/span&gt; £{!claimFees.totalFee}&lt;/p&gt;&lt;p&gt;The total value of registration fees included in this claim is: &lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;£{!claimFees.registrationFee}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -301,7 +281,7 @@
         <locationX>74</locationX>
         <locationY>205</locationY>
         <connector>
-            <targetReference>Deduct_IE</targetReference>
+            <targetReference>getAccountAndContactId</targetReference>
         </connector>
     </start>
     <status>Active</status>
