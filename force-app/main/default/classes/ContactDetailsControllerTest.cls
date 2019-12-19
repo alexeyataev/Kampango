@@ -6,7 +6,7 @@ public with sharing class ContactDetailsControllerTest {
     private static final String HOST_LASTNAME = 'Black';
 
     @TestSetup 
-    private static void SetupTestData() {
+    private static void setupTestData() {
     TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc1')
                     .buildBranchAccount()

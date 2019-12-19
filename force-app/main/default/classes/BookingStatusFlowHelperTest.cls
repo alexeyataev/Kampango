@@ -119,7 +119,7 @@ public  class BookingStatusFlowHelperTest {
     }
 
     @IsTest
-    private static void updateBookins_bookings_partlyUpdate(){
+    private static void updateBookinsBookingsPartlyUpdate(){
         List<Booking__c> bookings = [
             SELECT Id, Status__c, Reservation_Expiry_Date__c
             FROM Booking__c

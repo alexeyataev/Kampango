@@ -10,7 +10,7 @@ public class IndividualBookingJourneyHelperTest {
     }
 
     @IsTest
-    static void updateIndividual_validIndividual_recordUpdated(){
+    static void updateIndividualValidIndividualRecordUpdated(){
         List<Individual> record = [
             SELECT Id, Email__c, Post__c,
                 SMS__c, Telephone__c
@@ -31,7 +31,7 @@ public class IndividualBookingJourneyHelperTest {
     }
 
     @IsTest
-    static void updateIndividual_emptyList_noUpdate(){
+    static void updateIndividualEmptyListNoUpdate(){
         DateTime timeStamp = System.now();
         Test.startTest();
         IndividualBookingJourneyHelper.updateIndividual(new List<Individual>());

@@ -1,7 +1,7 @@
 @IsTest
 public class CardPaymentHandlerTest
 {
-    @testSetup static void SetupTestData() {
+    @testSetup static void setupTestData() {
         Parentforce_Community_Settings__c parentforceCommunitySettings = new Parentforce_Community_Settings__c();
         parentforceCommunitySettings.Base_Url__c = 'http://mynct.test.com';
         parentforceCommunitySettings.API_Token__c = '12345';

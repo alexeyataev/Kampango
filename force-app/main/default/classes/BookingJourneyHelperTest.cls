@@ -44,7 +44,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void updateContact_primaryContact_contactUpdated(){
+    static void updateContactPrimaryContactContactUpdated(){
         String primaryId = BookingJourneyHelperTest.createPrimaryContact();
         String partnerId = BookingJourneyHelperTest.createPartnerContact();
         List<Contact> primaryContact = [
@@ -71,7 +71,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void updateContact_partnerContactWithId_contactUpdated(){
+    static void updateContactPartnerContactWithIdContactUpdated(){
         String primaryId = BookingJourneyHelperTest.createPrimaryContact();
         String partnerId = BookingJourneyHelperTest.createPartnerContact();
         List<Contact> partnerContact = [
@@ -98,7 +98,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void updateContact_partnerContactNoId_contactCreated(){
+    static void updateContactPartnerContactNoIdContactCreated(){
         String primaryId = BookingJourneyHelperTest.createPrimaryContact();
         String partnerId = BookingJourneyHelperTest.createPartnerContact();
         TestContactBuilder contactBuilder = new TestContactBuilder();
@@ -125,7 +125,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void updateContact_emptyList_noUpdate(){
+    static void updateContactEmptyListNoUpdate(){
         Datetime timeStamp = System.now();
         Test.startTest();
         BookingJourneyHelper.updateContact(new List<Contact>());
@@ -140,7 +140,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void retrieveIndividual_individualId_individualRetrieved(){
+    static void retrieveIndividualIndividualIdIndividualRetrieved(){
         String individualId = createIndividual();
         Test.startTest();
         Individual individual = BookingJourneyHelper.retrieveMarketingPreferences(individualId);
@@ -149,7 +149,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void retrieveIndividual_null_nullReturned(){
+    static void retrieveIndividualNullNullReturned(){
         Test.startTest();
         Individual individual = BookingJourneyHelper.retrieveMarketingPreferences(null);
         Test.stopTest();
