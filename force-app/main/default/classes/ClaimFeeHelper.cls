@@ -4,7 +4,7 @@
   * Incident #32 - https://confluence.nct.org.uk:8443/x/EoSO
 */
 
-public without sharing class ClaimFeeHelper {
+public with sharing class ClaimFeeHelper {
 
     private static final String PURCHASE_INVOICE = 'Purchase Invoice';
     private static final String PURCHASE_CREDIT = 'Purchase Credit';
