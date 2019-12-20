@@ -22,9 +22,9 @@
             <label>Payment Link is True</label>
         </rules>
     </decisions>
-    <description>Prepares Purchase Invoice object
+    <description>Contains Payment Details screen and related logic
 Version changes:
-Debug version #1</description>
+Stable debug version (remove url from Screen)</description>
     <interviewLabel>Adhoc Payment Details Subflow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Details Subflow</label>
     <processMetadataValues>
@@ -64,6 +64,7 @@ Debug version #1</description>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
@@ -84,7 +85,13 @@ Debug version #1</description>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <startElementReference>Get_Payment_Link</startElementReference>
+    <start>
+        <locationX>520</locationX>
+        <locationY>787</locationY>
+        <connector>
+            <targetReference>Get_Payment_Link</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <subflows>
         <name>Get_Payment_Link</name>
