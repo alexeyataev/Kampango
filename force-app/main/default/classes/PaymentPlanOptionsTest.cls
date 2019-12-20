@@ -1,7 +1,7 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
 @isTest
 public class PaymentPlanOptionsTest {
-    private static Date THIS_MONTH_START_DATE = Date.today().toStartOfMonth();
+    private static final Date THIS_MONTH_START_DATE = Date.today().toStartOfMonth();
     @testSetup
     static void createTestData() {
         Card_Payment_Plan_Settings__c cardPaymentPlanSettings = new Card_Payment_Plan_Settings__c();
