@@ -10,6 +10,8 @@
         <members>CardPaymentHandler</members>
         <members>CardPaymentHandlerTest</members>
         <members>CardPaymentUrlResult</members>
+        <members>ClaimFeeHelper</members>
+        <members>ClaimFeeHelperTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -104,12 +106,18 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
+        <members>Company</members>
+        <name>Settings</name>
+    </types>
+    <types>
         <members>Contact.Practitioner_Compact_layout</members>
         <members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
         <members>Session__c.Session_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
     <types>
+        <members>Community_Image1</members>
+        <members>logo</members>
         <members>nctlogo</members>
         <name>ContentAsset</name>
     </types>
@@ -122,6 +130,7 @@
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
         <members>Contact.AccountId</members>
+        <members>Contact.Deducted_Practitioner_Fees__c</members>
         <members>Contact.Home_PSA__c</members>
         <members>Contact.NCT_Number__c</members>
         <members>Contact.Practitioner_Re_Registration_Amount__c</members>
@@ -145,6 +154,7 @@
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c.Practitioner__c</members>
         <members>Zumzum__Sales_Invoice__c.Booking__c</members>
         <name>CustomField</name>
     </types>
@@ -159,6 +169,7 @@
         <members>dlrs__LookupRollupSummary2.CourseEstimatedTravelCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseEstimatedVenueCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseNumberOfSessionsWithoutFeeRates</members>
+        <members>dlrs__LookupRollupSummary2.CreditLineItemsAmount</members>
         <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
         <name>CustomMetadata</name>
     </types>
@@ -199,6 +210,7 @@
         <members>Zumzum__Control_Account__c</members>
         <members>Zumzum__Currency__c</members>
         <members>Zumzum__CurrencyField__c</members>
+        <members>Zumzum__Currency_Rates__c</members>
         <members>Zumzum__CustomerLookup__c</members>
         <members>Zumzum__DataTypeHelper__c</members>
         <members>Zumzum__Despatch_Detail__c</members>
@@ -290,6 +302,63 @@
     </types>
     <types>
         <members>Parent_Community_Group</members>
+        <members>X1C_PSA_Area</members>
+        <members>X1W_PSA_Area</members>
+        <members>X2A_PSA_Area</members>
+        <members>X2B_PSA_Area</members>
+        <members>X2C_PSA_Area</members>
+        <members>X3A_PSA_Area</members>
+        <members>X3B_PSA_Area</members>
+        <members>X3D_PSA_Area</members>
+        <members>X3E_PSA_Area</members>
+        <members>X3F_PSA_Area</members>
+        <members>X4A_PSA_Area</members>
+        <members>X4B_PSA_Area</members>
+        <members>X4C_PSA_Area</members>
+        <members>X4D_PSA_Area</members>
+        <members>X4E_PSA_Area</members>
+        <members>X4F_PSA_Area</members>
+        <members>X4G_PSA_Area</members>
+        <members>X4H_PSA_Area</members>
+        <members>X4I_PSA_Area</members>
+        <members>X4J_PSA_Area</members>
+        <members>X4K_PSA_Area</members>
+        <members>X4L_PSA_Area</members>
+        <members>X4M_PSA_Area</members>
+        <members>X4N_PSA_Area</members>
+        <members>X4P_PSA_Area</members>
+        <members>X4Q_PSA_Area</members>
+        <members>X4R_PSA_Area</members>
+        <members>X4S_PSA_Area</members>
+        <members>X5A_PSA_Area</members>
+        <members>X5B_PSA_Area</members>
+        <members>X5C_PSA_Area</members>
+        <members>X5D_PSA_Area</members>
+        <members>X5E_PSA_Area</members>
+        <members>X5F_PSA_Area</members>
+        <members>X5G_PSA_Area</members>
+        <members>X5H_PSA_Area</members>
+        <members>X5I_PSA_Area</members>
+        <members>X5J_PSA_Area</members>
+        <members>X5K_PSA_Area</members>
+        <members>X5L_PSA_Area</members>
+        <members>X5M_PSA_Area</members>
+        <members>X5N_PSA_Area</members>
+        <members>X5O_PSA_Area</members>
+        <members>X5R_PSA_Area</members>
+        <members>X5S_PSA_Area</members>
+        <members>X5T_PSA_Area</members>
+        <members>X5U_PSA_Area</members>
+        <members>X5VL_PSA_Area</members>
+        <members>X6A_PSA_Area</members>
+        <members>X6B_PSA_Area</members>
+        <members>X6C_PSA_Area</members>
+        <members>X6D_PSA_Area</members>
+        <members>X6E_PSA_Area</members>
+        <members>X7A_PSA_Area</members>
+        <members>X7B_PSA_Area</members>
+        <members>X7C_PSA_Area</members>
+        <members>X7D_PSA_Area</members>
         <name>Group</name>
     </types>
     <types>
@@ -389,6 +458,7 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>checkBrowserCompatibility</members>
         <members>courseDetailsComponent</members>
         <members>claimFeesDatatable</members>
         <members>failurePaymentPage</members>

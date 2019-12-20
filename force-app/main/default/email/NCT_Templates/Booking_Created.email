@@ -1,12 +1,19 @@
-Dear {!Booking__c.First_Name__c} {!Booking__c.Email_Template_Utility_Field__c}<br><br>
-
-Thank you for enquiring about an NCT course. By joining one of our courses, you are helping to support the work of the UK’s largest charity for parents. We’re really looking forward to welcoming you, and we’re here to support you through the early years of your parenting journey.<br><br>
-
-We’ll be back in touch within two working days with more details about your course, and a link to book and confirm your place.<br><br>
-
-Best wishes<br><br><br>
-
-
-{!Course__c.Enquiries_PSA_Name__c}<br>
-{!Course__c.Enquiries_PSA_Phone__c}<br>
-{!Course__c.Enquiries_PSA_Email__c}
+Dear {!Booking__c.First_Name__c} {!Booking__c.Email_Template_Utility_Field__c}
+<br>
+<br>
+Thank you for enquiring about an NCT course. By joining one of our courses, you are helping to support the work of the UK’s largest charity for parents. We’re really looking forward to welcoming you, and we’re here to support you through the early years of your parenting journey.
+<br>
+<br>
+We’ll be back in touch within two working days with more details about your course, and a link to book and confirm your place.
+<br>
+<br>
+Kind Regards,  
+<br>
+<br>
+{!Course__c.Enquiries_PSA_Name__c}
+<br>
+Course Organiser
+<br>
+Telephone: {!Course__c.Enquiries_PSA_Phone__c}
+<br>
+Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}

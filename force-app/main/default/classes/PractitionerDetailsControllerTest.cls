@@ -42,6 +42,7 @@ public with sharing class PractitionerDetailsControllerTest {
 
 		PractitionerDetailsController practitionerDetailsController = new PractitionerDetailsController();
 		practitionerDetailsController.courseRecord = course;
+		practitionerDetailsController.practitionerFieldSetName = 'CourseSummaryPractitionerFields';
 
 		Test.startTest();
 

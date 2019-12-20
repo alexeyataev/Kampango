@@ -56,6 +56,10 @@
                 <field>Practitioner_Re_Registration_Amount__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Deducted_Practitioner_Fees__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Home_PSA__c</field>
             </layoutItems>

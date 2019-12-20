@@ -40,6 +40,9 @@
         <members>Booking__c.Client__c</members>
         <members>Booking__c.Bank_Account_Number__c</members>
         <members>Booking__c.Bank_Sort_Code__c</members>
+        <members>Booking__c.Enquiries_PSA_First_Name__c</members>
+        <members>Booking__c.Enquiries_PSA_Email__c</members>
+        <members>Booking__c.Enquiries_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_First_Name__c</members>
         <members>Booking__c.Has_Opted_Out_Email__c</members>
@@ -144,6 +147,7 @@
         <members>Session__c.Day__c</members>
         <members>Session__c.Duration__c</members>
         <members>Session__c.Duration_Formatted__c</members>
+        <members>Session__c.IsPublicVenue__c</members>
         <members>Session__c.Notes__c</members>
         <members>Session__c.Practitoner_Name__c</members>
         <members>Session__c.Session_Type__c</members>
@@ -158,6 +162,13 @@
     <types>
         <members>Ignore_Booking_Confirmation_Restriction</members>
         <name>CustomPermission</name>
+    </types>
+    <types>
+        <members>NCT_Templates/Reunion_Session_Attendees_Not_Client_Host_Email</members>
+        <members>NCT_Templates/Reunion_Session_Attendees_Public_Venue_Email</members>
+        <members>NCT_Templates/Reunion_Session_Course_Leader_Email</members>
+        <members>NCT_Templates/Reunion_Session_Client_Hoster_Email</members>
+        <name>EmailTemplate</name>
     </types>
     <types>
         <members>Installment_Process</members>
@@ -220,6 +231,11 @@
     <types>
         <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Reservation_Email</members>
+        <members>Contact.Send_reunion_session_email_to_attendee</members>
+        <members>Contact.Send_reunion_session_email_to_attendee_in_host_venue</members>
+        <members>Contact.Send_reunion_session_email_to_practitioner</members>
+        <members>Course_Assignment__c.SendEmailToPractitioner</members>
+        <members>Venue.Send_reunion_session_email_to_host</members>
         <name>WorkflowAlert</name>
     </types>
     <types>

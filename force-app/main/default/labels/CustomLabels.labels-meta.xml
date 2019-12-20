@@ -76,4 +76,11 @@
         <shortDescription>Payment Plan Equal Amounts Option Template</shortDescription>
         <value>{0} monthly payment of £ {1}</value>
     </labels>
+    <labels>
+        <fullName>Unsupported_Browser_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unsupported browser error message</shortDescription>
+        <value>Sorry, your current browser isn't supported. For the best experience we suggest using Chrome.</value>
+    </labels>
 </CustomLabels>

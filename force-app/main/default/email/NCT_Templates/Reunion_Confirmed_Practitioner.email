@@ -10,9 +10,13 @@ Thank you for agreeing to facilitate the {!Course__c.Sub_Type__c} course reunion
 
 If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.<br><br>
 
-Kind regards,<br><br>
-
-{!Course__c.Capacity_PSA_Name__c}<br>
-Course organiser<br>
-Email: {!Course__c.Capacity_PSA_Email__c}<br>
-Tel: {!Course__c.Capacity_PSA_Phone__c}
+Kind Regards,  
+<br>
+<br>
+{!Course__c.Capacity_PSA_Name__c}
+<br>
+Capacity PSA – {!Course__c.PSA_Area__c}
+<br>
+Telephone: {!Course__c.Capacity_PSA_Phone__c}
+<br>
+Email: Any reply to this email should be sent to {!Course__c.Capacity_PSA_Email__c}
