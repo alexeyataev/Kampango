@@ -1,9 +1,9 @@
 public class PaymentPlanMockClock implements IClock {
-    private Integer daysToAdd = 0;
-    public PaymentPlanMockClock(Integer daysToAdd) {
-        this.daysToAdd = daysToAdd;
+    private Date currentDate;
+    public PaymentPlanMockClock(Date currentDate) {
+        this.currentDate = currentDate;
     }
     public Date today() {
-        return Date.today().toStartOfMonth().addDays(daysToAdd);
+        return currentDate;
     }
 }
