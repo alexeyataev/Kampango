@@ -12,7 +12,7 @@
             <property name="sessions" label="Session list" type="@salesforce/schema/Session__c[]"/>
             <property name="practitioner" label="Practitioner" type="@salesforce/schema/Contact" role="inputOnly"/>
             <property name="totalFee" label="Total Fee" type="Integer" role="outputOnly"/>
-            <property name="taxRate" label="Practitioner Registration Fees %" type="Integer" role="inputOnly"/>
+            <property name="registrationFeeRate" label="Practitioner Registration Fees %" type="Integer" role="inputOnly"/>
             <property name="registrationCappedFees" label="Practitioner Registration Capped Fees" type="Integer" role="inputOnly"/>
             <property name="registrationFee" label="Registration Fee" type="Integer" role="outputOnly"/>
             <property name="checkedRows" label="Selected Sessions" type="@salesforce/schema/Session__c[]" role="outputOnly"/>

@@ -138,9 +138,7 @@ public with sharing class ClaimFeeHelper {
     private static void postPurchaseInvoices(List<Zumzum__Purchase_Invoice__c> invoices) {
         Zumzum.PurchaseInvoiceService postService = new Zumzum.PurchaseInvoiceService();
         for (Zumzum__Purchase_Invoice__c pi : invoices) {
-            if (pi.Zumzum__Type__c == PURCHASE_INVOICE) {
-                postService.postPurchaseInvoice(pi.Id);
-            }
+            Zumzum.PurchaseInvoiceService.Response apiResponse = postService.postPurchaseInvoice(pi.Id);
         }
     }
     
