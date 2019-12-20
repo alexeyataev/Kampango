@@ -27,9 +27,11 @@
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
         <members>HttpStatusCode</members>
+        <members>IClock</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
         <members>PaymentPlanGenerator</members>
+        <members>PaymentPlanMockClock</members>
         <members>PaymentPlanOption</members>
         <members>PaymentPlanOptionsTest</members>
         <members>PractitionerBandFeeHelper</members>
@@ -51,6 +53,7 @@
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
         <members>StepOrangeCardPaymentProvider</members>
+        <members>SystemClock</members>
         <members>TestAccountBuilder</members>
         <members>TestBookingBuilder</members>
         <members>TestBranchWeightingBuilder</members>
