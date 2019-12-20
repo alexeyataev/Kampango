@@ -4,17 +4,16 @@
     <apex:attribute description="The API name of booking fieldset" name="fieldsetName" type="String" required="true" assignTo="{!bookingFieldSetName}"/> 
 
     <apex:pageBlock title="Bookings">
-        <apex:pageBlockTable value="{!bookings}" var="book">
-            <apex:column headerValue="Primary Contact">
+        <apex:pageBlockTable value="{!bookings}" var="book" styleClass="sectionStyleBorderOnly">
+            <apex:column headerValue="Primary Contact" styleClass="tableStyle">
                 <c:CourseSummaryContactDetails contactIdSet="{!book.primaryContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
             </apex:column>
-            <apex:column headerValue="Partner Contact">
+            <apex:column headerValue="Partner Contact" styleClass="tableStyle">
                 <c:CourseSummaryContactDetails contactIdSet="{!book.partnerContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
             </apex:column>
             <apex:repeat value="{!$ObjectType.Booking__c.FieldSets.CourseSummaryBookingFields}" var="field">
-                <apex:column value="{!book.booking[field]}"/> 
+                <apex:column value="{!book.booking[field]}" styleClass="tableStyle"/> 
             </apex:repeat>
         </apex:pageBlockTable>
     </apex:pageBlock>
 </apex:component>
-

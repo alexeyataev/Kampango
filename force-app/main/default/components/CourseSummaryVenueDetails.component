@@ -3,13 +3,13 @@
     <apex:attribute description="The course record for which to display venues" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
 
     <apex:pageBlock title="Venues">
-        <apex:pageBlockTable value="{!venues}" var="venue">
-            <apex:column value="{!venue.name}" headerValue="Name"/>
-            <apex:column headerValue="Main Venue">
+        <apex:pageBlockTable value="{!venues}" var="venue" styleClass="sectionStyle">
+            <apex:column value="{!venue.name}" headerValue="Name" styleClass="tableStyle"/>
+            <apex:column headerValue="Main Venue" styleClass="tableStyle">
                 <apex:image url="{!$Resource.Tick}" width="30" height="30" rendered="{!venue.isMainVenue}"/>
             </apex:column>
-            <apex:column value="{!venue.address}" headerValue="Address"/>
-            <apex:column headerValue="Emergency Contact(s)">
+            <apex:column value="{!venue.address}" headerValue="Address" styleClass="tableStyle"/>
+            <apex:column headerValue="Emergency Contact(s)" styleClass="tableStyle">
                 <c:CourseSummaryContactDetails contactIdSet="{!venue.emergencyContactIds}" fieldsetName="CourseSummaryEmergencyContactFields"/>
             </apex:column>
         </apex:pageBlockTable>
