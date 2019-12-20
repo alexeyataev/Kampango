@@ -291,6 +291,63 @@
     </types>
     <types>
         <members>Parent_Community_Group</members>
+        <members>X1C_PSA_Area</members>
+        <members>X1W_PSA_Area</members>
+        <members>X2A_PSA_Area</members>
+        <members>X2B_PSA_Area</members>
+        <members>X2C_PSA_Area</members>
+        <members>X3A_PSA_Area</members>
+        <members>X3B_PSA_Area</members>
+        <members>X3D_PSA_Area</members>
+        <members>X3E_PSA_Area</members>
+        <members>X3F_PSA_Area</members>
+        <members>X4A_PSA_Area</members>
+        <members>X4B_PSA_Area</members>
+        <members>X4C_PSA_Area</members>
+        <members>X4D_PSA_Area</members>
+        <members>X4E_PSA_Area</members>
+        <members>X4F_PSA_Area</members>
+        <members>X4G_PSA_Area</members>
+        <members>X4H_PSA_Area</members>
+        <members>X4I_PSA_Area</members>
+        <members>X4J_PSA_Area</members>
+        <members>X4K_PSA_Area</members>
+        <members>X4L_PSA_Area</members>
+        <members>X4M_PSA_Area</members>
+        <members>X4N_PSA_Area</members>
+        <members>X4P_PSA_Area</members>
+        <members>X4Q_PSA_Area</members>
+        <members>X4R_PSA_Area</members>
+        <members>X4S_PSA_Area</members>
+        <members>X5A_PSA_Area</members>
+        <members>X5B_PSA_Area</members>
+        <members>X5C_PSA_Area</members>
+        <members>X5D_PSA_Area</members>
+        <members>X5E_PSA_Area</members>
+        <members>X5F_PSA_Area</members>
+        <members>X5G_PSA_Area</members>
+        <members>X5H_PSA_Area</members>
+        <members>X5I_PSA_Area</members>
+        <members>X5J_PSA_Area</members>
+        <members>X5K_PSA_Area</members>
+        <members>X5L_PSA_Area</members>
+        <members>X5M_PSA_Area</members>
+        <members>X5N_PSA_Area</members>
+        <members>X5O_PSA_Area</members>
+        <members>X5R_PSA_Area</members>
+        <members>X5S_PSA_Area</members>
+        <members>X5T_PSA_Area</members>
+        <members>X5U_PSA_Area</members>
+        <members>X5VL_PSA_Area</members>
+        <members>X6A_PSA_Area</members>
+        <members>X6B_PSA_Area</members>
+        <members>X6C_PSA_Area</members>
+        <members>X6D_PSA_Area</members>
+        <members>X6E_PSA_Area</members>
+        <members>X7A_PSA_Area</members>
+        <members>X7B_PSA_Area</members>
+        <members>X7C_PSA_Area</members>
+        <members>X7D_PSA_Area</members>
         <name>Group</name>
     </types>
     <types>
