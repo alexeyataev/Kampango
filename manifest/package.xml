@@ -100,6 +100,10 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
+        <members>Company</members>
+        <name>Settings</name>
+    </types>
+    <types>
         <members>Contact.Practitioner_Compact_layout</members>
         <members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
         <members>Session__c.Session_Compact_Layout</members>
