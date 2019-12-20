@@ -46,16 +46,14 @@ public with sharing class PaymentPlanGenerator {
         } else
         if(courseFee >= MIN_FIRST_AMOUNT * (monthCount + 1)) {
             paymentPlanOption.amountFirst = courseFee/(monthCount + 1);
-        }
-        if(paymentPlanOption.amountFirst != null) {
-            paymentPlanOption.amountFirst = paymentPlanOption.amountFirst.setScale(2, System.RoundingMode.CEILING);
-            Decimal amountRest = courseFee - paymentPlanOption.amountFirst;
-            paymentPlanOption.amountRecurring = (amountRest/monthCount).setScale(2, System.RoundingMode.DOWN);
-            paymentPlanOption.amountFirst += (amountRest - paymentPlanOption.amountRecurring * monthCount);
-            return paymentPlanOption;
         } else {
             return null;
         }
+        paymentPlanOption.amountFirst = paymentPlanOption.amountFirst.setScale(2, System.RoundingMode.CEILING);
+        Decimal amountRest = courseFee - paymentPlanOption.amountFirst;
+        paymentPlanOption.amountRecurring = (amountRest/monthCount).setScale(2, System.RoundingMode.DOWN);
+        paymentPlanOption.amountFirst += (amountRest - paymentPlanOption.amountRecurring * monthCount);
+        return paymentPlanOption;
     }
     private static String createOptionLabel(PaymentPlanOption paymentPlanOption, Integer monthCount) {
         String labelText;
