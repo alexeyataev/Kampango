@@ -17,8 +17,8 @@ public with sharing class PaymentPlanGenerator {
                     Date lastPaymentDate = firstRecurringPaymentDate.addMonths(i - 1);
                     paymentPlanOption.startDate = firstRecurringPaymentDate.toStartOfMonth();
                     paymentPlanOption.endDate = lastPaymentDate.toStartOfMonth() + Date.daysInMonth(lastPaymentDate.year(), lastPaymentDate.month()) - 1;
-                    paymentPlanOption.label = createOptionLabel(paymentPlanOption, i);
-                    paymentPlanOption.value = String.valueOf(i);
+                    paymentPlanOption.displayLabel = createOptionLabel(paymentPlanOption, i);
+                    paymentPlanOption.numberOfPayments = String.valueOf(i);
                     paymentPlanOptions.add(paymentPlanOption);
                 }
             }
