@@ -1,11 +1,13 @@
 public with sharing class PaymentPlanGenerator {
-    @TestVisible private static Date initialPaymentDate = Date.today();
+    @TestVisible private static IClock clock = new SystemClock();
+    private static Date initialPaymentDate;
     private static final Integer MAX_DAYS_BEFORE_PAID = Integer.valueOf(Card_Payment_Plan_Settings__c.getOrgDefaults().Maximum_Days_Before_Paid__c);
     private static final Integer MAX_RECURRING_INSTALLMENTS_NUMBER = 3;
     private static final Integer MIN_DAYS_BEFORE_FIRST_RECURRING_PAYMENT = Integer.valueOf(Card_Payment_Plan_Settings__c.getOrgDefaults().Min_Days_Before_First_Recurring_Payment__c);
     private static final Decimal MIN_FIRST_AMOUNT = Card_Payment_Plan_Settings__c.getOrgDefaults().Minimum_First_Amount__c;
     private static final Decimal MIN_REC_AMOUNT = Card_Payment_Plan_Settings__c.getOrgDefaults().Minimum_Recurring_Amount__c;
     public static List<PaymentPlanOption> getOptions(Decimal courseFee, Date courseStartDate) {
+        initialPaymentDate = clock.today();
         Date firstRecurringPaymentDate = getFirstRecurringPaymentDate();
         List<PaymentPlanOption> paymentPlanOptions = new List<PaymentPlanOption>();
         for(Integer i = 1; i <= MAX_RECURRING_INSTALLMENTS_NUMBER; i++) {
@@ -56,7 +58,7 @@ public with sharing class PaymentPlanGenerator {
         }
     }
     private static String createOptionLabel(PaymentPlanOption paymentPlanOption, Integer monthCount) {
-        String labelText = '';
+        String labelText;
         if(paymentPlanOption.amountFirst == paymentPlanOption.amountRecurring) {
             String labelTemplate = Label.Payment_Plan_Equal_Amounts_Option_Template;
             labelText = String.format(labelTemplate, new List<Object> {monthCount + 1, paymentPlanOption.amountRecurring});

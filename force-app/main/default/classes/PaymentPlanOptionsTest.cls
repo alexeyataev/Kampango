@@ -15,7 +15,7 @@ public class PaymentPlanOptionsTest {
     static void CourseFeeLessThanMinimum_CourseFeeTooSmall_NoOptionsGenerated() {
         Integer courseFee = 20;
         Date startDate = THIS_MONTH_START_DATE.addMonths(6);
-        PaymentPlanGenerator.initialPaymentDate = THIS_MONTH_START_DATE.addDays(5);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
         Test.startTest();
         List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
         System.assertEquals(options.size(), 0);
@@ -25,7 +25,7 @@ public class PaymentPlanOptionsTest {
     static void NextMonthFirstRecurringPayment_InitialPaymentEarlyDayOfTheMonth_FirstPaymentNextMonth() {
         Integer courseFee = 200;
         Date startDate = THIS_MONTH_START_DATE.addMonths(6);
-        PaymentPlanGenerator.initialPaymentDate = THIS_MONTH_START_DATE.addDays(5);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
         Test.startTest();
         List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
         System.assertEquals(options.size(), 3);
@@ -42,7 +42,7 @@ public class PaymentPlanOptionsTest {
     static void AfterNextMonthFirstRecurringPayment_InitialPaymentLaterDayOfTheMonth_FirstPaymentAfterNextMonth() {
         Integer courseFee = 200;
         Date startDate = THIS_MONTH_START_DATE.addMonths(6);
-        PaymentPlanGenerator.initialPaymentDate = THIS_MONTH_START_DATE.addDays(25);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(25);
         Test.startTest();
         List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
         System.assertEquals(options.size(), 3);
@@ -59,7 +59,7 @@ public class PaymentPlanOptionsTest {
     static void DatesOneRecurringPayment_TwoMonthBefore_OneOptionGenerated() {
         Integer courseFee = 200;
         Date startDate = THIS_MONTH_START_DATE.addMonths(2);
-        PaymentPlanGenerator.initialPaymentDate = THIS_MONTH_START_DATE.addDays(5);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
         Test.startTest();
         List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
         System.assertEquals(options.size(), 1);
@@ -72,7 +72,7 @@ public class PaymentPlanOptionsTest {
     static void DatesTwoRecurringPayment_TwoMonthBefore_TwoOptionGenerated() {
         Integer courseFee = 200;
         Date startDate = THIS_MONTH_START_DATE.addMonths(3);
-        PaymentPlanGenerator.initialPaymentDate = THIS_MONTH_START_DATE.addDays(5);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
         Test.startTest();
         List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
         System.assertEquals(options.size(), 2);
@@ -87,7 +87,7 @@ public class PaymentPlanOptionsTest {
     static void FeeOneRecurringPayment_FeeSmall_OneOptionGenerated() {
         Integer courseFee = 45;
         Date startDate = THIS_MONTH_START_DATE.addMonths(6);
-        PaymentPlanGenerator.initialPaymentDate = THIS_MONTH_START_DATE.addDays(5);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
         Test.startTest();
         List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
         System.assertEquals(options.size(), 1);
@@ -100,7 +100,7 @@ public class PaymentPlanOptionsTest {
     static void FeeTwoRecurringPayment_FeeMedium_TwoOptionsGenerated() {
         Integer courseFee = 55;
         Date startDate = THIS_MONTH_START_DATE.addMonths(6);
-        PaymentPlanGenerator.initialPaymentDate = THIS_MONTH_START_DATE.addDays(5);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
         Test.startTest();
         List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
         System.assertEquals(options.size(), 2);
