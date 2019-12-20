@@ -39,6 +39,9 @@
             <targetReference>Create_Purchase_Invoice</targetReference>
         </connector>
     </assignments>
+    <description>This flow allows the practitioner to claim fees for completed sessions.
+Version changes:
+Changed LWC component variable names</description>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
