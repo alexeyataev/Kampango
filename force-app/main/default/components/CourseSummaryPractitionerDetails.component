@@ -1,10 +1,11 @@
 <apex:component Controller="PractitionerDetailsController">
 
     <apex:attribute description="The course record for which to display practitioners" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
+    <apex:attribute description="The API name of practitioner fieldset" name="fieldsetName" type="String" required="true" assignTo="{!practitionerFieldSetName}"/>  
 
     <apex:pageBlock title="Practitioners">
         <apex:pageBlockTable value="{!practitioners}" var="practitioner">
-            <apex:repeat value="{!$ObjectType.Contact.FieldSets.CourseSummaryPractitionerFields}" var="field">
+            <apex:repeat value="{!$ObjectType.Contact.FieldSets[fieldsetName]}" var="field">
                 <apex:column value="{!practitioner[field]}"/>
             </apex:repeat>
         </apex:pageBlockTable>
