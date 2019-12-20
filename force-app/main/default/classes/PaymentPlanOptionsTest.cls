@@ -1,7 +1,6 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
 @isTest
 public class PaymentPlanOptionsTest {
-    private static final Date THIS_MONTH_START_DATE = (new PaymentPlanMockClock(0)).today();
     @testSetup
     static void createTestData() {
         Card_Payment_Plan_Settings__c cardPaymentPlanSettings = new Card_Payment_Plan_Settings__c();
@@ -14,100 +13,100 @@ public class PaymentPlanOptionsTest {
     @isTest
     static void CourseFeeLessThanMinimum_CourseFeeTooSmall_NoOptionsGenerated() {
         Integer courseFee = 20;
-        Date startDate = THIS_MONTH_START_DATE.addMonths(6);
-        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
+        Date courseStartDate = Date.newInstance(2020, 6, 1);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(Date.newInstance(2019, 12, 5));
         Test.startTest();
-        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
+        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, courseStartDate);
         System.assertEquals(options.size(), 0);
         Test.stopTest();
     }
     @isTest
     static void NextMonthFirstRecurringPayment_InitialPaymentEarlyDayOfTheMonth_FirstPaymentNextMonth() {
         Integer courseFee = 200;
-        Date startDate = THIS_MONTH_START_DATE.addMonths(6);
-        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
+        Date courseStartDate = Date.newInstance(2020, 6, 1);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(Date.newInstance(2019, 12, 5));
         Test.startTest();
-        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
+        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, courseStartDate);
         System.assertEquals(options.size(), 3);
-        System.assertEquals(options[0].startDate, THIS_MONTH_START_DATE.addMonths(1));
-        System.assertEquals(options[0].endDate, THIS_MONTH_START_DATE.addMonths(1) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(1).year(), THIS_MONTH_START_DATE.addMonths(1).month()) - 1);
+        System.assertEquals(options[0].startDate, Date.newInstance(2020, 1, 1));
+        System.assertEquals(options[0].endDate, Date.newInstance(2020, 1, 31));
         System.assertEquals(options[0].displayLabel, '2 monthly payment of £ 100.00');
-        System.assertEquals(options[1].endDate, THIS_MONTH_START_DATE.addMonths(2) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(2).year(), THIS_MONTH_START_DATE.addMonths(2).month()) - 1);
+        System.assertEquals(options[1].endDate, Date.newInstance(2020, 2, 29));
         System.assertEquals(options[1].displayLabel, '1 payment of £ 66.68 and 2 monthly payment of £ 66.66');
-        System.assertEquals(options[2].endDate, THIS_MONTH_START_DATE.addMonths(3) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(3).year(), THIS_MONTH_START_DATE.addMonths(3).month()) - 1);
+        System.assertEquals(options[2].endDate, Date.newInstance(2020, 3, 31));
         System.assertEquals(options[2].displayLabel, '4 monthly payment of £ 50.00');
         Test.stopTest();
     }
     @isTest
     static void AfterNextMonthFirstRecurringPayment_InitialPaymentLaterDayOfTheMonth_FirstPaymentAfterNextMonth() {
         Integer courseFee = 200;
-        Date startDate = THIS_MONTH_START_DATE.addMonths(6);
-        PaymentPlanGenerator.clock = new PaymentPlanMockClock(25);
+        Date courseStartDate = Date.newInstance(2020, 6, 1);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(Date.newInstance(2019, 12, 25));
         Test.startTest();
-        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
+        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, courseStartDate);
         System.assertEquals(options.size(), 3);
-        System.assertEquals(options[0].startDate, THIS_MONTH_START_DATE.addDays(25).addMonths(2).toStartOfMonth());
-        System.assertEquals(options[0].endDate, THIS_MONTH_START_DATE.addMonths(2) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(2).year(), THIS_MONTH_START_DATE.addMonths(2).month()) - 1);
+        System.assertEquals(options[0].startDate, Date.newInstance(2020, 2, 1));
+        System.assertEquals(options[0].endDate, Date.newInstance(2020, 2, 29));
         System.assertEquals(options[0].displayLabel, '2 monthly payment of £ 100.00');
-        System.assertEquals(options[1].endDate, THIS_MONTH_START_DATE.addMonths(3) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(3).year(), THIS_MONTH_START_DATE.addMonths(3).month()) - 1);
+        System.assertEquals(options[1].endDate, Date.newInstance(2020, 3, 31));
         System.assertEquals(options[1].displayLabel, '1 payment of £ 66.68 and 2 monthly payment of £ 66.66');
-        System.assertEquals(options[2].endDate, THIS_MONTH_START_DATE.addMonths(4) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(4).year(), THIS_MONTH_START_DATE.addMonths(4).month()) - 1);
+        System.assertEquals(options[2].endDate, Date.newInstance(2020, 4, 30));
         System.assertEquals(options[2].displayLabel, '4 monthly payment of £ 50.00');
         Test.stopTest();
     }
     @isTest
     static void DatesOneRecurringPayment_TwoMonthBefore_OneOptionGenerated() {
         Integer courseFee = 200;
-        Date startDate = THIS_MONTH_START_DATE.addMonths(2);
-        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
+        Date courseStartDate = Date.newInstance(2020, 2, 1);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(Date.newInstance(2019, 12, 5));
         Test.startTest();
-        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
+        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, courseStartDate);
         System.assertEquals(options.size(), 1);
-        System.assertEquals(options[0].startDate, THIS_MONTH_START_DATE.addDays(5).addMonths(1).toStartOfMonth());
-        System.assertEquals(options[0].endDate, THIS_MONTH_START_DATE.addMonths(1) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(1).year(), THIS_MONTH_START_DATE.addMonths(1).month()) - 1);
+        System.assertEquals(options[0].startDate, Date.newInstance(2020, 1, 1));
+        System.assertEquals(options[0].endDate, Date.newInstance(2020, 1, 31));
         System.assertEquals(options[0].displayLabel, '2 monthly payment of £ 100.00');
         Test.stopTest();
     }
     @isTest
     static void DatesTwoRecurringPayment_TwoMonthBefore_TwoOptionGenerated() {
         Integer courseFee = 200;
-        Date startDate = THIS_MONTH_START_DATE.addMonths(3);
-        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
+        Date courseStartDate = Date.newInstance(2020, 3, 1);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(Date.newInstance(2019, 12, 5));
         Test.startTest();
-        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
+        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, courseStartDate);
         System.assertEquals(options.size(), 2);
-        System.assertEquals(options[0].startDate, THIS_MONTH_START_DATE.addDays(5).addMonths(1).toStartOfMonth());
-        System.assertEquals(options[0].endDate, THIS_MONTH_START_DATE.addMonths(1) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(1).year(), THIS_MONTH_START_DATE.addMonths(1).month()) - 1);
+        System.assertEquals(options[0].startDate, Date.newInstance(2020, 1, 1));
+        System.assertEquals(options[0].endDate, Date.newInstance(2020, 1, 31));
         System.assertEquals(options[0].displayLabel, '2 monthly payment of £ 100.00');
-        System.assertEquals(options[1].endDate, THIS_MONTH_START_DATE.addMonths(2) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(2).year(), THIS_MONTH_START_DATE.addMonths(2).month()) - 1);
+        System.assertEquals(options[1].endDate, Date.newInstance(2020, 2, 29));
         System.assertEquals(options[1].displayLabel, '1 payment of £ 66.68 and 2 monthly payment of £ 66.66');
         Test.stopTest();
     }
     @isTest
     static void FeeOneRecurringPayment_FeeSmall_OneOptionGenerated() {
         Integer courseFee = 45;
-        Date startDate = THIS_MONTH_START_DATE.addMonths(6);
-        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
+        Date courseStartDate = Date.newInstance(2020, 6, 1);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(Date.newInstance(2019, 12, 5));
         Test.startTest();
-        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
+        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, courseStartDate);
         System.assertEquals(options.size(), 1);
-        System.assertEquals(options[0].startDate, THIS_MONTH_START_DATE.addDays(5).addMonths(1).toStartOfMonth());
-        System.assertEquals(options[0].endDate, THIS_MONTH_START_DATE.addMonths(1) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(1).year(), THIS_MONTH_START_DATE.addMonths(1).month()) - 1);
+        System.assertEquals(options[0].startDate, Date.newInstance(2020, 1, 1));
+        System.assertEquals(options[0].endDate, Date.newInstance(2020, 1, 31));
         System.assertEquals(options[0].displayLabel, '1 payment of £ 30.00 and 1 monthly payment of £ 15.00');
         Test.stopTest();
     }
     @isTest
     static void FeeTwoRecurringPayment_FeeMedium_TwoOptionsGenerated() {
         Integer courseFee = 55;
-        Date startDate = THIS_MONTH_START_DATE.addMonths(6);
-        PaymentPlanGenerator.clock = new PaymentPlanMockClock(5);
+        Date courseStartDate = Date.newInstance(2020, 6, 1);
+        PaymentPlanGenerator.clock = new PaymentPlanMockClock(Date.newInstance(2019, 12, 5));
         Test.startTest();
-        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, startDate);
+        List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, courseStartDate);
         System.assertEquals(options.size(), 2);
-        System.assertEquals(options[0].startDate, THIS_MONTH_START_DATE.addDays(5).addMonths(1).toStartOfMonth());
-        System.assertEquals(options[0].endDate, THIS_MONTH_START_DATE.addMonths(1) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(1).year(), THIS_MONTH_START_DATE.addMonths(1).month()) - 1);
+        System.assertEquals(options[0].startDate, Date.newInstance(2020, 1, 1));
+        System.assertEquals(options[0].endDate, Date.newInstance(2020, 1, 31));
         System.assertEquals(options[0].displayLabel, '1 payment of £ 30.00 and 1 monthly payment of £ 25.00');
-        System.assertEquals(options[1].endDate, THIS_MONTH_START_DATE.addMonths(2) + Date.daysInMonth(THIS_MONTH_START_DATE.addMonths(2).year(), THIS_MONTH_START_DATE.addMonths(2).month()) - 1);
+        System.assertEquals(options[1].endDate, Date.newInstance(2020, 2, 29));
         System.assertEquals(options[1].displayLabel, '1 payment of £ 30.00 and 2 monthly payment of £ 12.50');
         Test.stopTest();
     }
