@@ -9,14 +9,21 @@ const COLUMNS = [
 ];
 
 export default class ClaimFeesDatatable extends LightningElement {
+    @api practitioner;
     @api sessions;
+    @api taxRate;
+    @api registrationFee;
+    @api totalRegistrationFee;
+    @api registrationCappedFees;
+
+    @api totalFee;
+    @api checkedRows;
+
     @track columns;
 
     @track isButtonDisabled = true;
     @track isSessionsPresented = false;
-    @api checkedRows;
-    @api totalFee;
-
+    
     connectedCallback() {
         this.columns = COLUMNS;
     }
@@ -30,15 +37,36 @@ export default class ClaimFeesDatatable extends LightningElement {
     }
 
     handleSelectRow(event) {
-        let totalFee = 0;
         this.checkedRows = event.target.getSelectedRows();
         this.isButtonDisabled = this.checkedRows.length === 0;
-        this.checkedRows.forEach(element => {
-            totalFee += element.Practitioner_Fees__c;
-        });
-        this.totalFee = totalFee;
+        this.calculateTotalFee();
         this.dispatchEvent(
             new FlowAttributeChangeEvent('totalFee', this.totalFee)
         );
+    }
+
+    calculateTotalFee() {
+        let totalFee = 0;
+        this.checkedRows.forEach(element => {
+            totalFee += element.Practitioner_Fees__c;
+        });
+        this.totalFee = totalFee.toFixed(2);
+        this.calculateRegistrationFee();
+    }
+
+    calculateRegistrationFee() {
+        let currentRegistrationFee = 0;
+        let totalRegistrationFee = 0;
+
+        currentRegistrationFee = this.totalFee * this.taxRate;
+        totalRegistrationFee =  +this.practitioner.Deducted_Practitioner_Fees__c + currentRegistrationFee;
+
+        if(totalRegistrationFee <= this.registrationCappedFees) {
+            this.registrationFee = currentRegistrationFee.toFixed(2);
+        } else {
+            let delta = totalRegistrationFee - this.registrationCappedFees;
+            this.registrationFee = currentRegistrationFee - delta;
+            this.registrationFee.toFixed(2);
+        }
     }
 }
