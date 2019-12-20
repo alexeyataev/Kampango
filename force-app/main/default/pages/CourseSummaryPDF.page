@@ -1,10 +1,5 @@
-<apex:page renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false" docType="html-5.0">
+<apex:page renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
 
     <apex:stylesheet value="{!URLFOR($Resource.confidentialClassStyles, 'confidentialClassListPDF.css')}"/>
-
-    <html>
-        <body>
-            <apex:include pageName="CourseSummary"/>
-        </body>
-    </html>
+        <apex:include pageName="CourseSummary"/>
 </apex:page>
