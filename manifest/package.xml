@@ -581,6 +581,7 @@
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
         <members>Booking__c.Prevent_Overbooking_Of_Course</members>
         <members>Booking__c.PreventConfirmedBookingCreation</members>
+        <members>Booking__c.ReservationExpiryDateCannotBeRemoved</members>
         <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
         <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>

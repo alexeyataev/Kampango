@@ -103,6 +103,7 @@
         <members>Course__c.PSA_Branch__c</members>
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
+        <members>Course__c.Venue_c</members>
         <members>Course__c.Total_Estimated_Costs__c</members>
         <members>cpm__Installment__c.Account_Key__c</members>
         <members>cpm__Installment__c.Contact_Key__c</members>
