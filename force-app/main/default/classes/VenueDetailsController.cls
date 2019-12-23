@@ -3,15 +3,14 @@ public without sharing class VenueDetailsController {
     public Course__c courseRecord {get; set;}
 
     public class VenueResult {
-        public String name {get; set;}
-        public Boolean isMainVenue {get; set;}
+        public Venue__c venue {get; set;}
         public String address {get; set;}
         public List<Id> emergencyContactIds {get; set;}
         
         public VenueResult(Venue__c venue, Course__c courseRecord) {
-            this.name = venue.Name;
-            this.isMainVenue = (venue.Id == courseRecord.Main_venue__c);
-
+            this.venue = venue;
+            this.venue.Main_Venue__c = (venue.Id == courseRecord.Main_venue__c);
+        
             for (Schema.FieldSetMember fieldSetMember : Schema.SObjectType.Venue__c.fieldSets.CourseSummaryVenueFields.getFields()) {
                 if (String.isBlank(this.address)) {
                     this.address = '';
@@ -45,7 +44,7 @@ public without sharing class VenueDetailsController {
         courseRecord = getCourseMainVenue();
 
         for (Venue__c venue : [
-                SELECT Name, Street_Address__c, Town__c, Postcode__c
+                SELECT Name, Main_Venue__c, Street_Address__c, Town__c, Postcode__c
                 FROM Venue__c
                 WHERE Id
                         IN (

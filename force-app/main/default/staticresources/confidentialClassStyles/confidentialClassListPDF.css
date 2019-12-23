@@ -22,17 +22,16 @@ body {
     font-size: 12px;
 }
 
-.sectionStyle {
-    border-bottom: 1px solid #000;
+.tableStyle {
     width: 100%;
     table-layout: fixed;
 }
 
-.sectionStyleBorderOnly {
+.tableBorderOnly {
     border-bottom: 1px solid #000;
 }
 
-.tableStyle {
+.columnStyle {
     border-top: 1px solid #000;
     padding: 2px 2px 2px 0px;
 }

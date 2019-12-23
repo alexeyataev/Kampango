@@ -206,6 +206,10 @@
         <name>Role</name>
     </types>
     <types>
+        <members>Tick</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
         <members>Booking__c.ExpirationDateCannotBeInPast</members>
         <members>Contact.Contact_Preferred_Email</members>
         <members>Contact.Contact_Preferred_Phone</members>

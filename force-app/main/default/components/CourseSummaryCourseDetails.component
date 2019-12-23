@@ -2,9 +2,9 @@
     <apex:attribute name="course" description="The course record for which to display sessions" type="Course__c" required="true"/>
 
     <apex:pageBlock title="Course Details">
-        <apex:pageBlockTable value="{!course}" var="courseItem" styleClass="sectionStyle">
+        <apex:pageBlockTable value="{!course}" var="courseItem" styleClass="tableStyle tableBorderOnly">
             <apex:repeat value="{!$ObjectType.Course__c.FieldSets.CourseSummaryFields}" var="field">
-                <apex:column value="{!courseItem[field]}" styleClass="tableStyle"/>
+                <apex:column value="{!courseItem[field]}" styleClass="columnStyle"/>
             </apex:repeat>
         </apex:pageBlockTable>
     </apex:pageBlock>

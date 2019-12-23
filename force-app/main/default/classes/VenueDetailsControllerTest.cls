@@ -32,7 +32,7 @@ public with sharing class VenueDetailsControllerTest {
         ];
 
         List<Venue__c> venues = [
-                SELECT Name, Street_Address__c, Town__c, Postcode__c
+                SELECT Name, Main_Venue__c, Street_Address__c, Town__c, Postcode__c
                 FROM Venue__c
                 WHERE Id
                         IN (
@@ -65,7 +65,7 @@ public with sharing class VenueDetailsControllerTest {
 
         Test.stopTest();
 
-        System.assertEquals(venuesToTest[0].Name, venues[0].Name);
+        System.assertEquals(venuesToTest[0].venue.Id, venues[0].Id);
         System.assertEquals(venuesToTest[0].emergencyContactIds, contactIds);
 
     }

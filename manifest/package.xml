@@ -574,7 +574,6 @@
     <types>
         <members>confidentialClassStyles</members>
         <members>NCT_Styles</members>
-        <members>Tick</members>
         <name>StaticResource</name>
     </types>
     <types>
