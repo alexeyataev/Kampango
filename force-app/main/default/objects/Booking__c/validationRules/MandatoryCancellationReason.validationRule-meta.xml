@@ -3,7 +3,8 @@
     <fullName>MandatoryCancellationReason</fullName>
     <active>true</active>
     <errorConditionFormula>ISPICKVAL(Status__c, &quot;Cancelled&quot;) &amp;&amp;
-ISBLANK(TEXT(Cancellation_Reason__c))</errorConditionFormula>
+ISBLANK(TEXT(Cancellation_Reason__c)) &amp;&amp;
+NOT($Permission.Override_Booking_Validation)</errorConditionFormula>
     <errorDisplayField>Cancellation_Reason__c</errorDisplayField>
     <errorMessage>Please select a cancellation reason</errorMessage>
 </ValidationRule>
