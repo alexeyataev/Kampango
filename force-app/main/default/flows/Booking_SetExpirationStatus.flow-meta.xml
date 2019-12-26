@@ -735,7 +735,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_2_myRule_1_4724154041</elementReference>
+                    <elementReference>formula_2_myRule_1_1918966712</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1075,7 +1075,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_6_myRule_5_8083023125</elementReference>
+                    <elementReference>formula_6_myRule_5_9558428107</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1192,7 +1192,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>GreaterThan</operator>
                 <rightValue>
-                    <elementReference>formula_10_myRule_9_6232676280</elementReference>
+                    <elementReference>formula_10_myRule_9_1167875828</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -1384,7 +1384,7 @@
                 <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_3_myRule_1_pmetrule_0562622909</elementReference>
+                    <elementReference>formula_3_myRule_1_pmetrule_3404298993</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1574,7 +1574,7 @@
                 <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_7_myRule_5_pmetrule_4106027419</elementReference>
+                    <elementReference>formula_7_myRule_5_pmetrule_9799708875</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1697,7 +1697,7 @@
                 <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>GreaterThan</operator>
                 <rightValue>
-                    <elementReference>formula_11_myRule_9_pmetrule_6564603452</elementReference>
+                    <elementReference>formula_11_myRule_9_pmetrule_0764365004</elementReference>
                 </rightValue>
             </conditions>
             <label>Previously Met - Prev</label>
@@ -1710,7 +1710,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_10_myRule_9_6232676280</name>
+        <name>formula_10_myRule_9_1167875828</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -1721,7 +1721,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_9_pmetrule_6564603452</name>
+        <name>formula_11_myRule_9_pmetrule_0764365004</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -1732,7 +1732,7 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_16_myRule_15_A1_5423437593</name>
+        <name>formula_16_myRule_15_A1_0040192151</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -1743,7 +1743,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_24_myRule_23_A1_3167060868</name>
+        <name>formula_24_myRule_23_A1_9032990281</name>
         <dataType>Date</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -1754,7 +1754,7 @@
                 <stringValue>PRIORVALUE( [Booking__c].Reservation_Expiry_Date__c )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_4724154041</name>
+        <name>formula_2_myRule_1_1918966712</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE( {!myVariable_current.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -1765,7 +1765,7 @@
                 <stringValue>PRIORVALUE( [Booking__c].Reservation_Expiry_Date__c )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_pmetrule_0562622909</name>
+        <name>formula_3_myRule_1_pmetrule_3404298993</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE( {!myVariable_old.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -1776,7 +1776,7 @@
                 <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_6_myRule_5_8083023125</name>
+        <name>formula_6_myRule_5_9558428107</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE({!myVariable_current.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -1787,7 +1787,7 @@
                 <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_5_pmetrule_4106027419</name>
+        <name>formula_7_myRule_5_pmetrule_9799708875</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE({!myVariable_old.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -1825,7 +1825,7 @@ NOT(ISPICKVAL(PRIORVALUE({!myVariable_old.Status__c} ), &quot;Enquiry&quot;)),
 ISPICKVAL({!myVariable_old.Status__c}, &quot;Reserved&quot;)
 )</expression>
     </formulas>
-    <interviewLabel>Booking_SetExpirationStatus-14_InterviewLabel</interviewLabel>
+    <interviewLabel>Booking_SetExpirationStatus-15_InterviewLabel</interviewLabel>
     <label>Booking:SetExpirationStatus</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -1930,7 +1930,7 @@ ISPICKVAL({!myVariable_old.Status__c}, &quot;Reserved&quot;)
             </processMetadataValues>
             <field>Offer_Email_Date__c</field>
             <value>
-                <elementReference>formula_16_myRule_15_A1_5423437593</elementReference>
+                <elementReference>formula_16_myRule_15_A1_0040192151</elementReference>
             </value>
         </inputAssignments>
         <object>Booking__c</object>
@@ -1961,7 +1961,7 @@ ISPICKVAL({!myVariable_old.Status__c}, &quot;Reserved&quot;)
             <name>referenceTargetField</name>
         </processMetadataValues>
         <name>myRule_23_A1</name>
-        <label>Set Confirm Date</label>
+        <label>Set Confirm Date and PSA Area</label>
         <locationX>2300</locationX>
         <locationY>200</locationY>
         <connector>
@@ -2013,7 +2013,43 @@ ISPICKVAL({!myVariable_old.Status__c}, &quot;Reserved&quot;)
             </processMetadataValues>
             <field>Confirmed_Date__c</field>
             <value>
-                <elementReference>formula_24_myRule_23_A1_3167060868</elementReference>
+                <elementReference>formula_24_myRule_23_A1_9032990281</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>PSA Area When Confirmed</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>PSA_Area_When_Confirmed__c</field>
+            <value>
+                <elementReference>myVariable_current.Course__r.Branch__r.PSA_Area__c</elementReference>
             </value>
         </inputAssignments>
         <object>Booking__c</object>
