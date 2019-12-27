@@ -2,6 +2,11 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Session_Confirmation_Rule</fullName>
     <active>true</active>
-    <errorConditionFormula>ISPICKVAL(Status__c , &quot;Confirmed&quot;)&amp;&amp; NOT(ISPICKVAL(Type__c , &quot;Reunion&quot;)) &amp;&amp; OR((ISBLANK(Practitioner_Licence__c)),(ISBLANK(Venue__c)), (ISBLANK(Practitioner__c )))</errorConditionFormula>
+    <errorConditionFormula>AND(ISPICKVAL(Status__c, &quot;Confirmed&quot;),
+    NOT(ISPICKVAL(Type__c, &quot;Reunion&quot;)), 
+    OR(ISBLANK(Practitioner_Licence__c),
+       ISBLANK(Venue__c), 
+       ISBLANK(Practitioner__c )),
+    NOT($Permission.Override_Session_Validation))</errorConditionFormula>
     <errorMessage>Ensure that the Practitioner, Licence and Venue have been populated before marking the session as confirmed</errorMessage>
 </ValidationRule>
