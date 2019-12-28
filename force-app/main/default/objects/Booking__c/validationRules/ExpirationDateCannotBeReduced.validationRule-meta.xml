@@ -3,11 +3,13 @@
     <fullName>ExpirationDateCannotBeReduced</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
- PRIORVALUE(Reservation_Expiry_Date__c) &gt; Reservation_Expiry_Date__c,
-OR(
- ISPICKVAL(Status__c, &quot;Expired&quot;),
- ISPICKVAL(Status__c, &quot;Reserved&quot;)
-)
+    PRIORVALUE(Reservation_Expiry_Date__c) &gt; 
+    Reservation_Expiry_Date__c,
+    OR(
+       ISPICKVAL(Status__c, &quot;Expired&quot;),
+       ISPICKVAL(Status__c, &quot;Reserved&quot;)
+      ),
+    NOT($Permission.Override_Booking_Validation)
 )</errorConditionFormula>
     <errorDisplayField>Reservation_Expiry_Date__c</errorDisplayField>
     <errorMessage>Expiry date cannot be reduced</errorMessage>
