@@ -5,6 +5,8 @@
         <members>BookingJourneyHelperTest</members>
         <members>BookingStatusFlowHelper</members>
         <members>BookingStatusFlowHelperTest</members>
+        <members>BookingPaymentDetailsController</members>
+        <members>BookingPaymentDetailsControllerTest</members>
         <members>BranchWeightingHelper</members>
         <members>BranchWeightingHelperTest</members>
         <members>CardPaymentHandler</members>
@@ -12,6 +14,8 @@
         <members>CardPaymentUrlResult</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
+        <members>ConfirmationEmailController</members>
+        <members>ConfirmationEmailControllerTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -56,6 +60,7 @@
         <members>TestContactBuilder</members>
         <members>TestCourseAssignmentBuilder</members>
         <members>TestEstimatedCostsBuilder</members>
+        <members>TestHelper</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
         <members>TestInstallmentBuilder</members>
@@ -71,6 +76,8 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>ConfirmationEmailBookingPaymentDetails</members>
+        <members>ConfirmationEmailCourseDetails</members>
         <members>CourseSummaryCourseDetails</members>
         <members>CourseSummaryPractitionerDetails</members>
         <members>CourseSummarySessionDetails</members>
@@ -177,6 +184,7 @@
         <members>cpm__Installment__c</members>
         <members>dlrs__LookupRollupSummary2__mdt</members>
         <members>gaid__Gift_Aid_Declaration__c</members>
+        <members>Google_Map_Url_Setting__c</members>
         <members>Estimated_Costs__c</members>
         <members>Individual</members>
         <members>Licence_To_Practice__c</members>
@@ -281,6 +289,7 @@
     </types>
     <types>
         <members>NCT_Templates/Booking_Created</members>
+        <members>NCT_Templates/Booking_Confirmation_Email</members>
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <members>NCT_Templates/Course_Assignment_Rejected</members>
