@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>BookingPaymentDetailsController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ConfirmationEmailController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <custom>true</custom>
     <applicationVisibilities>
         <application>NCT_Courses</application>
@@ -653,6 +661,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Session__c.Additional_Information__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Session__c.Contact_Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -864,6 +877,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Venue__c.Map_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Venue__c.Map_Url__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

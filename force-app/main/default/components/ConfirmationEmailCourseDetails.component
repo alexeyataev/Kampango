@@ -1,0 +1,118 @@
+<apex:component access="global" controller="ConfirmationEmailController">
+    <apex:attribute name="courseRecord"
+                    description="The course record for which to display sessions" 
+                    type="Course__c"
+                    assignTo="{!course}"/>
+
+    <table border="0" cellpadding='1' cellspacing='0' width='700' style="text-align:left; vertical-align: top;">
+        <tr style='font-size:16px;color:#00876a;'>
+            <th>Starts</th>
+            <th>Ends</th>
+            <th>Course leader</th>
+        </tr>
+        <tr style="text-align:left;">
+            <td style="vertical-align: baseline;">
+                <apex:outputText value="{0,date,dd MMM yyyy}">
+                    <apex:param value="{!courseRecord.Start_Date__c}" />
+                </apex:outputText>
+            </td>
+            <td style="vertical-align: baseline;">
+                <apex:outputText value="{0,date,dd MMM yyyy}">
+                    <apex:param value="{!courseRecord.End_Date__c}" />
+                </apex:outputText>
+            </td>
+            <td style='vertical-align: baseline;'>
+                <apex:repeat var="practitioner" value="{!practitionerListWrapper}">
+                    <p>{!practitioner.name} {!practitioner.sessions}</p>
+                </apex:repeat>
+            </td>
+        </tr>
+    </table>
+
+    <h3 style='border-bottom:1px solid#f0f0f0; margin-top:20px; color:#00876a;'>Location</h3>
+    <div style="display:flex;margin-botton:20px; width=800px;" >
+        <apex:repeat value="{!locationListWrapper}" var="location">
+            <div style='margin-right:2rem;'>
+                <div>
+                    <b>{!location.locationName}</b> {!location.sessionDays}</div>
+                <div>{!location.locationStreetAdress}</div>
+                <div>{!location.locationCountry}</div>
+                <div>{!location.locationTown}</div>
+                <div>{!location.locationPostcode}</div>
+                <div>
+                    <a href="{!location.locationMapUrl}">Click here to see the map</a>
+                </div>
+                <br/>
+            </div>
+        </apex:repeat>
+    </div>
+
+    <h3 style='border-bottom:1px solid#f0f0f0; color:#00876a;font-size:16px;'>Sessions</h3>
+    <apex:dataTable value="{!sessionListWrapper}" var="session" cellpadding="10" rules="rows" styleClass="sessionBlock" width="700"
+        style="text-align:left;">
+        <apex:column value="{!session.sessionDay}" headerValue="Sessions" />
+        <apex:column value="{!session.sessionDate}" headerValue="Date" />
+        <apex:column value="{!session.sessionStart}" headerValue="Starts" />
+        <apex:column value="{!session.sessionEnd}" headerValue="Ends" />
+        <apex:column value="{!session.sessionDescription}" headerValue="Session notes" />
+    </apex:dataTable>
+
+    <apex:outputPanel title="Course Reunion" rendered="{!typeSessionAndCourse.sessionReunion}">
+        <h4>Course Reunion</h4>
+        <p>{!$Label.Confirmation_Notification_Course_Reunion}</p>
+    </apex:outputPanel>
+
+    <apex:outputPanel title="Breastfeeding session" rendered="{!typeSessionAndCourse.sessionBreastfeeding.sessionProvision}">
+        <h4>Breastfeeding session</h4>
+        <p>
+            <apex:outputText value="{!$Label.Confirmation_Notification_Breastfeeding_Session}">
+                <apex:param value="{!typeSessionAndCourse.sessionBreastfeeding.provisionTime}" />
+            </apex:outputText>
+        </p>
+    </apex:outputPanel>
+
+    <apex:outputPanel title="Additional session" rendered="{!typeSessionAndCourse.sessionStandard.sessionProvision}">
+        <h4>Additional session</h4>
+        <p>
+            <apex:outputText value="{!$Label.Confirmation_Notification_Additional_Session}">
+                <apex:param value="{!typeSessionAndCourse.sessionStandard.provisionTime}" />
+            </apex:outputText>
+        </p>
+    </apex:outputPanel>
+
+    <apex:outputPanel title="Additional Confirmation Information" rendered="{!IF(NOT(ISBLANK(courseRecord.Additional_Confirmation_Information__c)),true,false)}">
+        <h4>Additional Information</h4>
+        <p>
+            {!courseRecord.Additional_Confirmation_Information__c}
+        </p>
+    </apex:outputPanel>
+
+    <apex:outputPanel title="BabyMassage" rendered="{!courseRecord.Sub_Type__c == 'NCT Baby Massage course'}">
+        <h2>What you need to know about your course</h2>
+        <ul>
+            <li>We recommend that your baby has had their 6-8 week medical check up before the course begins. If this appointment
+                is delayed please let us know.
+            </li>
+            <li>Please bring your
+                <a href='https://www.nct.org.uk/baby-toddler/everyday-care/baby-massage-tips-and-benefits'>own massage oil</a>
+                with you to the course, so that you can choose the product most suitable for you and your baby.
+            </li>
+            <li>If you or your baby have any mobility issues, allergies or special requirements please tell us.</li>
+        </ul>
+    </apex:outputPanel> 
+
+    <h2>Contact details</h2>
+    <p>Please do check through the course details carefully. If you’re no longer able to attend the course and wish to discuss
+        other options available, please do contact me as soon as you can.</p>
+    <p>If you’re unable to attend a particular session or are going to arrive late, please contact the course leader facilitating
+        that session. </p>
+    <table border="0" cellpadding='10'>
+        <td>
+            <apex:repeat var="practitioner" value="{!practitionerListWrapper}">
+                <div>
+                    <b>{!practitioner.name}'s</b> contact number is {!practitioner.preferPhone}
+                </div>
+            </apex:repeat>
+        </td>
+    </table>
+</apex:component>

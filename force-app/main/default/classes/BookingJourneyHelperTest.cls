@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #36 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 public class BookingJourneyHelperTest {
 
@@ -44,7 +46,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void updateContactPrimaryContactContactUpdated(){
+    static void updateContact_primaryContact_contactUpdated(){
         String primaryId = BookingJourneyHelperTest.createPrimaryContact();
         String partnerId = BookingJourneyHelperTest.createPartnerContact();
         List<Contact> primaryContact = [
@@ -71,7 +73,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void updateContactPartnerContactWithIdContactUpdated(){
+    static void updateContact_partnerContactWithId_contactUpdated(){
         String primaryId = BookingJourneyHelperTest.createPrimaryContact();
         String partnerId = BookingJourneyHelperTest.createPartnerContact();
         List<Contact> partnerContact = [
@@ -98,7 +100,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void updateContactPartnerContactNoIdContactCreated(){
+    static void updateContact_partnerContactNoId_contactCreated(){
         String primaryId = BookingJourneyHelperTest.createPrimaryContact();
         String partnerId = BookingJourneyHelperTest.createPartnerContact();
         TestContactBuilder contactBuilder = new TestContactBuilder();
@@ -125,7 +127,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void updateContactEmptyListNoUpdate(){
+    static void updateContact_emptyList_noUpdate(){
         Datetime timeStamp = System.now();
         Test.startTest();
         BookingJourneyHelper.updateContact(new List<Contact>());
@@ -140,7 +142,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void retrieveIndividualIndividualIdIndividualRetrieved(){
+    static void retrieveIndividual_individualId_individualRetrieved(){
         String individualId = createIndividual();
         Test.startTest();
         Individual individual = BookingJourneyHelper.retrieveMarketingPreferences(individualId);
@@ -149,7 +151,7 @@ public class BookingJourneyHelperTest {
     }
 
     @IsTest
-    static void retrieveIndividualNullNullReturned(){
+    static void retrieveIndividual_null_nullReturned(){
         Test.startTest();
         Individual individual = BookingJourneyHelper.retrieveMarketingPreferences(null);
         Test.stopTest();

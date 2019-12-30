@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>Confirmation_Notification_Additional_Session</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation Notification Additional Session</shortDescription>
+        <value>In addition to the dates and times shown, there will be a {0}-hour  session. Further details of this will be confirmed to you by your course administrator once finalised.</value>
+    </labels>
+    <labels>
+        <fullName>Confirmation_Notification_Breastfeeding_Session</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation Notification Breastfeeding Session</shortDescription>
+        <value>In addition to the dates and times shown, there will be a {0}-hour  breastfeeding session. Further details of this will be confirmed to you by your course administrator once finalised.</value>
+    </labels>
+    <labels>
+        <fullName>Confirmation_Notification_Course_Reunion</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation Notification Course Reunion</shortDescription>
+        <value>There is also a 2-hour reunion for all course participants with their new baby after the birth. Your course leader  will agree a date, time and location for this with you.</value>
+    </labels>
+    <labels>
         <fullName>ContactUpdateException</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -67,6 +91,6 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Unsupported browser error message</shortDescription>
-        <value>Sorry, your current browser isn't supported. For the best experience we suggest using Chrome.</value>
+        <value>Sorry, your current browser isn&#39;t supported. For the best experience we suggest using Chrome.</value>
     </labels>
 </CustomLabels>

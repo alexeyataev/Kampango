@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #35 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 public with sharing class BookingDetailsControllerTest {
     
@@ -6,7 +8,7 @@ public with sharing class BookingDetailsControllerTest {
     private static final String HOST_LASTNAME = 'Black';
 
     @TestSetup 
-    private static void setupTestData() {
+    private static void SetupTestData() {
     TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc1')
                     .createEnquiryPSA()
@@ -55,7 +57,7 @@ public with sharing class BookingDetailsControllerTest {
         ];
 
         insert new PermissionSetAssignment(AssigneeId = thisUser.id, PermissionSetId = overrideBookingValidation.Id);
-
+        
         System.runAs ( thisUser ) {
             bookings[0].Status__c = 'Confirmed';
             update bookings;

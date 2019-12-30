@@ -1,0 +1,30 @@
+<apex:component access="global" controller="BookingPaymentDetailsController">
+    <apex:attribute name="bookingId" description="Booking Id to get information about payment" type="String" assignTo="{!bookingIdParam}"/>
+
+    <table border="1" cellpadding='1' cellspacing='0' width='700px;' class='bookingPaymentBlock'>
+        <thead style='font-size:16px;color:#00876a;'>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>For</th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:repeat var="payment" value="{!bookingList}">
+                <tr>
+                    <td>
+                        <apex:outputText value="{0,date,dd MMMM yyyy}">
+                            <apex:param value="{!payment.Confirmed_Date__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td>Card</td>
+                    <td>£{!IF(NOT(ISBLANK(payment.Fee_Override__c)), payment.Fee_Override__c, payment.Course_Fee__c)}
+                    </td>
+                    <td>Course Fee</td>
+                </tr>
+            </apex:repeat>
+        </tbody>
+    </table>
+
+</apex:component>
