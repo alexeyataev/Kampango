@@ -1,0 +1,3 @@
+Dear,<br><br>
+
+Please <a href="{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}/s/adhocpayment?salesInvoiceId={!Zumzum__Sales_Invoice__c.Id}">click here</a>.<br><br>

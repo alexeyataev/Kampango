@@ -2,6 +2,6 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Check_Couples_Allowed_and_Women_Only</fullName>
     <active>true</active>
-    <errorConditionFormula>AND( Couples_Allowed__c,  Women_Only__c )</errorConditionFormula>
+    <errorConditionFormula>AND( Couples_Allowed__c,  Women_Only__c, NOT($Permission.Override_Course_Validation) )</errorConditionFormula>
     <errorMessage>Course cannot be marked as both Couples Allowed and Women Only.</errorMessage>
 </ValidationRule>

@@ -3,8 +3,9 @@
     <fullName>End_date_should_not_be_blank</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
- ISPICKVAL( Status__c , &#39;Temporary&#39;),
- ISBLANK( End_Date__c ) 
+ ISPICKVAL(Status__c, &#39;Temporary&#39;),
+ ISBLANK(End_Date__c),
+ NOT($Permission.Override_Licence_To_Practice_Validation)
 )</errorConditionFormula>
     <errorDisplayField>End_Date__c</errorDisplayField>
     <errorMessage>An End Date is required for this licence status.</errorMessage>

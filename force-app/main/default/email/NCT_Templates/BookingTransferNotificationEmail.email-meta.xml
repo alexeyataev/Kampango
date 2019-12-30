@@ -11,7 +11,7 @@ Your course reference: {!Course__c.PSA_Area__c} / {!Course__c.Name}
 
 Dear {!Booking__c.First_Name__c},
 
-Thank you for enquiring about our [course format] course. By joining one of our courses, you are helping to support the work of the UK’s largest charity for parents. We’re really looking forward to welcoming you, and we’re here to support you through the early years of your parenting journey.
+Thank you for enquiring about our {!Course__c.Sub_Type__c}. By joining one of our courses, you are helping to support the work of the UK’s largest charity for parents. We’re really looking forward to welcoming you, and we’re here to support you through the early years of your parenting journey.
 
 To review your booking and pay the balance of your course fees, please click here.
 

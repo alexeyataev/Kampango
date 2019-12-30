@@ -4,7 +4,7 @@
   * Incident #32 - https://confluence.nct.org.uk:8443/x/EoSO
 */
 
-public without sharing class ClaimFeeHelper {
+public with sharing class ClaimFeeHelper {
 
     private static final String PURCHASE_INVOICE = 'Purchase Invoice';
     private static final String PURCHASE_CREDIT = 'Purchase Credit';
@@ -138,9 +138,7 @@ public without sharing class ClaimFeeHelper {
     private static void postPurchaseInvoices(List<Zumzum__Purchase_Invoice__c> invoices) {
         Zumzum.PurchaseInvoiceService postService = new Zumzum.PurchaseInvoiceService();
         for (Zumzum__Purchase_Invoice__c pi : invoices) {
-            if (pi.Zumzum__Type__c == PURCHASE_INVOICE) {
-                postService.postPurchaseInvoice(pi.Id);
-            }
+            Zumzum.PurchaseInvoiceService.Response apiResponse = postService.postPurchaseInvoice(pi.Id);
         }
     }
     

@@ -100,6 +100,10 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
+        <members>Company</members>
+        <name>Settings</name>
+    </types>
+    <types>
         <members>Contact.Practitioner_Compact_layout</members>
         <members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
         <members>Session__c.Session_Compact_Layout</members>
@@ -243,6 +247,9 @@
         <members>Override_Booking_Validation</members>
         <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Course_Validation</members>
+        <members>Override_Course_Assignment_Validation</members>
+        <members>Override_Estimated_Costs_Validation</members>
+        <members>Licence_To_Practice_Validation</members>
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
@@ -291,6 +298,63 @@
     </types>
     <types>
         <members>Parent_Community_Group</members>
+        <members>X1C_PSA_Area</members>
+        <members>X1W_PSA_Area</members>
+        <members>X2A_PSA_Area</members>
+        <members>X2B_PSA_Area</members>
+        <members>X2C_PSA_Area</members>
+        <members>X3A_PSA_Area</members>
+        <members>X3B_PSA_Area</members>
+        <members>X3D_PSA_Area</members>
+        <members>X3E_PSA_Area</members>
+        <members>X3F_PSA_Area</members>
+        <members>X4A_PSA_Area</members>
+        <members>X4B_PSA_Area</members>
+        <members>X4C_PSA_Area</members>
+        <members>X4D_PSA_Area</members>
+        <members>X4E_PSA_Area</members>
+        <members>X4F_PSA_Area</members>
+        <members>X4G_PSA_Area</members>
+        <members>X4H_PSA_Area</members>
+        <members>X4I_PSA_Area</members>
+        <members>X4J_PSA_Area</members>
+        <members>X4K_PSA_Area</members>
+        <members>X4L_PSA_Area</members>
+        <members>X4M_PSA_Area</members>
+        <members>X4N_PSA_Area</members>
+        <members>X4P_PSA_Area</members>
+        <members>X4Q_PSA_Area</members>
+        <members>X4R_PSA_Area</members>
+        <members>X4S_PSA_Area</members>
+        <members>X5A_PSA_Area</members>
+        <members>X5B_PSA_Area</members>
+        <members>X5C_PSA_Area</members>
+        <members>X5D_PSA_Area</members>
+        <members>X5E_PSA_Area</members>
+        <members>X5F_PSA_Area</members>
+        <members>X5G_PSA_Area</members>
+        <members>X5H_PSA_Area</members>
+        <members>X5I_PSA_Area</members>
+        <members>X5J_PSA_Area</members>
+        <members>X5K_PSA_Area</members>
+        <members>X5L_PSA_Area</members>
+        <members>X5M_PSA_Area</members>
+        <members>X5N_PSA_Area</members>
+        <members>X5O_PSA_Area</members>
+        <members>X5R_PSA_Area</members>
+        <members>X5S_PSA_Area</members>
+        <members>X5T_PSA_Area</members>
+        <members>X5U_PSA_Area</members>
+        <members>X5VL_PSA_Area</members>
+        <members>X6A_PSA_Area</members>
+        <members>X6B_PSA_Area</members>
+        <members>X6C_PSA_Area</members>
+        <members>X6D_PSA_Area</members>
+        <members>X6E_PSA_Area</members>
+        <members>X7A_PSA_Area</members>
+        <members>X7B_PSA_Area</members>
+        <members>X7C_PSA_Area</members>
+        <members>X7D_PSA_Area</members>
         <name>Group</name>
     </types>
     <types>
@@ -421,6 +485,9 @@
         <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Course_Validation</members>
+        <members>Override_Course_Assignment_Validation</members>
+        <members>Override_Estimated_Costs_Validation</members>
+        <members>Licence_To_Practice_Validation</members>
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
@@ -520,6 +587,7 @@
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
         <members>Booking__c.Prevent_Overbooking_Of_Course</members>
         <members>Booking__c.PreventConfirmedBookingCreation</members>
+        <members>Booking__c.ReservationExpiryDateCannotBeRemoved</members>
         <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
         <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
