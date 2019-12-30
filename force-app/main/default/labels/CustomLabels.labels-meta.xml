@@ -91,6 +91,6 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Unsupported browser error message</shortDescription>
-        <value>Sorry, your current browser isn&#39;t supported. For the best experience we suggest using Chrome.</value>
+        <value>Sorry, your current browser isn't supported. For the best experience we suggest using Chrome.</value>
     </labels>
 </CustomLabels>
