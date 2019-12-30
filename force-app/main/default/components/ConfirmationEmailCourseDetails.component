@@ -1,8 +1,6 @@
 <apex:component access="global" controller="ConfirmationEmailController">
-    <apex:attribute name="courseRecord"
-                    description="The course record for which to display sessions" 
-                    type="Course__c"
-                    assignTo="{!course}"/>
+    <apex:attribute name="courseRecord" description="The course record for which to display sessions" type="Course__c" assignTo="{!course}"
+    />
 
     <table border="0" cellpadding='1' cellspacing='0' width='700' style="text-align:left; vertical-align: top;">
         <tr style='font-size:16px;color:#00876a;'>
@@ -10,52 +8,64 @@
             <th>Ends</th>
             <th>Course leader</th>
         </tr>
-        <tr style="text-align:left;">
-            <td style="vertical-align: baseline;">
+        <tr align='left'>
+            <td valign='top'>
                 <apex:outputText value="{0,date,dd MMM yyyy}">
                     <apex:param value="{!courseRecord.Start_Date__c}" />
                 </apex:outputText>
             </td>
-            <td style="vertical-align: baseline;">
+            <td valign='top'>
                 <apex:outputText value="{0,date,dd MMM yyyy}">
                     <apex:param value="{!courseRecord.End_Date__c}" />
                 </apex:outputText>
             </td>
-            <td style='vertical-align: baseline;'>
+            <td valign='top'>
                 <apex:repeat var="practitioner" value="{!practitionerListWrapper}">
-                    <p>{!practitioner.name} {!practitioner.sessions}</p>
+                    <span>{!practitioner.name} {!practitioner.sessions}</span><br/>
                 </apex:repeat>
             </td>
         </tr>
     </table>
 
     <h3 style='border-bottom:1px solid#f0f0f0; margin-top:20px; color:#00876a;'>Location</h3>
-    <div style="display:flex;margin-botton:20px; width=800px;" >
-        <apex:repeat value="{!locationListWrapper}" var="location">
-            <div style='margin-right:2rem;'>
-                <div>
-                    <b>{!location.locationName}</b> {!location.sessionDays}</div>
-                <div>{!location.locationStreetAdress}</div>
-                <div>{!location.locationCountry}</div>
-                <div>{!location.locationTown}</div>
-                <div>{!location.locationPostcode}</div>
-                <div>
-                    <a href="{!location.locationMapUrl}">Click here to see the map</a>
-                </div>
-                <br/>
-            </div>
-        </apex:repeat>
-    </div>
+    <table border="0" cellpadding='1' cellspacing='0' width='100%' style="text-align:left; vertical-align: top;">
+        <tr align='left'>
+            <apex:repeat value="{!locationListWrapper}" var="location">
+                <td style="vertical-align: baseline;">
+                    <div style='margin-right:2rem;'>
+                        <b>{!location.locationName}</b> {!location.sessionDays}</div>
+                    <div>{!location.locationStreetAdress}</div>
+                    <div>{!location.locationCountry}</div>
+                    <div>{!location.locationTown}</div>
+                    <div>{!location.locationPostcode}</div>
+                    <div>
+                        <a href="{!location.locationMapUrl}">Click here to see the map</a>
+                    </div>
+                    <br/>
+                </td>
+            </apex:repeat>
+        </tr>
+    </table>
 
     <h3 style='border-bottom:1px solid#f0f0f0; color:#00876a;font-size:16px;'>Sessions</h3>
-    <apex:dataTable value="{!sessionListWrapper}" var="session" cellpadding="10" rules="rows" styleClass="sessionBlock" width="700"
-        style="text-align:left;">
-        <apex:column value="{!session.sessionDay}" headerValue="Sessions" />
-        <apex:column value="{!session.sessionDate}" headerValue="Date" />
-        <apex:column value="{!session.sessionStart}" headerValue="Starts" />
-        <apex:column value="{!session.sessionEnd}" headerValue="Ends" />
-        <apex:column value="{!session.sessionDescription}" headerValue="Session notes" />
-    </apex:dataTable>
+    <table cellspacing="0" cellpadding="10" rules="rows" border="0" width="100%" align='center'>
+        <tr align='left'>
+            <th>Sessions</th>
+            <th>Date</th>
+            <th>Starts</th>
+            <th>Ends</th>
+            <th>Session notes</th>
+        </tr>
+        <apex:repeat value="{!sessionListWrapper}" var="session">
+            <tr>
+                <td>{!session.sessionDay}</td>
+                <td>{!session.sessionDate}</td>
+                <td>{!session.sessionStart}</td>
+                <td>{!session.sessionEnd}</td>
+                <td>{!session.sessionDescription}</td>
+            </tr>
+        </apex:repeat>
+    </table>
 
     <apex:outputPanel title="Course Reunion" rendered="{!typeSessionAndCourse.sessionReunion}">
         <h4>Course Reunion</h4>
@@ -99,7 +109,7 @@
             </li>
             <li>If you or your baby have any mobility issues, allergies or special requirements please tell us.</li>
         </ul>
-    </apex:outputPanel> 
+    </apex:outputPanel>
 
     <h2>Contact details</h2>
     <p>Please do check through the course details carefully. If you’re no longer able to attend the course and wish to discuss

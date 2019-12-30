@@ -1,9 +1,9 @@
 <apex:component access="global" controller="BookingPaymentDetailsController">
     <apex:attribute name="bookingId" description="Booking Id to get information about payment" type="String" assignTo="{!bookingIdParam}"/>
 
-    <table border="1" cellpadding='1' cellspacing='0' width='700px;' class='bookingPaymentBlock'>
+    <table border="1" cellpadding='5' cellspacing='0' width='100%' class='bookingPaymentBlock'>
         <thead style='font-size:16px;color:#00876a;'>
-            <tr>
+            <tr align='left'>
                 <th>Date</th>
                 <th>Type</th>
                 <th>Amount</th>
