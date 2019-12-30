@@ -157,6 +157,4 @@ public class BookingJourneyHelperTest {
         Test.stopTest();
         System.assertEquals(null, individual);
     }
-
-
 }

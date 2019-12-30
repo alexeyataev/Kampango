@@ -26,11 +26,11 @@ private class dlrs_Estimated_CostsTest
                     .buildSession()
                     .buildReunion();
 
-         List<Estimated_Costs__c> estimatedCosts = [
+         List<Estimated_Costs__c> estimated_Costs = [
             SELECT Id 
             FROM Estimated_Costs__c 
             ];
 
-        dlrs.RollupService.testHandler(estimatedCosts.get(0));
+        dlrs.RollupService.testHandler(estimated_Costs.get(0));
     }
 }

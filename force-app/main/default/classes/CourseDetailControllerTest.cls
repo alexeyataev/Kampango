@@ -22,7 +22,7 @@ public with sharing class CourseDetailControllerTest {
     }
 
     @IsTest
-    private static void retrieveRelatedSessionsPassValidCourseIdSessionsRetrieved(){
+    private static void retrieveRelatedSessions_passValidCourseId_sessionsRetrieved(){
         List<Session__c> sessions = new List<Session__c>();
         String courseId = [SELECT Id FROM Course__c WHERE Type__c = 'Postnatal'].Id;
         Test.startTest();
@@ -33,7 +33,7 @@ public with sharing class CourseDetailControllerTest {
     }
 
     @IsTest
-    private static void retrieveRelatedSessionsPassInvalidCourseIdSessionsNotRetrieved(){
+    private static void retrieveRelatedSessions_passInvalidCourseId_sessionsNotRetrieved(){
         List<Session__c> sessions = new List<Session__c>();
         String courseId = [SELECT Id FROM Course__c WHERE Type__c = 'Postnatal'].Id;
         courseId = courseId.left(10) + '11111111';

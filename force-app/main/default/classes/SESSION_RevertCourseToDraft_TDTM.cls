@@ -47,7 +47,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
     //NOPMD
     //Incident #2 - https://confluence.nct.org.uk:8443/x/EoSO
 
-    private Set<Id> idsOfCoursesToChange(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
+    private Set<Id> IdsOfCoursesToChange(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
         Set<Id> courseIds = new Set<Id>();
         for(Integer i = 0; i<newSessionList.size(); i++) {
             Boolean fieldChanged = newSessionList[i].Date__c != oldSessionList[i].Date__c ||
