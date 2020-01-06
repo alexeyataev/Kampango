@@ -32,7 +32,7 @@ public with sharing class VenueDetailsControllerTest {
         ];
 
         List<Venue__c> venues = [
-                SELECT Name, Main_Venue__c, Street_Address__c, Town__c, Postcode__c
+                SELECT Name, Street_Address__c, Town__c, Postcode__c
                 FROM Venue__c
                 WHERE Id
                         IN (

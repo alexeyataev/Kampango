@@ -45,7 +45,7 @@ public without sharing class VenueDetailsController {
         courseRecord = getCourseMainVenue();
 
         for (Venue__c venue : [
-                SELECT Name, Main_Venue__c, Street_Address__c, Town__c, Postcode__c
+                SELECT Name, Street_Address__c, Town__c, Postcode__c
                 FROM Venue__c
                 WHERE Id
                         IN (
