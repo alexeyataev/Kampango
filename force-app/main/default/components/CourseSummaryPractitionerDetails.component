@@ -4,7 +4,7 @@
     <apex:attribute description="The API name of practitioner fieldset" name="fieldsetName" type="String" required="true" assignTo="{!practitionerFieldSetName}"/>  
 
     <apex:pageBlock title="Practitioners">
-        <apex:pageBlockTable value="{!practitioners}" var="practitioner" styleClass="tableStyle tableBorderOnly">
+        <apex:pageBlockTable value="{!practitioners}" var="practitioner" styleClass="tableStyle tableLayoutOnly">
             <apex:repeat value="{!$ObjectType.Contact.FieldSets[fieldsetName]}" var="field">
                 <apex:column value="{!practitioner[field]}" styleClass="columnStyle"/>
             </apex:repeat>

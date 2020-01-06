@@ -4,7 +4,7 @@
     <apex:attribute description="The API name of booking fieldset" name="fieldsetName" type="String" required="true" assignTo="{!bookingFieldSetName}"/> 
 
     <apex:pageBlock title="Bookings">
-        <apex:pageBlockTable value="{!bookings}" var="book" styleClass="tableBorderOnly">
+        <apex:pageBlockTable value="{!bookings}" var="book" styleClass="tableStyle">
             <apex:column headerValue="Primary Contact" styleClass="columnStyle">
                 <c:CourseSummaryContactDetails contactIdSet="{!book.primaryContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
             </apex:column>

@@ -1059,11 +1059,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Venue__c.Main_Venue__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Venue__c.Map_Link__c</field>
         <readable>true</readable>
     </fieldPermissions>

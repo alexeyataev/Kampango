@@ -1,5 +1,5 @@
 @page {
-    size: A4;
+    size: A4 landscape;
     margin: 10mm;
     @top-center {
         content: "NCT Confidential Class List";
@@ -24,11 +24,11 @@ body {
 
 .tableStyle {
     width: 100%;
-    table-layout: fixed;
+    border-bottom: 1px solid #000
 }
 
-.tableBorderOnly {
-    border-bottom: 1px solid #000;
+.tableLayoutOnly {
+    table-layout: fixed;
 }
 
 .columnStyle {
