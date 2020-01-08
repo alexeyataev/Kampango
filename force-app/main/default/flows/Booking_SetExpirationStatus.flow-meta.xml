@@ -433,12 +433,12 @@
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>Reference</stringValue>
+                    <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
             <name>emailAddress</name>
             <value>
-                <elementReference>myVariable_current.Primary_Contact_Email__c</elementReference>
+                <elementReference>formula_21_myRule_20_A2_3477619959</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -680,7 +680,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_2_myRule_1_4767743511</elementReference>
+                    <elementReference>formula_2_myRule_1_6399574527</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -959,7 +959,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_6_myRule_5_9647602888</elementReference>
+                    <elementReference>formula_6_myRule_5_5865571892</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1076,7 +1076,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>GreaterThan</operator>
                 <rightValue>
-                    <elementReference>formula_10_myRule_9_7661312419</elementReference>
+                    <elementReference>formula_10_myRule_9_5227574446</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -1305,7 +1305,7 @@
                 <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_3_myRule_1_pmetrule_1006116839</elementReference>
+                    <elementReference>formula_3_myRule_1_pmetrule_3076884183</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1458,7 +1458,7 @@
                 <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_7_myRule_5_pmetrule_5030862684</elementReference>
+                    <elementReference>formula_7_myRule_5_pmetrule_2626663617</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1581,7 +1581,7 @@
                 <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>GreaterThan</operator>
                 <rightValue>
-                    <elementReference>formula_11_myRule_9_pmetrule_9060969250</elementReference>
+                    <elementReference>formula_11_myRule_9_pmetrule_1584837306</elementReference>
                 </rightValue>
             </conditions>
             <label>Previously Met - Prev</label>
@@ -1594,7 +1594,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_10_myRule_9_7661312419</name>
+        <name>formula_10_myRule_9_5227574446</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -1605,7 +1605,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_9_pmetrule_9060969250</name>
+        <name>formula_11_myRule_9_pmetrule_1584837306</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -1616,9 +1616,20 @@
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_16_myRule_15_A1_6536479461</name>
+        <name>formula_16_myRule_15_A1_0532019230</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Booking__c].Primary_Contact__c.Email </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_21_myRule_20_A2_3477619959</name>
+        <dataType>String</dataType>
+        <expression>{!myVariable_current.Primary_Contact__r.Email}</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -1627,7 +1638,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_21_myRule_20_A1_9186430783</name>
+        <name>formula_22_myRule_20_A1_1812819553</name>
         <dataType>Date</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -1638,7 +1649,7 @@
                 <stringValue>PRIORVALUE( [Booking__c].Reservation_Expiry_Date__c )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_4767743511</name>
+        <name>formula_2_myRule_1_6399574527</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE( {!myVariable_current.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -1649,7 +1660,7 @@
                 <stringValue>PRIORVALUE( [Booking__c].Reservation_Expiry_Date__c )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_pmetrule_1006116839</name>
+        <name>formula_3_myRule_1_pmetrule_3076884183</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE( {!myVariable_old.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -1660,7 +1671,7 @@
                 <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_6_myRule_5_9647602888</name>
+        <name>formula_6_myRule_5_5865571892</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE({!myVariable_current.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -1671,7 +1682,7 @@
                 <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_5_pmetrule_5030862684</name>
+        <name>formula_7_myRule_5_pmetrule_2626663617</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE({!myVariable_old.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -1709,7 +1720,7 @@ NOT(ISPICKVAL(PRIORVALUE({!myVariable_old.Status__c} ), &quot;Enquiry&quot;)),
 ISPICKVAL({!myVariable_old.Status__c}, &quot;Reserved&quot;)
 )</expression>
     </formulas>
-    <interviewLabel>Booking_SetExpirationStatus-16_InterviewLabel</interviewLabel>
+    <interviewLabel>Booking_SetExpirationStatus-18_InterviewLabel</interviewLabel>
     <label>Booking:SetExpirationStatus</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -1814,7 +1825,7 @@ ISPICKVAL({!myVariable_old.Status__c}, &quot;Reserved&quot;)
             </processMetadataValues>
             <field>Offer_Email_Date__c</field>
             <value>
-                <elementReference>formula_16_myRule_15_A1_6536479461</elementReference>
+                <elementReference>formula_16_myRule_15_A1_0532019230</elementReference>
             </value>
         </inputAssignments>
         <object>Booking__c</object>
@@ -1897,7 +1908,7 @@ ISPICKVAL({!myVariable_old.Status__c}, &quot;Reserved&quot;)
             </processMetadataValues>
             <field>Confirmed_Date__c</field>
             <value>
-                <elementReference>formula_21_myRule_20_A1_9186430783</elementReference>
+                <elementReference>formula_22_myRule_20_A1_1812819553</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
