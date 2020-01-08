@@ -12,7 +12,7 @@ public without sharing class VenueDetailsController {
             this.venue = venue;
             this.isMainVenue = (venue.Id == courseRecord.Main_venue__c);
         
-            for (Schema.FieldSetMember fieldSetMember : Schema.SObjectType.Venue__c.fieldSets.CourseSummaryVenueFields.getFields()) {
+            for (Schema.FieldSetMember fieldSetMember : Schema.SObjectType.Venue__c.fieldSets.CourseSummaryVenueAddressFields.getFields()) {
                 if (String.isBlank(this.address)) {
                     this.address = '';
                 } else {
