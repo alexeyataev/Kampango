@@ -4,7 +4,7 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Adhoc Payment Notification</name>
     <style>none</style>
-    <subject>Book your {!Course__c.Sub_Type__c} course.</subject>
+    <subject>Book your {!Course__c.Sub_Type__c}.</subject>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

@@ -1,0 +1,37 @@
+@page {
+    size: A4 landscape;
+    margin: 10mm;
+    @top-center {
+        content: "NCT Confidential Class List";
+        font-weight: bold;
+	    
+		
+    }
+    @bottom-center {
+        content: counter(page);
+    }
+}
+
+.page-break {
+    display:block;
+    page-break-after:always;
+}
+
+body {
+    font-family: Arial Unicode MS;
+    font-size: 12px;
+}
+
+.tableStyle {
+    width: 100%;
+    border-bottom: 1px solid #000
+}
+
+.tableLayoutOnly {
+    table-layout: fixed;
+}
+
+.columnStyle {
+    border-top: 1px solid #000;
+    padding: 2px 2px 2px 0px;
+}

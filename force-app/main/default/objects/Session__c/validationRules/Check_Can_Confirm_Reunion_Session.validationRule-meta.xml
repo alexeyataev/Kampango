@@ -2,6 +2,10 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Check_Can_Confirm_Reunion_Session</fullName>
     <active>true</active>
-    <errorConditionFormula>ISPICKVAL(Status__c , &quot;Confirmed&quot;)&amp;&amp; ISPICKVAL(Type__c , &quot;Reunion&quot;) &amp;&amp; ISBLANK(Practitioner_Licence__c )</errorConditionFormula>
+    <errorConditionFormula>AND(ISPICKVAL(Status__c , &quot;Confirmed&quot;),
+    ISPICKVAL(Type__c , &quot;Reunion&quot;),
+    ISBLANK(Practitioner_Licence__c),
+    NOT($Permission.Override_Session_Validation)
+   )</errorConditionFormula>
     <errorMessage>Ensure that the Practitioner and related Licence have been populated before marking the reunion as confirmed</errorMessage>
 </ValidationRule>
