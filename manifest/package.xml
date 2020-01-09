@@ -563,6 +563,11 @@
         <name>Role</name>
     </types>
     <types>
+        <members>Company</members>
+        <members>EmailAdministration</members>
+        <name>Settings</name>
+    </types>   
+    <types>
         <members>Account.ShareAllAccountsWithParents</members>
         <name>SharingCriteriaRule</name>
     </types>
