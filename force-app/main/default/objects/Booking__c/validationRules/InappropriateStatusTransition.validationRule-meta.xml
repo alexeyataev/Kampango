@@ -17,8 +17,9 @@
             (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Confirmed&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Cancelled&quot;) )
         )
     ),
-    ISCHANGED(Status__c )
+    ISCHANGED(Status__c ),
+    NOT($Permission.Override_Booking_Validation)
 )</errorConditionFormula>
     <errorDisplayField>Status__c</errorDisplayField>
-    <errorMessage>Inappropriate status transition. (Possible options: Enquiry - Reserved, Expired - Reserved, Enquiry, Reserved, Confirmed -  Cancelled).</errorMessage>
+    <errorMessage>Inappropriate status transition. (Possible options: Enquiry - Reserved; Expired - Reserved; Cancelled - Enquiry; Enquiry, Reserved, Confirmed -  Cancelled).</errorMessage>
 </ValidationRule>

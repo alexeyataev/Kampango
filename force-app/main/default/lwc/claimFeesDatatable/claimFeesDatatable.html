@@ -1,0 +1,23 @@
+<template>
+    <template if:true={isDataPresented}>
+        <lightning-datatable key-field="id"
+                            columns={columns}
+                            data={sessions}
+                            onrowselection={handleSelectRow}>
+        </lightning-datatable>
+    </template>
+    <template if:false={isDataPresented}>
+        Sorry, there is no sessions to claim.
+    </template>
+    <template if:true={isDataPresented}>
+        <footer class="slds-card__footer slds-grid slds-grid_align-end">
+            <div class="slds-float_right">
+                <lightning-button variant="brand"
+                                  onclick={handleGoNext}
+                                  label="Next"
+                                  disabled={isButtonDisabled}>
+                </lightning-button>
+            </div>
+        </footer>
+    </template>
+</template>

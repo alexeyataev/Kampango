@@ -1,5 +1,7 @@
 global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
     private static final String SESSION_DRAFT_STATUS = 'Draft';
+     @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #23 - https://confluence.nct.org.uk:8443/x/EoSO
     global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         npsp.TDTM_Runnable.dmlWrapper dmlWrapper = new npsp.TDTM_Runnable.DmlWrapper();
 
@@ -48,7 +50,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
     private Set<Id> IdsOfCoursesToChange(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
         Set<Id> courseIds = new Set<Id>();
         for(Integer i = 0; i<newSessionList.size(); i++) {
-            if (newSessionList[i].Date__c != oldSessionList[i].Date__c ||
+            Boolean fieldChanged = newSessionList[i].Date__c != oldSessionList[i].Date__c ||
                 newSessionList[i].Start__c != oldSessionList[i].Start__c ||
                 newSessionList[i].End__c != oldSessionList[i].End__c ||
                 newSessionList[i].Lunch_Break_Minutes__c != oldSessionList[i].Lunch_Break_Minutes__c ||
@@ -56,7 +58,8 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
                 newSessionList[i].Venue__c != oldSessionList[i].Venue__c ||
                 newSessionList[i].Status__c != oldSessionList[i].Status__c ||
                 newSessionList[i].Room__c != oldSessionList[i].Room__c ||
-                newSessionList[i].Practitioner__c != oldSessionList[i].Practitioner__c){
+                newSessionList[i].Practitioner__c != oldSessionList[i].Practitioner__c;
+            if (fieldChanged) {
                 courseIds.add(newSessionList[i].Course__c);
             }
         }

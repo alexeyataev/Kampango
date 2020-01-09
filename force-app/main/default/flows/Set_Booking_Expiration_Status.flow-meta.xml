@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Update_Bookings</name>
+        <label>Update Bookings</label>
+        <locationX>714</locationX>
+        <locationY>250</locationY>
+        <actionName>BookingStatusFlowHelper</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>bookingsToUpdate</name>
+            <value>
+                <elementReference>bookingsToUpdate</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <assignments>
         <name>Add_booking_to_list</name>
         <label>Add booking to list</label>
-        <locationX>985</locationX>
+        <locationX>986</locationX>
         <locationY>226</locationY>
         <assignmentItems>
             <assignToReference>bookingsToUpdate</assignToReference>
@@ -123,14 +137,13 @@
         <queriedFields>Id</queriedFields>
         <queriedFields>Status__c</queriedFields>
     </recordLookups>
-    <recordUpdates>
-        <name>Update_Bookings</name>
-        <label>Update Bookings</label>
-        <locationX>713</locationX>
-        <locationY>249</locationY>
-        <inputReference>bookingsToUpdate</inputReference>
-    </recordUpdates>
-    <startElementReference>GetExpiredBookings</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>GetExpiredBookings</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>booking</name>

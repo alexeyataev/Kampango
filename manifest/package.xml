@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>BookingDetailsController</members>
+        <members>BookingDetailsControllerTest</members>
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
+        <members>BookingStatusFlowHelper</members>
+        <members>BookingStatusFlowHelperTest</members>
+        <members>BranchWeightingHelper</members>
+        <members>BranchWeightingHelperTest</members>
+        <members>CardPaymentHandler</members>
+        <members>CardPaymentHandlerTest</members>
+        <members>CardPaymentUrlResult</members>
+        <members>ClaimFeeHelper</members>
+        <members>ClaimFeeHelperTest</members>
+        <members>ContactDetailsController</members>
+        <members>ContactDetailsControllerTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -11,37 +24,76 @@
         <members>CourseFinderModelTest</members>
         <members>CourseFinderModelOrdered</members>
         <members>CourseFinderModelOrderedTest</members>
+        <members>CoursesBranchModel</members>
         <members>CoursesDateDistanceModel</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
+        <members>dlrs_Estimated_CostsTest</members>
+        <members>dlrs_SessionTest</members>
         <members>HttpStatusCode</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
+        <members>PractitionerBandFeeHelper</members>
+        <members>PractitionerBandFeeHelperTest</members>
+        <members>PractitionerDetailsController</members>
+        <members>PractitionerDetailsControllerTest</members>
+        <members>PractitionerFeeRateHelper</members>
+        <members>PractitionerFeeRateHelperTest</members>
+        <members>SendHTMLEmailPlugin</members>
+        <members>SendHTMLEmailPluginTest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM_TEST</members>
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
         <members>SESSION_RevertToProvisional_TDTM</members>
         <members>SESSION_RevertToProvisional_TDTM_TEST</members>
+        <members>SESSION_TrackDeletedRecord_TDTM</members>
+        <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
+        <members>SessionFeeHelper</members>
+        <members>SessionFeeHelperTest</members>
         <members>StepOrangeCardPaymentProvider</members>
         <members>TestAccountBuilder</members>
+        <members>TestBookingBuilder</members>
+        <members>TestBranchWeightingBuilder</members>
         <members>TestContactBuilder</members>
         <members>TestCourseAssignmentBuilder</members>
         <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
+        <members>TestInstallmentBuilder</members>
         <members>TestLicenceToPracticeBuilder</members>
+        <members>TestPaymentProfileBuilder</members>
+        <members>TestPractitionerBandBuilder</members>
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
+        <members>TestVenueContactBuilder</members>
         <members>TestUserBuilder</members>
+        <members>VenueDetailsController</members>
+        <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
         <name>ApexClass</name>
     </types>
     <types>
+        <members>CourseSummaryBookingDetails</members>
+        <members>CourseSummaryContactDetails</members>
+        <members>CourseSummaryCourseDetails</members>
+        <members>CourseSummaryPractitionerDetails</members>
+        <members>CourseSummarySessionDetails</members>
+        <members>CourseSummaryVenueDetails</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>CourseSummary</members>
+        <members>CourseSummaryPDF</members>
+        <members>CourseSummarySLDS</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>dlrs_Estimated_CostsTrigger</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
     </types>
@@ -55,15 +107,22 @@
         <members>ParentCommunityLogoContainer</members>
         <members>showToast</members>
         <members>SuccessPaymentsPage</members>
+        <members>TranferDetailComponent</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
+        <members>Company</members>
+        <name>Settings</name>
+    </types>
+    <types>
         <members>Contact.Practitioner_Compact_layout</members>
-       	<members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
+        <members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
         <members>Session__c.Session_Compact_Layout</members>
         <name>CompactLayout</name>
     </types>
     <types>
+        <members>Community_Image1</members>
+        <members>logo</members>
         <members>nctlogo</members>
         <name>ContentAsset</name>
     </types>
@@ -75,13 +134,8 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
-        <members>Booking__c.First_Baby__c</members>      
-        <members>Booking__c.Cancellation_Reason__c</members>
-        <members>Booking__c.Status__c</members>
-        <members>Booking__c.Suggested_Cancellation_Fee__c</members>
         <members>Contact.AccountId</members>
-        <members>Contact.Current_Fee_Band_Effective_From__c</members>
-        <members>Contact.Fee_Band__c</members>
+        <members>Contact.Deducted_Practitioner_Fees__c</members>
         <members>Contact.Home_PSA__c</members>
         <members>Contact.NCT_Number__c</members>
         <members>Contact.Practitioner_Re_Registration_Amount__c</members>
@@ -90,9 +144,23 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>Course__c.Title__c</members>
+        <members>cpm__Installment__c.Bank_Details_Number__c</members>
+        <members>cpm__Installment__c.Care_Membership_Added__c</members>
+        <members>cpm__Installment__c.Membership_Type__c</members>
+        <members>cpm__Installment__c.Partner_Contact__c</members>
+        <members>cpm__Installment__c.Sales_Invoice__c</members>
+        <members>cpm__Installment__c.ga_decl_1__c</members>
+        <members>cpm__Installment__c.ga_decl_2__c</members>
         <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
+        <members>Session__c.Eligible_for_Claim__c</members>
+        <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
+        <members>Session__c.Practitioner_Fees_to_Claim__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c.Practitioner__c</members>
+        <members>Zumzum__Sales_Invoice__c.Booking__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -100,16 +168,33 @@
         <name>CustomLabels</name>
     </types>
     <types>
+        <members>dlrs__LookupRollupSummary2.CourseAssignmentNumberOfSessions</members>
+        <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalFeesAmount</members>
+        <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalHours</members>
+        <members>dlrs__LookupRollupSummary2.CourseEstimatedTravelCostsTotalAmount</members>
+        <members>dlrs__LookupRollupSummary2.CourseEstimatedVenueCostsTotalAmount</members>
+        <members>dlrs__LookupRollupSummary2.CourseNumberOfSessionsWithoutFeeRates</members>
+        <members>dlrs__LookupRollupSummary2.CreditLineItemsAmount</members>
+        <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
         <members>Account</members>
         <members>Booking__c</members>
+        <members>Branch_Weighting__c</members>
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
+        <members>cpm__Installment__c</members>
+        <members>dlrs__LookupRollupSummary2__mdt</members>
         <members>gaid__Gift_Aid_Declaration__c</members>
         <members>Estimated_Costs__c</members>
+        <members>Individual</members>
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
+        <members>Practitioner_Band__c</members>
         <members>Practitioner_Community_Settings__c</members>
+        <members>Practitioner_Fee_Rate__c</members>
         <members>Practitioner_Travel_Cost__c</members>
         <members>Rate__c</members>
         <members>Room__c</members>
@@ -119,7 +204,6 @@
         <members>Zumzum__Activity_Code__c</members>
         <members>Zumzum__Bank__c</members>
         <members>Zumzum__Bank_Account__c</members>
-        <members>Zumzum__Bank_Receipt__c</members>
         <members>Zumzum__BankTransfer__c</members>
         <members>Zumzum__BankReconcile__c</members>
         <members>Zumzum__Batch_Bank_Payment__c</members>
@@ -130,6 +214,7 @@
         <members>Zumzum__Control_Account__c</members>
         <members>Zumzum__Currency__c</members>
         <members>Zumzum__CurrencyField__c</members>
+        <members>Zumzum__Currency_Rates__c</members>
         <members>Zumzum__CustomerLookup__c</members>
         <members>Zumzum__DataTypeHelper__c</members>
         <members>Zumzum__Despatch_Detail__c</members>
@@ -139,14 +224,14 @@
         <members>Zumzum__General_Setup__c</members>
         <members>Zumzum__Journal__c</members>
         <members>Zumzum__Ledger__c</members>
-        <members>Zumzum__Location__c</members>
-        <members>Zumzum__My_Addresses__c</members>
+        <members>Zumzum__Ledger_Payment_History__c</members>
         <members>Zumzum__Nominal_Account__c</members>
         <members>Zumzum__Nominal_Categories__c</members>
         <members>Zumzum__Purchase_Invoice__c</members>
         <members>Zumzum__Purchase_Order__c</members>
         <members>Zumzum__Purchase_Requisition__c</members>
         <members>Zumzum__Recurring_Invoice__c</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c</members>
         <members>Zumzum__RecurringTransaction__c</members>
         <members>Zumzum__Revenue_Recognition_Rule__c</members>
         <members>Zumzum__Revenue_Recognition_Rule_Setting__c</members>
@@ -167,8 +252,20 @@
         <members>Zumzum__VAT_Return__c</members>
         <members>Zumzum__VAT_Submission_Result__c</members>
         <members>Zumzum__Warehouse__c</members>
-        <members>Zumzum__Batch_Bank_Payment__c</members>
         <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Override_Booking_Validation</members>
+        <members>Override_Branch_Weighting_Validation</members>
+        <members>Override_Course_Validation</members>
+        <members>Override_Course_Assignment_Validation</members>
+        <members>Override_Estimated_Costs_Validation</members>
+        <members>Licence_To_Practice_Validation</members>
+        <members>Override_Practitioner_Band_Validation</members>
+        <members>Override_Practitioner_Fee_Rate_Validation</members>
+        <members>Override_Session_Validation</members>
+        <members>Override_Venue_Validation</members>
+        <name>CustomPermission</name>
     </types>
     <types>
         <members>Parent_Community</members>
@@ -179,15 +276,22 @@
         <members>Booking__c</members>
         <members>Course_Assignment__c</members>
         <members>npsp__Trigger_Handler__c</members>
+        <members>Practitioner_Fee_Rate__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
     </types>
     <types>
+        <members>Enquiries_PSA</members>
+        <members>Enquiries_PSA/Enquiries_PSA_Reports</members>
+        <name>Dashboard</name>
+    </types>
+    <types>
         <members>Communities_Shared_Document_Folder</members>
-        <members>Communities_Shared_Document_Folder/social_logo_png.png</members>
+        <members>Communities_Shared_Document_Folder/social_logo_png</members>
         <name>Document</name>
     </types>
     <types>
+        <members>NCT_Templates/Booking_Created</members>
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <members>NCT_Templates/Course_Assignment_Rejected</members>
@@ -197,10 +301,72 @@
     </types>
     <types>
         <members>Course_Sub_Type</members>
-        <members>Fee_Band</members>
+        <members>Geographical_Weightings</members>
+        <members>Practitioner_Bands</members>
         <members>PSA_Areas</members>
         <members>Y_N_UNKNOWN</members>
         <name>GlobalValueSet</name>
+    </types>
+    <types>
+        <members>Parent_Community_Group</members>
+        <members>X1C_PSA_Area</members>
+        <members>X1W_PSA_Area</members>
+        <members>X2A_PSA_Area</members>
+        <members>X2B_PSA_Area</members>
+        <members>X2C_PSA_Area</members>
+        <members>X3A_PSA_Area</members>
+        <members>X3B_PSA_Area</members>
+        <members>X3D_PSA_Area</members>
+        <members>X3E_PSA_Area</members>
+        <members>X3F_PSA_Area</members>
+        <members>X4A_PSA_Area</members>
+        <members>X4B_PSA_Area</members>
+        <members>X4C_PSA_Area</members>
+        <members>X4D_PSA_Area</members>
+        <members>X4E_PSA_Area</members>
+        <members>X4F_PSA_Area</members>
+        <members>X4G_PSA_Area</members>
+        <members>X4H_PSA_Area</members>
+        <members>X4I_PSA_Area</members>
+        <members>X4J_PSA_Area</members>
+        <members>X4K_PSA_Area</members>
+        <members>X4L_PSA_Area</members>
+        <members>X4M_PSA_Area</members>
+        <members>X4N_PSA_Area</members>
+        <members>X4P_PSA_Area</members>
+        <members>X4Q_PSA_Area</members>
+        <members>X4R_PSA_Area</members>
+        <members>X4S_PSA_Area</members>
+        <members>X5A_PSA_Area</members>
+        <members>X5B_PSA_Area</members>
+        <members>X5C_PSA_Area</members>
+        <members>X5D_PSA_Area</members>
+        <members>X5E_PSA_Area</members>
+        <members>X5F_PSA_Area</members>
+        <members>X5G_PSA_Area</members>
+        <members>X5H_PSA_Area</members>
+        <members>X5I_PSA_Area</members>
+        <members>X5J_PSA_Area</members>
+        <members>X5K_PSA_Area</members>
+        <members>X5L_PSA_Area</members>
+        <members>X5M_PSA_Area</members>
+        <members>X5N_PSA_Area</members>
+        <members>X5O_PSA_Area</members>
+        <members>X5R_PSA_Area</members>
+        <members>X5S_PSA_Area</members>
+        <members>X5T_PSA_Area</members>
+        <members>X5U_PSA_Area</members>
+        <members>X5VL_PSA_Area</members>
+        <members>X6A_PSA_Area</members>
+        <members>X6B_PSA_Area</members>
+        <members>X6C_PSA_Area</members>
+        <members>X6D_PSA_Area</members>
+        <members>X6E_PSA_Area</members>
+        <members>X7A_PSA_Area</members>
+        <members>X7B_PSA_Area</members>
+        <members>X7C_PSA_Area</members>
+        <members>X7D_PSA_Area</members>
+        <name>Group</name>
     </types>
     <types>
         <members>Contact_Record_Page</members>
@@ -212,20 +378,42 @@
         <name>FlexiPage</name>
     </types>
     <types>
+        <members>Contact.CourseSummaryPractitionerFields</members>
+        <name>FieldSet</name>
+    </types>
+    <types>
+        <members>Assign_Practitioner_Fee_Rate_to_Session</members>
         <members>Booking_Journey_Available</members>
+        <members>Booking_Journey_Success_Page</members>
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
+        <members>Booking_Send_Email_On_Enquiry_Created_Process</members>
+        <members>Booking_Send_Email_On_Enquiry_Created_Flow</members>
         <members>Booking_SetExpirationStatus</members>
+        <members>Booking_Tranfer_Flow</members>
+        <members>BookingConfirmationNotificationSend</members>
+        <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
-        <members>Invalidate_Withdraw_CA_when_key_information_changes</members>
-        <members>Populate_Practitioner_Name</members>
+        <members>Get_Payment_Link</members>
+        <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
+        <members>Membership_Option</members>
+        <members>Payment_Details</members>
+        <members>Recalculate_Total_Practitioner_Fees</members>
+        <members>Resend_Confirmation_Email</members>
         <members>Resend_Offer_Email</members>
+        <members>Resend_Reunion_Email</members>
+        <members>Reunion_Execute_Sending_Private_Subflow</members>
+        <members>Reunion_Execute_Sending_Public_Subflow</members>
+        <members>Reunion_Execute_Sending</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Booking_Expiration_Status</members>
+        <members>Set_CADs_to_Withdrawn</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
+        <members>Set_Deactivate_Date_GAD</members>
         <members>Set_Main_Venue_on_Course</members>
         <members>Set_Number_of_Places_Based_on_Course_Type</members>
+        <members>Track_Deleted_Sessions</members>
         <members>Update_Address_in_Gift_Aid_Declaration</members>
         <members>Update_Address_in_Gift_Aid_Declarations</members>
         <members>Update_Partner_Community_Contact</members>
@@ -233,6 +421,9 @@
         <members>Update_Practitioner_on_Sessions</members>
         <members>Update_Related_Sessions</members>
         <members>Update_service_field_on_session</members>
+        <members>Update_Session_Fee_Rate_When_Branch_Weighting_Changes</members>
+        <members>Update_Session_Fee_Rates_When_Practitioner_Band_Changes</members>
+        <members>Update_Session_Fee_Rate_When_Practitioner_Fee_Rate_Changes</members>
         <members>Update_Venue_on_Sessions_related_to_Course</members>
         <name>Flow</name>
     </types>
@@ -245,6 +436,7 @@
         <members>Booking__c-Admin Booking Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Booking__c-Enquiry PSA Booking Layout</members>
+        <members>Branch_Weighting__c-Branch Weighting Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
         <members>Contact-Practitioner Community Layout</members>
@@ -253,26 +445,39 @@
         <members>Course_Assignment__c-Course Assignment Layout</members>
         <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
+        <members>Course__c-Capacity PSA Course Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
-        <members>Product2-Practitioner Product Page</members>
+        <members>Practitioner_Band__c-Practitioner Band Layout</members>
+        <members>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
+        <members>Product2-Practitioner Product Page</members>
         <members>Rate__c-Rate Layout</members>
         <members>Room__c-Room Layout</members>
         <members>Session__c-Session Layout</members>
         <members>Venue__c-Venue Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
+        <members>Zumzum__Batch_Bank_Payment__c-Zumzum__Batch Bank Payment Layout</members>
+        <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
         <name>Layout</name>
     </types>
     <types>
+        <members>checkBrowserCompatibility</members>
         <members>courseDetailsComponent</members>
+        <members>claimFeesDatatable</members>
         <members>failurePaymentPage</members>
+        <members>linkToPaymentComponent</members>
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
+        <members>courseTransferDetails</members>
         <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>Default_Navigation</members>
+        <name>NavigationMenu</name>
     </types>
     <types>
         <members>Parent Community</members>
@@ -281,13 +486,24 @@
     </types>
     <types>
         <members>cbParent_Community</members>
-        <members>cbPractitioners.networkBranding</members>
+        <members>cbPractitioners</members>
         <name>NetworkBranding</name>
     </types>
     <types>
+        <members>Branch_and_PSA_Management</members>
+        <members>Create_Public_Lists</members>
+        <members>Override_Branch_Weighting_Validation</members>
+        <members>Override_Booking_Validation</members>
+        <members>Override_Course_Validation</members>
+        <members>Override_Course_Assignment_Validation</members>
+        <members>Override_Estimated_Costs_Validation</members>
+        <members>Licence_To_Practice_Validation</members>
+        <members>Override_Practitioner_Band_Validation</members>
+        <members>Override_Practitioner_Fee_Rate_Validation</members>
+        <members>Override_Session_Validation</members>
+        <members>Override_Venue_Validation</members>
         <members>Practitioner_Management</members>
         <members>Product_Management</members>
-        <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
     </types>
     <types>
@@ -299,10 +515,13 @@
         <members>Payment API User</members>
         <members>Practitioner</members>
         <members>PSA Manager</members>
+        <members>Website Integration</members>
         <name>Profile</name>
     </types>
     <types>
+        <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Offer_Email</members>
+        <members>Course__c.Resend_Reunion_Email</members>
         <members>Zumzum__NewTask</members>
         <name>QuickAction</name>
     </types>
@@ -315,25 +534,34 @@
     </types>
     <types>
         <members>Capacity_PSA</members>
-        <members>Capacity_PSA/CADs_awaiting_practitioner_response</members>
-        <members>Capacity_PSA/CADs_rejected_or_invalidated</members>
-        <members>Capacity_PSA/CADs_to_issue</members>
+        <members>Capacity_PSA/CADs_awaiting_practitioner_response1</members>
+        <members>Capacity_PSA/CADs_rejected_or_invalidated1</members>
+        <members>Capacity_PSA/CADs_to_issue1</members>
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
+        <members>Enquiries_PSA</members>
+        <members>Enquiries_PSA/Confirmed_Bookings</members>
         <members>Practitioners</members>
         <members>Practitioners/All_Courses</members>
+        <members>Practitioners/All_Course_Assignments</members>
+        <members>Practitioners/Practitioner_Schedule</members>
         <name>Report</name>
     </types>
     <types>
-        <members>Custom_Sessions_Report_Type</members>
+        <members>Sessions_with_Course_and_Course_Assignment</members>
         <members>Sessions_on_venues</members>
         <members>Schedule_of_Sessions</members>
+        <members>Sessions</members>
         <name>ReportType</name>
     </types>
     <types>
         <members>PSA</members>
         <members>Finance</members>
         <name>Role</name>
+    </types>
+    <types>
+        <members>Account.ShareAllAccountsWithParents</members>
+        <name>SharingCriteriaRule</name>
     </types>
     <types>
         <members>Practitioners</members>
@@ -350,6 +578,7 @@
         <name>StandardValueSet</name>
     </types>
     <types>
+        <members>confidentialClassStyles</members>
         <members>NCT_Styles</members>
         <name>StaticResource</name>
     </types>
@@ -364,26 +593,39 @@
         <members>Booking__c.FeeOverrideRestriction</members>
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
+        <members>Booking__c.MandatoryCancellationReason</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
+        <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
+        <members>Booking__c.Prevent_Overbooking_Of_Course</members>
         <members>Booking__c.PreventConfirmedBookingCreation</members>
+        <members>Booking__c.ReservationExpiryDateCannotBeRemoved</members>
+        <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
+        <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Fee_Discount_Uplift_fields</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
+        <members>Course__c.Check_Session_Fee_Rates</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
+        <members>Course__c.Fee_Disc_Uplift_fields_can_not_be_less_0</members>
+        <members>Course__c.Prevent_Cancelling_Course_With_Bookings</members>
         <members>Course_Assignment__c.CA_Can_Only_Be_Created_For_Final_Courses</members>
-        <members>Course_Assingment__c.Course_can_not_be_changed_on_CA_record</members>
+        <members>Course_Assignment__c.Course_can_not_be_changed_on_CA_record</members>
         <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
         <members>Licence_To_Practice__c.End_date_should_not_be_blank</members>
+        <members>Practitioner_Band__c.PractitionerBand_details_cant_be_changed</members>
         <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
         <members>Session__c.End_time_should_not_be_before_start_time</members>
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
+        <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
+        <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <name>ValidationRule</name>
     </types>
     <types>
         <members>Booking__c</members>
+        <members>Course__c</members>
         <members>Course_Assignment__c</members>
         <name>Workflow</name>
     </types>

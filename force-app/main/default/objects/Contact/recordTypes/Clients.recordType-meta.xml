@@ -6,29 +6,6 @@
     <description>A contact representing someone who will attend a course</description>
     <label>Client</label>
     <picklistValues>
-        <picklist>Fee_Band__c</picklist>
-        <values>
-            <fullName>A</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>B</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>C</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>D</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Zero</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>LeadSource</picklist>
         <values>
             <fullName>Other</fullName>

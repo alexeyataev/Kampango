@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fee_Disc_Uplift_fields_can_not_be_less_0</fullName>
+    <active>true</active>
+    <description>Practitioner fee uplift and discount fields should only accept positive values</description>
+    <errorConditionFormula>AND(
+    OR(
+       Practitioner_Fee_Discount__c &lt; 0, 
+       Practitioner_Fee_Uplift__c  &lt; 0
+      ),
+    NOT($Permission.Override_Course_Validation)
+   )</errorConditionFormula>
+    <errorMessage>Please ensure that the Fee Discount / Fee Uplift percentage is a positive number</errorMessage>
+</ValidationRule>

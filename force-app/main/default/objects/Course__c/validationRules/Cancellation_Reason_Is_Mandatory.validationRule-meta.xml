@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cancellation_Reason_Is_Mandatory</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    OR(ISPICKVAL(Status__c, &quot;Cancelling&quot;),
+       ISPICKVAL(Status__c, &quot;Cancelled&quot;)),
+    ISBLANK(TEXT(Cancellation_Reason__c)),
+    NOT($Permission.Override_Course_Validation) 
+)</errorConditionFormula>
+    <errorDisplayField>Cancellation_Reason__c</errorDisplayField>
+    <errorMessage>Please provide a Cancellation Reason.</errorMessage>
+</ValidationRule>

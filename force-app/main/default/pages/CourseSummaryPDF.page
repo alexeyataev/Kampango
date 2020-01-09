@@ -1,0 +1,4 @@
+<apex:page standardController="Course__c" renderAs="pdf" showHeader="false" standardStylesheets="false">
+    <apex:stylesheet value="{!URLFOR($Resource.confidentialClassStyles, 'confidentialClassListPDF.css')}"/>
+    <apex:include pageName="CourseSummary"/>
+</apex:page>

@@ -1,0 +1,10 @@
+.THIS.transfer-proceed_to_payment_button {
+    font-family: 'Lato', arial, sans-serif;
+    border-radius: 1.25rem;
+    font-style: normal;
+    background-color: #3AA43B;
+    color: #fff;
+    font-size: 1.3125rem;
+    font-weight: 300;
+    line-height: 1.2;
+}

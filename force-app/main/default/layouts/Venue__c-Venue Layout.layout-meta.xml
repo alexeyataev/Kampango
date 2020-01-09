@@ -12,7 +12,7 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Street_Address__c</field>
             </layoutItems>
             <layoutItems>
@@ -26,6 +26,10 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Postcode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Host__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -369,7 +373,7 @@
             <actionType>StandardButton</actionType>
             <sortOrder>14</sortOrder>
         </platformActionListItems>
-	<platformActionListItems>
+        <platformActionListItems>
             <actionName>FeedItem.ContentNote</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>15</sortOrder>
@@ -395,6 +399,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Status__c</fields>
         <fields>Date__c</fields>
         <fields>Day_of_Week__c</fields>
         <fields>Start__c</fields>
@@ -402,6 +407,7 @@
         <fields>Room__c</fields>
         <fields>Practitioner__c</fields>
         <fields>Course__c</fields>
+        <fields>Course_Status__c</fields>
         <relatedList>Session__c.Venue__c</relatedList>
     </relatedLists>
     <relatedLists>

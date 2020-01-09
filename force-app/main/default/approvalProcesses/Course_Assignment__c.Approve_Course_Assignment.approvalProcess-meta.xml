@@ -45,6 +45,11 @@
             <operation>equals</operation>
             <value>Draft</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>Course_Assignment__c.Number_of_Sessions__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
     </entryCriteria>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionActions>

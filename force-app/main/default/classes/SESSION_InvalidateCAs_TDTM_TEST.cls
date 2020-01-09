@@ -6,6 +6,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
     private static final String PRACTITIONER_EMAIL_ADDRESS = 'partnerCommunityUser@ncttest.com';
+    private static final String HOST_LASTNAME = 'Black';
+    private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
     private static final String COURSE_ASSIGNMENT_WITHDRAWN_STATUS = 'Withdrawn';
 
@@ -15,12 +17,14 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         dataFactory .buildOrganizationAccount('acc1')
                     .buildBranchAccount()
                     .buildPractitioner(PRACTITIONER_LASTNAME, PRACTITIONER_EMAIL_ADDRESS)
+                    .buildPractitionerFeeRate()
                     .buildVenue()
                     .buildRoom()
                     .buildLicenceToPractice()
                     .buildCourse()
                     .buildEstimatedCosts()
                     .buildSession()
+                    .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
                     .buildReunion();
 
         List<Session__c> provisionalNonReunionSessions = [
@@ -296,6 +300,38 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     @isTest
+    static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
+
+        CreateTriggerSystemHandlerRecord();
+
+        Session__c session = [
+            SELECT Id, Course_Assignment__c
+            FROM Session__c
+            WHERE Type__c = 'Reunion'
+            LIMIT 1
+        ];
+
+        test.startTest();
+
+        session.Lunch_Break_Minutes__c = 45;
+        session.Status__c = 'Confirmed';
+
+        update session;
+
+        test.stopTest();
+
+        Course_Assignment__c courseAssignmentToTest = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id =:session.Course_Assignment__c
+            LIMIT 1
+        ];
+
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
+    }
+
+
+    @isTest
     static void InvalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
 
         CreateTriggerSystemHandlerRecord();
@@ -505,6 +541,54 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         ];
 
         System.assertEquals(COURSE_ASSIGNMENT_WITHDRAWN_STATUS, coursesSessionsAndCourseAssignmentsToWithdrawn.Course_Assignments__r[0].Status__c);
+    }
+
+    @isTest
+    static void InvalidateCourseAssignmentStatus_ReassignSession_CourseAssignmentStatusInvalidated() {
+
+        CreateTriggerSystemHandlerRecord();
+
+        Session__c session = [
+            SELECT Id, Course_Assignment__c
+            FROM Session__c
+            LIMIT 1
+        ];
+
+        Course_Assignment__c courseAssignment = [
+            SELECT Status__c, Course__c, OwnerId,
+                (
+                    SELECT Id, Practitioner__c, Course__c, Course_Assignment__c
+                    FROM Sessions__r
+                    WHERE Id = :session.Id
+                )
+            FROM Course_Assignment__c
+            WHERE Status__c != :COURSE_ASSIGNMENT_INVALIDATED_STATUS
+            LIMIT 1
+        ];
+
+        Course_Assignment__c courseAssignmentNew = courseAssignment.Clone();
+        insert courseAssignmentNew;
+
+        User partnerCommunityUser =[
+            SELECT Id
+            FROM User
+            WHERE ContactId = :courseAssignment.Sessions__r[0].Practitioner__c
+        ];
+
+        test.startTest();
+        
+        session.Course_Assignment__c = courseAssignmentNew.Id;
+        update session;
+
+        test.stopTest();
+
+        Course_Assignment__c courseAssignmentToCheck = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id = :courseAssignment.Id
+        ]; 
+
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToCheck.Status__c);
     }
 
     private static void  ChangeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {

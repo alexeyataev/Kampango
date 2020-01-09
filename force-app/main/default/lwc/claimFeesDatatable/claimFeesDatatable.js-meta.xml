@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="claimFeesDatatable">
+    <apiVersion>47.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Claim Fees Datatable</masterLabel>
+    <description>test</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="sessions" label="Session list" type="@salesforce/schema/Session__c[]"/>
+            <property name="practitioner" label="Practitioner" type="@salesforce/schema/Contact" role="inputOnly"/>
+            <property name="totalFee" label="Total Fee" type="Integer" role="outputOnly"/>
+            <property name="registrationFeeRate" label="Practitioner Registration Fees %" type="Integer" role="inputOnly"/>
+            <property name="registrationCappedFees" label="Practitioner Registration Capped Fees" type="Integer" role="inputOnly"/>
+            <property name="registrationFee" label="Registration Fee" type="Integer" role="outputOnly"/>
+            <property name="checkedRows" label="Selected Sessions" type="@salesforce/schema/Session__c[]" role="outputOnly"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

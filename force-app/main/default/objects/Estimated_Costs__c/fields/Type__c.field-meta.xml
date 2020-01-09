@@ -11,11 +11,6 @@
         <valueSetDefinition>
             <sorted>true</sorted>
             <value>
-                <fullName>Practitioner Fee</fullName>
-                <default>false</default>
-                <label>Practitioner Fee</label>
-            </value>
-            <value>
                 <fullName>Travel</fullName>
                 <default>false</default>
                 <label>Travel</label>

@@ -21,6 +21,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .buildBranchAccount()
             .buildOrganizationAccount('acc1')
             .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
+            .buildPractitionerFeeRate()
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
@@ -48,6 +49,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         Venue__c venue = [SELECT Id FROM Venue__c LIMIT 1];
         Room__c room = [SELECT Id FROM Room__c LIMIT 1];
         Contact practitioner = [SELECT Id FROM Contact WHERE RecordType.Name =:PRACTITIONER_RECORDTYPE_NAME LIMIT 1];
+        Practitioner_Fee_Rate__c practitionerFeeRate = [SELECT Id FROM Practitioner_Fee_Rate__c LIMIT 1];
 
         test.startTest();
 
@@ -58,6 +60,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)
             .withPractitioner(practitioner)
+            .withPractitionerFeeRate(practitionerFeeRate)
             .withPractitionerLicence(practitionerLicence)
             .insertRecord(true)
             .build();
@@ -367,6 +370,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .buildBranchAccount()
             .buildOrganizationAccount('acc3')
             .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
+            .buildPractitionerFeeRate()
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
@@ -417,6 +421,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .buildBranchAccount()
             .buildOrganizationAccount('acc4')
             .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
+            .buildPractitionerFeeRate()
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()

@@ -7,11 +7,12 @@ public with sharing class CourseDetailControllerTest {
             .buildBranchAccount()
             .buildOrganizationAccount('acc1')
             .buildPractitioner('Smith')
+            .buildPractitionerFeeRate()
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
-            .buildCourseWithTypeAndSubType('Antenatal','Waterbirth')
-            .buildCourseWithTypeAndSubType('Postnatal','Baby Massage')
+            .buildCourseWithTypeAndSubType('Antenatal','NCT Waterbirth workshop')
+            .buildCourseWithTypeAndSubType('Postnatal','NCT Baby Massage course')
             .buildSession();
 
         Integer coursesToCreate = 6;

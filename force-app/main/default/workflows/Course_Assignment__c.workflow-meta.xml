@@ -7,18 +7,9 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/Course_Assignment_Rejected</template>
-    </alerts>
-    <alerts>
-        <fullName>SendEmailToPractitioner</fullName>
-        <description>SendEmailToPractitioner</description>
-        <protected>false</protected>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</template>
     </alerts>
     <alerts>
         <fullName>Send_Email_When_CAD_Invalidated</fullName>
@@ -27,7 +18,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</template>
     </alerts>
     <alerts>
@@ -37,9 +29,19 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</template>
     </alerts>
+    <fieldUpdates>
+        <fullName>Set_Course_Assignment_Status_Invalidated</fullName>
+        <field>Status__c</field>
+        <literalValue>Invalidated</literalValue>
+        <name>Set Course Assignment Status Invalidated</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>UpdateStatusToApproved</fullName>
         <field>Status__c</field>
@@ -94,5 +96,17 @@
             <value>Withdrawn</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Invalidate Course Assignment If Fees Change</fullName>
+        <actions>
+            <name>Set_Course_Assignment_Status_Invalidated</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>If the Practitioner Fees on a Submitted, Approved or Rejected CA record change for any reason, the CA record should be invalidated.</description>
+        <formula>AND(ISCHANGED( Total_Fees__c ),
+OR( ISPICKVAL( Status__c , &#39;Submitted&#39;), ISPICKVAL( Status__c , &#39;Approved&#39;), ISPICKVAL( Status__c , &#39;Rejected&#39;) ))</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

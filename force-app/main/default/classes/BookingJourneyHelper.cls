@@ -33,7 +33,9 @@ public without sharing class BookingJourneyHelper {
         }
         if(individuals != null && !individuals.isEmpty()){
             return individuals[0];
-        } else return null;
+        } else {
+            return null;
+        }
         
     }
 

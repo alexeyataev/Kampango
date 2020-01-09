@@ -9,12 +9,60 @@ private class CourseCreateEnquiryUtilityTest {
                                          '"town":"London","op":"Send enquiry"}';
     @testSetup
     static void createTestData() {
+        List<OrgWideEmailAddress> addresses = [
+            SELECT Id, Address 
+            FROM OrgWideEmailAddress
+            LIMIT 1
+        ];
+
+        String existingAddress = addresses[0].Address;
+
         TestDataFactory.getInstance()
+            .buildBranchAccountWithEmails(existingAddress)
             .buildOrganizationAccount('acct1')
-            .buildBranchAccount()
-            .buildPractitioner('Practitioner')
+            .buildPractitioner('Test')
+            .buildPractitionerFeeRate()
+            .buildVenue()
+            .buildRoom()
             .buildLicenceToPractice()
-            .buildCourse();
+            .buildCoursesWithSessions(2, 2);
+
+
+        Profile p = [SELECT Id FROM Profile WHERE Name='Website Integration'];
+        String uniqueUserName = 'websiteuser' + DateTime.now().getTime() + '@testorg.com';
+        User u = new User(
+            Alias = 'websiteu',
+            Email='websiteuser@testorg.com',
+            EmailEncodingKey='UTF-8',
+            LastName='websiteuserTesting',
+            LanguageLocaleKey='en_US',
+            LocaleSidKey='en_GB',
+            ProfileId = p.Id,
+            TimeZoneSidKey='Europe/London',
+            UserName=uniqueUserName
+        );  
+        insert u;
+
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        List<Course__c> coursesToFinal = [
+            SELECT Status__c, Count_of_Estimated_Travel_Costs__c, Count_of_Estimated_Venue_Costs__c, Main_Venue__c, Fee__c,
+            (
+                SELECT Status__c FROM Sessions__r
+            )
+            FROM Course__c
+        ];
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        Venue__c mainVenue = venueBuilder
+                                .insertRecord(true)
+                                .build();
+
+        dataFactory.setMainVenueToCourses(mainVenue, coursesToFinal);
+        for (Course__c course : coursesToFinal) {
+            if (!course.Sessions__r.isEmpty()) {
+                dataFactory.setSessionsToConfirmed(course.Sessions__r);   
+            }
+        }
+        dataFactory.setCoursesWithSessionsToFinal(coursesToFinal);
     }
 
     @isTest
@@ -26,8 +74,7 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> createdContact = [
             SELECT Name, Email 
             FROM Contact 
@@ -67,8 +114,7 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(params, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Booking__c> bookings = [
             SELECT Name 
             FROM Booking__c 
@@ -109,9 +155,8 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
         paramsMap.put('first_name', 'Updated'); 
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Booking__c> bookings = [
             SELECT Name 
             FROM Booking__c 
@@ -167,11 +212,10 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact
@@ -212,11 +256,10 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact

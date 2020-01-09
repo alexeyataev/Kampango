@@ -6,14 +6,32 @@ public class PaymentApiRequest{
     private Payment payment {get;set;}
     private PaymentMethod paymentMethod {get;set;}
     private SourceConnector sourceConnector {get;set;}
-    public PaymentApiRequest(String successURL, String failureURL, String origin, Payer payer, Payment payment, PaymentMethod paymentMethod, SourceConnector sourceConnector) {
-        this.successURL = successURL;
-        this.failureURL = failureURL;
-        this.origin = origin;
-        this.payer = payer;
-        this.payment = payment;
-        this.paymentMethod = paymentMethod;
-        this.sourceConnector = sourceConnector;
+    public PaymentApiRequest(PaymentApiRequestParams apiRequestParams) {
+        this.successURL = apiRequestParams.URLs.successURL;
+        this.failureURL = apiRequestParams.URLs.failureURL;
+        this.origin = apiRequestParams.origin;
+        this.payer = apiRequestParams.payer;
+        this.payment = apiRequestParams.payment;
+        this.paymentMethod = apiRequestParams.paymentMethod;
+        this.sourceConnector = apiRequestParams.sourceConnector;
+    }
+
+    public class PaymentApiRequestParams {
+        public URLs urls { get; set; }
+        public String origin { get; set; }
+        public Payer payer { get; set; }
+        public Payment payment { get; set; }
+        public PaymentMethod paymentMethod { get; set; }
+        public SourceConnector sourceConnector { get; set; }
+    }
+
+    public class URLs {
+        private String successURL { get; set; }
+        private String failureURL { get; set; }
+        public URLs(String successURL, String failureURL) {
+            this.successURL = successURL;
+            this.failureURL = failureURL;
+        }
     }
     public class Payer {
         private Contact contact {get;set;}
@@ -31,8 +49,10 @@ public class PaymentApiRequest{
     }
     public class Payment {
         private String amount {get;set;}
-        public Payment(String amount) {
+        private Map<String, String> customFields {get;set;}
+        public Payment(String amount, Map<String, String> customFields) {
             this.amount = amount;
+            this.customFields = customFields;
         }
     }
     public class PaymentMethod {

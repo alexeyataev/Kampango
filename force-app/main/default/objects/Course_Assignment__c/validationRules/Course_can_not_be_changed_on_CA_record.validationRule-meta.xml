@@ -3,7 +3,9 @@
     <fullName>Course_can_not_be_changed_on_CA_record</fullName>
     <active>true</active>
     <description>It is not possible to change the Course on a Course Assignment record.</description>
-    <errorConditionFormula>NOT(ISNEW()) &amp;&amp; ISCHANGED(Course__c)</errorConditionFormula>
+    <errorConditionFormula>AND(NOT(ISNEW()),
+    ISCHANGED(Course__c),
+    NOT($Permission.Override_Course_Assignment_Validation))</errorConditionFormula>
     <errorDisplayField>Course__c</errorDisplayField>
     <errorMessage>It is not possible to change the Course on a Course Assignment record. Please create a new Course Assignment record under the correct Course.</errorMessage>
 </ValidationRule>

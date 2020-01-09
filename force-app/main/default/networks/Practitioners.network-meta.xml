@@ -11,6 +11,7 @@
     <enableDirectMessages>true</enableDirectMessages>
     <enableGuestChatter>false</enableGuestChatter>
     <enableGuestFileAccess>false</enableGuestFileAccess>
+    <enableGuestMemberVisibility>false</enableGuestMemberVisibility>
     <enableInvitation>false</enableInvitation>
     <enableKnowledgeable>false</enableKnowledgeable>
     <enableMemberVisibility>true</enableMemberVisibility>
@@ -25,31 +26,6 @@
     <enableUpDownVote>false</enableUpDownVote>
     <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
-    <navigationLinkSet>
-        <navigationMenuItem>
-            <defaultListViewId>All</defaultListViewId>
-            <label>Courses</label>
-            <position>1</position>
-            <publiclyAvailable>false</publiclyAvailable>
-            <target>Course__c</target>
-            <type>SalesforceObject</type>
-        </navigationMenuItem>
-        <navigationMenuItem>
-            <label>Course Assignments</label>
-            <position>2</position>
-            <publiclyAvailable>false</publiclyAvailable>
-            <target>Course_Assignment__c</target>
-            <type>SalesforceObject</type>
-        </navigationMenuItem>
-        <navigationMenuItem>
-            <defaultListViewId>AllReports</defaultListViewId>
-            <label>Reports</label>
-            <position>3</position>
-            <publiclyAvailable>false</publiclyAvailable>
-            <target>Report</target>
-            <type>SalesforceObject</type>
-        </navigationMenuItem>
-    </navigationLinkSet>
     <networkMemberGroups>
         <permissionSet>Practitioner_Management</permissionSet>
         <profile>Admin</profile>

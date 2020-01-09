@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <choices>
+        <name>credit_debit</name>
+        <choiceText>&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 18px; color: rgb(33, 37, 41);&quot;&gt;Debit/Credit Card&lt;/span&gt;</choiceText>
+        <dataType>String</dataType>
+    </choices>
+    <interviewLabel>Booking Tranfer Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Booking Tranfer Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>Booking_Transfer_Details</name>
+        <label>Booking Transfer Details</label>
+        <locationX>251</locationX>
+        <locationY>49</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Payment_options</targetReference>
+        </connector>
+        <fields>
+            <name>Tranfer_detail</name>
+            <extensionName>c:TranferDetailComponent</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>bookingId</name>
+                <value>
+                    <elementReference>bookingId</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>bookingId</assignToReference>
+                <name>bookingId</name>
+            </outputParameters>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Payment_options</name>
+        <label>Payment options</label>
+        <locationX>482</locationX>
+        <locationY>47</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>payment_text</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 28px; color: rgb(33, 37, 41);&quot;&gt;Payment options&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 20px; color: rgb(0, 135, 106);&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;How would you like to pay for your course?﻿&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Pay_options</name>
+            <choiceReferences>credit_debit</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Pay options</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <startElementReference>Booking_Transfer_Details</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>bookingId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue/>
+        </value>
+    </variables>
+</Flow>

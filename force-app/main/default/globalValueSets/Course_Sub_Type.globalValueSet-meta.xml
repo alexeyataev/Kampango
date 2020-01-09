@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
-        <fullName>Early Days</fullName>
+        <fullName>NCT Early Days course</fullName>
         <default>false</default>
-        <label>Early Days</label>
+        <label>NCT Early Days course</label>
     </customValue>
     <customValue>
-        <fullName>Introducing Solids</fullName>
+        <fullName>NCT Introducing Solid Foods workshop</fullName>
         <default>false</default>
-        <label>Introducing Solids</label>
+        <label>NCT Introducing Solid Foods workshop</label>
     </customValue>
     <customValue>
-        <fullName>Baby Massage</fullName>
+        <fullName>NCT Baby Massage course</fullName>
         <default>false</default>
-        <label>Baby Massage</label>
+        <label>NCT Baby Massage course</label>
     </customValue>
     <customValue>
-        <fullName>NCT Signature Antenatal</fullName>
+        <fullName>NCT Signature antenatal course</fullName>
         <default>false</default>
-        <label>NCT Signature Antenatal</label>
+        <label>NCT Signature antenatal course</label>
     </customValue>
     <customValue>
-        <fullName>NCT Essentials Antenatal</fullName>
+        <fullName>NCT Essentials antenatal course</fullName>
         <default>false</default>
-        <label>NCT Essentials Antenatal</label>
+        <label>NCT Essentials antenatal course</label>
     </customValue>
     <customValue>
-        <fullName>NCT Antenatal Refresher</fullName>
+        <fullName>NCT Antenatal refresher course</fullName>
         <default>false</default>
-        <label>NCT Antenatal Refresher</label>
+        <label>NCT Antenatal refresher course</label>
     </customValue>
     <customValue>
-        <fullName>Twins and Multiples</fullName>
+        <fullName>NCT Twins and Multiples workshop</fullName>
         <default>false</default>
-        <label>Twins and Multiples</label>
+        <label>NCT Twins and Multiples workshop</label>
     </customValue>
     <customValue>
-        <fullName>Waterbirth</fullName>
+        <fullName>NCT Waterbirth workshop</fullName>
         <default>false</default>
-        <label>Waterbirth</label>
+        <label>NCT Waterbirth workshop</label>
     </customValue>
     <customValue>
         <fullName>One to One</fullName>

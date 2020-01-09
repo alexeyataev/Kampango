@@ -12,10 +12,6 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Practitioner_Name__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Contact__c</field>
             </layoutItems>
@@ -23,6 +19,8 @@
                 <behavior>Required</behavior>
                 <field>Licence__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Start_Date__c</field>
@@ -36,7 +34,6 @@
                 <field>Status__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -105,9 +102,14 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Status__c</fields>
         <fields>Date__c</fields>
-        <fields>Type__c</fields>
+        <fields>Day_of_Week__c</fields>
+        <fields>Start__c</fields>
+        <fields>End__c</fields>
         <fields>Venue__c</fields>
+        <fields>Course__c</fields>
+        <fields>Course_Status__c</fields>
         <relatedList>Session__c.Practitioner_Licence__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

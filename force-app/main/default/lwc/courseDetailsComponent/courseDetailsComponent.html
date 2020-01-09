@@ -1,71 +1,58 @@
 <template>
-    <template if:true={valuesLoaded}>
-        <div class="heading_2 lato-font">
-            Hi {firstName},
+  <template if:true={valuesLoaded}>
+    <div class="heading_2 lato-font">
+      Hi {firstName},
+    </div>
+    <div class="heading_4 lato-font slds-p-top_medium slds-p-bottom_large">
+      We're holding your place on the following course until {expirationDate}.
+      Complete your booking now to secure your place.
+    </div>
+    <div class="heading_2 lato-font">
+      Your booking
+    </div>
+    <div class="nct-primary-header-text">
+      {title}
+    </div>
+    <div class="heading_5 lato-font">
+      at {mainVenueName} ({startDate}
+      <span> - </span>
+      {endDate})
+    </div>
+    <div class="slds-grid slds-wrap">
+      <div
+        class="regular-text lato-font slds-col slds-size_1-of-1 slds-large-size_5-of-6 slds-medium-size_5-of-6 slds-small-size_1-of-1"
+      ></div>
+    </div>
+    <div class="slds-grid slds-wrap">
+      <div class="slds-col slds-size_1-of-1">
+        <div class="height_100">
+          <template if:true={venuesLoaded}>
+            <c-locations venues={allVenues} sessions={sessions} location-header="Locations"></c-locations>
+          </template>
         </div>
-        <div class="heading_4 lato-font">
-            We've held you a place on the following course...
+      </div>
+      <div class="slds-col slds-size_1-of-1">
+        <div class="slds-grid">
+          <div
+            class="padding-bottom_1 slds-col slds-small-size_1-of-1 slds-medium-size_7-of-12 slds-large-size_7-of-12"
+          >
+          <template if:true={venuesLoaded}>
+             <c-sessions sessions={sessions} session-header="Sessions"></c-sessions>
+          </template>
+          </div>
         </div>
-        <br>
-        <div class="heading_3 lato-font">
-            {coursetype} course {mainTown}
-        </div>
-        <div class="heading_5 lato-font">
-            at {mainVenueName} ({startDate}
-            <span> - </span>
-            {endDate})
-        </div>
-        <div class="slds-grid slds-wrap">
-            <div class="regular-text lato-font slds-col slds-size_1-of-1 slds-large-size_5-of-6 slds-medium-size_5-of-6 slds-small-size_1-of-1">
-            </div>
-        </div>
-        <br><br>
-        <div class="row-flex">
-            <div class="padding-right_30 col-flex">
-                <div class="border-top_grey border-bottom_grey height_100">
-                    <div class="padding-top_1">
-                        <div class="lato-font heading_3">Location</div>
-                        <div>
-                            <template for:each={venues} for:item="venue">
-                                    <p class="lato-font regular-text padding-top_1 padding-bottom_1" key={venue.id}>
-                                        <b>{venue.name}</b> ({venue.sessions})<br/>
-                                        {venue.street}, {venue.town}, {venue.county}<br/>
-                                        {venue.postcode}
-                                    </p>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="padding-left_30 col-flex">
-                <div class="border-top_grey border-bottom_grey height_100">
-                    <div class="padding-top_1 padding-bottom_1">
-                        <div class="lato-font heading_3">Schedule</div>
-                        <div class="lato-font regular-text">
-                            <template if:true={formattedSessions}>
-                                <lightning-datatable
-                                    key-field="id"
-                                    data={formattedSessions}
-                                    columns={sessionColumns}
-                                    hide-checkbox-column
-                                    resize-column-disabled
-                                    hide-table-header>
-                                </lightning-datatable>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="heading_2 lato-font">
-            Total - &#163;
-            <lightning-formatted-number 
-                value={courseFee} 
-                minimum-fraction-digits="0">
-            </lightning-formatted-number>
-        </div>
-    </template>
-    <template if:false={valuesLoaded}>
-        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
-    </template>
+      </div>
+    </div>
+    <div class="heading_2 lato-font">
+      Total - &#163;
+      <lightning-formatted-number value={courseFee} minimum-fraction-digits="0">
+      </lightning-formatted-number>
+    </div>
+  </template>
+  <template if:false={valuesLoaded}>
+    <lightning-spinner
+      alternative-text="Loading"
+      size="large"
+    ></lightning-spinner>
+  </template>
 </template>

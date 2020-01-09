@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_Duration__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Day(Start_Date__c) - 10 &lt;= 0, &#39;early&#39;, IF(Day(Start_Date__c) - 20 &lt;= 0, &#39;middle&#39;, &#39;late&#39;))
++ &#39; &#39; +
+CASE(
+  MONTH(Start_Date__c),
+    1, &#39;January&#39;,
+    2, &#39;February&#39;,
+    3, &#39;March&#39;,
+    4, &#39;April&#39;,
+    5, &#39;May&#39;,
+    6, &#39;June&#39;,
+    7, &#39;July&#39;,
+    8, &#39;August&#39;,
+    9, &#39;September&#39;,
+    10, &#39;October&#39;,
+    11, &#39;November&#39;,
+    12, &#39;December&#39;,
+    null
+)
++ &#39; to &#39; +
+IF(Day(End_Date__c ) - 10 &lt;= 0, &#39;early&#39;, IF(Day(End_Date__c ) - 20 &lt;= 0, &#39;middle&#39;, &#39;late&#39;))
++ &#39; &#39; +
+CASE(
+  MONTH(End_Date__c ),
+    1, &#39;January&#39;,
+    2, &#39;February&#39;,
+    3, &#39;March&#39;,
+    4, &#39;April&#39;,
+    5, &#39;May&#39;,
+    6, &#39;June&#39;,
+    7, &#39;July&#39;,
+    8, &#39;August&#39;,
+    9, &#39;September&#39;,
+    10, &#39;October&#39;,
+    11, &#39;November&#39;,
+    12, &#39;December&#39;,
+    null
+)</formula>
+    <label>Course Duration</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

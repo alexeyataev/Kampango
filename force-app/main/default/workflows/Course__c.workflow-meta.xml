@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Set_Hide_From_Course_Finder</fullName>
+        <field>Hide_From_Course_Finder__c</field>
+        <literalValue>1</literalValue>
+        <name>Set Hide From Course Finder</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Hide private and 121 courses from course finder</fullName>
+        <actions>
+            <name>Set_Hide_From_Course_Finder</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Course__c.Private_Course__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Course__c.Sub_Type__c</field>
+            <operation>equals</operation>
+            <value>One to One</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Course__c.Hide_From_Course_Finder__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>
