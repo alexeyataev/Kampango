@@ -41,7 +41,8 @@ public with sharing class ClaimFeeHelper {
         ];
         
         Zumzum.PurchaseInvoiceService purchaseInvoiceService = new Zumzum.PurchaseInvoiceService();
-
+        List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper> purchases = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper>();
+        
         //Purchase Invoice
         Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper purchaseInvoice = new Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper();
         Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper purchaseInvoiceLineItem;
@@ -63,28 +64,33 @@ public with sharing class ClaimFeeHelper {
             purchaseInvoice.LineItems.add(purchaseInvoiceLineItem);
         }
 
+        purchases.add(purchaseInvoice);
+
         //Purchase credit
-        Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper purchaseCredit = new Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper();
-        Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper purchaseCreditLineItem = new Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper();
+        Boolean isPurchaseCreditNeeded = flowData[0].registrationFee > 0;
+        if (isPurchaseCreditNeeded) {
+            Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper purchaseCredit = new Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper();
+            Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper purchaseCreditLineItem = new Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper();
 
-        purchaseCredit.InvoiceDate = Date.today();
-        purchaseCredit.InvoiceDueDate = Date.today();
-        purchaseCredit.SupplierName = currentUser.AccountId;
-        purchaseCredit.TransactionCurrency = zumzumCurrency.Id;
-        purchaseCredit.PurchaseInvoiceType = PURCHASE_CREDIT;
-        purchaseCredit.LineItems = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper>();
+            purchaseCredit.InvoiceDate = Date.today();
+            purchaseCredit.InvoiceDueDate = Date.today();
+            purchaseCredit.SupplierName = currentUser.AccountId;
+            purchaseCredit.TransactionCurrency = zumzumCurrency.Id;
+            purchaseCredit.PurchaseInvoiceType = PURCHASE_CREDIT;
+            purchaseCredit.LineItems = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper>();
 
-        purchaseCreditLineItem.ForeignNetAmount = flowData[0].registrationFee;
-        purchaseCreditLineItem.NominalAccount = financialSettings.PI_Nominal_Account_Id__c;
-        purchaseCreditLineItem.Quantity = 1;
-        purchaseCreditLineItem.TaxRate = zumzumNoVAT.Id;
-        purchaseCreditLineItem.Narrative = 'required field';
-        
-        purchaseCredit.LineItems.add(purchaseCreditLineItem);
+            purchaseCreditLineItem.ForeignNetAmount = flowData[0].registrationFee;
+            purchaseCreditLineItem.NominalAccount = financialSettings.PI_Nominal_Account_Id__c;
+            purchaseCreditLineItem.Quantity = 1;
+            purchaseCreditLineItem.TaxRate = zumzumNoVAT.Id;
+            purchaseCreditLineItem.Narrative = 'required field';
+            
+            purchaseCredit.LineItems.add(purchaseCreditLineItem);
 
-        Zumzum.PurchaseInvoiceService.Response objResponse = purchaseInvoiceService.createPurchaseInvoices(
-            new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper>{purchaseInvoice, purchaseCredit}
-        );
+            purchases.add(purchaseCredit);
+        }
+
+        Zumzum.PurchaseInvoiceService.Response objResponse = purchaseInvoiceService.createPurchaseInvoices(purchases);
 
         if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
             throw new CreatePurchaseInvoiceException(objResponse.ResponseMessage);
