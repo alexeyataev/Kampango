@@ -60,7 +60,7 @@ Changed LWC component variable names</description>
     <formulas>
         <name>lastThreeMonths</name>
         <dataType>Date</dataType>
-        <expression>IF(MONTH(TODAY()) = 1, DATE(YEAR(TODAY()) - 1, 12, 01),DATE(YEAR(TODAY()), MONTH(TODAY()) - 3, 01))</expression>
+        <expression>IF(MONTH(TODAY()) = 1, DATE(YEAR(TODAY()) - 1, 12 - 2, 01),DATE(YEAR(TODAY()), MONTH(TODAY()) - 3, 01))</expression>
     </formulas>
     <formulas>
         <name>nominalAccountId</name>
