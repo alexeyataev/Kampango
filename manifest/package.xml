@@ -476,10 +476,6 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
-        <members>Default_Navigation</members>
-        <name>NavigationMenu</name>
-    </types>
-    <types>
         <members>Parent Community</members>
         <members>Practitioners</members>
         <name>Network</name>
