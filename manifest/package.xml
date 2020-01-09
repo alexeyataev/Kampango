@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>BookingDetailsController</members>
+        <members>BookingDetailsControllerTest</members>
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
         <members>BookingStatusFlowHelper</members>
@@ -12,6 +14,8 @@
         <members>CardPaymentUrlResult</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
+        <members>ContactDetailsController</members>
+        <members>ContactDetailsControllerTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -71,20 +75,27 @@
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
+        <members>TestVenueContactBuilder</members>
         <members>TestUserBuilder</members>
+        <members>VenueDetailsController</members>
+        <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
         <name>ApexClass</name>
     </types>
     <types>
+        <members>CourseSummaryBookingDetails</members>
+        <members>CourseSummaryContactDetails</members>
         <members>CourseSummaryCourseDetails</members>
         <members>CourseSummaryPractitionerDetails</members>
         <members>CourseSummarySessionDetails</members>
+        <members>CourseSummaryVenueDetails</members>
         <name>ApexComponent</name>
     </types>
     <types>
         <members>CourseSummary</members>
         <members>CourseSummaryPDF</members>
+        <members>CourseSummarySLDS</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -254,6 +265,9 @@
         <members>Override_Booking_Validation</members>
         <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Course_Validation</members>
+        <members>Override_Course_Assignment_Validation</members>
+        <members>Override_Estimated_Costs_Validation</members>
+        <members>Licence_To_Practice_Validation</members>
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
@@ -387,7 +401,6 @@
         <members>BookingConfirmationNotificationSend</members>
         <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
-        <members>Create_Task_For_Booking</members>
         <members>Get_Payment_Link</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Membership_Option</members>
@@ -489,6 +502,9 @@
         <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Course_Validation</members>
+        <members>Override_Course_Assignment_Validation</members>
+        <members>Override_Estimated_Costs_Validation</members>
+        <members>Licence_To_Practice_Validation</members>
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
@@ -569,6 +585,7 @@
         <name>StandardValueSet</name>
     </types>
     <types>
+        <members>confidentialClassStyles</members>
         <members>NCT_Styles</members>
         <name>StaticResource</name>
     </types>
@@ -588,6 +605,7 @@
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
         <members>Booking__c.Prevent_Overbooking_Of_Course</members>
         <members>Booking__c.PreventConfirmedBookingCreation</members>
+        <members>Booking__c.ReservationExpiryDateCannotBeRemoved</members>
         <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
         <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
