@@ -83,7 +83,7 @@ public class PaymentPlanOptionsTest {
         System.assertEquals(options[1].displayLabel, String.format(Label.Payment_Plan_Different_Multiple_Amounts_Option_Template, new List<Object> {66.68, 2, 66.66}));
     }
     @isTest
-    static void OneRecurringPaymentDependsOnFe_WithFeeForOnlyOnePaymentBeforeDeadline_OneOptionGenerated() {
+    static void OneRecurringPaymentDependsOnFee_WithFeeForOnlyOnePaymentBeforeDeadline_OneOptionGenerated() {
         Integer courseFee = 45;
         Date courseStartDate = Date.newInstance(2020, 6, 1);
         PaymentPlanGenerator.clock = new PaymentPlanMockClock(Date.newInstance(2019, 12, 5));
@@ -96,7 +96,7 @@ public class PaymentPlanOptionsTest {
         System.assertEquals(options[0].displayLabel, String.format(Label.Payment_Plan_Different_Amounts_Option_Template, new List<Object> {30.00, 1, 15.00}));
     }
     @isTest
-    static void TwoRecurringPaymentsDependsOnFe_WithFeeForTwoPaymentsBeforeDeadline_TwoOptionsGenerated() {
+    static void TwoRecurringPaymentsDependsOnFee_WithFeeForTwoPaymentsBeforeDeadline_TwoOptionsGenerated() {
         Integer courseFee = 55;
         Date courseStartDate = Date.newInstance(2020, 6, 1);
         PaymentPlanGenerator.clock = new PaymentPlanMockClock(Date.newInstance(2019, 12, 5));
