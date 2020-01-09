@@ -1,4 +1,4 @@
-<apex:page standardController="Course__c" lightningStylesheets="true" docType="html-5.0">
+<apex:page standardController="Course__c">
     <c:CourseSummaryCourseDetails course="{!Course__c}"/>
     <c:CourseSummaryPractitionerDetails course="{!Course__c}" fieldsetName="CourseSummaryPractitionerFields"/>
     <c:CourseSummaryVenueDetails course="{!Course__c}"/>

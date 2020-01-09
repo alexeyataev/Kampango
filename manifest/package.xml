@@ -89,6 +89,7 @@
     <types>
         <members>CourseSummary</members>
         <members>CourseSummaryPDF</members>
+        <members>CourseSummarySLDS</members>
         <name>ApexPage</name>
     </types>
     <types>

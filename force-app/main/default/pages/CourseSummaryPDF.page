@@ -1,8 +1,4 @@
 <apex:page standardController="Course__c" renderAs="pdf" showHeader="false" standardStylesheets="false">
     <apex:stylesheet value="{!URLFOR($Resource.confidentialClassStyles, 'confidentialClassListPDF.css')}"/>
-    <c:CourseSummaryCourseDetails course="{!Course__c}"/>
-    <c:CourseSummaryPractitionerDetails course="{!Course__c}" fieldsetName="CourseSummaryPractitionerFields"/>
-    <c:CourseSummaryVenueDetails course="{!Course__c}"/>
-    <c:CourseSummarySessionDetails course="{!Course__c}"/>
-    <c:CourseSummaryBookingDetails course="{!Course__c}" fieldsetName="CourseSummaryBookingFields"/>
+    <apex:include pageName="CourseSummary"/>
 </apex:page>
