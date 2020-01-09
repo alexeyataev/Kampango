@@ -483,10 +483,6 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
-        <members>Default_Navigation</members>
-        <name>NavigationMenu</name>
-    </types>
-    <types>
         <members>Parent Community</members>
         <members>Practitioners</members>
         <name>Network</name>
@@ -655,5 +651,5 @@
         <members>Booking__c.Send Reservation Email</members>
         <name>WorkflowRule</name>
     </types>
-    <version>46.0</version>
+    <version>47.0</version>
 </Package>
