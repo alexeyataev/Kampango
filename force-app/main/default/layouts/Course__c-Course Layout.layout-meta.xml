@@ -88,11 +88,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Main_Practitioner_Licence__c</field>
+                <field>Main_Practitioner__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Main_Practitioner__c</field>
+                <field>Main_Practitioner_Licence__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
