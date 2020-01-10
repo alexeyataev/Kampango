@@ -14,7 +14,7 @@ public with sharing class SendHTMLEmailPlugin {
         String senderDisplay = requests[0].senderDisplayName;
         List<String> ccEmails = requests[0].ccEmailAddresses;
         List<String> bccEmails = requests[0].bccEmailAddresses;
-        String orgWideAddressId = requests[0].orgWideEmailAddressId;
+        String orgWideAddress = requests[0].orgWideEmailAddress;
         
         List<Response> responseList = new List<Response>();
         Messaging.SingleEmailMessage message = new  Messaging.SingleEmailMessage();
@@ -40,8 +40,9 @@ public with sharing class SendHTMLEmailPlugin {
             }
             
             // Set sender address (cannot be used both)
-            Boolean isOrgWideSet = (orgWideAddressId != null && String.isNotBlank(orgWideAddressId));
+            Boolean isOrgWideSet = (orgWideAddress != null && String.isNotBlank(orgWideAddress));
             if (isOrgWideSet) {
+                Id orgWideAddressId = [SELECT Id FROM OrgWideEmailAddress WHERE Address = :orgWideAddress].Id;
                 message.setOrgWideEmailAddressId(orgWideAddressId);
             } else if (senderDisplay != null) {
                 message.setSenderDisplayName(senderDisplay);
@@ -166,7 +167,7 @@ public with sharing class SendHTMLEmailPlugin {
         public List<String> bccEmailAddresses;
 
         @invocableVariable
-        public String orgWideEmailAddressId;
+        public String orgWideEmailAddress;
     }
     
     public class Response {

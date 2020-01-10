@@ -20,9 +20,9 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>orgWideEmailAddressId</name>
+            <name>orgWideEmailAddress</name>
             <value>
-                <elementReference>orgWideAddressId</elementReference>
+                <elementReference>orgWideAddress</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -64,9 +64,9 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>orgWideEmailAddressId</name>
+            <name>orgWideEmailAddress</name>
             <value>
-                <elementReference>orgWideAddressId</elementReference>
+                <elementReference>orgWideAddress</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -186,7 +186,7 @@
     </decisions>
     <description>Sends emails of type &quot;Public&quot; to Primary and Partner contacts.
 Version changes: 
-Changed FROM address to Org-Wide Address.</description>
+Moved Org-Wide Address querying to Apex Action</description>
     <interviewLabel>Reunion Execute Sending Private Subflow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Public Subflow</label>
     <loops>
@@ -243,13 +243,7 @@ Changed FROM address to Org-Wide Address.</description>
         <queriedFields>Body</queriedFields>
         <queriedFields>Subject</queriedFields>
     </recordLookups>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Get_public_template</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Get_public_template</startElementReference>
     <status>Active</status>
     <variables>
         <name>booking</name>
@@ -276,7 +270,7 @@ Changed FROM address to Org-Wide Address.</description>
         <objectType>Course__c</objectType>
     </variables>
     <variables>
-        <name>orgWideAddressId</name>
+        <name>orgWideAddress</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>

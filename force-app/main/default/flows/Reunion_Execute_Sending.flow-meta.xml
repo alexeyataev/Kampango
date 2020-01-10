@@ -14,21 +14,15 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>session.Practitioner__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>practitionerTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -38,9 +32,15 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>orgWideEmailAddressId</name>
+            <name>targetObjectId</name>
             <value>
-                <elementReference>orgWideAddress.Id</elementReference>
+                <elementReference>session.Practitioner__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>practitionerTemplate.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -803,7 +803,7 @@
     </decisions>
     <description>Sends emails of different types when reunion session becomes &#39;confirmed&#39;.
 Version changes: 
-Changed FROM address to Org-Wide Address.</description>
+Moved Org-Wide Address query to Apex Action (final)</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -884,30 +884,6 @@ Changed FROM address to Org-Wide Address.</description>
         <queriedFields>Branch__c</queriedFields>
     </recordLookups>
     <recordLookups>
-        <description>We consider the only one is in the system</description>
-        <name>Get_Organization_Wide_Address</name>
-        <label>Get Organization-Wide Address</label>
-        <locationX>1000</locationX>
-        <locationY>669</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Check_PSA_emails</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Return_error_on_get_record</targetReference>
-        </faultConnector>
-        <filters>
-            <field>Address</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
-            </value>
-        </filters>
-        <object>OrgWideEmailAddress</object>
-        <outputReference>orgWideAddress</outputReference>
-        <queriedFields>Id</queriedFields>
-    </recordLookups>
-    <recordLookups>
         <name>Get_practitioner</name>
         <label>Get practitioner</label>
         <locationX>481</locationX>
@@ -940,7 +916,7 @@ Changed FROM address to Org-Wide Address.</description>
         <locationY>669</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Organization_Wide_Address</targetReference>
+            <targetReference>Check_PSA_emails</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -1010,13 +986,7 @@ Changed FROM address to Org-Wide Address.</description>
         <queriedFields>Id</queriedFields>
         <queriedFields>Type__c</queriedFields>
     </recordLookups>
-    <start>
-        <locationX>356</locationX>
-        <locationY>263</locationY>
-        <connector>
-            <targetReference>Check_Session_Id</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Check_Session_Id</startElementReference>
     <status>Active</status>
     <subflows>
         <name>Send_to_Private</name>
@@ -1040,9 +1010,9 @@ Changed FROM address to Org-Wide Address.</description>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <name>orgWideAddressId</name>
+            <name>orgWideAddress</name>
             <value>
-                <elementReference>orgWideAddress.Id</elementReference>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1112,9 +1082,9 @@ Changed FROM address to Org-Wide Address.</description>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <name>orgWideAddressId</name>
+            <name>orgWideAddress</name>
             <value>
-                <elementReference>orgWideAddress.Id</elementReference>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
