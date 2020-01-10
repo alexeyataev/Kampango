@@ -179,6 +179,7 @@
     </types>
     <types>
         <members>Course__c-Admin Course Layout</members>
+        <members>Course__c-Capacity PSA Course Layout</members>
         <name>Layout</name>
     </types>
     <types>
