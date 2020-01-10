@@ -250,6 +250,11 @@
         <field>Booking__c.Under_18__c</field>
         <readable>true</readable>
     </fieldPermissions>
+     <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Branch__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Deducted_Practitioner_Fees__c</field>
@@ -298,7 +303,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Secondary_Email__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1326,7 +1331,7 @@
         <layout>Course_Assignment__c-Course Assignment Practitioner Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course__c-Course Layout</layout>
+        <layout>Course__c-Practitioner Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
@@ -1550,6 +1555,14 @@
         <object>Zumzum__Tax_Rate__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>CourseSummarySLDS</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>CourseSummaryPDF</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Branch</recordType>
