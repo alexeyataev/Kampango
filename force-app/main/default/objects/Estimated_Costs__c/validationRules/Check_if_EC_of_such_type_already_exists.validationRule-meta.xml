@@ -4,12 +4,13 @@
     <active>true</active>
     <errorConditionFormula>AND(
  OR(ISNEW(), ISCHANGED(Type__c)),
-  OR(
+ OR(
     AND(ISPICKVAL(Type__c, &#39;Venue&#39;),  
         Course__r.Count_of_Estimated_Venue_Costs__c &gt; 0),
     AND(ISPICKVAL(Type__c, &#39;Travel&#39;),   
         Course__r.Count_of_Estimated_Travel_Costs__c &gt; 0)
-  )
+  ),
+  NOT($Permission.Override_Estimated_Costs_Validation)
 )</errorConditionFormula>
     <errorMessage>An estimated cost of this type already exists on this course. Please either remove or update the existing estimated cost.</errorMessage>
 </ValidationRule>

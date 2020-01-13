@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Min_Days_Fully_Paid_Before_Course_Start__c</fullName>
+    <description>Represents the number of days the course fee must be fully paid before the course starts. Otherwise, the payment option is not available.
+This applies to all course types.</description>
+    <externalId>false</externalId>
+    <label>Min Days Fully Paid Before Course Start</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

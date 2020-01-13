@@ -4,7 +4,8 @@
     <active>true</active>
     <errorConditionFormula>AND(
 Practitioner_Fee_Discount__c  &lt;&gt; 0,
-Practitioner_Fee_Uplift__c  &lt;&gt; 0
+Practitioner_Fee_Uplift__c  &lt;&gt; 0,
+NOT($Permission.Override_Course_Validation)
 )</errorConditionFormula>
     <errorMessage>Please only enter one of Fee Discount or Fee Uplift percentage.</errorMessage>
 </ValidationRule>
