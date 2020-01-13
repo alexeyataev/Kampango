@@ -1072,6 +1072,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Practitioner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Purchase_Order_Line_Item__c</field>
         <readable>false</readable>
     </fieldPermissions>
