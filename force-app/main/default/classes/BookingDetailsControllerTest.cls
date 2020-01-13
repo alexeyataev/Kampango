@@ -44,7 +44,14 @@ public with sharing class BookingDetailsControllerTest {
             WHERE Course__c = :course.Id
 		];
 
-        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, PROFILE_NAME) ) {
+        User user = [
+            SELECT Id 
+            FROM User
+            WHERE Profile.Name = :PROFILE_NAME
+            LIMIT 1
+        ];
+        
+        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
             bookings[0].Status__c = 'Confirmed';
             update bookings;
         }
