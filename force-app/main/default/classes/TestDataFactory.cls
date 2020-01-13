@@ -446,7 +446,7 @@ public TestDataFactory buildReunion() {
             LIMIT 1
         ];
         
-        insert new PermissionSetAssignment(AssigneeId = user.Id, PermissionSetId = permissionInstance.Id);
+        insert new PermissionSetAssignment(AssigneeId = userInstance.Id, PermissionSetId = permissionInstance.Id);
 
     return userInstance;
     }
