@@ -383,9 +383,6 @@ public TestDataFactory buildReunion() {
             .withUsername(ENQUIRY_PSA_USERNAME)
             .insertRecord(true)
             .build());
-
-        System.debug(enquiryPSA_Users);
-
         return this;
     }
     
@@ -438,6 +435,27 @@ public TestDataFactory buildReunion() {
             .build()));
 
         return users[2];
+    }
+
+    public static User assignPermissionSetToUser(String permissionSetName, String profileName) {
+
+        PermissionSet permissionInstance = [
+            SELECT Id 
+            FROM PermissionSet
+            WHERE Name = :permissionSetName
+            LIMIT 1
+        ];
+        
+        User userInstance = [
+            SELECT Id
+            FROM User
+            WHERE Profile.Name = :profileName
+            LIMIT 1
+        ];
+
+        insert new PermissionSetAssignment(AssigneeId = userInstance.Id, PermissionSetId = permissionInstance.Id);
+
+    return userInstance;
     }
 
     public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
