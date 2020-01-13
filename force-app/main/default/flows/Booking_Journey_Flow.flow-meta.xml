@@ -1,35 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <decisions>
-        <name>Is_Membership_Chose</name>
-        <label>Is Membership Chose ?</label>
-        <locationX>642</locationX>
-        <locationY>318</locationY>
-        <defaultConnector>
-            <targetReference>Payment_Details</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Membership Is False</defaultConnectorLabel>
-        <rules>
-            <name>Membership_Is_True</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Membership_Result</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>No</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Gift_Aid_Declaration</targetReference>
-            </connector>
-            <label>Membership Is True</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Is_Validation_Code_Correct</name>
         <label>Is Validation Code Correct?</label>
         <locationX>50</locationX>
-        <locationY>203</locationY>
+        <locationY>266</locationY>
         <defaultConnector>
             <targetReference>error_screen</targetReference>
         </defaultConnector>
@@ -69,7 +44,7 @@
         <name>Get_Booking_Data</name>
         <label>Get Booking Data</label>
         <locationX>290</locationX>
-        <locationY>161</locationY>
+        <locationY>224</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Validation_Code_Correct</targetReference>
@@ -101,7 +76,7 @@
         <name>Get_Course_Data</name>
         <label>Get Course Data</label>
         <locationX>290</locationX>
-        <locationY>284</locationY>
+        <locationY>347</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>GetPrimaryContactData</targetReference>
@@ -128,16 +103,12 @@
         <queriedFields>Additional_Confirmation_Information__c</queriedFields>
         <queriedFields>Main_Practitioner__c</queriedFields>
         <queriedFields>Fee__c</queriedFields>
-        <queriedFields>Title__c</queriedFields>
-        <queriedFields>Enquiries_PSA_Email__c</queriedFields>
-        <queriedFields>Enquiries_PSA_Name__c</queriedFields>
-        <queriedFields>Enquiries_PSA_Phone__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>GetPrimaryContactData</name>
         <label>GetPrimaryContactData</label>
         <locationX>290</locationX>
-        <locationY>523</locationY>
+        <locationY>616</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Booking_Journey_Available</targetReference>
@@ -171,8 +142,8 @@
     <screens>
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>
-        <locationX>489</locationX>
-        <locationY>318</locationY>
+        <locationX>480</locationX>
+        <locationY>403</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -202,7 +173,7 @@
         <name>error_screen</name>
         <label>error screen</label>
         <locationX>55</locationX>
-        <locationY>420</locationY>
+        <locationY>483</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -214,19 +185,13 @@
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <start>
-        <locationX>290</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Get_Booking_Data</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Get_Booking_Data</startElementReference>
     <status>Active</status>
     <subflows>
         <name>Booking_Journey_Available</name>
         <label>Booking Journey Available</label>
-        <locationX>489</locationX>
-        <locationY>523</locationY>
+        <locationX>479</locationX>
+        <locationY>614</locationY>
         <connector>
             <targetReference>Course_Summary_Details_Screen</targetReference>
         </connector>
@@ -245,20 +210,27 @@
         </inputAssignments>
     </subflows>
     <subflows>
-        <name>Contact_Details_Flow</name>
-        <label>Contact Details Flow</label>
-        <locationX>489</locationX>
-        <locationY>128</locationY>
-        <connector>
-            <targetReference>Membership_Signup_and_Option</targetReference>
-        </connector>
-        <flowName>Booking_Journey_Update_Contact_Details</flowName>
+        <name>Booking_Main_Payment_Process_Flow</name>
+        <label>Booking Main Payment Process Flow</label>
+        <locationX>650</locationX>
+        <locationY>222</locationY>
+        <flowName>Booking_Main_Payment_Process</flowName>
         <inputAssignments>
-            <name>PrimaryContactRecord</name>
+            <name>bookingId</name>
             <value>
-                <elementReference>PrimaryContactRecord</elementReference>
+                <elementReference>bookingId</elementReference>
             </value>
         </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Contact_Details_Flow</name>
+        <label>Contact Details Flow</label>
+        <locationX>480</locationX>
+        <locationY>222</locationY>
+        <connector>
+            <targetReference>Booking_Main_Payment_Process_Flow</targetReference>
+        </connector>
+        <flowName>Booking_Journey_Update_Contact_Details</flowName>
         <inputAssignments>
             <name>bookingId</name>
             <value>
@@ -277,95 +249,10 @@
                 <elementReference>courseRecord</elementReference>
             </value>
         </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>Gift_Aid_Declaration</name>
-        <label>Gift Aid Declaration</label>
-        <locationX>871</locationX>
-        <locationY>425</locationY>
-        <connector>
-            <targetReference>Payment_Details</targetReference>
-        </connector>
-        <flowName>Create_Gift_Aid_Declaration</flowName>
         <inputAssignments>
-            <name>bookingId</name>
+            <name>PrimaryContactRecord</name>
             <value>
-                <elementReference>bookingId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Membership_Options_Add_Partner</name>
-            <value>
-                <elementReference>Membership_With_Partner</elementReference>
-            </value>
-        </inputAssignments>
-        <outputAssignments>
-            <assignToReference>GiftAidDeclarationList</assignToReference>
-            <name>GiftAidDeclarationList</name>
-        </outputAssignments>
-    </subflows>
-    <subflows>
-        <name>Membership_Signup_and_Option</name>
-        <label>Membership Signup and Option</label>
-        <locationX>649</locationX>
-        <locationY>128</locationY>
-        <connector>
-            <targetReference>Is_Membership_Chose</targetReference>
-        </connector>
-        <flowName>Membership_Option</flowName>
-        <inputAssignments>
-            <name>bookingId</name>
-            <value>
-                <elementReference>bookingId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Installment_Object</name>
-            <value>
-                <elementReference>Installment_Object</elementReference>
-            </value>
-        </inputAssignments>
-        <outputAssignments>
-            <assignToReference>Installment_Object</assignToReference>
-            <name>Installment_Object</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>Membership_Result</assignToReference>
-            <name>Membership_Result</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>Membership_With_Partner</assignToReference>
-            <name>Membership_With_Partner</name>
-        </outputAssignments>
-    </subflows>
-    <subflows>
-        <name>Payment_Details</name>
-        <label>Payment Details</label>
-        <locationX>650</locationX>
-        <locationY>530</locationY>
-        <flowName>Payment_Details</flowName>
-        <inputAssignments>
-            <name>bookingId</name>
-            <value>
-                <elementReference>bookingId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Contact_List</name>
-            <value>
-                <elementReference>Contact_List</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>GiftAidDeclarationList</name>
-            <value>
-                <elementReference>GiftAidDeclarationList</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Installment_Object</name>
-            <value>
-                <elementReference>Installment_Object</elementReference>
+                <elementReference>PrimaryContactRecord</elementReference>
             </value>
         </inputAssignments>
     </subflows>
@@ -394,6 +281,16 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Booking__c</objectType>
+    </variables>
+    <variables>
+        <name>Chosen_Membership_Result</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>false</stringValue>
+        </value>
     </variables>
     <variables>
         <name>Contact_List</name>
@@ -435,17 +332,7 @@
         <objectType>cpm__Installment__c</objectType>
     </variables>
     <variables>
-        <name>Membership_Result</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <stringValue>false</stringValue>
-        </value>
-    </variables>
-    <variables>
-        <name>Membership_With_Partner</name>
+        <name>Is_Membership_With_Partner</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -461,6 +348,14 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>rrr</name>
+        <apexClass>PaymentPlanParameters</apexClass>
+        <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>userRecord</name>
