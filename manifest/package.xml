@@ -453,7 +453,7 @@
         <members>Course_Assignment__c-Course Assignment Layout</members>
         <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
-        <members>Course__c-Capacity PSA Course Layout</members>
+        <members>Course__c-Practitioner Course Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
