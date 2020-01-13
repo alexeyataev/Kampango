@@ -350,14 +350,6 @@
         <objectType>Contact</objectType>
     </variables>
     <variables>
-        <name>rrr</name>
-        <apexClass>PaymentPlanParameters</apexClass>
-        <dataType>Apex</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
         <name>userRecord</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
