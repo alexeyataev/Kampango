@@ -14,12 +14,6 @@
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>booking.Primary_Contact__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>templateId</name>
             <value>
                 <elementReference>clientTemplate.Id</elementReference>
@@ -32,15 +26,21 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>orgWideAddress</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>replyEmailAddress</name>
             <value>
                 <elementReference>course.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>orgWideEmailAddressId</name>
+            <name>targetObjectId</name>
             <value>
-                <elementReference>orgWideAddressId</elementReference>
+                <elementReference>booking.Primary_Contact__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -58,12 +58,6 @@
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>booking.Partner_Contact__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>templateId</name>
             <value>
                 <elementReference>clientTemplate.Id</elementReference>
@@ -76,15 +70,21 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>orgWideAddress</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>replyEmailAddress</name>
             <value>
                 <elementReference>course.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>orgWideEmailAddressId</name>
+            <name>targetObjectId</name>
             <value>
-                <elementReference>orgWideAddressId</elementReference>
+                <elementReference>booking.Partner_Contact__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -102,12 +102,6 @@
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>booking.Primary_Contact__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>templateId</name>
             <value>
                 <elementReference>hostTemplate.Id</elementReference>
@@ -120,15 +114,21 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>orgWideAddress</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>replyEmailAddress</name>
             <value>
                 <elementReference>course.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>orgWideEmailAddressId</name>
+            <name>targetObjectId</name>
             <value>
-                <elementReference>orgWideAddressId</elementReference>
+                <elementReference>booking.Primary_Contact__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -146,12 +146,6 @@
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>booking.Partner_Contact__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>templateId</name>
             <value>
                 <elementReference>hostTemplate.Id</elementReference>
@@ -164,15 +158,21 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>orgWideAddress</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>replyEmailAddress</name>
             <value>
                 <elementReference>course.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>orgWideEmailAddressId</name>
+            <name>targetObjectId</name>
             <value>
-                <elementReference>orgWideAddressId</elementReference>
+                <elementReference>booking.Partner_Contact__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -476,7 +476,7 @@
     </decisions>
     <description>Sends emails of types &quot;Host&quot; and &quot;Attendee&quot; to Primary and Partner contacts.
 Version changes:
-Changed FROM address to Org-Wide Address.</description>
+Moved Org-Wide Address querying to Apex Action</description>
     <formulas>
         <name>host_names</name>
         <dataType>String</dataType>
@@ -595,13 +595,7 @@ Changed FROM address to Org-Wide Address.</description>
         </faultConnector>
         <inputReference>course</inputReference>
     </recordUpdates>
-    <start>
-        <locationX>116</locationX>
-        <locationY>326</locationY>
-        <connector>
-            <targetReference>Loop_to_set_host_names</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Loop_to_set_host_names</startElementReference>
     <status>Active</status>
     <variables>
         <name>booking</name>
@@ -644,7 +638,7 @@ Changed FROM address to Org-Wide Address.</description>
         <objectType>EmailTemplate</objectType>
     </variables>
     <variables>
-        <name>orgWideAddressId</name>
+        <name>orgWideAddress</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
