@@ -551,6 +551,7 @@
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>
         <members>Practitioners/Practitioner_Schedule</members>
+        <members>Practitioners/Registration_Fee_History</members>
         <name>Report</name>
     </types>
     <types>
