@@ -166,13 +166,6 @@
             <operator>Assign</operator>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Installment_Object.Payment_Plan_Amount_Initial__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>PaymentPlanOptionSelected.amountFirst</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>Installment_Object.Payment_Plan_Amount_Recurring__c</assignToReference>
             <operator>Assign</operator>
             <value>
@@ -887,7 +880,7 @@
             <targetReference>With_Partner</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <textTemplates>
         <name>Membership_12_Template</name>
         <text>&lt;b style=&quot;font-size: 16px;&quot;&gt;12 &lt;/b&gt;&lt;b style=&quot;font-size: 16px; color: #212529; background-color: rgb(255, 255, 255);&quot;&gt;month membership&lt;/b&gt; &lt;p style=&quot;margin-left:24px;&quot;&gt;12 months money off baby supplies, holidays and services when you help us continue being the leading charity for pregnancy and young families. &lt;b style=&quot;color:#212529;&quot;&gt;£48&lt;/b&gt;&amp;nbsp;(or £12 per quarter)&lt;/p&gt;</text>
