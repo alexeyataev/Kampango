@@ -137,10 +137,6 @@
                 <stringValue>New</stringValue>
             </value>
         </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Installment_Object.Payment_Plan_Amount_Initial__c</assignToReference>
-            <operator>Assign</operator>
-        </assignmentItems>
     </assignments>
     <assignments>
         <name>Course_Plan_Payment_By_Credit_Card</name>
@@ -884,7 +880,13 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>With_Partner</startElementReference>
+    <start>
+        <locationX>137</locationX>
+        <locationY>137</locationY>
+        <connector>
+            <targetReference>With_Partner</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <textTemplates>
         <name>Membership_12_Template</name>
