@@ -1,5 +1,5 @@
 <apex:component access="global" controller="BookingPaymentDetailsController">
-    <apex:attribute name="bookingId" description="Booking Id to get information about payment" type="String" assignTo="{!bookingIdParam}"/>
+    <apex:attribute name="bookingRecordId" description="Booking Id to get information about payment" type="String" assignTo="{!bookingId}"/>
 
     <table border="1" cellpadding='5' cellspacing='0' width='100%' class='bookingPaymentBlock'>
         <thead style='font-size:16px;color:#00876a;'>
@@ -11,15 +11,15 @@
             </tr>
         </thead>
         <tbody>
-            <apex:repeat var="payment" value="{!bookingList}">
+            <apex:repeat var="booking" value="{!bookingList}">
                 <tr>
                     <td>
                         <apex:outputText value="{0,date,dd MMMM yyyy}">
-                            <apex:param value="{!payment.Confirmed_Date__c}" />
+                            <apex:param value="{!booking.Confirmed_Date__c}" />
                         </apex:outputText>
                     </td>
                     <td>Card</td>
-                    <td>£{!IF(NOT(ISBLANK(payment.Fee_Override__c)), payment.Fee_Override__c, payment.Course_Fee__c)}
+                    <td>£{!IF(NOT(ISBLANK(booking.Fee_Override__c)), booking.Fee_Override__c, booking.Course_Fee__c)}
                     </td>
                     <td>Course Fee</td>
                 </tr>

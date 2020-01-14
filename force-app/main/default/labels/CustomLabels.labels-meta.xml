@@ -87,6 +87,27 @@
         <value>Batch Bank Payment should be approved to generate Payment File.</value>
     </labels>
     <labels>
+        <fullName>Payment_Plan_Different_Amounts_Option_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Plan Different Amounts Option Template</shortDescription>
+        <value>1 payment of £ {0} and {1} monthly payment of £ {2}</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Plan_Different_Multiple_Amounts_Option_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Plan Different Multiple Amounts Option Template</shortDescription>
+        <value>1 payment of £ {0} and {1} monthly payments of £ {2}</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Plan_Equal_Amounts_Option_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Plan Equal Amounts Option Template</shortDescription>
+        <value>{0} monthly payment of £ {1}</value>
+    </labels>
+    <labels>
         <fullName>Unsupported_Browser_Error_Message</fullName>
         <language>en_US</language>
         <protected>false</protected>

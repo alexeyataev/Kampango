@@ -8,12 +8,6 @@
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
         <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>booking.Primary_Contact__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>templateId</name>
             <value>
                 <elementReference>bookingCreatedTemplate.Id</elementReference>
@@ -26,15 +20,21 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>replyEmailAddress</name>
             <value>
                 <elementReference>course.Enquiries_PSA_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>orgWideEmailAddressId</name>
+            <name>targetObjectId</name>
             <value>
-                <elementReference>orgWideAddress.Id</elementReference>
+                <elementReference>booking.Primary_Contact__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -79,7 +79,7 @@
     </decisions>
     <description>Sends an email to a Primary Contact
 Version Changes:
-Changed FROM address to Org-Wide Address.</description>
+Moved Org-Wide Address query to Apex Action</description>
     <interviewLabel>Booking Send Email On Enquiry Created Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Send Email On Enquiry Created Flow</label>
     <processMetadataValues>
@@ -124,7 +124,7 @@ Changed FROM address to Org-Wide Address.</description>
         <locationY>370</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_org_wide_address</targetReference>
+            <targetReference>Get_template_for_booking_creation_email</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -137,26 +137,6 @@ Changed FROM address to Org-Wide Address.</description>
         <outputReference>course</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Enquiries_PSA_Email__c</queriedFields>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_org_wide_address</name>
-        <label>Get org-wide address</label>
-        <locationX>257</locationX>
-        <locationY>379</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_template_for_booking_creation_email</targetReference>
-        </connector>
-        <filters>
-            <field>Address</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
-            </value>
-        </filters>
-        <object>OrgWideEmailAddress</object>
-        <outputReference>orgWideAddress</outputReference>
-        <queriedFields>Id</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_template_for_booking_creation_email</name>
@@ -178,13 +158,7 @@ Changed FROM address to Org-Wide Address.</description>
         <outputReference>bookingCreatedTemplate</outputReference>
         <queriedFields>Id</queriedFields>
     </recordLookups>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Check_booking_is_set</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Check_booking_is_set</startElementReference>
     <status>Active</status>
     <variables>
         <name>booking</name>

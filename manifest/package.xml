@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>BookingDetailsController</members>
+        <members>BookingDetailsControllerTest</members>
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
+        <members>BookingPaymentDetailsController</members>
+        <members>BookingPaymentDetailsControllerTest</members>
         <members>BookingStatusFlowHelper</members>
         <members>BookingStatusFlowHelperTest</members>
         <members>BookingPaymentDetailsController</members>
@@ -16,6 +20,8 @@
         <members>ClaimFeeHelperTest</members>
         <members>ConfirmationEmailController</members>
         <members>ConfirmationEmailControllerTest</members>
+        <members>ContactDetailsController</members>
+        <members>ContactDetailsControllerTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -33,8 +39,13 @@
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
         <members>HttpStatusCode</members>
+        <members>IClock</members>
         <members>IPaymentServiceProvider</members>
         <members>PaymentApiRequest</members>
+        <members>PaymentPlanGenerator</members>
+        <members>PaymentPlanMockClock</members>
+        <members>PaymentPlanOption</members>
+        <members>PaymentPlanOptionsTest</members>
         <members>PractitionerBandFeeHelper</members>
         <members>PractitionerBandFeeHelperTest</members>
         <members>PractitionerDetailsController</members>
@@ -54,6 +65,7 @@
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
         <members>StepOrangeCardPaymentProvider</members>
+        <members>SystemClock</members>
         <members>TestAccountBuilder</members>
         <members>TestBookingBuilder</members>
         <members>TestBranchWeightingBuilder</members>
@@ -70,7 +82,10 @@
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
+        <members>TestVenueContactBuilder</members>
         <members>TestUserBuilder</members>
+        <members>VenueDetailsController</members>
+        <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
         <name>ApexClass</name>
@@ -78,14 +93,18 @@
     <types>
         <members>ConfirmationEmailBookingPaymentDetails</members>
         <members>ConfirmationEmailCourseDetails</members>
+        <members>CourseSummaryBookingDetails</members>
+        <members>CourseSummaryContactDetails</members>
         <members>CourseSummaryCourseDetails</members>
         <members>CourseSummaryPractitionerDetails</members>
         <members>CourseSummarySessionDetails</members>
+        <members>CourseSummaryVenueDetails</members>
         <name>ApexComponent</name>
     </types>
     <types>
         <members>CourseSummary</members>
         <members>CourseSummaryPDF</members>
+        <members>CourseSummarySLDS</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -178,6 +197,7 @@
         <members>Account</members>
         <members>Booking__c</members>
         <members>Branch_Weighting__c</members>
+        <members>Card_Payment_Plan_Settings__c</members>
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
@@ -392,7 +412,6 @@
         <members>BookingConfirmationNotificationSend</members>
         <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
-        <members>Create_Task_For_Booking</members>
         <members>Get_Payment_Link</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Membership_Option</members>
@@ -444,7 +463,7 @@
         <members>Course_Assignment__c-Course Assignment Layout</members>
         <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
-        <members>Course__c-Capacity PSA Course Layout</members>
+        <members>Course__c-Practitioner Course Layout</members>
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
@@ -473,10 +492,6 @@
         <members>successPaymentPage</members>
         <members>courseTransferDetails</members>
         <name>LightningComponentBundle</name>
-    </types>
-    <types>
-        <members>Default_Navigation</members>
-        <name>NavigationMenu</name>
     </types>
     <types>
         <members>Parent Community</members>
@@ -544,6 +559,7 @@
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>
         <members>Practitioners/Practitioner_Schedule</members>
+        <members>Practitioners/Registration_Fee_History</members>
         <name>Report</name>
     </types>
     <types>
@@ -558,6 +574,11 @@
         <members>Finance</members>
         <name>Role</name>
     </types>
+    <types>
+        <members>Company</members>
+        <members>EmailAdministration</members>
+        <name>Settings</name>
+    </types>   
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
         <name>SharingCriteriaRule</name>
@@ -577,6 +598,7 @@
         <name>StandardValueSet</name>
     </types>
     <types>
+        <members>confidentialClassStyles</members>
         <members>NCT_Styles</members>
         <name>StaticResource</name>
     </types>
@@ -646,5 +668,5 @@
         <members>Booking__c.Send Reservation Email</members>
         <name>WorkflowRule</name>
     </types>
-    <version>46.0</version>
+    <version>47.0</version>
 </Package>

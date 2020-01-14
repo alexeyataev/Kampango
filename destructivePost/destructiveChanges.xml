@@ -8,4 +8,8 @@
         <members>Fee_Band</members>
         <name>GlobalValueSet</name>
     </types>
-</Package>
+    <types>
+        <members>Tick</members>
+        <name>StaticResource</name>
+    </types>
+</Package> 
