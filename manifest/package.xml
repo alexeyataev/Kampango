@@ -5,12 +5,16 @@
         <members>BookingDetailsControllerTest</members>
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
+        <members>BookingPaymentDetailsController</members>
+        <members>BookingPaymentDetailsControllerTest</members>
         <members>BookingStatusFlowHelper</members>
         <members>BookingStatusFlowHelperTest</members>
         <members>BranchWeightingHelper</members>
         <members>BranchWeightingHelperTest</members>
         <members>CardPaymentHandler</members>
         <members>CardPaymentHandlerTest</members>
+        <members>CardPaymentParameters</members>
+        <members>CardPaymentPlanHandler</members>
         <members>CardPaymentUrlResult</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
@@ -32,6 +36,7 @@
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
+        <members>FinDockCardPaymentProvider</members>
         <members>HttpStatusCode</members>
         <members>IClock</members>
         <members>IPaymentServiceProvider</members>
@@ -39,6 +44,7 @@
         <members>PaymentPlanGenerator</members>
         <members>PaymentPlanMockClock</members>
         <members>PaymentPlanOption</members>
+        <members>PaymentPlanOptionsController</members>
         <members>PaymentPlanOptionsTest</members>
         <members>PractitionerBandFeeHelper</members>
         <members>PractitionerBandFeeHelperTest</members>
@@ -84,6 +90,7 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>ConfirmationEmailBookingPaymentDetails</members>
         <members>CourseSummaryBookingDetails</members>
         <members>CourseSummaryContactDetails</members>
         <members>CourseSummaryCourseDetails</members>
@@ -548,6 +555,7 @@
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>
         <members>Practitioners/Practitioner_Schedule</members>
+        <members>Practitioners/Registration_Fee_History</members>
         <name>Report</name>
     </types>
     <types>
