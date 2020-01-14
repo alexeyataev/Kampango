@@ -46,8 +46,9 @@ public with sharing class BookingPaymentDetailsControllerTest {
             bookingPaymentDetailsControllerInstance.setBookingId(bookingRecord.Id);
         Test.stopTest();
 
-        System.assertEquals(bookingPaymentDetailsControllerInstance.bookingList.size(), 1);
-        System.assertEquals(bookingPaymentDetailsControllerInstance.bookingList.get(0).Status__c, BOOKING_STATUS_CONFIRMED);
+        System.assertEquals(1, bookingPaymentDetailsControllerInstance.bookingList.size());
+        System.assertEquals(bookingRecord.Id, bookingPaymentDetailsControllerInstance.bookingList.get(0).Id);
+        System.assertEquals(BOOKING_STATUS_CONFIRMED, bookingPaymentDetailsControllerInstance.bookingList.get(0).Status__c);
         
     }
 }
