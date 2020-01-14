@@ -16,7 +16,6 @@
         <members>PaymentLinkGeneratorTestPageTest</members>
         <members>PaymentProviderHttpResponseMock</members>
         <members>PaymentProviderTest</members>
-        <members>StepOrangeCardPaymentProvider</members>
         <name>ApexClass</name>
     </types>
     <types>
