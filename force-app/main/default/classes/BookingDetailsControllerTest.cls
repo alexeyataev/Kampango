@@ -1,9 +1,13 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #35 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 public with sharing class BookingDetailsControllerTest {
     
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
     private static final String HOST_LASTNAME = 'Black';
+    private static final String PROFILE_NAME = 'Enquiry PSA';
+    private static final String PERMISSION_SET_NAME = 'Override_Booking_Validation';
 
     @TestSetup 
     private static void SetupTestData() {
@@ -40,23 +44,14 @@ public with sharing class BookingDetailsControllerTest {
             WHERE Course__c = :course.Id
 		];
 
-        User thisUser = [
+        User user = [
             SELECT Id 
-            FROM User 
-            WHERE Profile.Name = 'Enquiry PSA'
+            FROM User
+            WHERE Profile.Name = :PROFILE_NAME
             LIMIT 1
         ];
-
-        PermissionSet overrideBookingValidation = [
-            SELECT Id 
-            FROM PermissionSet 
-            WHERE Name = 'Override_Booking_Validation'
-            LIMIT 1
-        ];
-
-        insert new PermissionSetAssignment(AssigneeId = thisUser.id, PermissionSetId = overrideBookingValidation.Id);
-
-        System.runAs ( thisUser ) {
+        
+        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
             bookings[0].Status__c = 'Confirmed';
             update bookings;
         }
