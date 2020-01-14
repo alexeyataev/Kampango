@@ -57,7 +57,7 @@ public with sharing class BookingDetailsControllerTest {
         ];
 
         insert new PermissionSetAssignment(AssigneeId = thisUser.id, PermissionSetId = overrideBookingValidation.Id);
-        
+
         System.runAs ( thisUser ) {
             bookings[0].Status__c = 'Confirmed';
             update bookings;
