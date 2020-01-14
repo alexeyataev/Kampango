@@ -1,5 +1,5 @@
 <apex:component access="global" controller="BookingPaymentDetailsController">
-    <apex:attribute name="bookingId" description="Booking Id to get information about payment" type="String" assignTo="{!bookingId}"/>
+    <apex:attribute name="bookingRecordId" description="Booking Id to get information about payment" type="String" assignTo="{!bookingId}"/>
 
     <table border="1" cellpadding='5' cellspacing='0' width='100%' class='bookingPaymentBlock'>
         <thead style='font-size:16px;color:#00876a;'>
