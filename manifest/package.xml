@@ -5,6 +5,8 @@
         <members>BookingDetailsControllerTest</members>
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
+        <members>BookingPaymentDetailsController</members>
+        <members>BookingPaymentDetailsControllerTest</members>
         <members>BookingStatusFlowHelper</members>
         <members>BookingStatusFlowHelperTest</members>
         <members>BranchWeightingHelper</members>
@@ -84,6 +86,7 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>ConfirmationEmailBookingPaymentDetails</members>
         <members>CourseSummaryBookingDetails</members>
         <members>CourseSummaryContactDetails</members>
         <members>CourseSummaryCourseDetails</members>
@@ -549,6 +552,7 @@
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>
         <members>Practitioners/Practitioner_Schedule</members>
+        <members>Practitioners/Registration_Fee_History</members>
         <name>Report</name>
     </types>
     <types>
