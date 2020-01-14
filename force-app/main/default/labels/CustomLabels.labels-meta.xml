@@ -6,7 +6,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Confirmation Notification Additional Session</shortDescription>
-        <value>In addition to the dates and times shown, there will be a {0}-hour  session. Further details of this will be confirmed to you by your course administrator once finalised.</value>
+        <value>In addition to the dates and times shown, there will be a {0}-hour session. Further details of this will be confirmed to you by your course administrator once finalised.</value>
     </labels>
     <labels>
         <fullName>Confirmation_Notification_Breastfeeding_Session</fullName>
