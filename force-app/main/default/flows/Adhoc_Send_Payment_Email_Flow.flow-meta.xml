@@ -102,7 +102,12 @@
     </constants>
     <description>Sends an email with a link to details and payment
 Version Changes:
-Changed email alert to Sales Invoice-based one</description>
+(debug) Added Total Unpaid amount to Sales Invoice get record element</description>
+    <formulas>
+        <name>personName</name>
+        <dataType>String</dataType>
+        <expression>{!contact.FirstName} + &#39; &#39; + {!contact.LastName}</expression>
+    </formulas>
     <interviewLabel>Adhoc Send Payment Email Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Send Payment Email Flow</label>
     <processMetadataValues>
@@ -119,13 +124,35 @@ Changed email alert to Sales Invoice-based one</description>
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
+        <name>Get_contact_name</name>
+        <label>Get contact name</label>
+        <locationX>52</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Confirm_Send_Email_Screen</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputReference>contact</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>LastName</queriedFields>
+        <queriedFields>FirstName</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
         <locationX>51</locationX>
         <locationY>190</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Confirm_Send_Email_Screen</targetReference>
+            <targetReference>Get_contact_name</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -138,12 +165,14 @@ Changed email alert to Sales Invoice-based one</description>
         <outputReference>salesInvoice</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Booking__c</queriedFields>
+        <queriedFields>Zumzum__Contact__c</queriedFields>
+        <queriedFields>Zumzum__Total_Unpaid_Amount__c</queriedFields>
     </recordLookups>
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Screen of  Confirm</label>
-        <locationX>209</locationX>
-        <locationY>190</locationY>
+        <locationX>261</locationX>
+        <locationY>313</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -152,14 +181,28 @@ Changed email alert to Sales Invoice-based one</description>
         </connector>
         <fields>
             <name>Confirm_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;font-size: 18px; color: rgb(47, 47, 47);&quot;&gt;{!curBooking.First_Name__c} {!curBooking.Last_Name__c}&lt;/b&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;color: rgb(47, 47, 47); font-size: 18px;&quot;&gt;{!personName}&lt;/b&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Get_Sales_Invoice</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Sales_Invoice</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
+    <variables>
+        <name>contact</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
     <variables>
         <name>curBooking</name>
         <dataType>SObject</dataType>
