@@ -170,6 +170,9 @@
         <connector>
             <targetReference>Chatter_Post_Booking</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Transfer_Failed</targetReference>
+        </faultConnector>
         <inputReference>Booking</inputReference>
     </recordUpdates>
     <screens>
@@ -234,6 +237,22 @@
             <fieldText>Transfer Reason</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Transfer_Failed</name>
+        <label>Transfer Failed</label>
+        <locationX>975</locationX>
+        <locationY>271</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>TransferError</name>
+            <fieldText>&lt;p&gt;Transfer failed due to the following error: &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
