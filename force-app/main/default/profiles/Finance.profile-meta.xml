@@ -8476,6 +8476,10 @@
     <layoutAssignments>
         <layout>Venue__c-Venue Layout</layout>
     </layoutAssignments>
+    <tabVisibilities>
+        <tab>cpm__Transaction_Set__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
