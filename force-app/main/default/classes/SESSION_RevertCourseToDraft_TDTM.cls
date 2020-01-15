@@ -1,5 +1,8 @@
 global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
     private static final String SESSION_DRAFT_STATUS = 'Draft';
+    private static final String SESSION_CONFIRMED_STATUS = 'Confirmed';
+    private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
+    private static final String SESSION_REUNION_TYPE = 'Reunion';
      @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #23 - https://confluence.nct.org.uk:8443/x/EoSO
     global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
@@ -59,7 +62,12 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
                 newSessionList[i].Status__c != oldSessionList[i].Status__c ||
                 newSessionList[i].Room__c != oldSessionList[i].Room__c ||
                 newSessionList[i].Practitioner__c != oldSessionList[i].Practitioner__c;
-            if (fieldChanged) {
+
+            Boolean isReunionStatusConfirmedToProvisional = 
+                oldSessionList[i].Status__c == SESSION_CONFIRMED_STATUS && newSessionList[i].Status__c == SESSION_PROVISIONAL_STATUS &&
+                oldSessionList[i].Type__c == SESSION_REUNION_TYPE;
+
+            if (fieldChanged && !isReunionStatusConfirmedToProvisional) {
                 courseIds.add(newSessionList[i].Course__c);
             }
         }
