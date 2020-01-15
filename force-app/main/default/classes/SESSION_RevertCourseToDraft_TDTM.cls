@@ -1,5 +1,6 @@
 global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
-    private static final String SESSION_DRAFT_STATUS = 'Draft';
+    private static final String SESSION_STATUS_DRAFT = 'Draft';
+    private static final String SESSION_TYPE_REUNION = 'Reunion';
      @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #23 - https://confluence.nct.org.uk:8443/x/EoSO
     global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
@@ -29,7 +30,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
             Status__c
             FROM Course__c
             WHERE Id IN :courseIds
-                AND Status__c != :SESSION_DRAFT_STATUS
+                AND Status__c != :SESSION_STATUS_DRAFT
             WITH SECURITY_ENFORCED
         ];
         //NOPMD
@@ -37,7 +38,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
 
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {
-                aCourse.Status__c = SESSION_DRAFT_STATUS;
+                aCourse.Status__c = SESSION_STATUS_DRAFT;
                 coursesToUpdate.add(aCourse);
             }
         }
@@ -59,7 +60,10 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
                 newSessionList[i].Status__c != oldSessionList[i].Status__c ||
                 newSessionList[i].Room__c != oldSessionList[i].Room__c ||
                 newSessionList[i].Practitioner__c != oldSessionList[i].Practitioner__c;
-            if (fieldChanged) {
+
+            Boolean isReunionSession = newSessionList[i].Type__c == SESSION_TYPE_REUNION &&
+                                       oldSessionList[i].Type__c == SESSION_TYPE_REUNION; 
+            if (fieldChanged && !isReunionSession) {
                 courseIds.add(newSessionList[i].Course__c);
             }
         }
