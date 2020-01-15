@@ -23,7 +23,7 @@ public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
         PaymentApiRequest.Contact contact = new PaymentApiRequest.Contact(paymentParameters.contactId);
         PaymentApiRequest.PaymentApiRequestParams paymentApiParams = new PaymentApiRequest.PaymentApiRequestParams();
         paymentApiParams.origin = ORIGIN;
-        paymentApiParams.URLs = new PaymentApiRequest.URLs(paymentParameters.errorPage, paymentParameters.successPage);
+        paymentApiParams.URLs = new PaymentApiRequest.URLs(paymentParameters.successPage, paymentParameters.errorPage);
         paymentApiParams.payer = new PaymentApiRequest.Payer(contact, PAYER_CONTACT_UPDATE);
         Map<String, String> customFields = new Map<String, String>();
         customFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
@@ -38,7 +38,7 @@ public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
         PaymentApiRequest.Contact contact = new PaymentApiRequest.Contact(paymentParameters.contactId);
         PaymentApiRequest.PaymentApiRequestParams paymentApiParams = new PaymentApiRequest.PaymentApiRequestParams();
         paymentApiParams.origin = ORIGIN;
-        paymentApiParams.URLs = new PaymentApiRequest.URLs(paymentParameters.errorPage, paymentParameters.successPage);
+        paymentApiParams.URLs = new PaymentApiRequest.URLs(paymentParameters.successPage, paymentParameters.errorPage);
         paymentApiParams.payer = new PaymentApiRequest.Payer(contact, PAYER_CONTACT_UPDATE);
         Map<String, String> customFields = new Map<String, String>();
         customFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
