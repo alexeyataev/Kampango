@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transfer_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Transfer Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Preferred course (location)</fullName>
+                <default>false</default>
+                <label>Preferred course (location)</label>
+            </value>
+            <value>
+                <fullName>Preferred course (format)</fullName>
+                <default>false</default>
+                <label>Preferred course (format)</label>
+            </value>
+            <value>
+                <fullName>Preferred course (dates)</fullName>
+                <default>false</default>
+                <label>Preferred course (dates)</label>
+            </value>
+            <value>
+                <fullName>Preferred course (content)</fullName>
+                <default>false</default>
+                <label>Preferred course (content)</label>
+            </value>
+            <value>
+                <fullName>Too expensive</fullName>
+                <default>false</default>
+                <label>Too expensive</label>
+            </value>
+            <value>
+                <fullName>Personal tragedy</fullName>
+                <default>false</default>
+                <label>Personal tragedy</label>
+            </value>
+            <value>
+                <fullName>Health problems</fullName>
+                <default>false</default>
+                <label>Health problems</label>
+            </value>
+            <value>
+                <fullName>Moving</fullName>
+                <default>false</default>
+                <label>Moving</label>
+            </value>
+            <value>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+                <label>Complaint</label>
+            </value>
+            <value>
+                <fullName>NCT changed course</fullName>
+                <default>false</default>
+                <label>NCT changed course</label>
+            </value>
+            <value>
+                <fullName>NCT cancelled course</fullName>
+                <default>false</default>
+                <label>NCT cancelled course</label>
+            </value>
+            <value>
+                <fullName>Unhappy with small group size</fullName>
+                <default>false</default>
+                <label>Unhappy with small group size</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
