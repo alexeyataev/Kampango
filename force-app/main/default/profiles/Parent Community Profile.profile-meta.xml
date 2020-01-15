@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>true</custom>
+    <classAccesses>
+        <apexClass>wpayc__CreditCardPaymentMethod</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>wpayc__WorldPay</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>wpayc__WorldPayCallback</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <custom>true</custom>
     <customPermissions>
         <enabled>true</enabled>
         <name>Override_Booking_Validation</name>
@@ -3128,6 +3141,14 @@
         <object>gaid__Gift_Aid_Declaration__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>wpayc__WorldPayCallback</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>wpayc__WorldPayCheckout</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <default>true</default>
         <recordType>Contact.Clients</recordType>
