@@ -120,10 +120,6 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
-        <members>Company</members>
-        <name>Settings</name>
-    </types>
-    <types>
         <members>Contact.Practitioner_Compact_layout</members>
         <members>Licence_To_Practice__c.Practitioner_Licence_Details_Layout</members>
         <members>Session__c.Session_Compact_Layout</members>
@@ -271,7 +267,7 @@
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
         <members>Override_Estimated_Costs_Validation</members>
-        <members>Licence_To_Practice_Validation</members>
+        <members>Override_Licence_To_Practice_Validation</members>
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
@@ -402,6 +398,7 @@
         <members>Booking_Send_Email_On_Enquiry_Created_Flow</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Booking_Tranfer_Flow</members>
+        <members>Booking_Transfer</members>
         <members>BookingConfirmationNotificationSend</members>
         <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
@@ -504,7 +501,7 @@
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
         <members>Override_Estimated_Costs_Validation</members>
-        <members>Licence_To_Practice_Validation</members>
+        <members>Override_Licence_To_Practice_Validation</members>
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
@@ -528,6 +525,7 @@
     <types>
         <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Offer_Email</members>
+        <members>Booking__c.Transfer</members>
         <members>Course__c.Resend_Reunion_Email</members>
         <members>Zumzum__NewTask</members>
         <name>QuickAction</name>
@@ -609,6 +607,7 @@
         <members>Booking__c.MandatoryCancellationReason</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
+        <members>Booking__c.Prevent_Manual_Transfer</members>
         <members>Booking__c.Prevent_Overbooking_Of_Course</members>
         <members>Booking__c.PreventConfirmedBookingCreation</members>
         <members>Booking__c.ReservationExpiryDateCannotBeRemoved</members>
