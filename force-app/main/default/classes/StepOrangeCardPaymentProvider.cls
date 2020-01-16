@@ -1,4 +1,4 @@
-public class StepOrangeCardPaymentProvider {
+public class StepOrangeCardPaymentProvider implements IPaymentServiceProvider {
     private static final String API_TOKEN = Parentforce_Community_Settings__c.getOrgDefaults().API_Token__c;
     private static final String ORIGIN = 'BookingJourney';
     private static final String PAYER_CONTACT_UPDATE = 'none';

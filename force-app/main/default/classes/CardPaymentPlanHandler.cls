@@ -2,8 +2,8 @@ public class CardPaymentPlanHandler {
     @InvocableMethod
     public static List<CardPaymentUrlResult> getPaymentLink(List<CardPaymentParameters> parameters) {
         try {
-            if(parameters.size() != 1) {
-                throw new ListException('List must contain 1 record');
+            if(parameters == null || parameters.size() != 1 || parameters[0] == null) {
+                throw new ListException('List must contain 1 value');
             }
             IPaymentServiceProvider paymentServiceProvider = new FinDockCardPaymentProvider();
             CardPaymentUrlResult result = paymentServiceProvider.getCardPaymentPlanUrlForBooking(parameters[0]);
