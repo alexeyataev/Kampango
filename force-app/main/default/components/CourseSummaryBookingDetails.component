@@ -3,7 +3,7 @@
     <apex:attribute description="The course record for which to display bookings" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
     <apex:attribute description="The API name of booking fieldset" name="fieldsetName" type="String" required="true" assignTo="{!bookingFieldSetName}"/> 
 
-    <apex:pageBlock title="Bookings">
+    <apex:pageBlock title="Booking(s)">
         <apex:pageBlockTable value="{!bookings}" var="book" styleClass="watermark tableStyle">
             <apex:column headerValue="Primary Contact" styleClass="columnStyle">
                 <c:CourseSummaryContactDetails contactIdSet="{!book.primaryContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields" labelIsVisible="false"/>
