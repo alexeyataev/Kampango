@@ -1,8 +1,9 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
 @IsTest
 public class CardPaymentHandlerTest
 {
-    private static String RESPONSE_URL = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
-    private static String LIST_EXCEPTION = 'List must contain 1 value';
+    private static final String RESPONSE_URL = 'http://mynct.test.com/apex/wpayc__worldpaycheckout';
+    private static final String LIST_EXCEPTION = 'List must contain 1 value';
     @IsTest
     static void GetPaymentLink_OneOffPaymentOptionChosen_PaymentUrlReturned() {
         CardPaymentParameters cardPaymentParameters = new CardPaymentParameters();
