@@ -1,4 +1,18 @@
-<apex:page standardController="Course__c" renderAs="pdf" showHeader="false" standardStylesheets="false">
+<apex:page standardController="Course__c" renderAs="pdf" showHeader="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
     <apex:stylesheet value="{!URLFOR($Resource.confidentialClassStyles, 'confidentialClassListPDF.css')}"/>
-    <apex:include pageName="CourseSummary"/>
+
+    <html>
+        <head>
+            <style>
+                .watermark {
+                    background-repeat: repeat;
+                    background-position: center;
+                    background-image: url("{!URLFOR($Resource.NCT_Watermark, 'NCT_Watermark.png')}");
+                }
+            </style>
+        </head>
+        <body>
+            <apex:include pageName="CourseSummary"/>
+        </body>
+    </html>
 </apex:page>
