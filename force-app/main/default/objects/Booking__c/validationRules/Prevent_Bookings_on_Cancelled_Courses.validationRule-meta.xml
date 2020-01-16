@@ -4,6 +4,7 @@
     <active>true</active>
     <errorConditionFormula>AND(
     OR(IsNew(),
+       IsChanged(Course__c),
        AND(IsChanged(Status__c),
            NOT(OR(ISPICKVAL(Status__c, &quot;Expired&quot;),
                   ISPICKVAL(Status__c, &quot;Cancelled&quot;))))),
