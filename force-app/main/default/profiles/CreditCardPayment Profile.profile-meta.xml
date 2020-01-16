@@ -333,6 +333,18 @@
         <apexClass>dlrs_SessionTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>wpayc__CreditCardPaymentMethod</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>wpayc__WorldPay</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>wpayc__WorldPayCallback</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <custom>true</custom>
     <fieldPermissions>
         <editable>false</editable>
@@ -6316,6 +6328,14 @@
     <pageAccesses>
         <apexPage>CourseSummarySLDS</apexPage>
         <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>wpayc__WorldPayCallback</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>wpayc__WorldPayCheckout</apexPage>
+        <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
         <default>false</default>
