@@ -39,7 +39,9 @@
             <targetReference>Create_Purchase_Invoice</targetReference>
         </connector>
     </assignments>
-    <description>Deduct Registration Fees for Practitioners with Apex Action</description>
+    <description>This flow allows the practitioner to claim fees for completed sessions.
+Version changes:
+Changed lastThreeMonths formula</description>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
@@ -58,7 +60,7 @@
     <formulas>
         <name>lastThreeMonths</name>
         <dataType>Date</dataType>
-        <expression>IF(MONTH(TODAY()) = 1, DATE(YEAR(TODAY()) - 1, 12, 01),DATE(YEAR(TODAY()), MONTH(TODAY()) - 3, 01))</expression>
+        <expression>IF(MONTH(TODAY()) = 1, DATE(YEAR(TODAY()) - 1, 12 - 2, 01),DATE(YEAR(TODAY()), MONTH(TODAY()) - 3, 01))</expression>
     </formulas>
     <formulas>
         <name>nominalAccountId</name>
@@ -195,7 +197,7 @@
     <screens>
         <name>Claim_Fees_Datatable</name>
         <label>Claim Fees Datatable</label>
-        <locationX>579</locationX>
+        <locationX>586</locationX>
         <locationY>50</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -225,15 +227,15 @@
                 </value>
             </inputParameters>
             <inputParameters>
-                <name>taxRate</name>
-                <value>
-                    <elementReference>registrationFeeRate</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
                 <name>registrationCappedFees</name>
                 <value>
                     <elementReference>registrationCappedFees</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>registrationFeeRate</name>
+                <value>
+                    <elementReference>registrationFeeRate</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>

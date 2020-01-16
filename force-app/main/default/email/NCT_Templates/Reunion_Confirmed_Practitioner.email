@@ -2,7 +2,7 @@ Course reference: {!Course__c.Name}<br><br>
 
 Dear {!Contact.FirstName},<br><br>
 
-Thank you for agreeing to facilitate the {!Course__c.Sub_Type__c} course reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c} at:<br><br>
+Thank you for agreeing to facilitate the {!Course__c.Sub_Type__c} reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c} at:<br><br>
 
 {!Session__c.Venue_Address__c}
 

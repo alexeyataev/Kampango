@@ -2,6 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MandatoryBirthDate</fullName>
     <active>true</active>
-    <errorConditionFormula>ISBLANK( Birth_Due_Date__c )</errorConditionFormula>
+    <errorConditionFormula>ISBLANK( Birth_Due_Date__c ) &amp;&amp;
+NOT($Permission.Override_Booking_Validation)</errorConditionFormula>
     <errorMessage>Please fill in Birth/Due date.</errorMessage>
 </ValidationRule>

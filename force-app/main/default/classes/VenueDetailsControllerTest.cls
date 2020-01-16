@@ -65,7 +65,7 @@ public with sharing class VenueDetailsControllerTest {
 
         Test.stopTest();
 
-        System.assertEquals(venuesToTest[0].Name, venues[0].Name);
+        System.assertEquals(venuesToTest[0].venue.Id, venues[0].Id);
         System.assertEquals(venuesToTest[0].emergencyContactIds, contactIds);
 
     }

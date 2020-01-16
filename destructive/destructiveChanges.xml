@@ -103,6 +103,7 @@
         <members>Course__c.PSA_Branch__c</members>
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
+        <members>Course__c.Venue__c</members>
         <members>Course__c.Total_Estimated_Costs__c</members>
         <members>cpm__Installment__c.Account_Key__c</members>
         <members>cpm__Installment__c.Contact_Key__c</members>
@@ -154,6 +155,7 @@
         <members>Session__c.Website_Text__c</members>
         <members>Session__c.Women_Only__c</members>
         <members>Venue__c.Google_Map_Link__c</members>
+        <members>Venue__c.Main_Venue__c</members>
         <members>Venue__c.Venue_GeoLocation__c</members>
         <members>Venue__c.Venue_Keys__c</members>
         <members>Venue__c.Venue_Suitability__c</members>
@@ -177,6 +179,7 @@
     </types>
     <types>
         <members>Course__c-Admin Course Layout</members>
+        <members>Course__c-Capacity PSA Course Layout</members>
         <name>Layout</name>
     </types>
     <types>
@@ -211,6 +214,7 @@
         <members>Contact.Contact_Preferred_Phone</members>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
+        <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted.validationRule-meta</members>
         <members>Session__c.Prevent_private_reunion_confirmation</members>
         <members>Zumzum__Bank_Account__c.Account_number_must_be_8_numeric_digits</members>
         <members>Zumzum__Bank_Account__c.Check_Bank_Account_Name</members>

@@ -213,6 +213,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.PSA_Area_When_Confirmed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Reservation_Expiry_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8166,6 +8171,10 @@
         <recordType>Contact.Practitioner</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <tabVisibilities>
+        <tab>cpm__Transaction_Set__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>Practitioner_Fee_Rate__c</tab>
         <visibility>DefaultOn</visibility>

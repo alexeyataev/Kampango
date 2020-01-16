@@ -11,7 +11,7 @@ const COLUMNS = [
 export default class ClaimFeesDatatable extends LightningElement {
     @api practitioner;
     @api sessions;
-    @api taxRate;
+    @api registrationFeeRate;
     @api registrationFee;
     @api totalRegistrationFee;
     @api registrationCappedFees;
@@ -58,15 +58,15 @@ export default class ClaimFeesDatatable extends LightningElement {
         let currentRegistrationFee = 0;
         let totalRegistrationFee = 0;
 
-        currentRegistrationFee = this.totalFee * this.taxRate;
+        currentRegistrationFee = this.totalFee * this.registrationFeeRate;
         totalRegistrationFee =  +this.practitioner.Deducted_Practitioner_Fees__c + currentRegistrationFee;
-
+   
         if(totalRegistrationFee <= this.registrationCappedFees) {
             this.registrationFee = currentRegistrationFee.toFixed(2);
         } else {
             let delta = totalRegistrationFee - this.registrationCappedFees;
             this.registrationFee = currentRegistrationFee - delta;
-            this.registrationFee.toFixed(2);
+            this.registrationFee = Math.abs(this.registrationFee.toFixed(2));
         }
     }
 }
