@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Manual_Transfer</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+NOT(ISNEW()),
+ISCHANGED( Course__c ),
+NOT( ISCHANGED( Transfer_Date__c )),
+NOT($Permission.Override_Booking_Validation)
+)</errorConditionFormula>
+    <errorDisplayField>Course__c</errorDisplayField>
+    <errorMessage>Booking cannot be transferred manually. Please use the Transfer button.</errorMessage>
+</ValidationRule>
