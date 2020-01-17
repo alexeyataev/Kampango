@@ -442,6 +442,20 @@ public TestDataFactory buildReunion() {
 
         return this;
     }
+
+    public static User assignPermissionSetToUser(String permissionSetName, User userInstance) {	
+
+        PermissionSet permissionInstance = [	
+            SELECT Id 	
+            FROM PermissionSet	
+            WHERE Name = :permissionSetName	
+            LIMIT 1	
+        ];	
+
+        insert new PermissionSetAssignment(AssigneeId = userInstance.Id, PermissionSetId = permissionInstance.Id);	
+
+    return userInstance;	
+    }
     
     public static User createSysAdminUser() {
         TestUserBuilder userBuilder = new TestUserBuilder();
