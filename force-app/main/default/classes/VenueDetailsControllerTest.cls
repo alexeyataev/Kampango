@@ -23,7 +23,39 @@ public with sharing class VenueDetailsControllerTest {
     }
 
     @IsTest
-    public static void generateCourseSummaryVenuesDetails() {
+    public static void getVenues_oneVenueCreated_componentShowsOneVenue() {
+
+        Course__c course = [
+                SELECT Id
+                FROM Course__c
+                LIMIT 1
+        ];
+
+        List<Venue__c> venues = [
+                SELECT Name, Street_Address__c, Town__c, Postcode__c
+                FROM Venue__c
+                WHERE Id
+                        IN (
+                                SELECT Venue__c
+                                FROM Session__c
+                                WHERE Course__c = :course.Id
+                        )
+        ];
+
+        VenueDetailsController venueDetailsController = new VenueDetailsController();
+        venueDetailsController.courseRecord = course;
+
+        Test.startTest();
+
+        List<VenueDetailsController.VenueResult> venuesToTest = venueDetailsController.getVenues();
+
+        Test.stopTest();
+
+        System.assertEquals(venuesToTest[0].venue.Id, venues[0].Id);
+    }
+
+    @IsTest
+    public static void getVenues_componentLoadsOneVenue_correctEmergencyContactLoaded() {
 
         Course__c course = [
                 SELECT Id
@@ -64,9 +96,8 @@ public with sharing class VenueDetailsControllerTest {
         List<VenueDetailsController.VenueResult> venuesToTest = venueDetailsController.getVenues();
 
         Test.stopTest();
-
-        System.assertEquals(venuesToTest[0].venue.Id, venues[0].Id);
-        System.assertEquals(venuesToTest[0].emergencyContactIds, contactIds);
+        
+        System.assertEquals(venuesToTest[0].emergencyContacts[0].Id, contactIds[0]);
 
     }
 }
