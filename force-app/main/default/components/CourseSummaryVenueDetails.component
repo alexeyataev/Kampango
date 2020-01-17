@@ -2,7 +2,7 @@
 
     <apex:attribute description="The course record for which to display venues" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
 
-    <apex:pageBlock title="Venues">
+    <apex:pageBlock title="Venue(s)">
         <apex:pageBlockTable value="{!venues}" var="venueRecord" styleClass="tableStyle tableLayoutOnly">
             <apex:column value="{!venueRecord.venue.Name}" headerValue="Name" styleClass="columnStyle"/>
             <apex:column headerValue="Main Venue" styleClass="columnStyle">
@@ -10,7 +10,7 @@
             </apex:column>
             <apex:column value="{!venueRecord.address}" headerValue="Address" styleClass="columnStyle"/>
             <apex:column headerValue="Emergency Contact(s)" styleClass="columnStyle">
-                <c:CourseSummaryContactDetails contactIdSet="{!venueRecord.emergencyContactIds}" fieldsetName="CourseSummaryEmergencyContactFields"/>
+                <c:CourseSummaryContactDetails contactIdSet="{!venueRecord.emergencyContactIds}" fieldsetName="CourseSummaryEmergencyContactFields" labelIsVisible="true"/>
             </apex:column>
         </apex:pageBlockTable>
     </apex:pageBlock>    
