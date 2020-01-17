@@ -473,7 +473,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .buildLicenceToPractice()
             .buildCourse()
             .buildEstimatedCosts()
-            .buildSession(); 
+            .buildSession();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -482,21 +482,31 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         testDataFactory.buildCoursesWithReunionSessions(coursesToCreate, sessionsToCreate);
 
-        List<Session__c> reunions = [SELECT Id FROM Session__c WHERE Type__c = 'Reunion'];
-
+        List<Session__c> reunions = [SELECT Id FROM Session__c LIMIT 1000];
+        
         testDataFactory.setSessionsToConfirmed(reunions);
 
         List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
-        for (Course__c course : coursesToTest) {
-            course.Status__c = COURSE_FINAL_STATUS;
+
+        Set<Id> courseIds = new Set<Id>();
+
+        for (Course__c aCourse : coursesToTest){
+            courseIds.add(aCourse.Id);
+            aCourse.Status__c = COURSE_FINAL_STATUS;
         }
         update coursesToTest;
 
-        testDataFactory.setSessionsToProvisional(reunions);
+        Test.startTest();
 
-        List<Course__c> draftCourses = [SELECT Id FROM Course__c WHERE Status__c =: COURSE_DRAFT_STATUS];
+        for (Session__c reunion : reunions) {
+            reunion.Status__c = 'Provisional';
+        }
 
-        System.assertEquals(0, draftCourses.size());
+        Test.stopTest();
+
+        List<Course__c> draftCoursesAfterUpdate = [SELECT Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_FINAL_STATUS LIMIT 10];
+
+        System.assertEquals(coursesToTest.size(), draftCoursesAfterUpdate.size());
     }
     
     static void runionSessionsChangeStartTime() {
