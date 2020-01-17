@@ -10,7 +10,9 @@
             </apex:column>
             <apex:column value="{!venueRecord.address}" headerValue="Address" styleClass="columnStyle"/>
             <apex:column headerValue="Emergency Contact(s)" styleClass="columnStyle">
-                <c:CourseSummaryContactDetails contactIdSet="{!venueRecord.emergencyContactIds}" fieldsetName="CourseSummaryEmergencyContactFields" labelIsVisible="true"/>
+                <apex:repeat value="{!venueRecord.emergencyContacts}" var="emergencyContact">
+                    <c:CourseSummaryContactDetails contact="{!emergencyContact}" fieldsetName="{!venueContactFieldSetName}" labelIsVisible="true"/>
+                </apex:repeat>
             </apex:column>
         </apex:pageBlockTable>
     </apex:pageBlock>    
