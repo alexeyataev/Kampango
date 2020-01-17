@@ -16,8 +16,6 @@
         <members>CardPaymentUrlResult</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
-        <members>ContactDetailsController</members>
-        <members>ContactDetailsControllerTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
