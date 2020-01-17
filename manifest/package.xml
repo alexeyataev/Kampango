@@ -513,6 +513,7 @@
     <types>
         <members>Admin</members>
         <members>Capacity PSA</members>
+        <members>CreditCardPayment Profile</members>
         <members>Enquiry PSA</members>
         <members>Finance</members>
         <members>Parent Community Profile</members>
@@ -591,6 +592,7 @@
     <types>
         <members>confidentialClassStyles</members>
         <members>NCT_Styles</members>
+        <members>NCT_Watermark</members>
         <name>StaticResource</name>
     </types>
     <types>
