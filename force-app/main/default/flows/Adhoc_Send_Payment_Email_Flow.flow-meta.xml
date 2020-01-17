@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Error_Profile_Has_No_Access</name>
+        <label>Error Profile Has No Access</label>
+        <locationX>831</locationX>
+        <locationY>206</locationY>
+        <actionName>c:showToast</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>MESSAGE_ERROR_PROFILE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <elementReference>TYPE_ERROR</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Result_Sending_Email</name>
         <label>Result Sending Email</label>
         <locationX>831</locationX>
-        <locationY>194</locationY>
+        <locationY>434</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <inputParameters>
@@ -24,7 +44,7 @@
         <name>Send_Payment_Email</name>
         <label>Send Payment Email</label>
         <locationX>423</locationX>
-        <locationY>190</locationY>
+        <locationY>430</locationY>
         <actionName>Zumzum__Sales_Invoice__c.Adhoc_Send_Payment_Email</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -44,7 +64,7 @@
         <name>Sending_not_successful</name>
         <label>Sending not successful</label>
         <locationX>595</locationX>
-        <locationY>332</locationY>
+        <locationY>572</locationY>
         <assignmentItems>
             <assignToReference>toastMessage</assignToReference>
             <operator>Assign</operator>
@@ -67,7 +87,7 @@
         <name>Sending_successful</name>
         <label>Sending  successful</label>
         <locationX>600</locationX>
-        <locationY>108</locationY>
+        <locationY>348</locationY>
         <assignmentItems>
             <assignToReference>toastMessage</assignToReference>
             <operator>Assign</operator>
@@ -87,10 +107,24 @@
         </connector>
     </assignments>
     <constants>
+        <name>MESSAGE_ERROR_PROFILE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>This operation can be done by Finance user only</stringValue>
+        </value>
+    </constants>
+    <constants>
         <name>MESSAGE_SUCCESS</name>
         <dataType>String</dataType>
         <value>
             <stringValue>Email sending was successful!</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>TYPE_ERROR</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>error</stringValue>
         </value>
     </constants>
     <constants>
@@ -100,9 +134,31 @@
             <stringValue>success</stringValue>
         </value>
     </constants>
+    <decisions>
+        <name>Check_if_Finance_profile</name>
+        <label>Check if Finance profile</label>
+        <locationX>43</locationX>
+        <locationY>207</locationY>
+        <defaultConnector>
+            <targetReference>Error_Profile_Has_No_Access</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_profile_Finance</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>MESSAGE_SUCCESS</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Get_Sales_Invoice</targetReference>
+            </connector>
+            <label>Is profile Finance</label>
+        </rules>
+    </decisions>
     <description>Sends an email with a link to details and payment
 Version Changes:
-(debug) Added Total Unpaid amount to Sales Invoice get record element</description>
+Added Finance profile check</description>
     <formulas>
         <name>personName</name>
         <dataType>String</dataType>
@@ -127,7 +183,7 @@ Version Changes:
         <name>Get_contact_name</name>
         <label>Get contact name</label>
         <locationX>52</locationX>
-        <locationY>323</locationY>
+        <locationY>563</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Confirm_Send_Email_Screen</targetReference>
@@ -149,7 +205,7 @@ Version Changes:
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
         <locationX>51</locationX>
-        <locationY>190</locationY>
+        <locationY>430</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_contact_name</targetReference>
@@ -171,8 +227,8 @@ Version Changes:
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Screen of  Confirm</label>
-        <locationX>261</locationX>
-        <locationY>313</locationY>
+        <locationX>260</locationX>
+        <locationY>563</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -188,10 +244,10 @@ Version Changes:
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>53</locationX>
         <locationY>50</locationY>
         <connector>
-            <targetReference>Get_Sales_Invoice</targetReference>
+            <targetReference>Check_if_Finance_profile</targetReference>
         </connector>
     </start>
     <status>Active</status>
