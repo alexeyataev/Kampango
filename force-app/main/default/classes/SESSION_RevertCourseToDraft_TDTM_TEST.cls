@@ -462,7 +462,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
-    static void runionSessionChangeStatus() {
+    static void runionSessionsChangeStatusToProvisional() {
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
             .buildOrganizationAccount('acc4')
@@ -497,8 +497,47 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         System.assertEquals(0, draftCourses.size());
     }
+    
+    static void runionSessionsChangeStartTime() {
+        TestDataFactory testDataFactory = TestDataFactory.getInstance()
+            .buildBranchAccount()
+            .buildOrganizationAccount('acc4')
+            .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
+            .buildPractitionerFeeRate()
+            .buildVenue()
+            .buildRoom()
+            .buildLicenceToPractice()
+            .buildCourse()
+            .buildEstimatedCosts();
 
+        CreateTriggerSystemHandlerRecord();
 
+        Integer coursesToCreate = 4;
+        Integer sessionsToCreate = 8;
+
+        testDataFactory.buildCoursesWithReunionSessions(coursesToCreate, sessionsToCreate);
+
+        List<Session__c> reunions = [SELECT Id FROM Session__c WHERE Type__c = 'Reunion'];
+
+        testDataFactory.setSessionsToConfirmed(reunions);
+
+        List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
+        for (Course__c course : coursesToTest) {
+            course.Status__c = COURSE_FINAL_STATUS;
+        }
+        update coursesToTest;
+
+        for (Session__c session : reunions) {
+            session.Start__c.addHours(1);
+        }
+
+        update reunions;
+
+        List<Course__c> draftCourses = [SELECT Id FROM Course__c WHERE Status__c =: COURSE_DRAFT_STATUS];
+
+        System.assertEquals(0, draftCourses.size());
+    }
+    
     private static void CreateTriggerSystemHandlerRecord() {
 
         List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
