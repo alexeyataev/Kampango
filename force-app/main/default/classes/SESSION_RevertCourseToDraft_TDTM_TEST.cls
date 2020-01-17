@@ -472,7 +472,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .buildRoom()
             .buildLicenceToPractice()
             .buildCourse()
-            .buildEstimatedCosts();
+            .buildEstimatedCosts()
+            .buildSession();
 
         CreateTriggerSystemHandlerRecord();
 
