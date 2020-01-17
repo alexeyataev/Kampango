@@ -59,6 +59,7 @@ public with sharing class BookingDetailsControllerTest {
 		BookingDetailsController bookingDetailsController = new BookingDetailsController();
 		bookingDetailsController.courseRecord = course;
         bookingDetailsController.bookingFieldSetName= 'CourseSummaryBookingFields';
+        bookingDetailsController.bookingContactFieldSetName = 'CourseSummaryBookingPrimaryContactFields';
 
 		Test.startTest();
 
@@ -100,6 +101,7 @@ public with sharing class BookingDetailsControllerTest {
 		BookingDetailsController bookingDetailsController = new BookingDetailsController();
 		bookingDetailsController.courseRecord = course;
         bookingDetailsController.bookingFieldSetName= 'CourseSummaryBookingFields';
+        bookingDetailsController.bookingContactFieldSetName = 'CourseSummaryBookingPrimaryContactFields';
 
         Test.startTest();
 

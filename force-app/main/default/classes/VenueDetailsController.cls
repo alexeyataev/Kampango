@@ -1,7 +1,7 @@
 public without sharing class VenueDetailsController {
 
     public Course__c courseRecord {get; set;}
-    public static String venueContactFieldSetName{get{ return 'CourseSummaryEmergencyContactFields'; } private set; }
+    public static String venueContactFieldSetName {get; set;}
 
     public class VenueResult {
         public Venue__c venue {get; set;}

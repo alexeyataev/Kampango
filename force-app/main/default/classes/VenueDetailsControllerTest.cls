@@ -42,6 +42,7 @@ public with sharing class VenueDetailsControllerTest {
                         )
         ];
 
+        VenueDetailsController.venueContactFieldSetName = 'CourseSummaryEmergencyContactFields';
         VenueDetailsController venueDetailsController = new VenueDetailsController();
         venueDetailsController.courseRecord = course;
 
@@ -88,8 +89,9 @@ public with sharing class VenueDetailsControllerTest {
 
         List<Id> contactIds = new List<Id>(result);
 
+        VenueDetailsController.venueContactFieldSetName = 'CourseSummaryEmergencyContactFields';
         VenueDetailsController venueDetailsController = new VenueDetailsController();
-        venueDetailsController.courseRecord = course;
+        venueDetailsController.courseRecord = course; 
 
         Test.startTest();
 
