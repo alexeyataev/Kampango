@@ -1,3 +1,4 @@
 public interface IPaymentServiceProvider {
-    CardPaymentUrlResult getCardPaymentURL(cpm__Installment__c installment, String bookingId);
+    CardPaymentUrlResult getCardPaymentPlanUrlForBooking(CardPaymentParameters parameters);
+    CardPaymentUrlResult getCardPaymentUrl(CardPaymentParameters parameters);
 }
