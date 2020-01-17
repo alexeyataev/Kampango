@@ -2,6 +2,7 @@ public without sharing class BookingDetailsController {
 
     public Course__c courseRecord {get; set;}
     public String bookingFieldSetName {get; set;}
+    @TestVisible
     public Map<Id, Contact> bookingContacts {get; set;}
     public String bookingContactFieldSetName{get{ return 'CourseSummaryBookingPrimaryContactFields'; } private set; }
 
