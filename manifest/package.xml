@@ -13,6 +13,8 @@
         <members>BranchWeightingHelperTest</members>
         <members>CardPaymentHandler</members>
         <members>CardPaymentHandlerTest</members>
+        <members>CardPaymentParameters</members>
+        <members>CardPaymentPlanHandler</members>
         <members>CardPaymentUrlResult</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
@@ -32,6 +34,7 @@
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
+        <members>FinDockCardPaymentProvider</members>
         <members>HttpStatusCode</members>
         <members>IClock</members>
         <members>IPaymentServiceProvider</members>
@@ -39,6 +42,7 @@
         <members>PaymentPlanGenerator</members>
         <members>PaymentPlanMockClock</members>
         <members>PaymentPlanOption</members>
+        <members>PaymentPlanOptionsController</members>
         <members>PaymentPlanOptionsTest</members>
         <members>PractitionerBandFeeHelper</members>
         <members>PractitionerBandFeeHelperTest</members>
