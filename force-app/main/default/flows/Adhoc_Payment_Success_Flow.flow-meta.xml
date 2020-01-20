@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_confirmation_email</name>
+        <label>Send confirmation email</label>
+        <locationX>243</locationX>
+        <locationY>50</locationY>
+        <actionName>Zumzum__Sales_Invoice__c.Adhoc_Send_Confirmation_Email</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Success_screen</targetReference>
+        </connector>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>salesInvoiceId</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <description>Performs logic after the payment has been completed successfully
 Version changes:
-Removed footer and header, generalized the screen text</description>
+Added email alert</description>
     <interviewLabel>Adhoc Payment Success Page {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Success Flow</label>
     <processMetadataValues>
@@ -21,7 +38,7 @@ Removed footer and header, generalized the screen text</description>
     <screens>
         <name>Success_screen</name>
         <label>Success screen</label>
-        <locationX>327</locationX>
+        <locationX>429</locationX>
         <locationY>50</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -34,7 +51,13 @@ Removed footer and header, generalized the screen text</description>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Success_screen</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Send_confirmation_email</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>salesInvoiceId</name>
