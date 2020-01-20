@@ -80,7 +80,9 @@ public with sharing class TestVenueBuilder {
             Postcode__c = this.postcode,
             Type__c = this.type,
             Town__c = this.town,
-            Subtype__c = this.subtype
+            Subtype__c = this.subtype,
+            Location__latitude__s = this.latitude,
+            Location__longitude__s = this.longitude
         );
 
         if(this.insertRecord){
