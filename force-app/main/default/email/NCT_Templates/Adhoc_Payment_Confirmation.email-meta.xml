@@ -4,8 +4,19 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Adhoc Payment Confirmation</name>
     <style>none</style>
-    <subject>Stub subject</subject>
-    <textOnly>Stub body</textOnly>
+    <subject>NCT payment success</subject>
+    <textOnly>Dear {!Contact.FirstName}
+ 
+Thank you for making a payment to NCT. This transaction was successful.
+ 
+If you have any queries or questions about this payment, please get in touch with nctcourses@nct.org.uk
+ 
+ 
+Kind regards
+ 
+Finance team
+NCT
+nctcourses@nct.org.uk</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
