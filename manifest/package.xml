@@ -76,7 +76,6 @@
         <members>TestContactBuilder</members>
         <members>TestCourseAssignmentBuilder</members>
         <members>TestEstimatedCostsBuilder</members>
-        <members>TestHelper</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
         <members>TestInstallmentBuilder</members>
@@ -205,7 +204,6 @@
         <members>cpm__Installment__c</members>
         <members>dlrs__LookupRollupSummary2__mdt</members>
         <members>gaid__Gift_Aid_Declaration__c</members>
-        <members>Google_Map_Url_Setting__c</members>
         <members>Estimated_Costs__c</members>
         <members>Individual</members>
         <members>Licence_To_Practice__c</members>
