@@ -1,4 +1,4 @@
-public class CardPaymentHandler {
+public class CardPaymentPlanHandler {
     @InvocableMethod
     public static List<CardPaymentUrlResult> getPaymentLink(List<CardPaymentParameters> parameters) {
         try {
@@ -6,7 +6,7 @@ public class CardPaymentHandler {
                 throw new ListException('1 card payment parameter must be passed');
             }
             IPaymentServiceProvider paymentServiceProvider = new FinDockCardPaymentProvider();
-            CardPaymentUrlResult result = paymentServiceProvider.getCardPaymentURL(parameters[0]);
+            CardPaymentUrlResult result = paymentServiceProvider.getCardPaymentPlanUrlForBooking(parameters[0]);
             return new List<CardPaymentUrlResult> {result};
         } catch(Exception e) {
             CardPaymentUrlResult result = new CardPaymentUrlResult();

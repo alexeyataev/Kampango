@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Venue_Map_Url__c</fullName>
+    <fullName>Course_Start_Date__c</fullName>
     <externalId>false</externalId>
-    <formula>IF ( ISBLANK(Venue__c), 
- &quot;https://www.google.co.uk/maps?q=&quot; &amp;  Parent_Host__r.MailingPostalCode,
- Venue__r.Map_Url__c
-)</formula>
+    <formula>Course__r.Start_Date__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Venue Map Url</label>
+    <label>Course Start Date</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>Date</type>
 </CustomField>
