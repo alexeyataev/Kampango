@@ -183,7 +183,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Multiple_Birth__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -648,6 +648,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Sum_Of_Purchase_Line_Items__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Times__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
