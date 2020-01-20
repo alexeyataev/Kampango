@@ -59,7 +59,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>height</name>
-                <value>600</value>
+                <value>3000</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>pageName</name>
