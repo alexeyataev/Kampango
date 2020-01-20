@@ -7,6 +7,8 @@ public with sharing class TestVenueBuilder {
     private String postcode = 'NW1 6XE';
     private String type = 'Commercial/Community';
     private String subtype = 'Primary';
+    private Decimal latitude = 25.0;
+    private Decimal longitude = 25.0;
     private Boolean insertRecord = false;
 
     public TestVenueBuilder withName(String name) {
@@ -51,6 +53,20 @@ public with sharing class TestVenueBuilder {
         return this;
     }
 
+    public TestVenueBuilder withLatitude(Decimal latitude) {
+
+        this.latitude = latitude;
+
+        return this;
+    }
+
+    public TestVenueBuilder withlongitude(Decimal longitude) {
+
+        this.longitude = longitude;
+
+        return this;
+    }
+
     public TestVenueBuilder insertRecord(Boolean insertRecord){
         this.insertRecord = insertRecord;
         return this;
@@ -64,7 +80,9 @@ public with sharing class TestVenueBuilder {
             Postcode__c = this.postcode,
             Type__c = this.type,
             Town__c = this.town,
-            Subtype__c = this.subtype
+            Subtype__c = this.subtype,
+            Location__latitude__s = this.latitude,
+            Location__longitude__s = this.longitude
         );
 
         if(this.insertRecord){
