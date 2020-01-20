@@ -7,7 +7,7 @@
     <subject>Payment due to NCT</subject>
     <textOnly>Dear {!Contact.FirstName}
  
-As discussed, please find the link below to pay the balance owing to NCT.  If you have any queries or questions about this balance, please get in touch with https://www.nct.org.uk.
+As discussed, please find the link below to pay the balance owing to NCT.  If you have any queries or questions about this balance, please get in touch with nctcourses@nct.org.uk.
  
 {!$Setup.Parentforce_Community_Settings__c.Base_Url__c}/s/adhocpayment?salesInvoiceId={!Zumzum__Sales_Invoice__c.Id}
  
