@@ -49,7 +49,7 @@ public with sharing class ClaimFeeHelper {
 
         purchaseInvoice.InvoiceDate = Date.today();
         purchaseInvoice.InvoiceDueDate = Date.today();
-        purchaseInvoice.SupplierName = currentUser.AccountId;
+        purchaseInvoice.SupplierAccount = currentUser.AccountId;
         purchaseInvoice.TransactionCurrency = zumzumCurrency.Id;
         purchaseInvoice.PurchaseInvoiceType = 'Purchase Invoice';
         purchaseInvoice.LineItems = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper>();
