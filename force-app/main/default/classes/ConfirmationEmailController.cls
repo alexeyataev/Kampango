@@ -2,7 +2,7 @@ public with sharing class ConfirmationEmailController {
     public List<LocationWrapper> locationListWrapper { get; set; }
     public List<SessionWrapper> sessionListWrapper { get; set; }
     public List<PractitionerWrapper> practitionerListWrapper{ get; set; }
-    public TypeSessionAndCourseWrapper typeSessionAndCourse { get; set; }
+    public SessionTypeWrapper sessionType { get; set; }
     public Course__c course { get; }
     private static String sessionDayTemplate = 'Session {0}';
     private static String sessionsTemplate = '(session{0} {1})';
@@ -112,23 +112,23 @@ public with sharing class ConfirmationEmailController {
 
     private List<Session__c> sessionFilterByStatus(List<Session__c> sessions) {
         List<Session__c> newSessionFilterListByStatus = new List<Session__c>();
-        typeSessionAndCourse = new TypeSessionAndCourseWrapper();
+        sessionType = new SessionTypeWrapper();
         for (Session__c session : sessions) {
             if (session.Status__c != 'Provisional') {
                 newSessionFilterListByStatus.add(session);
 
             } else if (session.Type__c == 'Standard') {
-                typeSessionAndCourse.sessionStandard = new SessionProvision();
-                typeSessionAndCourse.sessionStandard.provisionTime = String.valueOf(session.Contact_Hours__c);
-                typeSessionAndCourse.sessionStandard.sessionProvision = true;
+                sessionType.standardSession = new ProvisionTypeWrapper();
+                sessionType.standardSession.provisionTime = String.valueOf(session.Contact_Hours__c);
+                sessionType.standardSession.isSessionWithTypeProvisional = true;
 
             } else if (session.Type__c == 'Reunion') {
-                typeSessionAndCourse.sessionReunion = true;
+                sessionType.reunionSession = true;
 
             } else if (session.Type__c == 'Breastfeeding') {
-                typeSessionAndCourse.sessionBreastfeeding = new SessionProvision();
-                typeSessionAndCourse.sessionBreastfeeding.provisionTime = String.valueOf(session.Contact_Hours__c);
-                typeSessionAndCourse.sessionBreastfeeding.sessionProvision = true;
+                sessionType.breastfeedingSession = new ProvisionTypeWrapper();
+                sessionType.breastfeedingSession.provisionTime = String.valueOf(session.Contact_Hours__c);
+                sessionType.breastfeedingSession.isSessionWithTypeProvisional = true;
             }
         }
 
@@ -183,15 +183,15 @@ public with sharing class ConfirmationEmailController {
         }
     }
 
-    private class TypeSessionAndCourseWrapper {
-        public Boolean sessionReunion { get; set; }
-        public SessionProvision sessionStandard { get; set; }
-        public SessionProvision sessionBreastfeeding { get; set; }
+    private class SessionTypeWrapper {
+        public Boolean reunionSession { get; set; }
+        public ProvisionTypeWrapper standardSession { get; set; }
+        public ProvisionTypeWrapper breastfeedingSession { get; set; }
     }
 
-    private class SessionProvision {
+    private class ProvisionTypeWrapper {
         public String provisionTime { get; set; }
-        public Boolean sessionProvision { get; set; }
+        public Boolean isSessionWithTypeProvisional { get; set; }
     }
 
     private class PractitionerWrapper{
