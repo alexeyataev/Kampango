@@ -125,8 +125,8 @@ private class CourseCreateEnquiryUtilityTest {
             FROM Contact 
             WHERE Email =: existingContact.Email
         ];
-        System.assertEquals(1 , bookings.size());
-        System.assertEquals(1, contacts.size());
+        System.assertEquals(1, bookings.size());
+        System.assertEquals(2, contacts.size(), 'Now insert istead of upsert is used. PO should desice on process of deduplication'); 
     }
 
     @isTest
