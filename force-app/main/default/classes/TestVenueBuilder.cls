@@ -7,8 +7,8 @@ public with sharing class TestVenueBuilder {
     private String postcode = 'NW1 6XE';
     private String type = 'Commercial/Community';
     private String subtype = 'Primary';
-    private Decimal latitude = 25.0;
-    private Decimal longitude = 25.0;
+    private Decimal latitude = 50.501;
+    private Decimal longitude = -0.101;
     private Boolean insertRecord = false;
 
     public TestVenueBuilder withName(String name) {
