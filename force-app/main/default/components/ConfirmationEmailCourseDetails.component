@@ -38,9 +38,6 @@
                     <div>{!location.locationCountry}</div>
                     <div>{!location.locationTown}</div>
                     <div>{!location.locationPostcode}</div>
-                    <div>
-                        <a href="{!location.locationMapUrl}">Click here to see the map</a>
-                    </div>
                     <br/>
                 </td>
             </apex:repeat>
