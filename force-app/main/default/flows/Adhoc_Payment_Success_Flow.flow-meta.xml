@@ -19,7 +19,7 @@
     </actionCalls>
     <description>Performs logic after the payment has been completed successfully
 Version changes:
-Added email alert</description>
+Changed success screen text</description>
     <interviewLabel>Adhoc Payment Success Page {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Success Flow</label>
     <processMetadataValues>
@@ -44,8 +44,8 @@ Added email alert</description>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
-            <name>REMOVEdisplay_text</name>
-            <fieldText>&lt;h3&gt;&lt;span style=&quot;font-size: 36px; color: rgb(0, 136, 106);&quot;&gt;Your payment is completed&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Thank you for your payment&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 18px;&quot;&gt;Other information&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <name>Payment_completed_display</name>
+            <fieldText>&lt;h3&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 36px;&quot;&gt;Your payment is completed&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Thank you for making this payment to NCT. The transaction was successful.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
