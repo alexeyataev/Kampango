@@ -62,6 +62,9 @@ public without sharing class CourseCreateEnquiryUtility {
         } catch (DmlException ex) {
             throw new CreateEnquiryException(ex.getMessage());
         }
+
+        updateContactPreferences(contact, requestParameters);
+
     }
 
     private static Date getDate(String dateString){
@@ -91,8 +94,31 @@ public without sharing class CourseCreateEnquiryUtility {
         return partner.Id;
     }
 
+    private static void updateContactPreferences(Contact primaryContact, Map<String, String> requestParameters) {
+        Individual individual = [
+            SELECT Id, Email__c, Post__c, SMS__c, Telephone__c 
+            FROM Individual 
+            WHERE Id =: primaryContact.IndividualId
+            LIMIT 1
+        ];
+        individual.Email__c = parseParameterToBoolean(requestParameters.get('smstextPreference'));
+        individual.Post__c = parseParameterToBoolean(requestParameters.get('emailPreference'));
+        individual.SMS__c = parseParameterToBoolean(requestParameters.get('postPreference'));
+        individual.Telephone__c = parseParameterToBoolean(requestParameters.get('telephonePreference'));
+
+        try {
+            update individual;
+        } catch (DmlException ex) {
+            throw new CreateEnquiryException(ex.getMessage());
+        }
+    }
+
     private static Id getContactRecordTypeByAPIName(String recordTypeName) {
         return SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(recordTypeName).getRecordTypeId();
+    }
+
+    private static Boolean parseParameterToBoolean(String parameter) {
+        return parameter == '1' ? true : false;
     }
 
     private static String parseParameterToPicklistValue(String parameter) {
