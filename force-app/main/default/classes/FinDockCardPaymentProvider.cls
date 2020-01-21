@@ -64,7 +64,7 @@ public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
         cpm.API_Request_Response.PaymentPostResponse response = (cpm.API_Request_Response.PaymentPostResponse)JSON.deserializeStrict(
             RestContext.response.responseBody.toString(), 
             cpm.API_Request_Response.PaymentPostResponse.class
-        );system.System.debug(response);
+        );
         CardPaymentUrlResult cardPaymentUrlResult = new CardPaymentUrlResult();
         cardPaymentUrlResult.url = response.RedirectURL;
         return cardPaymentUrlResult;
