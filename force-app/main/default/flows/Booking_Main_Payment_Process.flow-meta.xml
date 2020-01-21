@@ -117,112 +117,6 @@
         </outputParameters>
     </actionCalls>
     <assignments>
-        <name>Add_Credit_Card_to_Installment</name>
-        <label>Add Credit Card to Installment</label>
-        <locationX>907</locationX>
-        <locationY>446</locationY>
-        <assignmentItems>
-            <assignToReference>Installment_Object.cpm__Payment_Method__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>CreditCard</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Amount_Value</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_Direct_Debit_to_Installment</name>
-        <label>Add Direct Debit to Installment</label>
-        <locationX>700</locationX>
-        <locationY>463</locationY>
-        <assignmentItems>
-            <assignToReference>Installment_Object.cpm__Payment_Method__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Care Membership</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Amount_Value</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_Membership_Type_and_Amount_to_Installment_1</name>
-        <label>Add Membership Type and Amount to Installment_1</label>
-        <locationX>1150</locationX>
-        <locationY>767</locationY>
-        <assignmentItems>
-            <assignToReference>Installment_Object.Membership_Type__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Membership_Options_Value</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Installment_Object.cpm__Amount__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Course_Fee</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Installment_Object.gaid__Gift_Aidable_Amount__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>AMOUNT_48</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Installment_Object.cpm__Contact__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>bookingRecord.Primary_Contact__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_Membership_Chose</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_Membership_Type_and_Amount_to_Installment_2</name>
-        <label>Add Membership Type and Amount to Installment_2</label>
-        <locationX>1149</locationX>
-        <locationY>563</locationY>
-        <assignmentItems>
-            <assignToReference>Installment_Object.Membership_Type__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Membership_Options_Value</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Installment_Object.cpm__Amount__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Course_Fee</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Installment_Object.gaid__Gift_Aidable_Amount__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>AMOUNT_57</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Installment_Object.cpm__Contact__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>bookingRecord.Primary_Contact__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_Membership_Chose</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Added_Course_Payment_By_Credit_Card</name>
         <label>Added Course Payment By Credit Card</label>
         <locationX>1142</locationX>
@@ -285,8 +179,8 @@
     <assignments>
         <name>Get_Course_Fee_Assigment</name>
         <label>Get Course Fee Assigment</label>
-        <locationX>684</locationX>
-        <locationY>41</locationY>
+        <locationX>695</locationX>
+        <locationY>42</locationY>
         <assignmentItems>
             <assignToReference>Course_Fee</assignToReference>
             <operator>Assign</operator>
@@ -337,7 +231,7 @@
     </assignments>
     <choices>
         <name>CourseCC</name>
-        <choiceText>&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;One-off payment of &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(33, 37, 41); font-size: 12px;&quot;&gt;{!Course_Fee}&lt;/span&gt;</choiceText>
+        <choiceText>One-off payment of {!Course_Fee}</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>Course__CC</stringValue>
@@ -345,7 +239,7 @@
     </choices>
     <choices>
         <name>CoursePlanCC</name>
-        <choiceText>Pay by installments</choiceText>
+        <choiceText>Pay by instalments</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>PlanCC</stringValue>
@@ -518,43 +412,6 @@
         </value>
     </constants>
     <decisions>
-        <name>Amount_Value</name>
-        <label>Amount Value</label>
-        <locationX>792</locationX>
-        <locationY>610</locationY>
-        <defaultConnectorLabel>Without Membership</defaultConnectorLabel>
-        <rules>
-            <name>Is_Type_E</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Membership_Options_Value</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>MEMBERSHIP_TYPE_E</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Add_Membership_Type_and_Amount_to_Installment_2</targetReference>
-            </connector>
-            <label>Is Type E</label>
-        </rules>
-        <rules>
-            <name>Is_Type_A</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Membership_Options_Value</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>MEMBERSHIP_TYPE_A</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Add_Membership_Type_and_Amount_to_Installment_1</targetReference>
-            </connector>
-            <label>Is Type A</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Is_Membership_Chose</name>
         <label>Is Membership Chose ?</label>
         <locationX>1572</locationX>
@@ -624,9 +481,6 @@
                     <elementReference>CourseCC</elementReference>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Add_Credit_Card_to_Installment</targetReference>
-            </connector>
             <label>Membership by Credit Card</label>
         </rules>
         <rules>
@@ -646,9 +500,6 @@
                     <elementReference>CourseCC</elementReference>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Add_Direct_Debit_to_Installment</targetReference>
-            </connector>
             <label>Membership by Direct Debit</label>
         </rules>
         <rules>
@@ -779,13 +630,41 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordCreates>
+        <name>Create_Invoice_Item_for_Course</name>
+        <label>Create Invoice Item for Course</label>
+        <locationX>2062</locationX>
+        <locationY>253</locationY>
+        <connector>
+            <targetReference>Type_Of_Payment</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Zumzum__Amount__c</field>
+            <value>
+                <elementReference>bookingRecord.Course_Fee__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Zumzum__Quantity__c</field>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Zumzum__Sales_Invoice__c</field>
+            <value>
+                <elementReference>PaymentPlanParameters.salesInvoiceId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Zumzum__Sales_Invoice_Line_Item__c</object>
+    </recordCreates>
+    <recordCreates>
         <name>Create_Sales_Invoice</name>
         <label>Create Sales Invoice</label>
         <locationX>1977</locationX>
         <locationY>471</locationY>
         <assignRecordIdToReference>PaymentPlanParameters.salesInvoiceId</assignRecordIdToReference>
         <connector>
-            <targetReference>Type_Of_Payment</targetReference>
+            <targetReference>Create_Invoice_Item_for_Course</targetReference>
         </connector>
         <inputAssignments>
             <field>Booking__c</field>
@@ -825,78 +704,6 @@
         <queriedFields>Fee_Override__c</queriedFields>
         <queriedFields>Course_Start_Date__c</queriedFields>
     </recordLookups>
-    <screens>
-        <name>Membership_Option_Screen</name>
-        <label>Membership Option Screen</label>
-        <locationX>3</locationX>
-        <locationY>490</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <fields>
-            <name>Membership_Option_Description</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 28px; color: rgb(33, 37, 41);&quot;&gt;Hi {!&lt;/span&gt;&lt;span style=&quot;font-size: 28px;&quot;&gt;bookingRecord&lt;/span&gt;&lt;span style=&quot;font-size: 28px; color: rgb(33, 37, 41);&quot;&gt;.First_Name__c},&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 20px; color: rgb(33, 37, 41);&quot;&gt;We&#39;re currently running a great offer on our membership&lt;/span&gt;&lt;span style=&quot;font-size: 18px; color: rgb(33, 37, 41);&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!Line_Image}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 28px; color: rgb(0, 135, 106);&quot;&gt;Join us - and each other&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(33, 37, 41);&quot;&gt;Being the UK’s largest charity for parents also means we’re the UK’s largest community of new parents.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(33, 37, 41);&quot;&gt;By becoming NCT members, thousands of parents have formed lifelong friendships and support networks. Through us, they’ve shared experiences, excitement and inspiration during some of the most amazing times of their lives – and beyond.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(33, 37, 41);&quot;&gt;Your membership donation will support our work in your community, and in local communities across the UK&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;{!Line_Image}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 135, 106); font-size: 28px; background-color: rgb(255, 255, 255);&quot;&gt;Membership options&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Membership_Options_Value</name>
-            <choiceReferences>Membership_18</choiceReferences>
-            <choiceReferences>Membership_12</choiceReferences>
-            <choiceReferences>No_Membership</choiceReferences>
-            <dataType>String</dataType>
-            <fieldType>RadioButtons</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Added_partner</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 20px; color: rgb(0, 135, 106);&quot;&gt;﻿Your membership covers up to two people at the same address at no extra cost.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(33, 37, 41); font-size: 16px;&quot;&gt;Would you like to add your partner ?&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>WithPartner</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-                <conditions>
-                    <leftValueReference>Membership_Options_Value</leftValueReference>
-                    <operator>NotEqualTo</operator>
-                    <rightValue>
-                        <elementReference>WITHOUT_MEMBERSHIP</elementReference>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>Membership_Options_Add_Partner</name>
-            <choiceReferences>Membership_Options_Joint</choiceReferences>
-            <choiceReferences>Membership_Options_Single</choiceReferences>
-            <dataType>Boolean</dataType>
-            <fieldType>RadioButtons</fieldType>
-            <isRequired>true</isRequired>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>WithPartner</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-                <conditions>
-                    <leftValueReference>Membership_Options_Value</leftValueReference>
-                    <operator>NotEqualTo</operator>
-                    <rightValue>
-                        <elementReference>WITHOUT_MEMBERSHIP</elementReference>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
     <screens>
         <name>Payment_Details_Screen</name>
         <label>Payment Details Screen</label>
@@ -1195,8 +1002,8 @@
     <subflows>
         <name>Booking_Membership_Options_Flow</name>
         <label>Booking Membership Options Flow</label>
-        <locationX>521</locationX>
-        <locationY>41</locationY>
+        <locationX>524</locationX>
+        <locationY>44</locationY>
         <connector>
             <targetReference>Get_Course_Fee_Assigment</targetReference>
         </connector>
