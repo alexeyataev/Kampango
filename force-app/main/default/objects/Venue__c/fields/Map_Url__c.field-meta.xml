@@ -2,7 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Map_Url__c</fullName>
     <externalId>false</externalId>
-    <formula>&quot;https://www.google.co.uk/maps?q=&quot; &amp;  Postcode__c</formula>
+    <formula>IF(ISBLANK(Host__c),
+ &quot;https://www.google.co.uk/maps?q=&quot; &amp;  Postcode__c,
+ &quot;https://www.google.co.uk/maps?q=&quot; &amp;  Host__r.MailingPostalCode
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Map Url</label>
     <required>false</required>
