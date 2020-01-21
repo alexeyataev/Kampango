@@ -21,12 +21,7 @@ private class CourseSearchUtilityTest {
             FROM Course__c
         ];
 
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        Venue__c mainVenue = venueBuilder
-                                .insertRecord(true)
-                                .build();
-
-        dataFactory.setMainVenueToCourses(mainVenue, coursesToFinal);
+        Venue__c mainVenue = [SELECT Id, Name, Location__c FROM Venue__c WHERE Id = :coursesToFinal[0].Main_Venue__c LIMIT 1];
 
         for (Course__c course : coursesToFinal) {
             if (!course.Sessions__r.isEmpty()) {
@@ -38,18 +33,18 @@ private class CourseSearchUtilityTest {
 
     private static void setupTestDataForTestingSorting() {
         
-        TestDataFactory testDataFactor = TestDataFactory.getInstance();
-        testDataFactor.buildBranchAccount()
-                      .buildOrganizationAccount('acc5')
-                      .buildPractitioner('Test')
-                      .buildPractitionerFeeRate()
-                      .buildVenue()
-                      .buildRoom()
-                      .buildLicenceToPractice()
-                      .buildCoursesWithSessions(8, 2);
+        TestDataFactory testDataFactoryInstance = TestDataFactory.getInstance();
+        testDataFactoryInstance .buildBranchAccount()
+                                .buildOrganizationAccount('acc5')
+                                .buildPractitioner('Test')
+                                .buildPractitionerFeeRate()
+                                .buildVenue()
+                                .buildRoom()
+                                .buildLicenceToPractice()
+                                .buildCoursesWithSessions(8, 2);
 
         List<Course__c> courses = [
-            SELECT Type__c, Sub_Type__c, Status__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
+            SELECT Type__c, Sub_Type__c, Status__c, Main_Venue__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
                 (
                     SELECT Date__c, Status__c FROM Sessions__r    
                 )
@@ -57,103 +52,80 @@ private class CourseSearchUtilityTest {
             LIMIT 10
         ];
 
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        Venue__c mainVenue = venueBuilder
-                                .insertRecord(true)
-                                .build();
+        Venue__c mainVenue = [SELECT Id, Name, Location__c FROM Venue__c WHERE Id = :courses[0].Main_Venue__c LIMIT 1];
 
-        testDataFactor.setMainVenueToCourses(mainVenue, courses);
-
-        testDataFactor.setCoursesToFinalAndSessionsToConfirmed(courses);
+        testDataFactoryInstance.setCoursesToFinalAndSessionsToConfirmed(courses);
         
-        testDataFactor.setCoursesToFinal(courses);
+        testDataFactoryInstance.setCoursesToFinal(courses);
 
         List<Course__c> coursesToUpdate = new List<Course__c>();
         List<Session__c> sessionsToUpdate = new List<Session__c>();
-        Set<Venue__c> venuesToUpdate = new Set<Venue__c>(); 
 
         ChangerCourse changerCourse0 = new ChangerCourse(courses[0]);
         changerCourse0.changeType('NCT Signature antenatal course')
-                    .changeLocation(Location.newInstance(50.501, -0.101))
                     .changeStartDate(Date.today().addDays(5))
                     .changeEndDate(Date.today().addDays(30));
         coursesToUpdate.add(changerCourse0.course);
         sessionsToUpdate.addAll(changerCourse0.sessions);
-        venuesToUpdate.add(changerCourse0.venue);
 
         ChangerCourse changerCourse1 = new ChangerCourse(courses[1]);
         changerCourse1.changeType('NCT Essentials antenatal course')
-                    .changeLocation(Location.newInstance(50.501, -0.101))
                     .changeStartDate(Date.today().addDays(10))
                     .changeEndDate(Date.today().addDays(40));
         coursesToUpdate.add(changerCourse1.course);
         sessionsToUpdate.addAll(changerCourse1.sessions);
-        venuesToUpdate.add(changerCourse1.venue);
 
         ChangerCourse changerCourse2 = new ChangerCourse(courses[2]);
         changerCourse2.changeType('NCT Antenatal refresher course')
-                    .changeLocation(Location.newInstance(50.501, -0.101))
                     .changeStartDate(Date.today().addDays(70))
                     .changeEndDate(Date.today().addDays(100));
         coursesToUpdate.add(changerCourse2.course);
         sessionsToUpdate.addAll(changerCourse2.sessions);
-        venuesToUpdate.add(changerCourse2.venue);
 
         ChangerCourse changerCourse3 = new ChangerCourse(courses[3]);
         changerCourse3.changeType('NCT Twins and Multiples workshop')
-                    .changeLocation(Location.newInstance(50.501, -0.101))
                     .changeStartDate(Date.today().addDays(1))
                     .changeEndDate(Date.today().addDays(20));
         coursesToUpdate.add(changerCourse3.course);
         sessionsToUpdate.addAll(changerCourse3.sessions);
-        venuesToUpdate.add(changerCourse3.venue);
 
         ChangerCourse changerCourse4 = new ChangerCourse(courses[4]);
         changerCourse4.changeType('NCT Waterbirth workshop')
-                    .changeLocation(Location.newInstance(50.501, -0.101))
                     .changeStartDate(Date.today().addDays(-25))
                     .changeEndDate(Date.today().addDays(50));
         coursesToUpdate.add(changerCourse4.course);
         sessionsToUpdate.addAll(changerCourse4.sessions);
-        venuesToUpdate.add(changerCourse4.venue);
 
         ChangerCourse changerCourse5 = new ChangerCourse(courses[5]);
         changerCourse5.changeType('NCT Essentials antenatal course')
-                    .changeLocation(Location.newInstance(50.501, -0.101))
                     .changeStartDate(Date.today().addDays(1))
                     .changeEndDate(Date.today().addDays(30));
         coursesToUpdate.add(changerCourse5.course);
         sessionsToUpdate.addAll(changerCourse5.sessions);
-        venuesToUpdate.add(changerCourse5.venue);
 
         ChangerCourse changerCourse6 = new ChangerCourse(courses[6]);
         changerCourse6.changeType('NCT Essentials antenatal course')
-                    .changeLocation(Location.newInstance(50.501, -0.101))
                     .changeStartDate(Date.today().addDays(5))
                     .changeEndDate(Date.today().addDays(35));
         coursesToUpdate.add(changerCourse6.course);
         sessionsToUpdate.addAll(changerCourse6.sessions);
-        venuesToUpdate.add(changerCourse6.venue);
 
         ChangerCourse changerCourse7 = new ChangerCourse(courses[7]);
         changerCourse7.changeType('NCT Early Days course')
-                    .changeLocation(Location.newInstance(50.501, -0.101))
                     .changeStartDate(Date.today().addDays(-5))
                     .changeEndDate(Date.today().addDays(30));
         coursesToUpdate.add(changerCourse7.course);
         sessionsToUpdate.addAll(changerCourse7.sessions);
-        venuesToUpdate.add(changerCourse7.venue);
 
         System.runAs(TestDataFactory.createSysAdminUser()) {
             update coursesToUpdate;
             update sessionsToUpdate;
-            update new List<Venue__c>(venuesToUpdate);
         }
                  
     }
 
     @isTest
-    static void courseSearchById() {
+    static void courseSearchById_WithValidCourseId_CourseCorrectlyReturned() {
         setupTestData();
 
         Course__c course = [
@@ -173,7 +145,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void courseSearchByIdIfFromWebsiteFalse () {
+    static void courseSearchByIdIfFromWebsiteFalse_WithValidCourseId_CourseCorrectlyReturned () {
         setupTestData();
 
         Course__c course = [
@@ -190,7 +162,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void courseSearchByIdIfNoCourse() {
+    static void courseSearchById_WithDeletedCourseId_CourseCorrectlyReturned() {
         setupTestData();
 
         Course__c course = [
@@ -208,7 +180,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void courseSearchByBranchId() {
+    static void courseSearchByBranchId_WithValidBranchId_CorrectCoursesReturned() {
         setupTestData();
 
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
@@ -234,7 +206,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void courseSearchByBranchIdIfFromWebsiteFalse () {
+    static void courseSearchByBranchIdIfFromWebsiteFalse_WithValidBranchId_CorrectCoursesReturned () {
         setupTestData();
 
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
@@ -258,7 +230,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void courseSearchByBranchIdIfNoBranchCourses() {
+    static void courseSearchByBranchId_WithValidBranchIdButNoCoursesAtBranch_NoCoursesReturned() {
         setupTestData();
         
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
@@ -290,7 +262,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void courseSearchByLocationParams(){
+    static void courseSearchByDateAndDistance_InvalidParams_NoCoursesReturned(){
         Map<String, String> params = null;
         CourseSearchUtility.getCoursesByDateDistance(params);
 
@@ -318,27 +290,12 @@ private class CourseSearchUtilityTest {
         System.assertEquals(404, response.statusCode);
     }
 
-    private static void addLocationToVenue(){
-        List<Venue__c> venues = [
-            SELECT Id, Location__c
-            FROM
-            Venue__c
-        ];
-
-        System.assertEquals(2, venues.size());
-        Location loc = Location.newInstance(50.501, -0.101);
-        venues[0].Location__latitude__s = loc.latitude;
-        venues[0].Location__longitude__s = loc.longitude;
-        update venues;
-    }
-
     @isTest
-    static void courseSearchByLocation() {
+    static void courseSearchByLocation_NoCoursesInRegion_NoCoursesReturned() {
         setupTestData();
-        addLocationToVenue();
 
         Map<String, String> params = new Map<String, String>{
-            'location' => '50.5,-0.1',
+            'location' => '51.5,-0.1',
             'radius' => '50'
         };
         RestResponse response = CourseSearchUtility.getCoursesByDateDistance(params);
@@ -347,18 +304,17 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void courseSearchByLocationIfFromWebsiteFalse() {
+    static void courseSearchByLocationIfFromWebsiteFalse_NoCoursesInRegion_NoCoursesReturned() {
         setupTestData();
-        addLocationToVenue();
 
-        CourseSearchUtility.LocationRequestParameters params = new CourseSearchUtility.LocationRequestParameters(Location.newInstance(50.5, -0.1), 50);
+        CourseSearchUtility.LocationRequestParameters params = new CourseSearchUtility.LocationRequestParameters(Location.newInstance(51.5, -0.1), 50);
         List<Course__c> courses = CourseSearchUtility.getCoursesByDateDistance(params, null, false);
 
         System.assertEquals(0, courses.size());
     }
 
     @isTest
-    static void checkCourseSortingIfNoBirthDuoDate() {
+    static void checkCourseSorting_IfNoBirthDueDate_SortedByDistance() {
         setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
@@ -381,7 +337,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void checkCourseSortingIfBirthDuoDateIsToday() {
+    static void checkCourseSorting_IfBirthDueDateIsToday_CorrectlyOrdered() {
         setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
@@ -398,7 +354,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void checkCourseSortingIfBirthDuoDateIsTodayAddDays30() {
+    static void checkCourseSorting_IfBirthDueDateIsIn30Days_CorrectlyOrdered() {
         setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
@@ -421,7 +377,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void checkCourseSortingIfBirthDuoDateIsTodayAddDays60() {
+    static void checkCourseSorting_IfBirthDueDateIsIn60Days_CorrectlyOrdered() {
         setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
@@ -445,7 +401,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void checkCourseSortingIfBirthDuoDateIsTodayAddDays60Radius10() {
+    static void checkCourseSorting_IfBirthDueDateIsIn60DaysSearchRadius10_CorrectlyOrdered() {
         setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
@@ -470,7 +426,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void checkCourseSortingIfBirthDuoDateIsTodayAddDays60Radius0() {
+    static void checkCourseSorting_IfBirthDueDateIsIn60DaysSearchRadius0_NoCourses() {
         setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
@@ -489,7 +445,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void checkCourseSortingIfBirthDuoDateIsTodayAddDays60Radius20() {
+    static void checkCourseSorting_IfBirthDueDateIsIn60DaysSearchRadius20_CorrectlyOrdered() {
         setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
@@ -514,7 +470,7 @@ private class CourseSearchUtilityTest {
     }
 
     @isTest
-    static void checkCourseSortingIfBirthDuoDateIsTodayAddDays60Radius30() {
+    static void checkCourseSortingIfBirthDueDateIsIn60DaysSearchRadius30_CorrectlyOrdered() {
         setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
@@ -541,7 +497,6 @@ private class CourseSearchUtilityTest {
     private class ChangerCourse {
         private Course__c course;
         private List<Session__c> sessions = new List<Session__c>();
-        private Venue__c venue;
 
         private ChangerCourse(Course__c course) {
             this.course = course;
@@ -569,18 +524,6 @@ private class CourseSearchUtilityTest {
                 course.Type__c = 'Postnatal';
             }
             course.Sub_Type__c = type;
-
-            return this;
-        }
-
-        private ChangerCourse changeLocation(Location loc) {
-            venue = [
-                SELECT Location__c
-                FROM Venue__c
-                WHERE Id = :course.Main_Venue__c];
-
-            venue.Location__latitude__s = loc.latitude;
-            venue.Location__longitude__s = loc.longitude;
 
             return this;
         }
