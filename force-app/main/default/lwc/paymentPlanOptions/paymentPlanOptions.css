@@ -1,0 +1,8 @@
+.spinnerContainer {
+    position: relative;
+    width:5rem; 
+    top:1rem;
+} 
+.installmentsIsNotAvailableMessage {
+    color: rgb(194, 57, 52);
+}
