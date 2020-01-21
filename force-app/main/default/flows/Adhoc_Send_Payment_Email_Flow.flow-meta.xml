@@ -145,10 +145,20 @@
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Is_profile_Finance</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>MESSAGE_SUCCESS</leftValueReference>
+                <leftValueReference>currentProfile</leftValueReference>
                 <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>System Administrator</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>currentProfile</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Finance</stringValue>
+                </rightValue>
             </conditions>
             <connector>
                 <targetReference>Get_Sales_Invoice</targetReference>
@@ -158,7 +168,12 @@
     </decisions>
     <description>Sends an email with a link to details and payment
 Version Changes:
-Added Finance profile check</description>
+Added SysAdmin and Finance profile check</description>
+    <formulas>
+        <name>currentProfile</name>
+        <dataType>String</dataType>
+        <expression>{!$Profile.Name}</expression>
+    </formulas>
     <formulas>
         <name>personName</name>
         <dataType>String</dataType>
