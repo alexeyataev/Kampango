@@ -63,7 +63,7 @@ public without sharing class CourseCreateEnquiryUtility {
             throw new CreateEnquiryException(ex.getMessage());
         }
 
-        updateContactPreferences(contact, requestParameters);
+        updateContactPreferences(contact.Id, requestParameters);
 
     }
 
@@ -94,16 +94,23 @@ public without sharing class CourseCreateEnquiryUtility {
         return partner.Id;
     }
 
-    private static void updateContactPreferences(Contact primaryContact, Map<String, String> requestParameters) {
+    private static void updateContactPreferences(Id contactId, Map<String, String> requestParameters) {
+        Contact contact = [
+            SELECT IndividualId
+            FROM Contact
+            WHERE Id =: contactId
+            LIMIT 1
+        ];
+
         Individual individual = [
             SELECT Id, Email__c, Post__c, SMS__c, Telephone__c 
             FROM Individual 
-            WHERE Id =: primaryContact.IndividualId
+            WHERE Id =: contact.IndividualId
             LIMIT 1
         ];
-        individual.Email__c = parseParameterToBoolean(requestParameters.get('smstextPreference'));
-        individual.Post__c = parseParameterToBoolean(requestParameters.get('emailPreference'));
-        individual.SMS__c = parseParameterToBoolean(requestParameters.get('postPreference'));
+        individual.Email__c = parseParameterToBoolean(requestParameters.get('emailPreference'));
+        individual.Post__c = parseParameterToBoolean(requestParameters.get('postPreference'));
+        individual.SMS__c = parseParameterToBoolean(requestParameters.get('smstextPreference'));
         individual.Telephone__c = parseParameterToBoolean(requestParameters.get('telephonePreference'));
 
         try {

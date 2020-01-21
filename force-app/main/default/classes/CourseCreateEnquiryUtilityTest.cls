@@ -277,4 +277,29 @@ private class CourseCreateEnquiryUtilityTest {
         System.assertEquals(1, partners.size());
         System.assertEquals(1, bookings.size());
     }
+
+    @isTest
+    static void createEnquiryWithContactPreference() {
+        String avaliableCourse = [
+            SELECT Id, Name
+            FROM Course__c 
+        ][0].Name;
+        Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
+        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
+        paramsMap.put('courseId', avaliableCourse);
+        paramsMap.put('emailPreference', '1');
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        List<Contact> createdContact = [
+            SELECT Name, Email, Individual.Email__c
+            FROM Contact 
+            WHERE Email =: 'test@test.test'
+        ];
+        List<Booking__c> bookings = [
+            SELECT Name
+            FROM Booking__c
+        ];
+        System.assertEquals(1, createdContact.size());
+        System.assertEquals(1, bookings.size());
+        System.assertEquals(true, createdContact[0].Individual.Email__c);
+    }
 }
