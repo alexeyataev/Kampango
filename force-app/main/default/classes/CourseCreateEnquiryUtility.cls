@@ -28,7 +28,7 @@ public without sharing class CourseCreateEnquiryUtility {
             npe01__PreferredPhone__c = 'Mobile'
         );
         try {
-            upsert contact Contact.fields.Email;
+            insert contact;
         } catch (DmlException ex) {
             throw new CreateEnquiryException(ex.getMessage());
         }
@@ -84,7 +84,7 @@ public without sharing class CourseCreateEnquiryUtility {
             RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME)
         );
         try {
-            upsert partner Contact.fields.Email;
+            insert partner;
         } catch (DmlException ex) {
             throw new CreateEnquiryException(ex.getMessage());
         }
