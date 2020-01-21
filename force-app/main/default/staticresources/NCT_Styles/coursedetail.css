@@ -60,6 +60,9 @@ th, td {
 .line-height_1{
     line-height: 1em;
 }
+.line-height_1_5{
+    line-height: 1.5em;
+}
 .margin-half{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
