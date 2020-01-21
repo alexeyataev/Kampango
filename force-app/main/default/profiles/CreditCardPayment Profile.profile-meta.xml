@@ -234,10 +234,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>StepOrangeCardPaymentProvider</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>SystemClock</apexClass>
         <enabled>false</enabled>
     </classAccesses>
