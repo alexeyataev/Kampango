@@ -68,7 +68,6 @@
         <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
-        <members>StepOrangeCardPaymentProvider</members>
         <members>SystemClock</members>
         <members>TestAccountBuilder</members>
         <members>TestBookingBuilder</members>
@@ -644,6 +643,7 @@
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
         <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
+        <members>Venue__c.Populate_Location_if_Type_Not_ParentHome</members>
         <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <name>ValidationRule</name>
     </types>
