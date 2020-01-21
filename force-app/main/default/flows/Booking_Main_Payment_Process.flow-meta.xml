@@ -239,7 +239,7 @@
     </choices>
     <choices>
         <name>CoursePlanCC</name>
-        <choiceText>Pay by installments</choiceText>
+        <choiceText>Pay by instalments</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>PlanCC</stringValue>
@@ -757,7 +757,7 @@
         <name>Payment_Options_Screen</name>
         <label>Payment Options Screen</label>
         <locationX>849</locationX>
-        <locationY>46</locationY>
+        <locationY>41</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
