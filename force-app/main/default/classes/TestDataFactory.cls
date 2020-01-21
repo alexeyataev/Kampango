@@ -294,6 +294,7 @@ public without sharing class TestDataFactory {
             .build();
         return this;
     }
+
     public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus) {
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         session = sessionBuilder
@@ -302,22 +303,6 @@ public without sharing class TestDataFactory {
             .withRoom(room)
             .withType(sessionType)
             .withStatus(sessionStatus)
-            .withPractitioner(practitioners[0])
-            .withPractitionerFeeRate(practitionerFeeRate)
-            .withPractitionerLicence(licenceToPractice)
-            .insertRecord(true)
-            .build();
-        return this;
-    }
-
-    public TestDataFactory buildReunion() {
-        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
-        reunion = sessionBuilder
-            .withCourse(course)
-            .withType(SESSION_REUNION_TYPE)
-            .withVenue(venue)
-            .withRoom(room)
-            .withStatus(SESSION_PROVISIONAL_STATUS)
             .withPractitioner(practitioners[0])
             .withPractitionerFeeRate(practitionerFeeRate)
             .withPractitionerLicence(licenceToPractice)

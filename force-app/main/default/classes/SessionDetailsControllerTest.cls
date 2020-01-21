@@ -18,7 +18,7 @@ public with sharing class SessionDetailsControllerTest {
                 .buildCourse()
                 .buildEstimatedCosts()
                 .buildSession()
-                .buildReunion();
+                .buildSessionWithTypeAndStatus('Reunion', 'Confirmed');
     }
 
     @IsTest
