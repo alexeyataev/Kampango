@@ -3,10 +3,9 @@
     <fullName>Additional_Information_with_Venue__c</fullName>
     <externalId>false</externalId>
     <formula>Additional_Information__c &amp; 
-IF(
- AND(NOT(ISBLANK(Venue__c)),Venue__c &lt;&gt; Course__r.Main_Venue__c),
- BR() &amp; &quot;This session will be held at&quot; &amp; BR() &amp; Venue_Address__c,
- &quot;&quot;
+IF(AND(NOT(ISBLANK(Venue__c)),Venue__c &lt;&gt; Course__r.Main_Venue__c),
+  &quot;This session will be held at &quot; &amp; Venue__r.Name &amp; Venue__r.Street_Address__c &amp; Venue__r.Town__c &amp; Venue__r.County__c &amp; Venue__r.Postcode__c,
+  &quot;&quot;
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Additional Information with Venue</label>
