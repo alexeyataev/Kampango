@@ -1,12 +1,12 @@
 public class CardPaymentHandler {
     @InvocableMethod
-    public static List<CardPaymentUrlResult> getPaymentLink(List<CardPaymentUrlRequest> params) {
+    public static List<CardPaymentUrlResult> getPaymentLink(List<CardPaymentParameters> parameters) {
         try {
-            if(params.size() != 1) {
-                throw new ListException('List must contain 1 record');
+            if(parameters == null || parameters.size() != 1 || parameters[0] == null) {
+                throw new ListException('1 card payment parameter must be passed');
             }
-            IPaymentServiceProvider paymentServiceProvider = new StepOrangeCardPaymentProvider();
-            CardPaymentUrlResult result = paymentServiceProvider.getCardPaymentURL(params[0].installment, params[0].bookingId);
+            IPaymentServiceProvider paymentServiceProvider = new FinDockCardPaymentProvider();
+            CardPaymentUrlResult result = paymentServiceProvider.getCardPaymentURL(parameters[0]);
             return new List<CardPaymentUrlResult> {result};
         } catch(Exception e) {
             CardPaymentUrlResult result = new CardPaymentUrlResult();
