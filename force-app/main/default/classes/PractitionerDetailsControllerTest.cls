@@ -18,7 +18,8 @@ public with sharing class PractitionerDetailsControllerTest {
                     .buildCourse()
                     .buildEstimatedCosts()
                     .buildSession()
-                    .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS).buildSessionWithTypeAndStatus('Reunion', 'Confirmed');
+                    .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
+		    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed');
     }
 
     @IsTest
