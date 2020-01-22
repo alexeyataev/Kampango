@@ -126,7 +126,7 @@ private class CourseCreateEnquiryUtilityTest {
             WHERE Email =: existingContact.Email
         ];
         System.assertEquals(1, bookings.size());
-        System.assertEquals(2, contacts.size());
+        System.assertEquals(2, contacts.size(), 'Now insert istead of upsert is used. PO should desice on process of deduplication');
     }
 
     @isTest
@@ -298,7 +298,7 @@ private class CourseCreateEnquiryUtilityTest {
             SELECT Name
             FROM Booking__c
         ];
-        System.assertEquals(true, createdContact[0].Individual.Email__c);
+        System.assertEquals(true, createdContact[0].Individual.Email__c, 'Contact email preference should be marked as true according to test case');
     }
 
     @isTest
@@ -343,6 +343,6 @@ private class CourseCreateEnquiryUtilityTest {
             FROM Booking__c
             WHERE Partner_Contact__c != null
         ];
-        System.assertEquals(true, partners[0].Individual.Email__c);
+        System.assertEquals(true, partners[0].Individual.Email__c, 'Contact email preference should be marked as true according to test case');
     }
 }
