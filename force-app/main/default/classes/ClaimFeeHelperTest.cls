@@ -171,12 +171,12 @@ private class ClaimFeeHelperTest {
 
         Test.startTest();
             System.runAs(getPractitionerUser()) {
-                createZumzumSetupRecords(); 
+                createZumzumSetupRecords();
                 ClaimFeeHelper.createPurchaseInvoice(new List<ClaimFeeHelper.ClaimFeeWrapper> {flowData});
             }
         Test.stopTest();
 
-        System.assertEquals(0, [ 2, [
+          System.assertEquals(2, [
             SELECT Id
             FROM Zumzum__Purchase_Invoice__c
         ].size());
