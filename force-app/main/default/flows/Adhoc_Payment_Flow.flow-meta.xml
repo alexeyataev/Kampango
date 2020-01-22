@@ -1,45 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <assignments>
-        <name>Assign_amount_to_installment</name>
-        <label>Assign amount to installment</label>
-        <locationX>209</locationX>
-        <locationY>310</locationY>
-        <assignmentItems>
-            <assignToReference>installment.cpm__Amount__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>salesInvoice.Zumzum__Total_Unpaid_Amount__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>installment.cpm__Payment_Method__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>CreditCard</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>installment.cpm__Contact__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>booking.Primary_Contact__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>installment.Sales_Invoice__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>salesInvoiceId</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Payment_summary</targetReference>
-        </connector>
-    </assignments>
     <description>Takes the user through the payment process
 Version changes:
-Added missing field to Booking query list</description>
+Disabled the screen</description>
+    <formulas>
+        <name>ERROR_PAGE</name>
+        <dataType>String</dataType>
+        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&#39;/s/failure&#39;</expression>
+    </formulas>
+    <formulas>
+        <name>SUCCESS_PAGE</name>
+        <dataType>String</dataType>
+        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&#39;/s/adhoc-success?salesInvoiceId=&#39;+{!salesInvoiceId}</expression>
+    </formulas>
     <interviewLabel>Adhoc Payment Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Flow</label>
     <processMetadataValues>
@@ -56,34 +29,13 @@ Added missing field to Booking query list</description>
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
-        <name>Get_Booking</name>
-        <label>Get Booking</label>
+        <name>Get_Sales_Invoice</name>
+        <label>Get Sales Invoice</label>
         <locationX>50</locationX>
         <locationY>310</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Assign_amount_to_installment</targetReference>
-        </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>salesInvoice.Booking__c</elementReference>
-            </value>
-        </filters>
-        <object>Booking__c</object>
-        <outputReference>booking</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Primary_Contact__c</queriedFields>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Sales_Invoice</name>
-        <label>Get Sales Invoice</label>
-        <locationX>50</locationX>
-        <locationY>169</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Booking</targetReference>
+            <targetReference>Payment_Details_related_screens</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -95,23 +47,20 @@ Added missing field to Booking query list</description>
         <object>Zumzum__Sales_Invoice__c</object>
         <outputReference>salesInvoice</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Booking__c</queriedFields>
+        <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Zumzum__Total_Unpaid_Amount__c</queriedFields>
     </recordLookups>
     <screens>
         <name>Payment_summary</name>
         <label>Payment summary</label>
-        <locationX>362</locationX>
-        <locationY>310</locationY>
+        <locationX>309</locationX>
+        <locationY>402</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
-        <connector>
-            <targetReference>Payment_Details_related_screens</targetReference>
-        </connector>
         <fields>
             <name>Summary_text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 36px; color: rgb(62, 62, 60);&quot;&gt;Payment summary&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Some text goes here...&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Hi,&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;We&#39;re holding your place on the following course until&amp;nbsp;16th January 2020. Complete your booking now to secure your place.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Your booking&lt;/span&gt;&lt;/p&gt;&lt;p&gt;NCT Essentials Antenatal course for 334 due dates&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;at&amp;nbsp;Test&amp;nbsp;(26th March&amp;nbsp;-&amp;nbsp;1st May)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 150, 50); font-size: 16px;&quot;&gt;Sessions&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Total - £999&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -122,38 +71,40 @@ Added missing field to Booking query list</description>
     <subflows>
         <name>Payment_Details_related_screens</name>
         <label>Payment Details related screens</label>
-        <locationX>538</locationX>
+        <locationX>536</locationX>
         <locationY>310</locationY>
         <flowName>Adhoc_Payment_Details_Subflow</flowName>
         <inputAssignments>
-            <name>bookingId</name>
+            <name>paramAmount</name>
             <value>
-                <elementReference>salesInvoice.Booking__c</elementReference>
+                <elementReference>salesInvoice.Zumzum__Total_Unpaid_Amount__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <name>Installment_Object</name>
+            <name>paramContactId</name>
             <value>
-                <elementReference>installment</elementReference>
+                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>paramErrorPage</name>
+            <value>
+                <elementReference>ERROR_PAGE</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>paramSalesInvoiceId</name>
+            <value>
+                <elementReference>salesInvoiceId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>paramSuccessPage</name>
+            <value>
+                <elementReference>SUCCESS_PAGE</elementReference>
             </value>
         </inputAssignments>
     </subflows>
-    <variables>
-        <name>booking</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Booking__c</objectType>
-    </variables>
-    <variables>
-        <name>installment</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>cpm__Installment__c</objectType>
-    </variables>
     <variables>
         <name>salesInvoice</name>
         <dataType>SObject</dataType>

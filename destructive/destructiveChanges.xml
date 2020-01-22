@@ -16,6 +16,7 @@
         <members>PaymentLinkGeneratorTestPageTest</members>
         <members>PaymentProviderHttpResponseMock</members>
         <members>PaymentProviderTest</members>
+        <members>StepOrangeCardPaymentProvider</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -33,6 +34,7 @@
         <members>Account.Account_Key__c</members>
         <members>Account.Branch__c</members>
         <members>Account.Branch_Code__c</members>
+        <members>Account.Enquiry_PSA__c</members>
         <members>Booking__c.Birth_Date__c</members>
         <members>Booking__c.Birth_Or_Due_Date__c</members>
         <members>Booking__c.Client_Name__c</members>
@@ -63,6 +65,7 @@
         <members>Booking__c.Offer_Email_Sent__c</members>
         <members>Booking__c.Partner_Gift_Aid__c</members>
         <members>Booking__c.Partner_Membership__c</members>
+        <members>Booking__c.Phone_Partner__c</members>
         <members>Booking__c.Preferred_Payment_Date__c</members>
         <members>Contact.Account_Key__c</members>
         <members>Contact.Branch_Key__c</members>
@@ -155,6 +158,7 @@
         <members>Session__c.Website_Text__c</members>
         <members>Session__c.Women_Only__c</members>
         <members>Venue__c.Google_Map_Link__c</members>
+        <members>Venue__c.Main_Venue__c</members>
         <members>Venue__c.Venue_GeoLocation__c</members>
         <members>Venue__c.Venue_Keys__c</members>
         <members>Venue__c.Venue_Suitability__c</members>
@@ -178,6 +182,7 @@
     </types>
     <types>
         <members>Course__c-Admin Course Layout</members>
+        <members>Course__c-Capacity PSA Course Layout</members>
         <name>Layout</name>
     </types>
     <types>
@@ -212,6 +217,7 @@
         <members>Contact.Contact_Preferred_Phone</members>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
+        <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted.validationRule-meta</members>
         <members>Session__c.Prevent_private_reunion_confirmation</members>
         <members>Zumzum__Bank_Account__c.Account_number_must_be_8_numeric_digits</members>
         <members>Zumzum__Bank_Account__c.Check_Bank_Account_Name</members>

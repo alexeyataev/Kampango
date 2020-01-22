@@ -62,7 +62,6 @@
             <label>Status is not Confirmed</label>
         </rules>
     </decisions>
-    <description>Verison  1</description>
     <interviewLabel>Resend Confirmation Email {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Resend Confirmation Email</label>
     <processMetadataValues>
@@ -204,7 +203,7 @@
         </connector>
         <fields>
             <name>Confirm_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 20px; background-color: rgb(255, 255, 255);&quot;&gt;Please click next to send an email to  &lt;/span&gt;&lt;b style=&quot;color: rgb(47, 47, 47); font-size: 18px;&quot;&gt;{!curBooking.First_Name__c} {!curBooking.Last_Name__c}&lt;/b&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 20px; background-color: rgb(255, 255, 255);&quot;&gt;Please click next to send an email to &lt;/span&gt;&lt;b style=&quot;color: rgb(47, 47, 47); font-size: 18px;&quot;&gt;{!curBooking.First_Name__c} {!curBooking.Last_Name__c}&lt;/b&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -250,9 +249,51 @@
         </connector>
         <flowName>BookingConfirmationNotificationSend</flowName>
         <inputAssignments>
+            <name>bookingFirstName</name>
+            <value>
+                <elementReference>curBooking.First_Name__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <name>bookingId</name>
             <value>
                 <elementReference>curBooking.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>bookingName</name>
+            <value>
+                <elementReference>curBooking.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>bookingUtilityField</name>
+            <value>
+                <elementReference>curBooking.Email_Template_Utility_Field__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>courseId</name>
+            <value>
+                <elementReference>curBooking.Course__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>emailAddress</name>
+            <value>
+                <elementReference>curBooking.Primary_Contact_Email__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>enquiryName</name>
+            <value>
+                <elementReference>Get_Course.Enquiries_PSA_Name__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>mainPractitionerId</name>
+            <value>
+                <elementReference>Get_Course.Main_Practitioner__c</elementReference>
             </value>
         </inputAssignments>
     </subflows>

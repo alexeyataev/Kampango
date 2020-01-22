@@ -2,19 +2,25 @@
 
     <apex:attribute description="The course record for which to display bookings" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
     <apex:attribute description="The API name of booking fieldset" name="fieldsetName" type="String" required="true" assignTo="{!bookingFieldSetName}"/> 
+    <apex:attribute description="The API name of booking contact fieldset" name="contactFieldsetName" type="String" assignTo="{!bookingContactFieldSetName}" default="CourseSummaryBookingPrimaryContactFields"/> 
 
-    <apex:pageBlock title="Bookings">
-        <apex:pageBlockTable value="{!bookings}" var="book">
-            <apex:column headerValue="Primary Contact">
-                <c:CourseSummaryContactDetails contactIdSet="{!book.primaryContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
+    <apex:pageBlock title="Booking(s)">
+        <apex:pageBlockTable value="{!bookings}" var="booking" styleClass="watermark tableStyle">
+            <apex:column headerValue="Primary Contact" styleClass="columnStyle">
+                <c:CourseSummaryContactDetails contact="{!bookingContacts[booking.Primary_Contact__c]}" fieldsetName="{!contactFieldsetName}" labelIsVisible="false"/>
             </apex:column>
-            <apex:column headerValue="Partner Contact">
-                <c:CourseSummaryContactDetails contactIdSet="{!book.partnerContactIds}" fieldsetName="CourseSummaryBookingPrimaryContactFields"/>
+            <apex:column headerValue="Partner Contact" styleClass="columnStyle">
+                <c:CourseSummaryContactDetails contact="{!bookingContacts[booking.Partner_Contact__c]}" fieldsetName="{!contactFieldsetName}" labelIsVisible="false" rendered="{!booking.Partner_Contact__c != null}"/>
             </apex:column>
-            <apex:repeat value="{!$ObjectType.Booking__c.FieldSets.CourseSummaryBookingFields}" var="field">
-                <apex:column value="{!book.booking[field]}"/> 
+            <apex:repeat value="{!$ObjectType.Booking__c.FieldSets[fieldsetName]}" var="field">
+                <apex:column value="{!booking[field]}" styleClass="columnStyle"/> 
             </apex:repeat>
         </apex:pageBlockTable>
     </apex:pageBlock>
+    <apex:pageBlock title="Notes For Practitioner(s)">
+        <apex:pageBlockTable value="{!bookings}" var="booking" styleClass="watermark tableStyle">
+            <apex:column value="{!booking.Name}" styleClass="columnStyle"/>
+            <apex:column value="{!booking.Info_for_Practitioner__c}" styleClass="columnStyle"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
 </apex:component>
-

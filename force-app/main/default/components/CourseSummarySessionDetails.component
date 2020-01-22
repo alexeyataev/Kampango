@@ -1,10 +1,11 @@
-<apex:component>
-    <apex:attribute description="The course record for which to display sessions" name="course" type="Course__c"/>
+<apex:component Controller="SessionDetailsController">
+    <apex:attribute description="The course record for which to display sessions" name="course" type="Course__c" assignTo="{!courseRecord}"/>
+    <apex:attribute description="The API name of session fieldset" name="fieldsetName" type="String" required="true" assignTo="{!sessionFieldSetName}"/>
 
-    <apex:pageBlock title="Sessions">
-        <apex:pageBlockTable value="{!course.Sessions__r}" var="session">
-            <apex:repeat value="{!$ObjectType.Session__c.FieldSets.CourseSummaryFields}" var="field">
-                <apex:column value="{!session[field]}"/>
+    <apex:pageBlock title="Session(s)">
+        <apex:pageBlockTable value="{!sessions}" var="session" styleClass="tableStyle tableLayoutOnly">
+            <apex:repeat value="{!$ObjectType.Session__c.FieldSets[fieldsetName]}" var="field">
+                <apex:column value="{!session[field]}" styleClass="columnStyle"/>
             </apex:repeat>
         </apex:pageBlockTable>
     </apex:pageBlock>

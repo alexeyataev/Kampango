@@ -41,7 +41,7 @@
     </assignments>
     <description>This flow allows the practitioner to claim fees for completed sessions.
 Version changes:
-Changed LWC component variable names</description>
+Changed lastThreeMonths formula</description>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
@@ -60,7 +60,7 @@ Changed LWC component variable names</description>
     <formulas>
         <name>lastThreeMonths</name>
         <dataType>Date</dataType>
-        <expression>IF(MONTH(TODAY()) = 1, DATE(YEAR(TODAY()) - 1, 12, 01),DATE(YEAR(TODAY()), MONTH(TODAY()) - 3, 01))</expression>
+        <expression>IF(MONTH(TODAY()) = 1, DATE(YEAR(TODAY()) - 1, 12 - 2, 01),DATE(YEAR(TODAY()), MONTH(TODAY()) - 3, 01))</expression>
     </formulas>
     <formulas>
         <name>nominalAccountId</name>

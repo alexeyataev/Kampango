@@ -6,7 +6,7 @@ public with sharing class PractitionerBandFeeHelperTest {
     private static final String PRACTITIONER_LAST_NAME = 'Smith';
     private static final String PRACTITIONER_RECORDTYPE_NAME = 'Practitioner';
     private static final String PRACTITIONER_PROMOTED_BAND ='B';
-    private static final Date promotionDate = Date.today() + 7;
+    private static final Date PROMOTION_DATE = Date.today() + 7;
 
     @TestSetup
     private static void setupTestData(){
@@ -33,15 +33,15 @@ public with sharing class PractitionerBandFeeHelperTest {
                                                             WHERE Practitioner__c = :practitioner.Id 
                                                             LIMIT 1];
 
-        sessionToMoveAfterPromotionDate.Date__c = promotionDate.addDays(5);
+        sessionToMoveAfterPromotionDate.Date__c = PROMOTION_DATE.addDays(5);
         update sessionToMoveAfterPromotionDate;
 
         test.startTest();
 
-        practitionerOriginalBand.End_Date__c = promotionDate;
+        practitionerOriginalBand.End_Date__c = PROMOTION_DATE;
         update practitionerOriginalBand;
 
-        Practitioner_Band__c practitionerNewBand = new Practitioner_Band__c(Start_Date__c = promotionDate,
+        Practitioner_Band__c practitionerNewBand = new Practitioner_Band__c(Start_Date__c = PROMOTION_DATE,
                                                                                 Band__c = PRACTITIONER_PROMOTED_BAND,
                                                                                 Practitioner__c = practitioner.Id);
 
@@ -70,10 +70,10 @@ public with sharing class PractitionerBandFeeHelperTest {
 
         test.startTest();
 
-        practitionerOriginalBand.End_Date__c = promotionDate;
+        practitionerOriginalBand.End_Date__c = PROMOTION_DATE;
         update practitionerOriginalBand;
 
-        Practitioner_Band__c practitionerNewBand = new Practitioner_Band__c(Start_Date__c = promotionDate,
+        Practitioner_Band__c practitionerNewBand = new Practitioner_Band__c(Start_Date__c = PROMOTION_DATE,
                                                                                 Band__c = PRACTITIONER_PROMOTED_BAND,
                                                                                 Practitioner__c = practitioner.Id);
 
