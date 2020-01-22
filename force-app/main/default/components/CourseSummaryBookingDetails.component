@@ -13,7 +13,7 @@
                 <c:CourseSummaryContactDetails contact="{!bookingContacts[booking.Partner_Contact__c]}" fieldsetName="{!contactFieldsetName}" labelIsVisible="false" rendered="{!booking.Partner_Contact__c != null}"/>
             </apex:column>
             <apex:repeat value="{!$ObjectType.Booking__c.FieldSets[fieldsetName]}" var="field">
-                <apex:column value="{!booking[field]}" styleClass="columnStyle" rendered="{!field != 'Info_for_Practitioner__c'}"/> 
+                <apex:column value="{!booking[field]}" styleClass="columnStyle"/> 
             </apex:repeat>
         </apex:pageBlockTable>
     </apex:pageBlock>
