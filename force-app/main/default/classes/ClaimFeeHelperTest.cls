@@ -171,14 +171,12 @@ private class ClaimFeeHelperTest {
 
         Test.startTest();
             System.runAs(getPractitionerUser()) {
-                createZumzumSetupRecords();
-                // Temporarily commented to quickly unblock deployments, logic should be fixed itself.
-                // W-002514 was created for tracking
-                //ClaimFeeHelper.createPurchaseInvoice(new List<ClaimFeeHelper.ClaimFeeWrapper> {flowData});
+                createZumzumSetupRecords(); 
+                ClaimFeeHelper.createPurchaseInvoice(new List<ClaimFeeHelper.ClaimFeeWrapper> {flowData});
             }
         Test.stopTest();
 
-        System.assertEquals(0, [ //2, [
+        System.assertEquals(0, [ 2, [
             SELECT Id
             FROM Zumzum__Purchase_Invoice__c
         ].size());
