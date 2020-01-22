@@ -91,7 +91,7 @@ public without sharing class CourseCreateEnquiryUtility {
         } catch (DmlException ex) {
             throw new CreateEnquiryException(ex.getMessage());
         }
-        updateContactPreferences(partner.Id, requestParameters)
+        updateContactPreferences(partner.Id, requestParameters);
         return partner.Id;
     }
 
