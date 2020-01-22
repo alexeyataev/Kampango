@@ -49,9 +49,9 @@ public with sharing class ClaimFeeHelper {
 
         purchaseInvoice.InvoiceDate = Date.today();
         purchaseInvoice.InvoiceDueDate = Date.today();
-        purchaseInvoice.SupplierName = currentUser.AccountId;
+        purchaseInvoice.SupplierAccount = currentUser.AccountId;
         purchaseInvoice.TransactionCurrency = zumzumCurrency.Id;
-        purchaseInvoice.PurchaseInvoiceType = 'Purchase Invoice';
+        purchaseInvoice.PurchaseInvoiceType = PURCHASE_INVOICE;
         purchaseInvoice.LineItems = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper>();
 
         for (Session__c session : sessions) {
@@ -74,7 +74,7 @@ public with sharing class ClaimFeeHelper {
 
             purchaseCredit.InvoiceDate = Date.today();
             purchaseCredit.InvoiceDueDate = Date.today();
-            purchaseCredit.SupplierName = currentUser.AccountId;
+            purchaseCredit.SupplierAccount = currentUser.AccountId;
             purchaseCredit.TransactionCurrency = zumzumCurrency.Id;
             purchaseCredit.PurchaseInvoiceType = PURCHASE_CREDIT;
             purchaseCredit.LineItems = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper>();
