@@ -102,7 +102,7 @@ public with sharing class ClaimFeeHelper {
         if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
             throw new CreatePurchaseInvoiceException(objResponse.ResponseMessage);
         }
-        postPurchaseInvoices(purchaseInvoices);
+        postPurchaseInvoices(objResponse.purchaseInvoices);
     }
 
     private static void postPurchaseInvoices(List<Zumzum__Purchase_Invoice__c> invoices) {
