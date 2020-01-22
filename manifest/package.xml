@@ -162,6 +162,11 @@
         <members>Session__c.Eligible_for_Claim__c</members>
         <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
         <members>Session__c.Practitioner_Fees_to_Claim__c</members>
+        <members>Session__c.Venue_County__c</members>
+        <members>Session__c.Venue_Name__c</members>
+        <members>Session__c.Venue_Postcode__c</members>
+        <members>Session__c.Venue_Street_Address__c</members>
+        <members>Session__c.Venue_Town__c</members>
         <members>Venue__c.Legacy_Id__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
