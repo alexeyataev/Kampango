@@ -1,7 +1,7 @@
 @SuppressWarnings('PMD.ApexCRUDViolation')
 /** As @SupressWarning annotation cannot be added along with @Invocable one
   * it was decided to add PMD.ApexCRUDViolation annotation to whole class
-  * Incident #32 - https://confluence.nct.org.uk:8443/x/EoSO 
+  * Incident #32 - https://confluence.nct.org.uk:8443/x/EoSO
 */
 
 public with sharing class ClaimFeeHelper {
@@ -67,7 +67,7 @@ public with sharing class ClaimFeeHelper {
             purchaseInvoice.LineItems.add(purchaseInvoiceLineItem);
         }
         purchases.add(purchaseInvoice);
-        
+
         //Purchase credit
         Boolean isPurchaseCreditNeeded = flowData[0].registrationFee > 0;
         if (isPurchaseCreditNeeded) {
