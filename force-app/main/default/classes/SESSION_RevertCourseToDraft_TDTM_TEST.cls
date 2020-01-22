@@ -462,7 +462,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
-    static void runionSessionsChangeStatusToProvisional() {
+    static void reunionSessionsChangeStatusToProvisional() {
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
             .buildOrganizationAccount('acc4')
@@ -509,7 +509,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         System.assertEquals(coursesToTest.size(), draftCoursesAfterUpdate.size());
     }
     
-    static void runionSessionsChangeStartTime() {
+    static void reunionSessionsChangeStartTime() {
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
             .buildOrganizationAccount('acc4')
