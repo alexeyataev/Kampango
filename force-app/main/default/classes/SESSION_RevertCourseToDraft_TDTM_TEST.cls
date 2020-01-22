@@ -506,7 +506,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         List<Course__c> draftCoursesAfterUpdate = [SELECT Status__c FROM Course__c  WHERE Id IN : courseIds AND Status__c =: COURSE_FINAL_STATUS LIMIT 10];
 
-        System.assertEquals(coursesToTest.size(), draftCoursesAfterUpdate.size());
+        System.assertEquals(coursesToTest.size(), draftCoursesAfterUpdate.size(), 'Reunion session status change should not affect status of the course');
     }
     
     static void reunionSessionsChangeStartTime() {
@@ -546,7 +546,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         List<Course__c> draftCourses = [SELECT Id FROM Course__c WHERE Status__c =: COURSE_DRAFT_STATUS];
 
-        System.assertEquals(0, draftCourses.size());
+        System.assertEquals(0, draftCourses.size(), 'Start time change should not affect course status');
     }
     
     private static void CreateTriggerSystemHandlerRecord() {

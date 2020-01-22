@@ -375,6 +375,17 @@ public TestDataFactory buildReunion() {
         sessions.addAll(sessionsToInsert);
         return this;
     }
+
+    public TestDataFactory createEnquiryPSA() {
+        TestUserBuilder userBuilder = new TestUserBuilder();
+        enquiryPSA_Users.add(userBuilder
+            .withProfile([SELECT Id FROM Profile WHERE Name = 'Enquiry PSA'].Id)
+            .withUsername(ENQUIRY_PSA_USERNAME)
+            .insertRecord(true)
+            .build());
+
+        return this;
+    }
     
     public TestDataFactory buildCoursesWithReunionSessions(Integer numberOfCourses, Integer numberOfSessions) {
         List<Course__c> coursesToInsert = new List<Course__c>();
@@ -427,17 +438,6 @@ public TestDataFactory buildReunion() {
 
         insert sessionsToInsert;
         sessions.addAll(sessionsToInsert);
-        return this;
-    }
-
-    public TestDataFactory createEnquiryPSA() {
-        TestUserBuilder userBuilder = new TestUserBuilder();
-        enquiryPSA_Users.add(userBuilder
-            .withProfile([SELECT Id FROM Profile WHERE Name = 'Enquiry PSA'].Id)
-            .withUsername(ENQUIRY_PSA_USERNAME)
-            .insertRecord(true)
-            .build());
-
         return this;
     }
 
