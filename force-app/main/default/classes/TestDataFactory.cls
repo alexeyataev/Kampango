@@ -438,8 +438,6 @@ public TestDataFactory buildReunion() {
             .insertRecord(true)
             .build());
 
-        System.debug(enquiryPSA_Users);
-
         return this;
     }
 
