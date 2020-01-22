@@ -62,6 +62,9 @@ public without sharing class CourseCreateEnquiryUtility {
         } catch (DmlException ex) {
             throw new CreateEnquiryException(ex.getMessage());
         }
+
+        updateContactPreferences(contact.Id, requestParameters);
+
     }
 
     private static Date getDate(String dateString){
@@ -88,11 +91,42 @@ public without sharing class CourseCreateEnquiryUtility {
         } catch (DmlException ex) {
             throw new CreateEnquiryException(ex.getMessage());
         }
+        updateContactPreferences(partner.Id, requestParameters);
         return partner.Id;
+    }
+
+    private static void updateContactPreferences(Id contactId, Map<String, String> requestParameters) {
+        Contact contact = [
+            SELECT IndividualId
+            FROM Contact
+            WHERE Id =: contactId
+            LIMIT 1
+        ];
+
+        Individual individual = [
+            SELECT Id, Email__c, Post__c, SMS__c, Telephone__c 
+            FROM Individual 
+            WHERE Id =: contact.IndividualId
+            LIMIT 1
+        ];
+        individual.Email__c = parseParameterToBoolean(requestParameters.get('emailPreference'));
+        individual.Post__c = parseParameterToBoolean(requestParameters.get('postPreference'));
+        individual.SMS__c = parseParameterToBoolean(requestParameters.get('smstextPreference'));
+        individual.Telephone__c = parseParameterToBoolean(requestParameters.get('telephonePreference'));
+
+        try {
+            update individual;
+        } catch (DmlException ex) {
+            throw new CreateEnquiryException(ex.getMessage());
+        }
     }
 
     private static Id getContactRecordTypeByAPIName(String recordTypeName) {
         return SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(recordTypeName).getRecordTypeId();
+    }
+
+    private static Boolean parseParameterToBoolean(String parameter) {
+        return parameter == '1' ? true : false;
     }
 
     private static String parseParameterToPicklistValue(String parameter) {
