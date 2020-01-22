@@ -6,7 +6,7 @@ public class PaymentApiRequest{
     private Payment payment {get;set;}
     private PaymentMethod paymentMethod {get;set;}
     private SourceConnector sourceConnector {get;set;}
-    
+
     public PaymentApiRequest(PaymentApiRequestParams apiRequestParams) {
         this.successURL = apiRequestParams.URLs.successURL;
         this.failureURL = apiRequestParams.URLs.failureURL;
