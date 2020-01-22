@@ -16,6 +16,7 @@
         <members>PaymentLinkGeneratorTestPageTest</members>
         <members>PaymentProviderHttpResponseMock</members>
         <members>PaymentProviderTest</members>
+        <members>StepOrangeCardPaymentProvider</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -33,6 +34,7 @@
         <members>Account.Account_Key__c</members>
         <members>Account.Branch__c</members>
         <members>Account.Branch_Code__c</members>
+        <members>Account.Enquiry_PSA__c</members>
         <members>Booking__c.Birth_Date__c</members>
         <members>Booking__c.Birth_Or_Due_Date__c</members>
         <members>Booking__c.Client_Name__c</members>
@@ -63,6 +65,7 @@
         <members>Booking__c.Offer_Email_Sent__c</members>
         <members>Booking__c.Partner_Gift_Aid__c</members>
         <members>Booking__c.Partner_Membership__c</members>
+        <members>Booking__c.Phone_Partner__c</members>
         <members>Booking__c.Preferred_Payment_Date__c</members>
         <members>Contact.Account_Key__c</members>
         <members>Contact.Branch_Key__c</members>

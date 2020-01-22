@@ -13,11 +13,11 @@
         <members>BranchWeightingHelperTest</members>
         <members>CardPaymentHandler</members>
         <members>CardPaymentHandlerTest</members>
+        <members>CardPaymentParameters</members>
+        <members>CardPaymentPlanHandler</members>
         <members>CardPaymentUrlResult</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
-        <members>ContactDetailsController</members>
-        <members>ContactDetailsControllerTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -34,6 +34,7 @@
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
+        <members>FinDockCardPaymentProvider</members>
         <members>HttpStatusCode</members>
         <members>IClock</members>
         <members>IPaymentServiceProvider</members>
@@ -41,6 +42,7 @@
         <members>PaymentPlanGenerator</members>
         <members>PaymentPlanMockClock</members>
         <members>PaymentPlanOption</members>
+        <members>PaymentPlanOptionsController</members>
         <members>PaymentPlanOptionsTest</members>
         <members>PractitionerBandFeeHelper</members>
         <members>PractitionerBandFeeHelperTest</members>
@@ -60,7 +62,6 @@
         <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
-        <members>StepOrangeCardPaymentProvider</members>
         <members>SystemClock</members>
         <members>TestAccountBuilder</members>
         <members>TestBookingBuilder</members>
@@ -513,6 +514,7 @@
     <types>
         <members>Admin</members>
         <members>Capacity PSA</members>
+        <members>CreditCardPayment Profile</members>
         <members>Enquiry PSA</members>
         <members>Finance</members>
         <members>Parent Community Profile</members>
@@ -591,6 +593,7 @@
     <types>
         <members>confidentialClassStyles</members>
         <members>NCT_Styles</members>
+        <members>NCT_Watermark</members>
         <name>StaticResource</name>
     </types>
     <types>
@@ -632,6 +635,7 @@
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
         <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
+        <members>Venue__c.Populate_Location_if_Type_Not_ParentHome</members>
         <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <name>ValidationRule</name>
     </types>
