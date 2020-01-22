@@ -38,11 +38,6 @@ public without sharing class CourseCreateEnquiryUtility {
             Id partnerId = createPartnerContact(requestParameters);
             booking.Partner_Contact__c = partnerId;
         }
-
-        Boolean areEmailsEqual = requestParameters.get('email') == requestParameters.get('partner_email');
-        if (areEmailsEqual) {
-            throw new CreateEnquiryException(System.Label.CourseAPIEnqueryEmailsAreEqual);
-        }
         
         booking.Primary_Contact__c = contact.Id;
 
