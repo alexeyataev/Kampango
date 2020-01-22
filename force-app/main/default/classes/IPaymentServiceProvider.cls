@@ -1,4 +1,3 @@
 public interface IPaymentServiceProvider {
-    CardPaymentUrlResult getCardPaymentPlanUrlForBooking(CardPaymentParameters parameters);
-    CardPaymentUrlResult getCardPaymentUrl(CardPaymentParameters parameters);
+    String getCardPaymentURL(String contactId, String feeAmount);
 }
