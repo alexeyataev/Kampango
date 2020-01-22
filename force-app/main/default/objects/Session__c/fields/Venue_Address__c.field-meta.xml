@@ -3,7 +3,7 @@
     <fullName>Venue_Address__c</fullName>
     <externalId>false</externalId>
     <formula>Venue_Name__c &amp; BR()
-&amp; Venue_Street_Address__c &amp; BR()
+&amp; Venue_Street__c &amp; BR()
 &amp; Venue_Town__c &amp; BR()
 &amp; Venue_County__c &amp; BR()
 &amp; Venue_Postcode__c &amp; BR() &amp; BR()</formula>
