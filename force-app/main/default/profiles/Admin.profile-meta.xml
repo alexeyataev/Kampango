@@ -12,10 +12,6 @@
         <apexClass>SESSION_RevertToProvisional_TDTM</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>StepOrangeCardPaymentProvider</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
