@@ -748,7 +748,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Venue_Street_Address__c</field>
+        <field>Session__c.Venue_Street__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
