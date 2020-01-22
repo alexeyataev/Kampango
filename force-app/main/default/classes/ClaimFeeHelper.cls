@@ -66,14 +66,11 @@ public with sharing class ClaimFeeHelper {
             };
             purchaseInvoice.LineItems.add(purchaseInvoiceLineItem);
         }
-    
         purchases.add(purchaseInvoice);
-
+        
         //Purchase credit
         Boolean isPurchaseCreditNeeded = flowData[0].registrationFee > 0;
         if (isPurchaseCreditNeeded) {
-
-            
             Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper purchaseCredit = new Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper();
             Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper purchaseCreditLineItem = new Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper();
 
@@ -93,7 +90,6 @@ public with sharing class ClaimFeeHelper {
                 new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Practitioner__c', currentUser.ContactId)
             };
             purchaseCredit.LineItems.add(purchaseCreditLineItem);
-
             purchases.add(purchaseCredit);
         }
 
