@@ -10,20 +10,21 @@ public without sharing class AddMembershipTest {
         TestContactBuilder contactBuilder = new TestContactBuilder();
         Contact primaryContact = contactBuilder.withRecordType('Client')
             .withAccount(account)
-            .withFirstName('Test')
-            .withLastName('Primary')
+            .withFirstName('John')
+            .withLastName('Smith')
+            .withRecordType('Client')
             .insertRecord(true)
             .build();
         TestPaymentProfileBuilder paymentProfileBuilder = new TestPaymentProfileBuilder();
         cpm__Payment_Profile__c paymentProfile = paymentProfileBuilder.withContact(primaryContact)
-            .withSortCode('1111')
-            .withBankAccount('2222')
-            .withHolderName('test')
+            .withSortCode('123456')
+            .withBankAccount('1234567890')
+            .withHolderName('John Smith')
             .insertRecord(true)
             .build();
         TestInstallmentBuilder installmentBuilder = new TestInstallmentBuilder();
         cpm__Installment__c installment = installmentBuilder.withPrimaryContact(primaryContact.Id)
-            .withBankDetailsNumber('12345')
+            .withBankDetailsNumber('331257')
             .withPaymentProfile(paymentProfile.Id)
             .insertRecord(true)
             .build();
@@ -31,17 +32,29 @@ public without sharing class AddMembershipTest {
 
     @isTest static void testAddMembershipBatch() {
         Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock('{"Status": "Success"}'));
-        CareAddMembershipBatch camb = new CareAddMembershipBatch();
+        CareRequestBodyUtil.MembershipOjbect membershipOjbect = new CareRequestBodyUtil.MembershipOjbect();
+        membershipOjbect.status = 'Success';
+        Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock(JSON.serialize(membershipOjbect)));
+        AddMembershipBatch camb = new AddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();
-        System.assertEquals([SELECT Care_Membership_Added__c FROM cpm__Installment__c LIMIT 1].Care_Membership_Added__c, true);
+        cpm__Installment__c installmentUpdated = [SELECT Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c LIMIT 1];
+        System.assertEquals(installmentUpdated.Care_Membership_Added__c, true);
+        System.assertEquals(installmentUpdated.Care_Error_Log__c, null);
+        System.assertEquals(installmentUpdated.Care_Status__c, 'Success');
     }
 
     @isTest static void testAddMembershipBatchError() {
         Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock('{"Status": "Error", "Error": [{"ErrorMessage": "Error", "ErrorNumber": "400"}]}'));
-        CareAddMembershipBatch camb = new CareAddMembershipBatch();
+        CareRequestBodyUtil.MembershipOjbect membershipOjbect = new CareRequestBodyUtil.MembershipOjbect();
+        membershipOjbect.status = 'Error';
+        CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();
+        errorObject.errorMessage = 'Error';
+        errorObject.errorNumber = '400';
+        membershipOjbect.error = new List<CareRequestBodyUtil.ErrorObject>();
+        membershipOjbect.error.add(errorObject);
+        Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock(JSON.serialize(membershipOjbect)));
+        AddMembershipBatch camb = new AddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();
         cpm__Installment__c testInstallment = [SELECT Care_Membership_Added__c, Care_Error_Log__c FROM cpm__Installment__c LIMIT 1];

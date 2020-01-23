@@ -10,15 +10,16 @@ public without sharing class AddBankDetailsForMembershipTest {
         TestContactBuilder contactBuilder = new TestContactBuilder();
         Contact primaryContact = contactBuilder.withRecordType('Client')
             .withAccount(account)
-            .withFirstName('Test')
-            .withLastName('Primary')
+            .withFirstName('John')
+            .withLastName('Smith')
+            .withRecordType('Client')
             .insertRecord(true)
             .build();
         TestPaymentProfileBuilder paymentProfileBuilder = new TestPaymentProfileBuilder();
         cpm__Payment_Profile__c paymentProfile = paymentProfileBuilder.withContact(primaryContact)
-            .withSortCode('1111')
-            .withBankAccount('2222')
-            .withHolderName('test')
+            .withSortCode('123456')
+            .withBankAccount('1234567890')
+            .withHolderName('John Smith')
             .insertRecord(true)
             .build();
         TestInstallmentBuilder installmentBuilder = new TestInstallmentBuilder();
@@ -30,7 +31,13 @@ public without sharing class AddBankDetailsForMembershipTest {
 
     @isTest static void testAddBankDetails() {
         Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock('{"ContactBankAccount": {"ContactNumber": "3325461","BankDetailNumber": "331257","Information": "Added new account"}}'));
+        CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = new CareRequestBodyUtil.ContactBankAccountObject();
+        CareRequestBodyUtil.ContactBankAccountDetails contactBankAccountDetails = new CareRequestBodyUtil.ContactBankAccountDetails();
+        contactBankAccountDetails.contactNumber = '3325461';
+        contactBankAccountDetails.bankDetailNumber = '331257';
+        contactBankAccountDetails.information = 'Added new account';
+        contactBankAccountObject.contactBankAccount = contactBankAccountDetails;
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(JSON.serialize(contactBankAccountObject)));
         List<cpm__Installment__c> testInstallmentList = [SELECT Id, cpm__Payment_Profile__c, cpm__Contact__c FROM cpm__Installment__c LIMIT 1];
         List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails(testInstallmentList);
         Test.stopTest();
@@ -39,10 +46,16 @@ public without sharing class AddBankDetailsForMembershipTest {
 
     @isTest static void testAddBankDetailsError() {
         Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock('{"Error"}'));
-        List<cpm__Installment__c> testInstallmentList = [SELECT Id, cpm__Contact__c FROM cpm__Installment__c LIMIT 1];
+        CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = new CareRequestBodyUtil.ContactBankAccountObject();
+        CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();
+        errorObject.errorMessage = 'Error';
+        errorObject.errorNumber = '400';
+        contactBankAccountObject.error = new List<CareRequestBodyUtil.ErrorObject>();
+        contactBankAccountObject.error.add(errorObject);
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(JSON.serialize(contactBankAccountObject)));
+        List<cpm__Installment__c> testInstallmentList = [SELECT Id, cpm__Contact__c, cpm__Payment_Profile__c FROM cpm__Installment__c LIMIT 1];
         List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails(testInstallmentList);
         Test.stopTest();
-        //System.assertEquals(resultList[0].error, CareRequestBodyUtil.MESSAGE_TEXT_ERROR);
+        System.assertEquals(resultList[0].error, 'Error');
     }
 }

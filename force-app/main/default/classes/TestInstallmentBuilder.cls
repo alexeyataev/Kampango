@@ -1,14 +1,21 @@
 @isTest
 public with sharing class TestInstallmentBuilder {
 
-    private Contact primaryContact;
+    private String primaryContactId;
     private String bankDetailsNumber;
-    private cpm__Payment_Profile__c paymentProfile;
+    private String paymentProfileId;
     private Boolean insertRecord = false;
+    private Integer amount;
 
-    public TestInstallmentBuilder withPrimaryContact(Contact primaryContact)
+    public TestInstallmentBuilder withAmount(Integer amount)
     {
-        this.primaryContact = primaryContact;
+        this.amount = amount;
+        return this;
+    }
+
+    public TestInstallmentBuilder withPrimaryContact(String primaryContactId)
+    {
+        this.primaryContactId = primaryContactId;
         return this;
     }
 
@@ -18,9 +25,9 @@ public with sharing class TestInstallmentBuilder {
         return this;
     }
 
-    public TestInstallmentBuilder withPaymentProfile(cpm__Payment_Profile__c paymentProfile)
+    public TestInstallmentBuilder withPaymentProfile(String paymentProfileId)
     {
-        this.paymentProfile = paymentProfile;
+        this.paymentProfileId = paymentProfileId;
         return this;
     }
 
@@ -33,8 +40,9 @@ public with sharing class TestInstallmentBuilder {
     public cpm__Installment__c build()
     {
         cpm__Installment__c installment = new cpm__Installment__c(
-            cpm__Payment_Profile__c = this.paymentProfile.Id,
-            cpm__Contact__c = this.primaryContact.Id,
+            cpm__Amount__c = this.amount,
+            cpm__Payment_Profile__c = this.paymentProfileId,
+            cpm__Contact__c = this.primaryContactId,
             Bank_Details_Number__c = this.bankDetailsNumber
         );
 
