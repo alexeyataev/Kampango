@@ -295,6 +295,22 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public TestDataFactory buildReunion() {
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        reunion = sessionBuilder
+            .withCourse(course)
+            .withType('Reunion')
+            .withVenue(venue)
+            .withRoom(room)
+            .withStatus(SESSION_PROVISIONAL_STATUS)
+            .withPractitioner(practitioners[0])
+            .withPractitionerFeeRate(practitionerFeeRate)
+            .withPractitionerLicence(licenceToPractice)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
     public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus) {
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         session = sessionBuilder

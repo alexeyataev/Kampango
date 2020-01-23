@@ -24,21 +24,15 @@ public with sharing class ConfirmationEmailController {
                         Additional_Information__c,
                         Status__c,
                         Type__c,
-                        Parent_Host__c,
-                        Parent_Host__r.MailingAddress,
-                        Parent_Host__r.Name,
+                        Venue_County__c,
+                        Venue_Name__c,
+                        Venue_Postcode__c,
+                        Venue_Street__c,
+                        Venue_Town__c,
                         Practitioner__c,
                         Practitioner__r.Name,
                         Practitioner__r.Phone,
-                        Venue__r.Town__c,
-                        Venue__r.Postcode__c,
-                        Venue__r.Street_Address__c,
-                        Venue__r.County__c,
-                        Venue__r.Host__c,
-                        Venue__r.Host__r.MailingAddress,
-                        Venue__r.Host__r.Name,
-                        Venue__c,
-                        Venue__r.Name
+                        Venue__c
                 FROM Session__c
                 WHERE Course__c = :courseId
                 WITH SECURITY_ENFORCED
@@ -136,33 +130,13 @@ public with sharing class ConfirmationEmailController {
     }
 
     public class LocationWrapper {
-        public String locationPostcode { get; set; }
-        public String locationStreetAdress { get; set; }
-        public String locationCountry { get; set; }
-        public String locationName { get; set; }
-        public String locationTown { get; set; }
+        public Session__c locationOfSession {get; set;}
         public String sessionDays { get; set; }
 
         public LocationWrapper(Session__c session, List<Integer> sessionDays) {
-            Contact contactHost = getContactHostAddress(session);
-            this.locationPostcode      = contactHost != null ? contactHost.MailingAddress.getPostalCode() : session.Venue__r.Postcode__c;
-            this.locationStreetAdress  = contactHost != null ? contactHost.MailingAddress.getStreet() : session.Venue__r.Street_Address__c;
-            this.locationCountry       = contactHost != null ? contactHost.MailingAddress.getCountry() : session.Venue__r.County__c;
-            this.locationTown          = contactHost != null ? contactHost.MailingAddress.getCity() : session.Venue__r.Town__c;
-            this.locationName          = contactHost != null ? contactHost.Name : session.Venue__r.Name;
+            this.locationOfSession = session;
             this.sessionDays = getFormattedSessionDaysList(sessionDays);
         }
-    }
-
-    private static Contact getContactHostAddress(Session__c session) {
-        if(session.Parent_Host__c != null) {
-            return session.Parent_Host__r;
-
-        } else if(session.Venue__r.Host__c != null) {
-            return session.Venue__r.Host__r;
-        }
-
-        return null;
     }
 
     public class SessionWrapper {
