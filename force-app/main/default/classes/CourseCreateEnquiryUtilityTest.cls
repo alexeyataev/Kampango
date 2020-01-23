@@ -114,12 +114,11 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        Test.startTest();
-            CourseCreateEnquiryUtility.createEnquiry(paramsMap);
-        Test.stopTest();
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> contacts = [
             SELECT Name
-            FROM Contact 
+            FROM Contact
+            WHERE Email =: 'test@test.test'
         ];
         List<Booking__c> bookings = [
             SELECT Name 
@@ -194,9 +193,9 @@ private class CourseCreateEnquiryUtilityTest {
             FROM Booking__c
             WHERE Partner_Contact__c != null
         ];
-        //System.assertEquals(2, partners.size());
-        //System.assertEquals(2, mainContacts.size());
-        //System.assertEquals(1, bookings.size());
+        System.assertEquals(2, partners.size());
+        System.assertEquals(2, mainContacts.size());
+        System.assertEquals(1, bookings.size());
     }
 
     @isTest
