@@ -1718,7 +1718,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Overbooking_allowed__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
