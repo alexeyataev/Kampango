@@ -1,7 +1,8 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
 @isTest
 public without sharing class AddBankDetailsForMembershipTest {
 
-    @testSetup static void createInstallment() {
+    @testSetup static void createTestData() {
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account account =  accountBuilder
             .withRecordType('Household Account')
@@ -29,7 +30,7 @@ public without sharing class AddBankDetailsForMembershipTest {
             .build();
     }
 
-    @isTest static void testAddBankDetails() {
+    @isTest static void AddBankDetails_BankDetailsAdded_BankDetailNumberReturned() {
         Test.startTest();
         CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = new CareRequestBodyUtil.ContactBankAccountObject();
         CareRequestBodyUtil.ContactBankAccountDetails contactBankAccountDetails = new CareRequestBodyUtil.ContactBankAccountDetails();
@@ -44,7 +45,7 @@ public without sharing class AddBankDetailsForMembershipTest {
         System.assertEquals(resultList[0].bankDetailsNumber, '331257');
     }
 
-    @isTest static void testAddBankDetailsError() {
+    @isTest static void AddBankDetailsError_BankDetailsNotAdded_ErrorReturned() {
         Test.startTest();
         CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = new CareRequestBodyUtil.ContactBankAccountObject();
         CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();

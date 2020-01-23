@@ -1,7 +1,8 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
 @isTest
 public without sharing class AddMembershipTest {
 
-    @testSetup static void createInstallment() {
+    @testSetup static void createTestData() {
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account account =  accountBuilder
             .withRecordType('Household Account')
@@ -30,7 +31,7 @@ public without sharing class AddMembershipTest {
             .build();
     }
 
-    @isTest static void testAddMembershipBatch() {
+    @isTest static void AddMembershipBatch_MembershipAdded_StatusSuccess() {
         Test.startTest();
         CareRequestBodyUtil.MembershipOjbect membershipOjbect = new CareRequestBodyUtil.MembershipOjbect();
         membershipOjbect.status = 'Success';
@@ -44,7 +45,7 @@ public without sharing class AddMembershipTest {
         System.assertEquals(installmentUpdated.Care_Status__c, 'Success');
     }
 
-    @isTest static void testAddMembershipBatchError() {
+    @isTest static void AddMembershipBatchError_MembershipNotAdded_StatusError() {
         Test.startTest();
         CareRequestBodyUtil.MembershipOjbect membershipOjbect = new CareRequestBodyUtil.MembershipOjbect();
         membershipOjbect.status = 'Error';

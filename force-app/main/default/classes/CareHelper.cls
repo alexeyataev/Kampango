@@ -4,7 +4,7 @@ public with sharing class CareHelper {
         CareRequestBodyUtil.ContactOjbect contactObject = (CareRequestBodyUtil.ContactOjbect)JSON.deserialize(res.getBody(), CareRequestBodyUtil.ContactOjbect.class);
         AddContactResult addContactResult = new AddContactResult();
         addContactResult.error = contactObject.error != null ? contactObject.error[0].errorMessage : null;
-        addContactResult.nctNumber = contactObject.contact.contactNumber;
+        addContactResult.nctNumber = contactObject.contact != null ? contactObject.contact.contactNumber : null;
         return addContactResult;
     }
     public static AddBankDetailsResult sendBankDetails(cpm__Payment_Profile__c paymentProfile, Contact cont) {
@@ -12,7 +12,7 @@ public with sharing class CareHelper {
         CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = (CareRequestBodyUtil.ContactBankAccountObject)JSON.deserialize(res.getBody(), CareRequestBodyUtil.ContactBankAccountObject.class);
         AddBankDetailsResult addBankDetailsResult = new AddBankDetailsResult();
         addBankDetailsResult.error = contactBankAccountObject.error != null ? contactBankAccountObject.error[0].errorMessage : null;
-        addBankDetailsResult.bankDetailsNumber = contactBankAccountObject.contactBankAccount.bankDetailNumber;
+        addBankDetailsResult.bankDetailsNumber = contactBankAccountObject.contactBankAccount != null ? contactBankAccountObject.contactBankAccount.bankDetailNumber : null;
         return addBankDetailsResult;
     }
     public static CareRequestBodyUtil.MembershipOjbect addMembership(cpm__Installment__c installment) {
@@ -27,8 +27,8 @@ public with sharing class CareHelper {
         req.setEndpoint(CareRequestBodyUtil.URL + methodName);
         req.setMethod('POST');
         req.setBody(body);
-        Http http = new Http();system.debug(req);system.debug(body);
-        HttpResponse res = http.send(req);system.debug(res.getBody());
+        Http http = new Http();
+        HttpResponse res = http.send(req);
         return res;
     }
 }

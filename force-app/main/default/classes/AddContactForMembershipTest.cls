@@ -1,9 +1,10 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
 @isTest
 public without sharing class AddContactForMembershipTest {
     private static final String CONTACT_NUMBER_RETURNED = '3325461';
     private static final String MESSAGE_TEXT_ERROR = 'Error';
     private static final String ERROR_NUMBER = '400';
-    @testSetup static void createPrimaryContact() {
+    @testSetup static void createTestData() {
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account account =  accountBuilder
             .withRecordType('Household Account')
@@ -15,12 +16,12 @@ public without sharing class AddContactForMembershipTest {
             .withFirstName('John')
             .withLastName('Smith')
             .withRecordType('Client')
-            //.withCareStatus('')
+            .withCareStatus('Waiting')
             .insertRecord(true)
             .build();
     }
 
-    @isTest static void testAddContact() {
+    @isTest static void AddContact_ContactAdded_ContactNumberReturned() {
         Test.startTest();
         CareRequestBodyUtil.ContactOjbect contactOjbect = new CareRequestBodyUtil.ContactOjbect();
         CareRequestBodyUtil.ContactDetails contactDetails = new CareRequestBodyUtil.ContactDetails();
@@ -34,7 +35,7 @@ public without sharing class AddContactForMembershipTest {
         System.assertEquals(resultList[0].nctNumber, CONTACT_NUMBER_RETURNED);
     }
 
-    @isTest static void testAddContactError() {
+    @isTest static void AddContactError_ContactNotAdded_ErrorReturned() {
         Test.startTest();
         CareRequestBodyUtil.ContactOjbect contactOjbect = new CareRequestBodyUtil.ContactOjbect();
         CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();
@@ -50,7 +51,7 @@ public without sharing class AddContactForMembershipTest {
         System.assertEquals(resultList[0].error, MESSAGE_TEXT_ERROR);
     }
 
-    @isTest static void testAddContactBatch() {
+    @isTest static void AddContactBatch_ContactAdded_ContactNumberReturned() {
         Test.startTest();
         CareRequestBodyUtil.ContactOjbect contactOjbect = new CareRequestBodyUtil.ContactOjbect();
         CareRequestBodyUtil.ContactDetails contactDetails = new CareRequestBodyUtil.ContactDetails();
