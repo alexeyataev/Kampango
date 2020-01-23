@@ -64,27 +64,31 @@
         </apex:repeat>
     </table>
 
-    <apex:outputPanel title="Course Reunion" rendered="{!sessionType.reunionSession}">
+    <apex:outputPanel title="Course Reunion" rendered="{!NOT(ISBLANK(provisionalSession.reunionSessions))}">
         <h4>Course Reunion</h4>
         <p>{!$Label.Confirmation_Notification_Course_Reunion}</p>
     </apex:outputPanel>
 
-    <apex:outputPanel title="Breastfeeding session" rendered="{!sessionType.breastfeedingSession.isSessionWithTypeProvisional}">
-        <h4>Breastfeeding session</h4>
-        <p>
-            <apex:outputText value="{!$Label.Confirmation_Notification_Breastfeeding_Session}">
-                <apex:param value="{!sessionType.breastfeedingSession.provisionTime}" />
-            </apex:outputText>
-        </p>
+    <apex:outputPanel title="Breastfeeding session" rendered="{!provisionalSession.breastfeedingSessions.size > 0}">
+        <apex:repeat var="session" value="{!provisionalSession.breastfeedingSessions}" rows="1">
+            <p>
+                <h4>Breastfeeding session</h4>
+                <apex:outputText value="{!$Label.Confirmation_Notification_Breastfeeding_Session}">
+                    <apex:param value="{!session.Contact_Hours__c}" />
+                </apex:outputText>
+            </p>
+        </apex:repeat>
     </apex:outputPanel>
 
-    <apex:outputPanel title="Additional session" rendered="{!sessionType.standardSession.isSessionWithTypeProvisional}">
-        <h4>Additional session</h4>
-        <p>
-            <apex:outputText value="{!$Label.Confirmation_Notification_Additional_Session}">
-                <apex:param value="{!sessionType.standardSession.provisionTime}" />
-            </apex:outputText>
-        </p>
+    <apex:outputPanel title="Additional session" rendered="{!provisionalSession.standardSessions.size > 0}">
+        <apex:repeat var="session" value="{!provisionalSession.standardSessions}" rows="1">
+            <p>
+                <h4>Additional session</h4>
+                <apex:outputText value="{!$Label.Confirmation_Notification_Additional_Session}">
+                    <apex:param value="{!session.Contact_Hours__c}" />
+                </apex:outputText>
+            </p>
+        </apex:repeat>
     </apex:outputPanel>
 
     <apex:outputPanel title="Additional Confirmation Information" rendered="{!IF(NOT(ISBLANK(courseRecord.Additional_Confirmation_Information__c)),true,false)}">

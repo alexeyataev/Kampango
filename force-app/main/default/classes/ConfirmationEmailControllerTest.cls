@@ -3,8 +3,7 @@
 @IsTest
 public with sharing class ConfirmationEmailControllerTest {
 
-    @IsTest
-    static void checkSession_sessionStatusIsProvisionalAndTypeIsStandard_ListIsEmpty() {
+    private static void sessionWithTypeAndStatusDataBuilder(String sessionType, String sessionStatus) {
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc1')
                     .buildBranchAccount()
@@ -15,8 +14,27 @@ public with sharing class ConfirmationEmailControllerTest {
                     .buildParentHost('Dina', 'test1@test.com')
                     .buildPartnertHost('Tim', 'test2@test.com')
                     .buildRoom()
-                    .buildSessionWithTypeAndStatus('Standard', 'Provisional')
+                    .buildSessionWithTypeAndStatus(sessionType, sessionStatus)
                     .buildBooking('Reserved');
+    }
+
+    private static void cursesWithChoseNumberAndStatusSessionsDataBuilder(Integer numberOfCourses, Integer numberOfProvisionSession, Integer numberOfConfirmedSession) {
+       TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory .buildOrganizationAccount('acc3')
+                    .buildBranchAccount()
+                    .buildPractitioner('John')
+                    .buildVenue()
+                    .buildLicenceToPractice()
+                    .buildParentHost('Dina', 'test1@test.com')
+                    .buildPartnertHost('Tim', 'test2@test.com')
+                    .buildRoom()
+                    .buildCoursesWithChoseNumberAndStatusSessions(numberOfCourses, numberOfProvisionSession, numberOfConfirmedSession);
+
+    }
+
+    @IsTest
+    static void checkSession_sessionStatusIsProvisionalAndTypeIsStandard_ListIsEmpty() {
+        sessionWithTypeAndStatusDataBuilder('Standard', 'Provisional');
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
 
@@ -31,18 +49,7 @@ public with sharing class ConfirmationEmailControllerTest {
 
     @IsTest
     static void checkSession_sessionStatusIsProvisionalAndTypeIsBreasrfeeding_ListIsEmpty() {
-        TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory .buildOrganizationAccount('acc2')
-                    .buildBranchAccount()
-                    .buildPractitioner('John')
-                    .buildVenue()
-                    .buildLicenceToPractice()
-                    .buildCourse()
-                    .buildParentHost('Dina', 'test1@test.com')
-                    .buildPartnertHost('Tim', 'test2@test.com')
-                    .buildRoom()
-                    .buildSessionWithTypeAndStatus('Breastfeeding', 'Provisional')
-                    .buildBooking('Reserved');
+        sessionWithTypeAndStatusDataBuilder('Breastfeeding', 'Provisional');
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
 
@@ -57,18 +64,7 @@ public with sharing class ConfirmationEmailControllerTest {
 
     @IsTest
     static void checkSession_sessionStatusIsProvisionalAndTypeIsReunion_ListIsEmpty() {
-        TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory .buildOrganizationAccount('acc3')
-                    .buildBranchAccount()
-                    .buildPractitioner('John')
-                    .buildVenue()
-                    .buildLicenceToPractice()
-                    .buildCourse()
-                    .buildParentHost('Dina', 'test1@test.com')
-                    .buildPartnertHost('Tim', 'test2@test.com')
-                    .buildRoom()
-                    .buildSessionWithTypeAndStatus('Reunion', 'Provisional')
-                    .buildBooking('Reserved');
+        sessionWithTypeAndStatusDataBuilder('Reunion', 'Provisional');
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
 
@@ -83,18 +79,7 @@ public with sharing class ConfirmationEmailControllerTest {
 
     @IsTest
     static void checkSession_sessionStatusIsConfirmedAndTypeIsReunion_ListHasOneSession() {
-        TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory .buildOrganizationAccount('acc3')
-                    .buildBranchAccount()
-                    .buildPractitioner('John')
-                    .buildVenue()
-                    .buildLicenceToPractice()
-                    .buildCourse()
-                    .buildParentHost('Dina', 'test1@test.com')
-                    .buildPartnertHost('Tim', 'test2@test.com')
-                    .buildRoom()
-                    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed')
-                    .buildBooking('Reserved');
+        sessionWithTypeAndStatusDataBuilder('Reunion', 'Confirmed');
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
         
@@ -109,17 +94,7 @@ public with sharing class ConfirmationEmailControllerTest {
     
     @IsTest
     static void checkVenueWithSessionDaysFormat_venueWithTwoSession_StringWithTwoSession() {
-        
-        TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory .buildOrganizationAccount('acc3')
-                    .buildBranchAccount()
-                    .buildPractitioner('John')
-                    .buildVenue()
-                    .buildLicenceToPractice()
-                    .buildParentHost('Dina', 'test1@test.com')
-                    .buildPartnertHost('Tim', 'test2@test.com')
-                    .buildRoom()
-                    .buildCoursesWithChoseNumberAndStatusSessions(1, 2, 2);
+        cursesWithChoseNumberAndStatusSessionsDataBuilder(1, 2, 2);
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
 
@@ -133,16 +108,7 @@ public with sharing class ConfirmationEmailControllerTest {
 
     @IsTest
     static void checkVenueWithSessionDaysFormat_venueWithTreeSession_StringWithThreeSession() {
-        TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory .buildOrganizationAccount('acc3')
-                    .buildBranchAccount()
-                    .buildPractitioner('John')
-                    .buildVenue()
-                    .buildLicenceToPractice()
-                    .buildParentHost('Dina', 'test1@test.com')
-                    .buildPartnertHost('Tim', 'test2@test.com')
-                    .buildRoom()
-                    .buildCoursesWithChoseNumberAndStatusSessions(1, 2, 3);
+        cursesWithChoseNumberAndStatusSessionsDataBuilder(1, 2, 3);
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
         
