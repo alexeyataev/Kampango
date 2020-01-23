@@ -322,6 +322,7 @@
     </types>
     <types>
         <members>Parent_Community_Group</members>
+        <members>PSA_Payroll_Administrators</members>
         <members>X1C_PSA_Area</members>
         <members>X1W_PSA_Area</members>
         <members>X2A_PSA_Area</members>
@@ -558,6 +559,8 @@
         <members>Practitioners/All_Course_Assignments</members>
         <members>Practitioners/Practitioner_Schedule</members>
         <members>Practitioners/Registration_Fee_History</members>
+        <members>PSA_Payroll_Admin</members>
+        <members>PSA_Payroll_Admin/PSA_Payroll_Report</members>
         <name>Report</name>
     </types>
     <types>
