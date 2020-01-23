@@ -6,8 +6,8 @@
     NOT(ISPICKVAL(Type__c, &quot;Reunion&quot;)), 
     OR(ISBLANK(Practitioner_Licence__c), 
        ISBLANK(Practitioner__c ),
-	   OR(ISBLANK(Venue__c),
-		  ISBLANK(Parent_Host__c))
+	   AND(ISBLANK(Venue__c),
+	       ISBLANK(Parent_Host__c))
 	   ),
     NOT($Permission.Override_Session_Validation))</errorConditionFormula>
     <errorMessage>Ensure that the Practitioner, Licence and either Venue or Parent Host have been populated before marking the session as confirmed</errorMessage>
