@@ -3,6 +3,13 @@
 @IsTest
 public with sharing class ConfirmationEmailControllerTest {
 
+    private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
+    private static final String SESSION_CONFIRMED_STATUS = 'Confirmed';
+
+    private static final String SESSION_REUNION_TYPE = 'Reunion';
+    private static final String SESSION_STANDARD_TYPE = 'Standard';
+    private static final String SESSION_BREASTFEEDING_TYPE = 'Breastfeeding';
+
     private static void sessionWithTypeAndStatusDataBuilder(String sessionType, String sessionStatus) {
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc1')
@@ -34,7 +41,7 @@ public with sharing class ConfirmationEmailControllerTest {
 
     @IsTest
     static void checkSession_sessionStatusIsProvisionalAndTypeIsStandard_ListIsEmpty() {
-        sessionWithTypeAndStatusDataBuilder('Standard', 'Provisional');
+        sessionWithTypeAndStatusDataBuilder(SESSION_STANDARD_TYPE, SESSION_PROVISIONAL_STATUS);
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
 
@@ -49,7 +56,7 @@ public with sharing class ConfirmationEmailControllerTest {
 
     @IsTest
     static void checkSession_sessionStatusIsProvisionalAndTypeIsBreasrfeeding_ListIsEmpty() {
-        sessionWithTypeAndStatusDataBuilder('Breastfeeding', 'Provisional');
+        sessionWithTypeAndStatusDataBuilder(SESSION_BREASTFEEDING_TYPE, SESSION_PROVISIONAL_STATUS);
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
 
@@ -64,7 +71,7 @@ public with sharing class ConfirmationEmailControllerTest {
 
     @IsTest
     static void checkSession_sessionStatusIsProvisionalAndTypeIsReunion_ListIsEmpty() {
-        sessionWithTypeAndStatusDataBuilder('Reunion', 'Provisional');
+        sessionWithTypeAndStatusDataBuilder(SESSION_REUNION_TYPE, SESSION_PROVISIONAL_STATUS);
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
 
@@ -79,7 +86,7 @@ public with sharing class ConfirmationEmailControllerTest {
 
     @IsTest
     static void checkSession_sessionStatusIsConfirmedAndTypeIsReunion_ListHasOneSession() {
-        sessionWithTypeAndStatusDataBuilder('Reunion', 'Confirmed');
+        sessionWithTypeAndStatusDataBuilder(SESSION_REUNION_TYPE, SESSION_CONFIRMED_STATUS);
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
         

@@ -64,31 +64,9 @@
         </apex:repeat>
     </table>
 
-    <apex:outputPanel title="Course Reunion" rendered="{!provisionalSession.reunionSessions.size > 0}">
+    <apex:outputPanel title="Course Reunion" rendered="{!courseHasProvisionalReunion}">
         <h4>Course Reunion</h4>
         <p>{!$Label.Confirmation_Notification_Course_Reunion}</p>
-    </apex:outputPanel>
-
-    <apex:outputPanel title="Breastfeeding session" rendered="{!provisionalSession.breastfeedingSessions.size > 0}">
-        <apex:repeat var="session" value="{!provisionalSession.breastfeedingSessions}" rows="1">
-            <p>
-                <h4>Breastfeeding session</h4>
-                <apex:outputText value="{!$Label.Confirmation_Notification_Breastfeeding_Session}">
-                    <apex:param value="{!session.Contact_Hours__c}" />
-                </apex:outputText>
-            </p>
-        </apex:repeat>
-    </apex:outputPanel>
-
-    <apex:outputPanel title="Additional session" rendered="{!provisionalSession.standardSessions.size > 0}">
-        <apex:repeat var="session" value="{!provisionalSession.standardSessions}" rows="1">
-            <p>
-                <h4>Additional session</h4>
-                <apex:outputText value="{!$Label.Confirmation_Notification_Additional_Session}">
-                    <apex:param value="{!session.Contact_Hours__c}" />
-                </apex:outputText>
-            </p>
-        </apex:repeat>
     </apex:outputPanel>
 
     <apex:outputPanel title="Additional Confirmation Information" rendered="{!IF(NOT(ISBLANK(courseRecord.Additional_Confirmation_Information__c)),true,false)}">
@@ -98,14 +76,14 @@
         </p>
     </apex:outputPanel>
 
-    <apex:outputPanel title="BabyMassage" rendered="{!courseRecord.Sub_Type__c == 'NCT Baby Massage course'}">
+    <apex:outputPanel title="BabyMassage" rendered="{!courseRecord.Sub_Type__c == $Label.Sub_Type_Course_Baby_Massage}">
         <h2>What you need to know about your course</h2>
         <ul>
             <li>We recommend that your baby has had their 6-8 week medical check up before the course begins. If this appointment
                 is delayed please let us know.
             </li>
             <li>Please bring your
-                <a href='https://www.nct.org.uk/baby-toddler/everyday-care/baby-massage-tips-and-benefits'>own massage oil</a>
+                <a href='{!$Label.Baby_Massage_Tips_And_Benefits_Url}'>own massage oil</a>
                 with you to the course, so that you can choose the product most suitable for you and your baby.
             </li>
             <li>If you or your baby have any mobility issues, allergies or special requirements please tell us.</li>

@@ -2,13 +2,13 @@ public with sharing class ConfirmationEmailController {
     public List<LocationWrapper> locationListWrapper { get; set; }
     public List<SessionWrapper> sessionListWrapper { get; set; }
     public List<PractitionerWrapper> practitionerListWrapper{ get; set; }
-    public ProvisionalSessionsWrapper provisionalSession { get; set; }
     public Course__c course { get; }
+    public Boolean courseHasProvisionalReunion { get; set; }
     private static String sessionDayTemplate = 'Session {0}';
     private static String sessionsTemplate = '(session{0} {1})';
 
     public void setCourse(Course__c course) {
-        List<Session__c> sessionList = sessionFilterByStatus(getSessionsList(course.Id));
+        List<Session__c> sessionList = getListConfirmedSessions(getSessionsList(course.Id));
         getLocationWithSessionNumbers(sessionList);
         getPractitionerWithSessionNumbers(sessionList);
     }
@@ -104,25 +104,15 @@ public with sharing class ConfirmationEmailController {
         });
     }
 
-    private List<Session__c> sessionFilterByStatus(List<Session__c> sessions) {
+    private List<Session__c> getListConfirmedSessions(List<Session__c> sessions) {
         List<Session__c> listConfirmedSessions = new List<Session__c>();
-        provisionalSession = new ProvisionalSessionsWrapper();
-        provisionalSession.standardSessions = new List<Session__c>();
-        provisionalSession.reunionSessions = new List<Session__c>();
-        provisionalSession.breastfeedingSessions = new List<Session__c>();
 
         for (Session__c session : sessions) {
-            if (session.Status__c != 'Provisional') {
+            if (session.Status__c == 'Confirmed') {
                 listConfirmedSessions.add(session);
 
-            } else if (session.Type__c == 'Standard') {
-                provisionalSession.standardSessions.add(session);
-
             } else if (session.Type__c == 'Reunion') {
-                provisionalSession.reunionSessions.add(session);
-
-            } else if (session.Type__c == 'Breastfeeding') {
-                provisionalSession.breastfeedingSessions.add(session);
+                courseHasProvisionalReunion = true;
             }
         }
 
@@ -155,12 +145,6 @@ public with sharing class ConfirmationEmailController {
             this.sessionEnd = getNewFormatSessionTime(session.End__c);
             this.sessionDescription = session.Additional_Information__c;
         }
-    }
-
-    public class ProvisionalSessionsWrapper {
-        public List<Session__c> reunionSessions { get; set; }
-        public List<Session__c> breastfeedingSessions{ get; set; }
-        public List<Session__c> standardSessions{ get; set; }
     }
 
     private class PractitionerWrapper{
