@@ -30,10 +30,10 @@
 
                 <p>If we can provide you with any further information about our services or help in any other way please
                     do not hesitate to contact me on {!relatedTo.Course__r.Enquiries_PSA_Phone__c}.</p>
-                <p>In the meantime…</p>
+                <p>In the meantime</p>
                 <p>Have you signed up for our free Pregnancy and Baby weekly newsletter? Crammed with evidence-based
                     information from our experts, it gives you the week-by-week support you need. <a
-                        href='https://www.nct.org.uk/nct-pregnancy-baby-guide'>Sign up today</a> and we look forward to
+                        href='{!$Label.Nct_Pregnancy_Baby_Guide_Url}'>Sign up today</a> and we look forward to
                     seeing you soon.</p>
 
                 <div style='margin-top:40px;'>
