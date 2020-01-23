@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Send_confirmation</name>
+        <label>Send confirmation</label>
+        <locationX>429</locationX>
+        <locationY>393</locationY>
+        <actionName>SendHTMLEmailPlugin</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>salesInvoice.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>confirmationTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Send_confirmation_email</name>
         <label>Send confirmation email</label>
-        <locationX>243</locationX>
-        <locationY>50</locationY>
+        <locationX>287</locationX>
+        <locationY>215</locationY>
         <actionName>Zumzum__Sales_Invoice__c.Adhoc_Send_Confirmation_Email</actionName>
         <actionType>emailAlert</actionType>
-        <connector>
-            <targetReference>Success_screen</targetReference>
-        </connector>
         <inputParameters>
             <name>SObjectRowId</name>
             <value>
@@ -17,9 +52,23 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <constants>
+        <name>ORG_WIDE_ADDRESS_VALUE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>nctcourses@nct.org.uk</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>TEMPLATE_ADHOC_CONFIRMATION_DEV_NAME</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Adhoc_Payment_Confirmation</stringValue>
+        </value>
+    </constants>
     <description>Performs logic after the payment has been completed successfully
 Version changes:
-Changed success screen text</description>
+Replaced email alert with apex action, reordered the blocks</description>
     <interviewLabel>Adhoc Payment Success Page {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Success Flow</label>
     <processMetadataValues>
@@ -35,14 +84,58 @@ Changed success screen text</description>
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Sales_Invoice</name>
+        <label>Get Sales Invoice</label>
+        <locationX>50</locationX>
+        <locationY>393</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_template</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>salesInvoiceId</elementReference>
+            </value>
+        </filters>
+        <object>Zumzum__Sales_Invoice__c</object>
+        <outputReference>salesInvoice</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Zumzum__Contact__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_template</name>
+        <label>Get template</label>
+        <locationX>219</locationX>
+        <locationY>393</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Send_confirmation</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TEMPLATE_ADHOC_CONFIRMATION_DEV_NAME</elementReference>
+            </value>
+        </filters>
+        <object>EmailTemplate</object>
+        <outputReference>confirmationTemplate</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
     <screens>
         <name>Success_screen</name>
         <label>Success screen</label>
-        <locationX>429</locationX>
-        <locationY>50</locationY>
+        <locationX>52</locationX>
+        <locationY>221</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Get_Sales_Invoice</targetReference>
+        </connector>
         <fields>
             <name>Payment_completed_display</name>
             <fieldText>&lt;h3&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 36px;&quot;&gt;Your payment is completed&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Thank you for making this payment to NCT. The transaction was successful.&lt;/span&gt;&lt;/p&gt;</fieldText>
@@ -52,13 +145,29 @@ Changed success screen text</description>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>52</locationX>
         <locationY>50</locationY>
         <connector>
-            <targetReference>Send_confirmation_email</targetReference>
+            <targetReference>Success_screen</targetReference>
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <name>confirmationTemplate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailTemplate</objectType>
+    </variables>
+    <variables>
+        <name>salesInvoice</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Zumzum__Sales_Invoice__c</objectType>
+    </variables>
     <variables>
         <name>salesInvoiceId</name>
         <dataType>String</dataType>

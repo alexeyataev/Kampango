@@ -41,10 +41,54 @@
         </inputParameters>
     </actionCalls>
     <actionCalls>
+        <name>Send_notification_email</name>
+        <label>Send notification email</label>
+        <locationX>391</locationX>
+        <locationY>427</locationY>
+        <actionName>SendHTMLEmailPlugin</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Sending_successful</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Sending_not_successful</targetReference>
+        </faultConnector>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>salesInvoice.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>notificationTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Send_Payment_Email</name>
         <label>Send Payment Email</label>
-        <locationX>423</locationX>
-        <locationY>430</locationY>
+        <locationX>280</locationX>
+        <locationY>386</locationY>
         <actionName>Zumzum__Sales_Invoice__c.Adhoc_Send_Payment_Email</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -121,6 +165,20 @@
         </value>
     </constants>
     <constants>
+        <name>ORG_WIDE_ADDRESS_VALUE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>nctcourses@nct.org.uk</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>TEMPLATE_ADHOC_NOTIFICATION_DEV_NAME</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Adhoc_Payment_Notification</stringValue>
+        </value>
+    </constants>
+    <constants>
         <name>TYPE_ERROR</name>
         <dataType>String</dataType>
         <value>
@@ -168,7 +226,7 @@
     </decisions>
     <description>Sends an email with a link to details and payment
 Version Changes:
-Added SysAdmin and Finance profile check</description>
+Replaced email alert with apex action</description>
     <formulas>
         <name>currentProfile</name>
         <dataType>String</dataType>
@@ -201,7 +259,7 @@ Added SysAdmin and Finance profile check</description>
         <locationY>563</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Confirm_Send_Email_Screen</targetReference>
+            <targetReference>Get_template</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -239,16 +297,36 @@ Added SysAdmin and Finance profile check</description>
         <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Zumzum__Total_Unpaid_Amount__c</queriedFields>
     </recordLookups>
+    <recordLookups>
+        <name>Get_template</name>
+        <label>Get template</label>
+        <locationX>205</locationX>
+        <locationY>563</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Confirm_Send_Email_Screen</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TEMPLATE_ADHOC_NOTIFICATION_DEV_NAME</elementReference>
+            </value>
+        </filters>
+        <object>EmailTemplate</object>
+        <outputReference>notificationTemplate</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Screen of  Confirm</label>
-        <locationX>260</locationX>
+        <locationX>340</locationX>
         <locationY>563</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Send_Payment_Email</targetReference>
+            <targetReference>Send_notification_email</targetReference>
         </connector>
         <fields>
             <name>Confirm_Text</name>
@@ -259,7 +337,7 @@ Added SysAdmin and Finance profile check</description>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>53</locationX>
+        <locationX>51</locationX>
         <locationY>50</locationY>
         <connector>
             <targetReference>Check_if_Finance_profile</targetReference>
@@ -281,6 +359,14 @@ Added SysAdmin and Finance profile check</description>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Booking__c</objectType>
+    </variables>
+    <variables>
+        <name>notificationTemplate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailTemplate</objectType>
     </variables>
     <variables>
         <name>recordId</name>
