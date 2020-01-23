@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types><?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
@@ -324,7 +322,7 @@
     </types>
     <types>
         <members>Parent_Community_Group</members>
-        <members>PSA_Payroll_Administrators.group-meta</members>
+        <members>PSA_Payroll_Administrators</members>
         <members>X1C_PSA_Area</members>
         <members>X1W_PSA_Area</members>
         <members>X2A_PSA_Area</members>
@@ -673,24 +671,6 @@
     <types>
         <members>Booking__c.Send Reservation Email</members>
         <name>WorkflowRule</name>
-    </types>
-    <version>47.0</version>
-</Package>        <members>Capacity_PSA</members>
-        <members>Capacity_PSA/CADs_awaiting_practitioner_response1</members>
-        <members>Capacity_PSA/CADs_rejected_or_invalidated1</members>
-        <members>Capacity_PSA/CADs_to_issue1</members>
-        <members>Capacity_PSA/Venue_Schedule</members>
-        <members>Capacity_PSA/Schedule_of_Sessions</members>
-        <members>Enquiries_PSA</members>
-        <members>Enquiries_PSA/Confirmed_Bookings</members>
-        <members>Practitioners</members>
-        <members>Practitioners/All_Courses</members>
-        <members>Practitioners/All_Course_Assignments</members>
-        <members>Practitioners/Practitioner_Schedule</members>
-        <members>Practitioners/Registration_Fee_History</members>
-        <members>PSA_Payroll_Admin</members>
-        <members>PSA_Payroll_Admin/PSA_Payroll_Report</members>
-        <name>Report</name>
     </types>
     <version>47.0</version>
 </Package>
