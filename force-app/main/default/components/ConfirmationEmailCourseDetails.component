@@ -64,7 +64,7 @@
         </apex:repeat>
     </table>
 
-    <apex:outputPanel title="Course Reunion" rendered="{!NOT(ISBLANK(provisionalSession.reunionSessions))}">
+    <apex:outputPanel title="Course Reunion" rendered="{!provisionalSession.reunionSessions.size > 0}">
         <h4>Course Reunion</h4>
         <p>{!$Label.Confirmation_Notification_Course_Reunion}</p>
     </apex:outputPanel>
