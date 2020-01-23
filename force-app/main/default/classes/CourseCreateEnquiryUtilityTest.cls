@@ -87,6 +87,47 @@ private class CourseCreateEnquiryUtilityTest {
         System.assertEquals(1, createdContact.size());
         System.assertEquals(1, bookings.size());
     }
+    
+    @isTest
+    static void createEnquiryWithExistingContact() {
+        String avaliableCourse = [
+            SELECT Id, Name
+            FROM Course__c 
+        ][0].Name;
+        Account account = new Account(
+            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
+            Name = 'Test Household'
+        );
+        insert account;
+        Contact existingContact = new Contact(
+            LastName = 'Test',  
+            FirstName = 'Test', 
+            Email = 'test@test.test',
+            MailingCity = 'London',
+            MailingStreet = '221B Baker Street',
+            MailingPostalCode = 'E1 7AE',
+            Phone = '+447911123456',
+            AccountId = account.Id,
+            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
+        );
+        insert existingContact;
+        Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
+        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
+        paramsMap.put('courseId', avaliableCourse);
+        Test.startTest();
+            CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        Test.stopTest();
+        List<Contact> contacts = [
+            SELECT Name
+            FROM Contact 
+        ];
+        List<Booking__c> bookings = [
+            SELECT Name 
+            FROM Booking__c
+        ];
+        System.assertEquals(2, contacts.size());
+        System.assertEquals(1, bookings.size());
+    }
 
     @isTest
     static void createEnquiryWithExistingContactAndPartner() {
@@ -135,8 +176,9 @@ private class CourseCreateEnquiryUtilityTest {
         
         // Temporarily commented to avoid System.LimitException: npsp:Too many SOQL queries: 101
         // To be fixed in T-02067
-        
-        //CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        Test.startTest();
+            CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        Test.stopTest();
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact
@@ -253,7 +295,6 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
-        paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('emailPreference', '1');
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> partners = [
