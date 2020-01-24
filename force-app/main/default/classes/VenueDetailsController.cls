@@ -70,7 +70,7 @@ public without sharing class VenueDetailsController {
                 SELECT Contact__c
                 FROM Venue_Contact__c
                 WHERE Venue__c = :venueId
-                AND Type__c = 'Emergency'
+                AND Type__c IN ('Emergency', 'Alternate Emergency')
                 WITH SECURITY_ENFORCED
         ]) {
             contactIds.add(venueCont.Contact__c);
