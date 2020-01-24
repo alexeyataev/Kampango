@@ -6,7 +6,8 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
     public Integer Rank {get; set;}
     public Integer Order {get; set;}
     private transient List<CourseTypeRank> courseTypeRanks;
-    private transient Integer groupR {get; set;}
+    public Integer groupR {get; set;} // private transient - after finishing of UAT
+    public Integer daysBetween {get; set;} // private transient - after finishing of UAT
     
     public CourseFinderModelOrdered(Course__c course, Date birthDueDate) {
         super(course);
@@ -24,6 +25,7 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
                 if (courseTypeRank.courseType == course.Sub_Type__c && groupR > INAPPROPRIATE_GROUP) {
                     this.Rank = courseTypeRank.rank;
                     this.groupR = groupR;
+                    this.daysBetween = numberDays;
                     return;
                 }
             } 
@@ -366,10 +368,10 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
             return 1;
         } else if (this.Rank < compareToModel.Rank) {
             return -1;
-        } else {// comparting the same rank by groupInsideRank
-            if (this.groupR > compareToModel.groupR){
+        } else {// by dateBetween
+            if (this.daysBetween > compareToModel.daysBetween){
                 return 1;
-            } else if (this.groupR < compareToModel.groupR) {
+            } else if (this.daysBetween < compareToModel.daysBetween) {
                 return -1;
             } else {//Comparing course numbers
                 if (this.Id > compareToModel.Id){
