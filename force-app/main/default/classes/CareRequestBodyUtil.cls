@@ -1,4 +1,4 @@
-@SuppressWarnings('PMD.FieldNamingConventions')
+@SuppressWarnings('PMD.VariableNamingConventions')
 public with sharing class CareRequestBodyUtil {
     public static final String AUTH_KEY = Care_Settings__c.getOrgDefaults().Auth_Key__c;
     public static final String SF_ENVIRONMENT_NAME = Care_Settings__c.getOrgDefaults().SF_Environment_Name__c;
