@@ -1,10 +1,10 @@
-global class AddContactForMembershipBatch implements Database.Batchable<sObject>, Database.AllowsCallouts{
+public class AddContactForMembershipBatch implements Database.Batchable<sObject>, Database.AllowsCallouts{
 
-    global Database.QueryLocator start(Database.BatchableContext BC){
+    public Database.QueryLocator start(Database.BatchableContext bc){
         return Database.getQueryLocator('SELECT Id, Branch__r.Branch_Number__c, FirstName, LastName, NCT_Number__c, Gender__c, Email, MailingPostalCode, MailingStreet, MailingCity, MailingCountry FROM Contact WHERE RecordType.Name = \'Client\' AND NCT_Number__c = null AND Care_Status__c = \'Waiting\'');
     }
 
-    global void execute(Database.BatchableContext BC, List<Contact> scope){
+    public void execute(Database.BatchableContext bc, List<Contact> scope){
         for(Contact cont : scope) {
             AddContactResult careAddContactResult = CareHelper.sendContact(cont);
             if(careAddContactResult.nctNumber != null) {
@@ -17,6 +17,6 @@ global class AddContactForMembershipBatch implements Database.Batchable<sObject>
         update scope;
     }
 
-    global void finish(Database.BatchableContext BC){
+    public void finish(Database.BatchableContext bc){
     }
 }
