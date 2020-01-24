@@ -12,7 +12,7 @@
             <apex:column value="{!venueRecord.address}" headerValue="Address" styleClass="columnStyle"/>
             <apex:column headerValue="Emergency Contact(s)" styleClass="columnStyle">
                 <apex:repeat value="{!venueRecord.emergencyContacts}" var="emergencyContact">
-                    <c:CourseSummaryContactDetails contact="{!emergencyContact}" fieldsetName="{!contactFieldsetName}" labelIsVisible="true"/>
+                    <c:CourseSummaryContactDetails contact="{!emergencyContact}" fieldsetName="{!contactFieldsetName}" labelIsVisible="false"/>
                 </apex:repeat>
             </apex:column>
         </apex:pageBlockTable>
