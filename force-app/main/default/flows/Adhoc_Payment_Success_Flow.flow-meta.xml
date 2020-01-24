@@ -7,6 +7,9 @@
         <locationY>393</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
+        <connector>
+            <targetReference>Success_screen</targetReference>
+        </connector>
         <inputParameters>
             <name>mergeObjectId</name>
             <value>
@@ -68,7 +71,7 @@
     </constants>
     <description>Performs logic after the payment has been completed successfully
 Version changes:
-Replaced email alert with apex action, reordered the blocks</description>
+Put success screen in the end</description>
     <interviewLabel>Adhoc Payment Success Page {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Success Flow</label>
     <processMetadataValues>
@@ -128,14 +131,11 @@ Replaced email alert with apex action, reordered the blocks</description>
     <screens>
         <name>Success_screen</name>
         <label>Success screen</label>
-        <locationX>52</locationX>
-        <locationY>221</locationY>
+        <locationX>613</locationX>
+        <locationY>393</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Get_Sales_Invoice</targetReference>
-        </connector>
         <fields>
             <name>Payment_completed_display</name>
             <fieldText>&lt;h3&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 36px;&quot;&gt;Your payment is completed&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Thank you for making this payment to NCT. The transaction was successful.&lt;/span&gt;&lt;/p&gt;</fieldText>
@@ -145,10 +145,10 @@ Replaced email alert with apex action, reordered the blocks</description>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>52</locationX>
+        <locationX>50</locationX>
         <locationY>50</locationY>
         <connector>
-            <targetReference>Success_screen</targetReference>
+            <targetReference>Get_Sales_Invoice</targetReference>
         </connector>
     </start>
     <status>Active</status>

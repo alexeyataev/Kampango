@@ -226,7 +226,7 @@
     </decisions>
     <description>Sends an email with a link to details and payment
 Version Changes:
-Replaced email alert with apex action</description>
+Removed SI.Booking__c field from query</description>
     <formulas>
         <name>currentProfile</name>
         <dataType>String</dataType>
@@ -293,7 +293,6 @@ Replaced email alert with apex action</description>
         <object>Zumzum__Sales_Invoice__c</object>
         <outputReference>salesInvoice</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Booking__c</queriedFields>
         <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Zumzum__Total_Unpaid_Amount__c</queriedFields>
     </recordLookups>
