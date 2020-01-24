@@ -9,6 +9,8 @@
         <members>BookingPaymentDetailsControllerTest</members>
         <members>BookingStatusFlowHelper</members>
         <members>BookingStatusFlowHelperTest</members>
+        <members>BookingPaymentDetailsController</members>
+        <members>BookingPaymentDetailsControllerTest</members>
         <members>BranchWeightingHelper</members>
         <members>BranchWeightingHelperTest</members>
         <members>CardPaymentHandler</members>
@@ -18,6 +20,10 @@
         <members>CardPaymentUrlResult</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
+        <members>ConfirmationEmailController</members>
+        <members>ConfirmationEmailControllerTest</members>
+        <members>ContactDetailsController</members>
+        <members>ContactDetailsControllerTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -62,7 +68,6 @@
         <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
-        <members>StepOrangeCardPaymentProvider</members>
         <members>SystemClock</members>
         <members>TestAccountBuilder</members>
         <members>TestBookingBuilder</members>
@@ -89,6 +94,7 @@
     </types>
     <types>
         <members>ConfirmationEmailBookingPaymentDetails</members>
+        <members>ConfirmationEmailCourseDetails</members>
         <members>CourseSummaryBookingDetails</members>
         <members>CourseSummaryContactDetails</members>
         <members>CourseSummaryCourseDetails</members>
@@ -163,6 +169,11 @@
         <members>Session__c.Eligible_for_Claim__c</members>
         <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
         <members>Session__c.Practitioner_Fees_to_Claim__c</members>
+        <members>Session__c.Venue_County__c</members>
+        <members>Session__c.Venue_Name__c</members>
+        <members>Session__c.Venue_Postcode__c</members>
+        <members>Session__c.Venue_Street__c</members>
+        <members>Session__c.Venue_Town__c</members>
         <members>Venue__c.Legacy_Id__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
@@ -301,6 +312,7 @@
     </types>
     <types>
         <members>NCT_Templates/Booking_Created</members>
+        <members>NCT_Templates/Booking_Confirmation_Email</members>
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <members>NCT_Templates/Course_Assignment_Rejected</members>
@@ -318,6 +330,7 @@
     </types>
     <types>
         <members>Parent_Community_Group</members>
+        <members>PSA_Payroll_Administrators</members>
         <members>X1C_PSA_Area</members>
         <members>X1W_PSA_Area</members>
         <members>X2A_PSA_Area</members>
@@ -554,6 +567,8 @@
         <members>Practitioners/All_Course_Assignments</members>
         <members>Practitioners/Practitioner_Schedule</members>
         <members>Practitioners/Registration_Fee_History</members>
+        <members>PSA_Payroll_Admin</members>
+        <members>PSA_Payroll_Admin/PSA_Payroll_Report</members>
         <name>Report</name>
     </types>
     <types>
@@ -636,6 +651,7 @@
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
         <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
+        <members>Venue__c.Populate_Location_if_Type_Not_ParentHome</members>
         <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <name>ValidationRule</name>
     </types>

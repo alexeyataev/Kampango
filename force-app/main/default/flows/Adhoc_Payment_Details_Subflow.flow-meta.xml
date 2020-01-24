@@ -1,5 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Card_Payment_Handler</name>
+        <label>Card Payment Handler</label>
+        <locationX>520</locationX>
+        <locationY>967</locationY>
+        <actionName>CardPaymentHandler</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Payment_Link_Result</targetReference>
+        </connector>
+        <inputParameters>
+            <name>amount</name>
+            <value>
+                <elementReference>paramAmount</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>successPage</name>
+            <value>
+                <elementReference>paramSuccessPage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>contactId</name>
+            <value>
+                <elementReference>paramContactId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>errorPage</name>
+            <value>
+                <elementReference>paramErrorPage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>salesInvoiceId</name>
+            <value>
+                <elementReference>paramSalesInvoiceId</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>paymentError</assignToReference>
+            <name>error</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>paymentUrl</assignToReference>
+            <name>url</name>
+        </outputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Assign_params_to_wrapper_object</name>
+        <label>Assign params to wrapper object</label>
+        <locationX>872</locationX>
+        <locationY>877</locationY>
+        <assignmentItems>
+            <assignToReference>paymentPlanParameters.contactId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>paramContactId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>paymentPlanParameters.successPage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>paramSuccessPage</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>paymentPlanParameters.errorPage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>paramErrorPage</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>paymentPlanParameters.amount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>paramAmount</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
     <decisions>
         <name>Payment_Link_Result</name>
         <label>Payment Link Result</label>
@@ -24,7 +107,7 @@
     </decisions>
     <description>Contains Payment Details screen and related logic
 Version changes:
-Stable debug version (remove url from Screen)</description>
+Removed payment link reference</description>
     <interviewLabel>Adhoc Payment Details Subflow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Details Subflow</label>
     <processMetadataValues>
@@ -50,7 +133,7 @@ Stable debug version (remove url from Screen)</description>
         <allowPause>false</allowPause>
         <fields>
             <name>Payment_Details_Info</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 36px;&quot;&gt;Pay by credit/debit card&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;To pay by credit or debit card using the secure Worldpay system, please select &#39;Proceed to payment&#39;. You&#39;ll be redirected to the Worldpay site to complete your payment.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;We don&#39;t see or store any of your debit or credit card information.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Please note: Credit cards levy higher charges on us than debit cards. We&#39;d be grateful to you for supporting our charity by using a debit card if possible.&lt;/span&gt;&lt;/p&gt;&lt;h4&gt;&lt;br&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!Total_Amount_Template}&lt;/p&gt;&lt;p&gt;{!paymentUrl}&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 36px;&quot;&gt;Pay by credit/debit card&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;To pay by credit or debit card using the secure Worldpay system, please select &#39;Proceed to payment&#39;. You&#39;ll be redirected to the Worldpay site to complete your payment.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;We don&#39;t see or store any of your debit or credit card information.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Please note: Credit cards levy higher charges on us than debit cards. We&#39;d be grateful to you for supporting our charity by using a debit card if possible.&lt;/span&gt;&lt;/p&gt;&lt;h4&gt;&lt;br&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!Total_Amount_Template}&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -64,7 +147,6 @@ Stable debug version (remove url from Screen)</description>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
@@ -86,50 +168,16 @@ Stable debug version (remove url from Screen)</description>
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>520</locationX>
-        <locationY>787</locationY>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
         <connector>
-            <targetReference>Get_Payment_Link</targetReference>
+            <targetReference>Card_Payment_Handler</targetReference>
         </connector>
     </start>
     <status>Active</status>
-    <subflows>
-        <name>Get_Payment_Link</name>
-        <label>Get Payment Link</label>
-        <locationX>520</locationX>
-        <locationY>944</locationY>
-        <connector>
-            <targetReference>Payment_Link_Result</targetReference>
-        </connector>
-        <flowName>Get_Payment_Link</flowName>
-        <inputAssignments>
-            <name>Installment_Object</name>
-            <value>
-                <elementReference>Installment_Object</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>bookingId</name>
-            <value>
-                <elementReference>bookingId</elementReference>
-            </value>
-        </inputAssignments>
-        <outputAssignments>
-            <assignToReference>installmentId</assignToReference>
-            <name>installmentId</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>paymentError</assignToReference>
-            <name>paymentError</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>paymentUrl</assignToReference>
-            <name>paymentUrl</name>
-        </outputAssignments>
-    </subflows>
     <textTemplates>
         <name>Total_Amount_Template</name>
-        <text>&lt;p&gt;&lt;span style=&quot;font-size: 22px;&quot;&gt;Total amount due:&lt;/span&gt;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&lt;span style=&quot;font-size: 22px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;£&lt;/span&gt;&lt;span style=&quot;font-size: 22px;&quot;&gt;{!Installment_Object.cpm__Amount__c}&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;&lt;span style=&quot;font-size: 22px;&quot;&gt;Total amount due:&lt;/span&gt; &lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255); font-size: 22px;&quot;&gt;£&lt;/span&gt;&lt;span style=&quot;font-size: 22px;&quot;&gt;{!paramAmount}&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>bookingId</name>
@@ -154,8 +202,52 @@ Stable debug version (remove url from Screen)</description>
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>paramAmount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>paramContactId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>paramErrorPage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>paramSalesInvoiceId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>paramSuccessPage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>paymentError</name>
         <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>paymentPlanParameters</name>
+        <apexClass>CardPaymentParameters</apexClass>
+        <dataType>Apex</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
