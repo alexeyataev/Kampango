@@ -93,7 +93,6 @@ public with sharing class TestContactBuilder {
 			RecordTypeId = this.recordTypeId,
 			FirstName = this.firstName,
 			LastName = this.lastName,
-			AccountId = this.account.Id,
 			Care_Status__c = this.careStatus,
 			Email = this.email,
 			npe01__PreferredPhone__c = this.preferredPhone,
