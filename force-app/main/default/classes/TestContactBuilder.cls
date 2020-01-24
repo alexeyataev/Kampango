@@ -104,6 +104,9 @@ public with sharing class TestContactBuilder {
 			MailingCountry = this.mailingCountry,
 			MailingPostalCode = this.mailingPostalCode
 		);
+		if (account != null) {
+			testContact.AccountId = this.account.Id;
+		}
 		if(insertRecord){
 			insert testContact;
 		}
