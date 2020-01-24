@@ -25,7 +25,7 @@ public with sharing class ConfirmationEmailControllerTest {
                     .buildBooking('Reserved');
     }
 
-    private static void cursesWithChoseNumberAndStatusSessionsDataBuilder(Integer numberOfCourses, Integer numberOfProvisionSession, Integer numberOfConfirmedSession) {
+    private static void coursesWithChosenNumberAndStatusSessionsDataBuilder(Integer numberOfCourses, Integer numberOfProvisionSession, Integer numberOfConfirmedSession) {
        TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc3')
                     .buildBranchAccount()
@@ -101,7 +101,7 @@ public with sharing class ConfirmationEmailControllerTest {
     
     @IsTest
     static void checkVenueWithSessionDaysFormat_venueWithTwoSession_StringWithTwoSession() {
-        cursesWithChoseNumberAndStatusSessionsDataBuilder(1, 2, 2);
+        coursesWithChosenNumberAndStatusSessionsDataBuilder(1, 2, 2);
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
 
@@ -115,7 +115,7 @@ public with sharing class ConfirmationEmailControllerTest {
 
     @IsTest
     static void checkVenueWithSessionDaysFormat_venueWithTreeSession_StringWithThreeSession() {
-        cursesWithChoseNumberAndStatusSessionsDataBuilder(1, 2, 3);
+        coursesWithChosenNumberAndStatusSessionsDataBuilder(1, 2, 3);
 
         Course__c course = [SELECT Name FROM Course__c LIMIT 1];
         
