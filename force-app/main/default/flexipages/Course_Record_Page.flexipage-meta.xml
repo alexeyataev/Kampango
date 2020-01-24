@@ -7,6 +7,10 @@
                 <value>false</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
+                <name>hideChatterActions</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>numVisibleActions</name>
                 <value>3</value>
             </componentInstanceProperties>
@@ -54,6 +58,25 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>height</name>
+                <value>3000</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>pageName</name>
+                <value>CourseSummarySLDS</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showLabel</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:visualforcePage</componentName>
+        </componentInstances>
+        <name>Facet-f8d23129-f090-42aa-9655-89107530ac6f</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
                 <name>body</name>
                 <value>Facet-c0b096ec-bc1e-4615-97ae-63c168405ccb</value>
             </componentInstanceProperties>
@@ -86,6 +109,17 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Standard.Tab.detail</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-f8d23129-f090-42aa-9655-89107530ac6f</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Summary</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>

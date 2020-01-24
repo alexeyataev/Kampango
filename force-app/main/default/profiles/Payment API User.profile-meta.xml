@@ -47,11 +47,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Birth_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Booking__c.Birth_Due_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -93,21 +88,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Email_Template_Utility_Field__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_Email__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_First_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_Phone__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1009,6 +989,11 @@
         <editable>false</editable>
         <field>Course__c.Break_Even_Number_Of_Places__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Cancellation_Reason__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

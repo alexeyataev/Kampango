@@ -4,7 +4,7 @@
         <name>Is_Validation_Code_Correct</name>
         <label>Is Validation Code Correct?</label>
         <locationX>50</locationX>
-        <locationY>203</locationY>
+        <locationY>266</locationY>
         <defaultConnector>
             <targetReference>error_screen</targetReference>
         </defaultConnector>
@@ -40,44 +40,11 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
-    <recordCreates>
-        <name>Create_Gift_Aid_Declaration</name>
-        <label>Create Gift Aid Declaration</label>
-        <locationX>669</locationX>
-        <locationY>360</locationY>
-        <faultConnector>
-            <targetReference>Declaration_Error</targetReference>
-        </faultConnector>
-        <inputReference>GiftAidDeclarationList</inputReference>
-    </recordCreates>
-    <recordLookups>
-        <name>Get_Account_Data</name>
-        <label>Get Account Data</label>
-        <locationX>291</locationX>
-        <locationY>403</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_User_Data</targetReference>
-        </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>courseRecord.Branch__c</elementReference>
-            </value>
-        </filters>
-        <object>Account</object>
-        <outputReference>accountRecord</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Enquiries_PSA_Email__c</queriedFields>
-        <queriedFields>Enquiries_PSA_Phone__c</queriedFields>
-        <queriedFields>Enquiries_PSA__c</queriedFields>
-    </recordLookups>
     <recordLookups>
         <name>Get_Booking_Data</name>
         <label>Get Booking Data</label>
         <locationX>290</locationX>
-        <locationY>161</locationY>
+        <locationY>224</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Validation_Code_Correct</targetReference>
@@ -108,11 +75,11 @@
     <recordLookups>
         <name>Get_Course_Data</name>
         <label>Get Course Data</label>
-        <locationX>290</locationX>
-        <locationY>284</locationY>
+        <locationX>289</locationX>
+        <locationY>347</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Account_Data</targetReference>
+            <targetReference>GetPrimaryContactData</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -133,35 +100,19 @@
         <queriedFields>Name</queriedFields>
         <queriedFields>End_Date__c</queriedFields>
         <queriedFields>Course_Duration__c</queriedFields>
-        <queriedFields>Additional_Offer_Information__c</queriedFields>
+        <queriedFields>Additional_Confirmation_Information__c</queriedFields>
         <queriedFields>Main_Practitioner__c</queriedFields>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_User_Data</name>
-        <label>Get User Data</label>
-        <locationX>291</locationX>
-        <locationY>519</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>GetPrimaryContactData</targetReference>
-        </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>accountRecord.Enquiries_PSA__c</elementReference>
-            </value>
-        </filters>
-        <object>User</object>
-        <outputReference>userRecord</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Name</queriedFields>
+        <queriedFields>Fee__c</queriedFields>
+        <queriedFields>Enquiries_PSA_Email__c</queriedFields>
+        <queriedFields>Enquiries_PSA_Name__c</queriedFields>
+        <queriedFields>Enquiries_PSA_Phone__c</queriedFields>
+        <queriedFields>Title__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>GetPrimaryContactData</name>
         <label>GetPrimaryContactData</label>
-        <locationX>492</locationX>
-        <locationY>519</locationY>
+        <locationX>290</locationX>
+        <locationY>616</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Booking_Journey_Available</targetReference>
@@ -195,8 +146,8 @@
     <screens>
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>
-        <locationX>492</locationX>
-        <locationY>207</locationY>
+        <locationX>480</locationX>
+        <locationY>403</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -223,50 +174,10 @@
         <showHeader>false</showHeader>
     </screens>
     <screens>
-        <name>Declaration_Error</name>
-        <label>Declaration Error</label>
-        <locationX>669</locationX>
-        <locationY>509</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>false</allowFinish>
-        <allowPause>false</allowPause>
-        <fields>
-            <name>Error_Header</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(208, 66, 66); font-size: 18px; background-color: rgb(255, 255, 255);&quot;&gt;Opps! &lt;/span&gt;&lt;span style=&quot;color: rgb(79, 77, 77); font-size: 18px; background-color: rgb(255, 255, 255);&quot;&gt;Gift Aid Declaration is not created.&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Error_Description</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <screens>
-        <name>Details_Payment</name>
-        <label>Details Payment</label>
-        <locationX>669</locationX>
-        <locationY>200</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <connector>
-            <targetReference>Create_Gift_Aid_Declaration</targetReference>
-        </connector>
-        <fields>
-            <name>DetailsPaymentDescription</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Payment Details:&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <screens>
         <name>error_screen</name>
         <label>error screen</label>
         <locationX>55</locationX>
-        <locationY>420</locationY>
+        <locationY>483</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -280,7 +191,7 @@
     </screens>
     <start>
         <locationX>290</locationX>
-        <locationY>50</locationY>
+        <locationY>113</locationY>
         <connector>
             <targetReference>Get_Booking_Data</targetReference>
         </connector>
@@ -289,18 +200,12 @@
     <subflows>
         <name>Booking_Journey_Available</name>
         <label>Booking Journey Available</label>
-        <locationX>492</locationX>
-        <locationY>341</locationY>
+        <locationX>480</locationX>
+        <locationY>616</locationY>
         <connector>
             <targetReference>Course_Summary_Details_Screen</targetReference>
         </connector>
         <flowName>Booking_Journey_Available</flowName>
-        <inputAssignments>
-            <name>curAccount</name>
-            <value>
-                <elementReference>accountRecord</elementReference>
-            </value>
-        </inputAssignments>
         <inputAssignments>
             <name>curBooking</name>
             <value>
@@ -313,28 +218,29 @@
                 <elementReference>courseRecord</elementReference>
             </value>
         </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Booking_Main_Payment_Process_Flow</name>
+        <label>Booking Main Payment Process Flow</label>
+        <locationX>650</locationX>
+        <locationY>222</locationY>
+        <flowName>Booking_Main_Payment_Process</flowName>
         <inputAssignments>
-            <name>curUser</name>
+            <name>bookingId</name>
             <value>
-                <elementReference>userRecord</elementReference>
+                <elementReference>bookingId</elementReference>
             </value>
         </inputAssignments>
     </subflows>
     <subflows>
         <name>Contact_Details_Flow</name>
         <label>Contact Details Flow</label>
-        <locationX>492</locationX>
-        <locationY>63</locationY>
+        <locationX>480</locationX>
+        <locationY>222</locationY>
         <connector>
-            <targetReference>Gift_Aid_Declaration</targetReference>
+            <targetReference>Booking_Main_Payment_Process_Flow</targetReference>
         </connector>
         <flowName>Booking_Journey_Update_Contact_Details</flowName>
-        <inputAssignments>
-            <name>PrimaryContactRecord</name>
-            <value>
-                <elementReference>PrimaryContactRecord</elementReference>
-            </value>
-        </inputAssignments>
         <inputAssignments>
             <name>bookingId</name>
             <value>
@@ -353,26 +259,12 @@
                 <elementReference>courseRecord</elementReference>
             </value>
         </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>Gift_Aid_Declaration</name>
-        <label>Gift Aid Declaration</label>
-        <locationX>669</locationX>
-        <locationY>63</locationY>
-        <connector>
-            <targetReference>Details_Payment</targetReference>
-        </connector>
-        <flowName>Create_Gift_Aid_Declaration</flowName>
         <inputAssignments>
-            <name>BookingRecord</name>
+            <name>PrimaryContactRecord</name>
             <value>
-                <elementReference>bookingRecord</elementReference>
+                <elementReference>PrimaryContactRecord</elementReference>
             </value>
         </inputAssignments>
-        <outputAssignments>
-            <assignToReference>GiftAidDeclarationList</assignToReference>
-            <name>GiftAidDeclarationList</name>
-        </outputAssignments>
     </subflows>
     <variables>
         <name>accountRecord</name>
@@ -401,6 +293,24 @@
         <objectType>Booking__c</objectType>
     </variables>
     <variables>
+        <name>Chosen_Membership_Result</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>false</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>Contact_List</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
         <name>courseRecord</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -422,6 +332,24 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>gaid__Gift_Aid_Declaration__c</objectType>
+    </variables>
+    <variables>
+        <name>Installment_Object</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>cpm__Installment__c</objectType>
+    </variables>
+    <variables>
+        <name>Is_Membership_With_Partner</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
     <variables>
         <name>PrimaryContactRecord</name>

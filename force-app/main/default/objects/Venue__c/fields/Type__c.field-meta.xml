@@ -20,16 +20,6 @@
                 <default>false</default>
                 <label>Practitioner Home</label>
             </value>
-            <value>
-                <fullName>Volunteer Home</fullName>
-                <default>false</default>
-                <label>Volunteer Home</label>
-            </value>
-            <value>
-                <fullName>Parent Home</fullName>
-                <default>false</default>
-                <label>Parent Home</label>
-            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

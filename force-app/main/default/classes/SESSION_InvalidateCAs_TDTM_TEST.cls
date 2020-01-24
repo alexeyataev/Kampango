@@ -6,6 +6,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
     private static final String PRACTITIONER_EMAIL_ADDRESS = 'partnerCommunityUser@ncttest.com';
+    private static final String HOST_LASTNAME = 'Black';
+    private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
     private static final String COURSE_ASSIGNMENT_WITHDRAWN_STATUS = 'Withdrawn';
 
@@ -22,7 +24,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                     .buildCourse()
                     .buildEstimatedCosts()
                     .buildSession()
-                    .buildReunion();
+                    .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
+                    .buildSessionWithTypeAndStatus('Reunion', 'Provisional');
 
         List<Session__c> provisionalNonReunionSessions = [
             SELECT Id 
@@ -295,6 +298,38 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
+
+    @isTest
+    static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
+
+        CreateTriggerSystemHandlerRecord();
+
+        Session__c session = [
+            SELECT Id, Course_Assignment__c
+            FROM Session__c
+            WHERE Type__c = 'Reunion'
+            LIMIT 1
+        ];
+
+        test.startTest();
+
+        session.Lunch_Break_Minutes__c = 45;
+        session.Status__c = 'Confirmed';
+
+        update session;
+
+        test.stopTest();
+
+        Course_Assignment__c courseAssignmentToTest = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id =:session.Course_Assignment__c
+            LIMIT 1
+        ];
+
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
+    }
+
 
     @isTest
     static void InvalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {

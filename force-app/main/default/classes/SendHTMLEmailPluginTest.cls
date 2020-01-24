@@ -1,14 +1,19 @@
 @isTest
 public with sharing class SendHTMLEmailPluginTest {
 
+    private static final String OWA_VALUE = 'nctcourses@nct.org.uk';
+    private static final String CONTACT_EMAIL = 'john.black@example.com';
+    private static final String TEMPLATE_NAME = 'test';
+    private static final String TEMPLATE_DEV_NAME = 'temp';
+
     @testSetup
     public static void setup() {
         Id folderId = [SELECT Id FROM Folder WHERE Type = 'Email' LIMIT 1].Id;
         EmailTemplate template = new EmailTemplate(
-        	DeveloperName = 'temp',
+        	DeveloperName = TEMPLATE_DEV_NAME,
             FolderId = folderId,
             TemplateType= 'custom', 
-            Name = 'test',
+            Name = TEMPLATE_NAME,
             IsActive = true
         );
         insert template;
@@ -17,20 +22,20 @@ public with sharing class SendHTMLEmailPluginTest {
         Id orgTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Organization').getRecordTypeId();
         User thisUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
         System.runAs ( thisUser ) {
-            Account a = new Account(
-                Name = 'A', 
-                RecordTypeId = orgTypeId, 
-                Type = 'Supplier', 
-                AccountNumber = '123',
-                Billing_Email__c = 'aa@bb.cc'
-            );
-            insert a;
+            TestAccountBuilder aBuilder = new TestAccountBuilder();
+            Account a = aBuilder.withName('a')
+                .withRecordType('Organization')
+                .withType('Supplier')
+                .withAccountNumber('123')
+                .withBillingEmail('aa@bb.cc')
+                .insertRecord(true)
+                .build();
             TestContactBuilder contactBuilder = new TestContactBuilder();
             Contact recipient = contactBuilder.withRecordType('Client')
                 .withAccount(a)
                 .withFirstName('Test')
                 .withLastName('Black')
-                .withEmail('john.black@example.com')
+                .withEmail(CONTACT_EMAIL)
                 .insertRecord(true)
                 .build();
         }
@@ -38,11 +43,28 @@ public with sharing class SendHTMLEmailPluginTest {
 
     @isTest
     public static void noErrorOrgWideEmail () {
-        List<OrgWideEmailAddress> orgEmailObject = [SELECT Id, Address FROM OrgWideEmailAddress LIMIT 1];
-        if (emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
+        List<OrgWideEmailAddress> orgEmailObject = [
+            SELECT Id, Address 
+            FROM OrgWideEmailAddress
+            WHERE Address = :OWA_VALUE
+            LIMIT 1
+        ];
+
+        if (SendHTMLEmailPlugin.emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
             String orgWideEmail = orgEmailObject[0].Address;
-            Contact recipient = [SELECT Id, AccountId FROM Contact LIMIT 1];
-            Id templateId = [SELECT Id FROM EmailTemplate LIMIT 1].Id;
+            Contact recipient = [
+                SELECT Id, AccountId 
+                FROM Contact 
+                WHERE Email = :CONTACT_EMAIL 
+                LIMIT 1
+            ];
+            Id templateId = [
+                SELECT Id 
+                FROM EmailTemplate 
+                WHERE DeveloperName = :TEMPLATE_DEV_NAME 
+                    AND Name = :TEMPLATE_NAME
+                LIMIT 1
+            ].Id;
             
             SendHTMLEmailPlugin.Request testReq = new SendHTMLEmailPlugin.Request();
             testReq.templateId = templateId;
@@ -57,18 +79,31 @@ public with sharing class SendHTMLEmailPluginTest {
             List<SendHTMLEmailPlugin.Request> reqList = new List<SendHTMLEmailPlugin.Request>();
             reqList.add(testReq);
             
-            List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
-            System.assertEquals(true, testResponseList[0].isSuccess);
+            try {
+                List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
+                System.assertEquals(true, testResponseList[0].isSuccess, 'Email with Organization-wide address set was not sent');
+            } catch (EmailException e) {
+                System.assert(false, 'Org-Wide address is not verified. Please refer to step #70 in "Manual Tasks" from Confluence (Set up Organization-Wide Email Address)');
+            }
         }
     }
     
     @isTest
     public static void noErrorSenderDisplayName () {
-        List<OrgWideEmailAddress> orgEmailObject = [SELECT Id, Address FROM OrgWideEmailAddress LIMIT 1];
-        if (emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
-            String orgWideEmail = orgEmailObject[0].Address;
-            Contact recipient = [SELECT Id, AccountId FROM Contact LIMIT 1];
-            Id templateId = [SELECT Id FROM EmailTemplate LIMIT 1].Id;
+        if (SendHTMLEmailPlugin.emailsFeatureEnabled()) {
+            Contact recipient = [
+                SELECT Id, AccountId 
+                FROM Contact 
+                WHERE Email = :CONTACT_EMAIL 
+                LIMIT 1
+            ];
+            Id templateId = [
+                SELECT Id 
+                FROM EmailTemplate 
+                WHERE DeveloperName = :TEMPLATE_DEV_NAME 
+                    AND Name = :TEMPLATE_NAME
+                LIMIT 1
+            ].Id;
             
             SendHTMLEmailPlugin.Request testReq = new SendHTMLEmailPlugin.Request();
             testReq.templateId = templateId;
@@ -84,15 +119,26 @@ public with sharing class SendHTMLEmailPluginTest {
             reqList.add(testReq);
             
             List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
-            System.assertEquals(true, testResponseList[0].isSuccess);
+            System.assertEquals(true, testResponseList[0].isSuccess, 'Email with Sender Display Name set was not sent');
         }
     }
     
     @isTest
-    public static void errorIfNoRecepient () {
-		if (emailsFeatureEnabled()) {
-            Contact recipient = [SELECT Id, AccountId FROM Contact LIMIT 1];
-            Id templateId = [SELECT Id FROM EmailTemplate LIMIT 1].Id;
+    public static void errorIfNoRecipient () {
+		if (SendHTMLEmailPlugin.emailsFeatureEnabled()) {
+            Contact recipient = [
+                SELECT Id, AccountId 
+                FROM Contact 
+                WHERE Email = :CONTACT_EMAIL 
+                LIMIT 1
+            ];
+            Id templateId = [
+                SELECT Id 
+                FROM EmailTemplate 
+                WHERE DeveloperName = :TEMPLATE_DEV_NAME 
+                    AND Name = :TEMPLATE_NAME
+                LIMIT 1
+            ].Id;
             
             SendHTMLEmailPlugin.Request testReq = new SendHTMLEmailPlugin.Request();
             testReq.templateId = templateId;
@@ -103,15 +149,26 @@ public with sharing class SendHTMLEmailPluginTest {
             reqList.add(testReq);
             
             List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
-            System.assertEquals(false, testResponseList[0].isSuccess);
+            System.assertEquals(false, testResponseList[0].isSuccess, 'Email without a recipient can not be sent');
         }
     }
 	
     @isTest
     public static void errorIfNoTemplate () {
-		if (emailsFeatureEnabled()) {
-            Contact recipient = [SELECT Id, AccountId FROM Contact LIMIT 1];
-            Id templateId = [SELECT Id FROM EmailTemplate LIMIT 1].Id;
+		if (SendHTMLEmailPlugin.emailsFeatureEnabled()) {
+            Contact recipient = [
+                SELECT Id, AccountId 
+                FROM Contact 
+                WHERE Email = :CONTACT_EMAIL 
+                LIMIT 1
+            ];
+            Id templateId = [
+                SELECT Id 
+                FROM EmailTemplate 
+                WHERE DeveloperName = :TEMPLATE_DEV_NAME 
+                    AND Name = :TEMPLATE_NAME
+                LIMIT 1
+            ].Id;
             
             SendHTMLEmailPlugin.Request testReq = new SendHTMLEmailPlugin.Request();
             //testReq.templateId = templateId;
@@ -122,16 +179,7 @@ public with sharing class SendHTMLEmailPluginTest {
             reqList.add(testReq);
             
             List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
-            System.assertEquals(false, testResponseList[0].isSuccess);
+            System.assertEquals(false, testResponseList[0].isSuccess, 'Email without a template can not be sent');
         }
-    }
-    
-    private static Boolean emailsFeatureEnabled() {
-        try {
-            Messaging.reserveSingleEmailCapacity(1);
-        } catch (System.NoAccessException e) {
-            return false;
-        }
-        return true;
     }
 }

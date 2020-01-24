@@ -1,0 +1,3 @@
+<apex:page standardController="Course__c" showHeader="false" standardStylesheets="false" lightningStylesheets="true" docType="html-5.0">
+    <apex:include pageName="CourseSummary"/>
+</apex:page>

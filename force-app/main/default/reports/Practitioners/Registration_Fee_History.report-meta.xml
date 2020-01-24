@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Zumzum__Purchase_Invoice__c.Zumzum__Invoice_Date__c</field>
+    </columns>
+    <columns>
+        <field>Zumzum__Purchase_Invoice__c.Zumzum__Paid__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Zumzum__Purchase_Invoice__c.Zumzum__Total_Net__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Zumzum__Purchase_Invoice__c.Zumzum__Type__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Purchase Credit</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Registration Fee History</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$Zumzum__Purchase_Invoice__c$Zumzum__Purchase_Invoice_Line_Item__c@Zumzum__Purchase_Invoice_Line_Item__c.Practitioner__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Zumzum__Purchase_Invoice__c.Zumzum__Invoice_Date__c</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Selection_parent_host_venue_rule</fullName>
+    <active>true</active>
+    <description>Should not assign parent host and venue on the same record</description>
+    <errorConditionFormula>NOT(ISBLANK(Venue__c)) &amp;&amp; 
+NOT(ISBLANK(Parent_Host__c))
+&amp;&amp; NOT($Permission.Override_Session_Validation)</errorConditionFormula>
+    <errorMessage>Please either select a venue or choose parent host</errorMessage>
+</ValidationRule>

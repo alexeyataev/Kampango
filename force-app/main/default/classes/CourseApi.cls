@@ -29,9 +29,10 @@ global class CourseApi {
     @HttpPost
     global static void createEnquiry() {
         RestRequest request = RestContext.request;
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(request.params);
         try {
-            CourseCreateEnquiryUtility.createEnquiry(courseNumber, request.params);      
+            CourseCreateEnquiryUtility.createEnquiry(request.params);
+            RestContext.response.statusCode = HttpStatusCode.CREATED;
+            RestContext.response.responseBody = Blob.valueOf(Label.CourseAPIenquiryCreatedSuccessfully);
         } catch (CourseCreateEnquiryUtility.CreateEnquiryException ex) {
             RestContext.response.statusCode = HttpStatusCode.SERVER_ERROR;
             RestContext.response.responseBody = Blob.valueOf(ex.getMessage());

@@ -3,7 +3,7 @@
     <assignments>
         <name>Add_distinct_venue_id</name>
         <label>Add distinct venue id</label>
-        <locationX>421</locationX>
+        <locationX>892</locationX>
         <locationY>656</locationY>
         <assignmentItems>
             <assignToReference>venueIdsDistinct</assignToReference>
@@ -17,15 +17,38 @@
         </connector>
     </assignments>
     <assignments>
+        <name>add_selected_row</name>
+        <label>add selected row</label>
+        <locationX>1396</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>venueList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>venueRecord</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>For_every_venue_id</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Add_Session_Line</name>
         <label>Add Session Line</label>
-        <locationX>570</locationX>
-        <locationY>955</locationY>
+        <locationX>1041</locationX>
+        <locationY>1202</locationY>
         <assignmentItems>
             <assignToReference>sessionText</assignToReference>
             <operator>Add</operator>
             <value>
                 <stringValue>{!index}    {!session.Session_Info_For_Flow__c}</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>venueIdsDuplicated</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>session.Venue__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -35,8 +58,8 @@
     <assignments>
         <name>Add_Venue_Id</name>
         <label>Add Venue Id</label>
-        <locationX>229</locationX>
-        <locationY>955</locationY>
+        <locationX>56</locationX>
+        <locationY>1202</locationY>
         <assignmentItems>
             <assignToReference>index</assignToReference>
             <operator>Add</operator>
@@ -49,67 +72,65 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Add_venues</name>
-        <label>Add venues</label>
-        <locationX>1071</locationX>
-        <locationY>767</locationY>
+        <name>assign_provisional_breasfeeding</name>
+        <label>assign provisional breasfeeding</label>
+        <locationX>544</locationX>
+        <locationY>753</locationY>
         <assignmentItems>
-            <assignToReference>venueText</assignToReference>
-            <operator>Add</operator>
+            <assignToReference>includesProvisionalBreastfeeding</assignToReference>
+            <operator>Assign</operator>
             <value>
-                <elementReference>venueRecord.Venue_Info_For_Flow__c</elementReference>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Provisional_Breastfeeding_Time</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>session.Contact_Hours__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>For_every_venue_id</targetReference>
+            <targetReference>Session_Loop</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_Cancelled</name>
-        <label>Assign Cancelled</label>
-        <locationX>949</locationX>
-        <locationY>232</locationY>
+        <name>assign_provisional_other</name>
+        <label>assign provisional other</label>
+        <locationX>875</locationX>
+        <locationY>1077</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Message</assignToReference>
+            <assignToReference>includesProfvisionalOther</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>{!COURSE_CANCELLED_OR_CANCELLING}  {!courseStatusToLowerCase}</stringValue>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Additional_Session_Time</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>session.Contact_Hours__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Booking_Journey_Available_Screen</targetReference>
+            <targetReference>Session_Loop</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_Confirmed</name>
-        <label>Assign Confirmed</label>
-        <locationX>943</locationX>
-        <locationY>97</locationY>
+        <name>assign_provisional_reunion</name>
+        <label>assign provisional reunion</label>
+        <locationX>691</locationX>
+        <locationY>939</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Message</assignToReference>
+            <assignToReference>includesProvisionalReunion</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>{!COURSE_CONFIRMED} {!bookingStatusToLowerCase}</stringValue>
+                <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Booking_Journey_Available_Screen</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Link_Expired</name>
-        <label>Assign Link Expired</label>
-        <locationX>946</locationX>
-        <locationY>381</locationY>
-        <assignmentItems>
-            <assignToReference>Booking_Message</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>{!LINK_EXPIRED} {!bookingStatusToLowerCase}</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Booking_Journey_Available_Screen</targetReference>
+            <targetReference>Session_Loop</targetReference>
         </connector>
     </assignments>
     <constants>
@@ -136,7 +157,7 @@
     <decisions>
         <name>Booking_Journey_Available_Decision</name>
         <label>Booking Journey Available Decision</label>
-        <locationX>675</locationX>
+        <locationX>1146</locationX>
         <locationY>236</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -157,7 +178,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Assign_Link_Expired</targetReference>
+                <targetReference>Booking_Journey_Available_Screen</targetReference>
             </connector>
             <label>Link Is Expired</label>
         </rules>
@@ -179,7 +200,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Assign_Cancelled</targetReference>
+                <targetReference>Booking_Journey_Available_Screen</targetReference>
             </connector>
             <label>Course Is Cancelled</label>
         </rules>
@@ -202,7 +223,7 @@
     <decisions>
         <name>Doest_list_contain_this_id</name>
         <label>Doest list contain this id?</label>
-        <locationX>562</locationX>
+        <locationX>1033</locationX>
         <locationY>756</locationY>
         <defaultConnector>
             <targetReference>Add_distinct_venue_id</targetReference>
@@ -225,17 +246,24 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Is_reunion_provisional_session</name>
-        <label>Is reunion provisional session?</label>
+        <name>Is_provisional_session</name>
+        <label>Is provisional session?</label>
         <locationX>50</locationX>
-        <locationY>773</locationY>
+        <locationY>665</locationY>
         <defaultConnector>
             <targetReference>Add_Venue_Id</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>true2</name>
+            <name>provisional_reunion</name>
             <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>session.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Provisional</stringValue>
+                </rightValue>
+            </conditions>
             <conditions>
                 <leftValueReference>session.Type__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -243,6 +271,36 @@
                     <stringValue>Reunion</stringValue>
                 </rightValue>
             </conditions>
+            <connector>
+                <targetReference>assign_provisional_reunion</targetReference>
+            </connector>
+            <label>provisional reunion</label>
+        </rules>
+        <rules>
+            <name>provisional_breatfeeding</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>session.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Provisional</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>session.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Breastfeeding</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>assign_provisional_breasfeeding</targetReference>
+            </connector>
+            <label>provisional breatfeeding</label>
+        </rules>
+        <rules>
+            <name>provisional_other</name>
+            <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>session.Status__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -251,31 +309,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Session_Loop</targetReference>
+                <targetReference>assign_provisional_other</targetReference>
             </connector>
-            <label>true</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_status_reserved</name>
-        <label>Is status reserved?</label>
-        <locationX>221</locationX>
-        <locationY>141</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>false</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>curBooking.Status__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Reserved</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Main_Practitioner</targetReference>
-            </connector>
-            <label>false</label>
+            <label>provisional other</label>
         </rules>
     </decisions>
     <formulas>
@@ -293,7 +329,7 @@
     <loops>
         <name>For_every_venue_id</name>
         <label>For every venue id</label>
-        <locationX>502</locationX>
+        <locationX>973</locationX>
         <locationY>556</locationY>
         <assignNextValueToReference>venueId</assignNextValueToReference>
         <collectionReference>venueIdsDistinct</collectionReference>
@@ -308,13 +344,13 @@
     <loops>
         <name>Session_Loop</name>
         <label>Session Loop</label>
-        <locationX>228</locationX>
-        <locationY>656</locationY>
+        <locationX>699</locationX>
+        <locationY>658</locationY>
         <assignNextValueToReference>session</assignNextValueToReference>
         <collectionReference>sessions</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Is_reunion_provisional_session</targetReference>
+            <targetReference>Is_provisional_session</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>For_every_venue_id</targetReference>
@@ -336,7 +372,7 @@
     <recordLookups>
         <name>Get_Main_Practitioner</name>
         <label>Get Main Practitioner</label>
-        <locationX>227</locationX>
+        <locationX>698</locationX>
         <locationY>310</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -358,7 +394,7 @@
     <recordLookups>
         <name>Get_Sessions</name>
         <label>Get Sessions</label>
-        <locationX>228</locationX>
+        <locationX>699</locationX>
         <locationY>488</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -378,17 +414,22 @@
         <queriedFields>Session_Info_For_Flow__c</queriedFields>
         <queriedFields>Type__c</queriedFields>
         <queriedFields>Status__c</queriedFields>
+        <queriedFields>Start__c</queriedFields>
+        <queriedFields>End__c</queriedFields>
+        <queriedFields>Date__c</queriedFields>
+        <queriedFields>Additional_Information__c</queriedFields>
+        <queriedFields>Contact_Hours__c</queriedFields>
         <sortField>Date__c</sortField>
         <sortOrder>Asc</sortOrder>
     </recordLookups>
     <recordLookups>
         <name>Get_Venues</name>
         <label>Get Venues</label>
-        <locationX>837</locationX>
+        <locationX>1308</locationX>
         <locationY>545</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Add_venues</targetReference>
+            <targetReference>add_selected_row</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -400,19 +441,23 @@
         <object>Venue__c</object>
         <outputReference>venueRecord</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Venue_Info_For_Flow__c</queriedFields>
+        <queriedFields>Postcode__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Street_Address__c</queriedFields>
+        <queriedFields>County__c</queriedFields>
+        <queriedFields>Town__c</queriedFields>
     </recordLookups>
     <screens>
         <name>Booking_Journey_Available_Screen</name>
         <label>Booking Journey Available Screen</label>
-        <locationX>1212</locationX>
-        <locationY>232</locationY>
+        <locationX>1452</locationX>
+        <locationY>231</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <fields>
             <name>Booking_Journey_Available_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Your {!curCourse.Sub_Type__c} reservation is no longer available. Please contact your local administrator for support -&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curUser.Name}﻿&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curAccount.Enquiries_PSA_Phone__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;{!curAccount.Enquiries_PSA_Email__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Your {!curCourse.Sub_Type__c} reservation is no longer available. Please contact your local administrator for support -&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curCourse.Enquiries_PSA_Name__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curCourse.Enquiries_PSA_Email__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curCourse.Enquiries_PSA_Phone__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
@@ -421,8 +466,8 @@
     <screens>
         <name>Confirmed_Booking</name>
         <label>Confirmed Booking</label>
-        <locationX>758</locationX>
-        <locationY>69</locationY>
+        <locationX>1152</locationX>
+        <locationY>47</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -453,7 +498,7 @@
         </fields>
         <fields>
             <name>CourseNumber</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Course # {!curCourse.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 22px;&quot;&gt;{!curCourse.Sub_Type__c} course for {!curCourse.Course_Duration__c} due dates&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Course # {!curCourse.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 22px; color: rgb(0, 136, 106);&quot;&gt;{!curCourse.Title__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -462,45 +507,123 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <name>Venues</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(0, 136, 106);&quot;&gt;Venue&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(0, 0, 0);&quot;&gt;﻿{!venueText}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <name>Locations</name>
+            <extensionName>c:locations</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>sessions</name>
+                <value>
+                    <elementReference>sessions</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>venues</name>
+                <value>
+                    <elementReference>venueList</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>SessionList1</name>
+            <extensionName>c:sessions</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>sessions</name>
+                <value>
+                    <elementReference>sessions</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>line_break</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
-            <name>sessionList</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(0, 136, 106);&quot;&gt;Sessions&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!sessionText}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <name>Provisional_reunion1</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Reunion session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;There is also a 2 hour reunion for all course participants with their new baby after the birth. Your course leader will agree a date, time and location for this with you.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>includesProvisionalReunion</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Provisional_breastfeeding</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Breastfeeding session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 8px;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a {!Provisional_Breastfeeding_Time} hours breastfeeding session. Further details of this will be confirmed to you by your &lt;/span&gt;&lt;span style=&quot;font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;course administrator &lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt; once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>includesProvisionalBreastfeeding</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Privisional_other</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Additional session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a {!Additional_Session_Time} hours session. Further details of this will be confirmed to you by your &lt;/span&gt;&lt;span style=&quot;font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;course administrator &lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>includesProfvisionalOther</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>otherInfo</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 18px;&quot;&gt;Other information&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curCourse.Additional_Offer_Information__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 18px;&quot;&gt;Other information&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curCourse.Additional_Confirmation_Information__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>curCourse.Additional_Confirmation_Information__c</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                </conditions>
+            </visibilityRule>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>229</locationX>
+        <locationX>698</locationX>
         <locationY>21</locationY>
         <connector>
-            <targetReference>Is_status_reserved</targetReference>
+            <targetReference>Get_Main_Practitioner</targetReference>
         </connector>
     </start>
     <status>Active</status>
     <variables>
-        <name>Booking_Message</name>
+        <name>Additional_Session_Time</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>curAccount</name>
-        <dataType>SObject</dataType>
+        <name>Booking_Message</name>
+        <dataType>String</dataType>
         <isCollection>false</isCollection>
-        <isInput>true</isInput>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
-        <objectType>Account</objectType>
     </variables>
     <variables>
         <name>curBooking</name>
@@ -519,12 +642,34 @@
         <objectType>Course__c</objectType>
     </variables>
     <variables>
-        <name>curUser</name>
-        <dataType>SObject</dataType>
+        <name>includesProfvisionalOther</name>
+        <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
-        <isInput>true</isInput>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
-        <objectType>User</objectType>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>includesProvisionalBreastfeeding</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>includesProvisionalReunion</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
     <variables>
         <name>index</name>
@@ -544,6 +689,13 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>Provisional_Breastfeeding_Time</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>session</name>
@@ -602,6 +754,21 @@
         <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>venueIdsDuplicated</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>venueList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Venue__c</objectType>
     </variables>
     <variables>
         <name>venueRecord</name>

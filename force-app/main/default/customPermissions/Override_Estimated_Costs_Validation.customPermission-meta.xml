@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Referenced by the validation rules on the estimated costs object, in order to allow overriding them in specific scenarios.</description>
+    <label>Override Estimated Costs Validation</label>
+</CustomPermission>

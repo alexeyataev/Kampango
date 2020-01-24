@@ -1,19 +1,23 @@
 Dear {!Course_Assignment__c.OwnerFirstName},
-</br>
-</br>
-NCT has sent you this email so that you securely sign your assignment for this course online.
-</br>
-</br>
-<a href = "{!$Setup.Practitioner_Community_Settings__c.Base_Url__c}/s/detail/{!Course_Assignment__c.Id}" target = "_blank">Please log in to the Practitioner community to review and sign this assignment.</a>
-</br>
-<br/>
-The following comments (if any) were included in the approval request: '{!ApprovalRequest.Comments}'
-<br/>
-</br>
+<br>
+<br>
+NCT has sent you this email so that you can securely sign your Course Assignment Document for this course online.
+<br>
+<br>
+<a href = "{!$Setup.Practitioner_Community_Settings__c.Base_Url__c}/s/detail/{!Course_Assignment__c.Id}" target = "_blank">Please log in to the Practitioner community to review and sign this Course Assignment Document.</a>
+<br>
+<br>
+{!If(ApprovalRequest.Comments != null, "The following comments were included in the approval request:", null)} <b>{!ApprovalRequest.Comments}</b>
+<br>
+<br>
 Kind Regards,  
-</br>
-</br>
+<br>
+<br>
 {!Course_Assignment__c.LastModifiedBy}
-</br>
-Capacity PSA - {!Course_Assignment__c.PSA_Area__c}
-</br>
+<br>
+Capacity PSA – {!Course_Assignment__c.PSA_Area__c}
+<br>
+Telephone: {!Course_Assignment__c.Capacity_PSA_Phone__c}
+<br>
+Email: Any reply to this email should be sent to {!Course_Assignment__c.Capacity_PSA_Email__c}
+<br>

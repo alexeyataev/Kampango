@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #36 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 public class BookingJourneyHelperTest {
 
@@ -155,6 +157,4 @@ public class BookingJourneyHelperTest {
         Test.stopTest();
         System.assertEquals(null, individual);
     }
-
-
 }

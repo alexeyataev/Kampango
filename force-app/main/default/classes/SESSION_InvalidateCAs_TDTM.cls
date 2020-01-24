@@ -19,10 +19,11 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         dmlWrapper.objectsToUpdate.addAll(courseAssignmentsToUpdate);
         return dmlWrapper;
     }
+    
 
      @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #22 - https://confluence.nct.org.uk:8443/x/EoSO
-    private List<Course_Assignment__c> CourseAssignmentsToChangeIfSessionsUpdated(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
+    private List<Course_Assignment__c> courseAssignmentsToChangeIfSessionsUpdated(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
         Set<Id> courseAssignmentIds = new Set<Id>();
         Set<Id> newPractitionerIds = new Set<Id>();
         Set<Id> oldPractitionerIds = new Set<Id>();
@@ -31,15 +32,17 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         Map<Id, Session__c> oldSessionMap = new Map<Id, Session__c>(oldSessionList);
 
         for (Session__c session : newSessionList) {
-            Boolean condition = session.Course_Assignment__c != NULL && (session.Type__c != 'Reunion' &&
+            Boolean condition = session.Course_Assignment__c != NULL &&
+                    (session.Type__c != 'Reunion' || session.Status__c == 'Confirmed' ||
+                            oldSessionMap.get(session.Id).Status__c == 'Confirmed') &&
                     (session.Date__c != oldSessionMap.get(session.Id).Date__c ||
                             session.Start__c != oldSessionMap.get(session.Id).Start__c ||
                             session.End__c != oldSessionMap.get(session.Id).End__c ||
                             session.Lunch_Break_Minutes__c != oldSessionMap.get(session.Id).Lunch_Break_Minutes__c ||
                             session.Venue__c != oldSessionMap.get(session.Id).Venue__c ||
-                            session.Room__c != oldSessionMap.get(session.Id).Room__c)) ||
-                    (session.Type__c == 'Reunion' && session.Status__c == 'Confirmed' &&
-                            oldSessionMap.get(session.Id).Status__c == 'Provisional');
+                            session.Room__c != oldSessionMap.get(session.Id).Room__c ||
+                            session.Status__c != oldSessionMap.get(session.Id).Status__c ||
+                            session.Practitioner_Fee_Rate__c != oldSessionMap.get(session.Id).Practitioner_Fee_Rate__c);
             if (condition) {
                 courseAssignmentIds.add(session.Course_Assignment__c);
             } else if (session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c) {
@@ -51,8 +54,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(newPractitionerIds, courseIds, courseAssignmentsToUpdate);
-        SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(oldPractitionerIds, courseIds, courseAssignmentsToUpdate);
+        setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(newPractitionerIds, courseIds, courseAssignmentsToUpdate);
+        setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(oldPractitionerIds, courseIds, courseAssignmentsToUpdate);
         
         List<Course_Assignment__c> courseAssignmentsToInvalidate = [
             SELECT Status__c
@@ -72,10 +75,9 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         
         return courseAssignmentsToUpdate;
     }
-    //NOPMD
-    //Incident #4 - https://confluence.nct.org.uk:8443/x/EoSO
 
-    private List<Course_Assignment__c> CourseAssignmentsToChangeIfSessionsInserted(List<Session__c> sessionsToIterate) {
+
+    private List<Course_Assignment__c> courseAssignmentsToChangeIfSessionsInserted(List<Session__c> sessionsToIterate) {
         List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
         Set<Id> practitionerIds = new Set<Id>();
         Set<Id> courseIds = new Set<Id>();
@@ -85,12 +87,13 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             courseIds.add(aSession.Course__c);
         }
 
-        SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(practitionerIds, courseIds, courseAssignmentsToUpdate);
+        setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(practitionerIds, courseIds, courseAssignmentsToUpdate);
 
         return courseAssignmentsToUpdate;
     }
 
-    private List<Course_Assignment__c> CourseAssignmentsToChangeIfSessionsDeleted(List<Session__c> sessionsToIterate) {
+
+    private List<Course_Assignment__c> courseAssignmentsToChangeIfSessionsDeleted(List<Session__c> sessionsToIterate) {
         List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
         Set<Id> courseAssignmentIds = new Set<Id>();
 
@@ -98,14 +101,15 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             courseAssignmentIds.add(aSession.Course_Assignment__c);
         }
 
-        SetCourseAssignmentsStatusDependOnWhetherAssignedSessions(courseAssignmentIds, courseAssignmentsToUpdate);
+        setCourseAssignmentsStatusDependOnWhetherAssignedSessions(courseAssignmentIds, courseAssignmentsToUpdate);
 
         return courseAssignmentsToUpdate;
     }
+
  
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #19, 20 - https://confluence.nct.org.uk:8443/x/EoSO
-    private static List<Course_Assignment__c> SetCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(Set<Id> practitionerIds, Set<Id> courseIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
+    private static List<Course_Assignment__c> setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(Set<Id> practitionerIds, Set<Id> courseIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
     
     List<User> partnerCommunityUsers = [
             SELECT Id
@@ -149,7 +153,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #21 - https://confluence.nct.org.uk:8443/x/EoSO
-    private static List<Course_Assignment__c> SetCourseAssignmentsStatusDependOnWhetherAssignedSessions(Set<Id> courseAssignmentIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
+    private static List<Course_Assignment__c> setCourseAssignmentsStatusDependOnWhetherAssignedSessions(Set<Id> courseAssignmentIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
     
     List<Course_Assignment__c> coursesAssignmentsToChangeStatus = [
             SELECT Status__c,

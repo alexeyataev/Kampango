@@ -37,15 +37,26 @@ public  class BookingStatusFlowHelperTest {
             .withLicence('Signature Antenatal Teacher')
             .insertRecord(true)
             .build();
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        List<Venue__c> venues = new List<Venue__c>{
+            venueBuilder.withName('Venue1')
+            .insertRecord(false)
+            .build(),
+            venueBuilder.withName('Venue2')
+            .insertRecord(false)
+            .build()
+        };
+        insert venues;
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         Course__c course = courseBuilder.withType('Postnatal')
-            .withSubType('Baby Massage')
+            .withSubType('NCT Baby Massage course')
             .withFee(100)
             .withNumberOfPlaces(15)
             .withStatus('Draft')
             .withAccount(branch)
             .withLicenceToPractice(lisence)
             .withPractitioner(contact)
+            .withMainVenue(venues[0])
             .insertRecord(false)
             .build();
         insert course;
@@ -66,6 +77,27 @@ public  class BookingStatusFlowHelperTest {
             .withLastName('Partner')
             .insertRecord(true)
             .build();
+        TestRoomBuilder roomBuilder = new TestRoomBuilder();
+        Room__c room = roomBuilder.withVenue(venues[0])
+            .insertRecord(true)
+            .build();
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        List<Session__c> sessions = new List<Session__c>();
+        for(Integer i = 0; i < 12; i++){
+            sessions.add(
+                sessionBuilder.withPractitioner(contact)
+                .withType('Standard')
+                .withDate(System.today().addDays(11))
+                .withPractitionerLicence(lisence)
+                .withPractitionerFeeRate(practitionerFeeRate)
+                .withVenue(venues[0])
+                .withCourse(course)
+                .withRoom(room)
+                .insertRecord(false)
+                .build()
+            );
+        }
+        insert sessions;
         TestBookingBuilder bookingBuilder = new TestBookingBuilder();
         List<Booking__c> bookings = new List<Booking__c>{
             bookingBuilder.withCourse(course)
@@ -84,37 +116,6 @@ public  class BookingStatusFlowHelperTest {
             .build()
         };
         insert bookings;
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        List<Venue__c> venues = new List<Venue__c>{
-            venueBuilder.withName('Venue1')
-            .insertRecord(false)
-            .build(),
-            venueBuilder.withName('Venue2')
-            .insertRecord(false)
-            .build()
-        };
-        insert venues;
-        TestRoomBuilder roomBuilder = new TestRoomBuilder();
-        Room__c room = roomBuilder.withVenue(venues[0])
-            .insertRecord(true)
-            .build();
-        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
-        List<Session__c> sessions = new List<Session__c>();
-        for(Integer i = 0; i < 12; i++){
-            sessions.add(
-                sessionBuilder.withPractitioner(contact)
-                .withType('Standard')
-                .withDate(System.today())
-                .withPractitionerLicence(lisence)
-                .withPractitionerFeeRate(practitionerFeeRate)
-                .withVenue(venues[0])
-                .withCourse(course)
-                .withRoom(room)
-                .insertRecord(false)
-                .build()
-            );
-        }
-        insert sessions;
     }
 
     @IsTest
@@ -123,9 +124,14 @@ public  class BookingStatusFlowHelperTest {
             SELECT Id, Status__c, Reservation_Expiry_Date__c
             FROM Booking__c
         ];
-        for(Booking__c booking :bookings){
-            booking.Status__c = 'Expired';
+
+        for(Integer i = 0; i < bookings.size(); i++){
+            if (Math.mod(i, 2) == 0) {
+                bookings.get(i).Reservation_Expiry_Date__c += 1;
+            }
+            bookings.get(i).Status__c = 'Expired';
         }
+
         Test.startTest();
         BookingStatusFlowHelper.updateBookings(new List<List<Booking__c>>{bookings});
         Test.stopTest();

@@ -1,12 +1,13 @@
 @SuppressWarnings('PMD.VariableNamingConventions')
 //Incident #10 - https://confluence.nct.org.uk:8443/x/EoSO
+// This supression is needed because we need Upper case-started propoerties for serialization to JSON.
 public without sharing virtual class CourseFinderModel {
     @testVisible
     public String Id {get; set;}
     public transient Date StartDate {get; set;}
     private String Reference;
     private String Title;
-    private String Summary;
+    public String Summary;
     private String Type;
     private Boolean CouplesAllowed;
     private Boolean WomenOnly;
@@ -16,19 +17,26 @@ public without sharing virtual class CourseFinderModel {
     private CourseOrganiser CourseOrganiser;
     private Venue Venue;
     private List<Session> Sessions;
-    public List<String> HowHeardTexts;
+    private static List<String> HowHeardTexts = getHowHeardValues(); // will run only once for any number of models
 
     public CourseFinderModel(Course__c course) {
+        /**
+         * Front-end team is displaying highlight like "only x spaces left" if there are less than 5 spaces. 
+         * So because course.Remaining_Places__c can be a negative number and highlight like "only -2 spaces left" is meaningless,
+         * it was decided to use some positive number larger than 5 for 
+         * courses with overbooking to hide the highlight for already overbooked courses
+         */
+        final Integer DEFAULT_REMAINING_PLACES = 20;
         this.Id = course.Name;
         this.Reference = course.PSA_Area__c + '/' + course.Name;
-        this.Title = 'field is colected';
-        this.Summary = 'field is colected';
+        this.Title = course.Title__c;
+        this.Summary = course.Summary__c;
         this.Type = course.Sub_Type__c;
         this.CouplesAllowed = course.Couples_Allowed__c;
         this.WomenOnly = course.Women_Only__c;
         this.BranchNumber = course.Branch__r.Branch_Number__c;
         this.Price = course.Fee__c;
-        this.PlacesAvailable = Integer.valueOf(course.Number_of_places__c);
+        this.PlacesAvailable = course.Overbooking_allowed__c ? DEFAULT_REMAINING_PLACES : Integer.valueOf(course.Remaining_Places__c);
         this.CourseOrganiser = new CourseOrganiser(course);
         this.Venue = new Venue(course);
         this.Sessions = collectSessionsToList(course.Sessions__r);
@@ -76,13 +84,22 @@ public without sharing virtual class CourseFinderModel {
         private String Notes;
         
         private Session (Session__c session) {
-            this.Session_Date = session.Name;
+            this.Session_Date = String.valueOf(session.Date__c);
             this.Start = String.valueOf(session.Start__c);
             this.Session_End = String.valueOf(session.End__c); 
             this.WomenOnly = session.Specific_Attendee_Type__c == 'Women Only' ? true : false;  
-            this.Breastfeeding = session.Type__c == 'Breastfeeding' ? true : false;  
-            this.Notes = 'field is deleted';  
+            this.Breastfeeding = session.Type__c == 'Breastfeeding' ? true : false;
+            this.Notes = session.Additional_Information_with_Venue__c;  
         }
+    }
+
+    private static List<String> getHowHeardValues() {
+        List<String> howHeardValues = new List<String>();
+        Schema.DescribeFieldResult fieldResult = Booking__c.How_Heard__c.getDescribe();
+        for (Schema.PicklistEntry value : fieldResult.getPicklistValues()) {
+            howHeardValues.add(value.getLabel());
+        }
+        return howHeardValues;
     }
 
     private List<Session> collectSessionsToList (List<Session__c> sessions) {

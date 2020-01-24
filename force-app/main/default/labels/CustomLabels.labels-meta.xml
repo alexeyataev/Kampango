@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-        <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
+        <fullName>Baby_Massage_Tips_And_Benefits_Url</fullName>
+        <categories>Confirmation Notification</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Generate Payment File Invalid Batch Bank Payment Status Message</shortDescription>
-        <value>Batch Bank Payment should be approved to generate Payment File.</value>
+        <shortDescription>Baby Massage Tips And Benefits Url</shortDescription>
+        <value>https://www.nct.org.uk/baby-toddler/everyday-care/baby-massage-tips-and-benefits</value>
     </labels>
-    <labels>    
+    <labels>
+        <fullName>Confirmation_Notification_Course_Reunion</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation Notification Course Reunion</shortDescription>
+        <value>There is also a 2-hour reunion for all course participants with their new baby after the birth. Your course leader will agree a date, time and location for this with you.</value>
+    </labels>
+    <labels>
         <fullName>ContactUpdateException</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -15,20 +24,36 @@
         <value>An error occurred during details update.</value>
     </labels>
     <labels>
+        <fullName>CourseAPIEnqueryEmailsAreEqual</fullName>
+        <categories>CourseAPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Primary and Partner emails must not match</shortDescription>
+        <value>{&quot;Error&quot; : &quot;Primary and Partner emails must not match&quot;</value>
+    </labels>
+    <labels>
+        <fullName>CourseAPIEnqueryParametersSpecifiedNotCorrectly</fullName>
+        <categories>CourseAPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enquiry Parameters are specified not correctly</shortDescription>
+        <value>{&quot;Error&quot; : &quot;Enquiry Parameters are specified not correctly&quot;}</value>
+    </labels>
+    <labels>
         <fullName>CourseAPIcourseNotExists</fullName>
         <categories>CourseAPI</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Label For Set Error Search</shortDescription>
-        <value>{&quot;Error&quot; : course does not exist}</value>
+        <value>{&quot;Error&quot; : &quot;Course does not exist or not allowed for booking&quot;}</value>
     </labels>
     <labels>
-        <fullName>CourseAPIradiusIsNotValid</fullName>
+        <fullName>CourseAPIenquiryCreatedSuccessfully</fullName>
         <categories>CourseAPI</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Radius is not valid response</shortDescription>
-        <value>{&quot;Error&quot; : radius is not a whole number of miles}</value>
+        <shortDescription>Enquiry created successfully</shortDescription>
+        <value>{&quot;Success&quot; : &quot;Enquiry created successfully&quot;}</value>
     </labels>
     <labels>
         <fullName>CourseAPInoResultsFound</fullName>
@@ -36,6 +61,65 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>No results found</shortDescription>
-        <value>{&quot;Error&quot; : no results match your search criteria}</value>
+        <value>{&quot;Error&quot; : &quot;No results match your search criteria&quot;}</value>
+    </labels>
+    <labels>
+        <fullName>CourseAPIradiusIsNotValid</fullName>
+        <categories>CourseAPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Radius is not valid response</shortDescription>
+        <value>{&quot;Error&quot; : &quot;Radius is not a whole number of miles&quot;}</value>
+    </labels>
+    <labels>
+        <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generate Payment File Invalid Batch Bank Payment Status Message</shortDescription>
+        <value>Batch Bank Payment should be approved to generate Payment File.</value>
+    </labels>
+    <labels>
+        <fullName>Nct_Pregnancy_Baby_Guide_Url</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Nct Pregnancy Baby Guide Url</shortDescription>
+        <value>https://www.nct.org.uk/nct-pregnancy-baby-guide</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Plan_Different_Amounts_Option_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Plan Different Amounts Option Template</shortDescription>
+        <value>1 payment of £ {0} and {1} monthly payment of £ {2}</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Plan_Different_Multiple_Amounts_Option_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Plan Different Multiple Amounts Option Template</shortDescription>
+        <value>1 payment of £ {0} and {1} monthly payments of £ {2}</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Plan_Equal_Amounts_Option_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Plan Equal Amounts Option Template</shortDescription>
+        <value>{0} monthly payments of £ {1}</value>
+    </labels>
+    <labels>
+        <fullName>Sub_Type_Course_Baby_Massage</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sub Type Course  Baby Massage</shortDescription>
+        <value>NCT Baby Massage course</value>
+    </labels>
+    <labels>
+        <fullName>Unsupported_Browser_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unsupported browser error message</shortDescription>
+        <value>Sorry, your current browser isn't supported. For the best experience we suggest using Chrome.</value>
     </labels>
 </CustomLabels>

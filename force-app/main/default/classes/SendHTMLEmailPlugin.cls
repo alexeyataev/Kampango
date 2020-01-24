@@ -14,13 +14,13 @@ public with sharing class SendHTMLEmailPlugin {
         String senderDisplay = requests[0].senderDisplayName;
         List<String> ccEmails = requests[0].ccEmailAddresses;
         List<String> bccEmails = requests[0].bccEmailAddresses;
-        String orgWide = requests[0].orgWideEmailAddress;
+        String orgWideAddress = requests[0].orgWideEmailAddress;
         
         List<Response> responseList = new List<Response>();
         Messaging.SingleEmailMessage message = new  Messaging.SingleEmailMessage();
         
         Boolean hasRecipient = (targetObjId != null || bccEmails != null || ccEmails != null);
-        if (hasRecipient) {
+        if (emailsFeatureEnabled() && hasRecipient) {
 
             setEmailCapacity(targetObjId, ccEmails, bccEmails);
 
@@ -28,22 +28,23 @@ public with sharing class SendHTMLEmailPlugin {
             message.setTemplateId(templateId);
             message.setWhatId(mergeObjId);
     
-      		// Set Priority
             List<String> priorities = new List<String> {'Highest', 'High', 'Low', 'Lowest'};
             if (priorities.contains(priority)) {
                 message.setEmailPriority(priority);
             }
             
-            // Save as activity?
-            if (saveAsActivity == null || !saveAsActivity) {
+            // Save as activity is true by default
+            Boolean isSaveAsActivityNotSet = (saveAsActivity == null || !saveAsActivity);
+            if (isSaveAsActivityNotSet) {
                 message.setSaveAsActivity(false);
             }
             
             // Set sender address (cannot be used both)
-            if (orgWide != null) {
-                Id orgWideEmail = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: orgWide].Id;
-                message.setOrgWideEmailAddressId(orgWideEmail);
-            } else if (senderDisplay != null){
+            Boolean isOrgWideSet = (orgWideAddress != null && String.isNotBlank(orgWideAddress));
+            if (isOrgWideSet) {
+                Id orgWideAddressId = [SELECT Id FROM OrgWideEmailAddress WHERE Address = :orgWideAddress].Id;
+                message.setOrgWideEmailAddressId(orgWideAddressId);
+            } else if (senderDisplay != null) {
                 message.setSenderDisplayName(senderDisplay);
             }
             message.setReplyTo(senderAddress);
@@ -55,22 +56,24 @@ public with sharing class SendHTMLEmailPlugin {
             
             Response response;
             String error;
-            // Send the email you have created.
             try {
                 Messaging.SendEmailResult[] emailResponse = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { message });
                 System.debug('emailResponse is: ' + emailResponse);
-                //report back the results
                 response = createResponseAfterSending(emailResponse);
-            } catch (Exception e){
+            } catch (EmailException e){
                 error = e.getMessage();
-                System.debug ('exception occured: ' + e.getMessage());
-                response = createErrorResponse(error);
+                if (error.contains('UNVERIFIED_SENDER_ADDRESS')) {
+                    throw e;
+                } else {
+                    System.debug ('exception occured: ' + e.getMessage());
+                    response = createErrorResponse(error);
+                }
             }
             responseList.add(response);
 
             system.debug('Email invocations after send: ' + Limits.getEmailInvocations());
         } else {
-            Response response = createErrorResponse('Recipient is not assigned');
+            Response response = createErrorResponse('Messaging is not supported or recipient is not assigned');
             responseList.add(response);
         }
 
@@ -119,6 +122,15 @@ public with sharing class SendHTMLEmailPlugin {
         response.isSuccess = false;
         response.errors = errors;
         return response;
+    }
+    
+    public static Boolean emailsFeatureEnabled() {
+        try {
+            Messaging.reserveSingleEmailCapacity(1);
+        } catch (System.NoAccessException e) {
+            return false;
+        }
+        return true;
     }
     
     public class Request {

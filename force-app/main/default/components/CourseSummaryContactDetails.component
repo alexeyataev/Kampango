@@ -1,0 +1,13 @@
+<apex:component>
+
+    <apex:attribute description="The contact record to display" name="contact" type="Contact" required="true"/>
+    <apex:attribute description="The API name of contact fieldset" name="fieldsetName" type="String" required="true"/> 
+    <apex:attribute description="Visibility of labels" name="labelIsVisible" type="Boolean" required="true"/> 
+    
+    <apex:repeat value="{!$ObjectType.Contact.FieldSets[fieldsetName]}" var="field">
+        <apex:outputLabel value="{!field.Label}: " rendered = "{!AND(labelIsVisible, contact[field] != '')}"/>
+        <apex:outputField value="{!contact[field]}" rendered="{!(contact[field] != '')}">
+            <br/>
+        </apex:outputField>
+    </apex:repeat>
+</apex:component>
