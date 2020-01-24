@@ -5,7 +5,7 @@ public with sharing class CourseDetailController {
         List<Session__c> sessions;
         sessions = [
             SELECT Date__c, Start__c, End__c, Venue__r.Town__c, Venue__r.Postcode__c, Venue__r.Street_Address__c,
-                Venue__r.County__c, Venue__c, Venue__r.Name
+                Venue__r.County__c, Venue__c, Venue__r.Name, Additional_Information__c, Status__c
             FROM Session__c
             WHERE Course__c = :courseId
             AND (Type__c != 'Reunion' OR (Type__c = 'Reunion' AND Status__c != 'Provisional'))

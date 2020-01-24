@@ -10,10 +10,15 @@ public class TestAccountBuilder {
     private String bankSortCode;
     private String bankAccountNumber;
     private String bankAccountName;
+    private String capacityPSAemail;
+    private String enquiriesPSAemail;
+    private Boolean hasContactEmails;
+    private Id enquiriesPSA;
 
     private Boolean insertRecord = false;
 
     public TestAccountBuilder withRecordType(String recordTypeName){
+        hasContactEmails = this.hasRecordTypeContactEmails(recordTypeName);
         recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get(recordTypeName).getRecordTypeId();
         return this;
     }
@@ -58,6 +63,25 @@ public class TestAccountBuilder {
         return this;
     }
 
+    public TestAccountBuilder withCapacityPSAemail(String capacityEmail) {
+        if (hasContactEmails) {
+            this.capacityPSAemail = capacityEmail;
+        }
+        return this;
+    }
+
+    public TestAccountBuilder withEnquiriesPSAemail(String enquiriesEmail) {
+        if (hasContactEmails) {
+            this.enquiriesPSAemail = enquiriesEmail;
+        }
+        return this;
+    }
+
+    public TestAccountBuilder withEnquiriesPSA(Id userId) {
+        this.enquiriesPSA = userId;
+        return this;
+    }
+
     public TestAccountBuilder insertRecord(Boolean insertRecord) {
         this.insertRecord = insertRecord;
         return this;
@@ -74,13 +98,24 @@ public class TestAccountBuilder {
             Billing_Email__c = this.billingEmail,
             Zumzum__Bank_Sort_Code__c = this.bankSortCode,
             Zumzum__Bank_Account_No__c = this.bankAccountNumber,
-            Zumzum__Bank_Account_Name__c = this.bankAccountName
-            );
+            Zumzum__Bank_Account_Name__c = this.bankAccountName,
+            Enquiries_PSA__c = this.enquiriesPSA
+        );
+
+        if (hasContactEmails) {
+            testAccount.Capacity_PSA_Email__c = this.capacityPSAemail;
+            testAccount.Enquiries_PSA_Email__c = this.enquiriesPSAemail;
+        }
 
         if(insertRecord) {
             insert testAccount;
         }
 
         return testAccount;
+    }
+
+    // checks if Account with specific recordType has the capacity PSA and enquiries PSA emails
+    private Boolean hasRecordTypeContactEmails(String recordTypeName) {
+        return recordTypeName == 'Branch';
     }
 }

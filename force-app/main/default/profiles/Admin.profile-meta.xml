@@ -12,10 +12,6 @@
         <apexClass>SESSION_RevertToProvisional_TDTM</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>StepOrangeCardPaymentProvider</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
@@ -168,21 +164,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_Email__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_First_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_Phone__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Booking__c.Fee_Override_Reason__c</field>
         <readable>true</readable>
@@ -220,6 +201,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Post__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.PSA_Area_When_Confirmed__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -344,6 +330,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Booking__c.Transfer_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.Transfer_Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Booking__c.Under_18__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -355,6 +351,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Branch_Weighting__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Branch__c</field>
         <readable>true</readable>
     </fieldPermissions>
      <fieldPermissions>
@@ -478,6 +479,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Cancellation_Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>fales</editable>
         <field>Course__c.Capacity_PSA_Name__c</field>
         <readable>true</readable>
@@ -490,6 +496,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Capacity_PSA_Phone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Count_of_Confirmed_Sessions__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -515,6 +526,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Count_of_Unconfirmed_Non_Reunion_Session__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Count_of_Unconfirmed_Reunion_Sessions__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -617,58 +633,11 @@
         <field>Course__c.Private_Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
-
     <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Reunion_Host_Contact_Names__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Practitioner_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Practitioner_Phone__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Practitioner_Email__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Venue_Map_Url__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Venue_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Venue_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Venue_Postcode__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Venue_Street_Address__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Reunion_Venue_Town__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Start_Date__c</field>
@@ -680,8 +649,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Summary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Target_Group__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Title__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -746,7 +725,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Licence_To_Practice__c.Practitioner_Name__c</field>
+        <field>Licence_To_Practice__c.Licence_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -801,6 +780,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Session__c.Additional_Information__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Additional_Information_with_Venue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Session__c.Contact_Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -811,14 +800,24 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Session__c.Course_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Course_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Session__c.Day_of_Week__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.IsPublicVenue__c</field>
+        <field>Session__c.Eligible_for_Claim__c</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>    
     <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Lunch_Break_Minutes__c</field>
@@ -836,12 +835,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.PSA_Area__c</field>
+        <field>Session__c.Practitioner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Practitioner_Chosen__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Practitioner_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -855,13 +859,28 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Practitioner_Fees_to_Claim__c</field>
+        <readable>true</readable>
+    </fieldPermissions>    
+    <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Practitioner_Licence__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Practitioner_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Practitioner_Phone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Practitioner__c</field>
+        <field>Session__c.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -895,8 +914,58 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Session_Info_For_Flow__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Times__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Venue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Venue_Address__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_County__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Venue_Invoice_Paid__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Venue_Map_Url__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Postcode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Street__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Town__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -986,6 +1055,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Venue__c.Host__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Venue__c.Host_Parking_Details__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1017,6 +1091,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Venue__c.Location__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Legacy_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1086,6 +1165,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Venue__c.Street_Address__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Venue__c.Suitability_for_Courses__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1112,6 +1196,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Venue__c.Venue_Website__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Venue__c.Venue_Info_For_Flow__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1279,7 +1368,7 @@
         <layout>Course_Assignment__c-Course Assignment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Course__c-Admin Course Layout</layout>
+        <layout>Course__c-Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Estimated_Costs__c-Estimated Costs Layout</layout>

@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Create_a_post</name>
+        <label>Create a post</label>
+        <locationX>1222</locationX>
+        <locationY>491</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <stringValue>Reunion confirmation email resent</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Show_status</name>
         <label>Show status</label>
         <locationX>876</locationX>
-        <locationY>633</locationY>
+        <locationY>632</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
+        <connector>
+            <targetReference>Check_if_success</targetReference>
+        </connector>
         <inputParameters>
             <name>type</name>
             <value>
@@ -106,6 +129,28 @@
         </value>
     </constants>
     <decisions>
+        <name>Check_if_success</name>
+        <label>Check if success</label>
+        <locationX>1024</locationX>
+        <locationY>634</locationY>
+        <defaultConnectorLabel>Is not success</defaultConnectorLabel>
+        <rules>
+            <name>Is_success</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>STATUS_SUCCESS</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_a_post</targetReference>
+            </connector>
+            <label>Is success?</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_input_parameter</name>
         <label>Check input parameter</label>
         <locationX>282</locationX>
@@ -155,6 +200,7 @@
             <label>Session exists?</label>
         </rules>
     </decisions>
+    <description>Changed Task &quot;Related To&quot; field to Course</description>
     <interviewLabel>Resend Reunion {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Resend Reunion Email</label>
     <processMetadataValues>
@@ -217,7 +263,13 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Get_Reunion_Session_by_Course</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Reunion_Session_by_Course</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <subflows>
         <name>Prepare_and_send</name>

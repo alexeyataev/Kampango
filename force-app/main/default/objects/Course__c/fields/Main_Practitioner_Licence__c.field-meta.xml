@@ -16,7 +16,7 @@
     <referenceTo>Licence_To_Practice__c</referenceTo>
     <relationshipLabel>Courses</relationshipLabel>
     <relationshipName>Courses</relationshipName>
-    <required>true</required>
+    <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>

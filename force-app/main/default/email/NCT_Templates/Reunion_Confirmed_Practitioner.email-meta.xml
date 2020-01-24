@@ -9,24 +9,21 @@
 
 Dear {!Contact.FirstName},
 
-Thank you for agreeing to facilitate the {!Course__c.Sub_Type__c} course reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c} at:
+Thank you for agreeing to facilitate the {!Course__c.Sub_Type__c} reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c} at:
 
-{!Course__c.Reunion_Venue_Name__c}
-{!Course__c.Reunion_Venue_Street_Address__c}
-{!Course__c.Reunion_Venue_Town__c}
-{!Course__c.Reunion_Venue_Postcode__c}
+{!Session__c.Venue_Address__c}
 
-Please click here to see this on a map
-{!Course__c.Reunion_Venue_Map_Url__c}
+Click here to see this on a map
+{!Session__c.Venue_Map_Url__c}
 
 If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.
 
-Kind regards,
-{!Course__c.Capacity_PSA_Name__c}
-Course organiser
+Kind Regards,
 
-Email: {!Course__c.Capacity_PSA_Email__c}
-Tel: {!Course__c.Capacity_PSA_Phone__c}</textOnly>
+{!Course__c.Capacity_PSA_Name__c}
+Capacity PSA – {!Course__c.PSA_Area__c}
+Telephone: {!Course__c.Capacity_PSA_Phone__c}
+Email: Any reply to this email should be sent to {!Course__c.Capacity_PSA_Email__c}</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

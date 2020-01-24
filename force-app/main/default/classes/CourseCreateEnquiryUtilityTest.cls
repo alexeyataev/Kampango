@@ -9,12 +9,60 @@ private class CourseCreateEnquiryUtilityTest {
                                          '"town":"London","op":"Send enquiry"}';
     @testSetup
     static void createTestData() {
+        List<OrgWideEmailAddress> addresses = [
+            SELECT Id, Address 
+            FROM OrgWideEmailAddress
+            LIMIT 1
+        ];
+
+        String existingAddress = addresses[0].Address;
+
         TestDataFactory.getInstance()
+            .buildBranchAccountWithEmails(existingAddress)
             .buildOrganizationAccount('acct1')
-            .buildBranchAccount()
-            .buildPractitioner('Practitioner')
+            .buildPractitioner('Test')
+            .buildPractitionerFeeRate()
+            .buildVenue()
+            .buildRoom()
             .buildLicenceToPractice()
-            .buildCourse();
+            .buildCoursesWithSessions(2, 2);
+
+
+        Profile p = [SELECT Id FROM Profile WHERE Name='Website Integration'];
+        String uniqueUserName = 'websiteuser' + DateTime.now().getTime() + '@testorg.com';
+        User u = new User(
+            Alias = 'websiteu',
+            Email='websiteuser@testorg.com',
+            EmailEncodingKey='UTF-8',
+            LastName='websiteuserTesting',
+            LanguageLocaleKey='en_US',
+            LocaleSidKey='en_GB',
+            ProfileId = p.Id,
+            TimeZoneSidKey='Europe/London',
+            UserName=uniqueUserName
+        );  
+        insert u;
+
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        List<Course__c> coursesToFinal = [
+            SELECT Status__c, Count_of_Estimated_Travel_Costs__c, Count_of_Estimated_Venue_Costs__c, Main_Venue__c, Fee__c,
+            (
+                SELECT Status__c FROM Sessions__r
+            )
+            FROM Course__c
+        ];
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        Venue__c mainVenue = venueBuilder
+                                .insertRecord(true)
+                                .build();
+
+        dataFactory.setMainVenueToCourses(mainVenue, coursesToFinal);
+        for (Course__c course : coursesToFinal) {
+            if (!course.Sessions__r.isEmpty()) {
+                dataFactory.setSessionsToConfirmed(course.Sessions__r);   
+            }
+        }
+        dataFactory.setCoursesWithSessionsToFinal(coursesToFinal);
     }
 
     @isTest
@@ -26,8 +74,7 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> createdContact = [
             SELECT Name, Email 
             FROM Contact 
@@ -40,9 +87,13 @@ private class CourseCreateEnquiryUtilityTest {
         System.assertEquals(1, createdContact.size());
         System.assertEquals(1, bookings.size());
     }
-
+    
     @isTest
     static void createEnquiryWithExistingContact() {
+        String avaliableCourse = [
+            SELECT Id, Name
+            FROM Course__c 
+        ][0].Name;
         Account account = new Account(
             RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
             Name = 'Test Household'
@@ -60,74 +111,25 @@ private class CourseCreateEnquiryUtilityTest {
             RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
         insert existingContact;
-        String avaliableCourse = [
-            SELECT Id, Name 
-            FROM Course__c 
-        ][0].Name;
-        Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(params, Map<String, String>.class);
-        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
-        paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
-        List<Booking__c> bookings = [
-            SELECT Name 
-            FROM Booking__c 
-            WHERE Primary_Contact__c != null
-        ];
-        List<Contact> contacts = [
-            SELECT Name 
-            FROM Contact 
-            WHERE Email =: existingContact.Email
-        ];
-        System.assertEquals(1 , bookings.size());
-        System.assertEquals(1, contacts.size());
-    }
-
-    @isTest
-    static void createEnquiryWithContactUpdate() {
-        Account account = new Account(
-            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
-            Name = 'Test Household'
-        );
-        insert account;
-        Contact existingContact = new Contact(
-            LastName = 'Test',  
-            FirstName = 'Test', 
-            Email = 'test@test.test',
-            MailingCity = 'London',
-            MailingStreet = '221B Baker Street',
-            MailingPostalCode = 'E1 7AE',
-            Phone = '+447911123456',
-            AccountId = account.Id,
-            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
-        );
-        insert existingContact;
-        String avaliableCourse = [
-            SELECT Id, Name 
-            FROM Course__c 
-        ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
-        paramsMap.put('first_name', 'Updated'); 
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        List<Contact> contacts = [
+            SELECT Name
+            FROM Contact
+            WHERE Email =: 'test@test.test'
+        ];
         List<Booking__c> bookings = [
             SELECT Name 
-            FROM Booking__c 
-            WHERE Primary_Contact__c != null
+            FROM Booking__c
         ];
-        List<Contact> contacts = [
-            SELECT Name 
-            FROM Contact 
-            WHERE Email =: existingContact.Email AND FirstName = 'Updated'
-        ];
-        System.assertEquals(1 , bookings.size());
-        System.assertEquals(1, contacts.size());
+        System.assertEquals(2, contacts.size());
+        System.assertEquals(1, bookings.size());
     }
 
     @isTest
-    static void createEnquiryWithExistingPartner() {
+    static void createEnquiryWithExistingContactAndPartner() {
         Account accountPartner = new Account(
             RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
             Name = 'Partner Household'
@@ -167,22 +169,32 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        
+        // Temporarily commented to avoid System.LimitException: npsp:Too many SOQL queries: 101
+        // To be fixed in T-02067
+        Test.startTest();
+            CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        Test.stopTest();
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact
             WHERE Email =: paramsMap.get('partner_email')
+        ];
+        List<Contact> mainContacts = [
+            SELECT Name, Email
+            FROM Contact
+            WHERE Email =: paramsMap.get('email')
         ];
         List<Booking__c> bookings = [
             SELECT Name
             FROM Booking__c
             WHERE Partner_Contact__c != null
         ];
-        System.assertEquals(1, partners.size());
+        System.assertEquals(2, partners.size());
+        System.assertEquals(2, mainContacts.size());
         System.assertEquals(1, bookings.size());
     }
 
@@ -212,11 +224,10 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
-        String courseNumber = CourseCreateEnquiryUtility.getCourseName(paramsMap);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
-        CourseCreateEnquiryUtility.createEnquiry(courseNumber, paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact
@@ -229,5 +240,72 @@ private class CourseCreateEnquiryUtilityTest {
         ];
         System.assertEquals(1, partners.size());
         System.assertEquals(1, bookings.size());
+    }
+
+    @isTest
+    static void createEnquiryWithContactPreference() {
+        String avaliableCourse = [
+            SELECT Id, Name
+            FROM Course__c 
+        ][0].Name;
+        Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
+        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
+        paramsMap.put('courseId', avaliableCourse);
+        paramsMap.put('emailPreference', '1');
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        List<Contact> createdContact = [
+            SELECT Name, Email, Individual.Email__c
+            FROM Contact 
+            WHERE Email =: 'test@test.test'
+        ];
+        List<Booking__c> bookings = [
+            SELECT Name
+            FROM Booking__c
+        ];
+        System.assertEquals(true, createdContact[0].Individual.Email__c, 'Contact email preference should be marked as true according to test case');
+    }
+
+    @isTest
+    static void createEnquiryWithoutExistingPartnerWithContactPreference() {
+        Account account = new Account(
+            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
+            Name = 'Test Household'
+        );
+        insert account;
+        Contact existingContact = new Contact(
+            LastName = 'Test',  
+            FirstName = 'Test', 
+            Email = 'test@test.test',
+            MailingCity = 'London',
+            MailingStreet = '221B Baker Street',
+            MailingPostalCode = 'E1 7AE',
+            Phone = '+447911123456',
+            AccountId = account.Id,
+            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
+        );
+        insert existingContact;
+        String avaliableCourse = [
+            SELECT Id, Name 
+            FROM Course__c 
+        ][0].Name;
+        Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
+        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
+        paramsMap.put('courseId', avaliableCourse);
+        paramsMap.put('partner_first_name', 'Partner');
+        paramsMap.put('partner_last_name', 'Partner');
+        paramsMap.put('partner_email', 'partner@partner.partner');
+        paramsMap.put('emailPreference', '1');
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        List<Contact> partners = [
+            SELECT Name, Email, Individual.Email__c
+            FROM Contact
+            WHERE Email =: paramsMap.get('partner_email')
+        ];
+        List<Booking__c> bookings = [
+            SELECT Name
+            FROM Booking__c
+            WHERE Partner_Contact__c != null
+        ];
+        System.assertEquals(true, partners[0].Individual.Email__c, 'Contact email preference should be marked as true according to test case');
     }
 }

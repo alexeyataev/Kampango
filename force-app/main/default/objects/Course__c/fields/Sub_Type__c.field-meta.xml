@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Sub_Type__c</fullName>
     <externalId>false</externalId>
     <label>Sub Type</label>
@@ -14,39 +14,39 @@
         <valueSetName>Course_Sub_Type</valueSetName>
         <valueSettings>
             <controllingFieldValue>Antenatal</controllingFieldValue>
-            <valueName>NCT Antenatal Refresher</valueName>
+            <valueName>NCT Signature antenatal course</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Antenatal</controllingFieldValue>
-            <valueName>NCT Essentials Antenatal</valueName>
+            <valueName>NCT Essentials antenatal course</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Antenatal</controllingFieldValue>
-            <valueName>NCT Signature Antenatal</valueName>
+            <valueName>NCT Antenatal refresher course</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Antenatal</controllingFieldValue>
+            <valueName>NCT Twins and Multiples workshop</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Antenatal</controllingFieldValue>
+            <valueName>NCT Waterbirth workshop</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Antenatal</controllingFieldValue>
             <valueName>One to One</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Antenatal</controllingFieldValue>
-            <valueName>Twins and Multiples</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Antenatal</controllingFieldValue>
-            <valueName>Waterbirth</valueName>
+            <controllingFieldValue>Postnatal</controllingFieldValue>
+            <valueName>NCT Early Days course</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Postnatal</controllingFieldValue>
-            <valueName>Baby Massage</valueName>
+            <valueName>NCT Introducing Solid Foods workshop</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Postnatal</controllingFieldValue>
-            <valueName>Early Days</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Postnatal</controllingFieldValue>
-            <valueName>Introducing Solids</valueName>
+            <valueName>NCT Baby Massage course</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>

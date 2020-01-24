@@ -154,7 +154,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <label>General Setup</label>
     <nameField>
         <label>Object Name</label>
@@ -170,6 +170,6 @@
         <searchResultsAdditionalFields>Zumzum__Object__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Zumzum__Starting_Document_No__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

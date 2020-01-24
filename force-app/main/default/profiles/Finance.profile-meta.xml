@@ -98,16 +98,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_First_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_Phone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Booking__c.Fee_Override_Reason__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -223,6 +213,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.PSA_Area_When_Confirmed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Reservation_Expiry_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -314,6 +309,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Break_Even_Number_Of_Places__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Cancellation_Reason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -458,7 +458,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Licence_To_Practice__c.Practitioner_Name__c</field>
+        <field>Licence_To_Practice__c.Licence_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -563,6 +563,36 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Session__c.Venue_County__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Venue_Invoice_Paid__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Postcode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Street__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Town__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Venue__c.Access_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -645,6 +675,11 @@
         <editable>false</editable>
         <field>Venue__c.Full_Disabled_Access__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Venue__c.Host__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -735,6 +770,11 @@
         <editable>false</editable>
         <field>Venue__c.Storage_Facilities_Between_Events__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Venue__c.Street_Address__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6116,6 +6156,391 @@
         <field>Zumzum__VAT_Submission_Result__c.Zumzum__VAT_Gateway__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Amount_Outstanding__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Bank_Details_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Care_Membership_Added__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Claim_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Membership_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Parent_Record_Identifier__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Partner_Contact__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Recurring_Donations__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Sales_Invoice__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Scheduled_Payment_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Account_Holder_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Account__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Amount_Open__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__BIC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Bank_Statement_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Collection_Count__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_Account_Holder_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_BIC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_IBAN__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_Mandate_Date_Signed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_Mandate_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_Payment_Reference__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Custom_Sequence_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Due_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__External_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Final_Payment_Reference__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__GUID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Generated_Payment_Reference__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__IBAN__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Last_Collection_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Last_Failure_Reason__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Last_Raw_Request__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Last_Raw_Response__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Last_ReasonCode_Received__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Last_Reversal_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Last_Status_Reason__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Mandate_Date_Signed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Mandate_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Mandate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Mandatory_payment__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Origin__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Original_Due_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Originating_Campaign__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Payment_Method__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Payment_Processor__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Payment_Profile__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Payment_Schedule__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Payment_Transaction_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__ProcessingHub_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Processor__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Recurring_Payment__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Relates_To__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Sequence_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Source__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Status_Reason__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Target__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Transaction_Sub_Element__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__of_times_reversed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.ga_decl_1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.ga_decl_2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.gaid__Contact_has_Active_GAD__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.gaid__Eligible_for_GiftAid_formula__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.gaid__Exclude_from_GiftAid__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.gaid__Fiscal_Year_Start__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.gaid__GA_Claim_Total__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.gaid__GiftAid_Claimed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.gaid__Gift_Aid_Declaration__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.gaid__Gift_Aidable_Amount__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.gaid__Related_Transaction__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -7772,6 +8197,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>cpm__Transaction_Set__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Practitioner_Fee_Rate__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -8200,6 +8629,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>MassInlineEdit</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RunFlow</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

@@ -8,7 +8,8 @@
             <field>Primary_Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/BookingNotificationEmail</template>
     </alerts>
     <alerts>
@@ -19,8 +20,21 @@
             <field>Primary_Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/BookingTransferNotificationEmail</template>
+    </alerts>
+    <alerts>
+        <fullName>SentConfirmationEmail</fullName>
+        <description>SentConfirmationEmail</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>NCT_Templates/Booking_Confirmation_Email</template>
     </alerts>
     <fieldUpdates>
         <fullName>SetExpDate</fullName>

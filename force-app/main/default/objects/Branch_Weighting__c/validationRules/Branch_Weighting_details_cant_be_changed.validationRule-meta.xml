@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Branch_Weighting_details_cant_be_changed</fullName>
+    <active>true</active>
+    <description>Geographical Weighting, Start Date fields are prevented from being changed.</description>
+    <errorConditionFormula>AND(NOT(ISNEW()),
+    OR(ISCHANGED(Geographical_Weighting__c),
+       ISCHANGED(Start_Date__c)),
+    NOT($Permission.Override_Branch_Weighting_Validation)
+)</errorConditionFormula>
+    <errorMessage>The only field you can change on a Branch Weighting Record is the end date. If you need to change any other field please apply an end date, equal to the start date, to this Record and then create a new Record with the correct details.</errorMessage>
+</ValidationRule>

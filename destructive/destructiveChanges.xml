@@ -10,7 +10,13 @@
         <members>DisplayDdScheduleController</members>
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
-        <members>TestBookingBuilder</members>
+        <members>FlowPaymentHandler</members>
+        <members>PaymentLinkGeneratorTestPageController</members>
+        <members>PaymentLinkGeneratorTestPageMock</members>
+        <members>PaymentLinkGeneratorTestPageTest</members>
+        <members>PaymentProviderHttpResponseMock</members>
+        <members>PaymentProviderTest</members>
+        <members>StepOrangeCardPaymentProvider</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -20,6 +26,7 @@
     </types>
     <types>
         <members>BookCourse</members>
+        <members>PaymentLinkGeneratorTestPage</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -27,12 +34,17 @@
         <members>Account.Account_Key__c</members>
         <members>Account.Branch__c</members>
         <members>Account.Branch_Code__c</members>
-        <members>Account.Branch_Key__c</members>
+        <members>Account.Enquiry_PSA__c</members>
+        <members>Booking__c.Birth_Date__c</members>
+        <members>Booking__c.Birth_Or_Due_Date__c</members>
         <members>Booking__c.Client_Name__c</members>
         <members>Booking__c.Due_Date__c</members>
         <members>Booking__c.Client__c</members>
         <members>Booking__c.Bank_Account_Number__c</members>
         <members>Booking__c.Bank_Sort_Code__c</members>
+        <members>Booking__c.Enquiries_PSA_First_Name__c</members>
+        <members>Booking__c.Enquiries_PSA_Email__c</members>
+        <members>Booking__c.Enquiries_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_First_Name__c</members>
         <members>Booking__c.Has_Opted_Out_Email__c</members>
@@ -53,6 +65,7 @@
         <members>Booking__c.Offer_Email_Sent__c</members>
         <members>Booking__c.Partner_Gift_Aid__c</members>
         <members>Booking__c.Partner_Membership__c</members>
+        <members>Booking__c.Phone_Partner__c</members>
         <members>Booking__c.Preferred_Payment_Date__c</members>
         <members>Contact.Account_Key__c</members>
         <members>Contact.Branch_Key__c</members>
@@ -93,6 +106,7 @@
         <members>Course__c.PSA_Branch__c</members>
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
+        <members>Course__c.Venue__c</members>
         <members>Course__c.Total_Estimated_Costs__c</members>
         <members>cpm__Installment__c.Account_Key__c</members>
         <members>cpm__Installment__c.Contact_Key__c</members>
@@ -118,6 +132,7 @@
         <members>Individual.Has_Opted_Out_Post__c</members>
         <members>Individual.Has_Opted_Out_SMS__c</members>
         <members>Individual.Has_Opted_Out_Telephone__c</members>
+        <members>Licence_To_Practice__c.Practitioner_Name__c</members>
         <members>npe03__Recurring_Donation__c.Recurring_Donations_Key__c</members>
         <members>npe03__Recurring_Donation__c.Payment_profile_Key__c</members>
         <members>npe03__Recurring_Donation__c.First_Contact_Key__c</members>
@@ -136,26 +151,39 @@
         <members>Session__c.Day__c</members>
         <members>Session__c.Duration__c</members>
         <members>Session__c.Duration_Formatted__c</members>
+        <members>Session__c.IsPublicVenue__c</members>
         <members>Session__c.Notes__c</members>
         <members>Session__c.Practitoner_Name__c</members>
         <members>Session__c.Session_Type__c</members>
         <members>Session__c.Website_Text__c</members>
         <members>Session__c.Women_Only__c</members>
         <members>Venue__c.Google_Map_Link__c</members>
+        <members>Venue__c.Main_Venue__c</members>
         <members>Venue__c.Venue_GeoLocation__c</members>
         <members>Venue__c.Venue_Keys__c</members>
         <members>Venue__c.Venue_Suitability__c</members>
         <name>CustomField</name>
     </types>
     <types>
-        <members>Fee_Band</members>
-        <name>GlobalValueSet</name>
+        <members>Ignore_Booking_Confirmation_Restriction</members>
+        <name>CustomPermission</name>
     </types>
     <types>
-        <members>Course__c.Revert_Course_To_Draft_After_Cost_Deletion</members>
-        <members>Course__c.Revert_Course_To_Draft_When_Key_Info_Changes</members>
+        <members>NCT_Templates/Reunion_Session_Attendees_Not_Client_Host_Email</members>
+        <members>NCT_Templates/Reunion_Session_Attendees_Public_Venue_Email</members>
+        <members>NCT_Templates/Reunion_Session_Course_Leader_Email</members>
+        <members>NCT_Templates/Reunion_Session_Client_Hoster_Email</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>Installment_Process</members>
         <members>Update_Practitioner_Licence</members>
         <name>Flow</name>
+    </types>
+    <types>
+        <members>Course__c-Admin Course Layout</members>
+        <members>Course__c-Capacity PSA Course Layout</members>
+        <name>Layout</name>
     </types>
     <types>
         <members>Course__c.Completed_Courses</members>
@@ -164,6 +192,10 @@
         <members>Course__c.Courses_With_Upcoming_Reunions</members>
         <members>Course__c.Upcoming_Courses</members>
         <name>ListView</name>
+    </types>
+    <types>
+        <members>Allow_Confirmed_Bookings</members>
+        <name>PermissionSet</name>
     </types>
     <types>
         <members>Executive Management</members>
@@ -185,6 +217,8 @@
         <members>Contact.Contact_Preferred_Phone</members>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
+        <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted.validationRule-meta</members>
+        <members>Session__c.Prevent_private_reunion_confirmation</members>
         <members>Zumzum__Bank_Account__c.Account_number_must_be_8_numeric_digits</members>
         <members>Zumzum__Bank_Account__c.Check_Bank_Account_Name</members>
         <members>Zumzum__Bank_Account__c.Sort_code_must_be_6_numeric_digits</members>
@@ -204,6 +238,11 @@
     <types>
         <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Reservation_Email</members>
+        <members>Contact.Send_reunion_session_email_to_attendee</members>
+        <members>Contact.Send_reunion_session_email_to_attendee_in_host_venue</members>
+        <members>Contact.Send_reunion_session_email_to_practitioner</members>
+        <members>Course_Assignment__c.SendEmailToPractitioner</members>
+        <members>Venue.Send_reunion_session_email_to_host</members>
         <name>WorkflowAlert</name>
     </types>
     <types>

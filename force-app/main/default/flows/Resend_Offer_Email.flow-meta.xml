@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Result_Sending_Email</name>
         <label>Result Sending Email</label>
-        <locationX>831</locationX>
-        <locationY>226</locationY>
+        <locationX>695</locationX>
+        <locationY>208</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <connector>
@@ -26,16 +26,13 @@
     <actionCalls>
         <name>Sent_Email</name>
         <label>Send Email</label>
-        <locationX>480</locationX>
-        <locationY>239</locationY>
+        <locationX>501</locationX>
+        <locationY>203</locationY>
         <actionName>Booking__c.SendEmailToClient</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>Sending_successful</targetReference>
+            <targetReference>Result_Sending_Email</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>Sending_not_successful</targetReference>
-        </faultConnector>
         <inputParameters>
             <name>SObjectRowId</name>
             <value>
@@ -43,52 +40,6 @@
             </value>
         </inputParameters>
     </actionCalls>
-    <assignments>
-        <name>Sending_not_successful</name>
-        <label>Sending not successful</label>
-        <locationX>604</locationX>
-        <locationY>344</locationY>
-        <assignmentItems>
-            <assignToReference>Toast_message1</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Email was not sent successfully</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Toast_Type1</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>error</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Result_Sending_Email</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Sending_successful</name>
-        <label>Sending  successful</label>
-        <locationX>600</locationX>
-        <locationY>108</locationY>
-        <assignmentItems>
-            <assignToReference>Toast_message1</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Email sent successfully</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Toast_Type1</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>success</stringValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Result_Sending_Email</targetReference>
-        </connector>
-    </assignments>
     <constants>
         <name>TOAST_MESSAGE</name>
         <dataType>String</dataType>
@@ -113,19 +64,19 @@
         </defaultConnector>
         <defaultConnectorLabel>Status is Reserved</defaultConnectorLabel>
         <rules>
-            <name>Status_is_Enquiry</name>
+            <name>Status_is_not_Reserved</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>curBooking.Status__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>NotEqualTo</operator>
                 <rightValue>
-                    <stringValue>Enquiry</stringValue>
+                    <stringValue>Reserved</stringValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>Sent_Email_Not_Availablr_Screen</targetReference>
             </connector>
-            <label>Status is Enquiry</label>
+            <label>Status is not Reserved</label>
         </rules>
     </decisions>
     <interviewLabel>Resend Offer Email {!$Flow.CurrentDateTime}</interviewLabel>
@@ -146,8 +97,8 @@
     <recordCreates>
         <name>Create_Task</name>
         <label>Create Task</label>
-        <locationX>833</locationX>
-        <locationY>376</locationY>
+        <locationX>695</locationX>
+        <locationY>377</locationY>
         <inputAssignments>
             <field>ActivityDate</field>
             <value>
@@ -231,8 +182,8 @@
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Screen of  Confirm</label>
-        <locationX>353</locationX>
-        <locationY>309</locationY>
+        <locationX>355</locationX>
+        <locationY>307</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -241,7 +192,7 @@
         </connector>
         <fields>
             <name>Confirm_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;font-size: 18px; color: rgb(47, 47, 47);&quot;&gt;{!curBooking.First_Name__c} {!curBooking.Last_Name__c}&lt;/b&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 20px; color: rgb(76, 76, 76);&quot;&gt;Please click next to send an email to&lt;/span&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt; &lt;/span&gt;&lt;b style=&quot;font-size: 18px; color: rgb(47, 47, 47);&quot;&gt;{!curBooking.First_Name__c} {!curBooking.Last_Name__c}&lt;/b&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;. &lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -256,20 +207,26 @@
     <screens>
         <name>Sent_Email_Not_Availablr_Screen</name>
         <label>Screen Send Email Not Available</label>
-        <locationX>344</locationX>
-        <locationY>65</locationY>
+        <locationX>345</locationX>
+        <locationY>66</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
             <name>Can_Not_Sent_Email</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;color: rgb(12, 12, 12); font-size: 20px;&quot;&gt;You can&#39;t sent email when status of booking is &quot;&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 20px; font-family: Arial, Helvetica, sans-serif; color: rgb(12, 12, 12);&quot;&gt;Enquiry&lt;/span&gt;&lt;span style=&quot;color: rgb(12, 12, 12); font-size: 20px;&quot;&gt;&quot;&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 20px; color: rgb(76, 76, 76);&quot;&gt;Unable to send offer email - booking status is not &quot;Reserved&quot;&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Get_Booking_Record</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Booking_Record</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>curBooking</name>
