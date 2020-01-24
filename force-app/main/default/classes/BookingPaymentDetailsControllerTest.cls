@@ -35,7 +35,7 @@ public with sharing class BookingPaymentDetailsControllerTest {
             WHERE Profile.Name = :PROFILE_NAME
             LIMIT 1
         ];
-        
+
         System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
             bookingRecord.Status__c = BOOKING_STATUS_CONFIRMED;
             update bookingRecord;
@@ -49,6 +49,6 @@ public with sharing class BookingPaymentDetailsControllerTest {
         System.assertEquals(1, bookingPaymentDetailsControllerInstance.bookingList.size());
         System.assertEquals(bookingRecord.Id, bookingPaymentDetailsControllerInstance.bookingList.get(0).Id);
         System.assertEquals(BOOKING_STATUS_CONFIRMED, bookingPaymentDetailsControllerInstance.bookingList.get(0).Status__c);
-        
+
     }
 }

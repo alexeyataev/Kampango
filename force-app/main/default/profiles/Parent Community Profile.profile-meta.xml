@@ -48,7 +48,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Confirmed_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -68,7 +68,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Course_Sub_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1227,6 +1227,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Session__c.Parent_Host__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Session__c.Practitioner_Chosen__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1238,7 +1243,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Practitioner__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1414,6 +1419,11 @@
         <editable>false</editable>
         <field>Venue__c.Map_Link__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Venue__c.Map_Url__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
