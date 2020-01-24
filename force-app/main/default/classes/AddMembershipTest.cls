@@ -35,7 +35,7 @@ public without sharing class AddMembershipTest {
         Test.startTest();
         CareRequestBodyUtil.MembershipOjbect membershipOjbect = new CareRequestBodyUtil.MembershipOjbect();
         membershipOjbect.status = 'Success';
-        Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock(JSON.serialize(membershipOjbect)));
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(JSON.serialize(membershipOjbect)));
         AddMembershipBatch camb = new AddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();
@@ -54,7 +54,7 @@ public without sharing class AddMembershipTest {
         errorObject.errorNumber = '400';
         membershipOjbect.error = new List<CareRequestBodyUtil.ErrorObject>();
         membershipOjbect.error.add(errorObject);
-        Test.setMock(HttpCalloutMock.class, new CareSendMembershipHttpResponseMock(JSON.serialize(membershipOjbect)));
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(JSON.serialize(membershipOjbect)));
         AddMembershipBatch camb = new AddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();
