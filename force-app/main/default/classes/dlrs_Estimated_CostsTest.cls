@@ -24,7 +24,7 @@ private class dlrs_Estimated_CostsTest
                     .buildCourse()
                     .buildEstimatedCosts()
                     .buildSession()
-                    .buildReunion();
+                    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed');
 
          List<Estimated_Costs__c> estimated_Costs = [
             SELECT Id 

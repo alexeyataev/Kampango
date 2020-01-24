@@ -2,6 +2,8 @@
 public without sharing class TestDataFactory {
 
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
+    private static final String SESSION_CONFIRMED_STATUS = 'Confirmed';
+    private static final String SESSION_REUNION_TYPE = 'Reunion';
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
     private static final String CLIENT_RECORDTYPE_NAME  = 'Client';
     private static final String PRACTITIONER_PROFILE_NAME = 'Practitioner';
@@ -293,7 +295,7 @@ public without sharing class TestDataFactory {
         return this;
     }
 
-public TestDataFactory buildReunion() {
+    public TestDataFactory buildReunion() {
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         reunion = sessionBuilder
             .withCourse(course)
@@ -301,6 +303,22 @@ public TestDataFactory buildReunion() {
             .withVenue(venue)
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)
+            .withPractitioner(practitioners[0])
+            .withPractitionerFeeRate(practitionerFeeRate)
+            .withPractitionerLicence(licenceToPractice)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus) {
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        session = sessionBuilder
+            .withCourse(course)
+            .withVenue(venue)
+            .withRoom(room)
+            .withType(sessionType)
+            .withStatus(sessionStatus)
             .withPractitioner(practitioners[0])
             .withPractitionerFeeRate(practitionerFeeRate)
             .withPractitionerLicence(licenceToPractice)
@@ -366,6 +384,69 @@ public TestDataFactory buildReunion() {
                     .withPractitionerFeeRate(practitionerFeeRate)
                     .withPractitionerLicence(licenceToPractice)
                     .withStatus('Provisional')
+                    .insertRecord(false)
+                    .build());
+            }
+        }
+
+        insert sessionsToInsert;
+        sessions.addAll(sessionsToInsert);
+        return this;
+    }
+    
+    public TestDataFactory buildCoursesWithChoseNumberAndStatusSessions(Integer numberOfCourses, Integer numberOfProvisionSession, Integer numberOfConfirmedSession) {
+        List<Course__c> coursesToInsert = new List<Course__c>();
+        List<Session__c> sessionsToInsert = new List<Session__c>();
+        List<Estimated_Costs__c> costsToInsert = new List<Estimated_Costs__c>();
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        for(Integer i = 0; i < numberOfCourses; i++) {
+            coursesToInsert.add(courseBuilder
+                .withAccount(branchAccount)
+                .withFee(100)
+                .withPractitioner(practitioners[0])
+                .withLicenceToPractice(licenceToPractice)
+                .withMainVenue(venue)
+                .insertRecord(false)
+                .build());
+        }
+        insert coursesToInsert;
+
+        courses.addAll(coursesToInsert);
+        for(Integer i = 0; i < numberOfCourses; i++) {
+            TestEstimatedCostsBuilder estimatedCostsBuilder = new TestEstimatedCostsBuilder();
+            costsToInsert.add(estimatedCostsBuilder
+                .withCourse(courses[i])
+                .withType('Travel')
+                .insertRecord(false)
+                .build());
+            costsToInsert.add(estimatedCostsBuilder
+                .withCourse(courses[i])
+                .withType('Venue')
+                .insertRecord(false)
+                .build());
+        }
+
+        List<String> sessionStatusList = new List<String>();
+        for(Integer i = 0; i < numberOfProvisionSession; i++) {
+            sessionStatusList.add(SESSION_PROVISIONAL_STATUS);
+        }
+
+        for(Integer i = 0; i < numberOfConfirmedSession; i++) {
+            sessionStatusList.add(SESSION_CONFIRMED_STATUS);
+        }
+
+        insert costsToInsert;
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        for(Integer iCourses = 0; iCourses < numberOfCourses; iCourses++) {
+            for(Integer iSessions = 0; iSessions < numberOfProvisionSession + numberOfConfirmedSession; iSessions++) {
+                sessionsToInsert.add(sessionBuilder
+                    .withCourse(courses[iCourses])
+                    .withVenue(venue)
+                    .withRoom(room)
+                    .withPractitioner(practitioners[0])
+                    .withPractitionerFeeRate(practitionerFeeRate)
+                    .withPractitionerLicence(licenceToPractice)
+                    .withStatus(sessionStatusList.get(iSessions))
                     .insertRecord(false)
                     .build());
             }
