@@ -3,13 +3,10 @@
     <actionCalls>
         <name>Send_confirmation</name>
         <label>Send confirmation</label>
-        <locationX>429</locationX>
-        <locationY>393</locationY>
+        <locationX>421</locationX>
+        <locationY>263</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
-        <connector>
-            <targetReference>Success_screen</targetReference>
-        </connector>
         <inputParameters>
             <name>mergeObjectId</name>
             <value>
@@ -44,10 +41,13 @@
     <actionCalls>
         <name>Send_confirmation_email</name>
         <label>Send confirmation email</label>
-        <locationX>287</locationX>
-        <locationY>215</locationY>
+        <locationX>419</locationX>
+        <locationY>393</locationY>
         <actionName>Zumzum__Sales_Invoice__c.Adhoc_Send_Confirmation_Email</actionName>
         <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Success_screen</targetReference>
+        </connector>
         <inputParameters>
             <name>SObjectRowId</name>
             <value>
@@ -71,7 +71,7 @@
     </constants>
     <description>Performs logic after the payment has been completed successfully
 Version changes:
-Put success screen in the end</description>
+Replaced apex action with email alert</description>
     <interviewLabel>Adhoc Payment Success Page {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Success Flow</label>
     <processMetadataValues>
@@ -115,7 +115,7 @@ Put success screen in the end</description>
         <locationY>393</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Send_confirmation</targetReference>
+            <targetReference>Send_confirmation_email</targetReference>
         </connector>
         <filters>
             <field>DeveloperName</field>
