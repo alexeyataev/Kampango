@@ -1,4 +1,4 @@
-Dear {!Contact.FirstName}<br><br>
+Dear {!Zumzum__Sales_Invoice__c.Contact_First_Name__c}<br><br>
  
 As discussed, please find the link below to pay the balance owing to NCT.  If you have any queries or questions about this balance, please get in touch with nctcourses@nct.org.uk.<br><br>
  
