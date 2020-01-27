@@ -787,7 +787,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    	 <editable>true</editable>
+    	  <editable>true</editable>
         <field>Session__c.Practitioner_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -847,7 +847,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    	<editable>true</editable>
+    	  <editable>true</editable>
         <field>Session__c.Venue_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -862,7 +862,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    	<editable>true</editable>
+    	  <editable>true</editable>
         <field>Session__c.Venue_Map_Url__c</field>
         <readable>true</readable>
     </fieldPermissions>
