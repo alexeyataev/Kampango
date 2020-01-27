@@ -167,6 +167,6 @@
         <lookupDialogsAdditionalFields>Zumzum__Nominal_Code__c</lookupDialogsAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
     </searchLayouts>
-    <sharingModel>Read</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
