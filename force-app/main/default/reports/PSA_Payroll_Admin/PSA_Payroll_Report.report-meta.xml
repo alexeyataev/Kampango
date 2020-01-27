@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_57659928</developerName>
+        <masterLabel>123</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>CUST_NAME</sourceColumnName>
+        <useOther>false</useOther>
+    </buckets>
     <columns>
         <field>CUST_NAME</field>
     </columns>
@@ -15,15 +23,15 @@
         </criteriaItems>
         <language>en_US</language>
     </filter>
-    <format>Summary</format>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Month</dateGranularity>
+        <field>Booking__c.Confirmed_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Booking__c.PSA_Area_When_Confirmed__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Month</dateGranularity>
-        <field>Booking__c.Confirmed_Date__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>PSA Payroll Report</name>
@@ -34,7 +42,7 @@
     <reportType>CustomEntityCustomEntity$Course__c$Booking__c@Booking__c.Primary_Contact__c</reportType>
     <scope>organization</scope>
     <showDetails>false</showDetails>
-    <showGrandTotal>true</showGrandTotal>
+    <showGrandTotal>false</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>CUST_CREATED_DATE</dateColumn>
