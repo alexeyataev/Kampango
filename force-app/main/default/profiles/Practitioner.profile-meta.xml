@@ -10,10 +10,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ApprovePI</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>ClaimFeeHelper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -30,10 +26,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PIViewPdf</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PurchaseInvoiceController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -42,19 +34,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PurchaseInvoicePdf</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>RecurringInvoiceBatchProcess</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>RecurringInvoices</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>SendPurchaseInvoiceAsEmail</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <custom>true</custom>
