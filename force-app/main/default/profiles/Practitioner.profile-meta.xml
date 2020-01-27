@@ -1069,16 +1069,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__General_Setup__c.Name</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Nominal_Account__c.Zumzum__Account_Code__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Nominal_Account__c.Zumzum__Nominal_Code__c</field>
         <readable>true</readable>
@@ -1410,11 +1400,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Zumzum__Purchase_Invoice__c.Name</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Zumzum__Purchase_Invoice__c.Zumzum__POP_Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1521,11 +1506,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Tax_Rate__c.Zumzum__Tax_Rate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Tax_Rate__c.Name</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
