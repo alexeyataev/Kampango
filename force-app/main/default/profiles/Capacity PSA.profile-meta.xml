@@ -787,7 +787,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    	<editable>true</editable>
+    	 <editable>true</editable>
         <field>Session__c.Practitioner_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
