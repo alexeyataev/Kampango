@@ -1075,11 +1075,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Zumzum__General_Setup__c.Zumzum__Starting_Document_No__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Zumzum__Nominal_Account__c.Zumzum__Account_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
