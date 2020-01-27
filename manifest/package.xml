@@ -9,6 +9,8 @@
         <members>BookingPaymentDetailsControllerTest</members>
         <members>BookingStatusFlowHelper</members>
         <members>BookingStatusFlowHelperTest</members>
+        <members>BookingPaymentDetailsController</members>
+        <members>BookingPaymentDetailsControllerTest</members>
         <members>BranchWeightingHelper</members>
         <members>BranchWeightingHelperTest</members>
         <members>CardPaymentHandler</members>
@@ -18,6 +20,10 @@
         <members>CardPaymentUrlResult</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
+        <members>ConfirmationEmailController</members>
+        <members>ConfirmationEmailControllerTest</members>
+        <members>ContactDetailsController</members>
+        <members>ContactDetailsControllerTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -88,6 +94,7 @@
     </types>
     <types>
         <members>ConfirmationEmailBookingPaymentDetails</members>
+        <members>ConfirmationEmailCourseDetails</members>
         <members>CourseSummaryBookingDetails</members>
         <members>CourseSummaryContactDetails</members>
         <members>CourseSummaryCourseDetails</members>
@@ -305,6 +312,7 @@
     </types>
     <types>
         <members>NCT_Templates/Booking_Created</members>
+        <members>NCT_Templates/Booking_Confirmation_Email</members>
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <members>NCT_Templates/Course_Assignment_Rejected</members>

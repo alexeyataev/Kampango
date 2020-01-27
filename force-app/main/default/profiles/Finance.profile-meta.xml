@@ -1148,6 +1148,31 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Bank_Payment__c.Zumzum__Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Bank_Payment__c.Zumzum__Bank__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Bank_Payment__c.Zumzum__Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Bank_Payment__c.Payment_Reference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Bank_Payment__c.Zumzum__Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Bank_Receipt_Line_Item__c.Zumzum__Company_Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -6610,6 +6635,15 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>Zumzum__Bank_Payment__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>Zumzum__Bank_Receipt_Line_Item__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -6801,6 +6835,15 @@
         <modifyAllRecords>true</modifyAllRecords>
         <object>Zumzum__Invoice_Template__c</object>
         <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>cpm__Installment__c</object>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -7288,7 +7331,11 @@
         <object>cpm__Mandate__c</object>
     <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-     <pageAccesses>
+    <pageAccesses>
+        <apexPage>GeneratePaymentFile</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Zumzum__AccountActivity</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -8629,6 +8676,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>MassInlineEdit</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RunFlow</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

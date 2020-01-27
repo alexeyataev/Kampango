@@ -25,7 +25,7 @@ public with sharing class BookingDetailsControllerTest {
                     .buildSession()
                     .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
                     .buildPartnertHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-                    .buildReunion()
+                    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed')
                     .buildBooking('Enquiry');
     }
 
