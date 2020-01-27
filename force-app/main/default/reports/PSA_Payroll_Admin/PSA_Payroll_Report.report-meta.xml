@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
-    <buckets>
-        <bucketType>text</bucketType>
-        <developerName>BucketField_57659928</developerName>
-        <masterLabel>123</masterLabel>
-        <nullTreatment>n</nullTreatment>
-        <sourceColumnName>CUST_NAME</sourceColumnName>
-        <useOther>false</useOther>
-    </buckets>
     <columns>
         <field>CUST_NAME</field>
     </columns>
