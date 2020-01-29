@@ -1,5 +1,5 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #XX - https://confluence.nct.org.uk:8443/x/EoSO
+//Incident #39 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 public with sharing class CourseDetailControllerTest {
 
