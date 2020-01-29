@@ -1,18 +1,22 @@
+@SuppressWarnings('PMD.ApexSOQLInjection')
+//Incident #XX - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing class BookingDetailsController {
 
     public Course__c courseRecord {get; set;}
     public String bookingFieldSetName {get; set;}
     public Map<Id, Contact> bookingContacts {get; set;}
     public String bookingContactFieldSetName{get; set;}
+    private static final String CONFIRMED_STATUS = 'Confirmed';
 
     public List<Booking__c> getBookings() {
 
         String query = 'SELECT ';
+        Id courseId = courseRecord.Id;
 
         for(Schema.FieldSetMember fieldSetMember : Schema.SObjectType.Booking__c.fieldSets.getMap().get(bookingFieldSetName).getFields()) {
             query += fieldSetMember.getFieldPath() + ', ';
         }
-        query += 'Primary_Contact__c, Partner_Contact__c, Info_for_Practitioner__c, Id FROM Booking__c WHERE Course__c = \'' + courseRecord.Id + '\' AND Status__c = \'Confirmed\' WITH SECURITY_ENFORCED';
+        query += 'Primary_Contact__c, Partner_Contact__c, Info_for_Practitioner__c, Id FROM Booking__c WHERE Course__c = :courseId AND Status__c = :CONFIRMED_STATUS WITH SECURITY_ENFORCED';
         
         List<Booking__c> bookings = Database.query(query);
         
