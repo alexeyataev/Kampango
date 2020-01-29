@@ -8,7 +8,7 @@
     <relationshipLabel>Recurring Payments</relationshipLabel>
     <relationshipName>Recurring_Payments_del</relationshipName>
     <required>false</required>
-    <trackHistory>true</trackHistory>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
 </CustomField>
