@@ -6,9 +6,9 @@
     <label>Sales Invoice</label>
     <referenceTo>Zumzum__Sales_Invoice__c</referenceTo>
     <relationshipLabel>Recurring Payments</relationshipLabel>
-    <relationshipName>Recurring_Payments_del</relationshipName>
+    <relationshipName>Recurring_Payments</relationshipName>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
 </CustomField>
