@@ -456,9 +456,7 @@
         <members>Account-Household Lightning Layout</members>
         <members>Account-Organization Lightning Layout</members>
         <members>Asset-Practitioner Asset Layout</members>
-        <members>Booking__c-Admin Booking Layout</members>
         <members>Booking__c-Booking Layout</members>
-        <members>Booking__c-Enquiry PSA Booking Layout</members>
         <members>Branch_Weighting__c-Branch Weighting Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
