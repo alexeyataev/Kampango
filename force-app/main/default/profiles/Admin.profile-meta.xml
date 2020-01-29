@@ -1361,7 +1361,7 @@
         <recordType>Account.Organization</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Booking__c-Admin Booking Layout</layout>
+        <layout>Booking__c-Booking Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Branch_Weighting__c-Branch Weighting Layout</layout>

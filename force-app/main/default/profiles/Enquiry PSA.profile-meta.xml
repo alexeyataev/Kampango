@@ -1550,7 +1550,7 @@
         <layout>Asset-Practitioner Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Booking__c-Enquiry PSA Booking Layout</layout>
+        <layout>Booking__c-Booking Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Branch_Weighting__c-Branch Weighting Layout</layout>
