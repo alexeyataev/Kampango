@@ -25,9 +25,8 @@ public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
         paymentApiParams.origin = ORIGIN;
         paymentApiParams.URLs = new PaymentApiRequest.URLs(paymentParameters.successPage, paymentParameters.errorPage);
         paymentApiParams.payer = new PaymentApiRequest.Payer(contact, PAYER_CONTACT_UPDATE);
-        Map<String, String> customFields = new Map<String, String>();
-        customFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
-        paymentApiParams.payment = new PaymentApiRequest.Payment(String.valueOf(paymentParameters.amount), customFields);
+        Map<String, String> paymentCustomFields = getPaymentCustomFields(paymentParameters);
+        paymentApiParams.payment = new PaymentApiRequest.Payment(String.valueOf(paymentParameters.amount), paymentCustomFields);
         paymentApiParams.paymentMethod = new PaymentApiRequest.PaymentMethod(PAYMENT_METHOD);
         paymentApiParams.sourceConnector = new PaymentApiRequest.SourceConnector(SOURCE_CONNECTOR);
         PaymentApiRequest paymentBody = new PaymentApiRequest(paymentApiParams);
@@ -40,14 +39,28 @@ public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
         paymentApiParams.origin = ORIGIN;
         paymentApiParams.URLs = new PaymentApiRequest.URLs(paymentParameters.successPage, paymentParameters.errorPage);
         paymentApiParams.payer = new PaymentApiRequest.Payer(contact, PAYER_CONTACT_UPDATE);
-        Map<String, String> customFields = new Map<String, String>();
-        customFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
-        paymentApiParams.recurring = new PaymentApiRequest.Recurring(paymentParameters.amountRecurring, 'Monthly', paymentParameters.paymentPlanStartDate, paymentParameters.paymentPlanEndDate);
-        paymentApiParams.payment = new PaymentApiRequest.Payment(String.valueOf(paymentParameters.amount), customFields);
+        Map<String, String> recurringCustomFields = new Map<String, String>();
+        recurringCustomFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
+        paymentApiParams.recurring = new PaymentApiRequest.Recurring(
+            paymentParameters.amountRecurring, 
+            'Monthly', 
+            paymentParameters.paymentPlanStartDate, 
+            paymentParameters.paymentPlanEndDate,
+            recurringCustomFields
+        );
+        Map<String, String> paymentCustomFields = getPaymentCustomFields(paymentParameters);
+        paymentApiParams.payment = new PaymentApiRequest.Payment(String.valueOf(paymentParameters.amount), paymentCustomFields);
         paymentApiParams.paymentMethod = new PaymentApiRequest.PaymentMethod(PAYMENT_METHOD);
         paymentApiParams.sourceConnector = new PaymentApiRequest.SourceConnector(SOURCE_CONNECTOR);
         PaymentApiRequest paymentBody = new PaymentApiRequest(paymentApiParams);
         return paymentBody;
+    }
+    private static Map<String, String> getPaymentCustomFields(CardPaymentParameters paymentParameters) {
+        Map<String, String> paymentCustomFields = new Map<String, String>();
+        paymentCustomFields.put('gaid__Gift_Aidable_Amount__c', String.valueOf(paymentParameters.giftAidableAmount));
+        paymentCustomFields.put('Membership_Type__c', paymentParameters.membershipType);
+        paymentCustomFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
+        return paymentCustomFields;
     }
     @TestVisible
     private static void createPaymentRequest(PaymentApiRequest paymentBody) {
