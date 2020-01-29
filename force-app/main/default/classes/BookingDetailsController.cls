@@ -1,5 +1,5 @@
 @SuppressWarnings('PMD.ApexSOQLInjection')
-//Incident #XX - https://confluence.nct.org.uk:8443/x/EoSO
+//Incident #47 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing class BookingDetailsController {
 
     public Course__c courseRecord {get; set;}
