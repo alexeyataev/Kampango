@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #53 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class CourseDetailController {
 
     @AuraEnabled(cacheable=true)

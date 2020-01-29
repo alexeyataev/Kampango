@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #56 - https://confluence.nct.org.uk:8443/x/EoSO
 global class SessionFeeHelper {
     private static Date earliestSessionDate;
     private static Date latestSessionDate;

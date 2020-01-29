@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #55 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class PractitionerFeeRateHelper {
 
     @InvocableMethod

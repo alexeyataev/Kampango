@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #52 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class BranchWeightingHelper {
    private static Date earliestWeightingStartDate;
 
