@@ -64,7 +64,7 @@ public without sharing virtual class CourseFinderModel {
         
         private Venue (Course__c course) {
             this.Name = course.Main_Venue__r.Type__c != 'Practitioner Home'
-                ? course.Main_Venue__r.Name : 'Course Leader\'s home.';
+                ? course.Main_Venue__r.Name : 'Course Leader\'s home';
             this.Town = course.Main_Venue__r.Town__c;
             this.County = course.Main_Venue__r.County__c; 
             this.PostcodeArea = getLeftPartOfPostcode(course.Main_Venue__r.Postcode__c);

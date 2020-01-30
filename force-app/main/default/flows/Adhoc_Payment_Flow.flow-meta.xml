@@ -27,7 +27,7 @@
     </decisions>
     <description>Takes the user through the payment process
 Version changes:
-Added a screen for the completed payment</description>
+Changed the success link (added hyphen)</description>
     <formulas>
         <name>ERROR_PAGE</name>
         <dataType>String</dataType>
@@ -36,7 +36,7 @@ Added a screen for the completed payment</description>
     <formulas>
         <name>SUCCESS_PAGE</name>
         <dataType>String</dataType>
-        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&#39;/s/adhocsuccess?salesInvoiceId=&#39;+{!salesInvoiceId}</expression>
+        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&#39;/s/adhoc-success?salesInvoiceId=&#39;+{!salesInvoiceId}</expression>
     </formulas>
     <interviewLabel>Adhoc Payment Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Flow</label>
