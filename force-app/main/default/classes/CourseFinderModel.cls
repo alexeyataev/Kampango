@@ -20,6 +20,13 @@ public without sharing virtual class CourseFinderModel {
     private static List<String> HowHeardTexts = getHowHeardValues(); // will run only once for any number of models
 
     public CourseFinderModel(Course__c course) {
+        /**
+         * Front-end team is displaying highlight like "only x spaces left" if there are less than 5 spaces. 
+         * So because course.Remaining_Places__c can be a negative number and highlight like "only -2 spaces left" is meaningless,
+         * it was decided to use some positive number larger than 5 for 
+         * courses with overbooking to hide the highlight for already overbooked courses
+         */
+        final Integer DEFAULT_REMAINING_PLACES = 20;
         this.Id = course.Name;
         this.Reference = course.PSA_Area__c + '/' + course.Name;
         this.Title = course.Title__c;
@@ -29,7 +36,7 @@ public without sharing virtual class CourseFinderModel {
         this.WomenOnly = course.Women_Only__c;
         this.BranchNumber = course.Branch__r.Branch_Number__c;
         this.Price = course.Fee__c;
-        this.PlacesAvailable = Integer.valueOf(course.Remaining_Places__c);
+        this.PlacesAvailable = course.Overbooking_allowed__c ? DEFAULT_REMAINING_PLACES : Integer.valueOf(course.Remaining_Places__c);
         this.CourseOrganiser = new CourseOrganiser(course);
         this.Venue = new Venue(course);
         this.Sessions = collectSessionsToList(course.Sessions__r);
@@ -56,7 +63,8 @@ public without sharing virtual class CourseFinderModel {
         private Location Location;
         
         private Venue (Course__c course) {
-            this.Name = course.Main_Venue__r.Name;
+            this.Name = course.Main_Venue__r.Type__c != 'Practitioner Home'
+                ? course.Main_Venue__r.Name : 'Course Leader\'s home';
             this.Town = course.Main_Venue__r.Town__c;
             this.County = course.Main_Venue__r.County__c; 
             this.PostcodeArea = getLeftPartOfPostcode(course.Main_Venue__r.Postcode__c);

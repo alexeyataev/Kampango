@@ -1,12 +1,13 @@
 public without sharing class VenueDetailsController {
 
     public Course__c courseRecord {get; set;}
+    public static String venueContactFieldSetName {get; set;}
 
     public class VenueResult {
         public Venue__c venue {get; set;}
         public Boolean isMainVenue {get; set;}
         public String address {get; set;}
-        public List<Id> emergencyContactIds {get; set;}
+        public List<Contact> emergencyContacts {get; set;}
         
         public VenueResult(Venue__c venue, Course__c courseRecord) {
             this.venue = venue;
@@ -24,7 +25,7 @@ public without sharing class VenueDetailsController {
                 }
             }
 
-            this.emergencyContactIds = getContactIds(venue.id);
+           this.emergencyContacts = getContacts(venue.id);
 
         }
     }
@@ -61,22 +62,28 @@ public without sharing class VenueDetailsController {
         return result;
     }
 
+    private static List<Contact> getContacts(Id venueId) {
 
-    private static List<Id> getContactIds(Id venueId) {
-
-        Set<Id> result = new Set<Id>();
+        Set<Id> contactIds = new Set<Id>();
 
         for (Venue_Contact__c venueCont : [
                 SELECT Contact__c
                 FROM Venue_Contact__c
                 WHERE Venue__c = :venueId
-                AND Type__c = 'Emergency'
+                AND Type__c IN ('Emergency', 'Alternate Emergency')
                 WITH SECURITY_ENFORCED
         ]) {
-            result.add(venueCont.Contact__c);
+            contactIds.add(venueCont.Contact__c);
         }
 
-        return new List<Id>(result);
+        String query = 'SELECT ';
+
+        for(Schema.FieldSetMember fieldSetMember : Schema.SObjectType.Contact.fieldSets.getMap().get(venueContactFieldSetName).getFields()) {
+            query += fieldSetMember.getFieldPath() + ', ';
+        }
+        query += 'Id FROM Contact WHERE Id IN :contactIds WITH SECURITY_ENFORCED';
+
+        return (List<Contact>)Database.query(query);
     }
 }
 

@@ -1,45 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <assignments>
-        <name>Assign_amount_to_installment</name>
-        <label>Assign amount to installment</label>
-        <locationX>209</locationX>
-        <locationY>310</locationY>
-        <assignmentItems>
-            <assignToReference>installment.cpm__Amount__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>salesInvoice.Zumzum__Total_Unpaid_Amount__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>installment.cpm__Payment_Method__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>CreditCard</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>installment.cpm__Contact__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>booking.Primary_Contact__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>installment.Sales_Invoice__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>salesInvoiceId</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Payment_summary</targetReference>
-        </connector>
-    </assignments>
+    <decisions>
+        <name>Was_sales_invoice_paid</name>
+        <label>Was sales invoice paid</label>
+        <locationX>50</locationX>
+        <locationY>454</locationY>
+        <defaultConnector>
+            <targetReference>Get_Sales_Invoice</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_if_paid</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>collectedInstallments</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Payment_completed</targetReference>
+            </connector>
+            <label>Check if paid</label>
+        </rules>
+    </decisions>
     <description>Takes the user through the payment process
 Version changes:
-Added missing field to Booking query list</description>
+Changed the success link (added hyphen)</description>
+    <formulas>
+        <name>ERROR_PAGE</name>
+        <dataType>String</dataType>
+        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&#39;/s/failure&#39;</expression>
+    </formulas>
+    <formulas>
+        <name>SUCCESS_PAGE</name>
+        <dataType>String</dataType>
+        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&#39;/s/adhoc-success?salesInvoiceId=&#39;+{!salesInvoiceId}</expression>
+    </formulas>
     <interviewLabel>Adhoc Payment Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Flow</label>
     <processMetadataValues>
@@ -56,34 +54,40 @@ Added missing field to Booking query list</description>
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
-        <name>Get_Booking</name>
-        <label>Get Booking</label>
-        <locationX>50</locationX>
-        <locationY>310</locationY>
+        <name>Get_Installments</name>
+        <label>Get collected Installments</label>
+        <locationX>239</locationX>
+        <locationY>179</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Assign_amount_to_installment</targetReference>
+            <targetReference>Was_sales_invoice_paid</targetReference>
         </connector>
         <filters>
-            <field>Id</field>
+            <field>Sales_Invoice__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>salesInvoice.Booking__c</elementReference>
+                <elementReference>salesInvoiceId</elementReference>
             </value>
         </filters>
-        <object>Booking__c</object>
-        <outputReference>booking</outputReference>
+        <filters>
+            <field>cpm__Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Collected</stringValue>
+            </value>
+        </filters>
+        <object>cpm__Installment__c</object>
+        <outputReference>collectedInstallments</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Primary_Contact__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
-        <locationX>50</locationX>
-        <locationY>169</locationY>
+        <locationX>239</locationX>
+        <locationY>457</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Booking</targetReference>
+            <targetReference>Payment_Details_related_screens</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -95,59 +99,88 @@ Added missing field to Booking query list</description>
         <object>Zumzum__Sales_Invoice__c</object>
         <outputReference>salesInvoice</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Booking__c</queriedFields>
+        <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Zumzum__Total_Unpaid_Amount__c</queriedFields>
     </recordLookups>
     <screens>
+        <name>Payment_completed</name>
+        <label>Payment completed</label>
+        <locationX>59</locationX>
+        <locationY>692</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Payment_completed_display</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(248, 248, 248); font-size: 15px; font-family: Slack-Lato, appleLogo, sans-serif; color: rgb(29, 28, 29);&quot;&gt;The payment is already completed. For any further queries please contact &lt;/span&gt;&lt;a href=&quot;mailto:nctcourses@nct.org.uk&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(248, 248, 248); font-size: 15px; font-family: Slack-Lato, appleLogo, sans-serif;&quot;&gt;nctcourses@nct.org.uk&lt;/a&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Payment_summary</name>
         <label>Payment summary</label>
-        <locationX>362</locationX>
-        <locationY>310</locationY>
+        <locationX>502</locationX>
+        <locationY>504</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
-        <connector>
-            <targetReference>Payment_Details_related_screens</targetReference>
-        </connector>
         <fields>
             <name>Summary_text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 36px; color: rgb(62, 62, 60);&quot;&gt;Payment summary&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Some text goes here...&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Hi,&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;We&#39;re holding your place on the following course until&amp;nbsp;16th January 2020. Complete your booking now to secure your place.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Your booking&lt;/span&gt;&lt;/p&gt;&lt;p&gt;NCT Essentials Antenatal course for 334 due dates&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;at&amp;nbsp;Test&amp;nbsp;(26th March&amp;nbsp;-&amp;nbsp;1st May)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 150, 50); font-size: 16px;&quot;&gt;Sessions&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Total - £999&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Get_Sales_Invoice</startElementReference>
+    <start>
+        <locationX>236</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Installments</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <subflows>
         <name>Payment_Details_related_screens</name>
         <label>Payment Details related screens</label>
-        <locationX>538</locationX>
-        <locationY>310</locationY>
+        <locationX>725</locationX>
+        <locationY>457</locationY>
         <flowName>Adhoc_Payment_Details_Subflow</flowName>
         <inputAssignments>
-            <name>bookingId</name>
+            <name>paramAmount</name>
             <value>
-                <elementReference>salesInvoice.Booking__c</elementReference>
+                <elementReference>salesInvoice.Zumzum__Total_Unpaid_Amount__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <name>Installment_Object</name>
+            <name>paramContactId</name>
             <value>
-                <elementReference>installment</elementReference>
+                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>paramErrorPage</name>
+            <value>
+                <elementReference>ERROR_PAGE</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>paramSalesInvoiceId</name>
+            <value>
+                <elementReference>salesInvoiceId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>paramSuccessPage</name>
+            <value>
+                <elementReference>SUCCESS_PAGE</elementReference>
             </value>
         </inputAssignments>
     </subflows>
     <variables>
-        <name>booking</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Booking__c</objectType>
-    </variables>
-    <variables>
-        <name>installment</name>
+        <name>collectedInstallments</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Error_Profile_Has_No_Access</name>
+        <label>Error Profile Has No Access</label>
+        <locationX>831</locationX>
+        <locationY>206</locationY>
+        <actionName>c:showToast</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>MESSAGE_ERROR_PROFILE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <elementReference>TYPE_ERROR</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Result_Sending_Email</name>
         <label>Result Sending Email</label>
         <locationX>831</locationX>
-        <locationY>194</locationY>
+        <locationY>434</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <inputParameters>
@@ -21,10 +41,51 @@
         </inputParameters>
     </actionCalls>
     <actionCalls>
+        <name>Send_notification_email</name>
+        <label>Send notification email</label>
+        <locationX>591</locationX>
+        <locationY>755</locationY>
+        <actionName>SendHTMLEmailPlugin</actionName>
+        <actionType>apex</actionType>
+        <faultConnector>
+            <targetReference>Sending_not_successful</targetReference>
+        </faultConnector>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mergeObjectId</name>
+            <value>
+                <elementReference>salesInvoice.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>notificationTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Send_Payment_Email</name>
         <label>Send Payment Email</label>
-        <locationX>423</locationX>
-        <locationY>190</locationY>
+        <locationX>441</locationX>
+        <locationY>449</locationY>
         <actionName>Zumzum__Sales_Invoice__c.Adhoc_Send_Payment_Email</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -44,7 +105,7 @@
         <name>Sending_not_successful</name>
         <label>Sending not successful</label>
         <locationX>595</locationX>
-        <locationY>332</locationY>
+        <locationY>572</locationY>
         <assignmentItems>
             <assignToReference>toastMessage</assignToReference>
             <operator>Assign</operator>
@@ -67,7 +128,7 @@
         <name>Sending_successful</name>
         <label>Sending  successful</label>
         <locationX>600</locationX>
-        <locationY>108</locationY>
+        <locationY>348</locationY>
         <assignmentItems>
             <assignToReference>toastMessage</assignToReference>
             <operator>Assign</operator>
@@ -87,10 +148,38 @@
         </connector>
     </assignments>
     <constants>
+        <name>MESSAGE_ERROR_PROFILE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>This operation can be done by Finance user only</stringValue>
+        </value>
+    </constants>
+    <constants>
         <name>MESSAGE_SUCCESS</name>
         <dataType>String</dataType>
         <value>
             <stringValue>Email sending was successful!</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>ORG_WIDE_ADDRESS_VALUE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>nctcourses@nct.org.uk</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>TEMPLATE_ADHOC_NOTIFICATION_DEV_NAME</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Adhoc_Payment_Notification</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>TYPE_ERROR</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>error</stringValue>
         </value>
     </constants>
     <constants>
@@ -100,9 +189,51 @@
             <stringValue>success</stringValue>
         </value>
     </constants>
+    <decisions>
+        <name>Check_if_Finance_profile</name>
+        <label>Check if Finance profile</label>
+        <locationX>43</locationX>
+        <locationY>207</locationY>
+        <defaultConnector>
+            <targetReference>Error_Profile_Has_No_Access</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_profile_Finance</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>currentProfile</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>System Administrator</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>currentProfile</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Finance</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Sales_Invoice</targetReference>
+            </connector>
+            <label>Is profile Finance</label>
+        </rules>
+    </decisions>
     <description>Sends an email with a link to details and payment
 Version Changes:
-Changed email alert to Sales Invoice-based one</description>
+Replaced Apex action with Email alert as new field was added</description>
+    <formulas>
+        <name>currentProfile</name>
+        <dataType>String</dataType>
+        <expression>{!$Profile.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>personName</name>
+        <dataType>String</dataType>
+        <expression>{!contact.FirstName} + &#39; &#39; + {!contact.LastName}</expression>
+    </formulas>
     <interviewLabel>Adhoc Send Payment Email Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Send Payment Email Flow</label>
     <processMetadataValues>
@@ -119,13 +250,35 @@ Changed email alert to Sales Invoice-based one</description>
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
+        <name>Get_contact_name</name>
+        <label>Get contact name</label>
+        <locationX>52</locationX>
+        <locationY>563</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_template</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputReference>contact</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>LastName</queriedFields>
+        <queriedFields>FirstName</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
         <locationX>51</locationX>
-        <locationY>190</locationY>
+        <locationY>430</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Confirm_Send_Email_Screen</targetReference>
+            <targetReference>Get_contact_name</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -137,13 +290,34 @@ Changed email alert to Sales Invoice-based one</description>
         <object>Zumzum__Sales_Invoice__c</object>
         <outputReference>salesInvoice</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Booking__c</queriedFields>
+        <queriedFields>Zumzum__Contact__c</queriedFields>
+        <queriedFields>Zumzum__Total_Unpaid_Amount__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_template</name>
+        <label>Get template</label>
+        <locationX>205</locationX>
+        <locationY>563</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Confirm_Send_Email_Screen</targetReference>
+        </connector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TEMPLATE_ADHOC_NOTIFICATION_DEV_NAME</elementReference>
+            </value>
+        </filters>
+        <object>EmailTemplate</object>
+        <outputReference>notificationTemplate</outputReference>
+        <queriedFields>Id</queriedFields>
     </recordLookups>
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Screen of  Confirm</label>
-        <locationX>209</locationX>
-        <locationY>190</locationY>
+        <locationX>340</locationX>
+        <locationY>563</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -152,14 +326,28 @@ Changed email alert to Sales Invoice-based one</description>
         </connector>
         <fields>
             <name>Confirm_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;font-size: 18px; color: rgb(47, 47, 47);&quot;&gt;{!curBooking.First_Name__c} {!curBooking.Last_Name__c}&lt;/b&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;color: rgb(47, 47, 47); font-size: 18px;&quot;&gt;{!personName}&lt;/b&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Get_Sales_Invoice</startElementReference>
+    <start>
+        <locationX>51</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Check_if_Finance_profile</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
+    <variables>
+        <name>contact</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
     <variables>
         <name>curBooking</name>
         <dataType>SObject</dataType>
@@ -167,6 +355,14 @@ Changed email alert to Sales Invoice-based one</description>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Booking__c</objectType>
+    </variables>
+    <variables>
+        <name>notificationTemplate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>EmailTemplate</objectType>
     </variables>
     <variables>
         <name>recordId</name>
