@@ -1,5 +1,6 @@
 public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
     private static final String API_TOKEN = Parentforce_Community_Settings__c.getOrgDefaults().API_Token__c;
+    private static final String PAYMENT_FREQUENCY = 'Monthly';
     private static final String ORIGIN = 'BookingJourney';
     private static final String PAYER_CONTACT_UPDATE = 'none';
     private static final String PAYMENT_METHOD = 'Creditcard';
@@ -43,7 +44,7 @@ public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
         recurringCustomFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
         paymentApiParams.recurring = new PaymentApiRequest.Recurring(
             paymentParameters.amountRecurring, 
-            'Monthly', 
+            PAYMENT_FREQUENCY, 
             paymentParameters.paymentPlanStartDate, 
             paymentParameters.paymentPlanEndDate,
             recurringCustomFields
@@ -57,7 +58,7 @@ public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
     }
     private static Map<String, String> getPaymentCustomFields(CardPaymentParameters paymentParameters) {
         Map<String, String> paymentCustomFields = new Map<String, String>();
-        paymentCustomFields.put('gaid__Gift_Aidable_Amount__c', String.valueOf(paymentParameters.giftAidableAmount));
+        paymentCustomFields.put('gaid__Gift_Aidable_Amount__c', String.valueOf(paymentParameters.giftAidableAmount != null ? paymentParameters.giftAidableAmount : 0));
         paymentCustomFields.put('Membership_Type__c', paymentParameters.membershipType);
         paymentCustomFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
         return paymentCustomFields;
