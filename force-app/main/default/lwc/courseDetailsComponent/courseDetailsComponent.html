@@ -43,6 +43,18 @@
         </div>
       </div>
     </div>
+
+    <tempalte if:true={courseHasProvisionalReunion}>
+      <div class='heading_4 lato-font slds-p-top_large slds-p-bottom_large' >
+        <div>
+          <b>Course Reunion</b>
+        </div>
+        <div>
+          {provisionCourseReunionText}
+        </div>
+      </div>
+    </tempalte>
+
     <div class="heading_2 lato-font">
       Total - &#163;
       <lightning-formatted-number value={courseFee} minimum-fraction-digits="0">

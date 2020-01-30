@@ -4,6 +4,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import retrieveRelatedSessions from '@salesforce/apex/CourseDetailController.retrieveRelatedSessions';
 import NCT_STYLES from '@salesforce/resourceUrl/NCT_Styles';
 import { loadStyle } from 'lightning/platformResourceLoader';
+import  provisionCourseReunionTextLable from '@salesforce/label/c.Confirmation_Notification_Course_Reunion';
 
 const BOOKING_FIELDS = [
         'Booking__c.Reservation_Expiry_Date__c',
@@ -19,7 +20,8 @@ const BOOKING_FIELDS = [
     ];
 
 export default class CourseDetailsComponent extends LightningElement {
-
+    provisionCourseReunionText = provisionCourseReunionTextLable;
+    courseHasProvisionalReunion = false;
     @api bookingId;
     @api expirationDate;
     @api courseId;
@@ -101,7 +103,7 @@ export default class CourseDetailsComponent extends LightningElement {
         });        
     }
 
-    connectedCallback(){
+    connectedCallback() {
         loadStyle(this, NCT_STYLES + '/coursedetail.css')
             .then(() => {
                 this.stylesLoaded = true;
@@ -115,6 +117,10 @@ export default class CourseDetailsComponent extends LightningElement {
                     }),
                 );
             });
+    }
+
+    renderedCallback() {
+        this.courseHasProvisionalReunion = this.template.querySelector('c-sessions').courseHasProvisionalReunion;
     }
 
     getVenues(sessions){
