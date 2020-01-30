@@ -113,59 +113,96 @@ void insertNominalAccounts() {
         scIdByName.put(subCategory.Name, subCategory.Id);
     }
 
-    List<Zumzum__Nominal_Account__c> allNominalAccounts = new List<Zumzum__Nominal_Account__c> {
-        newNA('Debtors', 9300, 1065, 1275, false, false, scIdByName.get('Debtors'), 1065, 1275),
-        newNA('Card Receipts in Transit', 9401, 625, 815, false, TRUE, scIdByName.get('Cash at bank and in hand'), 625, 815),
-        newNA('Bank Current Account Lloyds', 9400, 60, 695, false, false, scIdByName.get('Cash at bank and in hand'), 60, 695),
-        newNA('Course Income',1400, 1275, 190, false, TRUE, scIdByName.get('Charitable Activities - NCT Courses'), 1275, 190),
-        newNA('Subcontractor Fees', 5130, 0, 100, TRUE, false, scIdByName.get('Parentforce costs'), 0, 100),
-        newNA('Creditors', 9600, 100, 50, false, false, scIdByName.get('Creditors'), 100, 50),
-        newNA('Equipment', 5234, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Subscriptions', 5237, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Office and IT Equipment Cost', 9010, TRUE, false, scIdByName.get('Tangible Fixed Assets')),
-        newNA('Unrestricted funds brought forward', 9800, false, false, scIdByName.get('Unrestricted')),
-        newNA('Suspense Account', 9999, false, false, scIdByName.get('Suspense')),
-        newNA('Accruals', 9610, false, false, scIdByName.get('Creditors')),
-        newNA('Travel', 5150, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Petty Cash', 9490, false, false, scIdByName.get('Cash at bank and in hand')),
-        newNA('Input VAT (Sales) Control Account', 9691, false, false, scIdByName.get('Creditors')),
-        newNA('Other Debtors', 9390, false, false, scIdByName.get('Debtors')),
-        newNA('Fundraising Courses', 1102, false, TRUE, scIdByName.get('Other Trading Activity - Community Fundraising')),
-        newNA('Restricted funds brought forward', 9810, false, false, scIdByName.get('Restricted')),
-        newNA('VAT Manual Adjustments', 9693, false, false, scIdByName.get('Creditors')),
-        newNA('Cash Transfers', 9700, false, false, scIdByName.get('Creditors')),
-        newNA('Irrecoverable VAT', 7100, TRUE, false, scIdByName.get('Ireccoverable VAT')),
-        newNA('Donations', 1001, false, TRUE, scIdByName.get('Donations - Other')),
-        newNA('Membership Donations', 1003, false, TRUE, scIdByName.get('Donations - Membership')),
-        newNA('Office and IT Equipment Depreciation', 9015, TRUE, false, scIdByName.get('Tangible Fixed Assets')),
-        newNA('National Advertising', 5271, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Telephone', 5156, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Venue Hire', 5157, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Legacy donations', 1004, false, TRUE, scIdByName.get('Donations - Membership')),
-        newNA('Accommodation', 5154, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Grant Income', 1200, false, TRUE, scIdByName.get('Donations - Grants Receivable')),
-        newNA('Prof Fees & Consultancy', 5126, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Licenses', 5254, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Other', 5900, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Profit/loss on disposal of FA', 5950, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Prepayments', 9310, false, false, scIdByName.get('Debtors')),
-        newNA('Deferred income', 9620, false, false, scIdByName.get('Creditors')),
-        newNA('Equipment Rental', 5233, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Equipment Depreciation', 8101, false, false, scIdByName.get('Depreciation')),
-        newNA('Bad Debt Write Of', 5801, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Fundraising Activities', 1101, false, TRUE, scIdByName.get('Other Trading Activity - Community Fundraising')),
-        newNA('Local Advertising', 5270, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Output VAT (Sales) Control Account', 9692, false, false, scIdByName.get('Creditors')),
-        newNA('Gift Aid', 1002, false, TRUE, scIdByName.get('Donations - Membership')),
-        newNA('Registration Fees', 1502, false, TRUE, scIdByName.get('Charitable Activities - NCT College')),
-        newNA('Training', 5115, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('VAT liability', 9690, false, false, scIdByName.get('Creditors')),
-        newNA('Stock', 9200, TRUE, false, scIdByName.get('Stock')),
-        newNA('Subsistence', 5155, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Printing & Copying', 5191, TRUE, false, scIdByName.get('Parentforce costs')),
-        newNA('Postage Costs', 5170, TRUE, false, scIdByName.get('Parentforce costs'))
+    Map<String, Zumzum__Nominal_Account__c> allNominalAccountsMap = new Map<String, Zumzum__Nominal_Account__c> {
+        'Debtors' => newNA('Debtors', 9300, 1065, 1275, false, false, scIdByName.get('Debtors'), 1065, 1275),
+        
+        'Card Receipts in Transit' => newNA('Card Receipts in Transit', 9401, 625, 815, false, TRUE, scIdByName.get('Cash at bank and in hand'), 625, 815),
+        'Bank Current Account Lloyds' => newNA('Bank Current Account Lloyds', 9400, 60, 695, false, false, scIdByName.get('Cash at bank and in hand'), 60, 695),
+        'Course Income' => newNA('Course Income',1400, 1275, 190, false, TRUE, scIdByName.get('Charitable Activities - NCT Courses'), 1275, 190),
+        'Subcontractor Fees' => newNA('Subcontractor Fees', 5130, 0, 100, TRUE, false, scIdByName.get('Parentforce costs'), 0, 100),
+        'Creditors' => newNA('Creditors', 9600, 100, 50, false, false, scIdByName.get('Creditors'), 100, 50),
+        'Equipment' => newNA('Equipment', 5234, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Subscriptions' => newNA('Subscriptions', 5237, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Office and IT Equipment Cost' => newNA('Office and IT Equipment Cost', 9010, TRUE, false, scIdByName.get('Tangible Fixed Assets')),
+        'Unrestricted funds brought forward' => newNA('Unrestricted funds brought forward', 9800, false, false, scIdByName.get('Unrestricted')),
+        'Suspense Account' => newNA('Suspense Account', 9999, false, false, scIdByName.get('Suspense')),
+        'Accruals' => newNA('Accruals', 9610, false, false, scIdByName.get('Creditors')),
+        'Travel' => newNA('Travel', 5150, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Petty Cash' => newNA('Petty Cash', 9490, false, false, scIdByName.get('Cash at bank and in hand')),
+        'Input VAT (Sales) Control Account' => newNA('Input VAT (Sales) Control Account', 9691, false, false, scIdByName.get('Creditors')),
+        'Other Debtors' => newNA('Other Debtors', 9390, false, false, scIdByName.get('Debtors')),
+        'Fundraising Courses' => newNA('Fundraising Courses', 1102, false, TRUE, scIdByName.get('Other Trading Activity - Community Fundraising')),
+        'Restricted funds brought forward' => newNA('Restricted funds brought forward', 9810, false, false, scIdByName.get('Restricted')),
+        'VAT Manual Adjustments' => newNA('VAT Manual Adjustments', 9693, false, false, scIdByName.get('Creditors')),
+        'Cash Transfers' => newNA('Cash Transfers', 9700, false, false, scIdByName.get('Creditors')),
+        'Irrecoverable VAT' => newNA('Irrecoverable VAT', 7100, TRUE, false, scIdByName.get('Ireccoverable VAT')),
+        'Donations' => newNA('Donations', 1001, false, TRUE, scIdByName.get('Donations - Other')),
+        'Membership Donations' => newNA('Membership Donations', 1003, false, TRUE, scIdByName.get('Donations - Membership')),
+        'Office and IT Equipment Depreciation' => newNA('Office and IT Equipment Depreciation', 9015, TRUE, false, scIdByName.get('Tangible Fixed Assets')),
+        'National Advertising' => newNA('National Advertising', 5271, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Telephone' => newNA('Telephone', 5156, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Venue Hire' => newNA('Venue Hire', 5157, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Legacy donations' => newNA('Legacy donations', 1004, false, TRUE, scIdByName.get('Donations - Membership')),
+        'Accommodation' => newNA('Accommodation', 5154, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Grant Income' => newNA('Grant Income', 1200, false, TRUE, scIdByName.get('Donations - Grants Receivable')),
+        'Prof Fees & Consultancy' => newNA('Prof Fees & Consultancy', 5126, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Licenses' => newNA('Licenses', 5254, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Other' => newNA('Other', 5900, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Profit/loss on disposal of FA' => newNA('Profit/loss on disposal of FA', 5950, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Prepayments' => newNA('Prepayments', 9310, false, false, scIdByName.get('Debtors')),
+        'Deferred income' => newNA('Deferred income', 9620, false, false, scIdByName.get('Creditors')),
+        'Equipment Rental' => newNA('Equipment Rental', 5233, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Equipment Depreciation' => newNA('Equipment Depreciation', 8101, false, false, scIdByName.get('Depreciation')),
+        'Bad Debt Write Of' => newNA('Bad Debt Write Of', 5801, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Fundraising Activities' => newNA('Fundraising Activities', 1101, false, TRUE, scIdByName.get('Other Trading Activity - Community Fundraising')),
+        'Local Advertising' => newNA('Local Advertising', 5270, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Output VAT (Sales) Control Account' => newNA('Output VAT (Sales) Control Account', 9692, false, false, scIdByName.get('Creditors')),
+        'Gift Aid' => newNA('Gift Aid', 1002, false, TRUE, scIdByName.get('Donations - Membership')),
+        'Registration Fees' => newNA('Registration Fees', 1502, false, TRUE, scIdByName.get('Charitable Activities - NCT College')),
+        'Training' => newNA('Training', 5115, TRUE, false, scIdByName.get('Parentforce costs')),
+        'VAT liability' => newNA('VAT liability', 9690, false, false, scIdByName.get('Creditors')),
+        'Stock' => newNA('Stock', 9200, TRUE, false, scIdByName.get('Stock')),
+        'Subsistence' => newNA('Subsistence', 5155, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Printing & Copying' => newNA('Printing & Copying', 5191, TRUE, false, scIdByName.get('Parentforce costs')),
+        'Postage Costs' => newNA('Postage Costs', 5170, TRUE, false, scIdByName.get('Parentforce costs'))
     };
+    List<Zumzum__Nominal_Account__c> allNominalAccounts = allNominalAccountsMap.values();
     insert allNominalAccounts;
+
+
+    // update control account
+    List<Zumzum__Control_Account__c> existingControlAccount = [
+        SELECT Id FROM Zumzum__Control_Account__c
+        LIMIT 1
+    ];
+    Zumzum__Control_Account__c controlAccountToAdd;
+    if (existingControlAccount.isEmpty()) {
+        controlAccountToAdd = new Zumzum__Control_Account__c();
+    } else {
+        controlAccountToAdd = existingControlAccount[0];
+    }
+    controlAccountToAdd.Zumzum__Accruals__c = allNominalAccountsMap.get('Accruals').Id;
+    controlAccountToAdd.Zumzum__Bad_Debts__c = allNominalAccountsMap.get('Bad Debt Write Of').Id;
+    controlAccountToAdd.Zumzum__Credit_Charges__c = allNominalAccountsMap.get('Creditors').Id;
+    controlAccountToAdd.Zumzum__Creditors_Control__c = allNominalAccountsMap.get('Creditors').Id;
+    controlAccountToAdd.Zumzum__Debtors_Control__c = allNominalAccountsMap.get('Debtors').Id;
+    controlAccountToAdd.Zumzum__Default_Bank__c = allNominalAccountsMap.get('Bank Current Account Lloyds').Id;
+    controlAccountToAdd.Zumzum__Default_Sales__c = allNominalAccountsMap.get('Course Income').Id;
+    controlAccountToAdd.Zumzum__Deferred_Income__c = allNominalAccountsMap.get('Deferred income').Id;
+    controlAccountToAdd.Zumzum__Exchange_Rate_Variance__c = allNominalAccountsMap.get('Bad Debt Write Of').Id;
+    controlAccountToAdd.Zumzum__Expenses__c = allNominalAccountsMap.get('Travel').Id;
+    controlAccountToAdd.Zumzum__Manual_Adjustments__c = allNominalAccountsMap.get('VAT Manual Adjustments').Id;
+    controlAccountToAdd.Zumzum__Mispostings__c = allNominalAccountsMap.get('VAT Manual Adjustments').Id;
+    // controlAccountToAdd.Zumzum__Nominal_Account__c = ; //no value here
+    controlAccountToAdd.Zumzum__Prepayments__c = allNominalAccountsMap.get('Prepayments').Id;
+    controlAccountToAdd.Zumzum__Purchase_Discount__c = allNominalAccountsMap.get('Restricted funds brought forward').Id;
+    controlAccountToAdd.Zumzum__Retained_Earnings__c = allNominalAccountsMap.get('Unrestricted funds brought forward').Id;
+    controlAccountToAdd.Zumzum__Sales_Discount__c = allNominalAccountsMap.get('Course Income').Id;
+    controlAccountToAdd.Zumzum__Suspense__c = allNominalAccountsMap.get('Suspense Account').Id;
+    controlAccountToAdd.Zumzum__VAT_Liability__c = allNominalAccountsMap.get('VAT liability').Id;
+    controlAccountToAdd.Zumzum__VAT_on_Purchases__c = allNominalAccountsMap.get('Input VAT (Sales) Control Account').Id;
+    controlAccountToAdd.Zumzum__VAT_on_Sales__c = allNominalAccountsMap.get('Output VAT (Sales) Control Account').Id;
+    upsert controlAccountToAdd;
 }
 
 
