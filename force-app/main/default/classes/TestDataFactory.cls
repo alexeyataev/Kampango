@@ -384,7 +384,7 @@ public without sharing class TestDataFactory {
                     .withPractitionerFeeRate(practitionerFeeRate)
                     .withPractitionerLicence(licenceToPractice)
                     .withType(SESSION_REUNION_TYPE)
-                    .withStatus(SESSION_CONFIRMED_STATUS)
+                    .withStatus(SESSION_PROVISIONAL_STATUS)
                     .insertRecord(false)
                     .build());
             }
