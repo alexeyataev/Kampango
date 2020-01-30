@@ -383,7 +383,8 @@ public without sharing class TestDataFactory {
                     .withPractitioner(practitioners[0])
                     .withPractitionerFeeRate(practitionerFeeRate)
                     .withPractitionerLicence(licenceToPractice)
-                    .withStatus('Provisional')
+                    .withType(SESSION_REUNION_TYPE)
+                    .withStatus(SESSION_CONFIRMED_STATUS)
                     .insertRecord(false)
                     .build());
             }
