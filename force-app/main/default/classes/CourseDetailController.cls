@@ -18,6 +18,7 @@ public with sharing class CourseDetailController {
                     Venue__r.Name
             FROM Session__c
             WHERE Course__c = :courseId
+            AND (Status__c = 'Confirmed' OR Type__c = 'Reunion')
             ORDER BY Date__c, Start__c
         ];
 
