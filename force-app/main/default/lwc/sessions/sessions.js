@@ -6,7 +6,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class Sessions extends LightningElement {
     @api courseHasProvisionalReunion = false;
     @api sessions;
-    @api sessionHeader = 'Sessions';
+    @api sessionHeader;
     @api formattedSessions;
 
     connectedCallback() {
