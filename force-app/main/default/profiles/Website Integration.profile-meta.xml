@@ -722,21 +722,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_Email__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_First_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_Phone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Booking__c.Fee_Override_Reason__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1657,6 +1642,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Count_of_Confirmed_Sessions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Count_of_Estimated_Travel_Costs__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1669,6 +1659,11 @@
         <editable>false</editable>
         <field>Course__c.Count_of_Unconfirmed_Non_Reunion_Session__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Count_of_Unconfirmed_Reunion_Sessions__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1723,7 +1718,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Overbooking_allowed__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1766,6 +1761,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Summary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Target_Group__c</field>
         <readable>true</readable>
@@ -1782,12 +1782,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Course__c.Venue__c</field>
+        <field>Course__c.Women_Only__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Course__c.Women_Only__c</field>
+        <editable>false</editable>
+        <field>Session__c.Additional_Information_with_Venue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1804,11 +1804,6 @@
         <editable>false</editable>
         <field>Session__c.Day_of_Week__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Session__c.IsPublicVenue__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -2189,6 +2184,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ApiEnabled</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ApiUserOnly</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

@@ -2,38 +2,46 @@
 //Incident #10 - https://confluence.nct.org.uk:8443/x/EoSO
 public class CourseFinderModelOrdered extends CourseFinderModel implements Comparable {
     public static final Integer INAPPROPRIATE_RANK = 8; // correct ranks are 1-7
+    public static final Integer INAPPROPRIATE_GROUP = 0; // correct groups are 1 and 2
     public Integer Rank {get; set;}
     public Integer Order {get; set;}
     private transient List<CourseTypeRank> courseTypeRanks;
+    private transient Integer groupR {get; set;}
     
     public CourseFinderModelOrdered(Course__c course, Date birthDueDate) {
         super(course);
         this.courseTypeRanks = createOrderToRank();
-        this.Rank = getCourseRank(course, birthDueDate);
+        updateCourseRankAndGroup(course, birthDueDate);
     }
 
-    private Integer getCourseRank(Course__c course, Date birthDueDate) {
+    private void updateCourseRankAndGroup(Course__c course, Date birthDueDate) {
         Integer numberDays = 0;
         if (birthDueDate != null && course.End_Date__c != null && course.Start_Date__c != null) {
             numberDays = course.Type__c == 'Antenatal' ? course.End_Date__c.daysBetween(birthDueDate) : course.Start_Date__c.daysBetween(birthDueDate);
             numberDays = Math.abs(numberDays);
             for (CourseTypeRank courseTypeRank : courseTypeRanks) {
-                if (courseTypeRank.courseType == course.Sub_Type__c && isAppropriateRank(courseTypeRank.compareValues, numberDays)) {
-                    return courseTypeRank.rank;
+                Integer groupR = getGroup(courseTypeRank.compareValues, numberDays);
+                if (courseTypeRank.courseType == course.Sub_Type__c && groupR > INAPPROPRIATE_GROUP) {
+                    this.Rank = courseTypeRank.rank;
+                    this.groupR = groupR;
+                    return;
                 }
             } 
         } 
 
-        return INAPPROPRIATE_RANK;
+        this.Rank = INAPPROPRIATE_RANK;
+        this.groupR = INAPPROPRIATE_GROUP;
     }
 
-    private Boolean isAppropriateRank (List<CompareValue> compareValues, Integer numberDays) {
+    private Integer getGroup(List<CompareValue> compareValues, Integer numberDays) {
+        Integer i = INAPPROPRIATE_GROUP;
         for (CompareValue compareValue : compareValues) {
             if (compareValue.minNumber <= numberDays && compareValue.maxNumber >= numberDays) {
-                return true;
+                i++;
+                return i;
             } 
         }
-        return false;
+        return i;
     }
 
     private List<CourseTypeRank> createOrderToRank() {
@@ -45,7 +53,7 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
         final String WATERBIRTH = 'NCT Waterbirth workshop';
         final String EARLY_DAYS = 'NCT Early Days course';
         final String INTRODUCING_SOLIDS = 'NCT Introducing Solid Foods workshop';
-        final String BABY_MASSAGE = 'NCT Baby Massage';
+        final String BABY_MASSAGE = 'NCT Baby Massage course';
 
         final Integer FIRST_RANK = 1;
         final Integer SECOND_RANK = 2;
@@ -358,10 +366,10 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
             return 1;
         } else if (this.Rank < compareToModel.Rank) {
             return -1;
-        } else {// comparting the same rank by StartDate
-            if (this.StartDate > compareToModel.StartDate){
+        } else {// comparting the same rank by groupInsideRank
+            if (this.groupR > compareToModel.groupR){
                 return 1;
-            } else if (this.StartDate < compareToModel.StartDate) {
+            } else if (this.groupR < compareToModel.groupR) {
                 return -1;
             } else {//Comparing course numbers
                 if (this.Id > compareToModel.Id){

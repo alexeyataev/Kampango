@@ -4,15 +4,9 @@
         <name>Send_email</name>
         <label>Send email</label>
         <locationX>641</locationX>
-        <locationY>378</locationY>
+        <locationY>379</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
-        <inputParameters>
-            <name>replyEmailAddress</name>
-            <value>
-                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
-            </value>
-        </inputParameters>
         <inputParameters>
             <name>templateId</name>
             <value>
@@ -26,12 +20,31 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>course.Enquiries_PSA_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>targetObjectId</name>
             <value>
                 <elementReference>booking.Primary_Contact__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
+    <constants>
+        <name>ORG_WIDE_ADDRESS_VALUE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>nctcourses@nct.org.uk</stringValue>
+        </value>
+    </constants>
     <constants>
         <name>TEMPLATE_BOOKING_CREATED_DEV_NAME</name>
         <dataType>String</dataType>
@@ -64,7 +77,9 @@
             <label>Is booking null?</label>
         </rules>
     </decisions>
-    <description>Sends an email to Primary Contact when Booking in status Enquiry is created</description>
+    <description>Sends an email to a Primary Contact
+Version Changes:
+Moved Org-Wide Address query to Apex Action</description>
     <interviewLabel>Booking Send Email On Enquiry Created Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Send Email On Enquiry Created Flow</label>
     <processMetadataValues>
@@ -126,8 +141,8 @@
     <recordLookups>
         <name>Get_template_for_booking_creation_email</name>
         <label>Get template for booking creation email</label>
-        <locationX>384</locationX>
-        <locationY>377</locationY>
+        <locationX>447</locationX>
+        <locationY>379</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Send_email</targetReference>
@@ -143,13 +158,7 @@
         <outputReference>bookingCreatedTemplate</outputReference>
         <queriedFields>Id</queriedFields>
     </recordLookups>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Check_booking_is_set</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Check_booking_is_set</startElementReference>
     <status>Active</status>
     <variables>
         <name>booking</name>
@@ -174,6 +183,14 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Course__c</objectType>
+    </variables>
+    <variables>
+        <name>orgWideAddress</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OrgWideEmailAddress</objectType>
     </variables>
     <variables>
         <name>recordId</name>

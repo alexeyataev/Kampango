@@ -1,0 +1,20 @@
+<apex:component controller="VenueDetailsController">
+
+    <apex:attribute description="The course record for which to display venues" name="course" type="Course__c" required="true" assignTo="{!courseRecord}"/>
+    <apex:attribute description="The API name of venue contact fieldset" name="contactFieldsetName" type="String" assignTo="{!venueContactFieldSetName}" default="CourseSummaryEmergencyContactFields"/> 
+
+    <apex:pageBlock title="Venue(s)">
+        <apex:pageBlockTable value="{!venues}" var="venueRecord" styleClass="tableStyle tableLayoutOnly">
+            <apex:column value="{!venueRecord.venue.Name}" headerValue="Name" styleClass="columnStyle"/>
+            <apex:column headerValue="Main Venue" styleClass="columnStyle">
+                <img src="/img/checkbox_{!IF(venueRecord.isMainVenue, '', 'un')}checked.gif" title="{!IF(venueRecord.isMainVenue, 'Checked', 'Not Checked')}" />
+            </apex:column>
+            <apex:column value="{!venueRecord.address}" headerValue="Address" styleClass="columnStyle"/>
+            <apex:column headerValue="Emergency Contact(s)" styleClass="columnStyle">
+                <apex:repeat value="{!venueRecord.emergencyContacts}" var="emergencyContact">
+                    <c:CourseSummaryContactDetails contact="{!emergencyContact}" fieldsetName="{!contactFieldsetName}" labelIsVisible="false"/>
+                </apex:repeat>
+            </apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlock>    
+</apex:component>

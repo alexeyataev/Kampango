@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Send_email_to_practitioner</name>
         <label>Send email to practitioner</label>
-        <locationX>1758</locationX>
-        <locationY>1141</locationY>
+        <locationX>1808</locationX>
+        <locationY>1152</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -14,15 +14,15 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>practitionerTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
             <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -37,12 +37,18 @@
                 <elementReference>session.Practitioner__c</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>practitionerTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
     </actionCalls>
     <assignments>
         <name>Assign_name_bookingList_for_output</name>
         <label>Assign name bookingList for output</label>
-        <locationX>650</locationX>
-        <locationY>1458</locationY>
+        <locationX>365</locationX>
+        <locationY>1329</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -57,8 +63,8 @@
     <assignments>
         <name>Assign_name_practit_email_for_output</name>
         <label>Assign name practit email for output</label>
-        <locationX>871</locationX>
-        <locationY>1466</locationY>
+        <locationX>623</locationX>
+        <locationY>1341</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -73,8 +79,8 @@
     <assignments>
         <name>Assign_name_PSA_email_for_output</name>
         <label>Assign name PSA email for output</label>
-        <locationX>1018</locationX>
-        <locationY>1489</locationY>
+        <locationX>999</locationX>
+        <locationY>1367</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -89,8 +95,8 @@
     <assignments>
         <name>Assign_name_venue_for_output</name>
         <label>Assign name venue for output</label>
-        <locationX>1317</locationX>
-        <locationY>1372</locationY>
+        <locationX>1132</locationX>
+        <locationY>1217</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -105,8 +111,8 @@
     <assignments>
         <name>Common_error_message</name>
         <label>Common error message</label>
-        <locationX>2304</locationX>
-        <locationY>1497</locationY>
+        <locationX>2392</locationX>
+        <locationY>1491</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -199,8 +205,8 @@
     <assignments>
         <name>Part_success_message</name>
         <label>Part success message</label>
-        <locationX>2320</locationX>
-        <locationY>940</locationY>
+        <locationX>2408</locationX>
+        <locationY>935</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -228,8 +234,8 @@
     <assignments>
         <name>Return_error_on_email_alert</name>
         <label>Return error</label>
-        <locationX>1946</locationX>
-        <locationY>1171</locationY>
+        <locationX>1935</locationX>
+        <locationY>1160</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -260,8 +266,8 @@
     <assignments>
         <name>Set_status_empty_value</name>
         <label>Set status empty value</label>
-        <locationX>1517</locationX>
-        <locationY>1488</locationY>
+        <locationX>1231</locationX>
+        <locationY>1379</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -289,8 +295,8 @@
     <assignments>
         <name>Success_message</name>
         <label>Success message</label>
-        <locationX>2319</locationX>
-        <locationY>797</locationY>
+        <locationX>2407</locationX>
+        <locationY>791</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -302,8 +308,8 @@
     <assignments>
         <name>Unknown_status_message</name>
         <label>Unknown status message</label>
-        <locationX>2100</locationX>
-        <locationY>1300</locationY>
+        <locationX>2227</locationX>
+        <locationY>1293</locationY>
         <assignmentItems>
             <assignToReference>output_message</assignToReference>
             <operator>Assign</operator>
@@ -411,8 +417,11 @@
         </value>
     </constants>
     <constants>
-        <name>ORG_WIDE_ADDRESS_DISPLAY_NAME</name>
+        <name>ORG_WIDE_ADDRESS_VALUE</name>
         <dataType>String</dataType>
+        <value>
+            <stringValue>nctcourses@nct.org.uk</stringValue>
+        </value>
     </constants>
     <constants>
         <name>STATUS_EMPTY</name>
@@ -473,8 +482,8 @@
     <decisions>
         <name>Check_Bookings_List_is_not_null</name>
         <label>Check Bookings List is not null</label>
-        <locationX>370</locationX>
-        <locationY>835</locationY>
+        <locationX>357</locationX>
+        <locationY>1007</locationY>
         <defaultConnector>
             <targetReference>Assign_name_bookingList_for_output</targetReference>
         </defaultConnector>
@@ -548,8 +557,8 @@
     <decisions>
         <name>Check_Practitioner_email_is_not_null</name>
         <label>Check Practitioner email is not null</label>
-        <locationX>708</locationX>
-        <locationY>840</locationY>
+        <locationX>611</locationX>
+        <locationY>1003</locationY>
         <defaultConnector>
             <targetReference>Assign_name_practit_email_for_output</targetReference>
         </defaultConnector>
@@ -573,8 +582,8 @@
     <decisions>
         <name>Check_PSA_emails</name>
         <label>Check PSA emails</label>
-        <locationX>953</locationX>
-        <locationY>1024</locationY>
+        <locationX>992</locationX>
+        <locationY>1027</locationY>
         <defaultConnector>
             <targetReference>Assign_name_PSA_email_for_output</targetReference>
         </defaultConnector>
@@ -605,8 +614,8 @@
     <decisions>
         <name>Check_Session_Id</name>
         <label>Check Session Id</label>
-        <locationX>368</locationX>
-        <locationY>435</locationY>
+        <locationX>348</locationX>
+        <locationY>433</locationY>
         <defaultConnector>
             <targetReference>Get_bookings</targetReference>
         </defaultConnector>
@@ -630,8 +639,8 @@
     <decisions>
         <name>Decide_on_error_status</name>
         <label>Decide on error status</label>
-        <locationX>2296</locationX>
-        <locationY>1232</locationY>
+        <locationX>2384</locationX>
+        <locationY>1227</locationY>
         <defaultConnector>
             <targetReference>Common_error_message</targetReference>
         </defaultConnector>
@@ -700,8 +709,8 @@
     <decisions>
         <name>Decide_on_status</name>
         <label>Decide on status</label>
-        <locationX>2103</locationX>
-        <locationY>935</locationY>
+        <locationX>2231</locationX>
+        <locationY>927</locationY>
         <defaultConnector>
             <targetReference>Unknown_status_message</targetReference>
         </defaultConnector>
@@ -755,8 +764,8 @@
     <decisions>
         <name>Is_Public_Venue</name>
         <label>Is Public Venue</label>
-        <locationX>1309</locationX>
-        <locationY>1018</locationY>
+        <locationX>1196</locationX>
+        <locationY>1028</locationY>
         <defaultConnector>
             <targetReference>Assign_name_venue_for_output</targetReference>
         </defaultConnector>
@@ -792,7 +801,9 @@
             <label>Public Venue</label>
         </rules>
     </decisions>
-    <description>Changes with Volunteer home deletion. Removed unnecessary elements.</description>
+    <description>Sends emails of different types when reunion session becomes &#39;confirmed&#39;.
+Version changes: 
+Moved Org-Wide Address query to Apex Action (final)</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -811,8 +822,8 @@
     <recordLookups>
         <name>Get_bookings</name>
         <label>Get bookings</label>
-        <locationX>378</locationX>
-        <locationY>640</locationY>
+        <locationX>355</locationX>
+        <locationY>643</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_Bookings_List_is_not_null</targetReference>
@@ -849,8 +860,8 @@
     <recordLookups>
         <name>Get_Course</name>
         <label>Get Course</label>
-        <locationX>831</locationX>
-        <locationY>665</locationY>
+        <locationX>764</locationX>
+        <locationY>669</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_practitioner_template</targetReference>
@@ -873,35 +884,10 @@
         <queriedFields>Branch__c</queriedFields>
     </recordLookups>
     <recordLookups>
-        <description>We consider the only one is in the system</description>
-        <name>Get_Organization_Wide_Address</name>
-        <label>Get Organization-Wide Address</label>
-        <locationX>1069</locationX>
-        <locationY>664</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Check_PSA_emails</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Return_error_on_get_record</targetReference>
-        </faultConnector>
-        <filters>
-            <field>DisplayName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>ORG_WIDE_ADDRESS_DISPLAY_NAME</elementReference>
-            </value>
-        </filters>
-        <object>OrgWideEmailAddress</object>
-        <outputReference>orgWideAddress</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Address</queriedFields>
-    </recordLookups>
-    <recordLookups>
         <name>Get_practitioner</name>
         <label>Get practitioner</label>
-        <locationX>563</locationX>
-        <locationY>838</locationY>
+        <locationX>481</locationX>
+        <locationY>739</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_Practitioner_email_is_not_null</targetReference>
@@ -926,8 +912,8 @@
     <recordLookups>
         <name>Get_practitioner_template</name>
         <label>Get practitioner template</label>
-        <locationX>949</locationX>
-        <locationY>665</locationY>
+        <locationX>883</locationX>
+        <locationY>669</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_PSA_emails</targetReference>
@@ -952,8 +938,8 @@
     <recordLookups>
         <name>Get_session</name>
         <label>Get session</label>
-        <locationX>545</locationX>
-        <locationY>485</locationY>
+        <locationX>169</locationX>
+        <locationY>529</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_bookings</targetReference>
@@ -974,14 +960,13 @@
         <queriedFields>Course__c</queriedFields>
         <queriedFields>Practitioner__c</queriedFields>
         <queriedFields>Venue__c</queriedFields>
-        <queriedFields>IsPublicVenue__c</queriedFields>
         <queriedFields>Parent_Host__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Venue</name>
         <label>Get Venue</label>
-        <locationX>720</locationX>
-        <locationY>665</locationY>
+        <locationX>628</locationX>
+        <locationY>661</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Course</targetReference>
@@ -1001,13 +986,7 @@
         <queriedFields>Id</queriedFields>
         <queriedFields>Type__c</queriedFields>
     </recordLookups>
-    <start>
-        <locationX>376</locationX>
-        <locationY>264</locationY>
-        <connector>
-            <targetReference>Check_Session_Id</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Check_Session_Id</startElementReference>
     <status>Active</status>
     <subflows>
         <name>Send_to_Private</name>
@@ -1028,6 +1007,12 @@
             <name>course</name>
             <value>
                 <elementReference>course</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>orgWideAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1079,7 +1064,7 @@
         <name>Send_to_public</name>
         <label>Send to public</label>
         <locationX>1521</locationX>
-        <locationY>862</locationY>
+        <locationY>863</locationY>
         <connector>
             <targetReference>Check_if_success</targetReference>
         </connector>
@@ -1094,6 +1079,12 @@
             <name>course</name>
             <value>
                 <elementReference>course</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>orgWideAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

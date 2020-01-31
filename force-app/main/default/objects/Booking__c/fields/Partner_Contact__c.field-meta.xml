@@ -4,6 +4,15 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Partner Contact</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Contact.RecordType.Name</field>
+            <operation>equals</operation>
+            <value>Client</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Bookings (Partner  Contact)</relationshipLabel>
     <relationshipName>BookingToPartnerContact</relationshipName>

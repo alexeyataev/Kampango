@@ -5,10 +5,10 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class Locations extends LightningElement {
 
-    @api locationHeader = 'Locations';
     @api locations;
     @api venues;
     @api sessions;
+    @api locationHeader;
 
     connectedCallback() {
         loadStyle(this, NCT_STYLES + '/coursedetail.css')
@@ -24,6 +24,8 @@ export default class Locations extends LightningElement {
                     }),
                 );
             });
+            
+        this.locationHeader = this.venues.length > 1 ? 'Locations' : 'Location';
         this.sessions = this.excludeProvisionalSessions(this.sessions);
         this.venues = this.deduplicateVenues(this.venues);
         this.formatVenues();

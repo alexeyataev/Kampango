@@ -1,6 +1,7 @@
 @isTest
 public with sharing class SendHTMLEmailPluginTest {
 
+    private static final String OWA_VALUE = 'nctcourses@nct.org.uk';
     private static final String CONTACT_EMAIL = 'john.black@example.com';
     private static final String TEMPLATE_NAME = 'test';
     private static final String TEMPLATE_DEV_NAME = 'temp';
@@ -45,6 +46,7 @@ public with sharing class SendHTMLEmailPluginTest {
         List<OrgWideEmailAddress> orgEmailObject = [
             SELECT Id, Address 
             FROM OrgWideEmailAddress
+            WHERE Address = :OWA_VALUE
             LIMIT 1
         ];
 
@@ -77,21 +79,18 @@ public with sharing class SendHTMLEmailPluginTest {
             List<SendHTMLEmailPlugin.Request> reqList = new List<SendHTMLEmailPlugin.Request>();
             reqList.add(testReq);
             
-            List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
-            System.assertEquals(true, testResponseList[0].isSuccess, 'Email with Organization-wide address set was not sent');
+            try {
+                List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
+                System.assertEquals(true, testResponseList[0].isSuccess, 'Email with Organization-wide address set was not sent');
+            } catch (EmailException e) {
+                System.assert(false, 'Org-Wide address is not verified. Please refer to step #70 in "Manual Tasks" from Confluence (Set up Organization-Wide Email Address)');
+            }
         }
     }
     
     @isTest
     public static void noErrorSenderDisplayName () {
-        List<OrgWideEmailAddress> orgEmailObject = [
-            SELECT Id, Address 
-            FROM OrgWideEmailAddress
-            LIMIT 1
-        ];
-
-        if (SendHTMLEmailPlugin.emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
-            String orgWideEmail = orgEmailObject[0].Address;
+        if (SendHTMLEmailPlugin.emailsFeatureEnabled()) {
             Contact recipient = [
                 SELECT Id, AccountId 
                 FROM Contact 

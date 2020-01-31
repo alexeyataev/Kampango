@@ -1,5 +1,6 @@
 @isTest
 public without sharing class CourseApiTest {
+    private static final String OWA_VALUE = 'nctcourses@nct.org.uk';
     private static String strURI = URL.getSalesforceBaseUrl().toExternalForm()+'/services/apexrest/courses';
     private static String methodGet = 'GET';
 
@@ -8,6 +9,7 @@ public without sharing class CourseApiTest {
         List<OrgWideEmailAddress> addresses = [
             SELECT Id, Address 
             FROM OrgWideEmailAddress
+            WHERE Address = :OWA_VALUE
             LIMIT 1
         ];
 
@@ -423,7 +425,7 @@ public without sharing class CourseApiTest {
             System.assertEquals(HttpStatusCode.SERVER_ERROR, response.statusCode, 'There should be server error');
             Blob responseBlob = (Blob)response.responseBody;
             System.debug(responseBlob.toString());
-            System.assertEquals(true, isEmailError(responseBlob.toString()), 'Upsert error, as email is required');
+            System.assertEquals(true, isEmailError(responseBlob.toString()), 'Insert error, as email is required');
         }
 
         List<Booking__c> bookings = [
@@ -472,7 +474,7 @@ public without sharing class CourseApiTest {
             System.assertEquals(HttpStatusCode.SERVER_ERROR, response.statusCode, 'There should be server error');
             Blob responseBlob = (Blob)response.responseBody;
             System.debug(responseBlob.toString());
-            System.assertEquals(true, isEmailError(responseBlob.toString()), 'Upsert error');
+            System.assertEquals(true, isEmailError(responseBlob.toString()), 'Insert error');
         }
 
         List<Booking__c> bookings = [
@@ -493,6 +495,8 @@ public without sharing class CourseApiTest {
             (inputErrorText.contains('MISSING_ARGUMENT') && inputErrorText.contains('Email not specified'))
             ||
             (inputErrorText.contains('INVALID_EMAIL_ADDRESS') && inputErrorText.contains('Email: invalid email address'))
+            ||
+            (inputErrorText.contains('FIELD_CUSTOM_VALIDATION_EXCEPTION') && inputErrorText.contains('Please review primary contact. Full name, full address, email and preferred phone are required'))
         ) {
             result = true;
         }

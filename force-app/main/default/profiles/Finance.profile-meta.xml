@@ -98,16 +98,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_First_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_Phone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Booking__c.Fee_Override_Reason__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -220,6 +210,11 @@
         <editable>false</editable>
         <field>Booking__c.Primary_Contact_Email__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.PSA_Area_When_Confirmed__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -567,8 +562,33 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_County__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Venue_Invoice_Paid__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Postcode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Street__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Town__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1124,6 +1144,31 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Bank_Account__c.Zumzum__Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Bank_Payment__c.Zumzum__Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Bank_Payment__c.Zumzum__Bank__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Bank_Payment__c.Zumzum__Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Bank_Payment__c.Payment_Reference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Bank_Payment__c.Zumzum__Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4497,6 +4542,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Contact_First_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Account__c</field>
         <readable>true</readable>
@@ -6179,7 +6229,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.Sales_Invoice__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6582,6 +6632,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Zumzum__Bank_Account__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Zumzum__Bank_Payment__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -7268,7 +7327,11 @@
         <object>cpm__Mandate__c</object>
     <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-     <pageAccesses>
+    <pageAccesses>
+        <apexPage>GeneratePaymentFile</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Zumzum__AccountActivity</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -8177,6 +8240,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>cpm__Transaction_Set__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Practitioner_Fee_Rate__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -8605,6 +8672,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>MassInlineEdit</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RunFlow</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

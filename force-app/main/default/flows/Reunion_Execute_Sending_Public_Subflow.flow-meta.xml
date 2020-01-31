@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Send_to_public</name>
         <label>Send to public</label>
-        <locationX>894</locationX>
+        <locationX>895</locationX>
         <locationY>164</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
@@ -14,15 +14,9 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>templateId</name>
+            <name>mergeObjectId</name>
             <value>
-                <elementReference>publicTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>booking.Primary_Contact__c</elementReference>
+                <elementReference>sessionId</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -38,9 +32,15 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>mergeObjectId</name>
+            <name>targetObjectId</name>
             <value>
-                <elementReference>sessionId</elementReference>
+                <elementReference>booking.Primary_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>publicTemplate.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -58,15 +58,9 @@
             <targetReference>Return_error_on_email_alert</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>templateId</name>
+            <name>mergeObjectId</name>
             <value>
-                <elementReference>publicTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>booking.Partner_Contact__c</elementReference>
+                <elementReference>sessionId</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -82,9 +76,15 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>mergeObjectId</name>
+            <name>targetObjectId</name>
             <value>
-                <elementReference>sessionId</elementReference>
+                <elementReference>booking.Partner_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>publicTemplate.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -184,7 +184,9 @@
             <label>Is partner contact exists</label>
         </rules>
     </decisions>
-    <description>Separated Org-Wide Address from Account Capacity/Enquiries emails</description>
+    <description>Sends emails of type &quot;Public&quot; to Primary and Partner contacts.
+Version changes: 
+Moved Org-Wide Address querying to Apex Action</description>
     <interviewLabel>Reunion Execute Sending Private Subflow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Public Subflow</label>
     <loops>
@@ -241,13 +243,7 @@
         <queriedFields>Body</queriedFields>
         <queriedFields>Subject</queriedFields>
     </recordLookups>
-    <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Get_public_template</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Get_public_template</startElementReference>
     <status>Active</status>
     <variables>
         <name>booking</name>

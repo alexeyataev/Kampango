@@ -19,7 +19,7 @@ public with sharing class PractitionerDetailsControllerTest {
                     .buildEstimatedCosts()
                     .buildSession()
                     .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-                    .buildReunion();
+		    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed');
     }
 
     @IsTest
@@ -42,6 +42,7 @@ public with sharing class PractitionerDetailsControllerTest {
 
 		PractitionerDetailsController practitionerDetailsController = new PractitionerDetailsController();
 		practitionerDetailsController.courseRecord = course;
+		practitionerDetailsController.practitionerFieldSetName = 'CourseSummaryPractitionerFields';
 
 		Test.startTest();
 

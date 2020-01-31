@@ -1,98 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <assignments>
-        <name>Assign_Created_Line_Items_To_Collection</name>
-        <label>Assign Line Items To Collection</label>
-        <locationX>1129</locationX>
-        <locationY>504</locationY>
-        <assignmentItems>
-            <assignToReference>puchaseLineItemsToInsert</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>singlePurchaseInvoiceLineItem</elementReference>
-            </value>
-        </assignmentItems>
+    <actionCalls>
+        <name>Create_Purchase_Invoice</name>
+        <label>Create Purchase Invoice</label>
+        <locationX>499</locationX>
+        <locationY>275</locationY>
+        <actionName>ClaimFeeHelper</actionName>
+        <actionType>apex</actionType>
         <connector>
-            <targetReference>Loop_Selected_Sessions</targetReference>
+            <targetReference>Confirmation_Message</targetReference>
         </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Single_Line_Item</name>
-        <label>Assign Single Line Item</label>
-        <locationX>984</locationX>
-        <locationY>595</locationY>
-        <assignmentItems>
-            <assignToReference>singlePurchaseInvoiceLineItem.Session__c</assignToReference>
-            <operator>Assign</operator>
+        <inputParameters>
+            <name>sessions</name>
             <value>
-                <elementReference>tempCurrentSession.Id</elementReference>
+                <elementReference>sessionsToClaim</elementReference>
             </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>singlePurchaseInvoiceLineItem.Zumzum__Amount__c</assignToReference>
-            <operator>Assign</operator>
+        </inputParameters>
+        <inputParameters>
+            <name>registrationFee</name>
             <value>
-                <elementReference>tempCurrentSession.Practitioner_Fees__c</elementReference>
+                <elementReference>claimFees.registrationFee</elementReference>
             </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>singlePurchaseInvoiceLineItem.Zumzum__Purchase_Invoice__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>PurchaseInvoiceID</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>singlePurchaseInvoiceLineItem.Zumzum__Total_Gross__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>tempCurrentSession.Practitioner_Fees__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>singlePurchaseInvoiceLineItem.Zumzum__Nominal_Account__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>nominalAccountId</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>singlePurchaseInvoiceLineItem.Zumzum__Opportunity__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>tempCurrentSession.Course__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>singlePurchaseInvoiceLineItem.Zumzum__Quantity__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>singlePurchaseInvoiceLineItem.Zumzum__Total_Net__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>tempCurrentSession.Practitioner_Fees__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>singlePurchaseInvoiceLineItem.Name</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>lastPILIname</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Assign_Created_Line_Items_To_Collection</targetReference>
-        </connector>
-    </assignments>
+        </inputParameters>
+    </actionCalls>
     <assignments>
         <name>Assing_Checked_Sessions</name>
         <label>Assign Checked Sessions</label>
-        <locationX>817</locationX>
-        <locationY>204</locationY>
+        <locationX>828</locationX>
+        <locationY>163</locationY>
         <assignmentItems>
             <assignToReference>sessionsToClaim</assignToReference>
             <operator>Assign</operator>
@@ -101,10 +36,12 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Get_Last_PI_Number</targetReference>
+            <targetReference>Create_Purchase_Invoice</targetReference>
         </connector>
     </assignments>
-    <description>Claim Practitioner Fee flow.</description>
+    <description>This flow allows the practitioner to claim fees for completed sessions.
+Version changes:
+Changed lastThreeMonths formula</description>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
@@ -123,30 +60,27 @@
     <formulas>
         <name>lastThreeMonths</name>
         <dataType>Date</dataType>
-        <expression>IF(MONTH(TODAY()) = 1, DATE(YEAR(TODAY()) - 1, 12, 01),DATE(YEAR(TODAY()), MONTH(TODAY()) - 3, 01))</expression>
+        <expression>IF(MONTH(TODAY()) = 1, DATE(YEAR(TODAY()) - 1, 12 - 2, 01),DATE(YEAR(TODAY()), MONTH(TODAY()) - 3, 01))</expression>
     </formulas>
     <formulas>
         <name>nominalAccountId</name>
         <dataType>String</dataType>
         <expression>{!$Setup.Financial_Settings__c.PI_Nominal_Account_Id__c}</expression>
     </formulas>
+    <formulas>
+        <name>registrationCappedFees</name>
+        <dataType>Number</dataType>
+        <expression>{!$Setup.Financial_Settings__c.Practitioner_Registration_Capped_Fees__c}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>registrationFeeRate</name>
+        <dataType>Number</dataType>
+        <expression>{!$Setup.Financial_Settings__c.Practitioner_Registration_Fees_Rate__c}</expression>
+        <scale>2</scale>
+    </formulas>
     <interviewLabel>Claim Practitioner Fees {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Claim Practitioner Fees</label>
-    <loops>
-        <name>Loop_Selected_Sessions</name>
-        <label>Loop Selected Sessions</label>
-        <locationX>757</locationX>
-        <locationY>497</locationY>
-        <assignNextValueToReference>tempCurrentSession</assignNextValueToReference>
-        <collectionReference>sessionsToClaim</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Assign_Single_Line_Item</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Create_Purchase_Invoice_LineItems</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -160,95 +94,32 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
-    <recordCreates>
-        <name>Create_Purchase_Invoice_LineItems</name>
-        <label>Create Purchase Invoice LineItems</label>
-        <locationX>927</locationX>
-        <locationY>304</locationY>
-        <connector>
-            <targetReference>Confirmation_Message</targetReference>
-        </connector>
-        <inputReference>puchaseLineItemsToInsert</inputReference>
-    </recordCreates>
-    <recordCreates>
-        <name>createPurchaseInvoice</name>
-        <label>Create Purchase Invoice</label>
-        <locationX>493</locationX>
-        <locationY>367</locationY>
-        <assignRecordIdToReference>PurchaseInvoiceID</assignRecordIdToReference>
-        <connector>
-            <targetReference>Get_Last_PILI_Number</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Name</field>
-            <value>
-                <elementReference>lastPInumber</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Zumzum__Account__c</field>
-            <value>
-                <elementReference>currentUserAccountId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Zumzum__Invoice_Date__c</field>
-            <value>
-                <elementReference>$Flow.CurrentDate</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Zumzum__Invoice_Due_Date__c</field>
-            <value>
-                <elementReference>$Flow.CurrentDate</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Zumzum__Type__c</field>
-            <value>
-                <stringValue>Purchase Invoice</stringValue>
-            </value>
-        </inputAssignments>
-        <object>Zumzum__Purchase_Invoice__c</object>
-    </recordCreates>
     <recordLookups>
-        <name>Get_Last_PI_Number</name>
-        <label>Get Last PI Number</label>
-        <locationX>494</locationX>
-        <locationY>203</locationY>
+        <name>Get_Practitioner</name>
+        <label>Get Practitioner</label>
+        <locationX>335</locationX>
+        <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>createPurchaseInvoice</targetReference>
+            <targetReference>Get_Session</targetReference>
         </connector>
-        <object>Zumzum__Purchase_Invoice__c</object>
-        <outputAssignments>
-            <assignToReference>lastPIname</assignToReference>
-            <field>Name</field>
-        </outputAssignments>
-        <sortField>CreatedDate</sortField>
-        <sortOrder>Desc</sortOrder>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Last_PILI_Number</name>
-        <label>Get Last PILI Number</label>
-        <locationX>493</locationX>
-        <locationY>548</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Loop_Selected_Sessions</targetReference>
-        </connector>
-        <object>Zumzum__Purchase_Invoice_Line_Item__c</object>
-        <outputReference>lastPILInumber</outputReference>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>currentUserContactId</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputReference>practitionerRecord</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>Name</queriedFields>
-        <sortField>CreatedDate</sortField>
-        <sortOrder>Desc</sortOrder>
+        <queriedFields>Deducted_Practitioner_Fees__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Session</name>
-        <label>Get Sessions</label>
-        <locationX>448</locationX>
-        <locationY>51</locationY>
+        <label>Get Session</label>
+        <locationX>465</locationX>
+        <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Claim_Fees_Datatable</targetReference>
@@ -258,6 +129,13 @@
             <operator>GreaterThanOrEqualTo</operator>
             <value>
                 <elementReference>lastThreeMonths</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Date__c</field>
+            <operator>LessThanOrEqualTo</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
             </value>
         </filters>
         <filters>
@@ -293,11 +171,11 @@
     <recordLookups>
         <name>getAccountAndContactId</name>
         <label>Get Account And Contact</label>
-        <locationX>292</locationX>
-        <locationY>51</locationY>
+        <locationX>206</locationX>
+        <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Session</targetReference>
+            <targetReference>Get_Practitioner</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -319,7 +197,7 @@
     <screens>
         <name>Claim_Fees_Datatable</name>
         <label>Claim Fees Datatable</label>
-        <locationX>666</locationX>
+        <locationX>586</locationX>
         <locationY>50</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -342,6 +220,24 @@
                     <elementReference>listSessions</elementReference>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>practitioner</name>
+                <value>
+                    <elementReference>practitionerRecord</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>registrationCappedFees</name>
+                <value>
+                    <elementReference>registrationCappedFees</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>registrationFeeRate</name>
+                <value>
+                    <elementReference>registrationFeeRate</elementReference>
+                </value>
+            </inputParameters>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
@@ -351,8 +247,8 @@
     <screens>
         <name>Confirmation_Message</name>
         <label>Confirmation Message</label>
-        <locationX>1106</locationX>
-        <locationY>189</locationY>
+        <locationX>1048</locationX>
+        <locationY>283</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -367,7 +263,7 @@
     <screens>
         <name>Show_Total_Fees</name>
         <label>Show Total Fees</label>
-        <locationX>827</locationX>
+        <locationX>703</locationX>
         <locationY>50</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -377,15 +273,15 @@
         </connector>
         <fields>
             <name>totalFeeScreen</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgba(var(--sk_primary_foreground,29,28,29),1);&quot;&gt;The total value of fees included in this claim are:&lt;/span&gt; £{!claimFees.totalFee}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgba(var(--sk_primary_foreground,29,28,29),1);&quot;&gt;The total value of fees included in this claim are:&lt;/span&gt; £{!claimFees.totalFee}&lt;/p&gt;&lt;p&gt;The total value of registration fees included in this claim is: &lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;£{!claimFees.registrationFee}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>92</locationX>
-        <locationY>190</locationY>
+        <locationX>74</locationX>
+        <locationY>205</locationY>
         <connector>
             <targetReference>getAccountAndContactId</targetReference>
         </connector>
@@ -436,6 +332,14 @@
         <objectType>Session__c</objectType>
     </variables>
     <variables>
+        <name>practitionerRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
         <name>puchaseLineItemsToInsert</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
@@ -455,7 +359,7 @@
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
         <isInput>true</isInput>
-        <isOutput>true</isOutput>
+        <isOutput>false</isOutput>
         <objectType>Session__c</objectType>
     </variables>
     <variables>

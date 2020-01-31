@@ -14,7 +14,7 @@ public with sharing class SendHTMLEmailPlugin {
         String senderDisplay = requests[0].senderDisplayName;
         List<String> ccEmails = requests[0].ccEmailAddresses;
         List<String> bccEmails = requests[0].bccEmailAddresses;
-        String orgWide = requests[0].orgWideEmailAddress;
+        String orgWideAddress = requests[0].orgWideEmailAddress;
         
         List<Response> responseList = new List<Response>();
         Messaging.SingleEmailMessage message = new  Messaging.SingleEmailMessage();
@@ -28,23 +28,22 @@ public with sharing class SendHTMLEmailPlugin {
             message.setTemplateId(templateId);
             message.setWhatId(mergeObjId);
     
-      		// Set Priority
             List<String> priorities = new List<String> {'Highest', 'High', 'Low', 'Lowest'};
             if (priorities.contains(priority)) {
                 message.setEmailPriority(priority);
             }
             
-            // Save as activity?
+            // Save as activity is true by default
             Boolean isSaveAsActivityNotSet = (saveAsActivity == null || !saveAsActivity);
             if (isSaveAsActivityNotSet) {
                 message.setSaveAsActivity(false);
             }
             
             // Set sender address (cannot be used both)
-            Boolean isOrgWideSet = (orgWide != null && orgWide != '');
+            Boolean isOrgWideSet = (orgWideAddress != null && String.isNotBlank(orgWideAddress));
             if (isOrgWideSet) {
-                Id orgWideEmail = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: orgWide].Id;
-                message.setOrgWideEmailAddressId(orgWideEmail);
+                Id orgWideAddressId = [SELECT Id FROM OrgWideEmailAddress WHERE Address = :orgWideAddress].Id;
+                message.setOrgWideEmailAddressId(orgWideAddressId);
             } else if (senderDisplay != null) {
                 message.setSenderDisplayName(senderDisplay);
             }
@@ -57,16 +56,18 @@ public with sharing class SendHTMLEmailPlugin {
             
             Response response;
             String error;
-            // Send the email you have created.
             try {
                 Messaging.SendEmailResult[] emailResponse = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { message });
                 System.debug('emailResponse is: ' + emailResponse);
-                //report back the results
                 response = createResponseAfterSending(emailResponse);
-            } catch (Exception e){
+            } catch (EmailException e){
                 error = e.getMessage();
-                System.debug ('exception occured: ' + e.getMessage());
-                response = createErrorResponse(error);
+                if (error.contains('UNVERIFIED_SENDER_ADDRESS')) {
+                    throw e;
+                } else {
+                    System.debug ('exception occured: ' + e.getMessage());
+                    response = createErrorResponse(error);
+                }
             }
             responseList.add(response);
 

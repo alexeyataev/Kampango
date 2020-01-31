@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+	<classAccesses>
+        <apexClass>BookingPaymentDetailsController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ConfirmationEmailController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <custom>true</custom>
     <applicationVisibilities>
         <application>NCT_Courses</application>
@@ -154,21 +162,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Email_Template_Utility_Field__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_Email__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_First_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Booking__c.Enquiries_PSA_Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -333,6 +326,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Booking__c.Transfer_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.Transfer_Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Booking__c.Under_18__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -354,6 +357,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.AccountName</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Branch__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -443,6 +451,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Confirmed_Places__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Count_of_Estimated_Travel_Costs__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -474,6 +487,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Enquiries__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Enquiries_PSA_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Enquiries_PSA_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Enquiries_PSA_Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -533,6 +566,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Remaining_Places__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Reserved_Places__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Start_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -554,26 +597,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Women_Only__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-     <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Reserved_Places__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Remaining_Places__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Enquiries__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Confirmed_Places__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -623,17 +646,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Practitioner_Travel_Cost__c.Venue_PSA_Area__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Product2.Description</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Product2.ProductCode</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Practitioner_Travel_Cost__c.Venue_PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -653,17 +676,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Session__c.Additional_Information__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Session__c.Contact_Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Course_Status__c</field>
+        <field>Session__c.Course_Assignment__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Course_Assignment__c</field>
+        <field>Session__c.Course_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -683,7 +711,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.PSA_Area__c</field>
+        <field>Session__c.Practitioner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -698,7 +726,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Practitioner__c</field>
+        <field>Session__c.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -728,7 +756,32 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Session__c.Venue_County__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Session__c.Venue_Invoice_Paid__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Postcode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Street__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Town__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -868,6 +921,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Venue__c.Map_Url__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Venue__c.Other_Charges__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -943,17 +1001,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Venue__c.Venue_Info_For_Flow__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Venue__c.Venue_Schedule_Link__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Venue__c.Venue_Website__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Venue__c.Venue_Info_For_Flow__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1492,7 +1550,7 @@
         <layout>Asset-Practitioner Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Booking__c-Enquiry PSA Booking Layout</layout>
+        <layout>Booking__c-Booking Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Branch_Weighting__c-Branch Weighting Layout</layout>
@@ -1583,33 +1641,6 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>Course__c</object>
         <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>cpm__Payment__c</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>cpm__Mandate__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>cpm__Installment__c</object>
-        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -1711,6 +1742,33 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>cpm__Installment__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>cpm__Mandate__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>cpm__Payment__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>true</allowEdit>
@@ -1719,6 +1777,14 @@
         <object>gaid__Gift_Aid_Declaration__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>CourseSummarySLDS</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>CourseSummaryPDF</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Branch</recordType>

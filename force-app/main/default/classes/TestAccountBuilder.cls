@@ -13,6 +13,7 @@ public class TestAccountBuilder {
     private String capacityPSAemail;
     private String enquiriesPSAemail;
     private Boolean hasContactEmails;
+    private Id enquiriesPSA;
 
     private Boolean insertRecord = false;
 
@@ -76,6 +77,11 @@ public class TestAccountBuilder {
         return this;
     }
 
+    public TestAccountBuilder withEnquiriesPSA(Id userId) {
+        this.enquiriesPSA = userId;
+        return this;
+    }
+
     public TestAccountBuilder insertRecord(Boolean insertRecord) {
         this.insertRecord = insertRecord;
         return this;
@@ -92,7 +98,8 @@ public class TestAccountBuilder {
             Billing_Email__c = this.billingEmail,
             Zumzum__Bank_Sort_Code__c = this.bankSortCode,
             Zumzum__Bank_Account_No__c = this.bankAccountNumber,
-            Zumzum__Bank_Account_Name__c = this.bankAccountName
+            Zumzum__Bank_Account_Name__c = this.bankAccountName,
+            Enquiries_PSA__c = this.enquiriesPSA
         );
 
         if (hasContactEmails) {

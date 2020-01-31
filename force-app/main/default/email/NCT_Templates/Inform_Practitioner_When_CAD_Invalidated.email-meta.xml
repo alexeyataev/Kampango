@@ -4,17 +4,19 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Inform Practitioner When CAD Invalidated</name>
     <style>none</style>
-    <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
-    <textOnly>Dear {!Course_Assignment__c.OwnerFirstName}, 
+    <subject>Invalidation of NCT Course Assignment document for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
+    <textOnly>Dear {!Course_Assignment__c.OwnerFirstName},
 
-This CAD has been invalidated as one or more key details of the course have changed, or are changing.
+We’re writing to let you know that this Course Assignment Document is no longer up-to-date and has been invalidated. This is either because some of the course or fee details have changed, in which case a new Course Assignment Document will be issued to you in due course, or because we’ve had to make the difficult decision to cancel the course.
 
-Please contact your Capacity PSA if you need any further information.  
+If you have any questions about this please contact the Capacity PSA using the email address at the bottom of this email.
 
-Kind Regards,  
+Kind Regards,
 
 {!Course_Assignment__c.LastModifiedBy}
-Capacity PSA - {!Course_Assignment__c.PSA_Area__c}</textOnly>
+Capacity PSA – {!Course_Assignment__c.PSA_Area__c}
+Telephone: {!Course_Assignment__c.Capacity_PSA_Phone__c}
+Email: Any reply to this email should be sent to {!Course_Assignment__c.Capacity_PSA_Email__c}</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

@@ -1,0 +1,23 @@
+<template>
+
+    <div class='spinnerContainer'>
+        <template if:false={dataLoaded}>
+            <lightning-spinner alternative-text="Payment plan calculating..." size="small" variant='brand'></lightning-spinner>
+        </template>
+    </div>  
+
+    <lightning-radio-group 
+        name="radioGroup"
+        variant={isLabelVisible}
+        label="Payment Options"
+        options={options}
+        value={value}
+        type="radio"
+        onchange={chooseOption} >
+    </lightning-radio-group>
+
+    <template if:false={isPayByInstallmentsAvailable}>
+        <p class='installmentsIsNotAvailableMessage'>Paying in instalments is not available as your course date may be too close or the course fee may not meet the minimum cost</p>
+    </template>
+       
+</template>

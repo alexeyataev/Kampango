@@ -1,31 +1,54 @@
 public without sharing class CourseSearchUtility {
+    private static final String COURSE_STATUS_FINAL = 'Final';
+    private static final String SESSION_STATUS_CONFIRMED = 'Confirmed';
+
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static Course__c getCourseById(String courseName, Boolean hideFromPublicAccess){
         Course__c result = null;
         
-        List<Course__c> inCourses = [
-            SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
-                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c, Branch__r.Branch_Number__c,
-                    Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Title__c,
+        List<Course__c> inCourses;
+        if (hideFromPublicAccess) {
+            inCourses = [
+                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
+                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
+                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
                     (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
+                        FROM Sessions__r
+                        WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                        ORDER BY Date__c, Start__c
+                    )
+                FROM Course__c
+                WHERE Name = :courseName
+                    AND Status__c = :COURSE_STATUS_FINAL
+                    AND Hide_From_Course_Finder__c = FALSE
+                    AND Start_Date__c > TODAY
+                    AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
+                WITH SECURITY_ENFORCED
+            ];
+        } else {
+            inCourses = [
+                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
+                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
+                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
+                    (
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                     )
-            FROM Course__c
-            WHERE Name =: courseName
-            AND Status__c != 'Cancelling'
-            AND Status__c != 'Cancelled'
-            AND Status__c != 'Draft'
-            AND Start_Date__c > TODAY
-            AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
-            WITH SECURITY_ENFORCED
-        ];
-        
-        Boolean isCourseHidden = inCourses.isEmpty() || (hideFromPublicAccess && inCourses[0].Hide_From_Course_Finder__c);
-        if(!isCourseHidden) {
+                FROM Course__c
+                WHERE Name = :courseName
+                WITH SECURITY_ENFORCED
+            ];
+        }
+
+        if(!inCourses.isEmpty()) {
             result = inCourses[0];
         } 
 
@@ -38,7 +61,7 @@ public without sharing class CourseSearchUtility {
         if (course != null) {
             CourseFinderModel model = new CourseFinderModel(course);
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(replaceModelFilds(JSON.serializePretty(model)));
+            response.responseBody = Blob.valueOf(replaceModelFields(JSON.serializePretty(model)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
@@ -49,37 +72,48 @@ public without sharing class CourseSearchUtility {
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static List<Course__c> getCoursesByBranch(String branchId, Boolean hideFromPublicAccess){
-        List<Course__c> inCourses = [
-            SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
+        List<Course__c> inCourses;
+        if (hideFromPublicAccess) {
+            inCourses = [
+                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
-                    Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c,
+                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
                     (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
+                        FROM Sessions__r
+                        WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                        ORDER BY Date__c, Start__c
+                    )
+                FROM Course__c
+                WHERE Branch__r.Branch_Number__c = :branchId
+                    AND Status__c = :COURSE_STATUS_FINAL
+                    AND Hide_From_Course_Finder__c = FALSE
+                    AND Start_Date__c > TODAY
+                    AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
+                WITH SECURITY_ENFORCED
+            ];
+        } else {
+            inCourses = [
+                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
+                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
+                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
+                    (
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                     )
-            FROM Course__c
-            WHERE Branch__r.Branch_Number__c =: branchId
-            AND Status__c != 'Cancelling'
-            AND Status__c != 'Cancelled'
-            AND Status__c != 'Draft'
-            AND Start_Date__c > TODAY
-            AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
-            WITH SECURITY_ENFORCED
-        ];
-        
-        List<Course__c> courses = new List<Course__c>();
-
-        if(!inCourses.isEmpty()) {
-            for (Course__c course : inCourses) {
-                Boolean isCourseHidden = hideFromPublicAccess && course.Hide_From_Course_Finder__c;
-                if(!isCourseHidden) {
-                    courses.add(course);
-                }
-            } 
+                FROM Course__c
+                WHERE Branch__r.Branch_Number__c = :branchId
+                WITH SECURITY_ENFORCED
+            ];
         }
-        return courses;
+
+        return inCourses;
     }
     
     public static RestResponse getCoursesByBranch(String branchId) {
@@ -94,7 +128,7 @@ public without sharing class CourseSearchUtility {
             CoursesBranchModel branchModel = new CoursesBranchModel();
             branchModel.Courses = models;
             response.statusCode = HttpStatusCode.OK;
-            response.responseBody = Blob.valueOf(replaceModelFilds(JSON.serializePretty(branchModel)));
+            response.responseBody = Blob.valueOf(replaceModelFields(JSON.serializePretty(branchModel)));
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPInoResultsFound);
@@ -108,66 +142,61 @@ public without sharing class CourseSearchUtility {
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
         Location location = locationRequestParameters.location;
         Integer radius = locationRequestParameters.radius;
-        List<Course__c> courses = new List<Course__c>();
+        List<Course__c> inCourses = new List<Course__c>(); // to return empty list of courses if nothing were found.
 
         if (location == null){
-            return courses;
+            return inCourses;
         }
         
         if (radius == null || radius <= 0) {
             radius = DEFAULT_RADIUS; 
         }
 
-        List<Course__c> inCourses;
-
         if (hideFromPublicAccess) {
             inCourses = [
                 SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
-                    Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c,
+                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
                     (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
+                        WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                        ORDER BY Date__c, Start__c
                     )
                 FROM Course__c
                 WHERE Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi') < :radius
-                AND Status__c != 'Cancelling'
-                AND Status__c != 'Cancelled'
-                AND Status__c != 'Draft'
-                AND Start_Date__c > TODAY
-                AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
-                AND ((Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) OR (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate))
+                    AND Status__c = :COURSE_STATUS_FINAL
+                    AND Hide_From_Course_Finder__c = FALSE
+                    AND Start_Date__c > TODAY
+                    AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
+                    AND (
+                        (Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) 
+                            OR 
+                        (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate)
+                    )
                 WITH SECURITY_ENFORCED
             ];
         } else {
             inCourses = [
-               SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c,
+                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
-                    Main_Venue__r.Name, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c,
+                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
                     (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c, Specific_Attendee_Type__c
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                     )
                 FROM Course__c
                 WHERE Distance(Main_Venue__r.Location__c, :location, 'mi') < :radius
-                AND Status__c != 'Cancelled'
                 WITH SECURITY_ENFORCED
             ];
         }
-
-        if(!inCourses.isEmpty()) {
-            for (Course__c course : inCourses) {
-                Boolean isCourseHidden = hideFromPublicAccess && course.Hide_From_Course_Finder__c;
-                if(!isCourseHidden) {
-                    courses.add(course);
-                }
-            }
-        }
-        return courses;
+        return inCourses;
     }
 
     public static RestResponse getCoursesByDateDistance(Map <String, String> params){
@@ -213,7 +242,7 @@ public without sharing class CourseSearchUtility {
         CoursesDateDistanceModel sortedModel = new CoursesDateDistanceModel(models, lowestRankIncluded, radius);
         sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
         
-        return createResponse(HttpStatusCode.OK, replaceModelFilds(JSON.serializePretty(sortedModel)));
+        return createResponse(HttpStatusCode.OK, replaceModelFields(JSON.serializePretty(sortedModel)));
     }
 
     public class LocationRequestParameters{
@@ -299,7 +328,10 @@ public without sharing class CourseSearchUtility {
         return Date.today() + DIFFERENCE_FROM_TODAY;
     }
 
-    private static String replaceModelFilds(String model) {
+    /**
+     * Because it is not possible to declare 'Date' and 'End' class properties.
+     */
+    private static String replaceModelFields(String model) {
         return model.replace('Session_Date', 'Date').replace('Session_End', 'End');
     }
    
@@ -310,11 +342,9 @@ public without sharing class CourseSearchUtility {
         return response;
     }
 
-    public virtual class CustomTypeException extends Exception {} 
+    public class DateTypeException extends Exception {}
 
-    public class DateTypeException extends CustomTypeException {}
+    public class LocationTypeException extends Exception {}
 
-    public class LocationTypeException extends CustomTypeException {}
-
-    public class RadiusTypeException extends CustomTypeException {}
+    public class RadiusTypeException extends Exception {}
 }

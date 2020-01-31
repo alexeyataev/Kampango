@@ -1,4 +1,7 @@
 <apex:page standardController="Course__c">
     <c:CourseSummaryCourseDetails course="{!Course__c}"/>
-    <c:CourseSummarySessionDetails course="{!Course__c}"/>
+    <c:CourseSummaryPractitionerDetails course="{!Course__c}" fieldsetName="CourseSummaryPractitionerFields"/>
+    <c:CourseSummaryVenueDetails course="{!Course__c}"/>
+    <c:CourseSummarySessionDetails course="{!Course__c}" fieldsetName="CourseSummaryFields"/>
+    <c:CourseSummaryBookingDetails course="{!Course__c}" fieldsetName="CourseSummaryBookingFields"/>
 </apex:page>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Override_Estimated_Costs_Validation</name>
+    </customPermissions>
+    <description>Contains the Override Estimated Costs Validation custom permission</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Override Estimated Costs Validation</label>
+    <license>Salesforce</license>
+</PermissionSet>

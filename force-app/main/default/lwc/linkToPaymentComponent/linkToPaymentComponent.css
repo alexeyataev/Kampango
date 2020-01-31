@@ -1,6 +1,6 @@
 .paymentLink {
     display: inline-block;
-    font: 1.4em 'Lato', arial, sans-serif;
+    font: 1.3em 'Lato', arial, sans-serif;
     line-height: 2.5rem;
     background-color: #3AA43B;
     padding: 0 2.1rem;
@@ -19,4 +19,12 @@
 
 .paymentLink:active {
     transform:scale(0.98);
+}
+
+@media screen and (max-width:480px) {
+    .paymentLink {
+        padding: 0 1.2rem;
+        font-size: 1.2rem;
+        margin: 0 auto;
+    }
 }

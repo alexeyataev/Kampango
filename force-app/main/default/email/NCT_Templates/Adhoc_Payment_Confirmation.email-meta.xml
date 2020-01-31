@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Adhoc Payment Confirmation</name>
+    <style>none</style>
+    <subject>NCT payment success</subject>
+    <textOnly>Dear {!Zumzum__Sales_Invoice__c.Contact_First_Name__c}
+ 
+Thank you for making a payment to NCT. This transaction was successful.
+ 
+If you have any queries or questions about this payment, please get in touch with nctcourses@nct.org.uk
+ 
+ 
+Kind regards
+ 
+Finance team
+NCT
+nctcourses@nct.org.uk</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

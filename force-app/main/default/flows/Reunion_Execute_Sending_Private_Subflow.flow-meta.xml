@@ -14,6 +14,12 @@
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>clientTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
@@ -35,12 +41,6 @@
             <name>targetObjectId</name>
             <value>
                 <elementReference>booking.Primary_Contact__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>clientTemplate.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -58,6 +58,12 @@
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
         <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>clientTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>mergeObjectId</name>
             <value>
                 <elementReference>session.Id</elementReference>
@@ -81,12 +87,6 @@
                 <elementReference>booking.Partner_Contact__c</elementReference>
             </value>
         </inputParameters>
-        <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>clientTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
     </actionCalls>
     <actionCalls>
         <name>Send_to_host</name>
@@ -101,6 +101,12 @@
         <faultConnector>
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>hostTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
         <inputParameters>
             <name>mergeObjectId</name>
             <value>
@@ -125,12 +131,6 @@
                 <elementReference>booking.Primary_Contact__c</elementReference>
             </value>
         </inputParameters>
-        <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>hostTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
     </actionCalls>
     <actionCalls>
         <name>Send_to_host_partner</name>
@@ -145,6 +145,12 @@
         <faultConnector>
             <targetReference>Return_error_part_success</targetReference>
         </faultConnector>
+        <inputParameters>
+            <name>templateId</name>
+            <value>
+                <elementReference>hostTemplate.Id</elementReference>
+            </value>
+        </inputParameters>
         <inputParameters>
             <name>mergeObjectId</name>
             <value>
@@ -167,12 +173,6 @@
             <name>targetObjectId</name>
             <value>
                 <elementReference>booking.Partner_Contact__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>hostTemplate.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -474,7 +474,9 @@
             <label>Is host?</label>
         </rules>
     </decisions>
-    <description>Separated Org-Wide Address from Account Capacity/Enquiries emails</description>
+    <description>Sends emails of types &quot;Host&quot; and &quot;Attendee&quot; to Primary and Partner contacts.
+Version changes:
+Moved Org-Wide Address querying to Apex Action</description>
     <formulas>
         <name>host_names</name>
         <dataType>String</dataType>
@@ -593,13 +595,7 @@
         </faultConnector>
         <inputReference>course</inputReference>
     </recordUpdates>
-    <start>
-        <locationX>116</locationX>
-        <locationY>326</locationY>
-        <connector>
-            <targetReference>Loop_to_set_host_names</targetReference>
-        </connector>
-    </start>
+    <startElementReference>Loop_to_set_host_names</startElementReference>
     <status>Active</status>
     <variables>
         <name>booking</name>
