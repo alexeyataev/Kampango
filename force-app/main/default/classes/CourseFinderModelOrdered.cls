@@ -34,14 +34,14 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
     }
 
     private Integer getGroup(List<CompareValue> compareValues, Integer numberDays) {
-        Integer i = INAPPROPRIATE_GROUP;
+        Integer i = 0;
         for (CompareValue compareValue : compareValues) {
+            i++;
             if (compareValue.minNumber <= numberDays && compareValue.maxNumber >= numberDays) {
-                i++;
                 return i;
             } 
         }
-        return i;
+        return 0;
     }
 
     private List<CourseTypeRank> createOrderToRank() {
