@@ -15,10 +15,11 @@ public with sharing class CourseDetailControllerTest {
             .buildCourseWithTypeAndSubType('Postnatal','NCT Baby Massage course')
             .buildSession();
 
-        Integer coursesToCreate = 6;
-        Integer sessionsToCreate = 12;
+        Integer coursesToCreate = 4;
+        Integer provisionSessionsToCreate = 5;
+        Integer confirmedSessionsToCreate = 5;
 
-        testDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
+        testDataFactory.buildCoursesWithChoseNumberAndStatusSessions(coursesToCreate, provisionSessionsToCreate,confirmedSessionsToCreate);
     }
 
     @IsTest
