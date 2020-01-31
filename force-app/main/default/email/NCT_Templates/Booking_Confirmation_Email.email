@@ -37,8 +37,10 @@
                     {!relatedTo.Course__r.Enquiries_PSA_Name__c}<br />
                     Course Organiser<br />
                     Telephone: {!relatedTo.Course__r.Enquiries_PSA_Phone__c}<br />
-                    Email: Any reply to this email should be sent to <a
-                        href='bookings{!relatedTo.Course__r.PSA_Area__c}@nct.org.uk'>bookings{!relatedTo.Course__r.PSA_Area__c}@nct.org.uk</a>
+                    Email: Any reply to this email should be sent to&nbsp;
+                    <apex:outputText value="{!$Label.Confirmation_Reply_Email_Url}">
+                        <apex:param value="{!relatedTo.Course__r.PSA_Area__c}" />
+                    </apex:outputText>
                 </div>
             </div>
         </body>
