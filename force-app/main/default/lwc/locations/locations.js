@@ -25,7 +25,6 @@ export default class Locations extends LightningElement {
                 );
             });
             
-        this.locationHeader = this.venues.length > 1 ? 'Locations' : 'Location';
         this.sessions = this.excludeProvisionalSessions(this.sessions);
         this.venues = this.deduplicateVenues(this.venues);
         this.formatVenues();

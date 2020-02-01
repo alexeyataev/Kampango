@@ -18,7 +18,7 @@ public with sharing class VenueDetailsControllerTest {
                 .buildCourse()
                 .buildEstimatedCosts()
                 .buildSession()
-                .buildReunion()
+                .buildSessionWithTypeAndStatus('Reunion', 'Confirmed')
                 .buildVenueContact();
     }
 

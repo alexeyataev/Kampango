@@ -4,9 +4,9 @@ import { loadStyle } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class Sessions extends LightningElement {
-
+    @api courseHasProvisionalReunion = false;
     @api sessions;
-    @api sessionHeader = 'Sessions';
+    @api sessionHeader;
     @api formattedSessions;
 
     connectedCallback() {
@@ -50,18 +50,20 @@ export default class Sessions extends LightningElement {
             }
         );
         this.formattedSessions = formattedArray;
-        console.log(JSON.stringify(this.formattedSessions));
     }
 
     excludeProvisionalSessions(sessionList){
         let finalArray = [];
         sessionList.forEach(
             row => {
-                if(row.Status__c === 'Confirmed'){
+                if(row.Status__c === 'Confirmed') {
                     finalArray.push(row);
+                } else if (row.Type__c === 'Reunion') {
+                    this.courseHasProvisionalReunion = true;
                 }
             }
         );
+
         return finalArray;
     }
 
