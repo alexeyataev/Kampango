@@ -9,23 +9,6 @@
     <type>Picklist</type>
     <valueSet>
         <restricted>true</restricted>
-        <valueSetDefinition>
-            <sorted>false</sorted>
-            <value>
-                <fullName>Success</fullName>
-                <default>false</default>
-                <label>Success</label>
-            </value>
-            <value>
-                <fullName>Failure</fullName>
-                <default>false</default>
-                <label>Failure</label>
-            </value>
-            <value>
-                <fullName>Waiting</fullName>
-                <default>true</default>
-                <label>Waiting</label>
-            </value>
-        </valueSetDefinition>
+        <valueSetName>Care_Status</valueSetName>
     </valueSet>
 </CustomField>

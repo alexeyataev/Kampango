@@ -38,7 +38,7 @@ public without sharing class AddBankDetailsForMembershipTest {
         contactBankAccountDetails.bankDetailNumber = '331257';
         contactBankAccountDetails.information = 'Added new account';
         contactBankAccountObject.contactBankAccount = contactBankAccountDetails;
-        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(JSON.serialize(contactBankAccountObject)));
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactBankAccountObject));
         List<cpm__Installment__c> testInstallmentList = [SELECT Id, cpm__Payment_Profile__c, cpm__Contact__c FROM cpm__Installment__c LIMIT 1];
         List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails(testInstallmentList);
         Test.stopTest();
@@ -46,17 +46,18 @@ public without sharing class AddBankDetailsForMembershipTest {
     }
 
     @isTest static void AddBankDetailsError_BankDetailsNotAdded_ErrorReturned() {
+        String errorMessage = 'Error';
         Test.startTest();
         CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = new CareRequestBodyUtil.ContactBankAccountObject();
         CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();
-        errorObject.errorMessage = 'Error';
+        errorObject.errorMessage = errorMessage;
         errorObject.errorNumber = '400';
         contactBankAccountObject.error = new List<CareRequestBodyUtil.ErrorObject>();
         contactBankAccountObject.error.add(errorObject);
-        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(JSON.serialize(contactBankAccountObject)));
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactBankAccountObject));
         List<cpm__Installment__c> testInstallmentList = [SELECT Id, cpm__Contact__c, cpm__Payment_Profile__c FROM cpm__Installment__c LIMIT 1];
         List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails(testInstallmentList);
         Test.stopTest();
-        System.assertEquals(resultList[0].error, 'Error');
+        System.assertEquals(resultList[0].error, errorMessage);
     }
 }
