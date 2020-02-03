@@ -24,7 +24,7 @@ public with sharing class CareHelper {
         HttpRequest req = new HttpRequest();
         req.setTimeout(120000);
         req.setHeader('Content-Type', 'application/json');
-        req.setEndpoint(CareRequestBodyUtil.URL + methodName);
+        req.setEndpoint(CareRequestBodyUtil.BASE_URL + methodName);
         req.setMethod('POST');
         req.setBody(body);
         Http http = new Http();
