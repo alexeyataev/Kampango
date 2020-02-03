@@ -9,19 +9,20 @@
         <value>https://www.nct.org.uk/baby-toddler/everyday-care/baby-massage-tips-and-benefits</value>
     </labels>
     <labels>
+        <fullName>Bookings_Reply_Email</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Bookings Reply Email</shortDescription>
+        <value>bookings{0}@nct.org.uk</value>
+    </labels>
+    <labels>
         <fullName>Confirmation_Notification_Course_Reunion</fullName>
         <categories>Confirmation Notification</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Confirmation Notification Course Reunion</shortDescription>
         <value>There is also a 2-hour reunion for all course participants with their new baby after the birth. Your course leader will agree a date, time and location for this with you.</value>
-    </labels>
-    <labels>
-        <fullName>Confirmation_Reply_Email_Url</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Confirmation Reply Email Url</shortDescription>
-        <value>bookings{0}@nct.org.uk</value>
     </labels>
     <labels>
         <fullName>ContactUpdateException</fullName>
