@@ -1,7 +1,9 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
 @isTest
 public without sharing class AddMembershipTest {
-
+    private static final String MESSAGE_TEXT_ERROR = 'Error';
+    private static final String MESSAGE_TEXT_SUCCESS = 'Success';
+    private static final String ERROR_NUMBER = '400';
     @testSetup static void createTestData() {
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account account =  accountBuilder
@@ -34,32 +36,32 @@ public without sharing class AddMembershipTest {
     @isTest static void AddMembershipBatch_MembershipAdded_StatusSuccess() {
         Test.startTest();
         CareRequestBodyUtil.MembershipOjbect membershipOjbect = new CareRequestBodyUtil.MembershipOjbect();
-        membershipOjbect.status = 'Success';
-        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(JSON.serialize(membershipOjbect)));
+        membershipOjbect.status = MESSAGE_TEXT_SUCCESS;
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(membershipOjbect));
         AddMembershipBatch camb = new AddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();
         cpm__Installment__c installmentUpdated = [SELECT Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c LIMIT 1];
         System.assertEquals(installmentUpdated.Care_Membership_Added__c, true);
         System.assertEquals(installmentUpdated.Care_Error_Log__c, null);
-        System.assertEquals(installmentUpdated.Care_Status__c, 'Success');
+        System.assertEquals(installmentUpdated.Care_Status__c, MESSAGE_TEXT_SUCCESS);
     }
 
     @isTest static void AddMembershipBatchError_MembershipNotAdded_StatusError() {
         Test.startTest();
         CareRequestBodyUtil.MembershipOjbect membershipOjbect = new CareRequestBodyUtil.MembershipOjbect();
-        membershipOjbect.status = 'Error';
+        membershipOjbect.status = MESSAGE_TEXT_ERROR;
         CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();
-        errorObject.errorMessage = 'Error';
-        errorObject.errorNumber = '400';
+        errorObject.errorMessage = MESSAGE_TEXT_ERROR;
+        errorObject.errorNumber = ERROR_NUMBER;
         membershipOjbect.error = new List<CareRequestBodyUtil.ErrorObject>();
         membershipOjbect.error.add(errorObject);
-        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(JSON.serialize(membershipOjbect)));
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(membershipOjbect));
         AddMembershipBatch camb = new AddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();
         cpm__Installment__c testInstallment = [SELECT Care_Membership_Added__c, Care_Error_Log__c FROM cpm__Installment__c LIMIT 1];
         System.assertEquals(testInstallment.Care_Membership_Added__c, false);
-        System.assertEquals(testInstallment.Care_Error_Log__c, 'Error');
+        System.assertEquals(testInstallment.Care_Error_Log__c, MESSAGE_TEXT_ERROR);
     }
 }
