@@ -6,7 +6,7 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
     public Integer Rank {get; set;}
     public Integer Order {get; set;}
     private transient List<CourseTypeRank> courseTypeRanks;
-    private transient Integer groupR {get; set;}
+    private transient Integer groupRange {get; set;}
     
     public CourseFinderModelOrdered(Course__c course, Date birthDueDate) {
         super(course);
@@ -20,28 +20,28 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
             numberDays = course.Type__c == 'Antenatal' ? course.End_Date__c.daysBetween(birthDueDate) : course.Start_Date__c.daysBetween(birthDueDate);
             numberDays = Math.abs(numberDays);
             for (CourseTypeRank courseTypeRank : courseTypeRanks) {
-                Integer groupR = getGroup(courseTypeRank.compareValues, numberDays);
-                if (courseTypeRank.courseType == course.Sub_Type__c && groupR > INAPPROPRIATE_GROUP) {
+                Integer groupRange = getGroup(courseTypeRank.compareValues, numberDays);
+                if (courseTypeRank.courseType == course.Sub_Type__c && groupRange > INAPPROPRIATE_GROUP) {
                     this.Rank = courseTypeRank.rank;
-                    this.groupR = groupR;
+                    this.groupRange = groupRange;
                     return;
                 }
             } 
         } 
 
         this.Rank = INAPPROPRIATE_RANK;
-        this.groupR = INAPPROPRIATE_GROUP;
+        this.groupRange = INAPPROPRIATE_GROUP;
     }
 
     private Integer getGroup(List<CompareValue> compareValues, Integer numberDays) {
-        Integer i = INAPPROPRIATE_GROUP;
+        Integer i = 0;
         for (CompareValue compareValue : compareValues) {
+            i++;
             if (compareValue.minNumber <= numberDays && compareValue.maxNumber >= numberDays) {
-                i++;
                 return i;
             } 
         }
-        return i;
+        return 0;
     }
 
     private List<CourseTypeRank> createOrderToRank() {
@@ -367,9 +367,9 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
         } else if (this.Rank < compareToModel.Rank) {
             return -1;
         } else {// comparting the same rank by groupInsideRank
-            if (this.groupR > compareToModel.groupR){
+            if (this.groupRange > compareToModel.groupRange){
                 return 1;
-            } else if (this.groupR < compareToModel.groupR) {
+            } else if (this.groupRange < compareToModel.groupRange) {
                 return -1;
             } else {//Comparing course numbers
                 if (this.Id > compareToModel.Id){
