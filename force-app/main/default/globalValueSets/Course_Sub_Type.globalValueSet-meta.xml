@@ -45,6 +45,16 @@
         <default>false</default>
         <label>One to One</label>
     </customValue>
+    <customValue>
+        <fullName>NCT Mother and Baby Yoga</fullName>
+        <default>false</default>
+        <label>NCT Mother and Baby Yoga</label>
+    </customValue>
+    <customValue>
+        <fullName>NCT Yoga for Pregnancy</fullName>
+        <default>false</default>
+        <label>NCT Yoga for Pregnancy</label>
+    </customValue>
     <masterLabel>Course Sub Type</masterLabel>
     <sorted>false</sorted>
 </GlobalValueSet>
