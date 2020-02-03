@@ -9,7 +9,7 @@
     OR(Count_of_Unconfirmed_Non_Reunion_Session__c &gt; 0, 
        Count_of_Sessions_Without_Practitioner__c &gt; 0, 
        Number_of_Sessions__c &lt; 1),
-	NOT(ISPICKVAL(Type__c, &quot;Drop In&quot;)),
+    NOT(ISPICKVAL(Type__c, &quot;Drop In&quot;)),
     NOT($Permission.Override_Course_Validation)
 )</errorConditionFormula>
     <errorMessage>Please ensure that all sessions have a practitioner assigned and all non-reunion sessions are confirmed.</errorMessage>
