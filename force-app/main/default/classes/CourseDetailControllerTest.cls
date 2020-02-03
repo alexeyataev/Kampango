@@ -10,32 +10,29 @@ public with sharing class CourseDetailControllerTest {
             .buildPractitionerFeeRate()
             .buildVenue()
             .buildRoom()
-            .buildLicenceToPractice()
-            .buildCourseWithTypeAndSubType('Antenatal','NCT Waterbirth workshop')
-            .buildCourseWithTypeAndSubType('Postnatal','NCT Baby Massage course')
-            .buildSession();
+            .buildLicenceToPractice();
 
-        Integer coursesToCreate = 6;
-        Integer sessionsToCreate = 12;
+        Integer coursesToCreate = 4;
+        Integer provisionSessionsToCreate = 5;
+        Integer confirmedSessionsToCreate = 5;
 
-        testDataFactory.buildCoursesWithSessions(coursesToCreate, sessionsToCreate);
+        testDataFactory.buildCoursesWithChoseNumberAndStatusSessions(coursesToCreate, provisionSessionsToCreate,confirmedSessionsToCreate);
     }
 
     @IsTest
     private static void retrieveRelatedSessions_passValidCourseId_sessionsRetrieved(){
         List<Session__c> sessions = new List<Session__c>();
-        String courseId = [SELECT Id FROM Course__c WHERE Type__c = 'Postnatal'].Id;
+        String courseId = [SELECT Id FROM Course__c WHERE Type__c = 'Antenatal' LIMIT 1].Id;
         Test.startTest();
         sessions = CourseDetailController.retrieveRelatedSessions(courseId);
         Test.stopTest();
         System.assert(sessions.size() > 0);
-        System.assert(sessions.size() != 20);
     }
 
     @IsTest
     private static void retrieveRelatedSessions_passInvalidCourseId_sessionsNotRetrieved(){
         List<Session__c> sessions = new List<Session__c>();
-        String courseId = [SELECT Id FROM Course__c WHERE Type__c = 'Postnatal'].Id;
+        String courseId = [SELECT Id FROM Course__c WHERE Type__c = 'Antenatal' LIMIT 1].Id;
         courseId = courseId.left(10) + '11111111';
         Test.startTest();
         sessions = CourseDetailController.retrieveRelatedSessions(courseId);

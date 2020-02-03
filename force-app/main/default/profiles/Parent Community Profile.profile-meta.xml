@@ -83,7 +83,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Email_Template_Utility_Field__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1762,6 +1762,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Contact_First_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Account__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2337,12 +2342,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cpm__Installment__c.cpm__Status_Reason__c</field>
-        <readable>false</readable>
+        <field>cpm__Installment__c.cpm__Status__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cpm__Installment__c.cpm__Status__c</field>
+        <field>cpm__Installment__c.cpm__Status_Reason__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
