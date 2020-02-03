@@ -31,6 +31,7 @@ public without sharing class BookingJourneyHelper {
                 SELECT Email__c, Post__c, SMS__c, Telephone__c
                 FROM Individual
                 WHERE Id = :individualId
+                WITH SECURITY_ENFORCED
             ];
         }
         if(individuals != null && !individuals.isEmpty()){

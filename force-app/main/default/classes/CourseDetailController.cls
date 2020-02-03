@@ -21,6 +21,7 @@ public with sharing class CourseDetailController {
             FROM Session__c
             WHERE Course__c = :courseId
             AND (Status__c = 'Confirmed' OR Type__c = 'Reunion')
+            WITH SECURITY_ENFORCED
             ORDER BY Date__c, Start__c
         ];
 
