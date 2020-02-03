@@ -48,5 +48,13 @@
             <controllingFieldValue>Postnatal</controllingFieldValue>
             <valueName>NCT Baby Massage course</valueName>
         </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Drop In</controllingFieldValue>
+            <valueName>NCT Mother and Baby Yoga</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Drop In</controllingFieldValue>
+            <valueName>NCT Yoga for Pregnancy</valueName>
+        </valueSettings>
     </valueSet>
 </CustomField>
