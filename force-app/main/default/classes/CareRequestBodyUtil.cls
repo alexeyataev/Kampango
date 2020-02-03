@@ -3,7 +3,7 @@ public with sharing class CareRequestBodyUtil {
     public static final String AUTH_KEY = Care_Settings__c.getOrgDefaults().Auth_Key__c;
     public static final String SF_ENVIRONMENT_NAME = Care_Settings__c.getOrgDefaults().SF_Environment_Name__c;
     public static final String SOURCE = Care_Settings__c.getOrgDefaults().Source__c;
-    public static final String URL = Care_Settings__c.getOrgDefaults().Url__c;
+    public static final String BASE_URL = Care_Settings__c.getOrgDefaults().Base_Url__c;
     private static final String USER_LOG_NAME = Care_Settings__c.getOrgDefaults().User_Log_Name__c;
     private static final String CLAIM_DAY = '3';
     public static String createSendContactBody(Contact cont) {
@@ -97,7 +97,7 @@ public with sharing class CareRequestBodyUtil {
         private String amount {get;set;}
         private String txCode {get;set;}
     }
-    private abstract class BaseResponse {
+    public abstract class BaseResponse {
         public List<ErrorObject> error {get;set;}
     }
     public class ErrorObject {
