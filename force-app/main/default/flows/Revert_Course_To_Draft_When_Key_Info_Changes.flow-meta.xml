@@ -78,7 +78,7 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
-            <conditionLogic>6 AND (1 OR 2 OR 3 OR 4 OR 5)</conditionLogic>
+            <conditionLogic>6 AND 7 AND (1 OR 2  OR 3 OR 4 OR 5)</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -277,13 +277,44 @@
                     <stringValue>Final</stringValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Type__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Drop In</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
             <label>Key Info Changes</label>
         </rules>
     </decisions>
-    <interviewLabel>Revert_Course_To_Draft_When_Key_Info_Changes-4_InterviewLabel</interviewLabel>
+    <interviewLabel>Revert_Course_To_Draft_When_Key_Info_Changes-6_InterviewLabel</interviewLabel>
     <label>Revert Course To Draft When Key Info Changes</label>
     <processMetadataValues>
         <name>ObjectType</name>
