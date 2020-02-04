@@ -12,5 +12,5 @@
               Count_of_Estimated_Venue_Costs__c &lt; 1))),
     NOT($Permission.Override_Course_Validation)
 )</errorConditionFormula>
-    <errorMessage>To mark a course as final requires a course fee, main venue and estimated travel &amp; venue costs. Please ensure you&#39;ve completed all of these.</errorMessage>
+    <errorMessage>To mark a course as final requires a course fee, main venue and estimated travel &amp; venue costs if the course type isn&#39;t &quot;Drop In&quot;. Please ensure you&#39;ve completed all of these.</errorMessage>
 </ValidationRule>
