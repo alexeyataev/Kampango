@@ -147,6 +147,15 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
+        <members>Case.Booking__c</members>
+        <members>Case.ContactId</members>
+        <members>Case.Description</members>
+        <members>Case.Origin</members>
+        <members>Case.OwnerId</members>
+        <members>Case.Priority</members>
+        <members>Case.Status</members>
+        <members>Case.Subject</members>
+        <members>Case.Type</members>
         <members>Contact.AccountId</members>
         <members>Contact.Deducted_Practitioner_Fees__c</members>
         <members>Contact.Home_PSA__c</members>
@@ -458,6 +467,8 @@
         <members>Asset-Practitioner Asset Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Branch_Weighting__c-Branch Weighting Layout</members>
+        <members>Case-Case Layout</members>
+        <members>CaseClose-Close Case Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
         <members>Contact-Practitioner Community Layout</members>
@@ -495,6 +506,10 @@
         <members>successPaymentPage</members>
         <members>courseTransferDetails</members>
         <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>Case.Course_Booking_Manual_Administration_Case</members>
+        <name>ListView</name>
     </types>
     <types>
         <members>Parent Community</members>
@@ -535,6 +550,10 @@
         <members>PSA Manager</members>
         <members>Website Integration</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>Course_Booking_Manual_Administration</members>
+        <name>Queue</name>
     </types>
     <types>
         <members>Booking__c.Send_Confirmation_Email</members>
@@ -601,6 +620,9 @@
     </types>
     <types>
         <members>AccountType</members>
+        <members>CaseOrigin</members>
+        <members>CaseStatus</members>
+        <members>CaseType</members>
         <members>TaskSubject</members>
         <name>StandardValueSet</name>
     </types>
