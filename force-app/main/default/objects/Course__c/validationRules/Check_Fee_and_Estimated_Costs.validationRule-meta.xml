@@ -5,10 +5,11 @@
     <errorConditionFormula>AND(
     OR(ISNEW(), ISCHANGED(Status__c)),
     ISPICKVAL(Status__c, &quot;Final&quot;),
-    OR(ISBLANK(Fee__c), 
-       Count_of_Estimated_Travel_Costs__c &lt; 1,
-       Count_of_Estimated_Venue_Costs__c &lt; 1,
-       ISBLANK(Main_Venue__c )),
+    OR(ISBLANK(Fee__c),
+       ISBLANK(Main_Venue__c),
+       AND(NOT(ISPICKVAL(Type__c, &quot;Drop In&quot;)),
+           OR(Count_of_Estimated_Travel_Costs__c &lt; 1,
+              Count_of_Estimated_Venue_Costs__c &lt; 1))),
     NOT($Permission.Override_Course_Validation)
 )</errorConditionFormula>
     <errorMessage>To mark a course as final requires a course fee, main venue and estimated travel &amp; venue costs. Please ensure you&#39;ve completed all of these.</errorMessage>
