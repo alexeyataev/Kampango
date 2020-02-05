@@ -189,6 +189,7 @@
         <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c.Practitioner__c</members>
         <members>Zumzum__Sales_Invoice__c.Booking__c</members>
+        <members>Zumzum__Sales_Invoice_Line_Item__c.Course__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -452,6 +453,7 @@
         <members>Update_Practitioner_Licence_on_Sessions_related_to_Course</members>
         <members>Update_Practitioner_on_Sessions</members>
         <members>Update_Related_Sessions</members>
+        <members>Update_Revenue_Dates</members>
         <members>Update_service_field_on_session</members>
         <members>Update_Session_Fee_Rate_When_Branch_Weighting_Changes</members>
         <members>Update_Session_Fee_Rates_When_Practitioner_Band_Changes</members>

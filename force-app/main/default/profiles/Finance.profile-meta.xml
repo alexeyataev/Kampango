@@ -4248,6 +4248,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Sales_Invoice_Line_Item__c.Course__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Sales_Invoice_Line_Item__c.Zumzum__Case__c</field>
         <readable>true</readable>
     </fieldPermissions>
