@@ -183,7 +183,6 @@
     <types>
         <members>Booking__c-Admin Booking Layout</members>
         <members>Booking__c-Enquiry PSA Booking Layout</members>
-        <members>CaseClose-Close Case Layout</members>
         <members>Course__c-Admin Course Layout</members>
         <members>Course__c-Capacity PSA Course Layout</members>
         <name>Layout</name>
