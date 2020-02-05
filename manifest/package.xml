@@ -653,6 +653,7 @@
         <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
         <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
+        <members>Course__c.Check_Drop_In_Schedule_Information</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Fee_Discount_Uplift_fields</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
