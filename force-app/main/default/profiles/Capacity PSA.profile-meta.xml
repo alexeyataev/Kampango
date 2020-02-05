@@ -520,6 +520,11 @@
         <editable>false</editable>
         <field>Course__c.Course_Duration__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Drop_In_Schedule_Information__c</field>
+        <readable>true</readable>
     </fieldPermissions> 
     <fieldPermissions>
         <editable>false</editable>
