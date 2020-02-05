@@ -6,7 +6,7 @@
         <tr style='font-size:16px;color:#00876a;'>
             <th>Starts</th>
             <th>Ends</th>
-            <th>Course leader</th>
+            <th>Course leader(s)</th>
         </tr>
         <tr align='left'>
             <td valign='top'>
@@ -26,6 +26,7 @@
             </td>
         </tr>
     </table>
+    <br/>
     <h3 style='border-bottom:1px solid#f0f0f0; margin-top:20px; color:#00876a;'>Location(s)</h3>
     <table border="0" cellpadding='1' cellspacing='0' width='100%' style="text-align:left; vertical-align: top;">
         <tr align='left'>
@@ -47,11 +48,11 @@
     <h3 style='border-bottom:1px solid#f0f0f0; color:#00876a;font-size:16px;'>Session(s)</h3>
     <table cellspacing="0" cellpadding="10" rules="rows" border="0" width="100%" align='center'>
         <tr align='left'>
-            <th>Sessions</th>
+            <th>Session(s)</th>
             <th>Date</th>
             <th>Starts</th>
             <th>Ends</th>
-            <th>Session notes</th>
+            <th>Session note(s)</th>
         </tr>
         <apex:repeat value="{!sessionListWrapper}" var="session">
             <tr>
