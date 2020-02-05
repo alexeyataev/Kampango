@@ -24,7 +24,7 @@ export default class Locations extends LightningElement {
                     }),
                 );
             });
-            
+
         this.sessions = this.excludeProvisionalSessions(this.sessions);
         this.venues = this.deduplicateVenues(this.venues);
         this.formatVenues();
@@ -42,22 +42,21 @@ export default class Locations extends LightningElement {
             }
         );
         this.venues = finalArray;
-        
     }
 
     getVenueToSessionMap(sessionList){
         let venueIdSessionListMap = new Map();
         sessionList.forEach(
             (row, index) => {
-                if(venueIdSessionListMap.has(row.Venue__c)){
-                    let sessionNumbers = venueIdSessionListMap.get(row.Venue__c);
+                if(venueIdSessionListMap.has(row.Venue_Id__c)){
+                    let sessionNumbers = venueIdSessionListMap.get(row.Venue_Id__c);
                     if(!sessionNumbers.includes('sessions')){
                         sessionNumbers = sessionNumbers.replace('session', 'sessions');
                     }
                     sessionNumbers = sessionNumbers + ', ' + ++index;
-                    venueIdSessionListMap.set(row.Venue__c, sessionNumbers);
-                } else{
-                    venueIdSessionListMap.set(row.Venue__c, 'session ' + ++index);
+                    venueIdSessionListMap.set(row.Venue_Id__c, sessionNumbers);
+                } else {
+                    venueIdSessionListMap.set(row.Venue_Id__c, 'session ' + ++index);
                     
                 }
             }
@@ -69,7 +68,7 @@ export default class Locations extends LightningElement {
         let deduplcicatedVenues = new Map();
         venues.forEach(
             row => {
-                if(!deduplcicatedVenues.has(row.Id)){
+                if(row.Id && !deduplcicatedVenues.has(row.Id)){
                     deduplcicatedVenues.set(row.Id, row);
                 }
             }
