@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sort_Date__c</fullName>
+    <description>Used for CouseAPI</description>
+    <externalId>false</externalId>
+    <formula>IF(TEXT(Type__c) = &#39;Antenatal&#39;, End_Date__c, Start_Date__c) 
+/* As logic for Drop-ins are not defined, they are grouped with Postnatal for simplisity */</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Used for CouseAPI</inlineHelpText>
+    <label>Sort Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>
