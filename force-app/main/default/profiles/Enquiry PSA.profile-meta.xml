@@ -1599,9 +1599,6 @@
         <layout>Case-Case Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CaseClose-Close Case Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Contact-Client Layout</layout>
         <recordType>Contact.Clients</recordType>
     </layoutAssignments>
