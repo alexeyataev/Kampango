@@ -11,12 +11,12 @@ public with sharing class CourseDetailController {
                     Type__c,
                     Status__c,
                     Additional_Information__c,
-                    Venue_Postcode__c,
-                    Venue_Street__c,
-                    Venue_County__c,
-                    Venue_Town__c,
-                    Venue_Name__c,
-                    Venue_Id__c
+                    Location_Postcode__c,
+                    Location_Street__c,
+                    Location_County__c,
+                    Location_Town__c,
+                    Location_Name__c,
+                    Location_Id__c
             FROM Session__c
             WHERE Course__c = :courseId
             AND (Status__c = 'Confirmed' OR Type__c = 'Reunion')

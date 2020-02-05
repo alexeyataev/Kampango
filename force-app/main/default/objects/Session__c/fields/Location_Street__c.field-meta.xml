@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Venue_Id__c</fullName>
+    <fullName>Location_Street__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(ISBLANK(Venue__c), IF(ISBLANK(Parent_Host__c),&#39;&#39;,Parent_Host__c), Venue__c)</formula>
-    <label>Venue Id</label>
+    <formula>IF( NOT( ISBLANK(Venue__c) ),
+ IF( ISBLANK( Venue__r.Host__c ),
+  Venue__r.Street_Address__c,
+  Venue__r.Host__r.MailingStreet
+ ),
+ Parent_Host__r.MailingStreet
+)</formula>
+    <label>Location Street</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
