@@ -26,7 +26,6 @@
             </td>
         </tr>
     </table>
-
     <h3 style='border-bottom:1px solid#f0f0f0; margin-top:20px; color:#00876a;'>Location(s)</h3>
     <table border="0" cellpadding='1' cellspacing='0' width='100%' style="text-align:left; vertical-align: top;">
         <tr align='left'>
@@ -38,6 +37,7 @@
                     <div>{!location.locationOfSession.Venue_County__c}</div>
                     <div>{!location.locationOfSession.Venue_Town__c}</div>
                     <div>{!location.locationOfSession.Venue_Postcode__c}</div>
+                    <div> <a href="{!location.locationOfSession.Venue_Map_Url__c}">Click here to see a map</a> </div>
                     <br/>
                 </td>
             </apex:repeat>
