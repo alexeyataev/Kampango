@@ -24,13 +24,13 @@ public with sharing class ConfirmationEmailController {
                         Additional_Information__c,
                         Status__c,
                         Type__c,
-                        Venue_Postcode__c,
-                        Venue_Map_Url__c,
-                        Venue_Street__c,
-                        Venue_County__c,
-                        Venue_Town__c,
-                        Venue_Name__c,
-                        Venue_Id__c,
+                        Location_Postcode__c,
+                        Location_Map_Url__c,
+                        Location_Street__c,
+                        Location_County__c,
+                        Location_Town__c,
+                        Location_Name__c,
+                        Location_Id__c,
                         Practitioner__c,
                         Practitioner__r.Name,
                         Practitioner__r.Phone
@@ -65,20 +65,20 @@ public with sharing class ConfirmationEmailController {
 
         sessionListWrapper = new List<SessionWrapper>();
         for (Integer i = 0; i < sessions.size(); i++) {
-            if (String.isNotBlank(sessions[i].Venue_Id__c)) {
-                if (!venueIdWithSessionNumbersMap.containsKey(sessions[i].Venue_Id__c)) {
-                    venueIdWithSessionNumbersMap.put(sessions[i].Venue_Id__c, new List<Integer>());
+            if (String.isNotBlank(sessions[i].Location_Id__c)) {
+                if (!venueIdWithSessionNumbersMap.containsKey(sessions[i].Location_Id__c)) {
+                    venueIdWithSessionNumbersMap.put(sessions[i].Location_Id__c, new List<Integer>());
                 }
 
-                venueIdWithSessionNumbersMap.get(sessions[i].Venue_Id__c).add(i + 1);
-                sessionMap.put(sessions[i].Venue_Id__c, sessions[i]);
+                venueIdWithSessionNumbersMap.get(sessions[i].Location_Id__c).add(i + 1);
+                sessionMap.put(sessions[i].Location_Id__c, sessions[i]);
              }
              sessionListWrapper.add(new SessionWrapper(sessions[i], i + 1));
         }
 
         locationListWrapper = new List<LocationWrapper>();
         for (Session__c session : sessionMap.values()) {
-            locationListWrapper.add(new LocationWrapper(session, venueIdWithSessionNumbersMap.get(session.Venue_Id__c)));
+            locationListWrapper.add(new LocationWrapper(session, venueIdWithSessionNumbersMap.get(session.Location_Id__c)));
         }
     }
 

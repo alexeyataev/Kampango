@@ -48,15 +48,15 @@ export default class Locations extends LightningElement {
         let venueIdSessionListMap = new Map();
         sessionList.forEach(
             (row, index) => {
-                if(venueIdSessionListMap.has(row.Venue_Id__c)){
-                    let sessionNumbers = venueIdSessionListMap.get(row.Venue_Id__c);
+                if(venueIdSessionListMap.has(row.Location_Id__c)){
+                    let sessionNumbers = venueIdSessionListMap.get(row.Location_Id__c);
                     if(!sessionNumbers.includes('sessions')){
                         sessionNumbers = sessionNumbers.replace('session', 'sessions');
                     }
                     sessionNumbers = sessionNumbers + ', ' + ++index;
-                    venueIdSessionListMap.set(row.Venue_Id__c, sessionNumbers);
+                    venueIdSessionListMap.set(row.Location_Id__c, sessionNumbers);
                 } else {
-                    venueIdSessionListMap.set(row.Venue_Id__c, 'session ' + ++index);
+                    venueIdSessionListMap.set(row.Location_Id__c, 'session ' + ++index);
                     
                 }
             }

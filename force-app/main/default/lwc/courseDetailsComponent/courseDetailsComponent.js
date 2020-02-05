@@ -127,12 +127,12 @@ export default class CourseDetailsComponent extends LightningElement {
         var array = sessions.map (
             row => {
                 return Object.assign(
-                    {Street_Address__c: row.Venue_Street__c},
-                    {Town__c: row.Venue_Town__c},
-                    {County__c: row.Venue_County__c},
-                    {Postcode__c: row.Venue_Postcode__c},
-                    {Id: row.Venue_Id__c},
-                    {Name: row.Venue_Name__c}
+                    {Street_Address__c: row.Location_Street__c},
+                    {Town__c: row.Location_Town__c},
+                    {County__c: row.Location_County__c},
+                    {Postcode__c: row.Location_Postcode__c},
+                    {Id: row.Location_Id__c},
+                    {Name: row.Location_Name__c}
                 );
             }
         );
