@@ -10,7 +10,7 @@ IF(Venue__c &lt;&gt; Course__r.Main_Venue__c,
     &quot;This session will be held in a private home.&quot;,
     &quot;&quot;
    ),
-   &quot;This session will be held at the Course Leader&#39;s home. &quot; &amp; &quot;, &quot; &amp; Venue__r.Town__c &amp; &quot;, &quot; &amp; LEFT(Venue__r.Postcode__c,LEN(Venue__r.Postcode__c) - FIND(&quot; &quot;, Venue__r.Postcode__c)) &amp; &quot;.&quot;
+   &quot;This session will be held at the Course Leader&#39;s home&quot; &amp; &quot;, &quot; &amp; Venue__r.Town__c &amp; &quot;, &quot; &amp; LEFT(Venue__r.Postcode__c,LEN(Venue__r.Postcode__c) - FIND(&quot; &quot;, Venue__r.Postcode__c)) &amp; &quot;.&quot;
   ),
   &quot;This session will be held at &quot; &amp; Venue__r.Name &amp; &quot;, &quot; &amp; Venue__r.Town__c &amp; &quot;, &quot; &amp; LEFT(Venue__r.Postcode__c,LEN(Venue__r.Postcode__c) - FIND(&quot; &quot;, Venue__r.Postcode__c)) &amp; &quot;.&quot;
  ),
