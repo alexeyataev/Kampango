@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Check_Drop_In_Schedule_Information</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    OR(
+       AND(ISBLANK(Drop_In_Schedule_Information__c),
+           ISPICKVAL(Type__c, &quot;Drop In&quot;)),
+       AND(NOT(ISBLANK(Drop_In_Schedule_Information__c)),
+           NOT(ISPICKVAL(Type__c, &quot;Drop In&quot;)))
+    ),
+    NOT($Permission.Override_Course_Validation)
+)</errorConditionFormula>
+    <errorDisplayField>Drop_In_Schedule_Information__c</errorDisplayField>
+    <errorMessage>Please provide drop in schedule information for courses of type &#39;Drop In&#39;.</errorMessage>
+</ValidationRule>
