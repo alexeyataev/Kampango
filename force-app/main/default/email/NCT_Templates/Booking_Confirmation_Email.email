@@ -15,7 +15,7 @@
 
                 <p style='font-size:1.5rem;'>Dear {!relatedTo.First_Name__c}{!IF(relatedTo.Email_Template_Utility_Field__c != '',' ' + relatedTo.Email_Template_Utility_Field__c,'')},</p>
 
-                <p>Thank you for your payment for {!relatedTo.Course__r.Sub_Type__c}. Your place is now fully confirmed.
+                <p>Thank you for your payment for this {!relatedTo.Course__r.Sub_Type__c}. Your place is now fully confirmed.
                 </p>
 
                 <c:ConfirmationEmailBookingPaymentDetails bookingRecordId="{!relatedTo.Id}" /><br/>
