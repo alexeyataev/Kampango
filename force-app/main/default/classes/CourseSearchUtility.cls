@@ -178,6 +178,7 @@ public without sharing class CourseSearchUtility {
                         (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate)
                     )
                 WITH SECURITY_ENFORCED
+                ORDER BY Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi'), Course__c.Sort_Date__c
             ];
         } else {
             inCourses = [
@@ -194,6 +195,7 @@ public without sharing class CourseSearchUtility {
                 FROM Course__c
                 WHERE Distance(Main_Venue__r.Location__c, :location, 'mi') < :radius
                 WITH SECURITY_ENFORCED
+                ORDER BY Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi'), Course__c.Sort_Date__c
             ];
         }
         return inCourses;
