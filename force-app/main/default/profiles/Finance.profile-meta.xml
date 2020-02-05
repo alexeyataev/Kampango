@@ -251,6 +251,41 @@
         <field>Branch_Weighting__c.End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    	<fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Booking__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Case.ContactId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Origin</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Priority</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Subject</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Type</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Home_PSA__c</field>
@@ -6581,6 +6616,15 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Case</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
@@ -8295,7 +8339,7 @@
         <tab>Zumzum__Company_Setup__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-        <tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Control_Account__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -8483,7 +8527,11 @@
         <tab>npsp__Trigger_Handler__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
-       <applicationVisibilities>
+    <tabVisibilities>
+        <tab>standard-Case</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <applicationVisibilities>
         <application>Zumzum__Zumzum_Financials_L</application>
         <default>false</default>
         <visible>true</visible>
@@ -8502,6 +8550,12 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Branch_Weighting__c-Branch Weighting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Close Case Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Contact-Client Layout</layout>
