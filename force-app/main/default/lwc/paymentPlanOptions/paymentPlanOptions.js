@@ -26,7 +26,8 @@ export default class PaymentOptionsTest extends LightningElement {
                     amountFirst:element.amountFirst,
                     amountRecurring:element.amountRecurring,
                     startDate:element.startDate,
-                    endDate:element.endDate
+                    endDate:element.endDate,
+                    displayLabel:element.displayLabel
                 });
             });
 
