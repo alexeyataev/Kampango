@@ -69,7 +69,7 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>ContactId</field>
             </layoutItems>
             <layoutItems>
@@ -100,7 +100,7 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Type</field>
             </layoutItems>
             <layoutItems>
