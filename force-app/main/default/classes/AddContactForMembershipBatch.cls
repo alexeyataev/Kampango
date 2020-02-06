@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.EmptyStatementBlock')
+//Incident #57 - https://confluence.nct.org.uk:8443/x/EoSO
 public class AddContactForMembershipBatch implements Database.Batchable<sObject>, Database.AllowsCallouts{
     private final String SUCCESS_STATUS = 'Success';
     private final String FAILURE_STATUS = 'Failure';
@@ -20,6 +22,5 @@ public class AddContactForMembershipBatch implements Database.Batchable<sObject>
     }
 
     public void finish(Database.BatchableContext bc){
-        //Deliberately empty
     }
 }
