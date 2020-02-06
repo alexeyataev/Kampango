@@ -1,5 +1,4 @@
-/* init part */
-Map<String, String> ncRenaming = new Map<String, String> {
+Map<String, String> nominalCategoriesRenaming = new Map<String, String> {
     'Sales' => 'Income', 
     'Purchases' => 'Expenditure', 
     'Capital & Reserves' => 'Funds'
@@ -18,7 +17,6 @@ Zumzum__Tax_Rate__c taxRate = [
 ];
 
 
-/* helper functions */
 Zumzum__Sub_Category__c newSC(String name, String nominalCategoryId, Integer rangeFrom, Integer rangeTo, Boolean isFloating) {
     return new Zumzum__Sub_Category__c(
         Name = name,
@@ -57,27 +55,25 @@ Zumzum__Nominal_Account__c newNA(String name, Integer accountCode, Integer credi
 }
 
 
-/* rename Nominal Categories */
 void renameNominalCategories() {
     List<Zumzum__Nominal_Categories__c> categoriesToRename = [
         SELECT Id, Name 
         FROM Zumzum__Nominal_Categories__c
-        WHERE Name IN :ncRenaming.keySet()
+        WHERE Name IN :nominalCategoriesRenaming.keySet()
     ];
     for (Zumzum__Nominal_Categories__c cat : categoriesToRename) {
-        cat.Name = ncRenaming.get(cat.Name);
+        cat.Name = nominalCategoriesRenaming.get(cat.Name);
     }
     update categoriesToRename;
 }
 
-/* Delete nominal accounts and sub categories */
+
 void deleteExistingNominalAccountsAndSubCategories() {
     delete nominalAccountsToDelete;
     delete subCategoriesToDelete;
 }
 
 
-/* Insert sub categories */
 void insertSubCategories() {
     Map<String, Id> caIdByName = new Map<String, Id>();
     for (Zumzum__Nominal_Categories__c c : [SELECT Id, Name FROM Zumzum__Nominal_Categories__c]) {
@@ -106,7 +102,6 @@ void insertSubCategories() {
 }
 
 
-/* Insert nominal accounts */
 void insertNominalAccounts() {
     Map<String, Id> scIdByName = new Map<String, Id>();
     for (Zumzum__Sub_Category__c subCategory : [SELECT Id, Name FROM Zumzum__Sub_Category__c]) {
@@ -115,7 +110,6 @@ void insertNominalAccounts() {
 
     Map<String, Zumzum__Nominal_Account__c> allNominalAccountsMap = new Map<String, Zumzum__Nominal_Account__c> {
         'Debtors' => newNA('Debtors', 9300, 1065, 1275, false, false, scIdByName.get('Debtors'), 1065, 1275),
-        
         'Card Receipts in Transit' => newNA('Card Receipts in Transit', 9401, 625, 815, false, TRUE, scIdByName.get('Cash at bank and in hand'), 625, 815),
         'Bank Current Account Lloyds' => newNA('Bank Current Account Lloyds', 9400, 60, 695, false, false, scIdByName.get('Cash at bank and in hand'), 60, 695),
         'Course Income' => newNA('Course Income',1400, 1275, 190, false, TRUE, scIdByName.get('Charitable Activities - NCT Courses'), 1275, 190),
@@ -193,7 +187,6 @@ void insertNominalAccounts() {
     controlAccountToAdd.Zumzum__Expenses__c = allNominalAccountsMap.get('Travel').Id;
     controlAccountToAdd.Zumzum__Manual_Adjustments__c = allNominalAccountsMap.get('VAT Manual Adjustments').Id;
     controlAccountToAdd.Zumzum__Mispostings__c = allNominalAccountsMap.get('VAT Manual Adjustments').Id;
-    // controlAccountToAdd.Zumzum__Nominal_Account__c = ; //no value here
     controlAccountToAdd.Zumzum__Prepayments__c = allNominalAccountsMap.get('Prepayments').Id;
     controlAccountToAdd.Zumzum__Purchase_Discount__c = allNominalAccountsMap.get('Restricted funds brought forward').Id;
     controlAccountToAdd.Zumzum__Retained_Earnings__c = allNominalAccountsMap.get('Unrestricted funds brought forward').Id;
