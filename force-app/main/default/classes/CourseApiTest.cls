@@ -425,8 +425,7 @@ public without sharing class CourseApiTest {
             System.assertEquals(HttpStatusCode.SERVER_ERROR, response.statusCode, 'There should be server error');
             Blob responseBlob = (Blob)response.responseBody;
             System.debug(responseBlob.toString());
-            // Quickfix to unblock. Correct assert need to be done. T-02069 is used for tracking.
-            //System.assertEquals(true, isEmailError(responseBlob.toString()), 'Upsert error, as email is required');
+            System.assertEquals(true, isEmailError(responseBlob.toString()), 'Insert error, as email is required');
         }
 
         List<Booking__c> bookings = [
@@ -475,7 +474,7 @@ public without sharing class CourseApiTest {
             System.assertEquals(HttpStatusCode.SERVER_ERROR, response.statusCode, 'There should be server error');
             Blob responseBlob = (Blob)response.responseBody;
             System.debug(responseBlob.toString());
-            System.assertEquals(true, isEmailError(responseBlob.toString()), 'Upsert error');
+            System.assertEquals(true, isEmailError(responseBlob.toString()), 'Insert error');
         }
 
         List<Booking__c> bookings = [
@@ -496,6 +495,8 @@ public without sharing class CourseApiTest {
             (inputErrorText.contains('MISSING_ARGUMENT') && inputErrorText.contains('Email not specified'))
             ||
             (inputErrorText.contains('INVALID_EMAIL_ADDRESS') && inputErrorText.contains('Email: invalid email address'))
+            ||
+            (inputErrorText.contains('FIELD_CUSTOM_VALIDATION_EXCEPTION') && inputErrorText.contains('Please review primary contact. Full name, full address, email and preferred phone are required'))
         ) {
             result = true;
         }

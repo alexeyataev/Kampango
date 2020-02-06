@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexSOQLInjection')
+//Incident #50 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing class VenueDetailsController {
 
     public Course__c courseRecord {get; set;}

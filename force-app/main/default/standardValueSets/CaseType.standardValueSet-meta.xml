@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Booking Transfer</fullName>
+        <default>false</default>
+        <label>Booking Transfer</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Booking Cancellation</fullName>
+        <default>false</default>
+        <label>Booking Cancellation</label>
+    </standardValue>
+</StandardValueSet>

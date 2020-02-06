@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #42 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 public class IndividualBookingJourneyHelperTest {
 
