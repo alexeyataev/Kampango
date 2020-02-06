@@ -4,7 +4,18 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Adhoc Payment Notification</name>
     <style>none</style>
-    <subject>Book your {!Course__c.Sub_Type__c}.</subject>
+    <subject>Payment due to NCT</subject>
+    <textOnly>Dear {!Zumzum__Sales_Invoice__c.Contact_First_Name__c}
+ 
+As discussed, please find the link below to pay the balance owing to NCT.  If you have any queries or questions about this balance, please get in touch with nctcourses@nct.org.uk.
+ 
+{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}/s/adhocpayment?salesInvoiceId={!Zumzum__Sales_Invoice__c.Id}
+ 
+Kind regards
+ 
+Finance team
+NCT
+nctcourses@nct.org.uk</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

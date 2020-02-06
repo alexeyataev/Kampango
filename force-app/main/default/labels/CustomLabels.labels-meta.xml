@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>Baby_Massage_Tips_And_Benefits_Url</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Baby Massage Tips And Benefits Url</shortDescription>
+        <value>https://www.nct.org.uk/baby-toddler/everyday-care/baby-massage-tips-and-benefits</value>
+    </labels>
+    <labels>
+        <fullName>Confirmation_Notification_Course_Reunion</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation Notification Course Reunion</shortDescription>
+        <value>There is also a 2-hour reunion for all course participants with their new baby after the birth. Your course leader will agree a date, time and location for this with you.</value>
+    </labels>
+    <labels>
         <fullName>ContactUpdateException</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -63,6 +79,14 @@
         <value>Batch Bank Payment should be approved to generate Payment File.</value>
     </labels>
     <labels>
+        <fullName>Nct_Pregnancy_Baby_Guide_Url</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Nct Pregnancy Baby Guide Url</shortDescription>
+        <value>https://www.nct.org.uk/nct-pregnancy-baby-guide</value>
+    </labels>
+    <labels>
         <fullName>Payment_Plan_Different_Amounts_Option_Template</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -81,7 +105,15 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Payment Plan Equal Amounts Option Template</shortDescription>
-        <value>{0} monthly payment of £ {1}</value>
+        <value>{0} monthly payments of £ {1}</value>
+    </labels>
+    <labels>
+        <fullName>Sub_Type_Course_Baby_Massage</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sub Type Course  Baby Massage</shortDescription>
+        <value>NCT Baby Massage course</value>
     </labels>
     <labels>
         <fullName>Unsupported_Browser_Error_Message</fullName>

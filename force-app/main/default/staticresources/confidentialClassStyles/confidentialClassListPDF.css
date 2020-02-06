@@ -33,5 +33,6 @@ body {
 
 .columnStyle {
     border-top: 1px solid #000;
-    padding: 2px 2px 2px 0px;
+    padding: 2px 3px 2px 0px;
+    max-width: 50%;
 }

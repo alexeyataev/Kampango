@@ -25,7 +25,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                     .buildEstimatedCosts()
                     .buildSession()
                     .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-                    .buildReunion();
+                    .buildSessionWithTypeAndStatus('Reunion', 'Provisional');
 
         List<Session__c> provisionalNonReunionSessions = [
             SELECT Id 

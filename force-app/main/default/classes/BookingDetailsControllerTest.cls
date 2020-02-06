@@ -25,12 +25,12 @@ public with sharing class BookingDetailsControllerTest {
                     .buildSession()
                     .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
                     .buildPartnertHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-                    .buildReunion()
+                    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed')
                     .buildBooking('Enquiry');
     }
 
     @IsTest
-	public static void generateCourseSummaryBookingDetails() {
+	public static void getBookings_oneBookingCreated_componentShowOneBooking() {
 
 		Course__c course = [
 			SELECT Id
@@ -59,14 +59,57 @@ public with sharing class BookingDetailsControllerTest {
 		BookingDetailsController bookingDetailsController = new BookingDetailsController();
 		bookingDetailsController.courseRecord = course;
         bookingDetailsController.bookingFieldSetName= 'CourseSummaryBookingFields';
+        bookingDetailsController.bookingContactFieldSetName = 'CourseSummaryBookingPrimaryContactFields';
 
 		Test.startTest();
 
-		List<BookingDetailsController.BookingResult> bookingsToTest = bookingDetailsController.getBookings();
+		List<Booking__c> bookingsToTest = bookingDetailsController.getBookings();
 
 		Test.stopTest();
 
-		System.assertEquals(bookingsToTest[0].booking.Id, bookings[0].Id);
+        System.assertEquals(1, bookingsToTest.size());
+		System.assertEquals(bookings[0].Id, bookingsToTest[0].Id);
 
 	}
+
+    @IsTest
+	public static void getBookings_componentLoadsOneBooking_correctBookingContactLoaded() {
+		Course__c course = [
+			SELECT Id
+			FROM Course__c
+			LIMIT 1
+		];
+
+		List<Booking__c> bookings = [
+			SELECT Id, Status__c, Primary_Contact__c, Partner_Contact__c
+            FROM Booking__c 
+            WHERE Course__c = :course.Id
+		];
+
+        User user = [
+            SELECT Id 
+            FROM User
+            WHERE Profile.Name = :PROFILE_NAME
+            LIMIT 1
+        ];
+        
+        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
+            bookings[0].Status__c = 'Confirmed';
+            update bookings;
+        }
+
+		BookingDetailsController bookingDetailsController = new BookingDetailsController();
+		bookingDetailsController.courseRecord = course;
+        bookingDetailsController.bookingFieldSetName= 'CourseSummaryBookingFields';
+        bookingDetailsController.bookingContactFieldSetName = 'CourseSummaryBookingPrimaryContactFields';
+
+        Test.startTest();
+
+		bookingDetailsController.getBookings();
+
+		Test.stopTest();
+
+        System.assertNotEquals(null, bookingDetailsController.bookingContacts.get(bookings[0].Primary_Contact__c));
+
+    }
 }

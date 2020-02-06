@@ -154,7 +154,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Control Account</label>
     <nameField>
         <label>Control Accounts</label>
@@ -168,6 +168,6 @@
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <searchFilterFields>NAME</searchFilterFields>
     </searchLayouts>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

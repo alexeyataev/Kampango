@@ -85,6 +85,10 @@
                 <behavior>Edit</behavior>
                 <field>Venue_Website__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Location__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -169,10 +173,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Key_Holders__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Location__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

@@ -2,10 +2,18 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Additional_Information_with_Venue__c</fullName>
     <externalId>false</externalId>
-    <formula>Additional_Information__c &amp; 
-IF(
- AND(NOT(ISBLANK(Venue__c)),Venue__c &lt;&gt; Course__r.Main_Venue__c),
- BR() &amp; &quot;This session will be held at&quot; &amp; BR() &amp; Venue_Address__c,
+    <formula>Additional_Information__c &amp;
+IF(Venue__c &lt;&gt; Course__r.Main_Venue__c,
+ IF(NOT(ISBLANK( Parent_Host__c )) || NOT(ISBLANK(  Venue__r.Host__c )),
+  IF(NOT(ISBLANK( Parent_Host__c )),
+   IF(ISPICKVAL(Type__c, &#39;Reunion&#39;) &amp;&amp; ISPICKVAL(Status__c , &#39;Confirmed&#39;),
+    &quot;This session will be held in a private home.&quot;,
+    &quot;&quot;
+   ),
+   &quot;This session will be held at the Course Leader&#39;s home. &quot; &amp; Venue__r.Street_Address__c &amp; &quot; &quot; &amp; Venue__r.Town__c &amp; &quot; &quot; &amp; Venue__r.County__c  &amp; &quot; &quot; &amp; LEFT(Venue__r.Postcode__c,LEN(Venue__r.Postcode__c) - FIND(&quot; &quot;, Venue__r.Postcode__c)) &amp; &quot;.&quot;
+  ),
+  &quot;This session will be held at &quot; &amp; Venue__r.Name &amp; &quot; &quot; &amp; Venue__r.Town__c &amp; &quot; &quot; &amp; Venue__r.County__c &amp; &quot; &quot; &amp; LEFT(Venue__r.Postcode__c,LEN(Venue__r.Postcode__c) - FIND(&quot; &quot;, Venue__r.Postcode__c)) &amp; &quot;.&quot;
+ ),
  &quot;&quot;
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

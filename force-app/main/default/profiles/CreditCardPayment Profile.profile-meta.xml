@@ -234,10 +234,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>StepOrangeCardPaymentProvider</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>SystemClock</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1183,11 +1179,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Phone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Booking__c.Post__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1369,11 +1360,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Additional_Offer_Information__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Break_Even_Number_Of_Places__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5584,11 +5570,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.Parent_Record_Identifier__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Installment__c.Partial_Gift_Amount_Beta__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

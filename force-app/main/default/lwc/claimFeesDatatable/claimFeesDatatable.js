@@ -66,7 +66,7 @@ export default class ClaimFeesDatatable extends LightningElement {
         } else {
             let delta = totalRegistrationFee - this.registrationCappedFees;
             this.registrationFee = currentRegistrationFee - delta;
-            this.registrationFee = Math.abs(this.registrationFee.toFixed(2));
+            this.registrationFee = this.registrationFee < 0 ? 0 : Math.abs(this.registrationFee.toFixed(2));
         }
     }
 }
