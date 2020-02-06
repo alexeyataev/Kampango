@@ -1,7 +1,8 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
 @isTest
 public without sharing class AddBankDetailsForMembershipTest {
-
+    private static final String MESSAGE_TEXT_ERROR = 'Error';
+    private static final String ERROR_NUMBER = '400';
     @testSetup static void createTestData() {
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account account =  accountBuilder
@@ -46,18 +47,17 @@ public without sharing class AddBankDetailsForMembershipTest {
     }
 
     @isTest static void AddBankDetailsError_BankDetailsNotAdded_ErrorReturned() {
-        String errorMessage = 'Error';
         Test.startTest();
         CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = new CareRequestBodyUtil.ContactBankAccountObject();
         CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();
-        errorObject.errorMessage = errorMessage;
-        errorObject.errorNumber = '400';
+        errorObject.errorMessage = MESSAGE_TEXT_ERROR;
+        errorObject.errorNumber = ERROR_NUMBER;
         contactBankAccountObject.error = new List<CareRequestBodyUtil.ErrorObject>();
         contactBankAccountObject.error.add(errorObject);
         Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactBankAccountObject));
         List<cpm__Installment__c> testInstallmentList = [SELECT Id, cpm__Contact__c, cpm__Payment_Profile__c FROM cpm__Installment__c LIMIT 1];
         List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails(testInstallmentList);
         Test.stopTest();
-        System.assertEquals(resultList[0].error, errorMessage);
+        System.assertEquals(resultList[0].error, MESSAGE_TEXT_ERROR);
     }
 }
