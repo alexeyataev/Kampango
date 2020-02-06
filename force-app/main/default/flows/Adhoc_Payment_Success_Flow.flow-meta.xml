@@ -1,57 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Send_confirmation</name>
-        <label>Send confirmation</label>
-        <locationX>429</locationX>
+        <name>Send_contact_confirmation_email</name>
+        <label>Send contact confirmation email</label>
+        <locationX>411</locationX>
         <locationY>393</locationY>
-        <actionName>SendHTMLEmailPlugin</actionName>
-        <actionType>apex</actionType>
+        <actionName>Contact.Adhoc_Send_Confirmation_Email</actionName>
+        <actionType>emailAlert</actionType>
         <connector>
             <targetReference>Success_screen</targetReference>
         </connector>
         <inputParameters>
-            <name>mergeObjectId</name>
-            <value>
-                <elementReference>salesInvoice.Id</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>orgWideEmailAddress</name>
-            <value>
-                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>replyEmailAddress</name>
-            <value>
-                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>templateId</name>
-            <value>
-                <elementReference>confirmationTemplate.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <name>Send_confirmation_email</name>
-        <label>Send confirmation email</label>
-        <locationX>287</locationX>
-        <locationY>215</locationY>
-        <actionName>Zumzum__Sales_Invoice__c.Adhoc_Send_Confirmation_Email</actionName>
-        <actionType>emailAlert</actionType>
-        <inputParameters>
             <name>SObjectRowId</name>
             <value>
-                <elementReference>salesInvoiceId</elementReference>
+                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -71,7 +33,7 @@
     </constants>
     <description>Performs logic after the payment has been completed successfully
 Version changes:
-Put success screen in the end</description>
+Changed to contact email alert</description>
     <interviewLabel>Adhoc Payment Success Page {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Success Flow</label>
     <processMetadataValues>
@@ -115,7 +77,7 @@ Put success screen in the end</description>
         <locationY>393</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Send_confirmation</targetReference>
+            <targetReference>Send_contact_confirmation_email</targetReference>
         </connector>
         <filters>
             <field>DeveloperName</field>

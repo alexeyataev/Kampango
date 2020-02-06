@@ -7,19 +7,15 @@
         <body style="font-size: 0.9rem;">
             <div
                 style='width:100%; max-width:900px; margin:0 auto; border:2px solid #f0f0f0; padding:30px; color:black;'>
-                <div style='text-align:center;'>
-                    <img style='float:right;' src='{!URLFOR($Resource.NCT_Styles,"/nct-landscape-logo-green-grey.png")}' />
-                </div>
 
                 <div>
                     <b>Booking reference:</b> {!relatedTo.Course__r.PSA_Area__c} / {!relatedTo.Name}<br />
                     <b>Course reference:</b> {!relatedTo.Course__r.PSA_Area__c} / {!relatedTo.Course__r.Name}
                 </div>
 
-                <p style='font-size:1.5rem;'>Dear {!relatedTo.First_Name__c}
-                    {!relatedTo.Email_Template_Utility_Field__c},</p>
+                <p style='font-size:1.5rem;'>Dear {!relatedTo.First_Name__c}{!IF(relatedTo.Email_Template_Utility_Field__c != '',' ' + relatedTo.Email_Template_Utility_Field__c,'')},</p>
 
-                <p>Thank you for your payment for {!relatedTo.Course__r.Sub_Type__c}. Your place is now fully confirmed.
+                <p>Thank you for your payment for this {!relatedTo.Course__r.Sub_Type__c}. Your place is now fully confirmed.
                 </p>
 
                 <c:ConfirmationEmailBookingPaymentDetails bookingRecordId="{!relatedTo.Id}" /><br/>
@@ -41,8 +37,10 @@
                     {!relatedTo.Course__r.Enquiries_PSA_Name__c}<br />
                     Course Organiser<br />
                     Telephone: {!relatedTo.Course__r.Enquiries_PSA_Phone__c}<br />
-                    Email: Any reply to this email should be sent to <a
-                        href='bookings{!relatedTo.Course__r.PSA_Area__c}@nct.org.uk'>bookings{!relatedTo.Course__r.PSA_Area__c}@nct.org.uk</a>
+                    Email: Any reply to this email should be sent to&nbsp;
+                    <apex:outputText value="{!$Label.Bookings_Reply_Email}">
+                        <apex:param value="{!relatedTo.Course__r.PSA_Area__c}" />
+                    </apex:outputText>
                 </div>
             </div>
         </body>
