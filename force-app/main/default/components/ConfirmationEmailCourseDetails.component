@@ -48,7 +48,7 @@
     <h3 style='border-bottom:1px solid#f0f0f0; color:#00876a;font-size:16px;'>Session(s)</h3>
     <table cellspacing="0" cellpadding="10" rules="rows" border="0" width="100%" align='center'>
         <tr align='left'>
-            <th>Session(s)</th>
+            <th>Session</th>
             <th>Date</th>
             <th>Starts</th>
             <th>Ends</th>
