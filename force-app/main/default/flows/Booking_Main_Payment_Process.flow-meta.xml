@@ -638,6 +638,12 @@
             <targetReference>Type_Of_Payment</targetReference>
         </connector>
         <inputAssignments>
+            <field>Course__c</field>
+            <value>
+                <elementReference>bookingRecord.Course__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Zumzum__Amount__c</field>
             <value>
                 <elementReference>bookingRecord.Course_Fee__c</elementReference>
@@ -703,6 +709,7 @@
         <queriedFields>Course_Fee__c</queriedFields>
         <queriedFields>Fee_Override__c</queriedFields>
         <queriedFields>Course_Start_Date__c</queriedFields>
+        <queriedFields>Course__c</queriedFields>
     </recordLookups>
     <screens>
         <name>Payment_Details_Screen</name>
