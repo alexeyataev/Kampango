@@ -157,12 +157,6 @@
         <members>Session__c.Session_Type__c</members>
         <members>Session__c.Website_Text__c</members>
         <members>Session__c.Women_Only__c</members>
-        <members>Session__c.Venue_County__c</members>
-        <members>Session__c.Venue_Id__c</members>
-        <members>Session__c.Venue_Name__c</members>
-        <members>Session__c.Venue_Postcode__c</members>
-        <members>Session__c.Venue_Street__c</members>
-        <members>Session__c.Venue_Town__c</members>
         <members>Venue__c.Google_Map_Link__c</members>
         <members>Venue__c.Main_Venue__c</members>
         <members>Venue__c.Venue_GeoLocation__c</members>
