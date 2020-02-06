@@ -199,7 +199,6 @@ void insertNominalAccounts() {
 }
 
 
-/* run the script */
 renameNominalCategories();
 deleteExistingNominalAccountsAndSubCategories();
 insertSubCategories();
