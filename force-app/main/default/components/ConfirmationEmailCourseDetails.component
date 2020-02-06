@@ -33,12 +33,12 @@
             <apex:repeat value="{!locationListWrapper}" var="location">
                 <td style="vertical-align: baseline;">
                     <div style='margin-right:2rem;'>
-                        <b>{!location.locationOfSession.Venue_Name__c}</b> {!location.sessionDays}</div>
-                    <div>{!location.locationOfSession.Venue_Street__c}</div>
-                    <div>{!location.locationOfSession.Venue_County__c}</div>
-                    <div>{!location.locationOfSession.Venue_Town__c}</div>
-                    <div>{!location.locationOfSession.Venue_Postcode__c}</div>
-                    <div> <a href="{!location.locationOfSession.Venue_Map_Url__c}">Click here to see a map</a> </div>
+                        <b>{!location.locationOfSession.Location_Name__c}</b> {!location.sessionDays}</div>
+                    <div>{!location.locationOfSession.Location_Street__c}</div>
+                    <div>{!location.locationOfSession.Location_County__c}</div>
+                    <div>{!location.locationOfSession.Location_Town__c}</div>
+                    <div>{!location.locationOfSession.Location_Postcode__c}</div>
+                    <div> <a href="{!location.locationOfSession.Location_Map_Url__c}">Click here to see a map</a> </div>
                     <br/>
                 </td>
             </apex:repeat>
