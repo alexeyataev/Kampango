@@ -5,7 +5,7 @@
     <name>Adhoc Payment Confirmation</name>
     <style>none</style>
     <subject>NCT payment success</subject>
-    <textOnly>Dear {!Zumzum__Sales_Invoice__c.Contact_First_Name__c}
+    <textOnly>Dear {!Contact.FirstName}
  
 Thank you for making a payment to NCT. This transaction was successful.
  

@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #43 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 public with sharing class PractitionerDetailsControllerTest {
 
