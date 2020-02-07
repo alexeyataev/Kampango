@@ -5,6 +5,7 @@ public with sharing class TestContactBuilder {
 	private string firstName = 'John';
 	private string lastName = 'Smith';
 	private Account account;
+	private String careStatus = 'Waiting';
 	private String email = 'johnsmith@ncttest.com';
 	private String preferredPhone = 'Mobile';
 	private String mobilePhone = '123456789';
@@ -22,6 +23,11 @@ public with sharing class TestContactBuilder {
 
     public TestContactBuilder withAccount(Account account) {
     	this.account = account;
+    	return this;
+    }
+
+	public TestContactBuilder withCareStatus(String careStatus) {
+    	this.careStatus = careStatus;
     	return this;
     }
     
@@ -87,6 +93,7 @@ public with sharing class TestContactBuilder {
 			RecordTypeId = this.recordTypeId,
 			FirstName = this.firstName,
 			LastName = this.lastName,
+			Care_Status__c = this.careStatus,
 			Email = this.email,
 			npe01__PreferredPhone__c = this.preferredPhone,
 			MobilePhone = this.mobilePhone,
