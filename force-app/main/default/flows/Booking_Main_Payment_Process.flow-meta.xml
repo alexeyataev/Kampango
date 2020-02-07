@@ -414,8 +414,8 @@
     <decisions>
         <name>Is_Membership_Chose</name>
         <label>Is Membership Chose ?</label>
-        <locationX>1572</locationX>
-        <locationY>463</locationY>
+        <locationX>1354</locationX>
+        <locationY>465</locationY>
         <defaultConnector>
             <targetReference>Create_Sales_Invoice</targetReference>
         </defaultConnector>
@@ -453,7 +453,7 @@
                 <operator>NotEqualTo</operator>
             </conditions>
             <connector>
-                <targetReference>Payment_Details_Screen</targetReference>
+                <targetReference>Set_Payable_Amount</targetReference>
             </connector>
             <label>Payment Link is True</label>
         </rules>
@@ -599,6 +599,11 @@
         </rules>
     </decisions>
     <formulas>
+        <name>Amount_To_Be_Paid</name>
+        <dataType>String</dataType>
+        <expression>IF({!Is_Payment_Plan_True}, {!PaymentPlanOptionSelected.displayLabel}, &#39;£&#39; + TEXT({!Course_Fee}))</expression>
+    </formulas>
+    <formulas>
         <name>ERROR_PAGE</name>
         <dataType>String</dataType>
         <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&#39;/s/failure&#39;</expression>
@@ -711,11 +716,35 @@
         <queriedFields>Course_Start_Date__c</queriedFields>
         <queriedFields>Course__c</queriedFields>
     </recordLookups>
+    <recordUpdates>
+        <description>This field will display in Confirmation Email.</description>
+        <name>Set_Payable_Amount</name>
+        <label>Set Payable Amount</label>
+        <locationX>2637</locationX>
+        <locationY>465</locationY>
+        <connector>
+            <targetReference>Payment_Details_Screen</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Booking_Journey_Payable_Amount__c</field>
+            <value>
+                <elementReference>Amount_To_Be_Paid</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Booking__c</object>
+    </recordUpdates>
     <screens>
         <name>Payment_Details_Screen</name>
         <label>Payment Details Screen</label>
-        <locationX>2750</locationX>
-        <locationY>467</locationY>
+        <locationX>2796</locationX>
+        <locationY>464</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -983,8 +1012,8 @@
     <subflows>
         <name>Booking_Gift_Aid_Declaration_Flow</name>
         <label>Booking Gift Aid Declaration Flow</label>
-        <locationX>1826</locationX>
-        <locationY>341</locationY>
+        <locationX>1674</locationX>
+        <locationY>351</locationY>
         <connector>
             <targetReference>Create_Sales_Invoice</targetReference>
         </connector>
