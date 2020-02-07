@@ -11,7 +11,7 @@
             <operation>equals</operation>
             <value>Final</value>
         </filterItems>
-        <infoMessage>Only courses with &#39;Final&#39; type are available.</infoMessage>
+        <infoMessage>Only courses with &#39;Final&#39; status are available.</infoMessage>
         <isOptional>false</isOptional>
     </lookupFilter>
     <referenceTo>Course__c</referenceTo>
