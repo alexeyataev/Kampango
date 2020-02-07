@@ -4,6 +4,16 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Course</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Course__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Final</value>
+        </filterItems>
+        <infoMessage>Only courses with &#39;Final&#39; status are available.</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Course__c</referenceTo>
     <relationshipLabel>Sales Invoice Line Items</relationshipLabel>
     <relationshipName>Sales_Invoice_Line_Items</relationshipName>
