@@ -147,6 +147,7 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
+        <members>Booking__c.Booking_Journey_Payable_Amount__c</members>
         <members>Case.Booking__c</members>
         <members>Case.ContactId</members>
         <members>Case.Description</members>
@@ -178,11 +179,12 @@
         <members>Session__c.Eligible_for_Claim__c</members>
         <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
         <members>Session__c.Practitioner_Fees_to_Claim__c</members>
-        <members>Session__c.Venue_County__c</members>
-        <members>Session__c.Venue_Name__c</members>
-        <members>Session__c.Venue_Postcode__c</members>
-        <members>Session__c.Venue_Street__c</members>
-        <members>Session__c.Venue_Town__c</members>
+        <members>Session__c.Location_County__c</members>
+        <members>Session__c.Location_Id__c</members>
+        <members>Session__c.Location_Name__c</members>
+        <members>Session__c.Location_Postcode__c</members>
+        <members>Session__c.Location_Street__c</members>
+        <members>Session__c.Location_Town__c</members>
         <members>Venue__c.Legacy_Id__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
