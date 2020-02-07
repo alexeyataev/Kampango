@@ -18,7 +18,8 @@
         )
     ),
     ISCHANGED(Status__c ),
-    NOT($Permission.Override_Booking_Validation)
+    OR(NOT($Permission.Override_Booking_Validation),
+       NOT($Permission.Override_Booking_Validation))
 )</errorConditionFormula>
     <errorDisplayField>Status__c</errorDisplayField>
     <errorMessage>Inappropriate status transition. (Possible options: Enquiry - Reserved; Expired - Reserved; Cancelled - Enquiry; Enquiry, Reserved, Confirmed -  Cancelled).</errorMessage>
