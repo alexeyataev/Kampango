@@ -147,6 +147,7 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
+        <members>Booking__c.Booking_Journey_Payable_Amount__c</members>
         <members>Case.Booking__c</members>
         <members>Case.ContactId</members>
         <members>Case.Description</members>
