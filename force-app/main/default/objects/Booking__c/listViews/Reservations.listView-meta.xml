@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>All_Bookings</fullName>
+    <fullName>Reservations</fullName>
     <columns>NAME</columns>
     <columns>CREATED_DATE</columns>
     <columns>Primary_Contact__c</columns>
@@ -9,10 +9,16 @@
     <columns>Course_Sub_Type__c</columns>
     <columns>Course_Start_Date__c</columns>
     <columns>Status__c</columns>
+    <columns>Days_Remaining__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>PSA_Office__c</field>
         <operation>notEqual</operation>
     </filters>
-    <label>All Bookings</label>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Reserved</value>
+    </filters>
+    <label>Reservations</label>
 </ListView>
