@@ -366,18 +366,8 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
             return 1;
         } else if (this.Rank < compareToModel.Rank) {
             return -1;
-        } else {// comparting the same rank by groupInsideRank
-            if (this.groupRange > compareToModel.groupRange){
-                return 1;
-            } else if (this.groupRange < compareToModel.groupRange) {
-                return -1;
-            } else {//Comparing course numbers
-                if (this.Id > compareToModel.Id){
-                    return 1;
-                } else {
-                    return -1;
-                }
-            }
+        } else {
+            return 0;
         }
     }
 }
