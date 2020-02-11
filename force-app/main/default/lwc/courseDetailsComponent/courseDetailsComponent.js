@@ -4,6 +4,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import retrieveRelatedSessions from '@salesforce/apex/CourseDetailController.retrieveRelatedSessions';
 import NCT_STYLES from '@salesforce/resourceUrl/NCT_Styles';
 import { loadStyle } from 'lightning/platformResourceLoader';
+import  provisionCourseReunionTextLable from '@salesforce/label/c.Confirmation_Notification_Course_Reunion';
 
 const BOOKING_FIELDS = [
         'Booking__c.Reservation_Expiry_Date__c',
@@ -19,7 +20,8 @@ const BOOKING_FIELDS = [
     ];
 
 export default class CourseDetailsComponent extends LightningElement {
-
+    provisionCourseReunionText = provisionCourseReunionTextLable;
+    courseHasProvisionalReunion = false;
     @api bookingId;
     @api expirationDate;
     @api courseId;
@@ -101,7 +103,7 @@ export default class CourseDetailsComponent extends LightningElement {
         });        
     }
 
-    connectedCallback(){
+    connectedCallback() {
         loadStyle(this, NCT_STYLES + '/coursedetail.css')
             .then(() => {
                 this.stylesLoaded = true;
@@ -117,24 +119,24 @@ export default class CourseDetailsComponent extends LightningElement {
             });
     }
 
+    renderedCallback() {
+        this.courseHasProvisionalReunion = this.template.querySelector('c-sessions').courseHasProvisionalReunion;
+    }
+
     getVenues(sessions){
         var array = sessions.map (
             row => {
-                if(row.Venue__c){
-                    let county = '';
-                    if(row.Venue__r.County__c){
-                        county = row.Venue__r.County__c;
-                    }
-                    return Object.assign(
-                        {Street_Address__c: row.Venue__r.Street_Address__c},
-                        {Town__c: row.Venue__r.Town__c},
-                        {County__c: county},
-                        {Postcode__c: row.Venue__r.Postcode__c},
-                        {Id: row.Venue__c},
-                        {Name: row.Venue__r.Name}
-                    );
-                }
-        });
+                return Object.assign(
+                    {Street_Address__c: row.Location_Street__c},
+                    {Town__c: row.Location_Town__c},
+                    {County__c: row.Location_County__c},
+                    {Postcode__c: row.Location_Postcode__c},
+                    {Id: row.Location_Id__c},
+                    {Name: row.Location_Name__c}
+                );
+            }
+        );
+        
         this.allVenues = array;
     }
 

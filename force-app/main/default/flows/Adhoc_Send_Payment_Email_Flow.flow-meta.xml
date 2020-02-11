@@ -43,13 +43,10 @@
     <actionCalls>
         <name>Send_notification_email</name>
         <label>Send notification email</label>
-        <locationX>391</locationX>
-        <locationY>427</locationY>
+        <locationX>591</locationX>
+        <locationY>755</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
-        <connector>
-            <targetReference>Sending_successful</targetReference>
-        </connector>
         <faultConnector>
             <targetReference>Sending_not_successful</targetReference>
         </faultConnector>
@@ -87,8 +84,8 @@
     <actionCalls>
         <name>Send_Payment_Email</name>
         <label>Send Payment Email</label>
-        <locationX>280</locationX>
-        <locationY>386</locationY>
+        <locationX>441</locationX>
+        <locationY>449</locationY>
         <actionName>Zumzum__Sales_Invoice__c.Adhoc_Send_Payment_Email</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -226,7 +223,7 @@
     </decisions>
     <description>Sends an email with a link to details and payment
 Version Changes:
-Removed SI.Booking__c field from query</description>
+Replaced Apex action with Email alert as new field was added</description>
     <formulas>
         <name>currentProfile</name>
         <dataType>String</dataType>
@@ -325,7 +322,7 @@ Removed SI.Booking__c field from query</description>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Send_notification_email</targetReference>
+            <targetReference>Send_Payment_Email</targetReference>
         </connector>
         <fields>
             <name>Confirm_Text</name>

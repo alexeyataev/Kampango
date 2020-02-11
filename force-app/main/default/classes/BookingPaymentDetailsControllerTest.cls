@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #40 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 public with sharing class BookingPaymentDetailsControllerTest {
     private static final String BOOKING_STATUS_CONFIRMED = 'Confirmed';

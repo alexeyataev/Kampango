@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Venue_Map_Url__c</fullName>
+    <fullName>Days_Remaining__c</fullName>
+    <description>Days remaining until reservation expires.</description>
     <externalId>false</externalId>
-    <formula>IF ( ISBLANK(Venue__c), 
- &quot;https://www.google.co.uk/maps?q=&quot; &amp;  Parent_Host__r.MailingPostalCode,
- Venue__r.Map_Url__c
-)</formula>
+    <formula>Reservation_Expiry_Date__c - TODAY()</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Venue Map Url</label>
+    <label>Days Remaining</label>
+    <precision>18</precision>
     <required>false</required>
+    <scale>0</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
+    <type>Number</type>
     <unique>false</unique>
 </CustomField>
