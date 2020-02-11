@@ -57,7 +57,7 @@ public class BookingFlowUpdateNctNumberTest {
     }
 
     @IsTest
-    public static void CheckNctNumber_SetNctNumberAndUpdateForPartnerAndPrimaryContact_NctNumbersNotBeEmpty() {
+    public static void checkNctNumber_SetNctNumberAndUpdateForPartnerAndPrimaryContact_NctNumbersNotBeEmpty() {
         String primaryId = BookingJourneyHelperTest.createPrimaryContact();
         String partnerId = BookingJourneyHelperTest.createPartnerContact();
         
