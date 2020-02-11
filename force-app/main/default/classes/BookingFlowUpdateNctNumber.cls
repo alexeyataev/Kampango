@@ -5,13 +5,10 @@ public with sharing class BookingFlowUpdateNctNumber {
             try {   
                 update contacts[0];
             } catch(DmlException ex) {
-                System.debug(
-                    Label.ContactUpdateException + ' ' +
-                    ex.getTypeName() + ' ' +
-                    ex.getStackTraceString() + ' ' +
-                    ex.getMessage()
-                );
+                throw new UpdateContactException(ex.getMessage());
             }
         }
     }
+
+    public class UpdateContactException extends Exception {}
 }

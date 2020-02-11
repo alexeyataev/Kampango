@@ -1,9 +1,13 @@
 @IsTest
-public class BookingFlowUpadteNctNumbetTest {
+public class BookingFlowUpdateNctNumberTest {
+
+    private static final Id RECORD_TYPE_ID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId();
+    private static final String ACCOUNT_NAME = 'Household Account Test';
+
     public static String createPrimaryContact(){
-        Account account = new Account(
-            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
-            Name = 'Household Account Test'
+        Account account = new Account (
+            RecordTypeId = RECORD_TYPE_ID,
+            Name = ACCOUNT_NAME
         );
         insert account;
         TestContactBuilder contactBuilder = new TestContactBuilder();
@@ -18,9 +22,10 @@ public class BookingFlowUpadteNctNumbetTest {
 
      public static String createPartnerContact(){
         Account account = new Account(
-            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
-            Name = 'Household Account Test'
+            RecordTypeId = RECORD_TYPE_ID,
+            Name = ACCOUNT_NAME
         );
+
         insert account;
         TestContactBuilder contactBuilder = new TestContactBuilder();
         Contact partnerContact = contactBuilder.withRecordType('Client')
