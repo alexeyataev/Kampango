@@ -348,6 +348,14 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>CASES.CASE_NUMBER</fields>
+        <fields>OWNER_NAME</fields>
+        <fields>CASES.TYPE</fields>
+        <fields>CASES.STATUS</fields>
+        <fields>CASES.SUBJECT</fields>
+        <relatedList>Case.Booking__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

@@ -5,6 +5,7 @@
     <errorConditionFormula>AND(OR(ISNEW(), ISCHANGED(Status__c)),
     ISPICKVAL(Status__c, &quot;Final&quot;), 
     Count_of_Sessions_Without_Fee_Rates__c &lt;&gt; 0,
+    NOT(ISPICKVAL(Type__c, &quot;Drop In&quot;)),
     NOT($Permission.Override_Course_Validation)
 )</errorConditionFormula>
     <errorMessage>One or more sessions is missing a practitioner fee rate. You may need to work with a system administrator to ensure that Practitioner Band, Branch Weighting and Fee Rate data all exists, covering the dates of your sessions.</errorMessage>
