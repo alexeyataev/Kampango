@@ -121,6 +121,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Booking__c.Booking_Journey_Payable_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Booking__c.Branch__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -157,6 +162,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Days_Before_Course_Start__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Days_Remaining__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
