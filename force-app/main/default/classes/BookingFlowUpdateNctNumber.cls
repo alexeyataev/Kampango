@@ -4,11 +4,7 @@ public with sharing class BookingFlowUpdateNctNumber {
         if(contacts != null && !contacts.isEmpty()) {
             try {   
                 update contacts[0];
-            } catch(DmlException ex) {
-                throw new UpdateContactException(ex.getMessage());
-            }
+            } catch(DmlException ex) {}
         }
     }
-
-    public class UpdateContactException extends Exception {}
 }
