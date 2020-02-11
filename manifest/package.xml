@@ -682,6 +682,7 @@
         <name>ValidationRule</name>
     </types>
     <types>
+        <members>Account</members>
         <members>Booking__c</members>
         <members>Course__c</members>
         <members>Course_Assignment__c</members>

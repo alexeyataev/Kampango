@@ -81,7 +81,8 @@ private class ClaimFeeHelperTest {
             Account organiztaion = [
                 SELECT Id, AccountNumber, OwnerId
                 FROM Account
-                WHERE AccountNumber = 'acc5'
+                WHERE Name = 'John Smith'
+                    AND Type = 'Supplier'
                 LIMIT 1
             ];
 
