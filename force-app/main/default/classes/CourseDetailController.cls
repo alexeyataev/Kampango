@@ -1,5 +1,6 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #53 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class CourseDetailController {
-
     @AuraEnabled(cacheable=true)
     public static List<Session__c> retrieveRelatedSessions(String courseId){
         List<Session__c> sessions;
@@ -10,19 +11,19 @@ public with sharing class CourseDetailController {
                     Type__c,
                     Status__c,
                     Additional_Information__c,
-                    Venue__c,
-                    Venue__r.Town__c,
-                    Venue__r.Postcode__c,
-                    Venue__r.Street_Address__c,
-                    Venue__r.County__c,
-                    Venue__r.Name
+                    Location_Postcode__c,
+                    Location_Street__c,
+                    Location_County__c,
+                    Location_Town__c,
+                    Location_Name__c,
+                    Location_Id__c
             FROM Session__c
             WHERE Course__c = :courseId
             AND (Status__c = 'Confirmed' OR Type__c = 'Reunion')
+            WITH SECURITY_ENFORCED
             ORDER BY Date__c, Start__c
         ];
 
         return sessions;
     }
-
 }
