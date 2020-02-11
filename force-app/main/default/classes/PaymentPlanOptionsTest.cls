@@ -57,7 +57,7 @@ public class PaymentPlanOptionsTest {
     @isTest
     static void OneRecurringPaymentDependsOnTime_WithTimeForOnlyOnePaymentBeforeDeadline_OneOptionGenerated() {
         Integer courseFee = 200;
-        Date courseStartDate = Date.newInstance(2020, 2, 1);
+        Date courseStartDate = Date.newInstance(2020, 3, 1);
         PaymentPlanGenerator.clock = new PaymentPlanMockClock(Date.newInstance(2019, 12, 5));
         Test.startTest();
         List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, courseStartDate);
@@ -70,7 +70,7 @@ public class PaymentPlanOptionsTest {
     @isTest
     static void TwoRecurringPaymentsDependsOnTime_WithTimeForTwoPaymentsBeforeDeadline_TwoOptionGenerated() {
         Integer courseFee = 200;
-        Date courseStartDate = Date.newInstance(2020, 3, 1);
+        Date courseStartDate = Date.newInstance(2020, 3, 10);
         PaymentPlanGenerator.clock = new PaymentPlanMockClock(Date.newInstance(2019, 12, 5));
         Test.startTest();
         List<PaymentPlanOption> options = PaymentPlanGenerator.getOptions(courseFee, courseStartDate);
