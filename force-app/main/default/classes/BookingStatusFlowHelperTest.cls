@@ -54,7 +54,7 @@ public  class BookingStatusFlowHelperTest {
             .withSubType('NCT Baby Massage course')
             .withFee(100)
             .withNumberOfPlaces(15)
-            .withStatus('Final')
+            .withStatus('Draft')
             .withAccount(branch)
             .withLicenceToPractice(lisence)
             .withPractitioner(contact)
@@ -103,14 +103,14 @@ public  class BookingStatusFlowHelperTest {
         TestBookingBuilder bookingBuilder = new TestBookingBuilder();
         List<Booking__c> bookings = new List<Booking__c>{
             bookingBuilder.withCourse(course)
-            .withStatus('Reserved')
+            .withStatus('Enquiry')
             .withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
             .withBookingExpiryDate(System.today().addDays(-10))
             .insertRecord(false)
             .build(),
             bookingBuilder.withCourse(course)
-            .withStatus('Reserved')
+            .withStatus('Enquiry')
             .withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
             .withBookingExpiryDate(System.today().addDays(10))
@@ -138,6 +138,6 @@ public  class BookingStatusFlowHelperTest {
         BookingStatusFlowHelper.updateBookings(new List<List<Booking__c>>{bookings});
         Test.stopTest();
         System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = 'Expired'].size());
-        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = 'Reserved'].size());
+        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = 'Enquiry'].size());
     }
 }
