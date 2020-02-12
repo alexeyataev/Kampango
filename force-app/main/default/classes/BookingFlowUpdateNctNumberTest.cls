@@ -3,6 +3,9 @@ public class BookingFlowUpdateNctNumberTest {
 
     private static final Id RECORD_TYPE_ID = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId();
     private static final String ACCOUNT_NAME = 'Household Account Test';
+    private static final String CLIENT_RECORDTYPE_NAME  = 'Client';
+    private static final String NCT_PRIMARY_NUMBER = '111111';
+    private static final String NCT_PARTNER_NUMBER = '222222';
 
     public static String createPrimaryContact(){
         Account account = new Account (
@@ -11,7 +14,7 @@ public class BookingFlowUpdateNctNumberTest {
         );
         insert account;
         TestContactBuilder contactBuilder = new TestContactBuilder();
-        Contact primaryContact = contactBuilder.withRecordType('Client')
+        Contact primaryContact = contactBuilder.withRecordType(CLIENT_RECORDTYPE_NAME)
             .withAccount(account)
             .withFirstName('Dina')
             .withLastName('Primary')
@@ -28,7 +31,7 @@ public class BookingFlowUpdateNctNumberTest {
 
         insert account;
         TestContactBuilder contactBuilder = new TestContactBuilder();
-        Contact partnerContact = contactBuilder.withRecordType('Client')
+        Contact partnerContact = contactBuilder.withRecordType(CLIENT_RECORDTYPE_NAME)
             .withAccount(account)
             .withFirstName('John')
             .withLastName('Partner')
@@ -47,13 +50,13 @@ public class BookingFlowUpdateNctNumberTest {
             WHERE Id = :primaryId
         ];
 
-        primaryContact[0].NCT_Number__c = '111111';
+        primaryContact[0].NCT_Number__c = NCT_PRIMARY_NUMBER;
 
         Test.startTest();
         BookingFlowUpdateNctNumber.updateContact(new List<List<Contact>>{primaryContact});
         Test.stopTest();
 
-        System.assertEquals('111111', [SELECT Name, NCT_Number__c FROM Contact][0].NCT_Number__c);
+        System.assertEquals(NCT_PRIMARY_NUMBER, [SELECT Name, NCT_Number__c FROM Contact][0].NCT_Number__c);
     }
 
     @IsTest
@@ -72,8 +75,8 @@ public class BookingFlowUpdateNctNumberTest {
             WHERE Id in :contactIds
         ];
 
-        contactList[0].NCT_Number__c = '111111';
-        contactList[1].NCT_Number__c = '222222';
+        contactList[0].NCT_Number__c = NCT_PRIMARY_NUMBER;
+        contactList[1].NCT_Number__c = NCT_PARTNER_NUMBER;
 
         Test.startTest();
         BookingFlowUpdateNctNumber.updateContact(new List<List<Contact>>{contactList});
@@ -81,9 +84,8 @@ public class BookingFlowUpdateNctNumberTest {
 
         System.debug([SELECT Name, NCT_Number__c FROM Contact]);
         
-        System.assertEquals('111111', [SELECT Name, NCT_Number__c FROM Contact][0].NCT_Number__c);
-        System.assertEquals('222222', [SELECT Name, NCT_Number__c FROM Contact][1].NCT_Number__c);
-
-        
+        System.assertEquals(NCT_PRIMARY_NUMBER, [SELECT Name, NCT_Number__c FROM Contact][0].NCT_Number__c);
+        System.assertEquals(NCT_PARTNER_NUMBER, [SELECT Name, NCT_Number__c FROM Contact][1].NCT_Number__c);
+    
     }
 }
