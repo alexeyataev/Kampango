@@ -588,7 +588,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Venue_Street__c</field>
+        <field>Session__c.Venue_Town__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8295,7 +8295,7 @@
         <tab>Zumzum__Company_Setup__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-    <tabVisibilities>
+        <tabVisibilities>
         <tab>Zumzum__Control_Account__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -8491,7 +8491,7 @@
         <tab>npsp__Trigger_Handler__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
-    <applicationVisibilities>
+        <applicationVisibilities>
         <application>Zumzum__Zumzum_Financials_L</application>
         <default>false</default>
         <visible>true</visible>
