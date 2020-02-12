@@ -4,11 +4,8 @@
 public  class BookingStatusFlowHelperTest {
     private static final String BOOKING_STATUS_RESERVED = 'Reserved';
     private static final String BOOKING_STATUS_EXPIRED = 'Expired';
-    private static final String BOOKING_STATUS_ENQUIRY = 'Enquiry';
     private static final String PRACTITIONER_LASTNAME = 'Smith';
-    private static final String PROFILE_NAME = 'Enquiry PSA';
     private static final String CLIENT_RECORDTYPE_NAME  = 'Client';
-    private static final String PERMISSION_SET_NAME = 'Override_Booking_Validation';
     private static final String COURSE_STATUS_FINAL = 'Final';
     
     @TestSetup
