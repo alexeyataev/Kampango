@@ -161,8 +161,8 @@
         <locationY>236</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Link_Is_Expired</name>
-            <conditionLogic>and</conditionLogic>
+            <name>Link_Is_Expired_Or_Cancelled</name>
+            <conditionLogic>(1 AND 2) OR 3</conditionLogic>
             <conditions>
                 <leftValueReference>curBooking.Status__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -177,10 +177,17 @@
                     <numberValue>0.0</numberValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>curBooking.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Cancelled</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Booking_Journey_Available_Screen</targetReference>
             </connector>
-            <label>Link Is Expired</label>
+            <label>Link Is Expired Or Cancelled</label>
         </rules>
         <rules>
             <name>Course_Is_Cancelled</name>

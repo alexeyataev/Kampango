@@ -1,5 +1,6 @@
 public with sharing class PaymentPlanGenerator {
     @TestVisible private static IClock clock = new SystemClock();
+    public static final Integer COLLECTION_DAY_OF_MONTH = 3;
     private static final Integer MAX_DAYS_BEFORE_PAID = Integer.valueOf(Card_Payment_Plan_Settings__c.getOrgDefaults().Min_Days_Fully_Paid_Before_Course_Start__c);
     private static final Integer MAX_RECURRING_INSTALLMENTS_NUMBER = 3;
     private static final Integer MIN_DAYS_BEFORE_FIRST_RECURRING_PAYMENT = Integer.valueOf(Card_Payment_Plan_Settings__c.getOrgDefaults().Min_Days_Before_First_Recurring_Payment__c);
@@ -28,7 +29,7 @@ public with sharing class PaymentPlanGenerator {
         Date initialPaymentDate = clock.today();
         Integer daysInCurrentMonth = Date.daysInMonth(initialPaymentDate.year(), initialPaymentDate.month());
         Integer daysToday = initialPaymentDate.day();
-        firstRecurringPaymentDate = initialPaymentDate.addMonths(1).toStartOfMonth();
+        firstRecurringPaymentDate = initialPaymentDate.addMonths(1).toStartOfMonth() + COLLECTION_DAY_OF_MONTH - 1;
         if(daysInCurrentMonth - daysToday <= MIN_DAYS_BEFORE_FIRST_RECURRING_PAYMENT) {
             firstRecurringPaymentDate = firstRecurringPaymentDate.addMonths(1);
         }
