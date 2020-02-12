@@ -15,7 +15,7 @@
             <name>CopyAutoNumberIntoAccountNumber</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Account.AccountNumber</field>
             <operation>notEqual</operation>
