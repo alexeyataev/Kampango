@@ -119,6 +119,10 @@
         <name>ApprovalProcess</name>
     </types>
     <types>
+        <members>Case</members>
+        <name>AssignmentRules</name>
+    </types>
+    <types>
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
         <members>ParentCommunityLogoContainer</members>
@@ -650,6 +654,7 @@
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
         <members>Booking__c.MandatoryCancellationReason</members>
+        <members>Booking__c.MandatoryPartnerContactField</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
         <members>Booking__c.Prevent_Manual_Transfer</members>
