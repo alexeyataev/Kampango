@@ -119,6 +119,10 @@
         <name>ApprovalProcess</name>
     </types>
     <types>
+        <members>Case</members>
+        <name>AssignmentRules</name>
+    </types>
+    <types>
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
         <members>ParentCommunityLogoContainer</members>
