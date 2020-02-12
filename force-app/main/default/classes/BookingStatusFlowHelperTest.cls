@@ -54,7 +54,7 @@ public  class BookingStatusFlowHelperTest {
             .withSubType('NCT Baby Massage course')
             .withFee(100)
             .withNumberOfPlaces(15)
-            .withStatus('Draft')
+            .withStatus('Final')
             .withAccount(branch)
             .withLicenceToPractice(lisence)
             .withPractitioner(contact)
