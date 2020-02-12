@@ -63,7 +63,7 @@
                 <field>CaseNumber</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Booking__c</field>
             </layoutItems>
         </layoutColumns>
@@ -239,7 +239,7 @@
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <relatedObjects>ContactId</relatedObjects>
-    <runAssignmentRulesDefault>false</runAssignmentRulesDefault>
+    <runAssignmentRulesDefault>true</runAssignmentRulesDefault>
     <showEmailCheckbox>true</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
