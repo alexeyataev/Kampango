@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #56 - https://confluence.nct.org.uk:8443/x/EoSO
 global class SessionFeeHelper {
     private static Date earliestSessionDate;
     private static Date latestSessionDate;
@@ -20,6 +22,7 @@ global class SessionFeeHelper {
                                                         FROM Practitioner_Fee_Rate__c
                                                         WHERE Start_Date__c <= :latestSessionDate 
                                                             AND (End_Date__c = NULL or End_Date__c >= :earliestSessionDate)
+                                                        WITH SECURITY_ENFORCED
                                                         ORDER BY Start_Date__c DESC]);
     
         assignAppropriateFeeRatesToSessions(sessions, branchIdToWeightings, practitionerIdToBands, feeRates);
@@ -92,7 +95,8 @@ global class SessionFeeHelper {
 
         return [SELECT Id, Date__c, Practitioner__c, Course__c, Course__r.Branch__c 
                 FROM Session__c 
-                WHERE Id IN :sessionIds];
+                WHERE Id IN :sessionIds
+                WITH SECURITY_ENFORCED];
     }
 
     private static void setEarliestAndLatestSessionDates(List<Session__c> sessions){
@@ -134,6 +138,7 @@ global class SessionFeeHelper {
                                                 WHERE Branch__c IN :branchIds
                                                     AND Start_Date__c <= :earliestSessionDate 
                                                     AND (End_Date__c = NULL or End_Date__c >= :earliestSessionDate)
+                                                WITH SECURITY_ENFORCED
                                                 ORDER BY Start_Date__c DESC
                                             ]){
             if(branchIdToWeightings.get(weighting.Branch__c) != null){
@@ -156,6 +161,7 @@ global class SessionFeeHelper {
                                             WHERE Practitioner__c IN :practitionerIds
                                                 AND Start_Date__c <= :earliestSessionDate 
                                                 AND (End_Date__c = NULL or End_Date__c >= :earliestSessionDate)
+                                            WITH SECURITY_ENFORCED
                                             ORDER BY Start_Date__c DESC
                                         ]){
             if(practitionerIdToBands.get(band.Practitioner__c) != null){

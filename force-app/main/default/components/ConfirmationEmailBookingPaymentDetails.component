@@ -19,8 +19,7 @@
                         </apex:outputText>
                     </td>
                     <td>Card</td>
-                    <td>£{!IF(NOT(ISBLANK(booking.Fee_Override__c)), booking.Fee_Override__c, booking.Course_Fee__c)}
-                    </td>
+                    <td>{!booking.Booking_Journey_Payable_Amount__c}</td>
                     <td>Course Fee</td>
                 </tr>
             </apex:repeat>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AccountAutoNumber__c</fullName>
+    <description>Used for filling of AccountNumber</description>
+    <displayFormat>1{0000000}</displayFormat>
+    <externalId>false</externalId>
+    <inlineHelpText>Used for filling of AccountNumber</inlineHelpText>
+    <label>AccountAutoNumber</label>
+    <trackHistory>false</trackHistory>
+    <type>AutoNumber</type>
+</CustomField>
