@@ -66,9 +66,6 @@ public class PaymentApiRequest{
         public Payment(String amount, Map<String, String> customFields) {
             this.amount = amount;
             this.customFields = customFields;
-            this.frequency = frequency;
-            this.startDate = startDate;
-            this.endDate = endDate;
         }
     }
     public class PaymentMethod {
