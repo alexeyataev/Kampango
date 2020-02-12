@@ -4,7 +4,8 @@
     <active>true</active>
     <errorConditionFormula>AND(
   NOT(ISPICKVAL(Course__r.Status__c, &#39;Final&#39;)),
-  ISPICKVAL(Status__c, &#39;Reserved&#39;)
+  ISPICKVAL(Status__c, &#39;Reserved&#39;),
+  NOT($Permission.Override_Booking_Validation) 
 )</errorConditionFormula>
     <errorDisplayField>Status__c</errorDisplayField>
     <errorMessage>You cannot switch to Reserved if the course status is Draft.</errorMessage>
