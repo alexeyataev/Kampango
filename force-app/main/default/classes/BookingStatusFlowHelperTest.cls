@@ -9,6 +9,7 @@ public  class BookingStatusFlowHelperTest {
     private static final String PROFILE_NAME = 'Enquiry PSA';
     private static final String CLIENT_RECORDTYPE_NAME  = 'Client';
     private static final String PERMISSION_SET_NAME = 'Override_Booking_Validation';
+    private static final String COURSE_STATUS_FINAL = 'Final';
     
     @TestSetup
     static void setupData() {
@@ -21,7 +22,7 @@ public  class BookingStatusFlowHelperTest {
                     .buildVenue()
                     .buildRoom()
                     .buildLicenceToPractice()
-                    .buildCourse()
+                    .buildCourseWithStatus(COURSE_STATUS_FINAL)
                     .buildEstimatedCosts()
                     .buildSession();
         
@@ -46,18 +47,18 @@ public  class BookingStatusFlowHelperTest {
         TestBookingBuilder bookingBuilder = new TestBookingBuilder();
         List<Booking__c> bookings = new List<Booking__c>{
             bookingBuilder.withCourse(course)
-            .withStatus(BOOKING_STATUS_ENQUIRY)
+            .withStatus(BOOKING_STATUS_RESERVED)
             .withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
-            .withBookingExpiryDate(System.today().addDays(-1))
+            .withBookingExpiryDate(System.today().addDays(-2))
             .insertRecord(false)
             .build(),
 
             bookingBuilder.withCourse(course)
-            .withStatus(BOOKING_STATUS_ENQUIRY)
+            .withStatus(BOOKING_STATUS_RESERVED)
             .withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
-            .withBookingExpiryDate(System.today().addDays(1))
+            .withBookingExpiryDate(System.today().addDays(2))
             .insertRecord(false)
             .build()
         };
@@ -72,23 +73,12 @@ public  class BookingStatusFlowHelperTest {
             FROM Booking__c
         ];
 
-        for(Integer i = 0; i < bookings.size(); i++){
+        for(Integer i = 0; i < bookings.size(); i++) {
             if (Math.mod(i, 2) == 0) {
                 bookings.get(i).Reservation_Expiry_Date__c += 1;
-                bookings.get(i).Status__c = BOOKING_STATUS_RESERVED;
             }
+
             bookings.get(i).Status__c = BOOKING_STATUS_EXPIRED;
-        }
-
-        User user = [
-            SELECT Id 
-            FROM User
-            WHERE Profile.Name = :PROFILE_NAME
-            LIMIT 1
-        ];
-
-        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
-            update bookings;
         }
         
         Test.startTest();

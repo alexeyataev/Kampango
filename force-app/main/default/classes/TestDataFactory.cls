@@ -257,6 +257,20 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public TestDataFactory buildCourseWithStatus(String status) {
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        course = courseBuilder
+            .withAccount(branchAccount)
+            .withPractitioner(practitioners[0])
+            .withMainVenue(venue)
+            .withStatus(status)
+            .withLicenceToPractice(licenceToPractice)
+            .insertRecord(true)
+            .build();
+            
+        return this;
+    }
+
     public TestDataFactory buildCourseAssignment() {
         TestCourseAssignmentBuilder courseAssignmentBuilder = new TestCourseAssignmentBuilder();
         courseAssignment = courseAssignmentBuilder
