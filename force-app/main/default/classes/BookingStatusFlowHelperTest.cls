@@ -2,13 +2,18 @@
 //Incident #41 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 public  class BookingStatusFlowHelperTest {
+    private static final String BOOKING_STATUS_RESERVED = 'Reserved';
+    private static final String BOOKING_STATUS_EXPIRED = 'Expired';
+    private static final String BOOKING_STATUS_ENQUIRY = 'Enquiry';
+    private static final String PROFILE_NAME = 'Enquiry PSA';
+    private static final String PERMISSION_SET_NAME = 'Override_Booking_Validation';
     
     @TestSetup
-    static void makeData(){
+    static void setupData() {
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account branch =  accountBuilder.withRecordType('Branch')
             .withName('Test Branch')
-            .withBillingPostalCode('qwerty')
+            .withBillingPostalCode('2344 B234')
             .insertRecord(true)
             .build();
         accountBuilder = new TestAccountBuilder();
@@ -103,14 +108,14 @@ public  class BookingStatusFlowHelperTest {
         TestBookingBuilder bookingBuilder = new TestBookingBuilder();
         List<Booking__c> bookings = new List<Booking__c>{
             bookingBuilder.withCourse(course)
-            .withStatus('Enquiry')
+            .withStatus(BOOKING_STATUS_ENQUIRY)
             .withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
             .withBookingExpiryDate(System.today().addDays(-10))
             .insertRecord(false)
             .build(),
             bookingBuilder.withCourse(course)
-            .withStatus('Enquiry')
+            .withStatus(BOOKING_STATUS_ENQUIRY)
             .withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
             .withBookingExpiryDate(System.today().addDays(10))
@@ -130,14 +135,26 @@ public  class BookingStatusFlowHelperTest {
         for(Integer i = 0; i < bookings.size(); i++){
             if (Math.mod(i, 2) == 0) {
                 bookings.get(i).Reservation_Expiry_Date__c += 1;
+                bookings.get(i).Status__c = BOOKING_STATUS_RESERVED;
             }
-            bookings.get(i).Status__c = 'Expired';
+            bookings.get(i).Status__c = BOOKING_STATUS_EXPIRED;
         }
 
+        User user = [
+            SELECT Id 
+            FROM User
+            WHERE Profile.Name = :PROFILE_NAME
+            LIMIT 1
+        ];
+
+        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
+            update bookings;
+        }
+        
         Test.startTest();
         BookingStatusFlowHelper.updateBookings(new List<List<Booking__c>>{bookings});
         Test.stopTest();
-        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = 'Expired'].size());
-        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = 'Enquiry'].size());
+        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = :BOOKING_STATUS_EXPIRED].size());
+        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = :BOOKING_STATUS_RESERVED].size());
     }
 }
