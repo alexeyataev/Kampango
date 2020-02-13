@@ -22,8 +22,6 @@
         <members>ClaimFeeHelperTest</members>
         <members>ConfirmationEmailController</members>
         <members>ConfirmationEmailControllerTest</members>
-        <members>ContactDetailsController</members>
-        <members>ContactDetailsControllerTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
