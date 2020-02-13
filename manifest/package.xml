@@ -119,6 +119,10 @@
         <name>ApprovalProcess</name>
     </types>
     <types>
+        <members>Case</members>
+        <name>AssignmentRules</name>
+    </types>
+    <types>
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
         <members>ParentCommunityLogoContainer</members>
@@ -147,6 +151,16 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
+        <members>Booking__c.Booking_Journey_Payable_Amount__c</members>
+        <members>Case.Booking__c</members>
+        <members>Case.ContactId</members>
+        <members>Case.Description</members>
+        <members>Case.Origin</members>
+        <members>Case.OwnerId</members>
+        <members>Case.Priority</members>
+        <members>Case.Status</members>
+        <members>Case.Subject</members>
+        <members>Case.Type</members>
         <members>Contact.AccountId</members>
         <members>Contact.Deducted_Practitioner_Fees__c</members>
         <members>Contact.Home_PSA__c</members>
@@ -169,17 +183,19 @@
         <members>Session__c.Eligible_for_Claim__c</members>
         <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
         <members>Session__c.Practitioner_Fees_to_Claim__c</members>
-        <members>Session__c.Venue_County__c</members>
-        <members>Session__c.Venue_Name__c</members>
-        <members>Session__c.Venue_Postcode__c</members>
-        <members>Session__c.Venue_Street__c</members>
-        <members>Session__c.Venue_Town__c</members>
+        <members>Session__c.Location_County__c</members>
+        <members>Session__c.Location_Id__c</members>
+        <members>Session__c.Location_Name__c</members>
+        <members>Session__c.Location_Postcode__c</members>
+        <members>Session__c.Location_Street__c</members>
+        <members>Session__c.Location_Town__c</members>
         <members>Venue__c.Legacy_Id__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c.Practitioner__c</members>
         <members>Zumzum__Sales_Invoice__c.Booking__c</members>
+        <members>Zumzum__Sales_Invoice_Line_Item__c.Course__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -275,6 +291,7 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Course_Validation</members>
@@ -443,6 +460,7 @@
         <members>Update_Practitioner_Licence_on_Sessions_related_to_Course</members>
         <members>Update_Practitioner_on_Sessions</members>
         <members>Update_Related_Sessions</members>
+        <members>Update_Revenue_Dates</members>
         <members>Update_service_field_on_session</members>
         <members>Update_Session_Fee_Rate_When_Branch_Weighting_Changes</members>
         <members>Update_Session_Fee_Rates_When_Practitioner_Band_Changes</members>
@@ -458,6 +476,7 @@
         <members>Asset-Practitioner Asset Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Branch_Weighting__c-Branch Weighting Layout</members>
+        <members>Case-Case Layout</members>
         <members>Contact-Client Layout</members>
         <members>Contact-Contact Layout</members>
         <members>Contact-Practitioner Community Layout</members>
@@ -497,6 +516,10 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
+        <members>Case.Course_Booking_Manual_Administration_Case</members>
+        <name>ListView</name>
+    </types>
+    <types>
         <members>Parent Community</members>
         <members>Practitioners</members>
         <name>Network</name>
@@ -510,6 +533,7 @@
         <members>Branch_and_PSA_Management</members>
         <members>Create_Public_Lists</members>
         <members>Override_Branch_Weighting_Validation</members>
+        <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
@@ -535,6 +559,10 @@
         <members>PSA Manager</members>
         <members>Website Integration</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>Course_Booking_Manual_Administration</members>
+        <name>Queue</name>
     </types>
     <types>
         <members>Booking__c.Send_Confirmation_Email</members>
@@ -601,6 +629,9 @@
     </types>
     <types>
         <members>AccountType</members>
+        <members>CaseOrigin</members>
+        <members>CaseStatus</members>
+        <members>CaseType</members>
         <members>TaskSubject</members>
         <name>StandardValueSet</name>
     </types>
@@ -622,6 +653,7 @@
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
         <members>Booking__c.MandatoryCancellationReason</members>
+        <members>Booking__c.MandatoryPartnerContactField</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
         <members>Booking__c.Prevent_Manual_Transfer</members>
@@ -631,6 +663,7 @@
         <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
         <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
+        <members>Course__c.Check_Drop_In_Schedule_Information</members>
         <members>Course__c.Check_Fee_and_Estimated_Costs</members>
         <members>Course__c.Check_Fee_Discount_Uplift_fields</members>
         <members>Course__c.Check_Sessions_and_Practitioners</members>
@@ -654,6 +687,7 @@
         <name>ValidationRule</name>
     </types>
     <types>
+        <members>Account</members>
         <members>Booking__c</members>
         <members>Course__c</members>
         <members>Course_Assignment__c</members>

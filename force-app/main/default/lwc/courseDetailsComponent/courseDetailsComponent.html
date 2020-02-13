@@ -27,7 +27,7 @@
       <div class="slds-col slds-size_1-of-1">
         <div class="height_100">
           <template if:true={venuesLoaded}>
-            <c-locations venues={allVenues} sessions={sessions} location-header="Locations"></c-locations>
+            <c-locations venues={allVenues} sessions={sessions} location-header="Location(s)"></c-locations>
           </template>
         </div>
       </div>
@@ -37,12 +37,24 @@
             class="padding-bottom_1 slds-col slds-small-size_1-of-1 slds-medium-size_7-of-12 slds-large-size_7-of-12"
           >
           <template if:true={venuesLoaded}>
-             <c-sessions sessions={sessions} session-header="Sessions"></c-sessions>
+             <c-sessions sessions={sessions} session-header="Session(s)"></c-sessions>
           </template>
           </div>
         </div>
       </div>
     </div>
+
+    <tempalte if:true={courseHasProvisionalReunion}>
+      <div class='heading_4 lato-font slds-p-top_large slds-p-bottom_large' >
+        <div>
+          <b>Course Reunion</b>
+        </div>
+        <div>
+          {provisionCourseReunionText}
+        </div>
+      </div>
+    </tempalte>
+
     <div class="heading_2 lato-font">
       Total - &#163;
       <lightning-formatted-number value={courseFee} minimum-fraction-digits="0">

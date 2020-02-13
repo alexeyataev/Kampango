@@ -1,6 +1,8 @@
 /**
  * Auto Generated and Deployed by the Declarative Lookup Rollup Summaries Tool package (dlrs)
  **/
+@SuppressWarnings('PMD.ClassNamingConventions')
+//Incident #45 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 private class dlrs_Estimated_CostsTest
 {
@@ -31,6 +33,17 @@ private class dlrs_Estimated_CostsTest
             FROM Estimated_Costs__c 
             ];
 
+        Test.startTest();
         dlrs.RollupService.testHandler(estimated_Costs.get(0));
+        Test.stopTest();
+
+        List<Course__c> courses = [
+            SELECT Count_of_Estimated_Travel_Costs__c, Count_of_Estimated_Venue_Costs__c  
+            FROM Course__c
+        ];
+
+        System.assertEquals(1, courses[0].Count_of_Estimated_Travel_Costs__c);
+        System.assertEquals(1, courses[0].Count_of_Estimated_Venue_Costs__c);
+
     }
 }

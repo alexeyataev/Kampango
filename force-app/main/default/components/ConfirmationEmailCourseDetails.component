@@ -6,7 +6,7 @@
         <tr style='font-size:16px;color:#00876a;'>
             <th>Starts</th>
             <th>Ends</th>
-            <th>Course leader</th>
+            <th>Course leader(s)</th>
         </tr>
         <tr align='left'>
             <td valign='top'>
@@ -26,32 +26,33 @@
             </td>
         </tr>
     </table>
-
-    <h3 style='border-bottom:1px solid#f0f0f0; margin-top:20px; color:#00876a;'>Location</h3>
+    <br/>
+    <h3 style='border-bottom:1px solid#f0f0f0; margin-top:20px; color:#00876a;'>Location(s)</h3>
     <table border="0" cellpadding='1' cellspacing='0' width='100%' style="text-align:left; vertical-align: top;">
         <tr align='left'>
             <apex:repeat value="{!locationListWrapper}" var="location">
                 <td style="vertical-align: baseline;">
                     <div style='margin-right:2rem;'>
-                        <b>{!location.locationOfSession.Venue_Name__c}</b> {!location.sessionDays}</div>
-                    <div>{!location.locationOfSession.Venue_Street__c}</div>
-                    <div>{!location.locationOfSession.Venue_County__c}</div>
-                    <div>{!location.locationOfSession.Venue_Town__c}</div>
-                    <div>{!location.locationOfSession.Venue_Postcode__c}</div>
+                        <b>{!location.locationOfSession.Location_Name__c}</b> {!location.sessionDays}</div>
+                    <div>{!location.locationOfSession.Location_Street__c}</div>
+                    <div>{!location.locationOfSession.Location_County__c}</div>
+                    <div>{!location.locationOfSession.Location_Town__c}</div>
+                    <div>{!location.locationOfSession.Location_Postcode__c}</div>
+                    <div> <a href="{!location.locationOfSession.Location_Map_Url__c}">Click here to see a map</a> </div>
                     <br/>
                 </td>
             </apex:repeat>
         </tr>
     </table>
 
-    <h3 style='border-bottom:1px solid#f0f0f0; color:#00876a;font-size:16px;'>Sessions</h3>
+    <h3 style='border-bottom:1px solid#f0f0f0; color:#00876a;font-size:16px;'>Session(s)</h3>
     <table cellspacing="0" cellpadding="10" rules="rows" border="0" width="100%" align='center'>
         <tr align='left'>
-            <th>Sessions</th>
+            <th>Session</th>
             <th>Date</th>
             <th>Starts</th>
             <th>Ends</th>
-            <th>Session notes</th>
+            <th>Session note(s)</th>
         </tr>
         <apex:repeat value="{!sessionListWrapper}" var="session">
             <tr>

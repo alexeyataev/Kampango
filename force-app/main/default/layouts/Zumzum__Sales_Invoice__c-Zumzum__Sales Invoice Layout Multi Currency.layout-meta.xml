@@ -353,10 +353,6 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>cpm__Installment__c.Sales_Invoice__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Zumzum__Product__c</fields>
@@ -369,6 +365,15 @@
         <fields>Zumzum__Revenue_Recognition_Rule__c</fields>
         <fields>Zumzum__Revenue_Recognition_End_Date__c</fields>
         <relatedList>Zumzum__Sales_Invoice_Line_Item__c.Zumzum__Sales_Invoice__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>cpm__Amount__c</fields>
+        <fields>cpm__Contact__c</fields>
+        <fields>cpm__Status__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>LAST_UPDATE</fields>
+        <relatedList>cpm__Installment__c.Sales_Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>

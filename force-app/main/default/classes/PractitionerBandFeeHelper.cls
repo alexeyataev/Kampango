@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #54 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class PractitionerBandFeeHelper {
 
     @InvocableMethod
@@ -35,6 +37,7 @@ public with sharing class PractitionerBandFeeHelper {
         return [SELECT Id 
                 FROM Session__c 
                 WHERE Practitioner__c IN :practitionerIds
-                    AND Date__c >= :earliestBandStartDate];
+                    AND Date__c >= :earliestBandStartDate
+                WITH SECURITY_ENFORCED];
     }
 }

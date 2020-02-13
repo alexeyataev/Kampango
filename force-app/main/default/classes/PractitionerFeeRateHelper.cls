@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #55 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class PractitionerFeeRateHelper {
 
     @InvocableMethod
@@ -58,7 +60,7 @@ public with sharing class PractitionerFeeRateHelper {
                     AND ((Practitioner_Fee_Rate__r.Practitioner_Band__c IN :affectedBands
                             AND Practitioner_Fee_Rate__r.Geographical_Weighting__c IN :affectedWeightings)
                         OR Practitioner_Fee_Rate__c = null)
-                ];
+                WITH SECURITY_ENFORCED];
     }
 
     private static List<Session__c> refinePotentialSessionList(List<Session__c> potentialSessionsToProcess, List<Practitioner_Fee_Rate__c> updatedAndNewRates){
