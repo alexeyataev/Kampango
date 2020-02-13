@@ -119,6 +119,10 @@
         <name>ApprovalProcess</name>
     </types>
     <types>
+        <members>Case</members>
+        <name>AssignmentRules</name>
+    </types>
+    <types>
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
         <members>ParentCommunityLogoContainer</members>
@@ -414,6 +418,7 @@
     </types>
     <types>
         <members>Contact.CourseSummaryPractitionerFields</members>
+        <members>Zumzum__Sales_Invoice__c.Zumzum__Required_Fields_Column_1</members>
         <name>FieldSet</name>
     </types>
     <types>
@@ -642,6 +647,7 @@
         <members>Account.Billing_Email_Required_For_Suppliers</members>
         <members>Account.Check_Bank_Account_Name</members>
         <members>Account.Sort_code_must_be_6_numeric_digits</members>
+        <members>Booking__c.Course_status_can_not_be_Draft</members>
         <members>Booking__c.ExpirationDateCannotBeReduced</members>
         <members>Booking__c.ExpiryDateCantBeMoreThanDateStartCourse</members>
         <members>Booking__c.FeeOverrideAmountRestriction</members>
@@ -649,6 +655,7 @@
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
         <members>Booking__c.MandatoryCancellationReason</members>
+        <members>Booking__c.MandatoryPartnerContactField</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
         <members>Booking__c.Prevent_Manual_Transfer</members>
