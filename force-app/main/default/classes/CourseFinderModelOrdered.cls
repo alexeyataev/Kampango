@@ -11,10 +11,17 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
     public CourseFinderModelOrdered(Course__c course, Date birthDueDate) {
         super(course);
         this.courseTypeRanks = createOrderToRank();
-        updateCourseRankAndGroup(course, birthDueDate);
+        updateCourseRankAndGroupRange(course, birthDueDate);
     }
 
-    private void updateCourseRankAndGroup(Course__c course, Date birthDueDate) {
+    private void updateCourseRankAndGroupRange(Course__c course, Date birthDueDate) {
+        // For Drop-ins Rank should always be 5
+        if (course.Type__c == 'Drop In'){
+            this.Rank = 5;
+            this.groupRange = 1;
+            return;
+        }
+
         Integer numberDays = 0;
         if (birthDueDate != null && course.End_Date__c != null && course.Start_Date__c != null) {
             numberDays = course.Type__c == 'Antenatal' ? course.End_Date__c.daysBetween(birthDueDate) : course.Start_Date__c.daysBetween(birthDueDate);
