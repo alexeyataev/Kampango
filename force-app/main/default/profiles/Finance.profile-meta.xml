@@ -6304,7 +6304,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Amount_Open__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6394,7 +6394,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Due_Date__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6429,7 +6429,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Last_Failure_Reason__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6454,7 +6454,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Last_Status_Reason__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6484,7 +6484,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Original_Due_Date__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6494,12 +6494,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Payment_Method__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Payment_Processor__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6529,7 +6529,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Recurring_Payment__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6619,92 +6619,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.gaid__Gift_Aidable_Amount__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.gaid__Related_Transaction__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.Sales_Invoice__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Active__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Collection_Day_of_Month__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Contact__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__End_Date__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Expected_Remaining_Revenue__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Frequency__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Next_Collection_Date__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Payment_Method__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Payment_Processor__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Start_Date__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Status_Reason__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__ls_coll_date__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cpm__Recurring_Payment__c.cpm__n_of_collected_installments__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -7252,15 +7172,6 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
-        <object>Zumzum__Sales_Invoice__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
         <object>Zumzum__Sales_Order_Line_Items__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -7478,15 +7389,6 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>cpm__Payment__c</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>cpm__Recurring_Payment__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -8648,14 +8550,6 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Venue__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>cpm__Installment__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>cpm__Recurring_Payment__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
