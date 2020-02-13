@@ -4,6 +4,8 @@
         <members>BookCourseController</members>
         <members>BookCourseControllerModel</members>
         <members>BookCourseControllerTest</members>
+        <members>ContactDetailsController</members>
+        <members>ContactDetailsControllerTest</members>
         <members>DirectDebitModels</members>
         <members>DirectDebitUtilities</members>
         <members>DirectDebitUtilitiesTest</members>
