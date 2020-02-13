@@ -418,6 +418,7 @@
     </types>
     <types>
         <members>Contact.CourseSummaryPractitionerFields</members>
+        <members>Zumzum__Sales_Invoice__c.Zumzum__Required_Fields_Column_1</members>
         <name>FieldSet</name>
     </types>
     <types>
