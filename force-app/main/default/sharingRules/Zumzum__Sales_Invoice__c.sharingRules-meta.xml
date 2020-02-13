@@ -23,7 +23,7 @@
         <criteriaItems>
             <field>Zumzum__Paid__c</field>
             <operation>equals</operation>
-            <value>Y</value>
+            <value>N</value>
         </criteriaItems>
     </sharingCriteriaRules>
 </SharingRules>
