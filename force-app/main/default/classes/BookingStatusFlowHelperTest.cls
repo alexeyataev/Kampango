@@ -4,9 +4,10 @@
 public  class BookingStatusFlowHelperTest {
     private static final String BOOKING_STATUS_RESERVED = 'Reserved';
     private static final String BOOKING_STATUS_EXPIRED = 'Expired';
+    private static final String BOOKING_STATUS_ENQUIRY = 'Enquiry';
     private static final String PRACTITIONER_LASTNAME = 'Smith';
+    private static final String COURSE_STATUS_DRAFT = 'Draft';
     private static final String CLIENT_RECORDTYPE_NAME  = 'Client';
-    private static final String COURSE_STATUS_FINAL = 'Final';
     
     @TestSetup
     static void setupData() {
@@ -19,7 +20,7 @@ public  class BookingStatusFlowHelperTest {
                     .buildVenue()
                     .buildRoom()
                     .buildLicenceToPractice()
-                    .buildCourseWithStatus(COURSE_STATUS_FINAL)
+                    .buildCourseWithStatus(COURSE_STATUS_DRAFT)
                     .buildEstimatedCosts()
                     .buildSession();
         
@@ -44,7 +45,7 @@ public  class BookingStatusFlowHelperTest {
         TestBookingBuilder bookingBuilder = new TestBookingBuilder();
         List<Booking__c> bookings = new List<Booking__c>{
             bookingBuilder.withCourse(course)
-            .withStatus(BOOKING_STATUS_RESERVED)
+            .withStatus(BOOKING_STATUS_ENQUIRY)
             .withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
             .withBookingExpiryDate(System.today().addDays(-2))
@@ -52,7 +53,7 @@ public  class BookingStatusFlowHelperTest {
             .build(),
 
             bookingBuilder.withCourse(course)
-            .withStatus(BOOKING_STATUS_RESERVED)
+            .withStatus(BOOKING_STATUS_ENQUIRY)
             .withPrimaryContact(primaryContact)
             .withPartnerContact(partnerContact)
             .withBookingExpiryDate(System.today().addDays(2))
@@ -75,14 +76,14 @@ public  class BookingStatusFlowHelperTest {
                 bookings.get(i).Reservation_Expiry_Date__c += 1;
             }
 
-            bookings.get(i).Status__c = BOOKING_STATUS_EXPIRED;
+            bookings.get(i).Status__c = BOOKING_STATUS_ENQUIRY;
         }
         
         Test.startTest();
         BookingStatusFlowHelper.updateBookings(new List<List<Booking__c>>{bookings});
         Test.stopTest();
 
-        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = :BOOKING_STATUS_EXPIRED].size());
-        System.assertEquals(1, [SELECT Id FROM Booking__c WHERE Status__c = :BOOKING_STATUS_RESERVED].size());
+        System.assertEquals(0, [SELECT Id FROM Booking__c WHERE Status__c = :BOOKING_STATUS_RESERVED].size());
+        System.assertEquals(2, [SELECT Id FROM Booking__c WHERE Status__c = :BOOKING_STATUS_ENQUIRY].size());
     }
 }
