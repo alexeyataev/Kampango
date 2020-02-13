@@ -26,7 +26,11 @@ public without sharing class CourseSearchUtility {
                 WHERE Name = :courseName
                     AND Status__c = :COURSE_STATUS_FINAL
                     AND Hide_From_Course_Finder__c = FALSE
-                    AND Start_Date__c > TODAY
+                    AND (
+                        Start_Date__c > TODAY 
+                            OR 
+                        Type__c = 'Drop In'
+                    )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                 WITH SECURITY_ENFORCED
             ];
@@ -91,7 +95,11 @@ public without sharing class CourseSearchUtility {
                 WHERE Branch__r.Branch_Number__c = :branchId
                     AND Status__c = :COURSE_STATUS_FINAL
                     AND Hide_From_Course_Finder__c = FALSE
-                    AND Start_Date__c > TODAY
+                    AND (
+                        Start_Date__c > TODAY 
+                            OR 
+                        Type__c = 'Drop In'
+                    )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                 WITH SECURITY_ENFORCED
             ];
@@ -170,12 +178,18 @@ public without sharing class CourseSearchUtility {
                 WHERE Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi') < :radius
                     AND Status__c = :COURSE_STATUS_FINAL
                     AND Hide_From_Course_Finder__c = FALSE
-                    AND Start_Date__c > TODAY
+                    AND (
+                        Start_Date__c > TODAY 
+                            OR 
+                        Type__c = 'Drop In'
+                    )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                     AND (
                         (Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) 
                             OR 
                         (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate)
+                            OR 
+                        Type__c = 'Drop In'
                     )
                 WITH SECURITY_ENFORCED
                 ORDER BY Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi'), Course__c.Sort_Date__c
