@@ -226,6 +226,21 @@
             </connector>
             <label>Course Is Confirmed</label>
         </rules>
+        <rules>
+            <name>Course_Status_Is_Draft</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>curCourse.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Draft</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Course_Status_Is_Draft_Screen</targetReference>
+            </connector>
+            <label>Course Status Is Draft</label>
+        </rules>
     </decisions>
     <decisions>
         <name>Doest_list_contain_this_id</name>
@@ -606,6 +621,22 @@
                     <operator>NotEqualTo</operator>
                 </conditions>
             </visibilityRule>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Course_Status_Is_Draft_Screen</name>
+        <label>Course Status Is Draft Screen</label>
+        <locationX>1317</locationX>
+        <locationY>91</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Course_Status_Is_Draft_Message</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;We&#39;re sorry your booking can&#39;t be completed right now. Please contact your Course Organiser direct, or you can phone our helpline on 0300 330 0700.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>

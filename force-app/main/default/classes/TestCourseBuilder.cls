@@ -10,6 +10,9 @@ public with sharing class TestCourseBuilder {
     private Boolean insertRecord = false;
     private Venue__c mainVenue;
     private Contact practitioner;
+    private Integer totalPractitionerFees = 200;
+    private Integer estimatedTravelCosts = 100;
+    private Integer estimatedVenueCosts = 100;
 
     public TestCourseBuilder withType(String type)
     {
@@ -76,7 +79,10 @@ public with sharing class TestCourseBuilder {
             Branch__c = this.account.Id,
             Main_Practitioner__c = this.practitioner.Id,
             Main_Practitioner_Licence__c = this.licenceToPractice.Id,
-            Main_Venue__c = mainVenue.Id
+            Main_Venue__c = mainVenue.Id,
+            Total_Practitioner_Fees__c = this.totalPractitionerFees,
+            Estimated_Travel_Costs__c = this.estimatedTravelCosts,
+            Estimated_Venue_Costs__c = this.estimatedVenueCosts
         );
 
         if(insertRecord)
