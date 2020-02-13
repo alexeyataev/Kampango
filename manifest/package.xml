@@ -22,8 +22,6 @@
         <members>ClaimFeeHelperTest</members>
         <members>ConfirmationEmailController</members>
         <members>ConfirmationEmailControllerTest</members>
-        <members>ContactDetailsController</members>
-        <members>ContactDetailsControllerTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -418,6 +416,7 @@
     </types>
     <types>
         <members>Contact.CourseSummaryPractitionerFields</members>
+        <members>Zumzum__Sales_Invoice__c.Zumzum__Required_Fields_Column_1</members>
         <name>FieldSet</name>
     </types>
     <types>
@@ -646,6 +645,7 @@
         <members>Account.Billing_Email_Required_For_Suppliers</members>
         <members>Account.Check_Bank_Account_Name</members>
         <members>Account.Sort_code_must_be_6_numeric_digits</members>
+        <members>Booking__c.Course_status_can_not_be_Draft</members>
         <members>Booking__c.ExpirationDateCannotBeReduced</members>
         <members>Booking__c.ExpiryDateCantBeMoreThanDateStartCourse</members>
         <members>Booking__c.FeeOverrideAmountRestriction</members>
