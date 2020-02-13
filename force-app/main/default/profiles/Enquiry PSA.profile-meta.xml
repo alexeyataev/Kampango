@@ -1472,7 +1472,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Payment_Processor__c</field>
-        <readable>fa;se</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
