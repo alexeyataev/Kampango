@@ -5,16 +5,11 @@
     <errorConditionFormula>AND(
     NOT(
         OR(
-            (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Enquiry&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Reserved&quot;) ), 
-            (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Expired&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Reserved&quot;) ),
-            (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Reserved&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Expired&quot;) ),
-            (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Reserved&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Confirmed&quot;) ), 
-            ISPICKVAL(Status__c, &quot;Cancelled&quot;),
-            (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Cancelled&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Enquiry&quot;) ),
-            (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Reserved&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Confirmed&quot;) ),
-            (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Enquiry&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Cancelled&quot;) ), 
-            (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Reserved&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Cancelled&quot;) ),
-            (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Confirmed&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Cancelled&quot;) )
+           (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Enquiry&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Reserved&quot;) ), 
+           (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Expired&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Reserved&quot;) ),
+           (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Reserved&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Expired&quot;) ),
+           (ISPICKVAL(PRIORVALUE(Status__c ), &quot;Cancelled&quot;) &amp;&amp; ISPICKVAL(Status__c, &quot;Enquiry&quot;) ),			
+           ISPICKVAL(Status__c, &quot;Cancelled&quot;)
         )
     ),
     ISCHANGED(Status__c ),
