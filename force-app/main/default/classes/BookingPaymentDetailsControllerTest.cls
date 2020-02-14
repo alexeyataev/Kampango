@@ -20,7 +20,7 @@ public with sharing class BookingPaymentDetailsControllerTest {
                     .buildParentHost('Dina', 'test1@test.com')
                     .buildPartnertHost('Tim', 'test2@test.com')
                     .buildRoom()
-                    .buildBooking('Reserved');
+                    .buildBooking('Enquiry');
     }
 
     @IsTest

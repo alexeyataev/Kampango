@@ -6,5 +6,6 @@
     <fields>Birth_Due_Date__c</fields>
     <fields>Branch__c</fields>
     <fields>Status__c</fields>
+    <fields>Do_Not_Contact__c</fields>
     <label>Booking</label>
 </CompactLayout>
