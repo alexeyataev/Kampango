@@ -80,6 +80,13 @@
         <value>{&quot;Error&quot; : &quot;Radius is not a whole number of miles&quot;}</value>
     </labels>
     <labels>
+        <fullName>Course_Leader_home</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Course Leader's home</shortDescription>
+        <value>Course Leader's home</value>
+    </labels>
+    <labels>
         <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
         <language>en_US</language>
         <protected>false</protected>

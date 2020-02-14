@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingCriteriaRules>
+        <fullName>ShareAllInvoicesWithPSA</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ShareAllInvoicesWithPSA</label>
+        <sharedTo>
+            <role>PSA</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Zumzum__Type__c</field>
+            <operation>equals</operation>
+            <value>Sales Invoice,Sales Credit</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>ShareAllInvoicesWithParents</fullName>
         <accessLevel>Read</accessLevel>
         <label>ShareAllInvoicesWithParents</label>
