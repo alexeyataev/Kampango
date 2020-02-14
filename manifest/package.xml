@@ -149,7 +149,6 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
-        <members>Booking__c.Booking_Journey_Payable_Amount__c</members>
         <members>Case.Booking__c</members>
         <members>Case.ContactId</members>
         <members>Case.Description</members>
@@ -169,31 +168,7 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
-        <members>Course__c.Title__c</members>
-        <members>cpm__Installment__c.Bank_Details_Number__c</members>
-        <members>cpm__Installment__c.Care_Membership_Added__c</members>
-        <members>cpm__Installment__c.Membership_Type__c</members>
-        <members>cpm__Installment__c.Partner_Contact__c</members>
-        <members>cpm__Installment__c.Sales_Invoice__c</members>
-        <members>cpm__Installment__c.ga_decl_1__c</members>
-        <members>cpm__Installment__c.ga_decl_2__c</members>
-        <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
-        <members>Session__c.Eligible_for_Claim__c</members>
-        <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
-        <members>Session__c.Practitioner_Fees_to_Claim__c</members>
-        <members>Session__c.Location_Home_Information__c</members>
-        <members>Session__c.Location_County__c</members>
-        <members>Session__c.Location_Id__c</members>
-        <members>Session__c.Location_Name__c</members>
-        <members>Session__c.Location_Postcode__c</members>
-        <members>Session__c.Location_Street__c</members>
-        <members>Session__c.Location_Town__c</members>
-        <members>Venue__c.Legacy_Id__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
-        <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
-        <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
-        <members>Zumzum__Purchase_Invoice_Line_Item__c.Practitioner__c</members>
-        <members>Zumzum__Sales_Invoice__c.Booking__c</members>
         <members>Zumzum__Sales_Invoice_Line_Item__c.Course__c</members>
         <name>CustomField</name>
     </types>
