@@ -181,7 +181,7 @@
         <members>Session__c.Eligible_for_Claim__c</members>
         <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
         <members>Session__c.Practitioner_Fees_to_Claim__c</members>
-        <members>Session__c.Is_Location_At_Home__c</members>
+        <members>Session__c.Location_Home_Information__c</members>
         <members>Session__c.Location_County__c</members>
         <members>Session__c.Location_Id__c</members>
         <members>Session__c.Location_Name__c</members>
