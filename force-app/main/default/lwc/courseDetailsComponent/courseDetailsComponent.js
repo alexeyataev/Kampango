@@ -152,7 +152,7 @@ export default class CourseDetailsComponent extends LightningElement {
         this.allVenues = array;
     }
 
-    addDateOrdinal(monthDay) {
+    addDateOrdinal(monthDay){
         switch(monthDay.substring(monthDay.length - 1, monthDay.length)){
             case '1':
                 if(monthDay !== '11'){
