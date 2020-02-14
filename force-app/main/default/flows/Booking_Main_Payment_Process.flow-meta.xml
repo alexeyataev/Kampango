@@ -1,19 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Add_Bank_Details_For_Membership_Handler</name>
+        <label>Add Bank Details For Membership Handler</label>
+        <locationX>938</locationX>
+        <locationY>1152</locationY>
+        <actionName>AddBankDetailsForMembershipHandler</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Is_Banks_Number_True</targetReference>
+        </connector>
+        <inputParameters>
+            <name>installment</name>
+            <value>
+                <elementReference>Installment_For_Payment_By_DD</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>bankNumber</assignToReference>
+            <name>bankDetailsNumber</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>bankNumberError</assignToReference>
+            <name>error</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>Card_Payment_Handler</name>
         <label>Card Payment Handler</label>
-        <locationX>2245</locationX>
-        <locationY>313</locationY>
+        <locationX>2099</locationX>
+        <locationY>328</locationY>
         <actionName>CardPaymentHandler</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Payment_Link_Result</targetReference>
         </connector>
         <inputParameters>
-            <name>salesInvoiceId</name>
+            <name>errorPage</name>
             <value>
-                <elementReference>PaymentPlanParameters.salesInvoiceId</elementReference>
+                <elementReference>PaymentPlanParameters.errorPage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>giftAidableAmount</name>
+            <value>
+                <elementReference>PaymentPlanParameters.giftAidableAmount</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>membershipType</name>
+            <value>
+                <elementReference>PaymentPlanParameters.membershipType</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -23,21 +60,21 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>amount</name>
+            <value>
+                <elementReference>PaymentPlanParameters.amount</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>successPage</name>
             <value>
                 <elementReference>PaymentPlanParameters.successPage</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>errorPage</name>
+            <name>salesInvoiceId</name>
             <value>
-                <elementReference>PaymentPlanParameters.errorPage</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>amount</name>
-            <value>
-                <elementReference>PaymentPlanParameters.amount</elementReference>
+                <elementReference>PaymentPlanParameters.salesInvoiceId</elementReference>
             </value>
         </inputParameters>
         <outputParameters>
@@ -52,35 +89,17 @@
     <actionCalls>
         <name>Card_Payment_Plan_Handler</name>
         <label>Card Payment Plan Handler</label>
-        <locationX>2246</locationX>
-        <locationY>610</locationY>
+        <locationX>2098</locationX>
+        <locationY>642</locationY>
         <actionName>CardPaymentPlanHandler</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Payment_Link_Result</targetReference>
         </connector>
         <inputParameters>
-            <name>paymentPlanStartDate</name>
+            <name>membershipType</name>
             <value>
-                <elementReference>PaymentPlanParameters.paymentPlanStartDate</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>paymentPlanEndDate</name>
-            <value>
-                <elementReference>PaymentPlanParameters.paymentPlanEndDate</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>errorPage</name>
-            <value>
-                <elementReference>PaymentPlanParameters.errorPage</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>salesInvoiceId</name>
-            <value>
-                <elementReference>PaymentPlanParameters.salesInvoiceId</elementReference>
+                <elementReference>PaymentPlanParameters.membershipType</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -90,9 +109,9 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>successPage</name>
+            <name>errorPage</name>
             <value>
-                <elementReference>PaymentPlanParameters.successPage</elementReference>
+                <elementReference>PaymentPlanParameters.errorPage</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -107,20 +126,98 @@
                 <elementReference>PaymentPlanParameters.amount</elementReference>
             </value>
         </inputParameters>
-        <outputParameters>
-            <assignToReference>paymentUrl</assignToReference>
-            <name>url</name>
-        </outputParameters>
+        <inputParameters>
+            <name>giftAidableAmount</name>
+            <value>
+                <elementReference>PaymentPlanParameters.giftAidableAmount</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>paymentPlanEndDate</name>
+            <value>
+                <elementReference>PaymentPlanParameters.paymentPlanEndDate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>paymentPlanStartDate</name>
+            <value>
+                <elementReference>PaymentPlanParameters.paymentPlanStartDate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>successPage</name>
+            <value>
+                <elementReference>PaymentPlanParameters.successPage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>salesInvoiceId</name>
+            <value>
+                <elementReference>PaymentPlanParameters.salesInvoiceId</elementReference>
+            </value>
+        </inputParameters>
         <outputParameters>
             <assignToReference>paymentError</assignToReference>
             <name>error</name>
         </outputParameters>
+        <outputParameters>
+            <assignToReference>paymentUrl</assignToReference>
+            <name>url</name>
+        </outputParameters>
     </actionCalls>
+    <assignments>
+        <name>Add_Membership_Type_and_Amount_to_Installment_1</name>
+        <label>Add Membership Type and Amount to Installment_1</label>
+        <locationX>1258</locationX>
+        <locationY>917</locationY>
+        <assignmentItems>
+            <assignToReference>Membership_Amount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>AMOUNT_48</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Payment_Method_Decision_0</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Membership_Type_and_Amount_to_Installment_2</name>
+        <label>Add Membership Type and Amount to Installment_2</label>
+        <locationX>1464</locationX>
+        <locationY>917</locationY>
+        <assignmentItems>
+            <assignToReference>Membership_Amount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>AMOUNT_57</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Payment_Method_Decision_0</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Primary_Contact_Id</name>
+        <label>Add Primary Contact Id</label>
+        <locationX>787</locationX>
+        <locationY>1002</locationY>
+        <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.cpm__Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>bookingRecord.Primary_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Payment_Profile</targetReference>
+        </connector>
+    </assignments>
     <assignments>
         <name>Added_Course_Payment_By_Credit_Card</name>
         <label>Added Course Payment By Credit Card</label>
-        <locationX>1142</locationX>
-        <locationY>378</locationY>
+        <locationX>1126</locationX>
+        <locationY>346</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.amount</assignToReference>
             <operator>Assign</operator>
@@ -135,8 +232,8 @@
     <assignments>
         <name>Course_Plan_Payment_By_Credit_Card</name>
         <label>Course Plan Payment By Credit Card</label>
-        <locationX>1146</locationX>
-        <locationY>174</locationY>
+        <locationX>1125</locationX>
+        <locationY>159</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.amountRecurring</assignToReference>
             <operator>Assign</operator>
@@ -179,8 +276,8 @@
     <assignments>
         <name>Get_Course_Fee_Assigment</name>
         <label>Get Course Fee Assigment</label>
-        <locationX>695</locationX>
-        <locationY>42</locationY>
+        <locationX>547</locationX>
+        <locationY>28</locationY>
         <assignmentItems>
             <assignToReference>Course_Fee</assignToReference>
             <operator>Assign</operator>
@@ -189,14 +286,44 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Payment_Options_Screen</targetReference>
+            <targetReference>Checking_NCT_Number_on_Contact</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Assigned_for_Total_Fee</name>
+        <label>Set Assigned for Total Fee</label>
+        <locationX>1603</locationX>
+        <locationY>1145</locationY>
+        <assignmentItems>
+            <assignToReference>PaymentPlanParameters.amount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Membership_Amount</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PaymentPlanParameters.membershipType</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Chosen_Membership_Result</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PaymentPlanParameters.giftAidableAmount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Membership_Amount</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Invoice_Item_for_Course_0</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Total_Payment_Course_Assignment</name>
         <label>Total Payment Course Assignment</label>
-        <locationX>1362</locationX>
-        <locationY>261</locationY>
+        <locationX>1366</locationX>
+        <locationY>259</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.contactId</assignToReference>
             <operator>Assign</operator>
@@ -231,7 +358,7 @@
     </assignments>
     <choices>
         <name>CourseCC</name>
-        <choiceText>One-off payment of {!Course_Fee}</choiceText>
+        <choiceText>&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;One-off payment of &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(33, 37, 41); font-size: 12px;&quot;&gt;{!Course_Fee}&lt;/span&gt;</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>Course__CC</stringValue>
@@ -239,7 +366,7 @@
     </choices>
     <choices>
         <name>CoursePlanCC</name>
-        <choiceText>Pay by instalments</choiceText>
+        <choiceText>Pay by installments</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>PlanCC</stringValue>
@@ -412,12 +539,71 @@
         </value>
     </constants>
     <decisions>
+        <name>Amount_Value</name>
+        <label>Amount Value</label>
+        <locationX>1359</locationX>
+        <locationY>675</locationY>
+        <defaultConnectorLabel>Without Membership</defaultConnectorLabel>
+        <rules>
+            <name>Is_Type_E</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Chosen_Membership_Result</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>MEMBERSHIP_TYPE_E</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Membership_Type_and_Amount_to_Installment_2</targetReference>
+            </connector>
+            <label>Is Type E</label>
+        </rules>
+        <rules>
+            <name>Is_Type_A</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Chosen_Membership_Result</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>MEMBERSHIP_TYPE_A</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Membership_Type_and_Amount_to_Installment_1</targetReference>
+            </connector>
+            <label>Is Type A</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Banks_Number_True</name>
+        <label>Is Banks Number True</label>
+        <locationX>738</locationX>
+        <locationY>1312</locationY>
+        <defaultConnector>
+            <targetReference>DD_Payment_Is_Not_Available</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Is False</defaultConnectorLabel>
+        <rules>
+            <name>Is_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>bankNumber</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Create_Membership_Installment</targetReference>
+            </connector>
+            <label>Is True</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_Membership_Chose</name>
         <label>Is Membership Chose ?</label>
-        <locationX>1354</locationX>
-        <locationY>465</locationY>
+        <locationX>1358</locationX>
+        <locationY>475</locationY>
         <defaultConnector>
-            <targetReference>Create_Sales_Invoice</targetReference>
+            <targetReference>Create_Invoice_Item_for_Course</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Membership Is False</defaultConnectorLabel>
         <rules>
@@ -431,16 +617,38 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Booking_Gift_Aid_Declaration_Flow</targetReference>
+                <targetReference>Amount_Value</targetReference>
             </connector>
             <label>Membership Is True</label>
         </rules>
     </decisions>
     <decisions>
+        <name>NCT_Number_Is_Null</name>
+        <label>NCT Number is Null</label>
+        <locationX>771</locationX>
+        <locationY>775</locationY>
+        <defaultConnector>
+            <targetReference>Add_Primary_Contact_Id</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>NCT Number is True</defaultConnectorLabel>
+        <rules>
+            <name>NCT_Number_is_False</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>bookingRecord2.NCT_Number__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>DD_Payment_Is_Not_Available</targetReference>
+            </connector>
+            <label>NCT Number is False</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Payment_Link_Result</name>
         <label>Payment Link Result</label>
-        <locationX>2463</locationX>
-        <locationY>462</locationY>
+        <locationX>2251</locationX>
+        <locationY>491</locationY>
         <defaultConnector>
             <targetReference>Payment_Error_Screen</targetReference>
         </defaultConnector>
@@ -461,47 +669,9 @@
     <decisions>
         <name>Payment_Method_Decision</name>
         <label>Payment Method Decision</label>
-        <locationX>841</locationX>
-        <locationY>257</locationY>
+        <locationX>940</locationX>
+        <locationY>262</locationY>
         <defaultConnectorLabel>Without Membership</defaultConnectorLabel>
-        <rules>
-            <name>Membership_by_Credit_Card</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Membership_Payment_Options</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>CC</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Course_Payment_Type</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>CourseCC</elementReference>
-                </rightValue>
-            </conditions>
-            <label>Membership by Credit Card</label>
-        </rules>
-        <rules>
-            <name>Membership_by_Direct_Debit</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Membership_Payment_Options</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>DD</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Course_Payment_Type</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>CourseCC</elementReference>
-                </rightValue>
-            </conditions>
-            <label>Membership by Direct Debit</label>
-        </rules>
         <rules>
             <name>Pay_Only_for_Course</name>
             <conditionLogic>and</conditionLogic>
@@ -510,13 +680,6 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <elementReference>CourseCC</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Chosen_Membership_Result</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>WITHOUT_MEMBERSHIP</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -534,13 +697,6 @@
                     <elementReference>CoursePlanCC</elementReference>
                 </rightValue>
             </conditions>
-            <conditions>
-                <leftValueReference>Chosen_Membership_Result</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>WITHOUT_MEMBERSHIP</elementReference>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>Course_Plan_Payment_By_Credit_Card</targetReference>
             </connector>
@@ -548,10 +704,75 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Payment_Method_Decision_0</name>
+        <label>Payment Method Decision</label>
+        <locationX>1351</locationX>
+        <locationY>1143</locationY>
+        <defaultConnectorLabel>Without Membership</defaultConnectorLabel>
+        <rules>
+            <name>Membership_by_Credit_Card_0</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>Membership_Payment_Options</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CC</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Course_Payment_Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>CourseCC</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Course_Payment_Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>CoursePlanCC</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Assigned_for_Total_Fee</targetReference>
+            </connector>
+            <label>Membership by Credit Card</label>
+        </rules>
+        <rules>
+            <name>Membership_by_Direct_Debit_0</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>Membership_Payment_Options</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>DD</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Course_Payment_Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>CourseCC</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Course_Payment_Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>CoursePlanCC</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Booking_0</targetReference>
+            </connector>
+            <label>Membership by Direct Debit</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Type_Of_Payment</name>
         <label>Type Of Payment</label>
-        <locationX>2123</locationX>
-        <locationY>473</locationY>
+        <locationX>1965</locationX>
+        <locationY>481</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Payment_Only_For_Course</name>
@@ -598,10 +819,18 @@
             <label>Payment Plan For Course</label>
         </rules>
     </decisions>
+    <description>v1.1</description>
     <formulas>
         <name>Amount_To_Be_Paid</name>
         <dataType>String</dataType>
         <expression>IF({!Is_Payment_Plan_True}, {!PaymentPlanOptionSelected.displayLabel}, &#39;£&#39; + TEXT({!Course_Fee}))</expression>
+    </formulas>
+    <formulas>
+        <description>Return sum course fee for a one-off payment or payment plan + membership fee</description>
+        <name>Course_Fee_With_Membership_Fee</name>
+        <dataType>Currency</dataType>
+        <expression>IF({!Is_Payment_Plan_True} == true, {!PaymentPlanParameters.amount} + {!AMOUNT_48}, {!Course_Fee} + {!AMOUNT_48})</expression>
+        <scale>2</scale>
     </formulas>
     <formulas>
         <name>ERROR_PAGE</name>
@@ -637,21 +866,15 @@
     <recordCreates>
         <name>Create_Invoice_Item_for_Course</name>
         <label>Create Invoice Item for Course</label>
-        <locationX>2062</locationX>
-        <locationY>253</locationY>
+        <locationX>1796</locationX>
+        <locationY>480</locationY>
         <connector>
             <targetReference>Type_Of_Payment</targetReference>
         </connector>
         <inputAssignments>
-            <field>Course__c</field>
-            <value>
-                <elementReference>bookingRecord.Course__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Zumzum__Amount__c</field>
             <value>
-                <elementReference>bookingRecord.Course_Fee__c</elementReference>
+                <elementReference>PaymentPlanParameters.amount</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -669,13 +892,81 @@
         <object>Zumzum__Sales_Invoice_Line_Item__c</object>
     </recordCreates>
     <recordCreates>
+        <name>Create_Invoice_Item_for_Course_0</name>
+        <label>Create Invoice Item for Course</label>
+        <locationX>1611</locationX>
+        <locationY>693</locationY>
+        <connector>
+            <targetReference>Booking_Gift_Aid_Declaration_Flow</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Zumzum__Amount__c</field>
+            <value>
+                <elementReference>Membership_Amount</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Zumzum__Quantity__c</field>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Zumzum__Sales_Invoice__c</field>
+            <value>
+                <elementReference>PaymentPlanParameters.salesInvoiceId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Zumzum__Sales_Invoice_Line_Item__c</object>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Membership_Installment</name>
+        <label>Create Membership Installment</label>
+        <locationX>1795</locationX>
+        <locationY>1311</locationY>
+        <connector>
+            <targetReference>Create_Invoice_Item_for_Course_0</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Bank_Details_Number__c</field>
+            <value>
+                <elementReference>bankNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Membership_Type__c</field>
+            <value>
+                <elementReference>Chosen_Membership_Result</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Sales_Invoice__c</field>
+            <value>
+                <elementReference>PaymentPlanParameters.salesInvoiceId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>cpm__Amount__c</field>
+            <value>
+                <elementReference>Membership_Amount</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>cpm__Contact__c</field>
+            <value>
+                <elementReference>bookingRecord.Primary_Contact__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>cpm__Installment__c</object>
+    </recordCreates>
+    <recordCreates>
         <name>Create_Sales_Invoice</name>
         <label>Create Sales Invoice</label>
-        <locationX>1977</locationX>
-        <locationY>471</locationY>
+        <locationX>721</locationX>
+        <locationY>38</locationY>
         <assignRecordIdToReference>PaymentPlanParameters.salesInvoiceId</assignRecordIdToReference>
         <connector>
-            <targetReference>Create_Invoice_Item_for_Course</targetReference>
+            <targetReference>Payment_Options_Screen</targetReference>
         </connector>
         <inputAssignments>
             <field>Booking__c</field>
@@ -688,8 +979,8 @@
     <recordLookups>
         <name>Get_Booking</name>
         <label>Get Booking</label>
-        <locationX>361</locationX>
-        <locationY>43</locationY>
+        <locationX>366</locationX>
+        <locationY>32</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Booking_Membership_Options_Flow</targetReference>
@@ -714,14 +1005,64 @@
         <queriedFields>Course_Fee__c</queriedFields>
         <queriedFields>Fee_Override__c</queriedFields>
         <queriedFields>Course_Start_Date__c</queriedFields>
-        <queriedFields>Course__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Booking_0</name>
+        <label>Get Booking</label>
+        <locationX>936</locationX>
+        <locationY>773</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>NCT_Number_Is_Null</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </filters>
+        <object>Booking__c</object>
+        <outputReference>bookingRecord2</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>NCT_Number__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Payment_Profile</name>
+        <label>Get Payment Profile</label>
+        <locationX>937</locationX>
+        <locationY>1002</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Add_Bank_Details_For_Membership_Handler</targetReference>
+        </connector>
+        <filters>
+            <field>cpm__Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>cpm__Contact__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>bookingRecord.Primary_Contact__c</elementReference>
+            </value>
+        </filters>
+        <object>cpm__Payment_Profile__c</object>
+        <outputAssignments>
+            <assignToReference>Installment_For_Payment_By_DD.cpm__Payment_Profile__c</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+        <sortField>LastModifiedDate</sortField>
+        <sortOrder>Asc</sortOrder>
     </recordLookups>
     <recordUpdates>
-        <description>This field will display in Confirmation Email.</description>
         <name>Set_Payable_Amount</name>
         <label>Set Payable Amount</label>
-        <locationX>2637</locationX>
-        <locationY>465</locationY>
+        <locationX>2458</locationX>
+        <locationY>497</locationY>
         <connector>
             <targetReference>Payment_Details_Screen</targetReference>
         </connector>
@@ -741,10 +1082,29 @@
         <object>Booking__c</object>
     </recordUpdates>
     <screens>
+        <name>DD_Payment_Is_Not_Available</name>
+        <label>Direct Debit Not Available Screen</label>
+        <locationX>563</locationX>
+        <locationY>1133</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Payment_Options_Screen</targetReference>
+        </connector>
+        <fields>
+            <name>DD_Payment_Is_Not_Available_Text</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Unfortunately, direct debit membership payment is not available at this time. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;Please click Next to choose a different payment option.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Payment_Details_Screen</name>
         <label>Payment Details Screen</label>
-        <locationX>2796</locationX>
-        <locationY>464</locationY>
+        <locationX>2656</locationX>
+        <locationY>496</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -776,8 +1136,8 @@
     <screens>
         <name>Payment_Error_Screen</name>
         <label>Payment Error Screen</label>
-        <locationX>2469</locationX>
-        <locationY>215</locationY>
+        <locationX>2264</locationX>
+        <locationY>230</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -792,8 +1152,8 @@
     <screens>
         <name>Payment_Options_Screen</name>
         <label>Payment Options Screen</label>
-        <locationX>849</locationX>
-        <locationY>41</locationY>
+        <locationX>861</locationX>
+        <locationY>38</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1002,8 +1362,8 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>187</locationX>
-        <locationY>43</locationY>
+        <locationX>214</locationX>
+        <locationY>223</locationY>
         <connector>
             <targetReference>Get_Booking</targetReference>
         </connector>
@@ -1012,10 +1372,10 @@
     <subflows>
         <name>Booking_Gift_Aid_Declaration_Flow</name>
         <label>Booking Gift Aid Declaration Flow</label>
-        <locationX>1674</locationX>
-        <locationY>351</locationY>
+        <locationX>1796</locationX>
+        <locationY>692</locationY>
         <connector>
-            <targetReference>Create_Sales_Invoice</targetReference>
+            <targetReference>Create_Invoice_Item_for_Course</targetReference>
         </connector>
         <flowName>Booking_Gift_Aid_Declaration</flowName>
         <inputAssignments>
@@ -1038,8 +1398,8 @@
     <subflows>
         <name>Booking_Membership_Options_Flow</name>
         <label>Booking Membership Options Flow</label>
-        <locationX>524</locationX>
-        <locationY>44</locationY>
+        <locationX>457</locationX>
+        <locationY>219</locationY>
         <connector>
             <targetReference>Get_Course_Fee_Assigment</targetReference>
         </connector>
@@ -1059,6 +1419,28 @@
             <name>Is_Membership_With_Partner</name>
         </outputAssignments>
     </subflows>
+    <subflows>
+        <name>Checking_NCT_Number_on_Contact</name>
+        <label>Checking NCT Number on Contact</label>
+        <locationX>645</locationX>
+        <locationY>217</locationY>
+        <connector>
+            <targetReference>Create_Sales_Invoice</targetReference>
+        </connector>
+        <flowName>Checking_NCT_Number_on_Contact</flowName>
+        <inputAssignments>
+            <name>Membership_With_Partner</name>
+            <value>
+                <elementReference>Is_Membership_With_Partner</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Booking_Record</name>
+            <value>
+                <elementReference>bookingRecord</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <textTemplates>
         <name>Membership_12_Template</name>
         <text>&lt;b style=&quot;font-size: 16px;&quot;&gt;12 &lt;/b&gt;&lt;b style=&quot;font-size: 16px; color: #212529; background-color: rgb(255, 255, 255);&quot;&gt;month membership&lt;/b&gt; &lt;p style=&quot;margin-left:24px;&quot;&gt;12 months money off baby supplies, holidays and services when you help us continue being the leading charity for pregnancy and young families. &lt;b style=&quot;color:#212529;&quot;&gt;£48&lt;/b&gt;&amp;nbsp;(or £12 per quarter)&lt;/p&gt;</text>
@@ -1076,6 +1458,20 @@
         <text>&lt;p&gt;&lt;span style=&quot;font-size: 22px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;Total amount due:&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;font-size: 22px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;£{!PaymentPlanParameters.amount}&lt;/span&gt;&lt;/p&gt;</text>
     </textTemplates>
     <variables>
+        <name>bankNumber</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>bankNumberError</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>bookingId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -1087,6 +1483,14 @@
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Booking__c</objectType>
+    </variables>
+    <variables>
+        <name>bookingRecord2</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Booking__c</objectType>
     </variables>
@@ -1114,7 +1518,8 @@
         <objectType>gaid__Gift_Aid_Declaration__c</objectType>
     </variables>
     <variables>
-        <name>Installment_Object</name>
+        <description>DD = Direct Debit</description>
+        <name>Installment_For_Payment_By_DD</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -1142,6 +1547,14 @@
         </value>
     </variables>
     <variables>
+        <name>Membership_Amount</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
         <name>Payment_Method</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -1167,6 +1580,13 @@
         <name>PaymentPlanParameters</name>
         <apexClass>CardPaymentParameters</apexClass>
         <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>PaymentProfileId</name>
+        <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
