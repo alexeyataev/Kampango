@@ -4,7 +4,8 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import retrieveRelatedSessions from '@salesforce/apex/CourseDetailController.retrieveRelatedSessions';
 import NCT_STYLES from '@salesforce/resourceUrl/NCT_Styles';
 import { loadStyle } from 'lightning/platformResourceLoader';
-import  provisionCourseReunionTextLable from '@salesforce/label/c.Confirmation_Notification_Course_Reunion';
+import provisionCourseReunionTextLable from '@salesforce/label/c.Confirmation_Notification_Course_Reunion';
+import courseLeaderHomeName from '@salesforce/label/c.Course_Leader_home';
 
 const BOOKING_FIELDS = [
         'Booking__c.Reservation_Expiry_Date__c',
@@ -100,7 +101,7 @@ export default class CourseDetailsComponent extends LightningElement {
                     variant: 'error',
                 }),
             )
-        });        
+        });
     }
 
     connectedCallback() {
@@ -123,20 +124,20 @@ export default class CourseDetailsComponent extends LightningElement {
         this.courseHasProvisionalReunion = this.template.querySelector('c-sessions').courseHasProvisionalReunion;
     }
 
-    getVenues(sessions){
+    getVenues(sessions) {
         var array = sessions.map (
             row => {
-                return Object.assign(
-                    {Street_Address__c: row.Location_Street__c},
+                    return Object.assign(
+                    {Street_Address__c: row.Is_Location_At_Home__c ? '' : row.Location_Street__c},
                     {Town__c: row.Location_Town__c},
                     {County__c: row.Location_County__c},
-                    {Postcode__c: row.Location_Postcode__c},
+                    {Postcode__c: row.Is_Location_At_Home__c ? row.Location_Postcode__c.split(' ')[0] : row.Location_Postcode__c},
                     {Id: row.Location_Id__c},
-                    {Name: row.Location_Name__c}
+                    {Name: row.Is_Location_At_Home__c ? courseLeaderHomeName : row.Location_Name__c}
                 );
             }
         );
-        
+
         this.allVenues = array;
     }
 
