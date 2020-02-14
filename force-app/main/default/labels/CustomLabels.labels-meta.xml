@@ -56,6 +56,14 @@
         <value>{&quot;Error&quot; : &quot;Course does not exist or not allowed for booking&quot;}</value>
     </labels>
     <labels>
+        <fullName>CourseAPIdropInsSummary</fullName>
+        <categories>CourseAPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CourseAPIdropInsSummary</shortDescription>
+        <value>Text should be provided for Drop-Ins summary by product owners</value>
+    </labels>
+    <labels>
         <fullName>CourseAPIenquiryCreatedSuccessfully</fullName>
         <categories>CourseAPI</categories>
         <language>en_US</language>
