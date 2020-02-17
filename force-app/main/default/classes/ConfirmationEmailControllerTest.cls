@@ -22,7 +22,7 @@ public with sharing class ConfirmationEmailControllerTest {
                     .buildPartnertHost('Tim', 'test2@test.com')
                     .buildRoom()
                     .buildSessionWithTypeAndStatus(sessionType, sessionStatus)
-                    .buildBooking('Reserved');
+                    .buildBooking('Enquiry');
     }
 
     private static void coursesWithChosenNumberAndStatusSessionsDataBuilder(Integer numberOfCourses, Integer numberOfProvisionSession, Integer numberOfConfirmedSession) {
