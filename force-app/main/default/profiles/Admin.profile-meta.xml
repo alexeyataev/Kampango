@@ -169,6 +169,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.Do_Not_Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Email_Partner__c</field>
         <readable>true</readable>
@@ -961,6 +966,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Session__c.Venue_Address__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Location_Home_Information__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -18,6 +18,16 @@
       <span> - </span>
       {endDate})
     </div>
+    <div class="heading_5 lato-font">
+      <b>Booking reference:</b> &nbsp;{bookingPsaOffice}
+      <span> / </span>
+      {bookingName}
+    </div>
+    <div class="heading_5 lato-font">
+      <b>Course reference:</b> &nbsp;{coursePsaArea}
+      <span> / </span>
+      {courseName}
+    </div>
     <div class="slds-grid slds-wrap">
       <div
         class="regular-text lato-font slds-col slds-size_1-of-1 slds-large-size_5-of-6 slds-medium-size_5-of-6 slds-small-size_1-of-1"
@@ -54,6 +64,17 @@
         </div>
       </div>
     </tempalte>
+
+    <template if:true={additionalOfferInformation}>
+      <div class='heading_4 lato-font slds-p-top_large slds-p-bottom_large'>
+        <div>
+          <b>Other Information</b>
+        </div>
+        <div>
+          {additionalOfferInformation}
+        </div>
+      </div>
+    </template>
 
     <div class="heading_2 lato-font">
       Total - &#163;
