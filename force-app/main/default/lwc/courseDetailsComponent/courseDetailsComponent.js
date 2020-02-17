@@ -15,6 +15,7 @@ const BOOKING_FIELDS = [
         'Booking__c.Reservation_Expiry_Date__c',
         'Booking__c.Course__c',
         'Booking__c.Course__r.Name',
+        'Booking__c.Course__r.Additional_Offer_Information__c',
         'Booking__c.Course__r.Branch__r.Name',
         'Booking__c.Course__r.End_Date__c',
         'Booking__c.Course__r.Main_Venue__r.Name',
@@ -26,6 +27,8 @@ const BOOKING_FIELDS = [
 export default class CourseDetailsComponent extends LightningElement {
     provisionCourseReunionText = provisionCourseReunionTextLable;
     courseHasProvisionalReunion = false;
+
+    @api additionalOfferInformation;
     @api bookingRecord;
     @api bookingId;
     @api bookingName;
@@ -79,6 +82,7 @@ export default class CourseDetailsComponent extends LightningElement {
             this.courseName = this.bookingRecord.fields.Course__r.value.fields.Name.value;
             this.coursePsaArea = this.bookingRecord.fields.Course__r.value.fields.PSA_Area__c.value;
             this.courseFee = this.bookingRecord.fields.Final_Fee__c.value;
+            this.additionalOfferInformation = this.bookingRecord.fields.Course__r.value.fields.Additional_Offer_Information__c.value;
             this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Branch__r.value.fields.Name.value;
             this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
             this.title = this.bookingRecord.fields.Course__r.value.fields.Title__c.value;

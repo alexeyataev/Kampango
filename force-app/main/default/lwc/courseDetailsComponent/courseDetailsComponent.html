@@ -65,6 +65,17 @@
       </div>
     </tempalte>
 
+    <template if:true={additionalOfferInformation}>
+      <div class='heading_4 lato-font slds-p-top_large slds-p-bottom_large'>
+        <div>
+          <b>Other Information</b>
+        </div>
+        <div>
+          {additionalOfferInformation}
+        </div>
+      </div>
+    </template>
+
     <div class="heading_2 lato-font">
       Total - &#163;
       <lightning-formatted-number value={courseFee} minimum-fraction-digits="0">
