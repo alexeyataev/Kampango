@@ -30,7 +30,7 @@ public without sharing virtual class CourseFinderModel {
         this.Id = course.Name;
         this.Reference = course.PSA_Area__c + '/' + course.Name;
         this.Title = course.Title__c;
-        this.Summary = course.Summary__c;
+        this.Summary = course.Type__c == 'Drop In' ? course.Drop_In_Schedule_Information__c : course.Summary__c;
         this.Type = course.Sub_Type__c;
         this.CouplesAllowed = course.Couples_Allowed__c;
         this.WomenOnly = course.Women_Only__c;
