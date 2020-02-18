@@ -307,6 +307,7 @@
         <name>Document</name>
     </types>
     <types>
+        <members>NCT_Templates/Adhoc_Payment_Confirmation</members>
         <members>NCT_Templates/Booking_Created</members>
         <members>NCT_Templates/Booking_Confirmation_Email</members>
         <members>NCT_Templates/BookingNotificationEmail</members>
@@ -738,6 +739,7 @@
     <types>
         <members>Account</members>
         <members>Booking__c</members>
+        <members>Contact</members>
         <members>Course__c</members>
         <members>Course_Assignment__c</members>
         <members>Zumzum__Expense_Sheet__c</members>
