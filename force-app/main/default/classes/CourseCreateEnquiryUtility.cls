@@ -27,11 +27,21 @@ public without sharing class CourseCreateEnquiryUtility {
             MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
             npe01__PreferredPhone__c = 'Mobile'
         );
-        try {
-            insert contact;
-        } catch (DmlException ex) {
-            throw new CreateEnquiryException(ex.getMessage());
+
+        Database.SaveResult result = Database.insert(contact, false);
+        Database.DMLOptions dmlOption = new Database.DMLOptions();
+        
+        if (!result.isSuccess()) {
+            List<sObject> duplicates = getDuplicateRecords(result.errors);
+            if (duplicates.size() == 1) {
+                contact = getContactById(duplicates[0].Id);
+            }
+            if (duplicates.size() > 1) {
+                dmlOption.DuplicateRuleHeader.AllowSave = true;
+                Database.SaveResult duplicateInsertResult = Database.insert(contact, dmlOption);
+            }
         }
+        
         Boolean isPartnerPresent = requestParameters.containsKey('partner_email') 
                                     && String.isNotBlank(requestParameters.get('partner_email'));
         if (isPartnerPresent) {
@@ -52,14 +62,31 @@ public without sharing class CourseCreateEnquiryUtility {
         booking.Course__c = course.Id;
         booking.How_Heard__c = requestParameters.get('hearaboutus');
         booking.Info_for_Practitioner__c = requestParameters.get('additioninfo');
-        try {
-            insert booking;
-        } catch (DmlException ex) {
-            throw new CreateEnquiryException(ex.getMessage());
+    
+        Database.SaveResult bookingResult = Database.insert(booking, dmlOption);
+        if (!bookingResult.isSuccess()) {
+            throw new CreateEnquiryException(JSON.serialize(bookingResult.errors));
         }
 
         updateContactPreferences(contact.Id, requestParameters);
+    }
 
+    private static List<sObject> getDuplicateRecords(List<Database.Error> errors) {
+        List<sObject> duplicateRecords = new List<sObject>();
+        for (Database.Error  error : errors) {
+            Database.DuplicateError duplicateError = (Database.DuplicateError)error;
+            Datacloud.DuplicateResult duplicateResult = duplicateError.getDuplicateResult();
+            Datacloud.MatchResult[] matchResults = duplicateResult.getMatchResults();
+            Datacloud.MatchRecord[] matchRecords;
+
+            for (Datacloud.MatchResult match : matchResults) {
+                matchRecords = match.getMatchRecords();
+                for (Datacloud.MatchRecord matchRecord : matchRecords) {
+                    duplicateRecords.add(matchRecord.getRecord());
+                }
+            }
+        }
+        return duplicateRecords;
     }
 
     private static Date getDate(String dateString){
@@ -81,22 +108,25 @@ public without sharing class CourseCreateEnquiryUtility {
             Email = requestParameters.get('partner_email'),
             RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME)
         );
-        try {
-            insert partner;
-        } catch (DmlException ex) {
-            throw new CreateEnquiryException(ex.getMessage());
+        Database.SaveResult result = Database.insert(partner, false);
+        Database.DMLOptions dmlOption = new Database.DMLOptions();
+        
+        if (!result.isSuccess()) {
+            List<sObject> duplicates = getDuplicateRecords(result.errors);
+            if (duplicates.size() == 1) {
+                partner = getContactById(duplicates[0].Id);
+            }
+            if (duplicates.size() > 1) {
+                dmlOption.DuplicateRuleHeader.AllowSave = true;
+                Database.SaveResult duplicateInsertResult = Database.insert(partner, dmlOption);
+            }
         }
         updateContactPreferences(partner.Id, requestParameters);
         return partner.Id;
     }
 
     private static void updateContactPreferences(Id contactId, Map<String, String> requestParameters) {
-        Contact contact = [
-            SELECT IndividualId
-            FROM Contact
-            WHERE Id =: contactId
-            LIMIT 1
-        ];
+        Contact contact = getContactById(contactId);
 
         Individual individual = [
             SELECT Id, Email__c, Post__c, SMS__c, Telephone__c 
@@ -114,6 +144,14 @@ public without sharing class CourseCreateEnquiryUtility {
         } catch (DmlException ex) {
             throw new CreateEnquiryException(ex.getMessage());
         }
+    }
+
+    private static Contact getContactById(Id contactId) {
+        return [
+            SELECT FirstName, LastName, MailingCity, MailingPostalCode, Email, MailingStreet, Phone, npe01__PreferredPhone__c
+            FROM Contact
+            WHERE Id =: contactId
+        ];
     }
 
     private static Id getContactRecordTypeByAPIName(String recordTypeName) {
