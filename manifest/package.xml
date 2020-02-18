@@ -405,6 +405,7 @@
     <types>
         <members>Adhoc_Payment_Flow</members>
         <members>Adhoc_Payment_Details_Subflow</members>
+        <members>Adhoc_Payment_Success_Flow</members>
         <members>Assign_Practitioner_Fee_Rate_to_Session</members>
         <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Success_Page</members>
