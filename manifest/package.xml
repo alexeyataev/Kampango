@@ -114,6 +114,7 @@
     </types>
     <types>
         <members>Course_Assignment__c.Approve_Course_Assignment</members>
+        <members>Zumzum__Expense_Sheet__c.Approve_Expense_Sheet</members>
         <name>ApprovalProcess</name>
     </types>
     <types>
@@ -311,6 +312,8 @@
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <members>NCT_Templates/Course_Assignment_Rejected</members>
+        <members>NCT_Templates/Expense_Sheet_is_Ready_for_Approval</members>
+        <members>NCT_Templates/Expense_Sheet_Rejected</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</members>
         <name>EmailTemplate</name>
@@ -544,6 +547,63 @@
     </types>
     <types>
         <members>Course_Booking_Manual_Administration</members>
+        <members>X1C</members>
+        <members>X1W</members>
+        <members>X2A</members>
+        <members>X2B</members>
+        <members>X2C</members>
+        <members>X3A</members>
+        <members>X3B</members>
+        <members>X3D</members>
+        <members>X3E</members>
+        <members>X3F</members>
+        <members>X4A</members>
+        <members>X4B</members>
+        <members>X4C</members>
+        <members>X4D</members>
+        <members>X4E</members>
+        <members>X4F</members>
+        <members>X4G</members>
+        <members>X4H</members>
+        <members>X4I</members>
+        <members>X4J</members>
+        <members>X4K</members>
+        <members>X4L</members>
+        <members>X4M</members>
+        <members>X4N</members>
+        <members>X4P</members>
+        <members>X4Q</members>
+        <members>X4R</members>
+        <members>X4S</members>
+        <members>X5A</members>
+        <members>X5B</members>
+        <members>X5C</members>
+        <members>X5D</members>
+        <members>X5E</members>
+        <members>X5F</members>
+        <members>X5G</members>
+        <members>X5H</members>
+        <members>X5I</members>
+        <members>X5J</members>
+        <members>X5K</members>
+        <members>X5L</members>
+        <members>X5M</members>
+        <members>X5N</members>
+        <members>X5O</members>
+        <members>X5R</members>
+        <members>X5S</members>
+        <members>X5T</members>
+        <members>X5U</members>
+        <members>X5VL</members>
+        <members>X6A</members>
+        <members>X6B</members>
+        <members>X6C</members>
+        <members>X6D</members>
+        <members>X6E</members>
+        <members>X7A</members>
+        <members>X7B</members>
+        <members>X7C</members>
+        <members>X7D</members>
         <name>Queue</name>
     </types>
     <types>
@@ -675,6 +735,7 @@
         <members>Booking__c</members>
         <members>Course__c</members>
         <members>Course_Assignment__c</members>
+        <members>Zumzum__Expense_Sheet__c</members>
         <name>Workflow</name>
     </types>
     <types>
