@@ -124,6 +124,7 @@
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
         <members>ParentCommunityLogoContainer</members>
+        <members>RedirectToEditPage</members>
         <members>showToast</members>
         <members>SuccessPaymentsPage</members>
         <members>TranferDetailComponent</members>
@@ -169,6 +170,8 @@
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Zumzum__Expense_Sheet_Detail__c.Course__c</members>
+        <members>Zumzum__Expense_Sheet_Detail__c.Zumzum__Required_Fields</members>
         <members>Zumzum__Sales_Invoice_Line_Item__c.Course__c</members>
         <name>CustomField</name>
     </types>
@@ -475,6 +478,8 @@
         <members>Venue_Contact__c-Venue Contact Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
         <members>Zumzum__Batch_Bank_Payment__c-Zumzum__Batch Bank Payment Layout</members>
+        <members>Zumzum__Expense_Sheet__c-Expense Sheet Practitioner Layout</members>
+        <members>Zumzum__Expense_Sheet_Detail__c-Expense Sheet Detail Practitioner Layout</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
         <name>Layout</name>
     </types>
@@ -482,6 +487,7 @@
         <members>checkBrowserCompatibility</members>
         <members>courseDetailsComponent</members>
         <members>claimFeesDatatable</members>
+        <members>customCommunityButton</members>
         <members>failurePaymentPage</members>
         <members>linkToPaymentComponent</members>
         <members>marketingPreferencesComponent</members>
@@ -544,6 +550,7 @@
         <members>Booking__c.Send_Offer_Email</members>
         <members>Booking__c.Transfer</members>
         <members>Course__c.Resend_Reunion_Email</members>
+        <members>Zumzum__Expense_Sheet__c.Edit_Community</members>
         <members>Zumzum__NewTask</members>
         <name>QuickAction</name>
     </types>
