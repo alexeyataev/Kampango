@@ -487,6 +487,7 @@
         <members>Zumzum__Expense_Sheet__c-Expense Sheet Practitioner Layout</members>
         <members>Zumzum__Expense_Sheet_Detail__c-Expense Sheet Detail Practitioner Layout</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
+        <members>cpm__Installment__c-Installment Layout</members>
         <name>Layout</name>
     </types>
     <types>
