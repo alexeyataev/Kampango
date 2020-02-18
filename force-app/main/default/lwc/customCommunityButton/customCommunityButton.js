@@ -21,8 +21,8 @@ export default class customCommunityButton extends NavigationMixin(LightningElem
             attributes: {
                 url: this.url
             }
-            },
-            true // Replaces the current page in your browser history with the URL
-        );
+        },
+        true // Replaces the current page in your browser history with the URL
+      );
     }
 }
