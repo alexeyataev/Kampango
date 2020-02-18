@@ -119,7 +119,7 @@ void insertNominalAccounts() {
         'Subcontractor Fees' => newNA('Subcontractor Fees', 5130, 0, 100, TRUE, false, subCatIdByName.get('Parentforce costs'), 0, 100, TRUE),
         'Creditors' => newNA('Creditors', 9600, 100, 50, false, false, subCatIdByName.get('Creditors'), 100, 50, false),
         'Equipment' => newNA('Equipment', 5234, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
-        'Subscriptions' => newNA('Subscriptions', 5237, TRUE, false, subCatIdByName.get('Parentforce costs')),
+        'Subscriptions' => newNA('Subscriptions', 5237, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
         'Office and IT Equipment Cost' => newNA('Office and IT Equipment Cost', 9010, TRUE, false, subCatIdByName.get('Tangible Fixed Assets'), false),
         'Unrestricted funds brought forward' => newNA('Unrestricted funds brought forward', 9800, false, false, subCatIdByName.get('Unrestricted'), false),
         'Suspense Account' => newNA('Suspense Account', 9999, false, false, subCatIdByName.get('Suspense'), false),
@@ -127,7 +127,7 @@ void insertNominalAccounts() {
         'Travel' => newNA('Travel', 5150, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
         'Petty Cash' => newNA('Petty Cash', 9490, false, false, subCatIdByName.get('Cash at bank and in hand'), false),
         'Input VAT (Sales) Control Account' => newNA('Input VAT (Sales) Control Account', 9691, false, false, subCatIdByName.get('Creditors'), false),
-        'Other Debtors' => newNA('Other Debtors', 9390, false, false, subCatIdByName.get('Debtors')),
+        'Other Debtors' => newNA('Other Debtors', 9390, false, false, subCatIdByName.get('Debtors'), false),
         'Fundraising Courses' => newNA('Fundraising Courses', 1102, false, TRUE, subCatIdByName.get('Other Trading Activity - Community Fundraising'), false),
         'Restricted funds brought forward' => newNA('Restricted funds brought forward', 9810, false, false, subCatIdByName.get('Restricted'), false),
         'VAT Manual Adjustments' => newNA('VAT Manual Adjustments', 9693, false, false, subCatIdByName.get('Creditors'), false),
@@ -202,7 +202,7 @@ void insertNominalAccounts() {
 }
 
 
-renameNominalCategories();
 deleteExistingNominalAccountsAndSubCategories();
+renameNominalCategories();
 insertSubCategories();
 insertNominalAccounts();
