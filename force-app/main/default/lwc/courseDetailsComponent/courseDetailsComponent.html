@@ -7,23 +7,24 @@
       We're holding your place on the following course until {expirationDate}.
       Complete your booking now to secure your place.
     </div>
-    <div class="heading_2 lato-font">
+    <div class='line'></div>
+    <div class="heading_2 lato-font slds-p-bottom_large">
       Your booking
     </div>
     <div class="nct-primary-header-text">
       {title}
     </div>
-    <div class="heading_5 lato-font">
+    <div class="heading_3 lato-font">
       at {mainVenueName} ({startDate}
       <span> - </span>
       {endDate})
     </div>
-    <div class="heading_5 lato-font">
+    <div class="heading_3 lato-font">
       <b>Booking reference:</b> &nbsp;{bookingPsaOffice}
       <span> / </span>
       {bookingName}
     </div>
-    <div class="heading_5 lato-font">
+    <div class="heading_3 lato-font">
       <b>Course reference:</b> &nbsp;{coursePsaArea}
       <span> / </span>
       {courseName}
@@ -33,6 +34,7 @@
         class="regular-text lato-font slds-col slds-size_1-of-1 slds-large-size_5-of-6 slds-medium-size_5-of-6 slds-small-size_1-of-1"
       ></div>
     </div>
+    
     <div class="slds-grid slds-wrap">
       <div class="slds-col slds-size_1-of-1">
         <div class="height_100">
@@ -41,32 +43,14 @@
           </template>
         </div>
       </div>
-      <div class="slds-col slds-size_1-of-1">
-        <div class="slds-grid">
-          <div
-            class="padding-bottom_1 slds-col slds-small-size_1-of-1 slds-medium-size_7-of-12 slds-large-size_7-of-12"
-          >
-          <template if:true={venuesLoaded}>
-             <c-sessions sessions={sessions} session-header="Session(s)"></c-sessions>
-          </template>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <tempalte if:true={courseHasProvisionalReunion}>
-      <div class='heading_4 lato-font slds-p-top_large slds-p-bottom_large' >
-        <div>
-          <b>Course Reunion</b>
-        </div>
-        <div>
-          {provisionCourseReunionText}
-        </div>
-      </div>
-    </tempalte>
+    <template if:true={venuesLoaded}>
+       <c-sessions sessions={sessions} session-header="Session(s)"></c-sessions>
+    </template>
 
     <template if:true={additionalOfferInformation}>
-      <div class='heading_4 lato-font slds-p-top_large slds-p-bottom_large'>
+      <div class='heading_3 lato-font slds-p-top_large slds-p-bottom_large'>
         <div>
           <b>Other Information</b>
         </div>
@@ -75,7 +59,7 @@
         </div>
       </div>
     </template>
-
+    <div class='line'></div>
     <div class="heading_2 lato-font">
       Total - &#163;
       <lightning-formatted-number value={courseFee} minimum-fraction-digits="0">
