@@ -259,11 +259,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Booking__c.Is_Confirmation_Of_Conditions__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Last_Name_Partner__c</field>
         <readable>true</readable>
@@ -341,6 +336,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Suggested_Cancellation_Fee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.Terms_And_Conditions_Accepted__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
