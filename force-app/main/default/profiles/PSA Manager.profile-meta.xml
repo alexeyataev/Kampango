@@ -1226,6 +1226,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Booking__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>gaid__Gift_Aid_Declaration__c.AccountKey__c</field>
         <readable>true</readable>
     </fieldPermissions>

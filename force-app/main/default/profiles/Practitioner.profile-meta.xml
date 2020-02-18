@@ -1645,6 +1645,12 @@
         <layout>Venue__c-Venue Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Zumzum__Expense_Sheet__c-Expense Sheet Practitioner Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Zumzum__Expense_Sheet_Detail__c-Expense Sheet Detail Practitioner Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</layout>
     </layoutAssignments>
     <layoutAssignments>

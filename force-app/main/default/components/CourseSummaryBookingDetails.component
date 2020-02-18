@@ -19,7 +19,7 @@
     </apex:pageBlock>
     <apex:pageBlock title="Notes For Practitioner(s)">
         <apex:pageBlockTable value="{!bookings}" var="booking" styleClass="watermark tableStyle">
-            <apex:column value="{!booking.Name}" styleClass="columnStyle"/>
+            <apex:column value="{!booking.Primary_Contact__c}" styleClass="columnStyle"/>
             <apex:column value="{!booking.Info_for_Practitioner__c}" styleClass="columnStyle"/>
         </apex:pageBlockTable>
     </apex:pageBlock>
