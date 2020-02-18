@@ -435,6 +435,7 @@
         <members>Reunion_Execute_Sending</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
+        <members>Set_Booking_Contacts_Email_To_Do_Not_Contact</members>
         <members>Set_Booking_Expiration_Status</members>
         <members>Set_CADs_to_Withdrawn</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
@@ -444,6 +445,7 @@
         <members>Track_Deleted_Sessions</members>
         <members>Update_Address_in_Gift_Aid_Declaration</members>
         <members>Update_Address_in_Gift_Aid_Declarations</members>
+        <members>Update_Booking_Contacts_Email</members>
         <members>Update_Partner_Community_Contact</members>
         <members>Update_Practitioner_Licence_on_Sessions_related_to_Course</members>
         <members>Update_Practitioner_on_Sessions</members>
