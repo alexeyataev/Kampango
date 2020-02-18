@@ -403,6 +403,8 @@
         <name>FieldSet</name>
     </types>
     <types>
+        <members>Adhoc_Payment_Flow</members>
+        <members>Adhoc_Payment_Details_Subflow</members>
         <members>Assign_Practitioner_Fee_Rate_to_Session</members>
         <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Success_Page</members>
@@ -659,6 +661,7 @@
     </types>   
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
+        <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
         <name>SharingCriteriaRule</name>
     </types>
     <types>
