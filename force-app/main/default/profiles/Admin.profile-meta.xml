@@ -970,7 +970,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Session__c.Is_Location_At_Home__c</field>
+        <field>Session__c.Location_Home_Information__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1256,6 +1256,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Bank_Payment__c.Payment_Reference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Sales_Invoice__c.Booking__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

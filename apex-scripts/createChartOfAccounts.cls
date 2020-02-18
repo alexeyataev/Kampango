@@ -26,7 +26,7 @@ Zumzum__Sub_Category__c newSC(String name, String nominalCategoryId, Integer ran
         Zumzum__Is_Floating__c = isFloating
     );
 }
-Zumzum__Nominal_Account__c newNA(String name, Integer accountCode, Boolean po, Boolean so, String subcategoryId) {
+Zumzum__Nominal_Account__c newNA(String name, Integer accountCode, Boolean po, Boolean so, String subcategoryId, Boolean isExpense) {
     return new Zumzum__Nominal_Account__c(
         Name = name,
         Zumzum__Account_Code__c = accountCode,
@@ -35,11 +35,13 @@ Zumzum__Nominal_Account__c newNA(String name, Integer accountCode, Boolean po, B
         Zumzum__Sub_Category__c = subcategoryId,
         Zumzum__Tax_Rate__c = taxRate.Id,
         Zumzum__Total_Credit_Balance__c = 0,
-        Zumzum__Total_Debit_Balance__c = 0
+        Zumzum__Total_Debit_Balance__c = 0,
+        Zumzum__Expense__c = isExpense
     );
 }
-Zumzum__Nominal_Account__c newNA(String name, Integer accountCode, Integer creditBalance, Integer debitBalance, Boolean po, 
-                                            Boolean so, String subcategoryId, Integer totalCreditBalance, Integer totalDebitBalance) {
+Zumzum__Nominal_Account__c newNA(String name, Integer accountCode, Integer creditBalance, Integer debitBalance, 
+                                Boolean po, Boolean so, String subcategoryId, Integer totalCreditBalance, 
+                                Integer totalDebitBalance, Boolean isExpense) {
     return new Zumzum__Nominal_Account__c(
         Name = name,
         Zumzum__Account_Code__c = accountCode,
@@ -50,7 +52,8 @@ Zumzum__Nominal_Account__c newNA(String name, Integer accountCode, Integer credi
         Zumzum__Sub_Category__c = subcategoryId,
         Zumzum__Tax_Rate__c = taxRate.Id,
         Zumzum__Total_Credit_Balance__c = totalCreditBalance,
-        Zumzum__Total_Debit_Balance__c = totalDebitBalance
+        Zumzum__Total_Debit_Balance__c = totalDebitBalance,
+        Zumzum__Expense__c = isExpense
     );
 }
 
@@ -109,56 +112,56 @@ void insertNominalAccounts() {
     }
 
     Map<String, Zumzum__Nominal_Account__c> allNominalAccountsMap = new Map<String, Zumzum__Nominal_Account__c> {
-        'Debtors' => newNA('Debtors', 9300, 1065, 1275, false, false, subCatIdByName.get('Debtors'), 1065, 1275),
-        'Card Receipts in Transit' => newNA('Card Receipts in Transit', 9401, 625, 815, false, TRUE, subCatIdByName.get('Cash at bank and in hand'), 625, 815),
-        'Bank Current Account Lloyds' => newNA('Bank Current Account Lloyds', 9400, 60, 695, false, false, subCatIdByName.get('Cash at bank and in hand'), 60, 695),
-        'Course Income' => newNA('Course Income',1400, 1275, 190, false, TRUE, subCatIdByName.get('Charitable Activities - NCT Courses'), 1275, 190),
-        'Subcontractor Fees' => newNA('Subcontractor Fees', 5130, 0, 100, TRUE, false, subCatIdByName.get('Parentforce costs'), 0, 100),
-        'Creditors' => newNA('Creditors', 9600, 100, 50, false, false, subCatIdByName.get('Creditors'), 100, 50),
-        'Equipment' => newNA('Equipment', 5234, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Subscriptions' => newNA('Subscriptions', 5237, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Office and IT Equipment Cost' => newNA('Office and IT Equipment Cost', 9010, TRUE, false, subCatIdByName.get('Tangible Fixed Assets')),
-        'Unrestricted funds brought forward' => newNA('Unrestricted funds brought forward', 9800, false, false, subCatIdByName.get('Unrestricted')),
-        'Suspense Account' => newNA('Suspense Account', 9999, false, false, subCatIdByName.get('Suspense')),
-        'Accruals' => newNA('Accruals', 9610, false, false, subCatIdByName.get('Creditors')),
-        'Travel' => newNA('Travel', 5150, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Petty Cash' => newNA('Petty Cash', 9490, false, false, subCatIdByName.get('Cash at bank and in hand')),
-        'Input VAT (Sales) Control Account' => newNA('Input VAT (Sales) Control Account', 9691, false, false, subCatIdByName.get('Creditors')),
-        'Other Debtors' => newNA('Other Debtors', 9390, false, false, subCatIdByName.get('Debtors')),
-        'Fundraising Courses' => newNA('Fundraising Courses', 1102, false, TRUE, subCatIdByName.get('Other Trading Activity - Community Fundraising')),
-        'Restricted funds brought forward' => newNA('Restricted funds brought forward', 9810, false, false, subCatIdByName.get('Restricted')),
-        'VAT Manual Adjustments' => newNA('VAT Manual Adjustments', 9693, false, false, subCatIdByName.get('Creditors')),
-        'Cash Transfers' => newNA('Cash Transfers', 9700, false, false, subCatIdByName.get('Creditors')),
-        'Irrecoverable VAT' => newNA('Irrecoverable VAT', 7100, TRUE, false, subCatIdByName.get('Ireccoverable VAT')),
-        'Donations' => newNA('Donations', 1001, false, TRUE, subCatIdByName.get('Donations - Other')),
-        'Membership Donations' => newNA('Membership Donations', 1003, false, TRUE, subCatIdByName.get('Donations - Membership')),
-        'Office and IT Equipment Depreciation' => newNA('Office and IT Equipment Depreciation', 9015, TRUE, false, subCatIdByName.get('Tangible Fixed Assets')),
-        'National Advertising' => newNA('National Advertising', 5271, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Telephone' => newNA('Telephone', 5156, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Venue Hire' => newNA('Venue Hire', 5157, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Legacy donations' => newNA('Legacy donations', 1004, false, TRUE, subCatIdByName.get('Donations - Membership')),
-        'Accommodation' => newNA('Accommodation', 5154, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Grant Income' => newNA('Grant Income', 1200, false, TRUE, subCatIdByName.get('Donations - Grants Receivable')),
-        'Prof Fees & Consultancy' => newNA('Prof Fees & Consultancy', 5126, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Licenses' => newNA('Licenses', 5254, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Other' => newNA('Other', 5900, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Profit/loss on disposal of FA' => newNA('Profit/loss on disposal of FA', 5950, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Prepayments' => newNA('Prepayments', 9310, false, false, subCatIdByName.get('Debtors')),
-        'Deferred income' => newNA('Deferred income', 9620, false, false, subCatIdByName.get('Creditors')),
-        'Equipment Rental' => newNA('Equipment Rental', 5233, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Equipment Depreciation' => newNA('Equipment Depreciation', 8101, false, false, subCatIdByName.get('Depreciation')),
-        'Bad Debt Write Of' => newNA('Bad Debt Write Of', 5801, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Fundraising Activities' => newNA('Fundraising Activities', 1101, false, TRUE, subCatIdByName.get('Other Trading Activity - Community Fundraising')),
-        'Local Advertising' => newNA('Local Advertising', 5270, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Output VAT (Sales) Control Account' => newNA('Output VAT (Sales) Control Account', 9692, false, false, subCatIdByName.get('Creditors')),
-        'Gift Aid' => newNA('Gift Aid', 1002, false, TRUE, subCatIdByName.get('Donations - Membership')),
-        'Registration Fees' => newNA('Registration Fees', 1502, false, TRUE, subCatIdByName.get('Charitable Activities - NCT College')),
-        'Training' => newNA('Training', 5115, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'VAT liability' => newNA('VAT liability', 9690, false, false, subCatIdByName.get('Creditors')),
-        'Stock' => newNA('Stock', 9200, TRUE, false, subCatIdByName.get('Stock')),
-        'Subsistence' => newNA('Subsistence', 5155, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Printing & Copying' => newNA('Printing & Copying', 5191, TRUE, false, subCatIdByName.get('Parentforce costs')),
-        'Postage Costs' => newNA('Postage Costs', 5170, TRUE, false, subCatIdByName.get('Parentforce costs'))
+        'Debtors' => newNA('Debtors', 9300, 1065, 1275, false, false, subCatIdByName.get('Debtors'), 1065, 1275, false),
+        'Card Receipts in Transit' => newNA('Card Receipts in Transit', 9401, 625, 815, false, TRUE, subCatIdByName.get('Cash at bank and in hand'), 625, 815, false),
+        'Bank Current Account Lloyds' => newNA('Bank Current Account Lloyds', 9400, 60, 695, false, false, subCatIdByName.get('Cash at bank and in hand'), 60, 695, false),
+        'Course Income' => newNA('Course Income',1400, 1275, 190, false, TRUE, subCatIdByName.get('Charitable Activities - NCT Courses'), 1275, 190, false),
+        'Subcontractor Fees' => newNA('Subcontractor Fees', 5130, 0, 100, TRUE, false, subCatIdByName.get('Parentforce costs'), 0, 100, TRUE),
+        'Creditors' => newNA('Creditors', 9600, 100, 50, false, false, subCatIdByName.get('Creditors'), 100, 50, false),
+        'Equipment' => newNA('Equipment', 5234, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
+        'Subscriptions' => newNA('Subscriptions', 5237, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
+        'Office and IT Equipment Cost' => newNA('Office and IT Equipment Cost', 9010, TRUE, false, subCatIdByName.get('Tangible Fixed Assets'), false),
+        'Unrestricted funds brought forward' => newNA('Unrestricted funds brought forward', 9800, false, false, subCatIdByName.get('Unrestricted'), false),
+        'Suspense Account' => newNA('Suspense Account', 9999, false, false, subCatIdByName.get('Suspense'), false),
+        'Accruals' => newNA('Accruals', 9610, false, false, subCatIdByName.get('Creditors'), false),
+        'Travel' => newNA('Travel', 5150, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
+        'Petty Cash' => newNA('Petty Cash', 9490, false, false, subCatIdByName.get('Cash at bank and in hand'), false),
+        'Input VAT (Sales) Control Account' => newNA('Input VAT (Sales) Control Account', 9691, false, false, subCatIdByName.get('Creditors'), false),
+        'Other Debtors' => newNA('Other Debtors', 9390, false, false, subCatIdByName.get('Debtors'), false),
+        'Fundraising Courses' => newNA('Fundraising Courses', 1102, false, TRUE, subCatIdByName.get('Other Trading Activity - Community Fundraising'), false),
+        'Restricted funds brought forward' => newNA('Restricted funds brought forward', 9810, false, false, subCatIdByName.get('Restricted'), false),
+        'VAT Manual Adjustments' => newNA('VAT Manual Adjustments', 9693, false, false, subCatIdByName.get('Creditors'), false),
+        'Cash Transfers' => newNA('Cash Transfers', 9700, false, false, subCatIdByName.get('Creditors'), false),
+        'Irrecoverable VAT' => newNA('Irrecoverable VAT', 7100, TRUE, false, subCatIdByName.get('Ireccoverable VAT'), false),
+        'Donations' => newNA('Donations', 1001, false, TRUE, subCatIdByName.get('Donations - Other'), false),
+        'Membership Donations' => newNA('Membership Donations', 1003, false, TRUE, subCatIdByName.get('Donations - Membership'), false),
+        'Office and IT Equipment Depreciation' => newNA('Office and IT Equipment Depreciation', 9015, TRUE, false, subCatIdByName.get('Tangible Fixed Assets'), false),
+        'National Advertising' => newNA('National Advertising', 5271, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
+        'Telephone' => newNA('Telephone', 5156, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
+        'Venue Hire' => newNA('Venue Hire', 5157, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
+        'Legacy donations' => newNA('Legacy donations', 1004, false, TRUE, subCatIdByName.get('Donations - Membership'), false),
+        'Accommodation' => newNA('Accommodation', 5154, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
+        'Grant Income' => newNA('Grant Income', 1200, false, TRUE, subCatIdByName.get('Donations - Grants Receivable'), false),
+        'Prof Fees & Consultancy' => newNA('Prof Fees & Consultancy', 5126, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
+        'Licenses' => newNA('Licenses', 5254, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
+        'Other' => newNA('Other', 5900, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
+        'Profit/loss on disposal of FA' => newNA('Profit/loss on disposal of FA', 5950, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
+        'Prepayments' => newNA('Prepayments', 9310, false, false, subCatIdByName.get('Debtors'), false),
+        'Deferred income' => newNA('Deferred income', 9620, false, false, subCatIdByName.get('Creditors'), false),
+        'Equipment Rental' => newNA('Equipment Rental', 5233, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
+        'Equipment Depreciation' => newNA('Equipment Depreciation', 8101, false, false, subCatIdByName.get('Depreciation'), false),
+        'Bad Debt Write Of' => newNA('Bad Debt Write Of', 5801, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
+        'Fundraising Activities' => newNA('Fundraising Activities', 1101, false, TRUE, subCatIdByName.get('Other Trading Activity - Community Fundraising'), false),
+        'Local Advertising' => newNA('Local Advertising', 5270, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
+        'Output VAT (Sales) Control Account' => newNA('Output VAT (Sales) Control Account', 9692, false, false, subCatIdByName.get('Creditors'), false),
+        'Gift Aid' => newNA('Gift Aid', 1002, false, TRUE, subCatIdByName.get('Donations - Membership'), false),
+        'Registration Fees' => newNA('Registration Fees', 1502, false, TRUE, subCatIdByName.get('Charitable Activities - NCT College'), false),
+        'Training' => newNA('Training', 5115, TRUE, false, subCatIdByName.get('Parentforce costs'), false),
+        'VAT liability' => newNA('VAT liability', 9690, false, false, subCatIdByName.get('Creditors'), false),
+        'Stock' => newNA('Stock', 9200, TRUE, false, subCatIdByName.get('Stock'), false),
+        'Subsistence' => newNA('Subsistence', 5155, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
+        'Printing & Copying' => newNA('Printing & Copying', 5191, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
+        'Postage Costs' => newNA('Postage Costs', 5170, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE)
     };
     List<Zumzum__Nominal_Account__c> allNominalAccounts = allNominalAccountsMap.values();
     insert allNominalAccounts;
@@ -199,7 +202,7 @@ void insertNominalAccounts() {
 }
 
 
-renameNominalCategories();
 deleteExistingNominalAccountsAndSubCategories();
+renameNominalCategories();
 insertSubCategories();
 insertNominalAccounts();
