@@ -19,8 +19,8 @@ div.marginVertical {
 }
 .heading_3{
     font-family : 'Raleway', arial, sans-serif;
-    font-size : 1.2rem; 
-    font-weight : 500; 
+    font-size : 1.125rem; 
+    font-weight : 390; 
     line-height : 2rem;
     color: #000000; 
 }
@@ -171,4 +171,12 @@ th, td {
 }
 display-row {
     display: table-row;
+}
+
+.line {
+    height:1px; 
+    width: 60%; 
+    background: rgba(1,1,1,.2); 
+    margin-top:2rem; 
+    margin-bottom:1rem;
 }

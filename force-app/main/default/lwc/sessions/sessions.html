@@ -1,50 +1,69 @@
 <template>
-    <div class="nct-header-text header-text-margin">{sessionHeader}</div>
-    <div class="lato-font regular-text padding-top_1">
-      <template if:true={formattedSessions}>
-        <template for:each={formattedSessions} for:item="session">
-          <div class="border-bottom_grey" key={session.id}>
-            <lightning-layout
-              class="slds-p-bottom_x-small slds-p-top_x-small"
-            >
-              <lightning-layout-item
-                size="1"
-                class="slds-m-right_xx-small"
-                >{session.row}</lightning-layout-item
-              >
-              <lightning-layout-item size="11">
-                <lightning-layout multiple-rows="true">
-                  <lightning-layout-item
-                    class="slds-m-bottom_xx-small"
-                    size="6"
-                    small-device-size="6"
-                    medium-device-size="3"
-                    large-device-size="3"
-                  >
-                    {session.dateFormatted}
-                  </lightning-layout-item>
-                  <lightning-layout-item
-                    class="slds-m-bottom_xx-small"
-                    size="6"
-                    small-device-size="6"
-                    medium-device-size="3"
-                    large-device-size="3"
-                  >
-                    {session.start} - {session.end}
-                  </lightning-layout-item>
-                  <lightning-layout-item
-                    size="12"
-                    small-device-size="12"
-                    medium-device-size="6"
-                    large-device-size="6"
-                  >
-                    {session.Additional_Information__c}
-                  </lightning-layout-item>
-                </lightning-layout>
-              </lightning-layout-item>
-            </lightning-layout>
-          </div>
+
+  <div class="nct-header-text header-text-margin">{sessionHeader}</div>
+  <div class="slds-grid">
+    <div class="padding-bottom_1 
+                slds-col slds-small-size_1-of-1 
+                slds-medium-size_7-of-12 
+                slds-large-size_7-of-12">
+
+      <div class="lato-font regular-text padding-top_1">
+
+        <template if:true={formattedSessions}>
+          <template for:each={formattedSessions} for:item="session">
+
+            <div class="border-bottom_grey" key={session.id}>
+              <lightning-layout class="slds-p-bottom_x-small slds-p-top_x-small">
+                <lightning-layout-item size="1" class="slds-m-right_xx-small">{session.row}</lightning-layout-item>
+
+                <lightning-layout-item size="11">
+                  <lightning-layout multiple-rows="true">
+
+                    <lightning-layout-item class="slds-m-bottom_xx-small" 
+                                           size="6" 
+                                           small-device-size="6"
+                                           medium-device-size="3" 
+                                           large-device-size="3">
+                      {session.dateFormatted}
+                    </lightning-layout-item>
+
+                    <lightning-layout-item class="slds-m-bottom_xx-small" 
+                                           size="6" 
+                                           small-device-size="6"
+                                           medium-device-size="3" 
+                                           large-device-size="3">
+                      {session.start} - {session.end}
+                    </lightning-layout-item>
+
+                    <lightning-layout-item  size="12" 
+                                            small-device-size="12"
+                                            medium-device-size="6"
+                                            large-device-size="6">
+                      {session.Additional_Information__c}
+                    </lightning-layout-item>
+
+                  </lightning-layout>
+                </lightning-layout-item>
+
+              </lightning-layout>
+            </div>
+
+          </template>
         </template>
-      </template>
+
+      </div>
     </div>
+  </div>
+
+  <tempalte if:true={courseHasProvisionalReunion}>
+    <div class='heading_4 lato-font slds-p-top_large' >
+      <div>
+        <b>Course Reunion</b>
+      </div>
+      <div>
+        {provisionCourseReunionText}
+      </div>
+    </div>
+  </tempalte>
+
 </template>
