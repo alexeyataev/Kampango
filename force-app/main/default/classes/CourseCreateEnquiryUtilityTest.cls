@@ -294,50 +294,6 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
-        paramsMap.put('emailPreference', '1');
-        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
-        List<Contact> partners = [
-            SELECT Name, Email, Individual.Email__c
-            FROM Contact
-            WHERE Email =: paramsMap.get('partner_email')
-        ];
-        List<Booking__c> bookings = [
-            SELECT Name
-            FROM Booking__c
-            WHERE Partner_Contact__c != null
-        ];
-        System.assertEquals(true, partners[0].Individual.Email__c, 'Contact email preference should be marked as true according to test case');
-    }
-        
-    @isTest
-    static void createEnquiryWithoutExistingPartnerWithContactPreference() {
-        Account account = new Account(
-            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
-            Name = 'Test Household'
-        );
-        insert account;
-        Contact existingContact = new Contact(
-            LastName = 'Test',  
-            FirstName = 'Test', 
-            Email = 'test@test.test',
-            MailingCity = 'London',
-            MailingStreet = '221B Baker Street',
-            MailingPostalCode = 'E1 7AE',
-            Phone = '+447911123456',
-            AccountId = account.Id,
-            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
-        );
-        insert existingContact;
-        String avaliableCourse = [
-            SELECT Id, Name 
-            FROM Course__c 
-        ][0].Name;
-        Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
-        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
-        paramsMap.put('courseId', avaliableCourse);
-        paramsMap.put('partner_first_name', 'Partner');
-        paramsMap.put('partner_last_name', 'Partner');
-        paramsMap.put('partner_email', 'partner@partner.partner');
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('emailPreference', '1');
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
