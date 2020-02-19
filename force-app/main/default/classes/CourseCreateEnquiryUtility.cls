@@ -148,7 +148,7 @@ public without sharing class CourseCreateEnquiryUtility {
 
     private static Contact getContactById(Id contactId) {
         return [
-            SELECT FirstName, LastName, MailingCity, MailingPostalCode, Email, MailingStreet, Phone, npe01__PreferredPhone__c
+            SELECT FirstName, LastName, MailingCity, MailingPostalCode, Email, MailingStreet, Phone, npe01__PreferredPhone__c, IndividualId
             FROM Contact
             WHERE Id =: contactId
         ];
