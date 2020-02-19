@@ -60,6 +60,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Do_Not_Contact__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>How_Heard__c</field>
             </layoutItems>
             <layoutItems>
