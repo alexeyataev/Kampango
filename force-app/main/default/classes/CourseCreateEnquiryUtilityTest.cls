@@ -124,7 +124,7 @@ private class CourseCreateEnquiryUtilityTest {
             SELECT Name 
             FROM Booking__c
         ];
-        System.assertEquals(2, contacts.size());
+        System.assertEquals(1, contacts.size(), 'There should be only 1 Contact because we have duplication rule');
         System.assertEquals(1, bookings.size());
     }
 

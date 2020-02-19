@@ -148,6 +148,7 @@ public without sharing class TestDataFactory {
             .withEmail(email)
             .withLastName(lastName)
             .insertRecord(true)
+            .ignoreDuplicateRules(true)
             .build();
         return this;
     }
