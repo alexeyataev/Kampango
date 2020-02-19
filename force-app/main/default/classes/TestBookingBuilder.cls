@@ -112,7 +112,7 @@ public class TestBookingBuilder {
         if(ignoreDuplicateRules && insertRecord){
 			Database.DMLOptions dmlOption = new Database.DMLOptions();
 			dmlOption.DuplicateRuleHeader.AllowSave =  true;
-			Database.insert(testContact, dmlOption);
+			Database.insert(booking, dmlOption); 
 			return booking;
 		}
         if(this.insertRecord){
