@@ -120,6 +120,7 @@ public class BookingJourneyHelperTest {
          * reviewed.
          * Duplicate Managment story: W-002582
          */
+        /**
         System.assertEquals(
             [
                 SELECT Id 
@@ -129,6 +130,7 @@ public class BookingJourneyHelperTest {
             ].size(),
             0
         );
+         */
         System.assertEquals(
             [
                 SELECT Id 
