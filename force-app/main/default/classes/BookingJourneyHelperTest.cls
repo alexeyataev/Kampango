@@ -128,7 +128,7 @@ public class BookingJourneyHelperTest {
                 WHERE FirstName = 'Test' 
                 AND LastName = 'PartnerNew'
             ].size(),
-            0
+            1
         );
          */
         System.assertEquals(
@@ -138,7 +138,7 @@ public class BookingJourneyHelperTest {
                 WHERE FirstName = 'Test' 
                 AND LastName = 'PartnerNew'
             ].size(),
-            1
+            0
         );
     }
 
