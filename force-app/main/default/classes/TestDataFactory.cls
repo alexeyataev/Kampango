@@ -112,6 +112,7 @@ public without sharing class TestDataFactory {
             .withPrimaryContact(parentHost)
             .withPartnerContact(partnertHost)
             .withBookingExpiryDate(System.today().addDays(3))
+            .ignoreDuplicateRules(true)
             .insertRecord(true)
             .build();
         return this;
@@ -136,6 +137,7 @@ public without sharing class TestDataFactory {
             .withRecordType(CLIENT_RECORDTYPE_NAME)
             .withEmail(email)
             .withLastName(lastName)
+            .ignoreDuplicateRules(true)
             .insertRecord(true)
             .build();
         return this;

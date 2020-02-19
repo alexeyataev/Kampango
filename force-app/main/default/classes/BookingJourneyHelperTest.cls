@@ -110,6 +110,7 @@ public class BookingJourneyHelperTest {
                 .withFirstName('Test')
                 .withLastName('PartnerNew')
                 .insertRecord(false)
+                .ignoreDuplicateRules(true)
                 .build()
         };
         Test.startTest();
