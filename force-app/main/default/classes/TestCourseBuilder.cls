@@ -2,6 +2,7 @@
 public with sharing class TestCourseBuilder {
     private String type = 'Antenatal';
     private String subType  ='NCT Essentials antenatal course';
+    private String dropInScheduleInformation;
     private Integer fee = 100;
     private Integer numberOfPlaces = 1;
     private String status = 'Draft';
@@ -10,9 +11,6 @@ public with sharing class TestCourseBuilder {
     private Boolean insertRecord = false;
     private Venue__c mainVenue;
     private Contact practitioner;
-    private Integer totalPractitionerFees = 200;
-    private Integer estimatedTravelCosts = 100;
-    private Integer estimatedVenueCosts = 100;
 
     public TestCourseBuilder withType(String type)
     {
@@ -23,6 +21,12 @@ public with sharing class TestCourseBuilder {
     public TestCourseBuilder withSubType(String subType)
     {
         this.subType = subType;
+        return this;
+    }
+
+    public TestCourseBuilder withDropInScheduleInformation(String dropInScheduleInformation)
+    {
+        this.dropInScheduleInformation = dropInScheduleInformation;
         return this;
     }
 
@@ -73,16 +77,14 @@ public with sharing class TestCourseBuilder {
         Course__c course = new Course__c(
             Type__c = this.type,
             Sub_Type__c = this.subType,
+            Drop_In_Schedule_Information__c = this.dropInScheduleInformation,
             Fee__c = this.fee,
             Status__c = this.status,
             Number_of_places__c = this.numberOfPlaces,
             Branch__c = this.account.Id,
             Main_Practitioner__c = this.practitioner.Id,
             Main_Practitioner_Licence__c = this.licenceToPractice.Id,
-            Main_Venue__c = mainVenue.Id,
-            Total_Practitioner_Fees__c = this.totalPractitionerFees,
-            Estimated_Travel_Costs__c = this.estimatedTravelCosts,
-            Estimated_Venue_Costs__c = this.estimatedVenueCosts
+            Main_Venue__c = mainVenue.Id
         );
 
         if(insertRecord)
