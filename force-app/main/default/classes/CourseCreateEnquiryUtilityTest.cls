@@ -193,8 +193,8 @@ private class CourseCreateEnquiryUtilityTest {
             FROM Booking__c
             WHERE Partner_Contact__c != null
         ];
-        System.assertEquals(2, partners.size());
-        System.assertEquals(2, mainContacts.size());
+        System.assertEquals(1, partners.size());
+        System.assertEquals(1, mainContacts.size());
         System.assertEquals(1, bookings.size());
     }
 

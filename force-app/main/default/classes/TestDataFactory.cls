@@ -165,6 +165,7 @@ public without sharing class TestDataFactory {
            .withLastName(lastName)
            .withEmail(email)
            .insertRecord(true)
+           .ignoreDuplicateRules(true)
            .build();
        practitioners.add(practitioner);
        TestPractitionerBandBuilder practitionerBandBuilder = new TestPractitionerBandBuilder();
