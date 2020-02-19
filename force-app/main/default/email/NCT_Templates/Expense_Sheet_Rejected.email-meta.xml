@@ -4,7 +4,7 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Expense Sheet Rejected</name>
     <style>none</style>
-    <subject>NCT Course assignment for {!Course_Assignment__c.PSA_Area__c}/{!Course_Assignment__c.Course__c}</subject>
+    <subject>Expense query</subject>
     <textOnly>Dear {!Contact.Name},
 
 The following expenses have been returned to you for review. You can review, amend and resubmit this expense by logging into your portal.
