@@ -30,7 +30,6 @@ public without sharing class TestDataFactory {
     public static List<User> enquiryPSA_Users = new List<User>();
     private List<Contact> practitioners = new List<Contact>();
     private Account branchAccount;
-    private Account householdAccount;
     private static Account organizationAccount;
     private Course_Assignment__c courseAssignment;
     private Venue__c venue;
@@ -135,7 +134,6 @@ public without sharing class TestDataFactory {
         TestContactBuilder parentHostBuilder = new TestContactBuilder();
         parentHost = parentHostBuilder
             .withRecordType(CLIENT_RECORDTYPE_NAME)
-            //.withAccount(householdAccount)
             .withEmail(email)
             .withLastName(lastName)
             .insertRecord(true)
@@ -147,7 +145,6 @@ public without sharing class TestDataFactory {
         TestContactBuilder partnerHostBuilder = new TestContactBuilder();
         partnertHost = partnerHostBuilder
             .withRecordType(CLIENT_RECORDTYPE_NAME)
-            //.withAccount(householdAccount)
             .withEmail(email)
             .withLastName(lastName)
             .insertRecord(true)
