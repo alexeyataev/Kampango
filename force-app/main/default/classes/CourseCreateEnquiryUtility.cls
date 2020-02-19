@@ -145,7 +145,6 @@ public without sharing class CourseCreateEnquiryUtility {
 
     private static void updateContactPreferences(Id contactId, Map<String, String> requestParameters) {
         Contact contact = getContactById(contactId);
-
         Individual individual = [
             SELECT Id, Email__c, Post__c, SMS__c, Telephone__c 
             FROM Individual 
@@ -165,11 +164,18 @@ public without sharing class CourseCreateEnquiryUtility {
     }
 
     private static Contact getContactById(Id contactId) {
-        return [
-            SELECT Id, FirstName, LastName, MailingCity, MailingPostalCode, Email, MailingStreet, Phone, npe01__PreferredPhone__c, IndividualId
-            FROM Contact
-            WHERE Id =: contactId
-        ];
+        Contact contact;
+        if (!String.isBlank(contactId)) {
+            contact = [
+                SELECT Id, FirstName, LastName, MailingCity, MailingPostalCode, Email, MailingStreet, Phone, npe01__PreferredPhone__c, IndividualId
+                FROM Contact
+                WHERE Id =: contactId
+                LIMIT 1
+            ];
+        } else {
+            throw new CreateEnquiryException();
+        }
+        return contact;
     }
 
     private static Id getContactRecordTypeByAPIName(String recordTypeName) {

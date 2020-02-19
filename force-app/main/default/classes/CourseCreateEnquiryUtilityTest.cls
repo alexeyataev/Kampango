@@ -137,13 +137,13 @@ private class CourseCreateEnquiryUtilityTest {
         insert accountPartner;
         TestContactBuilder contactBuilder = new TestContactBuilder();
         Contact partner = contactBuilder
-            .withRecordType('Contact')
+            .withRecordType('Client')
             .withLastName('Partner')
             .withFirstName('Partner')
+            .withEmail('partner@partner.partner')
             .withAccount(accountPartner)
             .insertRecord(false)
             .build();
-        partner.Email = 'partner@partner.partner';
         insert partner;
         Account account = new Account(
             RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),

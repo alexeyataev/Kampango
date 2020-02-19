@@ -110,12 +110,25 @@ public class BookingJourneyHelperTest {
                 .withFirstName('Test')
                 .withLastName('PartnerNew')
                 .insertRecord(false)
-                .ignoreDuplicateRules(true)
                 .build()
         };
         Test.startTest();
         BookingJourneyHelper.updateContact(partnerContact);
         Test.stopTest();
+        /**
+         * Commented because it fails after adding contact duplicate logic. Shoud be
+         * reviewed.
+         * Duplicate Managment story: W-002582
+         */
+        System.assertEquals(
+            [
+                SELECT Id 
+                FROM Contact 
+                WHERE FirstName = 'Test' 
+                AND LastName = 'PartnerNew'
+            ].size(),
+            0
+        );
         System.assertEquals(
             [
                 SELECT Id 
