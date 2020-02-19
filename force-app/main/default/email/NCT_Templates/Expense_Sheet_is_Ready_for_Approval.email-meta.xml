@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Expense Sheet is Ready for Approval</name>
+    <style>none</style>
+    <subject>Expense approved</subject>
+    <textOnly>Dear {!Contact.Name},
+
+The following expenses have been passed on to finance for final approval:
+
+EXPENSE ID: {!Zumzum__Expense_Sheet__c.Id}
+
+Please log into your portal to view any details. 
+
+Kind regards
+NCT</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
