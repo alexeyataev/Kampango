@@ -3,8 +3,13 @@
     <fullName>Sort_Date__c</fullName>
     <description>Used for CouseAPI</description>
     <externalId>false</externalId>
-    <formula>IF(TEXT(Type__c) = &#39;Antenatal&#39;, End_Date__c, Start_Date__c) 
-/* As logic for Drop-ins are not defined, they are grouped with Postnatal for simplisity */</formula>
+    <formula>IF(TEXT(Type__c) = &#39;Antenatal&#39;, End_Date__c,
+    IF(TEXT(Type__c) = &#39;Postnatal&#39;, Start_Date__c,
+        IF(TEXT(Type__c) = &#39;Drop In&#39;,  TODAY() + 500,
+            TODAY() + 1000 /* Place for adding of other Course types */
+        )
+    )
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Used for CouseAPI</inlineHelpText>
     <label>Sort Date</label>

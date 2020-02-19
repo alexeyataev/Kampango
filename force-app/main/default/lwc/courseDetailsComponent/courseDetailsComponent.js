@@ -4,7 +4,6 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import retrieveRelatedSessions from '@salesforce/apex/CourseDetailController.retrieveRelatedSessions';
 import NCT_STYLES from '@salesforce/resourceUrl/NCT_Styles';
 import { loadStyle } from 'lightning/platformResourceLoader';
-import provisionCourseReunionTextLable from '@salesforce/label/c.Confirmation_Notification_Course_Reunion';
 
 const BOOKING_FIELDS = [
         'Booking__c.Name',
@@ -25,9 +24,6 @@ const BOOKING_FIELDS = [
     ];
 
 export default class CourseDetailsComponent extends LightningElement {
-    provisionCourseReunionText = provisionCourseReunionTextLable;
-    courseHasProvisionalReunion = false;
-
     @api additionalOfferInformation;
     @api bookingRecord;
     @api bookingId;
@@ -133,10 +129,6 @@ export default class CourseDetailsComponent extends LightningElement {
                     }),
                 );
             });
-    }
-
-    renderedCallback() {
-        this.courseHasProvisionalReunion = this.template.querySelector('c-sessions').courseHasProvisionalReunion;
     }
 
     getVenues(sessions) {

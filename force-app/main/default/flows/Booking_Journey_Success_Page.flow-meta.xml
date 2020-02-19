@@ -527,6 +527,12 @@
                 <stringValue>Confirmed</stringValue>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>Terms_And_Conditions_Accepted__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
         <object>Booking__c</object>
     </recordUpdates>
     <screens>
