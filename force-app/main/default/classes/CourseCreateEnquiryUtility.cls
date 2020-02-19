@@ -32,6 +32,10 @@ public without sharing class CourseCreateEnquiryUtility {
         Database.DMLOptions dmlOption = new Database.DMLOptions();
         
         if (!result.isSuccess()) {
+            Boolean isDuplicateError = checkForDuplicateError(result.errors);
+            if (!isDuplicateError) {
+                throw new CreateEnquiryException(JSON.serialize((result.getErrors())));
+            }
             List<sObject> duplicates = getDuplicateRecords(result.errors);
             if (duplicates.size() == 1) {
                 contact = getContactById(duplicates[0].Id);
@@ -89,6 +93,16 @@ public without sharing class CourseCreateEnquiryUtility {
         return duplicateRecords;
     }
 
+    private static Boolean checkForDuplicateError(List<Database.Error> errors) {
+        Boolean result = true;
+        for (Database.Error error : errors) {
+            if (error.getStatusCode() != StatusCode.DUPLICATES_DETECTED) {
+                result = false;
+            }
+        }
+        return result;
+    }
+
     private static Date getDate(String dateString){
         Date result;
         try {
@@ -112,6 +126,10 @@ public without sharing class CourseCreateEnquiryUtility {
         Database.DMLOptions dmlOption = new Database.DMLOptions();
         
         if (!result.isSuccess()) {
+            Boolean isDuplicateError = checkForDuplicateError(result.errors);
+            if (!isDuplicateError) {
+                throw new CreateEnquiryException(JSON.serialize(result.getErrors()));
+            }
             List<sObject> duplicates = getDuplicateRecords(result.errors);
             if (duplicates.size() == 1) {
                 partner = getContactById(duplicates[0].Id);
@@ -148,7 +166,7 @@ public without sharing class CourseCreateEnquiryUtility {
 
     private static Contact getContactById(Id contactId) {
         return [
-            SELECT FirstName, LastName, MailingCity, MailingPostalCode, Email, MailingStreet, Phone, npe01__PreferredPhone__c, IndividualId
+            SELECT FirstName, LastName, MailingCity, MailingPostalCode, Email, MailingStreet, Phone, npe01__PreferredPhone__c
             FROM Contact
             WHERE Id =: contactId
         ];
