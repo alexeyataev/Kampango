@@ -15,7 +15,7 @@ public class ZumzumCreatePostSalesInvoiceTest {
                     .buildPractitioner('John')
                     .buildVenue()
                     .buildLicenceToPractice()
-                    .buildCourse()
+                    .buildCourseWithStatus('Final')
                     .buildParentHost('Dina', 'test1@test.com')
                     .buildPartnertHost('Tim', 'test2@test.com')
                     .buildRoom()
@@ -74,7 +74,7 @@ public class ZumzumCreatePostSalesInvoiceTest {
         insert dimension2;
     }
     @IsTest
-    static void testMethodtest() {
+    static void PostSalesInvoice_SalesInvoicePosted_SalesInvoiceStatusPosted() {
         List<List<ZumzumSalesInvoiceParameters>> zumzumSalesInvoiceParameters = getZumzumSalesInvoiceParameters();
         ZumzumCreatePostSalesInvoice.salesInvoiceCreator = new ZumzumSalesInvoiceCreatorMock();
         ZumzumCreatePostSalesInvoice.createSI(zumzumSalesInvoiceParameters);
