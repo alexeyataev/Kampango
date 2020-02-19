@@ -16,9 +16,9 @@ public without sharing class BookingDetailsController {
         for(Schema.FieldSetMember fieldSetMember : Schema.SObjectType.Booking__c.fieldSets.getMap().get(bookingFieldSetName).getFields()) {
             query += fieldSetMember.getFieldPath() + ', ';
         }
-        query += 'Primary_Contact__c, Partner_Contact__c, Info_for_Practitioner__c, Id FROM Booking__c WHERE Course__c = :courseId AND Status__c = :CONFIRMED_STATUS WITH SECURITY_ENFORCED';
+        query += 'Primary_Contact__c, Partner_Contact__c, Info_for_Practitioner__c, Id FROM Booking__c WHERE Course__c = :courseId AND Status__c = :CONFIRMED_STATUS AND Do_Not_Contact__c = false WITH SECURITY_ENFORCED';
         
-        List<Booking__c> bookings = Database.query(query);
+        List<Booking__c> bookings = (List<Booking__c>)Database.query(query);
         
         setBookingContacts(bookings);
 
