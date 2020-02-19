@@ -1,0 +1,11 @@
+Dear {!Contact.Name},<br>
+<br>
+The following expenses have been returned to you for review. You can review, amend and resubmit this expense by logging into your portal.<br>
+<br>
+EXPENSE ID: {!Zumzum__Expense_Sheet__c.Id}<br>
+<br>
+<b>{!ApprovalRequest.Comments}</b><br>
+<br>
+<br>
+Kind regards<br>
+NCT
