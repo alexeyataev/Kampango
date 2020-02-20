@@ -237,9 +237,13 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildLicenceToPractice() {
+        return buildLicenceToPractice(practitioners[0]);
+    }
+    
+    public TestDataFactory buildLicenceToPractice(Contact practitioner) {
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
         licenceToPractice = licenceToPracticeBuilder
-            .withContact(practitioners[0])
+            .withContact(practitioner)
             .insertRecord(true)
             .build();
         return this;
