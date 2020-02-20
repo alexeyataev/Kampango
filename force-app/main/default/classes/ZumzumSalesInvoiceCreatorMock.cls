@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #58 - https://confluence.nct.org.uk:8443/x/EoSO
 public class ZumzumSalesInvoiceCreatorMock implements ISalesInvoiceCreator {
     public static List<Zumzum__Sales_Invoice__c> createSI(List<Zumzum.SalesInvoicePostService.SalesInvoiceWrapper> newSalesInvoiceDataList) {
         Zumzum__Sales_Invoice__c salesInvoice = new Zumzum__Sales_Invoice__c();
