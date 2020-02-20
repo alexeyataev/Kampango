@@ -124,7 +124,7 @@ private class CourseCreateEnquiryUtilityTest {
             SELECT Name 
             FROM Booking__c
         ];
-        System.assertEquals(2, contacts.size());
+        System.assertEquals(1, contacts.size(), 'There should be only 1 Contact because we have duplication rule');
         System.assertEquals(1, bookings.size());
     }
 
@@ -137,13 +137,13 @@ private class CourseCreateEnquiryUtilityTest {
         insert accountPartner;
         TestContactBuilder contactBuilder = new TestContactBuilder();
         Contact partner = contactBuilder
-            .withRecordType('Contact')
+            .withRecordType('Client')
             .withLastName('Partner')
             .withFirstName('Partner')
+            .withEmail('partner@partner.partner')
             .withAccount(accountPartner)
             .insertRecord(false)
             .build();
-        partner.Email = 'partner@partner.partner';
         insert partner;
         Account account = new Account(
             RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
@@ -193,8 +193,8 @@ private class CourseCreateEnquiryUtilityTest {
             FROM Booking__c
             WHERE Partner_Contact__c != null
         ];
-        System.assertEquals(2, partners.size());
-        System.assertEquals(2, mainContacts.size());
+        System.assertEquals(1, partners.size());
+        System.assertEquals(1, mainContacts.size());
         System.assertEquals(1, bookings.size());
     }
 
@@ -294,6 +294,7 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
+        paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('emailPreference', '1');
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> partners = [
@@ -306,6 +307,112 @@ private class CourseCreateEnquiryUtilityTest {
             FROM Booking__c
             WHERE Partner_Contact__c != null
         ];
-        System.assertEquals(true, partners[0].Individual.Email__c, 'Contact email preference should be marked as true according to test case');
+        System.assertEquals(true, partners[0].Individual.Email__c);
+    }
+
+    @isTest
+    static void createEnquiryWithThreeExistingPrimaryContacts() {
+        Account[] accounts = new Account[]{};
+        Contact[] contacts = new Contact[]{};
+        for (Integer i = 0; i < 3; i++) {
+            accounts.add(new Account(
+                RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
+                Name = 'Test Household' + i
+            ));
+        }
+        insert accounts;
+
+        for (Integer i = 0; i < 3; i++) {
+            contacts.add(new Contact(
+                LastName = 'Test',  
+                FirstName = 'Test', 
+                Email = 'test@test.test',
+                MailingCity = 'London',
+                MailingStreet = '221B Baker Street',
+                MailingPostalCode = 'E1 7AE',
+                Phone = '+447911123456',
+                AccountId = accounts[i].Id,
+                RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
+            )); 
+        }
+        
+        Database.DMLOptions dmlOption = new Database.DMLOptions();
+        dmlOption.DuplicateRuleHeader.AllowSave = true;
+        Database.insert(contacts, dmlOption);
+
+        String avaliableCourse = [
+            SELECT Id, Name 
+            FROM Course__c 
+        ][0].Name;
+        Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
+        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
+        paramsMap.put('courseId', avaliableCourse);
+        paramsMap.put('emailPreference', '1');
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        List<Contact> duplicates = [
+            SELECT Email
+            FROM Contact
+            WHERE Email = 'test@test.test'
+        ];
+        List<Booking__c> bookings = [
+            SELECT Name
+            FROM Booking__c
+        ];
+        System.assertEquals(1, bookings.size());
+        System.assertEquals(4, duplicates.size());
+    }
+
+    @isTest
+    static void createEnquiryWithThreeExistingPartners() {
+        Account[] accounts = new Account[]{};
+        Contact[] contacts = new Contact[]{};
+        for (Integer i = 0; i < 3; i++) {
+            accounts.add(new Account(
+                RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
+                Name = 'Test Household' + i
+            ));
+        }
+        insert accounts;
+
+        for (Integer i = 0; i < 3; i++) {
+            contacts.add(new Contact(
+                LastName = 'Partner',  
+                FirstName = 'Partner', 
+                Email = 'partner@partner.partner',
+                MailingCity = 'London',
+                MailingStreet = '221B Baker Street',
+                MailingPostalCode = 'E1 7AE',
+                Phone = '+447911121337',
+                AccountId = accounts[i].Id,
+                RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
+            )); 
+        }
+        
+        Database.DMLOptions dmlOption = new Database.DMLOptions();
+        dmlOption.DuplicateRuleHeader.AllowSave = true;
+        Database.insert(contacts, dmlOption);
+
+        String avaliableCourse = [
+            SELECT Id, Name 
+            FROM Course__c 
+        ][0].Name;
+        Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
+        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
+        paramsMap.put('courseId', avaliableCourse);
+        paramsMap.put('partner_first_name', 'Partner');
+        paramsMap.put('partner_last_name', 'Partner');
+        paramsMap.put('partner_email', 'partner@partner.partner');
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        List<Contact> partners = [
+            SELECT Name, Email
+            FROM Contact
+            WHERE Email =: paramsMap.get('partner_email')
+        ];
+        List<Booking__c> bookings = [
+            SELECT Name
+            FROM Booking__c
+        ];
+        System.assertEquals(4, partners.size());
+        System.assertEquals(1, bookings.size());
     }
 }
