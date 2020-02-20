@@ -16,9 +16,9 @@ public with sharing class ZumzumCreatePostSalesInvoice {
             Zumzum.SalesInvoicePostService.SalesInvoiceWrapper salesInvoice = new Zumzum.SalesInvoicePostService.SalesInvoiceWrapper( );
             salesInvoice.LineItems = new List<Zumzum.SalesInvoicePostService.SalesInvoiceLineWrapper>();
             for(ZumzumSalesInvoiceParameters zumzumSalesInvoiceParameter : zumzumSalesInvoiceParameters) {
-                salesInvoice.Customer = salesInvoice.Customer == null ? zumzumSalesInvoiceParameter.customerId : salesInvoice.Customer; //Zumzum__Account__c
-                salesInvoice.InvoiceDate = Date.today(); //Zumzum__Invoice_Date__c
-                salesInvoice.TransactionCurrency = salesInvoice.TransactionCurrency == null ? zumzumSalesInvoiceParameter.transactionCurrencyId : salesInvoice.TransactionCurrency; //Zumzum__Transaction_Currency__c
+                salesInvoice.Customer = salesInvoice.Customer == null ? zumzumSalesInvoiceParameter.customerId : salesInvoice.Customer;
+                salesInvoice.InvoiceDate = Date.today();
+                salesInvoice.TransactionCurrency = salesInvoice.TransactionCurrency == null ? zumzumSalesInvoiceParameter.transactionCurrencyId : salesInvoice.TransactionCurrency;
                 
                 if(salesInvoice.WrapperAPICustomFields == null) {
                     salesInvoice.WrapperAPICustomFields = new List<Zumzum.APICustomFieldWrapper>();
@@ -26,13 +26,13 @@ public with sharing class ZumzumCreatePostSalesInvoice {
                 }
                 
                 Zumzum.SalesInvoicePostService.SalesInvoiceLineWrapper salesInvoiceLine = new Zumzum.SalesInvoicePostService.SalesInvoiceLineWrapper();
-                salesInvoiceLine.Product = zumzumSalesInvoiceParameter.productId; //Zumzum__Product__c
-                salesInvoiceLine.NominalAccount = zumzumSalesInvoiceParameter.nominalAccountId; //Zumzum__Nominal_Account__c
-                salesInvoiceLine.Quantity = 1; //Zumzum__Quantity__c
-                salesInvoiceLine.TaxRate = zumzumSalesInvoiceParameter.taxRateId; //Zumzum__Tax_Rate__c
-                salesInvoiceLine.ForeignNetAmount = zumzumSalesInvoiceParameter.foreignNetAmount; //Zumzum__Foreign_Net_Amount__c
-                salesInvoiceLine.Dimension1 = zumzumSalesInvoiceParameter.dimension1Id; //Zumzum__Dimension_1__c
-                salesInvoiceLine.Dimension2 = zumzumSalesInvoiceParameter.dimension2Id; //Zumzum__Dimension_2__c
+                salesInvoiceLine.Product = zumzumSalesInvoiceParameter.productId;
+                salesInvoiceLine.NominalAccount = zumzumSalesInvoiceParameter.nominalAccountId;
+                salesInvoiceLine.Quantity = 1;
+                salesInvoiceLine.TaxRate = zumzumSalesInvoiceParameter.taxRateId;
+                salesInvoiceLine.ForeignNetAmount = zumzumSalesInvoiceParameter.foreignNetAmount;
+                salesInvoiceLine.Dimension1 = zumzumSalesInvoiceParameter.dimension1Id;
+                salesInvoiceLine.Dimension2 = zumzumSalesInvoiceParameter.dimension2Id;
                 salesInvoice.LineItems.add(salesInvoiceLine);
             }
             newSalesInvoiceDataList.add(salesInvoice);
