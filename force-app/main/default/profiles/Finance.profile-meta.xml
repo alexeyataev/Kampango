@@ -4827,6 +4827,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Booking__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Contact_First_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
