@@ -3,7 +3,7 @@
 public class ZumzumCreatePostSalesInvoiceTest {
     private static final String ACCOUNT_TYPE_CUSTOMER = 'Customer';
     private static final String PRODUCT_NAME_COURSE_PLACE = 'Course Place';
-    private static final String PRODUCT_NAME_MEMBERSHIP_18_Month= 'Membership - 18 month';
+    private static final String PRODUCT_NAME_MEMBERSHIP_18_MONTH = 'Membership - 18 month';
     private static final String DIMENSION_ZUMZUM_TYPE_1 = 'Dimension 1';
     private static final String DIMENSION_ZUMZUM_TYPE_2 = 'Dimension 2';
     @testSetup
@@ -24,6 +24,7 @@ public class ZumzumCreatePostSalesInvoiceTest {
                     .buildCourse()
                     .buildConfirmedSession()
                     .buildEstimatedCosts()
+                    .buildPractitionerFeeRate()
                     .setCourseToFinal()
                     .buildParentHost('Dina', 'test1@test.com')
                     .buildPartnertHost('Tim', 'test2@test.com')
