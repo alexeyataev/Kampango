@@ -11,6 +11,7 @@ public with sharing class TestContactBuilder {
 	private String mobilePhone = '123456789';
 	private String homePhone = '987654321';
 	private Boolean insertRecord = false;
+	private Boolean ignoreDuplicateRules = false;
 	private String mailingStreet = 'Test street';
 	private String mailingCity = 'Test city';
 	private String mailingPostalCode = 'Test code';
@@ -86,7 +87,12 @@ public with sharing class TestContactBuilder {
     public TestContactBuilder insertRecord(Boolean insertRecord){
     	this.insertRecord = insertRecord;
     	return this;
-    }
+	}
+	
+	public TestContactBuilder ignoreDuplicateRules(Boolean ignoreDuplicateRules) {
+		this.ignoreDuplicateRules = true;
+		return this;
+	}
     
     public Contact build(){
     	Contact testContact = new Contact(
@@ -105,6 +111,12 @@ public with sharing class TestContactBuilder {
 		);
 		if (account != null) {
 			testContact.AccountId = this.account.Id;
+		}
+		if(ignoreDuplicateRules && insertRecord){
+			Database.DMLOptions dmlOption = new Database.DMLOptions();
+			dmlOption.DuplicateRuleHeader.AllowSave =  true;
+			Database.insert(testContact, dmlOption);
+			return testContact;
 		}
 		if(insertRecord){
 			insert testContact;
