@@ -131,6 +131,7 @@ public class BookingJourneyHelperTest {
             1
         );
          */
+        
         System.assertEquals(
             [
                 SELECT Id 
