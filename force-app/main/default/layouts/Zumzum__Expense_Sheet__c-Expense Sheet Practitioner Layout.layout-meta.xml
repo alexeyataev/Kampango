@@ -104,7 +104,7 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Zumzum__Date__c</fields>
-        <fields>Zumzum__Opportunity__c</fields>
+        <fields>Course__c</fields>
         <fields>Zumzum__Account__c</fields>
         <fields>Zumzum__Nominal_Account__c</fields>
         <fields>Zumzum__Narrative__c</fields>
