@@ -22,8 +22,6 @@
         <members>ClaimFeeHelperTest</members>
         <members>ConfirmationEmailController</members>
         <members>ConfirmationEmailControllerTest</members>
-        <members>ContactDetailsController</members>
-        <members>ContactDetailsControllerTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -116,6 +114,7 @@
     </types>
     <types>
         <members>Course_Assignment__c.Approve_Course_Assignment</members>
+        <members>Zumzum__Expense_Sheet__c.Approve_Expense_Sheet</members>
         <name>ApprovalProcess</name>
     </types>
     <types>
@@ -126,6 +125,7 @@
         <members>CourseDetailComponent</members>
         <members>FailurePaymentsPage</members>
         <members>ParentCommunityLogoContainer</members>
+        <members>RedirectToEditPage</members>
         <members>showToast</members>
         <members>SuccessPaymentsPage</members>
         <members>TranferDetailComponent</members>
@@ -151,7 +151,6 @@
         <members>Asset.Loaned_Date__c</members>
         <members>Asset.Product2Id</members>
         <members>Asset.Returned_Date__c</members>
-        <members>Booking__c.Booking_Journey_Payable_Amount__c</members>
         <members>Case.Booking__c</members>
         <members>Case.ContactId</members>
         <members>Case.Description</members>
@@ -171,30 +170,9 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
-        <members>Course__c.Title__c</members>
-        <members>cpm__Installment__c.Bank_Details_Number__c</members>
-        <members>cpm__Installment__c.Care_Membership_Added__c</members>
-        <members>cpm__Installment__c.Membership_Type__c</members>
-        <members>cpm__Installment__c.Partner_Contact__c</members>
-        <members>cpm__Installment__c.Sales_Invoice__c</members>
-        <members>cpm__Installment__c.ga_decl_1__c</members>
-        <members>cpm__Installment__c.ga_decl_2__c</members>
-        <members>gaid__Gift_Aid_Declaration__c.Deactivation_Date__c</members>
-        <members>Session__c.Eligible_for_Claim__c</members>
-        <members>Session__c.Sum_Of_Purchase_Line_Items__c</members>
-        <members>Session__c.Practitioner_Fees_to_Claim__c</members>
-        <members>Session__c.Location_County__c</members>
-        <members>Session__c.Location_Id__c</members>
-        <members>Session__c.Location_Name__c</members>
-        <members>Session__c.Location_Postcode__c</members>
-        <members>Session__c.Location_Street__c</members>
-        <members>Session__c.Location_Town__c</members>
-        <members>Venue__c.Legacy_Id__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
-        <members>Zumzum__Batch_Bank_Payment__c.Zumzum__Status__c</members>
-        <members>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</members>
-        <members>Zumzum__Purchase_Invoice_Line_Item__c.Practitioner__c</members>
-        <members>Zumzum__Sales_Invoice__c.Booking__c</members>
+        <members>Zumzum__Expense_Sheet_Detail__c.Course__c</members>
+        <members>Zumzum__Expense_Sheet_Detail__c.Zumzum__Required_Fields</members>
         <members>Zumzum__Sales_Invoice_Line_Item__c.Course__c</members>
         <name>CustomField</name>
     </types>
@@ -225,6 +203,7 @@
         <members>dlrs__LookupRollupSummary2__mdt</members>
         <members>gaid__Gift_Aid_Declaration__c</members>
         <members>Estimated_Costs__c</members>
+        <members>Financial_Settings__c</members>
         <members>Individual</members>
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
@@ -328,11 +307,15 @@
         <name>Document</name>
     </types>
     <types>
+        <members>NCT_Templates/Adhoc_Payment_Notification</members>
+        <members>NCT_Templates/Adhoc_Payment_Confirmation</members>
         <members>NCT_Templates/Booking_Created</members>
         <members>NCT_Templates/Booking_Confirmation_Email</members>
         <members>NCT_Templates/BookingNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <members>NCT_Templates/Course_Assignment_Rejected</members>
+        <members>NCT_Templates/Expense_Sheet_is_Ready_for_Approval</members>
+        <members>NCT_Templates/Expense_Sheet_Rejected</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</members>
         <name>EmailTemplate</name>
@@ -418,9 +401,14 @@
     </types>
     <types>
         <members>Contact.CourseSummaryPractitionerFields</members>
+        <members>Zumzum__Sales_Invoice__c.Zumzum__Required_Fields_Column_1</members>
         <name>FieldSet</name>
     </types>
     <types>
+        <members>Adhoc_Payment_Flow</members>
+        <members>Adhoc_Payment_Details_Subflow</members>
+        <members>Adhoc_Payment_Success_Flow</members>
+        <members>Adhoc_Send_Payment_Email_Flow</members>
         <members>Assign_Practitioner_Fee_Rate_to_Session</members>
         <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Success_Page</members>
@@ -447,6 +435,7 @@
         <members>Reunion_Execute_Sending</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
+        <members>Set_Booking_Contacts_Email_To_Do_Not_Contact</members>
         <members>Set_Booking_Expiration_Status</members>
         <members>Set_CADs_to_Withdrawn</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
@@ -456,6 +445,7 @@
         <members>Track_Deleted_Sessions</members>
         <members>Update_Address_in_Gift_Aid_Declaration</members>
         <members>Update_Address_in_Gift_Aid_Declarations</members>
+        <members>Update_Booking_Contacts_Email</members>
         <members>Update_Partner_Community_Contact</members>
         <members>Update_Practitioner_Licence_on_Sessions_related_to_Course</members>
         <members>Update_Practitioner_on_Sessions</members>
@@ -500,13 +490,18 @@
         <members>Venue_Contact__c-Venue Contact Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
         <members>Zumzum__Batch_Bank_Payment__c-Zumzum__Batch Bank Payment Layout</members>
+        <members>Zumzum__Expense_Sheet__c-Expense Sheet Practitioner Layout</members>
+        <members>Zumzum__Expense_Sheet_Detail__c-Expense Sheet Detail Practitioner Layout</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
+        <members>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</members>
+        <members>cpm__Installment__c-Installment Layout</members>
         <name>Layout</name>
     </types>
     <types>
         <members>checkBrowserCompatibility</members>
         <members>courseDetailsComponent</members>
         <members>claimFeesDatatable</members>
+        <members>customCommunityButton</members>
         <members>failurePaymentPage</members>
         <members>linkToPaymentComponent</members>
         <members>marketingPreferencesComponent</members>
@@ -562,6 +557,63 @@
     </types>
     <types>
         <members>Course_Booking_Manual_Administration</members>
+        <members>X1C</members>
+        <members>X1W</members>
+        <members>X2A</members>
+        <members>X2B</members>
+        <members>X2C</members>
+        <members>X3A</members>
+        <members>X3B</members>
+        <members>X3D</members>
+        <members>X3E</members>
+        <members>X3F</members>
+        <members>X4A</members>
+        <members>X4B</members>
+        <members>X4C</members>
+        <members>X4D</members>
+        <members>X4E</members>
+        <members>X4F</members>
+        <members>X4G</members>
+        <members>X4H</members>
+        <members>X4I</members>
+        <members>X4J</members>
+        <members>X4K</members>
+        <members>X4L</members>
+        <members>X4M</members>
+        <members>X4N</members>
+        <members>X4P</members>
+        <members>X4Q</members>
+        <members>X4R</members>
+        <members>X4S</members>
+        <members>X5A</members>
+        <members>X5B</members>
+        <members>X5C</members>
+        <members>X5D</members>
+        <members>X5E</members>
+        <members>X5F</members>
+        <members>X5G</members>
+        <members>X5H</members>
+        <members>X5I</members>
+        <members>X5J</members>
+        <members>X5K</members>
+        <members>X5L</members>
+        <members>X5M</members>
+        <members>X5N</members>
+        <members>X5O</members>
+        <members>X5R</members>
+        <members>X5S</members>
+        <members>X5T</members>
+        <members>X5U</members>
+        <members>X5VL</members>
+        <members>X6A</members>
+        <members>X6B</members>
+        <members>X6C</members>
+        <members>X6D</members>
+        <members>X6E</members>
+        <members>X7A</members>
+        <members>X7B</members>
+        <members>X7C</members>
+        <members>X7D</members>
         <name>Queue</name>
     </types>
     <types>
@@ -569,7 +621,9 @@
         <members>Booking__c.Send_Offer_Email</members>
         <members>Booking__c.Transfer</members>
         <members>Course__c.Resend_Reunion_Email</members>
+        <members>Zumzum__Expense_Sheet__c.Edit_Community</members>
         <members>Zumzum__NewTask</members>
+        <members>Zumzum__Sales_Invoice__c.Send_Payment_Email</members>
         <name>QuickAction</name>
     </types>
     <types>
@@ -616,6 +670,7 @@
     </types>   
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
+        <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
         <name>SharingCriteriaRule</name>
     </types>
     <types>
@@ -646,6 +701,7 @@
         <members>Account.Billing_Email_Required_For_Suppliers</members>
         <members>Account.Check_Bank_Account_Name</members>
         <members>Account.Sort_code_must_be_6_numeric_digits</members>
+        <members>Booking__c.Course_status_can_not_be_Draft</members>
         <members>Booking__c.ExpirationDateCannotBeReduced</members>
         <members>Booking__c.ExpiryDateCantBeMoreThanDateStartCourse</members>
         <members>Booking__c.FeeOverrideAmountRestriction</members>
@@ -653,6 +709,7 @@
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
         <members>Booking__c.MandatoryCancellationReason</members>
+        <members>Booking__c.MandatoryPartnerContactField</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
         <members>Booking__c.Prevent_Manual_Transfer</members>
@@ -688,8 +745,11 @@
     <types>
         <members>Account</members>
         <members>Booking__c</members>
+        <members>Contact</members>
         <members>Course__c</members>
         <members>Course_Assignment__c</members>
+        <members>Zumzum__Expense_Sheet__c</members>
+        <members>Zumzum__Sales_Invoice__c</members>
         <name>Workflow</name>
     </types>
     <types>

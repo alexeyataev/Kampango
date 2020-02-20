@@ -1,0 +1,9 @@
+<aura:component controller="RedirectToESeditPageController" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId">
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="isLocked" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:if isTrue="{! v.isLocked}">
+        <aura:text value="Cannot edit while the record is pending approval"></aura:text>
+    </aura:if>
+</aura:component>

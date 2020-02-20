@@ -17,8 +17,9 @@
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>Account.AccountNumber</field>
+            <field>Account.OwnerId</field>
             <operation>notEqual</operation>
+            <value>null</value>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>

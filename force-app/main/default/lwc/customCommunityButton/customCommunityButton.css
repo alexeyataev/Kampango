@@ -1,0 +1,14 @@
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.bottom {
+    height: 1px;
+    top: 40px;
+    position: relative;
+    z-index: 1;
+}
