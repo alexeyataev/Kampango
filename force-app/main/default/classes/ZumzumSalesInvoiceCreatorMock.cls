@@ -12,7 +12,7 @@ public with sharing class ZumzumSalesInvoiceCreatorMock implements ISalesInvoice
             Zumzum__Sales_Invoice_Line_Item__c salesInvoiceLineItem = new Zumzum__Sales_Invoice_Line_Item__c();
             salesInvoiceLineItem.Zumzum__Product__c = salesInvoiceLineWrapper.Product;
             salesInvoiceLineItem.Zumzum__Nominal_Account__c = salesInvoiceLineWrapper.NominalAccount;
-            salesInvoiceLineItem.Zumzum__Quantity__c = 1;
+            salesInvoiceLineItem.Zumzum__Quantity__c = salesInvoiceLineWrapper.quantity;
             salesInvoiceLineItem.Zumzum__Tax_Rate__c = salesInvoiceLineWrapper.TaxRate;
             salesInvoiceLineItem.Zumzum__Foreign_Net_Amount__c = salesInvoiceLineWrapper.ForeignNetAmount;
             salesInvoiceLineItem.Zumzum__Amount__c = salesInvoiceLineWrapper.ForeignNetAmount;

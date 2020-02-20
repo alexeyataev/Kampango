@@ -271,24 +271,6 @@ public without sharing class TestDataFactory {
         return this;
     }
 
-    public TestDataFactory buildCourseWithStatusAndFee(String status) {
-        TestCourseBuilder courseBuilder = new TestCourseBuilder();
-        course = courseBuilder
-            .withAccount(branchAccount)
-            .withPractitioner(practitioners[0])
-            .withMainVenue(venue)
-            .withStatus(status)
-            .withFee(100)
-            .withType('Drop In')
-            .withDropInScheduleInformation('schedule information')
-            .withSubType('NCT Yoga for Pregnancy')
-            .withLicenceToPractice(licenceToPractice)
-            .insertRecord(true)
-            .build();
-            
-        return this;
-    }
-
     public TestDataFactory buildCourseAssignment() {
         TestCourseAssignmentBuilder courseAssignmentBuilder = new TestCourseAssignmentBuilder();
         courseAssignment = courseAssignmentBuilder
@@ -319,6 +301,21 @@ public without sharing class TestDataFactory {
             .withVenue(venue)
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)
+            .withPractitioner(practitioners[0])
+            .withPractitionerFeeRate(practitionerFeeRate)
+            .withPractitionerLicence(licenceToPractice)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildConfirmedSession() {
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        session = sessionBuilder
+            .withCourse(course)
+            .withVenue(venue)
+            .withRoom(room)
+            .withStatus(SESSION_CONFIRMED_STATUS)
             .withPractitioner(practitioners[0])
             .withPractitionerFeeRate(practitionerFeeRate)
             .withPractitionerLicence(licenceToPractice)
@@ -653,6 +650,12 @@ public without sharing class TestDataFactory {
         return this;
     }
   
+    public TestDataFactory setCourseToFinal(){
+        course.Status__c = 'Final';
+        update course;
+        return this;
+    }
+
     public TestDataFactory setCoursesToFinal(List<Course__c> courses){
         for(Course__c course : courses){
             course.Status__c = 'Final';

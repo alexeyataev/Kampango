@@ -28,7 +28,7 @@ public with sharing class ZumzumCreatePostSalesInvoice {
                 Zumzum.SalesInvoicePostService.SalesInvoiceLineWrapper salesInvoiceLine = new Zumzum.SalesInvoicePostService.SalesInvoiceLineWrapper();
                 salesInvoiceLine.Product = zumzumSalesInvoiceParameter.productId;
                 salesInvoiceLine.NominalAccount = zumzumSalesInvoiceParameter.nominalAccountId;
-                salesInvoiceLine.Quantity = 1;
+                salesInvoiceLine.Quantity = zumzumSalesInvoiceParameter.quantity;
                 salesInvoiceLine.TaxRate = zumzumSalesInvoiceParameter.taxRateId;
                 salesInvoiceLine.ForeignNetAmount = zumzumSalesInvoiceParameter.foreignNetAmount;
                 salesInvoiceLine.Dimension1 = zumzumSalesInvoiceParameter.dimension1Id;
