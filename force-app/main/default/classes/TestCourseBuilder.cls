@@ -2,7 +2,6 @@
 public with sharing class TestCourseBuilder {
     private String type = 'Antenatal';
     private String subType  ='NCT Essentials antenatal course';
-    private String dropInScheduleInformation;
     private Integer fee = 100;
     private Integer numberOfPlaces = 1;
     private String status = 'Draft';
@@ -24,12 +23,6 @@ public with sharing class TestCourseBuilder {
     public TestCourseBuilder withSubType(String subType)
     {
         this.subType = subType;
-        return this;
-    }
-
-    public TestCourseBuilder withDropInScheduleInformation(String dropInScheduleInformation)
-    {
-        this.dropInScheduleInformation = dropInScheduleInformation;
         return this;
     }
 
@@ -80,7 +73,6 @@ public with sharing class TestCourseBuilder {
         Course__c course = new Course__c(
             Type__c = this.type,
             Sub_Type__c = this.subType,
-            Drop_In_Schedule_Information__c = this.dropInScheduleInformation,
             Fee__c = this.fee,
             Status__c = this.status,
             Number_of_places__c = this.numberOfPlaces,
