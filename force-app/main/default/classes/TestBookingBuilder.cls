@@ -15,6 +15,7 @@ public class TestBookingBuilder {
     private String infoForPractitioner = 'Test info';
     private Boolean under18 = false;
     private Boolean insertRecord = true;
+    private Boolean ignoreDuplicateRules =  false;
 
 
     public TestBookingBuilder withCourse(Course__c course){
@@ -85,7 +86,12 @@ public class TestBookingBuilder {
     public TestBookingBuilder insertRecord(Boolean insertRecord){
         this.insertRecord = insertRecord;
         return this;
-    } 
+    }
+
+    public TestBookingBuilder ignoreDuplicateRules(Boolean ignoreDuplicateRules) {
+		this.ignoreDuplicateRules = true;
+		return this;
+	}
 
     public Booking__c build(){
         Booking__c booking = new Booking__c(
@@ -103,6 +109,12 @@ public class TestBookingBuilder {
             Info_for_Practitioner__c = this.infoForPractitioner,
             Under_18__c = this.under18
         );
+        if(ignoreDuplicateRules && insertRecord){
+			Database.DMLOptions dmlOption = new Database.DMLOptions();
+			dmlOption.DuplicateRuleHeader.AllowSave =  true;
+			Database.insert(booking, dmlOption); 
+			return booking;
+		}
         if(this.insertRecord){
             insert booking;
         }
