@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Expense_Sheet_Rejection</fullName>
+        <description>Expense Sheet Rejection</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>NCT_Templates/Expense_Sheet_Rejected</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Status_Change_to_pending</fullName>
+        <field>Zumzum__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Status Change to pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_change_to_approved</fullName>
+        <field>Zumzum__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Status change to approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_change_to_rejected</fullName>
+        <field>Zumzum__Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Status change to rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+</Workflow>

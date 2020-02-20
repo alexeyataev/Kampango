@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <choices>
+        <name>Confirmation_Of_Conditions_Choice</name>
+        <choiceText>{!Confirmation_Of_Conditions_Template}</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>true</stringValue>
+        </value>
+    </choices>
     <decisions>
         <name>Is_Validation_Code_Correct</name>
         <label>Is Validation Code Correct?</label>
@@ -75,8 +83,8 @@
     <recordLookups>
         <name>Get_Course_Data</name>
         <label>Get Course Data</label>
-        <locationX>289</locationX>
-        <locationY>347</locationY>
+        <locationX>290</locationX>
+        <locationY>428</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>GetPrimaryContactData</targetReference>
@@ -146,8 +154,8 @@
     <screens>
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>
-        <locationX>480</locationX>
-        <locationY>403</locationY>
+        <locationX>476</locationX>
+        <locationY>418</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -169,6 +177,13 @@
                 <assignToReference>bookingId</assignToReference>
                 <name>bookingId</name>
             </outputParameters>
+        </fields>
+        <fields>
+            <name>Confirmation_Of_Conditions</name>
+            <choiceReferences>Confirmation_Of_Conditions_Choice</choiceReferences>
+            <dataType>String</dataType>
+            <fieldType>MultiSelectCheckboxes</fieldType>
+            <isRequired>true</isRequired>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -200,7 +215,7 @@
     <subflows>
         <name>Booking_Journey_Available</name>
         <label>Booking Journey Available</label>
-        <locationX>480</locationX>
+        <locationX>476</locationX>
         <locationY>616</locationY>
         <connector>
             <targetReference>Course_Summary_Details_Screen</targetReference>
@@ -222,8 +237,8 @@
     <subflows>
         <name>Booking_Main_Payment_Process_Flow</name>
         <label>Booking Main Payment Process Flow</label>
-        <locationX>650</locationX>
-        <locationY>222</locationY>
+        <locationX>675</locationX>
+        <locationY>223</locationY>
         <flowName>Booking_Main_Payment_Process</flowName>
         <inputAssignments>
             <name>bookingId</name>
@@ -235,8 +250,8 @@
     <subflows>
         <name>Contact_Details_Flow</name>
         <label>Contact Details Flow</label>
-        <locationX>480</locationX>
-        <locationY>222</locationY>
+        <locationX>476</locationX>
+        <locationY>223</locationY>
         <connector>
             <targetReference>Booking_Main_Payment_Process_Flow</targetReference>
         </connector>
@@ -266,6 +281,10 @@
             </value>
         </inputAssignments>
     </subflows>
+    <textTemplates>
+        <name>Confirmation_Of_Conditions_Template</name>
+        <text>&lt;span style=&quot;font-size: 18px;&quot;&gt;I have read and agree to the &lt;/span&gt; &lt;span&gt;&lt;a href=&quot;https://www.nct.org.uk/sites/default/files/related_documents/Cancellation%20Policy_1.pdf&quot; target=&quot;_blank&quot; style=&quot;font-size: 18px; color: rgb(58, 164, 59);&quot;&gt;refund and cancellations terms and conditions﻿.&lt;/a&gt;&lt;/span&gt;</text>
+    </textTemplates>
     <variables>
         <name>accountRecord</name>
         <dataType>SObject</dataType>

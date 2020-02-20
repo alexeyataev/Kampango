@@ -2,28 +2,22 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
         <processMetadataValues>
-            <name>ActionCallType</name>
+            <name>apexSelection</name>
             <value>
-                <stringValue>flow</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>flowSelection</name>
-            <value>
-                <stringValue>Contact_SetIndividualId</stringValue>
+                <stringValue>Create Individual</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
         <label>Create Individual</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
-        <actionName>Contact_SetIndividualId</actionName>
-        <actionType>flow</actionType>
+        <actionName>ContactProcessHelper</actionName>
+        <actionType>apex</actionType>
         <inputParameters>
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
-                    <stringValue>SObject</stringValue>
+                    <stringValue>String</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -35,7 +29,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Contact</stringValue>
+                    <stringValue>id</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -47,18 +41,18 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue>Contact</stringValue>
+                    <stringValue/>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>SObject</stringValue>
+                    <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <name>Contact</name>
+            <name>id</name>
             <value>
-                <elementReference>myVariable_current</elementReference>
+                <elementReference>myVariable_current.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -340,6 +334,7 @@
             <label>ContactNameChanged?</label>
         </rules>
     </decisions>
+    <description>This Process will create/update Individual object for the Contact</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -351,7 +346,7 @@
         <dataType>Boolean</dataType>
         <expression>AND( ISNEW() , {!myVariable_current.RecordType.DeveloperName} = &#39;Clients&#39; )</expression>
     </formulas>
-    <interviewLabel>ContactProcess-3_InterviewLabel</interviewLabel>
+    <interviewLabel>ContactProcess-6_InterviewLabel</interviewLabel>
     <label>ContactProcess</label>
     <processMetadataValues>
         <name>ObjectType</name>

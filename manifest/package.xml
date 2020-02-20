@@ -22,6 +22,7 @@
         <members>ClaimFeeHelperTest</members>
         <members>ConfirmationEmailController</members>
         <members>ConfirmationEmailControllerTest</members>
+        <members>ContactProcessHelper</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -509,6 +510,10 @@
         <members>successPaymentPage</members>
         <members>courseTransferDetails</members>
         <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>Contact.ParentforceContactMatchingCriteria</members>
+        <name>MatchingRule</name>
     </types>
     <types>
         <members>Case.Course_Booking_Manual_Administration_Case</members>
