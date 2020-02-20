@@ -327,6 +327,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithThreeExistingPrimaryContacts() {
+        createTestData();
         Account[] accounts = new Account[]{};
         Contact[] contacts = new Contact[]{};
         for (Integer i = 0; i < 3; i++) {
@@ -379,6 +380,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithThreeExistingPartners() {
+        createTestData();
         Account[] accounts = new Account[]{};
         Contact[] contacts = new Contact[]{};
         for (Integer i = 0; i < 3; i++) {
