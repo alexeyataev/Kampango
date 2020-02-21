@@ -81,34 +81,9 @@
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
-            <name>Confirmed_Booking_Header_Confirmed_Page</name>
-            <fieldText>&lt;h3&gt;&lt;span style=&quot;font-size: 26px; color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;Congratulations&lt;/span&gt;&lt;/h3&gt;&lt;h3&gt;&lt;span style=&quot;font-size: 22px; color: rgb(0, 136, 106);&quot;&gt;Your booking is complete&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <name>Confirmed_Booking_Header</name>
+            <fieldText>&lt;h3&gt;&lt;span style=&quot;font-size: 26px; color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;Congratulations&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;h3&gt;&lt;span style=&quot;font-size: 28px; color: rgb(0, 136, 106);&quot;&gt;Your booking is complete&lt;/span&gt;&lt;span style=&quot;font-size: 22px; color: rgb(0, 136, 106);&quot;&gt; &lt;/span&gt;&lt;/h3&gt;&lt;h3&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;Thank you for your payment&lt;/span&gt;&lt;/h3&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>isConfirmedFlow</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>Confirmed_Booking_Header_Success_Page</name>
-            <fieldText>&lt;h3&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 36px;&quot;&gt;Your booking is complete&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 22px;&quot;&gt; &lt;/span&gt;&lt;/h3&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(0, 0, 0);&quot;&gt;Thank you for your payment&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>isConfirmedFlow</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>false</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
         </fields>
         <fields>
             <name>Confirmed_Booking_Reference</name>
@@ -210,16 +185,6 @@
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>Course__c</objectType>
-    </variables>
-    <variables>
-        <name>isConfirmedFlow</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <booleanValue>false</booleanValue>
-        </value>
     </variables>
     <variables>
         <name>practitionerRecord</name>

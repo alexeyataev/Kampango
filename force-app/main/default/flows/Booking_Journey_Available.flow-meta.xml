@@ -161,12 +161,6 @@
                 <elementReference>curCourse</elementReference>
             </value>
         </inputAssignments>
-        <inputAssignments>
-            <name>isConfirmedFlow</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
     </subflows>
     <variables>
         <name>curBooking</name>
