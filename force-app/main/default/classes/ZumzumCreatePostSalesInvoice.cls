@@ -16,10 +16,8 @@ public with sharing class ZumzumCreatePostSalesInvoice {
             Zumzum.SalesInvoicePostService.SalesInvoiceWrapper salesInvoice = new Zumzum.SalesInvoicePostService.SalesInvoiceWrapper( );
             salesInvoice.LineItems = new List<Zumzum.SalesInvoicePostService.SalesInvoiceLineWrapper>();
             for(ZumzumSalesInvoiceParameters zumzumSalesInvoiceParameter : zumzumSalesInvoiceParameters) {
-                salesInvoice.Customer = zumzumSalesInvoiceParameter.customerId;
                 salesInvoice.InvoiceDate = Date.today();
-                salesInvoice.TransactionCurrency = zumzumSalesInvoiceParameter.transactionCurrencyId;
-                
+                extractCommonValues(salesInvoice, zumzumSalesInvoiceParameter);
                 if(salesInvoice.WrapperAPICustomFields == null) {
                     salesInvoice.WrapperAPICustomFields = new List<Zumzum.APICustomFieldWrapper>();
                     salesInvoice.WrapperAPICustomFields.add(new Zumzum.APICustomFieldWrapper('Zumzum__Sales_Invoice__c','Booking__c', zumzumSalesInvoiceParameter.bookingId)); 
@@ -42,5 +40,13 @@ public with sharing class ZumzumCreatePostSalesInvoice {
         } catch(Exception e) {
             return null;
         }
+    }
+    private static void extractCommonValues(Zumzum.SalesInvoicePostService.SalesInvoiceWrapper salesInvoice, ZumzumSalesInvoiceParameters zumzumSalesInvoiceParameter) {
+        if((salesInvoice.Customer != null && salesInvoice.Customer != zumzumSalesInvoiceParameter.customerId) ||
+        (salesInvoice.TransactionCurrency != null && salesInvoice.TransactionCurrency != zumzumSalesInvoiceParameter.transactionCurrencyId)) {
+            throw new ListException('Sales Invoice parameters must contain same values');
+        }
+        salesInvoice.Customer = zumzumSalesInvoiceParameter.customerId;
+        salesInvoice.TransactionCurrency = zumzumSalesInvoiceParameter.transactionCurrencyId;
     }
 }
