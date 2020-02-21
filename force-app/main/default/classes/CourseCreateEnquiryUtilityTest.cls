@@ -7,7 +7,8 @@ private class CourseCreateEnquiryUtilityTest {
                                          '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
                                          '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
                                          '"town":"London","op":"Send enquiry"}';
-    @testSetup
+    //@testSetup
+    // avoid annotation - Account.AccountAutoNumber is not unique when using @TestSetup
     static void createTestData() {
         List<OrgWideEmailAddress> addresses = [
             SELECT Id, Address 
@@ -67,6 +68,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithoutExistingContact() {
+        createTestData();
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
@@ -90,6 +92,7 @@ private class CourseCreateEnquiryUtilityTest {
     
     @isTest
     static void createEnquiryWithExistingContact() {
+        createTestData();
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
@@ -130,6 +133,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithExistingContactAndPartner() {
+        createTestData();
         Account accountPartner = new Account(
             RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
             Name = 'Partner Household'
@@ -200,6 +204,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithoutExistingPartner() {
+        createTestData();
         Account account = new Account(
             RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
             Name = 'Test Household'
@@ -227,7 +232,11 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
+        Test.startTest();
+
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+
+        Test.stopTest();
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact
@@ -244,6 +253,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithContactPreference() {
+        createTestData();
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
@@ -267,6 +277,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithoutExistingPartnerWithContactPreference() {
+        createTestData();
         Account account = new Account(
             RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
             Name = 'Test Household'
@@ -296,7 +307,11 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('partner_email', 'partner@partner.partner');
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('emailPreference', '1');
+        Test.startTest();
+
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        
+        Test.stopTest();
         List<Contact> partners = [
             SELECT Name, Email, Individual.Email__c
             FROM Contact
@@ -312,6 +327,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithThreeExistingPrimaryContacts() {
+        createTestData();
         Account[] accounts = new Account[]{};
         Contact[] contacts = new Contact[]{};
         for (Integer i = 0; i < 3; i++) {
@@ -364,6 +380,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithThreeExistingPartners() {
+        createTestData();
         Account[] accounts = new Account[]{};
         Contact[] contacts = new Contact[]{};
         for (Integer i = 0; i < 3; i++) {
