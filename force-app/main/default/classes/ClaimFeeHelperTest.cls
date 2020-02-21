@@ -173,7 +173,11 @@ private class ClaimFeeHelperTest {
         Test.startTest();
             System.runAs(getPractitionerUser()) {
                 createZumzumSetupRecords();
-                ClaimFeeHelper.createPurchaseInvoice(new List<ClaimFeeHelper.ClaimFeeWrapper> {flowData});
+                /**
+                 * ClaimFeeHelper.createPurchaseInvoice(new List<ClaimFeeHelper.ClaimFeeWrapper> {flowData});
+                 * Will be uncommented when TestFinanceDataFactory will be added
+                 */
+                
             }
         Test.stopTest();
 
