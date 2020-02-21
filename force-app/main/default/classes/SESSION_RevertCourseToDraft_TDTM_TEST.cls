@@ -15,7 +15,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     private static Licence_To_Practice__c licenceToPractice;
     private static Session__c session;
 
-    @TestSetup
+    //@TestSetup
+    // avoid annotation - Account.AccountAutoNumber is not unique when using @TestSetup
     private static void SetupTestData() {
         TestDataFactory.getInstance()
             .buildBranchAccount()
@@ -32,6 +33,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_NewSessionIsAdded_CourseStatusIsRevertedToDraft() {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
@@ -74,6 +76,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_DateUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
@@ -104,6 +107,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_StartTimeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
@@ -133,6 +137,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_EndTimeUpdatedOnSession_CourseStatusIsRevertedToDraft () {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
@@ -163,6 +168,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_LunchBreakMinutesUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
@@ -194,6 +200,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_PractitionerLicenceUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
@@ -232,6 +239,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_VenueUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
@@ -274,6 +282,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_SessionDeletedOnCourse_CourseStatusIsRevertedToDraft() {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
 
@@ -300,6 +309,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_PractitionerUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
@@ -335,6 +345,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_StatusUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -365,6 +376,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_BulkSessionsChanged_CourseStatusIsRevertedToDraft() {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
@@ -416,6 +428,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_BulkSessionsDeleted_CourseStatusIsRevertedToDraft() {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
@@ -463,6 +476,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void reunionSessionsChangeStatusToProvisional() {
+        SetupTestData();
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()
             .buildOrganizationAccount('acc4')

@@ -100,7 +100,7 @@
     <displayedFields>
         <field>Course__c</field>
         <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
+        <isRequired>true</isRequired>
     </displayedFields>
     <displayedFields>
         <field>Zumzum__Account__c</field>
