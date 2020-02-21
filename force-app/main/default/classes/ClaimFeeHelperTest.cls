@@ -68,6 +68,7 @@ private class ClaimFeeHelperTest {
 
         insert new Financial_Settings__c(
             PI_Nominal_Account_Id__c = zumzumNominalAccount.Id, 
+            PC_Nominal_Account_Id__c = zumzumNominalAccount.Id, 
             Practitioner_Registration_Capped_Fees__c = 300, 
             Practitioner_Registration_Fees_Rate__c = 0.03
         );
