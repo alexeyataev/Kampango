@@ -4,14 +4,10 @@ public class ZumzumCreatePostSalesInvoiceTest {
     private static final String ACCOUNT_TYPE_CUSTOMER = 'Customer';
     private static final String PRODUCT_NAME_COURSE_PLACE = 'Course Place';
     private static final String PRODUCT_NAME_MEMBERSHIP_18_MONTH = 'Membership - 18 month';
-    private static final String DIMENSION_ZUMZUM_TYPE_1 = 'Dimension 1';
-    private static final String DIMENSION_ZUMZUM_TYPE_2 = 'Dimension 2';
     @testSetup
     static void testSetup() {
-        createBookingData();
-        createZumzumData();
-    }
-    private static void createBookingData() {
+        TestFinanceDataFactory financeDataFactory = TestFinanceDataFactory.getInstance();
+        financeDataFactory.createZumzumData();
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory.buildOrganizationAccount('12345')
                     .buildBranchAccount()
@@ -54,35 +50,6 @@ public class ZumzumCreatePostSalesInvoiceTest {
             productMembership.ProductCode = 'E';
         insert productMembership;
     }
-    private static void createZumzumData() {
-        Zumzum__Invoice_Template__c invoiceTemplate = new Zumzum__Invoice_Template__c();
-        invoiceTemplate.Zumzum__Is_Default__c = true;
-        insert invoiceTemplate;
-        Zumzum__Company_Setup__c companySetup = new Zumzum__Company_Setup__c();
-        companySetup.Zumzum__Account_Lock_Date__c = Date.today();
-        companySetup.Zumzum__VAT_Number__c = '1';
-        insert companySetup;
-        Zumzum__Currency__c transactionCurrency = new Zumzum__Currency__c();
-        transactionCurrency.Zumzum__Is_Active__c = true;
-        transactionCurrency.Name = 'GBP';
-        transactionCurrency.Zumzum__Is_Corporate__c = true;
-        transactionCurrency.Zumzum__Company_Setup__c = companySetup.Id;
-        insert transactionCurrency;
-        Zumzum__Nominal_Account__c nominalAccount = new Zumzum__Nominal_Account__c();
-        nominalAccount.Zumzum__Account_Code__c = 10;
-        insert nominalAccount;
-        Zumzum__Tax_Rate__c taxRate = new Zumzum__Tax_Rate__c();
-        taxRate.Zumzum__Tax_Rate__c = 0;
-        insert taxRate;
-        Zumzum__Dimension__c dimension1 = new Zumzum__Dimension__c();
-        dimension1.Zumzum__Active__c = true;
-        dimension1.Zumzum__Type__c = DIMENSION_ZUMZUM_TYPE_1;
-        insert dimension1;
-        Zumzum__Dimension__c dimension2 = new Zumzum__Dimension__c();
-        dimension2.Zumzum__Active__c = true;
-        dimension2.Zumzum__Type__c = DIMENSION_ZUMZUM_TYPE_2;
-        insert dimension2;
-    }
     @IsTest
     static void PostSalesInvoice_SalesInvoicePosted_SalesInvoiceStatusPosted() {
         List<List<ZumzumSalesInvoiceParameters>> zumzumSalesInvoiceParameters = getZumzumSalesInvoiceParameters();
@@ -102,8 +69,8 @@ public class ZumzumCreatePostSalesInvoiceTest {
         Product2 productMembership = [SELECT Id FROM Product2 WHERE Name =: PRODUCT_NAME_MEMBERSHIP_18_Month LIMIT 1];
         Zumzum__Nominal_Account__c nominalAccount = [SELECT Id FROM Zumzum__Nominal_Account__c LIMIT 1];
         Zumzum__Tax_Rate__c taxRate = [SELECT Id FROM Zumzum__Tax_Rate__c LIMIT 1];
-        Zumzum__Dimension__c dimension1 = [SELECT Id FROM Zumzum__Dimension__c WHERE Zumzum__Type__c =: DIMENSION_ZUMZUM_TYPE_1 LIMIT 1];
-        Zumzum__Dimension__c dimension2 = [SELECT Id FROM Zumzum__Dimension__c WHERE Zumzum__Type__c =: DIMENSION_ZUMZUM_TYPE_2 LIMIT 1];
+        Zumzum__Dimension__c dimension1 = [SELECT Id FROM Zumzum__Dimension__c WHERE Zumzum__Type__c = 'Dimension 1' LIMIT 1];
+        Zumzum__Dimension__c dimension2 = [SELECT Id FROM Zumzum__Dimension__c WHERE Zumzum__Type__c = 'Dimension 2' LIMIT 1];
         List<List<ZumzumSalesInvoiceParameters>> zumzumSalesInvoiceParameterList = new List<List<ZumzumSalesInvoiceParameters>>();
         ZumzumSalesInvoiceParameters courseZumzumSalesInvoiceParameter =  new ZumzumSalesInvoiceParameters();
         coursezumzumSalesInvoiceParameter.customerId = customer.Id;
