@@ -16,9 +16,9 @@ public with sharing class ZumzumCreatePostSalesInvoice {
             Zumzum.SalesInvoicePostService.SalesInvoiceWrapper salesInvoice = new Zumzum.SalesInvoicePostService.SalesInvoiceWrapper( );
             salesInvoice.LineItems = new List<Zumzum.SalesInvoicePostService.SalesInvoiceLineWrapper>();
             for(ZumzumSalesInvoiceParameters zumzumSalesInvoiceParameter : zumzumSalesInvoiceParameters) {
-                salesInvoice.Customer = salesInvoice.Customer == null ? zumzumSalesInvoiceParameter.customerId : salesInvoice.Customer;
+                salesInvoice.Customer = zumzumSalesInvoiceParameter.customerId;
                 salesInvoice.InvoiceDate = Date.today();
-                salesInvoice.TransactionCurrency = salesInvoice.TransactionCurrency == null ? zumzumSalesInvoiceParameter.transactionCurrencyId : salesInvoice.TransactionCurrency;
+                salesInvoice.TransactionCurrency = zumzumSalesInvoiceParameter.transactionCurrencyId;
                 
                 if(salesInvoice.WrapperAPICustomFields == null) {
                     salesInvoice.WrapperAPICustomFields = new List<Zumzum.APICustomFieldWrapper>();
