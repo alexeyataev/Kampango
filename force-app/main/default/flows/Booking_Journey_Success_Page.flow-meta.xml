@@ -217,10 +217,10 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>749</locationX>
-        <locationY>14</locationY>
+        <locationX>757</locationX>
+        <locationY>96</locationY>
         <connector>
-            <targetReference>Get_Booking_Data</targetReference>
+            <targetReference>Get_SalesInvoice</targetReference>
         </connector>
     </start>
     <status>Active</status>
