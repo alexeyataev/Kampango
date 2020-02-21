@@ -165,7 +165,7 @@ private class ClaimFeeHelperTest {
         createCommunityPractitionerUser();
         ClaimFeeHelper.ClaimFeeWrapper flowData = new ClaimFeeHelper.ClaimFeeWrapper();
         flowData.sessions = [
-            SELECT Id, Name, Practitioner_Fees__c
+            SELECT Id, Name, Practitioner_Fees__c, PSA_Area__c, Course__c
             FROM Session__c
         ];
         flowData.registrationFee = 5;
