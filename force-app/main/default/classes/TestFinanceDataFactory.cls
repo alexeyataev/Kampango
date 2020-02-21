@@ -21,7 +21,7 @@ public without sharing class TestFinanceDataFactory {
         Zumzum__Company_Setup__c zumzumCompanySetup = new Zumzum__Company_Setup__c(
             Name = 'NCT',
             Zumzum__Account_Lock_Date__c = Date.today() + 7,
-            Zumzum__VAT_Number__c = 'XXXXXXXX'
+            Zumzum__VAT_Number__c = '12345678'
         );
         insert zumzumCompanySetup;
          
