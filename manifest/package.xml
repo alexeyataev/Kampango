@@ -651,7 +651,7 @@
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>
         <members>Practitioners/Practitioner_Schedule</members>
-        <members>Practitioners/Registration_Fee_History</members>
+        <members>Practitioners/Practitioner_Registration_Fee_History</members>
         <members>PSA_Payroll_Admin</members>
         <members>PSA_Payroll_Admin/PSA_Payroll_Report</members>
         <name>Report</name>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Zumzum__Ledger_Payment_History__c.Zumzum__Purchase_Invoice__c</field>
+    </columns>
+    <columns>
+        <field>Zumzum__Ledger_Payment_History__c.Zumzum__Purchase_Credit__c</field>
+    </columns>
+    <columns>
+        <field>Zumzum__Ledger_Payment_History__c.Zumzum__Date__c</field>
+    </columns>
+    <columns>
+        <field>Zumzum__Ledger_Payment_History__c.Zumzum__Amount__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Registration Fee History</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Zumzum__Ledger_Payment_History__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Zumzum__Ledger_Payment_History__c.Zumzum__Date__c</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>
