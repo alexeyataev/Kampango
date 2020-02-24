@@ -90,7 +90,7 @@ public with sharing class ClaimFeeHelper {
             purchaseCredit.LineItems = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper>();
 
             purchaseCreditLineItem.ForeignNetAmount = flowData[0].registrationFee;
-            purchaseCreditLineItem.NominalAccount = financialSettings.PI_Nominal_Account_Id__c;
+            purchaseCreditLineItem.NominalAccount = financialSettings.PC_Nominal_Account_Id__c;
             purchaseCreditLineItem.Quantity = 1;
             purchaseCreditLineItem.TaxRate = zumzumNoVAT.Id;
             purchaseCreditLineItem.Narrative = 'required field';
