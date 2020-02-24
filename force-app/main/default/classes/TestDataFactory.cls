@@ -317,6 +317,21 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public TestDataFactory buildConfirmedSession() {
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        session = sessionBuilder
+            .withCourse(course)
+            .withVenue(venue)
+            .withRoom(room)
+            .withStatus(SESSION_CONFIRMED_STATUS)
+            .withPractitioner(practitioners[0])
+            .withPractitionerFeeRate(practitionerFeeRate)
+            .withPractitionerLicence(licenceToPractice)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
     public TestDataFactory buildReunion() {
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         reunion = sessionBuilder
@@ -643,6 +658,12 @@ public without sharing class TestDataFactory {
         return this;
     }
   
+    public TestDataFactory setCourseToFinal(){
+        course.Status__c = 'Final';
+        update course;
+        return this;
+    }
+
     public TestDataFactory setCoursesToFinal(List<Course__c> courses){
         for(Course__c course : courses){
             course.Status__c = 'Final';
