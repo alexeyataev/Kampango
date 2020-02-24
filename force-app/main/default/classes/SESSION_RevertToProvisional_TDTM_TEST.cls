@@ -8,7 +8,8 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     private static Venue__c venue;
 
-    @TestSetup
+    //@TestSetup
+    // avoid annotation - Account.AccountAutoNumber is not unique when using @TestSetup
     private static void SetupTestData() {
         TestDataFactory.getInstance()
             .buildBranchAccount()
@@ -25,6 +26,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_DateUpdatedOnSession_SessionStatusIsChangedToProvisional() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -51,6 +53,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_StartTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -77,6 +80,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_EndTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -103,6 +107,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_LunchBreakUpdatedOnSession_SessionStatusIsChangedToProvisional() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -129,6 +134,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_VenueUpdatedOnSession_SessionStatusIsChangedToProvisional() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -161,6 +167,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_BulkUpdatesOnSessions_SessionStatusIsChangedToProvisional() {
+        SetupTestData();
 
         TestDataFactory testDataFactory = TestDataFactory.getInstance()
             .buildBranchAccount()

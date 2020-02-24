@@ -46,7 +46,7 @@ export default class CourseDetailsComponent extends LightningElement {
     @api stylesLoaded = false;
     @api title;
     @api get valuesLoaded(){return this.bookingId && this.courseId && this.stylesLoaded;}
-    @api get venuesLoaded(){return this.allVenues && this.sessions;}
+    @api get venuesLoaded(){return this.sessions;}
 
     @wire (getRecord, {recordId: '$bookingId', fields: BOOKING_FIELDS})
     retrieveRecord({error, data}){
@@ -96,7 +96,6 @@ export default class CourseDetailsComponent extends LightningElement {
         retrieveRelatedSessions({courseId: id})
         .then(data => {
             this.sessions = data;
-            this.getVenues(this.sessions);
         })
         .catch(error => {
             let message = 'Unknown error';
@@ -129,23 +128,6 @@ export default class CourseDetailsComponent extends LightningElement {
                     }),
                 );
             });
-    }
-
-    getVenues(sessions) {
-        var array = sessions.map (
-            row => {
-                    return Object.assign(
-                    {Street_Address__c: row.Location_Home_Information__c ? '' : row.Location_Street__c},
-                    {Town__c: row.Location_Town__c},
-                    {County__c: row.Location_County__c},
-                    {Postcode__c: row.Location_Home_Information__c ? row.Location_Postcode__c.split(' ')[0] : row.Location_Postcode__c},
-                    {Id: row.Location_Id__c},
-                    {Name: row.Location_Home_Information__c || row.Location_Name__c}
-                );
-            }
-        );
-
-        this.allVenues = array;
     }
 
     addDateOrdinal(monthDay){
