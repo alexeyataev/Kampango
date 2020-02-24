@@ -1464,7 +1464,7 @@
         </connector>
         <fields>
             <name>DD_Payment_Is_Not_Available_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 20px; color: rgb(62, 62, 60);&quot;&gt;Sorry, at the moment payment for membership by Direct Debit is not available.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Unfortunately, direct debit membership payment is not available at this time. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;﻿Please click Next to choose a different payment option.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
