@@ -16,7 +16,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <stringValue>The Set_Reservation_Expiry_Date-4 invocable process failed to start because no records in your org match the record Id specified. In the entities that invoke Set_Reservation_Expiry_Date-4, such as other processes, check the value for this input: SObjectId.</stringValue>
+                <stringValue>The Set_Reservation_Expiry_Date-3 invocable process failed to start because no records in your org match the record Id specified. In the entities that invoke Set_Reservation_Expiry_Date-3, such as other processes, check the value for this input: SObjectId.</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -42,7 +42,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <stringValue>The Set_Reservation_Expiry_Date-4 invocable process failed to start because a valid value wasn&#39;t found. This can happen when entities that invoke Set_Reservation_Expiry_Date-4, such as other processes, don&#39;t have values for either the SObject or SObjectId. For example: 
+                <stringValue>The Set_Reservation_Expiry_Date-3 invocable process failed to start because a valid value wasn&#39;t found. This can happen when entities that invoke Set_Reservation_Expiry_Date-3, such as other processes, don&#39;t have values for either the SObject or SObjectId. For example: 
 -An SObject or SObject ID wasn&#39;t specified.
 -A value might have been included, but it was null at runtime. </stringValue>
             </value>
@@ -154,7 +154,7 @@
                     </value>
                 </processMetadataValues>
                 <leftValueReference>SObject.Days_Before_Course_Start__c</leftValueReference>
-                <operator>LessThan</operator>
+                <operator>LessThanOrEqualTo</operator>
                 <rightValue>
                     <numberValue>5.0</numberValue>
                 </rightValue>
@@ -193,7 +193,7 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Set Expiration Date &lt; 5 Days</label>
+            <label>Expiration Date &lt;= 5 Days</label>
         </rules>
     </decisions>
     <decisions>
@@ -271,7 +271,7 @@
                     </value>
                 </processMetadataValues>
                 <leftValueReference>SObject.Days_Before_Course_Start__c</leftValueReference>
-                <operator>LessThan</operator>
+                <operator>LessThanOrEqualTo</operator>
                 <rightValue>
                     <numberValue>10.0</numberValue>
                 </rightValue>
@@ -310,7 +310,7 @@
             <connector>
                 <targetReference>myRule_4_A1</targetReference>
             </connector>
-            <label>Set Expiration Date &lt; 10 Days</label>
+            <label>Expiration Date &lt;= 10 Days</label>
         </rules>
     </decisions>
     <decisions>
@@ -419,7 +419,7 @@
                     </value>
                 </processMetadataValues>
                 <leftValueReference>SObject.Days_Before_Course_Start__c</leftValueReference>
-                <operator>GreaterThanOrEqualTo</operator>
+                <operator>GreaterThan</operator>
                 <rightValue>
                     <numberValue>5.0</numberValue>
                 </rightValue>
@@ -427,7 +427,7 @@
             <connector>
                 <targetReference>myRule_7_A1</targetReference>
             </connector>
-            <label>Set Expiration Date 5 Days</label>
+            <label>Expiration Date &gt; 5 Days</label>
         </rules>
     </decisions>
     <decisions>
@@ -533,7 +533,7 @@
                     </value>
                 </processMetadataValues>
                 <leftValueReference>SObject.Days_Before_Course_Start__c</leftValueReference>
-                <operator>GreaterThanOrEqualTo</operator>
+                <operator>GreaterThan</operator>
                 <rightValue>
                     <numberValue>10.0</numberValue>
                 </rightValue>
@@ -541,7 +541,7 @@
             <connector>
                 <targetReference>myRule_10_A1</targetReference>
             </connector>
-            <label>Set Expiration Date 10 Days</label>
+            <label>Expiration Date &gt; 10 Days</label>
         </rules>
     </decisions>
     <decisions>
@@ -591,7 +591,7 @@
                 <stringValue>TODAY() + 10</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_10_A1_8866909866</name>
+        <name>formula_11_myRule_10_A1_7741090319</name>
         <dataType>Date</dataType>
         <expression>TODAY() + 10</expression>
     </formulas>
@@ -602,7 +602,7 @@
                 <stringValue>[Booking__c].Course__c.Start_Date__c - 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_6276802075</name>
+        <name>formula_2_myRule_1_A1_1661559389</name>
         <dataType>Date</dataType>
         <expression>{!SObject.Course__r.Start_Date__c} - 1</expression>
     </formulas>
@@ -613,7 +613,7 @@
                 <stringValue>[Booking__c].Course__c.Start_Date__c - 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_0137020999</name>
+        <name>formula_5_myRule_4_A1_4829780768</name>
         <dataType>Date</dataType>
         <expression>{!SObject.Course__r.Start_Date__c} - 1</expression>
     </formulas>
@@ -624,11 +624,11 @@
                 <stringValue>TODAY() + 5</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A1_0057533989</name>
+        <name>formula_8_myRule_7_A1_0838713408</name>
         <dataType>Date</dataType>
         <expression>TODAY() + 5</expression>
     </formulas>
-    <interviewLabel>Set_Reservation_Expiry_Date-4_InterviewLabel</interviewLabel>
+    <interviewLabel>Set_Reservation_Expiry_Date-3_InterviewLabel</interviewLabel>
     <label>Set Reservation Expiry Date</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -734,7 +734,7 @@
             </processMetadataValues>
             <field>Reservation_Expiry_Date__c</field>
             <value>
-                <elementReference>formula_11_myRule_10_A1_8866909866</elementReference>
+                <elementReference>formula_11_myRule_10_A1_7741090319</elementReference>
             </value>
         </inputAssignments>
         <object>Booking__c</object>
@@ -817,7 +817,7 @@
             </processMetadataValues>
             <field>Reservation_Expiry_Date__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_6276802075</elementReference>
+                <elementReference>formula_2_myRule_1_A1_1661559389</elementReference>
             </value>
         </inputAssignments>
         <object>Booking__c</object>
@@ -900,7 +900,7 @@
             </processMetadataValues>
             <field>Reservation_Expiry_Date__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_0137020999</elementReference>
+                <elementReference>formula_5_myRule_4_A1_4829780768</elementReference>
             </value>
         </inputAssignments>
         <object>Booking__c</object>
@@ -983,7 +983,7 @@
             </processMetadataValues>
             <field>Reservation_Expiry_Date__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_0057533989</elementReference>
+                <elementReference>formula_8_myRule_7_A1_0838713408</elementReference>
             </value>
         </inputAssignments>
         <object>Booking__c</object>

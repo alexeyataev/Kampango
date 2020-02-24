@@ -409,7 +409,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.NCT_Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1261,6 +1261,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Bank_Payment__c.Payment_Reference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Expense_Sheet_Detail__c.Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

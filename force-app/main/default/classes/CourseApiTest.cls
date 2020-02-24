@@ -4,7 +4,8 @@ public without sharing class CourseApiTest {
     private static String strURI = URL.getSalesforceBaseUrl().toExternalForm()+'/services/apexrest/courses';
     private static String methodGet = 'GET';
 
-    @TestSetup
+    //@TestSetup
+    // avoid annotation - Account.AccountAutoNumber is not unique when using @TestSetup
     private static void setupTestData() {
         List<OrgWideEmailAddress> addresses = [
             SELECT Id, Address 
@@ -73,6 +74,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void searchWrongLocation(){
+        setupTestData();
         RestRequest req = new RestRequest();
         req.requestURI = strURI;
         req.httpMethod = methodGet;
@@ -94,6 +96,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void searchWithoutParams(){
+        setupTestData();
         RestRequest req = new RestRequest();
         req.requestURI = strURI;
         req.httpMethod = methodGet;
@@ -115,6 +118,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void searchCourseById() {
+        setupTestData();
         Course__c course = [
             SELECT Id, Name
             FROM Course__c
@@ -145,6 +149,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void searchCourseByBranch() {
+        setupTestData();
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
         Account account = [
             SELECT Id 
@@ -180,6 +185,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void createEnquiry() {
+        setupTestData();
         final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
@@ -220,6 +226,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void createEnquiryEmptyCourseName() {
+        setupTestData();
         final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
@@ -260,6 +267,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void createEnquiryMissedCourseId() {
+        setupTestData();
         final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
@@ -306,6 +314,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void createEnquiryNotValidCourseName() {
+        setupTestData();
         final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
@@ -346,6 +355,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void createEnquiryEmptyParameters() {
+        setupTestData();
         final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
@@ -389,6 +399,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void createEnquiryContactWithoutEmail() {
+        setupTestData();
         final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
@@ -437,6 +448,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void createEnquiryPartherWithNotValidEmail() {
+        setupTestData();
         final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
@@ -507,6 +519,7 @@ public without sharing class CourseApiTest {
     // 2019-09-30 instead of 30/09/2019
     @isTest
     static void createEnquiryAnotherDateFormat() {
+        setupTestData();
         // 2019-09-30 instead of 30/09/2019
         final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
@@ -548,6 +561,7 @@ public without sharing class CourseApiTest {
 
     @isTest
     static void createEnquiryWrondDateFormat() {
+        setupTestData();
         // 30/30/2019 instead of 30/09/2019
         final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded", "Referer":""}';
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
