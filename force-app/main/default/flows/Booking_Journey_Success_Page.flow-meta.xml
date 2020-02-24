@@ -1,163 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <assignments>
-        <name>Add_distinct_venue_id</name>
-        <label>Add distinct venue id</label>
-        <locationX>1315</locationX>
-        <locationY>656</locationY>
-        <assignmentItems>
-            <assignToReference>venueIdsDistinct</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>session.Venue__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Session_Loop</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>add_selected_row</name>
-        <label>add selected row</label>
-        <locationX>1731</locationX>
-        <locationY>723</locationY>
-        <assignmentItems>
-            <assignToReference>venueList</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>venueRecord</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>For_every_venue_id</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_Session_Line</name>
-        <label>Add Session Line</label>
-        <locationX>1464</locationX>
-        <locationY>1175</locationY>
-        <assignmentItems>
-            <assignToReference>sessionText</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <stringValue>{!index}    {!session.Session_Info_For_Flow__c}</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>venueIdsDuplicated</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>session.Venue__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Doest_list_contain_this_id</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_Venue_Id</name>
-        <label>Add Venue Id</label>
-        <locationX>625</locationX>
-        <locationY>1175</locationY>
-        <assignmentItems>
-            <assignToReference>index</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Add_Session_Line</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>assign_provisional_breasfeeding</name>
-        <label>assign provisional breasfeeding</label>
-        <locationX>957</locationX>
-        <locationY>792</locationY>
-        <assignmentItems>
-            <assignToReference>includesProvisionalBreastfeeding</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Provisional_Breastfeeding_Time</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>session.Contact_Hours__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Session_Loop</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>assign_provisional_other</name>
-        <label>assign provisional other</label>
-        <locationX>1298</locationX>
-        <locationY>1077</locationY>
-        <assignmentItems>
-            <assignToReference>includesProfvisionalOther</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Additional_Session_Time</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>session.Contact_Hours__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Session_Loop</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>assign_provisional_reunion</name>
-        <label>assign provisional reunion</label>
-        <locationX>1114</locationX>
-        <locationY>939</locationY>
-        <assignmentItems>
-            <assignToReference>includesProvisionalReunion</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Session_Loop</targetReference>
-        </connector>
-    </assignments>
-    <decisions>
-        <name>Doest_list_contain_this_id</name>
-        <label>Doest list contain this id?</label>
-        <locationX>1456</locationX>
-        <locationY>756</locationY>
-        <defaultConnector>
-            <targetReference>Add_distinct_venue_id</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>True</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>venueIdsDistinct</leftValueReference>
-                <operator>Contains</operator>
-                <rightValue>
-                    <elementReference>session.Venue__c</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Session_Loop</targetReference>
-            </connector>
-            <label>True</label>
-        </rules>
-    </decisions>
     <decisions>
         <name>Installment_Check</name>
         <label>Installment Check</label>
@@ -178,75 +20,6 @@
                 <targetReference>Invalid_Page_Screen</targetReference>
             </connector>
             <label>Is Installment False</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_provisional_session</name>
-        <label>Is provisional session?</label>
-        <locationX>622</locationX>
-        <locationY>689</locationY>
-        <defaultConnector>
-            <targetReference>Add_Venue_Id</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>provisional_reunion</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>session.Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Provisional</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>session.Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Reunion</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>assign_provisional_reunion</targetReference>
-            </connector>
-            <label>provisional reunion</label>
-        </rules>
-        <rules>
-            <name>provisional_breatfeeding</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>session.Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Provisional</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>session.Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Breastfeeding</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>assign_provisional_breasfeeding</targetReference>
-            </connector>
-            <label>provisional breatfeeding</label>
-        </rules>
-        <rules>
-            <name>provisional_other</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>session.Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Provisional</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>assign_provisional_other</targetReference>
-            </connector>
-            <label>provisional other</label>
         </rules>
     </decisions>
     <decisions>
@@ -273,36 +46,6 @@
     </decisions>
     <interviewLabel>Booking Journey Success Page {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Success Page</label>
-    <loops>
-        <name>For_every_venue_id</name>
-        <label>For every venue id</label>
-        <locationX>1385</locationX>
-        <locationY>550</locationY>
-        <assignNextValueToReference>venueId</assignNextValueToReference>
-        <collectionReference>venueIdsDistinct</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Get_Venues</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Update_Status_to_Confirmed</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-    <loops>
-        <name>Session_Loop</name>
-        <label>Session Loop</label>
-        <locationX>1145</locationX>
-        <locationY>663</locationY>
-        <assignNextValueToReference>session</assignNextValueToReference>
-        <collectionReference>sessions</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Is_provisional_session</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>For_every_venue_id</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -319,8 +62,8 @@
     <recordLookups>
         <name>Get_Booking_Data</name>
         <label>Get Booking Data</label>
-        <locationX>751</locationX>
-        <locationY>321</locationY>
+        <locationX>750</locationX>
+        <locationY>276</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Course_Data</targetReference>
@@ -346,15 +89,16 @@
         <queriedFields>Under_18__c</queriedFields>
         <queriedFields>Name</queriedFields>
         <queriedFields>Primary_Contact_Email__c</queriedFields>
+        <queriedFields>PSA_Office__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Course_Data</name>
         <label>Get Course Data</label>
         <locationX>945</locationX>
-        <locationY>319</locationY>
+        <locationY>276</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Main_Practitioner</targetReference>
+            <targetReference>Update_Booking</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -379,6 +123,7 @@
         <queriedFields>Main_Practitioner__c</queriedFields>
         <queriedFields>Fee__c</queriedFields>
         <queriedFields>Title__c</queriedFields>
+        <queriedFields>PSA_Area__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Installment</name>
@@ -404,28 +149,6 @@
         <queriedFields>Id</queriedFields>
     </recordLookups>
     <recordLookups>
-        <name>Get_Main_Practitioner</name>
-        <label>Get Main Practitioner</label>
-        <locationX>1146</locationX>
-        <locationY>321</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Sessions</targetReference>
-        </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>curCourse.Main_Practitioner__c</elementReference>
-            </value>
-        </filters>
-        <object>Contact</object>
-        <outputReference>practitionerRecord</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>FirstName</queriedFields>
-        <queriedFields>LastName</queriedFields>
-    </recordLookups>
-    <recordLookups>
         <name>Get_SalesInvoice</name>
         <label>Get SalesInvoice</label>
         <locationX>250</locationX>
@@ -448,69 +171,13 @@
         <outputReference>SalesInvoice_Record</outputReference>
         <queriedFields>Id</queriedFields>
     </recordLookups>
-    <recordLookups>
-        <name>Get_Sessions</name>
-        <label>Get Sessions</label>
-        <locationX>1147</locationX>
-        <locationY>496</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Session_Loop</targetReference>
-        </connector>
-        <filters>
-            <field>Course__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>curCourse.Id</elementReference>
-            </value>
-        </filters>
-        <object>Session__c</object>
-        <outputReference>sessions</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Venue__c</queriedFields>
-        <queriedFields>Session_Info_For_Flow__c</queriedFields>
-        <queriedFields>Type__c</queriedFields>
-        <queriedFields>Status__c</queriedFields>
-        <queriedFields>Start__c</queriedFields>
-        <queriedFields>End__c</queriedFields>
-        <queriedFields>Date__c</queriedFields>
-        <queriedFields>Additional_Information__c</queriedFields>
-        <queriedFields>Contact_Hours__c</queriedFields>
-        <sortField>Date__c</sortField>
-        <sortOrder>Asc</sortOrder>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Venues</name>
-        <label>Get Venues</label>
-        <locationX>1731</locationX>
-        <locationY>545</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>add_selected_row</targetReference>
-        </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>venueId</elementReference>
-            </value>
-        </filters>
-        <object>Venue__c</object>
-        <outputReference>venueRecord</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Postcode__c</queriedFields>
-        <queriedFields>Name</queriedFields>
-        <queriedFields>Street_Address__c</queriedFields>
-        <queriedFields>County__c</queriedFields>
-        <queriedFields>Town__c</queriedFields>
-    </recordLookups>
     <recordUpdates>
-        <name>Update_Status_to_Confirmed</name>
-        <label>Update Status to Confirmed</label>
-        <locationX>1388</locationX>
-        <locationY>402</locationY>
+        <name>Update_Booking</name>
+        <label>Update Booking</label>
+        <locationX>1092</locationX>
+        <locationY>276</locationY>
         <connector>
-            <targetReference>Confirmed_Booking</targetReference>
+            <targetReference>Booking_Journey_Success_and_Confirmed_Pages_Subflow</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -525,138 +192,14 @@
                 <stringValue>Confirmed</stringValue>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>Terms_And_Conditions_Accepted__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
         <object>Booking__c</object>
     </recordUpdates>
-    <screens>
-        <name>Confirmed_Booking</name>
-        <label>Confirmed Booking</label>
-        <locationX>1391</locationX>
-        <locationY>257</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>BookingComplete</name>
-            <fieldText>&lt;h3&gt;&lt;span style=&quot;font-size: 36px; color: rgb(0, 136, 106);&quot;&gt;Your booking is complete&lt;/span&gt;&lt;span style=&quot;font-size: 22px; color: rgb(0, 136, 106);&quot;&gt; &lt;/span&gt;&lt;/h3&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Thank you for your payment&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>BookingReference</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(33, 37, 41); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;Your booking reference number is {!curBooking.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(33, 37, 41); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;﻿﻿We&#39;ve sent your course and payment details to {!curBooking.Primary_Contact_Email__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Summary</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Course summary&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>CourseNumber</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Course # {!curCourse.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 22px; color: rgb(0, 136, 106);&quot;&gt;{!curCourse.Title__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>StartsEnds</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 18px;&quot;&gt;Starts&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curCourse.Start_Date__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 18px;&quot;&gt;Ends&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curCourse.End_Date__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(0, 136, 106);&quot;&gt;Course leader&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;{!practitionerRecord.FirstName} {!practitionerRecord.LastName}&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Locations</name>
-            <extensionName>c:locations</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>sessions</name>
-                <value>
-                    <elementReference>sessions</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>venues</name>
-                <value>
-                    <elementReference>venueList</elementReference>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <fields>
-            <name>SessionList1</name>
-            <extensionName>c:sessions</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>sessions</name>
-                <value>
-                    <elementReference>sessions</elementReference>
-                </value>
-            </inputParameters>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <fields>
-            <name>line_break</name>
-            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Provisional_reunion1</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Reunion session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;There is also a 2 hour reunion for all course participants with their new baby after the birth. Your course leader will agree a date, time and location for this with you.&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>includesProvisionalReunion</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>Provisional_breastfeeding</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Breastfeeding session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 8px;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a {!Provisional_Breastfeeding_Time} hours breastfeeding session. Further details of this will be confirmed to you by your course administrator once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>includesProvisionalBreastfeeding</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>Privisional_other</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Additional session&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;In addition to the dates and times shown, there will be a {!Additional_Session_Time} hours session. Further details of this will be confirmed to you by your &lt;/span&gt;&lt;span style=&quot;font-size: 16px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;course administrator &lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;once finalised.&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>includesProfvisionalOther</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>otherInfo</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(0, 136, 106); font-size: 18px;&quot;&gt;Other information&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;{!curCourse.Additional_Confirmation_Information__c}&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>curCourse.Additional_Confirmation_Information__c</leftValueReference>
-                    <operator>NotEqualTo</operator>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <showFooter>false</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
     <screens>
         <name>Invalid_Page_Screen</name>
         <label>Invalid Page Screen</label>
@@ -674,27 +217,32 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
-        <locationY>105</locationY>
+        <locationX>757</locationX>
+        <locationY>96</locationY>
         <connector>
             <targetReference>Get_SalesInvoice</targetReference>
         </connector>
     </start>
     <status>Active</status>
-    <variables>
-        <name>Additional_Session_Time</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>Booking_Message</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
+    <subflows>
+        <name>Booking_Journey_Success_and_Confirmed_Pages_Subflow</name>
+        <label>Booking Journey Success  and Confirmed Pages Subflow</label>
+        <locationX>1233</locationX>
+        <locationY>277</locationY>
+        <flowName>Booking_Journey_Success_and_Confirmed_Pages_Subflow</flowName>
+        <inputAssignments>
+            <name>curBooking</name>
+            <value>
+                <elementReference>curBooking</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>curCourse</name>
+            <value>
+                <elementReference>curCourse</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <variables>
         <name>bookingId</name>
         <dataType>String</dataType>
@@ -719,47 +267,6 @@
         <objectType>Course__c</objectType>
     </variables>
     <variables>
-        <name>includesProfvisionalOther</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <booleanValue>false</booleanValue>
-        </value>
-    </variables>
-    <variables>
-        <name>includesProvisionalBreastfeeding</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <booleanValue>false</booleanValue>
-        </value>
-    </variables>
-    <variables>
-        <name>includesProvisionalReunion</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <booleanValue>false</booleanValue>
-        </value>
-    </variables>
-    <variables>
-        <name>index</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
-        <value>
-            <numberValue>0.0</numberValue>
-        </value>
-    </variables>
-    <variables>
         <name>Installment_Record</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -768,114 +275,11 @@
         <objectType>cpm__Installment__c</objectType>
     </variables>
     <variables>
-        <name>practitionerRecord</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Contact</objectType>
-    </variables>
-    <variables>
-        <name>Provisional_Breastfeeding_Time</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
         <name>SalesInvoice_Record</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Zumzum__Sales_Invoice__c</objectType>
-    </variables>
-    <variables>
-        <name>session</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Session__c</objectType>
-    </variables>
-    <variables>
-        <name>sessionDate</name>
-        <dataType>Date</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>sessionEnd</name>
-        <dataType>DateTime</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>sessions</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Session__c</objectType>
-    </variables>
-    <variables>
-        <name>sessionStart</name>
-        <dataType>DateTime</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>sessionText</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>venueId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>venueIdsDistinct</name>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>venueIdsDuplicated</name>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>venueList</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Venue__c</objectType>
-    </variables>
-    <variables>
-        <name>venueRecord</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Venue__c</objectType>
-    </variables>
-    <variables>
-        <name>venueText</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
     </variables>
 </Flow>

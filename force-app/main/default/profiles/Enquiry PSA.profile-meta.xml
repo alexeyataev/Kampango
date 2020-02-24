@@ -170,6 +170,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.Do_Not_Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Email_Partner__c</field>
         <readable>true</readable>
@@ -327,6 +332,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Suggested_Cancellation_Fee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Terms_And_Conditions_Accepted__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

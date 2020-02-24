@@ -4,7 +4,8 @@
     <active>true</active>
     <errorConditionFormula>AND(
 ISBLANK(Partner_Contact__r.Email),
-Partner_Contact__c != NULL
+Partner_Contact__c != NULL,
+NOT($Permission.Override_Booking_Validation)
 )</errorConditionFormula>
     <errorMessage>Please review partner contact. Email is required.</errorMessage>
 </ValidationRule>
