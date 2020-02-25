@@ -5,10 +5,9 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class Locations extends LightningElement {
 
-    @api locations;
+    @api isStatusConfirmed;
     @api venues;
     @api sessions;
-    @api locationHeader;
 
     connectedCallback() {
         loadStyle(this, NCT_STYLES + '/coursedetail.css')
@@ -26,7 +25,7 @@ export default class Locations extends LightningElement {
             });
 
         this.sessions = this.excludeProvisionalSessions(this.sessions);
-        this.venues = this.deduplicateVenues(this.venues);
+        this.venues = this.deduplicateVenues(this.getVenues(this.sessions));
         this.formatVenues();
     }
 
@@ -61,6 +60,7 @@ export default class Locations extends LightningElement {
                 }
             }
         )
+
         return venueIdSessionListMap;
     }
 
@@ -73,7 +73,26 @@ export default class Locations extends LightningElement {
                 }
             }
         );
+
         return Array.from(deduplcicatedVenues.values());
+    }
+
+    getVenues(sessions) {
+        var venueList = sessions.map (
+            row => {
+                return Object.assign(
+                    { Street_Address__c: !this.isStatusConfirmed && row.Location_Home_Information__c ? '' : row.Location_Street__c},
+                    { Town__c: row.Location_Town__c },
+                    { County__c: row.Location_County__c },
+                    { Postcode__c: !this.isStatusConfirmed && row.Location_Home_Information__c ? 
+                        row.Location_Postcode__c.split(' ')[0] : row.Location_Postcode__c },
+                    { Id: row.Location_Id__c },
+                    { Name: !this.isStatusConfirmed && row.Location_Home_Information__c ? row.Location_Home_Information__c : row.Location_Name__c}
+                )
+            }
+        )
+
+        return venueList;
     }
 
     excludeProvisionalSessions(sessionList){
@@ -85,6 +104,7 @@ export default class Locations extends LightningElement {
                 }
             }
         );
+
         return finalArray;
     }
 }

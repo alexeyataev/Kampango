@@ -43,6 +43,7 @@
         <members>HttpStatusCode</members>
         <members>IClock</members>
         <members>IPaymentServiceProvider</members>
+        <members>ISalesInvoiceCreator</members>
         <members>PaymentApiRequest</members>
         <members>PaymentPlanGenerator</members>
         <members>PaymentPlanMockClock</members>
@@ -89,6 +90,11 @@
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
+        <members>ZumzumCreatePostSalesInvoice</members>
+        <members>ZumzumCreatePostSalesInvoiceTest</members>
+        <members>ZumzumSalesInvoiceCreator</members>
+        <members>ZumzumSalesInvoiceCreatorMock</members>
+        <members>ZumzumSalesInvoiceParameters</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -414,6 +420,7 @@
         <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Success_Page</members>
         <members>Booking_Journey_Flow</members>
+        <members>Booking_Journey_Success_and_Confirmed_Pages_Subflow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
         <members>Booking_Send_Email_On_Enquiry_Created_Process</members>
         <members>Booking_Send_Email_On_Enquiry_Created_Flow</members>

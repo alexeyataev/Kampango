@@ -190,6 +190,8 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>Booking__c.All</members>
+        <members>Booking__c.All_Enquiries</members>
         <members>Course__c.Completed_Courses</members>
         <members>Course__c.Currently_Running_Courses</members>
         <members>Course__c.Courses_Not_Started</members>
