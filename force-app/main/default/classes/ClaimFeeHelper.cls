@@ -11,6 +11,9 @@ public with sharing class ClaimFeeHelper {
     private static final String DEFAULT_CURRENCY = 'GBP';
     private static final String PRACTITIONER_TAX_RATE = 'No VAT';
     private static final String API_SUCCESS_MESSAGE = 'Success';
+    private static final String LINKING_ERROR_EMAIL_TEMPLATE = 'Practitioner_Registration_Fee_Claim_Error';
+    private static final String TEMPLATE_PC = '{!PC}';
+    private static final String TEMPLATE_PI = '{!PI}';
     private static Map<String, String> statusInvoiceMap;
 
     @InvocableMethod(label='Create Purchase Invoice')
@@ -175,17 +178,26 @@ public with sharing class ClaimFeeHelper {
         }
     }
 
-    public static void sendEmailToFinance(List<Id> invoiceIds) {
+    private static void sendEmailToFinance(List<Id> invoiceIds) {
         if (statusInvoiceMap == null || statusInvoiceMap.isEmpty()) {
             setStatusInvoiceMap(invoiceIds);
         }
+        EmailTemplate template = [
+            SELECT Id, HtmlValue, Body, Subject 
+            FROM EmailTemplate 
+            WHERE DeveloperName =: LINKING_ERROR_EMAIL_TEMPLATE
+            WITH SECURITY_ENFORCED
+            LIMIT 1
+        ];
+        String htmlBody = getReplacedBody(template.HtmlValue);
+        String plainTextBody = getReplacedBody(template.Body);
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         String[] toAddresses = new String[] { 'matvey.gutyrko@greencouchconsulting.com' };
         mail.setToAddresses(toAddresses);
-        mail.setReplyTo('developer@nct.co.uk');
-        mail.setSubject('PI PC failed to match email');
-        mail.setPlainTextBody(getLinkingErrorPlainText());
-        mail.setHtmlBody(getLinkingErrorHtmlEmailTemplate());
+        mail.setReplyTo('matvey.gutyrko@greencouchconsulting.com');
+        mail.setSubject(template.Subject);
+        mail.setHtmlBody(htmlBody);
+        mail.setPlainTextBody(plainTextBody);
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
     }
 
@@ -220,25 +232,10 @@ public with sharing class ClaimFeeHelper {
         }
     }
 
-    private static String getLinkingErrorHtmlEmailTemplate() {
-        String htmlTemplate = 'Dear Finance, <br><br>' + 
-            'The following invoices and credit notes have been created but have failed to be matched. ' +
-            'Please manually match the PI and PC to avoid overpayment to the practitioner before ' +
-            'payment run is made. <br><br>' +
-            'PI ' + statusInvoiceMap.get(PURCHASE_INVOICE) +
-            '<br>' +
-            'PC ' + statusInvoiceMap.get(PURCHASE_CREDIT) +
-            '<br><br> Kind regards, <br> NCT';
-        return htmlTemplate;
-    }
-    
-    private static String getLinkingErrorPlainText() {
-        String plainText = 'Please manually match the PI and PC to avoid overpayment to the practitioner before ' +
-            'payment run is made. ' +
-            'PI ' + statusInvoiceMap.get(PURCHASE_INVOICE) +
-            '<br>' +
-            ' PC ' + statusInvoiceMap.get(PURCHASE_CREDIT);
-        return plainText;
+    private static String getReplacedBody(String templateText) {
+        String body = templateText.replace(TEMPLATE_PC, statusInvoiceMap.get(PURCHASE_CREDIT))
+                                  .replace(TEMPLATE_PI, statusInvoiceMap.get(PURCHASE_INVOICE));
+        return body;
     }
     
     public class ClaimFeeWrapper {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Practitioner Registration Fee Claim Error</name>
+    <style>none</style>
+    <subject>PI PC failed to match email</subject>
+    <textOnly>Please manually match the PI and PC to avoid overpayment to the practitioner before a payment run is made. PI {!PI} and PC {!PC}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -325,6 +325,7 @@
         <members>NCT_Templates/Expense_Sheet_Rejected</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</members>
+        <members>NCT_Templates/Practitioner_Registration_Fee_Claim_Error</members>
         <name>EmailTemplate</name>
     </types>
     <types>
