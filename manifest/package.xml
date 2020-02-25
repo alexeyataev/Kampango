@@ -325,6 +325,7 @@
         <members>NCT_Templates/Expense_Sheet_Rejected</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</members>
+        <members>NCT_Templates/Practitioner_Registration_Fee_Claim_Error</members>
         <name>EmailTemplate</name>
     </types>
     <types>
@@ -658,12 +659,13 @@
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>
         <members>Practitioners/Practitioner_Schedule</members>
-        <members>Practitioners/Registration_Fee_History</members>
+        <members>Practitioners/Practitioner_Registration_Fee_History</members>
         <members>PSA_Payroll_Admin</members>
         <members>PSA_Payroll_Admin/PSA_Payroll_Report</members>
         <name>Report</name>
     </types>
     <types>
+        <members>Ledger_Payment_History_with_PI_and_PC</members>
         <members>Sessions_with_Course_and_Course_Assignment</members>
         <members>Sessions_on_venues</members>
         <members>Schedule_of_Sessions</members>
