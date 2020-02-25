@@ -11,6 +11,7 @@ public with sharing class ClaimFeeHelper {
     private static final String DEFAULT_CURRENCY = 'GBP';
     private static final String PRACTITIONER_TAX_RATE = 'No VAT';
     private static final String API_SUCCESS_MESSAGE = 'Success';
+    private static Map<String, String> statusInvoiceMap;
 
     @InvocableMethod(label='Create Purchase Invoice')
     public static void createPurchaseInvoice(List<ClaimFeeWrapper> flowData) {
@@ -170,18 +171,21 @@ public with sharing class ClaimFeeHelper {
 
         Zumzum.BankAllocateCreditsAndPaymentsService.Response objResponse = paymentService.bankAllocateSupplierBalance(allocatedCreditWrapper);
         if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
-            sendEmailToUser(objResponse.ResponseMessage, 'matvey.gutyrko@greencouchconsulting.com');
+            sendEmailToFinance(invoiceIds);
         }
     }
 
-    private static void sendEmailToUser(String message, String toAddress) {
-        Messaging.SingleEmailMessage mail=new Messaging.SingleEmailMessage();
-        String[] toAddresses = new String[] {toAddress};
+    public static void sendEmailToFinance(List<Id> invoiceIds) {
+        if (statusInvoiceMap == null || statusInvoiceMap.isEmpty()) {
+            setStatusInvoiceMap(invoiceIds);
+        }
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        String[] toAddresses = new String[] { 'matvey.gutyrko@greencouchconsulting.com' };
         mail.setToAddresses(toAddresses);
-        mail.setReplyTo('developer@acme.com');
-        mail.setSenderDisplayName('Apex error message');
-        mail.setSubject('Error from Org&nbsp;: ' + UserInfo.getOrganizationName());
-        mail.setPlainTextBody(message);
+        mail.setReplyTo('developer@nct.co.uk');
+        mail.setSubject('PI PC failed to match email');
+        mail.setPlainTextBody(getLinkingErrorPlainText());
+        mail.setHtmlBody(getLinkingErrorHtmlEmailTemplate());
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
     }
 
@@ -197,6 +201,44 @@ public with sharing class ClaimFeeHelper {
             dimensionsMap.put(dimension.Name, dimension.Id);
         }
         return dimensionsMap;
+    }
+
+    private static void setStatusInvoiceMap(List<Id> invoiceIds) {
+        List<Zumzum__Purchase_Invoice__c> invoices = [
+            SELECT Id, Name, Zumzum__Type__c
+            FROM Zumzum__Purchase_Invoice__c
+            WHERE Id IN :invoiceIds
+            WITH SECURITY_ENFORCED
+        ];
+        statusInvoiceMap =  new Map<String, String>();
+        for (Zumzum__Purchase_Invoice__c pi : invoices) {
+            if (pi.Zumzum__Type__c == PURCHASE_CREDIT) {
+                statusInvoiceMap.put(PURCHASE_CREDIT, pi.Name);
+            } else {
+                statusInvoiceMap.put(PURCHASE_INVOICE, pi.Name);
+            }
+        }
+    }
+
+    private static String getLinkingErrorHtmlEmailTemplate() {
+        String htmlTemplate = 'Dear Finance, <br><br>' + 
+            'The following invoices and credit notes have been created but have failed to be matched. ' +
+            'Please manually match the PI and PC to avoid overpayment to the practitioner before ' +
+            'payment run is made. <br><br>' +
+            'PI ' + statusInvoiceMap.get(PURCHASE_INVOICE) +
+            '<br>' +
+            'PC ' + statusInvoiceMap.get(PURCHASE_CREDIT) +
+            '<br><br> Kind regards, <br> NCT';
+        return htmlTemplate;
+    }
+    
+    private static String getLinkingErrorPlainText() {
+        String plainText = 'Please manually match the PI and PC to avoid overpayment to the practitioner before ' +
+            'payment run is made. ' +
+            'PI ' + statusInvoiceMap.get(PURCHASE_INVOICE) +
+            '<br>' +
+            ' PC ' + statusInvoiceMap.get(PURCHASE_CREDIT);
+        return plainText;
     }
     
     public class ClaimFeeWrapper {
