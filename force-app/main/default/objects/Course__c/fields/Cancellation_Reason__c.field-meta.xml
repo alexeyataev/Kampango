@@ -88,6 +88,11 @@
                 <default>false</default>
                 <label>Private session cancelled by client</label>
             </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Cancelled</controllingFieldValue>
