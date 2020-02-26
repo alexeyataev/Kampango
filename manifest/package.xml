@@ -218,8 +218,6 @@
         <members>Practitioner_Community_Settings__c</members>
         <members>Practitioner_Fee_Rate__c</members>
         <members>Practitioner_Travel_Cost__c</members>
-        <members>Pricebook2</members>
-        <members>Product2</members>
         <members>Rate__c</members>
         <members>Room__c</members>
         <members>Session__c</members>
