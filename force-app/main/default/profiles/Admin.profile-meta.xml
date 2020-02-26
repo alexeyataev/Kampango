@@ -770,11 +770,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Payment_Run__c.Bank_Payment_Line_Item__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Payment_Run__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
