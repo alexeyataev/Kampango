@@ -12,11 +12,16 @@ Thank you for making a payment to NCT. This transaction was successful.
 If you have any queries or questions about this payment, please get in touch with nctcourses@nct.org.uk
  
  
-Kind regards
- 
-Finance team
-NCT
-nctcourses@nct.org.uk</textOnly>
+Kind Regards,
+
+
+{!Course__c.Enquiries_PSA_Name__c}
+
+Course Organiser
+
+Telephone: {!Course__c.Enquiries_PSA_Phone__c}
+
+Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
