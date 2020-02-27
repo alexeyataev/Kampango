@@ -1,6 +1,6 @@
-global class AddMembershipScheduler implements Schedulable {
+public with sharing class AddMembershipScheduler implements Schedulable {
     private Integer updateIntervalHours = 1;
-	global void execute(SchedulableContext sc) {
+	public void execute(SchedulableContext sc) {
 		if(sc != null)
 		{
 			System.abortJob(sc.getTriggerId());
