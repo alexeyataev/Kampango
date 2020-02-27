@@ -169,5 +169,10 @@
             <controllingFieldValue>Cancelling</controllingFieldValue>
             <valueName>Private session cancelled by client</valueName>
         </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <controllingFieldValue>Cancelling</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
     </valueSet>
 </CustomField>
