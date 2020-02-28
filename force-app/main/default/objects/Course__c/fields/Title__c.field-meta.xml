@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Title__c</fullName>
     <externalId>false</externalId>
-    <formula>TEXT(Sub_Type__c) &amp; &quot; &quot; &amp; Target_Group__c</formula>
+    <formula>TEXT(Sub_Type__c) &amp; &quot; for &quot; &amp; Target_Group__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Title</label>
     <required>false</required>
