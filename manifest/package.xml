@@ -684,7 +684,13 @@
     </types>   
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
+        <members>Course__c.ShareAllCourseWithParents</members>
+        <members>Zumzum__Company_Setup__c.ShareAllCompanySetupWithParents</members>
+        <members>Zumzum__Company__c.ShareAllCompanyWithParents</members>
+        <members>Zumzum__Currency__c.ShareAllCurrencyWithParents</members>
+        <members>Zumzum__Invoice_Template__c.ShareAllDocumentTemplateWithParents</members>
         <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
+        <members>cpm__Installment__c.ShareAllInstallmentWithParents </members>
         <name>SharingCriteriaRule</name>
     </types>
     <types>
@@ -784,6 +790,6 @@
     <types>
         <members>Booking__c.Send Reservation Email</members>
         <name>WorkflowRule</name>
-    </types>
+    </types> -->
     <version>48.0</version>
 </Package>
