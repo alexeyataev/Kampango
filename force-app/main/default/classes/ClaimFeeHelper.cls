@@ -11,13 +11,17 @@ public with sharing class ClaimFeeHelper {
     private static final String DEFAULT_CURRENCY = 'GBP';
     private static final String PRACTITIONER_TAX_RATE = 'No VAT';
     private static final String API_SUCCESS_MESSAGE = 'Success';
+    private static final String LINKING_ERROR_EMAIL_TEMPLATE = 'Practitioner_Registration_Fee_Claim_Error';
+    private static final String TEMPLATE_PC = '{!PC}';
+    private static final String TEMPLATE_PI = '{!PI}';
+    private static Map<String, String> statusInvoiceMap;
 
     @InvocableMethod(label='Create Purchase Invoice')
     public static void createPurchaseInvoice(List<ClaimFeeWrapper> flowData) {
-        
         List<Session__c> sessions = flowData[0].sessions;
         
         Financial_Settings__c financialSettings = Financial_Settings__c.getInstance();
+
         User currentUser = [
             SELECT Name, AccountId, ContactId 
             FROM User 
@@ -39,6 +43,8 @@ public with sharing class ClaimFeeHelper {
             WITH SECURITY_ENFORCED
             LIMIT 1
         ];
+
+        Map<String, Id> dimensionsMap = getDimensionsMap();
         
         Zumzum.PurchaseInvoiceService purchaseInvoiceService = new Zumzum.PurchaseInvoiceService();
         List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper> purchases = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper>();
@@ -64,8 +70,14 @@ public with sharing class ClaimFeeHelper {
             purchaseInvoiceLineItem.WrapperAPICustomFields = new Zumzum.APICustomFieldWrapper[]{
                 new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Session__c', session.Id)
             };
+            purchaseInvoiceLineItem.Dimension1 = 
+                String.isNotBlank(session.PSA_Area__c) ? dimensionsMap.get(session.PSA_Area__c) : null;
+            purchaseInvoiceLineItem.Dimension2 = 
+                String.isNotBlank(session.Course__c) ? dimensionsMap.get(session.Course__c) : null;
+
             purchaseInvoice.LineItems.add(purchaseInvoiceLineItem);
         }
+    
         purchases.add(purchaseInvoice);
 
         //Purchase credit
@@ -82,13 +94,14 @@ public with sharing class ClaimFeeHelper {
             purchaseCredit.LineItems = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper>();
 
             purchaseCreditLineItem.ForeignNetAmount = flowData[0].registrationFee;
-            purchaseCreditLineItem.NominalAccount = financialSettings.PI_Nominal_Account_Id__c;
+            purchaseCreditLineItem.NominalAccount = financialSettings.PC_Nominal_Account_Id__c;
             purchaseCreditLineItem.Quantity = 1;
             purchaseCreditLineItem.TaxRate = zumzumNoVAT.Id;
             purchaseCreditLineItem.Narrative = 'required field';
             purchaseCreditLineItem.WrapperAPICustomFields = new Zumzum.APICustomFieldWrapper[]{
                 new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Practitioner__c', currentUser.ContactId)
             };
+            
             purchaseCredit.LineItems.add(purchaseCreditLineItem);
             purchases.add(purchaseCredit);
         }
@@ -98,14 +111,131 @@ public with sharing class ClaimFeeHelper {
         if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
             throw new CreatePurchaseInvoiceException(objResponse.ResponseMessage);
         }
+
         postPurchaseInvoices(objResponse.purchaseInvoices);
+
+        List<Id> invoices = new List<Id>();
+        for (Zumzum__Purchase_Invoice__c pi : objResponse.purchaseInvoices) {
+            invoices.add(pi.Id);
+        } 
+        allocateSupplierBalance(invoices);
     }
 
     private static void postPurchaseInvoices(List<Zumzum__Purchase_Invoice__c> invoices) {
         Zumzum.PurchaseInvoiceService postService = new Zumzum.PurchaseInvoiceService();
         for (Zumzum__Purchase_Invoice__c pi : invoices) {
             Zumzum.PurchaseInvoiceService.Response apiResponse = postService.postPurchaseInvoice(pi.Id);
+            if (!apiResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
+                throw new CreatePurchaseInvoiceException(apiResponse.ResponseMessage);
+            }
         }
+    }
+
+    @future
+    private static void allocateSupplierBalance(List<Id> invoiceIds) {
+        User currentUser = [
+            SELECT Name, AccountId, ContactId 
+            FROM User 
+            WHERE Id =: UserInfo.getUserId()
+            WITH SECURITY_ENFORCED
+        ];
+
+        Zumzum.BankAllocateCreditsAndPaymentsService paymentService = new Zumzum.BankAllocateCreditsAndPaymentsService();
+        Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper allocatedCreditWrapper = 
+            new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper();
+
+        allocatedCreditWrapper.AccountId = currentUser.AccountId;
+        allocatedCreditWrapper.PostingDate = Date.today();
+        
+        List<Zumzum__Ledger__c> ledgerRecords = [
+            SELECT Id, Name, Zumzum__Net_Amount__c, Zumzum__Purchase_Invoice__r.Zumzum__Type__c, Zumzum__Nominal_Name__c, Zumzum__Nominal__c, Zumzum__Sub_Account_Nominal_Link__c
+            FROM Zumzum__Ledger__c
+            WHERE Zumzum__Purchase_Invoice__c IN :invoiceIds
+                AND Zumzum__Customer_Supplier_Account_Name__c != null
+        ];
+
+        List<Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper> paymentLines = new List<Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper>();
+        Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper bankLineItem;
+
+        Decimal creditAmount = 0.00;
+        for (Zumzum__Ledger__c ledgerRecord : ledgerRecords) {
+            if (ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_CREDIT) {
+                creditAmount = ledgerRecord.Zumzum__Net_Amount__c;
+            }
+        }
+        for (Zumzum__Ledger__c ledgerRecord : ledgerRecords) {
+            bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
+            bankLineItem.LedgerName = ledgerRecord.Name;
+            bankLineItem.Amount = creditAmount;
+            paymentLines.add(bankLineItem);
+        }
+        
+        allocatedCreditWrapper.BankAllocateLines = paymentLines;
+
+        Zumzum.BankAllocateCreditsAndPaymentsService.Response objResponse = paymentService.bankAllocateSupplierBalance(allocatedCreditWrapper);
+        if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
+            sendEmailToFinance(invoiceIds);
+        }
+    }
+
+    private static void sendEmailToFinance(List<Id> invoiceIds) {
+        if (statusInvoiceMap == null || statusInvoiceMap.isEmpty()) {
+            setStatusInvoiceMap(invoiceIds);
+        }
+        EmailTemplate template = [
+            SELECT Id, HtmlValue, Body, Subject 
+            FROM EmailTemplate 
+            WHERE DeveloperName =: LINKING_ERROR_EMAIL_TEMPLATE
+            WITH SECURITY_ENFORCED
+            LIMIT 1
+        ];
+        String htmlBody = getReplacedBody(template.HtmlValue);
+        String plainTextBody = getReplacedBody(template.Body);
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        String[] toAddresses = new String[] { 'matvey.gutyrko@greencouchconsulting.com' };
+        mail.setToAddresses(toAddresses);
+        mail.setReplyTo('matvey.gutyrko@greencouchconsulting.com');
+        mail.setSubject(template.Subject);
+        mail.setHtmlBody(htmlBody);
+        mail.setPlainTextBody(plainTextBody);
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+    }
+
+    private static Map<String, Id> getDimensionsMap() {
+        List<Zumzum__Dimension__c> dimensions = [
+            SELECT Name, Id
+            FROM Zumzum__Dimension__c
+            WHERE Zumzum__Active__c = true
+        ];
+
+        Map<String, Id> dimensionsMap = new Map<String, Id>();
+        for (Zumzum__Dimension__c dimension : dimensions) {
+            dimensionsMap.put(dimension.Name, dimension.Id);
+        }
+        return dimensionsMap;
+    }
+
+    private static void setStatusInvoiceMap(List<Id> invoiceIds) {
+        List<Zumzum__Purchase_Invoice__c> invoices = [
+            SELECT Id, Name, Zumzum__Type__c
+            FROM Zumzum__Purchase_Invoice__c
+            WHERE Id IN :invoiceIds
+            WITH SECURITY_ENFORCED
+        ];
+        statusInvoiceMap =  new Map<String, String>();
+        for (Zumzum__Purchase_Invoice__c pi : invoices) {
+            if (pi.Zumzum__Type__c == PURCHASE_CREDIT) {
+                statusInvoiceMap.put(PURCHASE_CREDIT, pi.Name);
+            } else {
+                statusInvoiceMap.put(PURCHASE_INVOICE, pi.Name);
+            }
+        }
+    }
+
+    private static String getReplacedBody(String templateText) {
+        String body = templateText.replace(TEMPLATE_PC, statusInvoiceMap.get(PURCHASE_CREDIT))
+                                  .replace(TEMPLATE_PI, statusInvoiceMap.get(PURCHASE_INVOICE));
+        return body;
     }
     
     public class ClaimFeeWrapper {

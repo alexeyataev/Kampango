@@ -3,7 +3,7 @@
     <apiVersion>47.0</apiVersion>
     <packageVersions>
         <majorNumber>1</majorNumber>
-        <minorNumber>368</minorNumber>
+        <minorNumber>378</minorNumber>
         <namespace>Zumzum</namespace>
     </packageVersions>
     <status>Active</status>

@@ -5,7 +5,7 @@ public class AddMembershipBatch implements Database.Batchable<sObject>, Database
     private final String FAILURE_STATUS = 'Failure';
 
     public Database.QueryLocator start(Database.BatchableContext bc){
-        return Database.getQueryLocator('SELECT Id, ga_decl_1__c, ga_decl_2__c, Bank_Details_Number__c, cpm__Contact__r.Branch__r.Branch_Number__c, cpm__Payment_Method__c, cpm__Contact__r.NCT_Number__c, Partner_Contact__r.NCT_Number__c, Membership_Type__c, cpm__Amount__c FROM cpm__Installment__c WHERE Care_Membership_Added__c = false AND Bank_Details_Number__c != null AND Care_Status__c = \'Waiting\'');
+        return Database.getQueryLocator('SELECT Id, ga_decl_1__c, ga_decl_2__c, Bank_Details_Number__c, cpm__Contact__r.Branch__r.Branch_Number__c, cpm__Payment_Method__c, cpm__Contact__r.NCT_Number__c, Partner_Contact__r.NCT_Number__c, Membership_Type__c, Membership_Amount__c FROM cpm__Installment__c WHERE Care_Membership_Added__c = false AND Bank_Details_Number__c != null AND Care_Status__c = \'Waiting\'');
     }
 
     public void execute(Database.BatchableContext bc, List<cpm__Installment__c> scope){

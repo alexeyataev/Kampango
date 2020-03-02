@@ -1,0 +1,14 @@
+Dear Finance, 
+<br>
+<br>
+The following invoices and credit notes have been created but have failed to be matched. Please manually match the PI and PC to avoid overpayment to the practitioner before payment run is made.
+<br>
+<br>
+PI {!PI}
+<br>
+PC {!PC}
+<br>
+<br>
+Kind regards,
+<br>
+NCT

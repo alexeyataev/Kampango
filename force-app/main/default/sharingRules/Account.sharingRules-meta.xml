@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
-    <sharingCriteriaRules>
+    <sharingGuestRules>
         <fullName>ShareAllAccountsWithParents</fullName>
-        <accessLevel>Edit</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Edit</contactAccessLevel>
-            <opportunityAccessLevel>None</opportunityAccessLevel>
-        </accountSettings>
+        <accessLevel>Read</accessLevel>
         <label>ShareAllAccountsWithParents</label>
         <sharedTo>
-            <group>Parent_Community_Group</group>
+            <guestUser>Parent_Community</guestUser>
         </sharedTo>
         <criteriaItems>
             <field>Name</field>
             <operation>notEqual</operation>
             <value>null</value>
         </criteriaItems>
-    </sharingCriteriaRules>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Household Account</value>
+        </criteriaItems>
+    </sharingGuestRules>
 </SharingRules>
