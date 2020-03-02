@@ -213,6 +213,10 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>Practitioners/Registration_Fee_History</members>
+        <name>Report</name>
+    </types>
+    <types>
         <members>Capacity_PSA</members>
         <members>Enquiries_PSA</members>
         <name>Role</name>
