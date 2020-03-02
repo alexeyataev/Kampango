@@ -3,13 +3,24 @@ public with sharing class ZumzumBACSpaymentActions {
     public static List<Response> linkPurchaseInvoices(List<Request> requests) {
         List<Response> result = new List<Response>();
         String paymentRunId = requests[0].recordId;
+        
+        Set<Id> linkedPIids = new Set<Id>();
+        List<Payment_Run_Line_Item__c> existingPrliList = [
+            SELECT Id, Purchase_Invoice__c
+            FROM Payment_Run_Line_Item__c
+            WITH SECURITY_ENFORCED
+        ];
+        for (Payment_Run_Line_Item__c prli : existingPrliList) {
+            linkedPIids.add(prli.Purchase_Invoice__c);
+        }
+
         List<Payment_Run_Line_Item__c> prliList = new List<Payment_Run_Line_Item__c>();
         for (Zumzum__Purchase_Invoice__c pi : [
             SELECT Id 
             FROM Zumzum__Purchase_Invoice__c 
-            WHERE Zumzum__Status__c = 'Posted'
+            WHERE Id NOT IN :linkedPIids
+              AND Zumzum__Status__c = 'Posted'
               AND Zumzum__Total_Unpaid_Amount__c > 0
-              AND Payment_Run__c = null
         ]) {
             Payment_Run_Line_Item__c prli = new Payment_Run_Line_Item__c();
             prli.Payment_Run__c = paymentRunId;
@@ -17,15 +28,26 @@ public with sharing class ZumzumBACSpaymentActions {
             prliList.add(prli);
         }
         if (prliList.isEmpty()) {
-            result.add(new Response(false, 'There is no Purchase Invoices matching the action criteria'));
+            result.add(new Response(
+                false, 
+                'There is no Purchase Invoices matching the action criteria'
+            ));
         } else {
             try {
-                System.debug(prliList);
-                System.debug(prliList.size());
-                insert prliList;
-                result.add(new Response(true));
+                if (Payment_Run_Line_Item__c.sObjectType.getDescribe().isCreateable()) {
+                    insert prliList;
+                    result.add(new Response(true));
+                } else {
+                    result.add(new Response(
+                        false, 
+                        'The user has no access rights to create Payment Run Line Items'
+                    ));
+                }
             } catch (DmlException e) {
-                result.add(new Response(false, e.getMessage()));
+                result.add(new Response(
+                    false, 
+                    e.getMessage()
+                ));
             }
         }
         return result;
