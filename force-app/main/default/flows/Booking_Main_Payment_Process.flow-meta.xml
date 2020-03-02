@@ -28,12 +28,12 @@
     <actionCalls>
         <name>Card_Payment_Handler</name>
         <label>Card Payment Handler</label>
-        <locationX>2544</locationX>
-        <locationY>432</locationY>
+        <locationX>2387</locationX>
+        <locationY>373</locationY>
         <actionName>CardPaymentHandler</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Payment_Link_Result</targetReference>
+            <targetReference>Clear_Next_Collection_Date</targetReference>
         </connector>
         <inputParameters>
             <name>errorPage</name>
@@ -89,12 +89,12 @@
     <actionCalls>
         <name>Card_Payment_Plan_Handler</name>
         <label>Card Payment Plan Handler</label>
-        <locationX>2548</locationX>
-        <locationY>749</locationY>
+        <locationX>2490</locationX>
+        <locationY>780</locationY>
         <actionName>CardPaymentPlanHandler</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Payment_Link_Result</targetReference>
+            <targetReference>Added_Next_Collection_Date</targetReference>
         </connector>
         <inputParameters>
             <name>membershipType</name>
@@ -183,6 +183,29 @@
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
+    <assignments>
+        <name>Add_Amount_To_Be_Paid</name>
+        <label>Add Amount To Be Paid</label>
+        <locationX>2855</locationX>
+        <locationY>594</locationY>
+        <assignmentItems>
+            <assignToReference>Booking_Instance.Booking_Journey_Payable_Amount__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Amount_To_Be_Paid</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Booking_Instance.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Payable_Amount</targetReference>
+        </connector>
+    </assignments>
     <assignments>
         <name>Add_Course_SI_Parameter</name>
         <label>Add Course SI Parameter</label>
@@ -280,6 +303,22 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Added_Next_Collection_Date</name>
+        <label>Added Next Collection Date</label>
+        <locationX>2695</locationX>
+        <locationY>779</locationY>
+        <assignmentItems>
+            <assignToReference>Booking_Instance.Next_Collection_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PaymentPlanOptionSelected.nextCollectionDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Payment_Link_Result</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Sales_Invoice_to_Parameters</name>
         <label>Assign Sales Invoice to Parameters</label>
         <locationX>2232</locationX>
@@ -293,6 +332,19 @@
         </assignmentItems>
         <connector>
             <targetReference>Type_Of_Payment</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Clear_Next_Collection_Date</name>
+        <label>Clear Next Collection Date</label>
+        <locationX>2550</locationX>
+        <locationY>372</locationY>
+        <assignmentItems>
+            <assignToReference>Booking_Instance.Next_Collection_Date__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>Payment_Link_Result</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -871,8 +923,8 @@
     <decisions>
         <name>Payment_Link_Result</name>
         <label>Payment Link Result</label>
-        <locationX>2683</locationX>
-        <locationY>593</locationY>
+        <locationX>2687</locationX>
+        <locationY>592</locationY>
         <defaultConnector>
             <targetReference>Payment_Error_Screen</targetReference>
         </defaultConnector>
@@ -885,7 +937,7 @@
                 <operator>NotEqualTo</operator>
             </conditions>
             <connector>
-                <targetReference>Set_Payable_Amount</targetReference>
+                <targetReference>Add_Amount_To_Be_Paid</targetReference>
             </connector>
             <label>Payment Link is True</label>
         </rules>
@@ -1053,7 +1105,7 @@
     <formulas>
         <name>Amount_To_Be_Paid</name>
         <dataType>String</dataType>
-        <expression>IF({!Is_Payment_Plan_True}, {!PaymentPlanOptionSelected.displayLabel}, &#39;£&#39; + TEXT({!Course_Fee}))</expression>
+        <expression>IF({!Is_Payment_Plan_True}, {!PaymentPlanOptionSelected.displayLabel}, &#39;One-off payment of £&#39; + TEXT({!Course_Fee}))</expression>
     </formulas>
     <formulas>
         <description>Return sum course fee for a one-off payment or payment plan + membership fee</description>
@@ -1431,25 +1483,12 @@
     <recordUpdates>
         <name>Set_Payable_Amount</name>
         <label>Set Payable Amount</label>
-        <locationX>2856</locationX>
-        <locationY>592</locationY>
+        <locationX>3023</locationX>
+        <locationY>594</locationY>
         <connector>
             <targetReference>Payment_Details_Screen</targetReference>
         </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>bookingId</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Booking_Journey_Payable_Amount__c</field>
-            <value>
-                <elementReference>Amount_To_Be_Paid</elementReference>
-            </value>
-        </inputAssignments>
-        <object>Booking__c</object>
+        <inputReference>Booking_Instance</inputReference>
     </recordUpdates>
     <screens>
         <name>DD_Payment_Is_Not_Available</name>
@@ -1473,8 +1512,8 @@
     <screens>
         <name>Payment_Details_Screen</name>
         <label>Payment Details Screen</label>
-        <locationX>2990</locationX>
-        <locationY>593</locationY>
+        <locationX>3181</locationX>
+        <locationY>595</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
         <allowPause>false</allowPause>
@@ -1840,6 +1879,14 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Booking_Instance</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Booking__c</objectType>
     </variables>
     <variables>
         <name>bookingId</name>
