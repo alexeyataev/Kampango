@@ -28,15 +28,26 @@ public with sharing class ZumzumBACSpaymentActions {
             prliList.add(prli);
         }
         if (prliList.isEmpty()) {
-            result.add(new Response(false, 'There is no Purchase Invoices matching the action criteria'));
+            result.add(new Response(
+                false, 
+                'There is no Purchase Invoices matching the action criteria'
+            ));
         } else {
             try {
-                System.debug(prliList);
-                System.debug(prliList.size());
-                insert prliList;
-                result.add(new Response(true));
+                if (Payment_Run_Line_Item__c.sObjectType.getDescribe().isCreateable()) {
+                    insert prliList;
+                    result.add(new Response(true));
+                } else {
+                    result.add(new Response(
+                        false, 
+                        'The user has no access rights to create Payment Run Line Items'
+                    ));
+                }
             } catch (DmlException e) {
-                result.add(new Response(false, e.getMessage()));
+                result.add(new Response(
+                    false, 
+                    e.getMessage()
+                ));
             }
         }
         return result;
