@@ -3,13 +3,24 @@ public with sharing class ZumzumBACSpaymentActions {
     public static List<Response> linkPurchaseInvoices(List<Request> requests) {
         List<Response> result = new List<Response>();
         String paymentRunId = requests[0].recordId;
+        
+        Set<Id> linkedPIids = new Set<Id>();
+        List<Payment_Run_Line_Item__c> existingPrliList = [
+            SELECT Id, Purchase_Invoice__c
+            FROM Payment_Run_Line_Item__c
+            WITH SECURITY_ENFORCED
+        ];
+        for (Payment_Run_Line_Item__c prli : existingPrliList) {
+            linkedPIids.add(prli.Purchase_Invoice__c);
+        }
+
         List<Payment_Run_Line_Item__c> prliList = new List<Payment_Run_Line_Item__c>();
         for (Zumzum__Purchase_Invoice__c pi : [
             SELECT Id 
             FROM Zumzum__Purchase_Invoice__c 
-            WHERE Zumzum__Status__c = 'Posted'
+            WHERE Id NOT IN :linkedPIids
+              AND Zumzum__Status__c = 'Posted'
               AND Zumzum__Total_Unpaid_Amount__c > 0
-              AND Payment_Run__c = null
         ]) {
             Payment_Run_Line_Item__c prli = new Payment_Run_Line_Item__c();
             prli.Payment_Run__c = paymentRunId;
