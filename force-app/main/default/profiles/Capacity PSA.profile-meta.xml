@@ -1948,7 +1948,7 @@
     </fieldPermissions>	
     <fieldPermissions>	
         <editable>false</editable>	
-        <field>cpm__Installment__c.Zumzum__Status__c</field>	
+        <field>cpm__Installment__c.cpm__Status__c</field>	
         <readable>true</readable>	
     </fieldPermissions>	
     <fieldPermissions>	
