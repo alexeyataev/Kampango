@@ -78,11 +78,15 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Zumzum__Bank_Payment_Line_Item__c.Payment_Run__c</relatedList>
+        <fields>Purchase_Invoice__c</fields>
+        <fields>Account__c</fields>
+        <fields>Status__c</fields>
+        <fields>Unpaid_Amount__c</fields>
+        <relatedList>Payment_Run_Line_Item__c.Payment_Run__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Payment_Run_Line_Item__c.Payment_Run__c</relatedList>
+        <relatedList>Zumzum__Bank_Payment_Line_Item__c.Payment_Run__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
