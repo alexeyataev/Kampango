@@ -35,6 +35,8 @@
         <members>CoursesDateDistanceModel</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
+        <members>CreateGiftAidDeclarationHelper</members>
+        <members>CreateGiftAidDeclarationHelperTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>dlrs_Estimated_CostsTest</members>
