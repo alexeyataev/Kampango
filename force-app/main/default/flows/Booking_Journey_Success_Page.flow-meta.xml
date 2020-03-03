@@ -170,6 +170,8 @@
         <object>Zumzum__Sales_Invoice__c</object>
         <outputReference>SalesInvoice_Record</outputReference>
         <queriedFields>Id</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordUpdates>
         <name>Update_Booking</name>
