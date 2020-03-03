@@ -1936,6 +1936,76 @@
         <field>gaid__Gift_Aid_Declaration__c.gaid__Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>cpm__Installment__c.cpm__Amount__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>cpm__Installment__c.cpm__Due_Date__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>cpm__Installment__c.cpm__Last_Collection_Date__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>cpm__Installment__c.cpm__Status__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>cpm__Recurring_Payment__c.cpm__Collection_Day_of_Month__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>cpm__Recurring_Payment__c.cpm__End_Date__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>cpm__Recurring_Payment__c.cpm__Frequency__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>cpm__Recurring_Payment__c.cpm__ls_coll_date__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>cpm__Recurring_Payment__c.cpm__Next_Collection_Date__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>cpm__Recurring_Payment__c.cpm__Start_Date__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>Zumzum__Sales_Invoice__c.Booking__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Gross__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Paid_Amount__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Unpaid_Amount__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Branch Read Only Layout</layout>
         <recordType>Account.Branch</recordType>
@@ -2010,6 +2080,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Venue__c-Venue Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>	
+        <layout>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</layout>	
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -2235,6 +2308,33 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>Zumzum__Purchase_Invoice__c</object>
         <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>	
+        <allowCreate>true</allowCreate>	
+        <allowDelete>false</allowDelete>	
+        <allowEdit>true</allowEdit>	
+        <allowRead>true</allowRead>	
+        <modifyAllRecords>false</modifyAllRecords>	
+        <object>Zumzum__Sales_Invoice__c</object>	
+        <viewAllRecords>false</viewAllRecords>	
+    </objectPermissions>
+    <objectPermissions>	
+        <allowCreate>false</allowCreate>	
+        <allowDelete>false</allowDelete>	
+        <allowEdit>false</allowEdit>	
+        <allowRead>true</allowRead>	
+        <modifyAllRecords>false</modifyAllRecords>	
+        <object>cpm__Installment__c</object>	
+        <viewAllRecords>false</viewAllRecords>	
+    </objectPermissions>
+    <objectPermissions>	
+        <allowCreate>false</allowCreate>	
+        <allowDelete>false</allowDelete>	
+        <allowEdit>false</allowEdit>	
+        <allowRead>true</allowRead>	
+        <modifyAllRecords>false</modifyAllRecords>	
+        <object>cpm__Recurring_Payment__c</object>	
+        <viewAllRecords>false</viewAllRecords>	
     </objectPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
