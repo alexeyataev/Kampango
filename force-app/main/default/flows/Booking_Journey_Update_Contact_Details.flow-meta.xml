@@ -2946,7 +2946,7 @@
         <label>Client Details</label>
         <locationX>1983</locationX>
         <locationY>1610</locationY>
-        <allowBack>false</allowBack>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
@@ -3330,7 +3330,7 @@
         <label>Client Details(No couple)</label>
         <locationX>1562</locationX>
         <locationY>1900</locationY>
-        <allowBack>false</allowBack>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
@@ -3631,7 +3631,7 @@
         <label>Home Issue</label>
         <locationX>1078</locationX>
         <locationY>2212</locationY>
-        <allowBack>false</allowBack>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
@@ -3952,7 +3952,7 @@
         <label>Home Issue</label>
         <locationX>3032</locationX>
         <locationY>937</locationY>
-        <allowBack>false</allowBack>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
@@ -4410,7 +4410,7 @@
         <label>How Heard Issue Only</label>
         <locationX>2856</locationX>
         <locationY>662</locationY>
-        <allowBack>false</allowBack>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
@@ -4795,7 +4795,7 @@
         <label>How Heard Issue only</label>
         <locationX>425</locationX>
         <locationY>2226</locationY>
-        <allowBack>false</allowBack>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
@@ -5111,7 +5111,7 @@
         <label>MobileIssue</label>
         <locationX>1357</locationX>
         <locationY>2029</locationY>
-        <allowBack>false</allowBack>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
@@ -5432,7 +5432,7 @@
         <label>MobileIssue</label>
         <locationX>2631</locationX>
         <locationY>1125</locationY>
-        <allowBack>false</allowBack>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
@@ -5896,7 +5896,7 @@
         <label>Partner Issue</label>
         <locationX>1769</locationX>
         <locationY>1005</locationY>
-        <allowBack>false</allowBack>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
@@ -6319,7 +6319,13 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>isPartnerSet1</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>isPartnerSet1</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>bookingId</name>

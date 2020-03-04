@@ -8,8 +8,8 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
-            <property type="@salesforce/schema/Venue__c[]" name="venues"></property>
-            <property type="@salesforce/schema/Session__c[]" name="sessions"></property>
+            <property type="Boolean" name="isStatusConfirmed" default='false' role='inputOnly'></property>
+            <property type="@salesforce/schema/Session__c[]" name="sessions" role='inputOnly'></property>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

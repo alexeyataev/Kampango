@@ -43,23 +43,26 @@
     <actionCalls>
         <name>Send_notification_email</name>
         <label>Send notification email</label>
-        <locationX>591</locationX>
-        <locationY>755</locationY>
+        <locationX>455</locationX>
+        <locationY>468</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
+        <connector>
+            <targetReference>Sending_successful</targetReference>
+        </connector>
         <faultConnector>
             <targetReference>Sending_not_successful</targetReference>
         </faultConnector>
         <inputParameters>
-            <name>orgWideEmailAddress</name>
+            <name>replyEmailAddress</name>
             <value>
                 <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>replyEmailAddress</name>
+            <name>targetObjectId</name>
             <value>
-                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+                <elementReference>curBooking.Primary_Contact__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -69,9 +72,9 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>targetObjectId</name>
+            <name>orgWideEmailAddress</name>
             <value>
-                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -84,13 +87,10 @@
     <actionCalls>
         <name>Send_Payment_Email</name>
         <label>Send Payment Email</label>
-        <locationX>441</locationX>
-        <locationY>449</locationY>
+        <locationX>594</locationX>
+        <locationY>751</locationY>
         <actionName>Zumzum__Sales_Invoice__c.Adhoc_Send_Payment_Email</actionName>
         <actionType>emailAlert</actionType>
-        <connector>
-            <targetReference>Sending_successful</targetReference>
-        </connector>
         <faultConnector>
             <targetReference>Sending_not_successful</targetReference>
         </faultConnector>
@@ -101,6 +101,36 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <assignments>
+        <name>Assign_person_name</name>
+        <label>Assign person name</label>
+        <locationX>153</locationX>
+        <locationY>691</locationY>
+        <assignmentItems>
+            <assignToReference>personName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>curBooking.First_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>personName</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>personName</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>curBooking.Last_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_template</targetReference>
+        </connector>
+    </assignments>
     <assignments>
         <name>Sending_not_successful</name>
         <label>Sending not successful</label>
@@ -223,16 +253,11 @@
     </decisions>
     <description>Sends an email with a link to details and payment
 Version Changes:
-Replaced Apex action with Email alert as new field was added</description>
+Replaced Email alert with Apex action as Booking fields were added to the template</description>
     <formulas>
         <name>currentProfile</name>
         <dataType>String</dataType>
         <expression>{!$Profile.Name}</expression>
-    </formulas>
-    <formulas>
-        <name>personName</name>
-        <dataType>String</dataType>
-        <expression>{!contact.FirstName} + &#39; &#39; + {!contact.LastName}</expression>
     </formulas>
     <interviewLabel>Adhoc Send Payment Email Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Send Payment Email Flow</label>
@@ -250,26 +275,27 @@ Replaced Apex action with Email alert as new field was added</description>
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
-        <name>Get_contact_name</name>
-        <label>Get contact name</label>
-        <locationX>52</locationX>
-        <locationY>563</locationY>
+        <name>Get_Booking</name>
+        <label>Get Booking</label>
+        <locationX>51</locationX>
+        <locationY>548</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_template</targetReference>
+            <targetReference>Assign_person_name</targetReference>
         </connector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
+                <elementReference>salesInvoice.Booking__c</elementReference>
             </value>
         </filters>
-        <object>Contact</object>
-        <outputReference>contact</outputReference>
+        <object>Booking__c</object>
+        <outputReference>curBooking</outputReference>
         <queriedFields>Id</queriedFields>
-        <queriedFields>LastName</queriedFields>
-        <queriedFields>FirstName</queriedFields>
+        <queriedFields>Primary_Contact__c</queriedFields>
+        <queriedFields>First_Name__c</queriedFields>
+        <queriedFields>Last_Name__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Sales_Invoice</name>
@@ -278,7 +304,7 @@ Replaced Apex action with Email alert as new field was added</description>
         <locationY>430</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_contact_name</targetReference>
+            <targetReference>Get_Booking</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -292,12 +318,13 @@ Replaced Apex action with Email alert as new field was added</description>
         <queriedFields>Id</queriedFields>
         <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Zumzum__Total_Unpaid_Amount__c</queriedFields>
+        <queriedFields>Booking__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_template</name>
         <label>Get template</label>
-        <locationX>205</locationX>
-        <locationY>563</locationY>
+        <locationX>228</locationX>
+        <locationY>562</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Confirm_Send_Email_Screen</targetReference>
@@ -316,17 +343,17 @@ Replaced Apex action with Email alert as new field was added</description>
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Screen of  Confirm</label>
-        <locationX>340</locationX>
-        <locationY>563</locationY>
+        <locationX>345</locationX>
+        <locationY>562</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Send_Payment_Email</targetReference>
+            <targetReference>Send_notification_email</targetReference>
         </connector>
         <fields>
             <name>Confirm_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;color: rgb(47, 47, 47); font-size: 18px;&quot;&gt;{!personName}&lt;/b&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;font-size: 18px; color: rgb(47, 47, 47);&quot;&gt;{!personName}&lt;/b&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -340,14 +367,6 @@ Replaced Apex action with Email alert as new field was added</description>
         </connector>
     </start>
     <status>Active</status>
-    <variables>
-        <name>contact</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Contact</objectType>
-    </variables>
     <variables>
         <name>curBooking</name>
         <dataType>SObject</dataType>
@@ -363,6 +382,13 @@ Replaced Apex action with Email alert as new field was added</description>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>EmailTemplate</objectType>
+    </variables>
+    <variables>
+        <name>personName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>recordId</name>

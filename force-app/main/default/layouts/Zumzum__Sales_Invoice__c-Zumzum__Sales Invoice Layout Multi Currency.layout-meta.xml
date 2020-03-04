@@ -380,6 +380,13 @@
         <relatedList>cpm__Installment__c.Sales_Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>cpm__Amount__c</fields>
+        <fields>cpm__Frequency__c</fields>
+        <fields>cpm__Status__c</fields>
+        <relatedList>cpm__Recurring_Payment__c.Sales_Invoice__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Zumzum__Revenue_Recognition_Schedule_Name__c</fields>

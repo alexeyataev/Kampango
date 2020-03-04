@@ -2,9 +2,11 @@ import { LightningElement, api } from 'lwc';
 import NCT_STYLES from '@salesforce/resourceUrl/NCT_Styles';
 import { loadStyle } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import provisionCourseReunionTextLable from '@salesforce/label/c.Confirmation_Notification_Course_Reunion';
 
 export default class Sessions extends LightningElement {
-    @api courseHasProvisionalReunion = false;
+    provisionCourseReunionText = provisionCourseReunionTextLable;
+    courseHasProvisionalReunion = false;
     @api sessions;
     @api sessionHeader;
     @api formattedSessions;
@@ -25,6 +27,7 @@ export default class Sessions extends LightningElement {
             });
         this.sessions = this.excludeProvisionalSessions(this.sessions);
         this.formatSessions();
+        
     }
 
     formatSessions(){
