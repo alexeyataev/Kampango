@@ -1321,6 +1321,7 @@
         <editable>true</editable>
         <field>Zumzum__Expense_Sheet__c.Approval_Status__c</field>
         <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Expense_Sheet_Detail__c.Course__c</field>
