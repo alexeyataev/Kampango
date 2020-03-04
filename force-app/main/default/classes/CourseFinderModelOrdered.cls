@@ -15,9 +15,11 @@ public class CourseFinderModelOrdered extends CourseFinderModel implements Compa
     }
 
     private void updateCourseRankAndGroupRange(Course__c course, Date birthDueDate) {
-        // For Drop-ins Rank should always be 5
+        // For Drop-ins Rank should always be 1
+        final Integer DROPIN_RANK = 1; 
+
         if (course.Type__c == 'Drop In'){
-            this.Rank = 5;
+            this.Rank = DROPIN_RANK;
             this.groupRange = 1;
             return;
         }
