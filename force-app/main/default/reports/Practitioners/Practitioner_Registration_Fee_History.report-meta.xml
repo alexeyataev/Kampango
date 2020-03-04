@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Zumzum__Ledger_Payment_History__c$Zumzum__Date__c</field>
+    </columns>
+    <columns>
+        <field>Zumzum__Ledger_Payment_History__c$Zumzum__Purchase_Invoice__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Zumzum__Ledger_Payment_History__c$Zumzum__Purchase_Invoice__c.Zumzum__Total_Gross__c</field>
+    </columns>
+    <columns>
+        <field>Zumzum__Ledger_Payment_History__c$Zumzum__Purchase_Credit__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Zumzum__Ledger_Payment_History__c$Zumzum__Purchase_Credit__c.Zumzum__Total_Gross__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Zumzum__Ledger_Payment_History__c$Zumzum__Purchase_Credit__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value/>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Registration Fee History</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Ledger_Payment_History_with_PI_and_PC__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Zumzum__Ledger_Payment_History__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

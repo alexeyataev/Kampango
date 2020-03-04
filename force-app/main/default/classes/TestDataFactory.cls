@@ -241,9 +241,13 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildLicenceToPractice() {
+        return buildLicenceToPractice(practitioners[0]);
+    }
+    
+    public TestDataFactory buildLicenceToPractice(Contact practitioner) {
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
         licenceToPractice = licenceToPracticeBuilder
-            .withContact(practitioners[0])
+            .withContact(practitioner)
             .insertRecord(true)
             .build();
         return this;
@@ -305,6 +309,21 @@ public without sharing class TestDataFactory {
             .withVenue(venue)
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)
+            .withPractitioner(practitioners[0])
+            .withPractitionerFeeRate(practitionerFeeRate)
+            .withPractitionerLicence(licenceToPractice)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildConfirmedSession() {
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        session = sessionBuilder
+            .withCourse(course)
+            .withVenue(venue)
+            .withRoom(room)
+            .withStatus(SESSION_CONFIRMED_STATUS)
             .withPractitioner(practitioners[0])
             .withPractitionerFeeRate(practitionerFeeRate)
             .withPractitionerLicence(licenceToPractice)
@@ -639,6 +658,12 @@ public without sharing class TestDataFactory {
         return this;
     }
   
+    public TestDataFactory setCourseToFinal(){
+        course.Status__c = 'Final';
+        update course;
+        return this;
+    }
+
     public TestDataFactory setCoursesToFinal(List<Course__c> courses){
         for(Course__c course : courses){
             course.Status__c = 'Final';

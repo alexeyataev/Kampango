@@ -17,7 +17,7 @@ const BOOKING_FIELDS = [
         'Booking__c.Course__r.Additional_Offer_Information__c',
         'Booking__c.Course__r.Branch__r.Name',
         'Booking__c.Course__r.End_Date__c',
-        'Booking__c.Course__r.Main_Venue__r.Name',
+        'Booking__c.Course__r.Main_Venue_Name__c',
         'Booking__c.Course__r.PSA_Area__c',
         'Booking__c.Course__r.Start_Date__c',
         'Booking__c.Course__r.Title__c'
@@ -46,8 +46,8 @@ export default class CourseDetailsComponent extends LightningElement {
     @api stylesLoaded = false;
     @api title;
     @api get valuesLoaded(){return this.bookingId && this.courseId && this.stylesLoaded;}
-    @api get venuesLoaded(){return this.allVenues && this.sessions;}
-
+    @api get venuesLoaded(){return this.sessions;}
+    
     @wire (getRecord, {recordId: '$bookingId', fields: BOOKING_FIELDS})
     retrieveRecord({error, data}){
         if(error){
@@ -80,7 +80,7 @@ export default class CourseDetailsComponent extends LightningElement {
             this.courseFee = this.bookingRecord.fields.Final_Fee__c.value;
             this.additionalOfferInformation = this.bookingRecord.fields.Course__r.value.fields.Additional_Offer_Information__c.value;
             this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Branch__r.value.fields.Name.value;
-            this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
+            this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue_Name__c.value;
             this.title = this.bookingRecord.fields.Course__r.value.fields.Title__c.value;
             date = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
             date = new Date(date);
@@ -96,7 +96,6 @@ export default class CourseDetailsComponent extends LightningElement {
         retrieveRelatedSessions({courseId: id})
         .then(data => {
             this.sessions = data;
-            this.getVenues(this.sessions);
         })
         .catch(error => {
             let message = 'Unknown error';
@@ -129,23 +128,6 @@ export default class CourseDetailsComponent extends LightningElement {
                     }),
                 );
             });
-    }
-
-    getVenues(sessions) {
-        var array = sessions.map (
-            row => {
-                    return Object.assign(
-                    {Street_Address__c: row.Location_Home_Information__c ? '' : row.Location_Street__c},
-                    {Town__c: row.Location_Town__c},
-                    {County__c: row.Location_County__c},
-                    {Postcode__c: row.Location_Home_Information__c ? row.Location_Postcode__c.split(' ')[0] : row.Location_Postcode__c},
-                    {Id: row.Location_Id__c},
-                    {Name: row.Location_Home_Information__c || row.Location_Name__c}
-                );
-            }
-        );
-
-        this.allVenues = array;
     }
 
     addDateOrdinal(monthDay){

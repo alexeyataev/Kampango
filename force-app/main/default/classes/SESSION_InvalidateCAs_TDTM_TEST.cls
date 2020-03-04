@@ -11,7 +11,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
     private static final String COURSE_ASSIGNMENT_WITHDRAWN_STATUS = 'Withdrawn';
 
-    @TestSetup
+    //@TestSetup
+    // avoid annotation - Account.AccountAutoNumber is not unique when using @TestSetup
     private static void SetupTestData() {
     TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc1')
@@ -49,10 +50,10 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void WithdrawCourseAssignmentStatus_PractitionerChangesOnLastSessionOnCourse_CourseAssignmentStatusWithdrawn() {
+        SetupTestData();
         TestDataFactory.getInstance()
             .buildOrganizationAccount('acc2')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS)
-            .buildLicenceToPractice();
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
 
         CreateTriggerSystemHandlerRecord();
 
@@ -76,6 +77,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             WHERE LastName =:PRACTITIONER_LASTNAME_TWO
             LIMIT 1
         ];
+
+        TestDataFactory.getInstance().buildLicenceToPractice(practitioner2);
 
         Licence_To_Practice__c licence2 = [
             SELECT Id 
@@ -117,13 +120,13 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNotLastSessionOnCourse_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
         TestDataFactory.getInstance()
             .buildOrganizationAccount('acc3')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS)
-            .buildLicenceToPractice();
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
 
         Session__c session = [
             SELECT  Date__c, End__c, Start__c,Course__c, Practitioner__c, Course_Assignment__c
@@ -146,6 +149,8 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             WHERE LastName =:PRACTITIONER_LASTNAME_TWO
             LIMIT 1
         ];
+
+        TestDataFactory.getInstance().buildLicenceToPractice(practitioner2);
 
         Licence_To_Practice__c licence2 = [
             SELECT Id 
@@ -185,6 +190,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_DateChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -214,6 +220,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_StartTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -243,6 +250,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_EndTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -272,6 +280,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -301,6 +310,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -333,6 +343,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -377,6 +388,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_StatusChangesFromProvisionalToConfirmedOnReunionSession_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -407,6 +419,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_InsertNewSession_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -443,6 +456,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_DeleteNotLastSession_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -497,6 +511,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_DeleteLastSession_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -545,6 +560,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_ReassignSession_CourseAssignmentStatusInvalidated() {
+        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 

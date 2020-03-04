@@ -14,5 +14,10 @@
         <field>PSA_Office__c</field>
         <operation>notEqual</operation>
     </filters>
+    <filters>
+        <field>Course_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Drop In</value>
+    </filters>
     <label>All Bookings</label>
 </ListView>

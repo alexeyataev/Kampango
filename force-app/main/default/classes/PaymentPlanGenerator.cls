@@ -19,6 +19,7 @@ public with sharing class PaymentPlanGenerator {
                     paymentPlanOption.displayLabel = createOptionLabel(paymentPlanOption, numberOfPayments);
                     paymentPlanOption.numberOfPayments = String.valueOf(numberOfPayments);
                     paymentPlanOptions.add(paymentPlanOption);
+                    paymentPlanOption.nextCollectionDate = paymentPlanOption.startDate.addDays(COLLECTION_DAY_OF_MONTH) - 1; 
                 }
             }
         }
