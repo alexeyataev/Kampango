@@ -568,15 +568,8 @@
     <assignments>
         <name>Set_Assigned_for_Total_Fee</name>
         <label>Set Assigned for Total Fee</label>
-        <locationX>1363</locationX>
-        <locationY>1425</locationY>
-        <assignmentItems>
-            <assignToReference>PaymentPlanParameters.amount</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Membership_Amount</elementReference>
-            </value>
-        </assignmentItems>
+        <locationX>1364</locationX>
+        <locationY>1424</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.membershipType</assignToReference>
             <operator>Assign</operator>
@@ -642,7 +635,7 @@
     </choices>
     <choices>
         <name>CoursePlanCC</name>
-        <choiceText>Pay by installments</choiceText>
+        <choiceText>&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Pay by instalments&lt;/span&gt;</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>PlanCC</stringValue>
