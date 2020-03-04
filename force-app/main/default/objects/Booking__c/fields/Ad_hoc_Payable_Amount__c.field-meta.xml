@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Ad_hoc_Payable_Amount__c</fullName>
     <externalId>false</externalId>
-    <label>Amount To Be Paid</label>
+    <label>Ad hoc Payable Amount</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

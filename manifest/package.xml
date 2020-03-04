@@ -35,6 +35,8 @@
         <members>CoursesDateDistanceModel</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
+        <members>CreateGiftAidDeclarationHelper</members>
+        <members>CreateGiftAidDeclarationHelperTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>dlrs_Estimated_CostsTest</members>
@@ -325,6 +327,7 @@
         <members>NCT_Templates/Expense_Sheet_Rejected</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</members>
+        <members>NCT_Templates/Practitioner_Registration_Fee_Claim_Error</members>
         <name>EmailTemplate</name>
     </types>
     <types>
@@ -658,12 +661,13 @@
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>
         <members>Practitioners/Practitioner_Schedule</members>
-        <members>Practitioners/Registration_Fee_History</members>
+        <members>Practitioners/Practitioner_Registration_Fee_History</members>
         <members>PSA_Payroll_Admin</members>
         <members>PSA_Payroll_Admin/PSA_Payroll_Report</members>
         <name>Report</name>
     </types>
     <types>
+        <members>Ledger_Payment_History_with_PI_and_PC</members>
         <members>Sessions_with_Course_and_Course_Assignment</members>
         <members>Sessions_on_venues</members>
         <members>Schedule_of_Sessions</members>
@@ -682,7 +686,16 @@
     </types>   
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
+        <members>Course__c.ShareAllCourseWithParents</members>
+        <members>Zumzum__Company_Setup__c.ShareAllCompanySetupWithParents</members>
+        <members>Zumzum__Company__c.ShareAllCompanyWithParents</members>
+        <members>Zumzum__Currency__c.ShareAllCurrencyWithParents</members>
+        <members>Zumzum__Invoice_Template__c.ShareAllDocumentTemplateWithParents</members>
         <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
+        <members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
+        <members>cpm__Installment__c.ShareAllInstallmentsWithPSA</members>
+        <members>cpm__Recurring_Payment__c.ShareAllPaymentsWithPSA</members>
+        <members>cpm__Recurring_Payment__c.ShareAllRecurringPaymentsWithPSA</members>
         <name>SharingCriteriaRule</name>
     </types>
     <types>
@@ -783,5 +796,5 @@
         <members>Booking__c.Send Reservation Email</members>
         <name>WorkflowRule</name>
     </types>
-    <version>47.0</version>
+    <version>48.0</version>
 </Package>

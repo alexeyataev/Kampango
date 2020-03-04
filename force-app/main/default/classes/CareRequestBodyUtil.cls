@@ -57,7 +57,7 @@ public with sharing class CareRequestBodyUtil {
         addMembership.contactKey1 = installment.cpm__Contact__r.NCT_Number__c;
         addMembership.contactKey2 = installment.Partner_Contact__r.NCT_Number__c;
         addMembership.mType = installment.Membership_Type__c;
-        addMembership.amount = String.valueOf(installment.cpm__Amount__c);
+        addMembership.amount = String.valueOf(installment.Membership_Amount__c);
         addMembership.txCode = installment.Id;
         return JSON.serialize(addMembership, true);
     }

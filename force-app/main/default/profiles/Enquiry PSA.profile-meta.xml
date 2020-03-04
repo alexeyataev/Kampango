@@ -161,6 +161,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.Course_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Days_Before_Course_Start__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -287,6 +292,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.NCT_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.Next_Collection_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -592,6 +602,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Include_Additional_Admin_Cost__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Main_Venue_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1407,7 +1422,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Last_Collection_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1688,6 +1703,26 @@
         <editable>false</editable>
         <field>cpm__Recurring_Payment__c.cpm__n_of_collected_installments__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>Zumzum__Sales_Invoice__c.Booking__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Gross__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Paid_Amount__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Unpaid_Amount__c</field>	
+        <readable>true</readable>	
     </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Branch Read Only Layout</layout>
