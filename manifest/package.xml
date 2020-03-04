@@ -692,7 +692,10 @@
         <members>Zumzum__Currency__c.ShareAllCurrencyWithParents</members>
         <members>Zumzum__Invoice_Template__c.ShareAllDocumentTemplateWithParents</members>
         <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
-        <members>cpm__Installment__c.ShareAllInstallmentWithParents </members>
+        <members>cpm__Installment__c.ShareAllInstallmentWithParents</members>
+        <members>cpm__Installment__c.ShareAllInstallmentsWithPSA</members>
+        <members>cpm__Recurring_Payment__c.ShareAllPaymentsWithPSA</members>
+        <members>cpm__Recurring_Payment__c.ShareAllRecurringPaymentsWithPSA</members>
         <name>SharingCriteriaRule</name>
     </types>
     <types>
