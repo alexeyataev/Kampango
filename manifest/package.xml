@@ -35,6 +35,8 @@
         <members>CoursesDateDistanceModel</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
+        <members>CreateGiftAidDeclarationHelper</members>
+        <members>CreateGiftAidDeclarationHelperTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>dlrs_Estimated_CostsTest</members>
@@ -693,7 +695,10 @@
         <members>Zumzum__Nominal_Account__c.ShareAllNominalAccountWithParents</members>
         <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
         <members>Zumzum__Tax_Rate__c.ShareAllTaxRateWithParents</members>
-        <members>cpm__Installment__c.ShareAllInstallmentWithParents </members>
+        <members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
+        <members>cpm__Installment__c.ShareAllInstallmentsWithPSA</members>
+        <members>cpm__Recurring_Payment__c.ShareAllPaymentsWithPSA</members>
+        <members>cpm__Recurring_Payment__c.ShareAllRecurringPaymentsWithPSA</members>
         <name>SharingCriteriaRule</name>
     </types>
     <types>
