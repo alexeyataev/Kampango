@@ -16,6 +16,11 @@
         <operation>notEqual</operation>
     </filters>
     <filters>
+        <field>Course_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Drop In</value>
+    </filters>
+    <filters>
         <field>Status__c</field>
         <operation>equals</operation>
         <value>Reserved</value>
