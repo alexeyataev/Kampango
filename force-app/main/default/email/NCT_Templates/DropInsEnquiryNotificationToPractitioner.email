@@ -4,27 +4,40 @@
     replyTo="nctcourses@nct.org.uk"
 >
     <messaging:htmlEmailBody >
-        Course title {!relatedTo.Course__r.Sub_Type__c} class in {!relatedTo.Branch__c} Branch - {!relatedTo.Course__r.Name}<br></br>
+        Course title - {!relatedTo.Course__r.Sub_Type__c} class in {!relatedTo.Branch__c} Branch - {!relatedTo.Course__r.Name}<br></br>
         Client first name - {!relatedTo.Primary_Contact__r.FirstName}<br></br>
         Client last name - {!relatedTo.Primary_Contact__r.LastName}<br></br>
-        Partner first name - {!relatedTo.Partner_Contact__r.FirstName}<br></br>
-        Partner last name - {!relatedTo.Partner_Contact__r.LastName}<br></br>
-??        Address House number and name - {!relatedTo.Course__r.Branch__r.BillingStreet}<br></br>
+        <apex:outputPanel layout="block" rendered="{! NOT(ISBLANK(relatedTo.Partner_Contact__c))}">
+            Partner first name - {!relatedTo.Partner_Contact__r.FirstName}<br></br>
+            Partner last name - {!relatedTo.Partner_Contact__r.LastName}<br></br>
+        </apex:outputPanel>
+        <apex:outputPanel layout="block" rendered="{! ISBLANK(relatedTo.Partner_Contact__c)}">
+            There is no partner attending<br></br>
+        </apex:outputPanel>
+        Address House number and name - {!relatedTo.Course__r.Branch__r.BillingStreet}<br></br>
         Town - {!relatedTo.Course__r.Branch__r.BillingCity}<br></br>
         County - {!relatedTo.Course__r.Branch__r.BillingState}<br></br>
         Postcode - {!relatedTo.Course__r.Branch__r.BillingPostalCode}<br></br>
         Phone mobile - {!relatedTo.Primary_Contact__r.MobilePhone}<br></br>
         Email - {!relatedTo.Primary_Contact__r.Email}<br></br>
-        Partner email - {!relatedTo.Partner_Contact__r.Email}<br></br>
-?        NCT may contact - {!IF(relatedTo.Do_Not_Contact__c, "No", "Yes")}<br></br> <!-- checkbox -->
-?       Third parties may contact - <br></br> <!-- not found in: Booking, Contact, Individual -->
-?       Class list opt in - <br></br> <!-- not found in: Booking, Course, Contact.HasOptedOutOfEmail?, Individual: Block Geolocation Tracking, Don't Market, Don't Process, Don't Profile, Don't Track -->
-        Birth due date - {!relatedTo.Birth_Due_Date__c}<br></br>
+        <apex:outputPanel layout="block" rendered="{! NOT(ISBLANK(relatedTo.Partner_Contact__c))}">
+            Partner email - {!relatedTo.Partner_Contact__r.Email}<br></br>
+        </apex:outputPanel>
+       
+        NCT may contact - {!IF(relatedTo.Do_Not_Contact__c==TRUE, "No", "Yes")}<br></br>  <!-- checkbox -->
+        Third parties may contact:<br></br> 
+        <ul>
+            <li>Email - {! IF(relatedTo.Primary_Contact__r.Individual.Email__c==TRUE, "Yes", "No")}</li>
+            <li>Post - {! IF(relatedTo.Primary_Contact__r.Individual.Post__c==TRUE, "Yes", "No")}</li>
+            <li>SMS - {! IF(relatedTo.Primary_Contact__r.Individual.SMS__c==TRUE, "Yes", "No")}</li>
+            <li>Telephone - {! IF(relatedTo.Primary_Contact__r.Individual.Telephone__c==TRUE, "Yes", "No")}</li>
+        </ul>
+        
+        Birth due date - {! TEXT(relatedTo.Birth_Due_Date__c)}<br></br>
         First baby - {!relatedTo.First_Baby__c}<br></br> <!-- picklist -->
         Multiple birth - {!relatedTo.Multiple_Birth__c}<br></br> <!-- picklist -->
-?       Info for NCTP - {!relatedTo.Info_for_Practitioner__c}<br></br>
+        Info for NCTP - {!relatedTo.Info_for_Practitioner__c}<br></br>
         How heard - {!relatedTo.How_Heard__c}<br></br>
-??      Notes<br></br>
         <br></br>
         Kind Regards, NCT
     </messaging:htmlEmailBody>
