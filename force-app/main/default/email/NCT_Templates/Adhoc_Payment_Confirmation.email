@@ -5,13 +5,13 @@ Thank you for making a payment to NCT. This transaction was successful.<br><br>
 If you have any queries or questions about this payment, please get in touch with nctcourses@nct.org.uk<br><br><br>
  
  
-Kind Regards,
+Kind Regards,<br>
 <br>
 <br>
-{!Course__c.Enquiries_PSA_Name__c}
+{!Course__c.Enquiries_PSA_Name__c}<br>
 <br>
-Course Organiser
+Course Organiser<br>
 <br>
-Telephone: {!Course__c.Enquiries_PSA_Phone__c}
+Telephone: {!Course__c.Enquiries_PSA_Phone__c}<br>
 <br>
 Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}
