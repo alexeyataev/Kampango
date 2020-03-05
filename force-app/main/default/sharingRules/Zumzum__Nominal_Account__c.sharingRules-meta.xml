@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingGuestRules>
+        <fullName>ShareAllNominalAccountWithParents</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ShareAllNominalAccountWithParents</label>
+        <sharedTo>
+            <guestUser>Parent_Community</guestUser>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Zumzum__Account_Code__c</field>
+            <operation>equals</operation>
+            <value>1003</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Zumzum__Account_Code__c</field>
+            <operation>equals</operation>
+            <value>1400</value>
+        </criteriaItems>
+    </sharingGuestRules>
+</SharingRules>

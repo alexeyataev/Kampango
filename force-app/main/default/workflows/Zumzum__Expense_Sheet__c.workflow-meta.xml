@@ -12,30 +12,33 @@
         <template>NCT_Templates/Expense_Sheet_Rejected</template>
     </alerts>
     <fieldUpdates>
-        <fullName>Status_Change_to_pending</fullName>
-        <field>Zumzum__Status__c</field>
-        <literalValue>Pending</literalValue>
-        <name>Status Change to pending</name>
+        <fullName>Approval_Status_change_to_Approved</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&#39;Approved&#39;</formula>
+        <name>Approval Status change to Approved</name>
         <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
+        <operation>Formula</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Status_change_to_approved</fullName>
-        <field>Zumzum__Status__c</field>
-        <literalValue>Approved</literalValue>
-        <name>Status change to approved</name>
+        <fullName>Approval_Status_change_to_Pending</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&#39;Pending&#39;</formula>
+        <name>Approval Status change to Pending</name>
         <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
+        <operation>Formula</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Status_change_to_rejected</fullName>
-        <field>Zumzum__Status__c</field>
-        <literalValue>Rejected</literalValue>
-        <name>Status change to rejected</name>
+        <fullName>Approval_Status_change_to_Rejected</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&#39;Rejected&#39;</formula>
+        <name>Approval Status change to Rejected</name>
         <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
+        <operation>Formula</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
 </Workflow>
