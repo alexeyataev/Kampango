@@ -14,7 +14,10 @@
     <fieldUpdates>
         <fullName>Approval_Status_change_to_Approved</fullName>
         <field>Approval_Status__c</field>
-        <formula>&#39;Approved&#39;</formula>
+        <formula>IF($User.Id &lt;&gt; OwnerId,
+ &#39;Approved&#39;,
+ &#39;Draft&#39;
+)</formula>
         <name>Approval Status change to Approved</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -34,7 +37,10 @@
     <fieldUpdates>
         <fullName>Approval_Status_change_to_Rejected</fullName>
         <field>Approval_Status__c</field>
-        <formula>&#39;Rejected&#39;</formula>
+        <formula>IF($User.Id &lt;&gt; OwnerId,
+ &#39;Rejected&#39;,
+ &#39;Draft&#39;
+)</formula>
         <name>Approval Status change to Rejected</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
