@@ -13,6 +13,17 @@
         <template>NCT_Templates/Adhoc_Payment_Confirmation</template>
     </alerts>
     <alerts>
+        <fullName>PractitionerNotificationOnDropInEnquiry</fullName>
+        <description>PractitionerNotificationOnDropInEnquiry</description>
+        <protected>false</protected>
+        <recipients>
+            <field>PractitionerEmail__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>NCT_Templates/DropInsEnquiryNotificationToPractitioner</template>
+    </alerts>
+    <alerts>
         <fullName>SendEmailToClient</fullName>
         <description>SendEmailToClient</description>
         <protected>false</protected>
@@ -48,6 +59,15 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/Booking_Confirmation_Email</template>
     </alerts>
+    <fieldUpdates>
+        <fullName>FillEmailFieldOnBooking</fullName>
+        <field>PractitionerEmail__c</field>
+        <formula>Course__r.Main_Practitioner__r.Email</formula>
+        <name>FillEmailFieldOnBooking</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>SetExpDate</fullName>
         <field>Reservation_Expiry_Date__c</field>
@@ -93,4 +113,22 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>NewDropInCreated</fullName>
+        <actions>
+            <name>PractitionerNotificationOnDropInEnquiry</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>FillEmailFieldOnBooking</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Course__c.Type__c</field>
+            <operation>equals</operation>
+            <value>Drop In</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
 </Workflow>
