@@ -47,7 +47,7 @@
             <value>Pending,Submitted for Approval,Approved</value>
         </criteriaItems>
     </entryCriteria>
-    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
