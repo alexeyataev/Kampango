@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Error_Booking_is_blank</name>
+        <label>Error Booking is blank</label>
+        <locationX>957</locationX>
+        <locationY>304</locationY>
+        <actionName>c:showToast</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>MESSAGE_ERROR_BOOKING_EMPTY</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <elementReference>TYPE_ERROR</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Error_Profile_Has_No_Access</name>
         <label>Error Profile Has No Access</label>
-        <locationX>831</locationX>
-        <locationY>206</locationY>
+        <locationX>955</locationX>
+        <locationY>169</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <inputParameters>
@@ -23,8 +44,8 @@
     <actionCalls>
         <name>Result_Sending_Email</name>
         <label>Result Sending Email</label>
-        <locationX>831</locationX>
-        <locationY>434</locationY>
+        <locationX>958</locationX>
+        <locationY>546</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <inputParameters>
@@ -43,8 +64,8 @@
     <actionCalls>
         <name>Send_notification_email</name>
         <label>Send notification email</label>
-        <locationX>455</locationX>
-        <locationY>468</locationY>
+        <locationX>605</locationX>
+        <locationY>550</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -83,12 +104,13 @@
                 <elementReference>notificationTemplate.Id</elementReference>
             </value>
         </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
         <name>Send_Payment_Email</name>
         <label>Send Payment Email</label>
-        <locationX>594</locationX>
-        <locationY>751</locationY>
+        <locationX>736</locationX>
+        <locationY>814</locationY>
         <actionName>Zumzum__Sales_Invoice__c.Adhoc_Send_Payment_Email</actionName>
         <actionType>emailAlert</actionType>
         <faultConnector>
@@ -102,40 +124,10 @@
         </inputParameters>
     </actionCalls>
     <assignments>
-        <name>Assign_person_name</name>
-        <label>Assign person name</label>
-        <locationX>153</locationX>
-        <locationY>691</locationY>
-        <assignmentItems>
-            <assignToReference>personName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>curBooking.First_Name__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>personName</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <stringValue/>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>personName</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>curBooking.Last_Name__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Get_template</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Sending_not_successful</name>
         <label>Sending not successful</label>
-        <locationX>595</locationX>
-        <locationY>572</locationY>
+        <locationX>769</locationX>
+        <locationY>606</locationY>
         <assignmentItems>
             <assignToReference>toastMessage</assignToReference>
             <operator>Assign</operator>
@@ -157,8 +149,8 @@
     <assignments>
         <name>Sending_successful</name>
         <label>Sending  successful</label>
-        <locationX>600</locationX>
-        <locationY>348</locationY>
+        <locationX>768</locationX>
+        <locationY>485</locationY>
         <assignmentItems>
             <assignToReference>toastMessage</assignToReference>
             <operator>Assign</operator>
@@ -177,6 +169,13 @@
             <targetReference>Result_Sending_Email</targetReference>
         </connector>
     </assignments>
+    <constants>
+        <name>MESSAGE_ERROR_BOOKING_EMPTY</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Please specify the Booking reference</stringValue>
+        </value>
+    </constants>
     <constants>
         <name>MESSAGE_ERROR_PROFILE</name>
         <dataType>String</dataType>
@@ -220,10 +219,35 @@
         </value>
     </constants>
     <decisions>
+        <name>Check_Booking_blank</name>
+        <label>Check Booking blank</label>
+        <locationX>173</locationX>
+        <locationY>303</locationY>
+        <defaultConnector>
+            <targetReference>Get_Booking</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Booking_blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>salesInvoice.Booking__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_Booking_is_blank</targetReference>
+            </connector>
+            <label>Is Booking blank?</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_if_Finance_profile</name>
         <label>Check if Finance profile</label>
-        <locationX>43</locationX>
-        <locationY>207</locationY>
+        <locationX>174</locationX>
+        <locationY>167</locationY>
         <defaultConnector>
             <targetReference>Error_Profile_Has_No_Access</targetReference>
         </defaultConnector>
@@ -253,11 +277,16 @@
     </decisions>
     <description>Sends an email with a link to details and payment
 Version Changes:
-Replaced Email alert with Apex action as Booking fields were added to the template</description>
+Validation check for Booking, fixed Name formula</description>
     <formulas>
         <name>currentProfile</name>
         <dataType>String</dataType>
         <expression>{!$Profile.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>personName</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!curBooking.Id}), &#39;&#39;, {!curBooking.First_Name__c} &amp; &#39; &#39; &amp; {!curBooking.Last_Name__c})</expression>
     </formulas>
     <interviewLabel>Adhoc Send Payment Email Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Send Payment Email Flow</label>
@@ -277,11 +306,11 @@ Replaced Email alert with Apex action as Booking fields were added to the templa
     <recordLookups>
         <name>Get_Booking</name>
         <label>Get Booking</label>
-        <locationX>51</locationX>
-        <locationY>548</locationY>
+        <locationX>181</locationX>
+        <locationY>550</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Assign_person_name</targetReference>
+            <targetReference>Get_template</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -300,11 +329,11 @@ Replaced Email alert with Apex action as Booking fields were added to the templa
     <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
-        <locationX>51</locationX>
-        <locationY>430</locationY>
+        <locationX>50</locationX>
+        <locationY>302</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Booking</targetReference>
+            <targetReference>Check_Booking_blank</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -323,8 +352,8 @@ Replaced Email alert with Apex action as Booking fields were added to the templa
     <recordLookups>
         <name>Get_template</name>
         <label>Get template</label>
-        <locationX>228</locationX>
-        <locationY>562</locationY>
+        <locationX>344</locationX>
+        <locationY>550</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Confirm_Send_Email_Screen</targetReference>
@@ -343,8 +372,8 @@ Replaced Email alert with Apex action as Booking fields were added to the templa
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Screen of  Confirm</label>
-        <locationX>345</locationX>
-        <locationY>562</locationY>
+        <locationX>461</locationX>
+        <locationY>550</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -353,14 +382,14 @@ Replaced Email alert with Apex action as Booking fields were added to the templa
         </connector>
         <fields>
             <name>Confirm_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;font-size: 18px; color: rgb(47, 47, 47);&quot;&gt;{!personName}&lt;/b&gt;&lt;span style=&quot;font-size: 18px; color: rgb(76, 76, 76);&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;color: rgb(47, 47, 47); font-size: 18px;&quot;&gt;{!personName}&lt;/b&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>51</locationX>
+        <locationX>182</locationX>
         <locationY>50</locationY>
         <connector>
             <targetReference>Check_if_Finance_profile</targetReference>
@@ -382,13 +411,6 @@ Replaced Email alert with Apex action as Booking fields were added to the templa
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>EmailTemplate</objectType>
-    </variables>
-    <variables>
-        <name>personName</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>recordId</name>
