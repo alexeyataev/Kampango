@@ -164,6 +164,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.Course_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Days_Before_Course_Start__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1310,6 +1315,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Bank_Payment_Line_Item__c.Payment_Run__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Expense_Sheet__c.Approval_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

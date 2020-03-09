@@ -16,7 +16,7 @@
         <allowDelegate>true</allowDelegate>
         <approvalActions>
             <action>
-                <name>Status_change_to_approved</name>
+                <name>Approval_Status_change_to_Approved</name>
                 <type>FieldUpdate</type>
             </action>
         </approvalActions>
@@ -29,12 +29,12 @@
         <name>Approve_by_Capacity_PSA</name>
         <rejectionActions>
             <action>
-                <name>Expense_Sheet_Rejection</name>
-                <type>Alert</type>
+                <name>Approval_Status_change_to_Rejected</name>
+                <type>FieldUpdate</type>
             </action>
             <action>
-                <name>Status_change_to_rejected</name>
-                <type>FieldUpdate</type>
+                <name>Expense_Sheet_Rejection</name>
+                <type>Alert</type>
             </action>
         </rejectionActions>
     </approvalStep>
@@ -47,11 +47,11 @@
             <value>Pending,Submitted for Approval,Approved</value>
         </criteriaItems>
     </entryCriteria>
-    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
-            <name>Status_Change_to_pending</name>
+            <name>Approval_Status_change_to_Pending</name>
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>

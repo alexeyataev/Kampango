@@ -28,8 +28,8 @@
     <actionCalls>
         <name>Card_Payment_Handler</name>
         <label>Card Payment Handler</label>
-        <locationX>2387</locationX>
-        <locationY>373</locationY>
+        <locationX>2641</locationX>
+        <locationY>356</locationY>
         <actionName>CardPaymentHandler</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -89,8 +89,8 @@
     <actionCalls>
         <name>Card_Payment_Plan_Handler</name>
         <label>Card Payment Plan Handler</label>
-        <locationX>2490</locationX>
-        <locationY>780</locationY>
+        <locationX>2653</locationX>
+        <locationY>854</locationY>
         <actionName>CardPaymentPlanHandler</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -168,7 +168,7 @@
     <actionCalls>
         <name>Create_Sales_Invoice_and_Sales_Invoice_Items</name>
         <label>Create Sales Invoice and Sales Invoice Items</label>
-        <locationX>2146</locationX>
+        <locationX>2126</locationX>
         <locationY>445</locationY>
         <actionName>ZumzumCreatePostSalesInvoice</actionName>
         <actionType>apex</actionType>
@@ -186,8 +186,8 @@
     <assignments>
         <name>Add_Amount_To_Be_Paid</name>
         <label>Add Amount To Be Paid</label>
-        <locationX>2855</locationX>
-        <locationY>594</locationY>
+        <locationX>3100</locationX>
+        <locationY>601</locationY>
         <assignmentItems>
             <assignToReference>Booking_Instance.Booking_Journey_Payable_Amount__c</assignToReference>
             <operator>Assign</operator>
@@ -207,10 +207,26 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Add_Cost_Membership</name>
+        <label>Add Cost Membership</label>
+        <locationX>2468</locationX>
+        <locationY>846</locationY>
+        <assignmentItems>
+            <assignToReference>PaymentPlanParameters.amount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Membership_Amount</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Type_Of_Payment</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Add_Course_SI_Parameter</name>
         <label>Add Course SI Parameter</label>
-        <locationX>2051</locationX>
-        <locationY>599</locationY>
+        <locationX>2018</locationX>
+        <locationY>597</locationY>
         <assignmentItems>
             <assignToReference>ZumzumSalesInvoiceParametersList</assignToReference>
             <operator>Add</operator>
@@ -241,7 +257,7 @@
     <assignments>
         <name>Add_Membership_Type_and_Amount_to_Installment_1</name>
         <label>Add Membership Type and Amount to Installment_1</label>
-        <locationX>1243</locationX>
+        <locationX>1241</locationX>
         <locationY>838</locationY>
         <assignmentItems>
             <assignToReference>Membership_Amount</assignToReference>
@@ -305,8 +321,8 @@
     <assignments>
         <name>Added_Next_Collection_Date</name>
         <label>Added Next Collection Date</label>
-        <locationX>2695</locationX>
-        <locationY>779</locationY>
+        <locationX>2893</locationX>
+        <locationY>770</locationY>
         <assignmentItems>
             <assignToReference>Booking_Instance.Next_Collection_Date__c</assignToReference>
             <operator>Assign</operator>
@@ -321,7 +337,7 @@
     <assignments>
         <name>Assign_Sales_Invoice_to_Parameters</name>
         <label>Assign Sales Invoice to Parameters</label>
-        <locationX>2232</locationX>
+        <locationX>2167</locationX>
         <locationY>606</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.salesInvoiceId</assignToReference>
@@ -331,14 +347,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Type_Of_Payment</targetReference>
+            <targetReference>Is_Membership_Chose_0</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Clear_Next_Collection_Date</name>
         <label>Clear Next Collection Date</label>
-        <locationX>2550</locationX>
-        <locationY>372</locationY>
+        <locationX>2880</locationX>
+        <locationY>440</locationY>
         <assignmentItems>
             <assignToReference>Booking_Instance.Next_Collection_Date__c</assignToReference>
             <operator>Assign</operator>
@@ -394,7 +410,7 @@
     <assignments>
         <name>Course_ZumzumSalesInvoiceParameter_Assignment</name>
         <label>Course ZumzumSalesInvoiceParameter Assignment</label>
-        <locationX>1918</locationX>
+        <locationX>1880</locationX>
         <locationY>599</locationY>
         <assignmentItems>
             <assignToReference>CourseZumzumSalesInvoiceParameter.bookingId</assignToReference>
@@ -464,6 +480,13 @@
             <operator>Assign</operator>
             <value>
                 <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>CourseZumzumSalesInvoiceParameter.contactId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Primary_Contact.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -561,6 +584,13 @@
                 <numberValue>1.0</numberValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>MembershipZumzumSalesInvoiceParameter.contactId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Primary_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_Membership_SI_Parameter</targetReference>
         </connector>
@@ -568,15 +598,8 @@
     <assignments>
         <name>Set_Assigned_for_Total_Fee</name>
         <label>Set Assigned for Total Fee</label>
-        <locationX>1363</locationX>
-        <locationY>1425</locationY>
-        <assignmentItems>
-            <assignToReference>PaymentPlanParameters.amount</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Membership_Amount</elementReference>
-            </value>
-        </assignmentItems>
+        <locationX>1364</locationX>
+        <locationY>1424</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.membershipType</assignToReference>
             <operator>Assign</operator>
@@ -642,7 +665,7 @@
     </choices>
     <choices>
         <name>CoursePlanCC</name>
-        <choiceText>Pay by installments</choiceText>
+        <choiceText>&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Pay by instalments&lt;/span&gt;</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>PlanCC</stringValue>
@@ -899,6 +922,31 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_Membership_Chose_0</name>
+        <label>Is Membership Chose ?</label>
+        <locationX>2316</locationX>
+        <locationY>608</locationY>
+        <defaultConnector>
+            <targetReference>Type_Of_Payment</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Membership Is False</defaultConnectorLabel>
+        <rules>
+            <name>Membership_Is_True_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Chosen_Membership_Result</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>No</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Cost_Membership</targetReference>
+            </connector>
+            <label>Membership Is True</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>NCT_Number_Is_Null</name>
         <label>NCT Number is Null</label>
         <locationX>771</locationX>
@@ -923,8 +971,8 @@
     <decisions>
         <name>Payment_Link_Result</name>
         <label>Payment Link Result</label>
-        <locationX>2687</locationX>
-        <locationY>592</locationY>
+        <locationX>2956</locationX>
+        <locationY>602</locationY>
         <defaultConnector>
             <targetReference>Payment_Error_Screen</targetReference>
         </defaultConnector>
@@ -1047,8 +1095,8 @@
     <decisions>
         <name>Type_Of_Payment</name>
         <label>Type Of Payment</label>
-        <locationX>2378</locationX>
-        <locationY>608</locationY>
+        <locationX>2641</locationX>
+        <locationY>613</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Payment_Only_For_Course</name>
@@ -1483,8 +1531,8 @@
     <recordUpdates>
         <name>Set_Payable_Amount</name>
         <label>Set Payable Amount</label>
-        <locationX>3023</locationX>
-        <locationY>594</locationY>
+        <locationX>3233</locationX>
+        <locationY>601</locationY>
         <connector>
             <targetReference>Payment_Details_Screen</targetReference>
         </connector>
@@ -1512,8 +1560,8 @@
     <screens>
         <name>Payment_Details_Screen</name>
         <label>Payment Details Screen</label>
-        <locationX>3181</locationX>
-        <locationY>595</locationY>
+        <locationX>3391</locationX>
+        <locationY>602</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
         <allowPause>false</allowPause>
@@ -1545,8 +1593,8 @@
     <screens>
         <name>Payment_Error_Screen</name>
         <label>Payment Error Screen</label>
-        <locationX>2696</locationX>
-        <locationY>332</locationY>
+        <locationX>3016</locationX>
+        <locationY>289</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
