@@ -79,7 +79,7 @@ public with sharing class ClaimFeeHelper {
         }
     
         purchases.add(purchaseInvoice);
-
+        System.debug('>>>REgistration Fees'+flowData[0].registrationFee);
         //Purchase credit
         Boolean isPurchaseCreditNeeded = flowData[0].registrationFee > 0;
         if (isPurchaseCreditNeeded) {
@@ -163,11 +163,16 @@ public with sharing class ClaimFeeHelper {
                 creditAmount = ledgerRecord.Zumzum__Net_Amount__c;
             }
         }
+        Boolean isPILineItemAdded = false;
         for (Zumzum__Ledger__c ledgerRecord : ledgerRecords) {
-            bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
-            bankLineItem.LedgerName = ledgerRecord.Name;
-            bankLineItem.Amount = creditAmount;
-            paymentLines.add(bankLineItem);
+            if((ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_INVOICE && isPILineItemAdded == false)|| 
+            ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_CREDIT){
+                isPILineItemAdded = true;
+                bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
+                bankLineItem.LedgerName = ledgerRecord.Name;
+                bankLineItem.Amount = creditAmount;
+                paymentLines.add(bankLineItem);
+            }
         }
         
         allocatedCreditWrapper.BankAllocateLines = paymentLines;
@@ -176,6 +181,7 @@ public with sharing class ClaimFeeHelper {
         if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
             sendEmailToFinance(invoiceIds);
         }
+        System.debug('>>>'+objResponse.ResponseMessage);
     }
 
     private static void sendEmailToFinance(List<Id> invoiceIds) {
