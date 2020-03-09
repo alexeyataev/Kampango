@@ -20,7 +20,8 @@
             <field>PractitionerEmail__c</field>
             <type>email</type>
         </recipients>
-        <senderType>DefaultWorkflowUser</senderType>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/DropInsEnquiryNotificationToPractitioner</template>
     </alerts>
     <alerts>
