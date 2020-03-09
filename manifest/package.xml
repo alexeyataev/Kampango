@@ -179,6 +179,8 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>cpm__Installment__c.Bank_Account__c</members>
+        <members>cpm__Installment__c.Sort_Code__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Course__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Zumzum__Required_Fields</members>
