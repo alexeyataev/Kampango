@@ -5,7 +5,7 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Booking Payment Details</name>
     <style>none</style>
-    <subject>{!relatedTo.Course__r.Sub_Type__c} booking confirmation</subject>
+    <subject>{!relatedTo.Course__r.Sub_Type__c} booking payment details</subject>
     <type>visualforce</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
