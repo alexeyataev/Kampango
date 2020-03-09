@@ -1363,6 +1363,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Membership_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>cpm__Installment__c.Membership_Type__c</field>
         <readable>true</readable>
@@ -1375,6 +1380,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.ga_decl_2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Partner_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
