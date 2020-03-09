@@ -169,8 +169,8 @@
     <actionCalls>
         <name>Create_Sales_Invoice_and_Sales_Invoice_Items</name>
         <label>Create Sales Invoice and Sales Invoice Items</label>
-        <locationX>2159</locationX>
-        <locationY>805</locationY>
+        <locationX>2168</locationX>
+        <locationY>797</locationY>
         <actionName>ZumzumCreatePostSalesInvoice</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -210,7 +210,7 @@
         <name>Add_Cost_Membership</name>
         <label>Add Cost Membership</label>
         <locationX>2618</locationX>
-        <locationY>978</locationY>
+        <locationY>979</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.amount</assignToReference>
             <operator>Add</operator>
@@ -225,8 +225,8 @@
     <assignments>
         <name>Add_Course_SI_Parameter</name>
         <label>Add Course SI Parameter</label>
-        <locationX>2051</locationX>
-        <locationY>606</locationY>
+        <locationX>2088</locationX>
+        <locationY>608</locationY>
         <assignmentItems>
             <assignToReference>ZumzumSalesInvoiceParametersList</assignToReference>
             <operator>Add</operator>
@@ -1901,7 +1901,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <subflows>
         <name>Booking_Gift_Aid_Declaration_Flow</name>
         <label>Booking Gift Aid Declaration Flow</label>
-        <locationX>1952</locationX>
+        <locationX>1930</locationX>
         <locationY>808</locationY>
         <connector>
             <targetReference>Get_Course_Nominal_Account</targetReference>
