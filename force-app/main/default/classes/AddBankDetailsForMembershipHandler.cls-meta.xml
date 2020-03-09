@@ -6,10 +6,5 @@
         <minorNumber>15</minorNumber>
         <namespace>cpm</namespace>
     </packageVersions>
-    <packageVersions>
-        <majorNumber>1</majorNumber>
-        <minorNumber>12</minorNumber>
-        <namespace>paybacs</namespace>
-    </packageVersions>
     <status>Active</status>
 </ApexClass>

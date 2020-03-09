@@ -8,20 +8,20 @@ public with sharing class AddBankDetailsForMembershipHandler {
             if(installment == null || installment.size() != 1 || installment[0] == null) {
                 throw new ListException('1 installment parameter must be passed');
             }
+
             String contactId = installment[0].cpm__Contact__c;
             Contact cont = [
-                SELECT NCT_Number__c, Branch__r.Branch_Number__c
+                SELECT NCT_Number__c, Branch__r.Branch_Number__c, Name
                 FROM Contact 
                 WHERE Id =: contactId
                 WITH SECURITY_ENFORCED
             ];
-            cpm__Payment_Profile__c paymentProfile = [
-                SELECT Id, paybacs__Sort_Code__c, cpm__Bank_Account__c, cpm__Holder_Name__c
-                FROM cpm__Payment_Profile__c
-                WHERE Id =: installment[0].cpm__Payment_Profile__c
-                WITH SECURITY_ENFORCED
-            ];
-            addBankDetailsResult = CareHelper.sendBankDetails(paymentProfile, cont);
+
+            if(String.isBlank(cont.NCT_Number__c)) {
+                return null;
+            }
+
+            addBankDetailsResult = CareHelper.sendBankDetails(installment[0], cont);
             return new List<AddBankDetailsResult> {addBankDetailsResult};
         } catch(Exception e) {
             addBankDetailsResult.error = e.getMessage();
