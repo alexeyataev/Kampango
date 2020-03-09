@@ -1,4 +1,4 @@
-<messaging:emailTemplate subject="{!relatedTo.Course__r.Sub_Type__c} booking confirmation" recipientType="Contact"
+<messaging:emailTemplate subject="{!relatedTo.Course__r.Sub_Type__c} booking payment details" recipientType="Contact"
     relatedToType="Booking__c" replyTo="bookings{!relatedTo.Course__r.PSA_Area__c}@nct.org.uk">
 
     <messaging:htmlEmailBody>
