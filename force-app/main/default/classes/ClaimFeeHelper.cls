@@ -158,21 +158,20 @@ public with sharing class ClaimFeeHelper {
         Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper bankLineItem;
 
         Decimal creditAmount = 0.00;
+        Integer invoicesCount = 0;
         for (Zumzum__Ledger__c ledgerRecord : ledgerRecords) {
             if (ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_CREDIT) {
                 creditAmount = ledgerRecord.Zumzum__Net_Amount__c;
+            } else if (ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_INVOICE) {
+                invoicesCount++;
             }
         }
-        Boolean isPILineItemAdded = false;
+        Decimal creditAmountPortion = creditAmount / invoicesCount;
         for (Zumzum__Ledger__c ledgerRecord : ledgerRecords) {
-            if((ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_INVOICE && isPILineItemAdded == false)|| 
-            ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_CREDIT){
-                isPILineItemAdded = true;
                 bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
                 bankLineItem.LedgerName = ledgerRecord.Name;
-                bankLineItem.Amount = creditAmount;
+                bankLineItem.Amount = creditAmountPortion;
                 paymentLines.add(bankLineItem);
-            }
         }
         
         allocatedCreditWrapper.BankAllocateLines = paymentLines;
