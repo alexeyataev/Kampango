@@ -11,6 +11,6 @@ public with sharing class AddMembershipScheduler implements Schedulable {
 	private static void runAddMembershipJob()
 	{
 		AddMembershipBatch addMembershipBatch = new AddMembershipBatch();
-		Database.executeBatch(addMembershipBatch);	
+		Database.executeBatch(addMembershipBatch, 100);	
 	}
 }
