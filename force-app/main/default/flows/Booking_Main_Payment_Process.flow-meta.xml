@@ -169,8 +169,8 @@
     <actionCalls>
         <name>Create_Sales_Invoice_and_Sales_Invoice_Items</name>
         <label>Create Sales Invoice and Sales Invoice Items</label>
-        <locationX>2168</locationX>
-        <locationY>797</locationY>
+        <locationX>2167</locationX>
+        <locationY>794</locationY>
         <actionName>ZumzumCreatePostSalesInvoice</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -182,10 +182,6 @@
                 <elementReference>ZumzumSalesInvoiceParametersList</elementReference>
             </value>
         </inputParameters>
-        <outputParameters>
-            <assignToReference>Sales_Invoice</assignToReference>
-            <name>output</name>
-        </outputParameters>
     </actionCalls>
     <assignments>
         <name>Add_Amount_To_Be_Paid</name>
@@ -229,8 +225,8 @@
     <assignments>
         <name>Add_Course_SI_Parameter</name>
         <label>Add Course SI Parameter</label>
-        <locationX>2088</locationX>
-        <locationY>608</locationY>
+        <locationX>2087</locationX>
+        <locationY>607</locationY>
         <assignmentItems>
             <assignToReference>ZumzumSalesInvoiceParametersList</assignToReference>
             <operator>Add</operator>
@@ -325,13 +321,13 @@
     <assignments>
         <name>Assign_Sales_Invoice_to_Parameters</name>
         <label>Assign Sales Invoice to Parameters</label>
-        <locationX>2239</locationX>
+        <locationX>2238</locationX>
         <locationY>608</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.salesInvoiceId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Sales_Invoice.Id</elementReference>
+                <elementReference>Create_Sales_Invoice_and_Sales_Invoice_Items.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -645,7 +641,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
             <assignToReference>Installment_For_Payment_By_DD.Sales_Invoice__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Sales_Invoice.Id</elementReference>
+                <elementReference>Create_Sales_Invoice_and_Sales_Invoice_Items.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -2226,14 +2222,6 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Contact</objectType>
-    </variables>
-    <variables>
-        <name>Sales_Invoice</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Zumzum__Sales_Invoice__c</objectType>
     </variables>
     <variables>
         <name>WithPartner</name>
