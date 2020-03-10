@@ -319,19 +319,6 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_Sales_Invoice_to_Parameters</name>
-        <label>Assign Sales Invoice to Parameters</label>
-        <locationX>2238</locationX>
-        <locationY>608</locationY>
-        <assignmentItems>
-            <assignToReference>PaymentPlanParameters.salesInvoiceId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Create_Sales_Invoice_and_Sales_Invoice_Items.Id</elementReference>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <assignments>
         <name>Clear_Next_Collection_Date</name>
         <label>Clear Next Collection Date</label>
         <locationX>2965</locationX>
@@ -611,8 +598,8 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <assignments>
         <name>Populate_Fields_of_Installment_Object_With_Bank_Number</name>
         <label>Populate Fields  of Installment Object With Bank Number</label>
-        <locationX>2388</locationX>
-        <locationY>829</locationY>
+        <locationX>2374</locationX>
+        <locationY>841</locationY>
         <assignmentItems>
             <assignToReference>Installment_For_Payment_By_DD.Bank_Details_Number__c</assignToReference>
             <operator>Assign</operator>
@@ -1290,8 +1277,8 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <recordCreates>
         <name>Create_Membership_Installment</name>
         <label>Create Membership Installment</label>
-        <locationX>2390</locationX>
-        <locationY>978</locationY>
+        <locationX>2375</locationX>
+        <locationY>995</locationY>
         <connector>
             <targetReference>Add_Cost_Membership</targetReference>
         </connector>
