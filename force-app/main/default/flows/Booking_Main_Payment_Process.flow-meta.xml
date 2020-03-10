@@ -169,12 +169,12 @@
     <actionCalls>
         <name>Create_Sales_Invoice_and_Sales_Invoice_Items</name>
         <label>Create Sales Invoice and Sales Invoice Items</label>
-        <locationX>2167</locationX>
-        <locationY>794</locationY>
+        <locationX>2145</locationX>
+        <locationY>807</locationY>
         <actionName>ZumzumCreatePostSalesInvoice</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Assign_Sales_Invoice_to_Parameters</targetReference>
+            <targetReference>Is_Membership_Chose_0</targetReference>
         </connector>
         <inputParameters>
             <name>zumzumSalesInvoiceParameterList</name>
@@ -330,9 +330,6 @@
                 <elementReference>Create_Sales_Invoice_and_Sales_Invoice_Items.Id</elementReference>
             </value>
         </assignmentItems>
-        <connector>
-            <targetReference>Is_Membership_Chose_0</targetReference>
-        </connector>
     </assignments>
     <assignments>
         <name>Clear_Next_Collection_Date</name>
@@ -614,8 +611,8 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <assignments>
         <name>Populate_Fields_of_Installment_Object_With_Bank_Number</name>
         <label>Populate Fields  of Installment Object With Bank Number</label>
-        <locationX>2390</locationX>
-        <locationY>819</locationY>
+        <locationX>2388</locationX>
+        <locationY>829</locationY>
         <assignmentItems>
             <assignToReference>Installment_For_Payment_By_DD.Bank_Details_Number__c</assignToReference>
             <operator>Assign</operator>
