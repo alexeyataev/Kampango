@@ -1,4 +1,4 @@
-<messaging:emailTemplate subject="{!relatedTo.Course__r.Sub_Type__c} booking confirmation" recipientType="Contact"
+<messaging:emailTemplate subject="{!relatedTo.Course__r.Sub_Type__c} booking payment details" recipientType="Contact"
     relatedToType="Booking__c" replyTo="bookings{!relatedTo.Course__r.PSA_Area__c}@nct.org.uk">
 
     <messaging:htmlEmailBody>
@@ -18,9 +18,8 @@
                 <p>Thank you for your payment for this {!relatedTo.Course__r.Sub_Type__c}. Your place is now fully confirmed.
                 </p>
 
-                <p><b>The details of your course are as follows:</b></p>
-
-                <c:ConfirmationEmailCourseDetails courseRecord="{!relatedTo.Course__r}" />
+                <c:ConfirmationEmailBookingPaymentDetails bookingRecordId="{!relatedTo.Id}" />
+                <p>If you have taken up membership, when you booked this course, watch out for a separate email with details of your membership. If you haven't and would like to join now to access discounts, exclusive content and support, please visit our <a href='https://www.nct.org.uk/membership-form/index.php?utm_source=parentforce&utm_medium=email&utm_campaign={!relatedTo.Course__r.Sub_Type__c}'>website</a></p>
 
                 <p>If we can provide you with any further information about our services or help in any other way please
                     do not hesitate to contact me on {!relatedTo.Course__r.Enquiries_PSA_Phone__c}.</p>

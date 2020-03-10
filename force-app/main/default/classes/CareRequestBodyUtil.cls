@@ -50,7 +50,7 @@ public with sharing class CareRequestBodyUtil {
         addMembership.branch = installment.cpm__Contact__r.Branch__r.Branch_Number__c;
         addMembership.userLogname = USER_LOG_NAME;
         addMembership.paymentMethod = paymentMethod;
-        addMembership.bankDetailNumber = installment.Bank_Details_Number__c;
+        addMembership.bankDetailNumber = installment.Bank_Details_Number__c != null ? installment.Bank_Details_Number__c : '';
         addMembership.claimDay = CLAIM_DAY;
         addMembership.ga_decl_1 = installment.ga_decl_1__c;
         addMembership.ga_decl_2 = installment.ga_decl_2__c;
