@@ -1,34 +1,30 @@
 <template>
   <template if:true={valuesLoaded}>
-    <div class="heading_2 lato-font">
+    <div class="heading_2">
       Hi {firstName},
     </div>
-    <div class="heading_4 lato-font slds-p-top_medium slds-p-bottom_large">
-      We're holding your place on the following course until {expirationDate}.
-      Complete your booking now to secure your place.
+    <div class="slds-p-top_medium slds-p-bottom_large intro_text">
+      <p>We're holding your place on the following course until {expirationDate}.
+      Complete your booking now to secure your place.</p>
     </div>
-    <div class='line'></div>
-    <div class="heading_2 lato-font slds-p-bottom_large">
+    
+    <div class="heading_2 section-heading slds-p-bottom_large">
       Your booking
     </div>
-    <div class="nct-primary-header-text">
+    <div class="heading_3">
       {title}
     </div>
-    <div class="heading_3 lato-font">
-      at {mainVenueName} ({startDate}
-      <span> - </span>
-      {endDate})
-    </div>
-    <div class="heading_3 lato-font">
-      <b>Booking reference:</b> &nbsp;{bookingPsaOffice}
-      <span> / </span>
-      {bookingName}
-    </div>
-    <div class="heading_3 lato-font">
-      <b>Course reference:</b> &nbsp;{coursePsaArea}
-      <span> / </span>
-      {courseName}
-    </div>
+    <p>
+      <span class="raleway-font font-weight-bold slds-m-right_x-large">Dates:</span>
+       {startDate} - {endDate} </p>
+    <p class="slds-m-top-x-large">
+      <span class="raleway-font font-weight-bold slds-m-right_x-large">Booking reference:</span>
+       &nbsp;{bookingPsaOffice} / {bookingName}
+    </p>
+    <p class="slds-m-top-x-large">
+      <span class="raleway-font font-weight-bold slds-m-right_x-large">Course reference:</span>
+       &nbsp;{coursePsaArea} / {courseName}
+    </p>
     <div class="slds-grid slds-wrap">
       <div
         class="regular-text lato-font slds-col slds-size_1-of-1 slds-large-size_5-of-6 slds-medium-size_5-of-6 slds-small-size_1-of-1"
@@ -50,17 +46,15 @@
     </template>
 
     <template if:true={additionalOfferInformation}>
-      <div class='heading_3 lato-font slds-p-top_large slds-p-bottom_large'>
-        <div>
-          <b>Other Information</b>
-        </div>
-        <div>
-          {additionalOfferInformation}
-        </div>
+      <div class='heading_4'>
+          Other information
       </div>
+        <p>
+          {additionalOfferInformation}
+        </p>
     </template>
-    <div class='line'></div>
-    <div class="heading_2 lato-font">
+   
+    <div class="heading_2 section-heading slds-p-top_large">
       Total - &#163;
       <lightning-formatted-number value={courseFee} minimum-fraction-digits="0">
       </lightning-formatted-number>

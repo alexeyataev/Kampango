@@ -3,9 +3,7 @@
   <div class="nct-header-text header-text-margin">Session(s)</div>
   <div class="slds-grid">
     <div class="padding-bottom_1 
-                slds-col slds-small-size_1-of-1 
-                slds-medium-size_7-of-12 
-                slds-large-size_7-of-12">
+                slds-col">
 
       <div class="lato-font regular-text padding-top_1">
 
@@ -55,15 +53,13 @@
     </div>
   </div>
 
-  <tempalte if:true={courseHasProvisionalReunion}>
-    <div class='heading_4 lato-font slds-p-top_large' >
-      <div>
-        <b>Course Reunion</b>
-      </div>
-      <div>
-        {provisionCourseReunionText}
-      </div>
+  <template if:true={courseHasProvisionalReunion}>
+    <div class="heading_4">
+       Course reunion
     </div>
-  </tempalte>
+    <p>
+        {provisionCourseReunionText}
+    </p>
+  </template>
 
 </template>

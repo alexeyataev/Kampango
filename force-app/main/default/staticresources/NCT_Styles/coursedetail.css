@@ -1,3 +1,50 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    font-size: 1.13rem;
+    font-weight: 300;
+    font-family: 'Lato', arial, san-serif;
+    line-height: 1.6;
+}
+
+
+
+/*** Header style overrides ***/
+
+.siteforceStarterBody .cCenterPanel { 
+    margin-top: 10px;
+}
+
+.logo {
+    text-align: center; 
+}
+
+.headerLogo[c-parentCommunityLogoComponent_parentCommunityLogoComponent] {
+    width: 200%;
+    height: .6rem;
+    background: #34a335;
+    clip-path: polygon(0 0,0 0,100% 0,150% 150%);
+    -webkit-clip-path: polygon(0 0,0 0,100% 0,150% 150%);
+    transform: translateX(-50%);
+    position: absolute;
+    left: 0;
+}
+/*** Header end ***/
+
+
+
+
+/*** Body container size override ***/
+.contentRegion {
+   max-width: 997px !important;	
+   margin: auto;
+}
+
+
+
+
 div.requiredInput {
     display: inline-block;
 }
@@ -10,26 +57,42 @@ div.marginVertical {
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
-.heading_2{
+.heading_2 {
     font-family : 'Raleway', arial, sans-serif;
-    font-size : 2rem; 
-    font-weight : 300; 
+    font-size : 2rem;
+    font-weight: 300;
     line-height : 2.625rem;
     color: #000000;
+    margin-top: 3.125rem;
+    padding-bottom: 1.125rem;
 }
+.section-heading::before {
+    content: "";
+    display: block;
+    border-top: 1px solid #d7d7d7;
+    width: 100%;
+    position: relative;
+    left: -35px;
+    top: -20px;
+    transform: translateX(-50%);
+}
+
 .heading_3{
     font-family : 'Raleway', arial, sans-serif;
-    font-size : 1.125rem; 
-    font-weight : 390; 
-    line-height : 2rem;
-    color: #000000; 
+    font-size : 1.563rem; 
+    font-weight : 500; 
+    line-height : 1.3;
+    color: #00886a; 
+    margin: 1.6em 0em 0.2em 0em;
 }
+
 .heading_4{
-    font-family : 'Raleway', arial, sans-serif;
-    font-size : 1.2rem; 
-    font-weight : 390; 
-    line-height : 2.625rem;
-    color: #000000; 
+    font-family: 'Raleway', arial, sans-serif;
+    font-size: 1.3125rem;
+    font-weight: 400;
+    color: #00886a;
+    line-height: 1.2;
+    margin: 1.9em 0em 1.5rem 0em;
 }
 .heading_5{
     font-family : 'Raleway', arial, sans-serif;
@@ -38,16 +101,41 @@ div.marginVertical {
     line-height : 2rem;
     color: #000000; 
 }
-.regular-text{
-    font-family : 'Raleway', arial, sans-serif;
-    font-size : 1.1rem; 
+.regular-text {
+    font-family : 'Lato', arial, sans-serif;
+    font-size : 1.13rem; 
     font-weight : 300; 
     line-height : 1.5rem;
     color: #000000; 
 }
-.lato-font {
-    font-family: Lato;
+
+.intro_text {
+    font-family : 'Lato', arial, sans-serif;
+    font-size : 1.3125rem; 
+    font-weight : 300; 
+    line-height : 1.6rem;
+    color: #000000; 
 }
+
+.strong_text {
+    font-weight: 600;
+}
+
+.lato-font {
+    font-family: 'Lato', san-serif;
+}
+.raleway-font {
+    font-family : 'Raleway', arial, sans-serif;
+}
+
+.font-weight-bold {
+    font-weight: 600;
+}
+
+.font-small {
+    font-size: 0.9em;
+}
+
 th, td {
     padding: 7px;
 }
@@ -151,9 +239,7 @@ th, td {
     margin-right: auto;
     margin-left: auto;
 }
-.mt-5{
-    margin-top: 3rem;
-}
+
 .padding-top_quarter-rem{
     padding-top: 0.5rem;
 }
@@ -173,10 +259,265 @@ display-row {
     display: table-row;
 }
 
-.line {
-    height:1px; 
-    width: 60%; 
-    background: rgba(1,1,1,.2); 
-    margin-top:2rem; 
-    margin-bottom:1rem;
+
+
+.mt-0 {
+    margin-top: 0;
+}
+
+.mt-5{
+    margin-top: 3rem;
+}
+
+mr-3
+
+
+/*** Override SLDS button styles ***/
+
+.slds-button_brand, .slds-button--brand, .actionsRight .slds-button_brand {
+    padding: 0.35rem 2.875rem !important;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    background-color: #3AA43B !important;
+    color: rgb(255, 255, 255) !important;
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+    transition: border 0.15s linear 0s;
+    border-color: #3AA43B;
+    font-size: 1.13em;
+    font-family: "Raleway";
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 5rem;
+}
+
+
+.slds-button_brand:hover, .slds-button_brand:focus, .slds-button--brand:hover, .slds-button--brand:focus {
+    background-color: #00876a !important;
+    color: rgb(255, 255, 255) !important;
+    border-color: #00876a !important;
+}
+
+.slds-button_neutral, .slds-button--neutral {
+    padding: 0.35rem 2.875rem !important;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    border: 1px solid #3AA43B;
+    transition: border .15s linear;
+    border-color: #3AA43B;
+    background-color: rgb(255, 255, 255);
+    font-size: 1.23rem;
+    font-family: "Lato";
+    font-weight: 400;
+    border-radius: 5rem;
+    color: #3AA43B;
+}
+
+.slds-button_neutral:hover, .slds-button_neutral:focus, .slds-button_neutral:hover, .slds-button_neutral:focus {
+    background-color: #00876a10 !important;
+    color: #00876a !important;
+    border-color: #00876a !important;
+}
+
+
+/*** Override SLDS Form styles ***/
+
+/* Radio buttons */
+
+input[type=radio] {
+	box-sizing: border-box;
+	padding: 0;
+	display: none;
+	position: absolute;
+	margin-left: 0;
+}
+
+input[type=radio] + label {
+	color: #000;
+	display: inline-block;
+	line-height: 1.5;
+    position: relative;
+    font-family: "Raleway",arial,sans-serif;
+    font-weight: 400;
+	cursor: pointer;
+	
+}
+
+input[type=radio] + label::before {
+    background-color: #e4e4e4;
+    border: 0.0625rem solid #aba9a5;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    content: '';
+    color: transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: 1.75rem;
+    left: 0;
+    position: relative;
+    top: 0;
+    width: 1.75rem;
+    float: left;
+	margin-right: 0.75rem;
+}
+
+input[type=radio]:checked + label::before {
+	letter-spacing: 0.625rem;
+    content: '';
+    background-color: #3aa43b;
+	border-color: #3aa43b;
+}
+
+
+/* Checkboxes */
+
+input[type=checkbox] {
+	display: none;
+}
+
+input[type=checkbox] + label {
+    color: #000;
+    display: inline-block;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1.75rem !important;
+    /* margin-left: -1.25rem !important; */
+    font-family: "Raleway",arial,sans-serif;
+    font-weight: 400;
+}
+
+input[type=checkbox]:checked + label::before {
+    letter-spacing: 0.625rem;
+    content: '';
+    background-color: #3aa43b;
+    border-color: #3aa43b;
+}
+
+input[type=checkbox] + label::before {
+    background-color: #e4e4e4;
+    border: 0.0625rem solid #aba9a5;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    content: '';
+    color: transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: 1.75rem;
+    left: -0.625rem;
+    position: relative;
+    top: 0;
+    width: 1.75rem;
+    float: left;
+}
+
+input[type=checkbox]:checked + label::after {
+    border: 0.125rem solid #fff;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 0.375rem;
+    left: 1.625rem;
+    opacity: 1;
+    position: absolute;
+    top: 0.55rem;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    width: 0.75rem;
+    z-index: 10;
+}
+
+.slds-checkbox_faux, .slds-radio--faux, .slds-radio_faux, .slds-checkbox--faux {
+    display: none !important; 
+}
+
+.slds-checkbox .slds-checkbox__label .slds-form-element__label {
+    display: inline;
+    vertical-align: middle;
+    font-size: 1.13rem;
+}
+
+.slds-checkbox, .slds-radio {
+    margin-bottom: 0.75rem;
+}
+
+
+/* Labels */
+
+.slds-form-element__label {
+    font-family: "Raleway", arial, sans-serif;
+    font-size: 1.13rem;
+    font-weight: 400;
+    color: #0e0e0e;
+}
+
+.slds-form-element__legend {
+     font-family: 'Raleway', arial, sans-serif;
+    font-size: 1.3125rem;
+    font-weight: 400;
+    color: #00886a;
+    line-height: 1.2;
+    margin: 1.9em 0em 1.5rem 0em;
+}
+
+.slds-required, .flowruntimeInputWrapper .required {
+    font-weight: 900;
+    color: #f5a029;
+    font-size: 1.13rem;
+}
+
+
+/* Form text */
+
+.uiOutputRichText p:first-child {
+    font-weight: 400;
+    font-family: "Raleway", arial, sans-serif;
+}
+
+
+
+
+/* Input group layout - flex column */
+
+.slds-form-element__group {
+    display: flex;
+
+}
+
+.slds-form-element__row {
+    margin-right: 5px;
+}
+
+
+
+
+/* Restrict Phone and Email fields to the same width as address */
+
+.flowruntimePhone, .flowruntimeEmail {
+    max-width: 700px;
+}
+
+
+
+
+
+.slds-input {
+    padding: 0.35rem 0.35rem 0.35rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 1.75rem;
+    font-family: "Raleway", arial, sans-serif;
+}
+
+.uiInput--select {
+    font-size: 1.13rem;
+    font-family: "Raleway", arial, sans-serif;
+    padding: 0.35rem 0.35rem 0.35rem 1rem !important;
+    margin-bottom: 0.5rem !important;
+    border-radius: 1.75rem !important;
+    height: 100% !important;
+    line-height: 2rem !important;
 }
