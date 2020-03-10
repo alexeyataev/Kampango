@@ -29,7 +29,6 @@ public with sharing class ZumzumCreatePostSalesInvoice {
             }
             newSalesInvoiceDataList.add(salesInvoice);
             List<Zumzum__Sales_Invoice__c> newSalesInvoices = salesInvoiceCreator.createSI(newSalesInvoiceDataList);
-            //salesInvoiceCreator.postSI(newSalesInvoices);
             return newSalesInvoices;
         } catch(Exception e) {
             return null;
