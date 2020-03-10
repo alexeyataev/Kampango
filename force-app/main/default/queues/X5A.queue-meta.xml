@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Queue xmlns="http://soap.sforce.com/2006/04/metadata">
     <doesSendEmailToMembers>false</doesSendEmailToMembers>
-    <name>5A</name>
+    <name>5A Approvers</name>
     <queueMembers>
         <publicGroups>
             <publicGroup>X5A_PSA_Area</publicGroup>

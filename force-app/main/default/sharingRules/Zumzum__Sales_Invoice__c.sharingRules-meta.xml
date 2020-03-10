@@ -13,17 +13,17 @@
             <value>Sales Invoice,Sales Credit</value>
         </criteriaItems>
     </sharingCriteriaRules>
-    <sharingCriteriaRules>
-        <fullName>ShareAllInvoicesWithParents</fullName>
+    <sharingGuestRules>
+        <fullName>ShareAllSalesInvoiceWithParents</fullName>
         <accessLevel>Read</accessLevel>
-        <label>ShareAllInvoicesWithParents</label>
+        <label>ShareAllSalesInvoiceWithParents</label>
         <sharedTo>
-            <group>Parent_Community_Group</group>
+            <guestUser>Parent_Community</guestUser>
         </sharedTo>
         <criteriaItems>
             <field>Zumzum__Paid__c</field>
             <operation>equals</operation>
             <value>N</value>
         </criteriaItems>
-    </sharingCriteriaRules>
+    </sharingGuestRules>
 </SharingRules>

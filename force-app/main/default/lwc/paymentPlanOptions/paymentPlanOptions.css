@@ -6,3 +6,7 @@
 .installmentsIsNotAvailableMessage {
     color: rgb(194, 57, 52);
 }
+
+.nextCollectionDateMessage {
+    margin-top: .5rem;
+}

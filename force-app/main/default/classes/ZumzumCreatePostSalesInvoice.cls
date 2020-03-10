@@ -26,7 +26,7 @@ public with sharing class ZumzumCreatePostSalesInvoice {
                 salesInvoiceLine.Dimension1 = zumzumSalesInvoiceParameter.dimension1Id;
                 salesInvoiceLine.Dimension2 = zumzumSalesInvoiceParameter.dimension2Id;
                 salesInvoice.LineItems.add(salesInvoiceLine);
-            }system.debug(salesInvoice);
+            }
             newSalesInvoiceDataList.add(salesInvoice);
             List<Zumzum__Sales_Invoice__c> newSalesInvoices = salesInvoiceCreator.createSI(newSalesInvoiceDataList);
             salesInvoiceCreator.postSI(newSalesInvoices);
@@ -42,6 +42,8 @@ public with sharing class ZumzumCreatePostSalesInvoice {
         salesInvoice.InvoiceDate = Date.today();
         salesInvoice.WrapperAPICustomFields = new List<Zumzum.APICustomFieldWrapper>();
         salesInvoice.WrapperAPICustomFields.add(new Zumzum.APICustomFieldWrapper('Zumzum__Sales_Invoice__c','Booking__c', zumzumSalesInvoiceParameter.bookingId)); 
+        salesInvoice.WrapperAPICustomFields.add(new Zumzum.APICustomFieldWrapper('Zumzum__Sales_Invoice__c','Zumzum__Contact__c',
+zumzumSalesInvoiceParameter.contactId)); 
         return salesInvoice;
     }
     private static void checkSalesInvoiceParameters(Zumzum.SalesInvoicePostService.SalesInvoiceWrapper salesInvoice, ZumzumSalesInvoiceParameters zumzumSalesInvoiceParameter) {

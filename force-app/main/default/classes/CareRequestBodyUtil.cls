@@ -50,14 +50,14 @@ public with sharing class CareRequestBodyUtil {
         addMembership.branch = installment.cpm__Contact__r.Branch__r.Branch_Number__c;
         addMembership.userLogname = USER_LOG_NAME;
         addMembership.paymentMethod = paymentMethod;
-        addMembership.bankDetailNumber = installment.Bank_Details_Number__c;
+        addMembership.bankDetailNumber = installment.Bank_Details_Number__c != null ? installment.Bank_Details_Number__c : '';
         addMembership.claimDay = CLAIM_DAY;
         addMembership.ga_decl_1 = installment.ga_decl_1__c;
         addMembership.ga_decl_2 = installment.ga_decl_2__c;
         addMembership.contactKey1 = installment.cpm__Contact__r.NCT_Number__c;
         addMembership.contactKey2 = installment.Partner_Contact__r.NCT_Number__c;
         addMembership.mType = installment.Membership_Type__c;
-        addMembership.amount = String.valueOf(installment.cpm__Amount__c);
+        addMembership.amount = String.valueOf(installment.Membership_Amount__c);
         addMembership.txCode = installment.Id;
         return JSON.serialize(addMembership, true);
     }

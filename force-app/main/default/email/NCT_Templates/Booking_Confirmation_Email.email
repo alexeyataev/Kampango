@@ -18,8 +18,6 @@
                 <p>Thank you for your payment for this {!relatedTo.Course__r.Sub_Type__c}. Your place is now fully confirmed.
                 </p>
 
-                <c:ConfirmationEmailBookingPaymentDetails bookingRecordId="{!relatedTo.Id}" /><br/>
-
                 <p><b>The details of your course are as follows:</b></p>
 
                 <c:ConfirmationEmailCourseDetails courseRecord="{!relatedTo.Course__r}" />

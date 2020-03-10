@@ -17,7 +17,7 @@ const BOOKING_FIELDS = [
         'Booking__c.Course__r.Additional_Offer_Information__c',
         'Booking__c.Course__r.Branch__r.Name',
         'Booking__c.Course__r.End_Date__c',
-        'Booking__c.Course__r.Main_Venue__r.Name',
+        'Booking__c.Course__r.Main_Venue_Name__c',
         'Booking__c.Course__r.PSA_Area__c',
         'Booking__c.Course__r.Start_Date__c',
         'Booking__c.Course__r.Title__c'
@@ -47,7 +47,7 @@ export default class CourseDetailsComponent extends LightningElement {
     @api title;
     @api get valuesLoaded(){return this.bookingId && this.courseId && this.stylesLoaded;}
     @api get venuesLoaded(){return this.sessions;}
-
+    
     @wire (getRecord, {recordId: '$bookingId', fields: BOOKING_FIELDS})
     retrieveRecord({error, data}){
         if(error){
@@ -80,7 +80,7 @@ export default class CourseDetailsComponent extends LightningElement {
             this.courseFee = this.bookingRecord.fields.Final_Fee__c.value;
             this.additionalOfferInformation = this.bookingRecord.fields.Course__r.value.fields.Additional_Offer_Information__c.value;
             this.mainTown = this.bookingRecord.fields.Course__r.value.fields.Branch__r.value.fields.Name.value;
-            this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue__r.value.fields.Name.value;
+            this.mainVenueName = this.bookingRecord.fields.Course__r.value.fields.Main_Venue_Name__c.value;
             this.title = this.bookingRecord.fields.Course__r.value.fields.Title__c.value;
             date = this.bookingRecord.fields.Course__r.value.fields.Start_Date__c.value;
             date = new Date(date);
