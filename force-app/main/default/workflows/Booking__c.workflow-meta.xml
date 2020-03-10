@@ -49,8 +49,8 @@
         <template>NCT_Templates/BookingTransferNotificationEmail</template>
     </alerts>
     <alerts>
-        <fullName>SentConfirmationEmail</fullName>
-        <description>SentConfirmationEmail</description>
+        <fullName>Sent_Booking_Confirmation_Email</fullName>
+        <description>Sent Booking Confirmation Email</description>
         <protected>false</protected>
         <recipients>
             <field>Primary_Contact__c</field>
@@ -59,6 +59,18 @@
         <senderAddress>nctcourses@nct.org.uk</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/Booking_Confirmation_Email</template>
+    </alerts>
+    <alerts>
+        <fullName>Sent_Booking_Payment_Details</fullName>
+        <description>Sent Booking Payment Details</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Primary_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>NCT_Templates/Booking_Payment_Details</template>
     </alerts>
     <fieldUpdates>
         <fullName>FillEmailFieldOnBooking</fullName>
