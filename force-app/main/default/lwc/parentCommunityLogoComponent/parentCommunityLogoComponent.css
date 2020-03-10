@@ -1,7 +1,19 @@
-.headerLogo {
-    width: 100%;
+
+.siteforceStarterBody .cCenterPanel { 
+    margin-top: 0px;
+}
+
+.logo {
+    text-align: center; 
+}
+
+.headerLogo[c-parentCommunityLogoComponent_parentCommunityLogoComponent] {
+    width: 200%;
     height: .6rem;
-    background: #34A335;
-    clip-path: polygon(0 30%, 0 0, 100% 0, 100% 100%);
-    -webkit-clip-path: polygon(0 30%, 0 0, 100% 0, 100% 100%);
+    background: #34a335;
+    clip-path: polygon(0 0,0 0,100% 0,150% 150%);
+    -webkit-clip-path: polygon(0 0,0 0,100% 0,150% 150%);
+    transform: translateX(-50%);
+    position: absolute;
+    left: 0;
 }

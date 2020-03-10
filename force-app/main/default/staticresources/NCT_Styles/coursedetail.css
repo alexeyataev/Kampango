@@ -136,6 +136,18 @@ div.marginVertical {
     font-size: 0.9em;
 }
 
+.textContent ul {
+    padding-left: 1.25rem;
+    margin-left: 0.9rem;
+}
+
+.textContent  li {
+    list-style: disc;
+    margin-bottom: 1rem;
+    padding-left: 0;
+    margin-left: 1rem;
+}
+
 th, td {
     padding: 7px;
 }
@@ -254,6 +266,9 @@ th, td {
 }
 .margin-bottom_half-rem{
     margin-bottom: 0.5rem;
+}
+.margin-bottom_full-rem{
+    margin-bottom: 1rem;
 }
 display-row {
     display: table-row;
@@ -461,7 +476,7 @@ input[type=checkbox]:checked + label::after {
     font-weight: 400;
     color: #00886a;
     line-height: 1.2;
-    margin: 1.9em 0em 1.5rem 0em;
+    margin: 0em 0em 1.5rem 0em;
 }
 
 .slds-required, .flowruntimeInputWrapper .required {
@@ -521,3 +536,4 @@ input[type=checkbox]:checked + label::after {
     height: 100% !important;
     line-height: 2rem !important;
 }
+
