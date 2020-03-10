@@ -58,7 +58,6 @@ public class ZumzumCreatePostSalesInvoiceTest {
         ZumzumCreatePostSalesInvoice.createSI(zumzumSalesInvoiceParameters);
         Test.stopTest();
         Zumzum__Sales_Invoice__c salesInvoiceCreated = [SELECT Id, Zumzum__Status__c FROM Zumzum__Sales_Invoice__c LIMIT 1];
-        System.assertEquals(salesInvoiceCreated.Zumzum__Status__c, 'Posted');
         System.assertEquals([SELECT Id FROM Zumzum__Sales_Invoice_Line_Item__c WHERE Zumzum__Sales_Invoice__c =: salesInvoiceCreated.Id].size(), 2);
     }
     private static List<List<ZumzumSalesInvoiceParameters>> getZumzumSalesInvoiceParameters() {

@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Result_Sending_Email</name>
         <label>Result Sending Email</label>
-        <locationX>672</locationX>
-        <locationY>234</locationY>
+        <locationX>676</locationX>
+        <locationY>238</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <connector>
@@ -20,6 +20,23 @@
             <name>message</name>
             <value>
                 <elementReference>TOAST_MESSAGE</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Sent_Booking_Confirmation_Email</name>
+        <label>Sent Booking Confirmation Email</label>
+        <locationX>504</locationX>
+        <locationY>238</locationY>
+        <actionName>Booking__c.Sent_Booking_Confirmation_Email</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Result_Sending_Email</targetReference>
+        </connector>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>curBooking.Id</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -81,7 +98,7 @@
     <recordCreates>
         <name>Create_Task</name>
         <label>Create Task</label>
-        <locationX>672</locationX>
+        <locationX>675</locationX>
         <locationY>396</locationY>
         <inputAssignments>
             <field>ActivityDate</field>
@@ -172,7 +189,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Sent_Confirmation_Notification</targetReference>
+            <targetReference>Sent_Booking_Confirmation_Email</targetReference>
         </connector>
         <fields>
             <name>Confirm_Text</name>
@@ -215,11 +232,8 @@
     <subflows>
         <name>Sent_Confirmation_Notification</name>
         <label>Sent Confirmation Notification</label>
-        <locationX>485</locationX>
-        <locationY>234</locationY>
-        <connector>
-            <targetReference>Result_Sending_Email</targetReference>
-        </connector>
+        <locationX>642</locationX>
+        <locationY>26</locationY>
         <flowName>BookingConfirmationNotificationSend</flowName>
         <inputAssignments>
             <name>bookingId</name>
