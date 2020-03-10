@@ -1946,6 +1946,11 @@
         <field>gaid__Gift_Aid_Declaration__c.gaid__Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Sales_Invoice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>	
         <editable>false</editable>	
         <field>cpm__Installment__c.cpm__Amount__c</field>	
@@ -1966,6 +1971,11 @@
         <field>cpm__Installment__c.cpm__Status__c</field>	
         <readable>true</readable>	
     </fieldPermissions>	
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.Sales_Invoice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>	
         <editable>false</editable>	
         <field>cpm__Recurring_Payment__c.cpm__Collection_Day_of_Month__c</field>	
