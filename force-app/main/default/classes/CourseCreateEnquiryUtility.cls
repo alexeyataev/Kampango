@@ -67,12 +67,11 @@ public without sharing class CourseCreateEnquiryUtility {
         booking.How_Heard__c = requestParameters.get('hearaboutus');
         booking.Info_for_Practitioner__c = requestParameters.get('additioninfo');
     
+        updateContactPreferences(contact.Id, requestParameters);
         Database.SaveResult bookingResult = Database.insert(booking, dmlOption);
         if (!bookingResult.isSuccess()) {
             throw new CreateEnquiryException(JSON.serialize(bookingResult.errors));
         }
-
-        updateContactPreferences(contact.Id, requestParameters);
     }
 
     private static List<sObject> getDuplicateRecords(List<Database.Error> errors) {
