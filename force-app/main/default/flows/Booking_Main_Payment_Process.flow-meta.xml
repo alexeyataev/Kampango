@@ -182,6 +182,7 @@
                 <elementReference>ZumzumSalesInvoiceParametersList</elementReference>
             </value>
         </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <assignments>
         <name>Add_Amount_To_Be_Paid</name>
