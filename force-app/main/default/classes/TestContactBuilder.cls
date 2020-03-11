@@ -16,7 +16,7 @@ public with sharing class TestContactBuilder {
 	private String mailingCity = 'Test city';
 	private String mailingPostalCode = 'Test code';
 	private String mailingCountry = 'Test country';
-	private String nctNumber = '123123';
+	private String nctNumber;
 
 	public TestContactBuilder withRecordType(string recordTypeName) {
         recordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordTypeName).getRecordTypeId();
