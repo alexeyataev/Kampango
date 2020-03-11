@@ -1,32 +1,27 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
 @isTest
 public without sharing class AddBankDetailsForMembershipTest {
+
     private static final String MESSAGE_TEXT_ERROR = 'Error';
     private static final String ERROR_NUMBER = '400';
+    private static final String BANK_DETAILS_NUMBER = '331257';
+
     @testSetup static void createTestData() {
+
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account account =  accountBuilder
             .withRecordType('Household Account')
+            .withBranchNumber('777')
             .insertRecord(true)
             .build();
+
         TestContactBuilder contactBuilder = new TestContactBuilder();
-        Contact primaryContact = contactBuilder.withRecordType('Client')
+        Contact primaryContact = contactBuilder
+            .withRecordType('Client')
             .withAccount(account)
             .withFirstName('John')
             .withLastName('Smith')
-            .withRecordType('Client')
-            .insertRecord(true)
-            .build();
-        TestPaymentProfileBuilder paymentProfileBuilder = new TestPaymentProfileBuilder();
-        cpm__Payment_Profile__c paymentProfile = paymentProfileBuilder.withContact(primaryContact)
-            .withSortCode('123456')
-            .withBankAccount('1234567890')
-            .withHolderName('John Smith')
-            .insertRecord(true)
-            .build();
-        TestInstallmentBuilder installmentBuilder = new TestInstallmentBuilder();
-        cpm__Installment__c installment = installmentBuilder.withPrimaryContact(primaryContact.Id)
-            .withPaymentProfile(paymentProfile.Id)
+            .withNctNumber('123123')
             .insertRecord(true)
             .build();
     }
@@ -36,17 +31,17 @@ public without sharing class AddBankDetailsForMembershipTest {
         CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = new CareRequestBodyUtil.ContactBankAccountObject();
         CareRequestBodyUtil.ContactBankAccountDetails contactBankAccountDetails = new CareRequestBodyUtil.ContactBankAccountDetails();
         contactBankAccountDetails.contactNumber = '3325461';
-        contactBankAccountDetails.bankDetailNumber = '331257';
+        contactBankAccountDetails.bankDetailNumber = BANK_DETAILS_NUMBER;
         contactBankAccountDetails.information = 'Added new account';
         contactBankAccountObject.contactBankAccount = contactBankAccountDetails;
         Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactBankAccountObject));
-        List<cpm__Installment__c> testInstallmentList = [SELECT Id, cpm__Payment_Profile__c, cpm__Contact__c FROM cpm__Installment__c LIMIT 1];
-        List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails(testInstallmentList);
+        List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails( getInstallmentList() );
         Test.stopTest();
-        System.assertEquals(resultList[0].bankDetailsNumber, '331257');
+
+        System.assertEquals(resultList[0].bankDetailsNumber, BANK_DETAILS_NUMBER, 'Will return Bank Detail Number');
     }
 
-    @isTest static void AddBankDetailsError_BankDetailsNotAdded_ErrorReturned() {
+    @isTest static void AddBankDetailsNull_NotNctNumber_NullReturned() {
         Test.startTest();
         CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = new CareRequestBodyUtil.ContactBankAccountObject();
         CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();
@@ -55,9 +50,30 @@ public without sharing class AddBankDetailsForMembershipTest {
         contactBankAccountObject.error = new List<CareRequestBodyUtil.ErrorObject>();
         contactBankAccountObject.error.add(errorObject);
         Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactBankAccountObject));
-        List<cpm__Installment__c> testInstallmentList = [SELECT Id, cpm__Contact__c, cpm__Payment_Profile__c FROM cpm__Installment__c LIMIT 1];
-        List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails(testInstallmentList);
+        List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails( getInstallmentList() );
         Test.stopTest();
-        System.assertEquals(resultList[0].error, MESSAGE_TEXT_ERROR);
+        System.assertEquals(resultList[0].error, MESSAGE_TEXT_ERROR, 'Will return message error');
+    }
+
+    @isTest static void AddBankDetailsExeption_NctNumberIsNotAdded_ExeptionReturned() {
+        Test.startTest();
+        cpm__Installment__c isntallmentInstance = new cpm__Installment__c();
+
+        Contact cnt = [SELECT Id, NCT_Number__c FROM Contact LIMIT 1];
+        cnt.NCT_Number__c = null;
+        update cnt;
+
+        isntallmentInstance.cpm__Contact__c = cnt.Id;
+        List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails( new List<cpm__Installment__c> {isntallmentInstance} );
+        Test.stopTest();
+    }
+
+    private static List<cpm__Installment__c> getInstallmentList() {
+        cpm__Installment__c isntallmentInstance = new cpm__Installment__c();
+        isntallmentInstance.cpm__Contact__c = [SELECT Id FROM Contact LIMIT 1].Id;
+        isntallmentInstance.Bank_Account__c = '12345678';
+        isntallmentInstance.Sort_Code__c = '2400000';
+
+        return new List<cpm__Installment__c> {isntallmentInstance};
     }
 }
