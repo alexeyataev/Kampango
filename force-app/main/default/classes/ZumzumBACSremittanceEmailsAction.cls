@@ -1,4 +1,4 @@
-public class ZumzumBACSremittanceEmailsAction {
+public without sharing class ZumzumBACSremittanceEmailsAction {
 	@invocableMethod(label='Send Remittance Email')
     public static List<Response> sendRemittanceEmails(List<Request> requests) {
         List<Response> result = new List<Response>();
