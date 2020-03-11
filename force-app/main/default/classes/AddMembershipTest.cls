@@ -10,18 +10,6 @@ public without sharing class AddMembershipTest {
             .withRecordType('Household Account')
             .insertRecord(true)
             .build();
-        Account branch =  accountBuilder.withRecordType('Branch')
-            .withName('Test Branch')
-            .withBillingPostalCode('qwerty')
-            .insertRecord(true)
-            .build();
-        Account organization = accountBuilder.withRecordType('Organization')
-            .withName('Test Organization')           
-            .withType('Supplier')
-            .insertRecord(true)
-            .withBillingEmail('test@test.com')
-            .withAccountNumber('test acc number')
-            .build();
         TestContactBuilder contactBuilder = new TestContactBuilder();
         Contact primaryContact = contactBuilder.withRecordType('Client')
             .withAccount(account)
