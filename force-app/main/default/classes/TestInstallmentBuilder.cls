@@ -1,11 +1,12 @@
 @isTest
 public with sharing class TestInstallmentBuilder {
-
-    private String primaryContactId;
-    private String bankDetailsNumber;
-    private String paymentProfileId;
-    private Boolean insertRecord = false;
     private Integer amount;
+    private String bankDetailsNumber;
+    private Boolean insertRecord = false;
+    private String paymentProcessor;
+    private String paymentProfileId;
+    private String primaryContactId;
+    private String status;
 
     public TestInstallmentBuilder withAmount(Integer amount)
     {
@@ -16,6 +17,18 @@ public with sharing class TestInstallmentBuilder {
     public TestInstallmentBuilder withPrimaryContact(String primaryContactId)
     {
         this.primaryContactId = primaryContactId;
+        return this;
+    }
+    
+    public TestInstallmentBuilder withPaymentProcessor(String paymentProcessor)
+    {
+        this.paymentProcessor = paymentProcessor;
+        return this;
+    }
+
+    public TestInstallmentBuilder withStatus(String status)
+    {
+        this.status = status;
         return this;
     }
 
@@ -40,10 +53,12 @@ public with sharing class TestInstallmentBuilder {
     public cpm__Installment__c build()
     {
         cpm__Installment__c installment = new cpm__Installment__c(
+            Bank_Details_Number__c = this.bankDetailsNumber,
             cpm__Amount__c = this.amount,
-            cpm__Payment_Profile__c = this.paymentProfileId,
             cpm__Contact__c = this.primaryContactId,
-            Bank_Details_Number__c = this.bankDetailsNumber
+            cpm__Payment_Processor__c = this.paymentProcessor,
+            cpm__Payment_Profile__c = this.paymentProfileId,
+            cpm__Status__c = this.status
         );
 
         if(insertRecord)
