@@ -13,7 +13,7 @@ global class ZumzumBACSremittanceEmailsBatch implements Database.Batchable<Payme
     
 	global List<Payment_Run_Line_Item__c> start(Database.BatchableContext context) {
         return [
-            SELECT Id, Name, Unpaid_Amount__c, Reference_Info__c, Contact_Name__c,
+            SELECT Id, Name, Unpaid_Amount__c, Reference_Info__c,
             	Purchase_Invoice__r.Zumzum__Contact__c
             FROM Payment_Run_Line_Item__c
             WHERE Payment_Run__c = :paymentRunId
