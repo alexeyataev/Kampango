@@ -3,7 +3,7 @@
     <fullName>Care_Membership_Added__c</fullName>
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
-    <label>Care Membership Added</label>
+    <label>CARE Membership Added</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
