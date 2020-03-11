@@ -1329,6 +1329,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Course__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Sales_Invoice__c.Booking__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1363,6 +1368,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Membership_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>cpm__Installment__c.Membership_Type__c</field>
         <readable>true</readable>
@@ -1379,7 +1389,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cpm__Installment__c.Partner_Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Installment__c.Sales_Invoice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Recurring_Payment__c.Sales_Invoice__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -118,6 +118,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.Booking_Journey_Payable_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Branch__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1433,6 +1438,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Course__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1941,6 +1951,11 @@
         <field>gaid__Gift_Aid_Declaration__c.gaid__Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Sales_Invoice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>	
         <editable>false</editable>	
         <field>cpm__Installment__c.cpm__Amount__c</field>	
@@ -1961,6 +1976,11 @@
         <field>cpm__Installment__c.cpm__Status__c</field>	
         <readable>true</readable>	
     </fieldPermissions>	
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.Sales_Invoice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>	
         <editable>false</editable>	
         <field>cpm__Recurring_Payment__c.cpm__Collection_Day_of_Month__c</field>	
@@ -2313,6 +2333,15 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>Zumzum__Purchase_Invoice__c</object>
         <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Zumzum__Sales_Invoice_Line_Item__c</object>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>	
         <allowCreate>true</allowCreate>	
