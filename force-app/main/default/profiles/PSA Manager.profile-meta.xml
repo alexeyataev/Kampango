@@ -1346,7 +1346,57 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Zumzum__Sales_Invoice_Line_Item__c.Course__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice_Line_Item__c.Zumzum__Dimension_1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice_Line_Item__c.Zumzum__Dimension_2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice_Line_Item__c.Zumzum__Nominal_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice_Line_Item__c.Zumzum__Product__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Booking__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Invoice_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Paid__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>	
