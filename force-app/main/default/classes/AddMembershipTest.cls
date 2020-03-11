@@ -18,9 +18,17 @@ public without sharing class AddMembershipTest {
             .withRecordType('Client')
             .insertRecord(true)
             .build();
+        TestPaymentProfileBuilder paymentProfileBuilder = new TestPaymentProfileBuilder();
+        cpm__Payment_Profile__c paymentProfile = paymentProfileBuilder.withContact(primaryContact)
+            .withSortCode('123456')
+            .withBankAccount('1234567890')
+            .withHolderName('John Smith')
+            .insertRecord(true)
+            .build();
         TestInstallmentBuilder installmentBuilder = new TestInstallmentBuilder();
         cpm__Installment__c installment = installmentBuilder.withPrimaryContact(primaryContact.Id)
             .withBankDetailsNumber('331257')
+            .withPaymentProfile(paymentProfile.Id)
             .withPaymentProcessor('PaymentHub-WorldPay')
             .withStatus('Collected')
             .insertRecord(true)
