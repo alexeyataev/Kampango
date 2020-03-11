@@ -1349,6 +1349,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>cpm__Installment__c.Bank_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>cpm__Installment__c.Bank_Details_Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1375,6 +1380,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>cpm__Installment__c.Membership_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Installment__c.Sort_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
