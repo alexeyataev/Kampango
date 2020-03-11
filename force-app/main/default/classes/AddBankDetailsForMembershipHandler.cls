@@ -17,10 +17,6 @@ public with sharing class AddBankDetailsForMembershipHandler {
                 WITH SECURITY_ENFORCED
             ];
 
-            if(String.isBlank(cont.NCT_Number__c)) {
-                return null;
-            }
-
             addBankDetailsResult = CareHelper.sendBankDetails(installment[0], cont);
             return new List<AddBankDetailsResult> {addBankDetailsResult};
         } catch(Exception e) {
