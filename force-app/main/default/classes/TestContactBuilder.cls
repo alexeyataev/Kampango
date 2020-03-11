@@ -16,6 +16,7 @@ public with sharing class TestContactBuilder {
 	private String mailingCity = 'Test city';
 	private String mailingPostalCode = 'Test code';
 	private String mailingCountry = 'Test country';
+	private String nctNumber;
 
 	public TestContactBuilder withRecordType(string recordTypeName) {
         recordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(recordTypeName).getRecordTypeId();
@@ -71,17 +72,22 @@ public with sharing class TestContactBuilder {
 
 	public TestContactBuilder withMailingCity(String mailingCity){
 		this.mailingCity = mailingCity;
-		return this;		
+		return this;
 	}
 
 	public TestContactBuilder withMailingCountry(String mailingCountry){
 		this.mailingCountry = mailingCountry;
-		return this;		
+		return this;
 	}
 
 	public TestContactBuilder withMailingPostalCode(String mailingPostalCode){
 		this.mailingPostalCode = mailingPostalCode;
-		return this;		
+		return this;
+	}
+
+	public TestContactBuilder withNctNumber(String nctNumber){
+		this.nctNumber = nctNumber;
+		return this;
 	}
 
     public TestContactBuilder insertRecord(Boolean insertRecord){
@@ -107,7 +113,8 @@ public with sharing class TestContactBuilder {
 			MailingStreet = this.mailingStreet,
 			MailingCity = this.mailingCity,
 			MailingCountry = this.mailingCountry,
-			MailingPostalCode = this.mailingPostalCode
+			MailingPostalCode = this.mailingPostalCode,
+			NCT_Number__c = this.nctNumber
 		);
 		if (account != null) {
 			testContact.AccountId = this.account.Id;
