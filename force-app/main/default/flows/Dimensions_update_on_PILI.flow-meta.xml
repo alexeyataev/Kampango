@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <assignments>
+        <name>Assign_dimensions_values_from_course</name>
+        <label>Assign dimensions values from course</label>
+        <locationX>400</locationX>
+        <locationY>50</locationY>
+        <assignmentItems>
+            <assignToReference>dimension1value</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>invoiceLineItem.Course__r.PSA_Area__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dimension2value</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>invoiceLineItem.Course__r.Sub_Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_dimension_1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_dimensions_values_from_session</name>
+        <label>Assign dimensions values from session</label>
+        <locationX>400</locationX>
+        <locationY>263</locationY>
+        <assignmentItems>
+            <assignToReference>dimension1value</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>invoiceLineItem.Session__r.Course__r.PSA_Area__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dimension2value</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>invoiceLineItem.Session__r.Course__r.Sub_Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_dimension_1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_dimensions_to_PILI</name>
         <label>Set dimensions to PILI</label>
-        <locationX>551</locationX>
-        <locationY>50</locationY>
+        <locationX>930</locationX>
+        <locationY>149</locationY>
         <assignmentItems>
             <assignToReference>invoiceLineItem.Zumzum__Dimension_1__c</assignToReference>
             <operator>Assign</operator>
@@ -23,9 +69,46 @@
             <targetReference>Update_PILI</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>Is_value_to_find_dimension_exist</name>
+        <label>Is value to find dimension exist?</label>
+        <locationX>131</locationX>
+        <locationY>158</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_course_not_blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>invoiceLineItem.Course__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_dimensions_values_from_course</targetReference>
+            </connector>
+            <label>Check course not blank</label>
+        </rules>
+        <rules>
+            <name>Check_session_not_blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>invoiceLineItem.Session__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_dimensions_values_from_session</targetReference>
+            </connector>
+            <label>Check session not blank</label>
+        </rules>
+    </decisions>
     <description>Links dimensions searching by Course values
 Version changes:
-Querying only active dimensions</description>
+If course is blank then getting values from session</description>
     <interviewLabel>Dimensions update on PILI {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Dimensions update on PILI</label>
     <processMetadataValues>
@@ -44,8 +127,8 @@ Querying only active dimensions</description>
     <recordLookups>
         <name>Get_dimension_1</name>
         <label>Get dimension 1</label>
-        <locationX>232</locationX>
-        <locationY>50</locationY>
+        <locationX>611</locationX>
+        <locationY>149</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_dimension_2</targetReference>
@@ -54,7 +137,7 @@ Querying only active dimensions</description>
             <field>Name</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>invoiceLineItem.Course__r.PSA_Area__c</elementReference>
+                <elementReference>dimension1value</elementReference>
             </value>
         </filters>
         <filters>
@@ -78,8 +161,8 @@ Querying only active dimensions</description>
     <recordLookups>
         <name>Get_dimension_2</name>
         <label>Get dimension 2</label>
-        <locationX>359</locationX>
-        <locationY>50</locationY>
+        <locationX>738</locationX>
+        <locationY>149</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_dimensions_to_PILI</targetReference>
@@ -88,7 +171,7 @@ Querying only active dimensions</description>
             <field>Name</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>invoiceLineItem.Course__r.Sub_Type__c</elementReference>
+                <elementReference>dimension2value</elementReference>
             </value>
         </filters>
         <filters>
@@ -112,15 +195,15 @@ Querying only active dimensions</description>
     <recordUpdates>
         <name>Update_PILI</name>
         <label>Update PILI</label>
-        <locationX>710</locationX>
-        <locationY>50</locationY>
+        <locationX>1089</locationX>
+        <locationY>149</locationY>
         <inputReference>invoiceLineItem</inputReference>
     </recordUpdates>
     <start>
         <locationX>50</locationX>
         <locationY>50</locationY>
         <connector>
-            <targetReference>Get_dimension_1</targetReference>
+            <targetReference>Is_value_to_find_dimension_exist</targetReference>
         </connector>
     </start>
     <status>Active</status>
@@ -133,12 +216,26 @@ Querying only active dimensions</description>
         <objectType>Zumzum__Dimension__c</objectType>
     </variables>
     <variables>
+        <name>dimension1value</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>dimension2</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Zumzum__Dimension__c</objectType>
+    </variables>
+    <variables>
+        <name>dimension2value</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>invoiceLineItem</name>
