@@ -6,6 +6,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>ZumzumBACSremittanceEmailsAction</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Zumzum__DeleteSalesInvoice</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -762,6 +766,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Payment_Run_Line_Item__c.Purchase_Invoice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Reference_Info__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
