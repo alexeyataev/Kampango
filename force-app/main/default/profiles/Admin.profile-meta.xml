@@ -804,7 +804,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Payment_Run_Line_Item__c.Is_Email_Sent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Payment_Run_Line_Item__c.Purchase_Invoice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Reference_Info__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1349,6 +1359,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>cpm__Installment__c.Bank_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>cpm__Installment__c.Bank_Details_Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1375,6 +1390,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>cpm__Installment__c.Membership_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Installment__c.Sort_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

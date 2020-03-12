@@ -79,7 +79,7 @@ public with sharing class ClaimFeeHelper {
         }
     
         purchases.add(purchaseInvoice);
-        System.debug('>>>REgistration Fees'+flowData[0].registrationFee);
+        
         //Purchase credit
         Boolean isPurchaseCreditNeeded = flowData[0].registrationFee > 0;
         if (isPurchaseCreditNeeded) {
@@ -133,6 +133,8 @@ public with sharing class ClaimFeeHelper {
 
     @future
     private static void allocateSupplierBalance(List<Id> invoiceIds) {
+        Financial_Settings__c financialSettings = Financial_Settings__c.getInstance();
+
         User currentUser = [
             SELECT Name, AccountId, ContactId 
             FROM User 
@@ -166,12 +168,21 @@ public with sharing class ClaimFeeHelper {
                 invoicesCount++;
             }
         }
+        
         Decimal creditAmountPortion = creditAmount / invoicesCount;
+
         for (Zumzum__Ledger__c ledgerRecord : ledgerRecords) {
+            if (ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_CREDIT) {
                 bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
                 bankLineItem.LedgerName = ledgerRecord.Name;
-                bankLineItem.Amount = creditAmountPortion;
+                bankLineItem.Amount = creditAmount;
                 paymentLines.add(bankLineItem);
+            } else if (ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_INVOICE) {
+                bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
+                bankLineItem.LedgerName = ledgerRecord.Name;
+                bankLineItem.Amount = ledgerRecord.Zumzum__Net_Amount__c * financialSettings.Practitioner_Registration_Fees_Rate__c / 100;
+                paymentLines.add(bankLineItem);
+            }
         }
         
         allocatedCreditWrapper.BankAllocateLines = paymentLines;
@@ -180,7 +191,6 @@ public with sharing class ClaimFeeHelper {
         if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
             sendEmailToFinance(invoiceIds);
         }
-        System.debug('>>>'+objResponse.ResponseMessage);
     }
 
     private static void sendEmailToFinance(List<Id> invoiceIds) {
