@@ -804,7 +804,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Payment_Run_Line_Item__c.Is_Email_Sent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Payment_Run_Line_Item__c.Purchase_Invoice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Reference_Info__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
