@@ -1,0 +1,80 @@
+public with sharing class AddBankReceiptForPaymentHandler {
+    private static final String DEBTOR_NOMINAL_CODE = '9300';
+    private static final String MEMBERSHIP_NOMINAL_CODE = '1003';
+    private static final String SALES_INVOICE_STATUS = 'Posted';
+    private static final String INSTALLMENT_STATUS = 'Collected';
+    private static final String PAYMENT_PROCESSOR = 'PaymentHub-WorldPay';
+    private static final String IS_PAID = 'N';
+    private static final Id BANK_ACCOUNT_ID = Bank_Account_Settings__c.getOrgDefaults().Bank_Account_Id__c;
+
+    public static void addBankReceipts(List<cpm__Payment__c> payments) {
+        try {
+            if (String.isBlank(BANK_ACCOUNT_ID)) {
+                throw new ListException('Set Bank Account Id custom setting');
+            }
+
+            Zumzum.BankCustomerReceiptService objBankCustomerReceiptService = new Zumzum.BankCustomerReceiptService();
+            Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper objReceiptWrapper = new Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper();
+            Map<Id, cpm__Payment__c> salesInvoicesPaymentsMap = new Map<Id, cpm__Payment__c>();
+
+            for (cpm__Payment__c payment : payments) {
+                if (payment.cpm__Installment__r.cpm__Status__c == INSTALLMENT_STATUS && payment.cpm__Installment__r.cpm__Payment_Processor__c == PAYMENT_PROCESSOR) {
+                    if (payment.cpm__Installment__r.Sales_Invoice__c != null) {
+                        salesInvoicesPaymentsMap.put(payment.cpm__Installment__r.Sales_Invoice__c, payment);
+                    } else if (payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c != null) {
+                        salesInvoicesPaymentsMap.put(payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c, payment);
+                    }
+                }
+            }
+
+            for (Zumzum__Sales_Invoice__c salesInvoice : [
+                    SELECT Zumzum__Account__c, (
+                            SELECT Name,
+                                   Zumzum__Debit__c,
+                                   Zumzum__Sub_Account_Nominal__c,
+                                   Zumzum__Sales_Invoice_Line_Item__c,
+                                   Zumzum__Sales_Invoice_Line_Item__r.Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c
+                            FROM Zumzum__Ledger__r
+                            WHERE Zumzum__Sub_Account_Nominal__c = :DEBTOR_NOMINAL_CODE AND Zumzum__Paid__c = :IS_PAID
+                    )
+                    FROM Zumzum__Sales_Invoice__c
+                    WHERE Id IN :salesInvoicesPaymentsMap.keySet() AND Zumzum__Status__c = :SALES_INVOICE_STATUS AND Zumzum__Paid__c = :IS_PAID
+                    WITH SECURITY_ENFORCED
+            ]) {
+                objReceiptWrapper.AccountId = salesInvoice.Zumzum__Account__c;
+                objReceiptWrapper.BankAccountId = BANK_ACCOUNT_ID;
+                objReceiptWrapper.PostingDate = Date.Today();
+                objReceiptWrapper.WrapperAPICustomFields = new List<Zumzum.APICustomFieldWrapper>();
+                objReceiptWrapper.WrapperAPICustomFields.add(new Zumzum.APICustomFieldWrapper('Zumzum__Bank_Receipt__c', 'Payment__c', salesInvoicesPaymentsMap.get(salesInvoice.Id).Id));
+                objReceiptWrapper.BankReceiptLines = createBankReceiptLines(salesInvoicesPaymentsMap.get(salesInvoice.Id), salesInvoice);
+                Zumzum.BankCustomerReceiptService.Response objResponse = objBankCustomerReceiptService.CreateBankCustomerReceipt(objReceiptWrapper);
+            }
+        } catch(Exception e) {
+            System.debug(e.getMessage());
+        }
+    }
+
+    private static List<Zumzum.BankCustomerReceiptService.BankReceiptLine> createBankReceiptLines(cpm__Payment__c payment, Zumzum__Sales_Invoice__c salesInvoice) {
+        List<Zumzum.BankCustomerReceiptService.BankReceiptLine> listBankReceiptLines = new List<Zumzum.BankCustomerReceiptService.BankReceiptLine>();
+        Zumzum.BankCustomerReceiptService.BankReceiptLine courseBankReceiptLine = new Zumzum.BankCustomerReceiptService.BankReceiptLine();
+        if (salesInvoice.Zumzum__Ledger__r.size() > 1) {
+            Zumzum.BankCustomerReceiptService.BankReceiptLine membershipBankReceiptLine = new Zumzum.BankCustomerReceiptService.BankReceiptLine();
+            for (Zumzum__Ledger__c ledger : salesInvoice.Zumzum__Ledger__r) {
+                if (ledger.Zumzum__Sales_Invoice_Line_Item__r.Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c == MEMBERSHIP_NOMINAL_CODE) {
+                    membershipBankReceiptLine.Amount = ledger.Zumzum__Debit__c;
+                    membershipBankReceiptLine.LedgerName = ledger.Name;
+                } else {
+                    courseBankReceiptLine.LedgerName = ledger.Name;
+                }                
+            }
+            courseBankReceiptLine.Amount = payment.cpm__Amount__c - membershipBankReceiptLine.Amount;
+            listBankReceiptLines.add(membershipBankReceiptLine);
+            listBankReceiptLines.add(courseBankReceiptLine);
+        } else {
+            courseBankReceiptLine.Amount = payment.cpm__Amount__c;
+            courseBankReceiptLine.LedgerName = salesInvoice.Zumzum__Ledger__r[0].Name;
+            listBankReceiptLines.add(courseBankReceiptLine);
+        }
+        return listBankReceiptLines;
+    }
+}
