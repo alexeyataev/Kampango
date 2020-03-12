@@ -6,6 +6,8 @@
     <columns>Zumzum__Status__c</columns>
     <columns>Zumzum__Total_Gross__c</columns>
     <columns>Zumzum__Total_Miles__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>OWNER.LAST_NAME</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>
