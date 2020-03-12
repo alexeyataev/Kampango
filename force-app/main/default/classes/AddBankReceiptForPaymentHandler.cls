@@ -2,8 +2,6 @@ public with sharing class AddBankReceiptForPaymentHandler {
     private static final String DEBTOR_NOMINAL_CODE = '9300';
     private static final String MEMBERSHIP_NOMINAL_CODE = '1003';
     private static final String SALES_INVOICE_STATUS = 'Posted';
-    private static final String INSTALLMENT_STATUS = 'Collected';
-    private static final String PAYMENT_PROCESSOR = 'PaymentHub-WorldPay';
     private static final String IS_PAID = 'N';
     private static final Id BANK_ACCOUNT_ID = Bank_Account_Settings__c.getOrgDefaults().Bank_Account_Id__c;
 
@@ -18,12 +16,10 @@ public with sharing class AddBankReceiptForPaymentHandler {
             Map<Id, cpm__Payment__c> salesInvoicesPaymentsMap = new Map<Id, cpm__Payment__c>();
 
             for (cpm__Payment__c payment : payments) {
-                if (payment.cpm__Installment__r.cpm__Status__c == INSTALLMENT_STATUS && payment.cpm__Installment__r.cpm__Payment_Processor__c == PAYMENT_PROCESSOR) {
-                    if (payment.cpm__Installment__r.Sales_Invoice__c != null) {
-                        salesInvoicesPaymentsMap.put(payment.cpm__Installment__r.Sales_Invoice__c, payment);
-                    } else if (payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c != null) {
-                        salesInvoicesPaymentsMap.put(payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c, payment);
-                    }
+                if (payment.cpm__Installment__r.Sales_Invoice__c != null) {
+                    salesInvoicesPaymentsMap.put(payment.cpm__Installment__r.Sales_Invoice__c, payment);
+                } else if (payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c != null) {
+                    salesInvoicesPaymentsMap.put(payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c, payment);
                 }
             }
 
