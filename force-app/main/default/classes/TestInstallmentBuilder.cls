@@ -4,7 +4,6 @@ public with sharing class TestInstallmentBuilder {
     private String bankDetailsNumber;
     private Boolean insertRecord = false;
     private String paymentProcessor;
-    private String paymentProfileId;
     private String primaryContactId;
     private String status;
 
@@ -38,12 +37,6 @@ public with sharing class TestInstallmentBuilder {
         return this;
     }
 
-    public TestInstallmentBuilder withPaymentProfile(String paymentProfileId)
-    {
-        this.paymentProfileId = paymentProfileId;
-        return this;
-    }
-
     public TestInstallmentBuilder insertRecord(Boolean insertRecord)
     {
         this.insertRecord = insertRecord;
@@ -57,7 +50,6 @@ public with sharing class TestInstallmentBuilder {
             cpm__Amount__c = this.amount,
             cpm__Contact__c = this.primaryContactId,
             cpm__Payment_Processor__c = this.paymentProcessor,
-            cpm__Payment_Profile__c = this.paymentProfileId,
             cpm__Status__c = this.status
         );
 
