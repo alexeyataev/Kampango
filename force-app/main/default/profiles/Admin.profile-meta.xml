@@ -1349,7 +1349,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>cpm__Installment__c.Care_Add_Membership_Attepmts__c</field>
+        <field>cpm__Installment__c.Care_Add_Membership_Attempts__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
