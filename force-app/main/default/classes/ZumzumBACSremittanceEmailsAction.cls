@@ -1,5 +1,5 @@
 public without sharing class ZumzumBACSremittanceEmailsAction {
-	@invocableMethod(label='Send Remittance Email')
+    @invocableMethod(label='Send Remittance Email')
     public static List<Response> sendRemittanceEmails(List<Request> requests) {
         List<Response> result = new List<Response>();
         Id paymentRunId = requests[0].paymentRunId;
@@ -10,7 +10,7 @@ public without sharing class ZumzumBACSremittanceEmailsAction {
         try {
             ZumzumBACSremittanceEmailsBatch batch = new ZumzumBACSremittanceEmailsBatch(paymentRunId, templateId, orgWideAddressId);
             Database.executeBatch(batch, 50);
-        	result.add(new Response(true));
+            result.add(new Response(true));
         } catch (Exception e) {
             result.add(new Response(false, e.getMessage()));
         }
@@ -42,13 +42,13 @@ public without sharing class ZumzumBACSremittanceEmailsAction {
         public String paymentRunId;
         
         @invocableVariable(
-        	label = 'Email Template'
+            label = 'Email Template'
             required = true
         )
         public String emailTemplateId;
         
         @invocableVariable(
-        	label = 'Org Wide Address'
+            label = 'Org Wide Address'
             required = true
         )
         public String orgWideEmailAddress;
