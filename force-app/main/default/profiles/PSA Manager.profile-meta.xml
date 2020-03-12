@@ -1775,6 +1775,9 @@
         <layout>Venue__c-Venue Layout</layout>
     </layoutAssignments>
     <layoutAssignments>	
+        <layout>Zumzum__Expense_Sheet__c-Capacity Expense Sheet Layout</layout>	
+    </layoutAssignments>
+    <layoutAssignments>	
         <layout>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</layout>	
     </layoutAssignments>
     <objectPermissions>
