@@ -508,7 +508,6 @@
         <members>Session__c-Session Layout</members>
         <members>Venue__c-Venue Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
-        <members>cpm__Installment__c-cpm__Installment Layout</members>
         <members>cpm__Payment__c-cpm__Payment Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
         <members>Zumzum__Bank_Receipt__c-Zumzum__Bank Receipt Layout</members>
