@@ -1344,6 +1344,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Sales_Invoice__c.Booking__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1365,6 +1370,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>cpm__Installment__c.Bank_Details_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Installment__c.Care_Add_Membership_Attempts__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
