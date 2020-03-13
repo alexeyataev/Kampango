@@ -2,6 +2,7 @@
 public with sharing class TestInstallmentBuilder {
     private Integer amount;
     private String bankDetailsNumber;
+    private Integer careAddMembershipAttempts = 0;
     private Boolean insertRecord = false;
     private String paymentProcessor;
     private String primaryContactId;
@@ -37,6 +38,11 @@ public with sharing class TestInstallmentBuilder {
         return this;
     }
 
+    public TestInstallmentBuilder withCareAddMembershipAttempts(Integer careAddMembershipAttempts) {
+        this.careAddMembershipAttempts = careAddMembershipAttempts;
+        return this;
+    }
+
     public TestInstallmentBuilder insertRecord(Boolean insertRecord)
     {
         this.insertRecord = insertRecord;
@@ -47,6 +53,7 @@ public with sharing class TestInstallmentBuilder {
     {
         cpm__Installment__c installment = new cpm__Installment__c(
             Bank_Details_Number__c = this.bankDetailsNumber,
+            Care_Add_Membership_Attempts__c = this.careAddMembershipAttempts,
             cpm__Amount__c = this.amount,
             cpm__Contact__c = this.primaryContactId,
             cpm__Payment_Processor__c = this.paymentProcessor,
