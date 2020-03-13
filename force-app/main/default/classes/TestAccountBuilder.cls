@@ -5,6 +5,7 @@ public class TestAccountBuilder {
     private String name = 'John Smith';
     private String type;
     private String billingPostalCode;
+    private String branchNumber = '123';
     private String billingEmail;
     private String accountNumber;
     private String bankSortCode;
@@ -77,6 +78,11 @@ public class TestAccountBuilder {
         return this;
     }
 
+    public TestAccountBuilder withBranchNumber(String branchNumber) {
+        this.branchNumber = branchNumber;
+        return this;
+    }
+
     public TestAccountBuilder withEnquiriesPSA(Id userId) {
         this.enquiriesPSA = userId;
         return this;
@@ -99,7 +105,8 @@ public class TestAccountBuilder {
             Zumzum__Bank_Sort_Code__c = this.bankSortCode,
             Zumzum__Bank_Account_No__c = this.bankAccountNumber,
             Zumzum__Bank_Account_Name__c = this.bankAccountName,
-            Enquiries_PSA__c = this.enquiriesPSA
+            Enquiries_PSA__c = this.enquiriesPSA,
+            Branch_Number__c = this.branchNumber
         );
 
         if (hasContactEmails) {

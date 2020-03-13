@@ -305,7 +305,7 @@ Added course sub type assigment</description>
         </connector>
         <fields>
             <name>totalFeeScreen</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgba(var(--sk_primary_foreground,29,28,29),1);&quot;&gt;The total value of fees included in this claim are:&lt;/span&gt; £{!claimFees.totalFee}&lt;/p&gt;&lt;p&gt;The total value of registration fees included in this claim is: &lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;£{!claimFees.registrationFee}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgba(var(--sk_primary_foreground,29,28,29),1);&quot;&gt;The total value of fees included in this claim are:&lt;/span&gt; £{!claimFees.totalFee}&lt;/p&gt;&lt;p&gt;The total value of registration fees that will be deducted from this claim is: &lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;£{!claimFees.registrationFee}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>

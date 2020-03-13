@@ -357,6 +357,22 @@
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Session__c</fields>
+        <fields>Zumzum__Amount__c</fields>
+        <relatedList>Zumzum__Purchase_Invoice_Line_Item__c.Course__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Zumzum__Date__c</fields>
+        <fields>Zumzum__Narrative__c</fields>
+        <fields>Zumzum__Quantity__c</fields>
+        <fields>Zumzum__Unit_Amount__c</fields>
+        <fields>Zumzum__Total_VAT__c</fields>
+        <fields>Zumzum__Total_Gross__c</fields>
+        <relatedList>Zumzum__Expense_Sheet_Detail__c.Course__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>

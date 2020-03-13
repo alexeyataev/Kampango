@@ -10,20 +10,20 @@
         <processMetadataValues>
             <name>flowSelection</name>
             <value>
-                <stringValue>Booking Send Email On Enquiry Created Flow</stringValue>
+                <stringValue>Dimensions update on PILI</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>Send email with flow</label>
+        <label>Fill dimensions</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
-        <actionName>Booking_Send_Email_On_Enquiry_Created_Flow</actionName>
+        <actionName>Dimensions_update_on_PILI</actionName>
         <actionType>flow</actionType>
         <inputParameters>
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
-                    <stringValue>String</stringValue>
+                    <stringValue>SObject</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -35,7 +35,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>recordId</stringValue>
+                    <stringValue>invoiceLineItem</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -47,18 +47,18 @@
             <processMetadataValues>
                 <name>objectType</name>
                 <value>
-                    <stringValue/>
+                    <stringValue>Zumzum__Purchase_Invoice_Line_Item__c</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>Reference</stringValue>
+                    <stringValue>SObject</stringValue>
                 </value>
             </processMetadataValues>
-            <name>recordId</name>
+            <name>invoiceLineItem</name>
             <value>
-                <elementReference>myVariable_current.Id</elementReference>
+                <elementReference>myVariable_current</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -87,35 +87,28 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>AND(Enquiry, NOT(Drop In), FromWebsite)</label>
+            <label>Are dimensions need update?</label>
         </rules>
     </decisions>
-    <description>Filtered out Drop-ins</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>AND(
- ISPICKVAL([Booking__c].Status__c, &#39;Enquiry&#39;),
- NOT( ISPICKVAL([Booking__c].Course__c.Type__c, &#39;Drop In&#39;)),
- $Profile.Name = &#39;Website Integration&#39;
-)</stringValue>
+                <stringValue>ISNEW() ||
+ISCHANGED( [Zumzum__Purchase_Invoice_Line_Item__c].Course__c )</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>AND(
- ISPICKVAL({!myVariable_current.Status__c}, &#39;Enquiry&#39;),
- NOT( ISPICKVAL({!myVariable_current.Course__r.Type__c}, &#39;Drop In&#39;)),
- {!$Profile.Name} = &#39;Website Integration&#39;
-)</expression>
+        <expression>ISNEW() ||
+ISCHANGED( {!myVariable_current.Course__c} )</expression>
     </formulas>
-    <interviewLabel>Booking_Send_Email_On_Enquiry_Created_Process-4_InterviewLabel</interviewLabel>
-    <label>Booking Send Email On Enquiry Created Process</label>
+    <interviewLabel>Fill_dimension_values_process-1_InterviewLabel</interviewLabel>
+    <label>Fill dimension values process</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
-            <stringValue>Booking__c</stringValue>
+            <stringValue>Zumzum__Purchase_Invoice_Line_Item__c</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -133,7 +126,7 @@
     <processMetadataValues>
         <name>TriggerType</name>
         <value>
-            <stringValue>onCreateOnly</stringValue>
+            <stringValue>onAllChanges</stringValue>
         </value>
     </processMetadataValues>
     <processType>Workflow</processType>
@@ -145,7 +138,7 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
-        <objectType>Booking__c</objectType>
+        <objectType>Zumzum__Purchase_Invoice_Line_Item__c</objectType>
     </variables>
     <variables>
         <name>myVariable_old</name>
@@ -153,6 +146,6 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
-        <objectType>Booking__c</objectType>
+        <objectType>Zumzum__Purchase_Invoice_Line_Item__c</objectType>
     </variables>
 </Flow>
