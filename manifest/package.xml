@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>AddBankReceiptForPaymentHandler</members>
+        <members>AddBankReceiptForWorldpayPaymentBatch</members>
+        <members>AddBankReceiptPaymentBatchTest</members>
+        <members>AddBankReceiptPaymentScheduler</members>
+        <members>AddBankReceiptPaymentSchedulerTest</members>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
         <members>BookingJourneyHelper</members>
@@ -182,6 +187,7 @@
         <members>cpm__Installment__c.Bank_Account__c</members>
         <members>cpm__Installment__c.Sort_Code__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Zumzum__Bank_Receipt__c.Payment__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Course__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Zumzum__Required_Fields</members>
         <members>Zumzum__Sales_Invoice_Line_Item__c.Course__c</members>
@@ -502,13 +508,15 @@
         <members>Session__c-Session Layout</members>
         <members>Venue__c-Venue Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
+        <members>cpm__Installment__c-cpm__Installment Layout</members>
+        <members>cpm__Payment__c-cpm__Payment Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
+        <members>Zumzum__Bank_Receipt__c-Zumzum__Bank Receipt Layout</members>
         <members>Zumzum__Batch_Bank_Payment__c-Zumzum__Batch Bank Payment Layout</members>
         <members>Zumzum__Expense_Sheet__c-Expense Sheet Practitioner Layout</members>
         <members>Zumzum__Expense_Sheet_Detail__c-Expense Sheet Detail Practitioner Layout</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
         <members>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</members>
-        <members>cpm__Installment__c-Installment Layout</members>
         <name>Layout</name>
     </types>
     <types>
