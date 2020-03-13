@@ -50,7 +50,7 @@ public with sharing class SendHTMLEmailPluginTest {
             LIMIT 1
         ];
 
-        if (SendHTMLEmailPlugin.emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
+        if (TestEmailUtility.emailsFeatureEnabled() && !orgEmailObject.isEmpty()) {
             String orgWideEmail = orgEmailObject[0].Address;
             Contact recipient = [
                 SELECT Id, AccountId 
@@ -90,7 +90,7 @@ public with sharing class SendHTMLEmailPluginTest {
     
     @isTest
     public static void noErrorSenderDisplayName () {
-        if (SendHTMLEmailPlugin.emailsFeatureEnabled()) {
+        if (TestEmailUtility.emailsFeatureEnabled()) {
             Contact recipient = [
                 SELECT Id, AccountId 
                 FROM Contact 
@@ -125,7 +125,7 @@ public with sharing class SendHTMLEmailPluginTest {
     
     @isTest
     public static void errorIfNoRecipient () {
-		if (SendHTMLEmailPlugin.emailsFeatureEnabled()) {
+		if (TestEmailUtility.emailsFeatureEnabled()) {
             Contact recipient = [
                 SELECT Id, AccountId 
                 FROM Contact 
@@ -155,7 +155,7 @@ public with sharing class SendHTMLEmailPluginTest {
 	
     @isTest
     public static void errorIfNoTemplate () {
-		if (SendHTMLEmailPlugin.emailsFeatureEnabled()) {
+		if (TestEmailUtility.emailsFeatureEnabled()) {
             Contact recipient = [
                 SELECT Id, AccountId 
                 FROM Contact 
