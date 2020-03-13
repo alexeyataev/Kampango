@@ -210,6 +210,7 @@
     </types>
     <types>
         <members>Account</members>
+        <members>Bank_Account_Settings__c</members>
         <members>Booking__c</members>
         <members>Branch_Weighting__c</members>
         <members>Card_Payment_Plan_Settings__c</members>
