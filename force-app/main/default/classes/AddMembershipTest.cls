@@ -1,6 +1,7 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
 @isTest
 public without sharing class AddMembershipTest {
+    private static final String CARE_WAITING_STATUS = 'Waiting';
     private static final String MESSAGE_TEXT_ERROR = 'Error Test Reason Message';
     private static final String SUCCESS_STATUS = 'Success';
     private static final String FAILURE_STATUS = 'Failure';
@@ -34,6 +35,15 @@ public without sharing class AddMembershipTest {
             .withBankDetailsNumber('331258')
             .withPaymentProcessor(PAYMENT_PROCESSOR)
             .withStatus(PAYMENT_STATUS)
+            .withCareStatus(FAILURE_STATUS)
+            .withCareAddMembershipAttempts(1)
+            .insertRecord(false)
+            .build(),
+            installmentBuilder.withPrimaryContact(primaryContact.Id)
+            .withBankDetailsNumber('331259')
+            .withPaymentProcessor(PAYMENT_PROCESSOR)
+            .withStatus(PAYMENT_STATUS)
+            .withCareStatus(FAILURE_STATUS)
             .withCareAddMembershipAttempts(1)
             .insertRecord(false)
             .build()
@@ -43,26 +53,33 @@ public without sharing class AddMembershipTest {
 
     @isTest static void AddMembershipBatch_MembershipAdded_StatusSuccess() {
         Test.startTest();
+        updateInstallmentCareWaiting('331258');
         CareRequestBodyUtil.MembershipOjbect membershipOjbect = new CareRequestBodyUtil.MembershipOjbect();
         membershipOjbect.status = SUCCESS_STATUS;
         Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(membershipOjbect));
         AddMembershipBatch camb = new AddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();
-        cpm__Installment__c installmentUpdatedNotAttemptedBefore = [SELECT Care_Add_Membership_Attempts__c, Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c WHERE Bank_Details_Number__c = '331257'];
-        cpm__Installment__c installmentUpdatedAttemptedBefore = [SELECT Care_Add_Membership_Attempts__c, Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c WHERE Bank_Details_Number__c = '331258'];
-        System.assertEquals(installmentUpdatedNotAttemptedBefore.Care_Add_Membership_Attempts__c, 1);
-        System.assertEquals(installmentUpdatedNotAttemptedBefore.Care_Status__c, SUCCESS_STATUS);
-        System.assertEquals(installmentUpdatedNotAttemptedBefore.Care_Error_Log__c, null);
-        System.assertEquals(installmentUpdatedNotAttemptedBefore.Care_Membership_Added__c, true);
-        System.assertEquals(installmentUpdatedAttemptedBefore.Care_Add_Membership_Attempts__c, 2);
-        System.assertEquals(installmentUpdatedAttemptedBefore.Care_Status__c, SUCCESS_STATUS);
-        System.assertEquals(installmentUpdatedAttemptedBefore.Care_Error_Log__c, null);
-        System.assertEquals(installmentUpdatedAttemptedBefore.Care_Membership_Added__c, true);
+        cpm__Installment__c installmentNotAttemptedBefore = [SELECT Care_Add_Membership_Attempts__c, Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c WHERE Bank_Details_Number__c = '331257'];
+        cpm__Installment__c installmentAttemptedBefore = [SELECT Care_Add_Membership_Attempts__c, Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c WHERE Bank_Details_Number__c = '331258'];
+        cpm__Installment__c installmentAttemptedBeforeWaiting = [SELECT Care_Add_Membership_Attempts__c, Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c WHERE Bank_Details_Number__c = '331259'];
+        System.assertEquals(installmentNotAttemptedBefore.Care_Add_Membership_Attempts__c, 1);
+        System.assertEquals(installmentNotAttemptedBefore.Care_Status__c, SUCCESS_STATUS);
+        System.assertEquals(installmentNotAttemptedBefore.Care_Error_Log__c, null);
+        System.assertEquals(installmentNotAttemptedBefore.Care_Membership_Added__c, true);
+        System.assertEquals(installmentAttemptedBefore.Care_Add_Membership_Attempts__c, 2);
+        System.assertEquals(installmentAttemptedBefore.Care_Status__c, SUCCESS_STATUS);
+        System.assertEquals(installmentAttemptedBefore.Care_Error_Log__c, null);
+        System.assertEquals(installmentAttemptedBefore.Care_Membership_Added__c, true);
+        System.assertEquals(installmentAttemptedBeforeWaiting.Care_Add_Membership_Attempts__c, 1);
+        System.assertEquals(installmentAttemptedBeforeWaiting.Care_Status__c, FAILURE_STATUS);
+        System.assertEquals(installmentAttemptedBeforeWaiting.Care_Error_Log__c, null);
+        System.assertEquals(installmentAttemptedBeforeWaiting.Care_Membership_Added__c, false);
     }
 
     @isTest static void AddMembershipBatchError_MembershipNotAdded_StatusError() {
         Test.startTest();
+        updateInstallmentCareWaiting('331258');
         CareRequestBodyUtil.MembershipOjbect membershipOjbect = new CareRequestBodyUtil.MembershipOjbect();
         membershipOjbect.status = FAILURE_STATUS;
         CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();
@@ -74,15 +91,26 @@ public without sharing class AddMembershipTest {
         AddMembershipBatch camb = new AddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();
-        cpm__Installment__c installmentUpdatedNotAttemptedBefore = [SELECT Care_Add_Membership_Attempts__c, Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c WHERE Bank_Details_Number__c = '331257'];
-        cpm__Installment__c installmentUpdatedAttemptedBefore = [SELECT Care_Add_Membership_Attempts__c, Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c WHERE Bank_Details_Number__c = '331258'];
-        System.assertEquals(installmentUpdatedNotAttemptedBefore.Care_Add_Membership_Attempts__c, 1);
-        System.assertEquals(installmentUpdatedNotAttemptedBefore.Care_Status__c, FAILURE_STATUS);
-        System.assertEquals(installmentUpdatedNotAttemptedBefore.Care_Error_Log__c, MESSAGE_TEXT_ERROR);
-        System.assertEquals(installmentUpdatedNotAttemptedBefore.Care_Membership_Added__c, false);
-        System.assertEquals(installmentUpdatedAttemptedBefore.Care_Add_Membership_Attempts__c, 2);
-        System.assertEquals(installmentUpdatedAttemptedBefore.Care_Status__c, FAILURE_STATUS);
-        System.assertEquals(installmentUpdatedAttemptedBefore.Care_Error_Log__c, MESSAGE_TEXT_ERROR);
-        System.assertEquals(installmentUpdatedAttemptedBefore.Care_Membership_Added__c, false);
+        cpm__Installment__c installmentNotAttemptedBefore = [SELECT Care_Add_Membership_Attempts__c, Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c WHERE Bank_Details_Number__c = '331257'];
+        cpm__Installment__c installmentAttemptedBefore = [SELECT Care_Add_Membership_Attempts__c, Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c WHERE Bank_Details_Number__c = '331258'];
+        cpm__Installment__c installmentAttemptedBeforeWaiting = [SELECT Care_Add_Membership_Attempts__c, Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c WHERE Bank_Details_Number__c = '331259'];
+        System.assertEquals(installmentNotAttemptedBefore.Care_Add_Membership_Attempts__c, 1);
+        System.assertEquals(installmentNotAttemptedBefore.Care_Status__c, FAILURE_STATUS);
+        System.assertEquals(installmentNotAttemptedBefore.Care_Error_Log__c, MESSAGE_TEXT_ERROR);
+        System.assertEquals(installmentNotAttemptedBefore.Care_Membership_Added__c, false);
+        System.assertEquals(installmentAttemptedBefore.Care_Add_Membership_Attempts__c, 2);
+        System.assertEquals(installmentAttemptedBefore.Care_Status__c, FAILURE_STATUS);
+        System.assertEquals(installmentAttemptedBefore.Care_Error_Log__c, MESSAGE_TEXT_ERROR);
+        System.assertEquals(installmentAttemptedBefore.Care_Membership_Added__c, false);
+        System.assertEquals(installmentAttemptedBeforeWaiting.Care_Add_Membership_Attempts__c, 1);
+        System.assertEquals(installmentAttemptedBeforeWaiting.Care_Status__c, FAILURE_STATUS);
+        System.assertEquals(installmentAttemptedBeforeWaiting.Care_Error_Log__c, null);
+        System.assertEquals(installmentAttemptedBeforeWaiting.Care_Membership_Added__c, false);
+    }
+
+    private static void updateInstallmentCareWaiting(String bankDetailsNumber) {
+        cpm__Installment__c installment = [SELECT Care_Add_Membership_Attempts__c, Care_Membership_Added__c, Care_Error_Log__c, Care_Status__c FROM cpm__Installment__c WHERE Bank_Details_Number__c =: bankDetailsNumber];
+        installment.Care_Status__c = CARE_WAITING_STATUS;
+        update installment;
     }
 }
