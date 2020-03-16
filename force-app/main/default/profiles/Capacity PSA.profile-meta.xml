@@ -1212,56 +1212,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Name</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Month__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Total_Gross__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Total_Miles__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Total_Net__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Total_VAT__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Year__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Course__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Account__c</field>
         <readable>true</readable>
@@ -2165,6 +2115,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Venue__c-Venue Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>	
+        <layout>Zumzum__Expense_Sheet__c-Capacity Expense Sheet Layout</layout>	
     </layoutAssignments>
     <layoutAssignments>	
         <layout>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</layout>	
