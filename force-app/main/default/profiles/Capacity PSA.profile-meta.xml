@@ -1956,25 +1956,35 @@
         <field>cpm__Installment__c.Sales_Invoice__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>	
-        <editable>false</editable>	
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Installment__c.cpm__Amount__c</field>	
-        <readable>true</readable>	
-    </fieldPermissions>	
-    <fieldPermissions>	
-        <editable>false</editable>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Account_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Account_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Installment__c.cpm__Due_Date__c</field>	
-        <readable>true</readable>	
-    </fieldPermissions>	
-    <fieldPermissions>	
-        <editable>false</editable>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Installment__c.cpm__Last_Collection_Date__c</field>	
-        <readable>true</readable>	
-    </fieldPermissions>	
-    <fieldPermissions>	
-        <editable>false</editable>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Installment__c.cpm__Status__c</field>	
-        <readable>true</readable>	
+        <readable>true</readable>
     </fieldPermissions>	
     <fieldPermissions>
         <editable>false</editable>
@@ -1982,34 +1992,34 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>	
-        <editable>false</editable>	
+        <editable>false</editable>
         <field>cpm__Recurring_Payment__c.cpm__Collection_Day_of_Month__c</field>	
-        <readable>true</readable>	
-    </fieldPermissions>	
-    <fieldPermissions>	
-        <editable>false</editable>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Recurring_Payment__c.cpm__End_Date__c</field>	
-        <readable>true</readable>	
-    </fieldPermissions>	
-    <fieldPermissions>	
-        <editable>false</editable>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Recurring_Payment__c.cpm__Frequency__c</field>	
-        <readable>true</readable>	
-    </fieldPermissions>	
-    <fieldPermissions>	
-        <editable>false</editable>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Recurring_Payment__c.cpm__ls_coll_date__c</field>	
-        <readable>true</readable>	
-    </fieldPermissions>	
-    <fieldPermissions>	
-        <editable>false</editable>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Recurring_Payment__c.cpm__Next_Collection_Date__c</field>	
-        <readable>true</readable>	
-    </fieldPermissions>	
-    <fieldPermissions>	
-        <editable>false</editable>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Recurring_Payment__c.cpm__Start_Date__c</field>	
-        <readable>true</readable>	
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -2037,9 +2047,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>	
-        <editable>false</editable>	
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Booking__c</field>	
-        <readable>true</readable>	
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -2066,18 +2076,18 @@
         <field>Zumzum__Sales_Invoice__c.Zumzum__Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>	
-        <editable>false</editable>	
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Gross__c</field>	
         <readable>true</readable>	
     </fieldPermissions>	
     <fieldPermissions>	
-        <editable>false</editable>	
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Paid_Amount__c</field>	
-        <readable>true</readable>	
-    </fieldPermissions>	
-    <fieldPermissions>	
-        <editable>false</editable>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Unpaid_Amount__c</field>	
         <readable>true</readable>	
     </fieldPermissions>
