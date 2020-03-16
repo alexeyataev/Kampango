@@ -1364,12 +1364,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>cpm__Installment__c.Account_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Installment__c.Account_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>cpm__Installment__c.Bank_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>cpm__Installment__c.Bank_Details_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Installment__c.Care_Add_Membership_Attempts__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

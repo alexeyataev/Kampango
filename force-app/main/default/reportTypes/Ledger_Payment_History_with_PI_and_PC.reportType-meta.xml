@@ -656,6 +656,26 @@
             <field>Zumzum__Purchase_Invoice__c.Zumzum__Unpaid_Amount__c</field>
             <table>Zumzum__Ledger_Payment_History__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Zumzum__Purchase_Credit_Line_Item__c.Zumzum__Total_Amount__c</field>
+            <table>Zumzum__Ledger_Payment_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Zumzum__Purchase_Credit_Line_Item__c.Zumzum__Total_Gross__c</field>
+            <table>Zumzum__Ledger_Payment_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Total_Amount__c</field>
+            <table>Zumzum__Ledger_Payment_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Total_Gross__c</field>
+            <table>Zumzum__Ledger_Payment_History__c</table>
+        </columns>
         <masterLabel>Ledger Payment History</masterLabel>
     </sections>
 </ReportType>
