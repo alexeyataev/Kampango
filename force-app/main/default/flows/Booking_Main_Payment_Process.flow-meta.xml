@@ -607,6 +607,20 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
             </value>
         </assignmentItems>
         <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.Account_Name__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Account_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.Account_Number__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Account_Number</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
             <assignToReference>Installment_For_Payment_By_DD.Sort_Code__c</assignToReference>
             <operator>Assign</operator>
             <value>
@@ -845,14 +859,6 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         <dataType>Currency</dataType>
         <value>
             <numberValue>57.0</numberValue>
-        </value>
-    </constants>
-    <constants>
-        <description>For AddBankDetails CARE Api.</description>
-        <name>BANK_ACCOUNT</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>55779911</stringValue>
         </value>
     </constants>
     <constants>
@@ -1668,6 +1674,11 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
             </validationRule>
         </fields>
         <fields>
+            <name>Payment_Date_Text</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Payment date&lt;/b&gt;&lt;/p&gt;&lt;p&gt;3rd of the month&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
             <name>Empty_Row</name>
             <fieldType>DisplayText</fieldType>
         </fields>
@@ -1678,7 +1689,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <validationRule>
-                <errorMessage>&lt;p&gt;Before you can continue, please indicate that you to the terms.&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                <errorMessage>&lt;p&gt;Before you can continue, please indicate you have read and agreed to the terms and conditions&lt;/p&gt;</errorMessage>
                 <formulaExpression>IF({!Direct_Debit_Confirm_Text} == TRUE, TRUE, FALSE)</formulaExpression>
             </validationRule>
         </fields>
