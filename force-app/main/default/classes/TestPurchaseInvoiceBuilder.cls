@@ -2,6 +2,7 @@
 public class TestPurchaseInvoiceBuilder {
 
 	private Id accountId;
+	private Id contactId;
 	private Date dueDate;
 	private Boolean insertRecord = false;
 	private Date invoiceDate;
@@ -10,6 +11,11 @@ public class TestPurchaseInvoiceBuilder {
 
 	public TestPurchaseInvoiceBuilder withAccount(Id accountId) {
 		this.accountId = accountId;
+		return this;
+	}
+
+	public TestPurchaseInvoiceBuilder withContact(Id contactId) {
+		this.contactId = contactId;
 		return this;
 	}
 
@@ -42,6 +48,7 @@ public class TestPurchaseInvoiceBuilder {
 
 		Zumzum__Purchase_Invoice__c testPurchaseInvoice = new Zumzum__Purchase_Invoice__c (
 				Zumzum__Account__c = this.accountId,
+				Zumzum__Contact__c = this.contactId,
 				Zumzum__Invoice_Date__c =this.invoiceDate,
 				Zumzum__Invoice_Due_Date__c =  this.dueDate,
 				Zumzum__Purchase_Order__c = this.purchaseOrderId,
