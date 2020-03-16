@@ -21,29 +21,29 @@ public class OutboundBACSpaymentHelper {
 
     private static void initiateBankSupplierPayment(Zumzum__Ledger__c ledger){
         // Initiate A New Bank Supplier Payment
- 		Zumzum.BankSupplierPaymentService objBankSupplierPaymentService = new Zumzum.BankSupplierPaymentService();
+         Zumzum.BankSupplierPaymentService objBankSupplierPaymentService = new Zumzum.BankSupplierPaymentService();
         // Create Bank Supplier Payment Wrapper 
-		Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper objPaymentWrapper = new Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper();
+        Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper objPaymentWrapper = new Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper();
         // Supplier Account ID 
-		objPaymentWrapper.AccountId = ledger.Zumzum__Customer_Supplier_Account_Name__c;
+        objPaymentWrapper.AccountId = ledger.Zumzum__Customer_Supplier_Account_Name__c;
         // Bank Account ID 
-		objPaymentWrapper.BankAccountId = ledger.Zumzum__Bank_Payment__r.Zumzum__Bank__c;
+        objPaymentWrapper.BankAccountId = ledger.Zumzum__Bank_Payment__r.Zumzum__Bank__c;
         // Bank Supplier Payment Posting Date 
-		objPaymentWrapper.PostingDate = ledger.Zumzum__Purchase_Invoice__r.Zumzum__Invoice_Date__c;
+        objPaymentWrapper.PostingDate = ledger.Zumzum__Purchase_Invoice__r.Zumzum__Invoice_Date__c;
         // TaxRate
         objPaymentWrapper.TaxRate = ledger.Zumzum__Tax_Code_Link__c;
         //Amount
         objPaymentWrapper.Amount = ledger.Zumzum__Amount__c;
         
-		// Create Bank Supplier Payment Line Wrapper 
-		List<Zumzum.BankSupplierPaymentService.BankPaymentLine> listBankPaymentLines = new List<Zumzum.BankSupplierPaymentService.BankPaymentLine>();
+        // Create Bank Supplier Payment Line Wrapper 
+        List<Zumzum.BankSupplierPaymentService.BankPaymentLine> listBankPaymentLines = new List<Zumzum.BankSupplierPaymentService.BankPaymentLine>();
         
         ZumZum.BankSupplierPaymentService.BankPaymentLine obPBankPaymentLine = new ZumZum.BankSupplierPaymentService.BankPaymentLine();
         // Ledger Record of Purchase Invoice Line To Be Paid 
         obPBankPaymentLine.LedgerName = ledger.Name; // typo in variable name
         // Amount Of Line Item To Be Paid
         obPBankPaymentLine.Amount = ledger.Zumzum__Amount__c;
-        // add to overall list    
+        // add to overall list
         listBankPaymentLines.add(obPBankPaymentLine);
          
         objPaymentWrapper.BankPaymentLines = listBankPaymentLines;

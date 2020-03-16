@@ -16,10 +16,10 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
         for (Payment_Run__c p: records){
             OutboundBACSpaymentHelper.processPaymentRun(p);
         }
-    }    
+    }
     public void finish(Database.BatchableContext bc){
         // execute any post-processing operations
-    } 
+    }
 
     public BatchOutboundBACSpayment(){
         //this.paymentRunId = paymentRunId;
@@ -30,7 +30,7 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
     }
     
     public void runBatch(Id paymentRunId){
-        BatchOutboundBACSpayment myBatchObject = new BatchOutboundBACSpayment(paymentRunId); 
+        BatchOutboundBACSpayment myBatchObject = new BatchOutboundBACSpayment(paymentRunId);
         Id batchId = Database.executeBatch(myBatchObject, 1);
     }
 }
