@@ -5,10 +5,10 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
             'SELECT ID, Name,' + ' ' +
                 '(' +
                 'SELECT Id, Name, Payment_Run__c, Account__c, Purchase_Invoice__c, Status__c, Unpaid_Amount__c' + ' ' +
-                'FROM Payment_Run_Line_Item__c' +
+                'FROM Payment_Run_Line_Items__r' +
                 ')' + ' '+ 
             'FROM Payment_Run__c' + ' ' + 
-            'WHERE Id = ' + paymentRunId
+            'WHERE Id = ' + ' ' +  '\'' + paymentRunId + '\''
         );
     }
 
@@ -20,6 +20,10 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
     public void finish(Database.BatchableContext bc){
         // execute any post-processing operations
     } 
+
+    public BatchOutboundBACSpayment(){
+        //this.paymentRunId = paymentRunId;
+    }
 
     public BatchOutboundBACSpayment(Id paymentRunId){
         this.paymentRunId = paymentRunId;

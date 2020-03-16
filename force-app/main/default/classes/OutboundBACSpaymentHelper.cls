@@ -7,7 +7,9 @@ public class OutboundBACSpaymentHelper {
         }
 
         List<Zumzum__Ledger__c> ledgers = [
-            SELECT ID, Name
+            SELECT ID, Name, Zumzum__Customer_Supplier_Account_Name__c,
+                Zumzum__Bank_Payment__r.Zumzum__Bank__c, Zumzum__Purchase_Invoice__r.Zumzum__Invoice_Date__c,
+                Zumzum__Tax_Code_Link__c, Zumzum__Amount__c
             FROM Zumzum__Ledger__c
                WHERE Zumzum__Purchase_Invoice__c IN :purchaseInvoiceIds
         ];
@@ -17,7 +19,7 @@ public class OutboundBACSpaymentHelper {
         }
     }
 
-    public static void initiateBankSupplierPayment(Zumzum__Ledger__c ledger){
+    private static void initiateBankSupplierPayment(Zumzum__Ledger__c ledger){
         // Initiate A New Bank Supplier Payment
  		Zumzum.BankSupplierPaymentService objBankSupplierPaymentService = new Zumzum.BankSupplierPaymentService();
         // Create Bank Supplier Payment Wrapper 
