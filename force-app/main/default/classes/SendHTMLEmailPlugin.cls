@@ -20,7 +20,7 @@ public with sharing class SendHTMLEmailPlugin {
         Messaging.SingleEmailMessage message = new  Messaging.SingleEmailMessage();
         
         Boolean hasRecipient = (targetObjId != null || bccEmails != null || ccEmails != null);
-        if (emailsFeatureEnabled() && hasRecipient) {
+        if (TestEmailUtility.emailsFeatureEnabled() && hasRecipient) {
 
             setEmailCapacity(targetObjId, ccEmails, bccEmails);
 
@@ -122,15 +122,6 @@ public with sharing class SendHTMLEmailPlugin {
         response.isSuccess = false;
         response.errors = errors;
         return response;
-    }
-    
-    public static Boolean emailsFeatureEnabled() {
-        try {
-            Messaging.reserveSingleEmailCapacity(1);
-        } catch (System.NoAccessException e) {
-            return false;
-        }
-        return true;
     }
     
     public class Request {
