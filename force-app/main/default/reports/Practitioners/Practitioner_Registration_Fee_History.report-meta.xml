@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>CUST_NAME</field>
+        <field>Zumzum__Ledger_Payment_History__c$Zumzum__Date__c</field>
     </columns>
     <columns>
-        <field>Zumzum__Purchase_Invoice__c.Zumzum__Invoice_Date__c</field>
-    </columns>
-    <columns>
-        <field>Zumzum__Purchase_Invoice__c.Zumzum__Paid__c</field>
+        <field>Zumzum__Ledger_Payment_History__c$Zumzum__Purchase_Invoice__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>Zumzum__Purchase_Invoice__c.Zumzum__Total_Net__c</field>
+        <field>Zumzum__Ledger_Payment_History__c$Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Total_Gross__c</field>
+    </columns>
+    <columns>
+        <field>Zumzum__Ledger_Payment_History__c$Zumzum__Purchase_Credit__c</field>
+    </columns>
+    <columns>
+        <field>Zumzum__Ledger_Payment_History__c$Zumzum__Amount__c</field>
     </columns>
     <filter>
         <criteriaItems>
-            <column>Zumzum__Purchase_Invoice__c.Zumzum__Type__c</column>
+            <column>Zumzum__Ledger_Payment_History__c$Zumzum__Purchase_Credit__c</column>
+            <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>Purchase Credit</value>
+            <operator>notEqual</operator>
+            <value/>
         </criteriaItems>
         <language>en_US</language>
     </filter>
@@ -26,15 +30,15 @@
     <name>Registration Fee History</name>
     <params>
         <name>co</name>
-        <value>0</value>
+        <value>1</value>
     </params>
-    <reportType>CustomEntityCustomEntity$Zumzum__Purchase_Invoice__c$Zumzum__Purchase_Invoice_Line_Item__c@Zumzum__Purchase_Invoice_Line_Item__c.Practitioner__c</reportType>
+    <reportType>Ledger_Payment_History_with_PI_and_PC__c</reportType>
     <scope>user</scope>
     <showDetails>true</showDetails>
-    <showGrandTotal>false</showGrandTotal>
+    <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
-        <dateColumn>Zumzum__Purchase_Invoice__c.Zumzum__Invoice_Date__c</dateColumn>
+        <dateColumn>Zumzum__Ledger_Payment_History__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CURFY</interval>
     </timeFrameFilter>
 </Report>
