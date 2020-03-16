@@ -9,9 +9,12 @@ public class OutboundBACSpaymentHelper {
         List<Zumzum__Ledger__c> ledgers = [
             SELECT ID, Name, Zumzum__Customer_Supplier_Account_Name__c,
                 Zumzum__Bank_Payment__r.Zumzum__Bank__c, Zumzum__Purchase_Invoice__r.Zumzum__Invoice_Date__c,
-                Zumzum__Tax_Code_Link__c, Zumzum__Amount__c
+                Zumzum__Tax_Code_Link__c, Zumzum__Amount__c,
+                Zumzum__Sub_Account_Nominal_Link__c,
+                Zumzum__Net_Amount__c
             FROM Zumzum__Ledger__c
                WHERE Zumzum__Purchase_Invoice__c IN :purchaseInvoiceIds
+                   AND Zumzum__Customer_Supplier_Account_Name__c <> ''
         ];
 
         for (Zumzum__Ledger__c ledger: ledgers) {
@@ -27,14 +30,13 @@ public class OutboundBACSpaymentHelper {
         // Supplier Account ID 
         objPaymentWrapper.AccountId = ledger.Zumzum__Customer_Supplier_Account_Name__c;
         // Bank Account ID 
-        objPaymentWrapper.BankAccountId = ledger.Zumzum__Bank_Payment__r.Zumzum__Bank__c;
+        objPaymentWrapper.BankAccountId = 'a3k4E000000A0aL'; // ToDo: get from custom setting. NOT ledger.Zumzum__Sub_Account_Nominal_Link__c;
         // Bank Supplier Payment Posting Date 
-        objPaymentWrapper.PostingDate = ledger.Zumzum__Purchase_Invoice__r.Zumzum__Invoice_Date__c;
+        objPaymentWrapper.PostingDate = Date.Today();
         // TaxRate
         objPaymentWrapper.TaxRate = ledger.Zumzum__Tax_Code_Link__c;
         //Amount
-        objPaymentWrapper.Amount = ledger.Zumzum__Amount__c;
-        
+        objPaymentWrapper.Amount = ledger.Zumzum__Net_Amount__c; // ledger.Zumzum__Amount__c;
         // Create Bank Supplier Payment Line Wrapper 
         List<Zumzum.BankSupplierPaymentService.BankPaymentLine> listBankPaymentLines = new List<Zumzum.BankSupplierPaymentService.BankPaymentLine>();
         
@@ -42,7 +44,7 @@ public class OutboundBACSpaymentHelper {
         // Ledger Record of Purchase Invoice Line To Be Paid 
         obPBankPaymentLine.LedgerName = ledger.Name; // typo in variable name
         // Amount Of Line Item To Be Paid
-        obPBankPaymentLine.Amount = ledger.Zumzum__Amount__c;
+        obPBankPaymentLine.Amount = ledger.Zumzum__Net_Amount__c;// ledger.Zumzum__Amount__c;
         // add to overall list
         listBankPaymentLines.add(obPBankPaymentLine);
          
