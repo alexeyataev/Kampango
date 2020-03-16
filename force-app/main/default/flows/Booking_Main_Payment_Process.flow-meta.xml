@@ -4,13 +4,16 @@
         <description>If returned false then to Client will give the ability to chose another variant payment.</description>
         <name>Add_Bank_Details_For_Membership_Handler</name>
         <label>Add Bank Details For Membership Handler</label>
-        <locationX>1072</locationX>
-        <locationY>1594</locationY>
+        <locationX>1067</locationX>
+        <locationY>1589</locationY>
         <actionName>AddBankDetailsForMembershipHandler</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Is_Banks_Number_True</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>DD_Payment_Is_Not_Available</targetReference>
+        </faultConnector>
         <inputParameters>
             <name>installment</name>
             <value>
@@ -36,6 +39,9 @@
         <connector>
             <targetReference>Clear_Next_Collection_Date</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputParameters>
             <name>errorPage</name>
             <value>
@@ -97,6 +103,9 @@
         <connector>
             <targetReference>Added_Next_Collection_Date</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputParameters>
             <name>membershipType</name>
             <value>
@@ -176,6 +185,9 @@
         <connector>
             <targetReference>Assign_Sales_Invoice_to_Parameters</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputParameters>
             <name>zumzumSalesInvoiceParameterList</name>
             <value>
@@ -585,8 +597,8 @@
 If AddBankDetails return BankNumber then this Installment will continue to populate (e.g Sales_Invoice, BankNumber will populate before payment Apex Action).</description>
         <name>Populate_Fields_of_Installment_Object_For_Membership</name>
         <label>Populate Fields  of Installment Object For Membership</label>
-        <locationX>1072</locationX>
-        <locationY>1375</locationY>
+        <locationX>1067</locationX>
+        <locationY>1404</locationY>
         <assignmentItems>
             <assignToReference>Installment_For_Payment_By_DD.cpm__Contact__c</assignToReference>
             <operator>Assign</operator>
@@ -595,17 +607,10 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Installment_For_Payment_By_DD.Bank_Account__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>BANK_ACCOUNT</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>Installment_For_Payment_By_DD.Sort_Code__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>SORT_CODE</elementReference>
+                <elementReference>Sort_Code</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -914,14 +919,6 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         </value>
     </constants>
     <constants>
-        <description>For AddBankDetails CARE Api.</description>
-        <name>SORT_CODE</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>200000</stringValue>
-        </value>
-    </constants>
-    <constants>
         <name>WITHOUT_MEMBERSHIP</name>
         <dataType>String</dataType>
         <value>
@@ -968,7 +965,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <decisions>
         <name>Is_Banks_Number_True</name>
         <label>Is Banks Number True</label>
-        <locationX>1945</locationX>
+        <locationX>1925</locationX>
         <locationY>1827</locationY>
         <defaultConnector>
             <targetReference>DD_Payment_Is_Not_Available</targetReference>
@@ -1185,7 +1182,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Populate_Fields_of_Installment_Object_For_Membership</targetReference>
+                <targetReference>Direct_Debit_Bank_Account_Details_Screen</targetReference>
             </connector>
             <label>Membership by Direct Debit</label>
         </rules>
@@ -1457,7 +1454,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <recordLookups>
         <name>Get_Membership_Nominal_Account</name>
         <label>Get Membership Nominal Account</label>
-        <locationX>1620</locationX>
+        <locationX>1618</locationX>
         <locationY>1425</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1610,6 +1607,80 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
             <name>DD_Payment_Is_Not_Available_Text</name>
             <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Unfortunately, direct debit membership payment is not available at this time. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;﻿Please click Next to choose a different payment option.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Direct_Debit_Bank_Account_Details_Screen</name>
+        <label>Direct Debit Bank Account Details Screen</label>
+        <locationX>1068</locationX>
+        <locationY>1231</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Populate_Fields_of_Installment_Object_For_Membership</targetReference>
+        </connector>
+        <fields>
+            <name>Direct_Debit_Guarantee_Text</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;The Direct Debit Guarantee&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;If there are any changes to the amount, date or frequency of your Direct Debit NCT will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request NCT to collect a payment, confirmation of the amount and date will be given to you at the time of the request.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;If an error is made in the payment of your Direct Debit, by NCT or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;If you receive a refund you are not entitled to, you must pay it back when NCT asks you to.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;﻿You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify us.&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Direct_Debit_Bank_Account_Details_Text</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Direct debit details&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;If you are not the account holder or bank account requires more than one signatory then please ask our Enquiries team to send you a paper Direct Debit Instruction.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Account_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Account Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Account_Number</name>
+            <dataType>String</dataType>
+            <fieldText>Account Number</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;Please make sure that the Bank Account Number consists of 8 digits and is numeric&amp;nbsp;e.g &#39;12345678&#39;.&lt;/p&gt;</errorMessage>
+                <formulaExpression>AND (
+ LEN({!Account_Number}) == 8, 
+ ISNUMBER({!Account_Number})
+)</formulaExpression>
+            </validationRule>
+        </fields>
+        <fields>
+            <name>Sort_Code</name>
+            <dataType>String</dataType>
+            <fieldText>Sort Code</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;Please make sure that the Sort Code consists of 6 digits and is numeric&amp;nbsp;e.g &#39;123456&#39;.&lt;/p&gt;</errorMessage>
+                <formulaExpression>AND (
+  LEN({!Sort_Code}) == 6, 
+   ISNUMBER({!Sort_Code})
+)</formulaExpression>
+            </validationRule>
+        </fields>
+        <fields>
+            <name>Empty_Row</name>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Direct_Debit_Confirm_Text</name>
+            <dataType>Boolean</dataType>
+            <fieldText>I confirm that I&#39;m authorised to debit from this account. I agree to NCT debiting my account as detailed above.</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;Before you can continue, please indicate that you to the terms.&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                <formulaExpression>IF({!Direct_Debit_Confirm_Text} == TRUE, TRUE, FALSE)</formulaExpression>
+            </validationRule>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -1892,8 +1963,8 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>214</locationX>
-        <locationY>303</locationY>
+        <locationX>147</locationX>
+        <locationY>112</locationY>
         <connector>
             <targetReference>Get_Booking</targetReference>
         </connector>
