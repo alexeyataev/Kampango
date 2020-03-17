@@ -32,8 +32,8 @@ public with sharing class CareRequestBodyUtil {
         addBankDetailsRequest.branch = cont.Branch__r.Branch_Number__c;
         addBankDetailsRequest.userLogname = USER_LOG_NAME;
         addBankDetailsRequest.sortCode = installment.Sort_Code__c;
-        addBankDetailsRequest.acctNumber = installment.Bank_Account__c;
-        addBankDetailsRequest.acctName = cont.Name;
+        addBankDetailsRequest.acctNumber = installment.Account_Number__c;
+        addBankDetailsRequest.acctName = installment.Account_Name__c;
         addBankDetailsRequest.contactKey = cont.NCT_Number__c;
         return JSON.serialize(addBankDetailsRequest, true);
     }
@@ -58,7 +58,7 @@ public with sharing class CareRequestBodyUtil {
         addMembership.contactKey2 = installment.Partner_Contact__r.NCT_Number__c;
         addMembership.mType = installment.Membership_Type__c;
         addMembership.amount = String.valueOf(installment.Membership_Amount__c);
-        addMembership.txCode = installment.Id;
+        addMembership.txCode = installment.Id + '_' + installment.Care_Add_Membership_Attempts__c;
         return JSON.serialize(addMembership, true);
     }
     private abstract class BaseRequest {
