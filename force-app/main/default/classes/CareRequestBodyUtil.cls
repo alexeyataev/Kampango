@@ -24,16 +24,16 @@ public with sharing class CareRequestBodyUtil {
         addUpdateContactRequest.country = cont.MailingCountry;
         return JSON.serialize(addUpdateContactRequest, true);
     }
-    public static String createSendBankDetailsBody(cpm__Payment_Profile__c paymentProfile, Contact cont) {
+    public static String createSendBankDetailsBody(cpm__Installment__c installment, Contact cont) {
         AddBankDetailsRequest addBankDetailsRequest = new AddBankDetailsRequest();
         addBankDetailsRequest.authKey = AUTH_KEY;
         addBankDetailsRequest.pagename = SF_ENVIRONMENT_NAME;
         addBankDetailsRequest.source = SOURCE;
         addBankDetailsRequest.branch = cont.Branch__r.Branch_Number__c;
         addBankDetailsRequest.userLogname = USER_LOG_NAME;
-        addBankDetailsRequest.sortCode = paymentProfile.paybacs__Sort_Code__c;
-        addBankDetailsRequest.acctNumber = paymentProfile.cpm__Bank_Account__c;
-        addBankDetailsRequest.acctName = paymentProfile.cpm__Holder_Name__c;
+        addBankDetailsRequest.sortCode = installment.Sort_Code__c;
+        addBankDetailsRequest.acctNumber = installment.Account_Number__c;
+        addBankDetailsRequest.acctName = installment.Account_Name__c;
         addBankDetailsRequest.contactKey = cont.NCT_Number__c;
         return JSON.serialize(addBankDetailsRequest, true);
     }
