@@ -1,5 +1,6 @@
 public class OutboundBACSpaymentHelper {
     public static void processPaymentRun (Payment_Run__c paymentRun){
+        final String ZUMZUM_NOMINAL_CODE = '9600';
         // Get Ids of purchase invoises
         Set<Id> purchaseInvoiceIds = new Set<Id>();
         for (Payment_Run_Line_Item__c p: paymentRun.Payment_Run_Line_Items__r){
@@ -16,6 +17,7 @@ public class OutboundBACSpaymentHelper {
             FROM Zumzum__Ledger__c
                WHERE Zumzum__Purchase_Invoice__c IN :purchaseInvoiceIds
                    AND Zumzum__Customer_Supplier_Account_Name__c <> ''
+                   AND Zumzum__Sub_Account_Nominal_Link__c.Zumzum__Nominal_Code__c = :ZUMZUM_NOMINAL_CODE
         ];
 
         for (Zumzum__Ledger__c ledger: ledgers) {
@@ -24,10 +26,11 @@ public class OutboundBACSpaymentHelper {
     }
 
     private static Id getBankAccountId(){
+        final string BANK_ACCOUNT_NAME = 'BACS Payments in Transit';
         return [
             SELECT Id
             FROM Zumzum__Bank_Account__c
-            WHERE Name = 'BACS Payments in Transit'
+            WHERE Name = :BANK_ACCOUNT_NAME
             LIMIT 1
         ].Id;
     }
