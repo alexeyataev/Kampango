@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>All_Invoices</fullName>
+    <fullName>Zumzum__All</fullName>
     <columns>NAME</columns>
     <columns>Zumzum__Invoice_Date__c</columns>
     <columns>Zumzum__Account__c</columns>
@@ -8,5 +8,5 @@
     <columns>Zumzum__Paid__c</columns>
     <columns>Zumzum__Status__c</columns>
     <filterScope>Everything</filterScope>
-    <label>All Invoices</label>
+    <label>All</label>
 </ListView>
