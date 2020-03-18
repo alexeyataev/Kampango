@@ -24,7 +24,6 @@ public with sharing class CareHelper {
     @future(callout=true)
     public static void sendMarketingPreferences(String nctNumber, String standardDocumentNumber) {
         HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', CareRequestBodyUtil.createMarketingPreferencesBody(nctNumber, standardDocumentNumber));
-        System.debug(res.getBody());
     }
 
     private static HttpResponse sendHttpRequest(String methodName, String body) {
