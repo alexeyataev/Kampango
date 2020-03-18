@@ -29,8 +29,13 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
         this.paymentRunId = paymentRunId;
     }
     
-    public void runBatch(Id paymentRunId){
-        BatchOutboundBACSpayment myBatchObject = new BatchOutboundBACSpayment(paymentRunId);
+    @InvocableMethod(
+        label='Execute batch for payment run. Use the only Id in List'
+        description='ZZ API is called for each Purchase Invoice Line Item'
+        category='Payment_Run__c'
+    )
+    public static void runBatch(List<Id> paymentRunIds){
+        BatchOutboundBACSpayment myBatchObject = new BatchOutboundBACSpayment(paymentRunIds[0]);
         Id batchId = Database.executeBatch(myBatchObject, 1);
     }
 }
