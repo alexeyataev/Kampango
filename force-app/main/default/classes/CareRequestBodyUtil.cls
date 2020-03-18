@@ -92,6 +92,7 @@ public with sharing class CareRequestBodyUtil {
         private String branch {get;set;}
         private String userLogname {get;set;}
     }
+
     private class AddUpdateContactRequest extends BaseRequest {
         private String surname {get;set;}
         private String firstName {get;set;}
@@ -103,12 +104,14 @@ public with sharing class CareRequestBodyUtil {
         private String town {get;set;}
         private String country {get;set;}
     }
+
     private class AddBankDetailsRequest extends BaseRequest {
         private String sortCode {get;set;}
         private String acctNumber {get;set;}
         private String acctName {get;set;}
         private String contactKey {get;set;}
     }
+
     private class AddMembership extends BaseRequest {
         private String paymentMethod {get;set;}
         private String bankDetailNumber {get;set;}
@@ -135,24 +138,40 @@ public with sharing class CareRequestBodyUtil {
     public abstract class BaseResponse {
         public List<ErrorObject> error {get;set;}
     }
+
     public class ErrorObject {
         public String errorMessage {get;set;}
         public String errorNumber {get;set;}
     }
+
     public class ContactOjbect extends BaseResponse {
         public ContactDetails contact {get;set;}
     }
+
     public class ContactDetails {
         public String contactNumber {get;set;}
     }
+    
     public class ContactBankAccountObject extends BaseResponse {
         public ContactBankAccountDetails contactBankAccount {get;set;}
     }
+
+    public class MarketingPreferencesObject extends BaseResponse {
+        public MarketingPreferencesDetails document {get;set;}
+    }
+
+    public class MarketingPreferencesDetails {
+        public String standardDocument {get;set;}
+        public String documentNumber {get;set;}
+        public String docType {get;set;}
+    }
+
     public class ContactBankAccountDetails {
         public String contactNumber {get;set;}
         public String bankDetailNumber {get;set;}
         public String information {get;set;}
     }
+
     public class MembershipOjbect extends BaseResponse {
         public String status {get;set;}
     }
