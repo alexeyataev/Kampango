@@ -787,6 +787,7 @@
     </types>
     <types>
         <members>Booking__c.SendEmailToClient</members>
+        <members>cpm__Installment__c</members>
         <name>WorkflowAlert</name>
     </types>
     <types>
@@ -798,6 +799,7 @@
         <members>Course_Assignment__c.UpdateStatusToApproved</members>
         <members>Course_Assignment__c.UpdateStatusToSubmitted</members>
         <members>Course_Assignment__c.UprateStatusToRejected</members>
+        <members>cpm__Installment__c.CareAddMembershipTxCodeBaseUpdate</members>
         <name>WorkflowFieldUpdate</name>
     </types>
     <types>
