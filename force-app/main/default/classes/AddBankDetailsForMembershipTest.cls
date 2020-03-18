@@ -71,7 +71,7 @@ public without sharing class AddBankDetailsForMembershipTest {
     private static List<cpm__Installment__c> getInstallmentList() {
         cpm__Installment__c isntallmentInstance = new cpm__Installment__c();
         isntallmentInstance.cpm__Contact__c = [SELECT Id FROM Contact LIMIT 1].Id;
-        isntallmentInstance.Bank_Account__c = '12345678';
+        isntallmentInstance.Account_Name__c = 'Account_1';
         isntallmentInstance.Sort_Code__c = '2400000';
 
         return new List<cpm__Installment__c> {isntallmentInstance};

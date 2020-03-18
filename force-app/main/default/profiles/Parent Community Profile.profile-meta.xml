@@ -2117,6 +2117,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>cpm__Installment__c.Account_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Installment__c.Account_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>cpm__Installment__c.Bank_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3130,6 +3140,11 @@
         <field>gaid__Gift_Aid_Declaration__c.gaid__Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>proh__ProcessingHub_Setting__c.proh__Return_URL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -3361,6 +3376,15 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>gaid__Gift_Aid_Declaration__c</object>
         <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>proh__ProcessingHub_Setting__c</object>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>
         <default>true</default>

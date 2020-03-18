@@ -105,6 +105,7 @@
         <fields>NAME</fields>
         <fields>Zumzum__Date__c</fields>
         <fields>Zumzum__Narrative__c</fields>
+        <fields>Course__c</fields>
         <fields>Zumzum__Quantity__c</fields>
         <fields>Zumzum__Unit_Amount__c</fields>
         <fields>Zumzum__Total_VAT__c</fields>
@@ -117,9 +118,9 @@
     <relatedLists>
         <fields>CreatedDate</fields>
         <fields>StepStatus</fields>
+        <fields>Comments</fields>
         <fields>OriginalActor</fields>
         <fields>Actor</fields>
-        <fields>Comments</fields>
         <relatedList>RelatedProcessHistoryList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
