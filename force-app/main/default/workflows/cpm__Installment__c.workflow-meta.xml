@@ -17,7 +17,7 @@
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>cpm__Installment__c.Care_Add_Membership_Attempts__c</field>
+            <field>cpm__Installment__c.Membership_Type__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
