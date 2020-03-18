@@ -30,7 +30,7 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
     }
     
     @InvocableMethod(
-        label='Execute batch for payment run. Use the only Id in List'
+        label='Create Bank Supplier Payments'
         description='ZZ API is called for each Purchase Invoice Line Item'
         category='Payment_Run__c'
     )
