@@ -11,6 +11,6 @@ public with sharing class AddContactForMembershipScheduler implements Schedulabl
     private static void runAddMembershipJob()
     {
         AddContactForMembershipBatch addContactForMembershipBatch = new AddContactForMembershipBatch();
-        Database.executeBatch(addContactForMembershipBatch);	
+        Database.executeBatch(addContactForMembershipBatch, 100);	
     }
 }

@@ -10,7 +10,7 @@ public class AddMembershipBatch implements Database.Batchable<sObject>, Database
 
     public Database.QueryLocator start(Database.BatchableContext bc) {
         return Database.getQueryLocator([
-            SELECT Id, ga_decl_1__c, ga_decl_2__c, Bank_Details_Number__c, Care_Add_Membership_Attempts__c,
+            SELECT Id, ga_decl_1__c, ga_decl_2__c, Bank_Details_Number__c, Care_Add_Membership_Tx_Code__c,
                 cpm__Contact__r.Branch__r.Branch_Number__c, cpm__Payment_Method__c, cpm__Contact__r.NCT_Number__c,
                 Partner_Contact__r.NCT_Number__c, Membership_Type__c, Membership_Amount__c 
             FROM cpm__Installment__c

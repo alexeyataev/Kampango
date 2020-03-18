@@ -58,7 +58,7 @@ public with sharing class CareRequestBodyUtil {
         addMembership.contactKey2 = installment.Partner_Contact__r.NCT_Number__c;
         addMembership.mType = installment.Membership_Type__c;
         addMembership.amount = String.valueOf(installment.Membership_Amount__c);
-        addMembership.txCode = String.valueOf(installment.Id).right(15) + '_' + installment.Care_Add_Membership_Attempts__c;
+        addMembership.txCode = installment.Care_Add_Membership_Tx_Code__c;
         return JSON.serialize(addMembership, true);
     }
     private abstract class BaseRequest {
