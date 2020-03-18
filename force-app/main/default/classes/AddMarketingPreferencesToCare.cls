@@ -1,4 +1,4 @@
-public with sharing class AddMarketingPreferencesToCare {
+public without sharing class AddMarketingPreferencesToCare {
 
     private static final Map<String, String> MARKETING_PREFERENCES_DOCUMENT_MAP = new Map<String, String> {
         'Email__c' => 'GDPR007',
@@ -17,7 +17,7 @@ public with sharing class AddMarketingPreferencesToCare {
                     Individual.Telephone__c,
                     Individual.Post__c
             FROM Contact
-            WHERE Id =: paramInstance[0].contactId
+            WHERE(Id =: paramInstance[0].contactId AND Nct_Number__c != null)
             AND (
                     Individual.Email__c != false OR
                     Individual.SMS__c != false OR
