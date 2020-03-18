@@ -6,6 +6,11 @@ public with sharing class CareRequestBodyUtil {
     public static final String BASE_URL = Care_Settings__c.getOrgDefaults().Base_Url__c;
     private static final String USER_LOG_NAME = Care_Settings__c.getOrgDefaults().User_Log_Name__c;
     private static final String CLAIM_DAY = '3';
+    private static final String ADDR_CON_NUM = '500000';
+    private static final String ADDR_ADDR_NUM = '4';
+    private static final String DIRECTION  = 'I';
+    private static final String SUB_TOPIC = 'W';
+
     public static String createSendContactBody(Contact cont) {
         AddUpdateContactRequest addUpdateContactRequest = new AddUpdateContactRequest();
         addUpdateContactRequest.authKey = AUTH_KEY;
@@ -24,6 +29,7 @@ public with sharing class CareRequestBodyUtil {
         addUpdateContactRequest.country = cont.MailingCountry;
         return JSON.serialize(addUpdateContactRequest, true);
     }
+
     public static String createSendBankDetailsBody(cpm__Installment__c installment, Contact cont) {
         AddBankDetailsRequest addBankDetailsRequest = new AddBankDetailsRequest();
         addBankDetailsRequest.authKey = AUTH_KEY;
@@ -37,6 +43,7 @@ public with sharing class CareRequestBodyUtil {
         addBankDetailsRequest.contactKey = cont.NCT_Number__c;
         return JSON.serialize(addBankDetailsRequest, true);
     }
+
     public static String createAddMembershipBody(cpm__Installment__c installment) {
         Map<String, String> paymentMethodMap = new Map<String, String> {
             'CreditCard' => 'CC',
@@ -61,6 +68,23 @@ public with sharing class CareRequestBodyUtil {
         addMembership.txCode = installment.Id + '_' + installment.Care_Add_Membership_Attempts__c;
         return JSON.serialize(addMembership, true);
     }
+
+    public static String createMarketingPreferencesBody(String nctNumber, String standardDocumentNumber) {
+        AddMarketingPreferencesRequest addMarketingPreferencesRequest = new AddMarketingPreferencesRequest();
+        AddMarketingPreferencesRequest.authKey = AUTH_KEY;
+        AddMarketingPreferencesRequest.pagename = SF_ENVIRONMENT_NAME;
+        AddMarketingPreferencesRequest.source = SOURCE;
+        AddMarketingPreferencesRequest.userLogname = USER_LOG_NAME;
+        AddMarketingPreferencesRequest.addrConNum = ADDR_CON_NUM;
+        AddMarketingPreferencesRequest.addrAddrNum = ADDR_ADDR_NUM;
+        AddMarketingPreferencesRequest.direction = DIRECTION;
+        AddMarketingPreferencesRequest.standardDocument = standardDocumentNumber;
+        AddMarketingPreferencesRequest.sendConNum = nctNumber;
+        AddMarketingPreferencesRequest.sendAddrNum = nctNumber;
+        AddMarketingPreferencesRequest.subTopic = SUB_TOPIC;
+        return JSON.serialize(addMarketingPreferencesRequest, true);
+    }
+
     private abstract class BaseRequest {
         private String authKey {get;set;}
         private String pagename {get;set;}
@@ -97,6 +121,17 @@ public with sharing class CareRequestBodyUtil {
         private String amount {get;set;}
         private String txCode {get;set;}
     }
+
+    private class AddMarketingPreferencesRequest extends BaseRequest {
+        private String addrAddrNum {get;set;}
+        private String addrConNum {get;set;}
+        private String direction {get;set;}
+        private String sendAddrNum {get;set;}
+        private String sendConNum {get;set;}
+        private String standardDocument {get;set;}
+        private String subTopic {get;set;}
+    }
+
     public abstract class BaseResponse {
         public List<ErrorObject> error {get;set;}
     }
