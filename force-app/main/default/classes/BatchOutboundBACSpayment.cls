@@ -18,7 +18,14 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
         }
     }
     public void finish(Database.BatchableContext bc){
-        // execute any post-processing operations
+        Payment_Run__c paymentRun = [
+            SELECT ID, Status__c
+            FROM Payment_Run__c
+            WHERE Id = :paymentRunId
+        ];
+
+        paymentRun.Status__c = 'Ready';
+        update paymentRun;
     }
 
     public BatchOutboundBACSpayment(){
