@@ -262,35 +262,6 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Zumzum__Bank_Payment__c</fields>
-        <fields>Zumzum__Bank_Payment_Line_Item__c</fields>
-        <fields>Zumzum__Purchase_Credit__c</fields>
-        <fields>Zumzum__Purchase_Credit_Line_Item__c</fields>
-        <fields>Zumzum__Date__c</fields>
-        <fields>Zumzum__Type__c</fields>
-        <fields>Zumzum__Amount__c</fields>
-        <fields>Zumzum__Details__c</fields>
-        <relatedList>Zumzum__Ledger_Payment_History__c.Zumzum__Purchase_Invoice_Line_Item__c</relatedList>
-        <sortField>Zumzum__Date__c</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Zumzum__Purchase_Invoice__c</fields>
-        <fields>Zumzum__Purchase_Invoice_Line_Item__c</fields>
-        <fields>Zumzum__Date__c</fields>
-        <fields>Zumzum__Amount__c</fields>
-        <fields>Zumzum__Details__c</fields>
-        <fields>Zumzum__Parent_Transaction_Number__c</fields>
-        <fields>Zumzum__Payment_Transaction_Number__c</fields>
-        <relatedList>Zumzum__Ledger_Payment_History__c.Zumzum__Purchase_Credit_Line_Item__c</relatedList>
-        <sortField>Zumzum__Date__c</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Zumzum__Bank_Payment__c</fields>
         <fields>Zumzum__Amount__c</fields>
         <fields>Zumzum__Status__c</fields>
         <fields>Zumzum__Purchase_Invoice__c</fields>
