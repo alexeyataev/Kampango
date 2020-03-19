@@ -14,6 +14,7 @@
         <field>Zumzum__Ledger_Payment_History__c$Zumzum__Purchase_Credit__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Sum</aggregateTypes>
         <field>Zumzum__Ledger_Payment_History__c$Zumzum__Amount__c</field>
     </columns>
     <filter>

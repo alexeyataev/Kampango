@@ -19,11 +19,17 @@
                 <name>Approval_Status_change_to_Approved</name>
                 <type>FieldUpdate</type>
             </action>
+            <action>
+                <name>Expense_Sheet_Approval</name>
+                <type>Alert</type>
+            </action>
         </approvalActions>
         <assignedApprover>
             <approver>
-                <type>adhoc</type>
+                <name>Owner</name>
+                <type>relatedUserField</type>
             </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <label>Approve by Capacity PSA</label>
         <name>Approve_by_Capacity_PSA</name>
@@ -38,7 +44,6 @@
             </action>
         </rejectionActions>
     </approvalStep>
-    <emailTemplate>NCT_Templates/Expense_Sheet_is_Ready_for_Approval</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>

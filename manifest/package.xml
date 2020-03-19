@@ -47,6 +47,8 @@
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
         <members>FinDockCardPaymentProvider</members>
+        <members>GeneratePaymentFilePaymentRunExtension</members>
+        <members>GeneratePaymentFileUtil</members>
         <members>HttpStatusCode</members>
         <members>IBankReceiptCreator</members>
         <members>IClock</members>
@@ -125,6 +127,7 @@
         <members>CourseSummary</members>
         <members>CourseSummaryPDF</members>
         <members>CourseSummarySLDS</members>
+        <members>GeneratePaymentFilePaymentRun</members>
         <name>ApexPage</name>
     </types>
     <types>

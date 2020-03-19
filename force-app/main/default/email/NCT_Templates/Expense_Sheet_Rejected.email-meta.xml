@@ -4,12 +4,12 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Expense Sheet Rejected</name>
     <style>none</style>
-    <subject>Expense query</subject>
-    <textOnly>Dear {!Contact.Name},
+    <subject>Expense Rejected</subject>
+    <textOnly>Dear {!Zumzum__Expense_Sheet__c.OwnerFirstName},
 
-The following expenses have been returned to you for review. You can review, amend and resubmit this expense by logging into your portal.
+The following expenses have been rejected and need amending, please log into your portal to see the comments and amend as necessary:
 
-EXPENSE ID: {!Zumzum__Expense_Sheet__c.Id}
+EXPENSE ID: {!Zumzum__Expense_Sheet__c.Name}
 
 {!ApprovalRequest.Comments}
 
