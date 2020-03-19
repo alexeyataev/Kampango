@@ -3,12 +3,23 @@ public with sharing class AddBankReceiptForPaymentHandler {
     private static final String MEMBERSHIP_NOMINAL_CODE = '1003';
     private static final String SALES_INVOICE_STATUS = 'Posted';
     private static final String IS_PAID = 'Y';
-    private static final Id BANK_ACCOUNT_ID = Bank_Account_Settings__c.getOrgDefaults().Worldpay_Bank_Account_Id__c;
+    private static final String BANK_ACCOUNT_NAME = Bank_Account_Settings__c.getOrgDefaults().Bank_Account_Name__c;
+
+    public static IBankReceiptCreator bankReceiptCreator {
+        get {
+            if(bankReceiptCreator == null) {
+                bankReceiptCreator = new ZumzumBankReceiptCreator();
+            }
+            return bankReceiptCreator;
+        }
+        public set;
+    }
 
     public static void addBankReceipts(List<cpm__Payment__c> payments) {
         try {
-            if (String.isBlank(BANK_ACCOUNT_ID)) {
-                throw new ListException('Set Bank Account Id custom setting');
+            List<Zumzum__Bank_Account__c> bankAccountlist = [SELECT Id FROM Zumzum__Bank_Account__c WHERE Name = :BANK_ACCOUNT_NAME LIMIT 1];
+            if (bankAccountlist.isEmpty()) {
+                throw new ListException('Create \'Card Receipts in Transit\' Bank Account');
             }
 
             Zumzum.BankCustomerReceiptService bankCustomerReceiptService = new Zumzum.BankCustomerReceiptService();
@@ -16,19 +27,14 @@ public with sharing class AddBankReceiptForPaymentHandler {
             Map<Id, List<cpm__Payment__c>> salesInvoicesPaymentsMap = new Map<Id, List<cpm__Payment__c>>();
 
             for (cpm__Payment__c payment : payments) {
-                if (payment.cpm__Installment__r.Sales_Invoice__c != null) {
-                    if (salesInvoicesPaymentsMap.containsKey(payment.cpm__Installment__r.Sales_Invoice__c)) {
-                        salesInvoicesPaymentsMap.get(payment.cpm__Installment__r.Sales_Invoice__c).add(payment);
+                Id  salesInvoiceId = payment.cpm__Installment__r.Sales_Invoice__c != null ? payment.cpm__Installment__r.Sales_Invoice__c : payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c;
+                if (salesInvoiceId != null) {
+                    if (salesInvoicesPaymentsMap.containsKey(salesInvoiceId)) {
+                        salesInvoicesPaymentsMap.get(salesInvoiceId).add(payment);
                     } else {
-                        salesInvoicesPaymentsMap.put(payment.cpm__Installment__r.Sales_Invoice__c, new List<cpm__Payment__c>{payment});
+                        salesInvoicesPaymentsMap.put(salesInvoiceId, new List<cpm__Payment__c>{payment});
                     }
-                } else if (payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c <> null) {
-                    if (salesInvoicesPaymentsMap.containsKey(payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c)) {
-                        salesInvoicesPaymentsMap.get(payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c).add(payment);
-                    } else {
-                        salesInvoicesPaymentsMap.put(payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c, new List<cpm__Payment__c>{payment});
-                    }
-                }
+                } 
             }
 
             for (Zumzum__Sales_Invoice__c salesInvoice : [
@@ -47,12 +53,12 @@ public with sharing class AddBankReceiptForPaymentHandler {
             ]) {
                 for (cpm__Payment__c payment : salesInvoicesPaymentsMap.get(salesInvoice.Id)) {
                     receiptWrapper.AccountId = salesInvoice.Zumzum__Account__c;
-                    receiptWrapper.BankAccountId = BANK_ACCOUNT_ID;
+                    receiptWrapper.BankAccountId = bankAccountlist[0].Id;
                     receiptWrapper.PostingDate = Date.Today();
                     receiptWrapper.WrapperAPICustomFields = new List<Zumzum.APICustomFieldWrapper>();
                     receiptWrapper.WrapperAPICustomFields.add(new Zumzum.APICustomFieldWrapper('Zumzum__Bank_Receipt__c', 'Payment__c', payment.Id));
                     receiptWrapper.BankReceiptLines = createBankReceiptLines(payment, salesInvoice);
-                    Zumzum.BankCustomerReceiptService.Response response = bankCustomerReceiptService.CreateBankCustomerReceipt(receiptWrapper);
+                    bankReceiptCreator.createBankReceipt(receiptWrapper);
                 }
             }
         } catch(Exception e) {

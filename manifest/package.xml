@@ -48,6 +48,7 @@
         <members>dlrs_SessionTest</members>
         <members>FinDockCardPaymentProvider</members>
         <members>HttpStatusCode</members>
+        <members>IBankReceiptCreator</members>
         <members>IClock</members>
         <members>IPaymentServiceProvider</members>
         <members>ISalesInvoiceCreator</members>
@@ -84,10 +85,13 @@
         <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
+        <members>TestFinanceDataFactory</members>
         <members>TestInstallmentBuilder</members>
         <members>TestLicenceToPracticeBuilder</members>
+        <members>TestPaymentBuilder</members>
         <members>TestPaymentProfileBuilder</members>
         <members>TestPractitionerBandBuilder</members>
+        <members>TestRecurringPaymentBuilder</members>
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
@@ -97,6 +101,8 @@
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
+        <members>ZumzumBankReceiptCreator</members>
+        <members>ZumzumBankReceiptCreatorMock</members>
         <members>ZumzumCreatePostSalesInvoice</members>
         <members>ZumzumCreatePostSalesInvoiceTest</members>
         <members>ZumzumSalesInvoiceCreator</members>
