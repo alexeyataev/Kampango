@@ -1,8 +1,8 @@
 public with sharing class AddBankReceiptPaymentScheduler implements Schedulable {
 
-    public static final String SCHEDULED_TIME = '0 0 00 ? * 1'; //Cron tbd
+    public static final String SCHEDULED_TIME = '0 0 0/1 ? * * *';
     public static final String CLASS_NAME = 'AddBankReceiptPaymentScheduler';
-    public static Integer batchSize; // tbd
+    public static Integer batchSize = 200;
 
 
     public static Id scheduleBatch(Integer chunkSize) {

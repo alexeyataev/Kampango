@@ -76,12 +76,12 @@ public class AddBankReceiptPaymentBatchTest {
 
         Zumzum__Bank_Account__c bankAccount = [SELECT Id FROM Zumzum__Bank_Account__c LIMIT 1];
         Bank_Account_Settings__c bankAccountSettings = new Bank_Account_Settings__c();
-        bankAccountSettings.Bank_Account_Name__c = BANK_ACCOUNT_NAME;
+        bankAccountSettings.Card_Receipt_Bank_Account_Name__c = BANK_ACCOUNT_NAME;
         insert bankAccountSettings;
     }
     
     @IsTest
-    static void CreateBankReceiptForCoursePayment() {
+    static void AddBankReceiptForWorldpayPaymentBatch_CoursePlaceLineItemExists_ReceiptCreatedForCoursePlace() {
         Zumzum__Sales_Invoice__c salesInvoiceCreated = [SELECT Id, Zumzum__Status__c, Zumzum__Paid__c, Zumzum__Foreign_Total_Gross__c, Zumzum__Foreign_Unpaid_Amount__c FROM Zumzum__Sales_Invoice__c LIMIT 1];
         cpm__Installment__c installment = [SELECT cpm__Amount__c FROM cpm__Installment__c LIMIT 1];
         installment.cpm__Amount__c = salesInvoiceCreated.Zumzum__Foreign_Total_Gross__c;
@@ -105,7 +105,7 @@ public class AddBankReceiptPaymentBatchTest {
     }
 
     @IsTest
-    static void CreateBankReceiptForCourseAndMembershipPayment() {
+    static void AddBankReceiptForWorldpayPaymentBatch_CoursePlaceAndMembershipLineItemExists_ReceiptCreatedForAllLineItems() {
         Zumzum__Sales_Invoice__c salesInvoiceCreated = [SELECT Id, Zumzum__Status__c, Zumzum__Paid__c, Zumzum__Foreign_Total_Gross__c, Zumzum__Foreign_Unpaid_Amount__c FROM Zumzum__Sales_Invoice__c LIMIT 1];
         cpm__Installment__c installment = [SELECT cpm__Amount__c  FROM cpm__Installment__c LIMIT 1];
         installment.cpm__Amount__c = salesInvoiceCreated.Zumzum__Foreign_Total_Gross__c;
@@ -126,7 +126,7 @@ public class AddBankReceiptPaymentBatchTest {
     }
 
     @IsTest
-    static void CreateBankReceiptForRecurringPayment() {
+    static void AddBankReceiptForWorldpayPaymentBatch_ForRecurringPayment() {
         Zumzum__Sales_Invoice__c salesInvoiceCreated = [SELECT Id, Zumzum__Status__c, Zumzum__Paid__c, Zumzum__Foreign_Total_Gross__c, Zumzum__Foreign_Unpaid_Amount__c FROM Zumzum__Sales_Invoice__c LIMIT 1];
         cpm__Installment__c firstInstallment = [SELECT cpm__Amount__c, cpm__Account__c, cpm__Contact__c, cpm__Payment_Profile__c, Sales_Invoice__c FROM cpm__Installment__c LIMIT 1];
         firstInstallment.cpm__Amount__c = salesInvoiceCreated.Zumzum__Foreign_Total_Gross__c * 0.7;

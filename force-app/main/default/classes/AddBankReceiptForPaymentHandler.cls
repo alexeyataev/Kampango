@@ -3,7 +3,7 @@ public with sharing class AddBankReceiptForPaymentHandler {
     private static final String MEMBERSHIP_NOMINAL_CODE = '1003';
     private static final String SALES_INVOICE_STATUS = 'Posted';
     private static final String IS_PAID = 'Y';
-    private static final String BANK_ACCOUNT_NAME = Bank_Account_Settings__c.getOrgDefaults().Bank_Account_Name__c;
+    private static final String BANK_ACCOUNT_NAME = Bank_Account_Settings__c.getOrgDefaults().Card_Receipt_Bank_Account_Name__c;
 
     public static IBankReceiptCreator bankReceiptCreator {
         get {
@@ -19,7 +19,7 @@ public with sharing class AddBankReceiptForPaymentHandler {
         try {
             List<Zumzum__Bank_Account__c> bankAccountlist = [SELECT Id FROM Zumzum__Bank_Account__c WHERE Name = :BANK_ACCOUNT_NAME LIMIT 1];
             if (bankAccountlist.isEmpty()) {
-                throw new ListException('Create \'Card Receipts in Transit\' Bank Account');
+                throw new ListException('Create BANK_ACCOUNT_NAME Bank Account');
             }
 
             Zumzum.BankCustomerReceiptService bankCustomerReceiptService = new Zumzum.BankCustomerReceiptService();
