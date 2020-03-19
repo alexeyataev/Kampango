@@ -6229,6 +6229,11 @@
         <field>gaid__Gift_Aid_Declaration__c.gaid__Valid_Now__c</field>
         <readable>false</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>proh__ProcessingHub_Setting__c.proh__Return_URL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Booking__c-Booking Layout</layout>
     </layoutAssignments>
@@ -6280,6 +6285,15 @@
     <layoutAssignments>
         <layout>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</layout>
     </layoutAssignments>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>proh__ProcessingHub_Setting__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <pageAccesses>
         <apexPage>CourseSummary</apexPage>
         <enabled>false</enabled>
