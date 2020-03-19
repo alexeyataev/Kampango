@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>CareAddMembershipTxCodeBaseUpdate</fullName>
+        <field>Care_Add_Membership_Tx_Code_Base__c</field>
+        <formula>MID(CASESAFEID(Id), 4, 15)</formula>
+        <name>CARE Add Membership Tx Code Base Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>CARE Add Membership Set Tx Code Base</fullName>
+        <actions>
+            <name>CareAddMembershipTxCodeBaseUpdate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>cpm__Installment__c.Membership_Type__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>
