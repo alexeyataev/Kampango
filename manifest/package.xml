@@ -212,6 +212,7 @@
         <members>Booking__c</members>
         <members>Branch_Weighting__c</members>
         <members>Card_Payment_Plan_Settings__c</members>
+        <members>Care_Settings__c</members>
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
