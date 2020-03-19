@@ -24,16 +24,16 @@ public with sharing class CareRequestBodyUtil {
         addUpdateContactRequest.country = cont.MailingCountry;
         return JSON.serialize(addUpdateContactRequest, true);
     }
-    public static String createSendBankDetailsBody(cpm__Payment_Profile__c paymentProfile, Contact cont) {
+    public static String createSendBankDetailsBody(cpm__Installment__c installment, Contact cont) {
         AddBankDetailsRequest addBankDetailsRequest = new AddBankDetailsRequest();
         addBankDetailsRequest.authKey = AUTH_KEY;
         addBankDetailsRequest.pagename = SF_ENVIRONMENT_NAME;
         addBankDetailsRequest.source = SOURCE;
         addBankDetailsRequest.branch = cont.Branch__r.Branch_Number__c;
         addBankDetailsRequest.userLogname = USER_LOG_NAME;
-        addBankDetailsRequest.sortCode = paymentProfile.paybacs__Sort_Code__c;
-        addBankDetailsRequest.acctNumber = paymentProfile.cpm__Bank_Account__c;
-        addBankDetailsRequest.acctName = paymentProfile.cpm__Holder_Name__c;
+        addBankDetailsRequest.sortCode = installment.Sort_Code__c;
+        addBankDetailsRequest.acctNumber = installment.Account_Number__c;
+        addBankDetailsRequest.acctName = installment.Account_Name__c;
         addBankDetailsRequest.contactKey = cont.NCT_Number__c;
         return JSON.serialize(addBankDetailsRequest, true);
     }
@@ -50,15 +50,15 @@ public with sharing class CareRequestBodyUtil {
         addMembership.branch = installment.cpm__Contact__r.Branch__r.Branch_Number__c;
         addMembership.userLogname = USER_LOG_NAME;
         addMembership.paymentMethod = paymentMethod;
-        addMembership.bankDetailNumber = installment.Bank_Details_Number__c;
+        addMembership.bankDetailNumber = installment.Bank_Details_Number__c != null ? installment.Bank_Details_Number__c : '';
         addMembership.claimDay = CLAIM_DAY;
         addMembership.ga_decl_1 = installment.ga_decl_1__c;
         addMembership.ga_decl_2 = installment.ga_decl_2__c;
         addMembership.contactKey1 = installment.cpm__Contact__r.NCT_Number__c;
         addMembership.contactKey2 = installment.Partner_Contact__r.NCT_Number__c;
         addMembership.mType = installment.Membership_Type__c;
-        addMembership.amount = String.valueOf(installment.cpm__Amount__c);
-        addMembership.txCode = installment.Id;
+        addMembership.amount = String.valueOf(installment.Membership_Amount__c);
+        addMembership.txCode = installment.Care_Add_Membership_Tx_Code__c;
         return JSON.serialize(addMembership, true);
     }
     private abstract class BaseRequest {

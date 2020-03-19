@@ -45,6 +45,16 @@
                 <default>false</default>
                 <label>Introduction to Solids Practitioner</label>
             </value>
+            <value>
+                <fullName>Yoga for Pregnancy Practitioner</fullName>
+                <default>false</default>
+                <label>Yoga for Pregnancy Practitioner</label>
+            </value>
+            <value>
+                <fullName>Mother and Baby Yoga Practitioner</fullName>
+                <default>false</default>
+                <label>Mother and Baby Yoga Practitioner</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

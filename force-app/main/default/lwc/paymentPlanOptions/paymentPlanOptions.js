@@ -11,6 +11,7 @@ export default class PaymentOptionsTest extends LightningElement {
     @track dataLoaded = false;
     @track isPayByInstallmentsAvailable = true;
 
+    nextCollectionDate;
     optionsDisplayList = [];
     optionsMap = new Map();
 
@@ -18,15 +19,16 @@ export default class PaymentOptionsTest extends LightningElement {
         courseFee: '$courseFee',
         courseStartDate: '$courseStartDate'
     }) wiredPaymentPlanOptions({ error, data }) {
-        if (data) {  
-            
-            data.forEach( element => {  
-                this.options.push ({ label:element.displayLabel, value: element.numberOfPayments });        
+        if (data) {
+            data.forEach( element => {
+                this.options.push ({ label:element.displayLabel, value: element.numberOfPayments });
                 this.optionsMap.set(element.numberOfPayments, { 
                     amountFirst:element.amountFirst,
                     amountRecurring:element.amountRecurring,
                     startDate:element.startDate,
-                    endDate:element.endDate
+                    endDate:element.endDate,
+                    displayLabel:element.displayLabel,
+                    nextCollectionDate:element.nextCollectionDate
                 });
             });
 
@@ -37,6 +39,7 @@ export default class PaymentOptionsTest extends LightningElement {
             } else {
                 this.isLabelVisible = '';
                 this.dataLoaded = true; 
+                this.nextCollectionDate = new Date(data[0].nextCollectionDate).toLocaleString('default', {day:'numeric', month:'long', year:'numeric'});
             }
             
         } else if (error) {

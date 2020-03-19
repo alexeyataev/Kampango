@@ -4,6 +4,8 @@
         <members>BookCourseController</members>
         <members>BookCourseControllerModel</members>
         <members>BookCourseControllerTest</members>
+        <members>ContactDetailsController</members>
+        <members>ContactDetailsControllerTest</members>
         <members>DirectDebitModels</members>
         <members>DirectDebitUtilities</members>
         <members>DirectDebitUtilitiesTest</members>
@@ -162,6 +164,7 @@
         <members>Venue__c.Venue_GeoLocation__c</members>
         <members>Venue__c.Venue_Keys__c</members>
         <members>Venue__c.Venue_Suitability__c</members>
+        <members>Zumzum__Purchase_Invoice__c.Payment_Run__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -188,11 +191,14 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>Booking__c.All</members>
+        <members>Booking__c.All_Enquiries</members>
         <members>Course__c.Completed_Courses</members>
         <members>Course__c.Currently_Running_Courses</members>
         <members>Course__c.Courses_Not_Started</members>
         <members>Course__c.Courses_With_Upcoming_Reunions</members>
         <members>Course__c.Upcoming_Courses</members>
+        <members>Zumzum__Purchase_Invoice__c.All_Invoices</members>
         <name>ListView</name>
     </types>
     <types>
@@ -207,6 +213,10 @@
         <members>Program Staff</members>
         <members>Volunteer</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>Practitioners/Registration_Fee_History</members>
+        <name>Report</name>
     </types>
     <types>
         <members>Capacity_PSA</members>

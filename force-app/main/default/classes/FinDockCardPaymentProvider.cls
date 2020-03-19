@@ -1,8 +1,8 @@
 public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
     private static final String API_TOKEN = Parentforce_Community_Settings__c.getOrgDefaults().API_Token__c;
-    private static final String PAYMENT_FREQUENCY = 'Monthly';
     private static final String ORIGIN = 'BookingJourney';
     private static final String PAYER_CONTACT_UPDATE = 'none';
+    private static final String PAYMENT_FREQUENCY = 'Monthly';
     private static final String PAYMENT_METHOD = 'Creditcard';
     private static final String SOURCE_CONNECTOR = 'PaymentHub';
     public static CardPaymentUrlResult getCardPaymentPlanUrlForBooking(CardPaymentParameters paymentParameters) {
@@ -42,6 +42,7 @@ public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
         paymentApiParams.payer = new PaymentApiRequest.Payer(contact, PAYER_CONTACT_UPDATE);
         Map<String, String> recurringCustomFields = new Map<String, String>();
         recurringCustomFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
+        recurringCustomFields.put('cpm__Collection_Day_of_Month__c', String.valueOf(PaymentPlanGenerator.COLLECTION_DAY_OF_MONTH));
         paymentApiParams.recurring = new PaymentApiRequest.Recurring(
             paymentParameters.amountRecurring, 
             PAYMENT_FREQUENCY, 

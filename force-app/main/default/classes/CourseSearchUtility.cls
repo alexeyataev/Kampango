@@ -14,7 +14,7 @@ public without sharing class CourseSearchUtility {
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
@@ -26,7 +26,11 @@ public without sharing class CourseSearchUtility {
                 WHERE Name = :courseName
                     AND Status__c = :COURSE_STATUS_FINAL
                     AND Hide_From_Course_Finder__c = FALSE
-                    AND Start_Date__c > TODAY
+                    AND (
+                        Start_Date__c > TODAY 
+                            OR 
+                        Type__c = 'Drop In'
+                    )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                 WITH SECURITY_ENFORCED
             ];
@@ -36,7 +40,7 @@ public without sharing class CourseSearchUtility {
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
@@ -79,7 +83,7 @@ public without sharing class CourseSearchUtility {
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
@@ -91,7 +95,11 @@ public without sharing class CourseSearchUtility {
                 WHERE Branch__r.Branch_Number__c = :branchId
                     AND Status__c = :COURSE_STATUS_FINAL
                     AND Hide_From_Course_Finder__c = FALSE
-                    AND Start_Date__c > TODAY
+                    AND (
+                        Start_Date__c > TODAY 
+                            OR 
+                        Type__c = 'Drop In'
+                    )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                 WITH SECURITY_ENFORCED
             ];
@@ -101,7 +109,7 @@ public without sharing class CourseSearchUtility {
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
@@ -158,7 +166,7 @@ public without sharing class CourseSearchUtility {
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
@@ -170,12 +178,18 @@ public without sharing class CourseSearchUtility {
                 WHERE Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi') < :radius
                     AND Status__c = :COURSE_STATUS_FINAL
                     AND Hide_From_Course_Finder__c = FALSE
-                    AND Start_Date__c > TODAY
+                    AND (
+                        Start_Date__c > TODAY 
+                            OR 
+                        Type__c = 'Drop In'
+                    )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                     AND (
                         (Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) 
                             OR 
                         (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate)
+                            OR 
+                        Type__c = 'Drop In'
                     )
                 WITH SECURITY_ENFORCED
                 ORDER BY Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi'), Course__c.Sort_Date__c
@@ -186,7 +200,7 @@ public without sharing class CourseSearchUtility {
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c,
+                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c

@@ -26,6 +26,7 @@
     <enableUpDownVote>false</enableUpDownVote>
     <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
+    <maxFileSizeKb>3072</maxFileSizeKb>
     <networkMemberGroups>
         <permissionSet>Practitioner_Management</permissionSet>
         <profile>Admin</profile>

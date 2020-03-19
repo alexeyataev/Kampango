@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Zumzum__Expense_Sheet__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Expense Sheet</label>
+    <referenceTo>Zumzum__Expense_Sheet__c</referenceTo>
+    <relationshipLabel>Expense Sheet Detail</relationshipLabel>
+    <relationshipName>Expense_Sheet_Detail</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

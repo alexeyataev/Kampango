@@ -24,6 +24,22 @@
         </inputParameters>
     </actionCalls>
     <assignments>
+        <name>Assign_Session_Course_Sub_Type</name>
+        <label>Assign Session Course Sub Type</label>
+        <locationX>392</locationX>
+        <locationY>188</locationY>
+        <assignmentItems>
+            <assignToReference>tempCurrentSession.Course__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>tempCurrentSession.Course__r.Sub_Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_List_Sessions</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assing_Checked_Sessions</name>
         <label>Assign Checked Sessions</label>
         <locationX>828</locationX>
@@ -41,7 +57,7 @@
     </assignments>
     <description>This flow allows the practitioner to claim fees for completed sessions.
 Version changes:
-Changed lastThreeMonths formula</description>
+Added course sub type assigment</description>
     <formulas>
         <name>currentUserId</name>
         <dataType>String</dataType>
@@ -81,6 +97,21 @@ Changed lastThreeMonths formula</description>
     </formulas>
     <interviewLabel>Claim Practitioner Fees {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Claim Practitioner Fees</label>
+    <loops>
+        <name>Loop_List_Sessions</name>
+        <label>Loop List Sessions</label>
+        <locationX>260</locationX>
+        <locationY>203</locationY>
+        <assignNextValueToReference>tempCurrentSession</assignNextValueToReference>
+        <collectionReference>listSessions</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Session_Course_Sub_Type</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Claim_Fees_Datatable</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -97,7 +128,7 @@ Changed lastThreeMonths formula</description>
     <recordLookups>
         <name>Get_Practitioner</name>
         <label>Get Practitioner</label>
-        <locationX>335</locationX>
+        <locationX>336</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -118,11 +149,11 @@ Changed lastThreeMonths formula</description>
     <recordLookups>
         <name>Get_Session</name>
         <label>Get Session</label>
-        <locationX>465</locationX>
+        <locationX>466</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Claim_Fees_Datatable</targetReference>
+            <targetReference>Loop_List_Sessions</targetReference>
         </connector>
         <filters>
             <field>Date__c</field>
@@ -167,6 +198,7 @@ Changed lastThreeMonths formula</description>
         <queriedFields>Course_Name__c</queriedFields>
         <queriedFields>Date__c</queriedFields>
         <queriedFields>Course__c</queriedFields>
+        <queriedFields>PSA_Area__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>getAccountAndContactId</name>
@@ -273,7 +305,7 @@ Changed lastThreeMonths formula</description>
         </connector>
         <fields>
             <name>totalFeeScreen</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgba(var(--sk_primary_foreground,29,28,29),1);&quot;&gt;The total value of fees included in this claim are:&lt;/span&gt; £{!claimFees.totalFee}&lt;/p&gt;&lt;p&gt;The total value of registration fees included in this claim is: &lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;£{!claimFees.registrationFee}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgba(var(--sk_primary_foreground,29,28,29),1);&quot;&gt;The total value of fees included in this claim are:&lt;/span&gt; £{!claimFees.totalFee}&lt;/p&gt;&lt;p&gt;The total value of registration fees that will be deducted from this claim is: &lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;£{!claimFees.registrationFee}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>

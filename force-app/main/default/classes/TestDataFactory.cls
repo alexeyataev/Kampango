@@ -112,6 +112,7 @@ public without sharing class TestDataFactory {
             .withPrimaryContact(parentHost)
             .withPartnerContact(partnertHost)
             .withBookingExpiryDate(System.today().addDays(3))
+            .ignoreDuplicateRules(true)
             .insertRecord(true)
             .build();
         return this;
@@ -136,6 +137,7 @@ public without sharing class TestDataFactory {
             .withRecordType(CLIENT_RECORDTYPE_NAME)
             .withEmail(email)
             .withLastName(lastName)
+            .ignoreDuplicateRules(true)
             .insertRecord(true)
             .build();
         return this;
@@ -148,6 +150,7 @@ public without sharing class TestDataFactory {
             .withEmail(email)
             .withLastName(lastName)
             .insertRecord(true)
+            .ignoreDuplicateRules(true)
             .build();
         return this;
     }
@@ -164,6 +167,7 @@ public without sharing class TestDataFactory {
            .withLastName(lastName)
            .withEmail(email)
            .insertRecord(true)
+           .ignoreDuplicateRules(true)
            .build();
        practitioners.add(practitioner);
        TestPractitionerBandBuilder practitionerBandBuilder = new TestPractitionerBandBuilder();
@@ -237,9 +241,13 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildLicenceToPractice() {
+        return buildLicenceToPractice(practitioners[0]);
+    }
+    
+    public TestDataFactory buildLicenceToPractice(Contact practitioner) {
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
         licenceToPractice = licenceToPracticeBuilder
-            .withContact(practitioners[0])
+            .withContact(practitioner)
             .insertRecord(true)
             .build();
         return this;
@@ -254,6 +262,20 @@ public without sharing class TestDataFactory {
             .withLicenceToPractice(licenceToPractice)
             .insertRecord(true)
             .build();
+        return this;
+    }
+
+    public TestDataFactory buildCourseWithStatus(String status) {
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        course = courseBuilder
+            .withAccount(branchAccount)
+            .withPractitioner(practitioners[0])
+            .withMainVenue(venue)
+            .withStatus(status)
+            .withLicenceToPractice(licenceToPractice)
+            .insertRecord(true)
+            .build();
+            
         return this;
     }
 
@@ -287,6 +309,21 @@ public without sharing class TestDataFactory {
             .withVenue(venue)
             .withRoom(room)
             .withStatus(SESSION_PROVISIONAL_STATUS)
+            .withPractitioner(practitioners[0])
+            .withPractitionerFeeRate(practitionerFeeRate)
+            .withPractitionerLicence(licenceToPractice)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
+    public TestDataFactory buildConfirmedSession() {
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        session = sessionBuilder
+            .withCourse(course)
+            .withVenue(venue)
+            .withRoom(room)
+            .withStatus(SESSION_CONFIRMED_STATUS)
             .withPractitioner(practitioners[0])
             .withPractitionerFeeRate(practitionerFeeRate)
             .withPractitionerLicence(licenceToPractice)
@@ -621,6 +658,12 @@ public without sharing class TestDataFactory {
         return this;
     }
   
+    public TestDataFactory setCourseToFinal(){
+        course.Status__c = 'Final';
+        update course;
+        return this;
+    }
+
     public TestDataFactory setCoursesToFinal(List<Course__c> courses){
         for(Course__c course : courses){
             course.Status__c = 'Final';

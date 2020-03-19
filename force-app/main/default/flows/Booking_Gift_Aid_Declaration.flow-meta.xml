@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Create_Gift_Aid_Declaration</name>
+        <label>Create Gift Aid Declaration</label>
+        <locationX>1006</locationX>
+        <locationY>215</locationY>
+        <actionName>CreateGiftAidDeclarationHelper</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>giftAidDeclarationList</name>
+            <value>
+                <elementReference>Gift_Aid_Declaration_List</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <assignments>
         <name>Assigned_Partner</name>
         <label>Assigned Partner</label>
@@ -17,17 +31,10 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Collect_GAD</name>
-        <label>Collect GAD</label>
-        <locationX>982</locationX>
-        <locationY>192</locationY>
-        <assignmentItems>
-            <assignToReference>Gift_Aid_Declaration_List</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>ParentGAD</elementReference>
-            </value>
-        </assignmentItems>
+        <name>Collect_Partner_GAD</name>
+        <label>Collect Partner  GAD</label>
+        <locationX>861</locationX>
+        <locationY>22</locationY>
         <assignmentItems>
             <assignToReference>Gift_Aid_Declaration_List</assignToReference>
             <operator>Add</operator>
@@ -35,12 +42,31 @@
                 <elementReference>PartnerGAD</elementReference>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>GAD_for_Parent</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>CollectParentGAD</name>
+        <label>Collect Parent GAD</label>
+        <locationX>951</locationX>
+        <locationY>368</locationY>
+        <assignmentItems>
+            <assignToReference>Gift_Aid_Declaration_List</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>ParentGAD</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Gift_Aid_Declaration</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>GAD_for_Parent</name>
         <label>GAD for Parent</label>
-        <locationX>794</locationX>
-        <locationY>318</locationY>
+        <locationX>805</locationX>
+        <locationY>367</locationY>
         <assignmentItems>
             <assignToReference>ParentGAD.gaid__Contact__c</assignToReference>
             <operator>Assign</operator>
@@ -52,7 +78,7 @@
             <assignToReference>ParentGAD.gaid__Acquisition_Method__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>GAD_ACQUISITION_METHOD</elementReference>
+                <stringValue>Digital</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -91,14 +117,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Collect_GAD</targetReference>
+            <targetReference>CollectParentGAD</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>GAD_for_Partner</name>
         <label>GAD for Partner</label>
-        <locationX>798</locationX>
-        <locationY>39</locationY>
+        <locationX>682</locationX>
+        <locationY>22</locationY>
         <assignmentItems>
             <assignToReference>PartnerGAD.gaid__Contact__c</assignToReference>
             <operator>Assign</operator>
@@ -117,7 +143,7 @@
             <assignToReference>PartnerGAD.gaid__Acquisition_Method__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>GAD_ACQUISITION_METHOD</elementReference>
+                <stringValue>Digital</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -149,7 +175,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>GAD_for_Parent</targetReference>
+            <targetReference>Collect_Partner_GAD</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -207,7 +233,7 @@
     <decisions>
         <name>Check_Declaration</name>
         <label>Check Declaration</label>
-        <locationX>690</locationX>
+        <locationX>677</locationX>
         <locationY>184</locationY>
         <defaultConnectorLabel>Decline Gift Aid</defaultConnectorLabel>
         <rules>
@@ -351,6 +377,7 @@
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <fields>
             <name>Gift_Aid_Description_With_Partner</name>
@@ -399,7 +426,13 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Check_Partner</startElementReference>
+    <start>
+        <locationX>211</locationX>
+        <locationY>32</locationY>
+        <connector>
+            <targetReference>Check_Partner</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <textTemplates>
         <name>Individual_Declaration_Description_Template</name>

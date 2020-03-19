@@ -6,25 +6,36 @@
             <tr align='left'>
                 <th>Date</th>
                 <th>Type</th>
-                <th>Amount</th>
+                <th>Chosen Payment Plan</th>
                 <th>For</th>
             </tr>
         </thead>
         <tbody>
-            <apex:repeat var="booking" value="{!bookingList}">
-                <tr>
-                    <td>
-                        <apex:outputText value="{0,date,dd MMMM yyyy}">
-                            <apex:param value="{!booking.Confirmed_Date__c}" />
-                        </apex:outputText>
-                    </td>
-                    <td>Card</td>
-                    <td>£{!IF(NOT(ISBLANK(booking.Fee_Override__c)), booking.Fee_Override__c, booking.Course_Fee__c)}
-                    </td>
-                    <td>Course Fee</td>
-                </tr>
-            </apex:repeat>
+            <tr>
+                <td>
+                    <apex:outputText value="{0,date,dd MMMM yyyy}">
+                        <apex:param value="{!booking.Confirmed_Date__c}" />
+                    </apex:outputText>
+                </td>
+                <td>Card</td>
+                <td> 
+                    <apex:outputText value="{!IF(booking.Fee_Override__c == 0, ('One-off payment of £' + TEXT(booking.Fee_Override__c)), booking.Booking_Journey_Payable_Amount__c)}"/>
+                </td>
+                <td>Course Fee</td>
+            </tr>
         </tbody>
     </table>
 
+    <apex:outputPanel rendered="{!ISBLANK(booking.Next_Collection_Date__c)}">
+        <p>Payment has been taken today.</p>
+    </apex:outputPanel>
+
+    <apex:outputPanel rendered="{!NOT(ISBLANK(booking.Next_Collection_Date__c))}">
+        <p>The first payment has been taken today. The next collection date will be&nbsp;
+        <apex:outputText value="{0,date,dd MMMM yyyy}">
+            <apex:param value="{!booking.Next_Collection_Date__c}"/>
+        </apex:outputText>. Any future payments will be taken on the 3rd of the month.</p>
+    </apex:outputPanel>
+
+    
 </apex:component>
