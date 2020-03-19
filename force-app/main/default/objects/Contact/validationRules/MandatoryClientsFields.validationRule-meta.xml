@@ -11,7 +11,19 @@ ISBLANK(MailingCity) ||
 ISBLANK(MailingPostalCode) ||
 ISBLANK(MailingStreet) ||
 ISBLANK(Email) ||
-ISBLANK(Phone)
+OR
+(
+AND
+(
+ISBLANK(MobilePhone),
+ISPICKVAL(npe01__PreferredPhone__c, &#39;Mobile&#39;)
+),
+AND
+(
+ISBLANK(HomePhone),
+ISPICKVAL(npe01__PreferredPhone__c, &#39;Home&#39;)
+)
+)
 ),
 NOT($Permission.Override_Client_Validation)
 )</errorConditionFormula>
