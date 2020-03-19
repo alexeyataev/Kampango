@@ -42,6 +42,8 @@
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
         <members>FinDockCardPaymentProvider</members>
+        <members>GeneratePaymentFilePaymentRunExtension</members>
+        <members>GeneratePaymentFileUtil</members>
         <members>HttpStatusCode</members>
         <members>IClock</members>
         <members>IPaymentServiceProvider</members>
@@ -114,6 +116,7 @@
         <members>CourseSummary</members>
         <members>CourseSummaryPDF</members>
         <members>CourseSummarySLDS</members>
+        <members>GeneratePaymentFilePaymentRun</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -221,6 +224,7 @@
         <members>Individual</members>
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
+        <members>Payment_Run__c</members>
         <members>Practitioner_Band__c</members>
         <members>Practitioner_Community_Settings__c</members>
         <members>Practitioner_Fee_Rate__c</members>
@@ -425,6 +429,7 @@
         <members>Adhoc_Payment_Success_Flow</members>
         <members>Adhoc_Send_Payment_Email_Flow</members>
         <members>Assign_Practitioner_Fee_Rate_to_Session</members>
+        <members>Bacs_Create_transaction_records</members>
         <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Success_Page</members>
         <members>Booking_Journey_Flow</members>
@@ -496,6 +501,7 @@
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
+        <members>Payment_Run__c-Payment Run Layout</members>
         <members>Practitioner_Band__c-Practitioner Band Layout</members>
         <members>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
@@ -642,6 +648,7 @@
         <members>Booking__c.Send_Offer_Email</members>
         <members>Booking__c.Transfer</members>
         <members>Course__c.Resend_Reunion_Email</members>
+        <members>Payment_Run__c.Create_transaction_records</members>
         <members>Zumzum__Expense_Sheet__c.Edit_Community</members>
         <members>Zumzum__NewTask</members>
         <members>Zumzum__Sales_Invoice__c.Send_Payment_Email</members>
