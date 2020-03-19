@@ -35,6 +35,8 @@
         <members>CoursesDateDistanceModel</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
+        <members>CreateGiftAidDeclarationHelper</members>
+        <members>CreateGiftAidDeclarationHelperTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>dlrs_Estimated_CostsTest</members>
@@ -177,6 +179,10 @@
         <members>Contact.Second_Home_PSA__c</members>
         <members>Contact.Schedule_of_Sessions__c</members>
         <members>Contact.Total_Open_Bookings__c</members>
+        <members>cpm__Installment__c.Account_Name__c</members>
+        <members>cpm__Installment__c.Account_Number__c</members>
+        <members>cpm__Installment__c.Bank_Account__c</members>
+        <members>cpm__Installment__c.Sort_Code__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Course__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Zumzum__Required_Fields</members>
@@ -203,6 +209,7 @@
         <members>Booking__c</members>
         <members>Branch_Weighting__c</members>
         <members>Card_Payment_Plan_Settings__c</members>
+        <members>Care_Settings__c</members>
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
@@ -423,6 +430,7 @@
         <members>Booking_Journey_Flow</members>
         <members>Booking_Journey_Success_and_Confirmed_Pages_Subflow</members>
         <members>Booking_Journey_Update_Contact_Details</members>
+        <members>Booking_Main_Payment_Process</members>
         <members>Booking_Send_Email_On_Enquiry_Created_Process</members>
         <members>Booking_Send_Email_On_Enquiry_Created_Flow</members>
         <members>Booking_SetExpirationStatus</members>
@@ -684,7 +692,19 @@
     </types>   
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
+        <members>Course__c.ShareAllCourseWithParents</members>
+        <members>Zumzum__Company_Setup__c.ShareAllCompanySetupWithParents</members>
+        <members>Zumzum__Company__c.ShareAllCompanyWithParents</members>
+        <members>Zumzum__Currency__c.ShareAllCurrencyWithParents</members>
+        <members>Zumzum__Dimension__c.ShareAllDimensionWithParents</members>
+        <members>Zumzum__Invoice_Template__c.ShareAllDocumentTemplateWithParents</members>
+        <members>Zumzum__Nominal_Account__c.ShareAllNominalAccountWithParents</members>
         <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
+        <members>Zumzum__Tax_Rate__c.ShareAllTaxRateWithParents</members>
+        <members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
+        <members>cpm__Installment__c.ShareAllInstallmentsWithPSA</members>
+        <members>cpm__Recurring_Payment__c.ShareAllPaymentsWithPSA</members>
+        <members>cpm__Recurring_Payment__c.ShareAllRecurringPaymentsWithPSA</members>
         <name>SharingCriteriaRule</name>
     </types>
     <types>

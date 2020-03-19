@@ -19,5 +19,9 @@
     <template if:false={isPayByInstallmentsAvailable}>
         <p class='installmentsIsNotAvailableMessage'>Paying in instalments is not available as your course date may be too close or the course fee may not meet the minimum cost</p>
     </template>
+
+    <template if:true={nextCollectionDate}>
+        <p class='nextCollectionDateMessage'>The first monthly payment will be taken today. The next collection date will be <b>{nextCollectionDate}</b>. Future payments will be taken on the 3rd of the month.</p>
+    </template>
        
 </template>

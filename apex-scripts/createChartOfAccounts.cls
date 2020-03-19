@@ -161,7 +161,8 @@ void insertNominalAccounts() {
         'Stock' => newNA('Stock', 9200, TRUE, false, subCatIdByName.get('Stock'), false),
         'Subsistence' => newNA('Subsistence', 5155, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
         'Printing & Copying' => newNA('Printing & Copying', 5191, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
-        'Postage Costs' => newNA('Postage Costs', 5170, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE)
+        'Postage Costs' => newNA('Postage Costs', 5170, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
+        'BACS Payments in Transit' => newNA('BACS Payments in Transit', 9402, TRUE, false, subCatIdByName.get('Cash at bank and in hand'), false)
     };
     List<Zumzum__Nominal_Account__c> allNominalAccounts = allNominalAccountsMap.values();
     insert allNominalAccounts;

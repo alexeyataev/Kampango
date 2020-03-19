@@ -87,15 +87,17 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Is status enquiry?</label>
+            <label>AND(Enquiry, NOT(Drop In), FromWebsite)</label>
         </rules>
     </decisions>
+    <description>Filtered out Drop-ins</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
  ISPICKVAL([Booking__c].Status__c, &#39;Enquiry&#39;),
+ NOT( ISPICKVAL([Booking__c].Course__c.Type__c, &#39;Drop In&#39;)),
  $Profile.Name = &#39;Website Integration&#39;
 )</stringValue>
             </value>
@@ -104,10 +106,11 @@
         <dataType>Boolean</dataType>
         <expression>AND(
  ISPICKVAL({!myVariable_current.Status__c}, &#39;Enquiry&#39;),
+ NOT( ISPICKVAL({!myVariable_current.Course__r.Type__c}, &#39;Drop In&#39;)),
  {!$Profile.Name} = &#39;Website Integration&#39;
 )</expression>
     </formulas>
-    <interviewLabel>Booking_Send_Email_On_Enquiry_Created_Process-2_InterviewLabel</interviewLabel>
+    <interviewLabel>Booking_Send_Email_On_Enquiry_Created_Process-4_InterviewLabel</interviewLabel>
     <label>Booking Send Email On Enquiry Created Process</label>
     <processMetadataValues>
         <name>ObjectType</name>

@@ -7,8 +7,8 @@ public with sharing class CareHelper {
         addContactResult.nctNumber = contactObject.contact != null ? contactObject.contact.contactNumber : null;
         return addContactResult;
     }
-    public static AddBankDetailsResult sendBankDetails(cpm__Payment_Profile__c paymentProfile, Contact cont) {
-        HttpResponse res = sendHttpRequest('SFAddBankDetailsWS.pl', CareRequestBodyUtil.createSendBankDetailsBody(paymentProfile, cont));
+    public static AddBankDetailsResult sendBankDetails(cpm__Installment__c installment, Contact cont) {
+        HttpResponse res = sendHttpRequest('SFAddBankDetailsWS.pl', CareRequestBodyUtil.createSendBankDetailsBody(installment, cont));
         CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = (CareRequestBodyUtil.ContactBankAccountObject)JSON.deserialize(res.getBody(), CareRequestBodyUtil.ContactBankAccountObject.class);
         AddBankDetailsResult addBankDetailsResult = new AddBankDetailsResult();
         addBankDetailsResult.error = contactBankAccountObject.error != null ? contactBankAccountObject.error[0].errorMessage : null;
@@ -20,6 +20,13 @@ public with sharing class CareHelper {
         CareRequestBodyUtil.MembershipOjbect membershipObject = (CareRequestBodyUtil.MembershipOjbect)JSON.deserialize(res.getBody(), CareRequestBodyUtil.MembershipOjbect.class);
         return membershipObject;
     }
+
+    @future(callout=true)
+    public static void sendMarketingPreferences(String nctNumber, String standardDocumentNumber) {
+        HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', CareRequestBodyUtil.createMarketingPreferencesBody(nctNumber, standardDocumentNumber));
+        CareRequestBodyUtil.MarketingPreferencesObject marketingPreferencesObject = (CareRequestBodyUtil.MarketingPreferencesObject)JSON.deserialize(res.getBody(), CareRequestBodyUtil.MarketingPreferencesObject.class);
+    }
+
     private static HttpResponse sendHttpRequest(String methodName, String body) {
         HttpRequest req = new HttpRequest();
         req.setTimeout(120000);

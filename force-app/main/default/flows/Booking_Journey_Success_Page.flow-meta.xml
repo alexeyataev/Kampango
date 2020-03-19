@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>AddMarketingPreferencesToCare</name>
+        <label>AddMarketingPreferencesToCare</label>
+        <locationX>875</locationX>
+        <locationY>279</locationY>
+        <actionName>AddMarketingPreferencesToCare</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Course_Data</targetReference>
+        </connector>
+        <inputParameters>
+            <name>contactId</name>
+            <value>
+                <elementReference>curBooking.Primary_Contact__c</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <decisions>
         <name>Installment_Check</name>
         <label>Installment Check</label>
@@ -62,11 +79,11 @@
     <recordLookups>
         <name>Get_Booking_Data</name>
         <label>Get Booking Data</label>
-        <locationX>750</locationX>
-        <locationY>276</locationY>
+        <locationX>731</locationX>
+        <locationY>279</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Course_Data</targetReference>
+            <targetReference>AddMarketingPreferencesToCare</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -94,8 +111,8 @@
     <recordLookups>
         <name>Get_Course_Data</name>
         <label>Get Course Data</label>
-        <locationX>945</locationX>
-        <locationY>276</locationY>
+        <locationX>1003</locationX>
+        <locationY>279</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Booking</targetReference>
@@ -170,11 +187,13 @@
         <object>Zumzum__Sales_Invoice__c</object>
         <outputReference>SalesInvoice_Record</outputReference>
         <queriedFields>Id</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
     </recordLookups>
     <recordUpdates>
         <name>Update_Booking</name>
         <label>Update Booking</label>
-        <locationX>1092</locationX>
+        <locationX>1128</locationX>
         <locationY>276</locationY>
         <connector>
             <targetReference>Booking_Journey_Success_and_Confirmed_Pages_Subflow</targetReference>
@@ -227,8 +246,8 @@
     <subflows>
         <name>Booking_Journey_Success_and_Confirmed_Pages_Subflow</name>
         <label>Booking Journey Success  and Confirmed Pages Subflow</label>
-        <locationX>1233</locationX>
-        <locationY>277</locationY>
+        <locationX>1282</locationX>
+        <locationY>276</locationY>
         <flowName>Booking_Journey_Success_and_Confirmed_Pages_Subflow</flowName>
         <inputAssignments>
             <name>curBooking</name>

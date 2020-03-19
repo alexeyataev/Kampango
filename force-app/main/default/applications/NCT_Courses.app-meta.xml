@@ -68,6 +68,8 @@
     <tabs>standard-Contact</tabs>
     <tabs>standard-Individual</tabs>
     <tabs>standard-Account</tabs>
+    <tabs>Zumzum__Purchase_Invoice__c</tabs>
+    <tabs>Zumzum__Expense_Sheet__c</tabs>
     <tabs>Venue__c</tabs>
     <tabs>standard-Case</tabs>
     <tabs>standard-report</tabs>

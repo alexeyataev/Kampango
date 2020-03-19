@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <description>If returned false then to Client will give the ability to chose another variant payment.</description>
         <name>Add_Bank_Details_For_Membership_Handler</name>
         <label>Add Bank Details For Membership Handler</label>
-        <locationX>938</locationX>
-        <locationY>1232</locationY>
+        <locationX>1067</locationX>
+        <locationY>1589</locationY>
         <actionName>AddBankDetailsForMembershipHandler</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Is_Banks_Number_True</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>DD_Payment_Is_Not_Available</targetReference>
+        </faultConnector>
         <inputParameters>
             <name>installment</name>
             <value>
@@ -28,13 +32,16 @@
     <actionCalls>
         <name>Card_Payment_Handler</name>
         <label>Card Payment Handler</label>
-        <locationX>2544</locationX>
-        <locationY>432</locationY>
+        <locationX>2760</locationX>
+        <locationY>398</locationY>
         <actionName>CardPaymentHandler</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Payment_Link_Result</targetReference>
+            <targetReference>Clear_Next_Collection_Date</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputParameters>
             <name>errorPage</name>
             <value>
@@ -89,13 +96,16 @@
     <actionCalls>
         <name>Card_Payment_Plan_Handler</name>
         <label>Card Payment Plan Handler</label>
-        <locationX>2548</locationX>
-        <locationY>749</locationY>
+        <locationX>2772</locationX>
+        <locationY>855</locationY>
         <actionName>CardPaymentPlanHandler</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Payment_Link_Result</targetReference>
+            <targetReference>Added_Next_Collection_Date</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputParameters>
             <name>membershipType</name>
             <value>
@@ -166,15 +176,18 @@
         </outputParameters>
     </actionCalls>
     <actionCalls>
-        <name>Create_Sales_Invoice_and_Sales_Invoice_Items</name>
-        <label>Create Sales Invoice and Sales Invoice Items</label>
-        <locationX>2146</locationX>
-        <locationY>445</locationY>
+        <name>Create_SI_and_SI_Line_Items</name>
+        <label>Create SI and SI Line Items</label>
+        <locationX>2165</locationX>
+        <locationY>781</locationY>
         <actionName>ZumzumCreatePostSalesInvoice</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Assign_Sales_Invoice_to_Parameters</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputParameters>
             <name>zumzumSalesInvoiceParameterList</name>
             <value>
@@ -184,10 +197,49 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <assignments>
+        <name>Add_Amount_To_Be_Paid</name>
+        <label>Add Amount To Be Paid</label>
+        <locationX>3125</locationX>
+        <locationY>858</locationY>
+        <assignmentItems>
+            <assignToReference>Booking_Instance.Booking_Journey_Payable_Amount__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Amount_To_Be_Paid</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Booking_Instance.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>bookingId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Payable_Amount</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Cost_Membership</name>
+        <label>Add Cost Membership</label>
+        <locationX>2618</locationX>
+        <locationY>979</locationY>
+        <assignmentItems>
+            <assignToReference>PaymentPlanParameters.amount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Membership_Amount</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Type_Of_Payment</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Add_Course_SI_Parameter</name>
         <label>Add Course SI Parameter</label>
-        <locationX>2051</locationX>
-        <locationY>599</locationY>
+        <locationX>2074</locationX>
+        <locationY>608</locationY>
         <assignmentItems>
             <assignToReference>ZumzumSalesInvoiceParametersList</assignToReference>
             <operator>Add</operator>
@@ -196,7 +248,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Sales_Invoice_and_Sales_Invoice_Items</targetReference>
+            <targetReference>Create_SI_and_SI_Line_Items</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -218,7 +270,7 @@
     <assignments>
         <name>Add_Membership_Type_and_Amount_to_Installment_1</name>
         <label>Add Membership Type and Amount to Installment_1</label>
-        <locationX>1243</locationX>
+        <locationX>1241</locationX>
         <locationY>838</locationY>
         <assignmentItems>
             <assignToReference>Membership_Amount</assignToReference>
@@ -234,8 +286,8 @@
     <assignments>
         <name>Add_Membership_Type_and_Amount_to_Installment_2</name>
         <label>Add Membership Type and Amount to Installment_2</label>
-        <locationX>1473</locationX>
-        <locationY>833</locationY>
+        <locationX>1478</locationX>
+        <locationY>841</locationY>
         <assignmentItems>
             <assignToReference>Membership_Amount</assignToReference>
             <operator>Assign</operator>
@@ -245,22 +297,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Payment_Method_Decision_0</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_Primary_Contact_Id</name>
-        <label>Add Primary Contact Id</label>
-        <locationX>787</locationX>
-        <locationY>1082</locationY>
-        <assignmentItems>
-            <assignToReference>Installment_For_Payment_By_DD.cpm__Contact__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>bookingRecord.Primary_Contact__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Get_Payment_Profile</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -280,26 +316,55 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Added_Next_Collection_Date</name>
+        <label>Added Next Collection Date</label>
+        <locationX>2950</locationX>
+        <locationY>855</locationY>
+        <assignmentItems>
+            <assignToReference>Booking_Instance.Next_Collection_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PaymentPlanOptionSelected.nextCollectionDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Payment_Link_Result</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Sales_Invoice_to_Parameters</name>
         <label>Assign Sales Invoice to Parameters</label>
-        <locationX>2232</locationX>
-        <locationY>606</locationY>
+        <locationX>2275</locationX>
+        <locationY>619</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.salesInvoiceId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Create_Sales_Invoice_and_Sales_Invoice_Items.Id</elementReference>
+                <elementReference>Create_SI_and_SI_Line_Items.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Type_Of_Payment</targetReference>
+            <targetReference>Is_Membership_Chose_0</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Clear_Next_Collection_Date</name>
+        <label>Clear Next Collection Date</label>
+        <locationX>2965</locationX>
+        <locationY>397</locationY>
+        <assignmentItems>
+            <assignToReference>Booking_Instance.Next_Collection_Date__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>Payment_Link_Result</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Course_Plan_Payment_By_Credit_Card</name>
         <label>Course Plan Payment By Credit Card</label>
         <locationX>1125</locationX>
-        <locationY>239</locationY>
+        <locationY>167</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.amountRecurring</assignToReference>
             <operator>Assign</operator>
@@ -342,8 +407,8 @@
     <assignments>
         <name>Course_ZumzumSalesInvoiceParameter_Assignment</name>
         <label>Course ZumzumSalesInvoiceParameter Assignment</label>
-        <locationX>1918</locationX>
-        <locationY>599</locationY>
+        <locationX>1920</locationX>
+        <locationY>607</locationY>
         <assignmentItems>
             <assignToReference>CourseZumzumSalesInvoiceParameter.bookingId</assignToReference>
             <operator>Assign</operator>
@@ -362,7 +427,7 @@
             <assignToReference>CourseZumzumSalesInvoiceParameter.foreignNetAmount</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>PaymentPlanParameters.amount</elementReference>
+                <elementReference>Get_Course_Fee</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -412,6 +477,13 @@
             <operator>Assign</operator>
             <value>
                 <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>CourseZumzumSalesInvoiceParameter.contactId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Primary_Contact.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -509,22 +581,105 @@
                 <numberValue>1.0</numberValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>MembershipZumzumSalesInvoiceParameter.contactId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Primary_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_Membership_SI_Parameter</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>Set_Assigned_for_Total_Fee</name>
-        <label>Set Assigned for Total Fee</label>
-        <locationX>1363</locationX>
-        <locationY>1425</locationY>
+        <description>Installment with data for AddBankDetails. 
+If AddBankDetails return BankNumber then this Installment will continue to populate (e.g Sales_Invoice, BankNumber will populate before payment Apex Action).</description>
+        <name>Populate_Fields_of_Installment_Object_For_Membership</name>
+        <label>Populate Fields  of Installment Object For Membership</label>
+        <locationX>1067</locationX>
+        <locationY>1404</locationY>
         <assignmentItems>
-            <assignToReference>PaymentPlanParameters.amount</assignToReference>
-            <operator>Add</operator>
+            <assignToReference>Installment_For_Payment_By_DD.cpm__Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>bookingRecord.Primary_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.Account_Name__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Account_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.Account_Number__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Account_Number</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.Sort_Code__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sort_Code</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_Bank_Details_For_Membership_Handler</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Populate_Fields_of_Installment_Object_With_Bank_Number</name>
+        <label>Populate Fields  of Installment Object With Bank Number</label>
+        <locationX>2374</locationX>
+        <locationY>843</locationY>
+        <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.Bank_Details_Number__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>bankNumber</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.Membership_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Chosen_Membership_Result</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.cpm__Amount__c</assignToReference>
+            <operator>Assign</operator>
             <value>
                 <elementReference>Membership_Amount</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.cpm__Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>bookingRecord.Primary_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.Sales_Invoice__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Create_SI_and_SI_Line_Items.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Membership_Installment</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Assigned_for_Total_Fee</name>
+        <label>Set Assigned for Total Fee</label>
+        <locationX>1362</locationX>
+        <locationY>1426</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.membershipType</assignToReference>
             <operator>Assign</operator>
@@ -582,7 +737,7 @@
     </assignments>
     <choices>
         <name>CourseCC</name>
-        <choiceText>&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;One-off payment of &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(33, 37, 41); font-size: 12px;&quot;&gt;{!Course_Fee}&lt;/span&gt;</choiceText>
+        <choiceText>&lt;span style=&quot;color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt;One-off payment of {!Course_Fee}&lt;/span&gt;</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>Course__CC</stringValue>
@@ -590,7 +745,7 @@
     </choices>
     <choices>
         <name>CoursePlanCC</name>
-        <choiceText>Pay by installments</choiceText>
+        <choiceText>&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0);&quot;&gt;Pay by instalments&lt;/span&gt;</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>PlanCC</stringValue>
@@ -742,6 +897,20 @@
         </value>
     </constants>
     <constants>
+        <name>MEMBERSHIP_PAYMENT_OPTION_CC</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>CC</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>MEMBERSHIP_PAYMENT_OPTION_DD</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>DD</stringValue>
+        </value>
+    </constants>
+    <constants>
         <name>MEMBERSHIP_TYPE_A</name>
         <dataType>String</dataType>
         <value>
@@ -802,8 +971,8 @@
     <decisions>
         <name>Is_Banks_Number_True</name>
         <label>Is Banks Number True</label>
-        <locationX>550</locationX>
-        <locationY>1567</locationY>
+        <locationX>1925</locationX>
+        <locationY>1827</locationY>
         <defaultConnector>
             <targetReference>DD_Payment_Is_Not_Available</targetReference>
         </defaultConnector>
@@ -816,7 +985,7 @@
                 <operator>NotEqualTo</operator>
             </conditions>
             <connector>
-                <targetReference>Create_Membership_Installment</targetReference>
+                <targetReference>Booking_Gift_Aid_Declaration_Flow</targetReference>
             </connector>
             <label>Is True</label>
         </rules>
@@ -847,32 +1016,64 @@
         </rules>
     </decisions>
     <decisions>
-        <name>NCT_Number_Is_Null</name>
-        <label>NCT Number is Null</label>
-        <locationX>771</locationX>
-        <locationY>855</locationY>
+        <name>Is_Membership_Chose_0</name>
+        <label>Is Membership Chose ?</label>
+        <locationX>2439</locationX>
+        <locationY>623</locationY>
         <defaultConnector>
-            <targetReference>Add_Primary_Contact_Id</targetReference>
+            <targetReference>Type_Of_Payment</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>NCT Number is True</defaultConnectorLabel>
+        <defaultConnectorLabel>Membership Is False</defaultConnectorLabel>
         <rules>
-            <name>NCT_Number_is_False</name>
+            <name>Membership_Is_True_and_CC</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>bookingRecord2.NCT_Number__c</leftValueReference>
+                <leftValueReference>Chosen_Membership_Result</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>WITHOUT_MEMBERSHIP</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Membership_Payment_Options</leftValueReference>
                 <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>MEMBERSHIP_PAYMENT_OPTION_CC</elementReference>
+                </rightValue>
             </conditions>
             <connector>
-                <targetReference>DD_Payment_Is_Not_Available</targetReference>
+                <targetReference>Add_Cost_Membership</targetReference>
             </connector>
-            <label>NCT Number is False</label>
+            <label>Membership Is True and CC</label>
+        </rules>
+        <rules>
+            <name>Membership_Is_True_and_DD</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Chosen_Membership_Result</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>WITHOUT_MEMBERSHIP</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Membership_Payment_Options</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>MEMBERSHIP_PAYMENT_OPTION_DD</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Populate_Fields_of_Installment_Object_With_Bank_Number</targetReference>
+            </connector>
+            <label>Membership Is True and DD</label>
         </rules>
     </decisions>
     <decisions>
         <name>Payment_Link_Result</name>
         <label>Payment Link Result</label>
-        <locationX>2683</locationX>
-        <locationY>593</locationY>
+        <locationX>2954</locationX>
+        <locationY>602</locationY>
         <defaultConnector>
             <targetReference>Payment_Error_Screen</targetReference>
         </defaultConnector>
@@ -885,7 +1086,7 @@
                 <operator>NotEqualTo</operator>
             </conditions>
             <connector>
-                <targetReference>Set_Payable_Amount</targetReference>
+                <targetReference>Add_Amount_To_Be_Paid</targetReference>
             </connector>
             <label>Payment Link is True</label>
         </rules>
@@ -893,8 +1094,8 @@
     <decisions>
         <name>Payment_Method_Decision</name>
         <label>Payment Method Decision</label>
-        <locationX>910</locationX>
-        <locationY>344</locationY>
+        <locationX>906</locationX>
+        <locationY>303</locationY>
         <defaultConnectorLabel>Without Membership</defaultConnectorLabel>
         <rules>
             <name>Pay_Only_for_Course</name>
@@ -940,7 +1141,7 @@
                 <leftValueReference>Membership_Payment_Options</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>CC</stringValue>
+                    <elementReference>MEMBERSHIP_PAYMENT_OPTION_CC</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -969,7 +1170,7 @@
                 <leftValueReference>Membership_Payment_Options</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>DD</stringValue>
+                    <elementReference>MEMBERSHIP_PAYMENT_OPTION_DD</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -987,7 +1188,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Booking_0</targetReference>
+                <targetReference>Direct_Debit_Bank_Account_Details_Screen</targetReference>
             </connector>
             <label>Membership by Direct Debit</label>
         </rules>
@@ -995,8 +1196,8 @@
     <decisions>
         <name>Type_Of_Payment</name>
         <label>Type Of Payment</label>
-        <locationX>2378</locationX>
-        <locationY>608</locationY>
+        <locationX>2629</locationX>
+        <locationY>614</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Payment_Only_For_Course</name>
@@ -1043,7 +1244,7 @@
             <label>Payment Plan For Course</label>
         </rules>
     </decisions>
-    <description>v.1 Process where:
+    <description>v.1.1 Process where:
 1. Membership Options
 2. Payment Options(Credit Card, Direct Debit).
 3. Gift Aid Declaration Options
@@ -1053,7 +1254,7 @@
     <formulas>
         <name>Amount_To_Be_Paid</name>
         <dataType>String</dataType>
-        <expression>IF({!Is_Payment_Plan_True}, {!PaymentPlanOptionSelected.displayLabel}, &#39;£&#39; + TEXT({!Course_Fee}))</expression>
+        <expression>IF({!Is_Payment_Plan_True}, {!PaymentPlanOptionSelected.displayLabel}, &#39;One-off payment of £&#39; + TEXT({!Course_Fee}))</expression>
     </formulas>
     <formulas>
         <description>Return sum course fee for a one-off payment or payment plan + membership fee</description>
@@ -1096,37 +1297,15 @@
     <recordCreates>
         <name>Create_Membership_Installment</name>
         <label>Create Membership Installment</label>
-        <locationX>1917</locationX>
-        <locationY>1569</locationY>
+        <locationX>2375</locationX>
+        <locationY>995</locationY>
         <connector>
-            <targetReference>Booking_Gift_Aid_Declaration_Flow</targetReference>
+            <targetReference>Add_Cost_Membership</targetReference>
         </connector>
-        <inputAssignments>
-            <field>Bank_Details_Number__c</field>
-            <value>
-                <elementReference>bankNumber</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Membership_Type__c</field>
-            <value>
-                <elementReference>Chosen_Membership_Result</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>cpm__Amount__c</field>
-            <value>
-                <elementReference>Membership_Amount</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>cpm__Contact__c</field>
-            <value>
-                <elementReference>bookingRecord.Primary_Contact__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>cpm__Installment__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
+        <inputReference>Installment_For_Payment_By_DD</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_Booking</name>
@@ -1137,6 +1316,9 @@
         <connector>
             <targetReference>Booking_Membership_Options_Flow</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -1161,35 +1343,17 @@
         <queriedFields>PSA_Office__c</queriedFields>
     </recordLookups>
     <recordLookups>
-        <name>Get_Booking_0</name>
-        <label>Get Booking</label>
-        <locationX>936</locationX>
-        <locationY>853</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>NCT_Number_Is_Null</targetReference>
-        </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>bookingId</elementReference>
-            </value>
-        </filters>
-        <object>Booking__c</object>
-        <outputReference>bookingRecord2</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>NCT_Number__c</queriedFields>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Course_Nominal_Account</name>
         <label>Get Course Nominal Account</label>
-        <locationX>1554</locationX>
-        <locationY>725</locationY>
+        <locationX>1621</locationX>
+        <locationY>800</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Course_Place</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filters>
             <field>Zumzum__Nominal_Code__c</field>
             <operator>EqualTo</operator>
@@ -1204,12 +1368,15 @@
     <recordLookups>
         <name>Get_Course_Place</name>
         <label>Get Course Place</label>
-        <locationX>1725</locationX>
-        <locationY>599</locationY>
+        <locationX>1730</locationX>
+        <locationY>607</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Course_ZumzumSalesInvoiceParameter_Assignment</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filters>
             <field>Name</field>
             <operator>EqualTo</operator>
@@ -1224,12 +1391,15 @@
     <recordLookups>
         <name>Get_Dimension1</name>
         <label>Get Dimension1</label>
-        <locationX>1721</locationX>
-        <locationY>291</locationY>
+        <locationX>1727</locationX>
+        <locationY>292</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Dimension2</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filters>
             <field>Name</field>
             <operator>EqualTo</operator>
@@ -1244,12 +1414,15 @@
     <recordLookups>
         <name>Get_Dimension2</name>
         <label>Get Dimension2</label>
-        <locationX>1916</locationX>
-        <locationY>294</locationY>
+        <locationX>1923</locationX>
+        <locationY>291</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_No_VAT</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filters>
             <field>Name</field>
             <operator>EqualTo</operator>
@@ -1264,12 +1437,15 @@
     <recordLookups>
         <name>Get_GBP</name>
         <label>Get GBP</label>
-        <locationX>1725</locationX>
-        <locationY>443</locationY>
+        <locationX>1727</locationX>
+        <locationY>446</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Membership_Chose</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filters>
             <field>Name</field>
             <operator>EqualTo</operator>
@@ -1284,12 +1460,15 @@
     <recordLookups>
         <name>Get_Membership_Nominal_Account</name>
         <label>Get Membership Nominal Account</label>
-        <locationX>1620</locationX>
+        <locationX>1618</locationX>
         <locationY>1425</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Membership_PriceBook</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filters>
             <field>Zumzum__Nominal_Code__c</field>
             <operator>EqualTo</operator>
@@ -1310,6 +1489,9 @@
         <connector>
             <targetReference>Get_Membership_PriceBook_Entry</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filters>
             <field>Name</field>
             <operator>EqualTo</operator>
@@ -1330,6 +1512,9 @@
         <connector>
             <targetReference>Membership_ZumzumSalesInvoiceParameter_Assignment</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filters>
             <field>Pricebook2Id</field>
             <operator>EqualTo</operator>
@@ -1346,11 +1531,14 @@
         <name>Get_No_VAT</name>
         <label>Get No VAT</label>
         <locationX>1916</locationX>
-        <locationY>441</locationY>
+        <locationY>446</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_GBP</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filters>
             <field>Zumzum__Active__c</field>
             <operator>EqualTo</operator>
@@ -1377,37 +1565,6 @@
         <queriedFields>Id</queriedFields>
     </recordLookups>
     <recordLookups>
-        <name>Get_Payment_Profile</name>
-        <label>Get Payment Profile</label>
-        <locationX>937</locationX>
-        <locationY>1082</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Add_Bank_Details_For_Membership_Handler</targetReference>
-        </connector>
-        <filters>
-            <field>cpm__Active__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>cpm__Contact__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>bookingRecord.Primary_Contact__c</elementReference>
-            </value>
-        </filters>
-        <object>cpm__Payment_Profile__c</object>
-        <outputAssignments>
-            <assignToReference>Installment_For_Payment_By_DD.cpm__Payment_Profile__c</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-        <sortField>LastModifiedDate</sortField>
-        <sortOrder>Asc</sortOrder>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Primary_Contact</name>
         <label>Get Primary Contact</label>
         <locationX>1562</locationX>
@@ -1416,6 +1573,9 @@
         <connector>
             <targetReference>Get_Dimension1</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -1431,31 +1591,18 @@
     <recordUpdates>
         <name>Set_Payable_Amount</name>
         <label>Set Payable Amount</label>
-        <locationX>2856</locationX>
-        <locationY>592</locationY>
+        <locationX>3274</locationX>
+        <locationY>859</locationY>
         <connector>
             <targetReference>Payment_Details_Screen</targetReference>
         </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>bookingId</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Booking_Journey_Payable_Amount__c</field>
-            <value>
-                <elementReference>Amount_To_Be_Paid</elementReference>
-            </value>
-        </inputAssignments>
-        <object>Booking__c</object>
+        <inputReference>Booking_Instance</inputReference>
     </recordUpdates>
     <screens>
         <name>DD_Payment_Is_Not_Available</name>
         <label>Direct Debit Not Available Screen</label>
-        <locationX>563</locationX>
-        <locationY>1211</locationY>
+        <locationX>889</locationX>
+        <locationY>1828</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1471,10 +1618,105 @@
         <showHeader>false</showHeader>
     </screens>
     <screens>
+        <name>Direct_Debit_Bank_Account_Details_Screen</name>
+        <label>Direct Debit Bank Account Details Screen</label>
+        <locationX>1068</locationX>
+        <locationY>1231</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Populate_Fields_of_Installment_Object_For_Membership</targetReference>
+        </connector>
+        <fields>
+            <name>Direct_Debit_Guarantee_Text</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;The Direct Debit Guarantee&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;If there are any changes to the amount, date or frequency of your Direct Debit NCT will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request NCT to collect a payment, confirmation of the amount and date will be given to you at the time of the request.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;If an error is made in the payment of your Direct Debit, by NCT or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;If you receive a refund you are not entitled to, you must pay it back when NCT asks you to.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;﻿You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify us.&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Direct_Debit_Bank_Account_Details_Text</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Direct debit details&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;If you are not the account holder or bank account requires more than one signatory then please ask our Enquiries team to send you a paper Direct Debit Instruction.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Account_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Account Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Account_Number</name>
+            <dataType>String</dataType>
+            <fieldText>Account Number</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;Please make sure that the Bank Account Number consists of 8 digits and is numeric&amp;nbsp;e.g &#39;12345678&#39;.&lt;/p&gt;</errorMessage>
+                <formulaExpression>AND (
+ LEN({!Account_Number}) == 8, 
+ ISNUMBER({!Account_Number})
+)</formulaExpression>
+            </validationRule>
+        </fields>
+        <fields>
+            <name>Sort_Code</name>
+            <dataType>String</dataType>
+            <fieldText>Sort Code</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;Please make sure that the Sort Code consists of 6 digits and is numeric&amp;nbsp;e.g &#39;123456&#39;.&lt;/p&gt;</errorMessage>
+                <formulaExpression>AND (
+  LEN({!Sort_Code}) == 6, 
+   ISNUMBER({!Sort_Code})
+)</formulaExpression>
+            </validationRule>
+        </fields>
+        <fields>
+            <name>Payment_Date_Text</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Payment date&lt;/b&gt;&lt;/p&gt;&lt;p&gt;3rd of the month&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Empty_Row</name>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Direct_Debit_Confirm_Text</name>
+            <dataType>Boolean</dataType>
+            <fieldText>I confirm that I&#39;m authorised to debit from this account. I agree to NCT debiting my account as detailed above.</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;Before you can continue, please indicate you have read and agreed to the terms and conditions&lt;/p&gt;</errorMessage>
+                <formulaExpression>IF({!Direct_Debit_Confirm_Text} == TRUE, TRUE, FALSE)</formulaExpression>
+            </validationRule>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>2600</locationX>
+        <locationY>1830</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Error_Message</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;We&#39;re sorry your booking can&#39;t be completed right now. Please contact your Course Organiser direct, or you can phone our helpline on &lt;/span&gt;&lt;b style=&quot;color: rgb(62, 62, 60); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;0300 330 0700.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(247, 122, 115); font-size: 12px; background-color: rgb(255, 255, 255);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Payment_Details_Screen</name>
         <label>Payment Details Screen</label>
-        <locationX>2990</locationX>
-        <locationY>593</locationY>
+        <locationX>3410</locationX>
+        <locationY>859</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
         <allowPause>false</allowPause>
@@ -1506,8 +1748,8 @@
     <screens>
         <name>Payment_Error_Screen</name>
         <label>Payment Error Screen</label>
-        <locationX>2696</locationX>
-        <locationY>332</locationY>
+        <locationX>3121</locationX>
+        <locationY>402</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1522,8 +1764,8 @@
     <screens>
         <name>Payment_Options_Screen</name>
         <label>Payment Options Screen</label>
-        <locationX>836</locationX>
-        <locationY>116</locationY>
+        <locationX>788</locationX>
+        <locationY>591</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1732,8 +1974,8 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>214</locationX>
-        <locationY>303</locationY>
+        <locationX>147</locationX>
+        <locationY>112</locationY>
         <connector>
             <targetReference>Get_Booking</targetReference>
         </connector>
@@ -1742,8 +1984,8 @@
     <subflows>
         <name>Booking_Gift_Aid_Declaration_Flow</name>
         <label>Booking Gift Aid Declaration Flow</label>
-        <locationX>1917</locationX>
-        <locationY>787</locationY>
+        <locationX>1930</locationX>
+        <locationY>808</locationY>
         <connector>
             <targetReference>Get_Course_Nominal_Account</targetReference>
         </connector>
@@ -1842,6 +2084,14 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>Booking_Instance</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Booking__c</objectType>
+    </variables>
+    <variables>
         <name>bookingId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -1853,14 +2103,6 @@
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Booking__c</objectType>
-    </variables>
-    <variables>
-        <name>bookingRecord2</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Booking__c</objectType>
     </variables>

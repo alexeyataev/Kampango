@@ -118,6 +118,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.Booking_Journey_Payable_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Branch__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -149,6 +154,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Course_Sub_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Course_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -284,6 +294,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.NCT_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.Next_Collection_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1197,56 +1212,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Name</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Month__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Total_Gross__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Total_Miles__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Total_Net__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Total_VAT__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet__c.Zumzum__Year__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Course__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Account__c</field>
         <readable>true</readable>
@@ -1419,6 +1384,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Nominal_Account__c.Zumzum__Tax_Rate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Course__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Created_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1931,6 +1906,146 @@
         <field>gaid__Gift_Aid_Declaration__c.gaid__Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Sales_Invoice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Amount__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Account_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Account_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Due_Date__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Last_Collection_Date__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Status__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>	
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.Sales_Invoice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>	
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.cpm__Collection_Day_of_Month__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.cpm__End_Date__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.cpm__Frequency__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.cpm__ls_coll_date__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.cpm__Next_Collection_Date__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.cpm__Start_Date__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice_Line_Item__c.Course__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice_Line_Item__c.Zumzum__Dimension_1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice_Line_Item__c.Zumzum__Dimension_2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice_Line_Item__c.Zumzum__Nominal_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice_Line_Item__c.Zumzum__Product__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>	
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Booking__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Invoice_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Paid__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Gross__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>	
+    <fieldPermissions>	
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Paid_Amount__c</field>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Unpaid_Amount__c</field>	
+        <readable>true</readable>	
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Branch Read Only Layout</layout>
         <recordType>Account.Branch</recordType>
@@ -2005,6 +2120,12 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Venue__c-Venue Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>	
+        <layout>Zumzum__Expense_Sheet__c-Capacity Expense Sheet Layout</layout>	
+    </layoutAssignments>
+    <layoutAssignments>	
+        <layout>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</layout>	
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -2230,6 +2351,42 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>Zumzum__Purchase_Invoice__c</object>
         <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Zumzum__Sales_Invoice_Line_Item__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>	
+        <allowCreate>true</allowCreate>	
+        <allowDelete>false</allowDelete>	
+        <allowEdit>true</allowEdit>	
+        <allowRead>true</allowRead>	
+        <modifyAllRecords>false</modifyAllRecords>	
+        <object>Zumzum__Sales_Invoice__c</object>	
+        <viewAllRecords>false</viewAllRecords>	
+    </objectPermissions>
+    <objectPermissions>	
+        <allowCreate>false</allowCreate>	
+        <allowDelete>false</allowDelete>	
+        <allowEdit>false</allowEdit>	
+        <allowRead>true</allowRead>	
+        <modifyAllRecords>false</modifyAllRecords>	
+        <object>cpm__Installment__c</object>	
+        <viewAllRecords>false</viewAllRecords>	
+    </objectPermissions>
+    <objectPermissions>	
+        <allowCreate>false</allowCreate>	
+        <allowDelete>false</allowDelete>	
+        <allowEdit>false</allowEdit>	
+        <allowRead>true</allowRead>	
+        <modifyAllRecords>false</modifyAllRecords>	
+        <object>cpm__Recurring_Payment__c</object>	
+        <viewAllRecords>false</viewAllRecords>	
     </objectPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>

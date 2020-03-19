@@ -4,12 +4,12 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Expense Sheet is Ready for Approval</name>
     <style>none</style>
-    <subject>Expense approved</subject>
-    <textOnly>Dear {!Contact.Name},
+    <subject>Expense Submitted</subject>
+    <textOnly>Dear {!Zumzum__Expense_Sheet__c.OwnerFirstName},
 
-The following expenses have been passed on to finance for final approval:
+The following expenses have been sent for approval:
 
-EXPENSE ID: {!Zumzum__Expense_Sheet__c.Id}
+Expense ID: {!Zumzum__Expense_Sheet__c.Name}
 
 Please log into your portal to view any details. 
 
