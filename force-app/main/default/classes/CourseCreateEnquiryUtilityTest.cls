@@ -109,7 +109,8 @@ private class CourseCreateEnquiryUtilityTest {
             MailingCity = 'London',
             MailingStreet = '221B Baker Street',
             MailingPostalCode = 'E1 7AE',
-            Phone = '+447911123456',
+            npe01__PreferredPhone__c = 'Mobile',
+            MobilePhone = '+447911123456',
             AccountId = account.Id,
             RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
@@ -161,7 +162,8 @@ private class CourseCreateEnquiryUtilityTest {
             MailingCity = 'London',
             MailingStreet = '221B Baker Street',
             MailingPostalCode = 'E1 7AE',
-            Phone = '+447911123456',
+            npe01__PreferredPhone__c = 'Mobile',
+            MobilePhone = '+447911123456',
             AccountId = account.Id,
             RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
@@ -217,7 +219,8 @@ private class CourseCreateEnquiryUtilityTest {
             MailingCity = 'London',
             MailingStreet = '221B Baker Street',
             MailingPostalCode = 'E1 7AE',
-            Phone = '+447911123456',
+            npe01__PreferredPhone__c = 'Mobile',
+            MobilePhone = '+447911123456',
             AccountId = account.Id,
             RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
@@ -290,7 +293,8 @@ private class CourseCreateEnquiryUtilityTest {
             MailingCity = 'London',
             MailingStreet = '221B Baker Street',
             MailingPostalCode = 'E1 7AE',
-            Phone = '+447911123456',
+            npe01__PreferredPhone__c = 'Mobile',
+            MobilePhone = '+447911123456',
             AccountId = account.Id,
             RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
         );
