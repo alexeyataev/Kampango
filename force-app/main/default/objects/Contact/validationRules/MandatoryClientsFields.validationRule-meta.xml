@@ -3,7 +3,7 @@
     <fullName>MandatoryClientsFields</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
-RecordType.Name == &#39;Clients&#39;,
+RecordType.DeveloperName == &#39;Clients&#39;,
 (
 ISBLANK(FirstName) ||
 ISBLANK(LastName) ||
