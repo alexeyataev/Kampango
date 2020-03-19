@@ -17,7 +17,7 @@ public class OutboundBACSpaymentHelper {
             FROM Zumzum__Ledger__c
                WHERE Zumzum__Purchase_Invoice__c IN :purchaseInvoiceIds
                    AND Zumzum__Customer_Supplier_Account_Name__c <> ''
-                   AND Zumzum__Sub_Account_Nominal_Link__c.Zumzum__Nominal_Code__c = :ZUMZUM_NOMINAL_CODE
+                   AND Zumzum__Sub_Account_Nominal_Link__r.Zumzum__Nominal_Code__c = :ZUMZUM_NOMINAL_CODE
         ];
 
         for (Zumzum__Ledger__c ledger: ledgers) {
