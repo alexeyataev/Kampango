@@ -139,8 +139,11 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Session__c</fields>
         <fields>Zumzum__Amount__c</fields>
+        <fields>Session__c</fields>
+        <fields>Course__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>Zumzum__Nominal_Account__c</fields>
         <relatedList>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Purchase_Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -220,7 +223,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h4E0000013Vl3</masterLabel>
+        <masterLabel>00h4E000000r641</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
