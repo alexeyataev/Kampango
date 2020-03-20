@@ -8,7 +8,8 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
                 'FROM Payment_Run_Line_Items__r' +
                 ')' + ' '+ 
             'FROM Payment_Run__c' + ' ' + 
-            'WHERE Id = ' + ' ' +  '\'' + paymentRunId + '\''
+            'WHERE Id = ' + ' ' +  '\'' + paymentRunId + '\'' + ' ' +
+                'AND Status__c = \'Processing\''
         );
     }
 

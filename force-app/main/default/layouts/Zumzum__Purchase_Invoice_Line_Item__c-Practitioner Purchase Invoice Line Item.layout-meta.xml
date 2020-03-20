@@ -8,32 +8,12 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Name</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Zumzum__Quantity__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Zumzum__Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Total_Net__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Tax_Rate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Total_VAT__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Zumzum__Narrative__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -47,11 +27,19 @@
                 <behavior>Edit</behavior>
                 <field>Course__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Created_Date__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Corporate_Currency__c</field>
+                <behavior>Required</behavior>
+                <field>Name</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Zumzum__Narrative__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -65,164 +53,11 @@
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Foreign Amounts</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Transaction_Currency__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Foreign_Net_Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Foreign_Net_Total__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Foreign_Tax__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Foreign_Tax_Total__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Foreign_Currency_Rate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Custom_Rate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Custom_Rate_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Foreign_Gross__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Company Amounts</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company_Currency__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company_Net_Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company_Net_Total__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company_Tax__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company_Tax_Total__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company_To_Corporate_Rate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company_Gross_Total__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Related Transactions</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Opportunity__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Purchase_Order__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Purchase_Order_Line_Item__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Dimensions</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Dimension_1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Dimension_2__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Dimension_3__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Dimension_4__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Dimension_5__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Dimension_6__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>System Information</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>CreatedById</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -239,77 +74,23 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>FeedItem.PollPost</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>1</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>FeedItem.TextPost</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>0</sortOrder>
         </platformActionListItems>
+        <platformActionListItems>
+            <actionName>FeedItem.PollPost</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>1</sortOrder>
+        </platformActionListItems>
     </platformActionList>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Zumzum__Customer_Supplier_Account_Name__c</fields>
-        <fields>Zumzum__Sub_Account_Nominal__c</fields>
-        <fields>Zumzum__Debit__c</fields>
-        <fields>Zumzum__Credit__c</fields>
-        <fields>Zumzum__Tax_Code_Link__c</fields>
-        <fields>Zumzum__Trans_Date__c</fields>
-        <fields>Zumzum__Details__c</fields>
-        <fields>Zumzum__Is_Deleted__c</fields>
-        <relatedList>Zumzum__Ledger__c.Zumzum__Purchase_Invoice_Line_Item__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Zumzum__Bank_Payment__c</fields>
-        <fields>Zumzum__Bank_Payment_Line_Item__c</fields>
-        <fields>Zumzum__Purchase_Credit__c</fields>
-        <fields>Zumzum__Purchase_Credit_Line_Item__c</fields>
-        <fields>Zumzum__Date__c</fields>
-        <fields>Zumzum__Type__c</fields>
-        <fields>Zumzum__Amount__c</fields>
-        <fields>Zumzum__Details__c</fields>
-        <relatedList>Zumzum__Ledger_Payment_History__c.Zumzum__Purchase_Invoice_Line_Item__c</relatedList>
-        <sortField>Zumzum__Date__c</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Zumzum__Purchase_Invoice__c</fields>
-        <fields>Zumzum__Purchase_Invoice_Line_Item__c</fields>
-        <fields>Zumzum__Date__c</fields>
-        <fields>Zumzum__Amount__c</fields>
-        <fields>Zumzum__Details__c</fields>
-        <fields>Zumzum__Parent_Transaction_Number__c</fields>
-        <fields>Zumzum__Payment_Transaction_Number__c</fields>
-        <relatedList>Zumzum__Ledger_Payment_History__c.Zumzum__Purchase_Credit_Line_Item__c</relatedList>
-        <sortField>Zumzum__Date__c</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Zumzum__Bank_Payment__c</fields>
-        <fields>Zumzum__Amount__c</fields>
-        <fields>Zumzum__Status__c</fields>
-        <fields>Zumzum__Purchase_Invoice__c</fields>
-        <relatedList>Zumzum__Bank_Payment_Line_Item__c.Zumzum__Purchase_Invoice_Line_Item__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedEntityHistoryList</relatedList>
-    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h4E0000013WyD</masterLabel>
+        <masterLabel>00h4E000000r640</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

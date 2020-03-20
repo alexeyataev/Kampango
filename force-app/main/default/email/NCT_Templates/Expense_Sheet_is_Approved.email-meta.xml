@@ -2,12 +2,12 @@
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>Expense Sheet is Ready for Approval</name>
+    <name>Expense Sheet is Approved</name>
     <style>none</style>
-    <subject>Expense Submitted</subject>
+    <subject>Expense approved</subject>
     <textOnly>Dear {!Zumzum__Expense_Sheet__c.OwnerFirstName},
 
-The following expenses have been sent for approval:
+The following expenses have been passed to finance for approval:
 
 Expense ID: {!Zumzum__Expense_Sheet__c.Name}
 
