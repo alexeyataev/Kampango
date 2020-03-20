@@ -117,5 +117,4 @@ public with sharing class GeneratePaymentFileUtil {
 
 		return payments;
 	}
-
 }
