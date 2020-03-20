@@ -1690,6 +1690,13 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
             <fieldText>Account Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;Please be sure that Account Name not more than 80 characters and is text.&lt;/p&gt;</errorMessage>
+                <formulaExpression>AND(
+LEN({!Account_Name}) &lt; 80,
+NOT(ISNUMBER({!Account_Name}))
+)</formulaExpression>
+            </validationRule>
         </fields>
         <fields>
             <name>Account_Number</name>
