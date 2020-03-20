@@ -37,6 +37,12 @@ public without sharing class TestFinanceDataFactory {
         );
         insert zumzumCurrency;
 
+        Zumzum__Nominal_Account__c zumzumNominalAccount = new Zumzum__Nominal_Account__c(
+            Name = 'Staff Salaries',
+            Zumzum__Account_Code__c = 7003
+        );
+        insert zumzumNominalAccount;
+
         Zumzum__Nominal_Account__c zumzumDebtorNominalAccount = new Zumzum__Nominal_Account__c(
             Name = 'Debtor Control Account',
             Zumzum__Account_Code__c = 9300
@@ -129,7 +135,7 @@ public without sharing class TestFinanceDataFactory {
     }
 
     public static List<List<ZumzumSalesInvoiceParameters>> getZumzumSalesInvoiceParameters() {
-        Booking__c booking = [SELECT Id FROM Booking__c LIMIT 1];
+        // Booking__c booking = [SELECT Id FROM Booking__c LIMIT 1];
         Account customer = [SELECT Id FROM Account WHERE Type =: ACCOUNT_TYPE_CUSTOMER LIMIT 1];
         Zumzum__Currency__c transactionCurrency = [SELECT Id FROM Zumzum__Currency__c LIMIT 1];
         Product2 productCourse = [SELECT Id FROM Product2 WHERE Name =: PRODUCT_NAME_COURSE_PLACE LIMIT 1];
@@ -143,7 +149,7 @@ public without sharing class TestFinanceDataFactory {
         ZumzumSalesInvoiceParameters courseZumzumSalesInvoiceParameter =  new ZumzumSalesInvoiceParameters();
         coursezumzumSalesInvoiceParameter.customerId = customer.Id;
         coursezumzumSalesInvoiceParameter.transactionCurrencyId = transactionCurrency.Id;
-        coursezumzumSalesInvoiceParameter.bookingId = booking.Id;
+        // coursezumzumSalesInvoiceParameter.bookingId = booking.Id;
         coursezumzumSalesInvoiceParameter.productId = productCourse.Id;
         coursezumzumSalesInvoiceParameter.quantity = 1;
         coursezumzumSalesInvoiceParameter.nominalAccountId = zumzumDebtorNominalAccount.Id;
@@ -154,7 +160,7 @@ public without sharing class TestFinanceDataFactory {
         ZumzumSalesInvoiceParameters membershipZumzumSalesInvoiceParameter =  new ZumzumSalesInvoiceParameters();
         membershipZumzumSalesInvoiceParameter.customerId = customer.Id;
         membershipZumzumSalesInvoiceParameter.transactionCurrencyId = transactionCurrency.Id;
-        membershipZumzumSalesInvoiceParameter.bookingId = booking.Id;
+        // membershipZumzumSalesInvoiceParameter.bookingId = booking.Id;
         membershipZumzumSalesInvoiceParameter.productId = productMembership.Id;
         membershipZumzumSalesInvoiceParameter.quantity = 1;
         membershipZumzumSalesInvoiceParameter.nominalAccountId = zumzumMembershipNominalAccount.Id;

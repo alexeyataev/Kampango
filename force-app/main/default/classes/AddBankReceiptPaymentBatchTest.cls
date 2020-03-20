@@ -9,7 +9,7 @@ public class AddBankReceiptPaymentBatchTest {
     static void testSetup() {
         TestFinanceDataFactory financeDataFactory = TestFinanceDataFactory.getInstance();
         financeDataFactory.createZumzumData();
-        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        /* TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory.buildOrganizationAccount('12345')
                     .buildBranchAccount()
                     .createEnquiryPSA()
@@ -26,7 +26,17 @@ public class AddBankReceiptPaymentBatchTest {
                     .buildParentHost('Dina', 'test1@test.com')
                     .buildPartnertHost('Tim', 'test2@test.com')
                     .buildRoom()
-                    .buildBooking('Reserved');
+                    .buildBooking('Reserved'); */
+
+        TestAccountBuilder accountBuilder = new TestAccountBuilder();
+        Account customer = accountBuilder
+                                .withRecordType('Household Account')
+                                .withName('Test Customer')
+                                .withType(ACCOUNT_TYPE_CUSTOMER)
+                                .withAccountNumber('123456')
+                                .withBillingEmail('testbilling@nonsense.noemails')
+                                .insertRecord(true)
+                                .build();
         
         TestFinanceDataFactory.updateHouseholdAccountsToCustomerType();
         TestFinanceDataFactory.createProducts();
