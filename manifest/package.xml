@@ -287,6 +287,7 @@
         <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Branch_Weighting_Validation</members>
+        <members>Override_Client_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
         <members>Override_Estimated_Costs_Validation</members>
@@ -551,6 +552,7 @@
         <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
+        <members>Override_Client_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
         <members>Override_Estimated_Costs_Validation</members>
