@@ -2,7 +2,9 @@
 Set<String> productNames = new Set<String>{
     'Course Place',
     'Course Cancellation Fees',
-    'Course Transfer Fees'
+    'Course Transfer Fees',
+    'Membership - CARE/DD',
+    'Membership'
 };
 
 
