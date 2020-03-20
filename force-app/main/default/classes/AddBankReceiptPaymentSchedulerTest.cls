@@ -1,7 +1,7 @@
 @IsTest
 public with sharing class AddBankReceiptPaymentSchedulerTest {
     @isTest static void schedulerTest() {
-    	String SCHEDULED_TIME = '0 0 00 ? * 1';
+    	final String SCHEDULED_TIME = '0 0 00 ? * 1';
         Test.startTest();
         Id jobId = AddBankReceiptPaymentScheduler.scheduleBatch(100);
         Test.stopTest();

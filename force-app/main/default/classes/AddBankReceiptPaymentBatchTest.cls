@@ -1,4 +1,4 @@
-@SuppressWarnings('PMD.MethodNamingConventions')
+//@SuppressWarnings('PMD.MethodNamingConventions')
 //Incident #XX - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 public class AddBankReceiptPaymentBatchTest {
@@ -9,25 +9,6 @@ public class AddBankReceiptPaymentBatchTest {
     static void testSetup() {
         TestFinanceDataFactory financeDataFactory = TestFinanceDataFactory.getInstance();
         financeDataFactory.createZumzumData();
-        /* TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory.buildOrganizationAccount('12345')
-                    .buildBranchAccount()
-                    .createEnquiryPSA()
-                    .buildBranchAccountWithEnquiryPSA()
-                    .buildPractitioner('John')
-                    .buildVenue()
-                    .buildRoom()
-                    .buildLicenceToPractice()
-                    .buildCourse()
-                    .buildConfirmedSession()
-                    .buildEstimatedCosts()
-                    .buildPractitionerFeeRate()
-                    .setCourseToFinal()
-                    .buildParentHost('Dina', 'test1@test.com')
-                    .buildPartnertHost('Tim', 'test2@test.com')
-                    .buildRoom()
-                    .buildBooking('Reserved'); */
-
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account customer = accountBuilder
                                 .withRecordType('Household Account')
