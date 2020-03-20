@@ -1,5 +1,5 @@
-//@SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #XX - https://confluence.nct.org.uk:8443/x/EoSO
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #60 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 public class AddBankReceiptPaymentBatchTest {
     private static final String ACCOUNT_TYPE_CUSTOMER = 'Customer';

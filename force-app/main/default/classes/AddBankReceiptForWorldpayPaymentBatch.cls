@@ -1,5 +1,5 @@
-//@SuppressWarnings('PMD.EmptyStatementBlock')
-//Incident #XX - https://confluence.nct.org.uk:8443/x/EoSO
+@SuppressWarnings('PMD.EmptyStatementBlock')
+//Incident #59 - https://confluence.nct.org.uk:8443/x/EoSO
 public class AddBankReceiptForWorldpayPaymentBatch implements Database.Batchable<sObject> {
     private static final String INSTALLMENT_STATUS = 'Collected';
     private static final String PAYMENT_PROCESSOR = 'PaymentHub-WorldPay';
