@@ -671,6 +671,13 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
                 <elementReference>Create_SI_and_SI_Line_Items.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Installment_For_Payment_By_DD.cpm__Payment_Method__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Care Membership</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Create_Membership_Installment</targetReference>
         </connector>
