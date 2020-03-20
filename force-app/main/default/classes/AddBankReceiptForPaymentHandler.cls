@@ -18,7 +18,7 @@ public with sharing class AddBankReceiptForPaymentHandler {
     public static void addBankReceipts(List<cpm__Payment__c> payments) {
         @SuppressWarnings('PMD.ApexCRUDViolation')
         //Incident #61 - https://confluence.nct.org.uk:8443/x/EoSO
-        List<Zumzum__Bank_Account__c> bankAccountlist = [SELECT Id FROM Zumzum__Bank_Account__c WHERE Name = :BANK_ACCOUNT_NAME LIMIT 1];
+        List<Zumzum__Bank_Account__c> bankAccountlist = [SELECT Id FROM Zumzum__Bank_Account__c WHERE Name = :BANK_ACCOUNT_NAME WITH SECURITY_ENFORCED LIMIT 1];
         if (bankAccountlist.isEmpty()) {
             throw new ListException('Create BANK_ACCOUNT_NAME Bank Account');
         }

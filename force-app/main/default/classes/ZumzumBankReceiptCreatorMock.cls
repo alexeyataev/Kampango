@@ -4,9 +4,9 @@ public with sharing class ZumzumBankReceiptCreatorMock implements IBankReceiptCr
     public static void createBankReceipt(Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper receiptWrapper) {
         Zumzum__Bank_Receipt__c bankReceipt = new Zumzum__Bank_Receipt__c();
         Zumzum__Batch_Bank_Receipt__c batchBankReceipt = new Zumzum__Batch_Bank_Receipt__c();
-        Zumzum__Currency__c zumzumCurrency = [SELECT Id FROM Zumzum__Currency__c LIMIT 1];
-        Zumzum__Company__c company = [SELECT Id FROM Zumzum__Company__c LIMIT 1];
-        Zumzum__Tax_Rate__c zumzumTaxRate  = [SELECT Id FROM Zumzum__Tax_Rate__c LIMIT 1];
+        Zumzum__Currency__c zumzumCurrency = [SELECT Id FROM Zumzum__Currency__c WITH SECURITY_ENFORCED LIMIT 1];
+        Zumzum__Company__c company = [SELECT Id FROM Zumzum__Company__c WITH SECURITY_ENFORCED LIMIT 1];
+        Zumzum__Tax_Rate__c zumzumTaxRate  = [SELECT Id FROM Zumzum__Tax_Rate__c WITH SECURITY_ENFORCED LIMIT 1];
         List<Zumzum__Bank_Receipt_Line_Item__c> bankReceiptLineItemList = new List<Zumzum__Bank_Receipt_Line_Item__c>();
         Map<String, Zumzum__Bank_Receipt_Line_Item__c> legerNameBankReceiptLineItemMap = new Map<String, Zumzum__Bank_Receipt_Line_Item__c>();
         Decimal bankReceiptAmount = 0;
@@ -55,7 +55,7 @@ public with sharing class ZumzumBankReceiptCreatorMock implements IBankReceiptCr
         bankReceipt.Zumzum__Foreign_Currency_Rate__c = 1.00000000;
         insert bankReceipt;
         
-        List<Zumzum__Ledger__c> ledgersToUpdate = [SELECT Name, Zumzum__Debit__c, Zumzum__Paid__c, Zumzum__Sales_Invoice__c, Zumzum__Sales_Invoice_Line_Item__c FROM Zumzum__Ledger__c WHERE Name IN :legerNameBankReceiptLineItemMap.Keyset()];
+        List<Zumzum__Ledger__c> ledgersToUpdate = [SELECT Name, Zumzum__Debit__c, Zumzum__Paid__c, Zumzum__Sales_Invoice__c, Zumzum__Sales_Invoice_Line_Item__c FROM Zumzum__Ledger__c WHERE Name IN :legerNameBankReceiptLineItemMap.Keyset() WITH SECURITY_ENFORCED];
         for (Zumzum__Ledger__c ledger : ledgersToUpdate) {
             if (!(legerNameBankReceiptLineItemMap.get(ledger.Name).Zumzum__Amount__c < ledger.Zumzum__Debit__c)) {
                 ledger.Zumzum__Paid__c = 'Y';
