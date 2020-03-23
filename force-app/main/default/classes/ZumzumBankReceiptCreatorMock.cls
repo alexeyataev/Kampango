@@ -1,4 +1,4 @@
-//@SuppressWarnings('PMD.ApexCRUDViolation')
+@SuppressWarnings('PMD.ApexCRUDViolation')
 //Incident #62 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class ZumzumBankReceiptCreatorMock implements IBankReceiptCreator {
     public static void createBankReceipt(Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper receiptWrapper) {
