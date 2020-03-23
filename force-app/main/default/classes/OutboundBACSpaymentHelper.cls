@@ -21,7 +21,7 @@ public class OutboundBACSpaymentHelper {
         ];
 
         for (Zumzum__Ledger__c ledger: ledgers) {
-            System.debug('Response>>' + initiateBankSupplierPayment(ledger));
+            System.debug('Response>>' + initiateBankSupplierPayment(ledger, paymentRun));
         }
     }
 
@@ -35,7 +35,7 @@ public class OutboundBACSpaymentHelper {
         ].Id;
     }
 
-    private static String initiateBankSupplierPayment(Zumzum__Ledger__c ledger){
+    private static String initiateBankSupplierPayment(Zumzum__Ledger__c ledger, Payment_Run__c paymentRun){
         // Initiate A New Bank Supplier Payment
          Zumzum.BankSupplierPaymentService objBankSupplierPaymentService = new Zumzum.BankSupplierPaymentService();
         // Create Bank Supplier Payment Wrapper 
@@ -67,6 +67,20 @@ public class OutboundBACSpaymentHelper {
         // Execute the command to post the Bank Supplier Payment
         ZumZum.BankSupplierPaymentService.Response objResponse = objBankSupplierPaymentService.CreateBankSupplierPayment(objPaymentWrapper);
         // Receive a response of the Bank Payment records created
+        Zumzum__Bank_Payment__c bankPayment = objResponse.BankPayment;
+
+        List<Zumzum__Bank_Payment_Line_Item__c> bankPaymentLineItems = [
+            SELECT Id, Zumzum__Bank_Payment__c, Payment_Run__c 
+            FROM Zumzum__Bank_Payment_Line_Item__c
+            WHERE Zumzum__Bank_Payment__c = :bankPayment.Id
+        ];
+
+        for (Zumzum__Bank_Payment_Line_Item__c bankPaymentLineItem: bankPaymentLineItems){
+            bankPaymentLineItem.Payment_Run__c = paymentRun.Id;
+        }
+
+        update bankPaymentLineItems;
+
         return objResponse.ResponseMessage;
     }
 }
