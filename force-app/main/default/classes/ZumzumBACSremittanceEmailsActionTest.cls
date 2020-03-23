@@ -99,6 +99,12 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
                     AND Name = :TEMPLATE_NAME
                 LIMIT 1
             ].Id;
+            Integer sentCount = [
+                SELECT count() 
+                FROM Payment_Run_Line_Item__c 
+                WHERE Payment_Run__c = :paymentRunId AND Is_Email_Sent__c = true
+            ];
+
             ZumzumBACSremittanceEmailsAction.Request testReq = new ZumzumBACSremittanceEmailsAction.Request();
             testReq.paymentRunId = paymentRunId;
             testReq.emailTemplateId = templateId;
@@ -127,9 +133,11 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
                 System.assertNotEquals(null, batchId, 'Batch was not started');
                 System.assertEquals('Completed', a.Status);
                 Integer itemsCount = [
-                    SELECT count() FROM Payment_Run_Line_Item__c WHERE Payment_Run__c = :paymentRunId
+                    SELECT count() 
+                    FROM Payment_Run_Line_Item__c 
+                    WHERE Payment_Run__c = :paymentRunId AND Is_Email_Sent__c = true
                 ];
-                System.assertEquals(itemsCount, a.JobItemsProcessed);
+                System.assertEquals(itemsCount - sentCount, a.JobItemsProcessed);
             } else {
                 System.assert(false, 'An exception occured. Probably Apex action was finished with error');
             }
