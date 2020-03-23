@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>AddBankReceiptForPaymentHandler</members>
+        <members>AddBankReceiptForWorldpayPaymentBatch</members>
+        <members>AddBankReceiptPaymentBatchTest</members>
+        <members>AddBankReceiptPaymentScheduler</members>
+        <members>AddBankReceiptPaymentSchedulerTest</members>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
         <members>BookingJourneyHelper</members>
@@ -42,7 +47,10 @@
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
         <members>FinDockCardPaymentProvider</members>
+        <members>GeneratePaymentFilePaymentRunExtension</members>
+        <members>GeneratePaymentFileUtil</members>
         <members>HttpStatusCode</members>
+        <members>IBankReceiptCreator</members>
         <members>IClock</members>
         <members>IPaymentServiceProvider</members>
         <members>ISalesInvoiceCreator</members>
@@ -79,10 +87,13 @@
         <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
+        <members>TestFinanceDataFactory</members>
         <members>TestInstallmentBuilder</members>
         <members>TestLicenceToPracticeBuilder</members>
+        <members>TestPaymentBuilder</members>
         <members>TestPaymentProfileBuilder</members>
         <members>TestPractitionerBandBuilder</members>
+        <members>TestRecurringPaymentBuilder</members>
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
         <members>TestVenueBuilder</members>
@@ -92,6 +103,8 @@
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
+        <members>ZumzumBankReceiptCreator</members>
+        <members>ZumzumBankReceiptCreatorMock</members>
         <members>ZumzumCreatePostSalesInvoice</members>
         <members>ZumzumCreatePostSalesInvoiceTest</members>
         <members>ZumzumSalesInvoiceCreator</members>
@@ -114,6 +127,7 @@
         <members>CourseSummary</members>
         <members>CourseSummaryPDF</members>
         <members>CourseSummarySLDS</members>
+        <members>GeneratePaymentFilePaymentRun</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -184,6 +198,7 @@
         <members>cpm__Installment__c.Bank_Account__c</members>
         <members>cpm__Installment__c.Sort_Code__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
+        <members>Zumzum__Bank_Receipt__c.Payment__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Course__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Zumzum__Required_Fields</members>
         <members>Zumzum__Sales_Invoice_Line_Item__c.Course__c</members>
@@ -206,9 +221,11 @@
     </types>
     <types>
         <members>Account</members>
+        <members>Bank_Account_Settings__c</members>
         <members>Booking__c</members>
         <members>Branch_Weighting__c</members>
         <members>Card_Payment_Plan_Settings__c</members>
+        <members>Care_Settings__c</members>
         <members>Course_Assignment__c</members>
         <members>Course__c</members>
         <members>Course_Settings__c</members>
@@ -220,6 +237,7 @@
         <members>Individual</members>
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
+        <members>Payment_Run__c</members>
         <members>Practitioner_Band__c</members>
         <members>Practitioner_Community_Settings__c</members>
         <members>Practitioner_Fee_Rate__c</members>
@@ -286,6 +304,7 @@
         <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Branch_Weighting_Validation</members>
+        <members>Override_Client_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
         <members>Override_Estimated_Costs_Validation</members>
@@ -424,6 +443,7 @@
         <members>Adhoc_Payment_Success_Flow</members>
         <members>Adhoc_Send_Payment_Email_Flow</members>
         <members>Assign_Practitioner_Fee_Rate_to_Session</members>
+        <members>Bacs_Create_transaction_records</members>
         <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Success_Page</members>
         <members>Booking_Journey_Flow</members>
@@ -495,6 +515,7 @@
         <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
+        <members>Payment_Run__c-Payment Run Layout</members>
         <members>Practitioner_Band__c-Practitioner Band Layout</members>
         <members>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
@@ -504,13 +525,14 @@
         <members>Session__c-Session Layout</members>
         <members>Venue__c-Venue Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
+        <members>cpm__Payment__c-cpm__Payment Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
+        <members>Zumzum__Bank_Receipt__c-Zumzum__Bank Receipt Layout</members>
         <members>Zumzum__Batch_Bank_Payment__c-Zumzum__Batch Bank Payment Layout</members>
         <members>Zumzum__Expense_Sheet__c-Expense Sheet Practitioner Layout</members>
         <members>Zumzum__Expense_Sheet_Detail__c-Expense Sheet Detail Practitioner Layout</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
         <members>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</members>
-        <members>cpm__Installment__c-Installment Layout</members>
         <name>Layout</name>
     </types>
     <types>
@@ -550,6 +572,7 @@
         <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
+        <members>Override_Client_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
         <members>Override_Estimated_Costs_Validation</members>
@@ -641,6 +664,7 @@
         <members>Booking__c.Send_Offer_Email</members>
         <members>Booking__c.Transfer</members>
         <members>Course__c.Resend_Reunion_Email</members>
+        <members>Payment_Run__c.Create_transaction_records</members>
         <members>Zumzum__Expense_Sheet__c.Edit_Community</members>
         <members>Zumzum__NewTask</members>
         <members>Zumzum__Sales_Invoice__c.Send_Payment_Email</members>
@@ -742,14 +766,13 @@
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
         <members>Booking__c.MandatoryCancellationReason</members>
-        <members>Booking__c.MandatoryPartnerContactField</members>
-        <members>Booking__c.MandatoryPrimaryContactFields</members>
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
         <members>Booking__c.Prevent_Manual_Transfer</members>
         <members>Booking__c.Prevent_Overbooking_Of_Course</members>
         <members>Booking__c.PreventConfirmedBookingCreation</members>
         <members>Booking__c.ReservationExpiryDateCannotBeRemoved</members>
         <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
+        <members>Contact.MandatoryClientsFields</members>
         <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
         <members>Course__c.Check_Drop_In_Schedule_Information</members>

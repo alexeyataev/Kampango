@@ -139,52 +139,12 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
+        <fields>Zumzum__Amount__c</fields>
         <fields>Session__c</fields>
-        <fields>Zumzum__Amount__c</fields>
+        <fields>Course__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>Zumzum__Nominal_Account__c</fields>
         <relatedList>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Purchase_Invoice__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Zumzum__Customer_Supplier_Account_Name__c</fields>
-        <fields>Zumzum__Sub_Account_Nominal__c</fields>
-        <fields>Zumzum__Debit__c</fields>
-        <fields>Zumzum__Credit__c</fields>
-        <fields>Zumzum__Tax_Code_Link__c</fields>
-        <fields>Zumzum__Trans_Date__c</fields>
-        <fields>Zumzum__Details__c</fields>
-        <fields>Zumzum__Is_Deleted__c</fields>
-        <relatedList>Zumzum__Ledger__c.Zumzum__Purchase_Invoice__c</relatedList>
-        <sortField>Zumzum__Trans_Date__c</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Zumzum__Bank_Payment__c</fields>
-        <fields>Zumzum__Bank_Payment_Line_Item__c</fields>
-        <fields>Zumzum__Purchase_Credit__c</fields>
-        <fields>Zumzum__Purchase_Credit_Line_Item__c</fields>
-        <fields>Zumzum__Date__c</fields>
-        <fields>Zumzum__Type__c</fields>
-        <fields>Zumzum__Amount__c</fields>
-        <fields>Zumzum__Details__c</fields>
-        <relatedList>Zumzum__Ledger_Payment_History__c.Zumzum__Purchase_Invoice__c</relatedList>
-        <sortField>Zumzum__Date__c</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Zumzum__Date__c</fields>
-        <fields>Zumzum__Type__c</fields>
-        <fields>Zumzum__Amount__c</fields>
-        <fields>Zumzum__Purchase_Invoice__c</fields>
-        <fields>Zumzum__Purchase_Invoice_Line_Item__c</fields>
-        <fields>Zumzum__Details__c</fields>
-        <relatedList>Zumzum__Ledger_Payment_History__c.Zumzum__Purchase_Credit__c</relatedList>
-        <sortField>Zumzum__Date__c</sortField>
-        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -220,7 +180,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h4E0000013Vl3</masterLabel>
+        <masterLabel>00h4E000000r641</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

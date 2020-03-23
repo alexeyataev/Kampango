@@ -4,7 +4,6 @@
     <columns>NAME</columns>
     <columns>Zumzum__Invoice_Date__c</columns>
     <columns>Zumzum__Total_Paid_Amount__c</columns>
-    <columns>Zumzum__Paid__c</columns>
     <filterScope>Mine</filterScope>
     <filters>
         <field>Zumzum__Paid__c</field>
