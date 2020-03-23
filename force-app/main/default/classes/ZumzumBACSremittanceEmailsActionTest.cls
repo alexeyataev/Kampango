@@ -47,7 +47,7 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
             .build();
 
         TestPurchaseInvoiceBuilder purchaseInvoiceBuilder = new TestPurchaseInvoiceBuilder();
-        Zumzum__Purchase_Invoice__c pi = purchaseInvoiceBuilder
+        Zumzum__Purchase_Invoice__c pi1 = purchaseInvoiceBuilder
                 .withStatus('Posted')
                 .withAccount(supplierAccount.Id)
                 .withContact(contact.Id)
@@ -63,18 +63,20 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
                 .withNet(120)
                 .withNarrative('Doll')
                 .withQuantity(1)
-                .withPurchaseInvoice(pi.Id)
+                .withPurchaseInvoice(pi1.Id)
                 .insertRecord(true)
                 .build();
         
-        Payment_Run__c pr = new Payment_Run__c();
-        insert pr;
-        Payment_Run_Line_Item__c prli = new Payment_Run_Line_Item__c(
-            Payment_Run__c = pr.Id,
-            Purchase_Invoice__c = pi.Id,
-            Is_Email_Sent__c = false
-        );
-        insert prli;
+        TestPaymentRunBuilder paymentRunBuilder = new TestPaymentRunBuilder();
+        Payment_Run__c pr1 = paymentRunBuilder
+            .insertLineItem(pi1.Id, true)
+            .insertLineItem(pi1.Id)
+            .build();
+
+        Payment_Run__c pr2 = paymentRunBuilder
+            .insertLineItem(pi1.Id)
+            .insertLineItem(pi1.Id)
+            .build();
     }
 
     @isTest
