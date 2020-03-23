@@ -119,7 +119,13 @@ public without sharing class CourseCreateEnquiryUtility {
             FirstName = requestParameters.get('partner_first_name'),
             LastName = requestParameters.get('partner_last_name'),
             Email = requestParameters.get('partner_email'),
-            RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME)
+            RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME),
+            MobilePhone = requestParameters.get('mobile'),
+            MailingCity = requestParameters.get('town'),
+            MailingPostalCode = requestParameters.get('postcode'),
+            MailingState = requestParameters.get('county'),
+            MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
+            npe01__PreferredPhone__c = 'Mobile'
         );
         Database.SaveResult result = Database.insert(partner, false);
         Database.DMLOptions dmlOption = new Database.DMLOptions();
