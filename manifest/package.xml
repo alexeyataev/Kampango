@@ -304,6 +304,7 @@
         <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Branch_Weighting_Validation</members>
+        <members>Override_Client_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
         <members>Override_Estimated_Costs_Validation</members>
@@ -571,6 +572,7 @@
         <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
+        <members>Override_Client_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
         <members>Override_Estimated_Costs_Validation</members>
@@ -764,14 +766,13 @@
         <members>Booking__c.InappropriateStatusTransition</members>
         <members>Booking__c.MandatoryBirthDate</members>
         <members>Booking__c.MandatoryCancellationReason</members>
-        <members>Booking__c.MandatoryPartnerContactField</members>
-        <members>Booking__c.MandatoryPrimaryContactFields</members>
         <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
         <members>Booking__c.Prevent_Manual_Transfer</members>
         <members>Booking__c.Prevent_Overbooking_Of_Course</members>
         <members>Booking__c.PreventConfirmedBookingCreation</members>
         <members>Booking__c.ReservationExpiryDateCannotBeRemoved</members>
         <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
+        <members>Contact.MandatoryClientsFields</members>
         <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
         <members>Course__c.Check_Drop_In_Schedule_Information</members>
