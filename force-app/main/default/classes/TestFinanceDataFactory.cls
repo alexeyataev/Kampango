@@ -47,6 +47,7 @@ public without sharing class TestFinanceDataFactory {
             Name = 'Debtor Control Account',
             Zumzum__Account_Code__c = 9300
         );
+        insert zumzumDebtorNominalAccount;
 
         Zumzum__Nominal_Categories__c zumzumCreditorsNominalCategory = new Zumzum__Nominal_Categories__c(
             Name = 'Current Liabilities',
@@ -68,7 +69,17 @@ public without sharing class TestFinanceDataFactory {
             Zumzum__Credit_Balance__c = 154726.04,
             Zumzum__Debit_Balance__c = 8414.14
         );
-        insert zumzumDebtorNominalAccount; 
+        insert zumzumCreditorsNominalAccount; 
+
+        Zumzum__Nominal_Budget__c nominalBudget = new Zumzum__Nominal_Budget__c(
+            Name = 'Budget',
+            Zumzum__Nominal_Account__c = zumzumCreditorsNominalAccount.Id,
+            Zumzum__Month__c = 3,
+            Zumzum__Year__c = 2020,
+            Zumzum__Actuals_Credit__c = 16221.65,
+            Zumzum__Actuals_Debit__c = 300.00
+        );
+        insert nominalBudget;
     
         Zumzum__Nominal_Account__c zumzumMembershipNominalAccount = new Zumzum__Nominal_Account__c(
             Name = 'Debtor Control Account',
@@ -76,11 +87,20 @@ public without sharing class TestFinanceDataFactory {
         );
         insert zumzumMembershipNominalAccount;
 
+        Zumzum__Nominal_Account__c zumzumVatOnPurchaseNominalAccount = new Zumzum__Nominal_Account__c(
+            Name = 'Input VAT (Sales) Control Account',
+            Zumzum__Account_Code__c = 9691,
+            Zumzum__Tax_Rate__c = zumzumTaxRate.Id,
+            Zumzum__Sub_Category__c = zumzumCreditorsSubCategory.Id
+        );
+        insert zumzumVatOnPurchaseNominalAccount;
+
         Zumzum__Control_Account__c controlAccount = new Zumzum__Control_Account__c(
             Name = 'Control Accounts',
             Zumzum__Creditors_Control__c = zumzumCreditorsNominalAccount.Id,
             Zumzum__Debtors_Control__c = zumzumDebtorNominalAccount.Id,
-            Zumzum__Credit_Charges__c = zumzumCreditorsNominalAccount.Id
+            Zumzum__Credit_Charges__c = zumzumCreditorsNominalAccount.Id,
+            Zumzum__VAT_on_Purchases__c = zumzumVatOnPurchaseNominalAccount.Id
         );
         insert controlAccount;
 

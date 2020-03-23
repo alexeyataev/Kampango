@@ -168,6 +168,7 @@ private class ClaimFeeHelperTest {
         flowData.sessions = [
             SELECT Id, Name, Practitioner_Fees__c, PSA_Area__c, Course__c
             FROM Session__c
+            LIMIT 1
         ];
         flowData.registrationFee = 5;
 
