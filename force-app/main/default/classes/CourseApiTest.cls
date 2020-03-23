@@ -508,7 +508,7 @@ public without sharing class CourseApiTest {
             ||
             (inputErrorText.contains('INVALID_EMAIL_ADDRESS') && inputErrorText.contains('Email: invalid email address'))
             ||
-            (inputErrorText.contains('FIELD_CUSTOM_VALIDATION_EXCEPTION') && inputErrorText.contains('Please review primary contact. Full name, full address, email and preferred phone are required'))
+            (inputErrorText.contains('FIELD_CUSTOM_VALIDATION_EXCEPTION') && inputErrorText.contains('Please review the client. Full name, full address, email and preferred phone are required'))
         ) {
             result = true;
         }

@@ -74,7 +74,6 @@ private class CourseCreateEnquiryUtilityTest {
             FROM Course__c 
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
-        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> createdContact = [
@@ -102,20 +101,8 @@ private class CourseCreateEnquiryUtilityTest {
             Name = 'Test Household'
         );
         insert account;
-        Contact existingContact = new Contact(
-            LastName = 'Test',  
-            FirstName = 'Test', 
-            Email = 'test@test.test',
-            MailingCity = 'London',
-            MailingStreet = '221B Baker Street',
-            MailingPostalCode = 'E1 7AE',
-            Phone = '+447911123456',
-            AccountId = account.Id,
-            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
-        );
-        insert existingContact;
+        Contact existingContact = createExistingContact(account.Id);
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
-        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> contacts = [
@@ -154,24 +141,12 @@ private class CourseCreateEnquiryUtilityTest {
             Name = 'Test Household'
         );
         insert account;
-        Contact existingContact = new Contact(
-            LastName = 'Test',  
-            FirstName = 'Test', 
-            Email = 'test@test.test',
-            MailingCity = 'London',
-            MailingStreet = '221B Baker Street',
-            MailingPostalCode = 'E1 7AE',
-            Phone = '+447911123456',
-            AccountId = account.Id,
-            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
-        );
-        insert existingContact;
+        Contact existingContact = createExistingContact(account.Id);
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
-        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
@@ -210,24 +185,12 @@ private class CourseCreateEnquiryUtilityTest {
             Name = 'Test Household'
         );
         insert account;
-        Contact existingContact = new Contact(
-            LastName = 'Test',  
-            FirstName = 'Test', 
-            Email = 'test@test.test',
-            MailingCity = 'London',
-            MailingStreet = '221B Baker Street',
-            MailingPostalCode = 'E1 7AE',
-            Phone = '+447911123456',
-            AccountId = account.Id,
-            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
-        );
-        insert existingContact;
+        Contact existingContact = createExistingContact(account.Id);
         String avaliableCourse = [
             SELECT Id, Name 
             FROM Course__c 
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
-        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
@@ -259,7 +222,6 @@ private class CourseCreateEnquiryUtilityTest {
             FROM Course__c 
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
-        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('emailPreference', '1');
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
@@ -283,24 +245,12 @@ private class CourseCreateEnquiryUtilityTest {
             Name = 'Test Household'
         );
         insert account;
-        Contact existingContact = new Contact(
-            LastName = 'Test',  
-            FirstName = 'Test', 
-            Email = 'test@test.test',
-            MailingCity = 'London',
-            MailingStreet = '221B Baker Street',
-            MailingPostalCode = 'E1 7AE',
-            Phone = '+447911123456',
-            AccountId = account.Id,
-            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
-        );
-        insert existingContact;
+        Contact existingContact = createExistingContact(account.Id);
         String avaliableCourse = [
             SELECT Id, Name 
             FROM Course__c 
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
-        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
@@ -346,7 +296,8 @@ private class CourseCreateEnquiryUtilityTest {
                 MailingCity = 'London',
                 MailingStreet = '221B Baker Street',
                 MailingPostalCode = 'E1 7AE',
-                Phone = '+447911123456',
+                npe01__PreferredPhone__c = 'Mobile',
+                MobilePhone = '+447911123456',
                 AccountId = accounts[i].Id,
                 RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
             )); 
@@ -361,7 +312,6 @@ private class CourseCreateEnquiryUtilityTest {
             FROM Course__c 
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
-        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('emailPreference', '1');
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
@@ -399,7 +349,8 @@ private class CourseCreateEnquiryUtilityTest {
                 MailingCity = 'London',
                 MailingStreet = '221B Baker Street',
                 MailingPostalCode = 'E1 7AE',
-                Phone = '+447911121337',
+                npe01__PreferredPhone__c = 'Mobile',
+                MobilePhone = '+447911121337',
                 AccountId = accounts[i].Id,
                 RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
             )); 
@@ -414,7 +365,6 @@ private class CourseCreateEnquiryUtilityTest {
             FROM Course__c 
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
-        Map<String, String> headersMap = (Map<String, String>)JSON.deserialize(HEADERS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
@@ -431,5 +381,21 @@ private class CourseCreateEnquiryUtilityTest {
         ];
         System.assertEquals(4, partners.size());
         System.assertEquals(1, bookings.size());
+    }
+    private static Contact createExistingContact(Id accountId) {
+        Contact existingContact = new Contact(
+            LastName = 'Test',  
+            FirstName = 'Test', 
+            Email = 'test@test.test',
+            MailingCity = 'London',
+            MailingStreet = '221B Baker Street',
+            MailingPostalCode = 'E1 7AE',
+            npe01__PreferredPhone__c = 'Mobile',
+            MobilePhone = '+447911123456',
+            AccountId = accountId,
+            RecordTypeId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CourseCreateEnquiryUtility.RECORDTYPE_NAME).getRecordTypeId()
+        );
+        insert existingContact;
+        return existingContact;
     }
 }
