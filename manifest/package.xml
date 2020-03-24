@@ -554,6 +554,8 @@
     </types>
     <types>
         <members>Case.Course_Booking_Manual_Administration_Case</members>
+        <members>cpm__Installment__c.Failed_Installments</members>
+        <members>cpm__Installment__c.Outstanding_Installments</members>
         <name>ListView</name>
     </types>
     <types>
