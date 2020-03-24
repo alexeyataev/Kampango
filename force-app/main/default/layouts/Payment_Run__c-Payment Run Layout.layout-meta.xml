@@ -76,7 +76,6 @@
             <actionType>CustomButton</actionType>
             <sortOrder>3</sortOrder>
         </platformActionListItems>
-        </platformActionListItems>
         <platformActionListItems>
             <actionName>Edit</actionName>
             <actionType>StandardButton</actionType>
@@ -91,7 +90,8 @@
             <actionName>Clone</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>6</sortOrder>
-        </platformActionList>
+        </platformActionListItems>
+    </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Purchase_Invoice__c</fields>
