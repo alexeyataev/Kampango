@@ -99,6 +99,12 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
                     AND Name = :TEMPLATE_NAME
                 LIMIT 1
             ].Id;
+            Integer sentCount = [
+                SELECT count() 
+                FROM Payment_Run_Line_Item__c 
+                WHERE Payment_Run__c = :paymentRunId AND Is_Email_Sent__c = true
+            ];
+
             ZumzumBACSremittanceEmailsAction.Request testReq = new ZumzumBACSremittanceEmailsAction.Request();
             testReq.paymentRunId = paymentRunId;
             testReq.emailTemplateId = templateId;
@@ -125,15 +131,17 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
                     FROM AsyncApexJob WHERE Id = :batchId
                 ];
 
-                System.assertEquals('Completed', a.Status);
+                System.assertEquals('Completed', a.Status, 'Batch job was not completed succesfully');
                 Integer itemsCount = [
-                    SELECT count() FROM Payment_Run_Line_Item__c WHERE Payment_Run__c = :paymentRunId
+                    SELECT count() 
+                    FROM Payment_Run_Line_Item__c 
+                    WHERE Payment_Run__c = :paymentRunId AND Is_Email_Sent__c = true
                 ];
                 Payment_Run__c paymentRun = [
                     SELECT Id, Status__c FROM Payment_Run__c WHERE Id = :paymentRunId
                 ];
-                System.assertEquals(itemsCount, a.JobItemsProcessed);
-                System.assertEquals('Closed', paymentRun.Status__c);
+                System.assertEquals(itemsCount - sentCount, a.JobItemsProcessed, 'Some items were not processed by batch job');
+                System.assertEquals('Closed', paymentRun.Status__c, 'The status was not updated to Closed');
             } else {
                 System.assert(false, 'An exception occured. Probably Apex action was finished with error');
             }

@@ -27,6 +27,7 @@ public with sharing class TestPaymentRunBuilder {
         this.linkLineItems(pr);
         insert lineItems;
 
+        lineItems.clear();
         return pr;
     }
 
