@@ -16,6 +16,11 @@
                 <label>Draft</label>
             </value>
             <value>
+                <fullName>Processing</fullName>
+                <default>false</default>
+                <label>Processing</label>
+            </value>
+            <value>
                 <fullName>Ready</fullName>
                 <default>false</default>
                 <label>Ready</label>
@@ -31,9 +36,9 @@
                 <label>Completed</label>
             </value>
             <value>
-                <fullName>Processing</fullName>
+                <fullName>Closed</fullName>
                 <default>false</default>
-                <label>Processing</label>
+                <label>Closed</label>
             </value>
         </valueSetDefinition>
     </valueSet>

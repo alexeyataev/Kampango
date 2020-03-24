@@ -125,19 +125,23 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
             Test.stopTest();
             
             if (success) {
+                System.assertNotEquals(null, batchId, 'Batch was not started');
                 AsyncApexJob a = [
                     SELECT Id, Status, NumberOfErrors, JobItemsProcessed
                     FROM AsyncApexJob WHERE Id = :batchId
                 ];
 
-                System.assertNotEquals(null, batchId, 'Batch was not started');
-                System.assertEquals('Completed', a.Status);
+                System.assertEquals('Completed', a.Status, 'Batch job was not completed succesfully');
                 Integer itemsCount = [
                     SELECT count() 
                     FROM Payment_Run_Line_Item__c 
                     WHERE Payment_Run__c = :paymentRunId AND Is_Email_Sent__c = true
                 ];
-                System.assertEquals(itemsCount - sentCount, a.JobItemsProcessed);
+                Payment_Run__c paymentRun = [
+                    SELECT Id, Status__c FROM Payment_Run__c WHERE Id = :paymentRunId
+                ];
+                System.assertEquals(itemsCount - sentCount, a.JobItemsProcessed, 'Some items were not processed by batch job');
+                System.assertEquals('Closed', paymentRun.Status__c, 'The status was not updated to Closed');
             } else {
                 System.assert(false, 'An exception occured. Probably Apex action was finished with error');
             }
