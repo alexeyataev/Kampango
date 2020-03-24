@@ -31,10 +31,6 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
         update paymentRun;
     }
 
-    public BatchOutboundBACSpayment(){
-        //this.paymentRunId = paymentRunId;
-    }
-
     public BatchOutboundBACSpayment(Id paymentRunId){
         this.paymentRunId = paymentRunId;
     }

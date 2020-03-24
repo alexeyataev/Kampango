@@ -3,7 +3,10 @@
     <fullName>Not_Paid</fullName>
     <columns>NAME</columns>
     <columns>Zumzum__Invoice_Date__c</columns>
-    <columns>Zumzum__Total_Unpaid_Amount__c</columns>
+    <columns>Zumzum__Account__c</columns>
+    <columns>Zumzum__Total_Gross__c</columns>
+    <columns>Zumzum__Paid__c</columns>
+    <columns>Zumzum__Status__c</columns>
     <filterScope>Mine</filterScope>
     <filters>
         <field>Zumzum__Paid__c</field>
