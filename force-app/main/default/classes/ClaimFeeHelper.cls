@@ -203,6 +203,9 @@ public with sharing class ClaimFeeHelper {
     }
 
     private static void sendEmailToFinance(List<Id> invoiceIds) {
+        if (TestEmailUtility.emailsFeatureEnabled()) {
+            return;
+        }
         if (statusInvoiceMap == null || statusInvoiceMap.isEmpty()) {
             setStatusInvoiceMap(invoiceIds);
         }
