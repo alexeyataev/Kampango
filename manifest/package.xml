@@ -44,6 +44,7 @@
         <members>CreateGiftAidDeclarationHelperTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
+        <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
         <members>FinDockCardPaymentProvider</members>
@@ -131,6 +132,7 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>dlrs_BookingTrigger</members>
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
@@ -217,6 +219,7 @@
         <members>dlrs__LookupRollupSummary2.CourseNumberOfSessionsWithoutFeeRates</members>
         <members>dlrs__LookupRollupSummary2.CreditLineItemsAmount</members>
         <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
+        <members>dlrs__LookupRollupSummary2.TotalActualCourseIncome</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -549,14 +552,14 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
-        <members>Contact.ParentforceContactMatchingCriteria</members>
-        <name>MatchingRule</name>
-    </types>
-    <types>
         <members>Case.Course_Booking_Manual_Administration_Case</members>
         <members>cpm__Installment__c.Failed_Installments</members>
         <members>cpm__Installment__c.Outstanding_Installments</members>
         <name>ListView</name>
+    </types>
+    <types>
+        <members>Contact.ParentforceContactMatchingCriteria</members>
+        <name>MatchingRule</name>
     </types>
     <types>
         <members>Parent Community</members>
