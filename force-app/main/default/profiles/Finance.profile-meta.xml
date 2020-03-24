@@ -730,7 +730,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Total_Actual_Income__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Total_Contact_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Total_Income_Excluding_Fee_Overrides__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1561,6 +1571,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Bank_Receipt_Line_Item__c.Zumzum__Transaction_Currency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Bank_Receipt__c.Payment__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6615,6 +6630,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cpm__Installment__c.Booking__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Installment__c.Care_Membership_Added__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6627,6 +6647,11 @@
         <editable>false</editable>
         <field>cpm__Installment__c.Membership_Type__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.PSA_Area__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

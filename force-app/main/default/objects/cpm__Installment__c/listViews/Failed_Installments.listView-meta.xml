@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Failed_Installments</fullName>
+    <columns>NAME</columns>
+    <columns>Booking__c</columns>
+    <columns>cpm__Contact__c</columns>
+    <columns>cpm__Amount__c</columns>
+    <columns>cpm__Due_Date__c</columns>
+    <columns>cpm__Last_Collection_Date__c</columns>
+    <columns>PSA_Area__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>cpm__Status__c</field>
+        <operation>equals</operation>
+        <value>Failed</value>
+    </filters>
+    <label>Failed Installments</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Finance</role>
+        <role>PSA</role>
+    </sharedTo>
+</ListView>

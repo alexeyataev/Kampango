@@ -14,6 +14,7 @@ public with sharing class ClaimFeeHelper {
     private static final String LINKING_ERROR_EMAIL_TEMPLATE = 'Practitioner_Registration_Fee_Claim_Error';
     private static final String TEMPLATE_PC = '{!PC}';
     private static final String TEMPLATE_PI = '{!PI}';
+    private static final String DEFAULT_NARRATIVE = 'Fee Claim';
     private static Map<String, String> statusInvoiceMap;
 
     @InvocableMethod(label='Create Purchase Invoice')
@@ -66,7 +67,7 @@ public with sharing class ClaimFeeHelper {
             purchaseInvoiceLineItem.ForeignNetAmount = session.Practitioner_Fees__c;
             purchaseInvoiceLineItem.Quantity = 1;
             purchaseInvoiceLineItem.TaxRate = zumzumNoVAT.Id;
-            purchaseInvoiceLineItem.Narrative = 'required field';
+            purchaseInvoiceLineItem.Narrative = DEFAULT_NARRATIVE;
             purchaseInvoiceLineItem.WrapperAPICustomFields = new Zumzum.APICustomFieldWrapper[]{
                 new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Session__c', session.Id)
             };
@@ -97,7 +98,7 @@ public with sharing class ClaimFeeHelper {
             purchaseCreditLineItem.NominalAccount = financialSettings.PC_Nominal_Account_Id__c;
             purchaseCreditLineItem.Quantity = 1;
             purchaseCreditLineItem.TaxRate = zumzumNoVAT.Id;
-            purchaseCreditLineItem.Narrative = 'required field';
+            purchaseCreditLineItem.Narrative = DEFAULT_NARRATIVE;
             purchaseCreditLineItem.WrapperAPICustomFields = new Zumzum.APICustomFieldWrapper[]{
                 new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Practitioner__c', currentUser.ContactId)
             };
@@ -168,9 +169,11 @@ public with sharing class ClaimFeeHelper {
                 invoicesCount++;
             }
         }
-        
-        Decimal creditAmountPortion = creditAmount / invoicesCount;
 
+        Decimal runningTotal = 0.00;
+        Decimal amountDifference = 0.00;
+        Integer runningCount = 0;
+        
         for (Zumzum__Ledger__c ledgerRecord : ledgerRecords) {
             if (ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_CREDIT) {
                 bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
@@ -178,15 +181,21 @@ public with sharing class ClaimFeeHelper {
                 bankLineItem.Amount = creditAmount;
                 paymentLines.add(bankLineItem);
             } else if (ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_INVOICE) {
+                runningCount++;
                 bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
                 bankLineItem.LedgerName = ledgerRecord.Name;
-                bankLineItem.Amount = ledgerRecord.Zumzum__Net_Amount__c * financialSettings.Practitioner_Registration_Fees_Rate__c / 100;
+                bankLineItem.Amount = (ledgerRecord.Zumzum__Net_Amount__c * (financialSettings.Practitioner_Registration_Fees_Rate__c / 100)).setScale(2);
+                runningTotal += (ledgerRecord.Zumzum__Net_Amount__c * (financialSettings.Practitioner_Registration_Fees_Rate__c / 100)).setScale(2);
+    
+                if(invoicesCount == runningCount && runningTotal != creditAmount) {
+                    amountDifference = creditAmount - runningTotal;
+                    bankLineItem.Amount = (ledgerRecord.Zumzum__Net_Amount__c * (financialSettings.Practitioner_Registration_Fees_Rate__c / 100)).setScale(2) + amountDifference;
+                }
                 paymentLines.add(bankLineItem);
             }
         }
         
         allocatedCreditWrapper.BankAllocateLines = paymentLines;
-
         Zumzum.BankAllocateCreditsAndPaymentsService.Response objResponse = paymentService.bankAllocateSupplierBalance(allocatedCreditWrapper);
         if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
             sendEmailToFinance(invoiceIds);
@@ -194,6 +203,9 @@ public with sharing class ClaimFeeHelper {
     }
 
     private static void sendEmailToFinance(List<Id> invoiceIds) {
+        if (!TestEmailUtility.emailsFeatureEnabled()) {
+            return;
+        }
         if (statusInvoiceMap == null || statusInvoiceMap.isEmpty()) {
             setStatusInvoiceMap(invoiceIds);
         }

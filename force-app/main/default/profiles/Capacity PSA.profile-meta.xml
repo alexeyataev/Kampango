@@ -728,7 +728,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Total_Actual_Income__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Total_Contact_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Total_Income_Excluding_Fee_Overrides__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1213,61 +1223,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Date__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Day__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Narrative__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Nominal_Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Quantity__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Tax_Rate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Total_Gross__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Total_Net__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Total_VAT__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Unit_Amount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Zumzum__Dimension__c.Zumzum__Active__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1389,6 +1344,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Purchase_Invoice_Line_Item__c.Course__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Created_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1783,6 +1743,36 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Zumzum__Tax_Rate__c.Zumzum__Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Tax_Rate__c.Zumzum__is_EC_Sales__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Tax_Rate__c.Zumzum__Exclude_from_VAT_Return__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Tax_Rate__c.Zumzum__Linked_Tax_Rate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Tax_Rate__c.Zumzum__is_no_tax__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Tax_Rate__c.Zumzum__Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>gaid__Gift_Aid_Declaration__c.AccountKey__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1899,6 +1889,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>gaid__Gift_Aid_Declaration__c.gaid__Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Booking__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2364,6 +2364,15 @@
         <modifyAllRecords>false</modifyAllRecords>	
         <object>Zumzum__Sales_Invoice__c</object>	
         <viewAllRecords>false</viewAllRecords>	
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Zumzum__Tax_Rate__c</object>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>	
         <allowCreate>false</allowCreate>	

@@ -729,7 +729,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Total_Actual_Income__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Total_Contact_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Total_Income_Excluding_Fee_Overrides__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1329,6 +1339,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Bank_Receipt__c.Payment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Expense_Sheet__c.Approval_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1340,6 +1355,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Purchase_Invoice_Line_Item__c.Course__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Created_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1385,6 +1405,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>cpm__Installment__c.Care_Add_Membership_Attempts__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cpm__Installment__c.Care_Add_Membership_Tx_Code_Base__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Installment__c.Care_Add_Membership_Tx_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

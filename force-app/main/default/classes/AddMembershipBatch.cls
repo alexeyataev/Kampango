@@ -4,13 +4,13 @@ public class AddMembershipBatch implements Database.Batchable<sObject>, Database
     private final String CARE_STATUS = 'Waiting';
     private final String SUCCESS_STATUS = 'Success';
     private final String FAILURE_STATUS = 'Failure';
-    private final String PAYMENT_METHOD_DD = 'Direct Debit';
+    private final String PAYMENT_METHOD_CARE_MEMBERSHIP = 'Care Membership';
     private final String PAYMENT_PROCESSOR = 'PaymentHub-WorldPay';
     private final String PAYMENT_STATUS = 'Collected';
 
     public Database.QueryLocator start(Database.BatchableContext bc) {
         return Database.getQueryLocator([
-            SELECT Id, ga_decl_1__c, ga_decl_2__c, Bank_Details_Number__c, Care_Add_Membership_Attempts__c,
+            SELECT Id, ga_decl_1__c, ga_decl_2__c, Bank_Details_Number__c, Care_Add_Membership_Attempts__c, Care_Add_Membership_Tx_Code__c,
                 cpm__Contact__r.Branch__r.Branch_Number__c, cpm__Payment_Method__c, cpm__Contact__r.NCT_Number__c,
                 Partner_Contact__r.NCT_Number__c, Membership_Type__c, Membership_Amount__c 
             FROM cpm__Installment__c
@@ -21,7 +21,7 @@ public class AddMembershipBatch implements Database.Batchable<sObject>, Database
                     cpm__Payment_Processor__c =: PAYMENT_PROCESSOR
                     AND cpm__Status__c =: PAYMENT_STATUS
                 ) 
-                OR cpm__Payment_Method__c =: PAYMENT_METHOD_DD
+                OR cpm__Payment_Method__c =: PAYMENT_METHOD_CARE_MEMBERSHIP
             )
         ]);
     }
