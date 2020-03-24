@@ -3,7 +3,7 @@
     <fullName>Total_Actual_Income__c</fullName>
     <externalId>false</externalId>
     <label>Total Actual Income</label>
-    <precision>5</precision>
+    <precision>7</precision>
     <required>false</required>
     <scale>2</scale>
     <trackFeedHistory>false</trackFeedHistory>
