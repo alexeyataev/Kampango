@@ -14,19 +14,7 @@ public without sharing class CourseCreateEnquiryUtility {
         }
         
         Booking__c booking = new Booking__c();
-        Contact contact = new Contact(
-            RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME),
-            Salutation = requestParameters.get('title'),
-            FirstName = requestParameters.get('first_name'),
-            LastName = requestParameters.get('last_name'),
-            Email = requestParameters.get('email'),
-            MobilePhone = requestParameters.get('mobile'),
-            MailingCity = requestParameters.get('town'),
-            MailingPostalCode = requestParameters.get('postcode'),
-            MailingState = requestParameters.get('county'), // 'county' is not a 'countRy'
-            MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
-            npe01__PreferredPhone__c = 'Mobile'
-        );
+        Contact contact = createPrimaryContact(requestParameters);
 
         Database.SaveResult result = Database.insert(contact, false);
         Database.DMLOptions dmlOption = new Database.DMLOptions();
@@ -114,6 +102,22 @@ public without sharing class CourseCreateEnquiryUtility {
         return result;
     }
 
+    private static Contact createPrimaryContact(Map<String, String> requestParameters) {
+        return new Contact(
+            RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME),
+            Salutation = requestParameters.get('title'),
+            FirstName = requestParameters.get('first_name'),
+            LastName = requestParameters.get('last_name'),
+            Email = requestParameters.get('email'),
+            MobilePhone = requestParameters.get('mobile'),
+            MailingCity = requestParameters.get('town'),
+            MailingPostalCode = requestParameters.get('postcode'),
+            MailingState = requestParameters.get('county'), // 'county' is not a 'countRy'
+            MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
+            npe01__PreferredPhone__c = 'Mobile'
+        );
+    }
+
     private static Id createPartnerContact(Map<String, String> requestParameters) {
         Contact partner = new Contact(
             FirstName = requestParameters.get('partner_first_name'),
@@ -172,7 +176,8 @@ public without sharing class CourseCreateEnquiryUtility {
         Contact contact;
         if (!String.isBlank(contactId)) {
             contact = [
-                SELECT Id, FirstName, LastName, MailingCity, MailingPostalCode, Email, MailingStreet, Phone, npe01__PreferredPhone__c, IndividualId
+                SELECT Id, FirstName, LastName, MailingCity, MailingPostalCode, 
+                    Email, MailingStreet, Phone, npe01__PreferredPhone__c, IndividualId
                 FROM Contact
                 WHERE Id =: contactId
                 LIMIT 1

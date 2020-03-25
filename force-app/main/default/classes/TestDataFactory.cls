@@ -27,7 +27,7 @@ public without sharing class TestDataFactory {
     public static List<Course__c> courses = new List<Course__c>();
     public static List<Session__c> sessions = new List<Session__c>();
     public static List<User> users = new List<User>();
-    public static List<User> enquiryPSA_Users = new List<User>();
+    public static List<User> enquiryPSAUsers = new List<User>();
     private List<Contact> practitioners = new List<Contact>();
     private Account branchAccount;
     private static Account organizationAccount;
@@ -75,7 +75,7 @@ public without sharing class TestDataFactory {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
         branchAccount =  accountBranchBuilder
             .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
-            .withEnquiriesPSA(enquiryPSA_Users[0].Id)
+            .withEnquiriesPSA(enquiryPSAUsers[0].Id)
             .insertRecord(true)
             .build();
         TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
@@ -496,7 +496,7 @@ public without sharing class TestDataFactory {
 
     public TestDataFactory createEnquiryPSA() {
         TestUserBuilder userBuilder = new TestUserBuilder();
-        enquiryPSA_Users.add(userBuilder
+        enquiryPSAUsers.add(userBuilder
             .withProfile([SELECT Id FROM Profile WHERE Name = 'Enquiry PSA'].Id)
             .withUsername(ENQUIRY_PSA_USERNAME)
             .insertRecord(true)
