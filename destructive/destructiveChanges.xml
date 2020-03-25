@@ -12,6 +12,7 @@
         <members>DisplayDdScheduleController</members>
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
+        <members>GiftAidDetailController</members>
         <members>FlowPaymentHandler</members>
         <members>PaymentLinkGeneratorTestPageController</members>
         <members>PaymentLinkGeneratorTestPageMock</members>
