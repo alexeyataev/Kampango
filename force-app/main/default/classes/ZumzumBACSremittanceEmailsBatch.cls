@@ -37,21 +37,12 @@ public class ZumzumBACSremittanceEmailsBatch implements Database.Batchable<Payme
         update items;
         
         String error;
-        try {
-            Messaging.SendEmailResult[] emailResponse = Messaging.sendEmail(messages);
-            System.debug('emailResponse is: ' + emailResponse);
-        } catch (EmailException e){
-            error = e.getMessage();
-            if (error.contains('UNVERIFIED_SENDER_ADDRESS')) {
-                throw e;
-            } else {
-                System.debug ('exception occured: ' + error);
-            }
-        }
+
+        Messaging.SendEmailResult[] emailResponse = Messaging.sendEmail(messages);
+        System.debug('emailResponse is: ' + emailResponse);
     }
     
     public void finish(Database.BatchableContext context) {
-        System.debug('finished');
         Payment_Run__c paymentRun = [
             SELECT Id, Status__c FROM Payment_Run__c 
             WHERE Id = :paymentRunId

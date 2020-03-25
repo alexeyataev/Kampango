@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #64 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing class AddMarketingPreferencesToCare {
 
     private static final Map<String, String> MARKETING_PREFERENCES_DOCUMENT_MAP = new Map<String, String> {
