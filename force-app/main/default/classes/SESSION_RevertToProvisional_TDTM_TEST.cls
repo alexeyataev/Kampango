@@ -1,6 +1,5 @@
-@SuppressWarnings('PMD.MethodNamingConventions, PMD.AvoidGlobalModifier')
+@SuppressWarnings('PMD.MethodNamingConventions')
 //Incident #9 - https://confluence.nct.org.uk:8443/x/EoSO
-//Incident #69 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
