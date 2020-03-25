@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Fees_Claimed__c</fullName>
+    <externalId>false</externalId>
+    <label>Total Fees Claimed</label>
+    <summarizedField>Session__c.Sum_Of_Purchase_Line_Items__c</summarizedField>
+    <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
