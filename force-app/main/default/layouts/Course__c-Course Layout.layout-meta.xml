@@ -180,10 +180,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Total_Other_Practitioner_Expenses__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Total_Other_Costs__c</field>
             </layoutItems>
             <layoutItems>

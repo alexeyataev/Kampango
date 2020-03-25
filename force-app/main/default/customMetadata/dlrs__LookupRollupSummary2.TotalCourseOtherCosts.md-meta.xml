@@ -57,7 +57,7 @@ Zumzum__Nominal_Account__c</value>
     </values>
     <values>
         <field>dlrs__RelationshipCriteria__c</field>
-        <value xsi:type="xsd:string">Zumzum__Purchase_Invoice__r.Zumzum__Status__c = &#39;Posted&#39; AND Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c &lt;&gt; &#39;5157&#39;</value>
+        <value xsi:type="xsd:string">Zumzum__Purchase_Invoice__r.Zumzum__Status__c = &#39;Posted&#39; AND Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c NOT IN (&#39;5150&#39;, &#39;5154&#39;, &#39;5155&#39;, &#39;5157&#39;)</value>
     </values>
     <values>
         <field>dlrs__RelationshipField__c</field>

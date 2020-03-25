@@ -783,11 +783,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Total_Other_Practitioner_Expenses__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Total_Practitioner_Fees__c</field>
         <readable>true</readable>

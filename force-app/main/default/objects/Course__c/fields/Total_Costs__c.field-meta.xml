@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Total_Costs__c</fullName>
     <externalId>false</externalId>
-    <formula>Total_Fees_Claimed__c + Total_Venue_Costs__c + Total_Travel_Costs__c + Total_Other_Practitioner_Expenses__c + Total_Other_Costs__c</formula>
+    <formula>Total_Fees_Claimed__c + Total_Venue_Costs__c + Total_Travel_Costs__c + Total_Other_Costs__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Total Costs</label>
     <precision>18</precision>
