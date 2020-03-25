@@ -55,7 +55,7 @@ public without sharing class AddBankDetailsForMembershipTest {
         System.assertEquals(resultList[0].error, MESSAGE_TEXT_ERROR, 'Will return message error');
     }
 
-    @isTest static void AddBankDetailsExeption_NctNumberIsNotAdded_ExeptionReturned() {
+    @isTest static void AddBankDetailsException_NctNumberIsNotAdded_ExceptionReturned() {
         Test.startTest();
         cpm__Installment__c isntallmentInstance = new cpm__Installment__c();
 
@@ -65,6 +65,7 @@ public without sharing class AddBankDetailsForMembershipTest {
 
         isntallmentInstance.cpm__Contact__c = cnt.Id;
         List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails( new List<cpm__Installment__c> {isntallmentInstance} );
+        System.assertEquals(resultList[0].bankDetailsNumber, null, 'Will return Bank Detail Number');
         Test.stopTest();
     }
 

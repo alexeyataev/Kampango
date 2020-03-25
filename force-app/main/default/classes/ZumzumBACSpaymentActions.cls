@@ -33,20 +33,13 @@ public with sharing class ZumzumBACSpaymentActions {
                 'There is no Purchase Invoices matching the action criteria'
             ));
         } else {
-            try {
-                if (Payment_Run_Line_Item__c.sObjectType.getDescribe().isCreateable()) {
-                    insert prliList;
-                    result.add(new Response(true));
-                } else {
-                    result.add(new Response(
-                        false, 
-                        'The user has no access rights to create Payment Run Line Items'
-                    ));
-                }
-            } catch (DmlException e) {
+            if (Payment_Run_Line_Item__c.sObjectType.getDescribe().isCreateable()) {
+                insert prliList;
+                result.add(new Response(true));
+            } else {
                 result.add(new Response(
                     false, 
-                    e.getMessage()
+                    'The user has no access rights to create Payment Run Line Items'
                 ));
             }
         }

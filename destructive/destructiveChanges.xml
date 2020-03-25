@@ -18,7 +18,6 @@
         <members>PaymentLinkGeneratorTestPageTest</members>
         <members>PaymentProviderHttpResponseMock</members>
         <members>PaymentProviderTest</members>
-        <members>StepOrangeCardPaymentProvider</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -225,6 +224,8 @@
     </types>
     <types>
         <members>Booking__c.ExpirationDateCannotBeInPast</members>
+        <members>Booking__c.MandatoryPartnerContactField</members>
+        <members>Booking__c.MandatoryPrimaryContactFields</members>
         <members>Contact.Contact_Preferred_Email</members>
         <members>Contact.Contact_Preferred_Phone</members>
         <members>Course__c.Check_Numer_of_Places_against_Practition</members>

@@ -45,11 +45,26 @@ public with sharing class GeneratePaymentFileUtil {
 
 		String[] rows = new String[bankPayments.size()];
 
-		for(Zumzum__Bank_Payment__c bankPayment: bankPayments){
+		for(Zumzum__Bank_Payment__c bankPayment: bankPayments) {
 			BankPaymentWrapper bankPaymentWrapper = new BankPaymentWrapper(bankPayment);
 			rows.add(String.join(bankPaymentWrapper.getColumns(), ' ').trim());
 		}
 		String result = String.join(rows,'\r\n').trim();
+		return result;
+	}
+	
+	public static String generatePaymentFileContent(Payment_Run__c paymentRun){
+		List<Zumzum__Bank_Payment__c> bankPayments = getPayments(paymentRun);
+
+		String[] rows = new String[bankPayments.size()];
+
+		for(Zumzum__Bank_Payment__c bankPayment: bankPayments){
+			BankPaymentWrapper bankPaymentWrapper = new BankPaymentWrapper(bankPayment);
+			System.debug('bankPaymentWrapper ' + bankPaymentWrapper);
+			rows.add(String.join(bankPaymentWrapper.getColumns(), ' ').trim());
+		}
+		String result = String.join(rows,'\r\n').trim();
+		System.debug('generatePaymentFileContent result ' + result);
 		return result;
 	}
 
@@ -76,8 +91,30 @@ public with sharing class GeneratePaymentFileUtil {
 				WHERE Zumzum__Batch_Bank_Payment__c = :batchBankPaymentId
 				WITH SECURITY_ENFORCED
 		]; 
-		
+
 		return payments;
 	}
+	
+	private static List<Zumzum__Bank_Payment__c> getPayments(Payment_Run__c paymentRun) {
+		Set<Id> bankPaymentIds = new Set<Id>();
+		if (paymentRun != null) {
+			for (Zumzum__Bank_Payment_Line_Item__c lineItem : paymentRun.Bank_Payment_Line_Items__r) {
+				bankPaymentIds.add(lineItem.Zumzum__Bank_Payment__c);
+			}
+		}
+		List<Zumzum__Bank_Payment__c> payments =  [
+				SELECT Id,
+						Zumzum__Supplier__r.Zumzum__Bank_Sort_Code__c,
+						Zumzum__Supplier__r.Zumzum__Bank_Account_No__c,
+						Zumzum__Amount__c,
+						Zumzum__Supplier__r.Zumzum__Bank_Account_Name__c,
+						Name,
+						Zumzum__Supplier__r.PSA_Area__c,
+						Payment_Reference__c
+				FROM Zumzum__Bank_Payment__c
+				WHERE Id IN :bankPaymentIds
+		];
 
+		return payments;
+	}
 }

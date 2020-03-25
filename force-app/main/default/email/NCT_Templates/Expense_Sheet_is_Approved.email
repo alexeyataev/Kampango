@@ -1,0 +1,10 @@
+Dear {!Zumzum__Expense_Sheet__c.OwnerFirstName},<br>
+<br>
+The following expenses have been passed to finance for approval:<br>
+<br>
+Expense ID: {!Zumzum__Expense_Sheet__c.Name}<br>
+<br>
+Please log into your portal to view any details. <br>
+<br>
+Kind regards<br>
+NCT

@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #66 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 public with sharing class CreateGiftAidDeclarationHelperTest {
 
@@ -20,7 +22,7 @@ public with sharing class CreateGiftAidDeclarationHelperTest {
     }
 
     @IsTest
-    static void createGiftAidDeclaration_insertGiftAidDeclarationListWithOneRecord_returnOneRecord() {
+    static void CreateGiftAidDeclaration_insertGiftAidDeclarationListWithOneRecord_returnOneRecord() {
 
         Contact cont = [SELECT Id FROM Contact LIMIT 1];
 
@@ -42,7 +44,7 @@ public with sharing class CreateGiftAidDeclarationHelperTest {
     }
 
     @IsTest
-    static void createGiftAidDeclaration_insertEmptyGiftAidDeclarationList_returnEmptyList() {
+    static void CreateGiftAidDeclaration_insertEmptyGiftAidDeclarationList_returnEmptyList() {
 
         Contact cont = [SELECT Id FROM Contact LIMIT 1];
 
