@@ -14,7 +14,6 @@
         <members>BookingPaymentDetailsControllerTest</members>
         <members>BookingStatusFlowHelper</members>
         <members>BookingStatusFlowHelperTest</members>
-         <members>GiftAidDetailController</members>
         <members>BookingPaymentDetailsController</members>
         <members>BookingPaymentDetailsControllerTest</members>
         <members>BranchWeightingHelper</members>
@@ -63,6 +62,7 @@
         <members>PaymentPlanMockClock</members>
         <members>PaymentPlanOption</members>
         <members>PaymentPlanOptionsController</members>
+        <members>PaymentPlanOptionsControllerTest</members>
         <members>PaymentPlanOptionsTest</members>
         <members>PractitionerBandFeeHelper</members>
         <members>PractitionerBandFeeHelperTest</members>
