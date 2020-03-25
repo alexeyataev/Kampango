@@ -62,6 +62,7 @@
         <members>PaymentPlanMockClock</members>
         <members>PaymentPlanOption</members>
         <members>PaymentPlanOptionsController</members>
+        <members>PaymentPlanOptionsControllerTest</members>
         <members>PaymentPlanOptionsTest</members>
         <members>PractitionerBandFeeHelper</members>
         <members>PractitionerBandFeeHelperTest</members>
