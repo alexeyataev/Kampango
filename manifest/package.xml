@@ -28,6 +28,7 @@
         <members>ConfirmationEmailController</members>
         <members>ConfirmationEmailControllerTest</members>
         <members>ContactProcessHelper</members>
+        <members>ContactProcessTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -134,6 +135,7 @@
     <types>
         <members>dlrs_BookingTrigger</members>
         <members>dlrs_Estimated_CostsTrigger</members>
+        <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
     </types>
