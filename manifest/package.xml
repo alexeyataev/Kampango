@@ -28,6 +28,7 @@
         <members>ConfirmationEmailController</members>
         <members>ConfirmationEmailControllerTest</members>
         <members>ContactProcessHelper</members>
+        <members>ContactProcessTest</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>

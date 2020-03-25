@@ -158,7 +158,6 @@ public without sharing class CourseCreateEnquiryUtility {
             SELECT Id, Email__c, Post__c, SMS__c, Telephone__c 
             FROM Individual 
             WHERE Id =: contact.IndividualId
-            WITH SECURITY_ENFORCED
             LIMIT 1
         ];
         individual.Email__c = parseParameterToBoolean(requestParameters.get('emailPreference'));
@@ -181,7 +180,6 @@ public without sharing class CourseCreateEnquiryUtility {
                     Email, MailingStreet, Phone, npe01__PreferredPhone__c, IndividualId
                 FROM Contact
                 WHERE Id =: contactId
-                WITH SECURITY_ENFORCED
                 LIMIT 1
             ];
         } else {
