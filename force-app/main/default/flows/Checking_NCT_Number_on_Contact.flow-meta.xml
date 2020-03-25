@@ -67,8 +67,8 @@
     <assignments>
         <name>Add_Parent_To_Contact_List</name>
         <label>Add Parent To Contact List</label>
-        <locationX>932</locationX>
-        <locationY>723</locationY>
+        <locationX>933</locationX>
+        <locationY>711</locationY>
         <assignmentItems>
             <assignToReference>Contact_List</assignToReference>
             <operator>Add</operator>
@@ -84,7 +84,7 @@
         <name>Add_Partner_Contact_And_Number</name>
         <label>Add Partner Contact And Number</label>
         <locationX>295</locationX>
-        <locationY>898</locationY>
+        <locationY>881</locationY>
         <assignmentItems>
             <assignToReference>PartnerContact.Id</assignToReference>
             <operator>Assign</operator>
@@ -106,8 +106,8 @@
     <assignments>
         <name>Add_Primary_Contact_And_Number</name>
         <label>Add Primary Contact And Number</label>
-        <locationX>932</locationX>
-        <locationY>539</locationY>
+        <locationX>933</locationX>
+        <locationY>514</locationY>
         <assignmentItems>
             <assignToReference>PrimaryContact.Id</assignToReference>
             <operator>Assign</operator>
@@ -129,8 +129,8 @@
     <assignments>
         <name>Add_To_Partner_Contact_List</name>
         <label>Add To Partner Contact List</label>
-        <locationX>294</locationX>
-        <locationY>1070</locationY>
+        <locationX>295</locationX>
+        <locationY>1065</locationY>
         <assignmentItems>
             <assignToReference>Contact_List</assignToReference>
             <operator>Add</operator>
@@ -157,6 +157,47 @@
         </value>
     </constants>
     <decisions>
+        <name>Check_Partner_Nct_Number</name>
+        <label>Check Partner Nct Number</label>
+        <locationX>417</locationX>
+        <locationY>524</locationY>
+        <defaultConnector>
+            <targetReference>Add_Partner_Contact_For_Membership</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Partner Nct Number False</defaultConnectorLabel>
+        <rules>
+            <name>Partner_Nct_Number_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Booking_Record.NCT_Number_Partner__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <label>Partner Nct Number True</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Primary_Nct_Number</name>
+        <label>Check Primary Nct Number</label>
+        <locationX>421</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Add_Primary_Contact_For_Membership</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Primary Nct Number False</defaultConnectorLabel>
+        <rules>
+            <name>Primary_Nct_Number_True</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Booking_Record.NCT_Number__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Is_Included_Partner_Contact</targetReference>
+            </connector>
+            <label>Primary Nct Number True</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_Included_Partner_Contact</name>
         <label>Is Included Partner Contact</label>
         <locationX>657</locationX>
@@ -173,7 +214,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Add_Partner_Contact_For_Membership</targetReference>
+                <targetReference>Check_Partner_Nct_Number</targetReference>
             </connector>
             <label>Partner is Include</label>
         </rules>
@@ -242,7 +283,7 @@
         <name>Is_Number_For_Partner_Contact_Valid</name>
         <label>Is Number For Partner Contact Valid</label>
         <locationX>291</locationX>
-        <locationY>685</locationY>
+        <locationY>699</locationY>
         <defaultConnector>
             <targetReference>Is_List_Not_Empty</targetReference>
         </defaultConnector>
@@ -277,10 +318,10 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <start>
-        <locationX>294</locationX>
+        <locationX>284</locationX>
         <locationY>321</locationY>
         <connector>
-            <targetReference>Add_Primary_Contact_For_Membership</targetReference>
+            <targetReference>Check_Primary_Nct_Number</targetReference>
         </connector>
     </start>
     <status>Active</status>
