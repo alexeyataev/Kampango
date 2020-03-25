@@ -20,9 +20,8 @@ public with sharing class PaymentPlanOptionsControllerTest {
             List<PaymentPlanOption> paymentPlanOptionList = PaymentPlanOptionsController.getOptions(courseFee, courseStartDate);
             System.assertEquals(3, paymentPlanOptionList.size(), 'expecting three payment options');
         Test.stopTest();
-
     }
-    
+
     @isTest
     static void OneRecurringPaymentDependsOnFee_WithFeeForOnePaymentBeforeDeadline_OneOptionGenerated() {
         Test.startTest();
