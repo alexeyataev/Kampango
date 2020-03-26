@@ -81,6 +81,15 @@ private class GeneratePaymentFilePaymentRunTest {
 				.withBatchBankPayment(batchBankPayment.id)
 				.insertRecord(true)
 				.build();
+
+		Zumzum__Tax_Rate__c zumzumTaxRate = new Zumzum__Tax_Rate__c(
+			Name = 'No VAT',
+			Zumzum__Type__c = 'Non-Vatable',
+			Zumzum__Active__c = true,
+			Zumzum__Tax_Rate__c = 0
+		);
+
+		insert zumzumTaxRate;
 		
 		Payment_Run__c paymentRun = new Payment_Run__c(
 			Status__c = 'Ready'
@@ -91,7 +100,9 @@ private class GeneratePaymentFilePaymentRunTest {
 			Zumzum__Amount__c = 100.00,
 			Zumzum__Bank_Payment__c = bankPayment.Id,
 			Zumzum__Date__c = Date.today(),
-			Payment_Run__c = paymentRun.Id
+			Payment_Run__c = paymentRun.Id,
+			Zumzum__Status__c = 'Draft',
+			Zumzum__Tax__c = zumzumTaxRate.Id
 		);
 		insert bankPaymentLineItem;
 		
