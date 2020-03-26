@@ -248,11 +248,6 @@
     </availableFields>
     <description>New and edit Sales Invoice pages, where required Sales Invoice Line item fields should be displayed.</description>
     <displayedFields>
-        <field>Zumzum__Product__c</field>
-        <isFieldManaged>true</isFieldManaged>
-        <isRequired>true</isRequired>
-    </displayedFields>
-    <displayedFields>
         <field>Zumzum__Nominal_Account__c</field>
         <isFieldManaged>true</isFieldManaged>
         <isRequired>true</isRequired>
