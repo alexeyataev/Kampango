@@ -275,7 +275,6 @@ public without sharing class TestDataFactory {
             .withLicenceToPractice(licenceToPractice)
             .insertRecord(true)
             .build();
-            
         return this;
     }
 
@@ -289,7 +288,6 @@ public without sharing class TestDataFactory {
             .withLicenceToPractice(licenceToPractice)
             .insertRecord(true)
             .build();
-            
         return this;
     }
 

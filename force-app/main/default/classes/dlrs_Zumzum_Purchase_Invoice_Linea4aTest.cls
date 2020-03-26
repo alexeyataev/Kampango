@@ -23,11 +23,7 @@ private class dlrs_Zumzum_Purchase_Invoice_Linea4aTest
                     .buildLicenceToPractice()
                     .buildCourse()
                     .buildEstimatedCosts()
-                    .buildSession()
-                    .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-                    .buildPartnertHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-                    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed')
-                    .buildBooking('Enquiry');
+                    .buildSession();
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account account = accountBuilder
                 .withRecordType('Household Account')
@@ -65,11 +61,12 @@ private class dlrs_Zumzum_Purchase_Invoice_Linea4aTest
                 .insertRecord(true)
                 .build();
     }
+    
     @IsTest
     private static void testTrigger()
     {
         // Force the dlrs_Zumzum_Purchase_Invoice_La4aTrigger to be invoked, fails the test if org config or other Apex code prevents this.
-
+        
         Course__c courseBeforeRecalculations = [
 			SELECT Id, Total_Other_Costs__c
 			FROM Course__c
