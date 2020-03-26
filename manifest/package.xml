@@ -840,6 +840,7 @@
     </types>
     <types>
         <members>Booking__c.Send Reservation Email</members>
+        <members>Course__c.Course Status Closed</members>
         <name>WorkflowRule</name>
     </types>
     <version>48.0</version>
