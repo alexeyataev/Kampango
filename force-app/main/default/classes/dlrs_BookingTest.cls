@@ -11,7 +11,7 @@ private class dlrs_BookingTest
     private static final String PERMISSION_SET_NAME = 'Override_Booking_Validation';
 
     @TestSetup 
-    private static void SetupTestData() {
+    private static void testSetup() {
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc1')
                     .createEnquiryPSA()
