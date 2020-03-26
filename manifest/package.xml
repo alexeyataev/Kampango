@@ -48,6 +48,7 @@
         <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
+        <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
         <members>GeneratePaymentFileUtil</members>
@@ -61,6 +62,7 @@
         <members>PaymentPlanMockClock</members>
         <members>PaymentPlanOption</members>
         <members>PaymentPlanOptionsController</members>
+        <members>PaymentPlanOptionsControllerTest</members>
         <members>PaymentPlanOptionsTest</members>
         <members>PractitionerBandFeeHelper</members>
         <members>PractitionerBandFeeHelperTest</members>
@@ -172,6 +174,7 @@
     </types>
     <types>
         <members>NCT_Courses</members>
+        <members>Zumzum__Zumzum_Financials_L</members>
         <name>CustomApplication</name>
     </types>
     <types>
@@ -222,6 +225,9 @@
         <members>dlrs__LookupRollupSummary2.CreditLineItemsAmount</members>
         <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.TotalActualCourseIncome</members>
+        <members>dlrs__LookupRollupSummary2.TotalCourseOtherCosts</members>
+        <members>dlrs__LookupRollupSummary2.TotalCourseTravelCosts</members>
+        <members>dlrs__LookupRollupSummary2.TotalCourseVenueCosts</members>
         <name>CustomMetadata</name>
     </types>
     <types>
