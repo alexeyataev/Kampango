@@ -28,13 +28,13 @@ private class dlrs_Estimated_CostsTest
                     .buildSession()
                     .buildSessionWithTypeAndStatus('Reunion', 'Confirmed');
 
-         List<Estimated_Costs__c> estimated_Costs = [
+         List<Estimated_Costs__c> estimatedCosts = [
             SELECT Id 
             FROM Estimated_Costs__c 
             ];
 
         Test.startTest();
-        dlrs.RollupService.testHandler(estimated_Costs.get(0));
+        dlrs.RollupService.testHandler(estimatedCosts.get(0));
         Test.stopTest();
 
         List<Course__c> courses = [

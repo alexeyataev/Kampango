@@ -12,6 +12,7 @@
         <members>DisplayDdScheduleController</members>
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
+        <members>GiftAidDetailController</members>
         <members>FlowPaymentHandler</members>
         <members>PaymentLinkGeneratorTestPageController</members>
         <members>PaymentLinkGeneratorTestPageMock</members>
@@ -198,6 +199,63 @@
         <members>Course__c.Courses_With_Upcoming_Reunions</members>
         <members>Course__c.Upcoming_Courses</members>
         <members>Zumzum__Purchase_Invoice__c.All_Invoices</members>
+        <members>Zumzum__Expense_Sheet__c.X1C_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X1W_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X2A_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X2B_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X2C_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X3A_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X3B_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X3D_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X3E_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X3F_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4A_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4B_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4C_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4D_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4E_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4F_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4G_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4H_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4I_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4J_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4K_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4L_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4M_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4N_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4P_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4Q_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4R_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X4S_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5A_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5B_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5C_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5D_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5E_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5F_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5G_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5H_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5I_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5J_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5K_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5L_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5M_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5N_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5O_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5R_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5S_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5T_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5U_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X5VL_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X6A_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X6B_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X6C_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X6D_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X6E_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X7A_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X7B_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X7C_Expense_Sheet</members>
+        <members>Zumzum__Expense_Sheet__c.X7D_Expense_Sheet</members>
         <name>ListView</name>
     </types>
     <types>
