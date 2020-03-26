@@ -1,9 +1,7 @@
 @isTest
 private class BatchOutboundBACSpaymentTest {
-
-
-    @isTest
-    static void runTest(){
+    @testSetup
+    static void setupTestData(){
         TestFinanceDataFactory.getInstance().createZumzumData();
 
         Zumzum__Nominal_Account__c zumzumCurrentNominalAccount = new Zumzum__Nominal_Account__c(
@@ -31,15 +29,19 @@ private class BatchOutboundBACSpaymentTest {
                 .withBankAccountNumber('03456123')
                 .withBankAccountName('TEST BANK ACCOUNT')
                 .insertRecord(true)
-                .build();       
-
-        createPI(supplierAccount.Id);
-        test();
+                .build();
     }
 
-    static void test(){       
+    @isTest
+    static void testBatch(){
         // 1. Create PI and related PILI
-        //ClaimFeeHelper.createPurchaseInvoice(flowData);
+        Account acc = [
+            SELECT Id
+            FROM Account
+            WHERE Zumzum__Bank_Sort_Code__c = '572899'
+            LIMIT 1
+        ];
+        createPurchaseInvoice(acc.Id);
 
         //2. Create Payment run
         Payment_Run__c paymentRun = new Payment_Run__c();
@@ -62,9 +64,17 @@ private class BatchOutboundBACSpaymentTest {
         Test.startTest();
             BatchOutboundBACSpayment.runBatch(ids);
         Test.stopTest();
+
+        // 5. Check results
+        Payment_Run__c result = [
+            SELECT Id, Status__c
+            FROM Payment_Run__c
+        ];
+
+        System.assertEquals('Ready', result.Status__c);
     }
 
-    static void createPI(Id supplierAccountId){
+    static void createPurchaseInvoice(Id supplierAccountId){
         final String PURCHASE_INVOICE = 'Purchase Invoice';
         final String PURCHASE_CREDIT = 'Purchase Credit';
         final String DEFAULT_CURRENCY = 'GBP';
