@@ -181,12 +181,11 @@
         <searchFilterFields>OWNER.LAST_NAME</searchFilterFields>
         <searchFilterFields>Zumzum__Month__c</searchFilterFields>
         <searchFilterFields>Zumzum__Year__c</searchFilterFields>
-        <searchResultsAdditionalFields>Zumzum__Month_Number__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Zumzum__Status__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Zumzum__Total_Gross__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Zumzum__Total_Miles__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>OWNER.FIRST_NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>OWNER.LAST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Zumzum__Total_Gross__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Zumzum__Status__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <visibility>Public</visibility>
