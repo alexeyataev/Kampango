@@ -45,6 +45,7 @@
         <members>CreateGiftAidDeclarationHelperTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
+        <members>UpdateBookingContactsEmailTest</members>
         <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
