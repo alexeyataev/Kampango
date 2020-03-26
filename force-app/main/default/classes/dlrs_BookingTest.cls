@@ -9,6 +9,7 @@ private class dlrs_BookingTest
     private static final String HOST_LASTNAME = 'Black';
     private static final String PROFILE_NAME = 'Enquiry PSA';
     private static final String PERMISSION_SET_NAME = 'Override_Booking_Validation';
+    private static final Integer FEE = 300;
 
     @TestSetup 
     private static void testSetup() {
@@ -21,7 +22,7 @@ private class dlrs_BookingTest
                     .buildVenue()
                     .buildRoom()
                     .buildLicenceToPractice()
-                    .buildCourse()
+                    .buildCourseWithFee(FEE)
                     .buildEstimatedCosts()
                     .buildSession()
                     .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
@@ -36,7 +37,7 @@ private class dlrs_BookingTest
         // Force the dlrs_BookingTrigger to be invoked, fails the test if org config or other Apex code prevents this.
             
         Course__c courseBeforeRecalculations = [
-			SELECT Id, Total_Actual_Income__c
+			SELECT Id, Total_Actual_Income__c, Fee__c
 			FROM Course__c
 			LIMIT 1
 		];
@@ -53,14 +54,18 @@ private class dlrs_BookingTest
             WHERE Profile.Name = :PROFILE_NAME
             LIMIT 1
         ];
-        
+
         System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
-            bookings[0].Status__c = 'Confirmed';
+            for (Booking__c booking : bookings) {
+                booking.Status__c = 'Confirmed';
+            }
             update bookings;
         }
 
         Test.startTest();
-        dlrs.RollupService.testHandler(bookings.get(0));
+        for (Booking__c booking : bookings) {
+            dlrs.RollupService.testHandler(booking);   
+        }
         Test.stopTest();
 
         Course__c courseAfterRecalculations = [
@@ -70,6 +75,6 @@ private class dlrs_BookingTest
         ];
         
         System.assertEquals(0, courseBeforeRecalculations.Total_Actual_Income__c);
-        System.assertNotEquals(0, courseAfterRecalculations.Total_Actual_Income__c);
+        System.assertEquals(courseBeforeRecalculations.Fee__c * bookings.size(), courseAfterRecalculations.Total_Actual_Income__c);
     }
 }

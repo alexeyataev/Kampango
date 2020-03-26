@@ -8,6 +8,7 @@ private class dlrs_Zumzum_Purchase_Invoice_Linea4aTest
     private static final String HOST_LASTNAME = 'Black';
     private static final String PROFILE_NAME = 'Enquiry PSA';
     private static final String PERMISSION_SET_NAME = 'Override_Booking_Validation';
+    private static final Double AMOUNT = 120.00;
 
     @TestSetup 
     private static void testSetup() {
@@ -54,10 +55,10 @@ private class dlrs_Zumzum_Purchase_Invoice_Linea4aTest
                 .insertRecord(true)
                 .build();
         Zumzum__Purchase_Invoice_Line_Item__c pili11 = purchaseInvoiceLineItemBuilder
-                .withAmount(120)
-                .withGross(120)
-                .withGross(120)
-                .withNet(120)
+                .withAmount(AMOUNT)
+                .withGross(AMOUNT)
+                .withNet(AMOUNT)
+                .withTotalAmount(AMOUNT)
                 .withNarrative('Doll1')
                 .withQuantity(1)
                 .withPurchaseInvoice(pi1.Id)
@@ -75,17 +76,22 @@ private class dlrs_Zumzum_Purchase_Invoice_Linea4aTest
 			LIMIT 1
         ];
         
-        Zumzum__Purchase_Invoice_Line_Item__c purchaseInvoiceLineItem = [
-			SELECT Course__c
+        List<Zumzum__Purchase_Invoice_Line_Item__c> purchaseInvoiceLineItemList = [
+			SELECT Course__c, Zumzum__Total_Amount__c
 			FROM Zumzum__Purchase_Invoice_Line_Item__c
-			LIMIT 1
         ];
         
-        purchaseInvoiceLineItem.Course__c = courseBeforeRecalculations.Id;
-        update purchaseInvoiceLineItem;
+        Decimal totalOtherCosts = 0;
+        for (Zumzum__Purchase_Invoice_Line_Item__c purchaseInvoiceLineItem : purchaseInvoiceLineItemList) {
+                purchaseInvoiceLineItem.Course__c = courseBeforeRecalculations.Id;
+                totalOtherCosts += purchaseInvoiceLineItem.Zumzum__Total_Amount__c;
+        }
+        update purchaseInvoiceLineItemList;
 
         Test.startTest();
-        dlrs.RollupService.testHandler(purchaseInvoiceLineItem);
+        for (Zumzum__Purchase_Invoice_Line_Item__c purchaseInvoiceLineItem : purchaseInvoiceLineItemList) {
+                dlrs.RollupService.testHandler(purchaseInvoiceLineItem);            
+        }
         Test.stopTest();
 
         Course__c courseAfterRecalculations = [
@@ -95,6 +101,6 @@ private class dlrs_Zumzum_Purchase_Invoice_Linea4aTest
         ];
 
         System.assertEquals(null, courseBeforeRecalculations.Total_Other_Costs__c);
-        System.assertNotEquals(0, courseAfterRecalculations.Total_Other_Costs__c);
+        System.assertEquals(totalOtherCosts, courseAfterRecalculations.Total_Other_Costs__c);
     }
 }
