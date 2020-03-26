@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Status__c</fullName>
     <externalId>false</externalId>
     <label>Status</label>
@@ -31,6 +31,23 @@
                 <fullName>Cancelled</fullName>
                 <default>false</default>
                 <label>Cancelled</label>
+            </value>
+            <value>
+                <fullName>Closed</fullName>
+                <default>false</default>
+                <label>Closed</label>
+            </value>
+            <value>
+                <fullName>Confirmed</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Confirmed</label>
+            </value>
+            <value>
+                <fullName>Planned</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Planned</label>
             </value>
         </valueSetDefinition>
     </valueSet>
