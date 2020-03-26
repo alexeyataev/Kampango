@@ -41,7 +41,7 @@ public class BookingFlowUpdateNctNumberTest {
     }
 
     @IsTest
-    public static void checkNctNumber_SetNctNumberAndUpdate_NctNumberNotBeEmpty() {
+    public static void CheckNctNumber_SetNctNumberAndUpdate_NctNumberNotBeEmpty() {
         String primaryId = BookingJourneyHelperTest.createPrimaryContact();
         
         List<Contact> primaryContact = [
@@ -60,7 +60,7 @@ public class BookingFlowUpdateNctNumberTest {
     }
 
     @IsTest
-    public static void checkNctNumber_SetNctNumberAndUpdateForPartnerAndPrimaryContact_NctNumbersNotBeEmpty() {
+    public static void CheckNctNumber_SetNctNumberAndUpdateForPartnerAndPrimaryContact_NctNumbersNotBeEmpty() {
         String primaryId = BookingJourneyHelperTest.createPrimaryContact();
         String partnerId = BookingJourneyHelperTest.createPartnerContact();
         
