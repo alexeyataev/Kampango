@@ -21,7 +21,6 @@ private class BatchOutboundBACSpaymentTest {
         );
         insert zumzumBankAccount;
 
-
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account supplierAccount = accountBuilder.WithRecordType('Organization')
                 .withName('Tom Genet')
@@ -38,9 +37,7 @@ private class BatchOutboundBACSpaymentTest {
         test();
     }
 
-
     static void test(){       
-       
         // 1. Create PI and related PILI
         //ClaimFeeHelper.createPurchaseInvoice(flowData);
 
@@ -62,8 +59,9 @@ private class BatchOutboundBACSpaymentTest {
         List<Id> ids = new List<Id>();
         ids.add(paymentRun.Id);
 
-        
-        BatchOutboundBACSpayment.runBatch(ids);
+        Test.startTest();
+            BatchOutboundBACSpayment.runBatch(ids);
+        Test.stopTest();
     }
 
     static void createPI(Id supplierAccountId){
@@ -93,10 +91,7 @@ private class BatchOutboundBACSpaymentTest {
             LIMIT 1
         ];
 
-        //Map<String, Id> dimensionsMap = getDimensionsMap();
-
         Financial_Settings__c financialSettings = Financial_Settings__c.getInstance();
-
 
         Zumzum.PurchaseInvoiceService purchaseInvoiceService = new Zumzum.PurchaseInvoiceService();
         List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper> purchases = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper>();
@@ -111,7 +106,6 @@ private class BatchOutboundBACSpaymentTest {
         purchaseInvoice.TransactionCurrency = zumzumCurrency.Id;
         purchaseInvoice.PurchaseInvoiceType = PURCHASE_INVOICE;
         purchaseInvoice.LineItems = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper>();
-
         
         purchaseInvoiceLineItem = new Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper();
         purchaseInvoiceLineItem.NominalAccount = financialSettings.PI_Nominal_Account_Id__c;
@@ -119,59 +113,21 @@ private class BatchOutboundBACSpaymentTest {
         purchaseInvoiceLineItem.Quantity = 1;
         purchaseInvoiceLineItem.TaxRate = zumzumNoVAT.Id;
         purchaseInvoiceLineItem.Narrative = DEFAULT_NARRATIVE;
-        /*
-        purchaseInvoiceLineItem.WrapperAPICustomFields = new Zumzum.APICustomFieldWrapper[]{
-            new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Session__c', session.Id)
-        };
-        */
         purchaseInvoiceLineItem.Dimension1 = null;
-            //String.isNotBlank(session.PSA_Area__c) ? dimensionsMap.get(session.PSA_Area__c) : null;
         purchaseInvoiceLineItem.Dimension2 = null;
-            //String.isNotBlank(session.Course__c) ? dimensionsMap.get(session.Course__c) : null;
 
         purchaseInvoice.LineItems.add(purchaseInvoiceLineItem);
-        
-    
         purchases.add(purchaseInvoice);   
 
         Zumzum.PurchaseInvoiceService.Response objResponse = purchaseInvoiceService.createPurchaseInvoices(purchases);
 
-        /*
-        if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
-            throw new CreatePurchaseInvoiceException(objResponse.ResponseMessage);
-        }
-        */
-
         postPurchaseInvoices(objResponse.purchaseInvoices);        
-
     }
 
-
-    public static void postPurchaseInvoices(List<Zumzum__Purchase_Invoice__c> invoices) {
+    static void postPurchaseInvoices(List<Zumzum__Purchase_Invoice__c> invoices) {
         Zumzum.PurchaseInvoiceService postService = new Zumzum.PurchaseInvoiceService();
         for (Zumzum__Purchase_Invoice__c pi : invoices) {
             Zumzum.PurchaseInvoiceService.Response apiResponse = postService.postPurchaseInvoice(pi.Id);
-            /*
-            if (!apiResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
-                throw new CreatePurchaseInvoiceException(apiResponse.ResponseMessage);
-            }
-            */
         }
     }
-
-    /*
-    private static Map<String, Id> getDimensionsMap() {
-        List<Zumzum__Dimension__c> dimensions = [
-            SELECT Name, Id
-            FROM Zumzum__Dimension__c
-            WHERE Zumzum__Active__c = true
-        ];
-
-        Map<String, Id> dimensionsMap = new Map<String, Id>();
-        for (Zumzum__Dimension__c dimension : dimensions) {
-            dimensionsMap.put(dimension.Name, dimension.Id);
-        }
-        return dimensionsMap;
-    }
-    */
 }
