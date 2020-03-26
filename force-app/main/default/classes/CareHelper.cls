@@ -1,4 +1,5 @@
 public with sharing class CareHelper {
+    private static final String BASE_URL = Care_Settings__c.getOrgDefaults().Base_Url__c;
     public static AddContactResult sendContact(Contact cont) {
         HttpResponse res = sendHttpRequest('SFAddUpdateContactWS.pl', CareRequestBodyUtil.createSendContactBody(cont));
         CareRequestBodyUtil.ContactOjbect contactObject = (CareRequestBodyUtil.ContactOjbect)JSON.deserialize(res.getBody(), CareRequestBodyUtil.ContactOjbect.class);
@@ -20,11 +21,18 @@ public with sharing class CareHelper {
         CareRequestBodyUtil.MembershipOjbect membershipObject = (CareRequestBodyUtil.MembershipOjbect)JSON.deserialize(res.getBody(), CareRequestBodyUtil.MembershipOjbect.class);
         return membershipObject;
     }
+
+    @future(callout=true)
+    public static void sendMarketingPreferences(String nctNumber, String standardDocumentNumber) {
+        HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', CareRequestBodyUtil.createMarketingPreferencesBody(nctNumber, standardDocumentNumber));
+        CareRequestBodyUtil.MarketingPreferencesObject marketingPreferencesObject = (CareRequestBodyUtil.MarketingPreferencesObject)JSON.deserialize(res.getBody(), CareRequestBodyUtil.MarketingPreferencesObject.class);
+    }
+
     private static HttpResponse sendHttpRequest(String methodName, String body) {
         HttpRequest req = new HttpRequest();
         req.setTimeout(120000);
         req.setHeader('Content-Type', 'application/json');
-        req.setEndpoint(CareRequestBodyUtil.BASE_URL + methodName);
+        req.setEndpoint(BASE_URL + methodName);
         req.setMethod('POST');
         req.setBody(body);
         Http http = new Http();

@@ -1,25 +1,48 @@
-String productName = 'Course Place';
+/* initial */
+Set<String> productNames = new Set<String>{
+    'Course Place',
+    'Course Cancellation Fees',
+    'Course Transfer Fees',
+    'Membership - CARE/DD',
+    'Membership'
+};
 
-List<Product2> coursePlaceProduct = [
-    SELECT Id
-    FROM Product2
-    WHERE Name = :productName
-    LIMIT 1
-];
 
-if (!coursePlaceProduct.isEmpty()) {
-    System.debug('Product with name Course Place already exists');
+void filterExisting(Set<String> input) {
+    List<Product2> existingProducts = [
+        SELECT Id, Name
+        FROM Product2
+        WHERE Name IN :input
+    ];
+    for (Product2 existingProduct : existingProducts) {
+        input.remove(existingProduct.Name);
+    }
+}
+
+
+void createProducts(Set<String> input) {
+    try {
+        List<Product2> newProducts = new List<Product2>();
+        for (String productName : input) {
+            Product2 newProduct = new Product2(
+                Name = productName,
+                IsActive = true,
+                ProductCode = productName.replaceAll('\\s+', '')
+            );
+            newProducts.add(newProduct);
+        }
+        insert newProducts;
+        System.debug('Products were created succesfully');
+    } catch (Exception e) {
+        System.debug('There was an exception during Products creation: ' + e.getMessage());
+    }
+}
+
+
+/* execution */
+filterExisting(productNames);
+if (productNames.isEmpty()) {
+    System.debug('Products with given names are already exist');
     return;
 }
-
-try {
-    Product2 newProduct = new Product2(
-        Name = productName,
-        IsActive = true
-    );
-    insert newProduct;
-    System.debug('Product with name Course Place created succesfully');
-} catch (Exception e) {
-    System.debug('There was an exception during Product creation: ' + e.getMessage());
-}
-
+createProducts(productNames);

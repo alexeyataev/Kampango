@@ -1,4 +1,5 @@
 public with sharing class AddMembershipScheduler implements Schedulable {
+	private static final Integer BATCH_SIZE = (Integer)Care_Settings__c.getOrgDefaults().Add_Membership_Batch_Size__c;
     private Integer updateIntervalHours = 1;
 	public void execute(SchedulableContext sc) {
 		if(sc != null)
@@ -11,6 +12,6 @@ public with sharing class AddMembershipScheduler implements Schedulable {
 	private static void runAddMembershipJob()
 	{
 		AddMembershipBatch addMembershipBatch = new AddMembershipBatch();
-		Database.executeBatch(addMembershipBatch, 100);	
+		Database.executeBatch(addMembershipBatch, BATCH_SIZE);	
 	}
 }
