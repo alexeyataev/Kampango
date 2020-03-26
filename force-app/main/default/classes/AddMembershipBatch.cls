@@ -4,7 +4,7 @@ public class AddMembershipBatch implements Database.Batchable<sObject>, Database
     private final String CARE_STATUS = 'Waiting';
     private final String SUCCESS_STATUS = 'Success';
     private final String FAILURE_STATUS = 'Failure';
-    private final String PAYMENT_METHOD_DD = 'Direct Debit';
+    private final String PAYMENT_METHOD_CARE_MEMBERSHIP = 'Care Membership';
     private final String PAYMENT_PROCESSOR = 'PaymentHub-WorldPay';
     private final String PAYMENT_STATUS = 'Collected';
 
@@ -21,7 +21,7 @@ public class AddMembershipBatch implements Database.Batchable<sObject>, Database
                     cpm__Payment_Processor__c =: PAYMENT_PROCESSOR
                     AND cpm__Status__c =: PAYMENT_STATUS
                 ) 
-                OR cpm__Payment_Method__c =: PAYMENT_METHOD_DD
+                OR cpm__Payment_Method__c =: PAYMENT_METHOD_CARE_MEMBERSHIP
             )
         ]);
     }

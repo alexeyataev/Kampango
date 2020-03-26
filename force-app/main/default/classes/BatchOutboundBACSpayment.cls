@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.EmptyStatementBlock')
+//Incident #63 - https://confluence.nct.org.uk:8443/x/EoSO
 public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
     public Id paymentRunId;
     public Database.QueryLocator start(Database.BatchableContext bc) {
@@ -8,7 +10,8 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
                 'FROM Payment_Run_Line_Items__r' +
                 ')' + ' '+ 
             'FROM Payment_Run__c' + ' ' + 
-            'WHERE Id = ' + ' ' +  '\'' + paymentRunId + '\''
+            'WHERE Id = ' + ' ' +  '\'' + paymentRunId + '\'' + ' ' +
+                'AND Status__c = \'Processing\''
         );
     }
 
@@ -26,10 +29,6 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
 
         paymentRun.Status__c = 'Ready';
         update paymentRun;
-    }
-
-    public BatchOutboundBACSpayment(){
-        //this.paymentRunId = paymentRunId;
     }
 
     public BatchOutboundBACSpayment(Id paymentRunId){

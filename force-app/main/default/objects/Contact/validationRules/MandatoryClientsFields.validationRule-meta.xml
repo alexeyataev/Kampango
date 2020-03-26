@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MandatoryClientsFields</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+RecordType.DeveloperName == &#39;Clients&#39;,
+(
+ISBLANK(FirstName) ||
+ISBLANK(LastName) ||
+ISBLANK(MailingCity) ||
+ISBLANK(MailingPostalCode) ||
+ISBLANK(MailingStreet) ||
+ISBLANK(Email) ||
+OR
+(
+AND
+(
+ISBLANK(MobilePhone),
+ISPICKVAL(npe01__PreferredPhone__c, &#39;Mobile&#39;)
+),
+AND
+(
+ISBLANK(HomePhone),
+ISPICKVAL(npe01__PreferredPhone__c, &#39;Home&#39;)
+)
+)
+),
+NOT($Permission.Override_Client_Validation)
+)</errorConditionFormula>
+    <errorMessage>Please review the client. Full name, full address, email and preferred phone are required.</errorMessage>
+</ValidationRule>

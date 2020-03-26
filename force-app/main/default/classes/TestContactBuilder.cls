@@ -2,6 +2,7 @@
 public with sharing class TestContactBuilder {
 	
 	private Id recordTypeId;
+	private string salutation = 'Mr';
 	private string firstName = 'John';
 	private string lastName = 'Smith';
 	private Account account;
@@ -11,7 +12,7 @@ public with sharing class TestContactBuilder {
 	private String mobilePhone = '123456789';
 	private String homePhone = '987654321';
 	private Boolean insertRecord = false;
-	private Boolean ignoreDuplicateRules = false;
+	private Boolean ignoreDuplicateRules = true;
 	private String mailingStreet = 'Test street';
 	private String mailingCity = 'Test city';
 	private String mailingPostalCode = 'Test code';
@@ -41,7 +42,12 @@ public with sharing class TestContactBuilder {
     public TestContactBuilder withLastName(string lastName) {
     	this.lastName = lastName;
     	return this;
-    }
+	}
+	
+	public TestContactBuilder withSalutation(string salutation) {
+		this.salutation = salutation;
+		return this;
+	}
 
     public TestContactBuilder withEmail(string email) {
         if (!String.isEmpty(email)) {
@@ -96,13 +102,18 @@ public with sharing class TestContactBuilder {
 	}
 	
 	public TestContactBuilder ignoreDuplicateRules(Boolean ignoreDuplicateRules) {
-		this.ignoreDuplicateRules = true;
+		if (ignoreDuplicateRules == null) {
+			this.ignoreDuplicateRules = true;
+		} else {
+			this.ignoreDuplicateRules = ignoreDuplicateRules;
+		}
 		return this;
 	}
     
     public Contact build(){
     	Contact testContact = new Contact(
 			RecordTypeId = this.recordTypeId,
+			Salutation = this.salutation,
 			FirstName = this.firstName,
 			LastName = this.lastName,
 			Care_Status__c = this.careStatus,

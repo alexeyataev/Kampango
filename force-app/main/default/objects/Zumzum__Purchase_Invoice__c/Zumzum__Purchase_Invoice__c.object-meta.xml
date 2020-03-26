@@ -167,8 +167,10 @@
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <searchFilterFields>NAME</searchFilterFields>
         <searchResultsAdditionalFields>Zumzum__Invoice_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Zumzum__Total_Paid_Amount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Zumzum__Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Zumzum__Total_Gross__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Zumzum__Paid__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Zumzum__Status__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <visibility>Public</visibility>

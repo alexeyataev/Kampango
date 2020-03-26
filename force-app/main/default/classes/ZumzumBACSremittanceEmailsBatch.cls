@@ -1,17 +1,17 @@
-global class ZumzumBACSremittanceEmailsBatch implements Database.Batchable<Payment_Run_Line_Item__c> {
+public class ZumzumBACSremittanceEmailsBatch implements Database.Batchable<Payment_Run_Line_Item__c> {
     
     private Id paymentRunId;
     private Id orgWideAddressId;
     private Id templateId;
     
     
-    global ZumzumBACSremittanceEmailsBatch(Id paymentRunId, Id templateId, Id orgWideAddressId) {
+    public ZumzumBACSremittanceEmailsBatch(Id paymentRunId, Id templateId, Id orgWideAddressId) {
         this.paymentRunId = paymentRunId;
         this.templateId = templateId;
         this.orgWideAddressId = orgWideAddressId;
     }
     
-    global List<Payment_Run_Line_Item__c> start(Database.BatchableContext context) {
+    public List<Payment_Run_Line_Item__c> start(Database.BatchableContext context) {
         return [
             SELECT Id, Name, Unpaid_Amount__c, Reference_Info__c,
                 Purchase_Invoice__r.Zumzum__Contact__c
@@ -21,7 +21,7 @@ global class ZumzumBACSremittanceEmailsBatch implements Database.Batchable<Payme
         ];
     }
     
-    global void execute(Database.BatchableContext context, List<Payment_Run_Line_Item__c> items) {
+    public void execute(Database.BatchableContext context, List<Payment_Run_Line_Item__c> items) {
         List<Messaging.SingleEmailMessage> messages = new List<Messaging.SingleEmailMessage>();
         List<Payment_Run_Line_Item__c> itemsToUpdate = new List<Payment_Run_Line_Item__c>();
         for (Payment_Run_Line_Item__c prli : items) {
@@ -37,20 +37,17 @@ global class ZumzumBACSremittanceEmailsBatch implements Database.Batchable<Payme
         update items;
         
         String error;
-        try {
-            Messaging.SendEmailResult[] emailResponse = Messaging.sendEmail(messages);
-            System.debug('emailResponse is: ' + emailResponse);
-        } catch (EmailException e){
-            error = e.getMessage();
-            if (error.contains('UNVERIFIED_SENDER_ADDRESS')) {
-                throw e;
-            } else {
-                System.debug ('exception occured: ' + error);
-            }
-        }
+
+        Messaging.SendEmailResult[] emailResponse = Messaging.sendEmail(messages);
+        System.debug('emailResponse is: ' + emailResponse);
     }
     
-    global void finish(Database.BatchableContext context) {
-        System.debug('finished');
+    public void finish(Database.BatchableContext context) {
+        Payment_Run__c paymentRun = [
+            SELECT Id, Status__c FROM Payment_Run__c 
+            WHERE Id = :paymentRunId
+        ];
+        paymentRun.Status__c = 'Closed';
+        update paymentRun;
     }
 }
