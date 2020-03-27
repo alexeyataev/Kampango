@@ -2101,6 +2101,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cpm__Installment__c.cpm__Last_ReasonCode_Received__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Installment__c.cpm__Last_Status_Reason__c</field>
         <readable>true</readable>
     </fieldPermissions>

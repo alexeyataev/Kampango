@@ -1512,7 +1512,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Last_ReasonCode_Received__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
