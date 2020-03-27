@@ -19,7 +19,7 @@ public with sharing class ZumzumBACSpaymentActions {
             SELECT Id 
             FROM Zumzum__Purchase_Invoice__c 
             WHERE Id NOT IN :linkedPIids
-              AND Zumzum__Status__c = 'Posted'
+              AND Zumzum__Status__c <> 'Paid'
               AND Zumzum__Total_Unpaid_Amount__c > 0
         ]) {
             Payment_Run_Line_Item__c prli = new Payment_Run_Line_Item__c();
