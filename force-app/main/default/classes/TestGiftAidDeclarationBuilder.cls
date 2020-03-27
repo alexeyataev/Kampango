@@ -9,7 +9,6 @@ public with sharing class TestGiftAidDeclarationBuilder {
     private Boolean active = false;
     private Boolean insertRecord = false;
 
-
     public TestGiftAidDeclarationBuilder withContact(Contact contactInstance) {
         this.contact = contactInstance;
         return this;
