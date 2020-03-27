@@ -34,7 +34,7 @@ public with sharing class SESSION_TrackDeletedRecord_TDTM_Test {
                     .buildCourseAssignment();
 
         User practitionerCommunityUser = TestDataFactory.convertPractitionerToPartnerCommunityUser();
-        changeOwnerOfCAandRunSession_assignment_flow(practitionerCommunityUser);
+        TestDataFactory.changeOwnerOfAllCourseAssignments(practitionerCommunityUser);
     }
 
     @isTest
@@ -53,20 +53,6 @@ public with sharing class SESSION_TrackDeletedRecord_TDTM_Test {
         System.assertEquals(0, feedsBeforeSessionDeletion.size());
         System.assertEquals(1, feedsAfterSessionDeletion.size());
 
-    }
-
-    private static void  ChangeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {
-
-        List<Course_Assignment__c> courseAssignments = [
-            SELECT OwnerId, Course__c
-            FROM Course_Assignment__c
-            LIMIT 100
-        ];
-
-        for (Course_Assignment__c aCourseAssignment : courseAssignments) {
-            aCourseAssignment.OwnerId = practitionerCommunityUser.Id;
-        }
-        update courseAssignments;
     }
 
     private static void CreateTriggerSystemHandlerRecord() {
