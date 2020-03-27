@@ -835,6 +835,7 @@
         <members>Booking__c.SetExpDateToTenDays</members>
         <members>Booking__c.SetOfferEmailDate</members>
         <members>Booking__c.SetExpirationDate_Less5</members>
+        <members>Course__c.UpdateCourseClosedDate</members>
         <members>Course_Assignment__c.UpdateStatusToApproved</members>
         <members>Course_Assignment__c.UpdateStatusToSubmitted</members>
         <members>Course_Assignment__c.UprateStatusToRejected</members>
@@ -842,6 +843,7 @@
     </types>
     <types>
         <members>Booking__c.Send Reservation Email</members>
+        <members>Course__c.Course Status Closed</members>
         <name>WorkflowRule</name>
     </types>
     <version>48.0</version>
