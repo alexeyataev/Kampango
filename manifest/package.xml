@@ -83,6 +83,7 @@
         <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
+        <members>InvalidateWithdrawCADFlowTest</members>
         <members>SystemClock</members>
         <members>TestAccountBuilder</members>
         <members>TestBookingBuilder</members>
@@ -313,6 +314,7 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>Can_Reopen_Courses</members>
         <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Branch_Weighting_Validation</members>
@@ -582,6 +584,7 @@
     </types>
     <types>
         <members>Branch_and_PSA_Management</members>
+        <members>Can_Reopen_Courses</members>
         <members>Create_Public_Lists</members>
         <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Booking_Status_Validation</members>
@@ -796,6 +799,7 @@
         <members>Course__c.Check_Session_Fee_Rates</members>
         <members>Course__c.Course_Fee_cannot_be_negative</members>
         <members>Course__c.Fee_Disc_Uplift_fields_can_not_be_less_0</members>
+        <members>Course__c.PreventCourseReopen</members>
         <members>Course__c.Prevent_Cancelling_Course_With_Bookings</members>
         <members>Course_Assignment__c.CA_Can_Only_Be_Created_For_Final_Courses</members>
         <members>Course_Assignment__c.Course_can_not_be_changed_on_CA_record</members>
