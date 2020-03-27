@@ -34,7 +34,7 @@ public with sharing class SESSION_TrackDeletedRecord_TDTM_Test {
                     .buildCourseAssignment();
 
         User practitionerCommunityUser = TestDataFactory.convertPractitionerToPartnerCommunityUser();
-        TestDataFactory.ChangeOwnerOfCAandRunSession_assignment_flow(practitionerCommunityUser);
+        TestDataFactory.changeOwnerOfAllCourseAssignments(practitionerCommunityUser);
     }
 
     @isTest

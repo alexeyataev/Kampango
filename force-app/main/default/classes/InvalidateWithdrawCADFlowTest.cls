@@ -1,5 +1,7 @@
+// @SuppressWarnings('PMD.MethodNamingConventions')
+// //Incident #42 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
-private class SetCADsToWithdrawnTest {
+private class InvalidateWithdrawCADFlowTest {
 
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String CANCELLATION_REASON = 'Low bookings - 0 bookings';
@@ -37,11 +39,11 @@ private class SetCADsToWithdrawnTest {
                     .buildCourseAssignment();
 
         User practitionerCommunityUser = TestDataFactory.convertPractitionerToPartnerCommunityUser();
-        TestDataFactory.changeOwnerOfCAandRunSession_assignment_flow(practitionerCommunityUser);
+        TestDataFactory.changeOwnerOfAllCourseAssignments(practitionerCommunityUser);
     }
 
     @isTest
-    static void setCADsToWithdrown() {
+    static void InvalidateWithdrawCAD_CourseCancelled_CADWithdrawn() {
 
         Course__c course = [
 			SELECT Id, Status__c
@@ -73,3 +75,4 @@ private class SetCADsToWithdrawnTest {
         System.assertEquals(COURSE_ASSIGNMENT_WITHDRAWN_STATUS, courseAssignmentToTest.Status__c);
     }
 }
+

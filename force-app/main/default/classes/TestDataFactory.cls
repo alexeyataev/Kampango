@@ -636,7 +636,7 @@ public without sharing class TestDataFactory {
         return users[2];
     }
 
-    public static void ChangeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {
+    public static void changeOwnerOfAllCourseAssignments(User practitionerCommunityUser) {
 
         List<Course_Assignment__c> courseAssignments = [
             SELECT OwnerId, Course__c

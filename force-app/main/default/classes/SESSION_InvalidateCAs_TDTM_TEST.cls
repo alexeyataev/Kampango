@@ -45,7 +45,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                     .buildCourseAssignment();
 
         User practitionerCommunityUser = TestDataFactory.convertPractitionerToPartnerCommunityUser();
-        TestDataFactory.ChangeOwnerOfCAandRunSession_assignment_flow(practitionerCommunityUser);
+        TestDataFactory.changeOwnerOfAllCourseAssignments(practitionerCommunityUser);
     }
 
     @isTest
