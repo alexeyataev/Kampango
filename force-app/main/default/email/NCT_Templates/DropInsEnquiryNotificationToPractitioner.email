@@ -33,7 +33,7 @@
             <li>Telephone - {! IF(relatedTo.Telephone__c==TRUE, "Yes", "No")}</li>
         </ul>
         
-        Birth due date - {! TEXT(relatedTo.Birth_Due_Date__c)}<br></br>
+        Birth due date - {! TEXT(DAY(relatedTo.Birth_Due_Date__c))}/{! TEXT(MONTH(relatedTo.Birth_Due_Date__c))}/{! TEXT(YEAR(relatedTo.Birth_Due_Date__c))}<br></br>
         First baby - {!relatedTo.First_Baby__c}<br></br> <!-- picklist -->
         Multiple birth - {!relatedTo.Multiple_Birth__c}<br></br> <!-- picklist -->
         Info for NCTP - {!relatedTo.Info_for_Practitioner__c}<br></br>
