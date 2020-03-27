@@ -291,6 +291,16 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public TestDataFactory buildGiftAidDeclaration() {
+        TestGiftAidDeclarationBuilder giftAidDeclaration = new TestGiftAidDeclarationBuilder();
+        giftAidDeclaration.withActive(true)
+            .withContact(parentHost)
+            .insertRecord(true)
+            .build();
+
+        return this;
+    }
+
     public TestDataFactory buildCourseAssignment() {
         TestCourseAssignmentBuilder courseAssignmentBuilder = new TestCourseAssignmentBuilder();
         courseAssignment = courseAssignmentBuilder
