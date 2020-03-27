@@ -45,7 +45,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                     .buildCourseAssignment();
 
         User practitionerCommunityUser = TestDataFactory.convertPractitionerToPartnerCommunityUser();
-        changeOwnerOfCAandRunSession_assignment_flow(practitionerCommunityUser);
+        TestDataFactory.ChangeOwnerOfCAandRunSession_assignment_flow(practitionerCommunityUser);
     }
 
     @isTest
@@ -605,20 +605,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         ]; 
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToCheck.Status__c);
-    }
-
-    private static void  ChangeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {
-
-        List<Course_Assignment__c> courseAssignments = [
-            SELECT OwnerId, Course__c
-            FROM Course_Assignment__c
-            LIMIT 100
-        ];
-
-        for (Course_Assignment__c aCourseAssignment : courseAssignments) {
-            aCourseAssignment.OwnerId = practitionerCommunityUser.Id;
-        }
-        update courseAssignments;
     }
 
     private static void CreateTriggerSystemHandlerRecord() {

@@ -636,6 +636,20 @@ public without sharing class TestDataFactory {
         return users[2];
     }
 
+    public static void ChangeOwnerOfCAandRunSession_assignment_flow(User practitionerCommunityUser) {
+
+        List<Course_Assignment__c> courseAssignments = [
+            SELECT OwnerId, Course__c
+            FROM Course_Assignment__c
+            LIMIT 100
+        ];
+
+        for (Course_Assignment__c aCourseAssignment : courseAssignments) {
+            aCourseAssignment.OwnerId = practitionerCommunityUser.Id;
+        }
+        update courseAssignments;
+    }
+
     public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
         for(Session__c aSession : sessions){
             aSession.Status__c = 'Confirmed';
