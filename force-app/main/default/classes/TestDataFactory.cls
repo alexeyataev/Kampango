@@ -275,7 +275,19 @@ public without sharing class TestDataFactory {
             .withLicenceToPractice(licenceToPractice)
             .insertRecord(true)
             .build();
-            
+        return this;
+    }
+
+    public TestDataFactory buildCourseWithFee(Integer fee) {
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        course = courseBuilder
+            .withAccount(branchAccount)
+            .withPractitioner(practitioners[0])
+            .withMainVenue(venue)
+            .withFee(fee)
+            .withLicenceToPractice(licenceToPractice)
+            .insertRecord(true)
+            .build();
         return this;
     }
 
