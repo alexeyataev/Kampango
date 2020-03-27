@@ -20,6 +20,67 @@ public class OutboundBACSpaymentHelper {
                    AND Zumzum__Sub_Account_Nominal_Link__r.Zumzum__Nominal_Code__c = :ZUMZUM_NOMINAL_CODE
         ];
 
-        System.debug('Code temporarily deleted to unblock deployment');
+        for (Zumzum__Ledger__c ledger: ledgers) {
+            System.debug('Response>>' + initiateBankSupplierPayment(ledger, paymentRun));
+        }
+    }
+
+    private static Id getBankAccountId(){
+        final string BANK_ACCOUNT_NAME = 'BACS Payments in Transit';
+        return [
+            SELECT Id
+            FROM Zumzum__Bank_Account__c
+            WHERE Name = :BANK_ACCOUNT_NAME
+            LIMIT 1
+        ].Id;
+    }
+
+    private static String initiateBankSupplierPayment(Zumzum__Ledger__c ledger, Payment_Run__c paymentRun){
+        // Initiate A New Bank Supplier Payment
+         Zumzum.BankSupplierPaymentService objBankSupplierPaymentService = new Zumzum.BankSupplierPaymentService();
+        // Create Bank Supplier Payment Wrapper 
+        Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper objPaymentWrapper = new Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper();
+        // Supplier Account ID 
+        objPaymentWrapper.AccountId = ledger.Zumzum__Customer_Supplier_Account_Name__c;
+        // Bank Account ID 
+        objPaymentWrapper.BankAccountId = getBankAccountId();
+        // Bank Supplier Payment Posting Date 
+        objPaymentWrapper.PostingDate = Date.Today();
+        // TaxRate
+        objPaymentWrapper.TaxRate = ledger.Zumzum__Tax_Code_Link__c;
+        //Amount
+        objPaymentWrapper.Amount = ledger.Zumzum__Amount__c != null ?
+            ledger.Zumzum__Credit__c - ledger.Zumzum__Amount__c : ledger.Zumzum__Credit__c;
+        // Create Bank Supplier Payment Line Wrapper 
+        List<Zumzum.BankSupplierPaymentService.BankPaymentLine> listBankPaymentLines = new List<Zumzum.BankSupplierPaymentService.BankPaymentLine>();
+        
+        ZumZum.BankSupplierPaymentService.BankPaymentLine obPBankPaymentLine = new ZumZum.BankSupplierPaymentService.BankPaymentLine();
+        // Ledger Record of Purchase Invoice Line To Be Paid 
+        obPBankPaymentLine.LedgerName = ledger.Name; // typo in variable name
+        // Amount Of Line Item To Be Paid
+        obPBankPaymentLine.Amount = ledger.Zumzum__Amount__c != null ?
+            ledger.Zumzum__Credit__c - ledger.Zumzum__Amount__c : ledger.Zumzum__Credit__c;
+        // add to overall list
+        listBankPaymentLines.add(obPBankPaymentLine);
+         
+        objPaymentWrapper.BankPaymentLines = listBankPaymentLines;
+        // Execute the command to post the Bank Supplier Payment
+        ZumZum.BankSupplierPaymentService.Response objResponse = objBankSupplierPaymentService.CreateBankSupplierPayment(objPaymentWrapper);
+        // Receive a response of the Bank Payment records created
+        Zumzum__Bank_Payment__c bankPayment = objResponse.BankPayment;
+
+        List<Zumzum__Bank_Payment_Line_Item__c> bankPaymentLineItems = [
+            SELECT Id, Zumzum__Bank_Payment__c, Payment_Run__c 
+            FROM Zumzum__Bank_Payment_Line_Item__c
+            WHERE Zumzum__Bank_Payment__c = :bankPayment.Id
+        ];
+
+        for (Zumzum__Bank_Payment_Line_Item__c bankPaymentLineItem: bankPaymentLineItems){
+            bankPaymentLineItem.Payment_Run__c = paymentRun.Id;
+        }
+
+        update bankPaymentLineItems;
+
+        return objResponse.ResponseMessage;
     }
 }
