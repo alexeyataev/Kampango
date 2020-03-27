@@ -188,8 +188,12 @@ public with sharing class ClaimFeeHelper {
                 runningTotal += (ledgerRecord.Zumzum__Net_Amount__c * (financialSettings.Practitioner_Registration_Fees_Rate__c / 100)).setScale(2);
     
                 if(invoicesCount == runningCount && runningTotal != creditAmount) {
-                    amountDifference = creditAmount - runningTotal;
-                    bankLineItem.Amount = (ledgerRecord.Zumzum__Net_Amount__c * (financialSettings.Practitioner_Registration_Fees_Rate__c / 100)).setScale(2) + amountDifference;
+                    if(amountDifference > 0) {
+                        bankLineItem.Amount = (ledgerRecord.Zumzum__Net_Amount__c * (financialSettings.Practitioner_Registration_Fees_Rate__c / 100)).setScale(2) + amountDifference;
+                    }
+                    else {
+                        bankLineItem.Amount = (ledgerRecord.Zumzum__Net_Amount__c * (financialSettings.Practitioner_Registration_Fees_Rate__c / 100)).setScale(2) - amountDifference;
+                    }
                 }
                 paymentLines.add(bankLineItem);
             }
