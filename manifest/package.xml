@@ -83,6 +83,7 @@
         <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
+        <members>InvalidateWithdrawCADFlowTest</members>
         <members>SystemClock</members>
         <members>TestAccountBuilder</members>
         <members>TestBookingBuilder</members>
