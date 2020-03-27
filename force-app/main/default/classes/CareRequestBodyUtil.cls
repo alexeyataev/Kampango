@@ -1,9 +1,8 @@
 @SuppressWarnings('PMD.VariableNamingConventions')
 public with sharing class CareRequestBodyUtil {
-    public static final String AUTH_KEY = Care_Settings__c.getOrgDefaults().Auth_Key__c;
-    public static final String SF_ENVIRONMENT_NAME = Care_Settings__c.getOrgDefaults().SF_Environment_Name__c;
-    public static final String SOURCE = Care_Settings__c.getOrgDefaults().Source__c;
-    public static final String BASE_URL = Care_Settings__c.getOrgDefaults().Base_Url__c;
+    private static final String AUTH_KEY = Care_Settings__c.getOrgDefaults().Auth_Key__c;
+    private static final String SF_ENVIRONMENT_NAME = Care_Settings__c.getOrgDefaults().SF_Environment_Name__c;
+    private static final String SOURCE = Care_Settings__c.getOrgDefaults().Source__c;
     private static final String USER_LOG_NAME = Care_Settings__c.getOrgDefaults().User_Log_Name__c;
     private static final String CLAIM_DAY = '3';
     private static final String ADDR_CON_NUM = '500000';

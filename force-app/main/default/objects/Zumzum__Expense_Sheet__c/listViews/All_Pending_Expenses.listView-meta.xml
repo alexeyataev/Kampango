@@ -2,11 +2,11 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>All_Pending_Expenses</fullName>
     <columns>NAME</columns>
-    <columns>Zumzum__Month_Number__c</columns>
-    <columns>Zumzum__Total_Gross__c</columns>
-    <columns>Zumzum__Total_Miles__c</columns>
+    <columns>CREATED_DATE</columns>
     <columns>OWNER.FIRST_NAME</columns>
     <columns>OWNER.LAST_NAME</columns>
+    <columns>Zumzum__Total_Gross__c</columns>
+    <columns>Zumzum__Status__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Zumzum__Status__c</field>
