@@ -7,6 +7,8 @@ private class InvalidateWithdrawCADFlowTest {
     private static final String CANCELLATION_REASON = 'Low bookings - 0 bookings';
     private static final String COURSE_ASSIGNMENT_DRAFT_STATUS = 'Draft';
     private static final String COURSE_ASSIGNMENT_WITHDRAWN_STATUS = 'Withdrawn';
+    private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
+
 
     @TestSetup 
     private static void testSetup() {
@@ -73,6 +75,39 @@ private class InvalidateWithdrawCADFlowTest {
 
         System.assertEquals(COURSE_ASSIGNMENT_DRAFT_STATUS, courseAssignment.Status__c);
         System.assertEquals(COURSE_ASSIGNMENT_WITHDRAWN_STATUS, courseAssignmentToTest.Status__c);
+    }
+
+    @isTest
+    static void InvalidateWithdrawCAD_CourseCancelled_CADInvalidated() {
+
+        Course__c course = [
+			SELECT Id, Status__c
+			FROM Course__c
+			LIMIT 1
+        ];
+        
+        Course_Assignment__c courseAssignment = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Course__c = :course.Id
+            LIMIT 1
+        ];
+
+        Test.startTest();
+            course.Status__c = 'Cancelling';
+            course.Cancellation_Reason__c = CANCELLATION_REASON;
+            update course;
+        Test.stopTest();
+
+        Course_Assignment__c courseAssignmentToTest = [
+            SELECT Status__c, Course__r.Status__c
+            FROM Course_Assignment__c
+            WHERE Course__c = :course.Id
+            LIMIT 1
+        ];
+
+        System.assertEquals(COURSE_ASSIGNMENT_DRAFT_STATUS, courseAssignment.Status__c);
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
 }
 
