@@ -6,7 +6,7 @@
     <label>Course</label>
     <lookupFilter>
         <active>true</active>
-        <errorMessage>Course status should not be Closed.</errorMessage>
+        <errorMessage>Purchase invoice line items cannot be added to closed courses. If the course needs to be reopened please contact the finance team.</errorMessage>
         <filterItems>
             <field>Course__c.Status__c</field>
             <operation>notEqual</operation>
