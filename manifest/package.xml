@@ -52,6 +52,7 @@
         <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
+        <members>GeneratePaymentFilePaymentRunTest</members>
         <members>GeneratePaymentFileUtil</members>
         <members>HttpStatusCode</members>
         <members>IBankReceiptCreator</members>
