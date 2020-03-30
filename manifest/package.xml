@@ -49,6 +49,7 @@
         <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
+        <members>dlrs_Zumzum_Purchase_InvoiceTest</members>
         <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
@@ -145,6 +146,7 @@
     <types>
         <members>dlrs_BookingTrigger</members>
         <members>dlrs_Estimated_CostsTrigger</members>
+        <members>dlrs_Zumzum_Purchase_InvoiceTrigger</members>
         <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
@@ -233,6 +235,7 @@
         <members>dlrs__LookupRollupSummary2.CourseEstimatedVenueCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseNumberOfSessionsWithoutFeeRates</members>
         <members>dlrs__LookupRollupSummary2.CreditLineItemsAmount</members>
+        <members>dlrs__LookupRollupSummary2.ExpenseNumberOfInvoices</members>
         <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.TotalActualCourseIncome</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseOtherCosts</members>
@@ -828,6 +831,8 @@
         <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
         <members>Venue__c.Populate_Location_if_Type_Not_ParentHome</members>
         <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
+        <members>Zumzum__Purchase_Invoice__c.ES_should_have_only_one_purchase_invoice</members>
+        <members>Zumzum__Purchase_Invoice__c.Linked_to_expense_sheet_only_by_Finance</members>
         <members>Zumzum__Sales_Invoice__c.ContactShouldBeFilledIfInvoiceHasBooking</members>
         <name>ValidationRule</name>
     </types>
