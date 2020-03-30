@@ -70,7 +70,7 @@ public class OutboundBACSpaymentHelper {
         List<Zumzum.BankSupplierPaymentService.BankPaymentLine> listBankPaymentLines = new List<Zumzum.BankSupplierPaymentService.BankPaymentLine>();
         
         ZumZum.BankSupplierPaymentService.BankPaymentLine obPBankPaymentLine = new ZumZum.BankSupplierPaymentService.BankPaymentLine();
-            for (Zumzum__Ledger__c currentLedger: ledgers){
+        for (Zumzum__Ledger__c currentLedger: ledgers){
             // Ledger Record of Purchase Invoice Line To Be Paid 
             obPBankPaymentLine.LedgerName = currentLedger.Name; // typo in variable name
             // Amount Of Line Item To Be Paid
