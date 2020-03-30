@@ -110,6 +110,8 @@
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
+        <members>ZumzumBACSpaymentActions</members>
+        <members>ZumzumBACSpaymentActionsTest</members>
         <members>ZumzumBACSremittanceEmailsAction</members>
         <members>ZumzumBACSremittanceEmailsActionTest</members>
         <members>ZumzumBACSremittanceEmailsBatch</members>
@@ -210,6 +212,7 @@
         <members>cpm__Installment__c.Account_Number__c</members>
         <members>cpm__Installment__c.Bank_Account__c</members>
         <members>cpm__Installment__c.Sort_Code__c</members>
+        <members>Zumzum__Bank_Payment_Line_Item__c.Payment_Run__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Bank_Receipt__c.Payment__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Course__c</members>
@@ -256,6 +259,7 @@
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
         <members>Payment_Run__c</members>
+        <members>Payment_Run_Line_Item__c</members>
         <members>Practitioner_Band__c</members>
         <members>Practitioner_Community_Settings__c</members>
         <members>Practitioner_Fee_Rate__c</members>
@@ -343,6 +347,7 @@
         <members>Booking__c</members>
         <members>Course_Assignment__c</members>
         <members>npsp__Trigger_Handler__c</members>
+        <members>Payment_Run__c</members>
         <members>Practitioner_Fee_Rate__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
@@ -535,6 +540,7 @@
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
         <members>Payment_Run__c-Payment Run Layout</members>
+        <members>Payment_Run_Line_Item__c-Payment Run Line Item Layout</members>
         <members>Practitioner_Band__c-Practitioner Band Layout</members>
         <members>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
