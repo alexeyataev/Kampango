@@ -20,7 +20,7 @@ public with sharing class GeneratePaymentFilePaymentRunExtension {
 		Payment_Run__c paymentRun = [
             SELECT Id, Status__c,
             (
-                SELECT Id, Payment_Run__c, Zumzum__Bank_Payment__c
+                SELECT Id, Payment_Run__c, Zumzum__Bank_Payment__c, Zumzum__Purchase_Invoice__r.Name
                 FROM Bank_Payment_Line_Items__r
             )
             FROM Payment_Run__c
