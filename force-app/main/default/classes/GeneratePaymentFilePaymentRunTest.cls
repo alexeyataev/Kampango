@@ -102,7 +102,8 @@ private class GeneratePaymentFilePaymentRunTest {
 			Zumzum__Date__c = Date.today(),
 			Payment_Run__c = paymentRun.Id,
 			Zumzum__Status__c = 'Draft',
-			Zumzum__Tax__c = zumzumTaxRate.Id
+			Zumzum__Tax__c = zumzumTaxRate.Id,
+			Zumzum__Purchase_Invoice__c = purchaseInvoice.Id
 		);
 		insert bankPaymentLineItem;
 		
