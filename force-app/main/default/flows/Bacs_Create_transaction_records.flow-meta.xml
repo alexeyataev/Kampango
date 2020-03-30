@@ -33,6 +33,34 @@
             <targetReference>Update_Status_to_Processing</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>CheckPaymenRunStatus</name>
+        <label>CheckPaymenRunStatus</label>
+        <locationX>62</locationX>
+        <locationY>419</locationY>
+        <defaultConnector>
+            <targetReference>WrongStatus</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>WrongStatus</defaultConnectorLabel>
+        <rules>
+            <name>CorrectStatus</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GetCurrentPaymentRun.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Draft</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Bacs_Create_transaction_records</targetReference>
+            </connector>
+            <label>CorrectStatus</label>
+        </rules>
+    </decisions>
+    <description>Calls ZZ API from Batch
+Version changes:
+Version 2. Added Payment Run Status Check</description>
     <interviewLabel>Bacs Create transaction records {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Bacs Create transaction records</label>
     <processMetadataValues>
@@ -51,11 +79,11 @@
     <recordLookups>
         <name>GetCurrentPaymentRun</name>
         <label>GetCurrentPaymentRun</label>
-        <locationX>244</locationX>
-        <locationY>256</locationY>
+        <locationX>70</locationX>
+        <locationY>199</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>UpdatePaymentRunStatusToProcessing</targetReference>
+            <targetReference>CheckPaymenRunStatus</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -83,13 +111,13 @@
     <screens>
         <name>Bacs_Create_transaction_records</name>
         <label>Bacs Create transaction records</label>
-        <locationX>316</locationX>
-        <locationY>52</locationY>
+        <locationX>284</locationX>
+        <locationY>420</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>GetCurrentPaymentRun</targetReference>
+            <targetReference>UpdatePaymentRunStatusToProcessing</targetReference>
         </connector>
         <fields>
             <name>Message_Create_Transaction_Records</name>
@@ -115,11 +143,27 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
+    <screens>
+        <name>WrongStatus</name>
+        <label>WrongStatus</label>
+        <locationX>71</locationX>
+        <locationY>628</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>StatusWarning</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;It is possible &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60); font-size: 14px;&quot;&gt;to &lt;/span&gt;Create transaction records&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60); font-size: 14px;&quot;&gt; only for Payment run that have &lt;/span&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60); font-size: 14px;&quot;&gt;Draft&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60); font-size: 14px;&quot;&gt; status.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
     <start>
         <locationX>70</locationX>
         <locationY>53</locationY>
         <connector>
-            <targetReference>Bacs_Create_transaction_records</targetReference>
+            <targetReference>GetCurrentPaymentRun</targetReference>
         </connector>
     </start>
     <status>Active</status>
