@@ -110,6 +110,9 @@
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
+        <members>ZumzumBACSremittanceEmailsAction</members>
+        <members>ZumzumBACSremittanceEmailsActionTest</members>
+        <members>ZumzumBACSremittanceEmailsBatch</members>
         <members>ZumzumBankReceiptCreator</members>
         <members>ZumzumBankReceiptCreatorMock</members>
         <members>ZumzumCreatePostSalesInvoice</members>
@@ -683,6 +686,7 @@
         <members>Booking__c.Transfer</members>
         <members>Course__c.Resend_Reunion_Email</members>
         <members>Payment_Run__c.Create_transaction_records</members>
+        <members>Payment_Run__c.Send_Remittance_Emails</members>
         <members>Zumzum__Expense_Sheet__c.Edit_Community</members>
         <members>Zumzum__NewTask</members>
         <members>Zumzum__Sales_Invoice__c.Send_Payment_Email</members>
