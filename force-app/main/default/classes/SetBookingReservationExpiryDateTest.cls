@@ -1,5 +1,5 @@
-//@SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #XX - https://confluence.nct.org.uk:8443/x/EoSO
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #74 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 private class SetBookingReservationExpiryDateTest {
     private static final String PRACTITIONER_LASTNAME = 'Smith';
@@ -43,7 +43,7 @@ private class SetBookingReservationExpiryDateTest {
     }
 
     @IsTest
-    private static void SetBookingReservationExpiryDate_Less_CourseStartDate_ExpirationDateLessFiveDays(){
+    private static void SetBookingReservationExpiryDate_SolidsCourseStartsIn5Days_ExpirationDateCourseStartDateMinus1(){
 
         Course__c course = [
 			SELECT Type__c, Start_Date__c, Sub_Type__c
@@ -79,7 +79,7 @@ private class SetBookingReservationExpiryDateTest {
     }
 
     @IsTest
-    private static void SetBookingReservationExpiryDate_TodayAddFiveDays_ExpirationDateGreaterFiveDays(){
+    private static void SetBookingReservationExpiryDate_SolidsCourseStartsIn7Days_ExpirationDateIn5Days(){
 
         Course__c course = [
 			SELECT Type__c, Sub_Type__c
@@ -126,7 +126,7 @@ private class SetBookingReservationExpiryDateTest {
     }
 
     @IsTest
-    private static void SetBookingReservationExpiryDate_Less_CourseStartDate_ExpirationDateLessTenDays(){
+    private static void SetBookingReservationExpiryDate_NonSolidsCourseStartsIn5Days_ExpirationDateCourseStartDateMinus1(){
 
         Course__c course = [
 			SELECT Type__c, Start_Date__c, Sub_Type__c
@@ -158,7 +158,7 @@ private class SetBookingReservationExpiryDateTest {
     }
 
     @IsTest
-    private static void SetBookingReservationExpiryDate_TodayAddTenDays_ExpirationDateGreaterTenDays(){
+    private static void SetBookingReservationExpiryDate_NonSolidsCourseStartsIn12Days_ExpirationDateIn10Days(){
 
         Course__c course = [
 			SELECT Type__c, Sub_Type__c
