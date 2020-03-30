@@ -39,11 +39,11 @@ public with sharing class UpdateAddressInGiftAidDeclarationsTest {
 
         System.assertEquals(gadInstanceAfterUpdate.gaid__Housename_or_number__c,
                             contactInstanceAfterUpdate.MailingStreet,
-                            'Gift Aid HousenameOrNumber equals Contact MailingStreet');
+                            'Gift Aid HousenameOrNumber should equal Contact MailingStreet');
 
         System.assertEquals(gadInstanceAfterUpdate.gaid__Postalcode__c,
                             contactInstanceAfterUpdate.MailingPostalCode,
-                            'Gift Aid Postalcode equals Contact mailingPostalCode');
+                            'Gift Aid Postalcode should equal Contact mailingPostalCode');
 
     }
 }

@@ -29,12 +29,12 @@ public with sharing class TestGiftAidDeclarationBuilder {
         return this;
     }
 
-    public TestGiftAidDeclarationBuilder withaAcquisitionMethod(String acquisitionMethod) {
+    public TestGiftAidDeclarationBuilder withAcquisitionMethod(String acquisitionMethod) {
         this.acquisitionMethod = acquisitionMethod;
         return this;
     }
 
-    public TestGiftAidDeclarationBuilder withaPostalcode(String postalcode) {
+    public TestGiftAidDeclarationBuilder withPostalcode(String postalcode) {
         this.postalcode = postalcode;
         return this;
     }
