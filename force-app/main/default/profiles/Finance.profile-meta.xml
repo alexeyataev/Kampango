@@ -113,6 +113,10 @@
         <apexClass>Zumzum__wrapperNominalWithRanges</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Can_Reopen_Courses</name>
+    </customPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AccountNumber</field>
@@ -6685,6 +6689,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cpm__Installment__c.Course_Start_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Installment__c.Membership_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6871,7 +6880,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Last_ReasonCode_Received__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
