@@ -1,0 +1,5 @@
+NPSP__ACTIVE__C,NPSP__ASYNCHRONOUS__C,NPSP__CLASS__C,NPSP__LOAD_ORDER__C,NPSP__OBJECT__C,NPSP__TRIGGER_ACTION__C,NPSP__USER_MANAGED__C
+TRUE,FALSE,SESSION_RevertToProvisional_TDTM,2,Session__c,BeforeUpdate,TRUE
+TRUE,FALSE,SESSION_InvalidateCAs_TDTM,1,Session__c,AfterInsert;AfterUpdate;AfterDelete,TRUE
+TRUE,FALSE,SESSION_RevertCourseToDraft_TDTM,0,Session__c,AfterInsert;AfterUpdate;AfterDelete,TRUE
+TRUE,FALSE,SESSION_TrackDeletedRecord_TDTM,3,Session__c,AfterDelete,TRUE
