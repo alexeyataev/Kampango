@@ -275,7 +275,19 @@ public without sharing class TestDataFactory {
             .withLicenceToPractice(licenceToPractice)
             .insertRecord(true)
             .build();
-            
+        return this;
+    }
+
+    public TestDataFactory buildCourseWithFee(Integer fee) {
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        course = courseBuilder
+            .withAccount(branchAccount)
+            .withPractitioner(practitioners[0])
+            .withMainVenue(venue)
+            .withFee(fee)
+            .withLicenceToPractice(licenceToPractice)
+            .insertRecord(true)
+            .build();
         return this;
     }
 
@@ -622,6 +634,20 @@ public without sharing class TestDataFactory {
             .build()));
 
         return users[2];
+    }
+
+    public static void changeOwnerOfAllCourseAssignments(User practitionerCommunityUser) {
+
+        List<Course_Assignment__c> courseAssignments = [
+            SELECT OwnerId, Course__c
+            FROM Course_Assignment__c
+            LIMIT 100
+        ];
+
+        for (Course_Assignment__c aCourseAssignment : courseAssignments) {
+            aCourseAssignment.OwnerId = practitionerCommunityUser.Id;
+        }
+        update courseAssignments;
     }
 
     public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){

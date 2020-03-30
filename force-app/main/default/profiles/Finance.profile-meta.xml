@@ -113,6 +113,10 @@
         <apexClass>Zumzum__wrapperNominalWithRanges</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Can_Reopen_Courses</name>
+    </customPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AccountNumber</field>
@@ -596,6 +600,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Course_Duration__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Course_Closed_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
