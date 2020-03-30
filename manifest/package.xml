@@ -215,6 +215,7 @@
         <members>Zumzum__Expense_Sheet_Detail__c.Course__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Zumzum__Required_Fields</members>
         <members>Zumzum__Sales_Invoice_Line_Item__c.Course__c</members>
+        <members>Zumzum__Sales_Invoice__c.Email_Signature__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -819,6 +820,7 @@
         <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
         <members>Venue__c.Populate_Location_if_Type_Not_ParentHome</members>
         <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
+        <members>Zumzum__Sales_Invoice__c.ContactShouldBeFilledIfInvoiceHasBooking</members>
         <name>ValidationRule</name>
     </types>
     <types>
