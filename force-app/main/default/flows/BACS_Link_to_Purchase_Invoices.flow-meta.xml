@@ -144,9 +144,34 @@
             <label>Is success?</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>CheckPaymenRunStatus</name>
+        <label>CheckPaymenRunStatus</label>
+        <locationX>192</locationX>
+        <locationY>367</locationY>
+        <defaultConnector>
+            <targetReference>WrongStatus</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>WrongStatus</defaultConnectorLabel>
+        <rules>
+            <name>CorrectStatus</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GetPaymentStatus.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Draft</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Link_Purchase_Invoices</targetReference>
+            </connector>
+            <label>CorrectStatus</label>
+        </rules>
+    </decisions>
     <description>Assigns Payment Run link to Purchase Invoices that match the criteria
 Version changes:
-(debug) outputs message from the Apex action</description>
+Version 2. Added Payment Run Status Check</description>
     <interviewLabel>BACS Link to Purchase Invoices {!$Flow.CurrentDateTime}</interviewLabel>
     <label>BACS Link to Purchase Invoices</label>
     <processMetadataValues>
@@ -162,6 +187,28 @@ Version changes:
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordLookups>
+        <name>GetPaymentStatus</name>
+        <label>GetPaymentStatus</label>
+        <locationX>50</locationX>
+        <locationY>365</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>CheckPaymenRunStatus</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Payment_Run__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Status__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <screens>
         <name>Link_Purchase_Invoices</name>
         <label>Link Purchase Invoices</label>
@@ -181,11 +228,27 @@ Version changes:
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
+    <screens>
+        <name>WrongStatus</name>
+        <label>WrongStatus</label>
+        <locationX>372</locationX>
+        <locationY>364</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>StatusWarning</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;It is possible &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60); font-size: 14px;&quot;&gt;to Find Invoices only for Payment run that have &lt;/span&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60); font-size: 14px;&quot;&gt;Draft&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60); font-size: 14px;&quot;&gt; status.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
     <start>
         <locationX>50</locationX>
         <locationY>149</locationY>
         <connector>
-            <targetReference>Link_Purchase_Invoices</targetReference>
+            <targetReference>GetPaymentStatus</targetReference>
         </connector>
     </start>
     <status>Active</status>
