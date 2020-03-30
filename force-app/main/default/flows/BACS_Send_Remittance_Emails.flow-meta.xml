@@ -170,9 +170,34 @@
             <label>Is success?</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>CheckPaymenRunStatus</name>
+        <label>CheckPaymenRunStatus</label>
+        <locationX>190</locationX>
+        <locationY>379</locationY>
+        <defaultConnector>
+            <targetReference>WrongStatus</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>WrongStatus</defaultConnectorLabel>
+        <rules>
+            <name>CorrectStatus</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GetPaymentStatus.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Completed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Remittance_Emails</targetReference>
+            </connector>
+            <label>CorrectStatus</label>
+        </rules>
+    </decisions>
     <description>Sends a batch of emails from Payment Run Line Items to all Purchase Invoice Contacts
 Version changes:
-Initial version</description>
+V2. Added Payment Run Status Check</description>
     <interviewLabel>BACS Send Remittance Emails {!$Flow.CurrentDateTime}</interviewLabel>
     <label>BACS Send Remittance Emails</label>
     <processMetadataValues>
@@ -210,6 +235,28 @@ Initial version</description>
             <field>Id</field>
         </outputAssignments>
     </recordLookups>
+    <recordLookups>
+        <name>GetPaymentStatus</name>
+        <label>GetPaymentStatus</label>
+        <locationX>31</locationX>
+        <locationY>377</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>CheckPaymenRunStatus</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Payment_Run__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Status__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <screens>
         <name>Send_Remittance_Emails</name>
         <label>Send Remittance Emails</label>
@@ -229,7 +276,29 @@ Initial version</description>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>Send_Remittance_Emails</startElementReference>
+    <screens>
+        <name>WrongStatus</name>
+        <label>WrongStatus</label>
+        <locationX>375</locationX>
+        <locationY>378</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>StatusWarning</name>
+            <fieldText>&lt;p&gt;It is possible &lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;to send remittance emails only for Payment run that have &lt;/span&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt;Completed&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(62, 62, 60);&quot;&gt; status.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>31</locationX>
+        <locationY>147</locationY>
+        <connector>
+            <targetReference>GetPaymentStatus</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>action_result_message</name>
@@ -254,6 +323,13 @@ Initial version</description>
         <value>
             <elementReference>STATUS_ERROR</elementReference>
         </value>
+    </variables>
+    <variables>
+        <name>PaymenRunStatus</name>
+        <dataType>Picklist</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>prLineItems</name>
