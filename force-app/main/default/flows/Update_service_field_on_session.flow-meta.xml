@@ -63,23 +63,27 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ISBLANK([Session__c].Practitioner_Licence__c )</stringValue>
+                <stringValue>AND(OR(ISNEW(), ISCHANGED([Session__c].Practitioner_Licence__c )),
+ISBLANK([Session__c].Practitioner_Licence__c ))</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>ISBLANK({!myVariable_current.Practitioner_Licence__c} )</expression>
+        <expression>AND(OR(ISNEW(), ISCHANGED({!myVariable_current.Practitioner_Licence__c} )),
+ISBLANK({!myVariable_current.Practitioner_Licence__c} ))</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>NOT(ISBLANK([Session__c].Practitioner_Licence__c))</stringValue>
+                <stringValue>AND(OR(ISNEW(), ISCHANGED([Session__c].Practitioner_Licence__c )),
+NOT(ISBLANK([Session__c].Practitioner_Licence__c)))</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_3</name>
         <dataType>Boolean</dataType>
-        <expression>NOT(ISBLANK({!myVariable_current.Practitioner_Licence__c}))</expression>
+        <expression>AND(OR(ISNEW(), ISCHANGED({!myVariable_current.Practitioner_Licence__c} )),
+NOT(ISBLANK({!myVariable_current.Practitioner_Licence__c})))</expression>
     </formulas>
     <interviewLabel>Update_service_field_on_session-2_InterviewLabel</interviewLabel>
     <label>Update service field on session</label>
