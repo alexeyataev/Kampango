@@ -33,4 +33,5 @@
     <tabs>Zumzum__Sales_Invoice_Plan_Template__c</tabs>
     <tabs>Zumzum__Sales_Invoice_Plan_Template_Line__c</tabs>
     <tabs>Session__c</tabs>
+    <tabs>Payment_Run__c</tabs>
 </CustomApplication>
