@@ -102,7 +102,6 @@ public with sharing class ClaimFeeHelper {
             purchaseCreditLineItem.WrapperAPICustomFields = new Zumzum.APICustomFieldWrapper[]{
                 new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Practitioner__c', currentUser.ContactId)
             };
-            
             purchaseCredit.LineItems.add(purchaseCreditLineItem);
             purchases.add(purchaseCredit);
         }
@@ -112,9 +111,9 @@ public with sharing class ClaimFeeHelper {
         if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
             throw new CreatePurchaseInvoiceException(objResponse.ResponseMessage);
         }
+        updatePurchaseInvoicesContact(objResponse.purchaseInvoices, currentUser);
 
         postPurchaseInvoices(objResponse.purchaseInvoices);
-
         List<Id> invoices = new List<Id>();
         for (Zumzum__Purchase_Invoice__c pi : objResponse.purchaseInvoices) {
             invoices.add(pi.Id);
@@ -212,6 +211,9 @@ public with sharing class ClaimFeeHelper {
             setStatusInvoiceMap(invoiceIds);
         }
         Financial_Settings__c financialSettings = Financial_Settings__c.getInstance();
+        if (financialSettings.Error_Notification_To__c == null) {
+            return;
+        }
         EmailTemplate template = [
             SELECT Id, HtmlValue, Body, Subject 
             FROM EmailTemplate 
@@ -260,6 +262,13 @@ public with sharing class ClaimFeeHelper {
                 statusInvoiceMap.put(PURCHASE_INVOICE, pi.Name);
             }
         }
+    }
+
+    private static void updatePurchaseInvoicesContact(List<Zumzum__Purchase_Invoice__c> purchases, User current) {
+        for (Zumzum__Purchase_Invoice__c pi : purchases) {
+            pi.Zumzum__Contact__c = current.ContactId;
+        }
+        update purchases;
     }
 
     private static String getReplacedBody(String templateText) {

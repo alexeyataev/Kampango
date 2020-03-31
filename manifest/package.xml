@@ -46,6 +46,7 @@
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>UpdateBookingContactsEmailTest</members>
+        <members>UpdateAddressInGiftAidDeclarationsTest</members>
         <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
@@ -84,6 +85,7 @@
         <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
+        <members>SetBookingReservationExpiryDateTest</members>
         <members>InvalidateWithdrawCADFlowTest</members>
         <members>SystemClock</members>
         <members>TestAccountBuilder</members>
