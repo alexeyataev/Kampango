@@ -207,3 +207,6 @@ deleteExistingNominalAccountsAndSubCategories();
 renameNominalCategories();
 insertSubCategories();
 insertNominalAccounts();
+
+taxRate.Zumzum__Active__c = true;
+update taxRate;
