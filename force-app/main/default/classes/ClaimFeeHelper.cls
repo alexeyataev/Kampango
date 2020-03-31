@@ -102,7 +102,6 @@ public with sharing class ClaimFeeHelper {
             purchaseCreditLineItem.WrapperAPICustomFields = new Zumzum.APICustomFieldWrapper[]{
                 new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Practitioner__c', currentUser.ContactId)
             };
-            
             purchaseCredit.LineItems.add(purchaseCreditLineItem);
             purchases.add(purchaseCredit);
         }
@@ -112,9 +111,9 @@ public with sharing class ClaimFeeHelper {
         if (!objResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
             throw new CreatePurchaseInvoiceException(objResponse.ResponseMessage);
         }
+        updatePurchaseInvoicesContact(objResponse.purchaseInvoices, currentUser);
 
         postPurchaseInvoices(objResponse.purchaseInvoices);
-
         List<Id> invoices = new List<Id>();
         for (Zumzum__Purchase_Invoice__c pi : objResponse.purchaseInvoices) {
             invoices.add(pi.Id);
@@ -169,11 +168,10 @@ public with sharing class ClaimFeeHelper {
                 invoicesCount++;
             }
         }
-
+        Decimal partialAllocation = (creditAmount / invoicesCount).setScale(2);
         Decimal runningTotal = 0.00;
         Decimal amountDifference = 0.00;
         Integer runningCount = 0;
-        
         for (Zumzum__Ledger__c ledgerRecord : ledgerRecords) {
             if (ledgerRecord.Zumzum__Purchase_Invoice__r.Zumzum__Type__c == PURCHASE_CREDIT) {
                 bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
@@ -184,12 +182,15 @@ public with sharing class ClaimFeeHelper {
                 runningCount++;
                 bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
                 bankLineItem.LedgerName = ledgerRecord.Name;
-                bankLineItem.Amount = (ledgerRecord.Zumzum__Net_Amount__c * (financialSettings.Practitioner_Registration_Fees_Rate__c / 100)).setScale(2);
-                runningTotal += (ledgerRecord.Zumzum__Net_Amount__c * (financialSettings.Practitioner_Registration_Fees_Rate__c / 100)).setScale(2);
-    
+                bankLineItem.Amount = partialAllocation;
+                runningTotal += partialAllocation;
                 if(invoicesCount == runningCount && runningTotal != creditAmount) {
                     amountDifference = creditAmount - runningTotal;
-                    bankLineItem.Amount = (ledgerRecord.Zumzum__Net_Amount__c * (financialSettings.Practitioner_Registration_Fees_Rate__c / 100)).setScale(2) + amountDifference;
+                    if(amountDifference > 0) {
+                        bankLineItem.Amount = partialAllocation + amountDifference;
+                    } else {
+                        bankLineItem.Amount = partialAllocation - amountDifference;
+                    }
                 }
                 paymentLines.add(bankLineItem);
             }
@@ -209,6 +210,10 @@ public with sharing class ClaimFeeHelper {
         if (statusInvoiceMap == null || statusInvoiceMap.isEmpty()) {
             setStatusInvoiceMap(invoiceIds);
         }
+        Financial_Settings__c financialSettings = Financial_Settings__c.getInstance();
+        if (financialSettings.Error_Notification_To__c == null) {
+            return;
+        }
         EmailTemplate template = [
             SELECT Id, HtmlValue, Body, Subject 
             FROM EmailTemplate 
@@ -219,9 +224,9 @@ public with sharing class ClaimFeeHelper {
         String htmlBody = getReplacedBody(template.HtmlValue);
         String plainTextBody = getReplacedBody(template.Body);
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        String[] toAddresses = new String[] { 'matvey.gutyrko@greencouchconsulting.com' };
+        String[] toAddresses = new String[] { financialSettings.Error_Notification_To__c };
         mail.setToAddresses(toAddresses);
-        mail.setReplyTo('matvey.gutyrko@greencouchconsulting.com');
+        mail.setReplyTo(financialSettings.Error_Notification_To__c);
         mail.setSubject(template.Subject);
         mail.setHtmlBody(htmlBody);
         mail.setPlainTextBody(plainTextBody);
@@ -257,6 +262,13 @@ public with sharing class ClaimFeeHelper {
                 statusInvoiceMap.put(PURCHASE_INVOICE, pi.Name);
             }
         }
+    }
+
+    private static void updatePurchaseInvoicesContact(List<Zumzum__Purchase_Invoice__c> purchases, User current) {
+        for (Zumzum__Purchase_Invoice__c pi : purchases) {
+            pi.Zumzum__Contact__c = current.ContactId;
+        }
+        update purchases;
     }
 
     private static String getReplacedBody(String templateText) {
