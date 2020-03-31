@@ -17,14 +17,6 @@
                 <behavior>Readonly</behavior>
                 <field>CreatedById</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company_Currency__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Transaction_Currency__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -69,30 +61,6 @@
                 <field>Zumzum__POP_Number__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Foreign_Currency_Rate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Corporate_Currency__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company_To_Corporate_Rate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Custom_Rate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Custom_Rate_Date__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Zumzum__Total_Net__c</field>
             </layoutItems>
@@ -103,30 +71,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Zumzum__Total_Gross__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Zumzum__Foreign_Total_Net__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Zumzum__Foreign_Total_Gross__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Zumzum__Foreign_Total_VAT__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Zumzum__Company_Total_Net__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Zumzum__Company_Total_VAT__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Zumzum__Company_Total_Gross__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -161,26 +105,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Zumzum__Total_Paid_Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Foreign_Amount_Paid__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Company_Amount_Paid__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Zumzum__Paid_Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Zumzum__Foreign_Unpaid_Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Zumzum__Company_Unpaid_Amount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -315,8 +239,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Payment_Run__c</fields>
-        <fields>Unpaid_Amount__c</fields>
         <relatedList>Payment_Run_Line_Item__c.Purchase_Invoice__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -325,7 +247,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h4E000000x4zS</masterLabel>
+        <masterLabel>00h4E000000phOE</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
