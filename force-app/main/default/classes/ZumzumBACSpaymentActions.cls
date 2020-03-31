@@ -19,8 +19,11 @@ public with sharing class ZumzumBACSpaymentActions {
             SELECT Id 
             FROM Zumzum__Purchase_Invoice__c 
             WHERE Id NOT IN :linkedPIids
-              AND Zumzum__Status__c = 'Posted'
+              AND Zumzum__Status__c <> 'Paid'
               AND Zumzum__Total_Unpaid_Amount__c > 0
+                    AND Zumzum__Account__r.Zumzum__Bank_Account_Name__c <> ''
+                    AND Zumzum__Account__r.Zumzum__Bank_Account_No__c <> ''
+                    AND Zumzum__Account__r.Zumzum__Bank_Sort_Code__c <> ''
         ]) {
             Payment_Run_Line_Item__c prli = new Payment_Run_Line_Item__c();
             prli.Payment_Run__c = paymentRunId;

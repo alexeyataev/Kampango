@@ -25,6 +25,17 @@ public with sharing class GeneratePaymentFileUtil {
 			return this.columns;
 		}
 
+		public List<String> getColumns(Payment_Run__c paymentRun){
+			this.columns.add(bankPayment.Zumzum__Supplier__r.Zumzum__Bank_Sort_Code__c);
+			this.columns.add(bankPayment.Zumzum__Supplier__r.Zumzum__Bank_Account_No__c);
+			this.columns.add(this.getPaymentAmount());
+			this.columns.add(this.getBankAccountName());
+			this.columns.add(this.getPaymentReference(paymentRun));
+
+			return this.columns;
+		}
+
+
 		private String getPaymentAmount(){
 			String amount = String.valueOf(bankPayment.Zumzum__Amount__c);
 			return amount.leftPad(11, '0');
@@ -37,6 +48,12 @@ public with sharing class GeneratePaymentFileUtil {
 
 		private String getPaymentReference(){
 			return bankPayment.Payment_Reference__c.rightPad(18, ' ');
+		}
+
+		private String getPaymentReference(Payment_Run__c paymentRun){
+			List<Zumzum__Bank_Payment_Line_Item__c> bankPaymentLineItems = paymentRun.Bank_Payment_Line_Items__r;
+			Zumzum__Bank_Payment_Line_Item__c bankPaymentLineItem = bankPaymentLineItems[0];
+			return bankPaymentLineItem.Zumzum__Purchase_Invoice__r.Name.rightPad(18, ' ');
 		}
 	}
 
@@ -61,7 +78,7 @@ public with sharing class GeneratePaymentFileUtil {
 		for(Zumzum__Bank_Payment__c bankPayment: bankPayments){
 			BankPaymentWrapper bankPaymentWrapper = new BankPaymentWrapper(bankPayment);
 			System.debug('bankPaymentWrapper ' + bankPaymentWrapper);
-			rows.add(String.join(bankPaymentWrapper.getColumns(), ' ').trim());
+			rows.add(String.join(bankPaymentWrapper.getColumns(paymentRun), ' ').trim());
 		}
 		String result = String.join(rows,'\r\n').trim();
 		System.debug('generatePaymentFileContent result ' + result);
@@ -110,7 +127,11 @@ public with sharing class GeneratePaymentFileUtil {
 						Zumzum__Supplier__r.Zumzum__Bank_Account_Name__c,
 						Name,
 						Zumzum__Supplier__r.PSA_Area__c,
-						Payment_Reference__c
+						Payment_Reference__c,
+						(
+							SELECT Id, Zumzum__Purchase_Invoice__r.Name
+							FROM Zumzum__Bank_Payment_Line_Items__r
+						)						
 				FROM Zumzum__Bank_Payment__c
 				WHERE Id IN :bankPaymentIds
 		];

@@ -118,6 +118,18 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public TestDataFactory buildBookingWithoutExpiryDate(String status){
+        TestBookingBuilder bookingBuilder = new TestBookingBuilder();
+        booking = bookingBuilder.withCourse(course)
+            .withStatus(status)
+            .withPrimaryContact(parentHost)
+            .withPartnerContact(partnertHost)
+            .ignoreDuplicateRules(true)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
     public TestDataFactory buildOrganizationAccount(String accountNumber) {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
         organizationAccount = accountBranchBuilder
@@ -634,6 +646,20 @@ public without sharing class TestDataFactory {
             .build()));
 
         return users[2];
+    }
+
+    public static void changeOwnerOfAllCourseAssignments(User practitionerCommunityUser) {
+
+        List<Course_Assignment__c> courseAssignments = [
+            SELECT OwnerId, Course__c
+            FROM Course_Assignment__c
+            LIMIT 100
+        ];
+
+        for (Course_Assignment__c aCourseAssignment : courseAssignments) {
+            aCourseAssignment.OwnerId = practitionerCommunityUser.Id;
+        }
+        update courseAssignments;
     }
 
     public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
