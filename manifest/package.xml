@@ -73,6 +73,10 @@
         <members>PractitionerDetailsControllerTest</members>
         <members>PractitionerFeeRateHelper</members>
         <members>PractitionerFeeRateHelperTest</members>
+        <members>ReconcilePaymentsBatch</members>
+        <members>ReconcilePaymentsBatchTest</members>
+        <members>ReconcilePaymentsHelper</members>
+        <members>ReconcilePaymentsHelperTest</members>
         <members>SendHTMLEmailPlugin</members>
         <members>SendHTMLEmailPluginTest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
@@ -140,6 +144,7 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>dlrs_Batch_Receipt_Report_ItemTrigger</members>
         <members>dlrs_BookingTrigger</members>
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
@@ -233,10 +238,13 @@
         <members>dlrs__LookupRollupSummary2.TotalCourseOtherCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseTravelCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseVenueCosts</members>
+        <members>dlrs__LookupRollupSummary2.TotalMatchedBatchReceiptReportItems</members>
         <name>CustomMetadata</name>
     </types>
     <types>
         <members>Account</members>
+        <members>Batch_Receipt_Report__c</members>
+        <members>Batch_Receipt_Report_Item__c</members>
         <members>Bank_Account_Settings__c</members>
         <members>Booking__c</members>
         <members>Branch_Weighting__c</members>
@@ -517,6 +525,8 @@
         <members>Account-Household Lightning Layout</members>
         <members>Account-Organization Lightning Layout</members>
         <members>Asset-Practitioner Asset Layout</members>
+        <members>Batch_Receipt_Report__c-Batch Receipt Report Layout</members>
+        <members>Batch_Receipt_Report_Item__c-Batch Receipt Report Item Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Branch_Weighting__c-Branch Weighting Layout</members>
         <members>Case-Case Layout</members>
