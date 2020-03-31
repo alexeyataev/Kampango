@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>Zumzum__ZumZum_Financials</defaultLandingTab>
+    <description>Accounting Application for Salesforce to deliver complete lead-2-cash functionality in Salesforce.com</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Zumzum Financials</label>
+    <logo>Zumzum__ZumZumApps/Zumzum__ZZFinancials_Logo.jpg</logo>
+    <tabs>Zumzum__ZumZum_Financials</tabs>
+    <tabs>Zumzum__Setup</tabs>
+    <tabs>Zumzum__Transactions</tabs>
+    <tabs>Zumzum__Bank</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>Zumzum__Sales</tabs>
+    <tabs>Zumzum__Purchasing</tabs>
+    <tabs>Zumzum__Time_Sheet__c</tabs>
+    <tabs>Zumzum__Expense_Sheet__c</tabs>
+    <tabs>Zumzum__Financial_Reports</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>Zumzum__Despatch_Detail__c</tabs>
+    <tabs>Zumzum__Stock_Balance__c</tabs>
+    <tabs>Zumzum__Journal__c</tabs>
+    <tabs>Zumzum__Bank_Payment__c</tabs>
+    <tabs>Zumzum__Batch_Bank_Payment__c</tabs>
+    <tabs>Zumzum__Sales_Invoice_Plan__c</tabs>
+    <tabs>Zumzum__Scheduled_Sales_Invoice__c</tabs>
+    <tabs>Zumzum__Batch_Sales_Invoice_Job__c</tabs>
+    <tabs>Zumzum__Revenue_Recognition_Rule__c</tabs>
+    <tabs>Zumzum__Batch_Bank_Receipt__c</tabs>
+    <tabs>Zumzum__Bank_Receipt__c</tabs>
+    <tabs>Zumzum__Revenue_Recognition_Rule_Setting__c</tabs>
+    <tabs>Zumzum__Sales_Invoice_Plan_Template__c</tabs>
+    <tabs>Zumzum__Sales_Invoice_Plan_Template_Line__c</tabs>
+    <tabs>Session__c</tabs>
+</CustomApplication>
