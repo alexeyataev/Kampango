@@ -4,6 +4,7 @@
     <active>true</active>
     <errorConditionFormula>NOT(
  OR(
+  ISBLANK(Zumzum__Expense_Sheet__c),
   Zumzum__Expense_Sheet__r.Number_of_Purchase_Invoices__c = 0,
   Zumzum__Expense_Sheet__r.Number_of_Purchase_Invoices__c = 1
  )
