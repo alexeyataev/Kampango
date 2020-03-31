@@ -1,4 +1,4 @@
-// @SuppressWarnings('PMD.MethodNamingConventions')
+@SuppressWarnings('PMD.MethodNamingConventions')
 //Incident #75 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 private class AssignCasetoQueueTest {
