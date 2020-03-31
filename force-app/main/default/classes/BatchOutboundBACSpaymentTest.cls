@@ -30,6 +30,19 @@ private class BatchOutboundBACSpaymentTest {
                 .withBankAccountName('TEST BANK ACCOUNT')
                 .insertRecord(true)
                 .build();
+
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory .buildOrganizationAccount('acc1')
+                    .createEnquiryPSA()
+                    .buildBranchAccountWithEnquiryPSA()
+                    .buildPractitioner('PRACTITIONER_LASTNAME')
+                    .buildPractitionerFeeRate()
+                    .buildVenue()
+                    .buildRoom()
+                    .buildLicenceToPractice()
+                    .buildCourseWithStatus('Draft')
+                    .buildEstimatedCosts()
+                    .buildSession();
     }
 
     @isTest
@@ -72,6 +85,56 @@ private class BatchOutboundBACSpaymentTest {
         ];
 
         System.assertEquals('Ready', result.Status__c);
+    }
+
+    @isTest
+    static void testDimensionsArePopulated() {
+        Zumzum__Dimension__c dimension1 = new Zumzum__Dimension__c();
+        dimension1.Name = 'NCT Essentials antenatal course';
+        dimension1.Zumzum__Active__c = true;
+        dimension1.Zumzum__Type__c = 'Dimension 1';
+        insert dimension1;
+        Zumzum__Dimension__c dimension2 = new Zumzum__Dimension__c();
+        dimension2.Name = 'testarea';
+        dimension2.Zumzum__Active__c = true;
+        dimension2.Zumzum__Type__c = 'Dimension 2';
+        //insert dimension2;
+
+
+        Account acc = [
+            SELECT Id
+            FROM Account
+            WHERE Zumzum__Bank_Sort_Code__c = '572899'
+            LIMIT 1
+        ];
+
+        
+        Test.startTest();
+
+        createPurchaseInvoice(acc.Id);
+        Zumzum__Purchase_Invoice_Line_Item__c pili = [
+            SELECT Id FROM Zumzum__Purchase_Invoice_Line_Item__c LIMIT 1
+        ];
+
+        Account branchAccount = [
+            SELECT Id FROM Account WHERE RecordType.Name = 'Branch' LIMIT 1
+        ];
+        branchAccount.PSA_Area__c = 'testarea';
+
+        Session__c session = [
+            SELECT Id FROM Session__c LIMIT 1
+        ];
+        
+        pili.Session__c = session.Id;
+        update pili;
+
+        Course__c course = [
+            SELECT Id FROM Course__c LIMIT 1
+        ];
+        pili.Course__c = course.Id;
+        update pili;
+
+        Test.stopTest();
     }
 
     static void createPurchaseInvoice(Id supplierAccountId){

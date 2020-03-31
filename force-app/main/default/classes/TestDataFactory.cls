@@ -10,6 +10,7 @@ public without sharing class TestDataFactory {
     private static final String PRACTITIONER_USERNAME = 'ncttest@test.com';
     private static final String PORTAL_ACCOUNT_OWNER_USERNAME = 'portalAccountOwner@ncttest.com';
     private static final String SYSTEM_ADMIN_USERNAME = 'NCTtest.sysAdmin.username@ncttest.com';
+    private static final String CAPACITY_PSA_USERNAME = 'NCTtest.capacityPSA.username@ncttest.com';
     private static final String ENQUIRY_PSA_USERNAME = 'NCTtest.enquiryPSA.username@ncttest.com';
     private static final String PORTAL_ACCOUNT_USER_EMAIL = 'portalAccountUserNCT@ncttest.com';
     private static final String PARTNER_COMMUNITY_USER_EMAIL = 'partnerCommunityUser@ncttest.com';
@@ -27,7 +28,8 @@ public without sharing class TestDataFactory {
     public static List<Course__c> courses = new List<Course__c>();
     public static List<Session__c> sessions = new List<Session__c>();
     public static List<User> users = new List<User>();
-    public static List<User> enquiryPSAUsers = new List<User>();
+    public static List<User> capacityPSA_Users = new List<User>();
+    public static List<User> enquiryPSA_Users = new List<User>();
     private List<Contact> practitioners = new List<Contact>();
     private Account branchAccount;
     private static Account organizationAccount;
@@ -75,7 +77,7 @@ public without sharing class TestDataFactory {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
         branchAccount =  accountBranchBuilder
             .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
-            .withEnquiriesPSA(enquiryPSAUsers[0].Id)
+            .withEnquiriesPSA(enquiryPSA_Users[0].Id)
             .insertRecord(true)
             .build();
         TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
@@ -88,12 +90,12 @@ public without sharing class TestDataFactory {
     }
 
     //used for any emails that use Org-Wide Address in "From"
-    public TestDataFactory buildBranchAccountWithEmails(String orgWideAddress) {
+    public TestDataFactory buildBranchAccountWithEmails(String emailAddress) {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
         branchAccount =  accountBranchBuilder
             .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
-            .withCapacityPSAemail(orgWideAddress)
-            .withEnquiriesPSAemail(orgWideAddress)
+            .withCapacityPSAemail(emailAddress)
+            .withEnquiriesPSAemail(emailAddress)
             .insertRecord(true)
             .build();
         TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
@@ -382,6 +384,21 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public TestDataFactory buildReunionWithParentHost() {
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        reunion = sessionBuilder
+            .withCourse(course)
+            .withType('Reunion')
+            .withParentHost(parentHost)
+            .withStatus(SESSION_PROVISIONAL_STATUS)
+            .withPractitioner(practitioners[0])
+            .withPractitionerFeeRate(practitionerFeeRate)
+            .withPractitionerLicence(licenceToPractice)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
     public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus) {
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         session = sessionBuilder
@@ -530,9 +547,20 @@ public without sharing class TestDataFactory {
 
     public TestDataFactory createEnquiryPSA() {
         TestUserBuilder userBuilder = new TestUserBuilder();
-        enquiryPSAUsers.add(userBuilder
+        enquiryPSA_Users.add(userBuilder
             .withProfile([SELECT Id FROM Profile WHERE Name = 'Enquiry PSA'].Id)
             .withUsername(ENQUIRY_PSA_USERNAME)
+            .insertRecord(true)
+            .build());
+
+        return this;
+    }
+
+    public TestDataFactory createCapacityPSA() {
+        TestUserBuilder userBuilder = new TestUserBuilder();
+        capacityPSA_Users.add(userBuilder
+            .withProfile([SELECT Id FROM Profile WHERE Name = 'Capacity PSA'].Id)
+            .withUsername(CAPACITY_PSA_USERNAME)
             .insertRecord(true)
             .build());
 
