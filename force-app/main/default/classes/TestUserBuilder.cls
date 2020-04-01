@@ -13,7 +13,7 @@ public with sharing class TestUserBuilder {
     private String username = 'NCTtest.sysAdmin.username@nct.com';
     private String communityNickName;
     private Boolean insertRecord = false;
-
+    private Integer SUFFIX_NUMBER_DIGITS = 10;
 
     public TestUserBuilder withProfile(Id profileId)
     {
@@ -38,8 +38,16 @@ public with sharing class TestUserBuilder {
 
     public TestUserBuilder withEmail(String email)
     {
-        this.email = email;
+        this.email = email + generateRandomSuffixNumber();
         return this;
+    }
+
+    private String generateRandomSuffixNumber() {
+        String numberStr = '';
+        for(Integer i = 0; i < SUFFIX_NUMBER_DIGITS; i++) {
+            numberStr += Integer.valueof((Math.random() * 9));
+        }
+        return numberStr;
     }
 
     public TestUserBuilder withCommunityNickName(String communityNickName)
