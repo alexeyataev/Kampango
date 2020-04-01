@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Linked_to_expense_sheet_only_by_Finance</fullName>
+    <active>true</active>
+    <description>PI can be created only by Finance when the ES value is present</description>
+    <errorConditionFormula>NOT(
+ OR(
+  $Profile.Name &lt;&gt; &#39;Finance&#39;,
+  ISBLANK( Zumzum__Expense_Sheet__c )
+ )
+)</errorConditionFormula>
+    <errorMessage>Only Finance user can convert Expense Sheet</errorMessage>
+</ValidationRule>

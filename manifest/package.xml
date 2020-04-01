@@ -6,6 +6,7 @@
         <members>AddBankReceiptPaymentBatchTest</members>
         <members>AddBankReceiptPaymentScheduler</members>
         <members>AddBankReceiptPaymentSchedulerTest</members>
+        <members>AssignCasetoQueueTest</members>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
         <members>BookingJourneyHelper</members>
@@ -46,6 +47,7 @@
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>UpdateBookingContactsEmailTest</members>
+        <members>UpdateAddressInGiftAidDeclarationsTest</members>
         <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
