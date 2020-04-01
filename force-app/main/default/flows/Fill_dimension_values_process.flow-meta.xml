@@ -13,9 +13,9 @@
                 <stringValue>Dimensions update on PILI</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_3_A1</name>
+        <name>myRule_1_A1</name>
         <label>Fill dimensions</label>
-        <locationX>300</locationX>
+        <locationX>100</locationX>
         <locationY>200</locationY>
         <actionName>Dimensions_update_on_PILI</actionName>
         <actionType>flow</actionType>
@@ -73,9 +73,6 @@
         <label>myDecision</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision2</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
@@ -90,48 +87,9 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>On Create</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <processMetadataValues>
-            <name>index</name>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </processMetadataValues>
-        <name>myDecision2</name>
-        <label>myDecision2</label>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>myRule_3</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>formula_myRule_3</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>myRule_3_A1</targetReference>
-            </connector>
             <label>Are dimensions need update?</label>
         </rules>
     </decisions>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>ISNEW()</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_myRule_1</name>
-        <dataType>Boolean</dataType>
-        <expression>ISNEW()</expression>
-    </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -140,12 +98,12 @@
 ISCHANGED( [Zumzum__Purchase_Invoice_Line_Item__c].Course__c )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_3</name>
+        <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
         <expression>ISNEW() ||
 ISCHANGED( {!myVariable_current.Course__c} )</expression>
     </formulas>
-    <interviewLabel>Fill_dimension_values_process-2_InterviewLabel</interviewLabel>
+    <interviewLabel>Fill_dimension_values_process-1_InterviewLabel</interviewLabel>
     <label>Fill dimension values process</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -172,86 +130,6 @@ ISCHANGED( {!myVariable_current.Course__c} )</expression>
         </value>
     </processMetadataValues>
     <processType>Workflow</processType>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>always</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>extraTypeInfo</name>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[Zumzum__Purchase_Invoice_Line_Item__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>referenceTargetField</name>
-        </processMetadataValues>
-        <name>myRule_1_A1</name>
-        <label>Populate Course</label>
-        <locationX>100</locationX>
-        <locationY>200</locationY>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Course</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue>Course__c</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Course__c</field>
-            <value>
-                <elementReference>myVariable_current.Zumzum__Expense_Sheet_Detail__r.Course__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>Zumzum__Purchase_Invoice_Line_Item__c</object>
-    </recordUpdates>
     <startElementReference>myDecision</startElementReference>
     <status>Active</status>
     <variables>
