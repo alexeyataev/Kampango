@@ -38,7 +38,7 @@ public with sharing class TestUserBuilder {
 
     public TestUserBuilder withEmail(String email)
     {
-        this.email = email + generateRandomSuffixNumber();
+        this.email = email + '.' + URL.getSalesforceBaseUrl().getHost().substringBefore('.') + '.' + generateRandomSuffixNumber();
         return this;
     }
 
