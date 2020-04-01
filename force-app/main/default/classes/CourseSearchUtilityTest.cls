@@ -2,37 +2,11 @@
 //Incident #38 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 private class CourseSearchUtilityTest {
-    
-    private static void setupTestData() {
-        TestDataFactory.getInstance()
-                       .buildBranchAccount()
-                       .buildOrganizationAccount('acc5')
-                       .buildPractitioner('Test')
-                       .buildPractitionerFeeRate()
-                       .buildVenue()
-                       .buildRoom()
-                       .buildLicenceToPractice()
-                       .buildCoursesWithSessions(2, 2);
 
-        TestDataFactory dataFactory = TestDataFactory.getInstance();
-        List<Course__c> coursesToFinal = [
-            SELECT Status__c, Count_of_Estimated_Travel_Costs__c, Count_of_Estimated_Venue_Costs__c, Main_Venue__c, Fee__c,
-            (
-                SELECT Status__c FROM Sessions__r
-            )
-            FROM Course__c
-        ];
+    private static final Integer COURSES_TO_BUILD = 8;
+    private static final Integer SESSIONS_TO_BUILD_PER_COURSE = 2;
 
-        Venue__c mainVenue = [SELECT Id, Name, Location__c FROM Venue__c WHERE Id = :coursesToFinal[0].Main_Venue__c LIMIT 1];
-
-        for (Course__c course : coursesToFinal) {
-            if (!course.Sessions__r.isEmpty()) {
-                dataFactory.setSessionsToConfirmed(course.Sessions__r);   
-            }
-        }
-        dataFactory.setCoursesWithSessionsToFinal(coursesToFinal);
-    }
-
+    @TestSetup
     private static void setupTestDataForTestingSorting() {
         
         TestDataFactory testDataFactoryInstance = TestDataFactory.getInstance();
@@ -43,7 +17,7 @@ private class CourseSearchUtilityTest {
                                 .buildVenue()
                                 .buildRoom()
                                 .buildLicenceToPractice()
-                                .buildCoursesWithSessions(8, 2);
+                                .buildCoursesWithSessions(COURSES_TO_BUILD, SESSIONS_TO_BUILD_PER_COURSE);
 
         List<Course__c> courses = [
             SELECT Type__c, Sub_Type__c, Status__c, Main_Venue__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
@@ -51,14 +25,10 @@ private class CourseSearchUtilityTest {
                     SELECT Date__c, Status__c FROM Sessions__r    
                 )
             FROM Course__c
-            LIMIT 10
+            LIMIT :COURSES_TO_BUILD
         ];
 
         Venue__c mainVenue = [SELECT Id, Name, Location__c FROM Venue__c WHERE Id = :courses[0].Main_Venue__c LIMIT 1];
-
-        testDataFactoryInstance.setCoursesToFinalAndSessionsToConfirmed(courses);
-        
-        testDataFactoryInstance.setCoursesToFinal(courses);
 
         List<Course__c> coursesToUpdate = new List<Course__c>();
         List<Session__c> sessionsToUpdate = new List<Session__c>();
@@ -123,12 +93,14 @@ private class CourseSearchUtilityTest {
             update coursesToUpdate;
             update sessionsToUpdate;
         }
-                 
+    
+        testDataFactoryInstance.setCoursesToFinalAndSessionsToConfirmed(courses);
+        
+        testDataFactoryInstance.setCoursesToFinal(courses);                
     }
 
     @isTest
     static void courseSearchById_WithValidCourseId_CourseCorrectlyReturned() {
-        setupTestData();
 
         Course__c course = [
             SELECT Name
@@ -148,7 +120,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void courseSearchByIdIfFromWebsiteFalse_WithValidCourseId_CourseCorrectlyReturned () {
-        setupTestData();
 
         Course__c course = [
             SELECT Name
@@ -165,7 +136,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void courseSearchById_WithDeletedCourseId_CourseCorrectlyReturned() {
-        setupTestData();
 
         Course__c course = [
             SELECT Id 
@@ -183,7 +153,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void courseSearchByBranchId_WithValidBranchId_CorrectCoursesReturned() {
-        setupTestData();
 
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
         
@@ -196,6 +165,8 @@ private class CourseSearchUtilityTest {
 
         account.Branch_Number__c = '123';
         update account;
+
+        List<Course__c> expectedCourses = [SELECT Id FROM Course__c WHERE Start_Date__c > TODAY LIMIT :COURSES_TO_BUILD];
 
         Test.startTest();
         RestResponse response = new RestResponse();
@@ -204,12 +175,11 @@ private class CourseSearchUtilityTest {
         
         CoursesBranchModel branchModel = (CoursesBranchModel)JSON.deserialize(response.responseBody.toString(), CoursesBranchModel.class);
         System.assertEquals(200, response.statusCode);
-        System.assertEquals(2, branchModel.Courses.size(), 'There should be 2 Course records with at least 1 allocated Session record');                             
+        System.assertEquals(expectedCourses.size(), branchModel.Courses.size(), 'There should be ' + expectedCourses.size() + ' Course records with at least 1 allocated Session record');                             
     }
 
     @isTest
     static void courseSearchByBranchIdIfFromWebsiteFalse_WithValidBranchId_CorrectCoursesReturned () {
-        setupTestData();
 
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
         
@@ -223,17 +193,18 @@ private class CourseSearchUtilityTest {
         account.Branch_Number__c = '123';
         update account;
 
+        List<Course__c> expectedCourses = [SELECT Id FROM Course__c LIMIT :COURSES_TO_BUILD];
+
         Test.startTest();
         List<Course__c> courses = CourseSearchUtility.getCoursesByBranch(account.Branch_Number__c, false);
         Test.stopTest();
 
-        System.assertEquals(2, courses.size(), 'There should be 2 Course records with at least 1 allocated Session record');
+        System.assertEquals(expectedCourses.size(), courses.size(), 'There should be ' + expectedCourses.size() + ' Course records with at least 1 allocated Session record');
         System.assertEquals(account.Id, courses[0].Branch__c);
     }
 
     @isTest
     static void courseSearchByBranchId_WithValidBranchIdButNoCoursesAtBranch_NoCoursesReturned() {
-        setupTestData();
         
         Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
     
@@ -294,7 +265,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void courseSearchByLocation_NoCoursesInRegion_NoCoursesReturned() {
-        setupTestData();
 
         Map<String, String> params = new Map<String, String>{
             'location' => '51.5,-0.1',
@@ -307,7 +277,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void courseSearchByLocationIfFromWebsiteFalse_NoCoursesInRegion_NoCoursesReturned() {
-        setupTestData();
 
         CourseSearchUtility.LocationRequestParameters params = new CourseSearchUtility.LocationRequestParameters(Location.newInstance(51.5, -0.1), 50);
         List<Course__c> courses = CourseSearchUtility.getCoursesByDateDistance(params, null, false);
@@ -317,7 +286,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void checkCourseSorting_IfNoBirthDueDate_SortedByDistance() {
-        setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
             'location' => '50.5,-0.1'
@@ -340,7 +308,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void checkCourseSorting_IfBirthDueDateIsToday_CorrectlyOrdered() {
-        setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
             'location' => '50.5,-0.1',
@@ -357,7 +324,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void checkCourseSorting_IfBirthDueDateIsIn30Days_CorrectlyOrdered() {
-        setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
             'location' => '50.5,-0.1',
@@ -380,7 +346,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void checkCourseSorting_IfBirthDueDateIsIn60Days_CorrectlyOrdered() {
-        setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
             'location' => '50.5,-0.1',
@@ -404,7 +369,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void checkCourseSorting_IfBirthDueDateIsIn60DaysSearchRadius10_CorrectlyOrdered() {
-        setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
             'location' => '50.5,-0.1',
@@ -429,7 +393,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void checkCourseSorting_IfBirthDueDateIsIn60DaysSearchRadius0_NoCourses() {
-        setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
             'location' => '50.5,-0.1',
@@ -448,7 +411,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void checkCourseSorting_IfBirthDueDateIsIn60DaysSearchRadius20_CorrectlyOrdered() {
-        setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
             'location' => '50.5,-0.1',
@@ -473,7 +435,6 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void checkCourseSortingIfBirthDueDateIsIn60DaysSearchRadius30_CorrectlyOrdered() {
-        setupTestDataForTestingSorting();
 
         Map<String, String> params = new Map<String, String>{
             'location' => '50.5,-0.1',
