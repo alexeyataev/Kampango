@@ -26,8 +26,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>Owner</name>
-                <type>relatedUserField</type>
+                <type>adhoc</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>

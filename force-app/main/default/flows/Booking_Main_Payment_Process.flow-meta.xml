@@ -32,8 +32,8 @@
     <actionCalls>
         <name>Card_Payment_Handler</name>
         <label>Card Payment Handler</label>
-        <locationX>2760</locationX>
-        <locationY>398</locationY>
+        <locationX>2765</locationX>
+        <locationY>412</locationY>
         <actionName>CardPaymentHandler</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -96,8 +96,8 @@
     <actionCalls>
         <name>Card_Payment_Plan_Handler</name>
         <label>Card Payment Plan Handler</label>
-        <locationX>2772</locationX>
-        <locationY>855</locationY>
+        <locationX>2773</locationX>
+        <locationY>834</locationY>
         <actionName>CardPaymentPlanHandler</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -178,8 +178,8 @@
     <actionCalls>
         <name>Create_SI_and_SI_Line_Items</name>
         <label>Create SI and SI Line Items</label>
-        <locationX>2165</locationX>
-        <locationY>781</locationY>
+        <locationX>2178</locationX>
+        <locationY>814</locationY>
         <actionName>ZumzumCreatePostSalesInvoice</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -200,7 +200,7 @@
         <name>Add_Amount_To_Be_Paid</name>
         <label>Add Amount To Be Paid</label>
         <locationX>3125</locationX>
-        <locationY>858</locationY>
+        <locationY>842</locationY>
         <assignmentItems>
             <assignToReference>Booking_Instance.Booking_Journey_Payable_Amount__c</assignToReference>
             <operator>Assign</operator>
@@ -222,8 +222,8 @@
     <assignments>
         <name>Add_Cost_Membership</name>
         <label>Add Cost Membership</label>
-        <locationX>2618</locationX>
-        <locationY>979</locationY>
+        <locationX>2529</locationX>
+        <locationY>820</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.amount</assignToReference>
             <operator>Add</operator>
@@ -238,8 +238,8 @@
     <assignments>
         <name>Add_Course_SI_Parameter</name>
         <label>Add Course SI Parameter</label>
-        <locationX>2074</locationX>
-        <locationY>608</locationY>
+        <locationX>2075</locationX>
+        <locationY>607</locationY>
         <assignmentItems>
             <assignToReference>ZumzumSalesInvoiceParametersList</assignToReference>
             <operator>Add</operator>
@@ -318,8 +318,8 @@
     <assignments>
         <name>Added_Next_Collection_Date</name>
         <label>Added Next Collection Date</label>
-        <locationX>2950</locationX>
-        <locationY>855</locationY>
+        <locationX>2961</locationX>
+        <locationY>832</locationY>
         <assignmentItems>
             <assignToReference>Booking_Instance.Next_Collection_Date__c</assignToReference>
             <operator>Assign</operator>
@@ -334,8 +334,8 @@
     <assignments>
         <name>Assign_Sales_Invoice_to_Parameters</name>
         <label>Assign Sales Invoice to Parameters</label>
-        <locationX>2275</locationX>
-        <locationY>619</locationY>
+        <locationX>2274</locationX>
+        <locationY>613</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.salesInvoiceId</assignToReference>
             <operator>Assign</operator>
@@ -350,8 +350,8 @@
     <assignments>
         <name>Clear_Next_Collection_Date</name>
         <label>Clear Next Collection Date</label>
-        <locationX>2965</locationX>
-        <locationY>397</locationY>
+        <locationX>2963</locationX>
+        <locationY>411</locationY>
         <assignmentItems>
             <assignToReference>Booking_Instance.Next_Collection_Date__c</assignToReference>
             <operator>Assign</operator>
@@ -634,8 +634,8 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <assignments>
         <name>Populate_Fields_of_Installment_Object_With_Bank_Number</name>
         <label>Populate Fields  of Installment Object With Bank Number</label>
-        <locationX>2374</locationX>
-        <locationY>843</locationY>
+        <locationX>2421</locationX>
+        <locationY>403</locationY>
         <assignmentItems>
             <assignToReference>Installment_For_Payment_By_DD.Bank_Details_Number__c</assignToReference>
             <operator>Assign</operator>
@@ -736,7 +736,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         <name>Set_Membership_Data_for_Installment_By_CC</name>
         <label>Set Membership Data for Installment By CC</label>
         <locationX>1377</locationX>
-        <locationY>1502</locationY>
+        <locationY>1500</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.membershipType</assignToReference>
             <operator>Assign</operator>
@@ -1091,8 +1091,8 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <decisions>
         <name>Is_Membership_Chose_0</name>
         <label>Is Membership Chose ?</label>
-        <locationX>2439</locationX>
-        <locationY>623</locationY>
+        <locationX>2415</locationX>
+        <locationY>615</locationY>
         <defaultConnector>
             <targetReference>Type_Of_Payment</targetReference>
         </defaultConnector>
@@ -1205,7 +1205,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         <name>Payment_Method_Decision_0</name>
         <label>Payment Method Decision</label>
         <locationX>1371</locationX>
-        <locationY>1208</locationY>
+        <locationY>1223</locationY>
         <defaultConnectorLabel>Without Membership</defaultConnectorLabel>
         <rules>
             <name>Membership_by_Credit_Card_0</name>
@@ -1370,10 +1370,10 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <recordCreates>
         <name>Create_Membership_Installment</name>
         <label>Create Membership Installment</label>
-        <locationX>2375</locationX>
-        <locationY>995</locationY>
+        <locationX>2618</locationX>
+        <locationY>403</locationY>
         <connector>
-            <targetReference>Add_Cost_Membership</targetReference>
+            <targetReference>Type_Of_Payment</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Error_Screen</targetReference>
@@ -1637,8 +1637,8 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <recordUpdates>
         <name>Set_Payable_Amount</name>
         <label>Set Payable Amount</label>
-        <locationX>3274</locationX>
-        <locationY>859</locationY>
+        <locationX>3295</locationX>
+        <locationY>843</locationY>
         <connector>
             <targetReference>Payment_Details_Screen</targetReference>
         </connector>
@@ -1768,8 +1768,8 @@ NOT(ISNUMBER({!Account_Name}))
     <screens>
         <name>Payment_Details_Screen</name>
         <label>Payment Details Screen</label>
-        <locationX>3410</locationX>
-        <locationY>859</locationY>
+        <locationX>3450</locationX>
+        <locationY>843</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
         <allowPause>false</allowPause>

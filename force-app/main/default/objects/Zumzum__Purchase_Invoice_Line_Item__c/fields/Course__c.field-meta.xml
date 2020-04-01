@@ -4,6 +4,16 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Course</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Purchase invoice line items cannot be added to closed courses. If the course needs to be reopened please contact the finance team.</errorMessage>
+        <filterItems>
+            <field>Course__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Course__c</referenceTo>
     <relationshipLabel>Purchase Invoice Line Items</relationshipLabel>
     <relationshipName>Purchase_Invoice_Line_Items</relationshipName>

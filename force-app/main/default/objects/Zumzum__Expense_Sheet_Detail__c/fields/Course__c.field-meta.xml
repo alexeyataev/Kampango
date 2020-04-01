@@ -10,7 +10,7 @@
         <filterItems>
             <field>Course__c.Status__c</field>
             <operation>notEqual</operation>
-            <value>Cancelling, Cancelled</value>
+            <value>Cancelling, Cancelled, Closed</value>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>
