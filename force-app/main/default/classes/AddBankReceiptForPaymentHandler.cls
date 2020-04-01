@@ -49,7 +49,8 @@ public with sharing class AddBankReceiptForPaymentHandler {
                         WHERE Zumzum__Sub_Account_Nominal__c = :DEBTOR_NOMINAL_CODE AND Zumzum__Paid__c <> :IS_PAID
                 )
                 FROM Zumzum__Sales_Invoice__c
-                WHERE Id IN :salesInvoicesPaymentsMap.keySet() AND Zumzum__Status__c = :SALES_INVOICE_STATUS AND Zumzum__Paid__c <> :IS_PAID
+                WHERE Id IN (SELECT Zumzum__Sales_Invoice__c FROM Zumzum__Ledger__c WHERE Zumzum__Sales_Invoice__c IN :salesInvoicesPaymentsMap.keySet() AND Zumzum__Sub_Account_Nominal__c = :DEBTOR_NOMINAL_CODE AND Zumzum__Paid__c <> :IS_PAID) 
+                        AND Zumzum__Status__c = :SALES_INVOICE_STATUS AND Zumzum__Paid__c <> :IS_PAID
                 WITH SECURITY_ENFORCED
         ]) {
             for (cpm__Payment__c payment : salesInvoicesPaymentsMap.get(salesInvoice.Id)) {
