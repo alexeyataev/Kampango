@@ -1,6 +1,6 @@
 Dear {!Contact.FirstName}<br>
 <br>
-A remittance of {!Payment_Run_Line_Item__c.Unpaid_Amount__c} has been sent to your designated bank account today. If you do not receive it within 3 working days please let us know by replying to finance@nct.org.uk. The amount is payment for the following:<br>
+A remittance of {!Payment_Run_Line_Item__c.Paid_Amount__c} has been sent to your designated bank account today. If you do not receive it within 3 working days please let us know by replying to finance@nct.org.uk. The amount is payment for the following:<br>
 <br>
 {!Payment_Run_Line_Item__c.Reference_Info__c}<br>
 <br>
