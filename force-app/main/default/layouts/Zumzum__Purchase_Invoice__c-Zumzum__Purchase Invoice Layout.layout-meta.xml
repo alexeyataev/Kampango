@@ -239,6 +239,8 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Payment_Run__c</fields>	
+        <fields>Unpaid_Amount__c</fields>
         <relatedList>Payment_Run_Line_Item__c.Purchase_Invoice__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
