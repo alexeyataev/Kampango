@@ -38,16 +38,8 @@ public with sharing class TestUserBuilder {
 
     public TestUserBuilder withEmail(String email)
     {
-        this.email = email + '.' + URL.getSalesforceBaseUrl().getHost().substringBefore('.') + '.' + generateRandomSuffixNumber();
+        this.email = email + generateSuffix();
         return this;
-    }
-
-    private String generateRandomSuffixNumber() {
-        String numberStr = '';
-        for(Integer i = 0; i < SUFFIX_NUMBER_DIGITS; i++) {
-            numberStr += Integer.valueof((Math.random() * 9));
-        }
-        return numberStr;
     }
 
     public TestUserBuilder withCommunityNickName(String communityNickName)
@@ -58,7 +50,7 @@ public with sharing class TestUserBuilder {
 
     public TestUserBuilder withUsername(String username)
     {
-        this.username = username;
+        this.username = username + generateSuffix();
         return this;
     }
     public TestUserBuilder insertRecord(Boolean insertRecord)
@@ -89,5 +81,17 @@ public with sharing class TestUserBuilder {
             insert user;
         }
         return user;
+    }
+    
+    private String generateSuffix() {
+        return '.' + URL.getSalesforceBaseUrl().getHost().substringBefore('.') + '.' + generateRandomSuffixNumber();
+    }
+
+    private String generateRandomSuffixNumber() {
+        String numberStr = '';
+        for(Integer i = 0; i < SUFFIX_NUMBER_DIGITS; i++) {
+            numberStr += Integer.valueof((Math.random() * 9));
+        }
+        return numberStr;
     }
 }
