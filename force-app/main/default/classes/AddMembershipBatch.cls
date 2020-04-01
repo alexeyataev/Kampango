@@ -29,13 +29,13 @@ public class AddMembershipBatch implements Database.Batchable<sObject>, Database
     public void execute(Database.BatchableContext bc, List<cpm__Installment__c> scope){
         for(cpm__Installment__c installment : scope) {
             installment.Care_Add_Membership_Attempts__c += 1;
-            CareRequestBodyUtil.MembershipOjbect membershipOjbect = CareHelper.addMembership(installment);
-            if(membershipOjbect.error == null) {
+            CareHelper.MembershipObject membershipObject = CareHelper.addMembership(installment);
+            if(membershipObject.error == null) {
                 installment.Care_Membership_Added__c = true;
                 installment.Care_Error_Log__c = '';
                 installment.Care_Status__c = SUCCESS_STATUS;
             } else {
-                installment.Care_Error_Log__c = membershipOjbect.error[0].errorMessage;
+                installment.Care_Error_Log__c = membershipObject.error[0].errorMessage;
                 installment.Care_Status__c = FAILURE_STATUS;
             }
         }
