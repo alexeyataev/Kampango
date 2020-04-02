@@ -13,7 +13,7 @@ public with sharing class TestUserBuilder {
     private String username = 'NCTtest.sysAdmin.username@nct.com';
     private String communityNickName;
     private Boolean insertRecord = false;
-
+    private Integer SUFFIX_NUMBER_DIGITS = 10;
 
     public TestUserBuilder withProfile(Id profileId)
     {
@@ -38,7 +38,7 @@ public with sharing class TestUserBuilder {
 
     public TestUserBuilder withEmail(String email)
     {
-        this.email = email;
+        this.email = email + generateSuffix();
         return this;
     }
 
@@ -50,7 +50,7 @@ public with sharing class TestUserBuilder {
 
     public TestUserBuilder withUsername(String username)
     {
-        this.username = username;
+        this.username = username + generateSuffix();
         return this;
     }
     public TestUserBuilder insertRecord(Boolean insertRecord)
@@ -81,5 +81,17 @@ public with sharing class TestUserBuilder {
             insert user;
         }
         return user;
+    }
+    
+    private String generateSuffix() {
+        return '.' + URL.getSalesforceBaseUrl().getHost().substringBefore('.') + '.' + generateRandomSuffixNumber();
+    }
+
+    private String generateRandomSuffixNumber() {
+        String numberStr = '';
+        for(Integer i = 0; i < SUFFIX_NUMBER_DIGITS; i++) {
+            numberStr += Integer.valueof((Math.random() * 9));
+        }
+        return numberStr;
     }
 }
