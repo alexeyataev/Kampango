@@ -11,7 +11,7 @@ public without sharing class TestFinanceDataFactory {
         }
         return instance;
     }
-    
+
     public void createZumzumData() {
         Zumzum__Tax_Rate__c zumzumTaxRate = new Zumzum__Tax_Rate__c(
             Name = 'No VAT',
