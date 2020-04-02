@@ -116,6 +116,7 @@
         <members>ZumzumBankReceiptCreator</members>
         <members>ZumzumBankReceiptCreatorMock</members>
         <members>ZumzumCreatePostSalesInvoice</members>
+        <members>ZumzumPostSalesInvoiceHelperTest</members>
         <members>ZumzumCreatePostSalesInvoiceTest</members>
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
