@@ -93,6 +93,8 @@
         <members>InvalidateWithdrawCADFlowTest</members>
         <members>SystemClock</members>
         <members>TestAccountBuilder</members>
+        <members>TestBatchReceiptReportBuilder</members>
+        <members>TestBatchReceiptReportItemBuilder</members>
         <members>TestBookingBuilder</members>
         <members>TestBranchWeightingBuilder</members>
         <members>TestContactBuilder</members>
