@@ -858,6 +858,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Paid_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Payment_Run_Line_Item__c.Purchase_Invoice__c</field>
         <readable>true</readable>
@@ -1410,6 +1415,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Expense_Sheet_Detail__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Expense_Sheet__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -33,7 +33,6 @@ public class OutboundBACSpaymentHelper {
             piToLedgerMap.put(ledger.Zumzum__Purchase_Invoice__r.Id, currentLegers);
         }
 
-
         for (Id piId :piToLedgerMap.keySet()){
             initiateBankSupplierPayment(piToLedgerMap.get(piId), paymentRun);
         }
@@ -69,8 +68,8 @@ public class OutboundBACSpaymentHelper {
         // Create Bank Supplier Payment Line Wrapper 
         List<Zumzum.BankSupplierPaymentService.BankPaymentLine> listBankPaymentLines = new List<Zumzum.BankSupplierPaymentService.BankPaymentLine>();
         
-        ZumZum.BankSupplierPaymentService.BankPaymentLine obPBankPaymentLine = new ZumZum.BankSupplierPaymentService.BankPaymentLine();
         for (Zumzum__Ledger__c currentLedger: ledgers){
+            ZumZum.BankSupplierPaymentService.BankPaymentLine obPBankPaymentLine = new ZumZum.BankSupplierPaymentService.BankPaymentLine();
             // Ledger Record of Purchase Invoice Line To Be Paid 
             obPBankPaymentLine.LedgerName = currentLedger.Name; // typo in variable name
             // Amount Of Line Item To Be Paid

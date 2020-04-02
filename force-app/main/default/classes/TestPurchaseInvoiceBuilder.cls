@@ -8,6 +8,7 @@ public class TestPurchaseInvoiceBuilder {
 	private Date invoiceDate;
 	private Id purchaseOrderId;
 	private String status;
+	private String type;
 
 	public TestPurchaseInvoiceBuilder withAccount(Id accountId) {
 		this.accountId = accountId;
@@ -39,6 +40,11 @@ public class TestPurchaseInvoiceBuilder {
 		return this;
 	}
 
+	public TestPurchaseInvoiceBuilder withType(String type) {
+		this.type = type;
+		return this;
+	}
+
 	public TestPurchaseInvoiceBuilder insertRecord(Boolean insertRecord) {
 		this.insertRecord = insertRecord;
 		return this;
@@ -52,7 +58,8 @@ public class TestPurchaseInvoiceBuilder {
 				Zumzum__Invoice_Date__c =this.invoiceDate,
 				Zumzum__Invoice_Due_Date__c =  this.dueDate,
 				Zumzum__Purchase_Order__c = this.purchaseOrderId,
-				Zumzum__Status__c = this.status
+				Zumzum__Status__c = this.status,
+				Zumzum__Type__c = type
 		);
 
 		if(insertRecord) {
