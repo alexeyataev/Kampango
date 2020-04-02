@@ -137,7 +137,7 @@ public without sharing class TestFinanceDataFactory {
         Zumzum__Bank_Account__c zumzumReconcileBankAccount = new Zumzum__Bank_Account__c(
             Name = 'Reconcile Bank',
             Zumzum__Type__c = 'Current/Saving',
-            Zumzum__Account_Number__c = '2',
+            Zumzum__Account_Number__c = '3',
             Zumzum__Status__c = 'Active',
             Zumzum__Nominal_Account__c = zumzumReconcileNominalAccount.Id
         );
