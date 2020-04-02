@@ -24,11 +24,11 @@ public without sharing class AddContactForMembershipTest {
 
     @isTest static void AddContact_ContactAdded_ContactNumberReturned() {
         Test.startTest();
-        CareRequestBodyUtil.ContactOjbect contactOjbect = new CareRequestBodyUtil.ContactOjbect();
-        CareRequestBodyUtil.ContactDetails contactDetails = new CareRequestBodyUtil.ContactDetails();
+        CareHelper.ContactObject contactObject = new CareHelper.ContactObject();
+        CareHelper.ContactDetails contactDetails = new CareHelper.ContactDetails();
         contactDetails.contactNumber = CONTACT_NUMBER_RETURNED;
-        contactOjbect.contact = contactDetails;
-        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactOjbect));
+        contactObject.contact = contactDetails;
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactObject));
         Contact testContact = [SELECT Id FROM Contact LIMIT 1];
         List<String> contactIds = new List<String> {testContact.Id};
         List<AddContactResult> resultList = AddContactForMembershipHandler.addContact(contactIds);
@@ -38,13 +38,13 @@ public without sharing class AddContactForMembershipTest {
 
     @isTest static void AddContactError_ContactNotAdded_ErrorReturned() {
         Test.startTest();
-        CareRequestBodyUtil.ContactOjbect contactOjbect = new CareRequestBodyUtil.ContactOjbect();
-        CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();
+        CareHelper.ContactObject contactObject = new CareHelper.ContactObject();
+        CareHelper.ErrorObject errorObject = new CareHelper.ErrorObject();
         errorObject.errorMessage = MESSAGE_TEXT_ERROR;
         errorObject.errorNumber = ERROR_NUMBER;
-        contactOjbect.error = new List<CareRequestBodyUtil.ErrorObject>();
-        contactOjbect.error.add(errorObject);
-        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactOjbect));
+        contactObject.error = new List<CareHelper.ErrorObject>();
+        contactObject.error.add(errorObject);
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactObject));
         Contact testContact = [SELECT Id FROM Contact LIMIT 1];
         List<String> contactIds = new List<String> {testContact.Id};
         List<AddContactResult> resultList = AddContactForMembershipHandler.addContact(contactIds);
@@ -54,11 +54,11 @@ public without sharing class AddContactForMembershipTest {
 
     @isTest static void AddContactBatch_ContactAdded_ContactNumberReturned() {
         Test.startTest();
-        CareRequestBodyUtil.ContactOjbect contactOjbect = new CareRequestBodyUtil.ContactOjbect();
-        CareRequestBodyUtil.ContactDetails contactDetails = new CareRequestBodyUtil.ContactDetails();
+        CareHelper.ContactObject contactObject = new CareHelper.ContactObject();
+        CareHelper.ContactDetails contactDetails = new CareHelper.ContactDetails();
         contactDetails.contactNumber = CONTACT_NUMBER_RETURNED;
-        contactOjbect.contact = contactDetails;
-        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactOjbect));
+        contactObject.contact = contactDetails;
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactObject));
         AddContactForMembershipBatch cacb = new AddContactForMembershipBatch();
         Database.executeBatch(cacb, 10);
         Test.stopTest();

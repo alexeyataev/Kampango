@@ -3704,6 +3704,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Expense_Sheet_Detail__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Foreign_Currency_Rate__c</field>
         <readable>true</readable>
     </fieldPermissions>
