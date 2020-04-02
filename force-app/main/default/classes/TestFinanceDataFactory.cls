@@ -127,6 +127,21 @@ public without sharing class TestFinanceDataFactory {
             Zumzum__Nominal_Account__c = zumzumCurrentNominalAccount.Id
         );
         insert zumzumBankAccount;
+        
+        Zumzum__Nominal_Account__c zumzumReconcileNominalAccount = new Zumzum__Nominal_Account__c(
+            Name = 'Bank Current Account',
+            Zumzum__Account_Code__c = 9401
+        );
+        insert zumzumReconcileNominalAccount;
+        
+        Zumzum__Bank_Account__c zumzumReconcileBankAccount = new Zumzum__Bank_Account__c(
+            Name = 'Reconcile Bank',
+            Zumzum__Type__c = 'Current/Saving',
+            Zumzum__Account_Number__c = '2',
+            Zumzum__Status__c = 'Active',
+            Zumzum__Nominal_Account__c = zumzumReconcileNominalAccount.Id
+        );
+        insert zumzumReconcileBankAccount;
 
         Zumzum__General_Setup__c zumzumGeneralSetupPurchaseInvoice = new Zumzum__General_Setup__c(
             Name = 'PI',
@@ -160,6 +175,32 @@ public without sharing class TestFinanceDataFactory {
         dimension2.Zumzum__Type__c = 'Dimension 2';
         insert dimension2;
     }
+
+    public String[] createBatchReceiptReportWithItems(Integer itemsCount) {
+        String[] paymentIds = new String[]{};
+        List<Batch_Receipt_Report_Item__c> batchReceiptReportItems = new List<Batch_Receipt_Report_Item__c>();
+        TestBatchReceiptReportBuilder batchReceiptReportBulder = new TestBatchReceiptReportBuilder();
+        Batch_Receipt_Report__c batchReceiptReport = batchReceiptReportBulder.withStatus('Not Created')
+                                                                             .insertRecord(true)
+                                                                             .build();
+        
+        TestBatchReceiptReportItemBuilder batchReceiptReportItemBuilder = new TestBatchReceiptReportItemBuilder();
+        for (Integer i = 0; i < itemsCount; i++) {
+            paymentIds.add(String.valueOf(i));
+            batchReceiptReportItems.add(
+                batchReceiptReportItemBuilder.withPaymentMethod('CreditCard')
+                                             .withCurrencyCode('GBP')
+                                             .withAmount(10.00)
+                                             .withBatchReceiptReport(batchReceiptReport.Id)
+                                             .withPaymentId(String.valueOf(i))
+                                             .withCapturedOn(Date.today())
+                                             .insertRecord(false)
+                                             .build()
+            );
+        }
+        insert batchReceiptReportItems;
+        return paymentIds;
+    }  
     
     public static void updateHouseholdAccountsToCustomerType() {
         List<Account> accList = [SELECT Id FROM Account WHERE Type = 'Household'];
