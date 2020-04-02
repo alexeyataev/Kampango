@@ -2,10 +2,7 @@ public class ReconcilePaymentsBatchHelper {
     private static String DRAFT_STATUS = 'Draft';
     private static String PROCESSING_STATUS = 'Processing';
     private static String CREATED_STATUS = 'Created';
-    //change on test and uat!
-    //private static Integer BANK_NOMINAL_ACCOUNT_CODE = 9401;
-    private static Integer BANK_NOMINAL_ACCOUNT_CODE = 1200;
-
+    private static Integer BANK_NOMINAL_ACCOUNT_CODE = 9401;
 
     public static void processBatchReceiptReport(Batch_Receipt_Report__c receipt) {
         Map<String, Id> paymentLedgerMap = new Map<String, Id>();
@@ -53,13 +50,13 @@ public class ReconcilePaymentsBatchHelper {
     }
 
     private static Id getBankAccountIdByNominalAccountCode(Integer code) {
-        List<Zumzum__Bank_Account__c> bankAccount = [
+        Zumzum__Bank_Account__c bankAccount = [
             SELECT Id, Name FROM 
             Zumzum__Bank_Account__c 
             WHERE Zumzum__Nominal_Account__r.Zumzum__Account_Code__c =: code
             LIMIT 1
         ];
-        return bankAccount[0].Id;
+        return bankAccount.Id;
     }
 
     private static Map<String, Id> getPaymentLedgerMap(List<Zumzum__Ledger__c> ledgers) {

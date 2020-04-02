@@ -348,6 +348,7 @@
         <name>CustomSite</name>
     </types>
     <types>
+        <members>Batch_Receipt_Report__c</members>
         <members>Booking__c</members>
         <members>Course_Assignment__c</members>
         <members>npsp__Trigger_Handler__c</members>
@@ -692,6 +693,7 @@
         <name>Queue</name>
     </types>
     <types>
+        <members>Batch_Receipt_Report__c.Reconcile</members>
         <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Offer_Email</members>
         <members>Booking__c.Transfer</members>
