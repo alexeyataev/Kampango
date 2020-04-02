@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ES_should_have_only_one_purchase_invoice</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT(
+ OR(
+  ISBLANK(Zumzum__Expense_Sheet__c),
+  Zumzum__Expense_Sheet__r.Number_of_Purchase_Invoices__c = 0,
+  Zumzum__Expense_Sheet__r.Number_of_Purchase_Invoices__c = 1
+ )
+)</errorConditionFormula>
+    <errorMessage>Expense Sheet should not have more than one Purchase Invoice linked</errorMessage>
+</ValidationRule>

@@ -6,6 +6,7 @@
         <members>AddBankReceiptPaymentBatchTest</members>
         <members>AddBankReceiptPaymentScheduler</members>
         <members>AddBankReceiptPaymentSchedulerTest</members>
+        <members>AssignCasetoQueueTest</members>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
         <members>BookingJourneyHelper</members>

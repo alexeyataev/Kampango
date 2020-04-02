@@ -11,13 +11,14 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
     private static final String COURSE_ASSIGNMENT_WITHDRAWN_STATUS = 'Withdrawn';
 
-    //@TestSetup
-    // avoid annotation - Account.AccountAutoNumber is not unique when using @TestSetup
+    @TestSetup
     private static void SetupTestData() {
     TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc1')
+                    .buildOrganizationAccount('acc2')
                     .buildBranchAccount()
                     .buildPractitioner(PRACTITIONER_LASTNAME, PRACTITIONER_EMAIL_ADDRESS)
+                    .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS)
                     .buildPractitionerFeeRate()
                     .buildVenue()
                     .buildRoom()
@@ -33,12 +34,13 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             FROM Session__c 
             WHERE Status__c = 'Provisional' 
                 AND Type__c <> 'Reunion'
-            ];    
+        ];    
 
         List<Course__c> listDraftCourses = [
             SELECT Id 
             FROM Course__c 
-            WHERE Status__c = 'Draft'];
+            WHERE Status__c = 'Draft'
+        ];
 
         dataFactory .SetSessionsToConfirmed(provisionalNonReunionSessions)
                     .SetCoursesToFinal(listDraftCourses)
@@ -50,13 +52,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void WithdrawCourseAssignmentStatus_PractitionerChangesOnLastSessionOnCourse_CourseAssignmentStatusWithdrawn() {
-        SetupTestData();
-        TestDataFactory.getInstance()
-            .buildOrganizationAccount('acc2')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
-
         CreateTriggerSystemHandlerRecord();
-
         List<Session__c> sessions = [
             SELECT Id, Course__c, Practitioner__c, Course_Assignment__c
             FROM Session__c
@@ -79,7 +75,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         ];
 
         TestDataFactory.getInstance().buildLicenceToPractice(practitioner2);
-
         Licence_To_Practice__c licence2 = [
             SELECT Id 
             FROM Licence_To_Practice__c 
@@ -87,16 +82,13 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
             ];
 
-        test.startTest();
-
+        Test.startTest();
         for (Session__c session : sessions) {
             session.Practitioner__c = practitioner2.Id;
             session.Practitioner_Licence__c = licence2.Id; 
         }
-
         update sessions;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
@@ -120,14 +112,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNotLastSessionOnCourse_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
-
         CreateTriggerSystemHandlerRecord();
-
-        TestDataFactory.getInstance()
-            .buildOrganizationAccount('acc3')
-            .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
-
         Session__c session = [
             SELECT  Date__c, End__c, Start__c,Course__c, Practitioner__c, Course_Assignment__c
             FROM Session__c
@@ -159,14 +144,11 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
         ];
 
-        test.startTest();
-
+        Test.startTest();
         session.Practitioner__c = practitioner2.Id;
         session.Practitioner_Licence__c = licence2.Id;
-
         update session;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
@@ -190,7 +172,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_DateChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
 
         CreateTriggerSystemHandlerRecord();
 
@@ -200,13 +181,10 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
         ];
 
-        test.startTest();
-
+        Test.startTest();
         session.Date__c = Date.today() + 15;
-
         update session;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
@@ -220,23 +198,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_StartTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
-
         CreateTriggerSystemHandlerRecord();
-
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
             LIMIT 1
         ];
 
-        test.startTest();
-
-        session.Start__c = Time.newInstance(09, 00, 0, 0);
-
+        Test.startTest();
+        session.Start__c = Time.newInstance(9, 0, 0, 0);
         update session;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
@@ -250,23 +222,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_EndTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
-
         CreateTriggerSystemHandlerRecord();
-
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
             LIMIT 1
         ];
 
-        test.startTest();
-
+        Test.startTest();
         session.End__c = Time.newInstance(23, 00, 0, 0);
-
         update session;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
@@ -280,23 +246,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
-
         CreateTriggerSystemHandlerRecord();
-
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
             LIMIT 1
         ];
 
-        test.startTest();
-
+        Test.startTest();
         session.Lunch_Break_Minutes__c = 45;
-
         update session;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
@@ -310,10 +270,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
-
         CreateTriggerSystemHandlerRecord();
-
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
@@ -321,14 +278,11 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
         ];
 
-        test.startTest();
-
+        Test.startTest();
         session.Lunch_Break_Minutes__c = 45;
         session.Status__c = 'Confirmed';
-
         update session;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
@@ -343,13 +297,9 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
-
         CreateTriggerSystemHandlerRecord();
-
         Venue__c venue;
         Room__c room;
-
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
@@ -360,21 +310,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         venue = venueBuilder
             .InsertRecord(true)
             .Build();
-
         TestRoomBuilder roomBuilder = new TestRoomBuilder();
         room = roomBuilder
             .WithVenue(venue)
             .InsertRecord(true)
             .Build();
 
-        test.startTest();
-
+        Test.startTest();
         session.Venue__c = venue.Id;
         session.Room__c = room.Id;
-
         update session;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
@@ -388,10 +334,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_StatusChangesFromProvisionalToConfirmedOnReunionSession_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
-
         CreateTriggerSystemHandlerRecord();
-
         Session__c session = [
             SELECT Id, Status__c, Course_Assignment__c
             FROM Session__c
@@ -399,13 +342,10 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
         ];
 
-        test.startTest();
-
+        Test.startTest();
         session.Status__c = 'Confirmed';
-
         update session;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
@@ -419,10 +359,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_InsertNewSession_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
-
         CreateTriggerSystemHandlerRecord();
-
         Course_Assignment__c courseAssignment = [
             SELECT Status__c, Course__c, OwnerId
             FROM Course_Assignment__c
@@ -437,12 +374,10 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         Session__c session  = existingSessions[0].clone();
 
-        test.startTest();
-
+        Test.startTest();
         session.Course__c = courseAssignment.Course__c;
         insert session;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course_Assignment__c courseAssignmentToTest = [
             SELECT Status__c
@@ -456,10 +391,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_DeleteNotLastSession_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
-
         CreateTriggerSystemHandlerRecord();
-
         Course_Assignment__c courseAssignment = [
             SELECT Status__c, Course__c, OwnerId,
                 (
@@ -483,11 +415,9 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             WHERE ContactId = :session.Practitioner__c
         ];
 
-        test.startTest();
-
+        Test.startTest();
         delete courseAssignment.Sessions__r[0];
-
-        test.stopTest();
+        Test.stopTest();
 
         Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
@@ -511,10 +441,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_DeleteLastSession_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
-
         CreateTriggerSystemHandlerRecord();
-
         Course_Assignment__c courseAssignment = [
             SELECT Status__c, Course__c, OwnerId,
                 (
@@ -532,11 +459,9 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             WHERE ContactId = :courseAssignment.Sessions__r[0].Practitioner__c
         ];
 
-        test.startTest();
-        
+        Test.startTest();
         delete courseAssignment.Sessions__r;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course__c coursesSessionsAndCourseAssignmentsToWithdrawn = [
             SELECT Id,
@@ -560,10 +485,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_ReassignSession_CourseAssignmentStatusInvalidated() {
-        SetupTestData();
-
         CreateTriggerSystemHandlerRecord();
-
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
@@ -591,12 +513,10 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             WHERE ContactId = :courseAssignment.Sessions__r[0].Practitioner__c
         ];
 
-        test.startTest();
-        
+        Test.startTest();
         session.Course_Assignment__c = courseAssignmentNew.Id;
         update session;
-
-        test.stopTest();
+        Test.stopTest();
 
         Course_Assignment__c courseAssignmentToCheck = [
             SELECT Status__c
@@ -608,9 +528,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     }
 
     private static void CreateTriggerSystemHandlerRecord() {
-
         List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
-
         npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
         th.Name = 'SESSION_InvalidateCAs_TDTM';
         th.npsp__Class__c = 'SESSION_InvalidateCAs_TDTM';
@@ -619,7 +537,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         th.npsp__Active__c = true;
         th.npsp__Load_Order__c = 1;
         th.npsp__Asynchronous__c = false;
-
         triggerHandlers.add(th);
     }
 }
