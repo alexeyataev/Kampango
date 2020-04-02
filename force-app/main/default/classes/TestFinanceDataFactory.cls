@@ -142,7 +142,7 @@ public without sharing class TestFinanceDataFactory {
         Zumzum__General_Setup__c zumzumGeneralSetupPurchaseInvoice = new Zumzum__General_Setup__c(
             Name = 'PI',
             Zumzum__Starting_Document_No__c = '00030000',
-            Zumzum__Object__c = 'Sales Invoice',
+            Zumzum__Object__c = 'Purchase Invoice',
             Zumzum__Current_Document_Number__c = 30000
         );
 
@@ -153,7 +153,14 @@ public without sharing class TestFinanceDataFactory {
             Zumzum__Current_Document_Number__c = 50000
         );
 
-        insert new List<Zumzum__General_Setup__c> {zumzumGeneralSetupPurchaseInvoice, zumzumGeneralSetupLedgerTransaction};
+        Zumzum__General_Setup__c zumzumGeneralSetupSalesInvoiceTransaction = new Zumzum__General_Setup__c(
+            Name = 'SI',
+            Zumzum__Object__c = 'Sales Invoice',
+            Zumzum__Starting_Document_No__c = '00000000',
+            Zumzum__Current_Document_Number__c = 171
+        );
+
+        insert new List<Zumzum__General_Setup__c> {zumzumGeneralSetupPurchaseInvoice, zumzumGeneralSetupLedgerTransaction, zumzumGeneralSetupSalesInvoiceTransaction};
 
         insert new Financial_Settings__c(
             PI_Nominal_Account_Id__c = zumzumNominalAccount.Id, 
