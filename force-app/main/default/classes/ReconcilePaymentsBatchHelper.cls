@@ -1,8 +1,8 @@
 public class ReconcilePaymentsBatchHelper {
-    private static String DRAFT_STATUS = 'Draft';
-    private static String PROCESSING_STATUS = 'Processing';
-    private static String CREATED_STATUS = 'Created';
-    private static Integer BANK_NOMINAL_ACCOUNT_CODE = 9401;
+    private static final String DRAFT_STATUS = 'Draft';
+    private static final String PROCESSING_STATUS = 'Processing';
+    private static final String CREATED_STATUS = 'Created';
+    private static final Integer BANK_NOMINAL_ACCOUNT_CODE = 9401;
 
     public static void processBatchReceiptReport(Batch_Receipt_Report__c receipt) {
         Map<String, Id> paymentLedgerMap = new Map<String, Id>();
@@ -19,6 +19,7 @@ public class ReconcilePaymentsBatchHelper {
             SELECT Id, Zumzum__BankReconcile__c, Zumzum__Bank_Reconcile__c, Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c
             FROM Zumzum__Ledger__c
             WHERE Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c IN:reportItemIds
+            WITH SECURITY_ENFORCED
         ];
         paymentLedgerMap = getPaymentLedgerMap(ledgers);
 
