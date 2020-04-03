@@ -26,7 +26,6 @@ public class ZumzumCreatePostSalesInvoiceTest {
                     .buildPartnertHost('Tim', 'test2@test.com')
                     .buildRoom()
                     .buildBooking('Reserved');
-        TestFinanceDataFactory.updateHouseholdAccountsToCustomerType();
         TestFinanceDataFactory.createProducts();
     }
     private static void updateHouseholdAccountsToCustomerType() {
