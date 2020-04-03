@@ -202,21 +202,21 @@
         <locationX>3125</locationX>
         <locationY>842</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Instance.Booking_Journey_Payable_Amount__c</assignToReference>
+            <assignToReference>Booking_Instance_For_Update.Booking_Journey_Payable_Amount__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Amount_To_Be_Paid</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Instance.Id</assignToReference>
+            <assignToReference>Booking_Instance_For_Update.Id</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>bookingId</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Set_Payable_Amount</targetReference>
+            <targetReference>Update_Booking_Record</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -321,7 +321,7 @@
         <locationX>2961</locationX>
         <locationY>832</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Instance.Next_Collection_Date__c</assignToReference>
+            <assignToReference>Booking_Instance_For_Update.Next_Collection_Date__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>PaymentPlanOptionSelected.nextCollectionDate</elementReference>
@@ -348,12 +348,25 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Clear_Gift_Aid_Declaration_Filed_on_Booking_Object</name>
+        <label>Clear Gift Aid Declaration Filed on Booking Object</label>
+        <locationX>1525</locationX>
+        <locationY>614</locationY>
+        <assignmentItems>
+            <assignToReference>Booking_Instance_For_Update.Gift_Aid_Declaration__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Course_Nominal_Account</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Clear_Next_Collection_Date</name>
         <label>Clear Next Collection Date</label>
         <locationX>2963</locationX>
         <locationY>411</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Instance.Next_Collection_Date__c</assignToReference>
+            <assignToReference>Booking_Instance_For_Update.Next_Collection_Date__c</assignToReference>
             <operator>Assign</operator>
         </assignmentItems>
         <connector>
@@ -1069,7 +1082,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         <locationX>1356</locationX>
         <locationY>455</locationY>
         <defaultConnector>
-            <targetReference>Get_Course_Nominal_Account</targetReference>
+            <targetReference>Clear_Gift_Aid_Declaration_Filed_on_Booking_Object</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Membership Is False</defaultConnectorLabel>
         <rules>
@@ -1431,7 +1444,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
             <field>Zumzum__Nominal_Code__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>1400</stringValue>
+                <stringValue>1200</stringValue>
             </value>
         </filters>
         <object>Zumzum__Nominal_Account__c</object>
@@ -1510,7 +1523,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <recordLookups>
         <name>Get_GBP</name>
         <label>Get GBP</label>
-        <locationX>1727</locationX>
+        <locationX>1726</locationX>
         <locationY>446</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1635,14 +1648,18 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         <queriedFields>Id</queriedFields>
     </recordLookups>
     <recordUpdates>
-        <name>Set_Payable_Amount</name>
-        <label>Set Payable Amount</label>
-        <locationX>3295</locationX>
+        <description>What update:
+1. Booking Journey Amount To Be Paid( e.g One-off payment of £780);
+2. Next Collection Date;
+3. Gift Aid Declaration(Single or Joint Gift Aid Declaration);</description>
+        <name>Update_Booking_Record</name>
+        <label>Update Booking Record</label>
+        <locationX>3300</locationX>
         <locationY>843</locationY>
         <connector>
             <targetReference>Payment_Details_Screen</targetReference>
         </connector>
-        <inputReference>Booking_Instance</inputReference>
+        <inputReference>Booking_Instance_For_Update</inputReference>
     </recordUpdates>
     <screens>
         <name>DD_Payment_Is_Not_Available</name>
@@ -1768,8 +1785,8 @@ NOT(ISNUMBER({!Account_Name}))
     <screens>
         <name>Payment_Details_Screen</name>
         <label>Payment Details Screen</label>
-        <locationX>3450</locationX>
-        <locationY>843</locationY>
+        <locationX>3455</locationX>
+        <locationY>841</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
         <allowPause>false</allowPause>
@@ -2059,6 +2076,10 @@ NOT(ISNUMBER({!Account_Name}))
             <assignToReference>Gift_Aid_Declaration_List</assignToReference>
             <name>Gift_Aid_Declaration_List</name>
         </outputAssignments>
+        <outputAssignments>
+            <assignToReference>Booking_Instance_For_Update.Gift_Aid_Declaration__c</assignToReference>
+            <name>Gift_Aid_Result</name>
+        </outputAssignments>
     </subflows>
     <subflows>
         <name>Booking_Membership_Options_Flow</name>
@@ -2137,7 +2158,7 @@ NOT(ISNUMBER({!Account_Name}))
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>Booking_Instance</name>
+        <name>Booking_Instance_For_Update</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
