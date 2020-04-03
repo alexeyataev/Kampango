@@ -41,27 +41,27 @@ private class BatchOutboundBACSpaymentTest {
             WHERE Zumzum__Bank_Sort_Code__c = '572899'
             LIMIT 1
         ];
-        createPurchaseInvoice(acc.Id);
-
-        //2. Create Payment run
-        Payment_Run__c paymentRun = new Payment_Run__c();
-        paymentRun.Status__c = 'Draft';
-        insert paymentRun;
-
-        //3. Link PI to Payment run
-        ZumzumBACSpaymentActions.Request request = new ZumzumBACSpaymentActions.Request();
-        List<ZumzumBACSpaymentActions.Request> requests = new List<ZumzumBACSpaymentActions.Request>();
-        requests.add(request);
-        request.recordId =  paymentRun.Id;
-        System.debug(JSON.serialize(ZumzumBACSpaymentActions.linkPurchaseInvoices(requests))) ;
-
-        //4. Run Batch
-        paymentRun.Status__c = 'Processing';
-        update paymentRun;
-        List<Id> ids = new List<Id>();
-        ids.add(paymentRun.Id);
-
+        
         Test.startTest();
+        createPurchaseInvoice(acc.Id);
+            //2. Create Payment run
+            Payment_Run__c paymentRun = new Payment_Run__c();
+            paymentRun.Status__c = 'Draft';
+            insert paymentRun;
+
+            //3. Link PI to Payment run
+            ZumzumBACSpaymentActions.Request request = new ZumzumBACSpaymentActions.Request();
+            List<ZumzumBACSpaymentActions.Request> requests = new List<ZumzumBACSpaymentActions.Request>();
+            requests.add(request);
+            request.recordId =  paymentRun.Id;
+            System.debug(JSON.serialize(ZumzumBACSpaymentActions.linkPurchaseInvoices(requests))) ;
+
+            //4. Run Batch
+            paymentRun.Status__c = 'Processing';
+            update paymentRun;
+            List<Id> ids = new List<Id>();
+            ids.add(paymentRun.Id);
+
             BatchOutboundBACSpayment.runBatch(ids);
         Test.stopTest();
 
