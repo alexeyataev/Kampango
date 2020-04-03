@@ -2538,6 +2538,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Course__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Practitioner_Fee_Rate__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -2564,10 +2568,6 @@
     <tabVisibilities>
         <tab>npsp__Trigger_Handler__c</tab>
         <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>standard-Case</tab>
-        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Individual</tab>
