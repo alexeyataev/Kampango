@@ -122,6 +122,7 @@
         <members>ZumzumBankReceiptCreator</members>
         <members>ZumzumBankReceiptCreatorMock</members>
         <members>ZumzumCreatePostSalesInvoice</members>
+        <members>ZumzumPostSalesInvoiceHelperTest</members>
         <members>ZumzumCreatePostSalesInvoiceTest</members>
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
@@ -747,20 +748,21 @@
         <members>Company</members>
         <members>EmailAdministration</members>
         <name>Settings</name>
-    </types>   
+    </types>
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
         <members>Course__c.ShareAllCourseWithParents</members>
         <members>Zumzum__Company_Setup__c.ShareAllCompanySetupWithParents</members>
         <members>Zumzum__Company__c.ShareAllCompanyWithParents</members>
+        <members>Zumzum__Control_Account__c.ShareAllControlAccountWithParents</members>
         <members>Zumzum__Currency__c.ShareAllCurrencyWithParents</members>
         <members>Zumzum__Dimension__c.ShareAllDimensionWithParents</members>
         <members>Zumzum__Invoice_Template__c.ShareAllDocumentTemplateWithParents</members>
         <members>Zumzum__Nominal_Account__c.ShareAllNominalAccountWithParents</members>
         <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
         <members>Zumzum__Tax_Rate__c.ShareAllTaxRateWithParents</members>
-        <members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
         <members>cpm__Installment__c.ShareAllInstallmentsWithPSA</members>
+        <members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
         <members>cpm__Recurring_Payment__c.ShareAllPaymentsWithPSA</members>
         <members>cpm__Recurring_Payment__c.ShareAllRecurringPaymentsWithPSA</members>
         <name>SharingCriteriaRule</name>
