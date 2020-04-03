@@ -7,8 +7,7 @@ private class CourseCreateEnquiryUtilityTest {
                                          '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
                                          '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
                                          '"town":"London","op":"Send enquiry"}';
-    //@testSetup
-    // avoid annotation - Account.AccountAutoNumber is not unique when using @TestSetup
+    @testSetup
     static void createTestData() {
         List<OrgWideEmailAddress> addresses = [
             SELECT Id, Address 
@@ -68,14 +67,17 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithoutExistingContact() {
-        createTestData();
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
         ][0].Name;
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
+
+        Test.startTest();
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        Test.stopTest();
+
         List<Contact> createdContact = [
             SELECT Name, Email 
             FROM Contact 
@@ -91,7 +93,6 @@ private class CourseCreateEnquiryUtilityTest {
     
     @isTest
     static void createEnquiryWithExistingContact() {
-        createTestData();
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
@@ -104,7 +105,11 @@ private class CourseCreateEnquiryUtilityTest {
         Contact existingContact = createExistingContact(account.Id);
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
+
+        Test.startTest();
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        Test.stopTest();
+
         List<Contact> contacts = [
             SELECT Name
             FROM Contact
@@ -120,12 +125,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithExistingContactAndPartner() {
-        createTestData();
-        Account accountPartner = new Account(
-            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
-            Name = 'Partner Household'
-        );
-        insert accountPartner;
+        Account accountPartner = createExistingAccount();
         TestContactBuilder contactBuilder = new TestContactBuilder();
         Contact partner = contactBuilder
             .withRecordType('Client')
@@ -136,11 +136,7 @@ private class CourseCreateEnquiryUtilityTest {
             .insertRecord(false)
             .build();
         insert partner;
-        Account account = new Account(
-            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
-            Name = 'Test Household'
-        );
-        insert account;
+        Account account = createExistingAccount();
         Contact existingContact = createExistingContact(account.Id);
         String avaliableCourse = [
             SELECT Id, Name
@@ -152,11 +148,10 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
         
-        // Temporarily commented to avoid System.LimitException: npsp:Too many SOQL queries: 101
-        // To be fixed in T-02067
         Test.startTest();
-            CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         Test.stopTest();
+        
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact
@@ -179,12 +174,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithoutExistingPartner() {
-        createTestData();
-        Account account = new Account(
-            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
-            Name = 'Test Household'
-        );
-        insert account;
+        Account account = createExistingAccount();
         Contact existingContact = createExistingContact(account.Id);
         String avaliableCourse = [
             SELECT Id, Name 
@@ -195,11 +185,11 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
+
         Test.startTest();
-
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
-
         Test.stopTest();
+
         List<Contact> partners = [
             SELECT Name, Email
             FROM Contact
@@ -216,7 +206,6 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithContactPreference() {
-        createTestData();
         String avaliableCourse = [
             SELECT Id, Name
             FROM Course__c 
@@ -224,7 +213,11 @@ private class CourseCreateEnquiryUtilityTest {
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('emailPreference', '1');
+
+        Test.startTest();
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
+        Test.stopTest();
+
         List<Contact> createdContact = [
             SELECT Name, Email, Individual.Email__c
             FROM Contact 
@@ -239,12 +232,7 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithoutExistingPartnerWithContactPreference() {
-        createTestData();
-        Account account = new Account(
-            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
-            Name = 'Test Household'
-        );
-        insert account;
+        Account account = createExistingAccount();
         Contact existingContact = createExistingContact(account.Id);
         String avaliableCourse = [
             SELECT Id, Name 
@@ -257,11 +245,11 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('partner_email', 'partner@partner.partner');
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('emailPreference', '1');
-        Test.startTest();
 
+        Test.startTest();
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
-        
         Test.stopTest();
+
         List<Contact> partners = [
             SELECT Name, Email, Individual.Email__c
             FROM Contact
@@ -277,14 +265,10 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithThreeExistingPrimaryContacts() {
-        createTestData();
         Account[] accounts = new Account[]{};
         Contact[] contacts = new Contact[]{};
         for (Integer i = 0; i < 3; i++) {
-            accounts.add(new Account(
-                RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
-                Name = 'Test Household' + i
-            ));
+            accounts.add(createExistingAccount(i, false));
         }
         insert accounts;
 
@@ -330,14 +314,10 @@ private class CourseCreateEnquiryUtilityTest {
 
     @isTest
     static void createEnquiryWithThreeExistingPartners() {
-        createTestData();
         Account[] accounts = new Account[]{};
         Contact[] contacts = new Contact[]{};
         for (Integer i = 0; i < 3; i++) {
-            accounts.add(new Account(
-                RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
-                Name = 'Test Household' + i
-            ));
+            accounts.add(createExistingAccount(i, false));
         }
         insert accounts;
 
@@ -382,6 +362,22 @@ private class CourseCreateEnquiryUtilityTest {
         System.assertEquals(4, partners.size());
         System.assertEquals(1, bookings.size());
     }
+
+    private static Account createExistingAccount() {
+        return createExistingAccount(1, true);
+    }
+
+    private static Account createExistingAccount(Integer i, Boolean insertRecord) {
+        Account existingAccount = new Account(
+            RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
+            Name = 'Test Household' + i
+        );
+        if(insertRecord) {
+            insert existingAccount;
+        }
+        return existingAccount;
+    }
+
     private static Contact createExistingContact(Id accountId) {
         Contact existingContact = new Contact(
             LastName = 'Test',  
