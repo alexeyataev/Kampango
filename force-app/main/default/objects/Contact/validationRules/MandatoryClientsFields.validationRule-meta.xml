@@ -11,6 +11,11 @@ ISBLANK(MailingCity) ||
 ISBLANK(MailingPostalCode) ||
 ISBLANK(MailingStreet) ||
 ISBLANK(Email) ||
+AND
+(
+ISBLANK(MobilePhone), 
+ISBLANK(HomePhone)
+) ||
 OR
 (
 AND
