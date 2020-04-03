@@ -11,6 +11,14 @@ public with sharing class CareRequestBodyUtil {
     private static final String SUB_TOPIC = 'W';
 
     public static String createSendContactBody(Contact cont) {
+        Map<String, String> preferredPhonedMap = new Map<String, String> {
+            'Mobile' => cont.MobilePhone != null ? cont.MobilePhone : '',
+            'Home' => cont.HomePhone != null ? cont.HomePhone : ''
+        };
+        Map<String, String> notPreferredPhoneTypedMap = new Map<String, String> {
+            'Mobile' => 'Home',
+            'Home' => 'Mobile'
+        };
         AddUpdateContactRequest addUpdateContactRequest = new AddUpdateContactRequest();
         addUpdateContactRequest.authKey = AUTH_KEY;
         addUpdateContactRequest.pagename = SF_ENVIRONMENT_NAME;
@@ -23,6 +31,8 @@ public with sharing class CareRequestBodyUtil {
         addUpdateContactRequest.gender = cont.Gender__c;
         addUpdateContactRequest.postcode = cont.MailingPostalCode;
         addUpdateContactRequest.email = cont.Email;
+        addUpdateContactRequest.primaryPhoneNumber = preferredPhonedMap.get(cont.npe01__PreferredPhone__c);
+        addUpdateContactRequest.secondaryPhoneNumber = preferredPhonedMap.get(notPreferredPhoneTypedMap.get(cont.npe01__PreferredPhone__c));
         addUpdateContactRequest.address = cont.MailingStreet;
         addUpdateContactRequest.town = cont.MailingCity;
         addUpdateContactRequest.country = cont.MailingCountry;
@@ -99,6 +109,8 @@ public with sharing class CareRequestBodyUtil {
         private String gender {get;set;}
         private String postcode {get;set;}
         private String email {get;set;}
+        private String primaryPhoneNumber {get;set;}
+        private String secondaryPhoneNumber {get;set;}
         private String address {get;set;}
         private String town {get;set;}
         private String country {get;set;}
