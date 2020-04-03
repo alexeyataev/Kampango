@@ -32,9 +32,9 @@ public class OutboundBACSpaymentHelper {
             currentLegers.add(ledger);
             piToLedgerMap.put(ledger.Zumzum__Purchase_Invoice__r.Id, currentLegers);
         }
-
+        Id bankAccountId = getBankAccountId();
         for (Id piId :piToLedgerMap.keySet()){
-            initiateBankSupplierPayment(piToLedgerMap.get(piId), paymentRun);
+            initiateBankSupplierPayment(piToLedgerMap.get(piId), paymentRun, bankAccountId);
         }
     }
 
@@ -48,7 +48,7 @@ public class OutboundBACSpaymentHelper {
         ].Id;
     }
 
-    private static String initiateBankSupplierPayment(List<Zumzum__Ledger__c> ledgers, Payment_Run__c paymentRun){
+    private static String initiateBankSupplierPayment(List<Zumzum__Ledger__c> ledgers, Payment_Run__c paymentRun, Id bankAccountId){
         Zumzum__Ledger__c ledger0 = ledgers[0];
 
         // Initiate A New Bank Supplier Payment
@@ -58,7 +58,7 @@ public class OutboundBACSpaymentHelper {
         // Supplier Account ID 
         objPaymentWrapper.AccountId = ledger0.Zumzum__Customer_Supplier_Account_Name__c;
         // Bank Account ID 
-        objPaymentWrapper.BankAccountId = getBankAccountId();
+        objPaymentWrapper.BankAccountId = bankAccountId;
         // Bank Supplier Payment Posting Date 
         objPaymentWrapper.PostingDate = Date.Today();
         // TaxRate
