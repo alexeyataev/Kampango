@@ -61,6 +61,10 @@
                 <field>Zumzum__POP_Number__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Zumzum__Company__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Zumzum__Total_Net__c</field>
             </layoutItems>
@@ -239,8 +243,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Payment_Run__c</fields>	
-        <fields>Unpaid_Amount__c</fields>
         <relatedList>Payment_Run_Line_Item__c.Purchase_Invoice__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -249,7 +251,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h4E000000phOE</masterLabel>
+        <masterLabel>00h4E0000016rWK</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

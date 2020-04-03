@@ -906,6 +906,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Payment_Run_Line_Item__c.Is_Email_Sent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Payment_Run_Line_Item__c.Paid_Amount__c</field>
         <readable>true</readable>
@@ -2473,6 +2478,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Expense_Sheet_Detail__c.Course__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Expense_Sheet_Detail__c.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

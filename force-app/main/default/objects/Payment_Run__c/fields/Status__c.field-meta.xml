@@ -26,11 +26,6 @@
                 <label>Ready</label>
             </value>
             <value>
-                <fullName>Confirmed</fullName>
-                <default>false</default>
-                <label>Confirmed</label>
-            </value>
-            <value>
                 <fullName>Completed</fullName>
                 <default>false</default>
                 <label>Completed</label>

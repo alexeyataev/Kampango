@@ -718,6 +718,7 @@
         <members>Capacity_PSA/CADs_awaiting_practitioner_response1</members>
         <members>Capacity_PSA/CADs_rejected_or_invalidated1</members>
         <members>Capacity_PSA/CADs_to_issue1</members>
+        <members>Capacity_PSA/Pending_Approval_for_Expense_Request</members>
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
         <members>Enquiries_PSA</members>
