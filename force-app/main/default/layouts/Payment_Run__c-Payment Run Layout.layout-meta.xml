@@ -81,7 +81,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Zumzum__Amount__c</fields>
         <relatedList>Zumzum__Bank_Payment_Line_Item__c.Payment_Run__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
