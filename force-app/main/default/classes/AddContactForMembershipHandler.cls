@@ -6,7 +6,7 @@ public with sharing class AddContactForMembershipHandler {
         AddContactResult addContactResult = new AddContactResult();
         try {
             Contact cont = [
-                SELECT Id, Branch__r.Branch_Number__c, FirstName, LastName, NCT_Number__c, Gender__c, MailingPostalCode, Email, npe01__PreferredPhone__c, MobilePhone, HomePhone, MailingStreet, MailingCity, MailingCountry 
+                SELECT Id, Branch__r.Branch_Number__c, FirstName, LastName, NCT_Number__c, Gender__c, MailingPostalCode, Email, npe01__PreferredPhone__c, Phone, MobilePhone, HomePhone, MailingStreet, MailingCity, MailingCountry 
                 FROM Contact 
                 WHERE Id =: contactId
                 WITH SECURITY_ENFORCED
