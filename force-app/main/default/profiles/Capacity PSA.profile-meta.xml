@@ -2190,6 +2190,9 @@
         <layout>Zumzum__Expense_Sheet__c-Capacity Expense Sheet Layout</layout>	
     </layoutAssignments>
     <layoutAssignments>	
+        <layout>Zumzum__Purchase_Invoice__c-Capacity PSA Purchase Invoice Layout</layout>	
+    </layoutAssignments>
+    <layoutAssignments>	
         <layout>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</layout>	
     </layoutAssignments>
     <objectPermissions>
