@@ -35,7 +35,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
                     .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE)
                     .buildReunion();
 
-                    List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+                    List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
         dataFactory .setSessionsToConfirmed(sessions)
                     .setCourseToFinal();
     }
@@ -43,10 +43,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_NewSessionIsAdded_CourseStatusIsRevertedToDraft() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -78,10 +74,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_DateUpdatedOnSession_CourseStatusIsRevertedToDraft() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -101,10 +94,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_StartTimeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -124,10 +114,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_EndTimeUpdatedOnSession_CourseStatusIsRevertedToDraft () {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -146,10 +133,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_LunchBreakMinutesUpdatedOnSession_CourseStatusIsRevertedToDraft() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -169,21 +153,19 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_PractitionerLicenceUpdatedOnSession_CourseStatusIsRevertedToDraft() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
-        Test.startTest();
         Contact practitioner = [SELECT LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME_ONE LIMIT 1];
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
         licenceToPractice = licenceToPracticeBuilder
             .withContact(practitioner)
             .insertRecord(true)
             .build();
+
+        Test.startTest();
         for(Session__c aSession :sessions) {
             aSession.Practitioner_Licence__c = licenceToPractice.Id;
         }
@@ -197,10 +179,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_VenueUpdatedOnSession_CourseStatusIsRevertedToDraft() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -230,10 +209,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_SessionDeletedOnCourse_CourseStatusIsRevertedToDraft() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -249,10 +225,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_PractitionerUpdatedOnSession_CourseStatusIsRevertedToDraft() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -274,10 +247,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_StatusUpdatedOnSession_CourseStatusIsRevertedToDraft() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -296,10 +266,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_BulkSessionsChanged_CourseStatusIsRevertedToDraft() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
         Set<Id> courseIds = new Set<Id>();
         for (Course__c aCourse : coursesToTest){
@@ -322,10 +289,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_BulkSessionsDeleted_CourseStatusIsRevertedToDraft() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
-        testDataFactory.setSessionsToConfirmed(sessions);
-
         List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
         Set<Id> courseIds = new Set<Id>();
         for (Course__c aCourse : coursesToTest){
@@ -345,11 +309,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_ReunionSessionsChangeStatusToFinal_CourseStatusUnaffected() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-        // List<Session__c> allExistingSessions = [SELECT Id FROM Session__c LIMIT 1000];
-        // testDataFactory.setSessionsToConfirmed(allExistingSessions);
-        // testDataFactory.buildReunion();
-        // testDataFactory.setCourseToFinal();
         List<Session__c> reunions = [SELECT Id FROM Session__c WHERE Type__c = 'Reunion' LIMIT 1000];
 
         Test.startTest();
@@ -365,11 +324,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_ReunionSessionsChangeEndTime_CourseStatusUnaffected() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-        // List<Session__c> allExistingSessions = [SELECT Id FROM Session__c LIMIT 1000];
-        // testDataFactory.setSessionsToConfirmed(allExistingSessions);
-        // testDataFactory.buildReunion();
-        // testDataFactory.setCourseToFinal();
         List<Session__c> reunions = [SELECT Id, End__c FROM Session__c WHERE Type__c = 'Reunion' LIMIT 1000];
 
         Test.startTest();

@@ -5,6 +5,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
     private static final String PRACTITIONER_LASTNAME_ONE = 'Smith';
+    private static final String VENUE_NAME = 'Public Venue';
     private static final Integer COURSES_TO_CREATE = 5;
     private static final Integer SESSIONS_TO_CREATE = 10;
 
@@ -23,15 +24,16 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
                     .buildCourse()
                     .buildEstimatedCosts()
                     .buildSession()
-                    .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE);
+                    .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE)
+                    .buildVenueWithName(VENUE_NAME);
+        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
+        dataFactory .setSessionsToConfirmed(sessions);
     }
 
     @isTest
     static void ChangeSessionToProvisional_DateUpdatedOnSession_SessionStatusIsChangedToProvisional() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
 
         Test.startTest();
         for(Session__c aSession : sessions) {
@@ -47,9 +49,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
     @isTest
     static void ChangeSessionToProvisional_StartTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
 
         Test.startTest();
         for(Session__c aSession : sessions) {
@@ -65,9 +65,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
     @isTest
     static void ChangeSessionToProvisional_EndTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
 
         Test.startTest();
         for(Session__c aSession : sessions) {
@@ -83,9 +81,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
     @isTest
     static void ChangeSessionToProvisional_LunchBreakUpdatedOnSession_SessionStatusIsChangedToProvisional() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
 
         Test.startTest();
         for(Session__c aSession : sessions) {
@@ -101,14 +97,9 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
     @isTest
     static void ChangeSessionToProvisional_VenueUpdatedOnSession_SessionStatusIsChangedToProvisional() {
         CreateTriggerSystemHandlerRecord();
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
-        testDataFactory.setSessionsToConfirmed(sessions);
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        venue = venueBuilder
-            .InsertRecord(true)
-            .Build();
-
+        Venue__c venue = [SELECT Id FROM Venue__c WHERE Name = :VENUE_NAME LIMIT 1];
+        
         Test.startTest();
         for(Session__c aSession : sessions) {
             aSession.Venue__c =  venue.Id;
@@ -125,8 +116,6 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
     static void ChangeSessionToProvisional_BulkUpdatesOnSessions_SessionStatusIsChangedToProvisional() {
         CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
-        TestDataFactory testDataFactory = TestDataFactory.getInstance();
-        testDataFactory.setSessionsToConfirmed(sessions);
         Set<Id> sessionIds = new Set<Id>();
 
         Test.startTest();
