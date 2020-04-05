@@ -40,6 +40,10 @@
                 <field>Zumzum__Status__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Zumzum__Type__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Zumzum__Total_Gross__c</field>
             </layoutItems>
@@ -63,6 +67,16 @@
     </layoutSections>
     <platformActionList>
         <actionListContext>Record</actionListContext>
+        <platformActionListItems>
+            <actionName>FeedItem.LinkPost</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>6</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>FeedItem.PollPost</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>7</sortOrder>
+        </platformActionListItems>
         <platformActionListItems>
             <actionName>FeedItem.TextPost</actionName>
             <actionType>QuickAction</actionType>
@@ -92,16 +106,6 @@
             <actionName>NewOpportunity</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>5</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>FeedItem.LinkPost</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>6</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>FeedItem.PollPost</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>7</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
