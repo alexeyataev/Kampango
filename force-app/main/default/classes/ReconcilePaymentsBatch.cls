@@ -19,12 +19,12 @@ public class ReconcilePaymentsBatch implements Database.Batchable<sObject>{
 
     public void execute(Database.BatchableContext bc, List<Batch_Receipt_Report__c> receipts) {
         for (Batch_Receipt_Report__c receipt : receipts) {
-            system.debug('Receipt: ' + receipt);
             ReconcilePaymentsBatchHelper.processBatchReceiptReport(receipt);
         }
     }
 
     public void finish(Database.BatchableContext bc) {
+        System.debug('ReconcilePaymentsBatch execution finished.');
     }
 
     @InvocableMethod(
