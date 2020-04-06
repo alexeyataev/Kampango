@@ -51,6 +51,7 @@
         <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
+        <members>dlrs_Zumzum_Purchase_InvoiceTest</members>
         <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
@@ -119,6 +120,11 @@
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
+        <members>ZumzumBACSpaymentActions</members>
+        <members>ZumzumBACSpaymentActionsTest</members>
+        <members>ZumzumBACSremittanceEmailsAction</members>
+        <members>ZumzumBACSremittanceEmailsActionTest</members>
+        <members>ZumzumBACSremittanceEmailsBatch</members>
         <members>ZumzumBankReceiptCreator</members>
         <members>ZumzumBankReceiptCreatorMock</members>
         <members>ZumzumCreatePostSalesInvoice</members>
@@ -151,6 +157,7 @@
         <members>dlrs_Batch_Receipt_Report_ItemTrigger</members>
         <members>dlrs_BookingTrigger</members>
         <members>dlrs_Estimated_CostsTrigger</members>
+        <members>dlrs_Zumzum_Purchase_InvoiceTrigger</members>
         <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
@@ -218,11 +225,13 @@
         <members>cpm__Installment__c.Account_Number__c</members>
         <members>cpm__Installment__c.Bank_Account__c</members>
         <members>cpm__Installment__c.Sort_Code__c</members>
+        <members>Zumzum__Bank_Payment_Line_Item__c.Payment_Run__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Bank_Receipt__c.Payment__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Course__c</members>
         <members>Zumzum__Expense_Sheet_Detail__c.Zumzum__Required_Fields</members>
         <members>Zumzum__Sales_Invoice_Line_Item__c.Course__c</members>
+        <members>Zumzum__Sales_Invoice__c.Email_Signature__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -237,6 +246,7 @@
         <members>dlrs__LookupRollupSummary2.CourseEstimatedVenueCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseNumberOfSessionsWithoutFeeRates</members>
         <members>dlrs__LookupRollupSummary2.CreditLineItemsAmount</members>
+        <members>dlrs__LookupRollupSummary2.ExpenseNumberOfInvoices</members>
         <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.TotalActualCourseIncome</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseOtherCosts</members>
@@ -266,6 +276,7 @@
         <members>Licence_To_Practice__c</members>
         <members>Parentforce_Community_Settings__c</members>
         <members>Payment_Run__c</members>
+        <members>Payment_Run_Line_Item__c</members>
         <members>Practitioner_Band__c</members>
         <members>Practitioner_Community_Settings__c</members>
         <members>Practitioner_Fee_Rate__c</members>
@@ -354,6 +365,7 @@
         <members>Booking__c</members>
         <members>Course_Assignment__c</members>
         <members>npsp__Trigger_Handler__c</members>
+        <members>Payment_Run__c</members>
         <members>Practitioner_Fee_Rate__c</members>
         <members>Venue__c</members>
         <name>CustomTab</name>
@@ -488,6 +500,8 @@
         <members>BookingConfirmationNotificationSend</members>
         <members>Claim_Practitioner_Fees</members>
         <members>Create_Gift_Aid_Declaration</members>
+        <members>Dimensions_update_on_PILI</members>
+        <members>Fill_dimension_values_process</members>
         <members>Get_Payment_Link</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Membership_Option</members>
@@ -548,6 +562,7 @@
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
         <members>Payment_Run__c-Payment Run Layout</members>
+        <members>Payment_Run_Line_Item__c-Payment Run Line Item Layout</members>
         <members>Practitioner_Band__c-Practitioner Band Layout</members>
         <members>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</members>
         <members>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</members>
@@ -701,6 +716,7 @@
         <members>Booking__c.Transfer</members>
         <members>Course__c.Resend_Reunion_Email</members>
         <members>Payment_Run__c.Create_transaction_records</members>
+        <members>Payment_Run__c.Send_Remittance_Emails</members>
         <members>Zumzum__Expense_Sheet__c.Edit_Community</members>
         <members>Zumzum__NewTask</members>
         <members>Zumzum__Sales_Invoice__c.Send_Payment_Email</members>
@@ -835,6 +851,9 @@
         <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
         <members>Venue__c.Populate_Location_if_Type_Not_ParentHome</members>
         <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
+        <members>Zumzum__Purchase_Invoice__c.ES_should_have_only_one_purchase_invoice</members>
+        <members>Zumzum__Purchase_Invoice__c.Linked_to_expense_sheet_only_by_Finance</members>
+        <members>Zumzum__Sales_Invoice__c.ContactShouldBeFilledIfInvoiceHasBooking</members>
         <name>ValidationRule</name>
     </types>
     <types>
