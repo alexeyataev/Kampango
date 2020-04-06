@@ -2426,6 +2426,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Expense_Sheet__c.Number_of_Purchase_Invoices__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Expense_Sheet__c.Zumzum__Back_Dated__c</field>
         <readable>true</readable>
