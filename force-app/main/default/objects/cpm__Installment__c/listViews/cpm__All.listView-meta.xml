@@ -10,4 +10,5 @@
     <columns>cpm__Last_Collection_Date__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
+    <language>en_US</language>
 </ListView>
