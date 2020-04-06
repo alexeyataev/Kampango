@@ -17,7 +17,7 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Set_Joint_GAD_0</name>
+        <name>Set_Joint_GAD</name>
         <label>Set Joint GAD</label>
         <locationX>683</locationX>
         <locationY>161</locationY>
@@ -32,8 +32,8 @@
     <assignments>
         <name>Set_Single_GAD</name>
         <label>Set Single GAD</label>
-        <locationX>682</locationX>
-        <locationY>533</locationY>
+        <locationX>687</locationX>
+        <locationY>550</locationY>
         <assignmentItems>
             <assignToReference>Gift_Aid_Result</assignToReference>
             <operator>Assign</operator>
@@ -67,24 +67,10 @@
         </value>
     </choices>
     <constants>
-        <name>GAD_ACQUISITION_METHOD</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Digital</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <name>GAD_METHOD</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>GiftAid</stringValue>
-        </value>
-    </constants>
-    <constants>
         <name>JOINT</name>
         <dataType>String</dataType>
         <value>
-            <stringValue> Joint</stringValue>
+            <stringValue>Joint</stringValue>
         </value>
     </constants>
     <constants>
@@ -126,7 +112,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Set_Joint_GAD_0</targetReference>
+                <targetReference>Set_Joint_GAD</targetReference>
             </connector>
             <label>Joint GAD</label>
         </rules>
@@ -315,14 +301,6 @@
         <objectType>Booking__c</objectType>
     </variables>
     <variables>
-        <name>Gift_Aid_Declaration_List</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>true</isOutput>
-        <objectType>gaid__Gift_Aid_Declaration__c</objectType>
-    </variables>
-    <variables>
         <name>Gift_Aid_Result</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -338,22 +316,6 @@
         <value>
             <booleanValue>false</booleanValue>
         </value>
-    </variables>
-    <variables>
-        <name>ParentGAD</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>gaid__Gift_Aid_Declaration__c</objectType>
-    </variables>
-    <variables>
-        <name>PartnerGAD</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>gaid__Gift_Aid_Declaration__c</objectType>
     </variables>
     <variables>
         <name>With_Partner</name>

@@ -227,7 +227,7 @@
             <name>With_GAD</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>curBooking.Gift_Aid_Declaration__c</leftValueReference>
+                <leftValueReference>curBooking.Gift_Aid_Declaration_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Single</stringValue>
@@ -242,7 +242,7 @@
             <name>Without_GAD</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>curBooking.Gift_Aid_Declaration__c</leftValueReference>
+                <leftValueReference>curBooking.Gift_Aid_Declaration_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Joint</stringValue>
@@ -369,7 +369,7 @@
         <queriedFields>Name</queriedFields>
         <queriedFields>Primary_Contact_Email__c</queriedFields>
         <queriedFields>PSA_Office__c</queriedFields>
-        <queriedFields>Gift_Aid_Declaration__c</queriedFields>
+        <queriedFields>Gift_Aid_Declaration_Status__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Course_Data</name>
