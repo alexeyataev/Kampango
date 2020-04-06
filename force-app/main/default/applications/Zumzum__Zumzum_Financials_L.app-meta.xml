@@ -11,6 +11,7 @@
     <label>Zumzum Financials</label>
     <navType>Standard</navType>
     <subscriberTabs>Payment_Run__c</subscriberTabs>
+    <subscriberTabs>Batch_Receipt_Report__c</subscriberTabs>
     <tabs>standard-home</tabs>
     <tabs>Zumzum__ZumZum_Financials</tabs>
     <tabs>Zumzum__Setup</tabs>
@@ -30,7 +31,6 @@
     <tabs>Zumzum__Revenue_Recognition_Rule__c</tabs>
     <tabs>Zumzum__Batch_Bank_Receipt__c</tabs>
     <tabs>Zumzum__Bank_Receipt__c</tabs>
-    <tabs>Zumzum__Bank_Receipt_Report__c</tabs>
     <tabs>Zumzum__Bank_Account__c</tabs>
     <tabs>Zumzum__BankTransfer__c</tabs>
     <tabs>Zumzum__BankReconcile__c</tabs>
