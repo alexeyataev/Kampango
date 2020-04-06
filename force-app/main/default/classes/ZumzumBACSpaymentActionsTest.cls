@@ -32,6 +32,7 @@ public class ZumzumBACSpaymentActionsTest {
         TestPurchaseInvoiceLineItemBuilder purchaseInvoiceLineItemBuilder = new TestPurchaseInvoiceLineItemBuilder();
         
         Zumzum__Purchase_Invoice__c pi1 = purchaseInvoiceBuilder
+                .withType('Purchase Invoice')
                 .withStatus('Posted')
                 .withAccount(supplierAccount.Id)
                 .withContact(contact.Id)
@@ -51,6 +52,7 @@ public class ZumzumBACSpaymentActionsTest {
                 .build();
         
         Zumzum__Purchase_Invoice__c pi2 = purchaseInvoiceBuilder
+                .withType('Purchase Invoice')
                 .withStatus('Posted')
                 .withAccount(supplierAccount.Id)
                 .withContact(contact.Id)
@@ -70,6 +72,7 @@ public class ZumzumBACSpaymentActionsTest {
                 .build();
         
         Zumzum__Purchase_Invoice__c pi3 = purchaseInvoiceBuilder
+                .withType('Purchase Invoice')
                 .withStatus('Posted')
                 .withAccount(supplierAccount.Id)
                 .withContact(contact.Id)
@@ -89,6 +92,7 @@ public class ZumzumBACSpaymentActionsTest {
                 .build();
         
         Zumzum__Purchase_Invoice__c pi4 = purchaseInvoiceBuilder
+                .withType('Purchase Invoice')
                 .withStatus('Posted')
                 .withAccount(supplierAccount.Id)
                 .withContact(contact.Id)
