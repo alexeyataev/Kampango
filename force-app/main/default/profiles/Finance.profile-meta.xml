@@ -123,6 +123,10 @@
     </classAccesses>
     <customPermissions>
         <enabled>true</enabled>
+        <name>Can_Post_Purchase_Invoices</name>
+    </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
         <name>Can_Reopen_Courses</name>
     </customPermissions>
     <fieldPermissions>

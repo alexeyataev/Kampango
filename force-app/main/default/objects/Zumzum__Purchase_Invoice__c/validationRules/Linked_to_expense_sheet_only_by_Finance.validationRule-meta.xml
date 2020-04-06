@@ -5,7 +5,7 @@
     <description>PI can be created only by Finance when the ES value is present</description>
     <errorConditionFormula>NOT(
  OR(
-  $Profile.Name = &#39;Finance&#39;,
+  $Permission.Can_Post_Purchase_Invoices,
   ISBLANK( Zumzum__Expense_Sheet__c )
  )
 )</errorConditionFormula>
