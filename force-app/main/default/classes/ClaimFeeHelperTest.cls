@@ -171,11 +171,12 @@ private class ClaimFeeHelperTest {
             LIMIT 1
         ];
         flowData.registrationFee = 5;
-
+        System.runAs(getPractitionerUser()) {
+            TestFinanceDataFactory financeDataFactory = TestFinanceDataFactory.getInstance();
+            financeDataFactory.createZumzumData();
+        }    
         Test.startTest();
             System.runAs(getPractitionerUser()) {
-                TestFinanceDataFactory financeDataFactory = TestFinanceDataFactory.getInstance();
-                financeDataFactory.createZumzumData();
                 ClaimFeeHelper.createPurchaseInvoice(new List<ClaimFeeHelper.ClaimFeeWrapper> {flowData});
             }
         Test.stopTest();
@@ -183,7 +184,6 @@ private class ClaimFeeHelperTest {
         System.assertEquals(2, [
             SELECT Id
             FROM Zumzum__Purchase_Invoice__c
-        ].size());
-        
+        ].size()); 
     }
 }

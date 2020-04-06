@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Amount__c</fullName>
+    <externalId>false</externalId>
+    <label>Total Amount</label>
+    <summarizedField>Batch_Receipt_Report_Item__c.Amount__c</summarizedField>
+    <summaryForeignKey>Batch_Receipt_Report_Item__c.Batch_Receipt_Report__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

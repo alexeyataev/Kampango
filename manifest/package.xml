@@ -75,6 +75,10 @@
         <members>PractitionerDetailsControllerTest</members>
         <members>PractitionerFeeRateHelper</members>
         <members>PractitionerFeeRateHelperTest</members>
+        <members>ReconcilePaymentsBatch</members>
+        <members>ReconcilePaymentsBatchTest</members>
+        <members>ReconcilePaymentsHelper</members>
+        <members>ReconcilePaymentsHelperTest</members>
         <members>SendHTMLEmailPlugin</members>
         <members>SendHTMLEmailPluginTest</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
@@ -91,6 +95,8 @@
         <members>InvalidateWithdrawCADFlowTest</members>
         <members>SystemClock</members>
         <members>TestAccountBuilder</members>
+        <members>TestBatchReceiptReportBuilder</members>
+        <members>TestBatchReceiptReportItemBuilder</members>
         <members>TestBookingBuilder</members>
         <members>TestBranchWeightingBuilder</members>
         <members>TestContactBuilder</members>
@@ -122,6 +128,7 @@
         <members>ZumzumBankReceiptCreator</members>
         <members>ZumzumBankReceiptCreatorMock</members>
         <members>ZumzumCreatePostSalesInvoice</members>
+        <members>ZumzumPostSalesInvoiceHelperTest</members>
         <members>ZumzumCreatePostSalesInvoiceTest</members>
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
@@ -147,6 +154,7 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>dlrs_Batch_Receipt_Report_ItemTrigger</members>
         <members>dlrs_BookingTrigger</members>
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTrigger</members>
@@ -244,10 +252,13 @@
         <members>dlrs__LookupRollupSummary2.TotalCourseOtherCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseTravelCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseVenueCosts</members>
+        <members>dlrs__LookupRollupSummary2.TotalMatchedBatchReceiptReportItems</members>
         <name>CustomMetadata</name>
     </types>
     <types>
         <members>Account</members>
+        <members>Batch_Receipt_Report__c</members>
+        <members>Batch_Receipt_Report_Item__c</members>
         <members>Bank_Account_Settings__c</members>
         <members>Booking__c</members>
         <members>Branch_Weighting__c</members>
@@ -350,6 +361,7 @@
         <name>CustomSite</name>
     </types>
     <types>
+        <members>Batch_Receipt_Report__c</members>
         <members>Booking__c</members>
         <members>Course_Assignment__c</members>
         <members>npsp__Trigger_Handler__c</members>
@@ -532,6 +544,8 @@
         <members>Account-Household Lightning Layout</members>
         <members>Account-Organization Lightning Layout</members>
         <members>Asset-Practitioner Asset Layout</members>
+        <members>Batch_Receipt_Report__c-Batch Receipt Report Layout</members>
+        <members>Batch_Receipt_Report_Item__c-Batch Receipt Report Item Layout</members>
         <members>Booking__c-Booking Layout</members>
         <members>Branch_Weighting__c-Branch Weighting Layout</members>
         <members>Case-Case Layout</members>
@@ -696,6 +710,7 @@
         <name>Queue</name>
     </types>
     <types>
+        <members>Batch_Receipt_Report__c.Reconcile</members>
         <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Offer_Email</members>
         <members>Booking__c.Transfer</members>
@@ -750,20 +765,21 @@
         <members>Company</members>
         <members>EmailAdministration</members>
         <name>Settings</name>
-    </types>   
+    </types>
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
         <members>Course__c.ShareAllCourseWithParents</members>
         <members>Zumzum__Company_Setup__c.ShareAllCompanySetupWithParents</members>
         <members>Zumzum__Company__c.ShareAllCompanyWithParents</members>
+        <members>Zumzum__Control_Account__c.ShareAllControlAccountWithParents</members>
         <members>Zumzum__Currency__c.ShareAllCurrencyWithParents</members>
         <members>Zumzum__Dimension__c.ShareAllDimensionWithParents</members>
         <members>Zumzum__Invoice_Template__c.ShareAllDocumentTemplateWithParents</members>
         <members>Zumzum__Nominal_Account__c.ShareAllNominalAccountWithParents</members>
         <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
         <members>Zumzum__Tax_Rate__c.ShareAllTaxRateWithParents</members>
-        <members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
         <members>cpm__Installment__c.ShareAllInstallmentsWithPSA</members>
+        <members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
         <members>cpm__Recurring_Payment__c.ShareAllPaymentsWithPSA</members>
         <members>cpm__Recurring_Payment__c.ShareAllRecurringPaymentsWithPSA</members>
         <name>SharingCriteriaRule</name>
