@@ -28,8 +28,8 @@ public without sharing class AddBankDetailsForMembershipTest {
 
     @isTest static void AddBankDetails_BankDetailsAdded_BankDetailNumberReturned() {
         Test.startTest();
-        CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = new CareRequestBodyUtil.ContactBankAccountObject();
-        CareRequestBodyUtil.ContactBankAccountDetails contactBankAccountDetails = new CareRequestBodyUtil.ContactBankAccountDetails();
+        CareHelper.ContactBankAccountObject contactBankAccountObject = new CareHelper.ContactBankAccountObject();
+        CareHelper.ContactBankAccountDetails contactBankAccountDetails = new CareHelper.ContactBankAccountDetails();
         contactBankAccountDetails.contactNumber = '3325461';
         contactBankAccountDetails.bankDetailNumber = BANK_DETAILS_NUMBER;
         contactBankAccountDetails.information = 'Added new account';
@@ -43,11 +43,11 @@ public without sharing class AddBankDetailsForMembershipTest {
 
     @isTest static void AddBankDetailsNull_NotNctNumber_NullReturned() {
         Test.startTest();
-        CareRequestBodyUtil.ContactBankAccountObject contactBankAccountObject = new CareRequestBodyUtil.ContactBankAccountObject();
-        CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();
+        CareHelper.ContactBankAccountObject contactBankAccountObject = new CareHelper.ContactBankAccountObject();
+        CareHelper.ErrorObject errorObject = new CareHelper.ErrorObject();
         errorObject.errorMessage = MESSAGE_TEXT_ERROR;
         errorObject.errorNumber = ERROR_NUMBER;
-        contactBankAccountObject.error = new List<CareRequestBodyUtil.ErrorObject>();
+        contactBankAccountObject.error = new List<CareHelper.ErrorObject>();
         contactBankAccountObject.error.add(errorObject);
         Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactBankAccountObject));
         List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails( getInstallmentList() );

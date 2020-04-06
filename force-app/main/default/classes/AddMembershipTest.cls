@@ -54,9 +54,9 @@ public without sharing class AddMembershipTest {
     @isTest static void AddMembershipBatch_MembershipAdded_StatusSuccess() {
         Test.startTest();
         updateInstallmentCareWaiting('331258');
-        CareRequestBodyUtil.MembershipOjbect membershipOjbect = new CareRequestBodyUtil.MembershipOjbect();
-        membershipOjbect.status = SUCCESS_STATUS;
-        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(membershipOjbect));
+        CareHelper.MembershipObject membershipObject = new CareHelper.MembershipObject();
+        membershipObject.status = SUCCESS_STATUS;
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(membershipObject));
         AddMembershipBatch camb = new AddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();
@@ -80,14 +80,14 @@ public without sharing class AddMembershipTest {
     @isTest static void AddMembershipBatchError_MembershipNotAdded_StatusError() {
         Test.startTest();
         updateInstallmentCareWaiting('331258');
-        CareRequestBodyUtil.MembershipOjbect membershipOjbect = new CareRequestBodyUtil.MembershipOjbect();
-        membershipOjbect.status = FAILURE_STATUS;
-        CareRequestBodyUtil.ErrorObject errorObject = new CareRequestBodyUtil.ErrorObject();
+        CareHelper.MembershipObject membershipObject = new CareHelper.MembershipObject();
+        membershipObject.status = FAILURE_STATUS;
+        CareHelper.ErrorObject errorObject = new CareHelper.ErrorObject();
         errorObject.errorMessage = MESSAGE_TEXT_ERROR;
         errorObject.errorNumber = ERROR_NUMBER;
-        membershipOjbect.error = new List<CareRequestBodyUtil.ErrorObject>();
-        membershipOjbect.error.add(errorObject);
-        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(membershipOjbect));
+        membershipObject.error = new List<CareHelper.ErrorObject>();
+        membershipObject.error.add(errorObject);
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(membershipObject));
         AddMembershipBatch camb = new AddMembershipBatch();
         Database.executeBatch(camb, 10);
         Test.stopTest();

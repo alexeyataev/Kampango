@@ -25,12 +25,12 @@ public with sharing class GeneratePaymentFileUtil {
 			return this.columns;
 		}
 
-		public List<String> getColumns(Payment_Run__c paymentRun){
+		public List<String> getColumns(String purchaseInvoiceName){
 			this.columns.add(bankPayment.Zumzum__Supplier__r.Zumzum__Bank_Sort_Code__c);
 			this.columns.add(bankPayment.Zumzum__Supplier__r.Zumzum__Bank_Account_No__c);
 			this.columns.add(this.getPaymentAmount());
 			this.columns.add(this.getBankAccountName());
-			this.columns.add(this.getPaymentReference(paymentRun));
+			this.columns.add(this.getPaymentReference(purchaseInvoiceName));
 
 			return this.columns;
 		}
@@ -50,10 +50,9 @@ public with sharing class GeneratePaymentFileUtil {
 			return bankPayment.Payment_Reference__c.rightPad(18, ' ');
 		}
 
-		private String getPaymentReference(Payment_Run__c paymentRun){
-			List<Zumzum__Bank_Payment_Line_Item__c> bankPaymentLineItems = paymentRun.Bank_Payment_Line_Items__r;
-			Zumzum__Bank_Payment_Line_Item__c bankPaymentLineItem = bankPaymentLineItems[0];
-			return bankPaymentLineItem.Zumzum__Purchase_Invoice__r.Name.rightPad(18, ' ');
+		private String getPaymentReference(String purchaseInvoiceName){
+			purchaseInvoiceName = 'PI/' + purchaseInvoiceName;
+			return purchaseInvoiceName.rightPad(18, ' ');
 		}
 	}
 
@@ -78,7 +77,9 @@ public with sharing class GeneratePaymentFileUtil {
 		for(Zumzum__Bank_Payment__c bankPayment: bankPayments){
 			BankPaymentWrapper bankPaymentWrapper = new BankPaymentWrapper(bankPayment);
 			System.debug('bankPaymentWrapper ' + bankPaymentWrapper);
-			rows.add(String.join(bankPaymentWrapper.getColumns(paymentRun), ' ').trim());
+			rows.add(String.join(bankPaymentWrapper.getColumns(
+				bankPayment.Zumzum__Bank_Payment_Line_Items__r[0].Zumzum__Purchase_Invoice__r.Name), ' '
+			).trim());
 		}
 		String result = String.join(rows,'\r\n').trim();
 		System.debug('generatePaymentFileContent result ' + result);
