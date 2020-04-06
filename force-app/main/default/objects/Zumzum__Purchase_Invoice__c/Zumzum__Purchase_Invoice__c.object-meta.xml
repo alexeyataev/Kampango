@@ -171,6 +171,7 @@
         <searchResultsAdditionalFields>Zumzum__Total_Gross__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Zumzum__Paid__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Zumzum__Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Zumzum__Type__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <visibility>Public</visibility>

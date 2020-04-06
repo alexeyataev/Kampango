@@ -11,6 +11,7 @@ public without sharing class TestFinanceDataFactory {
         }
         return instance;
     }
+
     public void createZumzumData() {
         Zumzum__Tax_Rate__c zumzumTaxRate = new Zumzum__Tax_Rate__c(
             Name = 'No VAT',
@@ -19,7 +20,17 @@ public without sharing class TestFinanceDataFactory {
             Zumzum__Tax_Rate__c = 0
         );
 
-        insert zumzumTaxRate;     
+        insert zumzumTaxRate;
+
+        Zumzum__Invoice_Template__c zumzumInvoiceTemplate = new Zumzum__Invoice_Template__c(
+            Name = 'Zumzum Sample Template',
+            Zumzum__Is_Default__c = true,
+            Zumzum__Type__c = 'Sales Invoice',
+            Zumzum__Margins_left_right_Inches__c = 0.5,
+            Zumzum__Margins_top_bottom__c = 0.5
+        );
+
+        insert zumzumInvoiceTemplate;
 
         Zumzum__Company_Setup__c zumzumCompanySetup = new Zumzum__Company_Setup__c(
             Name = 'NCT',
@@ -120,13 +131,28 @@ public without sharing class TestFinanceDataFactory {
         insert zumzumCurrentNominalAccount;
         
         Zumzum__Bank_Account__c zumzumBankAccount = new Zumzum__Bank_Account__c(
-            Name = 'Card Receipts in Transit',
+            Name = 'CARD RECEIPTS IN TRANSIT',
             Zumzum__Type__c = 'Current/Saving',
-            Zumzum__Account_Number__c = '1',
+            Zumzum__Account_Number__c = '12345678',
             Zumzum__Status__c = 'Active',
             Zumzum__Nominal_Account__c = zumzumCurrentNominalAccount.Id
         );
         insert zumzumBankAccount;
+        
+        Zumzum__Nominal_Account__c zumzumReconcileNominalAccount = new Zumzum__Nominal_Account__c(
+            Name = 'Bank Current Account',
+            Zumzum__Account_Code__c = 9401
+        );
+        insert zumzumReconcileNominalAccount;
+        
+        Zumzum__Bank_Account__c zumzumReconcileBankAccount = new Zumzum__Bank_Account__c(
+            Name = 'Reconcile Bank',
+            Zumzum__Type__c = 'Current/Saving',
+            Zumzum__Account_Number__c = '3',
+            Zumzum__Status__c = 'Active',
+            Zumzum__Nominal_Account__c = zumzumReconcileNominalAccount.Id
+        );
+        insert zumzumReconcileBankAccount;
 
         Zumzum__General_Setup__c zumzumGeneralSetupPurchaseInvoice = new Zumzum__General_Setup__c(
             Name = 'PI',
@@ -137,12 +163,19 @@ public without sharing class TestFinanceDataFactory {
 
         Zumzum__General_Setup__c zumzumGeneralSetupLedgerTransaction = new Zumzum__General_Setup__c(
             Name = 'Ledger',
-    		Zumzum__Object__c = 'Ledger Transaction',
+            Zumzum__Object__c = 'Ledger Transaction',
             Zumzum__Starting_Document_No__c = '00050000',
             Zumzum__Current_Document_Number__c = 50000
         );
 
-        insert new List<Zumzum__General_Setup__c> {zumzumGeneralSetupPurchaseInvoice, zumzumGeneralSetupLedgerTransaction};
+        Zumzum__General_Setup__c zumzumGeneralSetupSalesInvoiceTransaction = new Zumzum__General_Setup__c(
+            Name = 'SI',
+            Zumzum__Object__c = 'Sales Invoice',
+            Zumzum__Starting_Document_No__c = '00000000',
+            Zumzum__Current_Document_Number__c = 171
+        );
+
+        insert new List<Zumzum__General_Setup__c> {zumzumGeneralSetupPurchaseInvoice, zumzumGeneralSetupLedgerTransaction, zumzumGeneralSetupSalesInvoiceTransaction};
 
         insert new Financial_Settings__c(
             PI_Nominal_Account_Id__c = zumzumNominalAccount.Id, 
@@ -160,6 +193,32 @@ public without sharing class TestFinanceDataFactory {
         dimension2.Zumzum__Type__c = 'Dimension 2';
         insert dimension2;
     }
+
+    public String[] createBatchReceiptReportWithItems(Integer itemsCount) {
+        String[] paymentIds = new String[]{};
+        List<Batch_Receipt_Report_Item__c> batchReceiptReportItems = new List<Batch_Receipt_Report_Item__c>();
+        TestBatchReceiptReportBuilder batchReceiptReportBulder = new TestBatchReceiptReportBuilder();
+        Batch_Receipt_Report__c batchReceiptReport = batchReceiptReportBulder.withStatus('Not Created')
+                                                                             .insertRecord(true)
+                                                                             .build();
+        
+        TestBatchReceiptReportItemBuilder batchReceiptReportItemBuilder = new TestBatchReceiptReportItemBuilder();
+        for (Integer i = 0; i < itemsCount; i++) {
+            paymentIds.add(String.valueOf(i));
+            batchReceiptReportItems.add(
+                batchReceiptReportItemBuilder.withPaymentMethod('CreditCard')
+                                             .withCurrencyCode('GBP')
+                                             .withAmount(10.00)
+                                             .withBatchReceiptReport(batchReceiptReport.Id)
+                                             .withPaymentId(String.valueOf(i))
+                                             .withCapturedOn(Date.today())
+                                             .insertRecord(false)
+                                             .build()
+            );
+        }
+        insert batchReceiptReportItems;
+        return paymentIds;
+    }  
     
     public static void updateHouseholdAccountsToCustomerType() {
         List<Account> accList = [SELECT Id FROM Account WHERE Type = 'Household'];
