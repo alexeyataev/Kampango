@@ -3,7 +3,7 @@
     <actionCalls>
         <name>AddMarketingPreferencesToCare</name>
         <label>AddMarketingPreferencesToCare</label>
-        <locationX>875</locationX>
+        <locationX>872</locationX>
         <locationY>279</locationY>
         <actionName>AddMarketingPreferencesToCare</actionName>
         <actionType>apex</actionType>
@@ -17,13 +17,30 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <actionCalls>
+        <name>Post_Sales_Invoice</name>
+        <label>Post Sales Invoice</label>
+        <locationX>731</locationX>
+        <locationY>598</locationY>
+        <actionName>ZumzumPostSalesInvoiceHelper</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Booking_Data</targetReference>
+        </connector>
+        <inputParameters>
+            <name>salesInvoice</name>
+            <value>
+                <elementReference>SalesInvoice_Record</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <decisions>
         <name>Installment_Check</name>
         <label>Installment Check</label>
-        <locationX>478</locationX>
-        <locationY>597</locationY>
+        <locationX>479</locationX>
+        <locationY>596</locationY>
         <defaultConnector>
-            <targetReference>Get_Booking_Data</targetReference>
+            <targetReference>Post_Sales_Invoice</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Is Installment True</defaultConnectorLabel>
         <rules>
@@ -193,8 +210,8 @@
     <recordUpdates>
         <name>Update_Booking</name>
         <label>Update Booking</label>
-        <locationX>1128</locationX>
-        <locationY>276</locationY>
+        <locationX>1132</locationX>
+        <locationY>279</locationY>
         <connector>
             <targetReference>Booking_Journey_Success_and_Confirmed_Pages_Subflow</targetReference>
         </connector>
@@ -236,8 +253,8 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>757</locationX>
-        <locationY>96</locationY>
+        <locationX>731</locationX>
+        <locationY>95</locationY>
         <connector>
             <targetReference>Get_SalesInvoice</targetReference>
         </connector>
@@ -246,8 +263,8 @@
     <subflows>
         <name>Booking_Journey_Success_and_Confirmed_Pages_Subflow</name>
         <label>Booking Journey Success  and Confirmed Pages Subflow</label>
-        <locationX>1282</locationX>
-        <locationY>276</locationY>
+        <locationX>1284</locationX>
+        <locationY>279</locationY>
         <flowName>Booking_Journey_Success_and_Confirmed_Pages_Subflow</flowName>
         <inputAssignments>
             <name>curBooking</name>
