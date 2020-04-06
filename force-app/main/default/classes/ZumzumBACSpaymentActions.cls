@@ -19,7 +19,6 @@ public with sharing class ZumzumBACSpaymentActions {
             SELECT Id 
             FROM Zumzum__Purchase_Invoice__c 
             WHERE Id NOT IN :linkedPIids
-              AND Zumzum__Type__c = 'Purchase Invoice'
               AND Zumzum__Status__c  = 'Posted'
               AND Zumzum__Paid__c = 'N'
               AND Zumzum__Total_Unpaid_Amount__c > 0
@@ -35,7 +34,7 @@ public with sharing class ZumzumBACSpaymentActions {
         if (prliList.isEmpty()) {
             result.add(new Response(
                 false, 
-                'No Purchase Invoices matching the action criteria'
+                'There are no Purchase Invoices matching the action criteria'
             ));
         } else {
             if (Payment_Run_Line_Item__c.sObjectType.getDescribe().isCreateable()) {
