@@ -175,6 +175,7 @@
         <searchFilterFields>cpm__Mandatory_payment__c</searchFilterFields>
         <searchFilterFields>cpm__Status__c</searchFilterFields>
         <searchFilterFields>cpm__Payment_Method__c</searchFilterFields>
+        <searchResultsAdditionalFields>PSA_Area__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Booking__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>cpm__Contact__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>cpm__Amount__c</searchResultsAdditionalFields>
