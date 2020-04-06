@@ -21,7 +21,8 @@ public class ZumzumCreatePostSalesInvoiceTest {
                     .buildConfirmedSession()
                     .buildEstimatedCosts()
                     .buildPractitionerFeeRate()
-                    .setCourseToFinal();
+                    .setCourseToFinal()
+                    .buildParentHost('Dina', 'test1@test.com');
         TestFinanceDataFactory.updateHouseholdAccountsToCustomerType();
         TestFinanceDataFactory.createProducts();
     }
