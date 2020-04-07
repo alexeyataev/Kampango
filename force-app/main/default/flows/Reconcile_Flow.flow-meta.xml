@@ -4,7 +4,7 @@
         <name>Create_Reconcile</name>
         <label>Create Reconcile</label>
         <locationX>712</locationX>
-        <locationY>405</locationY>
+        <locationY>719</locationY>
         <actionName>ReconcilePaymentsBatch</actionName>
         <actionType>apex</actionType>
         <inputParameters>
@@ -14,6 +14,22 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <assignments>
+        <name>Assign_Batch_Receipt_Report_Status</name>
+        <label>Assign Batch Receipt Report Status</label>
+        <locationX>712</locationX>
+        <locationY>386</locationY>
+        <assignmentItems>
+            <assignToReference>batchReceiptReport.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Processing</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Batch_Receipt_Report</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Is_Reconciled</name>
         <label>Is Reconciled</label>
@@ -75,6 +91,16 @@
         <queriedFields>Id</queriedFields>
         <queriedFields>BankReconcile__c</queriedFields>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_Batch_Receipt_Report</name>
+        <label>Update Batch Receipt Report</label>
+        <locationX>712</locationX>
+        <locationY>535</locationY>
+        <connector>
+            <targetReference>Create_Reconcile</targetReference>
+        </connector>
+        <inputReference>batchReceiptReport</inputReference>
+    </recordUpdates>
     <screens>
         <name>Already_Reconciled_Screen</name>
         <label>Already Reconciled Screen</label>
@@ -100,7 +126,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Create_Reconcile</targetReference>
+            <targetReference>Assign_Batch_Receipt_Report_Status</targetReference>
         </connector>
         <fields>
             <name>Reconcile_Message</name>

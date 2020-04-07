@@ -303,6 +303,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.Gift_Aid_Declaration_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Email__c</field>
         <readable>true</readable>
@@ -1474,6 +1479,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Expense_Sheet__c.Number_of_Purchase_Invoices__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Expense_Sheet_Detail__c.Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1628,7 +1638,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>cpm__Installment__c.Partner_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
