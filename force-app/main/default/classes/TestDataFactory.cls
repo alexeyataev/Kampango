@@ -29,6 +29,7 @@ public without sharing class TestDataFactory {
     public static List<Session__c> sessions = new List<Session__c>();
     public static List<User> users = new List<User>();
     public static List<User> enquiryPSAUsers = new List<User>();
+    public static List<User> psaManagers = new List<User>();
     private List<Contact> practitioners = new List<Contact>();
     private Account branchAccount;
     private static Account organizationAccount;
@@ -549,20 +550,9 @@ public without sharing class TestDataFactory {
         return this;
     }
 
-    public TestDataFactory createCapacityPSA() {
-        TestUserBuilder userBuilder = new TestUserBuilder();
-        capacityPSA_Users.add(userBuilder
-            .withProfile([SELECT Id FROM Profile WHERE Name = 'Capacity PSA'].Id)
-            .withUsername(CAPACITY_PSA_USERNAME)
-            .insertRecord(true)
-            .build());
-
-        return this;
-    }
-
     public TestDataFactory createPSAmanager() {
         TestUserBuilder userBuilder = new TestUserBuilder();
-        capacityPSA_Users.add(userBuilder
+        psaManagers.add(userBuilder
             .withProfile([SELECT Id FROM Profile WHERE Name = 'PSA Manager'].Id)
             .withUsername(PSA_MANAGER_USERNAME)
             .insertRecord(true)
