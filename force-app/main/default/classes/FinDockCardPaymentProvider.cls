@@ -62,6 +62,7 @@ public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
         paymentCustomFields.put('gaid__Gift_Aidable_Amount__c', String.valueOf(paymentParameters.giftAidableAmount != null ? paymentParameters.giftAidableAmount : 0));
         paymentCustomFields.put('Membership_Type__c', paymentParameters.membershipType);
         paymentCustomFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
+        paymentCustomFields.put('Partner_Contact__c', paymentParameters.partnerContactId);
         return paymentCustomFields;
     }
     @TestVisible

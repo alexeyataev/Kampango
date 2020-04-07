@@ -3,8 +3,8 @@
     <actionCalls>
         <name>AddMarketingPreferencesToCare</name>
         <label>AddMarketingPreferencesToCare</label>
-        <locationX>875</locationX>
-        <locationY>279</locationY>
+        <locationX>1050</locationX>
+        <locationY>484</locationY>
         <actionName>AddMarketingPreferencesToCare</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -17,11 +17,248 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <actionCalls>
+        <description>We create Gift Aid via apex class because we have a master-detail relationship with Contact and Contact doesn&#39;t have permission to create a record.</description>
+        <name>Create_Gift_Declaration</name>
+        <label>Create Gift Declaration</label>
+        <locationX>1049</locationX>
+        <locationY>231</locationY>
+        <actionName>CreateGiftAidDeclarationHelper</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>AddMarketingPreferencesToCare</targetReference>
+        </connector>
+        <inputParameters>
+            <name>giftAidDeclarationList</name>
+            <value>
+                <elementReference>GAD_List</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Post_Sales_Invoice</name>
+        <label>Post Sales Invoice</label>
+        <locationX>821</locationX>
+        <locationY>655</locationY>
+        <actionName>ZumzumPostSalesInvoiceHelper</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Check_Gift_Aid_Declaration</targetReference>
+        </connector>
+        <inputParameters>
+            <name>salesInvoice</name>
+            <value>
+                <elementReference>SalesInvoice_Record</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Add_Parent_To_GAD_List</name>
+        <label>Add Parent To GAD List</label>
+        <locationX>1049</locationX>
+        <locationY>50</locationY>
+        <assignmentItems>
+            <assignToReference>GAD_List</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>ParentGAD</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Gift_Declaration</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Partner_To_GAD_List</name>
+        <label>Add Partner To GAD List</label>
+        <locationX>665</locationX>
+        <locationY>50</locationY>
+        <assignmentItems>
+            <assignToReference>GAD_List</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>PartnerGAD</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_GAD_For_Parent</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_GAD_For_Parent</name>
+        <label>Set GAD For Parent</label>
+        <locationX>838</locationX>
+        <locationY>50</locationY>
+        <assignmentItems>
+            <assignToReference>ParentGAD.gaid__Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>curBooking.Primary_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGAD.gaid__Acquisition_Method__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GAD_ACQUISITION_METHOD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGAD.gaid__Date_Made__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGAD.gaid__Housename_or_number__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>curBooking.Street_Address__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGAD.gaid__Postalcode__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>curBooking.Postcode__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGAD.gaid__Active__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ParentGAD.Method__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GAD_METHOD</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_Parent_To_GAD_List</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_GAD_For_Partner</name>
+        <label>Set GAD For Partner</label>
+        <locationX>662</locationX>
+        <locationY>227</locationY>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.gaid__Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>curBooking.Partner_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.gaid__Acquisition_Method__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GAD_ACQUISITION_METHOD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.gaid__Date_Made__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.gaid__Housename_or_number__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>curBooking.Street_Address__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.gaid__Postalcode__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>curBooking.Postcode__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.gaid__Active__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerGAD.Method__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GAD_METHOD</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_Partner_To_GAD_List</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>GAD_ACQUISITION_METHOD</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Digital</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>GAD_METHOD</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>GiftAid</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <name>Check_Gift_Aid_Declaration</name>
+        <label>Check Gift Aid Declaration</label>
+        <locationX>815</locationX>
+        <locationY>481</locationY>
+        <defaultConnector>
+            <targetReference>AddMarketingPreferencesToCare</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Decline Declaration</defaultConnectorLabel>
+        <rules>
+            <name>With_GAD</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>curBooking.Gift_Aid_Declaration_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Single</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_GAD_For_Parent</targetReference>
+            </connector>
+            <label>With Single GAD</label>
+        </rules>
+        <rules>
+            <name>Without_GAD</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>curBooking.Gift_Aid_Declaration_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Joint</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_GAD_For_Partner</targetReference>
+            </connector>
+            <label>With Joint GAD</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Installment_Check</name>
         <label>Installment Check</label>
-        <locationX>478</locationX>
-        <locationY>597</locationY>
+        <locationX>477</locationX>
+        <locationY>807</locationY>
         <defaultConnector>
             <targetReference>Get_Booking_Data</targetReference>
         </defaultConnector>
@@ -40,10 +277,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_Booking_Confirmed</name>
+        <label>Is Booking Confirmed</label>
+        <locationX>1184</locationX>
+        <locationY>797</locationY>
+        <defaultConnector>
+            <targetReference>Post_Sales_Invoice</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Confirmed</defaultConnectorLabel>
+        <rules>
+            <name>Confirmed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>curBooking.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Confirmed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Course_Data</targetReference>
+            </connector>
+            <label>Confirmed</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Sales_Invoice_Check</name>
         <label>Sales Invoice Check</label>
-        <locationX>570</locationX>
-        <locationY>207</locationY>
+        <locationX>568</locationX>
+        <locationY>413</locationY>
         <defaultConnector>
             <targetReference>Get_Installment</targetReference>
         </defaultConnector>
@@ -79,11 +341,11 @@
     <recordLookups>
         <name>Get_Booking_Data</name>
         <label>Get Booking Data</label>
-        <locationX>731</locationX>
-        <locationY>279</locationY>
+        <locationX>822</locationX>
+        <locationY>803</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>AddMarketingPreferencesToCare</targetReference>
+            <targetReference>Is_Booking_Confirmed</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -107,12 +369,13 @@
         <queriedFields>Name</queriedFields>
         <queriedFields>Primary_Contact_Email__c</queriedFields>
         <queriedFields>PSA_Office__c</queriedFields>
+        <queriedFields>Gift_Aid_Declaration_Status__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Course_Data</name>
         <label>Get Course Data</label>
-        <locationX>1003</locationX>
-        <locationY>279</locationY>
+        <locationX>1188</locationX>
+        <locationY>484</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Booking</targetReference>
@@ -145,8 +408,8 @@
     <recordLookups>
         <name>Get_Installment</name>
         <label>Get Installment</label>
-        <locationX>487</locationX>
-        <locationY>395</locationY>
+        <locationX>485</locationX>
+        <locationY>600</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Installment_Check</targetReference>
@@ -168,8 +431,8 @@
     <recordLookups>
         <name>Get_SalesInvoice</name>
         <label>Get SalesInvoice</label>
-        <locationX>250</locationX>
-        <locationY>103</locationY>
+        <locationX>236</locationX>
+        <locationY>309</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Sales_Invoice_Check</targetReference>
@@ -193,8 +456,8 @@
     <recordUpdates>
         <name>Update_Booking</name>
         <label>Update Booking</label>
-        <locationX>1128</locationX>
-        <locationY>276</locationY>
+        <locationX>1335</locationX>
+        <locationY>484</locationY>
         <connector>
             <targetReference>Booking_Journey_Success_and_Confirmed_Pages_Subflow</targetReference>
         </connector>
@@ -222,8 +485,8 @@
     <screens>
         <name>Invalid_Page_Screen</name>
         <label>Invalid Page Screen</label>
-        <locationX>238</locationX>
-        <locationY>317</locationY>
+        <locationX>236</locationX>
+        <locationY>523</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -236,8 +499,8 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>757</locationX>
-        <locationY>96</locationY>
+        <locationX>50</locationX>
+        <locationY>309</locationY>
         <connector>
             <targetReference>Get_SalesInvoice</targetReference>
         </connector>
@@ -246,8 +509,8 @@
     <subflows>
         <name>Booking_Journey_Success_and_Confirmed_Pages_Subflow</name>
         <label>Booking Journey Success  and Confirmed Pages Subflow</label>
-        <locationX>1282</locationX>
-        <locationY>276</locationY>
+        <locationX>1492</locationX>
+        <locationY>484</locationY>
         <flowName>Booking_Journey_Success_and_Confirmed_Pages_Subflow</flowName>
         <inputAssignments>
             <name>curBooking</name>
@@ -286,12 +549,36 @@
         <objectType>Course__c</objectType>
     </variables>
     <variables>
+        <name>GAD_List</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>gaid__Gift_Aid_Declaration__c</objectType>
+    </variables>
+    <variables>
         <name>Installment_Record</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>cpm__Installment__c</objectType>
+    </variables>
+    <variables>
+        <name>ParentGAD</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>gaid__Gift_Aid_Declaration__c</objectType>
+    </variables>
+    <variables>
+        <name>PartnerGAD</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>gaid__Gift_Aid_Declaration__c</objectType>
     </variables>
     <variables>
         <name>SalesInvoice_Record</name>

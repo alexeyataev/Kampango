@@ -2558,6 +2558,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>cpm__Installment__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Zumzum__Dimension__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>

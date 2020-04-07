@@ -14,6 +14,7 @@
         <members>DisplayCourseDetailsControllerTest</members>
         <members>GiftAidDetailController</members>
         <members>FlowPaymentHandler</members>
+        <members>OutboundBACSpaymentHelperTest</members>
         <members>PaymentLinkGeneratorTestPageController</members>
         <members>PaymentLinkGeneratorTestPageMock</members>
         <members>PaymentLinkGeneratorTestPageTest</members>
@@ -198,6 +199,7 @@
         <members>Course__c.Courses_Not_Started</members>
         <members>Course__c.Courses_With_Upcoming_Reunions</members>
         <members>Course__c.Upcoming_Courses</members>
+        <members>cpm__Installment__c.All_records_with_status_Failed</members>
         <members>Zumzum__Purchase_Invoice__c.All_Invoices</members>
         <members>Zumzum__Expense_Sheet__c.X1C_Expense_Sheet</members>
         <members>Zumzum__Expense_Sheet__c.X1W_Expense_Sheet</members>

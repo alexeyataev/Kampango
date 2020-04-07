@@ -7,6 +7,7 @@ public with sharing class TestPaymentBuilder {
     private Id installmentId;
     private String paymentProcessor = 'PaymentHub-WorldPay';
     private String paymentMethod = 'CreditCard';
+    private String reference;
     private Boolean insertRecord = false;
     private Decimal amount = 1;
     private Date collectionDate = Date.today();
@@ -59,6 +60,12 @@ public with sharing class TestPaymentBuilder {
         return this;
     }
 
+    public TestPaymentBuilder withPaymentReference(String reference)
+    {
+        this.reference = reference;
+        return this;
+    }
+
     public TestPaymentBuilder insertRecord(Boolean insertRecord)
     {
         this.insertRecord = insertRecord;
@@ -75,7 +82,8 @@ public with sharing class TestPaymentBuilder {
             cpm__Installment__c = this.installmentId,
             cpm__Payment_Method__c = this.paymentMethod,
             cpm__Payment_Processor__c = this.paymentProcessor,
-            cpm__Payment_Profile__c = this.paymentProfileId          
+            cpm__Payment_Profile__c = this.paymentProfileId,
+            cpm__Payment_Reference__c =  this.reference       
         );
 
         if(insertRecord)
