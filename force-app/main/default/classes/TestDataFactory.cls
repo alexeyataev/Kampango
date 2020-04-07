@@ -12,6 +12,7 @@ public without sharing class TestDataFactory {
     private static final String SYSTEM_ADMIN_USERNAME = 'NCTtest.sysAdmin.username@ncttest.com';
     private static final String CAPACITY_PSA_USERNAME = 'NCTtest.capacityPSA.username@ncttest.com';
     private static final String ENQUIRY_PSA_USERNAME = 'NCTtest.enquiryPSA.username@ncttest.com';
+    private static final String PSA_MANAGER_USERNAME = 'NCTtest.PSAmanager.username@ncttest.com';
     private static final String PORTAL_ACCOUNT_USER_EMAIL = 'portalAccountUserNCT@ncttest.com';
     private static final String PARTNER_COMMUNITY_USER_EMAIL = 'partnerCommunityUser@ncttest.com';
     private static final String TEST_BILLING_EMAIL = 'billingEmail@ncttest.com';
@@ -561,6 +562,17 @@ public without sharing class TestDataFactory {
         capacityPSA_Users.add(userBuilder
             .withProfile([SELECT Id FROM Profile WHERE Name = 'Capacity PSA'].Id)
             .withUsername(CAPACITY_PSA_USERNAME)
+            .insertRecord(true)
+            .build());
+
+        return this;
+    }
+
+    public TestDataFactory createPSAmanager() {
+        TestUserBuilder userBuilder = new TestUserBuilder();
+        capacityPSA_Users.add(userBuilder
+            .withProfile([SELECT Id FROM Profile WHERE Name = 'PSA Manager'].Id)
+            .withUsername(PSA_MANAGER_USERNAME)
             .insertRecord(true)
             .build());
 

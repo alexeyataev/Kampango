@@ -116,9 +116,13 @@ public with sharing class TestSessionBuilder {
 		);
 		if (parentHost != null) {
 			session.Parent_Host__c = this.parentHost.Id;
-		} else if (venue != null) {
-			session.Venue__c = this.venue.Id;
-			session.Room__c = this.room.Id;
+		} else {
+			if (venue != null) {
+				session.Venue__c = this.venue.Id;
+			}
+			if (room != null) {
+				session.Room__c = this.room.Id;
+			}
 		}
 
 
