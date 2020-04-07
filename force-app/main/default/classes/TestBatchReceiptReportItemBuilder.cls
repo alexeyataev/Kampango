@@ -1,4 +1,5 @@
-public with sharing class TestBatchReceiptReportItemBuilder {
+@isTest
+public class TestBatchReceiptReportItemBuilder {
     private Id ledger;
     private Id batchReceiptReport;
     private String reference;

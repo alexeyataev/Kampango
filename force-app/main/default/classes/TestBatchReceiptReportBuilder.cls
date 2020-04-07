@@ -1,4 +1,5 @@
-public with sharing class TestBatchReceiptReportBuilder {
+@isTest
+public class TestBatchReceiptReportBuilder {
     private Id bankReconcile;
     private String batchId;
     private Date fromDate = Date.today() - 30;
