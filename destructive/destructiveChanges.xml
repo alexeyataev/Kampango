@@ -14,6 +14,7 @@
         <members>DisplayCourseDetailsControllerTest</members>
         <members>GiftAidDetailController</members>
         <members>FlowPaymentHandler</members>
+        <members>OutboundBACSpaymentHelperTest</members>
         <members>PaymentLinkGeneratorTestPageController</members>
         <members>PaymentLinkGeneratorTestPageMock</members>
         <members>PaymentLinkGeneratorTestPageTest</members>
