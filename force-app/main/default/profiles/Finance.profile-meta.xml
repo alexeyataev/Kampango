@@ -123,7 +123,7 @@
     </classAccesses>
     <customPermissions>
         <enabled>true</enabled>
-        <name>Can_Post_Purchase_Invoices</name>
+        <name>Can_Convert_Expense_Sheet</name>
     </customPermissions>
     <customPermissions>
         <enabled>true</enabled>
