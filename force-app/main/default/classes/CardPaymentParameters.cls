@@ -9,4 +9,5 @@ public virtual class CardPaymentParameters {
     @AuraEnabled @InvocableVariable public Date paymentPlanEndDate;
     @AuraEnabled @InvocableVariable public String salesInvoiceId;
     @AuraEnabled @InvocableVariable public String successPage;
+    @AuraEnabled @InvocableVariable public String partnerContactId;
 }
