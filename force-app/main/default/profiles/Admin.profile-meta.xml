@@ -16,10 +16,6 @@
         <apexClass>ZumzumBACSpaymentActions</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <customPermissions>
-        <enabled>true</enabled>
-        <name>Can_Post_Purchase_Invoices</name>
-    </customPermissions>
     <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
