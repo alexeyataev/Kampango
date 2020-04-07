@@ -168,9 +168,7 @@
         <name>CustomField</name>
     </types>
     <types>
-        <members>Can_Post_Purchase_Invoices</members>
         <members>Ignore_Booking_Confirmation_Restriction</members>
-        <members>Override_Purchase_Invoice_Validation</members>
         <name>CustomPermission</name>
     </types>
     <types>
