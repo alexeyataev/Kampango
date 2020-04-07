@@ -36,7 +36,6 @@ public with sharing class CareRequestBodyUtil {
         addBankDetailsRequest.authKey = AUTH_KEY;
         addBankDetailsRequest.pagename = SF_ENVIRONMENT_NAME;
         addBankDetailsRequest.source = SOURCE;
-        addBankDetailsRequest.branch = cont.Branch__r.Branch_Number__c;
         addBankDetailsRequest.userLogname = USER_LOG_NAME;
         addBankDetailsRequest.sortCode = installment.Sort_Code__c;
         addBankDetailsRequest.acctNumber = installment.Account_Number__c;
@@ -55,7 +54,6 @@ public with sharing class CareRequestBodyUtil {
         addMembership.authKey = AUTH_KEY;
         addMembership.pagename = SF_ENVIRONMENT_NAME;
         addMembership.source = SOURCE;
-        addMembership.branch = installment.cpm__Contact__r.Branch__r.Branch_Number__c;
         addMembership.userLogname = USER_LOG_NAME;
         addMembership.paymentMethod = paymentMethod;
         addMembership.bankDetailNumber = installment.Bank_Details_Number__c != null ? installment.Bank_Details_Number__c : '';
@@ -90,7 +88,6 @@ public with sharing class CareRequestBodyUtil {
         private String authKey {get;set;}
         private String pagename {get;set;}
         private String source {get;set;}
-        private String branch {get;set;}
         private String userLogname {get;set;}
     }
 
@@ -100,6 +97,7 @@ public with sharing class CareRequestBodyUtil {
         private String contactNumber {get;set;}
         private String gender {get;set;}
         private String postcode {get;set;}
+        private String branch {get;set;}
         private String email {get;set;}
         private String primaryPhoneNumber {get;set;}
         private String secondaryPhoneNumber {get;set;}
