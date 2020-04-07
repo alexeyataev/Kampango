@@ -192,7 +192,7 @@
     <assignments>
         <name>Return_error_on_get</name>
         <label>Return error on get</label>
-        <locationX>483</locationX>
+        <locationX>482</locationX>
         <locationY>900</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
@@ -214,9 +214,6 @@
                 <elementReference>status_part_success</elementReference>
             </value>
         </assignmentItems>
-        <connector>
-            <targetReference>Loop_through_bookings</targetReference>
-        </connector>
     </assignments>
     <assignments>
         <name>Return_success</name>
@@ -453,7 +450,7 @@
         <name>Check_is_host_0</name>
         <label>Check is host</label>
         <locationX>300</locationX>
-        <locationY>584</locationY>
+        <locationY>585</locationY>
         <defaultConnector>
             <targetReference>Loop_to_set_host_names</targetReference>
         </defaultConnector>
@@ -476,7 +473,7 @@
     </decisions>
     <description>Sends emails of types &quot;Host&quot; and &quot;Attendee&quot; to Primary and Partner contacts.
 Version changes:
-Moved Org-Wide Address querying to Apex Action</description>
+Fixed part success status output</description>
     <formulas>
         <name>host_names</name>
         <dataType>String</dataType>
@@ -595,7 +592,13 @@ Moved Org-Wide Address querying to Apex Action</description>
         </faultConnector>
         <inputReference>course</inputReference>
     </recordUpdates>
-    <startElementReference>Loop_to_set_host_names</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Loop_to_set_host_names</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>booking</name>
