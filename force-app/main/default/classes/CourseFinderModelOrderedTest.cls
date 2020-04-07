@@ -1,7 +1,10 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #76 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 private class CourseFinderModelOrderedTest {
 
-    private static void setupTestData() {
+    @TestSetup
+    static void testSetup() {
         TestDataFactory testDataFactory = TestDataFactory.getInstance();
         testDataFactory.buildBranchAccount()
                        .buildOrganizationAccount('acc5')
@@ -33,8 +36,7 @@ private class CourseFinderModelOrderedTest {
     }
 
     @isTest
-    static void createInstanceCourseFinderModelIfOneToOne() {
-        setupTestData();
+    static void CreateInstanceCourseFinderModelIfOneToOne() {
         Course__c course = getCourse();
         course.Sub_Type__c = 'One to One';
         update course;
@@ -49,8 +51,7 @@ private class CourseFinderModelOrderedTest {
     }
 
     @isTest
-    static void createInstanceCourseFinderModelIfBirthDueDateEqualNull() {
-        setupTestData();
+    static void CreateInstanceCourseFinderModelIfBirthDueDateEqualNull() {
         Course__c course = getCourse();
 
         Test.startTest();
@@ -63,15 +64,13 @@ private class CourseFinderModelOrderedTest {
     }
 
     @isTest
-    static void createInstanceCourseFinderModelIfStartDateNull() {
-        setupTestData();
+    static void CreateInstanceCourseFinderModelIfStartDateNull() {
         Course__c course = getCourse();
         List<Session__c> sessions = [
             SELECT Date__c 
             FROM Session__c
             WHERE Course__c =: course.Id
         ];
-
         delete sessions;
 
         Course__c updatedCourse = getCourse();
@@ -86,15 +85,13 @@ private class CourseFinderModelOrderedTest {
     }
 
     @isTest
-    static void createInstanceCourseFinderModelIfEndDateNull() {
-        setupTestData();
+    static void CreateInstanceCourseFinderModelIfEndDateNull() {
         Course__c course = getCourse();
         List<Session__c> sessions = [
             SELECT Date__c 
             FROM Session__c
             WHERE Course__c =: course.Id
         ];
-
         delete sessions;
 
         Course__c updatedCourse = getCourse();
@@ -109,12 +106,9 @@ private class CourseFinderModelOrderedTest {
     }
 
     @isTest
-    static void createInstanceCourseFinderModelIfNCTSignatureAntenatalIfGap30Days() {
-        setupTestData();
+    static void CreateInstanceCourseFinderModelIfNCTSignatureAntenatalIfGap30Days() {
         Course__c course = getCourse();
-
         course.Sub_Type__c = 'NCT Signature antenatal course';
-    
         update course;
 
         Test.startTest();
@@ -127,12 +121,9 @@ private class CourseFinderModelOrderedTest {
     }
 
     @isTest
-    static void createInstanceCourseFinderModelIfNCTSignatureAntenatalIfGap100Days() {
-        setupTestData();
+    static void CreateInstanceCourseFinderModelIfNCTSignatureAntenatalIfGap100Days() {
         Course__c course = getCourse();
-
         course.Sub_Type__c = 'NCT Signature antenatal course';
-    
         update course;
 
         Test.startTest();
@@ -145,10 +136,8 @@ private class CourseFinderModelOrderedTest {
     }
 
     @isTest
-    static void createInstanceCourseFinderModelIfBabyMassageIfGap30Days() {
-        setupTestData();
+    static void CreateInstanceCourseFinderModelIfBabyMassageIfGap30Days() {
         Course__c course = getCourse();
-
         course.Type__c = 'Postnatal';
         course.Sub_Type__c = 'NCT Baby Massage course';
         update course;
@@ -163,10 +152,8 @@ private class CourseFinderModelOrderedTest {
     }
 
     @isTest
-    static void createInstanceCourseFinderModelIfBabyMassageIfGap100Days() {
-        setupTestData();
+    static void CreateInstanceCourseFinderModelIfBabyMassageIfGap100Days() {
         Course__c course = getCourse();
-
         course.Type__c = 'Postnatal';
         course.Sub_Type__c = 'NCT Baby Massage course';
         update course;
