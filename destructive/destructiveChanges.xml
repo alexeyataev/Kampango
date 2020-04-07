@@ -169,6 +169,7 @@
     </types>
     <types>
         <members>Ignore_Booking_Confirmation_Restriction</members>
+        <members>Override_Purchase_Invoice_Validation</members>
         <name>CustomPermission</name>
     </types>
     <types>
