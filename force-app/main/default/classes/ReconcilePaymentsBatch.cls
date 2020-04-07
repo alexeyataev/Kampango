@@ -24,7 +24,15 @@ public class ReconcilePaymentsBatch implements Database.Batchable<sObject>{
     }
 
     public void finish(Database.BatchableContext bc) {
-        System.debug('ReconcilePaymentsBatch execution finished.');
+        List<Batch_Receipt_Report__c> batchReceiptReports = [
+            SELECT Id, Status__c
+            FROM Batch_Receipt_Report__c
+            WHERE Id =: recordId
+        ];
+        for (Batch_Receipt_Report__c brr : batchReceiptReports) {
+            brr.Status__c = ReconcilePaymentsBatchHelper.CREATED_STATUS;
+        }
+        update batchReceiptReports;
     }
 
     @InvocableMethod(
