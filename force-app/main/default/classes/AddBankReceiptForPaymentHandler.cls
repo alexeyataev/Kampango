@@ -65,7 +65,7 @@ public with sharing class AddBankReceiptForPaymentHandler {
                 receiptWrapperList.add(receiptWrapper);
             }
         }
-        bankReceiptCreator.createBankReceipt(receiptWrapperList);
+        bankReceiptCreator.createBankReceipts(receiptWrapperList);
     }
 
     private static List<Zumzum.BankCustomerReceiptService.BankReceiptLine> createBankReceiptLines(cpm__Payment__c payment, Zumzum__Sales_Invoice__c salesInvoice) {

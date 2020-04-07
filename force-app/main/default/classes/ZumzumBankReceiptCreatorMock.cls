@@ -1,7 +1,7 @@
 @SuppressWarnings('PMD.ApexCRUDViolation')
 //Incident #62 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class ZumzumBankReceiptCreatorMock implements IBankReceiptCreator {
-    public static void createBankReceipt(List<Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper> receiptWrapperList) {
+    public static void createBankReceipts(List<Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper> receiptWrapperList) {
         Zumzum__Currency__c zumzumCurrency = [SELECT Id FROM Zumzum__Currency__c WITH SECURITY_ENFORCED LIMIT 1];
         Zumzum__Company__c company = [SELECT Id FROM Zumzum__Company__c WITH SECURITY_ENFORCED LIMIT 1];
         Zumzum__Tax_Rate__c zumzumTaxRate  = [SELECT Id FROM Zumzum__Tax_Rate__c WITH SECURITY_ENFORCED LIMIT 1];

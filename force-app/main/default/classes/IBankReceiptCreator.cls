@@ -1,3 +1,3 @@
 public interface IBankReceiptCreator {
-    void createBankReceipt(List<Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper> receiptWrapperList);
+    void createBankReceipts(List<Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper> receiptWrapperList);
 }
