@@ -33,6 +33,7 @@ public class ReconcilePaymentsBatchHelper {
         update reportItems;
 
         receipt.BankReconcile__c = bankReconcile.Id;
+        update receipt;
     }
 
     private static Zumzum__BankReconcile__c getBankReconcile(Batch_Receipt_Report__c receipt) {
