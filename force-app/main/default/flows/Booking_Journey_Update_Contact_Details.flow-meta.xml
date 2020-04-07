@@ -280,6 +280,20 @@
                 <elementReference>emailPartner</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.HomePhone</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>homePhone</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>partnerContactRecord.MobilePhone</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>mobilePhone</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone_0_0</targetReference>
         </connector>
