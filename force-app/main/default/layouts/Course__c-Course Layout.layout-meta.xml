@@ -154,7 +154,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Surplus_Defecit__c</field>
+                <field>Surplus_Deficit__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
