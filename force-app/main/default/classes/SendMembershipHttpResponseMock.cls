@@ -2,7 +2,7 @@
 public class SendMembershipHttpResponseMock implements HttpCalloutMock {
     private String body;
     private static final Integer HTTP_SUCCESS_RESPONSE = 200;
-    public SendMembershipHttpResponseMock(CareRequestBodyUtil.BaseResponse baseResponse) {
+    public SendMembershipHttpResponseMock(CareHelper.BaseResponse baseResponse) {
         this.body = JSON.serialize(baseResponse);
     }
     public HTTPResponse respond(HTTPRequest req) {

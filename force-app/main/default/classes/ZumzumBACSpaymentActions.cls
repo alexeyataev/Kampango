@@ -34,7 +34,7 @@ public with sharing class ZumzumBACSpaymentActions {
         if (prliList.isEmpty()) {
             result.add(new Response(
                 false, 
-                'There is no Purchase Invoices matching the action criteria'
+                'There are no Purchase Invoices matching the action criteria'
             ));
         } else {
             if (Payment_Run_Line_Item__c.sObjectType.getDescribe().isCreateable()) {

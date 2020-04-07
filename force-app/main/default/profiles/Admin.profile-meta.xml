@@ -107,6 +107,86 @@
         <field>Asset.Returned_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
+      <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report__c.BankReconcile__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report__c.Batch_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report__c.From_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report__c.Provider__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report__c.To_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Acquirer_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Captured_On__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Currency_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Internal_Order_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Ledger__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Order_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Payment_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Payment_Method__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Reference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Booking__c.Ad_hoc_Payable_Amount__c</field>
@@ -220,6 +300,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.First_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Booking__c.Gift_Aid_Declaration_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -858,6 +943,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Paid_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Payment_Run_Line_Item__c.Purchase_Invoice__c</field>
         <readable>true</readable>
@@ -1389,7 +1479,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Expense_Sheet__c.Number_of_Purchase_Invoices__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Expense_Sheet_Detail__c.Course__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Expense_Sheet_Detail__c.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1405,6 +1505,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Expense_Sheet_Detail__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Expense_Sheet__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1528,7 +1638,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>cpm__Installment__c.Partner_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1747,6 +1857,24 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Batch_Receipt_Report__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Batch_Receipt_Report_Item__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Booking__c</object>
         <viewAllRecords>true</viewAllRecords>
@@ -1943,6 +2071,10 @@
         <recordType>Contact.Practitioner</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <tabVisibilities>
+        <tab>Batch_Receipt_Report__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>Booking__c</tab>
         <visibility>DefaultOn</visibility>

@@ -31,8 +31,8 @@ public with sharing class AddMarketingPreferencesToCareTest {
         update individualInstance;
 
         Test.startTest();
-            CareRequestBodyUtil.MarketingPreferencesObject marketingPreferencesObject = new CareRequestBodyUtil.MarketingPreferencesObject();
-            CareRequestBodyUtil.MarketingPreferencesDetails marketingPreferencesDetails = new CareRequestBodyUtil.MarketingPreferencesDetails();
+            CareHelper.MarketingPreferencesObject marketingPreferencesObject = new CareHelper.MarketingPreferencesObject();
+            CareHelper.MarketingPreferencesDetails marketingPreferencesDetails = new CareHelper.MarketingPreferencesDetails();
             marketingPreferencesDetails.standardDocument = 'GDPR010';
             marketingPreferencesDetails.documentNumber = '2080834';
             marketingPreferencesDetails.docType = 'GDPR';

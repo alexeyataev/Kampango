@@ -234,6 +234,15 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public TestDataFactory buildVenueWithName(String name) {
+        TestVenueBuilder venueBuilder = new TestVenueBuilder();
+        venue = venueBuilder
+            .withName(name)
+            .insertRecord(true)
+            .build();
+        return this;
+    }
+
     public TestDataFactory buildRoom() {
         TestRoomBuilder roomBuilder = new TestRoomBuilder();
         room = roomBuilder
