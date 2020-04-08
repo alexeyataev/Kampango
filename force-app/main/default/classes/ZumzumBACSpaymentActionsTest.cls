@@ -1,5 +1,9 @@
 @isTest
 public class ZumzumBACSpaymentActionsTest {
+
+    private final static String TYPE_PURCHASE_INVOICE = 'Purchase Invoice';
+
+
 	@testSetup
     static void setup() {
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
@@ -30,8 +34,8 @@ public class ZumzumBACSpaymentActionsTest {
 
         TestPurchaseInvoiceBuilder purchaseInvoiceBuilder = new TestPurchaseInvoiceBuilder();
         TestPurchaseInvoiceLineItemBuilder purchaseInvoiceLineItemBuilder = new TestPurchaseInvoiceLineItemBuilder();
-        
         Zumzum__Purchase_Invoice__c pi1 = purchaseInvoiceBuilder
+                .withType(TYPE_PURCHASE_INVOICE)
                 .withStatus('Posted')
                 .withAccount(supplierAccount.Id)
                 .withContact(contact.Id)
@@ -51,6 +55,7 @@ public class ZumzumBACSpaymentActionsTest {
                 .build();
         
         Zumzum__Purchase_Invoice__c pi2 = purchaseInvoiceBuilder
+                .withType(TYPE_PURCHASE_INVOICE)
                 .withStatus('Posted')
                 .withAccount(supplierAccount.Id)
                 .withContact(contact.Id)
@@ -70,6 +75,7 @@ public class ZumzumBACSpaymentActionsTest {
                 .build();
         
         Zumzum__Purchase_Invoice__c pi3 = purchaseInvoiceBuilder
+                .withType(TYPE_PURCHASE_INVOICE)
                 .withStatus('Posted')
                 .withAccount(supplierAccount.Id)
                 .withContact(contact.Id)
@@ -89,6 +95,7 @@ public class ZumzumBACSpaymentActionsTest {
                 .build();
         
         Zumzum__Purchase_Invoice__c pi4 = purchaseInvoiceBuilder
+                .withType(TYPE_PURCHASE_INVOICE)
                 .withStatus('Posted')
                 .withAccount(supplierAccount.Id)
                 .withContact(contact.Id)
