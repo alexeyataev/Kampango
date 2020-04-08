@@ -46,15 +46,18 @@ public class ReunionEmailsSendTest {
             .withRecordType(CLIENT_RECORDTYPE_NAME)
             .withEmail(PARTICIPANT_PRIMARY_EMAIL)
             .withLastName(PARTICIPANT_PRIMARY_LAST_NAME)
-            .ignoreDuplicateRules(true)
             .build();
         Contact participantPartner = primaryContactBuilder
             .withRecordType(CLIENT_RECORDTYPE_NAME)
             .withEmail(PARTICIPANT_PARTNER_EMAIL)
             .withLastName(PARTICIPANT_PARTNER_LAST_NAME)
-            .ignoreDuplicateRules(true)
             .build();
-        insert new List<Contact> {participantPrimary, participantPartner};
+        Database.DMLOptions dmlOption = new Database.DMLOptions();
+        dmlOption.DuplicateRuleHeader.AllowSave =  true;
+        Database.insert(
+            new List<Contact> {participantPrimary, participantPartner}, 
+            dmlOption
+        );
 
         TestBookingBuilder bookingBuilder = new TestBookingBuilder();
         Booking__c participantBooking = bookingBuilder
