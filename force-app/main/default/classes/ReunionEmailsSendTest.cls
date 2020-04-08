@@ -71,7 +71,6 @@ public class ReunionEmailsSendTest {
             .build();
         dataFactory.setCourseToFinal();
 
-        System.debug([SELECT Id FROM Booking__c].size());
         Account branchAcc = [SELECT Id FROM Account WHERE RecordType.Name = 'Branch' LIMIT 1];
         branchAcc.PSA_Area__c = '3A';
         update branchAcc;
@@ -105,21 +104,20 @@ public class ReunionEmailsSendTest {
                 .withParentHost(parentHost)
                 .withStatus(SESSION_PROVISIONAL_STATUS)
                 .withPractitioner(practitioner)
-                //.withPractitionerFeeRate(practitionerFeeRate)
                 .withPractitionerLicence(license)
                 .insertRecord(true)
                 .build();
             reunion.Status__c = 'Confirmed';
             update reunion;
         }
+        Integer invocations = Limits.getEmailInvocations();
 
         Test.stopTest();
-        System.assert(true);
+        System.assertEquals(5, invocations, 'Emails should go to: a practitioner, a host with partner, a participant with partner');
     }
 
     @isTest
     static void sendWhenInPublicVenue() {
-        //create a session, change from provisional to confirmed, check result
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         Venue__c publicVenue = [SELECT Id FROM Venue__c LIMIT 1];
         Contact practitioner = [SELECT Id FROM Contact WHERE LastName = :PRACTITIONER_LAST_NAME LIMIT 1];
@@ -132,7 +130,8 @@ public class ReunionEmailsSendTest {
             WHERE Profile.Name = :PROFILE_NAME
             LIMIT 1
         ];
-        
+        Test.startTest();
+
         System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
             booking.Status__c = 'Confirmed';
             update booking;
@@ -149,12 +148,14 @@ public class ReunionEmailsSendTest {
             reunion.Status__c = 'Confirmed';
             update reunion;
         }
-        System.assert(true);
+        Integer invocations = Limits.getEmailInvocations();
+
+        Test.stopTest();
+        System.assertEquals(3, invocations, 'Emails should go to: a practitioner, a participant with partner');
     }
 
     @isTest
     static void errorWhenNoConfirmedBookings() {
-        //create a session, change from provisional to confirmed, check result
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         Venue__c publicVenue = [SELECT Id FROM Venue__c LIMIT 1];
         Contact practitioner = [SELECT Id FROM Contact WHERE LastName = :PRACTITIONER_LAST_NAME LIMIT 1];
@@ -167,7 +168,8 @@ public class ReunionEmailsSendTest {
             WHERE Profile.Name = :PROFILE_NAME
             LIMIT 1
         ];
-        
+        Test.startTest();
+
         System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
             Session__c reunion = sessionBuilder
                 .withCourse(course)
@@ -181,12 +183,14 @@ public class ReunionEmailsSendTest {
             reunion.Status__c = 'Confirmed';
             update reunion;
         }
-        System.assert(true);
+        Integer invocations = Limits.getEmailInvocations();
+
+        Test.stopTest();
+        System.assertEquals(0, invocations, 'No emails should be sent');
     }
 
     @isTest
     static void errorWhenNoPSAemails() {
-        //create a session, change from provisional to confirmed, check result
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         Venue__c publicVenue = [SELECT Id FROM Venue__c LIMIT 1];
         Contact practitioner = [SELECT Id FROM Contact WHERE LastName = :PRACTITIONER_LAST_NAME LIMIT 1];
@@ -199,7 +203,8 @@ public class ReunionEmailsSendTest {
             WHERE Profile.Name = :PROFILE_NAME
             LIMIT 1
         ];
-        
+        Test.startTest();
+
         System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
             Account branchAcc = [SELECT Id FROM Account WHERE RecordType.Name = 'Branch' LIMIT 1];
             branchAcc.Capacity_PSA_Email__c = null;
@@ -221,12 +226,14 @@ public class ReunionEmailsSendTest {
             reunion.Status__c = 'Confirmed';
             update reunion;
         }
-        System.assert(true);
+        Integer invocations = Limits.getEmailInvocations();
+
+        Test.stopTest();
+        System.assertEquals(0, invocations, 'No emails should be sent');
     }
 
     @isTest
     static void errorWhenHostIsNotPrimaryContactThatBookedForCourse() {
-        //create a session, change from provisional to confirmed, check result
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         Contact practitioner = [SELECT Id FROM Contact WHERE LastName = :PRACTITIONER_LAST_NAME LIMIT 1];
         Licence_To_Practice__c license = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
@@ -241,7 +248,8 @@ public class ReunionEmailsSendTest {
             WHERE Profile.Name = :PROFILE_NAME
             LIMIT 1
         ];
-        
+        Test.startTest();
+
         System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
             Account branchAcc = [SELECT Id FROM Account WHERE RecordType.Name = 'Branch' LIMIT 1];
             branchAcc.Capacity_PSA_Email__c = null;
@@ -263,6 +271,9 @@ public class ReunionEmailsSendTest {
             reunion.Status__c = 'Confirmed';
             update reunion;
         }
-        System.assert(true);
+        Integer invocations = Limits.getEmailInvocations();
+
+        Test.stopTest();
+        System.assertEquals(0, invocations, 'No emails should be sent');
     }
 }
