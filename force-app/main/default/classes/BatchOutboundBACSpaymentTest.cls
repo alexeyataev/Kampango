@@ -1,5 +1,10 @@
 @isTest
 private class BatchOutboundBACSpaymentTest {
+
+    private static final String DIMENSION1_VALUE = '3A';
+    private static final String DIMENSION2_VALUE = 'NCT Essentials antenatal course';
+
+
     @testSetup
     static void setupTestData(){
         TestFinanceDataFactory.getInstance().createZumzumData();
@@ -33,8 +38,7 @@ private class BatchOutboundBACSpaymentTest {
 
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc1')
-                    .createEnquiryPSA()
-                    .buildBranchAccountWithEnquiryPSA()
+                    .buildBranchAccount()
                     .buildPractitioner('PRACTITIONER_LASTNAME')
                     .buildPractitionerFeeRate()
                     .buildVenue()
@@ -43,6 +47,9 @@ private class BatchOutboundBACSpaymentTest {
                     .buildCourseWithStatus('Draft')
                     .buildEstimatedCosts()
                     .buildSession();
+        Account branch = [SELECT Id FROM Account WHERE RecordType.Name = 'Branch'];
+        branch.PSA_Area__c = DIMENSION1_VALUE;
+        update branch;
     }
 
     @isTest
@@ -88,18 +95,17 @@ private class BatchOutboundBACSpaymentTest {
     }
 
     @isTest
-    static void testDimensionsArePopulated() {
+    static void testDimensionsArePopulated() { //System.DmlException: Update failed. First exception on row 0 with id 0014E00001A1oOHQAZ; first error: INVALID_OR_NULL_FOR_RESTRICTED_PICKLIST, PSA Area: bad value for restricted picklist field: testarea: [PSA_Area__c]
         Zumzum__Dimension__c dimension1 = new Zumzum__Dimension__c();
-        dimension1.Name = 'NCT Essentials antenatal course';
+        dimension1.Name = DIMENSION1_VALUE;
         dimension1.Zumzum__Active__c = true;
         dimension1.Zumzum__Type__c = 'Dimension 1';
         insert dimension1;
         Zumzum__Dimension__c dimension2 = new Zumzum__Dimension__c();
-        dimension2.Name = 'testarea';
+        dimension2.Name = DIMENSION2_VALUE;
         dimension2.Zumzum__Active__c = true;
         dimension2.Zumzum__Type__c = 'Dimension 2';
-        //insert dimension2;
-
+        insert dimension2;
 
         Account acc = [
             SELECT Id
@@ -107,8 +113,6 @@ private class BatchOutboundBACSpaymentTest {
             WHERE Zumzum__Bank_Sort_Code__c = '572899'
             LIMIT 1
         ];
-
-        
         Test.startTest();
 
         createPurchaseInvoice(acc.Id);
@@ -116,25 +120,39 @@ private class BatchOutboundBACSpaymentTest {
             SELECT Id FROM Zumzum__Purchase_Invoice_Line_Item__c LIMIT 1
         ];
 
+        /*
         Account branchAccount = [
             SELECT Id FROM Account WHERE RecordType.Name = 'Branch' LIMIT 1
         ];
-        branchAccount.PSA_Area__c = 'testarea';
+        branchAccount.PSA_Area__c = '3A';
+        update branchAccount;
+        */
 
-        Session__c session = [
-            SELECT Id FROM Session__c LIMIT 1
-        ];
+        /* THIS DOES NOT WORK - UPDATE PROCESS TO TRIGGER ON SESSION UPDATE PLS */
+        //Session__c session = [
+        //    SELECT Id FROM Session__c LIMIT 1
+        //];
         
-        pili.Session__c = session.Id;
-        update pili;
+        //pili.Session__c = session.Id;
+        //update pili;
 
         Course__c course = [
             SELECT Id FROM Course__c LIMIT 1
         ];
+        course.Sub_Type__c = DIMENSION2_VALUE;
+        update course;
         pili.Course__c = course.Id;
-        update pili;
-
+        update pili; System.assertEquals(course.Id, [SELECT Id, Course__c FROM Zumzum__Purchase_Invoice_Line_Item__c WHERE Id = :pili.Id LIMIT 1].Course__c);
+        
         Test.stopTest();
+
+        Zumzum__Purchase_Invoice_LIne_Item__c piliUpdated = [
+            SELECT Id, Zumzum__Dimension_1__c, Zumzum__Dimension_2__c 
+            FROM Zumzum__Purchase_Invoice_LIne_Item__c 
+            WHERE Id = :pili.Id
+        ];
+        System.assertEquals(dimension1.Id, piliUpdated.Zumzum__Dimension_1__c);
+        System.assertEquals(dimension2.Id, piliUpdated.Zumzum__Dimension_2__c);
     }
 
     static void createPurchaseInvoice(Id supplierAccountId){
