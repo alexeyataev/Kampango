@@ -113,7 +113,9 @@ public class ReunionEmailsSendTest {
         Integer invocations = Limits.getEmailInvocations();
 
         Test.stopTest();
-        System.assertEquals(5, invocations, 'Emails should go to: a practitioner, a host with partner, a participant with partner');
+        if (TestEmailUtility.emailsFeatureEnabled()) {
+            System.assertEquals(5, invocations, 'Emails should go to: a practitioner, a host with partner, a participant with partner');
+        }
     }
 
     @isTest
@@ -151,7 +153,9 @@ public class ReunionEmailsSendTest {
         Integer invocations = Limits.getEmailInvocations();
 
         Test.stopTest();
-        System.assertEquals(3, invocations, 'Emails should go to: a practitioner, a participant with partner');
+        if (TestEmailUtility.emailsFeatureEnabled()) {
+            System.assertEquals(3, invocations, 'Emails should go to: a practitioner, a participant with partner');
+        }
     }
 
     @isTest
@@ -186,7 +190,9 @@ public class ReunionEmailsSendTest {
         Integer invocations = Limits.getEmailInvocations();
 
         Test.stopTest();
-        System.assertEquals(0, invocations, 'No emails should be sent');
+        if (TestEmailUtility.emailsFeatureEnabled()) {
+            System.assertEquals(0, invocations, 'No emails should be sent');
+        }
     }
 
     @isTest
@@ -229,7 +235,9 @@ public class ReunionEmailsSendTest {
         Integer invocations = Limits.getEmailInvocations();
 
         Test.stopTest();
-        System.assertEquals(0, invocations, 'No emails should be sent');
+        if (TestEmailUtility.emailsFeatureEnabled()) {
+            System.assertEquals(0, invocations, 'No emails should be sent');
+        }
     }
 
     @isTest
@@ -274,6 +282,8 @@ public class ReunionEmailsSendTest {
         Integer invocations = Limits.getEmailInvocations();
 
         Test.stopTest();
-        System.assertEquals(0, invocations, 'No emails should be sent');
+        if (TestEmailUtility.emailsFeatureEnabled()) {
+            System.assertEquals(0, invocations, 'No emails should be sent');
+        }
     }
 }
