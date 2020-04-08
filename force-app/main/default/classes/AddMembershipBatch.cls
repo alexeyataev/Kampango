@@ -15,6 +15,7 @@ public class AddMembershipBatch implements Database.Batchable<sObject>, Database
                 Partner_Contact__r.NCT_Number__c, Membership_Type__c, Membership_Amount__c 
             FROM cpm__Installment__c
             WHERE Care_Membership_Added__c = false 
+            AND Membership_Type__c != null
             AND Care_Status__c =: CARE_STATUS 
             AND (
                 (
