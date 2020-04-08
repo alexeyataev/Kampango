@@ -211,6 +211,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Batch_Receipt_Report__c.Total_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report__c.Total_Items__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Batch_Receipt_Report__c.Total_Matched__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Batch_Receipt_Report_Item__c.Acquirer_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -826,7 +841,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Surplus_Defecit__c</field>
+        <field>Course__c.Surplus_Deficit__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -870,12 +885,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Course__c.Total_Travel_Costs__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Course__c.Total_Venue_Costs__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -9020,6 +9035,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>Batch_Receipt_Report__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>cpm__Transaction_Set__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
@@ -9451,6 +9470,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ExportReport</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ImportCustomObjects</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
