@@ -123,6 +123,10 @@
     </classAccesses>
     <customPermissions>
         <enabled>true</enabled>
+        <name>Can_Convert_Expense_Sheet</name>
+    </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
         <name>Can_Reopen_Courses</name>
     </customPermissions>
     <fieldPermissions>
