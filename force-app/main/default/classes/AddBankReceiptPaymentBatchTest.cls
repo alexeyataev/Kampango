@@ -64,7 +64,6 @@ public class AddBankReceiptPaymentBatchTest {
             .insertRecord(true)
             .build();
 
-        Zumzum__Bank_Account__c bankAccount = [SELECT Id FROM Zumzum__Bank_Account__c LIMIT 1];
         Bank_Account_Settings__c bankAccountSettings = new Bank_Account_Settings__c();
         bankAccountSettings.Card_Receipt_Bank_Account_Name__c = BANK_ACCOUNT_NAME;
         insert bankAccountSettings;
