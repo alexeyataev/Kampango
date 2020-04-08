@@ -14,6 +14,7 @@ public with sharing class TestInstallmentBuilder {
     private Boolean insertRecord = false;
     private Decimal amount = 1;
     private Integer careAddMembershipAttempts = 0;
+    private String membershipType;
 
     public TestInstallmentBuilder withAccount(Id accountId)
     {
@@ -85,6 +86,10 @@ public with sharing class TestInstallmentBuilder {
         this.careAddMembershipAttempts = careAddMembershipAttempts;
         return this;
     }
+    public TestInstallmentBuilder withMembershipType(String membershipType) {
+        this.membershipType = membershipType;
+        return this;
+    }
 
     public TestInstallmentBuilder insertRecord(Boolean insertRecord)
     {
@@ -105,7 +110,8 @@ public with sharing class TestInstallmentBuilder {
             Sales_Invoice__c = salesInvoiceId,
             cpm__Recurring_Payment__c = recurringPaymentId,
             Care_Add_Membership_Attempts__c = this.careAddMembershipAttempts,
-            Care_Status__c = this.careStatus
+            Care_Status__c = this.careStatus,
+            Membership_Type__c = this.membershipType
         );
 
         if(insertRecord)
