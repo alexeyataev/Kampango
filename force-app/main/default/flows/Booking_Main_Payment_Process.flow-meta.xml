@@ -1549,7 +1549,7 @@ We check this because if GAD Status is &quot;Joint&quot; we will need to add Con
             <field>Zumzum__Nominal_Code__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>1200</stringValue>
+                <stringValue>1400</stringValue>
             </value>
         </filters>
         <object>Zumzum__Nominal_Account__c</object>
