@@ -1,14 +1,12 @@
 public class ReconcilePaymentsBatchHelper {
+    public static final String CREATED_STATUS = 'Created';
     private static final String DRAFT_STATUS = 'Draft';
-    private static final String PROCESSING_STATUS = 'Processing';
-    private static final String CREATED_STATUS = 'Created';
     private static final Integer BANK_NOMINAL_ACCOUNT_CODE = 9401;
 
     public static void processBatchReceiptReport(Batch_Receipt_Report__c receipt) {
         Map<String, Id> paymentLedgerMap = new Map<String, Id>();
         List<Batch_Receipt_Report_Item__c> reportItems = receipt.Batch_Receipt_Report_Items__r;
         Set<String> reportItemIds = new Set<String>();
-        receipt = updateBatchReceiptStatus(receipt, PROCESSING_STATUS);
 
         for (Batch_Receipt_Report_Item__c item : reportItems) {
             reportItemIds.add(item.Payment_Id__c);
@@ -35,7 +33,7 @@ public class ReconcilePaymentsBatchHelper {
         update reportItems;
 
         receipt.BankReconcile__c = bankReconcile.Id;
-        updateBatchReceiptStatus(receipt, CREATED_STATUS);
+        update receipt;
     }
 
     private static Zumzum__BankReconcile__c getBankReconcile(Batch_Receipt_Report__c receipt) {
@@ -66,11 +64,5 @@ public class ReconcilePaymentsBatchHelper {
             paymentLedgerMap.put(ledger.Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c, ledger.Id);
         }
         return paymentLedgerMap;
-    }
-    
-    private static Batch_Receipt_Report__c updateBatchReceiptStatus(Batch_Receipt_Report__c receipt, String status) {
-        receipt.Status__c = status;
-        update receipt;
-        return receipt;
     }
 }

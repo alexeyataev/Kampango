@@ -2178,10 +2178,6 @@ NOT(ISNUMBER({!Account_Name}))
             </value>
         </inputAssignments>
         <outputAssignments>
-            <assignToReference>Gift_Aid_Declaration_List</assignToReference>
-            <name>Gift_Aid_Declaration_List</name>
-        </outputAssignments>
-        <outputAssignments>
             <assignToReference>Booking_Instance_For_Update.Gift_Aid_Declaration_Status__c</assignToReference>
             <name>Gift_Aid_Result</name>
         </outputAssignments>

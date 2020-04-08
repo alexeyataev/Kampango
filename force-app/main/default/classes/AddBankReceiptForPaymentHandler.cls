@@ -25,6 +25,8 @@ public with sharing class AddBankReceiptForPaymentHandler {
 
         Zumzum.BankCustomerReceiptService bankCustomerReceiptService = new Zumzum.BankCustomerReceiptService();
         Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper receiptWrapper = new Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper();
+        List<Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper> receiptWrapperList = new List<Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper>();
+
         Map<Id, List<cpm__Payment__c>> salesInvoicesPaymentsMap = new Map<Id, List<cpm__Payment__c>>();
 
         for (cpm__Payment__c payment : payments) {
@@ -60,9 +62,10 @@ public with sharing class AddBankReceiptForPaymentHandler {
                 receiptWrapper.WrapperAPICustomFields = new List<Zumzum.APICustomFieldWrapper>();
                 receiptWrapper.WrapperAPICustomFields.add(new Zumzum.APICustomFieldWrapper('Zumzum__Bank_Receipt__c', 'Payment__c', payment.Id));
                 receiptWrapper.BankReceiptLines = createBankReceiptLines(payment, salesInvoice);
-                bankReceiptCreator.createBankReceipt(receiptWrapper);
+                receiptWrapperList.add(receiptWrapper);
             }
         }
+        bankReceiptCreator.createBankReceipts(receiptWrapperList);
     }
 
     private static List<Zumzum.BankCustomerReceiptService.BankReceiptLine> createBankReceiptLines(cpm__Payment__c payment, Zumzum__Sales_Invoice__c salesInvoice) {
