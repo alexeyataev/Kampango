@@ -34,6 +34,10 @@
                 <behavior>Readonly</behavior>
                 <field>Zumzum__Total_Miles__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Number_of_Purchase_Invoices__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -88,6 +92,7 @@
         <fields>Zumzum__Date__c</fields>
         <fields>Zumzum__Narrative__c</fields>
         <fields>Course__c</fields>
+        <fields>Zumzum__Nominal_Account__c</fields>
         <fields>Zumzum__Quantity__c</fields>
         <fields>Zumzum__Unit_Amount__c</fields>
         <fields>Zumzum__Total_VAT__c</fields>
