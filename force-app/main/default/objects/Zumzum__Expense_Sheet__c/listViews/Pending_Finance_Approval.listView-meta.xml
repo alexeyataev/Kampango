@@ -19,4 +19,7 @@
         <value>Approved</value>
     </filters>
     <label>Pending Finance Approval</label>
+    <sharedTo>
+        <role>Finance</role>
+    </sharedTo>
 </ListView>

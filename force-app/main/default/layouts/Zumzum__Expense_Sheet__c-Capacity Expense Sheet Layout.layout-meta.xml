@@ -85,13 +85,14 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
+        <fields>Zumzum__Nominal_Account__c</fields>
+        <fields>Course__c</fields>
+        <fields>Zumzum__Total_Gross__c</fields>
         <fields>Zumzum__Date__c</fields>
         <fields>Zumzum__Narrative__c</fields>
-        <fields>Course__c</fields>
         <fields>Zumzum__Quantity__c</fields>
         <fields>Zumzum__Unit_Amount__c</fields>
         <fields>Zumzum__Total_VAT__c</fields>
-        <fields>Zumzum__Total_Gross__c</fields>
         <relatedList>Zumzum__Expense_Sheet_Detail__c.Zumzum__Expense_Sheet__c</relatedList>
     </relatedLists>
     <relatedLists>
