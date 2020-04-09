@@ -47,8 +47,8 @@
     <assignments>
         <name>Assign_name_bookingList_for_output</name>
         <label>Assign name bookingList for output</label>
-        <locationX>365</locationX>
-        <locationY>1329</locationY>
+        <locationX>353</locationX>
+        <locationY>1328</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -63,8 +63,8 @@
     <assignments>
         <name>Assign_name_practit_email_for_output</name>
         <label>Assign name practit email for output</label>
-        <locationX>623</locationX>
-        <locationY>1341</locationY>
+        <locationX>606</locationX>
+        <locationY>1340</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -466,8 +466,8 @@
     <decisions>
         <name>Check_Bookings_List_is_not_null</name>
         <label>Check Bookings List is not null</label>
-        <locationX>357</locationX>
-        <locationY>1007</locationY>
+        <locationX>346</locationX>
+        <locationY>1008</locationY>
         <defaultConnector>
             <targetReference>Assign_name_bookingList_for_output</targetReference>
         </defaultConnector>
@@ -483,7 +483,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_practitioner</targetReference>
+                <targetReference>Check_Practitioner_email_is_not_null</targetReference>
             </connector>
             <label>Bookings not null?</label>
         </rules>
@@ -541,7 +541,7 @@
     <decisions>
         <name>Check_Practitioner_email_is_not_null</name>
         <label>Check Practitioner email is not null</label>
-        <locationX>611</locationX>
+        <locationX>598</locationX>
         <locationY>1003</locationY>
         <defaultConnector>
             <targetReference>Assign_name_practit_email_for_output</targetReference>
@@ -558,7 +558,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Course</targetReference>
+                <targetReference>Get_practitioner</targetReference>
             </connector>
             <label>Practitioner email is not null?</label>
         </rules>
@@ -784,7 +784,7 @@
     </decisions>
     <description>Sends emails of different types when reunion session becomes &#39;confirmed&#39;.
 Version changes: 
-Removed Venue validation</description>
+Changed empty checks order</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -841,8 +841,8 @@ Removed Venue validation</description>
     <recordLookups>
         <name>Get_Course</name>
         <label>Get Course</label>
-        <locationX>764</locationX>
-        <locationY>669</locationY>
+        <locationX>763</locationX>
+        <locationY>713</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_practitioner_template</targetReference>
@@ -867,11 +867,11 @@ Removed Venue validation</description>
     <recordLookups>
         <name>Get_practitioner</name>
         <label>Get practitioner</label>
-        <locationX>509</locationX>
-        <locationY>674</locationY>
+        <locationX>606</locationX>
+        <locationY>705</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_Practitioner_email_is_not_null</targetReference>
+            <targetReference>Get_Course</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -894,7 +894,7 @@ Removed Venue validation</description>
         <name>Get_practitioner_template</name>
         <label>Get practitioner template</label>
         <locationX>883</locationX>
-        <locationY>669</locationY>
+        <locationY>713</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_PSA_emails</targetReference>
@@ -968,8 +968,8 @@ Removed Venue validation</description>
         <queriedFields>Type__c</queriedFields>
     </recordLookups>
     <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
+        <locationX>357</locationX>
+        <locationY>311</locationY>
         <connector>
             <targetReference>Check_Session_Id</targetReference>
         </connector>
