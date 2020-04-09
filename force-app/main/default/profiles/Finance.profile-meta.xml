@@ -236,6 +236,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Bank_Receipt__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Batch_Receipt_Report_Item__c.Captured_On__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -247,11 +252,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Batch_Receipt_Report_Item__c.Internal_Order_Id__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Batch_Receipt_Report_Item__c.Ledger__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
