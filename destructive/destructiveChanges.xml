@@ -38,6 +38,7 @@
         <members>Account.Branch__c</members>
         <members>Account.Branch_Code__c</members>
         <members>Account.Enquiry_PSA__c</members>
+        <members>Batch_Receipt_Report_Item__c.Ledger__c</members>
         <members>Booking__c.Birth_Date__c</members>
         <members>Booking__c.Birth_Or_Due_Date__c</members>
         <members>Booking__c.Client_Name__c</members>

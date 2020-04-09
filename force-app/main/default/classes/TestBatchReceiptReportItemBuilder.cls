@@ -1,5 +1,5 @@
 public with sharing class TestBatchReceiptReportItemBuilder {
-    private Id ledger;
+    private Id bankReceipt;
     private Id batchReceiptReport;
     private String reference;
     private String acquirerAccount = 'Acquirer Account';
@@ -11,8 +11,8 @@ public with sharing class TestBatchReceiptReportItemBuilder {
     private String paymentMethod = 'Card';
     private Boolean insertRecord = false;
 
-    public TestBatchReceiptReportItemBuilder withLedger(Id ledger) {
-        this.ledger = ledger;
+    public TestBatchReceiptReportItemBuilder withBankReceipt(Id bankReceipt) {
+        this.bankReceipt = bankReceipt;
         return this;
     }
 
@@ -73,7 +73,7 @@ public with sharing class TestBatchReceiptReportItemBuilder {
             Batch_Receipt_Report__c = this.batchReceiptReport,
             Captured_On__c = this.capturedOn,
             Currency_Code__c = this.currencyCode,
-            Ledger__c = this.ledger,
+            Bank_Receipt__c = bankReceipt,
             Order_Code__c = this.orderCode,
             Payment_Id__c = this.paymentId,
             Payment_Method__c = this.paymentMethod,
