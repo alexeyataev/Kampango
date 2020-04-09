@@ -28,7 +28,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Ledger__c</field>
+                <field>Bank_Receipt__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
