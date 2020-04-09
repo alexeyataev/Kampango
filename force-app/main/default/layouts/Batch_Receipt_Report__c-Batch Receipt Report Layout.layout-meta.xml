@@ -126,7 +126,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Amount__c</fields>
-        <fields>Ledger__c</fields>
+        <fields>Bank_Receipt__c</fields>
         <fields>Payment_Method__c</fields>
         <relatedList>Batch_Receipt_Report_Item__c.Batch_Receipt_Report__c</relatedList>
     </relatedLists>
