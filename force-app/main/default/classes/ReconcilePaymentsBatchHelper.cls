@@ -18,6 +18,7 @@ public class ReconcilePaymentsBatchHelper {
                 Zumzum__Bank_Receipt__c
             FROM Zumzum__Ledger__c
             WHERE Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c IN:paymentIds
+                AND Zumzum__Sub_Account_Nominal_Link__r.Zumzum__Account_Code__c =: BANK_NOMINAL_ACCOUNT_CODE
             WITH SECURITY_ENFORCED
         ];
         paymentsBankReceipt = getpaymentsBankReceiptMap(ledgers);
