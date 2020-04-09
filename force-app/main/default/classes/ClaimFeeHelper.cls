@@ -114,26 +114,21 @@ public with sharing class ClaimFeeHelper {
         }
         updatePurchaseInvoicesContact(objResponse.purchaseInvoices, currentUser);
 
-        postPurchaseInvoices(objResponse.purchaseInvoices);
-        List<Id> invoices = new List<Id>();
+        Set<Id> invoices = new Set<Id>();
         for (Zumzum__Purchase_Invoice__c pi : objResponse.purchaseInvoices) {
             invoices.add(pi.Id);
         } 
+
+        Zumzum.PurchaseInvoiceService.Response postResponse = purchaseInvoiceService.postPurchaseInvoice(invoices, false);
+        if (!postResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
+            throw new CreatePurchaseInvoiceException(postResponse.ResponseMessage);
+        }
+
         allocateSupplierBalance(invoices);
     }
 
-    private static void postPurchaseInvoices(List<Zumzum__Purchase_Invoice__c> invoices) {
-        Zumzum.PurchaseInvoiceService postService = new Zumzum.PurchaseInvoiceService();
-        for (Zumzum__Purchase_Invoice__c pi : invoices) {
-            Zumzum.PurchaseInvoiceService.Response apiResponse = postService.postPurchaseInvoice(pi.Id);
-            if (!apiResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
-                throw new CreatePurchaseInvoiceException(apiResponse.ResponseMessage);
-            }
-        }
-    }
-
     @future
-    private static void allocateSupplierBalance(List<Id> invoiceIds) {
+    private static void allocateSupplierBalance(Set<Id> invoiceIds) {
         Financial_Settings__c financialSettings = Financial_Settings__c.getInstance();
 
         User currentUser = [
@@ -204,7 +199,7 @@ public with sharing class ClaimFeeHelper {
         }
     }
 
-    private static void sendEmailToFinance(List<Id> invoiceIds) {
+    private static void sendEmailToFinance(Set<Id> invoiceIds) {
         if (!TestEmailUtility.emailsFeatureEnabled()) {
             return;
         }
@@ -248,7 +243,7 @@ public with sharing class ClaimFeeHelper {
         return dimensionsMap;
     }
 
-    private static void setStatusInvoiceMap(List<Id> invoiceIds) {
+    private static void setStatusInvoiceMap(Set<Id> invoiceIds) {
         List<Zumzum__Purchase_Invoice__c> invoices = [
             SELECT Id, Name, Zumzum__Type__c
             FROM Zumzum__Purchase_Invoice__c
