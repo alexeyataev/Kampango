@@ -8,6 +8,7 @@ public without sharing class AddMembershipTest {
     private static final String ERROR_NUMBER = '400';
     private static final String PAYMENT_PROCESSOR = 'PaymentHub-WorldPay';
     private static final String PAYMENT_STATUS = 'Collected';
+    private static final String MEMBERSHIP_TYPE_A = 'A';
     @testSetup static void createTestData() {
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account account =  accountBuilder
@@ -29,6 +30,7 @@ public without sharing class AddMembershipTest {
             .withBankDetailsNumber('331257')
             .withPaymentProcessor(PAYMENT_PROCESSOR)
             .withStatus(PAYMENT_STATUS)
+            .withMembershipType(MEMBERSHIP_TYPE_A)
             .insertRecord(false)
             .build(),
             installmentBuilder.withPrimaryContact(primaryContact.Id)
@@ -37,6 +39,7 @@ public without sharing class AddMembershipTest {
             .withStatus(PAYMENT_STATUS)
             .withCareStatus(FAILURE_STATUS)
             .withCareAddMembershipAttempts(1)
+            .withMembershipType(MEMBERSHIP_TYPE_A)
             .insertRecord(false)
             .build(),
             installmentBuilder.withPrimaryContact(primaryContact.Id)
@@ -45,6 +48,7 @@ public without sharing class AddMembershipTest {
             .withStatus(PAYMENT_STATUS)
             .withCareStatus(FAILURE_STATUS)
             .withCareAddMembershipAttempts(1)
+            .withMembershipType(MEMBERSHIP_TYPE_A)
             .insertRecord(false)
             .build()
         };
