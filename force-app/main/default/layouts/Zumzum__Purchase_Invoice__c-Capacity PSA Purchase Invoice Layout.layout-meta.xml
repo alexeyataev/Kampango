@@ -130,14 +130,15 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Zumzum__UID__c</fields>
         <fields>Zumzum__Nominal_Account__c</fields>
+        <fields>Course__c</fields>
+        <fields>Zumzum__Total_Gross__c</fields>
+        <fields>Zumzum__UID__c</fields>
         <fields>Zumzum__Narrative__c</fields>
         <fields>Zumzum__Quantity__c</fields>
         <fields>Zumzum__Amount__c</fields>
         <fields>Zumzum__Tax_Rate__c</fields>
         <fields>Zumzum__Total_VAT__c</fields>
-        <fields>Zumzum__Total_Gross__c</fields>
         <relatedList>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Purchase_Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>
