@@ -1,10 +1,10 @@
 public with sharing class CareHelper {
     private static final String BASE_URL = Care_Settings__c.getOrgDefaults().Base_Url__c;
-    private static final String STATUS_OK = 'OK';
+    private static final String HTTP_STATUS_OK = 'OK';
     public static AddContactResult sendContact(Contact cont) {
         HttpResponse res = sendHttpRequest('SFAddUpdateContactWS.pl', CareRequestBodyUtil.createSendContactBody(cont));
         AddContactResult addContactResult = new AddContactResult();
-        if(res.getStatus() == STATUS_OK) {
+        if(res.getStatus() == HTTP_STATUS_OK) {
             ContactObject contactObject = (ContactObject)JSON.deserialize(res.getBody(), ContactObject.class);
             addContactResult.error = contactObject.error != null ? contactObject.error[0].errorMessage : null;
             addContactResult.nctNumber = contactObject.contact != null ? contactObject.contact.contactNumber : null;
@@ -16,7 +16,7 @@ public with sharing class CareHelper {
     public static AddBankDetailsResult sendBankDetails(cpm__Installment__c installment, Contact cont) {
         HttpResponse res = sendHttpRequest('SFAddBankDetailsWS.pl', CareRequestBodyUtil.createSendBankDetailsBody(installment, cont));
         AddBankDetailsResult addBankDetailsResult = new AddBankDetailsResult();
-        if(res.getStatus() == STATUS_OK) {
+        if(res.getStatus() == HTTP_STATUS_OK) {
             ContactBankAccountObject contactBankAccountObject = (ContactBankAccountObject)JSON.deserialize(res.getBody(), ContactBankAccountObject.class);
             addBankDetailsResult.error = contactBankAccountObject.error != null ? contactBankAccountObject.error[0].errorMessage : null;
             addBankDetailsResult.bankDetailsNumber = contactBankAccountObject.contactBankAccount != null ? contactBankAccountObject.contactBankAccount.bankDetailNumber : null;
@@ -28,7 +28,7 @@ public with sharing class CareHelper {
     public static MembershipObject addMembership(cpm__Installment__c installment) {
         HttpResponse res = sendHttpRequest('SFAddMembershipWS.pl', CareRequestBodyUtil.createAddMembershipBody(installment));
         MembershipObject membershipObject;
-        if(res.getStatus() == STATUS_OK) {
+        if(res.getStatus() == HTTP_STATUS_OK) {
             membershipObject = (MembershipObject)JSON.deserialize(res.getBody(), MembershipObject.class);
         } else {
             ErrorObject errorObject = new ErrorObject();
