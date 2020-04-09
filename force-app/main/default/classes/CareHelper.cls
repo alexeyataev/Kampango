@@ -1,24 +1,40 @@
 public with sharing class CareHelper {
     private static final String BASE_URL = Care_Settings__c.getOrgDefaults().Base_Url__c;
+    private static final String STATUS_OK = 'OK';
     public static AddContactResult sendContact(Contact cont) {
         HttpResponse res = sendHttpRequest('SFAddUpdateContactWS.pl', CareRequestBodyUtil.createSendContactBody(cont));
-        ContactObject contactObject = (ContactObject)JSON.deserialize(res.getBody(), ContactObject.class);
         AddContactResult addContactResult = new AddContactResult();
-        addContactResult.error = contactObject.error != null ? contactObject.error[0].errorMessage : null;
-        addContactResult.nctNumber = contactObject.contact != null ? contactObject.contact.contactNumber : null;
+        if(res.getStatus() == STATUS_OK) {
+            ContactObject contactObject = (ContactObject)JSON.deserialize(res.getBody(), ContactObject.class);
+            addContactResult.error = contactObject.error != null ? contactObject.error[0].errorMessage : null;
+            addContactResult.nctNumber = contactObject.contact != null ? contactObject.contact.contactNumber : null;
+        } else {
+            addContactResult.error = res.getBody();
+        }
         return addContactResult;
     }
     public static AddBankDetailsResult sendBankDetails(cpm__Installment__c installment, Contact cont) {
         HttpResponse res = sendHttpRequest('SFAddBankDetailsWS.pl', CareRequestBodyUtil.createSendBankDetailsBody(installment, cont));
-        ContactBankAccountObject contactBankAccountObject = (ContactBankAccountObject)JSON.deserialize(res.getBody(), ContactBankAccountObject.class);
         AddBankDetailsResult addBankDetailsResult = new AddBankDetailsResult();
-        addBankDetailsResult.error = contactBankAccountObject.error != null ? contactBankAccountObject.error[0].errorMessage : null;
-        addBankDetailsResult.bankDetailsNumber = contactBankAccountObject.contactBankAccount != null ? contactBankAccountObject.contactBankAccount.bankDetailNumber : null;
+        if(res.getStatus() == STATUS_OK) {
+            ContactBankAccountObject contactBankAccountObject = (ContactBankAccountObject)JSON.deserialize(res.getBody(), ContactBankAccountObject.class);
+            addBankDetailsResult.error = contactBankAccountObject.error != null ? contactBankAccountObject.error[0].errorMessage : null;
+            addBankDetailsResult.bankDetailsNumber = contactBankAccountObject.contactBankAccount != null ? contactBankAccountObject.contactBankAccount.bankDetailNumber : null;
+        } else {
+            addBankDetailsResult.error = res.getBody();
+        }
         return addBankDetailsResult;
     }
     public static MembershipObject addMembership(cpm__Installment__c installment) {
         HttpResponse res = sendHttpRequest('SFAddMembershipWS.pl', CareRequestBodyUtil.createAddMembershipBody(installment));
-        MembershipObject membershipObject = (MembershipObject)JSON.deserialize(res.getBody(), MembershipObject.class);
+        MembershipObject membershipObject;
+        if(res.getStatus() == STATUS_OK) {
+            membershipObject = (MembershipObject)JSON.deserialize(res.getBody(), MembershipObject.class);
+        } else {
+            ErrorObject errorObject = new ErrorObject();
+            errorObject.errorMessage = res.getBody();
+            membershipObject.error = new List<ErrorObject> {errorObject};
+        }
         return membershipObject;
     }
 
