@@ -52,11 +52,11 @@
     </values>
     <values>
         <field>dlrs__RelationshipCriteriaFields__c</field>
-        <value xsi:type="xsd:string">Ledger__c</value>
+        <value xsi:type="xsd:string">Bank_Receipt__c</value>
     </values>
     <values>
         <field>dlrs__RelationshipCriteria__c</field>
-        <value xsi:type="xsd:string">Ledger__c != NULL</value>
+        <value xsi:type="xsd:string">Bank_Receipt__c != NULL</value>
     </values>
     <values>
         <field>dlrs__RelationshipField__c</field>
