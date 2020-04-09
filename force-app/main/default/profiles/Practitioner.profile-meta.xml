@@ -1135,17 +1135,17 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Total_Gross__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Total_Net__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Zumzum__Expense_Sheet_Detail__c.Zumzum__Total_VAT__c</field>
         <readable>true</readable>
     </fieldPermissions>
