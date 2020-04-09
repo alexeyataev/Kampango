@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Create_Purchase_Invoice</name>
         <label>Create Purchase Invoice</label>
-        <locationX>499</locationX>
-        <locationY>275</locationY>
+        <locationX>847</locationX>
+        <locationY>200</locationY>
         <actionName>ClaimFeeHelper</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -26,8 +26,8 @@
     <assignments>
         <name>Assign_Session_Course_Sub_Type</name>
         <label>Assign Session Course Sub Type</label>
-        <locationX>392</locationX>
-        <locationY>188</locationY>
+        <locationX>311</locationX>
+        <locationY>197</locationY>
         <assignmentItems>
             <assignToReference>tempCurrentSession.Course__c</assignToReference>
             <operator>Assign</operator>
@@ -42,8 +42,8 @@
     <assignments>
         <name>Assing_Checked_Sessions</name>
         <label>Assign Checked Sessions</label>
-        <locationX>828</locationX>
-        <locationY>163</locationY>
+        <locationX>846</locationX>
+        <locationY>20</locationY>
         <assignmentItems>
             <assignToReference>sessionsToClaim</assignToReference>
             <operator>Assign</operator>
@@ -100,8 +100,8 @@ Added course sub type assigment</description>
     <loops>
         <name>Loop_List_Sessions</name>
         <label>Loop List Sessions</label>
-        <locationX>260</locationX>
-        <locationY>203</locationY>
+        <locationX>518</locationX>
+        <locationY>199</locationY>
         <assignNextValueToReference>tempCurrentSession</assignNextValueToReference>
         <collectionReference>listSessions</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -128,8 +128,8 @@ Added course sub type assigment</description>
     <recordLookups>
         <name>Get_Practitioner</name>
         <label>Get Practitioner</label>
-        <locationX>336</locationX>
-        <locationY>50</locationY>
+        <locationX>343</locationX>
+        <locationY>12</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Session</targetReference>
@@ -149,8 +149,8 @@ Added course sub type assigment</description>
     <recordLookups>
         <name>Get_Session</name>
         <label>Get Session</label>
-        <locationX>466</locationX>
-        <locationY>50</locationY>
+        <locationX>518</locationX>
+        <locationY>12</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_List_Sessions</targetReference>
@@ -203,8 +203,8 @@ Added course sub type assigment</description>
     <recordLookups>
         <name>getAccountAndContactId</name>
         <label>Get Account And Contact</label>
-        <locationX>206</locationX>
-        <locationY>50</locationY>
+        <locationX>186</locationX>
+        <locationY>13</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Practitioner</targetReference>
@@ -229,8 +229,8 @@ Added course sub type assigment</description>
     <screens>
         <name>Claim_Fees_Datatable</name>
         <label>Claim Fees Datatable</label>
-        <locationX>586</locationX>
-        <locationY>50</locationY>
+        <locationX>704</locationX>
+        <locationY>202</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -239,7 +239,7 @@ Added course sub type assigment</description>
         </connector>
         <fields>
             <name>helpText</name>
-            <fieldText>&lt;p&gt;The table below shows all sessions that are available to claim from the last 3 months. Please ensure you are checking back regularly to claim your completed sessions.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;The list below includes the fees for all sessions which took place in the past three months which have not yet been claimed. Please check back regularly to claim fees for any further completed sessions.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -279,8 +279,8 @@ Added course sub type assigment</description>
     <screens>
         <name>Confirmation_Message</name>
         <label>Confirmation Message</label>
-        <locationX>1048</locationX>
-        <locationY>283</locationY>
+        <locationX>1025</locationX>
+        <locationY>198</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -295,8 +295,8 @@ Added course sub type assigment</description>
     <screens>
         <name>Show_Total_Fees</name>
         <label>Show Total Fees</label>
-        <locationX>703</locationX>
-        <locationY>50</locationY>
+        <locationX>704</locationX>
+        <locationY>21</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -312,8 +312,8 @@ Added course sub type assigment</description>
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>74</locationX>
-        <locationY>205</locationY>
+        <locationX>182</locationX>
+        <locationY>190</locationY>
         <connector>
             <targetReference>getAccountAndContactId</targetReference>
         </connector>
