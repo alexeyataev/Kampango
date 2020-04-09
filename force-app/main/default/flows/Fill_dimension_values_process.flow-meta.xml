@@ -121,7 +121,7 @@
             <label>Are dimensions need update?</label>
         </rules>
     </decisions>
-    <description>Added evaluate next criteria after Course population</description>
+    <description>Added a condition to update dimensions on Session change</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -138,15 +138,23 @@
             <name>originalFormula</name>
             <value>
                 <stringValue>ISNEW() ||
-ISCHANGED( [Zumzum__Purchase_Invoice_Line_Item__c].Course__c )</stringValue>
+ISCHANGED( [Zumzum__Purchase_Invoice_Line_Item__c].Course__c ) ||
+AND( 
+ ISCHANGED( [Zumzum__Purchase_Invoice_Line_Item__c].Session__c ),
+ ISBLANK( [Zumzum__Purchase_Invoice_Line_Item__c].Course__c )
+)</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_3</name>
         <dataType>Boolean</dataType>
         <expression>ISNEW() ||
-ISCHANGED( {!myVariable_current.Course__c} )</expression>
+ISCHANGED( {!myVariable_current.Course__c} ) ||
+AND( 
+ ISCHANGED( {!myVariable_current.Session__c} ),
+ ISBLANK( {!myVariable_current.Course__c} )
+)</expression>
     </formulas>
-    <interviewLabel>Fill_dimension_values_process-4_InterviewLabel</interviewLabel>
+    <interviewLabel>Fill_dimension_values_process-6_InterviewLabel</interviewLabel>
     <label>Fill dimension values process</label>
     <processMetadataValues>
         <name>ObjectType</name>
