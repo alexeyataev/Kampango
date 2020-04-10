@@ -1,6 +1,8 @@
 /**
  * Auto Generated and Deployed by the Declarative Lookup Rollup Summaries Tool package (dlrs)
  **/
+@SuppressWarnings('PMD.ClassNamingConventions')
+//Incident #77 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 private class dlrs_Batch_Receipt_Report_ItemTest
 {
