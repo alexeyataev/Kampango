@@ -403,7 +403,8 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Session__c</fields>
-        <fields>Zumzum__Amount__c</fields>
+        <fields>Zumzum__Nominal_Account__c</fields>
+        <fields>Zumzum__Total_Gross__c</fields>
         <relatedList>Zumzum__Purchase_Invoice_Line_Item__c.Course__c</relatedList>
     </relatedLists>
     <relatedLists>
