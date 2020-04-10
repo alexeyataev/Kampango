@@ -1,4 +1,4 @@
-@SuppressWarnings({'PMD.AvoidGlobalModifier', 'PMD.ExcessiveParameterList'})
+@SuppressWarnings('PMD.AvoidGlobalModifier', 'PMD.ExcessiveParameterList')
 //Incident #68 - https://confluence.nct.org.uk:8443/x/EoSO
 global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
     private static final String SESSION_STATUS_DRAFT = 'Draft';
