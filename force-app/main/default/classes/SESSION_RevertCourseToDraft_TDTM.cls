@@ -60,7 +60,6 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
                 newSessionList[i].Practitioner_Licence__c != oldSessionList[i].Practitioner_Licence__c ||
                 newSessionList[i].Venue__c != oldSessionList[i].Venue__c ||
                 newSessionList[i].Status__c != oldSessionList[i].Status__c ||
-                newSessionList[i].Room__c != oldSessionList[i].Room__c ||
                 newSessionList[i].Practitioner__c != oldSessionList[i].Practitioner__c;
 
             Boolean isReunionSession = newSessionList[i].Type__c == SESSION_TYPE_REUNION &&
