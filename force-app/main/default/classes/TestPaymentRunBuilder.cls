@@ -1,4 +1,5 @@
-public with sharing class TestPaymentRunBuilder {
+@isTest
+public class TestPaymentRunBuilder {
     
     private List<Payment_Run_Line_Item__c> lineItems {get; private set;}
     private Boolean insertRecord = true;
