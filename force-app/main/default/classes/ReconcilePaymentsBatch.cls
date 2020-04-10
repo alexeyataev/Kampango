@@ -1,4 +1,4 @@
-public class ReconcilePaymentsBatch implements Database.Batchable<sObject>{
+public with sharing class ReconcilePaymentsBatch implements Database.Batchable<sObject>{
     public Id recordId;
 
     public ReconcilePaymentsBatch(Id recordId) {
