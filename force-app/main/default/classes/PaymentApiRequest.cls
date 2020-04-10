@@ -48,12 +48,20 @@ public class PaymentApiRequest{
         private Date startDate {get;set;}
         private Date endDate {get;set;}
         private Map<String, String> customFields {get;set;}
-        public Recurring(Decimal amount, String frequency, Date startDate, Date endDate, Map<String, String> customFields) {
+        public Recurring(Decimal amount, String frequency, RecurringDates recurringDates, Map<String, String> customFields) {
             this.amount = amount;
             this.frequency = frequency;
+            this.startDate = recurringDates.startDate;
+            this.endDate = recurringDates.endDate;
+            this.customFields = customFields;
+        }
+    }
+    public class RecurringDates {
+        private Date startDate { get; set; }
+        private Date endDate { get; set; }
+        public RecurringDates(Date startDate, Date endDate) {
             this.startDate = startDate;
             this.endDate = endDate;
-            this.customFields = customFields;
         }
     }
     public class Contact {
