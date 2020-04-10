@@ -192,7 +192,7 @@
     <assignments>
         <name>Return_error_on_get</name>
         <label>Return error on get</label>
-        <locationX>483</locationX>
+        <locationX>482</locationX>
         <locationY>900</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
@@ -221,8 +221,8 @@
     <assignments>
         <name>Return_success</name>
         <label>Return success</label>
-        <locationX>941</locationX>
-        <locationY>1019</locationY>
+        <locationX>1001</locationX>
+        <locationY>1015</locationY>
         <assignmentItems>
             <assignToReference>subflow_status</assignToReference>
             <operator>Assign</operator>
@@ -403,6 +403,25 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_if_success</name>
+        <label>Check if success</label>
+        <locationX>793</locationX>
+        <locationY>1016</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_success</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>subflow_status</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Return_success</targetReference>
+            </connector>
+            <label>Is success?</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_input_booking</name>
         <label>Check input booking</label>
         <locationX>175</locationX>
@@ -453,7 +472,7 @@
         <name>Check_is_host_0</name>
         <label>Check is host</label>
         <locationX>300</locationX>
-        <locationY>584</locationY>
+        <locationY>585</locationY>
         <defaultConnector>
             <targetReference>Loop_to_set_host_names</targetReference>
         </defaultConnector>
@@ -476,7 +495,7 @@
     </decisions>
     <description>Sends emails of types &quot;Host&quot; and &quot;Attendee&quot; to Primary and Partner contacts.
 Version changes:
-Moved Org-Wide Address querying to Apex Action</description>
+Fixed part success status output - loop does not stop on error</description>
     <formulas>
         <name>host_names</name>
         <dataType>String</dataType>
@@ -499,7 +518,7 @@ Moved Org-Wide Address querying to Apex Action</description>
             <targetReference>Check_input_booking</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>Return_success</targetReference>
+            <targetReference>Check_if_success</targetReference>
         </noMoreValuesConnector>
     </loops>
     <loops>
@@ -595,7 +614,13 @@ Moved Org-Wide Address querying to Apex Action</description>
         </faultConnector>
         <inputReference>course</inputReference>
     </recordUpdates>
-    <startElementReference>Loop_to_set_host_names</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Loop_to_set_host_names</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>booking</name>

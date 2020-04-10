@@ -1,5 +1,10 @@
 @isTest
 private class BatchOutboundBACSpaymentTest {
+
+    private static final String DIMENSION1_VALUE = '3A';
+    private static final String DIMENSION2_VALUE = 'NCT Essentials antenatal course';
+
+
     @testSetup
     static void setupTestData(){
         TestFinanceDataFactory.getInstance().createZumzumData();
@@ -13,7 +18,7 @@ private class BatchOutboundBACSpaymentTest {
         Zumzum__Bank_Account__c zumzumBankAccount = new Zumzum__Bank_Account__c(
             Name = 'BACS Payments in Transit',
             Zumzum__Type__c = 'Current/Saving',
-            Zumzum__Account_Number__c = '2',
+            Zumzum__Account_Number__c = '22222222',
             Zumzum__Status__c = 'Active',
             Zumzum__Nominal_Account__c = zumzumCurrentNominalAccount.Id
         );
@@ -30,6 +35,21 @@ private class BatchOutboundBACSpaymentTest {
                 .withBankAccountName('TEST BANK ACCOUNT')
                 .insertRecord(true)
                 .build();
+
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory .buildOrganizationAccount('acc1')
+                    .buildBranchAccount()
+                    .buildPractitioner('PRACTITIONER_LASTNAME')
+                    .buildPractitionerFeeRate()
+                    .buildVenue()
+                    .buildRoom()
+                    .buildLicenceToPractice()
+                    .buildCourseWithStatus('Draft')
+                    .buildEstimatedCosts()
+                    .buildSession();
+        Account branch = [SELECT Id FROM Account WHERE RecordType.Name = 'Branch'];
+        branch.PSA_Area__c = DIMENSION1_VALUE;
+        update branch;
     }
 
     @isTest
@@ -72,6 +92,55 @@ private class BatchOutboundBACSpaymentTest {
         ];
 
         System.assertEquals('Ready', result.Status__c);
+    }
+
+    @isTest
+    static void testDimensionsArePopulatedWithSessionValues() {
+        Zumzum__Dimension__c dimension1 = new Zumzum__Dimension__c();
+        dimension1.Name = DIMENSION1_VALUE;
+        dimension1.Zumzum__Active__c = true;
+        dimension1.Zumzum__Type__c = 'Dimension 1';
+        insert dimension1;
+        Zumzum__Dimension__c dimension2 = new Zumzum__Dimension__c();
+        dimension2.Name = DIMENSION2_VALUE;
+        dimension2.Zumzum__Active__c = true;
+        dimension2.Zumzum__Type__c = 'Dimension 2';
+        insert dimension2;
+
+        Account acc = [
+            SELECT Id
+            FROM Account
+            WHERE Zumzum__Bank_Sort_Code__c = '572899'
+            LIMIT 1
+        ];
+        Test.startTest();
+
+        createPurchaseInvoice(acc.Id);
+        
+        Zumzum__Purchase_Invoice_Line_Item__c pili = [
+            SELECT Id FROM Zumzum__Purchase_Invoice_Line_Item__c LIMIT 1
+        ];
+        Session__c session = [
+            SELECT Id FROM Session__c LIMIT 1
+        ];
+        Course__c course = [
+            SELECT Id FROM Course__c LIMIT 1
+        ];
+        course.Sub_Type__c = DIMENSION2_VALUE;
+        update course;
+
+        pili.Session__c = session.Id;
+        update pili;
+        
+        Test.stopTest();
+
+        Zumzum__Purchase_Invoice_LIne_Item__c piliUpdated = [
+            SELECT Id, Zumzum__Dimension_1__c, Zumzum__Dimension_2__c 
+            FROM Zumzum__Purchase_Invoice_LIne_Item__c 
+            WHERE Id = :pili.Id
+        ];
+        System.assertEquals(dimension1.Id, piliUpdated.Zumzum__Dimension_1__c, 'Dimension 1 was not populated');
+        System.assertEquals(dimension2.Id, piliUpdated.Zumzum__Dimension_2__c, 'Dimension 2 was not populated');
     }
 
     static void createPurchaseInvoice(Id supplierAccountId){

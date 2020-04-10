@@ -9,7 +9,7 @@ public with sharing class ReconcilePaymentsBatch implements Database.Batchable<s
         return Database.getQueryLocator([
             SELECT Id, Status__c, Batch_Id__c, From_Date__c, To_Date__c,
                 (
-                    SELECT Id, Amount__c, Ledger__c, Payment_Id__c
+                    SELECT Id, Amount__c, Bank_Receipt__c, Payment_Id__c
                     FROM Batch_Receipt_Report_Items__r
                 )
             FROM Batch_Receipt_Report__c
@@ -42,5 +42,4 @@ public with sharing class ReconcilePaymentsBatch implements Database.Batchable<s
         ReconcilePaymentsBatch reconcileBatch = new ReconcilePaymentsBatch(batchReceiptReportId[0]);
         Id batchId = Database.executeBatch(reconcileBatch, 1);
     }
-
 }

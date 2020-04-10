@@ -813,6 +813,22 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         </connector>
     </assignments>
     <assignments>
+        <name>Set_Total_Amount</name>
+        <label>Set Total Amount</label>
+        <locationX>3535</locationX>
+        <locationY>771</locationY>
+        <assignmentItems>
+            <assignToReference>Total_Fee</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PaymentPlanParameters.amount</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Payment_Details_Screen</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Total_Payment_Course_Assignment</name>
         <label>Total Payment Course Assignment</label>
         <locationX>1371</locationX>
@@ -1549,7 +1565,7 @@ We check this because if GAD Status is &quot;Joint&quot; we will need to add Con
             <field>Zumzum__Nominal_Code__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>1200</stringValue>
+                <stringValue>1400</stringValue>
             </value>
         </filters>
         <object>Zumzum__Nominal_Account__c</object>
@@ -1762,7 +1778,7 @@ We check this because if GAD Status is &quot;Joint&quot; we will need to add Con
         <locationX>3444</locationX>
         <locationY>908</locationY>
         <connector>
-            <targetReference>Payment_Details_Screen</targetReference>
+            <targetReference>Set_Total_Amount</targetReference>
         </connector>
         <inputReference>Booking_Instance_For_Update</inputReference>
     </recordUpdates>
@@ -1890,8 +1906,8 @@ NOT(ISNUMBER({!Account_Name}))
     <screens>
         <name>Payment_Details_Screen</name>
         <label>Payment Details Screen</label>
-        <locationX>3600</locationX>
-        <locationY>908</locationY>
+        <locationX>3643</locationX>
+        <locationY>913</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
         <allowPause>false</allowPause>
@@ -2242,7 +2258,7 @@ NOT(ISNUMBER({!Account_Name}))
     </textTemplates>
     <textTemplates>
         <name>Total_Amount_Template</name>
-        <text>&lt;p&gt;&lt;span style=&quot;font-size: 22px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;Total amount due:&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;font-size: 22px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;£{!PaymentPlanParameters.amount}&lt;/span&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;&lt;span style=&quot;font-size: 22px; background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;Total amount due:&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;  &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60); font-size: 22px;&quot;&gt;{!Total_Fee}&lt;/span&gt;&lt;/p&gt;</text>
     </textTemplates>
     <variables>
         <name>bankNumber</name>
@@ -2503,6 +2519,15 @@ NOT(ISNUMBER({!Account_Name}))
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>This variable will display in the Payment Detail Screen</description>
+        <name>Total_Fee</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
     </variables>
     <variables>
         <name>Type_Of_Product_for_Membership</name>

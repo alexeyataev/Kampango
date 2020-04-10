@@ -13,7 +13,7 @@ public with sharing class TestUserBuilder {
     private String username = 'NCTtest.sysAdmin.username@nct.com';
     private String communityNickName;
     private Boolean insertRecord = false;
-    private Integer SUFFIX_NUMBER_DIGITS = 10;
+    private final Integer SUFFIX_NUMBER_DIGITS = 10;
 
     public TestUserBuilder withProfile(Id profileId)
     {

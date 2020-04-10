@@ -109,8 +109,6 @@ public with sharing class TestSessionBuilder {
 			Start__c = this.startTime,
 			End__c = this.endTime,
 			Specific_Attendee_Type__c = this.specificAttendeeType,
-			Venue__c = this.venue.Id,
-			Room__c = this.room.Id,
 			Status__c = this.status,
 			Practitioner__c = this.practitioner.Id,
 			Practitioner_Licence__c = this.practitionerLicence.Id,
@@ -118,6 +116,13 @@ public with sharing class TestSessionBuilder {
 		);
 		if (parentHost != null) {
 			session.Parent_Host__c = this.parentHost.Id;
+		} else {
+			if (venue != null) {
+				session.Venue__c = this.venue.Id;
+			}
+			if (room != null) {
+				session.Room__c = this.room.Id;
+			}
 		}
 
 
