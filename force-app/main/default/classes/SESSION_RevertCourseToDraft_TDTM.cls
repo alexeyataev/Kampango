@@ -1,7 +1,7 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 //Incident #68 - https://confluence.nct.org.uk:8443/x/EoSO
 global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
-    private static final String SESSION_STATUS_DRAFT = 'Draft';
+    private static final String COURSE_STATUS_DRAFT = 'Draft';
     private static final String SESSION_TYPE_REUNION = 'Reunion';
      @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #23 - https://confluence.nct.org.uk:8443/x/EoSO
@@ -32,44 +32,39 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
             Status__c
             FROM Course__c
             WHERE Id IN :courseIds
-                AND Status__c != :SESSION_STATUS_DRAFT
+                AND Status__c != :COURSE_STATUS_DRAFT
             WITH SECURITY_ENFORCED
         ];
-        //NOPMD
-        //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
 
         if(!courses.isEmpty()) {
             for (Course__c aCourse : courses) {
-                aCourse.Status__c = SESSION_STATUS_DRAFT;
+                aCourse.Status__c = COURSE_STATUS_DRAFT;
                 coursesToUpdate.add(aCourse);
             }
         }
         dmlWrapper.objectsToUpdate.addAll(coursesToUpdate);
         return dmlWrapper;
     }
-    //NOPMD
-    //Incident #2 - https://confluence.nct.org.uk:8443/x/EoSO
 
     private Set<Id> idsOfCoursesToChange(List<Session__c> newSessionList,List<Session__c> oldSessionList) {
         Set<Id> courseIds = new Set<Id>();
-        for(Integer i = 0; i<newSessionList.size(); i++) {
-            Boolean fieldChanged = newSessionList[i].Date__c != oldSessionList[i].Date__c ||
-                newSessionList[i].Start__c != oldSessionList[i].Start__c ||
-                newSessionList[i].End__c != oldSessionList[i].End__c ||
-                newSessionList[i].Lunch_Break_Minutes__c != oldSessionList[i].Lunch_Break_Minutes__c ||
-                newSessionList[i].Practitioner_Licence__c != oldSessionList[i].Practitioner_Licence__c ||
-                newSessionList[i].Venue__c != oldSessionList[i].Venue__c ||
-                newSessionList[i].Status__c != oldSessionList[i].Status__c ||
-                newSessionList[i].Practitioner__c != oldSessionList[i].Practitioner__c;
+        Map<Id, Session__c> oldSessionMap = new Map<Id, Session__c>(oldSessionList);
 
-            Boolean isReunionSession = newSessionList[i].Type__c == SESSION_TYPE_REUNION &&
-                                       oldSessionList[i].Type__c == SESSION_TYPE_REUNION; 
-            if (fieldChanged && !isReunionSession) {
-                courseIds.add(newSessionList[i].Course__c);
+        for (Session__c session : newSessionList) {
+            Boolean condition = (session.Type__c != SESSION_TYPE_REUNION &&
+                    oldSessionMap.get(session.Id).Type__c != SESSION_TYPE_REUNION) &&
+                    (session.Date__c != oldSessionMap.get(session.Id).Date__c ||
+                            session.Start__c != oldSessionMap.get(session.Id).Start__c ||
+                            session.End__c != oldSessionMap.get(session.Id).End__c ||
+                            session.Lunch_Break_Minutes__c != oldSessionMap.get(session.Id).Lunch_Break_Minutes__c ||
+                            session.Practitioner_Licence__c != oldSessionMap.get(session.Id).Practitioner_Licence__c ||
+                            session.Venue__c != oldSessionMap.get(session.Id).Venue__c ||
+                            session.Status__c != oldSessionMap.get(session.Id).Status__c ||
+                            session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c);
+            if (condition) {
+                courseIds.add(session.Course__c);
             }
         }
         return courseIds;
     }
 }
-//NOPMD
-//Incident #3 - https://confluence.nct.org.uk:8443/x/EoSO

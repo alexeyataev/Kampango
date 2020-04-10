@@ -3,6 +3,8 @@
 global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
     private static final String COURSE_ASSIGNMENT_WITHDRAWN_STATUS = 'Withdrawn';
+    private static final String SESSION_STATUS_CONFIRMED = 'Confirmed';
+    private static final String SESSION_TYPE_REUNION = 'Reunion';
     global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         npsp.TDTM_Runnable.dmlWrapper dmlWrapper = new npsp.TDTM_Runnable.DmlWrapper();
 
@@ -35,8 +37,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
 
         for (Session__c session : newSessionList) {
             Boolean condition = session.Course_Assignment__c != NULL &&
-                    (session.Type__c != 'Reunion' || session.Status__c == 'Confirmed' ||
-                            oldSessionMap.get(session.Id).Status__c == 'Confirmed') &&
+                    (session.Type__c != SESSION_TYPE_REUNION || session.Status__c == SESSION_STATUS_CONFIRMED ||
+                            oldSessionMap.get(session.Id).Status__c == SESSION_STATUS_CONFIRMED) &&
                     (session.Date__c != oldSessionMap.get(session.Id).Date__c ||
                             session.Start__c != oldSessionMap.get(session.Id).Start__c ||
                             session.End__c != oldSessionMap.get(session.Id).End__c ||
@@ -72,8 +74,6 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                 courseAssignmentsToUpdate.add(assignment);
             }
         }
-
-        
         return courseAssignmentsToUpdate;
     }
 
@@ -87,9 +87,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             practitionerIds.add(aSession.Practitioner__c);
             courseIds.add(aSession.Course__c);
         }
-
+        
         setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(practitionerIds, courseIds, courseAssignmentsToUpdate);
-
         return courseAssignmentsToUpdate;
     }
 
@@ -103,7 +102,6 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         }
 
         setCourseAssignmentsStatusDependOnWhetherAssignedSessions(courseAssignmentIds, courseAssignmentsToUpdate);
-
         return courseAssignmentsToUpdate;
     }
 
@@ -177,7 +175,6 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                 courseAssignmentsToUpdate.add(courseAssignment);
             }                 
         }
-
         return courseAssignmentsToUpdate;
 	}
 }
