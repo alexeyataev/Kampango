@@ -13,8 +13,10 @@ public class AddContactForMembershipBatch implements Database.Batchable<sObject>
             AddContactResult careAddContactResult = CareHelper.sendContact(cont);
             if(careAddContactResult.nctNumber != null) {
                 cont.NCT_Number__c = careAddContactResult.nctNumber;
+                cont.Care_Error_Log__c = '';
                 cont.Care_Status__c = SUCCESS_STATUS;
             } else {
+                cont.Care_Error_Log__c = careAddContactResult.error;
                 cont.Care_Status__c = FAILURE_STATUS;
             }
         }
