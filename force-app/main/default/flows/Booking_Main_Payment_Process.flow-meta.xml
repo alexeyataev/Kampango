@@ -234,7 +234,7 @@
     <assignments>
         <name>Add_Cost_Membership</name>
         <label>Add Cost Membership</label>
-        <locationX>2378</locationX>
+        <locationX>2379</locationX>
         <locationY>873</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.amount</assignToReference>
@@ -244,7 +244,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Check_Gift_Aid_Declaration_Status_CC</targetReference>
+            <targetReference>Check_Membership_Options_CC</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -704,7 +704,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Check_Gift_Aid_Declaration_Status_DD</targetReference>
+            <targetReference>Check_Membership_Options_DD</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -761,7 +761,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         <name>Set_Membership_Data_for_Installment_By_CC</name>
         <label>Set Membership Data for Installment By CC</label>
         <locationX>1377</locationX>
-        <locationY>1569</locationY>
+        <locationY>1572</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.membershipType</assignToReference>
             <operator>Assign</operator>
@@ -799,8 +799,8 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <assignments>
         <name>Set_Partner_Contact_Id_for_Installment_0</name>
         <label>Set Partner Contact Id for Installment</label>
-        <locationX>2693</locationX>
-        <locationY>319</locationY>
+        <locationX>2717</locationX>
+        <locationY>318</locationY>
         <assignmentItems>
             <assignToReference>Installment_For_Payment_By_DD.Partner_Contact__c</assignToReference>
             <operator>Assign</operator>
@@ -1123,56 +1123,56 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     </decisions>
     <decisions>
         <description>CC = Credit Card
-We check this because if GAD Status is &quot;Joint&quot; we will need to add Contact Partner Id to Installment record. And then formula field(ga_decl_1__c,ga_decl_2__c ) check has or not gift aid declaration via LookUp.</description>
-        <name>Check_Gift_Aid_Declaration_Status_CC</name>
-        <label>Check Gift Aid Declaration Status CC</label>
+We check this because if Membership is with Partner we will need to add Contact Partner Id to Installment record. And then formula field(ga_decl_1__c,ga_decl_2__c ) check has or not gift aid declaration via LookUp.</description>
+        <name>Check_Membership_Options_CC</name>
+        <label>Check Membership Options CC</label>
         <locationX>2518</locationX>
         <locationY>799</locationY>
         <defaultConnector>
             <targetReference>Type_Of_Payment</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Not Joint</defaultConnectorLabel>
+        <defaultConnectorLabel>Without Partner</defaultConnectorLabel>
         <rules>
-            <name>Joint_CC</name>
+            <name>With_Partner_CC</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Booking_Instance_For_Update.Gift_Aid_Declaration_Status__c</leftValueReference>
+                <leftValueReference>Is_Membership_With_Partner</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Joint</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>Set_Partner_Contact_Id_for_Installment</targetReference>
             </connector>
-            <label>Joint CC</label>
+            <label>With Partner CC</label>
         </rules>
     </decisions>
     <decisions>
         <description>DD = Direct Debit
-We check this because if GAD Status is &quot;Joint&quot; we will need to add Contact Partner Id to Installment record. And then formula field(ga_decl_1__c,ga_decl_2__c ) check has or not gift aid declaration via LookUp.</description>
-        <name>Check_Gift_Aid_Declaration_Status_DD</name>
-        <label>Check Gift Aid Declaration Status DD</label>
+We check this because if Membership is with Partner we will need to add Contact Partner Id to Installment record. And then formula field(ga_decl_1__c,ga_decl_2__c ) check has or not gift aid declaration via LookUp.</description>
+        <name>Check_Membership_Options_DD</name>
+        <label>Check Membership Options DD</label>
         <locationX>2367</locationX>
         <locationY>327</locationY>
         <defaultConnector>
             <targetReference>Create_Membership_Installment</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Not Joint</defaultConnectorLabel>
+        <defaultConnectorLabel>Without Partner</defaultConnectorLabel>
         <rules>
-            <name>Joint_DD</name>
+            <name>With_Partner_DD</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Booking_Instance_For_Update.Gift_Aid_Declaration_Status__c</leftValueReference>
+                <leftValueReference>Is_Membership_With_Partner</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Joint</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>Set_Partner_Contact_Id_for_Installment_0</targetReference>
             </connector>
-            <label>Joint DD</label>
+            <label>With Partner DD</label>
         </rules>
     </decisions>
     <decisions>
@@ -1504,8 +1504,8 @@ We check this because if GAD Status is &quot;Joint&quot; we will need to add Con
     <recordCreates>
         <name>Create_Membership_Installment</name>
         <label>Create Membership Installment</label>
-        <locationX>2622</locationX>
-        <locationY>518</locationY>
+        <locationX>2620</locationX>
+        <locationY>516</locationY>
         <connector>
             <targetReference>Type_Of_Payment</targetReference>
         </connector>
