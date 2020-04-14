@@ -762,7 +762,6 @@ public without sharing class TestDataFactory {
     }
 
     public static void createTriggerSystemHandlerRecord(Map<String, String> triggerParams) {
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
         npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
         th.Name = triggerParams.get('triggerHandlerName');
         th.npsp__Class__c = triggerParams.get('className');
@@ -771,7 +770,6 @@ public without sharing class TestDataFactory {
         th.npsp__Active__c = Boolean.valueOf(triggerParams.get('isActive'));
         th.npsp__Load_Order__c = Integer.valueOf(triggerParams.get('loadOrder'));
         th.npsp__Asynchronous__c = Boolean.valueOf(triggerParams.get('isAsynchronous'));
-        triggerHandlers.add(th);
         insert th;
     }
 }

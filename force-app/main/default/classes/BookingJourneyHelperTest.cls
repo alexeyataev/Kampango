@@ -3,6 +3,16 @@
 @IsTest
 public class BookingJourneyHelperTest {
     private static final String HOUSEHOLD_ACCOUNT = 'HH_Account';
+    private static final String NCT_PRIMARY_FIRSTNAME = 'Test';
+    private static final String NCT_NEW_PRIMARY_FIRSTNAME = 'Test1';
+    private static final String NCT_PRIMARY_LASTNAME = 'Primary';
+    private static final String NCT_PARTNER_FIRSTNAME = 'Test';
+    private static final String NCT_NEW_PARTNER_FIRSTNAME = 'Test2';
+    private static final String NCT_PARTNER_LASTNAME = 'Partner';
+    private static final String NCT_NEW_PARTNER_LASTNAME = 'PartnerNew';
+    private static final String CLIENT_RECORDTYPE_NAME  = 'Client';
+    private static final String PREFERRED_PHONE_MOBILE  = 'Mobile';
+    private static final String PREFERRED_PHONE_HOME  = 'Home';
     private static final Id HOUSEHOLD_ACCOUNT_RECORD_TYPE_ID = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(HOUSEHOLD_ACCOUNT).getRecordTypeId();
 
     @TestSetup
@@ -20,16 +30,16 @@ public class BookingJourneyHelperTest {
         insert accounts;
 
         TestContactBuilder contactBuilder = new TestContactBuilder();
-        Contact primaryContact = contactBuilder.withRecordType('Client')
+        Contact primaryContact = contactBuilder.withRecordType(CLIENT_RECORDTYPE_NAME)
             .withAccount(accounts[0])
-            .withFirstName('Test')
-            .withLastName('Primary')
+            .withFirstName(NCT_PRIMARY_FIRSTNAME)
+            .withLastName(NCT_PRIMARY_LASTNAME)
             .insertRecord(true)
             .build();
-        Contact partnerContact = contactBuilder.withRecordType('Client')
+        Contact partnerContact = contactBuilder.withRecordType(CLIENT_RECORDTYPE_NAME)
             .withAccount(accounts[1])
-            .withFirstName('Test')
-            .withLastName('Partner')
+            .withFirstName(NCT_PARTNER_FIRSTNAME)
+            .withLastName(NCT_PARTNER_LASTNAME)
             .insertRecord(true)
             .build();
         TestIndividualBuilder individualBuilder = new TestIndividualBuilder();
@@ -45,16 +55,18 @@ public class BookingJourneyHelperTest {
         List<Contact> primaryContact = [
             SELECT Id, npe01__PreferredPhone__c, FirstName, LastName, Salutation
             FROM Contact
-            WHERE LastName = 'Primary'
+            WHERE LastName = :NCT_PRIMARY_LASTNAME
         ];
         for(Contact contact :primaryContact){
-            contact.npe01__PreferredPhone__c = 'Mobile';
-            contact.FirstName = 'Test1';
+            contact.npe01__PreferredPhone__c = PREFERRED_PHONE_MOBILE;
+            contact.FirstName = NCT_NEW_PRIMARY_FIRSTNAME;
         }
         Test.startTest();
         BookingJourneyHelper.updateContact(primaryContact);
         Test.stopTest();
-        System.assertEquals(1, [SELECT Id FROM Contact WHERE FirstName = 'Test1' AND npe01__PreferredPhone__c = 'Mobile'].size());
+
+        List<Contact> contactsToTest = [SELECT Id FROM Contact WHERE FirstName = :NCT_NEW_PRIMARY_FIRSTNAME AND npe01__PreferredPhone__c = :PREFERRED_PHONE_MOBILE];
+        System.assertEquals(1, contactsToTest.size());
     }
 
     @IsTest
@@ -62,26 +74,28 @@ public class BookingJourneyHelperTest {
         List<Contact> partnerContact = [
             SELECT Id, npe01__PreferredPhone__c, FirstName, LastName, Salutation
             FROM Contact
-            WHERE LastName = 'Partner'
+            WHERE LastName = :NCT_PARTNER_LASTNAME
         ];
         for(Contact contact :partnerContact){
-            contact.npe01__PreferredPhone__c = 'Home';
-            contact.FirstName = 'Test2';
+            contact.npe01__PreferredPhone__c = PREFERRED_PHONE_HOME;
+            contact.FirstName = NCT_NEW_PARTNER_FIRSTNAME;
         }
         Test.startTest();
         BookingJourneyHelper.updateContact(partnerContact);
         Test.stopTest();
-        System.assertEquals(1, [SELECT Id FROM Contact WHERE FirstName = 'Test2' AND npe01__PreferredPhone__c = 'Home'].size());
+
+        List<Contact> contactsToTest = [SELECT Id FROM Contact WHERE FirstName = :NCT_NEW_PARTNER_FIRSTNAME AND npe01__PreferredPhone__c = :PREFERRED_PHONE_HOME];
+        System.assertEquals(1, contactsToTest.size());
     }
 
     @IsTest
     static void updateContact_partnerContactNoId_contactCreated(){
         TestContactBuilder contactBuilder = new TestContactBuilder();
         List<Contact> partnerContact = new List<Contact>{
-            contactBuilder.withRecordType('Client')
+            contactBuilder.withRecordType(CLIENT_RECORDTYPE_NAME)
                 .withAccount([SELECT Id FROM Account LIMIT 1])
-                .withFirstName('Test')
-                .withLastName('PartnerNew')
+                .withFirstName(NCT_NEW_PARTNER_FIRSTNAME)
+                .withLastName(NCT_NEW_PARTNER_LASTNAME)
                 .withEmail('partner@nct.com')
                 .insertRecord(false)
                 .build()
@@ -89,7 +103,9 @@ public class BookingJourneyHelperTest {
         Test.startTest();
         BookingJourneyHelper.updateContact(partnerContact);
         Test.stopTest();
-        System.assertEquals(1, [SELECT Id FROM Contact WHERE FirstName = 'Test' AND LastName = 'PartnerNew'].size());
+
+        List<Contact> contactsToTest = [SELECT Id FROM Contact WHERE FirstName = :NCT_NEW_PARTNER_FIRSTNAME AND LastName = :NCT_NEW_PARTNER_LASTNAME];
+        System.assertEquals(1, contactsToTest.size());
     }
 
     @IsTest

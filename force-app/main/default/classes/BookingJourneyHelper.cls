@@ -10,7 +10,7 @@ public without sharing class BookingJourneyHelper {
         if(contacts != null && !contacts.isEmpty()){
             try{
                 if (Test.isRunningTest()) {
-                    updateContactTestUtility(contacts);
+                    upsertContactTestUtility(contacts);
                 } else {
                     upsert contacts Id;
                 }
@@ -44,13 +44,20 @@ public without sharing class BookingJourneyHelper {
         }
     }
 
-    private static void updateContactTestUtility(List<Contact> contacts){
+    private static void upsertContactTestUtility(List<Contact> contacts){
         Database.DMLOptions dmlOption = new Database.DMLOptions();
         dmlOption.DuplicateRuleHeader.AllowSave = true;
-        if ([SELECT Id FROM Contact WHERE Id IN :contacts WITH SECURITY_ENFORCED].isEmpty()) {
-            Database.insert(contacts, dmlOption);
-        } else {
-            Database.update(contacts, dmlOption);
+        List<Contact> contactsToInsert = new List<Contact>();
+        List<Contact> contactsToUpdate = new List<Contact>();
+        Map<Id, Contact> existingContactsMap = new Map<Id, Contact>([SELECT Id FROM Contact WHERE Id IN :contacts WITH SECURITY_ENFORCED]);
+        for (Contact cont : contacts){
+            if (existingContactsMap.containsKey(cont.Id)){
+                contactsToUpdate.add(cont);
+            } else {
+                contactsToInsert.add(cont);
+            }
         }
+        Database.insert(contactsToInsert, dmlOption);
+        Database.update(contactsToUpdate, dmlOption);
     }
 }

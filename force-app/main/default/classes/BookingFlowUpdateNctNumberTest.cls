@@ -8,7 +8,9 @@ public class BookingFlowUpdateNctNumberTest {
     private static final String ACCOUNT_NAME = 'Household Account Test';
     private static final String CLIENT_RECORDTYPE_NAME  = 'Client';
     private static final String NCT_PRIMARY_NUMBER = '111111';
+    private static final String NCT_PRIMARY_LASTNAME = 'Primary';
     private static final String NCT_PARTNER_NUMBER = '222222';
+    private static final String NCT_PARTNER_LASTNAME = 'Partner';
 
     @TestSetup
     static void setupTestData(){
@@ -22,14 +24,14 @@ public class BookingFlowUpdateNctNumberTest {
         Contact primaryContact = contactBuilder.withRecordType(CLIENT_RECORDTYPE_NAME)
             .withAccount(account)
             .withFirstName('Dina')
-            .withLastName('Primary')
+            .withLastName(NCT_PRIMARY_LASTNAME)
             .insertRecord(true)
             .build();
 
         Contact partnerContact = contactBuilder.withRecordType(CLIENT_RECORDTYPE_NAME)
             .withAccount(account)
             .withFirstName('John')
-            .withLastName('Partner')
+            .withLastName(NCT_PARTNER_LASTNAME)
             .insertRecord(true)
             .build();
     }
@@ -37,9 +39,9 @@ public class BookingFlowUpdateNctNumberTest {
     @IsTest
     public static void CheckNctNumber_SetNctNumberAndUpdate_NctNumberNotBeEmpty(){
         List<Contact> primaryContact = [
-            SELECT Id, LastName, NCT_Number__c
+            SELECT Id, NCT_Number__c
             FROM Contact
-            WHERE LastName = 'Primary'
+            WHERE LastName = :NCT_PRIMARY_LASTNAME
         ];
 
         primaryContact[0].NCT_Number__c = NCT_PRIMARY_NUMBER;
@@ -48,7 +50,12 @@ public class BookingFlowUpdateNctNumberTest {
         BookingFlowUpdateNctNumber.updateContact(new List<List<Contact>>{primaryContact});
         Test.stopTest();
 
-        System.assertEquals(NCT_PRIMARY_NUMBER, [SELECT Name, NCT_Number__c FROM Contact WHERE LastName = 'Primary'][0].NCT_Number__c, 'should be returned NCT number for Primary Contact.');
+        List<Contact> primaryContactToTest = [
+            SELECT Id, NCT_Number__c
+            FROM Contact
+            WHERE LastName = :NCT_PRIMARY_LASTNAME
+        ];
+        System.assertEquals(NCT_PRIMARY_NUMBER, primaryContactToTest[0].NCT_Number__c, 'should be returned NCT number for Primary Contact.');
     }
 
     @IsTest
