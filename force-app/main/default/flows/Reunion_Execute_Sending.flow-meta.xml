@@ -47,8 +47,8 @@
     <assignments>
         <name>Assign_name_bookingList_for_output</name>
         <label>Assign name bookingList for output</label>
-        <locationX>365</locationX>
-        <locationY>1329</locationY>
+        <locationX>353</locationX>
+        <locationY>1328</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -63,8 +63,8 @@
     <assignments>
         <name>Assign_name_practit_email_for_output</name>
         <label>Assign name practit email for output</label>
-        <locationX>623</locationX>
-        <locationY>1341</locationY>
+        <locationX>606</locationX>
+        <locationY>1340</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -86,22 +86,6 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>NAME_PSA_EMAIL</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Set_status_empty_value</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_name_venue_for_output</name>
-        <label>Assign name venue for output</label>
-        <locationX>1132</locationX>
-        <locationY>1217</locationY>
-        <assignmentItems>
-            <assignToReference>empty_entity_name</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>NAME_VENUE</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -482,8 +466,8 @@
     <decisions>
         <name>Check_Bookings_List_is_not_null</name>
         <label>Check Bookings List is not null</label>
-        <locationX>357</locationX>
-        <locationY>1007</locationY>
+        <locationX>346</locationX>
+        <locationY>1008</locationY>
         <defaultConnector>
             <targetReference>Assign_name_bookingList_for_output</targetReference>
         </defaultConnector>
@@ -499,7 +483,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_practitioner</targetReference>
+                <targetReference>Check_Practitioner_email_is_not_null</targetReference>
             </connector>
             <label>Bookings not null?</label>
         </rules>
@@ -557,7 +541,7 @@
     <decisions>
         <name>Check_Practitioner_email_is_not_null</name>
         <label>Check Practitioner email is not null</label>
-        <locationX>611</locationX>
+        <locationX>598</locationX>
         <locationY>1003</locationY>
         <defaultConnector>
             <targetReference>Assign_name_practit_email_for_output</targetReference>
@@ -574,7 +558,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Venue</targetReference>
+                <targetReference>Get_practitioner</targetReference>
             </connector>
             <label>Practitioner email is not null?</label>
         </rules>
@@ -614,7 +598,7 @@
     <decisions>
         <name>Check_Session_Id</name>
         <label>Check Session Id</label>
-        <locationX>348</locationX>
+        <locationX>349</locationX>
         <locationY>433</locationY>
         <defaultConnector>
             <targetReference>Get_bookings</targetReference>
@@ -766,9 +750,6 @@
         <label>Is Public Venue</label>
         <locationX>1196</locationX>
         <locationY>1028</locationY>
-        <defaultConnector>
-            <targetReference>Assign_name_venue_for_output</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
         <rules>
             <name>Private_Venue</name>
@@ -796,14 +777,14 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_to_public</targetReference>
+                <targetReference>Get_Venue</targetReference>
             </connector>
             <label>Public Venue</label>
         </rules>
     </decisions>
     <description>Sends emails of different types when reunion session becomes &#39;confirmed&#39;.
 Version changes: 
-Moved Org-Wide Address query to Apex Action (final)</description>
+Changed empty checks order</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -822,8 +803,8 @@ Moved Org-Wide Address query to Apex Action (final)</description>
     <recordLookups>
         <name>Get_bookings</name>
         <label>Get bookings</label>
-        <locationX>355</locationX>
-        <locationY>643</locationY>
+        <locationX>354</locationX>
+        <locationY>669</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_Bookings_List_is_not_null</targetReference>
@@ -860,8 +841,8 @@ Moved Org-Wide Address query to Apex Action (final)</description>
     <recordLookups>
         <name>Get_Course</name>
         <label>Get Course</label>
-        <locationX>764</locationX>
-        <locationY>669</locationY>
+        <locationX>763</locationX>
+        <locationY>713</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_practitioner_template</targetReference>
@@ -886,11 +867,11 @@ Moved Org-Wide Address query to Apex Action (final)</description>
     <recordLookups>
         <name>Get_practitioner</name>
         <label>Get practitioner</label>
-        <locationX>481</locationX>
-        <locationY>739</locationY>
+        <locationX>606</locationX>
+        <locationY>705</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_Practitioner_email_is_not_null</targetReference>
+            <targetReference>Get_Course</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -913,7 +894,7 @@ Moved Org-Wide Address query to Apex Action (final)</description>
         <name>Get_practitioner_template</name>
         <label>Get practitioner template</label>
         <locationX>883</locationX>
-        <locationY>669</locationY>
+        <locationY>713</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_PSA_emails</targetReference>
@@ -965,11 +946,11 @@ Moved Org-Wide Address query to Apex Action (final)</description>
     <recordLookups>
         <name>Get_Venue</name>
         <label>Get Venue</label>
-        <locationX>628</locationX>
-        <locationY>661</locationY>
+        <locationX>1366</locationX>
+        <locationY>863</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Course</targetReference>
+            <targetReference>Send_to_public</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -986,7 +967,13 @@ Moved Org-Wide Address query to Apex Action (final)</description>
         <queriedFields>Id</queriedFields>
         <queriedFields>Type__c</queriedFields>
     </recordLookups>
-    <startElementReference>Check_Session_Id</startElementReference>
+    <start>
+        <locationX>357</locationX>
+        <locationY>311</locationY>
+        <connector>
+            <targetReference>Check_Session_Id</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <subflows>
         <name>Send_to_Private</name>

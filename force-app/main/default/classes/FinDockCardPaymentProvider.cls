@@ -43,13 +43,13 @@ public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
         Map<String, String> recurringCustomFields = new Map<String, String>();
         recurringCustomFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
         recurringCustomFields.put('cpm__Collection_Day_of_Month__c', String.valueOf(PaymentPlanGenerator.COLLECTION_DAY_OF_MONTH));
+        PaymentApiRequest.RecurringDates recurringDates = new PaymentApiRequest.RecurringDates(paymentParameters.paymentPlanStartDate, paymentParameters.paymentPlanEndDate);
         paymentApiParams.recurring = new PaymentApiRequest.Recurring(
-            paymentParameters.amountRecurring, 
-            PAYMENT_FREQUENCY, 
-            paymentParameters.paymentPlanStartDate, 
-            paymentParameters.paymentPlanEndDate,
-            recurringCustomFields
+            paymentParameters.amountRecurring,
+            PAYMENT_FREQUENCY,
+            recurringDates
         );
+        paymentApiParams.recurring.setCustomFields(recurringCustomFields);
         Map<String, String> paymentCustomFields = getPaymentCustomFields(paymentParameters);
         paymentApiParams.payment = new PaymentApiRequest.Payment(String.valueOf(paymentParameters.amount), paymentCustomFields);
         paymentApiParams.paymentMethod = new PaymentApiRequest.PaymentMethod(PAYMENT_METHOD);
@@ -62,6 +62,7 @@ public class FinDockCardPaymentProvider implements IPaymentServiceProvider {
         paymentCustomFields.put('gaid__Gift_Aidable_Amount__c', String.valueOf(paymentParameters.giftAidableAmount != null ? paymentParameters.giftAidableAmount : 0));
         paymentCustomFields.put('Membership_Type__c', paymentParameters.membershipType);
         paymentCustomFields.put('Sales_Invoice__c', paymentParameters.salesInvoiceId);
+        paymentCustomFields.put('Partner_Contact__c', paymentParameters.partnerContactId);
         return paymentCustomFields;
     }
     @TestVisible

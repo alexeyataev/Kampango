@@ -1,27 +1,27 @@
 public class ReconcilePaymentsBatchHelper {
+    public static final String CREATED_STATUS = 'Created';
     private static final String DRAFT_STATUS = 'Draft';
-    private static final String PROCESSING_STATUS = 'Processing';
-    private static final String CREATED_STATUS = 'Created';
     private static final Integer BANK_NOMINAL_ACCOUNT_CODE = 9401;
 
     public static void processBatchReceiptReport(Batch_Receipt_Report__c receipt) {
-        Map<String, Id> paymentLedgerMap = new Map<String, Id>();
+        Map<String, Id> paymentsBankReceipt = new Map<String, Id>();
         List<Batch_Receipt_Report_Item__c> reportItems = receipt.Batch_Receipt_Report_Items__r;
-        Set<String> reportItemIds = new Set<String>();
-        receipt = updateBatchReceiptStatus(receipt, PROCESSING_STATUS);
+        Set<String> paymentIds = new Set<String>();
 
         for (Batch_Receipt_Report_Item__c item : reportItems) {
-            reportItemIds.add(item.Payment_Id__c);
+            paymentIds.add(item.Payment_Id__c);
         }
         Zumzum__BankReconcile__c bankReconcile = getBankReconcile(receipt); 
 
         List<Zumzum__Ledger__c> ledgers = [
-            SELECT Id, Zumzum__BankReconcile__c, Zumzum__Bank_Reconcile__c, Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c
+            SELECT Id, Zumzum__BankReconcile__c, Zumzum__Bank_Reconcile__c, Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c,
+                Zumzum__Bank_Receipt__c
             FROM Zumzum__Ledger__c
-            WHERE Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c IN:reportItemIds
+            WHERE Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c IN:paymentIds
+                AND Zumzum__Sub_Account_Nominal_Link__r.Zumzum__Account_Code__c =: BANK_NOMINAL_ACCOUNT_CODE
             WITH SECURITY_ENFORCED
         ];
-        paymentLedgerMap = getPaymentLedgerMap(ledgers);
+        paymentsBankReceipt = getpaymentsBankReceiptMap(ledgers);
 
         for (Zumzum__Ledger__c ledger : ledgers) {
             ledger.Zumzum__BankReconcile__c = bankReconcile.Id;
@@ -30,12 +30,12 @@ public class ReconcilePaymentsBatchHelper {
         update ledgers;
         
         for (Batch_Receipt_Report_Item__c reportItem : reportItems) {
-            reportItem.Ledger__c = paymentLedgerMap.get(reportItem.Payment_Id__c);
+            reportItem.Bank_Receipt__c = paymentsBankReceipt.get(reportItem.Payment_Id__c);
         }
         update reportItems;
 
         receipt.BankReconcile__c = bankReconcile.Id;
-        updateBatchReceiptStatus(receipt, CREATED_STATUS);
+        update receipt;
     }
 
     private static Zumzum__BankReconcile__c getBankReconcile(Batch_Receipt_Report__c receipt) {
@@ -60,17 +60,11 @@ public class ReconcilePaymentsBatchHelper {
         return bankAccount.Id;
     }
 
-    private static Map<String, Id> getPaymentLedgerMap(List<Zumzum__Ledger__c> ledgers) {
-        Map<String, String> paymentLedgerMap = new Map<String, String>();
+    private static Map<String, Id> getpaymentsBankReceiptMap(List<Zumzum__Ledger__c> ledgers) {
+        Map<String, String> paymentsBankReceipt = new Map<String, String>();
         for (Zumzum__Ledger__c ledger : ledgers) {
-            paymentLedgerMap.put(ledger.Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c, ledger.Id);
+            paymentsBankReceipt.put(ledger.Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c, ledger.Zumzum__Bank_Receipt__c);
         }
-        return paymentLedgerMap;
-    }
-    
-    private static Batch_Receipt_Report__c updateBatchReceiptStatus(Batch_Receipt_Report__c receipt, String status) {
-        receipt.Status__c = status;
-        update receipt;
-        return receipt;
+        return paymentsBankReceipt;
     }
 }

@@ -48,6 +48,7 @@
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>UpdateBookingContactsEmailTest</members>
         <members>UpdateAddressInGiftAidDeclarationsTest</members>
+        <members>dlrs_Batch_Receipt_Report_ItemTest</members>
         <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
@@ -91,6 +92,7 @@
         <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
+        <members>SetBookingExpirationStatusFlowTest</members>
         <members>SetBookingReservationExpiryDateTest</members>
         <members>InvalidateWithdrawCADFlowTest</members>
         <members>SystemClock</members>
@@ -116,6 +118,7 @@
         <members>TestVenueBuilder</members>
         <members>TestVenueContactBuilder</members>
         <members>TestUserBuilder</members>
+        <members>UpdateRelatedSessionsFlowTest</members>
         <members>VenueDetailsController</members>
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
@@ -486,6 +489,7 @@
         <members>Adhoc_Send_Payment_Email_Flow</members>
         <members>Assign_Practitioner_Fee_Rate_to_Session</members>
         <members>Bacs_Create_transaction_records</members>
+        <members>Booking_Gift_Aid_Declaration</members>
         <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Success_Page</members>
         <members>Booking_Journey_Flow</members>

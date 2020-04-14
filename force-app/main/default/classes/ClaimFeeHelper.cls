@@ -14,7 +14,8 @@ public with sharing class ClaimFeeHelper {
     private static final String LINKING_ERROR_EMAIL_TEMPLATE = 'Practitioner_Registration_Fee_Claim_Error';
     private static final String TEMPLATE_PC = '{!PC}';
     private static final String TEMPLATE_PI = '{!PI}';
-    private static final String DEFAULT_NARRATIVE = 'Fee Claim';
+    private static final String PI_NARRATIVE = 'Fee Claim';
+    private static final String PC_NARRATIVE = 'Registration Fees deduction';
     private static Map<String, String> statusInvoiceMap;
 
     @InvocableMethod(label='Create Purchase Invoice')
@@ -67,7 +68,7 @@ public with sharing class ClaimFeeHelper {
             purchaseInvoiceLineItem.ForeignNetAmount = session.Practitioner_Fees__c;
             purchaseInvoiceLineItem.Quantity = 1;
             purchaseInvoiceLineItem.TaxRate = zumzumNoVAT.Id;
-            purchaseInvoiceLineItem.Narrative = DEFAULT_NARRATIVE;
+            purchaseInvoiceLineItem.Narrative = PI_NARRATIVE;
             purchaseInvoiceLineItem.WrapperAPICustomFields = new Zumzum.APICustomFieldWrapper[]{
                 new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Session__c', session.Id)
             };
@@ -98,7 +99,7 @@ public with sharing class ClaimFeeHelper {
             purchaseCreditLineItem.NominalAccount = financialSettings.PC_Nominal_Account_Id__c;
             purchaseCreditLineItem.Quantity = 1;
             purchaseCreditLineItem.TaxRate = zumzumNoVAT.Id;
-            purchaseCreditLineItem.Narrative = DEFAULT_NARRATIVE;
+            purchaseCreditLineItem.Narrative = PC_NARRATIVE;
             purchaseCreditLineItem.WrapperAPICustomFields = new Zumzum.APICustomFieldWrapper[]{
                 new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Practitioner__c', currentUser.ContactId)
             };
@@ -113,26 +114,21 @@ public with sharing class ClaimFeeHelper {
         }
         updatePurchaseInvoicesContact(objResponse.purchaseInvoices, currentUser);
 
-        postPurchaseInvoices(objResponse.purchaseInvoices);
-        List<Id> invoices = new List<Id>();
+        Set<Id> invoices = new Set<Id>();
         for (Zumzum__Purchase_Invoice__c pi : objResponse.purchaseInvoices) {
             invoices.add(pi.Id);
         } 
+
+        Zumzum.PurchaseInvoiceService.Response postResponse = purchaseInvoiceService.postPurchaseInvoice(invoices, false);
+        if (!postResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
+            throw new CreatePurchaseInvoiceException(postResponse.ResponseMessage);
+        }
+
         allocateSupplierBalance(invoices);
     }
 
-    private static void postPurchaseInvoices(List<Zumzum__Purchase_Invoice__c> invoices) {
-        Zumzum.PurchaseInvoiceService postService = new Zumzum.PurchaseInvoiceService();
-        for (Zumzum__Purchase_Invoice__c pi : invoices) {
-            Zumzum.PurchaseInvoiceService.Response apiResponse = postService.postPurchaseInvoice(pi.Id);
-            if (!apiResponse.ResponseMessage.equals(API_SUCCESS_MESSAGE)) {
-                throw new CreatePurchaseInvoiceException(apiResponse.ResponseMessage);
-            }
-        }
-    }
-
     @future
-    private static void allocateSupplierBalance(List<Id> invoiceIds) {
+    private static void allocateSupplierBalance(Set<Id> invoiceIds) {
         Financial_Settings__c financialSettings = Financial_Settings__c.getInstance();
 
         User currentUser = [
@@ -203,7 +199,7 @@ public with sharing class ClaimFeeHelper {
         }
     }
 
-    private static void sendEmailToFinance(List<Id> invoiceIds) {
+    private static void sendEmailToFinance(Set<Id> invoiceIds) {
         if (!TestEmailUtility.emailsFeatureEnabled()) {
             return;
         }
@@ -247,7 +243,7 @@ public with sharing class ClaimFeeHelper {
         return dimensionsMap;
     }
 
-    private static void setStatusInvoiceMap(List<Id> invoiceIds) {
+    private static void setStatusInvoiceMap(Set<Id> invoiceIds) {
         List<Zumzum__Purchase_Invoice__c> invoices = [
             SELECT Id, Name, Zumzum__Type__c
             FROM Zumzum__Purchase_Invoice__c
@@ -266,7 +262,9 @@ public with sharing class ClaimFeeHelper {
 
     private static void updatePurchaseInvoicesContact(List<Zumzum__Purchase_Invoice__c> purchases, User current) {
         for (Zumzum__Purchase_Invoice__c pi : purchases) {
-            pi.Zumzum__Contact__c = current.ContactId;
+            if (pi.Zumzum__Type__c == PURCHASE_INVOICE) {
+                pi.Zumzum__Contact__c = current.ContactId;
+            }
         }
         update purchases;
     }

@@ -93,24 +93,19 @@
             <sortOrder>3</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Submit</actionName>
+            <actionName>Clone</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>4</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Clone</actionName>
+            <actionName>PrintableView</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>5</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>PrintableView</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>6</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>ChangeOwnerOne</actionName>
             <actionType>StandardButton</actionType>
-            <sortOrder>7</sortOrder>
+            <sortOrder>6</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Batch_Receipt_Report__c.Reconcile</actionName>
@@ -131,7 +126,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Amount__c</fields>
-        <fields>Ledger__c</fields>
+        <fields>Bank_Receipt__c</fields>
         <fields>Payment_Method__c</fields>
         <relatedList>Batch_Receipt_Report_Item__c.Batch_Receipt_Report__c</relatedList>
     </relatedLists>

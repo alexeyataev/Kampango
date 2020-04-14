@@ -1,0 +1,15 @@
+/**
+ * Auto Generated and Deployed by the Declarative Lookup Rollup Summaries Tool package (dlrs)
+ **/
+@SuppressWarnings('PMD.ClassNamingConventions')
+//Incident #77 - https://confluence.nct.org.uk:8443/x/EoSO
+@IsTest
+private class dlrs_Batch_Receipt_Report_ItemTest
+{
+    @IsTest
+    private static void testTrigger()
+    {
+        // Force the dlrs_Batch_Receipt_Report_ItemTrigger to be invoked, fails the test if org config or other Apex code prevents this.
+        dlrs.RollupService.testHandler(new Batch_Receipt_Report_Item__c());
+    }
+}
