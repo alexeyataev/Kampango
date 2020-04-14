@@ -1,5 +1,5 @@
-//@SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #XX - https://confluence.nct.org.uk:8443/x/EoSO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #83 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 private class UpdateRelatedSessionsFlowTest {
 
