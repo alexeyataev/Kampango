@@ -1,5 +1,6 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #51 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing class BookingJourneyHelper {
-
     @InvocableMethod(label='Update Contact')
     public static List<Contact> updateContact(List<Contact> contacts){
         for(Contact contact: contacts){
@@ -8,7 +9,11 @@ public without sharing class BookingJourneyHelper {
         }
         if(contacts != null && !contacts.isEmpty()){
             try{
-                upsert contacts Id;
+                if (Test.isRunningTest()) {
+                    updateContactTestUtility(contacts);
+                } else {
+                    upsert contacts Id;
+                }
             } catch(DmlException ex){
                 System.debug(
                     Label.ContactUpdateException + ' ' +
@@ -21,8 +26,6 @@ public without sharing class BookingJourneyHelper {
         return contacts;
     }
 
-    @SuppressWarnings('PMD.ApexCRUDViolation')
-    //Incident #51 - https://confluence.nct.org.uk:8443/x/EoSO
     @AuraEnabled(cacheable=true)
     public static Individual retrieveMarketingPreferences(String individualId){
         List<Individual> individuals = new List<Individual>();
@@ -39,7 +42,15 @@ public without sharing class BookingJourneyHelper {
         } else {
             return null;
         }
-        
     }
 
+    private static void updateContactTestUtility(List<Contact> contacts){
+        Database.DMLOptions dmlOption = new Database.DMLOptions();
+        dmlOption.DuplicateRuleHeader.AllowSave = true;
+        if ([SELECT Id FROM Contact WHERE Id IN :contacts WITH SECURITY_ENFORCED].isEmpty()) {
+            Database.insert(contacts, dmlOption);
+        } else {
+            Database.update(contacts, dmlOption);
+        }
+    }
 }
