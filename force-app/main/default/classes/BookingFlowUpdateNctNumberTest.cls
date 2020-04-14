@@ -52,7 +52,7 @@ public class BookingFlowUpdateNctNumberTest {
         String primaryId = BookingJourneyHelperTest.createPrimaryContact();
 
         List<Contact> primaryContact = [
-            SELECT Id, NCT_Number__c
+            SELECT Id, NCT_Number__c, Care_Status__c
             FROM Contact
             WHERE Id = :primaryId
         ];
@@ -77,7 +77,7 @@ public class BookingFlowUpdateNctNumberTest {
         };
 
         List<Contact> contactList = [
-            SELECT Id, NCT_Number__c
+            SELECT Id, NCT_Number__c, Care_Status__c
             FROM Contact
             WHERE Id in :contactIds
         ];
