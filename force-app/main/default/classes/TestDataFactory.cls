@@ -761,4 +761,15 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public static void createTriggerSystemHandlerRecord(Map<String, String> triggerParams) {
+        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
+        th.Name = triggerParams.get('triggerHandlerName');
+        th.npsp__Class__c = triggerParams.get('className');
+        th.npsp__Object__c = triggerParams.get('objectAPIName');
+        th.npsp__Trigger_Action__c = triggerParams.get('triggerActions');
+        th.npsp__Active__c = Boolean.valueOf(triggerParams.get('isActive'));
+        th.npsp__Load_Order__c = Integer.valueOf(triggerParams.get('loadOrder'));
+        th.npsp__Asynchronous__c = Boolean.valueOf(triggerParams.get('isAsynchronous'));
+        insert th;
+    }
 }

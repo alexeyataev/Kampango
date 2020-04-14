@@ -8,8 +8,15 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
     private static final String VENUE_NAME = 'Public Venue';
     private static final Integer COURSES_TO_CREATE = 5;
     private static final Integer SESSIONS_TO_CREATE = 10;
-
-    private static Venue__c venue;
+    private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
+        'triggerHandlerName' => 'SESSION_RevertToProvisional_TDTM',
+        'className' => 'SESSION_RevertToProvisional_TDTM',
+        'objectAPIName' => 'Session__c',
+        'triggerActions' => 'BeforeUpdate',
+        'isActive' => 'true',
+        'loadOrder' => '0',
+        'isAsynchronous' => 'false'
+    };
 
     @TestSetup
     private static void SetupTestData() {
@@ -28,11 +35,11 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
                     .buildVenueWithName(VENUE_NAME);
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
         dataFactory .setSessionsToConfirmed(sessions);
+        TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
     }
 
     @isTest
     static void ChangeSessionToProvisional_DateUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
         Test.startTest();
@@ -48,7 +55,6 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_StartTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
         Test.startTest();
@@ -64,7 +70,6 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_EndTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
         Test.startTest();
@@ -80,7 +85,6 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_LunchBreakUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
 
         Test.startTest();
@@ -96,7 +100,6 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_VenueUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
         Venue__c venue = [SELECT Id FROM Venue__c WHERE Name = :VENUE_NAME LIMIT 1];
         
@@ -114,7 +117,6 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_BulkUpdatesOnSessions_SessionStatusIsChangedToProvisional() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
         Set<Id> sessionIds = new Set<Id>();
 
@@ -128,18 +130,5 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
         List<Session__c> sessionsWithProvisionalStatus = [SELECT Status__c FROM Session__c WHERE Status__c =: SESSION_PROVISIONAL_STATUS AND Id IN :sessionIds LIMIT 1000];
         System.assertEquals(sessions.size(), sessionsWithProvisionalStatus.size());
-    }
-
-    private static void CreateTriggerSystemHandlerRecord() {
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
-        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
-        th.Name = 'SessionTriggerHandler';
-        th.npsp__Class__c = 'SESSION_RevertToProvisional_TDTM';
-        th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'BeforeUpdate';
-        th.npsp__Active__c = true;
-        th.npsp__Load_Order__c = 0;
-        th.npsp__Asynchronous__c = false;
-        triggerHandlers.add(th);
     }
 }
