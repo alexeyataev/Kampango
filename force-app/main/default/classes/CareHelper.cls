@@ -27,7 +27,7 @@ public with sharing class CareHelper {
     }
     public static MembershipObject addMembership(cpm__Installment__c installment) {
         HttpResponse res = sendHttpRequest('SFAddMembershipWS.pl', CareRequestBodyUtil.createAddMembershipBody(installment));
-        MembershipObject membershipObject;
+        MembershipObject membershipObject = new MembershipObject();
         if(res.getStatus() == HTTP_STATUS_OK) {
             membershipObject = (MembershipObject)JSON.deserialize(res.getBody(), MembershipObject.class);
         } else {

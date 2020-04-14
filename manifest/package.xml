@@ -92,6 +92,7 @@
         <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
+        <members>SetBookingExpirationStatusFlowTest</members>
         <members>SetBookingReservationExpiryDateTest</members>
         <members>InvalidateWithdrawCADFlowTest</members>
         <members>SystemClock</members>
@@ -117,6 +118,7 @@
         <members>TestVenueBuilder</members>
         <members>TestVenueContactBuilder</members>
         <members>TestUserBuilder</members>
+        <members>UpdateRelatedSessionsFlowTest</members>
         <members>VenueDetailsController</members>
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
