@@ -1,15 +1,16 @@
 public with sharing class CareHelper {
     private static final String BASE_URL = Care_Settings__c.getOrgDefaults().Base_Url__c;
     private static final String HTTP_STATUS_OK = 'OK';
+    private final static Integer ERROR_LOG_SIZE = 30000;
     public static AddContactResult sendContact(Contact cont) {
         HttpResponse res = sendHttpRequest('SFAddUpdateContactWS.pl', CareRequestBodyUtil.createSendContactBody(cont));
         AddContactResult addContactResult = new AddContactResult();
         if(res.getStatus() == HTTP_STATUS_OK) {
             ContactObject contactObject = (ContactObject)JSON.deserialize(res.getBody(), ContactObject.class);
-            addContactResult.error = contactObject.error != null ? contactObject.error[0].errorMessage : null;
+            addContactResult.error = contactObject.error != null ? addErrorLog(contactObject.error[0].errorMessage, cont.Care_Error_Log__c) : null;
             addContactResult.nctNumber = contactObject.contact != null ? contactObject.contact.contactNumber : null;
         } else {
-            addContactResult.error = res.getBody();
+            addContactResult.error = addErrorLog(res.getBody(), cont.Care_Error_Log__c);
         }
         return addContactResult;
     }
@@ -18,21 +19,21 @@ public with sharing class CareHelper {
         AddBankDetailsResult addBankDetailsResult = new AddBankDetailsResult();
         if(res.getStatus() == HTTP_STATUS_OK) {
             ContactBankAccountObject contactBankAccountObject = (ContactBankAccountObject)JSON.deserialize(res.getBody(), ContactBankAccountObject.class);
-            addBankDetailsResult.error = contactBankAccountObject.error != null ? contactBankAccountObject.error[0].errorMessage : null;
+            addBankDetailsResult.error = contactBankAccountObject.error != null ? addErrorLog(contactBankAccountObject.error[0].errorMessage, installment.Care_Error_Log__c) : null;
             addBankDetailsResult.bankDetailsNumber = contactBankAccountObject.contactBankAccount != null ? contactBankAccountObject.contactBankAccount.bankDetailNumber : null;
         } else {
-            addBankDetailsResult.error = res.getBody();
+            addBankDetailsResult.error = addErrorLog(res.getBody(), installment.Care_Error_Log__c);
         }
         return addBankDetailsResult;
     }
     public static MembershipObject addMembership(cpm__Installment__c installment) {
         HttpResponse res = sendHttpRequest('SFAddMembershipWS.pl', CareRequestBodyUtil.createAddMembershipBody(installment));
-        MembershipObject membershipObject = new MembershipObject();
+        MembershipObject membershipObject;
         if(res.getStatus() == HTTP_STATUS_OK) {
             membershipObject = (MembershipObject)JSON.deserialize(res.getBody(), MembershipObject.class);
         } else {
             ErrorObject errorObject = new ErrorObject();
-            errorObject.errorMessage = res.getBody();
+            errorObject.errorMessage = addErrorLog(res.getBody(), installment.Care_Error_Log__c);
             membershipObject.error = new List<ErrorObject> {errorObject};
         }
         return membershipObject;
@@ -42,6 +43,14 @@ public with sharing class CareHelper {
     public static void sendMarketingPreferences(String nctNumber, String standardDocumentNumber) {
         HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', CareRequestBodyUtil.createMarketingPreferencesBody(nctNumber, standardDocumentNumber));
         MarketingPreferencesObject marketingPreferencesObject = (MarketingPreferencesObject)JSON.deserialize(res.getBody(), MarketingPreferencesObject.class);
+    }
+
+    private static String addErrorLog(String errorMessage, String oldLogText) {
+        String newLogText = oldLogText == null ? errorMessage : errorMessage + '\r\n\r\n' + oldLogText;
+        if(newLogText.length() > ERROR_LOG_SIZE) {
+            newLogText = newLogText.substring(0, ERROR_LOG_SIZE);
+        }
+        return newLogText;
     }
 
     private static HttpResponse sendHttpRequest(String methodName, String body) {

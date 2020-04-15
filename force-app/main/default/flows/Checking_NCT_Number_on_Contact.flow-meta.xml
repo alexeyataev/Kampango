@@ -53,8 +53,8 @@
     <actionCalls>
         <name>Update_Contact_Nct_Number</name>
         <label>Update Contact Nct Number</label>
-        <locationX>664</locationX>
-        <locationY>885</locationY>
+        <locationX>744</locationX>
+        <locationY>805</locationY>
         <actionName>BookingFlowUpdateNctNumber</actionName>
         <actionType>apex</actionType>
         <inputParameters>
@@ -67,8 +67,8 @@
     <assignments>
         <name>Add_Parent_To_Contact_List</name>
         <label>Add Parent To Contact List</label>
-        <locationX>933</locationX>
-        <locationY>711</locationY>
+        <locationX>959</locationX>
+        <locationY>707</locationY>
         <assignmentItems>
             <assignToReference>Contact_List</assignToReference>
             <operator>Add</operator>
@@ -83,8 +83,8 @@
     <assignments>
         <name>Add_Partner_Contact_And_Number</name>
         <label>Add Partner Contact And Number</label>
-        <locationX>295</locationX>
-        <locationY>881</locationY>
+        <locationX>428</locationX>
+        <locationY>802</locationY>
         <assignmentItems>
             <assignToReference>PartnerContact.Id</assignToReference>
             <operator>Assign</operator>
@@ -99,6 +99,47 @@
                 <elementReference>Nct_Number</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerContact.Care_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Success</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerContact.Care_Error_Log__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_To_Partner_Contact_List</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Partner_Contact_Error</name>
+        <label>Add Partner Contact Error</label>
+        <locationX>158</locationX>
+        <locationY>879</locationY>
+        <assignmentItems>
+            <assignToReference>PartnerContact.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Booking_Record.Partner_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerContact.Care_Error_Log__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Nct_Number_Error</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PartnerContact.Care_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Failure</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_To_Partner_Contact_List</targetReference>
         </connector>
@@ -106,8 +147,8 @@
     <assignments>
         <name>Add_Primary_Contact_And_Number</name>
         <label>Add Primary Contact And Number</label>
-        <locationX>933</locationX>
-        <locationY>514</locationY>
+        <locationX>883</locationX>
+        <locationY>498</locationY>
         <assignmentItems>
             <assignToReference>PrimaryContact.Id</assignToReference>
             <operator>Assign</operator>
@@ -122,6 +163,47 @@
                 <elementReference>Nct_Number</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContact.Care_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Success</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContact.Care_Error_Log__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_Parent_To_Contact_List</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Primary_Contact_Error</name>
+        <label>Add Primary Contact Error</label>
+        <locationX>1107</locationX>
+        <locationY>510</locationY>
+        <assignmentItems>
+            <assignToReference>PrimaryContact.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Booking_Record.Primary_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContact.Care_Error_Log__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Nct_Number_Error</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContact.Care_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Failure</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_Parent_To_Contact_List</targetReference>
         </connector>
@@ -129,8 +211,8 @@
     <assignments>
         <name>Add_To_Partner_Contact_List</name>
         <label>Add To Partner Contact List</label>
-        <locationX>295</locationX>
-        <locationY>1065</locationY>
+        <locationX>299</locationX>
+        <locationY>980</locationY>
         <assignmentItems>
             <assignToReference>Contact_List</assignToReference>
             <operator>Add</operator>
@@ -241,8 +323,8 @@
     <decisions>
         <name>Is_List_Not_Empty</name>
         <label>Is List Not Empty</label>
-        <locationX>508</locationX>
-        <locationY>887</locationY>
+        <locationX>635</locationX>
+        <locationY>952</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
@@ -260,10 +342,10 @@
     <decisions>
         <name>Is_Number_for_Parent_Contact_Valid</name>
         <label>Is Number for Parent Contact Valid</label>
-        <locationX>923</locationX>
-        <locationY>330</locationY>
+        <locationX>1002</locationX>
+        <locationY>364</locationY>
         <defaultConnector>
-            <targetReference>Is_Included_Partner_Contact</targetReference>
+            <targetReference>Add_Primary_Contact_Error</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Number Is False</defaultConnectorLabel>
         <rules>
@@ -285,7 +367,7 @@
         <locationX>291</locationX>
         <locationY>699</locationY>
         <defaultConnector>
-            <targetReference>Is_List_Not_Empty</targetReference>
+            <targetReference>Add_Partner_Contact_Error</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Number Is False</defaultConnectorLabel>
         <rules>
