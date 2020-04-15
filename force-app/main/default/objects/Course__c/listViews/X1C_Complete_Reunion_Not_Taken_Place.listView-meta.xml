@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Completed_Reunion_Not_Yet_Taken_Place</fullName>
+    <fullName>X1C_Complete_Reunion_Not_Taken_Place</fullName>
     <columns>PSA_Area__c</columns>
     <columns>NAME</columns>
     <columns>Sub_Type__c</columns>
@@ -31,5 +31,13 @@
         <operation>greaterOrEqual</operation>
         <value>TODAY</value>
     </filters>
-    <label>Completed - Reunion Not Yet Taken Place</label>
+    <filters>
+        <field>PSA_Area__c</field>
+        <operation>equals</operation>
+        <value>1C</value>
+    </filters>
+    <label>1C - Complete - Reunion Not Taken Place</label>
+    <sharedTo>
+        <group>X1C_PSA_Area</group>
+    </sharedTo>
 </ListView>
