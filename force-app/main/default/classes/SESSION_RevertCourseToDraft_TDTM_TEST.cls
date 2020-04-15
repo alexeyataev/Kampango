@@ -11,6 +11,15 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
     private static final Integer COURSES_TO_CREATE = 5;
     private static final Integer SESSIONS_TO_CREATE = 10;
+    private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
+        'triggerHandlerName' => 'SESSION_RevertCourseToDraft_TDTM',
+        'className' => 'SESSION_RevertCourseToDraft_TDTM',
+        'objectAPIName' => 'Session__c',
+        'triggerActions' => 'AfterInsert;AfterUpdate;AfterDelete',
+        'isActive' => 'true',
+        'loadOrder' => '0',
+        'isAsynchronous' => 'false'
+    };
 
     private static Venue__c venue;
     private static Room__c room;
@@ -34,15 +43,14 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
                     .buildSession()
                     .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE)
                     .buildReunion();
-
-                    List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
+        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
         dataFactory .setSessionsToConfirmed(sessions)
                     .setCourseToFinal();
+        TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
     }
 
     @isTest
     static void RevertCourseToDraft_NewSessionIsAdded_CourseStatusIsRevertedToDraft() {
-        CreateTriggerSystemHandlerRecord();
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -73,7 +81,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_DateUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -93,7 +100,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_StartTimeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -113,7 +119,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_EndTimeUpdatedOnSession_CourseStatusIsRevertedToDraft () {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -132,7 +137,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_LunchBreakMinutesUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -152,7 +156,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_PractitionerLicenceUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -178,7 +181,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_VenueUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -208,7 +210,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_SessionDeletedOnCourse_CourseStatusIsRevertedToDraft() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -224,7 +225,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_PractitionerUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -246,7 +246,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_StatusUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
@@ -265,7 +264,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_BulkSessionsChanged_CourseStatusIsRevertedToDraft() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
         List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
         Set<Id> courseIds = new Set<Id>();
@@ -288,7 +286,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_BulkSessionsDeleted_CourseStatusIsRevertedToDraft() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
         List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
         Set<Id> courseIds = new Set<Id>();
@@ -308,7 +305,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_ReunionSessionsChangeStatusToFinal_CourseStatusUnaffected() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> reunions = [SELECT Id FROM Session__c WHERE Type__c = 'Reunion' LIMIT 1000];
 
         Test.startTest();
@@ -323,7 +319,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     
     @isTest
     static void RevertCourseToDraft_ReunionSessionsChangeEndTime_CourseStatusUnaffected() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> reunions = [SELECT Id, End__c FROM Session__c WHERE Type__c = 'Reunion' LIMIT 1000];
 
         Test.startTest();
@@ -335,18 +330,5 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         List<Course__c> finalCourses = [SELECT Id FROM Course__c WHERE Status__c =: COURSE_FINAL_STATUS];
         System.assertEquals(1, finalCourses.size(), 'Start time change should not affect course status');
-    }
-    
-    private static void CreateTriggerSystemHandlerRecord() {
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
-        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
-        th.Name = 'SessionTriggerHandler';
-        th.npsp__Class__c = 'SESSION_RevertCourseToDraft_TDTM';
-        th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete';
-        th.npsp__Active__c = true;
-        th.npsp__Load_Order__c = 0;
-        th.npsp__Asynchronous__c = false;
-        triggerHandlers.add(th);
     }
 }

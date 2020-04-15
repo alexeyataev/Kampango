@@ -92,6 +92,7 @@
         <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperTest</members>
+        <members>SetBookingExpirationStatusFlowTest</members>
         <members>SetBookingReservationExpiryDateTest</members>
         <members>InvalidateWithdrawCADFlowTest</members>
         <members>SystemClock</members>
@@ -117,6 +118,7 @@
         <members>TestVenueBuilder</members>
         <members>TestVenueContactBuilder</members>
         <members>TestUserBuilder</members>
+        <members>UpdateRelatedSessionsFlowTest</members>
         <members>VenueDetailsController</members>
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
@@ -739,6 +741,8 @@
         <members>Capacity_PSA/Pending_Approval_for_Expense_Request</members>
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
+        <members>Courses_Reports</members>
+        <members>Courses_Reports/U18s_Report</members>
         <members>Enquiries_PSA</members>
         <members>Enquiries_PSA/Confirmed_Bookings</members>
         <members>Practitioners</members>
