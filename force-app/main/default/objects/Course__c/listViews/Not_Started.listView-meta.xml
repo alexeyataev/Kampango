@@ -10,6 +10,7 @@
     <columns>Target_Group__c</columns>
     <columns>Main_Practitioner__c</columns>
     <columns>Status__c</columns>
+    <columns>Break_Even_Number_Of_Places__c</columns>
     <columns>Confirmed_Places__c</columns>
     <columns>Reserved_Places__c</columns>
     <columns>Enquiries__c</columns>
