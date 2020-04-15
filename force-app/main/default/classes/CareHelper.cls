@@ -1,7 +1,7 @@
 public with sharing class CareHelper {
     private static final String BASE_URL = Care_Settings__c.getOrgDefaults().Base_Url__c;
     private static final String HTTP_STATUS_OK = 'OK';
-    private final Integer ERROR_LOG_SIZE = 10000;
+    private final static Integer ERROR_LOG_SIZE = 10000;
     public static AddContactResult sendContact(Contact cont) {
         HttpResponse res = sendHttpRequest('SFAddUpdateContactWS.pl', CareRequestBodyUtil.createSendContactBody(cont));
         AddContactResult addContactResult = new AddContactResult();
