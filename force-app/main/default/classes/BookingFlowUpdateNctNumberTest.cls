@@ -51,7 +51,7 @@ public class BookingFlowUpdateNctNumberTest {
         Test.stopTest();
 
         List<Contact> primaryContactToTest = [
-            SELECT Id, NCT_Number__c, Care_Status__c
+            SELECT Id, NCT_Number__c
             FROM Contact
             WHERE LastName = :NCT_PRIMARY_LASTNAME
         ];
@@ -74,7 +74,7 @@ public class BookingFlowUpdateNctNumberTest {
         Test.stopTest();
         
         List<Contact> contactsToTest = [
-            SELECT Id, NCT_Number__c, Care_Status__c
+            SELECT Id, NCT_Number__c
             FROM Contact
             ORDER BY LastName DESC
         ];
