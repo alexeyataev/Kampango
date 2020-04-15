@@ -1,6 +1,7 @@
 public with sharing class CareHelper {
     private static final String BASE_URL = Care_Settings__c.getOrgDefaults().Base_Url__c;
     private static final String HTTP_STATUS_OK = 'OK';
+    private final Integer ERROR_LOG_SIZE = 10000;
     public static AddContactResult sendContact(Contact cont) {
         HttpResponse res = sendHttpRequest('SFAddUpdateContactWS.pl', CareRequestBodyUtil.createSendContactBody(cont));
         AddContactResult addContactResult = new AddContactResult();
@@ -9,7 +10,7 @@ public with sharing class CareHelper {
             addContactResult.error = contactObject.error != null ? contactObject.error[0].errorMessage : null;
             addContactResult.nctNumber = contactObject.contact != null ? contactObject.contact.contactNumber : null;
         } else {
-            addContactResult.error = res.getBody();
+            addContactResult.error = res.getBody().substring(0, ERROR_LOG_SIZE);
         }
         return addContactResult;
     }
@@ -21,7 +22,7 @@ public with sharing class CareHelper {
             addBankDetailsResult.error = contactBankAccountObject.error != null ? contactBankAccountObject.error[0].errorMessage : null;
             addBankDetailsResult.bankDetailsNumber = contactBankAccountObject.contactBankAccount != null ? contactBankAccountObject.contactBankAccount.bankDetailNumber : null;
         } else {
-            addBankDetailsResult.error = res.getBody();
+            addBankDetailsResult.error = res.getBody().substring(0, ERROR_LOG_SIZE);
         }
         return addBankDetailsResult;
     }
@@ -32,7 +33,7 @@ public with sharing class CareHelper {
             membershipObject = (MembershipObject)JSON.deserialize(res.getBody(), MembershipObject.class);
         } else {
             ErrorObject errorObject = new ErrorObject();
-            errorObject.errorMessage = res.getBody();
+            errorObject.errorMessage = res.getBody().substring(0, ERROR_LOG_SIZE);
             membershipObject.error = new List<ErrorObject> {errorObject};
         }
         return membershipObject;
