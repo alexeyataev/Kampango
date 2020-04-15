@@ -39,7 +39,7 @@ public class BookingFlowUpdateNctNumberTest {
     @IsTest
     public static void CheckNctNumber_SetNctNumberAndUpdate_NctNumberNotBeEmpty(){
         List<Contact> primaryContact = [
-            SELECT Id, NCT_Number__c
+            SELECT Id, NCT_Number__c, Care_Status__c
             FROM Contact
             WHERE LastName = :NCT_PRIMARY_LASTNAME
         ];
@@ -51,7 +51,7 @@ public class BookingFlowUpdateNctNumberTest {
         Test.stopTest();
 
         List<Contact> primaryContactToTest = [
-            SELECT Id, NCT_Number__c
+            SELECT Id, NCT_Number__c, Care_Status__c
             FROM Contact
             WHERE LastName = :NCT_PRIMARY_LASTNAME
         ];
@@ -61,7 +61,7 @@ public class BookingFlowUpdateNctNumberTest {
     @IsTest
     public static void CheckNctNumber_SetNctNumberAndUpdateForPartnerAndPrimaryContact_NctNumbersNotBeEmpty(){
         List<Contact> contactList = [
-            SELECT Id, NCT_Number__c
+            SELECT Id, NCT_Number__c, Care_Status__c
             FROM Contact
             ORDER BY LastName DESC
         ];
@@ -74,7 +74,7 @@ public class BookingFlowUpdateNctNumberTest {
         Test.stopTest();
         
         List<Contact> contactsToTest = [
-            SELECT Id, NCT_Number__c
+            SELECT Id, NCT_Number__c, Care_Status__c
             FROM Contact
             ORDER BY LastName DESC
         ];
