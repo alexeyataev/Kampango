@@ -258,6 +258,22 @@
         </relatedContentItems>
     </relatedContent>
     <relatedLists>
+        <fields>FULL_NAME</fields>
+        <fields>CONTACT.TITLE</fields>
+        <fields>CONTACT.EMAIL</fields>
+        <fields>CONTACT.PHONE1</fields>
+        <relatedList>RelatedContactList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Zumzum__Invoice_Date__c</fields>
+        <fields>Zumzum__Status__c</fields>
+        <fields>Zumzum__Total_Gross__c</fields>
+        <relatedList>Zumzum__Purchase_Invoice__c.Zumzum__Account__c</relatedList>
+        <sortField>Zumzum__Invoice_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
