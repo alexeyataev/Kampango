@@ -73,6 +73,7 @@
     <tabs>Venue__c</tabs>
     <tabs>standard-Case</tabs>
     <tabs>standard-report</tabs>
+    <tabs>standard-ProcessInstanceWorkitem</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>NCT_Courses_UtilityBar</utilityBar>
 </CustomApplication>

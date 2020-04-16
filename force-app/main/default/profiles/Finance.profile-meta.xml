@@ -9322,6 +9322,10 @@
         <tab>standard-Case</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-ProcessInstanceWorkitem</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <applicationVisibilities>
         <application>Zumzum__Zumzum_Financials_L</application>
         <default>false</default>
