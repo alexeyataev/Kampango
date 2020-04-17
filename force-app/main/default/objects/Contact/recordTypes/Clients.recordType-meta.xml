@@ -277,10 +277,6 @@
             <fullName>7C</fullName>
             <default>false</default>
         </values>
-        <values>
-            <fullName>7D</fullName>
-            <default>false</default>
-        </values>
     </picklistValues>
     <picklistValues>
         <picklist>npe01__PreferredPhone__c</picklist>
