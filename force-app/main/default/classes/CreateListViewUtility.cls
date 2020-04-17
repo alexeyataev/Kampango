@@ -1,11 +1,11 @@
 public with sharing class CreateListViewUtility {
-    public static void createListsView(Set<String> psaAreaNameSet, Set<String> listViewNameSet, Map<String, List<Map<String, String>>> filterCriteriaMap, String objectName) {
+    public static void createListsView(Map<String, Object> arguments) {
 
         String regExp = '[ -]+';
         String replacement = '_';
 
-        for (String listViewName : listViewNameSet) {
-            for (String psaAreaName : psaAreaNameSet) {
+        for (String listViewName : (Set<String>)arguments.get('listViewNameSet')) {
+            for (String psaAreaName : (Set<String>)arguments.get('psaAreaNameSet')) {
                 HTTPRequest req = new HTTPRequest();
                 req.setMethod('POST');
                 req.setHeader('Content-Type', 'text/xml');
@@ -21,7 +21,7 @@ public with sharing class CreateListViewUtility {
                     '<soapenv:Body>',
                     '<create xmlns="http://soap.sforce.com/2006/04/metadata">',
                     '<metadata xsi:type="ns2:ListView" xmlns:ns2="http://soap.sforce.com/2006/04/metadata">',
-                    '<fullName>' + objectName + '.X' + psaAreaName + '_' + listViewName.replaceAll(regExp, replacement) + '</fullName>',
+                    '<fullName>' + (String)arguments.get('objectName') + '.X' + psaAreaName + '_' + listViewName.replaceAll(regExp, replacement) + '</fullName>',
                     '<columns>PSA_Area__c</columns>',
                     '<columns>NAME</columns>',
                     '<columns>Sub_Type__c</columns>',
@@ -38,7 +38,7 @@ public with sharing class CreateListViewUtility {
                     '<columns>Remaining_Places__c</columns>',
                     '<filterScope>Everything</filterScope>'
                 };
-                for (Map<String, String> criterionMap : filterCriteriaMap.get(listViewName)) {
+                for (Map<String, String> criterionMap : ((Map<String, List<Map<String, String>>>)arguments.get('filterCriteriaMap')).get(listViewName)) {
                     bodyItems.addAll(new List<String>{
                         '<filters>',
                         '<field>' + criterionMap.get('field') + '</field>',
@@ -165,5 +165,12 @@ Set<String> listViewNameSet = new Set<String>{
     'Not Started'
 };               
     
-String objectName = 'Course__c';                
+String objectName = 'Course__c';
+
+Map<String, Object> arguments = new Map<String, Object>{
+    'psaAreaNameSet' => psaAreaNameSet,
+    'listViewNameSet' => listViewNameSet,
+    'filterCriteriaMap' => filterCriteriaMap,
+    'objectName' => objectName
+};
 */

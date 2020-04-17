@@ -1,5 +1,5 @@
-//@SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #XX - https://confluence.nct.org.uk:8443/x/EoSO
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #85 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 private class CreateListViewUtilityTest {
     private static final Map<String, List<Map<String, String>>> FILTER_CRITERIA_MAP = new Map<String, List<Map<String, String>>>{
@@ -85,6 +85,13 @@ private class CreateListViewUtilityTest {
     
     private static final String OBJECT_NAME = 'Course__c';
 
+    private static final Map<String, Object> ARGUMENTS = new Map<String, Object>{
+        'psaAreaNameSet' => PSA_AREA_NAME_SET,
+        'listViewNameSet' => LIST_VIEW_NAME_SET,
+        'filterCriteriaMap' => FILTER_CRITERIA_MAP,
+        'objectName' => OBJECT_NAME
+    };
+
     @IsTest
     private static void CreateListsViewForPSAAreas_ListsViewCreated(){
         Test.setMock(HttpCalloutMock.class, new CreateListViewUtilityMock());
@@ -92,7 +99,7 @@ private class CreateListViewUtilityTest {
 
         Test.startTest();
         try{
-            CreateListViewUtility.createListsView(PSA_AREA_NAME_SET, LIST_VIEW_NAME_SET, FILTER_CRITERIA_MAP, OBJECT_NAME);
+            CreateListViewUtility.createListsView(ARGUMENTS);
         }catch(Exception e){
             hasError = true;
         }
