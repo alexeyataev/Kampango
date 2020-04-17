@@ -280,11 +280,6 @@
         <default>false</default>
         <label>7C</label>
     </customValue>
-    <customValue>
-        <fullName>7D</fullName>
-        <default>false</default>
-        <label>7D</label>
-    </customValue>
     <masterLabel>PSA Areas</masterLabel>
     <sorted>true</sorted>
 </GlobalValueSet>
