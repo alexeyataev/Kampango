@@ -62,7 +62,7 @@ public with sharing class CreateListViewUtility {
                     '</soapenv:Body>',
                     '</soapenv:Envelope>'
                 });
-                
+
                 String body = String.join(bodyItems, '');
 
                 req.setBody(body);
@@ -76,10 +76,10 @@ public with sharing class CreateListViewUtility {
 }
 
 /**************************************************************
-Set this to org endpoint and add to the remote site settings.
+Set this to org endpoint and add to the remote site settings:
 Endpoint: 'YourInstance/services/Soap/m/48.0'
 ***************************************************************
-Bear in mind 100 callouts limit from anonymous execution
+Bear in mind 100 callouts limit from per transaction
 Callouts number = PSA_Areas_Number x Lists_View_Number
 ***************************************************************
 Examples of data structures for feeding:
