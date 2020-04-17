@@ -1,73 +1,77 @@
 public with sharing class CreateListViewUtility {
-    public static HttpResponse createListsView(Set<String> psaAreaNameSet, Set<String> listViewNameSet, Map<String, List<Map<String, String>>> filterCriteriaMap, String objectName) {
+    public static void createListsView(Set<String> psaAreaNameSet, Set<String> listViewNameSet, Map<String, List<Map<String, String>>> filterCriteriaMap, String objectName) {
 
         String regExp = '[ -]+';
         String replacement = '_';
-        HTTPResponse resp;
 
         for (String listViewName : listViewNameSet) {
             for (String psaAreaName : psaAreaNameSet) {
-                HTTP h = new HTTP();
                 HTTPRequest req = new HTTPRequest();
                 req.setMethod('POST');
                 req.setHeader('Content-Type', 'text/xml');
                 req.setHeader('SOAPAction', 'create');
 
-                String requestBody = '<?xml version="1.0" encoding="UTF-8"?>';
-                requestBody += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">';
-                requestBody += '<soapenv:Header>';
-                requestBody += '<ns1:SessionHeader soapenv:mustUnderstand="0" xmlns:ns1="http://soap.sforce.com/2006/04/metadata">';
-                requestBody += '<ns1:sessionId>' + UserInfo.getSessionId() + '</ns1:sessionId>';
-                requestBody += '</ns1:SessionHeader>';
-                requestBody += '</soapenv:Header>';
-                requestBody += '<soapenv:Body>';
-                requestBody += '<create xmlns="http://soap.sforce.com/2006/04/metadata">';
-                requestBody += '<metadata xsi:type="ns2:ListView" xmlns:ns2="http://soap.sforce.com/2006/04/metadata">';
-                requestBody += '<fullName>' + objectName + '.X' + psaAreaName + '_' + listViewName.replaceAll(regExp, replacement) + '</fullName>';
-                requestBody += '<columns>PSA_Area__c</columns>';
-                requestBody += '<columns>NAME</columns>';
-                requestBody += '<columns>Sub_Type__c</columns>';
-                requestBody += '<columns>Branch__c</columns>';
-                requestBody += '<columns>Start_Date__c</columns>';
-                requestBody += '<columns>End_Date__c</columns>';
-                requestBody += '<columns>Target_Group__c</columns>';
-                requestBody += '<columns>Main_Practitioner__c</columns>';
-                requestBody += '<columns>Status__c</columns>';
-                requestBody += '<columns>Break_Even_Number_Of_Places__c</columns>';
-                requestBody += '<columns>Confirmed_Places__c</columns>';
-                requestBody += '<columns>Reserved_Places__c</columns>';
-                requestBody += '<columns>Enquiries__c</columns>';
-                requestBody += '<columns>Remaining_Places__c</columns>';
-                requestBody += '<filterScope>Everything</filterScope>';
+                List<String> bodyItems = new List<String>{
+                    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">',
+                    '<soapenv:Header>',
+                    '<ns1:SessionHeader soapenv:mustUnderstand="0" xmlns:ns1="http://soap.sforce.com/2006/04/metadata">',
+                    '<ns1:sessionId>' + UserInfo.getSessionId() + '</ns1:sessionId>',
+                    '</ns1:SessionHeader>',
+                    '</soapenv:Header>',
+                    '<soapenv:Body>',
+                    '<create xmlns="http://soap.sforce.com/2006/04/metadata">',
+                    '<metadata xsi:type="ns2:ListView" xmlns:ns2="http://soap.sforce.com/2006/04/metadata">',
+                    '<fullName>' + objectName + '.X' + psaAreaName + '_' + listViewName.replaceAll(regExp, replacement) + '</fullName>',
+                    '<columns>PSA_Area__c</columns>',
+                    '<columns>NAME</columns>',
+                    '<columns>Sub_Type__c</columns>',
+                    '<columns>Branch__c</columns>',
+                    '<columns>Start_Date__c</columns>',
+                    '<columns>End_Date__c</columns>',
+                    '<columns>Target_Group__c</columns>',
+                    '<columns>Main_Practitioner__c</columns>',
+                    '<columns>Status__c</columns>',
+                    '<columns>Break_Even_Number_Of_Places__c</columns>',
+                    '<columns>Confirmed_Places__c</columns>',
+                    '<columns>Reserved_Places__c</columns>',
+                    '<columns>Enquiries__c</columns>',
+                    '<columns>Remaining_Places__c</columns>',
+                    '<filterScope>Everything</filterScope>'
+                };
                 for (Map<String, String> criterionMap : filterCriteriaMap.get(listViewName)) {
-                    requestBody += '<filters>';
-                    requestBody += '<field>' + criterionMap.get('field') + '</field>';
-                    requestBody += '<operation>' + criterionMap.get('operation') + '</operation>';
-                    requestBody += '<value>' + criterionMap.get('value') + '</value>';
-                    requestBody += '</filters>';
+                    bodyItems.addAll(new List<String>{
+                        '<filters>',
+                        '<field>' + criterionMap.get('field') + '</field>',
+                        '<operation>' + criterionMap.get('operation') + '</operation>',
+                        '<value>' + criterionMap.get('value') + '</value>',
+                        '</filters>'
+                    });
                 }
-                requestBody += '<filters>';
-                requestBody += '<field>PSA_Area__c</field>';
-                requestBody += '<operation>equals</operation>';
-                requestBody += '<value>' + psaAreaName + '</value>';
-                requestBody += '</filters>';
-                requestBody += '<label>' + psaAreaName + ' - ' + listViewName + '</label>';
-                requestBody += '<sharedTo>';
-                requestBody += '<group>X' + psaAreaName + '_PSA_Area</group>';
-                requestBody += '</sharedTo>';
-                requestBody += '</metadata>';
-                requestBody += '</create>';
-                requestBody += '</soapenv:Body>';
-                requestBody += '</soapenv:Envelope>';
+                bodyItems.addAll(new List<String>{
+                    '<filters>',
+                    '<field>PSA_Area__c</field>',
+                    '<operation>equals</operation>',
+                    '<value>' + psaAreaName + '</value>',
+                    '</filters>',
+                    '<label>' + psaAreaName + ' - ' + listViewName + '</label>',
+                    '<sharedTo>',
+                    '<group>X' + psaAreaName + '_PSA_Area</group>',
+                    '</sharedTo>',
+                    '</metadata>',
+                    '</create>',
+                    '</soapenv:Body>',
+                    '</soapenv:Envelope>'
+                });
+                
+                String body = String.join(bodyItems, '');
 
-                req.setBody(requestBody);
+                req.setBody(body);
                 req.setCompressed(false);
                 req.setEndpoint('https://parentforce--dev6.cs85.my.salesforce.com/services/Soap/m/48.0');
-                resp = h.send(req);
+                HTTPResponse resp = (new HTTP()).send(req);
                 System.debug(resp.getBody());
             }
         }
-        return resp;
     }
 }
 

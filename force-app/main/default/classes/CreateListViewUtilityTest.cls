@@ -88,16 +88,16 @@ private class CreateListViewUtilityTest {
     @IsTest
     private static void CreateListsViewForPSAAreas_ListsViewCreated(){
         Test.setMock(HttpCalloutMock.class, new CreateListViewUtilityMock());
+        Boolean hasError = false;
 
         Test.startTest();
-        HttpResponse res = CreateListViewUtility.createListsView(PSA_AREA_NAME_SET, LIST_VIEW_NAME_SET, FILTER_CRITERIA_MAP, OBJECT_NAME);
+        try{
+            CreateListViewUtility.createListsView(PSA_AREA_NAME_SET, LIST_VIEW_NAME_SET, FILTER_CRITERIA_MAP, OBJECT_NAME);
+        }catch(Exception e){
+            hasError = true;
+        }
         Test.stopTest();
-    
-        String contentType = res.getHeader('Content-Type');
-        System.assert(contentType == 'application/json');
-        String actualValue = res.getBody();
-        String expectedValue = '{"example":"test"}';
-        System.assertEquals(actualValue, expectedValue);
-        System.assertEquals(200, res.getStatusCode());
+
+        System.assert(!hasError);
     }
 }
