@@ -465,7 +465,6 @@
         <members>X7A_PSA_Area</members>
         <members>X7B_PSA_Area</members>
         <members>X7C_PSA_Area</members>
-        <members>X7D_PSA_Area</members>
         <name>Group</name>
     </types>
     <types>
@@ -710,7 +709,6 @@
         <members>X7A</members>
         <members>X7B</members>
         <members>X7C</members>
-        <members>X7D</members>
         <name>Queue</name>
     </types>
     <types>
