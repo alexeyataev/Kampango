@@ -21,23 +21,16 @@ public with sharing class CreateListViewUtility {
                     '<soapenv:Body>',
                     '<create xmlns="http://soap.sforce.com/2006/04/metadata">',
                     '<metadata xsi:type="ns2:ListView" xmlns:ns2="http://soap.sforce.com/2006/04/metadata">',
-                    '<fullName>' + (String)arguments.get('objectName') + '.X' + psaAreaName + '_' + listViewName.replaceAll(regExp, replacement) + '</fullName>',
-                    '<columns>PSA_Area__c</columns>',
-                    '<columns>NAME</columns>',
-                    '<columns>Sub_Type__c</columns>',
-                    '<columns>Branch__c</columns>',
-                    '<columns>Start_Date__c</columns>',
-                    '<columns>End_Date__c</columns>',
-                    '<columns>Target_Group__c</columns>',
-                    '<columns>Main_Practitioner__c</columns>',
-                    '<columns>Status__c</columns>',
-                    '<columns>Break_Even_Number_Of_Places__c</columns>',
-                    '<columns>Confirmed_Places__c</columns>',
-                    '<columns>Reserved_Places__c</columns>',
-                    '<columns>Enquiries__c</columns>',
-                    '<columns>Remaining_Places__c</columns>',
-                    '<filterScope>Everything</filterScope>'
+                    '<fullName>' + (String)arguments.get('objectName') + '.X' + psaAreaName + '_' + listViewName.replaceAll(regExp, replacement) + '</fullName>'
                 };
+                for (String columnName : (Set<String>)arguments.get('columnNameSet')) {
+                    bodyItems.addAll(new List<String>{
+                        '<columns>' + columnName + '</columns>'
+                    });
+                }
+                bodyItems.addAll(new List<String>{
+                    '<filterScope>Everything</filterScope>'
+                });
                 for (Map<String, String> criterionMap : ((Map<String, List<Map<String, String>>>)arguments.get('filterCriteriaMap')).get(listViewName)) {
                     bodyItems.addAll(new List<String>{
                         '<filters>',
@@ -49,7 +42,7 @@ public with sharing class CreateListViewUtility {
                 }
                 bodyItems.addAll(new List<String>{
                     '<filters>',
-                    '<field>PSA_Area__c</field>',
+                    '<field>' + (String)arguments.get('psaAreaFieldName') + '</field>',
                     '<operation>equals</operation>',
                     '<value>' + psaAreaName + '</value>',
                     '</filters>',
@@ -79,7 +72,7 @@ public with sharing class CreateListViewUtility {
 Set this to org endpoint and add to the remote site settings:
 Endpoint: 'YourInstance/services/Soap/m/48.0'
 ***************************************************************
-Bear in mind 100 callouts limit from per transaction
+Bear in mind 100 callouts limit per Apex transaction
 Callouts number = PSA_Areas_Number x Lists_View_Number
 ***************************************************************
 Examples of data structures for feeding:
@@ -163,14 +156,33 @@ Set<String> listViewNameSet = new Set<String>{
     'Complete - Reunion Not Taken Place',
     'Currently Running',
     'Not Started'
-};               
+};
+
+Set<String> columnNameSet = new Set<String>{
+    'PSA_Area__c',
+    'Completed',
+    'Branch__c',
+    'Start_Date__c',
+    'End_Date__c',
+    'Target_Group__c',
+    'Main_Practitioner__c',
+    'Status__c',
+    'Break_Even_Number_Of_Places__c',
+    'Confirmed_Places__c',
+    'Reserved_Places__c',
+    'Enquiries__c',
+    'Remaining_Places__c'
+};
     
+String psaAreaFieldName = 'PSA_Area__c';
 String objectName = 'Course__c';
 
 Map<String, Object> arguments = new Map<String, Object>{
     'psaAreaNameSet' => psaAreaNameSet,
     'listViewNameSet' => listViewNameSet,
     'filterCriteriaMap' => filterCriteriaMap,
+    'columnNameSet' => columnNameSet,
+    'psaAreaFieldName' => psaAreaFieldName, 
     'objectName' => objectName
 };
 */

@@ -82,13 +82,32 @@ private class CreateListViewUtilityTest {
         'Currently Running',
         'Not Started'
     };
+
+    private static final Set<String> COLUMN_NAME_SET = new Set<String>{
+        'PSA_Area__c',
+        'Completed',
+        'Branch__c',
+        'Start_Date__c',
+        'End_Date__c',
+        'Target_Group__c',
+        'Main_Practitioner__c',
+        'Status__c',
+        'Break_Even_Number_Of_Places__c',
+        'Confirmed_Places__c',
+        'Reserved_Places__c',
+        'Enquiries__c',
+        'Remaining_Places__c'
+    };
     
+    private static final String PSA_AREA_FIELD_NAME = 'PSA_Area__c';
     private static final String OBJECT_NAME = 'Course__c';
 
     private static final Map<String, Object> ARGUMENTS = new Map<String, Object>{
         'psaAreaNameSet' => PSA_AREA_NAME_SET,
         'listViewNameSet' => LIST_VIEW_NAME_SET,
         'filterCriteriaMap' => FILTER_CRITERIA_MAP,
+        'columnNameSet' => COLUMN_NAME_SET,
+        'psaAreaFieldName' => PSA_AREA_FIELD_NAME,
         'objectName' => OBJECT_NAME
     };
 
