@@ -44,6 +44,9 @@
         <members>CourseSearchUtilityTest</members>
         <members>CreateGiftAidDeclarationHelper</members>
         <members>CreateGiftAidDeclarationHelperTest</members>
+        <members>CreateListViewUtility</members>
+        <members>CreateListViewUtilityMock</members>
+        <members>CreateListViewUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>UpdateBookingContactsEmailTest</members>
