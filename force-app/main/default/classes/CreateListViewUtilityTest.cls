@@ -101,7 +101,6 @@ private class CreateListViewUtilityTest {
     
     private static final String PSA_AREA_FIELD_NAME = 'PSA_Area__c';
     private static final String OBJECT_NAME = 'Course__c';
-    private static final String ORG_INSTANCE = 'https://parentforce.my.salesforce.com';
 
     private static final Map<String, Object> ARGUMENTS = new Map<String, Object>{
         'psaAreaNameSet' => PSA_AREA_NAME_SET,
@@ -109,8 +108,7 @@ private class CreateListViewUtilityTest {
         'filterCriteriaMap' => FILTER_CRITERIA_MAP,
         'columnNameSet' => COLUMN_NAME_SET,
         'psaAreaFieldName' => PSA_AREA_FIELD_NAME,
-        'objectName' => OBJECT_NAME,
-        'orgInstance' => ORG_INSTANCE
+        'objectName' => OBJECT_NAME
     };
 
     @IsTest

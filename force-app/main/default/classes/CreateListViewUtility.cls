@@ -60,7 +60,7 @@ public with sharing class CreateListViewUtility {
 
                 req.setBody(body);
                 req.setCompressed(false);
-                req.setEndpoint((String)arguments.get('orgInstance') + '/services/Soap/m/48.0');
+                req.setEndpoint(System.Url.getSalesforceBaseUrl().toExternalForm() + '/services/Soap/m/48.0');
                 HTTPResponse resp = (new HTTP()).send(req);
                 System.debug(resp.getBody());
             }
