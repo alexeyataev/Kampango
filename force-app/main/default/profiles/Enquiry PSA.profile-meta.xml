@@ -1826,23 +1826,28 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Zumzum__Purchase_Invoice__c.Zumzum__Settlement_Due_Days__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>	
-        <editable>false</editable>	
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Gross__c</field>	
-        <readable>true</readable>	
-    </fieldPermissions>	
-    <fieldPermissions>	
-        <editable>false</editable>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Paid_Amount__c</field>	
-        <readable>true</readable>	
-    </fieldPermissions>	
-    <fieldPermissions>	
-        <editable>false</editable>	
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Unpaid_Amount__c</field>	
-        <readable>true</readable>	
+        <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Branch Read Only Layout</layout>
