@@ -5,7 +5,7 @@ private class CourseCreateEnquiryUtilityTest {
     private final static String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                          '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                          '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                         '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                         '"twinsexpected":"0","county":"UK","postcode":"E1 7AE","mobile":"+442072343456",' +
                                          '"town":"London","op":"Send enquiry"}';
     //@testSetup
     // avoid annotation - Account.AccountAutoNumber is not unique when using @TestSetup
@@ -132,6 +132,7 @@ private class CourseCreateEnquiryUtilityTest {
             .withLastName('Partner')
             .withFirstName('Partner')
             .withEmail('partner@partner.partner')
+            .withMailingPostalCode('E1 7AE')
             .withAccount(accountPartner)
             .insertRecord(false)
             .build();
@@ -151,6 +152,7 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
+        paramsMap.put('postcode', 'E1 7AE');
         
         // Temporarily commented to avoid System.LimitException: npsp:Too many SOQL queries: 101
         // To be fixed in T-02067
