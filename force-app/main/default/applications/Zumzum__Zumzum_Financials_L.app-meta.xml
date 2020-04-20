@@ -12,6 +12,7 @@
     <navType>Standard</navType>
     <subscriberTabs>Payment_Run__c</subscriberTabs>
     <subscriberTabs>Batch_Receipt_Report__c</subscriberTabs>
+    <subscriberTabs>standard-ProcessInstanceWorkitem</subscriberTabs>
     <tabs>standard-home</tabs>
     <tabs>Zumzum__ZumZum_Financials</tabs>
     <tabs>Zumzum__Setup</tabs>
