@@ -44,7 +44,7 @@
                 <field>Schedule_of_Sessions__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>NCT_Number__c</field>
             </layoutItems>
             <layoutItems>
