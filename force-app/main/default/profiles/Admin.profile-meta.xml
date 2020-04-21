@@ -189,11 +189,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Batch_Receipt_Report_Item__c.Ledger__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Batch_Receipt_Report_Item__c.Order_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
