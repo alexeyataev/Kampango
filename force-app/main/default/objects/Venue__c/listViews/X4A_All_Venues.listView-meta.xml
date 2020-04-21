@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X4A_All_Venues</fullName>
+    <columns>NAME</columns>
+    <columns>Postcode__c</columns>
+    <columns>Town__c</columns>
+    <columns>Branch__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PSA_Area__c</field>
+        <operation>equals</operation>
+        <value>4A</value>
+    </filters>
+    <label>4A - All Venues</label>
+    <sharedTo>
+        <group>X4A_PSA_Area</group>
+    </sharedTo>
+</ListView>
