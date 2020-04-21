@@ -1,5 +1,5 @@
 public with sharing class CreateListViewUtility {
-    public static void createListsView(Map<String, Object> arguments) {
+    public static void createListViews(Map<String, Object> arguments) {
 
         String regExp = '[ -]+';
         String replacement = '_';
@@ -12,6 +12,7 @@ public with sharing class CreateListViewUtility {
                 req.setHeader('SOAPAction', 'create');
 
                 List<String> bodyItems = new List<String>{
+                    '<?xml version="1.0" encoding="UTF-8"?>',
                     '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">',
                     '<soapenv:Header>',
                     '<ns1:SessionHeader soapenv:mustUnderstand="0" xmlns:ns1="http://soap.sforce.com/2006/04/metadata">',
@@ -24,9 +25,7 @@ public with sharing class CreateListViewUtility {
                     '<fullName>' + (String)arguments.get('objectName') + '.X' + psaAreaName + '_' + listViewName.replaceAll(regExp, replacement) + '</fullName>'
                 };
                 for (String columnName : (Set<String>)arguments.get('columnNameSet')) {
-                    bodyItems.addAll(new List<String>{
-                        '<columns>' + columnName + '</columns>'
-                    });
+                    bodyItems.add('<columns>' + columnName + '</columns>');
                 }
                 bodyItems.addAll(new List<String>{
                     '<filterScope>Everything</filterScope>'

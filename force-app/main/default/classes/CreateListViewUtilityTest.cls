@@ -118,7 +118,7 @@ private class CreateListViewUtilityTest {
 
         Test.startTest();
         try{
-            CreateListViewUtility.createListsView(ARGUMENTS);
+            CreateListViewUtility.createListViews(ARGUMENTS);
         }catch(Exception e){
             hasError = true;
         }
