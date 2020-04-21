@@ -1737,8 +1737,8 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Purchase_Invoice__c.Zumzum__Settlement_due_days__c</field>
+        <editable>false</editable>
+        <field>Zumzum__Purchase_Invoice__c.Zumzum__Settlement_Due_Days__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2066,7 +2066,7 @@
         <field>Zumzum__Sales_Invoice_Line_Item__c.Zumzum__Product__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>	
+    <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Booking__c</field>	
         <readable>true</readable>
