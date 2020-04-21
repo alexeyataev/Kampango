@@ -4086,7 +4086,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Zumzum__Purchase_Invoice__c.Zumzum__Settlement_due_days__c</field>
+        <field>Zumzum__Purchase_Invoice__c.Zumzum__Settlement_Due_Days__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
