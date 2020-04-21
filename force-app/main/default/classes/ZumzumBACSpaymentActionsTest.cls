@@ -170,7 +170,7 @@ public class ZumzumBACSpaymentActionsTest {
             WHERE Payment_Run__c = :paymentRunInstance.Id
         ];
 
-        System.assertEquals(4, linkedInvoicesAfter.size(), 'Size should be equals 4');
+        System.assertEquals(2, linkedInvoicesAfter.size(), 'Size should be equals 2');
     }
 
     @isTest
