@@ -5,7 +5,7 @@ public class AddContactForMembershipBatch implements Database.Batchable<sObject>
     private final String FAILURE_STATUS = 'Failure';
 
     public Database.QueryLocator start(Database.BatchableContext bc){
-        return Database.getQueryLocator('SELECT Id, Branch__r.Branch_Number__c, FirstName, LastName, NCT_Number__c, Gender__c, Email, npe01__PreferredPhone__c, Phone, MobilePhone, HomePhone, MailingPostalCode, MailingStreet, MailingCity, MailingCountry FROM Contact WHERE RecordType.Name = \'Client\' AND Care_Status__c = \'Waiting\'');
+        return Database.getQueryLocator('SELECT Id, Branch__r.Branch_Number__c, Care_Error_Log__c, FirstName, LastName, NCT_Number__c, Gender__c, Email, npe01__PreferredPhone__c, Phone, MobilePhone, HomePhone, MailingPostalCode, MailingStreet, MailingCity, MailingCountry FROM Contact WHERE RecordType.Name = \'Client\' AND Care_Status__c = \'Waiting\'');
     }
 
     public void execute(Database.BatchableContext bc, List<Contact> scope){
@@ -15,6 +15,7 @@ public class AddContactForMembershipBatch implements Database.Batchable<sObject>
                 cont.NCT_Number__c = careAddContactResult.nctNumber;
                 cont.Care_Status__c = SUCCESS_STATUS;
             } else {
+                cont.Care_Error_Log__c = careAddContactResult.error;
                 cont.Care_Status__c = FAILURE_STATUS;
             }
         }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X5T_All_Venues</fullName>
+    <columns>NAME</columns>
+    <columns>Postcode__c</columns>
+    <columns>Town__c</columns>
+    <columns>Branch__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PSA_Area__c</field>
+        <operation>equals</operation>
+        <value>5T</value>
+    </filters>
+    <label>5T - All Venues</label>
+    <sharedTo>
+        <group>X5T_PSA_Area</group>
+    </sharedTo>
+</ListView>

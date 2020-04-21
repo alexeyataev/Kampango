@@ -5,8 +5,6 @@ private class SetBookingReservationExpiryDateTest {
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
     private static final String HOST_LASTNAME = 'Black';
-    private static final String PROFILE_NAME = 'Enquiry PSA';
-    private static final String PERMISSION_SET_NAME = 'Override_Booking_Validation';
 
     @TestSetup 
     private static void TestSetup() {

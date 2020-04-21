@@ -262,6 +262,10 @@
         <name>ListView</name>
     </types>
     <types>
+        <members>X7D_PSA_Area</members>
+        <name>Group</name>
+    </types>
+    <types>
         <members>Allow_Confirmed_Bookings</members>
         <name>PermissionSet</name>
     </types>
@@ -273,6 +277,10 @@
         <members>Program Staff</members>
         <members>Volunteer</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>X7D</members>
+        <name>Queue</name>
     </types>
     <types>
         <members>Practitioners/Registration_Fee_History</members>
