@@ -270,7 +270,7 @@
         </connector>
         <fields>
             <name>TransferDetails</name>
-            <fieldText>&lt;p&gt;You have chosen to transfer booking {!Booking.Name} from {!OriginalCourseName} to {!Booking.Course__r.Name} which starts on&lt;/p&gt;&lt;p&gt;{!Booking.Course__r.Start_Date__c} and ends on {!Booking.Course__r.End_Date__c}.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The chosen transfer reason is: {!Transfer_Reason}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt;REMINDER: If this transfer has a financial impact, raise a case and assign it to the Course Booking Manual Administration queue.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;You have chosen to transfer booking {!Booking.Name} from {!OriginalCourseName} to {!Booking.Course__r.Name} which starts on&lt;/p&gt;&lt;p&gt;{!Booking.Course__r.Start_Date__c} and ends on {!Booking.Course__r.End_Date__c}.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The chosen transfer reason is: {!Transfer_Reason}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt;REMINDER: If this transfer was on a confirmed booking, raise a case and assign it to the Course Booking Manual Administration queue.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
