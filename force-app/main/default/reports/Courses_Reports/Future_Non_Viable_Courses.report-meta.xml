@@ -34,7 +34,7 @@
         <field>Course__c.Total_Estimated_Costs__c</field>
     </columns>
     <columns>
-        <field>Course__c.Surplus_Deficit__c</field>
+        <field>Course__c.Estimated_Surplus_Deficit__c</field>
     </columns>
     <format>Tabular</format>
     <name>Future Non-Viable Courses</name>
