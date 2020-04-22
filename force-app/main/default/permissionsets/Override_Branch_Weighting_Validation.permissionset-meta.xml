@@ -7,5 +7,4 @@
     <description>Contains the Override Branch Weighting Validation custom permission</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Branch Weighting Validation</label>
-    <license>Salesforce</license>
 </PermissionSet>
