@@ -6,5 +6,4 @@
     </customPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Session Validation</label>
-    <license>Salesforce</license>
 </PermissionSet>

@@ -7,5 +7,4 @@
     <description>Contains the Override Client Validation custom permission</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Client Validation</label>
-    <license>Salesforce</license>
 </PermissionSet>

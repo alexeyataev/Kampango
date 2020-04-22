@@ -7,5 +7,4 @@
     <description>Contains the Override Venue Validation custom permission</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Venue Validation</label>
-    <license>Salesforce</license>
 </PermissionSet>
