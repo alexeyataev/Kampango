@@ -8,6 +8,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     private static final String PRACTITIONER_EMAIL_ADDRESS = 'partnerCommunityUser@ncttest.com';
     private static final String HOST_LASTNAME = 'Black';
     private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
+    private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
     private static final String COURSE_ASSIGNMENT_WITHDRAWN_STATUS = 'Withdrawn';
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
@@ -307,8 +308,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
         ];
 
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(ACCOUNT_BRANCH_RECORDTYPE).getRecordTypeId();
+        Account branch = [
+           SELECT Id 
+           FROM Account 
+           WHERE RecordTypeId = :recordTypeId
+           LIMIT 1
+        ];
+
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         venue = venueBuilder
+            .withBranch(branch)
             .InsertRecord(true)
             .Build();
         TestRoomBuilder roomBuilder = new TestRoomBuilder();

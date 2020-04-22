@@ -1,6 +1,7 @@
 @isTest
 public without sharing class CourseApiTest {
     private static final String OWA_VALUE = 'nctcourses@nct.org.uk';
+    private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
     private static String strURI = URL.getSalesforceBaseUrl().toExternalForm()+'/services/apexrest/courses';
     private static String methodGet = 'GET';
 
@@ -50,8 +51,16 @@ public without sharing class CourseApiTest {
             )
             FROM Course__c
         ];
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(ACCOUNT_BRANCH_RECORDTYPE).getRecordTypeId();
+        Account branch = [
+           SELECT Id 
+           FROM Account 
+           WHERE RecordTypeId = :recordTypeId
+           LIMIT 1
+        ];
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         Venue__c mainVenue = venueBuilder
+                                .withBranch(branch)
                                 .insertRecord(true)
                                 .build();
 

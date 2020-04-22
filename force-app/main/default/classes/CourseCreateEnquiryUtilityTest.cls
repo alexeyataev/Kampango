@@ -1,10 +1,11 @@
 @isTest
 private class CourseCreateEnquiryUtilityTest {
 
-    private final static String CONTACT_POSTCODE = 'E1 7AE';
-    private final static String CONTACT_EMAIL = 'test@test.test';
-    private final static String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded"}';
-    private final static String PARAMS = '{"email":"' + CONTACT_EMAIL + '","hearaboutus":"NCT website or event","first_name":"Test",' + 
+    private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
+    private static final String CONTACT_POSTCODE = 'E1 7AE';
+    private static final String CONTACT_EMAIL = 'test@test.test';
+    private static final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded"}';
+    private static final String PARAMS = '{"email":"' + CONTACT_EMAIL + '","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                          '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                          '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
                                          '"twinsexpected":"0","county":"UK","postcode":"' + CONTACT_POSTCODE + '","mobile":"+442072343456",' +
@@ -55,8 +56,18 @@ private class CourseCreateEnquiryUtilityTest {
             )
             FROM Course__c
         ];
+
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(ACCOUNT_BRANCH_RECORDTYPE).getRecordTypeId();
+        Account branch = [
+           SELECT Id 
+           FROM Account 
+           WHERE RecordTypeId = :recordTypeId
+           LIMIT 1
+        ];
+        
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         Venue__c mainVenue = venueBuilder
+                                .withBranch(branch)
                                 .insertRecord(true)
                                 .build();
 
