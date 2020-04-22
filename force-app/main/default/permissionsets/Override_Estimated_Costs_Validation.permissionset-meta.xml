@@ -7,5 +7,4 @@
     <description>Contains the Override Estimated Costs Validation custom permission</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Estimated Costs Validation</label>
-    <license>Salesforce</license>
 </PermissionSet>

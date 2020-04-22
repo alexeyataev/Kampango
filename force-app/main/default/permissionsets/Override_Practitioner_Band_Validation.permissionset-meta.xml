@@ -7,5 +7,4 @@
     <description>Contains the Override Practitioner Band Validation custom permission</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Practitioner Band Validation</label>
-    <license>Salesforce</license>
 </PermissionSet>

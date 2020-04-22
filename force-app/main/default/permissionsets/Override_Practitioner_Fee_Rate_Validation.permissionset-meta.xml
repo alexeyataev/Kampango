@@ -7,5 +7,4 @@
     <description>Contains the Override Practitioner Fee Rate Validation custom permission</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Practitioner Fee Rate Validation</label>
-    <license>Salesforce</license>
 </PermissionSet>
