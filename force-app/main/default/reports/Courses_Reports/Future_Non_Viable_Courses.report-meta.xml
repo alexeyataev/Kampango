@@ -38,11 +38,11 @@
     </columns>
     <filter>
         <criteriaItems>
-            <column>Course__c.Is_Future_Non_Viable__c</column>
+            <column>Course__c.Break_Even_Number_Reached__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>1</value>
+            <value>0</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
