@@ -44,7 +44,7 @@
                 <field>Schedule_of_Sessions__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>NCT_Number__c</field>
             </layoutItems>
             <layoutItems>
@@ -60,7 +60,7 @@
                 <field>Deducted_Practitioner_Fees__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Home_PSA__c</field>
             </layoutItems>
             <layoutItems>
@@ -110,7 +110,7 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>Clone</actionName>
+        <actionName>Clone</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>0</sortOrder>
         </platformActionListItems>
