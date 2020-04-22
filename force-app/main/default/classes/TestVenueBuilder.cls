@@ -1,6 +1,7 @@
 @isTest
 public with sharing class TestVenueBuilder {
 
+    private Account branch;
     private String name = 'TestVenue';
     private String streetAddress = '221B Baker Street';
     private String town = 'London';
@@ -12,58 +13,47 @@ public with sharing class TestVenueBuilder {
     private Boolean insertRecord = false;
 
     public TestVenueBuilder withName(String name) {
-
         this.name = name;
+        return this;
+    }
 
+    public TestVenueBuilder withBranch(Account branch){
+        this.branch = branch;
         return this;
     }
 
     public TestVenueBuilder withStreetAddress(String streetAddress) {
-
         this.streetAddress = streetAddress;
-
         return this;
     }
 
     public TestVenueBuilder withTown(String town) {
-
         this.town = town;
-
         return this;
     }
 
     public TestVenueBuilder withPostcode(String postcode) {
-
         this.postcode = postcode;
-
         return this;
     }
 
     public TestVenueBuilder withType(String type) {
-
         this.type = type;
-
         return this;
     }
 
     public TestVenueBuilder withSubtype(String subtype) {
-
         this.subtype = subtype;
-
         return this;
     }
 
     public TestVenueBuilder withLatitude(Decimal latitude) {
-
         this.latitude = latitude;
-
         return this;
     }
 
     public TestVenueBuilder withlongitude(Decimal longitude) {
-
         this.longitude = longitude;
-
         return this;
     }
 
@@ -76,6 +66,7 @@ public with sharing class TestVenueBuilder {
 
         Venue__c testVenue = new Venue__c(
             Name = this.name,
+            Branch__c = this.branch.Id,
             Street_Address__c = this.streetAddress,
             Postcode__c = this.postcode,
             Type__c = this.type,

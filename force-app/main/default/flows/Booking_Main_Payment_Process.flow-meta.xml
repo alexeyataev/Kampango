@@ -676,13 +676,6 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Installment_For_Payment_By_DD.cpm__Amount__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Membership_Amount</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>Installment_For_Payment_By_DD.cpm__Contact__c</assignToReference>
             <operator>Assign</operator>
             <value>

@@ -189,11 +189,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Batch_Receipt_Report_Item__c.Ledger__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Batch_Receipt_Report_Item__c.Order_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1600,6 +1595,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Expense_Sheet__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice__c.Zumzum__Settlement_Due_Days__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

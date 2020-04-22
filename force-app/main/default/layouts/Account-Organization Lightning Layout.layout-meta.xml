@@ -36,6 +36,10 @@
                 <behavior>Edit</behavior>
                 <field>Zumzum__Bank_Sort_Code__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Zumzum__Settlement_Due_Days__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
