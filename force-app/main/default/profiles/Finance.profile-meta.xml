@@ -856,11 +856,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Sub_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Course__c.Surplus_Deficit__c</field>
         <readable>true</readable>
     </fieldPermissions>
