@@ -15,6 +15,9 @@
     <columns>
         <field>CUST_NAME</field>
     </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
     <filter>
         <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
