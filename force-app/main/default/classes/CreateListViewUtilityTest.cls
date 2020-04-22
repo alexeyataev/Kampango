@@ -4,6 +4,11 @@
 private class CreateListViewUtilityTest {
     private static final Map<String, List<Map<String, String>>> FILTER_CRITERIA_MAP = new Map<String, List<Map<String, String>>>{
         'All' => new List<Map<String, String>>{
+            new Map<String, String>{
+                'field' => 'PSA_Area__c',
+                'operation' => 'equals',
+                'value' => 'psaAreaName'
+            }
         },
         'Completed' => new List<Map<String, String>>{
             new Map<String, String>{
@@ -15,6 +20,11 @@ private class CreateListViewUtilityTest {
                 'field' => 'End_Date__c',
                 'operation' => 'lessThan',
                 'value' => 'Today'
+            },
+            new Map<String, String>{
+                'field' => 'PSA_Area__c',
+                'operation' => 'equals',
+                'value' => 'psaAreaName'
             }
         },
         'Complete - Reunion Not Taken Place' => new List<Map<String, String>>{
@@ -32,6 +42,11 @@ private class CreateListViewUtilityTest {
                 'field' => 'Final_Session_Date__c',
                 'operation' => 'greaterOrEqual',
                 'value' => 'TODAY'
+            },
+            new Map<String, String>{
+                'field' => 'PSA_Area__c',
+                'operation' => 'equals',
+                'value' => 'psaAreaName'
             }
         },
         'Currently Running' => new List<Map<String, String>>{
@@ -49,6 +64,11 @@ private class CreateListViewUtilityTest {
                 'field' => 'End_Date__c',
                 'operation' => 'greaterOrEqual',
                 'value' => 'TODAY'
+            },
+            new Map<String, String>{
+                'field' => 'PSA_Area__c',
+                'operation' => 'equals',
+                'value' => 'psaAreaName'
             }
         },
         'Not Started' => new List<Map<String, String>>{
@@ -61,8 +81,17 @@ private class CreateListViewUtilityTest {
                 'field' => 'Start_Date__c',
                 'operation' => 'greaterOrEqual',
                 'value' => 'TODAY'
+            },
+            new Map<String, String>{
+                'field' => 'PSA_Area__c',
+                'operation' => 'equals',
+                'value' => 'psaAreaName'
             }
         }
+    };
+
+    private static final Map<String, String> FILTER_LOGIC_MAP = new Map<String, String>{
+        'Completed' => '1 AND (2 OR 3)'
     };
 
     private static final Set<String> PSA_AREA_NAME_SET = new Set<String>{
@@ -99,15 +128,14 @@ private class CreateListViewUtilityTest {
         'Remaining_Places__c'
     };
     
-    private static final String PSA_AREA_FIELD_NAME = 'PSA_Area__c';
     private static final String OBJECT_NAME = 'Course__c';
 
     private static final Map<String, Object> ARGUMENTS = new Map<String, Object>{
         'psaAreaNameSet' => PSA_AREA_NAME_SET,
         'listViewNameSet' => LIST_VIEW_NAME_SET,
         'filterCriteriaMap' => FILTER_CRITERIA_MAP,
+        'filterLogicMap' => FILTER_LOGIC_MAP,
         'columnNameSet' => COLUMN_NAME_SET,
-        'psaAreaFieldName' => PSA_AREA_FIELD_NAME,
         'objectName' => OBJECT_NAME
     };
 
