@@ -8,8 +8,18 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     private static final String PRACTITIONER_EMAIL_ADDRESS = 'partnerCommunityUser@ncttest.com';
     private static final String HOST_LASTNAME = 'Black';
     private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
+    private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
     private static final String COURSE_ASSIGNMENT_WITHDRAWN_STATUS = 'Withdrawn';
+    private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
+        'triggerHandlerName' => 'SESSION_InvalidateCAs_TDTM',
+        'className' => 'SESSION_InvalidateCAs_TDTM',
+        'objectAPIName' => 'Session__c',
+        'triggerActions' => 'AfterInsert;AfterUpdate;AfterDelete',
+        'isActive' => 'true',
+        'loadOrder' => '0',
+        'isAsynchronous' => 'false'
+    };
 
     @TestSetup
     private static void SetupTestData() {
@@ -48,11 +58,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
         User practitionerCommunityUser = TestDataFactory.convertPractitionerToPartnerCommunityUser();
         TestDataFactory.changeOwnerOfAllCourseAssignments(practitionerCommunityUser);
+
+        TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
     }
 
     @isTest
     static void WithdrawCourseAssignmentStatus_PractitionerChangesOnLastSessionOnCourse_CourseAssignmentStatusWithdrawn() {
-        CreateTriggerSystemHandlerRecord();
         List<Session__c> sessions = [
             SELECT Id, Course__c, Practitioner__c, Course_Assignment__c
             FROM Session__c
@@ -112,7 +123,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_PractitionerChangesOnNotLastSessionOnCourse_CourseAssignmentStatusInvalidated() {
-        CreateTriggerSystemHandlerRecord();
         Session__c session = [
             SELECT  Date__c, End__c, Start__c,Course__c, Practitioner__c, Course_Assignment__c
             FROM Session__c
@@ -172,9 +182,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_DateChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-
-        CreateTriggerSystemHandlerRecord();
-
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
@@ -198,7 +205,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_StartTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        CreateTriggerSystemHandlerRecord();
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
@@ -222,7 +228,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_EndTimeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        CreateTriggerSystemHandlerRecord();
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
@@ -246,7 +251,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        CreateTriggerSystemHandlerRecord();
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
@@ -270,7 +274,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_LunchbreakMinutesChangesOnReunionSession_CourseAssignmentStatusInvalidated() {
-        CreateTriggerSystemHandlerRecord();
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
@@ -297,7 +300,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_VenueChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
-        CreateTriggerSystemHandlerRecord();
         Venue__c venue;
         Room__c room;
         Session__c session = [
@@ -306,8 +308,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             LIMIT 1
         ];
 
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(ACCOUNT_BRANCH_RECORDTYPE).getRecordTypeId();
+        Account branch = [
+           SELECT Id 
+           FROM Account 
+           WHERE RecordTypeId = :recordTypeId
+           LIMIT 1
+        ];
+
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         venue = venueBuilder
+            .withBranch(branch)
             .InsertRecord(true)
             .Build();
         TestRoomBuilder roomBuilder = new TestRoomBuilder();
@@ -334,7 +345,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_StatusChangesFromProvisionalToConfirmedOnReunionSession_CourseAssignmentStatusInvalidated() {
-        CreateTriggerSystemHandlerRecord();
         Session__c session = [
             SELECT Id, Status__c, Course_Assignment__c
             FROM Session__c
@@ -359,7 +369,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_InsertNewSession_CourseAssignmentStatusInvalidated() {
-        CreateTriggerSystemHandlerRecord();
         Course_Assignment__c courseAssignment = [
             SELECT Status__c, Course__c, OwnerId
             FROM Course_Assignment__c
@@ -391,7 +400,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_DeleteNotLastSession_CourseAssignmentStatusInvalidated() {
-        CreateTriggerSystemHandlerRecord();
         Course_Assignment__c courseAssignment = [
             SELECT Status__c, Course__c, OwnerId,
                 (
@@ -441,7 +449,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_DeleteLastSession_CourseAssignmentStatusInvalidated() {
-        CreateTriggerSystemHandlerRecord();
         Course_Assignment__c courseAssignment = [
             SELECT Status__c, Course__c, OwnerId,
                 (
@@ -485,7 +492,6 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
 
     @isTest
     static void InvalidateCourseAssignmentStatus_ReassignSession_CourseAssignmentStatusInvalidated() {
-        CreateTriggerSystemHandlerRecord();
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
@@ -525,18 +531,5 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         ]; 
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToCheck.Status__c);
-    }
-
-    private static void CreateTriggerSystemHandlerRecord() {
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
-        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
-        th.Name = 'SESSION_InvalidateCAs_TDTM';
-        th.npsp__Class__c = 'SESSION_InvalidateCAs_TDTM';
-        th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete';
-        th.npsp__Active__c = true;
-        th.npsp__Load_Order__c = 1;
-        th.npsp__Asynchronous__c = false;
-        triggerHandlers.add(th);
     }
 }

@@ -44,6 +44,9 @@
         <members>CourseSearchUtilityTest</members>
         <members>CreateGiftAidDeclarationHelper</members>
         <members>CreateGiftAidDeclarationHelperTest</members>
+        <members>CreateListViewUtility</members>
+        <members>CreateListViewUtilityMock</members>
+        <members>CreateListViewUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
         <members>UpdateBookingContactsEmailTest</members>
@@ -465,7 +468,6 @@
         <members>X7A_PSA_Area</members>
         <members>X7B_PSA_Area</members>
         <members>X7C_PSA_Area</members>
-        <members>X7D_PSA_Area</members>
         <name>Group</name>
     </types>
     <types>
@@ -710,7 +712,6 @@
         <members>X7A</members>
         <members>X7B</members>
         <members>X7C</members>
-        <members>X7D</members>
         <name>Queue</name>
     </types>
     <types>
@@ -741,6 +742,8 @@
         <members>Capacity_PSA/Pending_Approval_for_Expense_Request</members>
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
+        <members>Courses_Reports</members>
+        <members>Courses_Reports/U18s_Report</members>
         <members>Enquiries_PSA</members>
         <members>Enquiries_PSA/Confirmed_Bookings</members>
         <members>Practitioners</members>
@@ -852,8 +855,8 @@
         <members>Session__c.End_time_should_not_be_before_start_time</members>
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
         <members>Session__c.Session_Confirmation_Rule</members>
+        <members>Venue__c.Branch_Should_Be_Populated</members>
         <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
-        <members>Venue__c.Populate_Location_if_Type_Not_ParentHome</members>
         <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <members>Zumzum__Purchase_Invoice__c.ES_should_have_only_one_purchase_invoice</members>
         <members>Zumzum__Purchase_Invoice__c.Linked_to_expense_sheet_only_by_Finance</members>

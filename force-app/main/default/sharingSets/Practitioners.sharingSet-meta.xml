@@ -6,6 +6,12 @@
         <objectField>Main_Practitioner__c</objectField>
         <userField>Contact</userField>
     </accessMappings>
+    <accessMappings>
+        <accessLevel>Read</accessLevel>
+        <object>Zumzum__Purchase_Invoice__c</object>
+        <objectField>Zumzum__Account__c</objectField>
+        <userField>Contact.Account</userField>
+    </accessMappings>
     <description>Sharing set to share records with Practitioners in Partner Community.</description>
     <name>Practitioners</name>
     <profiles>practitioner</profiles>

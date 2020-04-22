@@ -4,6 +4,15 @@
 public with sharing class SESSION_TrackDeletedRecord_TDTM_Test {
     
     private static final String PRACTITIONER_LASTNAME = 'Smith';
+    private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
+        'triggerHandlerName' => 'SESSION_TrackDeletedRecord_TDTM',
+        'className' => 'SESSION_TrackDeletedRecord_TDTM',
+        'objectAPIName' => 'Session__c',
+        'triggerActions' => 'AfterDelete',
+        'isActive' => 'true',
+        'loadOrder' => '0',
+        'isAsynchronous' => 'false'
+    };
     
     @TestSetup
     private static void SetupTestData(){
@@ -35,13 +44,12 @@ public with sharing class SESSION_TrackDeletedRecord_TDTM_Test {
 
         User practitionerCommunityUser = TestDataFactory.convertPractitionerToPartnerCommunityUser();
         TestDataFactory.changeOwnerOfAllCourseAssignments(practitionerCommunityUser);
+
+        TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
     }
 
     @isTest
-    private static void PostDeletedSessionDetailsToChatter(){
-
-        CreateTriggerSystemHandlerRecord();
-            
+    private static void PostDeletedSessionDetailsToChatter(){           
         List<Session__c> sessions = [SELECT Id, Course__c, Practitioner__c, Course_Assignment__c FROM Session__c];
         List<FeedItem> feedsBeforeSessionDeletion = [SELECT Id, ParentId FROM FeedItem WHERE ParentId = :sessions[0].Course__c];
 
@@ -53,22 +61,5 @@ public with sharing class SESSION_TrackDeletedRecord_TDTM_Test {
         System.assertEquals(0, feedsBeforeSessionDeletion.size());
         System.assertEquals(1, feedsAfterSessionDeletion.size());
 
-    }
-
-    private static void CreateTriggerSystemHandlerRecord() {
-
-        List<npsp__Trigger_Handler__c> triggerHandlers = npsp.TDTM_Config_API.getCachedRecords();
-
-        npsp__Trigger_Handler__c th = new npsp__Trigger_Handler__c();
-        th.Name = 'SESSION_TrackDeletedRecord_TDTM';
-        th.npsp__Class__c = 'SESSION_TrackDeletedRecord_TDTM';
-        th.npsp__Object__c = 'Session__c';
-        th.npsp__Trigger_Action__c = 'AfterDelete';
-        th.npsp__Active__c = true;
-        th.npsp__Load_Order__c = 1;
-        th.npsp__Asynchronous__c = false;
-
-        triggerHandlers.add(th);
-    }
-    
+    }    
 }

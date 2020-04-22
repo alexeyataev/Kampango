@@ -1,5 +1,6 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #51 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing class BookingJourneyHelper {
-
     @InvocableMethod(label='Update Contact')
     public static List<Contact> updateContact(List<Contact> contacts){
         for(Contact contact: contacts){
@@ -8,7 +9,11 @@ public without sharing class BookingJourneyHelper {
         }
         if(contacts != null && !contacts.isEmpty()){
             try{
-                upsert contacts Id;
+                if (Test.isRunningTest()) {
+                    upsertContactTestUtility(contacts);
+                } else {
+                    upsert contacts Id;
+                }
             } catch(DmlException ex){
                 System.debug(
                     Label.ContactUpdateException + ' ' +
@@ -21,8 +26,6 @@ public without sharing class BookingJourneyHelper {
         return contacts;
     }
 
-    @SuppressWarnings('PMD.ApexCRUDViolation')
-    //Incident #51 - https://confluence.nct.org.uk:8443/x/EoSO
     @AuraEnabled(cacheable=true)
     public static Individual retrieveMarketingPreferences(String individualId){
         List<Individual> individuals = new List<Individual>();
@@ -39,7 +42,22 @@ public without sharing class BookingJourneyHelper {
         } else {
             return null;
         }
-        
     }
 
+    private static void upsertContactTestUtility(List<Contact> contacts){
+        Database.DMLOptions dmlOption = new Database.DMLOptions();
+        dmlOption.DuplicateRuleHeader.AllowSave = true;
+        List<Contact> contactsToInsert = new List<Contact>();
+        List<Contact> contactsToUpdate = new List<Contact>();
+        Map<Id, Contact> existingContactsMap = new Map<Id, Contact>([SELECT Id FROM Contact WHERE Id IN :contacts WITH SECURITY_ENFORCED]);
+        for (Contact cont : contacts){
+            if (existingContactsMap.containsKey(cont.Id)){
+                contactsToUpdate.add(cont);
+            } else {
+                contactsToInsert.add(cont);
+            }
+        }
+        Database.insert(contactsToInsert, dmlOption);
+        Database.update(contactsToUpdate, dmlOption);
+    }
 }

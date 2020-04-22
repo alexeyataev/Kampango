@@ -38,6 +38,7 @@
         <members>Account.Branch__c</members>
         <members>Account.Branch_Code__c</members>
         <members>Account.Enquiry_PSA__c</members>
+        <members>Batch_Receipt_Report_Item__c.Ledger__c</members>
         <members>Booking__c.Birth_Date__c</members>
         <members>Booking__c.Birth_Or_Due_Date__c</members>
         <members>Booking__c.Client_Name__c</members>
@@ -261,6 +262,10 @@
         <name>ListView</name>
     </types>
     <types>
+        <members>X7D_PSA_Area</members>
+        <name>Group</name>
+    </types>
+    <types>
         <members>Allow_Confirmed_Bookings</members>
         <name>PermissionSet</name>
     </types>
@@ -272,6 +277,10 @@
         <members>Program Staff</members>
         <members>Volunteer</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>X7D</members>
+        <name>Queue</name>
     </types>
     <types>
         <members>Practitioners/Registration_Fee_History</members>
@@ -292,6 +301,7 @@
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted.validationRule-meta</members>
         <members>Session__c.Prevent_private_reunion_confirmation</members>
+        <members>Venue__c.Populate_Location_if_Type_Not_ParentHome</members>
         <members>Zumzum__Bank_Account__c.Account_number_must_be_8_numeric_digits</members>
         <members>Zumzum__Bank_Account__c.Check_Bank_Account_Name</members>
         <members>Zumzum__Bank_Account__c.Sort_code_must_be_6_numeric_digits</members>
