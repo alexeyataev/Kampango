@@ -857,6 +857,7 @@
         <members>Session__c.Session_Confirmation_Rule</members>
         <members>Venue__c.Branch_Should_Be_Populated</members>
         <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
+        <members>Venue__c.Populate_Latitude_and_Longitude</members>
         <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <members>Zumzum__Purchase_Invoice__c.ES_should_have_only_one_purchase_invoice</members>
         <members>Zumzum__Purchase_Invoice__c.Linked_to_expense_sheet_only_by_Finance</members>
