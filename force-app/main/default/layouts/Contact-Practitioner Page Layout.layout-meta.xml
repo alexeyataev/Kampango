@@ -60,7 +60,7 @@
                 <field>Deducted_Practitioner_Fees__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Home_PSA__c</field>
             </layoutItems>
             <layoutItems>
