@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Break_Even_Number_Of_Places__c</fullName>
+    <fullName>Number_Of_Days_To_Start_Date__c</fullName>
     <externalId>false</externalId>
-    <formula>MCEILING(Total_Estimated_Costs__c / IF( Include_Additional_Admin_Cost__c, Fee__c - 10, Fee__c))</formula>
+    <formula>Start_Date__c - TODAY()</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Break Even Number Of Places</label>
+    <label>Number Of Days To Start Date</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>
