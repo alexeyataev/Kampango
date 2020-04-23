@@ -13,14 +13,14 @@
                 <stringValue>Set Reservation Expiry Date</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_13_A1</name>
+        <name>myRule_11_A1</name>
         <label>Set Expiration Date</label>
-        <locationX>1300</locationX>
+        <locationX>1100</locationX>
         <locationY>200</locationY>
         <actionName>Set_Reservation_Expiry_Date</actionName>
         <actionType>flow</actionType>
         <connector>
-            <targetReference>myDecision14</targetReference>
+            <targetReference>myDecision12</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -72,14 +72,14 @@
                 <stringValue>SendEmailToClient</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_15_A2</name>
+        <name>myRule_13_A2</name>
         <label>Send email</label>
-        <locationX>1500</locationX>
+        <locationX>1300</locationX>
         <locationY>300</locationY>
         <actionName>Booking__c.SendEmailToClient</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myDecision17</targetReference>
+            <targetReference>myDecision15</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -101,9 +101,9 @@
                 <stringValue>BookingConfirmationNotificationSend</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_18_A2</name>
+        <name>myRule_16_A2</name>
         <label>sendConfirmationEmail</label>
-        <locationX>1800</locationX>
+        <locationX>1600</locationX>
         <locationY>300</locationY>
         <actionName>BookingConfirmationNotificationSend</actionName>
         <actionType>flow</actionType>
@@ -177,14 +177,14 @@
                 <stringValue>SendEmailToClient</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_5_A1</name>
+        <name>myRule_3_A1</name>
         <label>Sent Email</label>
-        <locationX>500</locationX>
+        <locationX>300</locationX>
         <locationY>200</locationY>
         <actionName>Booking__c.SendEmailToClient</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myRule_5_A2</targetReference>
+            <targetReference>myRule_3_A2</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -200,9 +200,9 @@
                 <stringValue>SendEmailToClient</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_9_A1</name>
+        <name>myRule_7_A1</name>
         <label>Send Email</label>
-        <locationX>900</locationX>
+        <locationX>700</locationX>
         <locationY>200</locationY>
         <actionName>Booking__c.SendEmailToClient</actionName>
         <actionType>emailAlert</actionType>
@@ -225,43 +225,43 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision4</targetReference>
+            <targetReference>myDecision2</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Date</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Date</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Date</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Formula</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_2_myRule_1_9500755972</elementReference>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <connector>
+                <targetReference>myRule_1_pmetdec</targetReference>
+            </connector>
+            <label>Extend Date When Status is Reserved</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>3.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision10</name>
+        <label>myDecision10</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision12</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_11</name>
+            <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -293,48 +293,17 @@
                     <stringValue>Reserved</stringValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Currency</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Currency</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Currency</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Currency</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Fee_Override__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <numberValue>0.0</numberValue>
-                </rightValue>
-            </conditions>
             <connector>
-                <targetReference>myRule_1_pmetdec</targetReference>
+                <targetReference>myRule_11_pmetdec</targetReference>
             </connector>
-            <label>Extend Date When Status is Reserved</label>
+            <label>Set Reservation Expiry Date (Invocable)</label>
         </rules>
     </decisions>
     <decisions>
         <processMetadataValues>
             <name>index</name>
             <value>
-                <numberValue>3.0</numberValue>
+                <numberValue>4.0</numberValue>
             </value>
         </processMetadataValues>
         <name>myDecision12</name>
@@ -342,7 +311,7 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision14</targetReference>
+            <targetReference>myDecision15</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -379,61 +348,6 @@
                     <stringValue>Reserved</stringValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>myRule_13_pmetdec</targetReference>
-            </connector>
-            <label>Set Reservation Expiry Date (Invocable)</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <processMetadataValues>
-            <name>index</name>
-            <value>
-                <numberValue>4.0</numberValue>
-            </value>
-        </processMetadataValues>
-        <name>myDecision14</name>
-        <label>myDecision14</label>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision17</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>myRule_15</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Reserved</stringValue>
-                </rightValue>
-            </conditions>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -465,8 +379,36 @@
                     <numberValue>0.0</numberValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
             <connector>
-                <targetReference>myRule_15_pmetdec</targetReference>
+                <targetReference>myRule_13_pmetdec</targetReference>
             </connector>
             <label>Set Offer Email Date</label>
         </rules>
@@ -478,13 +420,13 @@
                 <numberValue>5.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision17</name>
-        <label>myDecision17</label>
+        <name>myDecision15</name>
+        <label>myDecision15</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_18</name>
+            <name>myRule_16</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -518,7 +460,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_18_pmetdec</targetReference>
+                <targetReference>myRule_16_pmetdec</targetReference>
             </connector>
             <label>Is Status Confirmed ?</label>
         </rules>
@@ -530,16 +472,16 @@
                 <numberValue>1.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision4</name>
-        <label>myDecision4</label>
+        <name>myDecision2</name>
+        <label>myDecision2</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision8</targetReference>
+            <targetReference>myDecision6</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_5</name>
+            <name>myRule_3</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -569,7 +511,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_6_myRule_5_9423576592</elementReference>
+                    <elementReference>formula_4_myRule_3_2881527441</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -635,7 +577,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_5_pmetdec</targetReference>
+                <targetReference>myRule_3_pmetdec</targetReference>
             </connector>
             <label>Status Expired and Expiration Date is Changed</label>
         </rules>
@@ -647,16 +589,16 @@
                 <numberValue>2.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision8</name>
-        <label>myDecision8</label>
+        <name>myDecision6</name>
+        <label>myDecision6</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision12</targetReference>
+            <targetReference>myDecision10</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_9</name>
+            <name>myRule_7</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -717,7 +659,7 @@
                 <leftValueReference>myVariable_current.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>GreaterThan</operator>
                 <rightValue>
-                    <elementReference>formula_10_myRule_9_6037973555</elementReference>
+                    <elementReference>formula_8_myRule_7_9788054901</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -752,22 +694,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_9_pmetdec</targetReference>
+                <targetReference>myRule_7_pmetdec</targetReference>
             </connector>
             <label>Status is Reserved and Reservation Expiration Date</label>
         </rules>
     </decisions>
     <decisions>
-        <name>myRule_13_pmetdec</name>
+        <name>myRule_11_pmetdec</name>
         <label>Previously Met Decision</label>
-        <locationX>1300</locationX>
+        <locationX>1100</locationX>
         <locationY>100</locationY>
         <defaultConnector>
-            <targetReference>myRule_13_A1</targetReference>
+            <targetReference>myRule_11_A1</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
         <rules>
-            <name>myRule_13_pmetnullrule</name>
+            <name>myRule_11_pmetnullrule</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -777,12 +719,12 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_13_A1</targetReference>
+                <targetReference>myRule_11_A1</targetReference>
             </connector>
             <label>Previously Met - Null</label>
         </rules>
         <rules>
-            <name>myRule_13_pmetrule</name>
+            <name>myRule_11_pmetrule</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -816,22 +758,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myDecision14</targetReference>
+                <targetReference>myDecision12</targetReference>
             </connector>
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
     <decisions>
-        <name>myRule_15_pmetdec</name>
+        <name>myRule_13_pmetdec</name>
         <label>Previously Met Decision</label>
-        <locationX>1500</locationX>
+        <locationX>1300</locationX>
         <locationY>100</locationY>
         <defaultConnector>
-            <targetReference>myRule_15_A1</targetReference>
+            <targetReference>myRule_13_A1</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
         <rules>
-            <name>myRule_15_pmetnullrule</name>
+            <name>myRule_13_pmetnullrule</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -841,12 +783,12 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_15_A1</targetReference>
+                <targetReference>myRule_13_A1</targetReference>
             </connector>
             <label>Previously Met - Null</label>
         </rules>
         <rules>
-            <name>myRule_15_pmetrule</name>
+            <name>myRule_13_pmetrule</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -910,23 +852,51 @@
                     <numberValue>0.0</numberValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
             <connector>
-                <targetReference>myDecision17</targetReference>
+                <targetReference>myDecision15</targetReference>
             </connector>
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
     <decisions>
-        <name>myRule_18_pmetdec</name>
+        <name>myRule_16_pmetdec</name>
         <label>Previously Met Decision</label>
-        <locationX>1800</locationX>
+        <locationX>1600</locationX>
         <locationY>100</locationY>
         <defaultConnector>
-            <targetReference>myRule_18_A1</targetReference>
+            <targetReference>myRule_16_A1</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
         <rules>
-            <name>myRule_18_pmetnullrule</name>
+            <name>myRule_16_pmetnullrule</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -936,12 +906,12 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_18_A1</targetReference>
+                <targetReference>myRule_16_A1</targetReference>
             </connector>
             <label>Previously Met - Null</label>
         </rules>
         <rules>
-            <name>myRule_18_pmetrule</name>
+            <name>myRule_16_pmetrule</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -1005,112 +975,26 @@
             <name>myRule_1_pmetrule</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Date</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Date</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Date</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Formula</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <elementReference>formula_3_myRule_1_pmetrule_6747666168</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.Status__c</leftValueReference>
+                <leftValueReference>formula_myRule_1_pmetrule</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Reserved</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Currency</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Currency</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Currency</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Currency</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.Fee_Override__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <numberValue>0.0</numberValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
     <decisions>
-        <name>myRule_5_pmetdec</name>
+        <name>myRule_3_pmetdec</name>
         <label>Previously Met Decision</label>
-        <locationX>500</locationX>
+        <locationX>300</locationX>
         <locationY>100</locationY>
         <defaultConnector>
-            <targetReference>myRule_5_A1</targetReference>
+            <targetReference>myRule_3_A1</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
         <rules>
-            <name>myRule_5_pmetnullrule</name>
+            <name>myRule_3_pmetnullrule</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1120,12 +1004,12 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_5_A1</targetReference>
+                <targetReference>myRule_3_A1</targetReference>
             </connector>
             <label>Previously Met - Null</label>
         </rules>
         <rules>
-            <name>myRule_5_pmetrule</name>
+            <name>myRule_3_pmetrule</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -1155,7 +1039,7 @@
                 <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>formula_7_myRule_5_pmetrule_4336625923</elementReference>
+                    <elementReference>formula_5_myRule_3_pmetrule_9975495200</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1224,16 +1108,16 @@
         </rules>
     </decisions>
     <decisions>
-        <name>myRule_9_pmetdec</name>
+        <name>myRule_7_pmetdec</name>
         <label>Previously Met Decision</label>
-        <locationX>900</locationX>
+        <locationX>700</locationX>
         <locationY>100</locationY>
         <defaultConnector>
-            <targetReference>myRule_9_A1</targetReference>
+            <targetReference>myRule_7_A1</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
         <rules>
-            <name>myRule_9_pmetnullrule</name>
+            <name>myRule_7_pmetnullrule</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1243,12 +1127,12 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_9_A1</targetReference>
+                <targetReference>myRule_7_A1</targetReference>
             </connector>
             <label>Previously Met - Null</label>
         </rules>
         <rules>
-            <name>myRule_9_pmetrule</name>
+            <name>myRule_7_pmetrule</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -1309,7 +1193,7 @@
                 <leftValueReference>myVariable_old.Reservation_Expiry_Date__c</leftValueReference>
                 <operator>GreaterThan</operator>
                 <rightValue>
-                    <elementReference>formula_11_myRule_9_pmetrule_5812118576</elementReference>
+                    <elementReference>formula_9_myRule_7_pmetrule_9780256083</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
@@ -1350,32 +1234,10 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>TODAY()</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_10_myRule_9_6037973555</name>
-        <dataType>Date</dataType>
-        <expression>TODAY()</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>TODAY()</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_11_myRule_9_pmetrule_5812118576</name>
-        <dataType>Date</dataType>
-        <expression>TODAY()</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
                 <stringValue>TODAY() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_16_myRule_15_A1_4150540144</name>
+        <name>formula_14_myRule_13_A1_8080879143</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -1386,31 +1248,9 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_19_myRule_18_A1_6785091523</name>
+        <name>formula_17_myRule_16_A1_8715201005</name>
         <dataType>Date</dataType>
         <expression>NOW()</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>PRIORVALUE( [Booking__c].Reservation_Expiry_Date__c )</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_2_myRule_1_9500755972</name>
-        <dataType>Date</dataType>
-        <expression>PRIORVALUE( {!myVariable_current.Reservation_Expiry_Date__c} )</expression>
-    </formulas>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>PRIORVALUE( [Booking__c].Reservation_Expiry_Date__c )</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_3_myRule_1_pmetrule_6747666168</name>
-        <dataType>Date</dataType>
-        <expression>PRIORVALUE( {!myVariable_old.Reservation_Expiry_Date__c} )</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -1419,7 +1259,7 @@
                 <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_6_myRule_5_9423576592</name>
+        <name>formula_4_myRule_3_2881527441</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE({!myVariable_current.Reservation_Expiry_Date__c} )</expression>
     </formulas>
@@ -1430,11 +1270,87 @@
                 <stringValue>PRIORVALUE([Booking__c].Reservation_Expiry_Date__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_5_pmetrule_4336625923</name>
+        <name>formula_5_myRule_3_pmetrule_9975495200</name>
         <dataType>Date</dataType>
         <expression>PRIORVALUE({!myVariable_old.Reservation_Expiry_Date__c} )</expression>
     </formulas>
-    <interviewLabel>Booking_SetExpirationStatus-21_InterviewLabel</interviewLabel>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>TODAY()</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_8_myRule_7_9788054901</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>TODAY()</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_9_myRule_7_pmetrule_9780256083</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND (
+[Booking__c].Reservation_Expiry_Date__c != PRIORVALUE([Booking__c].Reservation_Expiry_Date__c),
+ISPICKVAL([Booking__c].Status__c , &#39;Reserved&#39;),
+NOT(ISNEW()),
+OR (
+       [Booking__c].Fee_Override__c &gt; 0,
+       ISBLANK([Booking__c].Fee_Override__c) 
+  )
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+{!myVariable_current.Reservation_Expiry_Date__c} != PRIORVALUE({!myVariable_current.Reservation_Expiry_Date__c}),
+ISPICKVAL({!myVariable_current.Status__c} , &#39;Reserved&#39;),
+NOT(ISNEW()),
+OR (
+       {!myVariable_current.Fee_Override__c} &gt; 0,
+       ISBLANK({!myVariable_current.Fee_Override__c}) 
+  )
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND (
+[Booking__c].Reservation_Expiry_Date__c != PRIORVALUE([Booking__c].Reservation_Expiry_Date__c),
+ISPICKVAL([Booking__c].Status__c , &#39;Reserved&#39;),
+NOT(ISNEW()),
+OR (
+       [Booking__c].Fee_Override__c &gt; 0,
+       ISBLANK([Booking__c].Fee_Override__c) 
+  )
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1_pmetrule</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+{!myVariable_old.Reservation_Expiry_Date__c} != PRIORVALUE({!myVariable_old.Reservation_Expiry_Date__c}),
+ISPICKVAL({!myVariable_old.Status__c} , &#39;Reserved&#39;),
+NOT(ISNEW()),
+OR (
+       {!myVariable_old.Fee_Override__c} &gt; 0,
+       ISBLANK({!myVariable_old.Fee_Override__c}) 
+  )
+)</expression>
+    </formulas>
+    <interviewLabel>Booking_SetExpirationStatus-178_InterviewLabel</interviewLabel>
     <label>Booking:SetExpirationStatus</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -1486,12 +1402,12 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_15_A1</name>
+        <name>myRule_13_A1</name>
         <label>SetOfferEmailDate</label>
-        <locationX>1500</locationX>
+        <locationX>1300</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_15_A2</targetReference>
+            <targetReference>myRule_13_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -1539,7 +1455,7 @@
             </processMetadataValues>
             <field>Offer_Email_Date__c</field>
             <value>
-                <elementReference>formula_16_myRule_15_A1_4150540144</elementReference>
+                <elementReference>formula_14_myRule_13_A1_8080879143</elementReference>
             </value>
         </inputAssignments>
         <object>Booking__c</object>
@@ -1569,12 +1485,12 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_18_A1</name>
+        <name>myRule_16_A1</name>
         <label>Set Confirm Date and PSA Area</label>
-        <locationX>1800</locationX>
+        <locationX>1600</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_18_A2</targetReference>
+            <targetReference>myRule_16_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -1622,7 +1538,7 @@
             </processMetadataValues>
             <field>Confirmed_Date__c</field>
             <value>
-                <elementReference>formula_19_myRule_18_A1_6785091523</elementReference>
+                <elementReference>formula_17_myRule_16_A1_8715201005</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1688,9 +1604,9 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_5_A2</name>
+        <name>myRule_3_A2</name>
         <label>Set Status to Reserved</label>
-        <locationX>500</locationX>
+        <locationX>300</locationX>
         <locationY>300</locationY>
         <filters>
             <processMetadataValues>
