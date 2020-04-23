@@ -72,6 +72,7 @@
     <tabs>Zumzum__Expense_Sheet__c</tabs>
     <tabs>Venue__c</tabs>
     <tabs>standard-Case</tabs>
+    <tabs>Practitioner_Fee_Rate__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-ProcessInstanceWorkitem</tabs>
     <uiType>Lightning</uiType>
