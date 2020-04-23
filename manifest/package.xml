@@ -370,6 +370,7 @@
         <members>Batch_Receipt_Report__c</members>
         <members>Booking__c</members>
         <members>Course_Assignment__c</members>
+        <members>Licence_To_Practice__c</members>
         <members>npsp__Trigger_Handler__c</members>
         <members>Payment_Run__c</members>
         <members>Practitioner_Fee_Rate__c</members>

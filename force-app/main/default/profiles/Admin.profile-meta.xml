@@ -2208,6 +2208,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Licence_To_Practice__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Payment_Run__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>

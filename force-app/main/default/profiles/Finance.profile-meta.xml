@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-    <custom>true</custom>
+    <applicationVisibilities>
+        <application>Zumzum__Zumzum_Financials_L</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Zumzum__Zumzum_Financials</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
     <classAccesses>
         <apexClass>ReconcilePaymentsBatch</apexClass>
         <enabled>true</enabled>
@@ -121,6 +130,7 @@
         <apexClass>Zumzum__wrapperNominalWithRanges</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <custom>true</custom>
     <customPermissions>
         <enabled>true</enabled>
         <name>Can_Convert_Expense_Sheet</name>
@@ -7319,6 +7329,64 @@
         <field>cpm__Recurring_Payment__c.cpm__n_of_collected_installments__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <layoutAssignments>
+        <layout>Account-Branch Layout</layout>
+        <recordType>Account.Branch</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Booking__c-Booking Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Branch_Weighting__c-Branch Weighting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Client Layout</layout>
+        <recordType>Contact.Clients</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Contact Layout</layout>
+        <recordType>Contact.Contact</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Practitioner Page Layout</layout>
+        <recordType>Contact.Practitioner</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Course__c-Course Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Licence_To_Practice__c-Licence To Practice Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Practitioner_Band__c-Practitioner Band Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Rate__c-Rate Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Room__c-Room Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Session__c-Session Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Venue_Contact__c-Venue Contact Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Venue__c-Venue Layout</layout>
+    </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -9329,6 +9397,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Licence_To_Practice__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Payment_Run__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -9356,74 +9428,6 @@
         <tab>standard-ProcessInstanceWorkitem</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-    <applicationVisibilities>
-        <application>Zumzum__Zumzum_Financials_L</application>
-        <default>false</default>
-        <visible>true</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>Zumzum__Zumzum_Financials</application>
-        <default>false</default>
-        <visible>true</visible>
-    </applicationVisibilities>
-    <layoutAssignments>
-        <layout>Account-Branch Layout</layout>
-        <recordType>Account.Branch</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Booking__c-Booking Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Branch_Weighting__c-Branch Weighting Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Case-Case Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Contact-Client Layout</layout>
-        <recordType>Contact.Clients</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Contact-Contact Layout</layout>
-        <recordType>Contact.Contact</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Contact-Practitioner Page Layout</layout>
-        <recordType>Contact.Practitioner</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Course__c-Course Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Estimated_Costs__c-Estimated Costs Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Licence_To_Practice__c-Licence To Practice Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Practitioner_Band__c-Practitioner Band Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Practitioner_Fee_Rate__c-Practitioner Fee Rate Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Practitioner_Travel_Cost__c-Practitioner Travel Cost Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Rate__c-Rate Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Room__c-Room Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Session__c-Session Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Venue_Contact__c-Venue Contact Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Venue__c-Venue Layout</layout>
-    </layoutAssignments>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
