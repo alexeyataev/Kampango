@@ -370,6 +370,7 @@
         <members>Batch_Receipt_Report__c</members>
         <members>Booking__c</members>
         <members>Course_Assignment__c</members>
+        <members>Licence_To_Practice__c</members>
         <members>npsp__Trigger_Handler__c</members>
         <members>Payment_Run__c</members>
         <members>Practitioner_Fee_Rate__c</members>
@@ -746,6 +747,9 @@
         <members>Courses_Reports/U18s_Report</members>
         <members>Enquiries_PSA</members>
         <members>Enquiries_PSA/Confirmed_Bookings</members>
+        <members>Operations_Reports</members>
+        <members>Operations_Reports/Monthly_Bookings_By_Course_Type</members>
+        <members>Operations_Reports/Monthly_Enquiries_By_Course_Type</members>
         <members>Practitioners</members>
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>
@@ -857,6 +861,7 @@
         <members>Session__c.Session_Confirmation_Rule</members>
         <members>Venue__c.Branch_Should_Be_Populated</members>
         <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
+        <members>Venue__c.Populate_Latitude_and_Longitude</members>
         <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <members>Zumzum__Purchase_Invoice__c.ES_should_have_only_one_purchase_invoice</members>
         <members>Zumzum__Purchase_Invoice__c.Linked_to_expense_sheet_only_by_Finance</members>

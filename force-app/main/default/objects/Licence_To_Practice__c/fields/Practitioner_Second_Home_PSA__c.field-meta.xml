@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Break_Even_Number_Of_Places__c</fullName>
+    <fullName>Practitioner_Second_Home_PSA__c</fullName>
     <externalId>false</externalId>
-    <formula>MCEILING(Total_Estimated_Costs__c / IF( Include_Additional_Admin_Cost__c, Fee__c - 10, Fee__c))</formula>
+    <formula>TEXT(Contact__r.Second_Home_PSA__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Break Even Number Of Places</label>
-    <precision>18</precision>
+    <label>Practitioner Second Home PSA</label>
     <required>false</required>
-    <scale>0</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Number</type>
+    <type>Text</type>
     <unique>false</unique>
 </CustomField>
