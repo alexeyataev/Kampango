@@ -1,20 +1,21 @@
 public with sharing class CreateListViewUtility {
-    private static List<String> bodyItems = new List<String>();
+    private static List<String> bodyItems;
 
     public static void createListViews(Map<String, Object> arguments){
 
-        String whitespaceAndHyphenRegExp = '[ -]+';
-        String whitespaceAndHyphenReplacement = '_';
+        String whitespaceAndHyphenAndDotRegExp = '[ .-]+';
+        String whitespaceAndHyphenAndDotReplacement = '_';
 
         for (String listViewName : (Set<String>)arguments.get('listViewNameSet')){
             for (String psaAreaName : (Set<String>)arguments.get('psaAreaNameSet')){
+                bodyItems = new List<String>();
                 HTTPRequest req = new HTTPRequest();
                 req.setMethod('POST');
                 req.setHeader('Content-Type', 'text/xml');
                 req.setHeader('SOAPAction', 'create');
 
                 setHeadConstantRequestBodyItems();
-                bodyItems.add('<fullName>' + (String)arguments.get('objectName') + '.X' + psaAreaName + '_' + listViewName.replaceAll(whitespaceAndHyphenRegExp, whitespaceAndHyphenReplacement) + '</fullName>');
+                bodyItems.add('<fullName>' + (String)arguments.get('objectName') + '.X' + psaAreaName + '_' + listViewName.replaceAll(whitespaceAndHyphenAndDotRegExp, whitespaceAndHyphenAndDotReplacement) + '</fullName>');
                 if (String.isNotBlank(((Map<String, String>)arguments.get('filterLogicMap')).get(listViewName))){
                     bodyItems.add('<booleanFilter>' + ((Map<String, String>)arguments.get('filterLogicMap')).get(listViewName) + '</booleanFilter>');
                 }
