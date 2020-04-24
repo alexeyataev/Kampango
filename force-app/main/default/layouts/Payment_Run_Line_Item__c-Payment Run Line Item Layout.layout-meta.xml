@@ -25,6 +25,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>Paid_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Unpaid_Amount__c</field>
             </layoutItems>
             <layoutItems>
