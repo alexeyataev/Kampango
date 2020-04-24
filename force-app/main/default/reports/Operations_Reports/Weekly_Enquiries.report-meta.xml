@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CHILD_NAME</field>
+    </columns>
+    <columns>
+        <field>Booking__c.Status__c</field>
+    </columns>
+    <description>Report &quot;Weekly Enquiries&quot;
+- Showing all bookings
+- Show bookings for this year and the previous 2 Calendar Years
+- Showing a summary where the Rows are grouped by CreatedDate (grouped by Calendar Week)</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Week</dateGranularity>
+        <field>CHILD_CREATED_DATE</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <name>Weekly Enquiries</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$Course__c$Booking__c@Booking__c.Primary_Contact__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CHILD_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_PREVCUR2Y</interval>
+    </timeFrameFilter>
+</Report>
