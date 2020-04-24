@@ -90,7 +90,6 @@
         <members>Course__c.Booked_Places__c</members>
         <members>Course__c.Bracket_Course__c</members>
         <members>Course__c.Branch_Key__c</members>
-        <members>Course__c.Break_Even_Number_Of_Places__c</members>
         <members>Course__c.Breastfeeding_Sessions__c</members>
         <members>Course__c.Confirmation_Email_Text__c</members>
         <members>Course__c.Count_of_Estimated_Practitioner_Fees__c</members>
@@ -111,7 +110,6 @@
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
         <members>Course__c.Venue__c</members>
-        <members>Course__c.Total_Estimated_Costs__c</members>
         <members>cpm__Installment__c.Account_Key__c</members>
         <members>cpm__Installment__c.Contact_Key__c</members>
         <members>cpm__Installment__c.Course_Booking_Key__c</members>
@@ -292,6 +290,7 @@
         <name>Role</name>
     </types>
     <types>
+        <members>Booking__c.Course_status_can_not_be_Draft</members>
         <members>Booking__c.ExpirationDateCannotBeInPast</members>
         <members>Booking__c.MandatoryPartnerContactField</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
