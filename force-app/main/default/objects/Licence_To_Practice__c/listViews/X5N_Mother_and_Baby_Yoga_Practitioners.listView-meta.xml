@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X5N_Mother_and_Baby_Yoga_Practitioners</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4) AND (5 OR 6)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Contact__c</columns>
+    <columns>Status__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Practitioner_Home_PSA__c</columns>
+    <columns>Practitioner_Second_Home_PSA__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Licence__c</field>
+        <operation>equals</operation>
+        <value>Mother and Baby Yoga Practitioner</value>
+    </filters>
+    <filters>
+        <field>Start_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>End_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>End_Date__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Practitioner_Home_PSA__c</field>
+        <operation>equals</operation>
+        <value>5N</value>
+    </filters>
+    <filters>
+        <field>Practitioner_Second_Home_PSA__c</field>
+        <operation>equals</operation>
+        <value>5N</value>
+    </filters>
+    <label>5N - Mother and Baby Yoga Practitioners</label>
+    <sharedTo>
+        <group>X5N_PSA_Area</group>
+    </sharedTo>
+</ListView>
