@@ -292,6 +292,7 @@
         <name>Role</name>
     </types>
     <types>
+        <members>Booking__c.Course_status_can_not_be_Draft</members>
         <members>Booking__c.ExpirationDateCannotBeInPast</members>
         <members>Booking__c.MandatoryPartnerContactField</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
