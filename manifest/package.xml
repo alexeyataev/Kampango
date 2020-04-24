@@ -433,7 +433,6 @@
         <members>X4H_PSA_Area</members>
         <members>X4I_PSA_Area</members>
         <members>X4J_PSA_Area</members>
-        <members>X4K_PSA_Area</members>
         <members>X4L_PSA_Area</members>
         <members>X4M_PSA_Area</members>
         <members>X4N_PSA_Area</members>
@@ -445,14 +444,12 @@
         <members>X5B_PSA_Area</members>
         <members>X5C_PSA_Area</members>
         <members>X5D_PSA_Area</members>
-        <members>X5E_PSA_Area</members>
         <members>X5F_PSA_Area</members>
         <members>X5G_PSA_Area</members>
         <members>X5H_PSA_Area</members>
         <members>X5I_PSA_Area</members>
         <members>X5J_PSA_Area</members>
         <members>X5K_PSA_Area</members>
-        <members>X5L_PSA_Area</members>
         <members>X5M_PSA_Area</members>
         <members>X5N_PSA_Area</members>
         <members>X5O_PSA_Area</members>
@@ -677,7 +674,6 @@
         <members>X4H</members>
         <members>X4I</members>
         <members>X4J</members>
-        <members>X4K</members>
         <members>X4L</members>
         <members>X4M</members>
         <members>X4N</members>
@@ -689,14 +685,12 @@
         <members>X5B</members>
         <members>X5C</members>
         <members>X5D</members>
-        <members>X5E</members>
         <members>X5F</members>
         <members>X5G</members>
         <members>X5H</members>
         <members>X5I</members>
         <members>X5J</members>
         <members>X5K</members>
-        <members>X5L</members>
         <members>X5M</members>
         <members>X5N</members>
         <members>X5O</members>
@@ -750,6 +744,8 @@
         <members>Operations_Reports</members>
         <members>Operations_Reports/Monthly_Bookings_By_Course_Type</members>
         <members>Operations_Reports/Monthly_Enquiries_By_Course_Type</members>
+        <members>Operations_Reports/Weekly_Bookings</members>
+        <members>Operations_Reports/Weekly_Enquiries</members>
         <members>Practitioners</members>
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>

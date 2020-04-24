@@ -101,11 +101,6 @@
         <label>4J</label>
     </customValue>
     <customValue>
-        <fullName>4K</fullName>
-        <default>false</default>
-        <label>4K</label>
-    </customValue>
-    <customValue>
         <fullName>4L</fullName>
         <default>false</default>
         <label>4L</label>
@@ -161,11 +156,6 @@
         <label>5D</label>
     </customValue>
     <customValue>
-        <fullName>5E</fullName>
-        <default>false</default>
-        <label>5E</label>
-    </customValue>
-    <customValue>
         <fullName>5F</fullName>
         <default>false</default>
         <label>5F</label>
@@ -194,11 +184,6 @@
         <fullName>5K</fullName>
         <default>false</default>
         <label>5K</label>
-    </customValue>
-    <customValue>
-        <fullName>5L</fullName>
-        <default>false</default>
-        <label>5L</label>
     </customValue>
     <customValue>
         <fullName>5M</fullName>
