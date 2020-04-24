@@ -135,7 +135,6 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Zumzum__Amount__c</fields>
-        <fields>Session__c</fields>
         <fields>Course__c</fields>
         <fields>Session__c</fields>
         <fields>CREATED_DATE</fields>
