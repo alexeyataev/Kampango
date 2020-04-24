@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Introduction_to_Solids_Practitioners</fullName>
+    <columns>NAME</columns>
+    <columns>Contact__c</columns>
+    <columns>Status__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Practitioner_Home_PSA__c</columns>
+    <columns>Practitioner_Second_Home_PSA__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Licence__c</field>
+        <operation>equals</operation>
+        <value>Introduction to Solids Practitioner</value>
+    </filters>
+    <label>All Introduction to Solids Practitioners</label>
+    <sharedTo>
+        <roleAndSubordinates>Finance</roleAndSubordinates>
+        <roleAndSubordinates>PSA</roleAndSubordinates>
+    </sharedTo>
+</ListView>
