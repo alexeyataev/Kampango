@@ -139,7 +139,7 @@
         <fields>NAME</fields>
         <fields>Payment_Run__c</fields>
         <fields>Paid_Amount__c</fields>
-        <fields>CreatedDate</fields>
+        <fields>CREATED_DATE</fields>
         <relatedList>Payment_Run_Line_Item__c.Purchase_Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>
