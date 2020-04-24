@@ -744,6 +744,8 @@
         <members>Operations_Reports</members>
         <members>Operations_Reports/Monthly_Bookings_By_Course_Type</members>
         <members>Operations_Reports/Monthly_Enquiries_By_Course_Type</members>
+        <members>Operations_Reports/Weekly_Bookings</members>
+        <members>Operations_Reports/Weekly_Enquiries</members>
         <members>Practitioners</members>
         <members>Practitioners/All_Courses</members>
         <members>Practitioners/All_Course_Assignments</members>
