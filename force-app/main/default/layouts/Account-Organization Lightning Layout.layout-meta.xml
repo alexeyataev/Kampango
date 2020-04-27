@@ -273,6 +273,7 @@
         <fields>Zumzum__Invoice_Date__c</fields>
         <fields>Zumzum__Status__c</fields>
         <fields>Zumzum__Total_Gross__c</fields>
+        <fields>Zumzum__Unpaid_Amount__c</fields>
         <relatedList>Zumzum__Purchase_Invoice__c.Zumzum__Account__c</relatedList>
         <sortField>Zumzum__Invoice_Date__c</sortField>
         <sortOrder>Desc</sortOrder>
