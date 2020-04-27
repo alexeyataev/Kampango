@@ -193,12 +193,42 @@
     <types>
         <members>Booking__c.All</members>
         <members>Booking__c.All_Enquiries</members>
+        <members>Booking__c.X4K_All_Bookings</members>
+        <members>Booking__c.X4K_Enquiries</members>
+        <members>Booking__c.X4K_Reservations</members>
+        <members>Booking__c.X5E_All_Bookings</members>
+        <members>Booking__c.X5E_Enquiries</members>
+        <members>Booking__c.X5E_Reservations</members>
+        <members>Booking__c.X5L_All_Bookings</members>
+        <members>Booking__c.X5L_Enquiries</members>
+        <members>Booking__c.X5L_Reservations</members>
+        <members>Contact.X4K_All_Practitioners</members>
+        <members>Contact.X5E_All_Practitioners</members>
+        <members>Contact.X5L_All_Practitioners</members>
         <members>Course__c.Completed_Courses</members>
         <members>Course__c.Currently_Running_Courses</members>
         <members>Course__c.Courses_Not_Started</members>
         <members>Course__c.Courses_With_Upcoming_Reunions</members>
         <members>Course__c.Upcoming_Courses</members>
+        <members>Course__c.X4K_All</members>
+        <members>Course__c.X4K_Complete_Reunion_Not_Taken_Place</members>
+        <members>Course__c.X4K_Completed</members>
+        <members>Course__c.X4K_Currently_Running</members>
+        <members>Course__c.X4K_Not_Started</members>
+        <members>Course__c.X5E_All</members>
+        <members>Course__c.X5E_Complete_Reunion_Not_Taken_Place</members>
+        <members>Course__c.X5E_Completed</members>
+        <members>Course__c.X5E_Currently_Running</members>
+        <members>Course__c.X5E_Not_Started</members>
+        <members>Course__c.X5L_All</members>
+        <members>Course__c.X5L_Complete_Reunion_Not_Taken_Place</members>
+        <members>Course__c.X5L_Completed</members>
+        <members>Course__c.X5L_Currently_Running</members>
+        <members>Course__c.X5L_Not_Started</members>
         <members>cpm__Installment__c.All_records_with_status_Failed</members>
+        <members>Venue__c.X4K_All_Venues</members>
+        <members>Venue__c.X5E_All_Venues</members>
+        <members>Venue__c.X5L_All_Venues</members>
         <members>Zumzum__Purchase_Invoice__c.All_Invoices</members>
         <members>Zumzum__Expense_Sheet__c.X1C_Expense_Sheet</members>
         <members>Zumzum__Expense_Sheet__c.X1W_Expense_Sheet</members>
@@ -260,6 +290,9 @@
         <name>ListView</name>
     </types>
     <types>
+        <members>X4K_PSA_Area</members>
+        <members>X5E_PSA_Area</members>
+        <members>X5L_PSA_Area</members>
         <members>X7D_PSA_Area</members>
         <name>Group</name>
     </types>
@@ -277,6 +310,9 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>X4K</members>
+        <members>X5E</members>
+        <members>X5L</members>
         <members>X7D</members>
         <name>Queue</name>
     </types>
@@ -290,6 +326,7 @@
         <name>Role</name>
     </types>
     <types>
+        <members>Booking__c.Course_status_can_not_be_Draft</members>
         <members>Booking__c.ExpirationDateCannotBeInPast</members>
         <members>Booking__c.MandatoryPartnerContactField</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
