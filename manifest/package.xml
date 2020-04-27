@@ -350,6 +350,7 @@
         <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
         <members>Override_Branch_Weighting_Validation</members>
+        <members>Override_Case_Validation</members>
         <members>Override_Client_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
@@ -626,6 +627,7 @@
         <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
+        <members>Override_Case_Validation</members>
         <members>Override_Client_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
@@ -833,6 +835,8 @@
         <members>Booking__c.PreventConfirmedBookingCreation</members>
         <members>Booking__c.ReservationExpiryDateCannotBeRemoved</members>
         <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
+        <members>Case.Prevents_afterward_booking_changing</members>
+        <members>Case.Prevents_afterward_contact_changing</members>
         <members>Contact.MandatoryClientsFields</members>
         <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
