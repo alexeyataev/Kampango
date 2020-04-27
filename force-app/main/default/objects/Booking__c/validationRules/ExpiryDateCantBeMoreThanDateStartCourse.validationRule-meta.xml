@@ -5,5 +5,5 @@
     <errorConditionFormula>Reservation_Expiry_Date__c &gt;= Course__r.Start_Date__c &amp;&amp;
 NOT($Permission.Override_Booking_Validation)</errorConditionFormula>
     <errorDisplayField>Reservation_Expiry_Date__c</errorDisplayField>
-    <errorMessage>Expiry date cannot be greater than course start date</errorMessage>
+    <errorMessage>Expiry date cannot be greater than or equal to course start date.</errorMessage>
 </ValidationRule>
