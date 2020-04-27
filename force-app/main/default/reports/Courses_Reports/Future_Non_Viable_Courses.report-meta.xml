@@ -44,6 +44,13 @@
             <operator>equals</operator>
             <value>0</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Course__c.Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Final</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
