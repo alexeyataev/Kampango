@@ -61,6 +61,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Estimated_Surplus_Deficit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -626,6 +631,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Number_Of_Days_To_Start_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Number_of_Sessions__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -697,6 +707,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Total_Costs__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Total_Estimated_Costs__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
