@@ -477,12 +477,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Practitioner_Re_Registration_Amount__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Practitioner_Re_Registration_Date__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -522,6 +522,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Break_Even_Number_Of_Places__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Break_Even_Number_Reached__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
