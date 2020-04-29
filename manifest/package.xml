@@ -218,6 +218,9 @@
         <members>Case.Subject</members>
         <members>Case.Type</members>
         <members>Contact.AccountId</members>
+        <members>Contact.Bank_Account_Name__c</members>
+        <members>Contact.Bank_Account_Number__c</members>
+        <members>Contact.Bank_Sort_Code__c</members>
         <members>Contact.Deducted_Practitioner_Fees__c</members>
         <members>Contact.Home_PSA__c</members>
         <members>Contact.NCT_Number__c</members>
@@ -352,6 +355,7 @@
         <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Case_Validation</members>
         <members>Override_Client_Validation</members>
+        <members>Override_Contact_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
         <members>Override_Estimated_Costs_Validation</members>
@@ -630,6 +634,7 @@
         <members>Override_Booking_Validation</members>
         <members>Override_Case_Validation</members>
         <members>Override_Client_Validation</members>
+        <members>Override_Contact_Validation</members>
         <members>Override_Course_Validation</members>
         <members>Override_Course_Assignment_Validation</members>
         <members>Override_Estimated_Costs_Validation</members>
@@ -741,6 +746,7 @@
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
         <members>Courses_Reports</members>
+        <members>Courses_Reports/Future_Non_Viable_Courses</members>
         <members>Courses_Reports/U18s_Report</members>
         <members>Enquiries_PSA</members>
         <members>Enquiries_PSA/Confirmed_Bookings</members>
@@ -839,6 +845,9 @@
         <members>Case.Prevents_afterward_booking_changing</members>
         <members>Case.Prevents_afterward_contact_changing</members>
         <members>Contact.MandatoryClientsFields</members>
+        <members>Contact.Bank_Account_Name_Not_More_50_Symbols</members>
+        <members>Contact.Bank_Account_Number_Exactly_8_numbers</members>
+        <members>Contact.Bank_Sort_Code_Exactly_6_numbers</members>
         <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
         <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
         <members>Course__c.Check_Drop_In_Schedule_Information</members>

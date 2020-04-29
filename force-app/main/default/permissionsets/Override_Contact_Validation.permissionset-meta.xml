@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Override_Contact_Validation</name>
+    </customPermissions>
+    <description>Contains the Override Contact Validation custom permission</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Override Contact Validation</label>
+    <license>Salesforce</license>
+</PermissionSet>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bank_Account_Name_Not_More_50_Symbols</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ NOT(ISBLANK(Bank_Account_Name__c)),
+ NOT($Permission.Override_Contact_Validation),
+ OR(
+  LEN( Bank_Account_Name__c ) &gt; 50,
+  ISNUMBER( Bank_Account_Name__c )
+ )
+)</errorConditionFormula>
+    <errorDisplayField>Bank_Account_Name__c</errorDisplayField>
+    <errorMessage>Make sure that the Bank Account Name contains no more than 50 text characters.</errorMessage>
+</ValidationRule>
