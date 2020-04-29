@@ -10,6 +10,16 @@
 - Showing all bookings
 - Show bookings for this year and the previous 2 Calendar Years
 - Showing a summary where the Rows are grouped by CreatedDate (grouped by Calendar Week)</description>
+    <filter>
+        <criteriaItems>
+            <column>Course__c.Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Drop In</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Week</dateGranularity>

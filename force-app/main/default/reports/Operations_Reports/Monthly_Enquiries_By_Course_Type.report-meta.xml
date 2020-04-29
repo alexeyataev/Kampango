@@ -16,6 +16,16 @@
 - Showing only all bookings
 - Showing bookings for this year and the previous 2 Calendar Years
 - Showing a matrix where the Rows are grouped by Booking Created Date and the Columns are grouped by Course.SubType</description>
+    <filter>
+        <criteriaItems>
+            <column>Course__c.Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Drop In</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Matrix</format>
     <groupingsAcross>
         <dateGranularity>Day</dateGranularity>
