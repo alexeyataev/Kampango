@@ -11,5 +11,5 @@
  )
 )</errorConditionFormula>
     <errorDisplayField>Bank_Account_Name__c</errorDisplayField>
-    <errorMessage>Make sure that the Bank Account Name contains no more than 50 of text characters.</errorMessage>
+    <errorMessage>Make sure that the Bank Account Name contains no more than 50 text characters.</errorMessage>
 </ValidationRule>
