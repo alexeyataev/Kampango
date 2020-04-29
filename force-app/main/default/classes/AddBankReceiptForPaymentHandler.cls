@@ -24,7 +24,6 @@ public with sharing class AddBankReceiptForPaymentHandler {
         }
 
         Zumzum.BankCustomerReceiptService bankCustomerReceiptService = new Zumzum.BankCustomerReceiptService();
-        Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper receiptWrapper = new Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper();
         List<Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper> receiptWrapperList = new List<Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper>();
 
         Map<Id, List<cpm__Payment__c>> salesInvoicesPaymentsMap = new Map<Id, List<cpm__Payment__c>>();
@@ -56,6 +55,7 @@ public with sharing class AddBankReceiptForPaymentHandler {
                 WITH SECURITY_ENFORCED
         ]) {
             for (cpm__Payment__c payment : salesInvoicesPaymentsMap.get(salesInvoice.Id)) {
+                Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper receiptWrapper = new Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper();
                 receiptWrapper.AccountId = salesInvoice.Zumzum__Account__c;
                 receiptWrapper.BankAccountId = bankAccountlist[0].Id;
                 receiptWrapper.PostingDate = Date.Today();
