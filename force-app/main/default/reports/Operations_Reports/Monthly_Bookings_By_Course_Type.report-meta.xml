@@ -17,12 +17,20 @@
 - Showing bookings for this year and the previous 2 Calendar Years
 - Showing a matrix where the Rows are grouped by Booking Confirmed Date and the Columns are grouped by Course.SubType</description>
     <filter>
+        <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <column>Booking__c.Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>Confirmed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Course__c.Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Drop In</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
@@ -35,7 +43,7 @@
     <groupingsDown>
         <dateGranularity>Month</dateGranularity>
         <field>Booking__c.Confirmed_Date__c</field>
-        <sortOrder>Desc</sortOrder>
+        <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Monthly Bookings By Course Type</name>
     <params>
