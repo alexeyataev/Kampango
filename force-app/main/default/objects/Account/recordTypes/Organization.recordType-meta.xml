@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Organization</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>NPSP_Organization_Account</compactLayoutAssignment>
+    <description>An Account representing an organization</description>
+    <label>Organization</label>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Supplier</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+</RecordType>

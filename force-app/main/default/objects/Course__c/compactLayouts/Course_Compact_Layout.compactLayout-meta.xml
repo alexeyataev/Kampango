@@ -7,6 +7,6 @@
     <fields>Target_Group__c</fields>
     <fields>Status__c</fields>
     <fields>Confirmed_Places__c</fields>
-    <fields>Remaining_Places__c</fields>
+    <fields>Break_Even_Number_Of_Places__c</fields>
     <label>Course Compact Layout</label>
 </CompactLayout>
