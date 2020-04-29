@@ -66,6 +66,6 @@
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>Course__c.Start_Date__c</dateColumn>
-        <interval>INTERVAL_NEXT30</interval>
+        <interval>INTERVAL_NEXT60</interval>
     </timeFrameFilter>
 </Report>
