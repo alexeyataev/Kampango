@@ -8,12 +8,20 @@
 - Showing bookings for this year and the previous 2 Calendar Years
 - Showing be a summary where the Rows are grouped by Booking Confirmed Date (grouped by Calendar Week)</description>
     <filter>
+        <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <column>Booking__c.Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>Confirmed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Course__c.Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Drop In</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
