@@ -474,10 +474,10 @@
         <name>Group</name>
     </types>
     <types>
-        <members>Account_Record_Page</members>
         <members>Contact_Record_Page</members>
         <members>Course_Assignment_Record_Page</members>
         <members>Course_Record_Page</members>
+        <members>NPSP_Account_Record_Page</members>
         <members>Room_Record_Page</members>
         <members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
