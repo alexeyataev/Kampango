@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bank_Sort_Code_Exactly_6_numbers</fullName>
+    <active>true</active>
+    <description>Validation rule to check that Bank Sort Code is either blank or 6 characters long and all numeric.</description>
+    <errorConditionFormula>AND(
+ NOT(ISBLANK(Bank_Sort_Code__c)),
+ NOT($Permission.Override_Contact_Validation),
+ OR (
+  LEN(Bank_Sort_Code__c) != 6,
+  NOT(ISNUMBER(Bank_Sort_Code__c))
+ )
+)</errorConditionFormula>
+    <errorDisplayField>Bank_Sort_Code__c</errorDisplayField>
+    <errorMessage>Please ensure that Bank Sort Code consists of exactly 6 numbers.</errorMessage>
+</ValidationRule>
