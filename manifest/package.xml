@@ -746,6 +746,7 @@
         <members>Capacity_PSA/Venue_Schedule</members>
         <members>Capacity_PSA/Schedule_of_Sessions</members>
         <members>Courses_Reports</members>
+        <members>Courses_Reports/Future_Non_Viable_Courses</members>
         <members>Courses_Reports/U18s_Report</members>
         <members>Enquiries_PSA</members>
         <members>Enquiries_PSA/Confirmed_Bookings</members>
