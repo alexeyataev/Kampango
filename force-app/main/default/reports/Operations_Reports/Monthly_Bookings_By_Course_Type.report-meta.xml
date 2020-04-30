@@ -43,7 +43,7 @@
     <groupingsDown>
         <dateGranularity>Month</dateGranularity>
         <field>Booking__c.Confirmed_Date__c</field>
-        <sortOrder>Asc</sortOrder>
+        <sortOrder>Desc</sortOrder>
     </groupingsDown>
     <name>Monthly Bookings By Course Type</name>
     <params>
