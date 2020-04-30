@@ -23,9 +23,7 @@
         <apex:outputPanel layout="block" rendered="{! NOT(ISBLANK(relatedTo.Partner_Contact__c))}">
             Partner email - {!relatedTo.Partner_Contact__r.Email}<br></br>
         </apex:outputPanel>
-       
-        NCT may contact - {!IF(relatedTo.Do_Not_Contact__c==TRUE, "No", "Yes")}<br></br>  <!-- checkbox -->
-        Third parties may contact:<br></br> 
+        Parent Contact Preferences:<br></br> 
         <ul>
             <li>Email - {! IF(relatedTo.Email__c==TRUE, "Yes", "No")}</li>
             <li>Post - {! IF(relatedTo.Post__c==TRUE, "Yes", "No")}</li>
