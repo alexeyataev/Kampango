@@ -1,4 +1,4 @@
-@IsTest(SeeAllData = true)
+@IsTest(SeeAllData = false)
 public with sharing class LightningSelfRegisterControllerTest {
 
  /* Verifies that IsValidPassword method with various password combinations. */
