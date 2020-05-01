@@ -7,5 +7,4 @@
     <description>Contains the Override Booking Validation custom permission</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Booking Validation</label>
-    <license>Salesforce</license>
 </PermissionSet>

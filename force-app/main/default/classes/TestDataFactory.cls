@@ -230,6 +230,7 @@ public without sharing class TestDataFactory {
     public TestDataFactory buildVenue() {
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         venue = venueBuilder
+            .withBranch(branchAccount)
             .insertRecord(true)
             .build();
         return this;
@@ -239,6 +240,7 @@ public without sharing class TestDataFactory {
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         venue = venueBuilder
             .withName(name)
+            .withBranch(branchAccount)
             .insertRecord(true)
             .build();
         return this;

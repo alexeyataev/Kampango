@@ -1,12 +1,16 @@
 @isTest
 private class CourseCreateEnquiryUtilityTest {
 
-    private final static String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded"}';
-    private final static String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
+    private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
+    private static final String CONTACT_POSTCODE = 'E1 7AE';
+    private static final String CONTACT_EMAIL = 'test@test.test';
+    private static final String HEADERS = '{"Content-Type":"application/x-www-form-urlencoded"}';
+    private static final String PARAMS = '{"email":"' + CONTACT_EMAIL + '","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                          '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                          '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                         '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                         '"twinsexpected":"0","county":"UK","postcode":"' + CONTACT_POSTCODE + '","mobile":"+442072343456",' +
                                          '"town":"London","op":"Send enquiry"}';
+    
     //@testSetup
     // avoid annotation - Account.AccountAutoNumber is not unique when using @TestSetup
     static void createTestData() {
@@ -52,8 +56,18 @@ private class CourseCreateEnquiryUtilityTest {
             )
             FROM Course__c
         ];
+
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(ACCOUNT_BRANCH_RECORDTYPE).getRecordTypeId();
+        Account branch = [
+           SELECT Id 
+           FROM Account 
+           WHERE RecordTypeId = :recordTypeId
+           LIMIT 1
+        ];
+        
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         Venue__c mainVenue = venueBuilder
+                                .withBranch(branch)
                                 .insertRecord(true)
                                 .build();
 
@@ -79,7 +93,7 @@ private class CourseCreateEnquiryUtilityTest {
         List<Contact> createdContact = [
             SELECT Name, Email 
             FROM Contact 
-            WHERE Email =: 'test@test.test'
+            WHERE Email =: CONTACT_EMAIL
         ];
         List<Booking__c> bookings = [
             SELECT Name 
@@ -108,7 +122,7 @@ private class CourseCreateEnquiryUtilityTest {
         List<Contact> contacts = [
             SELECT Name
             FROM Contact
-            WHERE Email =: 'test@test.test'
+            WHERE Email =: CONTACT_EMAIL
         ];
         List<Booking__c> bookings = [
             SELECT Name 
@@ -132,6 +146,7 @@ private class CourseCreateEnquiryUtilityTest {
             .withLastName('Partner')
             .withFirstName('Partner')
             .withEmail('partner@partner.partner')
+            .withMailingPostalCode(CONTACT_POSTCODE)
             .withAccount(accountPartner)
             .insertRecord(false)
             .build();
@@ -151,6 +166,7 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('partner_first_name', 'Partner');
         paramsMap.put('partner_last_name', 'Partner');
         paramsMap.put('partner_email', 'partner@partner.partner');
+        paramsMap.put('postcode', CONTACT_POSTCODE);
         
         // Temporarily commented to avoid System.LimitException: npsp:Too many SOQL queries: 101
         // To be fixed in T-02067
@@ -228,7 +244,7 @@ private class CourseCreateEnquiryUtilityTest {
         List<Contact> createdContact = [
             SELECT Name, Email, Individual.Email__c
             FROM Contact 
-            WHERE Email =: 'test@test.test'
+            WHERE Email =: CONTACT_EMAIL
         ];
         List<Booking__c> bookings = [
             SELECT Name
@@ -292,10 +308,10 @@ private class CourseCreateEnquiryUtilityTest {
             contacts.add(new Contact(
                 LastName = 'Test',  
                 FirstName = 'Test', 
-                Email = 'test@test.test',
+                Email = CONTACT_EMAIL,
                 MailingCity = 'London',
                 MailingStreet = '221B Baker Street',
-                MailingPostalCode = 'E1 7AE',
+                MailingPostalCode = CONTACT_POSTCODE,
                 npe01__PreferredPhone__c = 'Mobile',
                 MobilePhone = '+447911123456',
                 AccountId = accounts[i].Id,
@@ -318,7 +334,7 @@ private class CourseCreateEnquiryUtilityTest {
         List<Contact> duplicates = [
             SELECT Email
             FROM Contact
-            WHERE Email = 'test@test.test'
+            WHERE Email =: CONTACT_EMAIL
         ];
         List<Booking__c> bookings = [
             SELECT Name
@@ -348,7 +364,7 @@ private class CourseCreateEnquiryUtilityTest {
                 Email = 'partner@partner.partner',
                 MailingCity = 'London',
                 MailingStreet = '221B Baker Street',
-                MailingPostalCode = 'E1 7AE',
+                MailingPostalCode = CONTACT_POSTCODE,
                 npe01__PreferredPhone__c = 'Mobile',
                 MobilePhone = '+447911121337',
                 AccountId = accounts[i].Id,
@@ -386,10 +402,10 @@ private class CourseCreateEnquiryUtilityTest {
         Contact existingContact = new Contact(
             LastName = 'Test',  
             FirstName = 'Test', 
-            Email = 'test@test.test',
+            Email = CONTACT_EMAIL,
             MailingCity = 'London',
             MailingStreet = '221B Baker Street',
-            MailingPostalCode = 'E1 7AE',
+            MailingPostalCode = CONTACT_POSTCODE,
             npe01__PreferredPhone__c = 'Mobile',
             MobilePhone = '+447911123456',
             AccountId = accountId,

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevents_afterward_contact_changing</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT(ISNEW())&amp;&amp;
+ISCHANGED(ContactId)&amp;&amp;
+NOT($Permission.Override_Case_Validation)</errorConditionFormula>
+    <errorDisplayField>ContactId</errorDisplayField>
+    <errorMessage>This case is already linked to a contact record and that cannot be changed.</errorMessage>
+</ValidationRule>

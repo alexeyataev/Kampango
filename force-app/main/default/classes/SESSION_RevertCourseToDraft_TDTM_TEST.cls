@@ -9,6 +9,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     private static final String PRACTITIONER_LASTNAME_ONE = 'Smith';
     private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
+    private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
     private static final Integer COURSES_TO_CREATE = 5;
     private static final Integer SESSIONS_TO_CREATE = 10;
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
@@ -186,9 +187,18 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(ACCOUNT_BRANCH_RECORDTYPE).getRecordTypeId();
+        Account branch = [
+           SELECT Id 
+           FROM Account 
+           WHERE RecordTypeId = :recordTypeId
+           LIMIT 1
+        ];
+
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         venue = venueBuilder
             .InsertRecord(true)
+            .withBranch(branch)
             .Build();
         TestRoomBuilder roomBuilder = new TestRoomBuilder();
         room = roomBuilder

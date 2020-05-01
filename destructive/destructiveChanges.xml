@@ -38,6 +38,7 @@
         <members>Account.Branch__c</members>
         <members>Account.Branch_Code__c</members>
         <members>Account.Enquiry_PSA__c</members>
+        <members>Batch_Receipt_Report_Item__c.Ledger__c</members>
         <members>Booking__c.Birth_Date__c</members>
         <members>Booking__c.Birth_Or_Due_Date__c</members>
         <members>Booking__c.Client_Name__c</members>
@@ -89,7 +90,6 @@
         <members>Course__c.Booked_Places__c</members>
         <members>Course__c.Bracket_Course__c</members>
         <members>Course__c.Branch_Key__c</members>
-        <members>Course__c.Break_Even_Number_Of_Places__c</members>
         <members>Course__c.Breastfeeding_Sessions__c</members>
         <members>Course__c.Confirmation_Email_Text__c</members>
         <members>Course__c.Count_of_Estimated_Practitioner_Fees__c</members>
@@ -110,7 +110,6 @@
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
         <members>Course__c.Venue__c</members>
-        <members>Course__c.Total_Estimated_Costs__c</members>
         <members>cpm__Installment__c.Account_Key__c</members>
         <members>cpm__Installment__c.Contact_Key__c</members>
         <members>cpm__Installment__c.Course_Booking_Key__c</members>
@@ -194,12 +193,42 @@
     <types>
         <members>Booking__c.All</members>
         <members>Booking__c.All_Enquiries</members>
+        <members>Booking__c.X4K_All_Bookings</members>
+        <members>Booking__c.X4K_Enquiries</members>
+        <members>Booking__c.X4K_Reservations</members>
+        <members>Booking__c.X5E_All_Bookings</members>
+        <members>Booking__c.X5E_Enquiries</members>
+        <members>Booking__c.X5E_Reservations</members>
+        <members>Booking__c.X5L_All_Bookings</members>
+        <members>Booking__c.X5L_Enquiries</members>
+        <members>Booking__c.X5L_Reservations</members>
+        <members>Contact.X4K_All_Practitioners</members>
+        <members>Contact.X5E_All_Practitioners</members>
+        <members>Contact.X5L_All_Practitioners</members>
         <members>Course__c.Completed_Courses</members>
         <members>Course__c.Currently_Running_Courses</members>
         <members>Course__c.Courses_Not_Started</members>
         <members>Course__c.Courses_With_Upcoming_Reunions</members>
         <members>Course__c.Upcoming_Courses</members>
+        <members>Course__c.X4K_All</members>
+        <members>Course__c.X4K_Complete_Reunion_Not_Taken_Place</members>
+        <members>Course__c.X4K_Completed</members>
+        <members>Course__c.X4K_Currently_Running</members>
+        <members>Course__c.X4K_Not_Started</members>
+        <members>Course__c.X5E_All</members>
+        <members>Course__c.X5E_Complete_Reunion_Not_Taken_Place</members>
+        <members>Course__c.X5E_Completed</members>
+        <members>Course__c.X5E_Currently_Running</members>
+        <members>Course__c.X5E_Not_Started</members>
+        <members>Course__c.X5L_All</members>
+        <members>Course__c.X5L_Complete_Reunion_Not_Taken_Place</members>
+        <members>Course__c.X5L_Completed</members>
+        <members>Course__c.X5L_Currently_Running</members>
+        <members>Course__c.X5L_Not_Started</members>
         <members>cpm__Installment__c.All_records_with_status_Failed</members>
+        <members>Venue__c.X4K_All_Venues</members>
+        <members>Venue__c.X5E_All_Venues</members>
+        <members>Venue__c.X5L_All_Venues</members>
         <members>Zumzum__Purchase_Invoice__c.All_Invoices</members>
         <members>Zumzum__Expense_Sheet__c.X1C_Expense_Sheet</members>
         <members>Zumzum__Expense_Sheet__c.X1W_Expense_Sheet</members>
@@ -261,6 +290,13 @@
         <name>ListView</name>
     </types>
     <types>
+        <members>X4K_PSA_Area</members>
+        <members>X5E_PSA_Area</members>
+        <members>X5L_PSA_Area</members>
+        <members>X7D_PSA_Area</members>
+        <name>Group</name>
+    </types>
+    <types>
         <members>Allow_Confirmed_Bookings</members>
         <name>PermissionSet</name>
     </types>
@@ -274,6 +310,13 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>X4K</members>
+        <members>X5E</members>
+        <members>X5L</members>
+        <members>X7D</members>
+        <name>Queue</name>
+    </types>
+    <types>
         <members>Practitioners/Registration_Fee_History</members>
         <name>Report</name>
     </types>
@@ -283,6 +326,7 @@
         <name>Role</name>
     </types>
     <types>
+        <members>Booking__c.Course_status_can_not_be_Draft</members>
         <members>Booking__c.ExpirationDateCannotBeInPast</members>
         <members>Booking__c.MandatoryPartnerContactField</members>
         <members>Booking__c.MandatoryPrimaryContactFields</members>
@@ -292,6 +336,7 @@
         <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
         <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted.validationRule-meta</members>
         <members>Session__c.Prevent_private_reunion_confirmation</members>
+        <members>Venue__c.Populate_Location_if_Type_Not_ParentHome</members>
         <members>Zumzum__Bank_Account__c.Account_number_must_be_8_numeric_digits</members>
         <members>Zumzum__Bank_Account__c.Check_Bank_Account_Name</members>
         <members>Zumzum__Bank_Account__c.Sort_code_must_be_6_numeric_digits</members>

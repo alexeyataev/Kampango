@@ -114,7 +114,7 @@
             <assignToReference>ParentGAD.gaid__Housename_or_number__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>curBooking.Street_Address__c</elementReference>
+                <elementReference>Street_Address_40_Symbols</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -172,7 +172,7 @@
             <assignToReference>PartnerGAD.gaid__Housename_or_number__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>curBooking.Street_Address__c</elementReference>
+                <elementReference>Street_Address_40_Symbols</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -323,6 +323,12 @@
             <label>Is SalesInvoice False</label>
         </rules>
     </decisions>
+    <formulas>
+        <description>Set 40 Symbols for Street_Address. Because gaid__Housename_or_number__c has limit 40 symbols.</description>
+        <name>Street_Address_40_Symbols</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!curBooking.Street_Address__c}, 40)</expression>
+    </formulas>
     <interviewLabel>Booking Journey Success Page {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Success Page</label>
     <processMetadataValues>

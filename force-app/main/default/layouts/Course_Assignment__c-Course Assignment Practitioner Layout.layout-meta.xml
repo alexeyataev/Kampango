@@ -54,6 +54,10 @@
         <label>System Information</label>
         <layoutColumns>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Legacy_Id__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>CreatedById</field>
             </layoutItems>
@@ -166,11 +170,11 @@
         <fields>NAME</fields>
         <fields>Date__c</fields>
         <fields>Day_of_Week__c</fields>
-        <fields>Start__c</fields>
-        <fields>End__c</fields>
+        <fields>Times__c</fields>
         <fields>Lunch_Break_Minutes__c</fields>
         <fields>Venue__c</fields>
         <fields>Type__c</fields>
+        <fields>Status__c</fields>
         <fields>Hourly_Rate__c</fields>
         <fields>Contact_Hours__c</fields>
         <relatedList>Session__c.Course_Assignment__c</relatedList>
