@@ -221,10 +221,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>4K</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>4L</fullName>
             <default>false</default>
         </values>
@@ -269,10 +265,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>5E</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>5F</fullName>
             <default>false</default>
         </values>
@@ -294,10 +286,6 @@
         </values>
         <values>
             <fullName>5K</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>5L</fullName>
             <default>false</default>
         </values>
         <values>
@@ -362,10 +350,6 @@
         </values>
         <values>
             <fullName>7C</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>7D</fullName>
             <default>false</default>
         </values>
     </picklistValues>

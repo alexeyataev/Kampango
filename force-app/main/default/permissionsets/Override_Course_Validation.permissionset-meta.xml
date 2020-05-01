@@ -7,5 +7,4 @@
     <description>Contains the Override Course Validation custom permission</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Course Validation</label>
-    <license>Salesforce</license>
 </PermissionSet>

@@ -5,6 +5,7 @@ private class UpdateRelatedSessionsFlowTest {
 
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String ORGANIZATION_ACCOUNT_NAME = 'acc1';
+    private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
 
     @TestSetup 
     private static void testSetup() {
@@ -37,11 +38,20 @@ private class UpdateRelatedSessionsFlowTest {
             LIMIT 1
         ];
 
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(ACCOUNT_BRANCH_RECORDTYPE).getRecordTypeId();
+        Account branch = [
+           SELECT Id 
+           FROM Account 
+           WHERE RecordTypeId = :recordTypeId
+           LIMIT 1
+        ];
+
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
         Venue__c newVenue = venueBuilder
+            .withBranch(branch)
             .InsertRecord(true)
             .Build();
-
+        
         Test.startTest();
         course.Main_Venue__c = newVenue.Id;
         update course;

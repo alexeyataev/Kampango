@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bank_Account_Number_Exactly_8_numbers</fullName>
+    <active>true</active>
+    <description>Validation rule to check that Bank Account Number is either blank or 8 characters long and all numeric.</description>
+    <errorConditionFormula>AND(
+ NOT(ISBLANK(Bank_Account_Number__c)),
+ NOT($Permission.Override_Contact_Validation),
+ OR(
+  LEN(Bank_Account_Number__c) != 8,
+  NOT(ISNUMBER(Bank_Account_Number__c))
+ )
+)</errorConditionFormula>
+    <errorDisplayField>Bank_Account_Number__c</errorDisplayField>
+    <errorMessage>Please ensure that Bank Account Number consists of exactly 8 numbers.</errorMessage>
+</ValidationRule>

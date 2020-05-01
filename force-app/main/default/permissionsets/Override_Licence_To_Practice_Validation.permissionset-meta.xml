@@ -7,5 +7,4 @@
     <description>Contains the Override Licence To Practice custom permission</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Licence To Practice Validation</label>
-    <license>Salesforce</license>
 </PermissionSet>
