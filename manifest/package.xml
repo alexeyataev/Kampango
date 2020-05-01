@@ -49,8 +49,6 @@
         <members>CreateListViewUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
-        <members>UpdateBookingContactsEmailTest</members>
-        <members>UpdateAddressInGiftAidDeclarationsTest</members>
         <members>dlrs_Batch_Receipt_Report_ItemTest</members>
         <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
@@ -66,6 +64,8 @@
         <members>IClock</members>
         <members>IPaymentServiceProvider</members>
         <members>ISalesInvoiceCreator</members>
+        <members>LightningSelfRegisterController</members>
+        <members>LightningSelfRegisterControllerTest</members>
         <members>PaymentApiRequest</members>
         <members>PaymentPlanGenerator</members>
         <members>PaymentPlanMockClock</members>
@@ -121,6 +121,8 @@
         <members>TestVenueBuilder</members>
         <members>TestVenueContactBuilder</members>
         <members>TestUserBuilder</members>
+        <members>UpdateAddressInGiftAidDeclarationsTest</members>
+        <members>UpdateBookingContactsEmailTest</members>
         <members>UpdateRelatedSessionsFlowTest</members>
         <members>VenueDetailsController</members>
         <members>VenueDetailsControllerTest</members>
