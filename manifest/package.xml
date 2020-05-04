@@ -484,6 +484,7 @@
         <members>Room_Record_Page</members>
         <members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
+        <members>Zumzum_Purchase_Invoice_Record_Page1</members>
         <name>FlexiPage</name>
     </types>
     <types>

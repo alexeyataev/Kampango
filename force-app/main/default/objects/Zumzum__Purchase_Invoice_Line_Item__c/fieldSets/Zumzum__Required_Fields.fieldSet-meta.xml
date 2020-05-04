@@ -208,48 +208,8 @@
     </availableFields>
     <description>PI New &amp; Edit pages (Line Items)</description>
     <displayedFields>
-        <field>Zumzum__Nominal_Account__c</field>
-        <isFieldManaged>true</isFieldManaged>
-        <isRequired>true</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>Zumzum__Narrative__c</field>
-        <isFieldManaged>true</isFieldManaged>
-        <isRequired>true</isRequired>
-    </displayedFields>
-    <displayedFields>
         <field>Course__c</field>
         <isFieldManaged>false</isFieldManaged>
-        <isRequired>true</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>Zumzum__Quantity__c</field>
-        <isFieldManaged>true</isFieldManaged>
-        <isRequired>true</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>Zumzum__Foreign_Net_Amount__c</field>
-        <isFieldManaged>true</isFieldManaged>
-        <isRequired>true</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>Zumzum__Tax_Rate__c</field>
-        <isFieldManaged>true</isFieldManaged>
-        <isRequired>true</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>Zumzum__Foreign_Tax_Total__c</field>
-        <isFieldManaged>true</isFieldManaged>
-        <isRequired>true</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>Zumzum__Foreign_Net_Total__c</field>
-        <isFieldManaged>true</isFieldManaged>
-        <isRequired>true</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>Zumzum__Foreign_Gross__c</field>
-        <isFieldManaged>true</isFieldManaged>
         <isRequired>true</isRequired>
     </displayedFields>
     <label>Required_Fields</label>
