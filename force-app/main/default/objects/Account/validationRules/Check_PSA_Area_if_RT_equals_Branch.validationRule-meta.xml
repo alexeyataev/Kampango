@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Check_PSA_Area_if_RT_equals_Branch</fullName>
+    <active>true</active>
+    <description>PSA Area field should mandatory if Record Type equals &quot;Branch&quot;.</description>
+    <errorConditionFormula>AND(
+ RecordType.DeveloperName = &#39;Branch&#39;,
+ ISPICKVAL(PSA_Area__c, &#39;&#39;)
+)</errorConditionFormula>
+    <errorDisplayField>PSA_Area__c</errorDisplayField>
+    <errorMessage>Please fill in this field.</errorMessage>
+</ValidationRule>
