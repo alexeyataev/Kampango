@@ -395,18 +395,28 @@
         <name>Document</name>
     </types>
     <types>
-        <members>NCT_Templates/Adhoc_Payment_Notification</members>
         <members>NCT_Templates/Adhoc_Payment_Confirmation</members>
-        <members>NCT_Templates/Booking_Created</members>
+        <members>NCT_Templates/Adhoc_Payment_Notification</members>
+        <members>NCT_Templates/BACS_Remittance_Email</members>
         <members>NCT_Templates/Booking_Confirmation_Email</members>
+        <members>NCT_Templates/Booking_Created</members>
+        <members>NCT_Templates/Booking_Payment_Details</members>
         <members>NCT_Templates/BookingNotificationEmail</members>
+        <members>NCT_Templates/BookingTransferNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <members>NCT_Templates/Course_Assignment_Rejected</members>
+        <members>NCT_Templates/DropInsEnquiryNotificationToPractitioner</members>
+        <members>NCT_Templates/Expense_Sheet_is_Approved</members>
         <members>NCT_Templates/Expense_Sheet_is_Ready_for_Approval</members>
         <members>NCT_Templates/Expense_Sheet_Rejected</members>
-        <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</members>
+        <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
         <members>NCT_Templates/Practitioner_Registration_Fee_Claim_Error</members>
+        <members>NCT_Templates/Reunion_Confirmed_Host</members>
+        <members>NCT_Templates/Reunion_Confirmed_Not_A_Host</members>
+        <members>NCT_Templates/Reunion_Confirmed_Practitioner</members>
+        <members>NCT_Templates/Reunion_Confirmed_Public_No_Venue</members>
+        <members>NCT_Templates/Reunion_Confirmed_Public</members>
         <name>EmailTemplate</name>
     </types>
     <types>
