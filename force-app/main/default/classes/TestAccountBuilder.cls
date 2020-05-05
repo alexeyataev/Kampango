@@ -13,6 +13,7 @@ public class TestAccountBuilder {
     private String bankAccountName;
     private String capacityPSAemail;
     private String enquiriesPSAemail;
+    private String psaArea;
     private Boolean hasContactEmails;
     private Id enquiriesPSA;
 
@@ -88,6 +89,11 @@ public class TestAccountBuilder {
         return this;
     }
 
+    public TestAccountBuilder withPSAarea(String area) {
+        this.psaArea = area;
+        return this;
+    }
+
     public TestAccountBuilder insertRecord(Boolean insertRecord) {
         this.insertRecord = insertRecord;
         return this;
@@ -106,7 +112,8 @@ public class TestAccountBuilder {
             Zumzum__Bank_Account_No__c = this.bankAccountNumber,
             Zumzum__Bank_Account_Name__c = this.bankAccountName,
             Enquiries_PSA__c = this.enquiriesPSA,
-            Branch_Number__c = this.branchNumber
+            Branch_Number__c = this.branchNumber,
+            PSA_Area__c = this.psaArea
         );
 
         if (hasContactEmails) {
