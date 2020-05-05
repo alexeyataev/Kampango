@@ -60,50 +60,56 @@ public without sharing class TestDataFactory {
 
     public TestDataFactory buildBranchAccount() {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
-        branchAccount =  accountBranchBuilder
+        branchAccount = accountBranchBuilder
             .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
+            .withPSAarea('1C')
             .insertRecord(true)
             .build();
+
         TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
         branchWeighting = branchWeightingBuilder
             .withBranch(branchAccount)
             .withWeighting(BRANCH_WEIGHTING)
             .insertRecord(true)
-            .build();    
+            .build();
         return this;
     }
 
     public TestDataFactory buildBranchAccountWithEnquiryPSA() {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
-        branchAccount =  accountBranchBuilder
+        branchAccount = accountBranchBuilder
             .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
             .withEnquiriesPSA(enquiryPSAUsers[0].Id)
+            .withPSAarea('1C')
             .insertRecord(true)
             .build();
+
         TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
         branchWeighting = branchWeightingBuilder
             .withBranch(branchAccount)
             .withWeighting(BRANCH_WEIGHTING)
             .insertRecord(true)
-            .build();    
+            .build();
         return this;
     }
 
     //used for any emails that use Org-Wide Address in "From"
     public TestDataFactory buildBranchAccountWithEmails(String orgWideAddress) {
         TestAccountBuilder accountBranchBuilder = new TestAccountBuilder();
-        branchAccount =  accountBranchBuilder
+        branchAccount = accountBranchBuilder
             .withRecordType(ACCOUNT_BRANCH_RECORDTYPE)
             .withCapacityPSAemail(orgWideAddress)
             .withEnquiriesPSAemail(orgWideAddress)
+            .withPSAarea('1C')
             .insertRecord(true)
             .build();
+
         TestBranchWeightingBuilder branchWeightingBuilder = new TestBranchWeightingBuilder();
         branchWeighting = branchWeightingBuilder
             .withBranch(branchAccount)
             .withWeighting(BRANCH_WEIGHTING)
             .insertRecord(true)
-            .build();    
+            .build();
         return this;
     }
 
