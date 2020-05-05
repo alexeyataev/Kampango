@@ -47,8 +47,8 @@
     <assignments>
         <name>Assign_name_bookingList_for_output</name>
         <label>Assign name bookingList for output</label>
-        <locationX>353</locationX>
-        <locationY>1328</locationY>
+        <locationX>365</locationX>
+        <locationY>1329</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -63,8 +63,8 @@
     <assignments>
         <name>Assign_name_practit_email_for_output</name>
         <label>Assign name practit email for output</label>
-        <locationX>606</locationX>
-        <locationY>1340</locationY>
+        <locationX>623</locationX>
+        <locationY>1341</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -79,8 +79,8 @@
     <assignments>
         <name>Assign_name_PSA_email_for_output</name>
         <label>Assign name PSA email for output</label>
-        <locationX>999</locationX>
-        <locationY>1367</locationY>
+        <locationX>1000</locationX>
+        <locationY>1391</locationY>
         <assignmentItems>
             <assignToReference>empty_entity_name</assignToReference>
             <operator>Assign</operator>
@@ -248,6 +248,22 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Set_does_session_have_venue_to_false</name>
+        <label>Set &#39;does_session_have_venue&#39; to false</label>
+        <locationX>1204</locationX>
+        <locationY>749</locationY>
+        <assignmentItems>
+            <assignToReference>does_session_have_venue</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_to_public</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_status_empty_value</name>
         <label>Set status empty value</label>
         <locationX>1231</locationX>
@@ -394,13 +410,6 @@
         </value>
     </constants>
     <constants>
-        <name>NAME_VENUE</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Venue</stringValue>
-        </value>
-    </constants>
-    <constants>
         <name>ORG_WIDE_ADDRESS_VALUE</name>
         <dataType>String</dataType>
         <value>
@@ -464,16 +473,16 @@
         </value>
     </constants>
     <decisions>
-        <name>Check_Bookings_List_is_not_null</name>
-        <label>Check Bookings List is not null</label>
-        <locationX>346</locationX>
-        <locationY>1008</locationY>
+        <name>Check_Bookings_List_is_not_empty</name>
+        <label>Check Bookings List is not empty</label>
+        <locationX>357</locationX>
+        <locationY>1007</locationY>
         <defaultConnector>
             <targetReference>Assign_name_bookingList_for_output</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Bookings_null</name>
+            <name>Bookings_exist</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>BookingList</leftValueReference>
@@ -483,9 +492,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Check_Practitioner_email_is_not_null</targetReference>
+                <targetReference>Get_practitioner</targetReference>
             </connector>
-            <label>Bookings not null?</label>
+            <label>Bookings exist</label>
         </rules>
     </decisions>
     <decisions>
@@ -523,7 +532,7 @@
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Is_subflow_status_success</name>
+            <name>Subflow_status_is_success</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>subflow_status</leftValueReference>
@@ -535,14 +544,14 @@
             <connector>
                 <targetReference>Send_email_to_practitioner</targetReference>
             </connector>
-            <label>Is subflow status success?</label>
+            <label>Subflow status is success</label>
         </rules>
     </decisions>
     <decisions>
         <name>Check_Practitioner_email_is_not_null</name>
         <label>Check Practitioner email is not null</label>
-        <locationX>598</locationX>
-        <locationY>1003</locationY>
+        <locationX>611</locationX>
+        <locationY>1002</locationY>
         <defaultConnector>
             <targetReference>Assign_name_practit_email_for_output</targetReference>
         </defaultConnector>
@@ -558,22 +567,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_practitioner</targetReference>
+                <targetReference>Get_Venue</targetReference>
             </connector>
-            <label>Practitioner email is not null?</label>
+            <label>Practitioner email is not null</label>
         </rules>
     </decisions>
     <decisions>
         <name>Check_PSA_emails</name>
         <label>Check PSA emails</label>
-        <locationX>992</locationX>
+        <locationX>991</locationX>
         <locationY>1027</locationY>
         <defaultConnector>
             <targetReference>Assign_name_PSA_email_for_output</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Are_PSA_emails_set</name>
+            <name>PSA_emails_are_set</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>course.Capacity_PSA_Email__c</leftValueReference>
@@ -592,20 +601,20 @@
             <connector>
                 <targetReference>Is_Public_Venue</targetReference>
             </connector>
-            <label>Are PSA emails set?</label>
+            <label>PSA emails are set</label>
         </rules>
     </decisions>
     <decisions>
         <name>Check_Session_Id</name>
         <label>Check Session Id</label>
-        <locationX>349</locationX>
+        <locationX>348</locationX>
         <locationY>433</locationY>
         <defaultConnector>
             <targetReference>Get_bookings</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
         <rules>
-            <name>Is_a_subflow</name>
+            <name>Session_isn_t_null</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>sessionId</leftValueReference>
@@ -617,7 +626,7 @@
             <connector>
                 <targetReference>Get_session</targetReference>
             </connector>
-            <label>Is a subflow?</label>
+            <label>Session isn&#39;t null</label>
         </rules>
     </decisions>
     <decisions>
@@ -750,7 +759,10 @@
         <label>Is Public Venue</label>
         <locationX>1196</locationX>
         <locationY>1028</locationY>
-        <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
+        <defaultConnector>
+            <targetReference>Set_does_session_have_venue_to_false</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Venue</defaultConnectorLabel>
         <rules>
             <name>Private_Venue</name>
             <conditionLogic>and</conditionLogic>
@@ -777,14 +789,14 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Venue</targetReference>
+                <targetReference>Send_to_public</targetReference>
             </connector>
             <label>Public Venue</label>
         </rules>
     </decisions>
     <description>Sends emails of different types when reunion session becomes &#39;confirmed&#39;.
 Version changes: 
-Changed empty checks order</description>
+Moved Org-Wide Address query to Apex Action (final)</description>
     <interviewLabel>Reunion Execute Sending {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reunion Execute Sending Flow</label>
     <processMetadataValues>
@@ -803,11 +815,11 @@ Changed empty checks order</description>
     <recordLookups>
         <name>Get_bookings</name>
         <label>Get bookings</label>
-        <locationX>354</locationX>
-        <locationY>669</locationY>
+        <locationX>355</locationX>
+        <locationY>643</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Check_Bookings_List_is_not_null</targetReference>
+            <targetReference>Check_Bookings_List_is_not_empty</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -841,8 +853,8 @@ Changed empty checks order</description>
     <recordLookups>
         <name>Get_Course</name>
         <label>Get Course</label>
-        <locationX>763</locationX>
-        <locationY>713</locationY>
+        <locationX>764</locationX>
+        <locationY>669</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_practitioner_template</targetReference>
@@ -867,11 +879,11 @@ Changed empty checks order</description>
     <recordLookups>
         <name>Get_practitioner</name>
         <label>Get practitioner</label>
-        <locationX>606</locationX>
-        <locationY>705</locationY>
+        <locationX>481</locationX>
+        <locationY>739</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Course</targetReference>
+            <targetReference>Check_Practitioner_email_is_not_null</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -894,7 +906,7 @@ Changed empty checks order</description>
         <name>Get_practitioner_template</name>
         <label>Get practitioner template</label>
         <locationX>883</locationX>
-        <locationY>713</locationY>
+        <locationY>669</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_PSA_emails</targetReference>
@@ -946,11 +958,11 @@ Changed empty checks order</description>
     <recordLookups>
         <name>Get_Venue</name>
         <label>Get Venue</label>
-        <locationX>1366</locationX>
-        <locationY>863</locationY>
+        <locationX>628</locationX>
+        <locationY>661</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Send_to_public</targetReference>
+            <targetReference>Get_Course</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Return_error_on_get_record</targetReference>
@@ -968,8 +980,8 @@ Changed empty checks order</description>
         <queriedFields>Type__c</queriedFields>
     </recordLookups>
     <start>
-        <locationX>357</locationX>
-        <locationY>311</locationY>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
         <connector>
             <targetReference>Check_Session_Id</targetReference>
         </connector>
@@ -1050,7 +1062,7 @@ Changed empty checks order</description>
     <subflows>
         <name>Send_to_public</name>
         <label>Send to public</label>
-        <locationX>1521</locationX>
+        <locationX>1520</locationX>
         <locationY>863</locationY>
         <connector>
             <targetReference>Check_if_success</targetReference>
@@ -1066,6 +1078,12 @@ Changed empty checks order</description>
             <name>course</name>
             <value>
                 <elementReference>course</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>does_session_have_venue</name>
+            <value>
+                <elementReference>does_session_have_venue</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1118,6 +1136,16 @@ Changed empty checks order</description>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Course__c</objectType>
+    </variables>
+    <variables>
+        <name>does_session_have_venue</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>true</booleanValue>
+        </value>
     </variables>
     <variables>
         <name>empty_entity_name</name>

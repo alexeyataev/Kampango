@@ -159,6 +159,44 @@ public class ReunionEmailsSendTest {
     }
 
     @isTest
+    static void sendWhenNoVenue() {
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
+        Contact practitioner = [SELECT Id FROM Contact WHERE LastName = :PRACTITIONER_LAST_NAME LIMIT 1];
+        Licence_To_Practice__c license = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        Booking__c booking = [SELECT Id FROM Booking__c LIMIT 1];
+        User user = [
+            SELECT Id 
+            FROM User
+            WHERE Profile.Name = :PROFILE_NAME
+            LIMIT 1
+        ];
+        Test.startTest();
+
+        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
+            booking.Status__c = 'Confirmed';
+            update booking;
+            
+            Session__c reunion = sessionBuilder
+                .withCourse(course)
+                .withType('Reunion')
+                .withStatus(SESSION_PROVISIONAL_STATUS)
+                .withPractitioner(practitioner)
+                .withPractitionerLicence(license)
+                .insertRecord(true)
+                .build();
+            reunion.Status__c = 'Confirmed';
+            update reunion;
+        }
+        Integer invocations = Limits.getEmailInvocations();
+
+        Test.stopTest();
+        if (TestEmailUtility.emailsFeatureEnabled()) {
+            System.assertEquals(3, invocations, 'Emails should go to: a practitioner, a participant with partner');
+        }
+    }
+
+    @isTest
     static void errorWhenNoConfirmedBookings() {
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         Venue__c publicVenue = [SELECT Id FROM Venue__c LIMIT 1];
