@@ -134,6 +134,38 @@
             <stringValue>Reunion_Confirmed_Public</stringValue>
         </value>
     </constants>
+    <constants>
+        <name>TEMPLATE_PUBLIC_NO_VENUE_DEV_NAME</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Reunion_Confirmed_Public_No_Venue</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <name>Check_does_session_have_venue</name>
+        <label>Check does session have venue?</label>
+        <locationX>42</locationX>
+        <locationY>352</locationY>
+        <defaultConnector>
+            <targetReference>Get_public_template</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No_venue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>does_session_have_venue</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_public_template_no_venue</targetReference>
+            </connector>
+            <label>No venue</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Check_input_booking</name>
         <label>Check input booking</label>
@@ -220,8 +252,8 @@ Moved Org-Wide Address querying to Apex Action</description>
     <recordLookups>
         <name>Get_public_template</name>
         <label>Get public template</label>
-        <locationX>147</locationX>
-        <locationY>301</locationY>
+        <locationX>247</locationX>
+        <locationY>489</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_through_bookings</targetReference>
@@ -243,7 +275,39 @@ Moved Org-Wide Address querying to Apex Action</description>
         <queriedFields>Body</queriedFields>
         <queriedFields>Subject</queriedFields>
     </recordLookups>
-    <startElementReference>Get_public_template</startElementReference>
+    <recordLookups>
+        <name>Get_public_template_no_venue</name>
+        <label>Get public template no venue</label>
+        <locationX>246</locationX>
+        <locationY>215</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_bookings</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Return_error_on_email_alert</targetReference>
+        </faultConnector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>TEMPLATE_PUBLIC_NO_VENUE_DEV_NAME</elementReference>
+            </value>
+        </filters>
+        <object>EmailTemplate</object>
+        <outputReference>publicTemplate</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>HtmlValue</queriedFields>
+        <queriedFields>Body</queriedFields>
+        <queriedFields>Subject</queriedFields>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>52</locationY>
+        <connector>
+            <targetReference>Check_does_session_have_venue</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>booking</name>
@@ -268,6 +332,16 @@ Moved Org-Wide Address querying to Apex Action</description>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>Course__c</objectType>
+    </variables>
+    <variables>
+        <name>does_session_have_venue</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>true</booleanValue>
+        </value>
     </variables>
     <variables>
         <name>orgWideAddress</name>
