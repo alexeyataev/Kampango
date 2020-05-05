@@ -4,6 +4,20 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Purchase Invoice</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Zumzum__Purchase_Invoice__c.Zumzum__Status__c</field>
+            <operation>equals</operation>
+            <value>Posted</value>
+        </filterItems>
+        <filterItems>
+            <field>Zumzum__Purchase_Invoice__c.Zumzum__Paid__c</field>
+            <operation>equals</operation>
+            <value>N</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Zumzum__Purchase_Invoice__c</referenceTo>
     <relationshipLabel>Payment Run Line Items</relationshipLabel>
     <relationshipName>Payment_Run_Line_Items</relationshipName>
