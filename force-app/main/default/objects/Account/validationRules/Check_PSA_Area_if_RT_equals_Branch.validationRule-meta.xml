@@ -8,5 +8,5 @@
  ISPICKVAL(PSA_Area__c, &#39;&#39;)
 )</errorConditionFormula>
     <errorDisplayField>PSA_Area__c</errorDisplayField>
-    <errorMessage>Please fill in this field.</errorMessage>
+    <errorMessage>Please enter a PSA area for this branch.</errorMessage>
 </ValidationRule>
