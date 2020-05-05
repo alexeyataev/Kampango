@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>FIRST_NAME</field>
+        <field>FK_$Course__c.PSA_Area__c</field>
     </columns>
     <columns>
-        <field>LAST_NAME</field>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Account.npe01__One2OneContact__c</field>
+    </columns>
+    <columns>
+        <field>Booking__c.Partner_Contact__c</field>
+    </columns>
+    <columns>
+        <field>Booking__c.Street_Address__c</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_CITY</field>
+    </columns>
+    <columns>
+        <field>ADDRESS2_ZIP</field>
     </columns>
     <columns>
         <field>EMAIL</field>
@@ -13,10 +31,19 @@
         <field>PHONE3</field>
     </columns>
     <columns>
-        <field>CUST_NAME</field>
+        <field>Booking__c.Birth_Due_Date__c</field>
     </columns>
     <columns>
-        <field>FK_NAME</field>
+        <field>Booking__c.Post__c</field>
+    </columns>
+    <columns>
+        <field>Booking__c.Telephone__c</field>
+    </columns>
+    <columns>
+        <field>Booking__c.SMS__c</field>
+    </columns>
+    <columns>
+        <field>Booking__c.Email__c</field>
     </columns>
     <filter>
         <booleanFilter>1 AND 2</booleanFilter>

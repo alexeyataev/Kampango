@@ -395,18 +395,28 @@
         <name>Document</name>
     </types>
     <types>
-        <members>NCT_Templates/Adhoc_Payment_Notification</members>
         <members>NCT_Templates/Adhoc_Payment_Confirmation</members>
-        <members>NCT_Templates/Booking_Created</members>
+        <members>NCT_Templates/Adhoc_Payment_Notification</members>
+        <members>NCT_Templates/BACS_Remittance_Email</members>
         <members>NCT_Templates/Booking_Confirmation_Email</members>
+        <members>NCT_Templates/Booking_Created</members>
+        <members>NCT_Templates/Booking_Payment_Details</members>
         <members>NCT_Templates/BookingNotificationEmail</members>
+        <members>NCT_Templates/BookingTransferNotificationEmail</members>
         <members>NCT_Templates/Course_Assignment_is_Ready_for_Approval</members>
         <members>NCT_Templates/Course_Assignment_Rejected</members>
+        <members>NCT_Templates/DropInsEnquiryNotificationToPractitioner</members>
+        <members>NCT_Templates/Expense_Sheet_is_Approved</members>
         <members>NCT_Templates/Expense_Sheet_is_Ready_for_Approval</members>
         <members>NCT_Templates/Expense_Sheet_Rejected</members>
-        <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</members>
+        <members>NCT_Templates/Inform_Practitioner_When_CAD_Withdrawn</members>
         <members>NCT_Templates/Practitioner_Registration_Fee_Claim_Error</members>
+        <members>NCT_Templates/Reunion_Confirmed_Host</members>
+        <members>NCT_Templates/Reunion_Confirmed_Not_A_Host</members>
+        <members>NCT_Templates/Reunion_Confirmed_Practitioner</members>
+        <members>NCT_Templates/Reunion_Confirmed_Public_No_Venue</members>
+        <members>NCT_Templates/Reunion_Confirmed_Public</members>
         <name>EmailTemplate</name>
     </types>
     <types>
@@ -516,10 +526,7 @@
         <members>Create_Gift_Aid_Declaration</members>
         <members>Dimensions_update_on_PILI</members>
         <members>Fill_dimension_values_process</members>
-        <members>Get_Payment_Link</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
-        <members>Membership_Option</members>
-        <members>Payment_Details</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Confirmation_Email</members>
         <members>Resend_Offer_Email</members>
@@ -828,55 +835,12 @@
         <name>StaticResource</name>
     </types>
     <types>
-        <members>Account.Account_No_must_be_8_numeric_digits</members>
-        <members>Account.Billing_Email_Required_For_Suppliers</members>
-        <members>Account.Check_Bank_Account_Name</members>
-        <members>Account.Sort_code_must_be_6_numeric_digits</members>
-        <members>Booking__c.Course_Status_Must_Be_Final</members>
-        <members>Booking__c.ExpirationDateCannotBeReduced</members>
-        <members>Booking__c.ExpiryDateCantBeMoreThanDateStartCourse</members>
-        <members>Booking__c.FeeOverrideAmountRestriction</members>
-        <members>Booking__c.FeeOverrideRestriction</members>
-        <members>Booking__c.InappropriateStatusTransition</members>
-        <members>Booking__c.MandatoryBirthDate</members>
-        <members>Booking__c.MandatoryCancellationReason</members>
-        <members>Booking__c.Prevent_Bookings_on_Cancelled_Courses</members>
-        <members>Booking__c.Prevent_Manual_Transfer</members>
-        <members>Booking__c.Prevent_Overbooking_Of_Course</members>
-        <members>Booking__c.PreventConfirmedBookingCreation</members>
-        <members>Booking__c.ReservationExpiryDateCannotBeRemoved</members>
-        <members>Branch_Weighting__c.Branch_Weighting_details_cant_be_changed</members>
         <members>Case.Prevents_afterward_booking_changing</members>
         <members>Case.Prevents_afterward_contact_changing</members>
         <members>Contact.MandatoryClientsFields</members>
         <members>Contact.Bank_Account_Name_Not_More_50_Symbols</members>
         <members>Contact.Bank_Account_Number_Exactly_8_numbers</members>
         <members>Contact.Bank_Sort_Code_Exactly_6_numbers</members>
-        <members>Course__c.Cancellation_Reason_Is_Mandatory</members>
-        <members>Course__c.Check_Couples_Allowed_and_Women_Only</members>
-        <members>Course__c.Check_Drop_In_Schedule_Information</members>
-        <members>Course__c.Check_Fee_and_Estimated_Costs</members>
-        <members>Course__c.Check_Fee_Discount_Uplift_fields</members>
-        <members>Course__c.Check_Sessions_and_Practitioners</members>
-        <members>Course__c.Check_Session_Fee_Rates</members>
-        <members>Course__c.Course_Fee_cannot_be_negative</members>
-        <members>Course__c.Fee_Disc_Uplift_fields_can_not_be_less_0</members>
-        <members>Course__c.PreventCourseReopen</members>
-        <members>Course__c.Prevent_Cancelling_Course_With_Bookings</members>
-        <members>Course_Assignment__c.CA_Can_Only_Be_Created_For_Final_Courses</members>
-        <members>Course_Assignment__c.Course_can_not_be_changed_on_CA_record</members>
-        <members>Estimated_Costs__c.Amount_cannot_be_negative</members>
-        <members>Estimated_Costs__c.Check_if_EC_of_such_type_already_exists</members>
-        <members>Licence_To_Practice__c.End_date_should_not_be_blank</members>
-        <members>Practitioner_Band__c.PractitionerBand_details_cant_be_changed</members>
-        <members>Session__c.Check_Can_Confirm_Reunion_Session</members>
-        <members>Session__c.End_time_should_not_be_before_start_time</members>
-        <members>Session__c.Prevent_Edit_Session_If_CAD_Submitted</members>
-        <members>Session__c.Session_Confirmation_Rule</members>
-        <members>Venue__c.Branch_Should_Be_Populated</members>
-        <members>Venue__c.Populate_Host_if_Type_Practitioner_Home</members>
-        <members>Venue__c.Populate_Latitude_and_Longitude</members>
-        <members>Venue__c.Populate_Street_Address_for_Public_Venue</members>
         <members>Zumzum__Purchase_Invoice__c.ES_should_have_only_one_purchase_invoice</members>
         <members>Zumzum__Purchase_Invoice__c.Linked_to_expense_sheet_only_by_Finance</members>
         <members>Zumzum__Sales_Invoice__c.ContactShouldBeFilledIfInvoiceHasBooking</members>
