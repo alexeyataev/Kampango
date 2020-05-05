@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Estimated_Surplus_Deficit__c</fullName>
     <externalId>false</externalId>
-    <formula>Total_Actual_Income__c - Total_Estimated_Costs__c</formula>
+    <formula>Total_Income_Excluding_Fee_Overrides__c - Total_Estimated_Costs__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Estimated Surplus \ Deficit</label>
     <precision>18</precision>
