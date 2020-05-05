@@ -2733,7 +2733,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Licence_To_Practice__c</tab>
-        <visibility>DefaultOff</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Practitioner_Fee_Rate__c</tab>
