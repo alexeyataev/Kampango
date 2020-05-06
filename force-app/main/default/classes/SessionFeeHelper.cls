@@ -136,7 +136,7 @@ public class SessionFeeHelper {
         for(Branch_Weighting__c weighting : [SELECT Id, Branch__c, Geographical_Weighting__c, Start_Date__c, End_Date__c 
                                                 FROM Branch_Weighting__c 
                                                 WHERE Branch__c IN :branchIds
-                                                    AND Start_Date__c <= :earliestSessionDate 
+                                                    AND Start_Date__c <= :latestSessionDate 
                                                     AND (End_Date__c = NULL or End_Date__c >= :earliestSessionDate)
                                                 WITH SECURITY_ENFORCED
                                                 ORDER BY Start_Date__c DESC
@@ -159,7 +159,7 @@ public class SessionFeeHelper {
         for(Practitioner_Band__c band : [SELECT Id, Practitioner__c, Band__c, Start_Date__c, End_Date__c
                                             FROM Practitioner_Band__c
                                             WHERE Practitioner__c IN :practitionerIds
-                                                AND Start_Date__c <= :earliestSessionDate 
+                                                AND Start_Date__c <= :latestSessionDate 
                                                 AND (End_Date__c = NULL or End_Date__c >= :earliestSessionDate)
                                             WITH SECURITY_ENFORCED
                                             ORDER BY Start_Date__c DESC
