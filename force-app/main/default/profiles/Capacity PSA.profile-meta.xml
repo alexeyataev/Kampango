@@ -1087,7 +1087,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Venue__c.Cancellation_Terms__c</field>
         <readable>true</readable>
     </fieldPermissions>
