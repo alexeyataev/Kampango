@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Physical_Venue_Required_Fields</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+RecordType.DeveloperName == &#39;Physical&#39;,
+OR(ISNULL(Postcode__c), ISNULL(Town__c), ISNULL(TEXT(Type__c)), ISNULL(Subtype__c))
+)</errorConditionFormula>
+    <errorMessage>Postcode, Town, Type and Subtype are required fields</errorMessage>
+</ValidationRule>

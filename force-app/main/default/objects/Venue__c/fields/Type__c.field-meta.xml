@@ -3,7 +3,7 @@
     <fullName>Type__c</fullName>
     <externalId>false</externalId>
     <label>Type</label>
-    <required>true</required>
+    <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -19,6 +19,30 @@
                 <fullName>Practitioner Home</fullName>
                 <default>false</default>
                 <label>Practitioner Home</label>
+            </value>
+            <value>
+                <fullName>Commercial</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Commercial</label>
+            </value>
+            <value>
+                <fullName>Community</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Community</label>
+            </value>
+            <value>
+                <fullName>Parent Home</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Parent Home</label>
+            </value>
+            <value>
+                <fullName>Volunteer Home</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Volunteer Home</label>
             </value>
         </valueSetDefinition>
     </valueSet>
