@@ -57,6 +57,13 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Delivery_Mechanism__c</picklist>
+        <values>
+            <fullName>Zoom</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Easily_Accessible_by_Public_Transport__c</picklist>
         <values>
             <fullName>N</fullName>
