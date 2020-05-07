@@ -746,6 +746,8 @@
         <members>Contact.Clients</members>
         <members>Contact.Contact</members>
         <members>Contact.Practitioner</members>
+        <members>Venue__c.Physical</members>
+        <members>Venue__c.Virtual</members>
         <name>RecordType</name>
     </types>
     <types>

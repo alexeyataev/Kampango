@@ -3,6 +3,7 @@
     <fullName>Populate_Host_if_Type_Practitioner_Home</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
+    RecordType.DeveloperName == &#39;Physical&#39;,
     OR(
        AND(ISBLANK(Host__c),
            ISPICKVAL(Type__c, &quot;Practitioner Home&quot;)),
