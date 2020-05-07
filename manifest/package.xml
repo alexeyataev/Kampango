@@ -843,7 +843,6 @@
         <members>Contact.Bank_Account_Number_Exactly_8_numbers</members>
         <members>Contact.Bank_Sort_Code_Exactly_6_numbers</members>
         <members>Venue__c.Delivery_Mechanism_Populating</members>
-        <members>Venue__c.Physical_Venue_Required_Fields</members>
         <members>Venue__c.Zoom_Details_Populating</members>
         <members>Zumzum__Purchase_Invoice__c.ES_should_have_only_one_purchase_invoice</members>
         <members>Zumzum__Purchase_Invoice__c.Linked_to_expense_sheet_only_by_Finance</members>
