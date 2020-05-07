@@ -10,6 +10,8 @@ public with sharing class CourseDetailController {
                     End__c,
                     Type__c,
                     Status__c,
+                    Hours__c,
+                    Delivery_Type__c,
                     Additional_Information__c,
                     Location_Home_Information__c,
                     Location_Postcode__c,
