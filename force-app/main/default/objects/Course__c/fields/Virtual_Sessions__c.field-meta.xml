@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Virtual_Sessions__c</fullName>
+    <description>The number of non-physical sessions on the course</description>
+    <externalId>false</externalId>
+    <label>Virtual Sessions</label>
+    <summaryFilterItems>
+        <field>Session__c.Delivery_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Physical</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
