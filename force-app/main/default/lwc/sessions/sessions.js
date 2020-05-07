@@ -48,7 +48,15 @@ export default class Sessions extends LightningElement {
                 let dateStr = weekday + ' ' + monthDay + ' ' + month;
                 start = Math.floor(row.Start__c / 3600000) + ':' + (row.Start__c % 3600000 / 60000).toString().padEnd(2, '0');
                 end = Math.floor(row.End__c / 3600000) + ':' + (row.End__c % 3600000 / 60000).toString().padEnd(2, '0');
-                row = Object.assign({dateFormatted: dateStr, start: start, end: end, row: ++index, Additional_Information__c: row.Additional_Information__c});
+                row = Object.assign (
+                    {   row: ++index,
+                        dateFormatted: dateStr,
+                        start: start,
+                        end: end,
+                        deliveryType: row.Delivery_Type__c,
+                        additionInformation: row.Additional_Information__c
+                    });
+
                 formattedArray.push(row);
             }
         );
