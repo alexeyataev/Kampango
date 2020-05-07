@@ -17,7 +17,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Zoom_Details__c</field>
+                <field>Client_Link__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Host_Username__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Host_Password__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>

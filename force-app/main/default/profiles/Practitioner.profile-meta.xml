@@ -785,8 +785,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Client_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Venue__c.County__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Delivery_Mechanism__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -842,6 +852,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Venue__c.Host__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Host_Password__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Host_Username__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
