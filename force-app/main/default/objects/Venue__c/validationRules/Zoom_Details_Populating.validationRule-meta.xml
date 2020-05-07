@@ -3,9 +3,8 @@
     <fullName>Zoom_Details_Populating</fullName>
     <active>true</active>
     <errorConditionFormula>OR(
-AND(TEXT(Delivery_Mechanism__c) == &#39;Zoom&#39;, ISNULL(Zoom_Details__c)),
-AND(TEXT(Delivery_Mechanism__c) != &#39;Zoom&#39;,
-NOT(ISNULL(Zoom_Details__c)))
+AND(TEXT(Delivery_Mechanism__c) == &#39;Zoom&#39;, ISBLANK(Zoom_Details__c)),
+AND(TEXT(Delivery_Mechanism__c) != &#39;Zoom&#39;, NOT(ISBLANK(Zoom_Details__c)))
 )</errorConditionFormula>
     <errorMessage>Zoom Details must be populated when Delivery Mechanism is Zoom</errorMessage>
 </ValidationRule>
