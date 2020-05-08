@@ -3,6 +3,7 @@ import NCT_STYLES from '@salesforce/resourceUrl/NCT_Styles';
 import { loadStyle } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import provisionCourseReunionTextLable from '@salesforce/label/c.Confirmation_Notification_Course_Reunion';
+import sessionsVirtualSupportTextLable from '@salesforce/label/c.Sessions_Virtual_Support_Text';
 
 import { SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT,
          SESSION_STATUS_CONFIRMED,
@@ -10,6 +11,7 @@ import { SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT,
 
 export default class Sessions extends LightningElement {
     provisionCourseReunionText = provisionCourseReunionTextLable;
+    sessionsVirtualSupportText;
     courseHasProvisionalReunion = false;
     hasSessionsVirtualSupport = false;
     totalHoursOfVirtualSupport = 0;
@@ -86,6 +88,10 @@ export default class Sessions extends LightningElement {
                 }
             }
         );
+
+        this.sessionsVirtualSupportText = this.hasSessionsVirtualSupport
+            ? sessionsVirtualSupportTextLable.replace('{0}', this.totalHoursOfVirtualSupport)
+            : '';
 
         return finalArray;
     }
