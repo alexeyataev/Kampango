@@ -14,7 +14,7 @@
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>Update Sessions Venue</label>
+        <label>Update Physical Sessions Venue</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
         <actionName>Update_Venue_on_Sessions_related_to_Course</actionName>
@@ -103,7 +103,7 @@
             </processMetadataValues>
             <name>oldVenueId</name>
             <value>
-                <elementReference>formula_3_myRule_1_A1_2955610481</elementReference>
+                <elementReference>formula_3_myRule_1_A1_3111848698</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -159,12 +159,161 @@
         <processMetadataValues>
             <name>flowSelection</name>
             <value>
-                <stringValue>Update Practitioner Licence on Sessions related to Course</stringValue>
+                <stringValue>Update Venue on Sessions related to Course</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_5_A1</name>
-        <label>Update Sessions Practitioner Licence</label>
+        <label>Update Online Sessions Venue</label>
         <locationX>500</locationX>
+        <locationY>200</locationY>
+        <actionName>Update_Venue_on_Sessions_related_to_Course</actionName>
+        <actionType>flow</actionType>
+        <connector>
+            <targetReference>myDecision8</targetReference>
+        </connector>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>courseId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>courseId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>oldVenueId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>oldVenueId</name>
+            <value>
+                <elementReference>formula_7_myRule_5_A1_9433713449</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>newVenueId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>newVenueId</name>
+            <value>
+                <elementReference>myVariable_current.Main_Online_Venue__r.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>ActionCallType</name>
+            <value>
+                <stringValue>flow</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>flowSelection</name>
+            <value>
+                <stringValue>Update Practitioner Licence on Sessions related to Course</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_9_A1</name>
+        <label>Update Sessions Practitioner Licence</label>
+        <locationX>900</locationX>
         <locationY>200</locationY>
         <actionName>Update_Practitioner_Licence_on_Sessions_related_to_Course</actionName>
         <actionType>flow</actionType>
@@ -291,7 +440,7 @@
             </processMetadataValues>
             <name>oldMainPractitionerLicenceId</name>
             <value>
-                <elementReference>formula_7_myRule_5_A1_6247884613</elementReference>
+                <elementReference>formula_11_myRule_9_A1_5436588528</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -338,12 +487,44 @@
         </inputParameters>
     </actionCalls>
     <decisions>
+        <name>isChangedDecision10_myRule_9_Main_Practitioner_Licence_c</name>
+        <label>isChangedDecision10_myRule_9_Main_Practitioner_Licence_c</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>isChangedRule_10_myRule_9_Main_Practitioner_Licence_c</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>myVariable_old.Main_Practitioner_Licence__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>myVariable_current.Main_Practitioner_Licence__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myDecision</targetReference>
+            </connector>
+            <label>isChangedRule_10_myRule_9_Main_Practitioner_Licence_c</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>isChangedDecision2_myRule_1_Main_Venue_c</name>
         <label>isChangedDecision2_myRule_1_Main_Venue_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision6_myRule_5_Main_Practitioner_Licence_c</targetReference>
+            <targetReference>isChangedDecision6_myRule_5_Main_Online_Venue_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -364,22 +545,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision6_myRule_5_Main_Practitioner_Licence_c</targetReference>
+                <targetReference>isChangedDecision6_myRule_5_Main_Online_Venue_c</targetReference>
             </connector>
             <label>isChangedRule_2_myRule_1_Main_Venue_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision6_myRule_5_Main_Practitioner_Licence_c</name>
-        <label>isChangedDecision6_myRule_5_Main_Practitioner_Licence_c</label>
+        <name>isChangedDecision6_myRule_5_Main_Online_Venue_c</name>
+        <label>isChangedDecision6_myRule_5_Main_Online_Venue_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision</targetReference>
+            <targetReference>isChangedDecision10_myRule_9_Main_Practitioner_Licence_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_6_myRule_5_Main_Practitioner_Licence_c</name>
+            <name>isChangedRule_6_myRule_5_Main_Online_Venue_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -389,16 +570,16 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>myVariable_old.Main_Practitioner_Licence__c</leftValueReference>
+                <leftValueReference>myVariable_old.Main_Online_Venue__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
-                    <elementReference>myVariable_current.Main_Practitioner_Licence__c</elementReference>
+                    <elementReference>myVariable_current.Main_Online_Venue__c</elementReference>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myDecision</targetReference>
+                <targetReference>isChangedDecision10_myRule_9_Main_Practitioner_Licence_c</targetReference>
             </connector>
-            <label>isChangedRule_6_myRule_5_Main_Practitioner_Licence_c</label>
+            <label>isChangedRule_6_myRule_5_Main_Online_Venue_c</label>
         </rules>
     </decisions>
     <decisions>
@@ -473,9 +654,70 @@
         <label>myDecision4</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision8</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_5</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideReferenceTo</name>
+                    <value>
+                        <stringValue>Venue__c</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>isChangedRule_6_myRule_5_Main_Online_Venue_c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_5_A1</targetReference>
+            </connector>
+            <label>Main Online Venue Is Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision8</name>
+        <label>myDecision8</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_9</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -508,14 +750,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_6_myRule_5_Main_Practitioner_Licence_c</leftValueReference>
+                <leftValueReference>isChangedRule_10_myRule_9_Main_Practitioner_Licence_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_5_A1</targetReference>
+                <targetReference>myRule_9_A1</targetReference>
             </connector>
             <label>Main Pract. Licence Is Changed</label>
         </rules>
@@ -524,10 +766,21 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
+                <stringValue>PRIORVALUE([Course__c].Main_Practitioner_Licence__c ) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_11_myRule_9_A1_5436588528</name>
+        <dataType>String</dataType>
+        <expression>PRIORVALUE({!myVariable_current.Main_Practitioner_Licence__c} )</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
                 <stringValue>PRIORVALUE([Course__c].Main_Venue__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_2955610481</name>
+        <name>formula_3_myRule_1_A1_3111848698</name>
         <dataType>String</dataType>
         <expression>PRIORVALUE({!myVariable_current.Main_Venue__c} )</expression>
     </formulas>
@@ -535,14 +788,14 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>PRIORVALUE([Course__c].Main_Practitioner_Licence__c ) </stringValue>
+                <stringValue>PRIORVALUE([Course__c].Main_Online_Venue__c)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_5_A1_6247884613</name>
+        <name>formula_7_myRule_5_A1_9433713449</name>
         <dataType>String</dataType>
-        <expression>PRIORVALUE({!myVariable_current.Main_Practitioner_Licence__c} )</expression>
+        <expression>PRIORVALUE({!myVariable_current.Main_Online_Venue__c})</expression>
     </formulas>
-    <interviewLabel>Update_Related_Sessions-5_InterviewLabel</interviewLabel>
+    <interviewLabel>Update_Related_Sessions-2_InterviewLabel</interviewLabel>
     <label>Update Related Sessions</label>
     <processMetadataValues>
         <name>ObjectType</name>
