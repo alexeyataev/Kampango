@@ -116,6 +116,14 @@
         <value>{0} monthly payments of £ {1}</value>
     </labels>
     <labels>
+        <fullName>Sessions_Virtual_Support_Text</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sessions Virtual Support Text</shortDescription>
+        <value>In addition to the scheduled live, interactive online session(s), the remaining hours of your course will be made up of at least {0} hours of enhanced personalised group support from your course leader(s) delivered via a closed messaging group.</value>
+    </labels>
+    <labels>
         <fullName>Sub_Type_Course_Baby_Massage</fullName>
         <categories>Confirmation Notification</categories>
         <language>en_US</language>
