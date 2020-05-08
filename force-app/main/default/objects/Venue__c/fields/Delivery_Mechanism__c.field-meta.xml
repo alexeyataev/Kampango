@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Type__c</fullName>
+    <fullName>Delivery_Mechanism__c</fullName>
     <externalId>false</externalId>
-    <label>Type</label>
+    <label>Delivery Mechanism</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -11,14 +11,9 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Commercial/Community</fullName>
+                <fullName>Zoom</fullName>
                 <default>false</default>
-                <label>Commercial/Community</label>
-            </value>
-            <value>
-                <fullName>Practitioner Home</fullName>
-                <default>false</default>
-                <label>Practitioner Home</label>
+                <label>Zoom</label>
             </value>
         </valueSetDefinition>
     </valueSet>
