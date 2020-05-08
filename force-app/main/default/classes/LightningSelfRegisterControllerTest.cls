@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD')
+//Incident #87 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest(SeeAllData = false)
 public with sharing class LightningSelfRegisterControllerTest {
 
