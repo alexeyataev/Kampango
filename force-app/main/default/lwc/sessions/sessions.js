@@ -55,7 +55,7 @@ export default class Sessions extends LightningElement {
                         start: start,
                         end: end,
                         deliveryType: row.Delivery_Type__c,
-                        additionInformation: row.Additional_Information__c
+                        additionalInformation: row.Additional_Information__c
                     }
                 );
 
