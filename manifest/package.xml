@@ -592,6 +592,7 @@
         <members>Room__c-Room Layout</members>
         <members>Session__c-Session Layout</members>
         <members>Venue__c-Venue Layout</members>
+        <members>Venue__c-Virtual Venue Page Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
         <members>cpm__Payment__c-cpm__Payment Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
@@ -844,6 +845,8 @@
         <members>Contact.Bank_Account_Name_Not_More_50_Symbols</members>
         <members>Contact.Bank_Account_Number_Exactly_8_numbers</members>
         <members>Contact.Bank_Sort_Code_Exactly_6_numbers</members>
+        <members>Venue__c.Delivery_Mechanism_Populating</members>
+        <members>Venue__c.Zoom_Details_Populating</members>
         <members>Zumzum__Purchase_Invoice__c.ES_should_have_only_one_purchase_invoice</members>
         <members>Zumzum__Purchase_Invoice__c.Linked_to_expense_sheet_only_by_Finance</members>
         <members>Zumzum__Sales_Invoice__c.ContactShouldBeFilledIfInvoiceHasBooking</members>

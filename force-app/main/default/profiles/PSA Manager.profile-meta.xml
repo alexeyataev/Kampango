@@ -685,6 +685,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Has_Virtual_Teaching_Content__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Hide_From_Course_Finder__c</field>
         <readable>true</readable>
@@ -1121,7 +1126,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Venue__c.Client_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Venue__c.County__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Delivery_Mechanism__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1177,6 +1192,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Venue__c.Host_Parking_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Host_Password__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Venue__c.Host_Username__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2339,6 +2364,14 @@
     <layoutAssignments>
         <layout>Venue__c-Venue Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>Venue__c-Venue Layout</layout>
+        <recordType>Venue__c.Physical</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Venue__c-Virtual Venue Page Layout</layout>
+        <recordType>Venue__c.Virtual</recordType>
+    </layoutAssignments>
     <layoutAssignments>	
         <layout>Zumzum__Expense_Sheet__c-Capacity Expense Sheet Layout</layout>	
     </layoutAssignments>
@@ -2722,6 +2755,16 @@
         <default>false</default>
         <recordType>Contact.Practitioner</recordType>
         <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Venue__c.Physical</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Venue__c.Virtual</recordType>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>Booking__c</tab>
