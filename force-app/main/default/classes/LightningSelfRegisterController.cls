@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD')
+//Incident #86 - https://confluence.nct.org.uk:8443/x/EoSO
 global class LightningSelfRegisterController {
 
     public LightningSelfRegisterController() {
