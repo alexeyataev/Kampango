@@ -6,8 +6,13 @@
     <label>Virtual Sessions</label>
     <summaryFilterItems>
         <field>Session__c.Delivery_Type__c</field>
-        <operation>Equal</operation>
-        <value>Online</value>
+        <operation>notEqual</operation>
+        <value>Physical</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Session__c.Type__c</field>
+        <operation>notEqual</operation>
+        <value>Reunion</value>
     </summaryFilterItems>
     <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
     <summaryOperation>count</summaryOperation>

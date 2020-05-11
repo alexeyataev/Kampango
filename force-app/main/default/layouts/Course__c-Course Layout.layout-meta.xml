@@ -123,7 +123,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Virtual_Sessions__c</field>
+                <field>Has_Virtual_Teaching_Content__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
