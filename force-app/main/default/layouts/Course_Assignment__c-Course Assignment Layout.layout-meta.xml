@@ -170,7 +170,7 @@
         <fields>Times__c</fields>
         <fields>Lunch_Break_Minutes__c</fields>
         <fields>Venue__c</fields>
-        <fields>Type__c</fields>
+        <fields>Session_Type__c</fields>
         <fields>Status__c</fields>
         <fields>Hourly_Rate__c</fields>
         <fields>Contact_Hours__c</fields>
