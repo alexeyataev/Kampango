@@ -40,7 +40,7 @@
         </connector>
     </assignments>
     <interviewLabel>Update Venue on Sessions related to Course {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Update Venue on Sessions related to Course</label>
+    <label>Update Online Venue on Sessions related to Course</label>
     <loops>
         <name>Iterate_through_Course_related_Sessions</name>
         <label>Iterate through Course related Sessions</label>
@@ -89,7 +89,7 @@
             <field>Delivery_Type__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Physical</stringValue>
+                <stringValue>Online</stringValue>
             </value>
         </filters>
         <object>Session__c</object>
