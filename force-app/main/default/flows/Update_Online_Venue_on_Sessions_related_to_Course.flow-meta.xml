@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <assignments>
+        <name>Add_Session_With_Empty_Venue</name>
+        <label>Add Session With Empty Venue</label>
+        <locationX>217</locationX>
+        <locationY>50</locationY>
+        <assignmentItems>
+            <assignToReference>sessions</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>sessionsWithEmptyVenue</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_through_Course_related_Sessions</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Collect_Sessions_For_Update</name>
         <label>Collect Sessions For Update</label>
         <locationX>652</locationX>
@@ -65,11 +81,11 @@
     <recordLookups>
         <name>Get_Related_Sessions</name>
         <label>Get Related Sessions</label>
-        <locationX>213</locationX>
-        <locationY>50</locationY>
+        <locationX>65</locationX>
+        <locationY>228</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Iterate_through_Course_related_Sessions</targetReference>
+            <targetReference>Get_Related_Sessions_With_Empty_Venue</targetReference>
         </connector>
         <filters>
             <field>Course__c</field>
@@ -96,7 +112,41 @@
         <outputReference>sessions</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Venue__c</queriedFields>
-        <queriedFields>Room__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Related_Sessions_With_Empty_Venue</name>
+        <label>Get Related Sessions With Empty Venue</label>
+        <locationX>249</locationX>
+        <locationY>236</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Add_Session_With_Empty_Venue</targetReference>
+        </connector>
+        <filters>
+            <field>Course__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>courseId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Delivery_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Online</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Venue__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </filters>
+        <object>Session__c</object>
+        <outputReference>sessionsWithEmptyVenue</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Venue__c</queriedFields>
     </recordLookups>
     <recordUpdates>
         <name>Update_Sessions</name>
@@ -152,6 +202,14 @@
     </variables>
     <variables>
         <name>sessionsToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Session__c</objectType>
+    </variables>
+    <variables>
+        <name>sessionsWithEmptyVenue</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>

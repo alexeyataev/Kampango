@@ -71,6 +71,7 @@
             <value>
                 <stringValue>AND( 
 	NOT(ISBLANK(TEXT([Session__c].Delivery_Type__c))),
+        TEXT([Session__c].Delivery_Type__c) == &#39;Physical&#39;,
 	OR(
 	(
 		AND(
@@ -93,6 +94,7 @@
         <dataType>Boolean</dataType>
         <expression>AND( 
 	NOT(ISBLANK(TEXT({!myVariable_current.Delivery_Type__c}))),
+        TEXT({!myVariable_current.Delivery_Type__c}) == &#39;Physical&#39;,
 	OR(
 	(
 		AND(
@@ -116,6 +118,7 @@
             <value>
                 <stringValue>AND( 
 	NOT(ISBLANK(TEXT([Session__c].Delivery_Type__c))),
+        TEXT([Session__c].Delivery_Type__c) == &#39;Physical&#39;,
 	OR(
 	(
 		AND(
@@ -138,6 +141,7 @@
         <dataType>Boolean</dataType>
         <expression>AND( 
 	NOT(ISBLANK(TEXT({!myVariable_old.Delivery_Type__c}))),
+        TEXT({!myVariable_old.Delivery_Type__c}) == &#39;Physical&#39;,
 	OR(
 	(
 		AND(
@@ -155,7 +159,7 @@
 	)
 )</expression>
     </formulas>
-    <interviewLabel>Set_Main_Venue_on_Course-5_InterviewLabel</interviewLabel>
+    <interviewLabel>Set_Main_Venue_on_Course-6_InterviewLabel</interviewLabel>
     <label>Set Main Venue on Course</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -263,7 +267,7 @@
         <object>Course__c</object>
     </recordUpdates>
     <startElementReference>myDecision</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>
