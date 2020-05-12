@@ -556,6 +556,7 @@
         <members>Update_Session_Fee_Rate_When_Branch_Weighting_Changes</members>
         <members>Update_Session_Fee_Rates_When_Practitioner_Band_Changes</members>
         <members>Update_Session_Fee_Rate_When_Practitioner_Fee_Rate_Changes</members>
+        <members>Update_Online_Venue_on_Sessions_related_to_Course</members>
         <members>Update_Venue_on_Sessions_related_to_Course</members>
         <name>Flow</name>
     </types>
