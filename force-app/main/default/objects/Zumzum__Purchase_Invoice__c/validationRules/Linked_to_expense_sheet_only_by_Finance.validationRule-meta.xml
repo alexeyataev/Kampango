@@ -5,8 +5,9 @@
     <description>PI can be created only by Finance when the ES value is present</description>
     <errorConditionFormula>NOT(
  OR(
-  $Permission.Can_Convert_Expense_Sheet,
-  ISBLANK( Zumzum__Expense_Sheet__c )
+  ISNEW(),
+  ISCHANGED(Zumzum__Expense_Sheet__c),
+  $Permission.Can_Convert_Expense_Sheet
  )
 )</errorConditionFormula>
     <errorMessage>Only Finance user can convert Expense Sheet</errorMessage>
