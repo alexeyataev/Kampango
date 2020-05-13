@@ -65,6 +65,30 @@
         </apex:repeat>
     </table>
 
+    <apex:outputPanel rendered="{!courseRecord.Total_Hours_Of_Virtual_Support__c > 0}">
+        <h4>Virtual Support Details</h4>
+        <apex:outputText value="{!$Label.Sessions_Virtual_Support_Text}"
+                         title="Virtual support">
+            <apex:param value="{!courseRecord.Total_Hours_Of_Virtual_Support__c}" />
+        </apex:outputText>
+    </apex:outputPanel>
+
+    <apex:outputPanel title="Zoom Details" rendered="{!courseRecord.Has_Virtual_Teaching_Content__c}">
+        <h4>Zoom Details</h4>
+        <apex:outputText value="{!$Label.Confirmed_Zoom_Details_Text}"
+                         escape="false"
+                         title="Link to Zoom"
+                         rendered="{!NOT(ISBLANK(courseRecord.Main_Online_Venue__c))}">
+
+            <apex:param value="<a href={!courseRecord.Main_Online_Venue__r.Client_Link__c}> {!courseRecord.Main_Online_Venue__r.Client_Link__c} </a>" />
+            <apex:param value="<a href={!$Label.Zoom_Support_Link}>Zoom online help center</a>" />
+        </apex:outputText>
+        
+        <apex:outputText value="{!$Label.Unconfirmed_Zoom_Details_Text}"
+                         title="Online help center"
+                         rendered="{!ISBLANK(courseRecord.Main_Online_Venue__c)}" />
+    </apex:outputPanel>
+
     <apex:outputPanel title="Course Reunion" rendered="{!courseHasProvisionalReunion}">
         <h4>Course Reunion</h4>
         <p>{!$Label.Confirmation_Notification_Course_Reunion}</p>
