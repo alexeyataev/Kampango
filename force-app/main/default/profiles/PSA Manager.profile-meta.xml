@@ -811,6 +811,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Total_Online_Session_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Total_Fees_Claimed__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -832,6 +837,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Total_Venue_Costs__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Total_Virtual_Support_Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

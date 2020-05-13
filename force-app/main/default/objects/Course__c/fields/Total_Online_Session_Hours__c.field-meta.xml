@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Online_Session_Hours__c</fullName>
+    <externalId>false</externalId>
+    <label>Total Online Session Hours</label>
+    <summarizedField>Session__c.Contact_Hours__c</summarizedField>
+    <summaryFilterItems>
+        <field>Session__c.Delivery_Type__c</field>
+        <operation>equals</operation>
+        <value>Online</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
