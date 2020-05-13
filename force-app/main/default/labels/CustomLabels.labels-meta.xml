@@ -25,6 +25,18 @@
         <value>There is also a reunion for all course participants with their new baby after the births. Your course leader will agree a date and time with you for this.</value>
     </labels>
     <labels>
+        <fullName>Confirmed_Zoom_Details_Text</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmed Zoom Details Text</shortDescription>
+        <value>&lt;p&gt;To log into Zoom please copy this link into your browser: {0} &lt;/p&gt;
+
+&lt;p&gt;Please could you log in 5 minutes before the start time, as sometimes it can take a few minutes for all the group to access the session. &lt;/p&gt;
+
+&lt;p&gt;If you have any queries please see the {1}&lt;/p&gt;</value>
+    </labels>
+    <labels>
         <fullName>ContactUpdateException</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -116,6 +128,14 @@
         <value>{0} monthly payments of £ {1}</value>
     </labels>
     <labels>
+        <fullName>Sessions_Virtual_Support_Text</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sessions Virtual Support Text</shortDescription>
+        <value>In addition to the scheduled live, interactive online session(s), the remaining hours of your course will be made up of at least {0} hours of enhanced personalised group support from your course leader(s) delivered via a closed messaging group.</value>
+    </labels>
+    <labels>
         <fullName>Sub_Type_Course_Baby_Massage</fullName>
         <categories>Confirmation Notification</categories>
         <language>en_US</language>
@@ -124,10 +144,26 @@
         <value>NCT Baby Massage course</value>
     </labels>
     <labels>
+        <fullName>Unconfirmed_Zoom_Details_Text</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unconfirmed Zoom Details Text</shortDescription>
+        <value>We will email you the Zoom access details for your live, interactive online session(s) at least two weeks before your course starts.</value>
+    </labels>
+    <labels>
         <fullName>Unsupported_Browser_Error_Message</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Unsupported browser error message</shortDescription>
         <value>Sorry, your current browser isn't supported. For the best experience we suggest using Chrome.</value>
+    </labels>
+    <labels>
+        <fullName>Zoom_Support_Link</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Zoom Support Link</shortDescription>
+        <value>https://support.zoom.us/hc/en-us</value>
     </labels>
 </CustomLabels>
