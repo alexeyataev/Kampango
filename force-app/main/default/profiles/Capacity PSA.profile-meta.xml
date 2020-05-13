@@ -788,6 +788,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Total_Hours_Of_Virtual_Support__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Total_Income_Excluding_Fee_Overrides__c</field>
         <readable>true</readable>
     </fieldPermissions>
