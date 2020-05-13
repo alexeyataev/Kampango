@@ -70,7 +70,7 @@
         <queriedFields>Location_Home_Information__c</queriedFields>
         <queriedFields>Location_Street__c</queriedFields>
         <queriedFields>Delivery_Type__c</queriedFields>
-        <queriedFields>Hours__c</queriedFields>
+        <queriedFields>Contact_Hours__c</queriedFields>
         <sortField>Date__c</sortField>
         <sortOrder>Asc</sortOrder>
     </recordLookups>

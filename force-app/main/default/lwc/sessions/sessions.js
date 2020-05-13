@@ -83,7 +83,7 @@ export default class Sessions extends LightningElement {
 
                     if (row.Delivery_Type__c === SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT) {
                         this.hasSessionsVirtualSupport = true;
-                        this.totalHoursOfVirtualSupport += row.Hours__c || 0;
+                        this.totalHoursOfVirtualSupport += row.Contact_Hours__c || 0;
                     } else {
                         finalArray.push(row);
                     }
@@ -93,7 +93,7 @@ export default class Sessions extends LightningElement {
 
                     if (row.Delivery_Type__c === SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT) {
                         this.hasSessionsVirtualSupport = true;
-                        this.totalHoursOfVirtualSupport += row.Hours__c || 0;
+                        this.totalHoursOfVirtualSupport += row.Contact_Hours__c || 0;
                     }
                 }
             }
