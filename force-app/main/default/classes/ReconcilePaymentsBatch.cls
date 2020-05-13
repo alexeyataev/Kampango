@@ -7,11 +7,7 @@ public with sharing class ReconcilePaymentsBatch implements Database.Batchable<s
 
     public Database.QueryLocator start(Database.BatchableContext bc) {
         return Database.getQueryLocator([
-            SELECT Id, Status__c, Batch_Id__c, From_Date__c, To_Date__c,
-                (
-                    SELECT Id, Amount__c, Bank_Receipt__c, Payment_Id__c
-                    FROM Batch_Receipt_Report_Items__r
-                )
+            SELECT Id, Status__c, Batch_Id__c, From_Date__c, To_Date__c
             FROM Batch_Receipt_Report__c
             WHERE Id =: recordId
         ]);
