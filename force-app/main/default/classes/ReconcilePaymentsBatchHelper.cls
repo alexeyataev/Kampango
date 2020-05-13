@@ -6,7 +6,7 @@ public class ReconcilePaymentsBatchHelper {
     public static void processBatchReceiptReport(Batch_Receipt_Report__c receipt) {
         Map<String, Id> paymentsBankReceipt = new Map<String, Id>();
         List<Batch_Receipt_Report_Item__c> reportItems = [SELECT Id, Amount__c, Bank_Receipt__c, Payment_Id__c
-                                                            FROM Batch_Receipt_Report_Items__c
+                                                            FROM Batch_Receipt_Report_Item__c
                                                             WHERE Batch_Receipt_Report__c = :receipt.Id];
 
         Set<String> paymentIds = new Set<String>();
