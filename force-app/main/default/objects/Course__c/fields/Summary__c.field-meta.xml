@@ -5,9 +5,18 @@
     <description>Total_Contact_Hours__c can be used, because in CourseAPI we&#39;re displaying only final courses.
 Course can be final, only if all sessions except Reunion are confirmed.</description>
     <externalId>false</externalId>
-    <formula>&quot;A &quot; &amp; TEXT(Total_Contact_Hours__c) &amp; &quot; hour course. This consists of &quot; &amp; TEXT(Count_of_Confirmed_Sessions__c) &amp; &quot; &quot; &amp; IF(Count_of_Confirmed_Sessions__c &lt; 2, &quot;session&quot;, &quot;sessions&quot;) &amp; &quot;. &quot; &amp;
-IF(Count_of_Unconfirmed_Reunion_Sessions__c &gt; 0,  BR() &amp; &quot;There&#39;s also a 2-hour reunion for all course participants with their new baby. Your course leader will agree a date, time and location for this with you.&quot;, &quot;&quot;)</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <formula>IF( NOT( Has_Virtual_Teaching_Content__c ) ,
+
+ &quot;A &quot; &amp; TEXT(Total_Contact_Hours__c) &amp; &quot; hour course. This consists of &quot; &amp; TEXT(Count_of_Confirmed_Sessions__c) &amp; &quot; &quot; &amp; 
+  IF(Count_of_Confirmed_Sessions__c &lt; 2, &quot;session&quot;, &quot;sessions&quot;) &amp; &quot;. &quot;, 
+
+ &quot;Your course will be made up of a combination of &quot; &amp; TEXT(Total_Online_Session_Hours__c) &amp; &quot; hours of live, interactive sessions delivered via Zoom and at least &quot; &amp; TEXT(Total_Virtual_Support_Hours__c) &amp; &quot; hours of enhanced personalised support from your course leader delivered via a closed messaging group&quot;
+) &amp;
+
+IF(Count_of_Unconfirmed_Reunion_Sessions__c &gt; 0,  
+ BR() &amp; $Label.Confirmation_Notification_Course_Reunion, 
+ &quot;&quot;
+)</formula>
     <inlineHelpText>This field is used for CourseAPI.</inlineHelpText>
     <label>Summary</label>
     <required>false</required>

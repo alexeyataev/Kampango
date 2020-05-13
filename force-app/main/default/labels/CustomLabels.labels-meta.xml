@@ -22,7 +22,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Confirmation Notification Course Reunion</shortDescription>
-        <value>There is also a reunion for all course participants with their new baby after the births. Depending on when the social distancing measures are lifted, this may be in-person, or online. Your course leader will agree a date and time with you for this.</value>
+        <value>There is also a reunion for all course participants with their new baby after the births. Your course leader will agree a date and time with you for this.</value>
     </labels>
     <labels>
         <fullName>ContactUpdateException</fullName>
