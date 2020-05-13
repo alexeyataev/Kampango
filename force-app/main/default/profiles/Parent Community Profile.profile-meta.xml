@@ -1087,6 +1087,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Has_Virtual_Teaching_Content__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Hide_From_Course_Finder__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1094,6 +1099,11 @@
         <editable>false</editable>
         <field>Course__c.Include_Additional_Admin_Cost__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Main_Online_Venue__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1374,6 +1384,11 @@
         <editable>false</editable>
         <field>Venue__c.Cancellation_Terms__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Venue__c.Client_Link__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
