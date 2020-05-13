@@ -476,6 +476,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Has_Virtual_Teaching_Content__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Hide_From_Course_Finder__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -483,6 +488,11 @@
         <editable>false</editable>
         <field>Course__c.Include_Additional_Admin_Cost__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Main_Online_Venue__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -692,6 +702,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Room__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Session_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -69,25 +69,97 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>OR((ISNEW() &amp;&amp; ISBLANK([Session__c].Course__c.Main_Venue__c)), ( ISBLANK(PRIORVALUE([Session__c].Venue__c) )  &amp;&amp; NOT(ISBLANK([Session__c].Venue__c))  &amp;&amp; ISBLANK([Session__c].Course__c.Main_Venue__c )))</stringValue>
+                <stringValue>AND( 
+	NOT(ISBLANK(TEXT([Session__c].Delivery_Type__c))),
+        TEXT([Session__c].Delivery_Type__c) == &#39;Physical&#39;,
+	OR(
+	(
+		AND(
+			ISNEW(),
+			ISBLANK([Session__c].Course__c.Main_Venue__c)
+		)
+	), 
+	(
+		AND(
+			ISBLANK(PRIORVALUE([Session__c].Venue__c)),
+			NOT(ISBLANK([Session__c].Venue__c)),
+			ISBLANK([Session__c].Course__c.Main_Venue__c)
+		)
+	)
+	)
+)</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>OR((ISNEW() &amp;&amp; ISBLANK({!myVariable_current.Course__r.Main_Venue__c})), ( ISBLANK(PRIORVALUE({!myVariable_current.Venue__c}) )  &amp;&amp; NOT(ISBLANK({!myVariable_current.Venue__c}))  &amp;&amp; ISBLANK({!myVariable_current.Course__r.Main_Venue__c} )))</expression>
+        <expression>AND( 
+	NOT(ISBLANK(TEXT({!myVariable_current.Delivery_Type__c}))),
+        TEXT({!myVariable_current.Delivery_Type__c}) == &#39;Physical&#39;,
+	OR(
+	(
+		AND(
+			ISNEW(),
+			ISBLANK({!myVariable_current.Course__r.Main_Venue__c})
+		)
+	), 
+	(
+		AND(
+			ISBLANK(PRIORVALUE({!myVariable_current.Venue__c})),
+			NOT(ISBLANK({!myVariable_current.Venue__c})),
+			ISBLANK({!myVariable_current.Course__r.Main_Venue__c})
+		)
+	)
+	)
+)</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>OR((ISNEW() &amp;&amp; ISBLANK([Session__c].Course__c.Main_Venue__c)), ( ISBLANK(PRIORVALUE([Session__c].Venue__c) )  &amp;&amp; NOT(ISBLANK([Session__c].Venue__c))  &amp;&amp; ISBLANK([Session__c].Course__c.Main_Venue__c )))</stringValue>
+                <stringValue>AND( 
+	NOT(ISBLANK(TEXT([Session__c].Delivery_Type__c))),
+        TEXT([Session__c].Delivery_Type__c) == &#39;Physical&#39;,
+	OR(
+	(
+		AND(
+			ISNEW(),
+			ISBLANK([Session__c].Course__c.Main_Venue__c)
+		)
+	), 
+	(
+		AND(
+			ISBLANK(PRIORVALUE([Session__c].Venue__c)),
+			NOT(ISBLANK([Session__c].Venue__c)),
+			ISBLANK([Session__c].Course__c.Main_Venue__c)
+		)
+	)
+	)
+)</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1_pmetrule</name>
         <dataType>Boolean</dataType>
-        <expression>OR((ISNEW() &amp;&amp; ISBLANK({!myVariable_old.Course__r.Main_Venue__c})), ( ISBLANK(PRIORVALUE({!myVariable_old.Venue__c}) )  &amp;&amp; NOT(ISBLANK({!myVariable_old.Venue__c}))  &amp;&amp; ISBLANK({!myVariable_old.Course__r.Main_Venue__c} )))</expression>
+        <expression>AND( 
+	NOT(ISBLANK(TEXT({!myVariable_old.Delivery_Type__c}))),
+        TEXT({!myVariable_old.Delivery_Type__c}) == &#39;Physical&#39;,
+	OR(
+	(
+		AND(
+			ISNEW(),
+			ISBLANK({!myVariable_old.Course__r.Main_Venue__c})
+		)
+	), 
+	(
+		AND(
+			ISBLANK(PRIORVALUE({!myVariable_old.Venue__c})),
+			NOT(ISBLANK({!myVariable_old.Venue__c})),
+			ISBLANK({!myVariable_old.Course__r.Main_Venue__c})
+		)
+	)
+	)
+)</expression>
     </formulas>
-    <interviewLabel>Set_Main_Venue_on_Course-4_InterviewLabel</interviewLabel>
+    <interviewLabel>Set_Main_Venue_on_Course-6_InterviewLabel</interviewLabel>
     <label>Set Main Venue on Course</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -195,7 +267,7 @@
         <object>Course__c</object>
     </recordUpdates>
     <startElementReference>myDecision</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>
