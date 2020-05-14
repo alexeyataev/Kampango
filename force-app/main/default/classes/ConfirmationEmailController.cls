@@ -24,6 +24,7 @@ public with sharing class ConfirmationEmailController {
                         Additional_Information__c,
                         Status__c,
                         Type__c,
+                        Delivery_Type__c,
                         Location_Postcode__c,
                         Location_Map_Url__c,
                         Location_Street__c,
@@ -110,7 +111,7 @@ public with sharing class ConfirmationEmailController {
         List<Session__c> listConfirmedSessions = new List<Session__c>();
 
         for (Session__c session : sessions) {
-            if (session.Status__c == 'Confirmed') {
+            if (session.Status__c == 'Confirmed' && session.Delivery_Type__c != 'Virtual Support') {
                 listConfirmedSessions.add(session);
 
             } else if (session.Type__c == 'Reunion') {
