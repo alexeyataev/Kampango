@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Break_Even_Number_Of_Places__c</fullName>
     <externalId>false</externalId>
-    <formula>MCEILING(Total_Estimated_Costs__c / IF( Include_Additional_Admin_Cost__c, Fee__c - $Setup.Course_Settings__c.Additional_Admin_Cost__c, Fee__c))</formula>
+    <formula>MCEILING((Total_Practitioner_Fees__c + Estimated_Travel_Costs__c + Estimated_Venue_Costs__c) / IF( Include_Additional_Admin_Cost__c, Fee__c - $Setup.Course_Settings__c.Additional_Admin_Cost__c, Fee__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Break Even Number Of Places</label>
     <precision>18</precision>

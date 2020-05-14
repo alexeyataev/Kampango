@@ -3,10 +3,19 @@ import NCT_STYLES from '@salesforce/resourceUrl/NCT_Styles';
 import { loadStyle } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import provisionCourseReunionTextLable from '@salesforce/label/c.Confirmation_Notification_Course_Reunion';
+import sessionsVirtualSupportTextLable from '@salesforce/label/c.Sessions_Virtual_Support_Text';
+
+import { SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT,
+         SESSION_STATUS_CONFIRMED,
+         SESSION_TYPE_REUNION } from 'c/globalConstansHelper';
 
 export default class Sessions extends LightningElement {
     provisionCourseReunionText = provisionCourseReunionTextLable;
+    sessionsVirtualSupportText;
     courseHasProvisionalReunion = false;
+    hasSessionsVirtualSupport = false;
+    totalHoursOfVirtualSupport = 0;
+
     @api sessions;
     @api sessionHeader;
     @api formattedSessions;
@@ -25,9 +34,9 @@ export default class Sessions extends LightningElement {
                     }),
                 );
             });
+
         this.sessions = this.excludeProvisionalSessions(this.sessions);
         this.formatSessions();
-        
     }
 
     formatSessions(){
@@ -39,6 +48,7 @@ export default class Sessions extends LightningElement {
             start,
             end,
             formattedArray = [];
+
         array.forEach(
             (row, index) => {
                 let date = new Date(row.Date__c);
@@ -69,13 +79,29 @@ export default class Sessions extends LightningElement {
         let finalArray = [];
         sessionList.forEach(
             row => {
-                if(row.Status__c === 'Confirmed') {
-                    finalArray.push(row);
-                } else if (row.Type__c === 'Reunion') {
+                if (row.Status__c === SESSION_STATUS_CONFIRMED) {
+
+                    if (row.Delivery_Type__c === SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT) {
+                        this.hasSessionsVirtualSupport = true;
+                        this.totalHoursOfVirtualSupport += row.Contact_Hours__c || 0;
+                    } else {
+                        finalArray.push(row);
+                    }
+
+                } else if (row.Type__c === SESSION_TYPE_REUNION) {
                     this.courseHasProvisionalReunion = true;
+
+                    if (row.Delivery_Type__c === SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT) {
+                        this.hasSessionsVirtualSupport = true;
+                        this.totalHoursOfVirtualSupport += row.Contact_Hours__c || 0;
+                    }
                 }
             }
         );
+
+        this.sessionsVirtualSupportText = this.hasSessionsVirtualSupport
+            ? sessionsVirtualSupportTextLable.replace('{0}', this.totalHoursOfVirtualSupport)
+            : '';
 
         return finalArray;
     }
