@@ -607,15 +607,16 @@
     </types>
     <types>
         <members>checkBrowserCompatibility</members>
-        <members>courseDetailsComponent</members>
         <members>claimFeesDatatable</members>
+        <members>courseDetailsComponent</members>
+        <members>courseTransferDetails</members>
         <members>customCommunityButton</members>
         <members>failurePaymentPage</members>
+        <members>globalConstansHelper</members>
         <members>linkToPaymentComponent</members>
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
-        <members>courseTransferDetails</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
