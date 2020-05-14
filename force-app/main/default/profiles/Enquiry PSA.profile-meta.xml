@@ -891,6 +891,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Session__c.Fee_Rate_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Session__c.Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
