@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Create_Purchase_Invoice</name>
         <label>Create Purchase Invoice</label>
-        <locationX>847</locationX>
-        <locationY>200</locationY>
+        <locationX>953</locationX>
+        <locationY>57</locationY>
         <actionName>ClaimFeeHelper</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -24,10 +24,26 @@
         </inputParameters>
     </actionCalls>
     <assignments>
+        <name>Add_Virtual_Support_Sessions</name>
+        <label>Add Virtual Support Sessions</label>
+        <locationX>506</locationX>
+        <locationY>66</locationY>
+        <assignmentItems>
+            <assignToReference>listSessions</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tempCurrentSession</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Virtual_Support_Sessions</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Session_Course_Sub_Type</name>
         <label>Assign Session Course Sub Type</label>
-        <locationX>311</locationX>
-        <locationY>197</locationY>
+        <locationX>699</locationX>
+        <locationY>444</locationY>
         <assignmentItems>
             <assignToReference>tempCurrentSession.Course__c</assignToReference>
             <operator>Assign</operator>
@@ -42,8 +58,8 @@
     <assignments>
         <name>Assing_Checked_Sessions</name>
         <label>Assign Checked Sessions</label>
-        <locationX>846</locationX>
-        <locationY>20</locationY>
+        <locationX>861</locationX>
+        <locationY>206</locationY>
         <assignmentItems>
             <assignToReference>sessionsToClaim</assignToReference>
             <operator>Assign</operator>
@@ -74,9 +90,14 @@ Added course sub type assigment</description>
         <expression>&#39;0&#39; + IF(ISNUMBER( TEXT(VALUE({!lastPIname}) + 1)), TEXT(VALUE({!lastPIname}) + 1), &#39;3000&#39;)</expression>
     </formulas>
     <formulas>
+        <name>lastSixMonths</name>
+        <dataType>Date</dataType>
+        <expression>TODAY() - 180</expression>
+    </formulas>
+    <formulas>
         <name>lastThreeMonths</name>
         <dataType>Date</dataType>
-        <expression>IF(MONTH(TODAY()) = 1, DATE(YEAR(TODAY()) - 1, 12 - 2, 01),DATE(YEAR(TODAY()), MONTH(TODAY()) - 3, 01))</expression>
+        <expression>TODAY() - 90</expression>
     </formulas>
     <formulas>
         <name>nominalAccountId</name>
@@ -100,8 +121,8 @@ Added course sub type assigment</description>
     <loops>
         <name>Loop_List_Sessions</name>
         <label>Loop List Sessions</label>
-        <locationX>518</locationX>
-        <locationY>199</locationY>
+        <locationX>551</locationX>
+        <locationY>390</locationY>
         <assignNextValueToReference>tempCurrentSession</assignNextValueToReference>
         <collectionReference>listSessions</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -110,6 +131,21 @@ Added course sub type assigment</description>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Claim_Fees_Datatable</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Virtual_Support_Sessions</name>
+        <label>Loop Virtual Support Sessions</label>
+        <locationX>403</locationX>
+        <locationY>226</locationY>
+        <assignNextValueToReference>tempCurrentSession</assignNextValueToReference>
+        <collectionReference>listVirtualSupportSessions</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Add_Virtual_Support_Sessions</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Loop_List_Sessions</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -128,8 +164,8 @@ Added course sub type assigment</description>
     <recordLookups>
         <name>Get_Practitioner</name>
         <label>Get Practitioner</label>
-        <locationX>343</locationX>
-        <locationY>12</locationY>
+        <locationX>165</locationX>
+        <locationY>74</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Session</targetReference>
@@ -149,11 +185,11 @@ Added course sub type assigment</description>
     <recordLookups>
         <name>Get_Session</name>
         <label>Get Session</label>
-        <locationX>518</locationX>
-        <locationY>12</locationY>
+        <locationX>240</locationX>
+        <locationY>240</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Loop_List_Sessions</targetReference>
+            <targetReference>Get_Virtual_Support_Session</targetReference>
         </connector>
         <filters>
             <field>Date__c</field>
@@ -167,6 +203,13 @@ Added course sub type assigment</description>
             <operator>LessThanOrEqualTo</operator>
             <value>
                 <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Delivery_Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Virtual Support</stringValue>
             </value>
         </filters>
         <filters>
@@ -201,10 +244,71 @@ Added course sub type assigment</description>
         <queriedFields>PSA_Area__c</queriedFields>
     </recordLookups>
     <recordLookups>
+        <name>Get_Virtual_Support_Session</name>
+        <label>Get Virtual Support Session</label>
+        <locationX>308</locationX>
+        <locationY>70</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Virtual_Support_Sessions</targetReference>
+        </connector>
+        <filters>
+            <field>Course_End_Date__c</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <elementReference>lastSixMonths</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Course_Start_Date__c</field>
+            <operator>LessThan</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Delivery_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Virtual Support</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Eligible_for_Claim__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Practitioner_Fees_to_Claim__c</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Practitioner__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>currentUserContactId</elementReference>
+            </value>
+        </filters>
+        <object>Session__c</object>
+        <outputReference>listVirtualSupportSessions</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Practitioner_Fees__c</queriedFields>
+        <queriedFields>Course_Name__c</queriedFields>
+        <queriedFields>Date__c</queriedFields>
+        <queriedFields>Course__c</queriedFields>
+        <queriedFields>PSA_Area__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <name>getAccountAndContactId</name>
         <label>Get Account And Contact</label>
-        <locationX>186</locationX>
-        <locationY>13</locationY>
+        <locationX>78</locationX>
+        <locationY>224</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Practitioner</targetReference>
@@ -229,8 +333,8 @@ Added course sub type assigment</description>
     <screens>
         <name>Claim_Fees_Datatable</name>
         <label>Claim Fees Datatable</label>
-        <locationX>704</locationX>
-        <locationY>202</locationY>
+        <locationX>679</locationX>
+        <locationY>195</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -295,8 +399,8 @@ Added course sub type assigment</description>
     <screens>
         <name>Show_Total_Fees</name>
         <label>Show Total Fees</label>
-        <locationX>704</locationX>
-        <locationY>21</locationY>
+        <locationX>771</locationX>
+        <locationY>61</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -312,8 +416,8 @@ Added course sub type assigment</description>
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>182</locationX>
-        <locationY>190</locationY>
+        <locationX>29</locationX>
+        <locationY>64</locationY>
         <connector>
             <targetReference>getAccountAndContactId</targetReference>
         </connector>
@@ -361,6 +465,14 @@ Added course sub type assigment</description>
         <isCollection>true</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
+        <objectType>Session__c</objectType>
+    </variables>
+    <variables>
+        <name>listVirtualSupportSessions</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
         <objectType>Session__c</objectType>
     </variables>
     <variables>
