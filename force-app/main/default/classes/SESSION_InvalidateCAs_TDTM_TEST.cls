@@ -9,8 +9,12 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     private static final String HOST_LASTNAME = 'Black';
     private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
     private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
+    private static final String COURSE_ASSIGNMENT_DRAFT_STATUS = 'Draft';
     private static final String COURSE_ASSIGNMENT_INVALIDATED_STATUS = 'Invalidated';
     private static final String COURSE_ASSIGNMENT_WITHDRAWN_STATUS = 'Withdrawn';
+    private static final String SESSION_TYPE_PROVISIONAL = 'Provisional';
+    private static final String SESSION_TYPE_REUNION = 'Reunion';
+    private static final String SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT = 'Virtual Support';
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
         'triggerHandlerName' => 'SESSION_InvalidateCAs_TDTM',
         'className' => 'SESSION_InvalidateCAs_TDTM',
@@ -37,13 +41,14 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                     .buildEstimatedCosts()
                     .buildSession()
                     .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-                    .buildSessionWithTypeAndStatus('Reunion', 'Provisional');
+                    .buildSessionWithTypeAndStatus(SESSION_TYPE_REUNION, SESSION_TYPE_PROVISIONAL)
+                    .buildVirtualSupportSession(SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT, 2);
 
         List<Session__c> provisionalNonReunionSessions = [
             SELECT Id 
             FROM Session__c 
-            WHERE Status__c = 'Provisional' 
-                AND Type__c <> 'Reunion'
+            WHERE Status__c = :SESSION_TYPE_PROVISIONAL 
+                AND Type__c <> :SESSION_TYPE_REUNION
         ];    
 
         List<Course__c> listDraftCourses = [
@@ -277,7 +282,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
-            WHERE Type__c = 'Reunion'
+            WHERE Type__c = :SESSION_TYPE_REUNION
             LIMIT 1
         ];
 
@@ -348,7 +353,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Session__c session = [
             SELECT Id, Status__c, Course_Assignment__c
             FROM Session__c
-            WHERE Type__c = 'Reunion'
+            WHERE Type__c = :SESSION_TYPE_REUNION
             LIMIT 1
         ];
 
@@ -531,5 +536,57 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         ]; 
 
         System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToCheck.Status__c);
+    }
+
+    @isTest
+    static void InvalidateCourseAssignmentStatus_HoursChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        Session__c session = [
+            SELECT Id, Course_Assignment__c, Delivery_Type__c, Hours__c
+            FROM Session__c
+            WHERE Delivery_Type__c = :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT
+            LIMIT 1
+        ];
+
+        System.debug(session.Delivery_Type__c);
+
+        Test.startTest();
+        session.Hours__c = 5;
+        update session;
+        Test.stopTest();
+
+        Course_Assignment__c courseAssignmentToTest = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id =:session.Course_Assignment__c
+            LIMIT 1
+        ];
+
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
+    }
+
+    @isTest
+    static void InvalidateCourseAssignmentStatus_DeliveryTypeChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        Session__c session = [
+            SELECT Id, Course_Assignment__c, Delivery_Type__c, Hours__c
+            FROM Session__c
+            WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT
+            LIMIT 1
+        ];
+
+        System.debug(session.Delivery_Type__c);
+
+        Test.startTest();
+        session.Delivery_Type__c = 'Online';
+        update session;
+        Test.stopTest();
+
+        Course_Assignment__c courseAssignmentToTest = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id =:session.Course_Assignment__c
+            LIMIT 1
+        ];
+
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
     }
 }

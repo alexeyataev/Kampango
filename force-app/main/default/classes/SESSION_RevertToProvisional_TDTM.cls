@@ -1,6 +1,8 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 //Incident #69 - https://confluence.nct.org.uk:8443/x/EoSO
 global with sharing class SESSION_RevertToProvisional_TDTM extends npsp.TDTM_Runnable{
+    private static final String SESSION_STATUS_CONFIRMED = 'Confirmed';
+    private static final String SESSION_STATUS_PROVISIONAL = 'Provisional';
     @SuppressWarnings('PMD.ExcessiveParameterList')
     //Incident #80 - https://confluence.nct.org.uk:8443/x/EoSO
     global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
@@ -14,21 +16,20 @@ global with sharing class SESSION_RevertToProvisional_TDTM extends npsp.TDTM_Run
 
         return dmlWrapper;
     }
-    //NOPMD
-    //Incident #7 - https://confluence.nct.org.uk:8443/x/EoSO
 
     private void compareNewListOfSessionsWithOldListAndSetSessionsToProvisional(List<Session__c> newSessionList, List<Session__c> oldSessionList) {
-        for (Integer i = 0; i < newSessionList.size(); i++) {
-            if (oldSessionList[i].Status__c == 'Confirmed' &&
-                (newSessionList[i].Date__c != oldSessionList[i].Date__c ||
-                    newSessionList[i].Start__c != oldSessionList[i].Start__c ||
-                    newSessionList[i].End__c != oldSessionList[i].End__c ||
-                    newSessionList[i].Lunch_Break_Minutes__c != oldSessionList[i].Lunch_Break_Minutes__c ||
-                    newSessionList[i].Venue__c != oldSessionList[i].Venue__c)) {
-                newSessionList[i].Status__c = 'Provisional';
+        Map<Id, Session__c> oldSessionMap = new Map<Id, Session__c>(oldSessionList);
+        for (Session__c session : newSessionList) {
+            if (oldSessionMap.get(session.Id).Status__c == SESSION_STATUS_CONFIRMED &&
+                    (session.Date__c != oldSessionMap.get(session.Id).Date__c ||
+                            session.Start__c != oldSessionMap.get(session.Id).Start__c ||
+                            session.End__c != oldSessionMap.get(session.Id).End__c ||
+                            session.Lunch_Break_Minutes__c != oldSessionMap.get(session.Id).Lunch_Break_Minutes__c ||
+                            session.Hours__c != oldSessionMap.get(session.Id).Hours__c ||
+                            session.Delivery_Type__c != oldSessionMap.get(session.Id).Delivery_Type__c ||
+                            session.Venue__c != oldSessionMap.get(session.Id).Venue__c)) {
+                session.Status__c = SESSION_STATUS_PROVISIONAL;
             }
         }
     }
 }
-//NOPMD
-//Incident #8 - https://confluence.nct.org.uk:8443/x/EoSO

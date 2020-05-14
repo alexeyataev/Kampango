@@ -6,6 +6,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     private static final String COURSE_DRAFT_STATUS = 'Draft';
     private static final String COURSE_FINAL_STATUS = 'Final';
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
+    private static final String SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT = 'Virtual Support';
     private static final String PRACTITIONER_LASTNAME_ONE = 'Smith';
     private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
@@ -43,7 +44,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
                     .buildEstimatedCosts()
                     .buildSession()
                     .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE)
-                    .buildReunion();
+                    .buildReunion()
+                    .buildVirtualSupportSession(SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT, 2);
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
         dataFactory .setSessionsToConfirmed(sessions)
                     .setCourseToFinal();
@@ -82,7 +84,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_DateUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id FROM Session__c];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -101,7 +103,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_StartTimeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -120,7 +122,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_EndTimeUpdatedOnSession_CourseStatusIsRevertedToDraft () {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -138,7 +140,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_LunchBreakMinutesUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id FROM Session__c];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -156,13 +158,51 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
+    static void RevertCourseToDraft_HoursUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c = :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
+        course.Status__c = COURSE_FINAL_STATUS;
+        update course;
+
+        Test.startTest();
+        for(Session__c aSession : sessions) {
+            aSession.Hours__c = 5;
+        }
+        update sessions;
+        Test.stopTest();
+
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
+
+    }
+
+    @isTest
+    static void RevertCourseToDraft_DeliveryTypeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c = :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
+        course.Status__c = COURSE_FINAL_STATUS;
+        update course;
+
+        Test.startTest();
+        for(Session__c aSession : sessions) {
+            aSession.Delivery_Type__c = 'Online';
+        }
+        update sessions;
+        Test.stopTest();
+
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
+
+    }
+
+    @isTest
     static void RevertCourseToDraft_PractitionerLicenceUpdatedOnSession_CourseStatusIsRevertedToDraft() {
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
-        Contact practitioner = [SELECT LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME_ONE LIMIT 1];
+        Contact practitioner = [SELECT LastName FROM Contact WHERE LastName = :PRACTITIONER_LASTNAME_ONE LIMIT 1];
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
         licenceToPractice = licenceToPracticeBuilder
             .withContact(practitioner)
@@ -274,8 +314,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_BulkSessionsChanged_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
-        List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT LIMIT 1000];
+        List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c = :COURSE_DRAFT_STATUS LIMIT 10];
         Set<Id> courseIds = new Set<Id>();
         for (Course__c aCourse : coursesToTest){
             courseIds.add(aCourse.Id);

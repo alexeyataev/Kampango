@@ -3,7 +3,9 @@ public without sharing class TestDataFactory {
 
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
     private static final String SESSION_CONFIRMED_STATUS = 'Confirmed';
+    private static final String SESSION_STANDARD_TYPE = 'Standard';
     private static final String SESSION_REUNION_TYPE = 'Reunion';
+    private static final String SESSION_DELIVERY_TYPE_PHYSICAL = 'Physical';
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
     private static final String CLIENT_RECORDTYPE_NAME  = 'Client';
     private static final String PRACTITIONER_PROFILE_NAME = 'Practitioner';
@@ -40,7 +42,6 @@ public without sharing class TestDataFactory {
     private Licence_To_Practice__c licenceToPractice;
     private Course__c course;
     private Session__c session;
-    private Session__c reunion;
     private Booking__c booking;
     private Contact parentHost;
     private Contact partnertHost;
@@ -356,52 +357,23 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildSession() {
-        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
-        session = sessionBuilder
-            .withCourse(course)
-            .withVenue(venue)
-            .withRoom(room)
-            .withStatus(SESSION_PROVISIONAL_STATUS)
-            .withPractitioner(practitioners[0])
-            .withPractitionerFeeRate(practitionerFeeRate)
-            .withPractitionerLicence(licenceToPractice)
-            .insertRecord(true)
-            .build();
-        return this;
+        return buildSessionWithTypeAndStatus(SESSION_STANDARD_TYPE, SESSION_PROVISIONAL_STATUS);
     }
 
     public TestDataFactory buildConfirmedSession() {
-        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
-        session = sessionBuilder
-            .withCourse(course)
-            .withVenue(venue)
-            .withRoom(room)
-            .withStatus(SESSION_CONFIRMED_STATUS)
-            .withPractitioner(practitioners[0])
-            .withPractitionerFeeRate(practitionerFeeRate)
-            .withPractitionerLicence(licenceToPractice)
-            .insertRecord(true)
-            .build();
-        return this;
+        return buildSessionWithTypeAndStatus(SESSION_STANDARD_TYPE, SESSION_CONFIRMED_STATUS);
     }
 
     public TestDataFactory buildReunion() {
-        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
-        reunion = sessionBuilder
-            .withCourse(course)
-            .withType('Reunion')
-            .withVenue(venue)
-            .withRoom(room)
-            .withStatus(SESSION_PROVISIONAL_STATUS)
-            .withPractitioner(practitioners[0])
-            .withPractitionerFeeRate(practitionerFeeRate)
-            .withPractitionerLicence(licenceToPractice)
-            .insertRecord(true)
-            .build();
-        return this;
+        return buildSessionWithTypeAndStatus(SESSION_REUNION_TYPE, SESSION_PROVISIONAL_STATUS);
     }
 
     public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus) {
+        return buildSessionWithTypeAndStatus(sessionType, sessionStatus, null, null);
+    }
+
+    public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus, String deliveryType, Integer hours) {
+        deliveryType = deliveryType != null ? deliveryType : SESSION_DELIVERY_TYPE_PHYSICAL;
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         session = sessionBuilder
             .withCourse(course)
@@ -412,9 +384,15 @@ public without sharing class TestDataFactory {
             .withPractitioner(practitioners[0])
             .withPractitionerFeeRate(practitionerFeeRate)
             .withPractitionerLicence(licenceToPractice)
+            .withDeliveryType(deliveryType)
+            .withHours(hours)
             .insertRecord(true)
             .build();
         return this;
+    }
+
+    public TestDataFactory buildVirtualSupportSession(String deliveryType, Integer hours) {
+        return buildSessionWithTypeAndStatus(SESSION_STANDARD_TYPE, SESSION_PROVISIONAL_STATUS, deliveryType, hours);
     }
 
     public TestDataFactory buildEstimatedCosts() {

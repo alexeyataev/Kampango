@@ -10,7 +10,7 @@
      5, &quot;Thursday&quot;, 
      6, &quot;Friday&quot;, 
      7, &quot;Saturday&quot;,
-     &quot;Error&quot;
+     &quot;&quot;
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Day of Week</label>

@@ -16,15 +16,15 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
         Set<Id> courseIds = new Set<Id>();
 
         if (triggerAction == npsp.TDTM_Runnable.Action.AfterInsert) {
-            for (Session__c aSession : newSessionList) {
-                courseIds.add(aSession.Course__c);
+            for (Session__c session : newSessionList) {
+                courseIds.add(session.Course__c);
             }
         } else if (triggerAction == npsp.TDTM_Runnable.Action.AfterUpdate) {
             courseIds.addAll(idsOfCoursesToChange(newSessionList, oldSessionList));
 
         } else if (triggerAction == npsp.TDTM_Runnable.Action.afterDelete) {
-            for (Session__c aSession : oldSessionList) {
-                courseIds.add(aSession.Course__c);
+            for (Session__c session : oldSessionList) {
+                courseIds.add(session.Course__c);
             }
         }
 
@@ -38,9 +38,9 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
         ];
 
         if(!courses.isEmpty()) {
-            for (Course__c aCourse : courses) {
-                aCourse.Status__c = COURSE_STATUS_DRAFT;
-                coursesToUpdate.add(aCourse);
+            for (Course__c course : courses) {
+                course.Status__c = COURSE_STATUS_DRAFT;
+                coursesToUpdate.add(course);
             }
         }
         dmlWrapper.objectsToUpdate.addAll(coursesToUpdate);
@@ -58,6 +58,8 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
                             session.Start__c != oldSessionMap.get(session.Id).Start__c ||
                             session.End__c != oldSessionMap.get(session.Id).End__c ||
                             session.Lunch_Break_Minutes__c != oldSessionMap.get(session.Id).Lunch_Break_Minutes__c ||
+                            session.Hours__c != oldSessionMap.get(session.Id).Hours__c ||
+                            session.Delivery_Type__c != oldSessionMap.get(session.Id).Delivery_Type__c ||
                             session.Practitioner_Licence__c != oldSessionMap.get(session.Id).Practitioner_Licence__c ||
                             session.Venue__c != oldSessionMap.get(session.Id).Venue__c ||
                             session.Status__c != oldSessionMap.get(session.Id).Status__c ||
