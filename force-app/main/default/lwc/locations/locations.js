@@ -3,6 +3,9 @@ import NCT_STYLES from '@salesforce/resourceUrl/NCT_Styles';
 import { loadStyle } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
+import { SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT,
+         SESSION_STATUS_CONFIRMED } from 'c/globalConstansHelper';
+
 export default class Locations extends LightningElement {
 
     @api isStatusConfirmed;
@@ -99,7 +102,7 @@ export default class Locations extends LightningElement {
         let finalArray = [];
         sessionList.forEach(
             row => {
-                if(row.Status__c === 'Confirmed'){
+                if(row.Status__c === SESSION_STATUS_CONFIRMED && row.Delivery_Type__c !== SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT) {
                     finalArray.push(row);
                 }
             }
