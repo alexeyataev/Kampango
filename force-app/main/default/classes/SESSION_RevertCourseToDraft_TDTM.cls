@@ -62,6 +62,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
                             session.Delivery_Type__c != oldSessionMap.get(session.Id).Delivery_Type__c ||
                             session.Practitioner_Licence__c != oldSessionMap.get(session.Id).Practitioner_Licence__c ||
                             session.Venue__c != oldSessionMap.get(session.Id).Venue__c ||
+                            session.Room__c != oldSessionMap.get(session.Id).Room__c ||
                             session.Status__c != oldSessionMap.get(session.Id).Status__c ||
                             session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c);
             if (condition) {

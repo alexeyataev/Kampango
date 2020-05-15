@@ -197,7 +197,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_PractitionerLicenceUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id FROM Session__c];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -222,7 +222,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_VenueUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id FROM Session__c];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -249,6 +249,31 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         Test.startTest();
         for(Session__c aSession : sessions) {
             aSession.Venue__c = venue.Id;
+            aSession.Room__c = room.Id;
+        }
+        update sessions;
+        Test.stopTest();
+
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
+    }
+
+    @isTest
+    static void RevertCourseToDraft_RoomUpdatedOnSession_CourseStatusIsRevertedToDraft() {
+        List<Session__c> sessions = [SELECT Id FROM Session__c];
+        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
+        course.Status__c = COURSE_FINAL_STATUS;
+        update course;
+        Venue__c venue = [SELECT Id FROM Venue__c LIMIT 1];
+
+        TestRoomBuilder roomBuilder = new TestRoomBuilder();
+        room = roomBuilder
+            .WithVenue(venue)
+            .InsertRecord(true)
+            .Build();
+
+        Test.startTest();
+        for(Session__c aSession : sessions) {
             aSession.Room__c = room.Id;
         }
         update sessions;
