@@ -3,24 +3,24 @@
     <assignments>
         <name>Add_Session_With_Empty_Venue</name>
         <label>Add Session With Empty Venue</label>
-        <locationX>217</locationX>
-        <locationY>50</locationY>
+        <locationX>359</locationX>
+        <locationY>60</locationY>
         <assignmentItems>
             <assignToReference>sessions</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>sessionsWithEmptyVenue</elementReference>
+                <elementReference>currentSession</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Iterate_through_Course_related_Sessions</targetReference>
+            <targetReference>Loop_Empty_Venue_Sessions</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Collect_Sessions_For_Update</name>
         <label>Collect Sessions For Update</label>
-        <locationX>652</locationX>
-        <locationY>248</locationY>
+        <locationX>706</locationX>
+        <locationY>186</locationY>
         <assignmentItems>
             <assignToReference>sessionsToUpdate</assignToReference>
             <operator>Add</operator>
@@ -35,8 +35,8 @@
     <assignments>
         <name>Update_Venue_on_Session</name>
         <label>Update Venue on Session</label>
-        <locationX>931</locationX>
-        <locationY>55</locationY>
+        <locationX>546</locationX>
+        <locationY>67</locationY>
         <assignmentItems>
             <assignToReference>currentSession.Venue__c</assignToReference>
             <operator>Assign</operator>
@@ -53,16 +53,31 @@
     <loops>
         <name>Iterate_through_Course_related_Sessions</name>
         <label>Iterate through Course related Sessions</label>
-        <locationX>404</locationX>
-        <locationY>50</locationY>
+        <locationX>480</locationX>
+        <locationY>283</locationY>
         <assignNextValueToReference>currentSession</assignNextValueToReference>
-        <collectionReference>sessions</collectionReference>
+        <collectionReference>sessionsWithEmptyVenue</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Update_Venue_on_Session</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Update_Sessions</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Empty_Venue_Sessions</name>
+        <label>Loop Empty Venue Sessions</label>
+        <locationX>269</locationX>
+        <locationY>208</locationY>
+        <assignNextValueToReference>currentSession</assignNextValueToReference>
+        <collectionReference>sessionsWithEmptyVenue</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Add_Session_With_Empty_Venue</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Iterate_through_Course_related_Sessions</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -81,8 +96,8 @@
     <recordLookups>
         <name>Get_Related_Sessions</name>
         <label>Get Related Sessions</label>
-        <locationX>65</locationX>
-        <locationY>228</locationY>
+        <locationX>110</locationX>
+        <locationY>197</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Related_Sessions_With_Empty_Venue</targetReference>
@@ -102,10 +117,24 @@
             </value>
         </filters>
         <filters>
+            <field>Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Reunion</stringValue>
+            </value>
+        </filters>
+        <filters>
             <field>Venue__c</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>oldVenueId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Venue__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue/>
             </value>
         </filters>
         <object>Session__c</object>
@@ -116,11 +145,11 @@
     <recordLookups>
         <name>Get_Related_Sessions_With_Empty_Venue</name>
         <label>Get Related Sessions With Empty Venue</label>
-        <locationX>249</locationX>
-        <locationY>236</locationY>
+        <locationX>193</locationX>
+        <locationY>57</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Add_Session_With_Empty_Venue</targetReference>
+            <targetReference>Loop_Empty_Venue_Sessions</targetReference>
         </connector>
         <filters>
             <field>Course__c</field>
@@ -134,6 +163,13 @@
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Online</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Reunion</stringValue>
             </value>
         </filters>
         <filters>
@@ -151,8 +187,8 @@
     <recordUpdates>
         <name>Update_Sessions</name>
         <label>Update Sessions</label>
-        <locationX>404</locationX>
-        <locationY>254</locationY>
+        <locationX>272</locationX>
+        <locationY>395</locationY>
         <inputReference>sessionsToUpdate</inputReference>
     </recordUpdates>
     <start>
