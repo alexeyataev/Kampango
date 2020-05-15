@@ -26,7 +26,7 @@
     <formulas>
         <name>CADreference</name>
         <dataType>String</dataType>
-        <expression>If({!currentSession.Course_Assignment__c} != null, {!currentSession.Course_Assignment__r.Name}, &quot;NA&quot;)</expression>
+        <expression>If({!currentSession.Course_Assignment__c} != null, {!currentSession.Course_Assignment__r.Name}, &quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>deletionDate</name>
@@ -46,7 +46,7 @@
     <formulas>
         <name>venueName</name>
         <dataType>String</dataType>
-        <expression>If({!currentSession.Venue__c} != null, {!currentSession.Venue__r.Name}, &quot;NA&quot;)</expression>
+        <expression>If({!currentSession.Venue__c} != null, {!currentSession.Venue__r.Name}, &quot;&quot;)</expression>
     </formulas>
     <interviewLabel>Track Deleted Sessions {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Track Deleted Sessions</label>

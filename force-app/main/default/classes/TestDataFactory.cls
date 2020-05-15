@@ -674,15 +674,15 @@ public without sharing class TestDataFactory {
             LIMIT 100
         ];
 
-        for (Course_Assignment__c aCourseAssignment : courseAssignments) {
-            aCourseAssignment.OwnerId = practitionerCommunityUser.Id;
+        for (Course_Assignment__c courseAssignment : courseAssignments) {
+            courseAssignment.OwnerId = practitionerCommunityUser.Id;
         }
         update courseAssignments;
     }
 
     public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
-        for(Session__c aSession : sessions){
-            aSession.Status__c = 'Confirmed';
+        for(Session__c session : sessions){
+            session.Status__c = 'Confirmed';
         }
         update sessions;
         return this;

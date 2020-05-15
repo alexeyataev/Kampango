@@ -90,8 +90,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         update course;
 
         Test.startTest();
-        for(Session__c aSession : sessions){
-            aSession.Date__c = Date.today();
+        for(Session__c session : sessions){
+            session.Date__c = Date.today();
         }
         update sessions;
         Test.stopTest();
@@ -110,8 +110,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Test.startTest();
 
-        for(Session__c aSession : sessions) {
-            aSession.Start__c = Time.newInstance(19, 00, 0, 0);
+        for(Session__c session : sessions) {
+            session.Start__c = Time.newInstance(19, 00, 0, 0);
         }
         update sessions;
         Test.stopTest();
@@ -128,8 +128,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         update course;
 
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.End__c = Time.newInstance(20, 00, 0, 0);
+        for(Session__c session : sessions) {
+            session.End__c = Time.newInstance(20, 00, 0, 0);
         }
         update sessions;
         Test.stopTest();
@@ -146,8 +146,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         update course;
 
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.Lunch_Break_Minutes__c = 15;
+        for(Session__c session : sessions) {
+            session.Lunch_Break_Minutes__c = 15;
         }
         update sessions;
         Test.stopTest();
@@ -165,8 +165,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         update course;
 
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.Hours__c = 5;
+        for(Session__c session : sessions) {
+            session.Hours__c = 5;
         }
         update sessions;
         Test.stopTest();
@@ -178,14 +178,14 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_DeliveryTypeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c = :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
 
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.Delivery_Type__c = 'Online';
+        for(Session__c session : sessions) {
+            session.Delivery_Type__c = 'Online';
         }
         update sessions;
         Test.stopTest();
@@ -210,8 +210,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .build();
 
         Test.startTest();
-        for(Session__c aSession :sessions) {
-            aSession.Practitioner_Licence__c = licenceToPractice.Id;
+        for(Session__c session :sessions) {
+            session.Practitioner_Licence__c = licenceToPractice.Id;
         }
         update sessions;
         Test.stopTest();
@@ -247,9 +247,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .Build();
 
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.Venue__c = venue.Id;
-            aSession.Room__c = room.Id;
+        for(Session__c session : sessions) {
+            session.Venue__c = venue.Id;
+            session.Room__c = room.Id;
         }
         update sessions;
         Test.stopTest();
@@ -273,8 +273,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .Build();
 
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.Room__c = room.Id;
+        for(Session__c session : sessions) {
+            session.Room__c = room.Id;
         }
         update sessions;
         Test.stopTest();
@@ -307,10 +307,10 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
         Test.startTest();
         Contact practitioner2 = [SELECT LastName FROM Contact WHERE LastName =:PRACTITIONER_LASTNAME_TWO];
-        for(Session__c aSession : sessions) {
-            aSession.Practitioner__c = practitioner2.Id;
-            aSession.Practitioner_Licence__c = NULL;
-            aSession.Status__c = SESSION_PROVISIONAL_STATUS;
+        for(Session__c session : sessions) {
+            session.Practitioner__c = practitioner2.Id;
+            session.Practitioner_Licence__c = NULL;
+            session.Status__c = SESSION_PROVISIONAL_STATUS;
         }
         update sessions;
         Test.stopTest();
@@ -327,8 +327,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         update course;
 
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.Status__c = SESSION_PROVISIONAL_STATUS;
+        for(Session__c session : sessions) {
+            session.Status__c = SESSION_PROVISIONAL_STATUS;
         }
         update sessions;
         Test.stopTest();
@@ -342,15 +342,15 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT LIMIT 1000];
         List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c = :COURSE_DRAFT_STATUS LIMIT 10];
         Set<Id> courseIds = new Set<Id>();
-        for (Course__c aCourse : coursesToTest){
-            courseIds.add(aCourse.Id);
-            aCourse.Status__c = COURSE_FINAL_STATUS;
+        for (Course__c course : coursesToTest){
+            courseIds.add(course.Id);
+            course.Status__c = COURSE_FINAL_STATUS;
         }
         update coursesToTest;
 
         Test.startTest();
-        for(Session__c aSession : sessions){
-            aSession.Start__c = Time.newInstance(12, 00, 0, 0);
+        for(Session__c session : sessions){
+            session.Start__c = Time.newInstance(12, 00, 0, 0);
         }
         update sessions;
         Test.stopTest();
@@ -364,9 +364,9 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
         List<Course__c> coursesToTest = [SELECT Status__c FROM Course__c WHERE Status__c =:COURSE_DRAFT_STATUS LIMIT 10];
         Set<Id> courseIds = new Set<Id>();
-        for (Course__c aCourse : coursesToTest){
-            courseIds.add(aCourse.Id);
-            aCourse.Status__c = COURSE_FINAL_STATUS;
+        for (Course__c course : coursesToTest){
+            courseIds.add(course.Id);
+            course.Status__c = COURSE_FINAL_STATUS;
         }
         update coursesToTest;
 

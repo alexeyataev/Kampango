@@ -40,11 +40,11 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_DateUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id FROM Session__c];
 
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.Date__c = Date.today()+10;
+        for(Session__c session : sessions) {
+            session.Date__c = Date.today()+10;
         }
         update sessions;
         Test.stopTest();
@@ -55,11 +55,11 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_StartTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id FROM Session__c];
 
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.Start__c =  Time.newInstance(18, 00, 0, 0);
+        for(Session__c session : sessions) {
+            session.Start__c =  Time.newInstance(18, 00, 0, 0);
         }
         update sessions;
         Test.stopTest();
@@ -70,11 +70,11 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_EndTimeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id FROM Session__c];
 
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.End__c =  Time.newInstance(21, 00, 0, 0);
+        for(Session__c session : sessions) {
+            session.End__c =  Time.newInstance(21, 00, 0, 0);
         }
         update sessions;
         Test.stopTest();
@@ -85,11 +85,11 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_LunchBreakUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id FROM Session__c];
 
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.Lunch_Break_Minutes__c =  11;
+        for(Session__c session : sessions) {
+            session.Lunch_Break_Minutes__c =  11;
         }
         update sessions;
         Test.stopTest();
@@ -100,13 +100,28 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_VenueUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1];
+        List<Session__c> sessions = [SELECT Id FROM Session__c];
         Venue__c venue = [SELECT Id FROM Venue__c WHERE Name = :VENUE_NAME LIMIT 1];
         
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.Venue__c =  venue.Id;
-            aSession.Room__c =  NULL;
+        for(Session__c session : sessions) {
+            session.Venue__c =  venue.Id;
+            session.Room__c =  NULL;
+        }
+        update sessions;
+        Test.stopTest();
+
+        Session__c sessionToTest = [SELECT Status__c FROM Session__c WHERE Id = :sessions LIMIT 1];
+        System.assertEquals(SESSION_PROVISIONAL_STATUS, sessionToTest.Status__c);
+    }
+
+    @isTest
+    static void ChangeSessionToProvisional_DeliveryTypeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
+        List<Session__c> sessions = [SELECT Id FROM Session__c];
+
+        Test.startTest();
+        for(Session__c session : sessions) {
+            session.Delivery_Type__c = 'Online';
         }
         update sessions;
         Test.stopTest();
@@ -119,11 +134,11 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
     static void ChangeSessionToProvisional_BulkUpdatesOnSessions_SessionStatusIsChangedToProvisional() {
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
         Set<Id> sessionIds = new Set<Id>();
-
+    
         Test.startTest();
-        for(Session__c aSession : sessions) {
-            aSession.Lunch_Break_Minutes__c =  11;
-            sessionIds.add(aSession.Id);
+        for(Session__c session : sessions) {
+            session.Lunch_Break_Minutes__c =  11;
+            sessionIds.add(session.Id);
         }
         update sessions;
         Test.stopTest();

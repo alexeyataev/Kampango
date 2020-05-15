@@ -139,9 +139,9 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             WITH SECURITY_ENFORCED
         ];
 
-        for(Course__c aCourse : coursesSessionsAndCourseAssignmentsToWithdrawn) {
-            for(Course_Assignment__c assignment : aCourse.Course_Assignments__r) {
-                if(aCourse.Sessions__r.isEmpty() && assignment.Number_of_Sessions__c != 0) {
+        for(Course__c course : coursesSessionsAndCourseAssignmentsToWithdrawn) {
+            for(Course_Assignment__c assignment : course.Course_Assignments__r) {
+                if(course.Sessions__r.isEmpty() && assignment.Number_of_Sessions__c != 0) {
                     assignment.Status__c = COURSE_ASSIGNMENT_WITHDRAWN_STATUS;
                     courseAssignmentsToUpdate.add(assignment);
                 } else {
