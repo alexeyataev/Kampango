@@ -3,7 +3,9 @@ public without sharing class TestDataFactory {
 
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
     private static final String SESSION_CONFIRMED_STATUS = 'Confirmed';
+    private static final String SESSION_STANDARD_TYPE = 'Standard';
     private static final String SESSION_REUNION_TYPE = 'Reunion';
+    private static final String SESSION_DELIVERY_TYPE_PHYSICAL = 'Physical';
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
     private static final String CLIENT_RECORDTYPE_NAME  = 'Client';
     private static final String PRACTITIONER_PROFILE_NAME = 'Practitioner';
@@ -35,12 +37,12 @@ public without sharing class TestDataFactory {
     private static Account organizationAccount;
     private Course_Assignment__c courseAssignment;
     private Venue__c venue;
+    private Venue__c virtualVenue;
     private Venue_Contact__c venueContact;
     private Room__c room;
     private Licence_To_Practice__c licenceToPractice;
     private Course__c course;
     private Session__c session;
-    private Session__c reunion;
     private Booking__c booking;
     private Contact parentHost;
     private Contact partnertHost;
@@ -234,22 +236,31 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildVenue() {
+        return buildVenue('TestVenue', false);
+    }
+
+    public TestDataFactory buildVenue(String name, Boolean isVirtualVenue) {
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        venue = venueBuilder
+        Venue__c builtVenue = venueBuilder
+            .withName(name)
             .withBranch(branchAccount)
+            .isVirtualVenue(isVirtualVenue)
             .insertRecord(true)
             .build();
+        if (isVirtualVenue) {
+            virtualVenue = builtVenue;
+        } else {
+            venue = builtVenue;
+        }
         return this;
     }
 
     public TestDataFactory buildVenueWithName(String name) {
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        venue = venueBuilder
-            .withName(name)
-            .withBranch(branchAccount)
-            .insertRecord(true)
-            .build();
-        return this;
+        return buildVenue(name, false);
+    }
+
+    public TestDataFactory buildVirtualVenue(String name) {
+        return buildVenue(name, true);
     }
 
     public TestDataFactory buildRoom() {
@@ -356,65 +367,46 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildSession() {
-        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
-        session = sessionBuilder
-            .withCourse(course)
-            .withVenue(venue)
-            .withRoom(room)
-            .withStatus(SESSION_PROVISIONAL_STATUS)
-            .withPractitioner(practitioners[0])
-            .withPractitionerFeeRate(practitionerFeeRate)
-            .withPractitionerLicence(licenceToPractice)
-            .insertRecord(true)
-            .build();
-        return this;
+        return buildSessionWithTypeAndStatus(SESSION_STANDARD_TYPE, SESSION_PROVISIONAL_STATUS);
     }
 
     public TestDataFactory buildConfirmedSession() {
-        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
-        session = sessionBuilder
-            .withCourse(course)
-            .withVenue(venue)
-            .withRoom(room)
-            .withStatus(SESSION_CONFIRMED_STATUS)
-            .withPractitioner(practitioners[0])
-            .withPractitionerFeeRate(practitionerFeeRate)
-            .withPractitionerLicence(licenceToPractice)
-            .insertRecord(true)
-            .build();
-        return this;
+        return buildSessionWithTypeAndStatus(SESSION_STANDARD_TYPE, SESSION_CONFIRMED_STATUS);
     }
 
     public TestDataFactory buildReunion() {
-        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
-        reunion = sessionBuilder
-            .withCourse(course)
-            .withType('Reunion')
-            .withVenue(venue)
-            .withRoom(room)
-            .withStatus(SESSION_PROVISIONAL_STATUS)
-            .withPractitioner(practitioners[0])
-            .withPractitionerFeeRate(practitionerFeeRate)
-            .withPractitionerLicence(licenceToPractice)
-            .insertRecord(true)
-            .build();
-        return this;
+        return buildSessionWithTypeAndStatus(SESSION_REUNION_TYPE, SESSION_PROVISIONAL_STATUS);
     }
 
     public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus) {
+        return buildSessionWithTypeAndStatus(sessionType, sessionStatus, null, null);
+    }
+
+    @SuppressWarnings('PMD.ExcessiveParameterList')
+    //Incident #88 - https://confluence.nct.org.uk:8443/x/EoSO
+    public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus, String deliveryType, Integer hours) {
+        deliveryType = deliveryType != null ? deliveryType : SESSION_DELIVERY_TYPE_PHYSICAL;
+        Venue__c sessionVenue = deliveryType == SESSION_DELIVERY_TYPE_PHYSICAL ? venue : virtualVenue;
+        Room__c sessionRoom = deliveryType == SESSION_DELIVERY_TYPE_PHYSICAL ? room : null;
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         session = sessionBuilder
             .withCourse(course)
-            .withVenue(venue)
-            .withRoom(room)
+            .withVenue(sessionVenue)
+            .withRoom(sessionRoom)
             .withType(sessionType)
             .withStatus(sessionStatus)
             .withPractitioner(practitioners[0])
             .withPractitionerFeeRate(practitionerFeeRate)
             .withPractitionerLicence(licenceToPractice)
+            .withDeliveryType(deliveryType)
+            .withHours(hours)
             .insertRecord(true)
             .build();
         return this;
+    }
+
+    public TestDataFactory buildVirtualSupportSession(String deliveryType, Integer hours) {
+        return buildSessionWithTypeAndStatus(SESSION_STANDARD_TYPE, SESSION_PROVISIONAL_STATUS, deliveryType, hours);
     }
 
     public TestDataFactory buildEstimatedCosts() {
@@ -696,15 +688,15 @@ public without sharing class TestDataFactory {
             LIMIT 100
         ];
 
-        for (Course_Assignment__c aCourseAssignment : courseAssignments) {
-            aCourseAssignment.OwnerId = practitionerCommunityUser.Id;
+        for (Course_Assignment__c courseAssignment : courseAssignments) {
+            courseAssignment.OwnerId = practitionerCommunityUser.Id;
         }
         update courseAssignments;
     }
 
     public TestDataFactory setSessionsToConfirmed(List<Session__c> sessions){
-        for(Session__c aSession : sessions){
-            aSession.Status__c = 'Confirmed';
+        for(Session__c session : sessions){
+            session.Status__c = 'Confirmed';
         }
         update sessions;
         return this;

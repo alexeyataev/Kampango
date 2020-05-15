@@ -50,13 +50,12 @@ public with sharing class PractitionerFeeRateHelper {
     } 
  
     private static List<Session__c> getPotentialSessionsToProcess(Set<String> affectedBands, Set<String> affectedWeightings, Date earliestFeeRateStartDate){
-
         return [SELECT  Id,
                         Practitioner_Fee_Rate__r.Practitioner_Band__c,
                         Practitioner_Fee_Rate__r.Geographical_Weighting__c,
-                        Date__c
+                        Fee_Rate_Date__c
                 FROM Session__c
-                WHERE Date__c >= :earliestFeeRateStartDate
+                WHERE Fee_Rate_Date__c >= :earliestFeeRateStartDate
                     AND ((Practitioner_Fee_Rate__r.Practitioner_Band__c IN :affectedBands
                             AND Practitioner_Fee_Rate__r.Geographical_Weighting__c IN :affectedWeightings)
                         OR Practitioner_Fee_Rate__c = null)
@@ -69,7 +68,7 @@ public with sharing class PractitionerFeeRateHelper {
         
         for(Session__c potentialSession : potentialSessionsToProcess){
             for(Practitioner_Fee_Rate__c feeRate : updatedAndNewRates){
-                if(potentialSession.Date__c > feeRate.Start_Date__c
+                if(potentialSession.Fee_Rate_Date__c > feeRate.Start_Date__c
                     && ((potentialSession.Practitioner_Fee_Rate__r.Practitioner_Band__c == feeRate.Practitioner_Band__c
                             && potentialSession.Practitioner_Fee_Rate__r.Geographical_Weighting__c == feeRate.Geographical_Weighting__c)
                         || potentialSession.Practitioner_Fee_Rate__c == null)){    
