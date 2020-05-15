@@ -11,6 +11,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
     private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
+    private static final String VIRTUAL_VENUE = 'Virtual';
     private static final Integer COURSES_TO_CREATE = 5;
     private static final Integer SESSIONS_TO_CREATE = 10;
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
@@ -38,6 +39,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
                     .buildPractitioner(PRACTITIONER_LASTNAME_TWO)
                     .buildPractitionerFeeRate()
                     .buildVenue()
+                    .buildVirtualVenue('Virtual')
                     .buildRoom()
                     .buildLicenceToPractice()
                     .buildCourse()
@@ -179,6 +181,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     @isTest
     static void RevertCourseToDraft_DeliveryTypeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
         List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
+        Venue__c virtualVenue = [SELECT Id FROM Venue__c WHERE RecordTypeId = :Schema.SObjectType.Venue__c.getRecordTypeInfosByDeveloperName().get(VIRTUAL_VENUE).getRecordTypeId() LIMIT 1];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -186,6 +189,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         Test.startTest();
         for(Session__c session : sessions) {
             session.Delivery_Type__c = 'Online';
+            session.Venue__c = virtualVenue.Id;
+            session.Room__c= null;
         }
         update sessions;
         Test.stopTest();
@@ -222,7 +227,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_VenueUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c];
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;
@@ -260,7 +265,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_RoomUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c];
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
         course.Status__c = COURSE_FINAL_STATUS;
         update course;

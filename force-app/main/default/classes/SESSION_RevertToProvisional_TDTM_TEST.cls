@@ -8,6 +8,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
     private static final String VENUE_NAME = 'Public Venue';
     private static final Integer COURSES_TO_CREATE = 5;
     private static final Integer SESSIONS_TO_CREATE = 10;
+    private static final String VIRTUAL_VENUE = 'Virtual';
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
         'triggerHandlerName' => 'SESSION_RevertToProvisional_TDTM',
         'className' => 'SESSION_RevertToProvisional_TDTM',
@@ -26,6 +27,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
                     .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
                     .buildPractitionerFeeRate()
                     .buildVenue()
+                    .buildVirtualVenue('Virtual')
                     .buildRoom()
                     .buildLicenceToPractice()
                     .buildCourse()
@@ -118,10 +120,13 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
     @isTest
     static void ChangeSessionToProvisional_DeliveryTypeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
         List<Session__c> sessions = [SELECT Id FROM Session__c];
+        Venue__c virtualVenue = [SELECT Id FROM Venue__c WHERE RecordTypeId = :Schema.SObjectType.Venue__c.getRecordTypeInfosByDeveloperName().get(VIRTUAL_VENUE).getRecordTypeId() LIMIT 1];
 
         Test.startTest();
         for(Session__c session : sessions) {
             session.Delivery_Type__c = 'Online';
+            session.Venue__c = virtualVenue.Id;
+            session.Room__c= null;
         }
         update sessions;
         Test.stopTest();

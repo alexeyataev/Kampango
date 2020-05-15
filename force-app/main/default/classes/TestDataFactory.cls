@@ -37,6 +37,7 @@ public without sharing class TestDataFactory {
     private static Account organizationAccount;
     private Course_Assignment__c courseAssignment;
     private Venue__c venue;
+    private Venue__c virtualVenue;
     private Venue_Contact__c venueContact;
     private Room__c room;
     private Licence_To_Practice__c licenceToPractice;
@@ -235,22 +236,31 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildVenue() {
+        return buildVenue('TestVenue', false);
+    }
+
+    public TestDataFactory buildVenue(String name, Boolean isVirtualVenue) {
         TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        venue = venueBuilder
+        Venue__c builtVenue = venueBuilder
+            .withName(name)
             .withBranch(branchAccount)
+            .isVirtualVenue(isVirtualVenue)
             .insertRecord(true)
             .build();
+        if (isVirtualVenue) {
+            virtualVenue = builtVenue;
+        } else {
+            venue = builtVenue;
+        }
         return this;
     }
 
     public TestDataFactory buildVenueWithName(String name) {
-        TestVenueBuilder venueBuilder = new TestVenueBuilder();
-        venue = venueBuilder
-            .withName(name)
-            .withBranch(branchAccount)
-            .insertRecord(true)
-            .build();
-        return this;
+        return buildVenue(name, false);
+    }
+
+    public TestDataFactory buildVirtualVenue(String name) {
+        return buildVenue(name, true);
     }
 
     public TestDataFactory buildRoom() {
@@ -376,11 +386,13 @@ public without sharing class TestDataFactory {
     //Incident #88 - https://confluence.nct.org.uk:8443/x/EoSO
     public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus, String deliveryType, Integer hours) {
         deliveryType = deliveryType != null ? deliveryType : SESSION_DELIVERY_TYPE_PHYSICAL;
+        Venue__c sessionVenue = deliveryType == SESSION_DELIVERY_TYPE_PHYSICAL ? venue : virtualVenue;
+        Room__c sessionRoom = deliveryType == SESSION_DELIVERY_TYPE_PHYSICAL ? room : null;
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         session = sessionBuilder
             .withCourse(course)
-            .withVenue(venue)
-            .withRoom(room)
+            .withVenue(sessionVenue)
+            .withRoom(sessionRoom)
             .withType(sessionType)
             .withStatus(sessionStatus)
             .withPractitioner(practitioners[0])

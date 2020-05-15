@@ -20,7 +20,6 @@ public with sharing class TestSessionBuilder {
 	private Contact parentHost;
 	private Boolean insertRecord = false;
 	private Practitioner_Fee_Rate__c practitionerFeeRate;
-	private Id sessionRecordTypeId;
 
 	public TestSessionBuilder withPractitioner(Contact practitioner)
 	{

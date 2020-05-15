@@ -15,6 +15,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     private static final String SESSION_TYPE_PROVISIONAL = 'Provisional';
     private static final String SESSION_TYPE_REUNION = 'Reunion';
     private static final String SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT = 'Virtual Support';
+    private static final String VIRTUAL_VENUE = 'Virtual';
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
         'triggerHandlerName' => 'SESSION_InvalidateCAs_TDTM',
         'className' => 'SESSION_InvalidateCAs_TDTM',
@@ -35,6 +36,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                     .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS)
                     .buildPractitionerFeeRate()
                     .buildVenue()
+                    .buildVirtualVenue('Virtual')
                     .buildRoom()
                     .buildLicenceToPractice()
                     .buildCourse()
@@ -572,11 +574,17 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
             WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT
             LIMIT 1
         ];
-
-        System.debug(session.Delivery_Type__c);
+        Venue__c virtualVenue = [
+            SELECT Id
+            FROM Venue__c
+            WHERE RecordTypeId = :Schema.SObjectType.Venue__c.getRecordTypeInfosByDeveloperName().get(VIRTUAL_VENUE).getRecordTypeId()
+            LIMIT 1
+        ];
 
         Test.startTest();
         session.Delivery_Type__c = 'Online';
+        session.Venue__c = virtualVenue.Id;
+        session.Room__c = null;
         update session;
         Test.stopTest();
 
