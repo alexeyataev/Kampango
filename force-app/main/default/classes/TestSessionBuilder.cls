@@ -1,13 +1,17 @@
 @isTest
 public with sharing class TestSessionBuilder {
 
+	private final String SCHEDULED_SESSION = 'Scheduled_Session';
+	private final String ADHOC_SUPPORT_SESSION = 'Adhoc_Support';
 	private String type = 'Standard';
 	private Integer daysAfterToday = 5;
+	private Integer hours;
 	private Date sessionDate  = Date.today() + daysAfterToday;
 	private Time startTime = Time.newInstance(18, 30, 0, 0);
 	private Time endTime = Time.newInstance(19, 30, 0, 00);
 	private String specificAttendeeType = 'Women only';
 	private String status = 'Confirmed';
+	private String deliveryType = 'Physical';
 	private Licence_To_Practice__c practitionerLicence;
 	private Venue__c venue;
 	private Course__c course;
@@ -94,6 +98,23 @@ public with sharing class TestSessionBuilder {
 		return this;
 	}
 
+	public TestSessionBuilder withDeliveryType(String deliveryType)
+	{
+		this.deliveryType = deliveryType;
+		return this;
+	}
+
+	public TestSessionBuilder withHours(Integer hours)
+	{
+		this.hours = hours;
+		if (hours != null) {
+			this.sessionDate = null;
+			this.startTime = null;
+			this.endTime = null;
+		}
+		return this;
+	}
+
 	public TestSessionBuilder insertRecord(Boolean insertRecord)
 	{
 		this.insertRecord = insertRecord;
@@ -105,6 +126,8 @@ public with sharing class TestSessionBuilder {
 		Session__c session = new Session__c(
 			Course__c = this.course.Id,
 			Type__c = this.type,
+			Delivery_Type__c = this.deliveryType,
+			Hours__c = this.hours,
 			Date__c = this.sessionDate,
 			Start__c = this.startTime,
 			End__c = this.endTime,
@@ -112,7 +135,9 @@ public with sharing class TestSessionBuilder {
 			Status__c = this.status,
 			Practitioner__c = this.practitioner.Id,
 			Practitioner_Licence__c = this.practitionerLicence.Id,
-			Practitioner_Fee_Rate__c = this.practitionerFeeRate != Null ? this.practitionerFeeRate.Id : Null
+			Practitioner_Fee_Rate__c = this.practitionerFeeRate != Null ? this.practitionerFeeRate.Id : Null,
+			RecordTypeId = deliveryType != 'Virtual Support' ? Schema.SObjectType.Session__c.getRecordTypeInfosByDeveloperName().get(SCHEDULED_SESSION).getRecordTypeId()
+                        : Schema.SObjectType.Session__c.getRecordTypeInfosByDeveloperName().get(ADHOC_SUPPORT_SESSION).getRecordTypeId()
 		);
 		if (parentHost != null) {
 			session.Parent_Host__c = this.parentHost.Id;
@@ -124,7 +149,6 @@ public with sharing class TestSessionBuilder {
 				session.Room__c = this.room.Id;
 			}
 		}
-
 
 		if(insertRecord)
 		{

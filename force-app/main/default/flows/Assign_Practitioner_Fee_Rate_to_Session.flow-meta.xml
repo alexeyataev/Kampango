@@ -91,7 +91,7 @@
             <value>
                 <stringValue>OR(
 ISNEW(),
-ISCHANGED([Session__c].Date__c),
+ISCHANGED([Session__c].Fee_Rate_Date__c),
 ISCHANGED([Session__c].Practitioner__c)    
 ) </stringValue>
             </value>
@@ -100,11 +100,11 @@ ISCHANGED([Session__c].Practitioner__c)
         <dataType>Boolean</dataType>
         <expression>OR(
 ISNEW(),
-ISCHANGED({!myVariable_current.Date__c}),
+ISCHANGED({!myVariable_current.Fee_Rate_Date__c}),
 ISCHANGED({!myVariable_current.Practitioner__c})    
 )</expression>
     </formulas>
-    <interviewLabel>Assign_Practitioner_Fee_Rate_to_Session-2_InterviewLabel</interviewLabel>
+    <interviewLabel>Assign_Practitioner_Fee_Rate_to_Session-3_InterviewLabel</interviewLabel>
     <label>Assign Practitioner Fee Rate to Session</label>
     <processMetadataValues>
         <name>ObjectType</name>

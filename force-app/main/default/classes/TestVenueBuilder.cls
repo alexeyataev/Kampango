@@ -1,6 +1,8 @@
 @isTest
 public with sharing class TestVenueBuilder {
 
+    private final String PHYSICAL_VENUE = 'Physical';
+	private final String VIRTUAL_VENUE = 'Virtual';
     private Account branch;
     private String name = 'TestVenue';
     private String streetAddress = '221B Baker Street';
@@ -8,8 +10,12 @@ public with sharing class TestVenueBuilder {
     private String postcode = 'NW1 6XE';
     private String type = 'Commercial/Community';
     private String subtype = 'Primary';
+    private String clientLink;
+    private String hostUsername;
+    private String hostPassword;
     private Decimal latitude = 50.501;
     private Decimal longitude = -0.101;
+    private Boolean isVirtualVenue = false;
     private Boolean insertRecord = false;
 
     public TestVenueBuilder withName(String name) {
@@ -57,6 +63,16 @@ public with sharing class TestVenueBuilder {
         return this;
     }
 
+    public TestVenueBuilder isVirtualVenue(Boolean isVirtualVenue) {
+        this.isVirtualVenue = isVirtualVenue;
+        if (isVirtualVenue) {
+            clientLink = 'https://zoom.us/xxx';
+            hostUsername = 'JohnDoe';
+            hostPassword = '1234567';
+        }
+        return this;
+    }
+
     public TestVenueBuilder insertRecord(Boolean insertRecord){
         this.insertRecord = insertRecord;
         return this;
@@ -69,11 +85,16 @@ public with sharing class TestVenueBuilder {
             Branch__c = this.branch.Id,
             Street_Address__c = this.streetAddress,
             Postcode__c = this.postcode,
+            Client_Link__c = this.clientLink,
+            Host_Username__c = this.hostUsername,
+            Host_Password__c = this.hostPassword,
             Type__c = this.type,
             Town__c = this.town,
             Subtype__c = this.subtype,
             Location__latitude__s = this.latitude,
-            Location__longitude__s = this.longitude
+            Location__longitude__s = this.longitude,
+            RecordTypeId = isVirtualVenue ? Schema.SObjectType.Venue__c.getRecordTypeInfosByDeveloperName().get(VIRTUAL_VENUE).getRecordTypeId()
+                        : Schema.SObjectType.Venue__c.getRecordTypeInfosByDeveloperName().get(PHYSICAL_VENUE).getRecordTypeId()
         );
 
         if(this.insertRecord){

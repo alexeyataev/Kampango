@@ -33,7 +33,7 @@ public with sharing class BranchWeightingHelper {
        return [SELECT Id
                FROM Session__c
                WHERE Course__r.Branch__c IN :branchIds
-                   AND Date__c >= :earliestWeightingStartDate
+                   AND Fee_Rate_Date__c >= :earliestWeightingStartDate
                WITH SECURITY_ENFORCED];
    }
 }

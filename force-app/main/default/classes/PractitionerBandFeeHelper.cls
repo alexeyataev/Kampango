@@ -37,7 +37,7 @@ public with sharing class PractitionerBandFeeHelper {
         return [SELECT Id 
                 FROM Session__c 
                 WHERE Practitioner__c IN :practitionerIds
-                    AND Date__c >= :earliestBandStartDate
+                    AND Fee_Rate_Date__c >= :earliestBandStartDate
                 WITH SECURITY_ENFORCED];
     }
 }
