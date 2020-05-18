@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Postcode_Must_Contain_Space</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+	NOT(CONTAINS(Postcode__c, &quot; &quot;)),
+	NOT($Permission.Override_Venue_Validation)
+)</errorConditionFormula>
+    <errorDisplayField>Postcode__c</errorDisplayField>
+    <errorMessage>Postcode must contain at least one space</errorMessage>
+</ValidationRule>

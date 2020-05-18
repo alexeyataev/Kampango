@@ -2,9 +2,21 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Main_Venue_Name__c</fullName>
     <externalId>false</externalId>
-    <formula>IF( NOT(ISBLANK( Main_Venue__c)),
- IF(NOT(ISBLANK(Main_Venue__r.Host__c)), &quot;Course Leader&#39;s Home&quot;,  Main_Venue__r.Name)
-, &quot;&quot;)</formula>
+    <formula>IF(
+	Has_Virtual_Teaching_Content__c = true,
+	&quot;For parents in and around &quot; + Main_Venue__r.Town__c + &quot;, &quot; + Main_Venue__r.Postcode_District__c + &quot;.&quot;,
+	IF(
+		NOT(ISBLANK(Main_Venue__c)),
+		IF(
+			NOT(
+				ISBLANK(Main_Venue__r.Host__c)
+			),
+			&quot;Course Leader&#39;s Home&quot;,
+			Main_Venue__r.Name
+		),
+		&quot;&quot;
+	)
+)</formula>
     <label>Main Venue Name</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
