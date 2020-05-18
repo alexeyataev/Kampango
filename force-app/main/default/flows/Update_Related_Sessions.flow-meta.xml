@@ -103,7 +103,7 @@
             </processMetadataValues>
             <name>oldVenueId</name>
             <value>
-                <elementReference>formula_3_myRule_1_A1_6125282922</elementReference>
+                <elementReference>formula_3_myRule_1_A1_9078255437</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -159,14 +159,14 @@
         <processMetadataValues>
             <name>flowSelection</name>
             <value>
-                <stringValue>Update Venue on Sessions related to Course</stringValue>
+                <stringValue>Update Online Venue on Sessions related to Course</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_5_A1</name>
         <label>Update Online Sessions Venue</label>
         <locationX>500</locationX>
         <locationY>200</locationY>
-        <actionName>Update_Venue_on_Sessions_related_to_Course</actionName>
+        <actionName>Update_Online_Venue_on_Sessions_related_to_Course</actionName>
         <actionType>flow</actionType>
         <connector>
             <targetReference>myDecision8</targetReference>
@@ -252,7 +252,7 @@
             </processMetadataValues>
             <name>oldVenueId</name>
             <value>
-                <elementReference>formula_7_myRule_5_A1_6088532438</elementReference>
+                <elementReference>formula_7_myRule_5_A1_4839442341</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -294,7 +294,7 @@
             </processMetadataValues>
             <name>newVenueId</name>
             <value>
-                <elementReference>myVariable_current.Main_Venue__c</elementReference>
+                <elementReference>myVariable_current.Main_Online_Venue__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -440,7 +440,7 @@
             </processMetadataValues>
             <name>oldMainPractitionerLicenceId</name>
             <value>
-                <elementReference>formula_11_myRule_9_A1_0032253100</elementReference>
+                <elementReference>formula_11_myRule_9_A1_0620565916</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -769,7 +769,7 @@
                 <stringValue>PRIORVALUE([Course__c].Main_Practitioner_Licence__c ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_9_A1_0032253100</name>
+        <name>formula_11_myRule_9_A1_0620565916</name>
         <dataType>String</dataType>
         <expression>PRIORVALUE({!myVariable_current.Main_Practitioner_Licence__c} )</expression>
     </formulas>
@@ -780,7 +780,7 @@
                 <stringValue>PRIORVALUE([Course__c].Main_Venue__c)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_6125282922</name>
+        <name>formula_3_myRule_1_A1_9078255437</name>
         <dataType>String</dataType>
         <expression>PRIORVALUE({!myVariable_current.Main_Venue__c})</expression>
     </formulas>
@@ -788,14 +788,14 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>PRIORVALUE([Course__c].Main_Venue__c)</stringValue>
+                <stringValue>PRIORVALUE([Course__c].Main_Online_Venue__c)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_5_A1_6088532438</name>
+        <name>formula_7_myRule_5_A1_4839442341</name>
         <dataType>String</dataType>
-        <expression>PRIORVALUE({!myVariable_current.Main_Venue__c})</expression>
+        <expression>PRIORVALUE({!myVariable_current.Main_Online_Venue__c})</expression>
     </formulas>
-    <interviewLabel>Update_Related_Sessions-4_InterviewLabel</interviewLabel>
+    <interviewLabel>Update_Related_Sessions-5_InterviewLabel</interviewLabel>
     <label>Update Related Sessions</label>
     <processMetadataValues>
         <name>ObjectType</name>

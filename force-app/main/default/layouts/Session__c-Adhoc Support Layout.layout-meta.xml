@@ -30,11 +30,11 @@
                 <field>Course__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Practitioner__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Practitioner_Licence__c</field>
             </layoutItems>
             <layoutItems>

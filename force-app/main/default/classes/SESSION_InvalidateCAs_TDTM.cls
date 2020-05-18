@@ -45,6 +45,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                             session.Start__c != oldSessionMap.get(session.Id).Start__c ||
                             session.End__c != oldSessionMap.get(session.Id).End__c ||
                             session.Lunch_Break_Minutes__c != oldSessionMap.get(session.Id).Lunch_Break_Minutes__c ||
+                            session.Hours__c != oldSessionMap.get(session.Id).Hours__c ||
+                            session.Delivery_Type__c != oldSessionMap.get(session.Id).Delivery_Type__c ||
                             session.Venue__c != oldSessionMap.get(session.Id).Venue__c ||
                             session.Status__c != oldSessionMap.get(session.Id).Status__c ||
                             session.Practitioner_Fee_Rate__c != oldSessionMap.get(session.Id).Practitioner_Fee_Rate__c);
@@ -85,9 +87,9 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         Set<Id> practitionerIds = new Set<Id>();
         Set<Id> courseIds = new Set<Id>();
 
-        for(Session__c aSession : sessionsToIterate) {
-            practitionerIds.add(aSession.Practitioner__c);
-            courseIds.add(aSession.Course__c);
+        for(Session__c session : sessionsToIterate) {
+            practitionerIds.add(session.Practitioner__c);
+            courseIds.add(session.Course__c);
         }
         
         setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(practitionerIds, courseIds, courseAssignmentsToUpdate);
@@ -99,8 +101,8 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
         Set<Id> courseAssignmentIds = new Set<Id>();
 
-        for(Session__c aSession : sessionsToIterate) {
-            courseAssignmentIds.add(aSession.Course_Assignment__c);
+        for(Session__c session : sessionsToIterate) {
+            courseAssignmentIds.add(session.Course_Assignment__c);
         }
 
         setCourseAssignmentsStatusDependOnWhetherAssignedSessions(courseAssignmentIds, courseAssignmentsToUpdate);
@@ -137,9 +139,9 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             WITH SECURITY_ENFORCED
         ];
 
-        for(Course__c aCourse : coursesSessionsAndCourseAssignmentsToWithdrawn) {
-            for(Course_Assignment__c assignment : aCourse.Course_Assignments__r) {
-                if(aCourse.Sessions__r.isEmpty() && assignment.Number_of_Sessions__c != 0) {
+        for(Course__c course : coursesSessionsAndCourseAssignmentsToWithdrawn) {
+            for(Course_Assignment__c assignment : course.Course_Assignments__r) {
+                if(course.Sessions__r.isEmpty() && assignment.Number_of_Sessions__c != 0) {
                     assignment.Status__c = COURSE_ASSIGNMENT_WITHDRAWN_STATUS;
                     courseAssignmentsToUpdate.add(assignment);
                 } else {
