@@ -17,22 +17,6 @@
         <value>bookings{0}@nct.org.uk</value>
     </labels>
     <labels>
-        <fullName>Confirmation_Notification_Additional_Session</fullName>
-        <categories>Confirmation Notification</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Confirmation Notification Additional Session</shortDescription>
-        <value>In addition to the dates and times shown, there will be a {0}-hour session. Further details of this will be confirmed to you by your course administrator once finalised.</value>
-    </labels>
-    <labels>
-        <fullName>Confirmation_Notification_Breastfeeding_Session</fullName>
-        <categories>Confirmation Notification</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Confirmation Notification Breastfeeding Session</shortDescription>
-        <value>In addition to the dates and times shown, there will be a {0}-hour breastfeeding session. Further details of this will be confirmed to you by your course administrator once finalised.</value>
-    </labels>
-    <labels>
         <fullName>Confirmation_Notification_Course_Reunion</fullName>
         <categories>Confirmation Notification</categories>
         <language>en_US</language>
@@ -108,13 +92,6 @@
         <value>{&quot;Error&quot; : &quot;Radius is not a whole number of miles&quot;}</value>
     </labels>
     <labels>
-        <fullName>Course_Leader_home</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Course Leader&#39;s home</shortDescription>
-        <value>Course Leader&#39;s home</value>
-    </labels>
-    <labels>
         <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -128,14 +105,6 @@
         <protected>false</protected>
         <shortDescription>Nct Pregnancy Baby Guide Url</shortDescription>
         <value>https://www.nct.org.uk/nct-pregnancy-baby-guide</value>
-    </labels>
-    <labels>
-        <fullName>Part_Of_The_Course_Is_Online_Text</fullName>
-        <categories>Confirmation Notification</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Part Of The Course Is Online Text</shortDescription>
-        <value>There is also a reunion for all course participants with their new baby after the births. Depending on when the social distancing measures are lifted, this may be in-person, or online. Your course leader will agree a date and time with you for this.</value>
     </labels>
     <labels>
         <fullName>Payment_Plan_Different_Amounts_Option_Template</fullName>
