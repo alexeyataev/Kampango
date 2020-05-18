@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Start_End_or_Hours_can_be_populated</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    OR(
+       AND(
+           OR(
+              NOT(ISBLANK(Start__c)),
+              NOT(ISBLANK(End__c))),
+           NOT(ISBLANK(Hours__c))
+       ),
+       AND(
+           OR(
+              ISBLANK(Start__c),
+              ISBLANK(End__c)),
+           ISBLANK(Hours__c)
+       )
+    ),	
+    NOT($Permission.Override_Venue_Validation)
+)</errorConditionFormula>
+    <errorMessage>Populate either Hours or Start and End.</errorMessage>
+</ValidationRule>

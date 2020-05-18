@@ -26,12 +26,17 @@
     <formulas>
         <name>CADreference</name>
         <dataType>String</dataType>
-        <expression>If({!currentSession.Course_Assignment__c} != null, {!currentSession.Course_Assignment__r.Name}, &quot;None&quot;)</expression>
+        <expression>If({!currentSession.Course_Assignment__c} != null, {!currentSession.Course_Assignment__r.Name}, &quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>deletionDate</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>timesDetails</name>
+        <dataType>String</dataType>
+        <expression>If(ISBLANK({!currentSession.Hours__c}), &quot;Times: &quot; + {!currentSession.Times__c},  &quot;Hours: &quot; +  TEXT({!currentSession.Hours__c}))</expression>
     </formulas>
     <formulas>
         <name>venueInvoicePaid</name>
@@ -41,7 +46,7 @@
     <formulas>
         <name>venueName</name>
         <dataType>String</dataType>
-        <expression>If({!currentSession.Venue__c} != null, {!currentSession.Venue__r.Name}, &quot;None&quot;)</expression>
+        <expression>If({!currentSession.Venue__c} != null, {!currentSession.Venue__r.Name}, &quot;&quot;)</expression>
     </formulas>
     <interviewLabel>Track Deleted Sessions {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Track Deleted Sessions</label>
@@ -80,11 +85,12 @@
     <status>Active</status>
     <textTemplates>
         <name>SessionDetails</name>
-        <text>Session {!currentSession.Name} scheduled for {!currentSession.Date__c}
+        <text>Session {!currentSession.Name} scheduled for {!currentSession.Fee_Rate_Date__c}
 deleted on {!deletionDate}
 
-Session date: {!currentSession.Date__c}
-Times: {!currentSession.Times__c}
+Session date: {!currentSession.Fee_Rate_Date__c}
+{!timesDetails}
+Delivery Type: {!currentSession.Delivery_Type__c}
 Type: {!currentSession.Type__c}
 Specific attendee type: {!currentSession.Specific_Attendee_Type__c}
 Practitioner name: {!currentSession.Practitioner__r.FirstName} {!currentSession.Practitioner__r.LastName}

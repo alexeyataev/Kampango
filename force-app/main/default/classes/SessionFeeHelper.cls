@@ -51,8 +51,8 @@ public class SessionFeeHelper {
     private static Branch_Weighting__c getWeightingForSession(Session__c session, List<Branch_Weighting__c> possibleWeightings){
         if (possibleWeightings != null) {
             for(Branch_Weighting__c weighting : possibleWeightings){
-                if(weighting.Start_Date__c <= session.Date__c && 
-                    (weighting.End_Date__c == null || weighting.End_Date__c >= session.Date__c)){
+                if(weighting.Start_Date__c <= session.Fee_Rate_Date__c && 
+                    (weighting.End_Date__c == null || weighting.End_Date__c >= session.Fee_Rate_Date__c)){
                         return weighting;
                 }
             }
@@ -63,8 +63,8 @@ public class SessionFeeHelper {
     private static Practitioner_Band__c getBandForSession(Session__c session, List<Practitioner_Band__c> possibleBands){
         if (possibleBands != null) {
             for(Practitioner_Band__c band : possibleBands){
-                if(band.Start_Date__c <= session.Date__c && 
-                    (band.End_Date__c == null || band.End_Date__c >= session.Date__c)){
+                if(band.Start_Date__c <= session.Fee_Rate_Date__c && 
+                    (band.End_Date__c == null || band.End_Date__c >= session.Fee_Rate_Date__c)){
                         return band;
                 }
             }
@@ -77,8 +77,8 @@ public class SessionFeeHelper {
             for(Practitioner_Fee_Rate__c rate : possibleRates){
                 if(rate.Geographical_Weighting__c == chosenWeighting.Geographical_Weighting__c && 
                     rate.Practitioner_Band__c == chosenBand.Band__c &&
-                    rate.Start_Date__c < = session.Date__c &&
-                    (rate.End_Date__c == null || rate.End_Date__c >= session.Date__c)){
+                    rate.Start_Date__c < = session.Fee_Rate_Date__c &&
+                    (rate.End_Date__c == null || rate.End_Date__c >= session.Fee_Rate_Date__c)){
                         return rate;
                 }
             }
@@ -93,7 +93,7 @@ public class SessionFeeHelper {
             sessionIds.add(session.Id);
         }
 
-        return [SELECT Id, Date__c, Practitioner__c, Course__c, Course__r.Branch__c 
+        return [SELECT Id, Fee_Rate_Date__c, Practitioner__c, Course__c, Course__r.Branch__c 
                 FROM Session__c 
                 WHERE Id IN :sessionIds
                 WITH SECURITY_ENFORCED];
@@ -101,11 +101,11 @@ public class SessionFeeHelper {
 
     private static void setEarliestAndLatestSessionDates(List<Session__c> sessions){
         for(Session__c session : sessions){
-            if(earliestSessionDate == null || earliestSessionDate > session.Date__c){
-                earliestSessionDate = session.Date__c;
+            if(earliestSessionDate == null || earliestSessionDate > session.Fee_Rate_Date__c){
+                earliestSessionDate = session.Fee_Rate_Date__c;
             }
-            if(latestSessionDate == null || latestSessionDate < session.Date__c){
-                latestSessionDate = session.Date__c;
+            if(latestSessionDate == null || latestSessionDate < session.Fee_Rate_Date__c){
+                latestSessionDate = session.Fee_Rate_Date__c;
             }
         }
     }

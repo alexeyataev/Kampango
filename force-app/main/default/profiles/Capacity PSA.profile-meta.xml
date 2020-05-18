@@ -12,12 +12,17 @@
     </applicationVisibilities>
     <custom>true</custom>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.AccountNumber</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <field>Account.BillingAddress</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Billing_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -27,38 +32,53 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Capacity_PSA__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Capacity_PSA_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Capacity_PSA_Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Enquiries_PSA__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Enquiries_PSA_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Enquiries_PSA_Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.ParentId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Phone</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.PSA_Area__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.ShippingAddress</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -947,8 +967,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+		<editable>true</editable>
+		<field>Session__c.Date__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Day_of_Week__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.End__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -957,13 +987,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Session__c.Lunch_Break_Minutes__c</field>
+        <editable>false</editable>
+        <field>Session__c.Fee_Rate_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Hourly_Rate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -999,6 +1034,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Location_Town__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Lunch_Break_Minutes__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1068,12 +1108,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Session__c.Start__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Session__c.Start_Text__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Times__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2207,7 +2257,7 @@
         <readable>true</readable>	
     </fieldPermissions>
     <layoutAssignments>
-        <layout>Account-Branch Read Only Layout</layout>
+        <layout>Account-Branch Layout</layout>
         <recordType>Account.Branch</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -2273,7 +2323,12 @@
         <layout>Room__c-Room Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Session__c-Adhoc Support Layout</layout>
+        <recordType>Session__c.Adhoc_Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Session__c-Session Layout</layout>
+        <recordType>Session__c.Scheduled_Session</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Venue_Contact__c-Venue Contact Layout</layout>
@@ -2639,6 +2694,16 @@
         <default>false</default>
         <recordType>Contact.Practitioner</recordType>
         <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Session__c.Adhoc_Support</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Session__c.Scheduled_Session</recordType>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>

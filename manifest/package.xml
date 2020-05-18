@@ -591,6 +591,7 @@
         <members>Product2-Practitioner Product Page</members>
         <members>Rate__c-Rate Layout</members>
         <members>Room__c-Room Layout</members>
+        <members>Session__c-Adhoc Support Layout</members>
         <members>Session__c-Session Layout</members>
         <members>Venue__c-Venue Layout</members>
         <members>Venue__c-Virtual Venue Page Layout</members>
@@ -607,15 +608,16 @@
     </types>
     <types>
         <members>checkBrowserCompatibility</members>
-        <members>courseDetailsComponent</members>
         <members>claimFeesDatatable</members>
+        <members>courseDetailsComponent</members>
+        <members>courseTransferDetails</members>
         <members>customCommunityButton</members>
         <members>failurePaymentPage</members>
+        <members>globalConstansHelper</members>
         <members>linkToPaymentComponent</members>
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
-        <members>courseTransferDetails</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
