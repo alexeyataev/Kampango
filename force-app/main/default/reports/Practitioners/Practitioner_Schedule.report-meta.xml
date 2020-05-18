@@ -45,15 +45,24 @@
     <filter>
         <criteriaItems>
             <column>Session__c$Course__c.Status__c</column>
+            <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
             <value>Draft,Final</value>
         </criteriaItems>
         <criteriaItems>
             <column>Session__c$Practitioner__c</column>
+            <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
             <value/>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Session__c$Delivery_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Virtual Support</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
