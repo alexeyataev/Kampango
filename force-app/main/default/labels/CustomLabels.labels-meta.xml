@@ -17,12 +17,40 @@
         <value>bookings{0}@nct.org.uk</value>
     </labels>
     <labels>
+        <fullName>Confirmation_Notification_Additional_Session</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation Notification Additional Session</shortDescription>
+        <value>In addition to the dates and times shown, there will be a {0}-hour session. Further details of this will be confirmed to you by your course administrator once finalised.</value>
+    </labels>
+    <labels>
+        <fullName>Confirmation_Notification_Breastfeeding_Session</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation Notification Breastfeeding Session</shortDescription>
+        <value>In addition to the dates and times shown, there will be a {0}-hour breastfeeding session. Further details of this will be confirmed to you by your course administrator once finalised.</value>
+    </labels>
+    <labels>
         <fullName>Confirmation_Notification_Course_Reunion</fullName>
         <categories>Confirmation Notification</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Confirmation Notification Course Reunion</shortDescription>
         <value>There is also a reunion for all course participants with their new baby after the births. Your course leader will agree a date and time with you for this.</value>
+    </labels>
+    <labels>
+        <fullName>Confirmed_Zoom_Details_Text</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmed Zoom Details Text</shortDescription>
+        <value>&lt;p&gt;To log into Zoom please copy this link into your browser: {0} &lt;/p&gt;
+
+&lt;p&gt;Please could you log in 5 minutes before the start time, as sometimes it can take a few minutes for all the group to access the session. &lt;/p&gt;
+
+&lt;p&gt;If you have any queries please see the {1}&lt;/p&gt;</value>
     </labels>
     <labels>
         <fullName>ContactUpdateException</fullName>
@@ -80,6 +108,13 @@
         <value>{&quot;Error&quot; : &quot;Radius is not a whole number of miles&quot;}</value>
     </labels>
     <labels>
+        <fullName>Course_Leader_home</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Course Leader&#39;s home</shortDescription>
+        <value>Course Leader&#39;s home</value>
+    </labels>
+    <labels>
         <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -93,6 +128,14 @@
         <protected>false</protected>
         <shortDescription>Nct Pregnancy Baby Guide Url</shortDescription>
         <value>https://www.nct.org.uk/nct-pregnancy-baby-guide</value>
+    </labels>
+    <labels>
+        <fullName>Part_Of_The_Course_Is_Online_Text</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Part Of The Course Is Online Text</shortDescription>
+        <value>There is also a reunion for all course participants with their new baby after the births. Depending on when the social distancing measures are lifted, this may be in-person, or online. Your course leader will agree a date and time with you for this.</value>
     </labels>
     <labels>
         <fullName>Payment_Plan_Different_Amounts_Option_Template</fullName>
@@ -116,12 +159,36 @@
         <value>{0} monthly payments of £ {1}</value>
     </labels>
     <labels>
+        <fullName>Reunion_Confirmed_Practitioner_Message</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reunion Confirmed Practitioner Message</shortDescription>
+        <value>Thank you for agreeing to facilitate the {0} reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on &lt;b&gt; {1} {2} from {3} to {4} &lt;/b&gt;</value>
+    </labels>
+    <labels>
+        <fullName>Sessions_Virtual_Support_Text</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sessions Virtual Support Text</shortDescription>
+        <value>In addition to the scheduled live, interactive online session(s), the remaining hours of your course will be made up of at least {0} hours of enhanced personalised group support from your course leader(s) delivered via a closed messaging group.</value>
+    </labels>
+    <labels>
         <fullName>Sub_Type_Course_Baby_Massage</fullName>
         <categories>Confirmation Notification</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Sub Type Course  Baby Massage</shortDescription>
         <value>NCT Baby Massage course</value>
+    </labels>
+    <labels>
+        <fullName>Unconfirmed_Zoom_Details_Text</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unconfirmed Zoom Details Text</shortDescription>
+        <value>We will email you the Zoom access details for your live, interactive online session(s) at least two weeks before your course starts.</value>
     </labels>
     <labels>
         <fullName>Unsupported_Browser_Error_Message</fullName>
