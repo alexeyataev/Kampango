@@ -166,4 +166,12 @@
         <shortDescription>Unsupported browser error message</shortDescription>
         <value>Sorry, your current browser isn't supported. For the best experience we suggest using Chrome.</value>
     </labels>
+    <labels>
+        <fullName>Zoom_Support_Link</fullName>
+        <categories>Confirmation Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Zoom Support Link</shortDescription>
+        <value>https://support.zoom.us/hc/en-us</value>
+    </labels>
 </CustomLabels>
