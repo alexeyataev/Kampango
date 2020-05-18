@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <formula>IF(
 	Has_Virtual_Teaching_Content__c = true,
-	&quot;For parents in and around &quot; + Main_Venue__r.Town__c + &quot;, &quot; + LEFT(Main_Venue__r.Postcode__c, FIND(&quot; &quot;, Main_Venue__r.Postcode__c) - 1) + &quot;.&quot;,
+	&quot;For parents in and around &quot; + Main_Venue__r.Town__c + &quot;, &quot; + Main_Venue__r.Postcode_District__c + &quot;.&quot;,
 	IF(
 		NOT(ISBLANK(Main_Venue__c)),
 		IF(
