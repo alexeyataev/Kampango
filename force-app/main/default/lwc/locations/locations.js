@@ -11,6 +11,7 @@ export default class Locations extends LightningElement {
     @api isStatusConfirmed;
     @api venues;
     @api sessions;
+    notExcludedSessions
 
     connectedCallback() {
         loadStyle(this, NCT_STYLES + '/coursedetail.css')
@@ -27,8 +28,8 @@ export default class Locations extends LightningElement {
                 );
             });
 
-        this.sessions = this.excludeProvisionalSessions(this.sessions);
-        this.venues = this.deduplicateVenues(this.getVenues(this.sessions));
+        this.notExcludedSessions = this.excludeProvisionalSessions(this.sessions);
+        this.venues = this.deduplicateVenues(this.getVenues(this.notExcludedSessions));
         this.formatVenues();
     }
 
@@ -46,20 +47,21 @@ export default class Locations extends LightningElement {
         this.venues = finalArray;
     }
 
-    getVenueToSessionMap(sessionList){
+    getVenueToSessionMap(sessionList) {
         let venueIdSessionListMap = new Map();
         sessionList.forEach(
             (row, index) => {
-                if(venueIdSessionListMap.has(row.Location_Id__c)){
-                    let sessionNumbers = venueIdSessionListMap.get(row.Location_Id__c);
-                    if(!sessionNumbers.includes('sessions')){
-                        sessionNumbers = sessionNumbers.replace('session', 'sessions');
+                if(row.Delivery_Type__c === SESSION_DELIVERY_TYPE_PHYSICAL) {
+                    if(venueIdSessionListMap.has(row.Location_Id__c)) {
+                            let sessionNumbers = venueIdSessionListMap.get(row.Location_Id__c);
+                            if(!sessionNumbers.includes('sessions')) {
+                                sessionNumbers = sessionNumbers.replace('session', 'sessions');
+                            }
+                            sessionNumbers = sessionNumbers + ', ' + ++index;
+                            venueIdSessionListMap.set(row.Location_Id__c, sessionNumbers);
+                    } else {
+                        venueIdSessionListMap.set(row.Location_Id__c, 'session ' + ++index);
                     }
-                    sessionNumbers = sessionNumbers + ', ' + ++index;
-                    venueIdSessionListMap.set(row.Location_Id__c, sessionNumbers);
-                } else {
-                    venueIdSessionListMap.set(row.Location_Id__c, 'session ' + ++index);
-                    
                 }
             }
         )
