@@ -53,12 +53,12 @@ export default class Locations extends LightningElement {
             (row, index) => {
                 if(row.Delivery_Type__c === SESSION_DELIVERY_TYPE_PHYSICAL) {
                     if(venueIdSessionListMap.has(row.Location_Id__c)) {
-                            let sessionNumbers = venueIdSessionListMap.get(row.Location_Id__c);
-                            if(!sessionNumbers.includes('sessions')) {
-                                sessionNumbers = sessionNumbers.replace('session', 'sessions');
-                            }
-                            sessionNumbers = sessionNumbers + ', ' + ++index;
-                            venueIdSessionListMap.set(row.Location_Id__c, sessionNumbers);
+                        let sessionNumbers = venueIdSessionListMap.get(row.Location_Id__c);
+                        if(!sessionNumbers.includes('sessions')) {
+                            sessionNumbers = sessionNumbers.replace('session', 'sessions');
+                        }
+                        sessionNumbers = sessionNumbers + ', ' + ++index;
+                        venueIdSessionListMap.set(row.Location_Id__c, sessionNumbers);
                     } else {
                         venueIdSessionListMap.set(row.Location_Id__c, 'session ' + ++index);
                     }
