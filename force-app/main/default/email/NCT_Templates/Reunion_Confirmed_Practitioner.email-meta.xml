@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>48.0</apiVersion>
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Reunion Confirmed Practitioner</name>
     <style>none</style>
-    <subject>NCT course reunion confirmation - {!Course__c.Name}</subject>
-    <textOnly>Course reference: {!Course__c.Name} Dear {!Contact.FirstName}, 
-
-{!Session__c.Reunion_Online_Practitioner_Message__c}
-{!Session__c.Reunion_Physical_Practitioner_Message__c}  
-
-If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated. 
-
-Kind Regards,   {!Course__c.Capacity_PSA_Name__c}  
-
-Capacity PSA – {!Course__c.PSA_Area__c}  
-
-Telephone: {!Course__c.Capacity_PSA_Phone__c}  
-
-Email: Any reply to this email should be sent to {!Course__c.Capacity_PSA_Email__c}</textOnly>
-    <type>custom</type>
+    <subject>NCT course reunion confirmation -</subject>
+    <type>visualforce</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

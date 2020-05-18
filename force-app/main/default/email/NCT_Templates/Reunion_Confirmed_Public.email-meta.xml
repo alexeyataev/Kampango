@@ -24,7 +24,7 @@ I&#39;m delighted to confirm the details for your {!Course__c.Sub_Type__c} reuni
 
  + &quot;We look forward to seeing you, albeit virtually, again then. &quot;  
 
-,
+,  
 
  &quot;It will be held at:&quot;  
 
@@ -34,17 +34,16 @@ I&#39;m delighted to confirm the details for your {!Course__c.Sub_Type__c} reuni
 
 )}  
 
-We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
-Find a postnatal course
-https://www.nct.org.uk
+We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:  
+Find a postnatal course  
 
-Kind Regards,
+Kind Regards,  
 
-{!Course__c.Enquiries_PSA_Name__c}
+{!Course__c.Enquiries_PSA_Name__c}  
 
-Course Organiser
+Course Organiser  
 
-Telephone: {!Course__c.Enquiries_PSA_Phone__c}
+Telephone: {!Course__c.Enquiries_PSA_Phone__c}  
 
 Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}</textOnly>
     <type>custom</type>

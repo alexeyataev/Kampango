@@ -1,19 +1,101 @@
-Course reference: {!Course__c.Name}</br></br>
+<messaging:emailTemplate subject="Reunion Practitioner Email" recipientType="Contact" relatedToType="Session__c" Subject="NCT course reunion confirmation - {!relatedTo.Course__r.Name}">
 
-Dear {!Contact.FirstName},</br></br>
+<messaging:htmlEmailBody >
+ <html>
+    <body>
+    
+        <b>Course reference:</b> {!relatedTo.Course__r.Name}<br/><br/>
+        Dear {!relatedTo.Practitioner__r.Name} <br/><br/>
+        
+        <apex:outputPanel title="Course Reunion" rendered="{!relatedTo.Delivery_Type__c = 'Online'}">
+        
+            <apex:outputPanel title="Venue is Blank" rendered="{!ISBLANK(relatedTo.Venue__c)}">
+            
+                <apex:outputText escape="false" value="{!$Label.Reunion_Confirmed_Practitioner_Message}">
+                    <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
+                    <apex:param value="{!relatedTo.Day_of_Week__c}" />
+                    <apex:param value="{!TEXT(relatedTo.Date__c)}" />
+                    <apex:param value="{!relatedTo.Start_Text__c}" />
+                    <apex:param value="{!relatedTo.End_Text__c}" />
+                </apex:outputText>
+                
+                and that it will be a live, interactive online session for which they will receive Zoom access details nearer the time.
+            </apex:outputPanel> 
+          
+            <apex:outputPanel title="Venue not is Blank" rendered="{!NOT(ISBLANK(relatedTo.Venue__c))}">
+            
+                 <apex:outputText escape="false" value="{!$Label.Reunion_Confirmed_Practitioner_Message}">
+                    <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
+                    <apex:param value="{!relatedTo.Day_of_Week__c}" />
+                    <apex:param value="{!TEXT(relatedTo.Date__c)}" />
+                    <apex:param value="{!relatedTo.Start_Text__c}" />
+                    <apex:param value="{!relatedTo.End_Text__c}" />
+                </apex:outputText>
+                
+                 and that you will be a live, interactive online session for which they have been sent the Zoom access details.
+            </apex:outputPanel> 
+        
+        </apex:outputPanel> 
+        
+        
+        
+        <apex:outputPanel title="Course Reunion" rendered="{!relatedTo.Delivery_Type__c = 'Physical'}">
+            <apex:outputPanel title="Course Reunion" rendered="{!ISBLANK(relatedTo.Venue__c)}">
+            
+                <apex:outputText escape="false" value="{!$Label.Reunion_Confirmed_Practitioner_Message}">
+                    <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
+                    <apex:param value="{!relatedTo.Day_of_Week__c}" />
+                    <apex:param value="{!TEXT(relatedTo.Date__c)}" />
+                    <apex:param value="{!relatedTo.Start_Text__c}" />
+                    <apex:param value="{!relatedTo.End_Text__c}" />
+                </apex:outputText>
+                
+                and that you will confirm the venue with them nearer the time.
+            </apex:outputPanel> 
+          
+            <apex:outputPanel title="Course Reunion" rendered="{!NOT(ISBLANK(relatedTo.Venue__c))}">
+            
+                <apex:outputText escape="false" value="{!$Label.Reunion_Confirmed_Practitioner_Message}">
+                   <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
+                   <apex:param value="{!relatedTo.Day_of_Week__c}" />
+                   <apex:param value="{!TEXT(relatedTo.Date__c)}" />
+                   <apex:param value="{!relatedTo.Start_Text__c}" />
+                   <apex:param value="{!relatedTo.End_Text__c}" />
+                </apex:outputText> at:
+                
+                <p>
+                   <apex:outputText escape="false" value="{!relatedTo.Venue_Address__c}" />
+                </p>
+                
+                <p>
+                  <a href="{!relatedTo.Location_Map_Url__c}">Click here to see this on a map</a>
+                </p>
+                
+          </apex:outputPanel> 
+        
+        </apex:outputPanel> 
+        
+     
+    <p>If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.</p>
+    <br/>
 
-{!Session__c.Reunion_Online_Practitioner_Message__c}
-{!Session__c.Reunion_Physical_Practitioner_Message__c}
+    <b>Kind Regards,</b> 
+    <br/><br/>
+    
+    {!relatedTo.Course__r.Capacity_PSA_Name__c}
+    <br/>
+    
+    Capacity PSA – {!relatedTo.Course__r.PSA_Area__c}
+    <br/>
+    
+    Telephone: {!relatedTo.Course__r.Capacity_PSA_Phone__c}
+    <br/> 
+    
+    Email: Any reply to this email should be sent to <a href="{!relatedTo.Course__r.Capacity_PSA_Email__c}"> {!relatedTo.Course__r.Capacity_PSA_Email__c} </a>
+        
+    </body>     
+ </html>
 
-If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.</br></br>
+</messaging:htmlEmailBody>
 
-Kind Regards,  
-</br>
-</br>
-{!Course__c.Capacity_PSA_Name__c}
-</br>
-Capacity PSA – {!Course__c.PSA_Area__c}
-</br>
-Telephone: {!Course__c.Capacity_PSA_Phone__c}
-</br>
-Email: Any reply to this email should be sent to {!Course__c.Capacity_PSA_Email__c}
+</messaging:emailTemplate>

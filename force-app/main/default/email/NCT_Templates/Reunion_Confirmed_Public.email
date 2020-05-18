@@ -2,12 +2,12 @@ Course reference: {!Course__c.Name}<br><br>
 
 Dear {!Contact.FirstName},<br><br>
 
-I'm delighted to confirm the details for your {!Course__c.Sub_Type__c} reunion which will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c}.<br><br>
+I'm delighted to confirm the details for your {!Course__c.Sub_Type__c} reunion which will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c}.</br></br>
 
 
 {!IF(ISPICKVAL(Session__c.Delivery_Type__c, "Online"), 
 
-   "Due to the current social distancing restrictions in place, we’re delighted to be able to offer you the same quality, interactive and tailored NCT postnatal reunion experience but via Zoom.</br></br>" 
+    "Due to the current social distancing restrictions in place, we’re delighted to be able to offer you the same quality, interactive and tailored NCT postnatal reunion experience but via Zoom.</br></br>" 
 
  + "Your NCT Course Leader, <b>" + Course__c.Main_Practitioner_Name__c + "</b> will lead the session for you. She can be contacted on <u>" + Course__c.Main_Practitioner_Phone__c + "</u> or at " + "<a href=" + Course__c.Main_Practitioner_Email__c + ">" + Course__c.Main_Practitioner_Email__c + "</a>. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.</br></br>"  
 
@@ -18,10 +18,9 @@ I'm delighted to confirm the details for your {!Course__c.Sub_Type__c} reunion w
  + "If you have any queries please see the "  +  "<a href=" + $Label.Zoom_Support_Link + ">Zoom online help centre</a> . </br></br>"
 
  + "We look forward to seeing you, albeit virtually, again then. </br></br>"
-
 ,
 
-   "It will be held at:</br></br>" 
+  "It will be held at:</br></br>" 
 
  + Session__c.Venue_Address__c
 
