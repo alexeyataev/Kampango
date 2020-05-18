@@ -146,6 +146,11 @@
             <field>Course__c.Target_Group__c</field>
             <table>Session__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Delivery_Type__c</field>
+            <table>Session__c</table>
+        </columns>
         <masterLabel>Sessions</masterLabel>
     </sections>
 </ReportType>
