@@ -11,23 +11,40 @@ Dear {!Contact.FirstName},
 
 I&#39;m delighted to confirm the details for your {!Course__c.Sub_Type__c} reunion which will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c}.
 
-It will be held at:
+{!IF(ISPICKVAL(Session__c.Delivery_Type__c, &quot;Online&quot;),  
+&quot;Due to the current social distancing restrictions in place, we’re delighted to be able to offer you the same quality, interactive and tailored NCT postnatal reunion experience but via Zoom.&quot;  
 
-{!Session__c.Venue_Address__c} Click  here to see this on a map
-{!Session__c.Location_Map_Url__c}
++ &quot;Your NCT Course Leader, &quot; + Course__c.Main_Practitioner_Name__c + &quot; will lead the session for you. She can be contacted on &quot; + Course__c.Main_Practitioner_Phone__c + &quot; or at &quot; + &quot;&quot; + Course__c.Main_Practitioner_Email__c + &quot;. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.&quot; 
 
-The reunion will be facilitated by {!Session__c.Practitioner_Name__c} who may be contacted on {!Session__c.Practitioner_Phone__c} or at {!Session__c.Practitioner_Email__c}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
+ + &quot;To log into Zoom please copy this link into your browser: &quot; + &quot;&quot; + Session__c.Venue_Client_Link__c + &quot;&quot;  
 
-We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:
+ + &quot;Please could you log in 5 minutes before the start time, as sometimes it can take a few minutes for all the group to access the session. &quot; 
 
-Find a postnatal course
-https://www.nct.org.uk
+ + &quot;If you have any queries please see the &quot;  +  &quot;Zoom online help centre . &quot;  
 
-Kind Regards,
+ + &quot;We look forward to seeing you, albeit virtually, again then. &quot;  
 
-{!Course__c.Enquiries_PSA_Name__c}
-Course Organiser
-Telephone: {!Course__c.Enquiries_PSA_Phone__c}
+,  
+
+ &quot;It will be held at:&quot;  
+
++ Session__c.Venue_Address__c  + &quot;Click  here to see this on a map &quot;  
+
++ &quot;The reunion will be facilitated by&quot; + Session__c.Practitioner_Name__c + &quot;who may be contacted on&quot; + Session__c.Practitioner_Phone__c + &quot;or at&quot; + Session__c.Practitioner_Email__c + &quot;. Should  any changes be made to the reunion your course leader will be in touch with you directly nearer the time. &quot;  
+
+)}  
+
+We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link:  
+Find a postnatal course  
+
+Kind Regards,  
+
+{!Course__c.Enquiries_PSA_Name__c}  
+
+Course Organiser  
+
+Telephone: {!Course__c.Enquiries_PSA_Phone__c}  
+
 Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>

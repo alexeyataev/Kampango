@@ -725,6 +725,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Main_Practitioner_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Course__c.Main_Venue__c</field>
         <readable>true</readable>
@@ -732,6 +737,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Main_Venue_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Main_Practitioner_Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1115,8 +1125,13 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    	<editable>true</editable>
+        <editable>true</editable>
         <field>Session__c.Venue_Address__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Venue_Client_Link__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

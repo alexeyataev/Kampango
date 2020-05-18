@@ -2,27 +2,46 @@ Course reference: {!Course__c.Name}<br><br>
 
 Dear {!Contact.FirstName},<br><br>
 
-I'm delighted to confirm the details for your {!Course__c.Sub_Type__c} reunion which will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c}.<br><br>
+I'm delighted to confirm the details for your {!Course__c.Sub_Type__c} reunion which will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c}.</br></br>
 
-It will be held at:<br><br>
 
-{!Session__c.Venue_Address__c}
-<a href="{!Session__c.Location_Map_Url__c}">Click  here to see this on a map</a> <br><br>
+{!IF(ISPICKVAL(Session__c.Delivery_Type__c, "Online"), 
 
-The reunion will be facilitated by {!Session__c.Practitioner_Name__c} who may be contacted on {!Session__c.Practitioner_Phone__c} or at {!Session__c.Practitioner_Email__c}. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.<br><br>
+    "Due to the current social distancing restrictions in place, we’re delighted to be able to offer you the same quality, interactive and tailored NCT postnatal reunion experience but via Zoom.</br></br>" 
 
-We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link: <br><br>
+ + "Your NCT Course Leader, <b>" + Course__c.Main_Practitioner_Name__c + "</b> will lead the session for you. She can be contacted on <u>" + Course__c.Main_Practitioner_Phone__c + "</u> or at " + "<a href=" + Course__c.Main_Practitioner_Email__c + ">" + Course__c.Main_Practitioner_Email__c + "</a>. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.</br></br>"  
 
-<a href="https://www.nct.org.uk">Find a postnatal course</a> <br><br>
+ + "To log into Zoom please copy this link into your browser: " + "<a href=" + Session__c.Venue_Client_Link__c + ">" + Session__c.Venue_Client_Link__c + "</a></br></br>"
+
+ + "Please could you log in 5 minutes before the start time, as sometimes it can take a few minutes for all the group to access the session. </br></br>"
+
+ + "If you have any queries please see the "  +  "<a href=" + $Label.Zoom_Support_Link + ">Zoom online help centre</a> . </br></br>"
+
+ + "We look forward to seeing you, albeit virtually, again then. </br></br>"
+,
+
+  "It will be held at:</br></br>" 
+
+ + Session__c.Venue_Address__c
+
+ + "<a href=" + Session__c.Location_Map_Url__c + ">Click  here to see this on a map</a> </br></br>"
+
+ + "The reunion will be facilitated by " + Session__c.Practitioner_Name__c + " who may be contacted on " + Session__c.Practitioner_Phone__c + " or at " + Session__c.Practitioner_Email__c + ". Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.</br></br> "
+
+)}
+
+We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link: </br></br>
+
+<a href="https://www.nct.org.uk">Find a postnatal course</a> </br></br>
 
 Kind Regards,  
-<br>
-<br>
+</br>
+</br>
 {!Course__c.Enquiries_PSA_Name__c}
-<br>
+</br>
 Course Organiser
-<br>
+</br>
 Telephone: {!Course__c.Enquiries_PSA_Phone__c}
-<br>
+</br>
 Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}
-<br>
+</br>
