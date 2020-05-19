@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Additional_Information_with_Venue__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(ISPICKVAL(Delivery_Type__c, &quot;Online&quot;),
+    <formula>Additional_Information__c &amp;
+IF(ISPICKVAL(Delivery_Type__c, &quot;Online&quot;),
     &quot;This session will be delivered via Zoom.&quot;,
-    Additional_Information__c &amp;
     IF(Venue__c &lt;&gt; Course__r.Main_Venue__c,
         IF(NOT(ISBLANK(Parent_Host__c)) || NOT(ISBLANK(Venue__r.Host__c)),
             IF(NOT(ISBLANK(Parent_Host__c)),
