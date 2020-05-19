@@ -13,10 +13,6 @@
             <fullName>Physical</fullName>
             <default>true</default>
         </values>
-        <values>
-            <fullName>Virtual Support</fullName>
-            <default>false</default>
-        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Specific_Attendee_Type__c</picklist>
