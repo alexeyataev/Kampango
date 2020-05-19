@@ -1,6 +1,7 @@
 public without sharing class CourseSearchUtility {
     private static final String COURSE_STATUS_FINAL = 'Final';
     private static final String SESSION_STATUS_CONFIRMED = 'Confirmed';
+    private static final String SCHEDULED_SESSION_RECORD_TYPE_NAME = 'Scheduled Session';
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
@@ -10,7 +11,7 @@ public without sharing class CourseSearchUtility {
         List<Course__c> inCourses;
         if (hideFromPublicAccess) {
             inCourses = [
-                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
@@ -20,6 +21,7 @@ public without sharing class CourseSearchUtility {
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                         WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                            AND RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
                         ORDER BY Date__c, Start__c
                     )
                 FROM Course__c
@@ -36,7 +38,7 @@ public without sharing class CourseSearchUtility {
             ];
         } else {
             inCourses = [
-                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
@@ -45,6 +47,7 @@ public without sharing class CourseSearchUtility {
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
+                        WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
                     )
                 FROM Course__c
                 WHERE Name = :courseName
@@ -79,7 +82,7 @@ public without sharing class CourseSearchUtility {
         List<Course__c> inCourses;
         if (hideFromPublicAccess) {
             inCourses = [
-                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
@@ -89,6 +92,7 @@ public without sharing class CourseSearchUtility {
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                         WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                            AND RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
                         ORDER BY Date__c, Start__c
                     )
                 FROM Course__c
@@ -105,7 +109,7 @@ public without sharing class CourseSearchUtility {
             ];
         } else {
             inCourses = [
-                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
@@ -114,6 +118,7 @@ public without sharing class CourseSearchUtility {
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
+                        WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
                     )
                 FROM Course__c
                 WHERE Branch__r.Branch_Number__c = :branchId
@@ -162,7 +167,7 @@ public without sharing class CourseSearchUtility {
 
         if (hideFromPublicAccess) {
             inCourses = [
-                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
@@ -172,6 +177,7 @@ public without sharing class CourseSearchUtility {
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                         WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                            AND RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
                         ORDER BY Date__c, Start__c
                     )
                 FROM Course__c
@@ -196,7 +202,7 @@ public without sharing class CourseSearchUtility {
             ];
         } else {
             inCourses = [
-                SELECT Name, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                     Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                     Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
@@ -205,6 +211,7 @@ public without sharing class CourseSearchUtility {
                         SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
+                        WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
                     )
                 FROM Course__c
                 WHERE Distance(Main_Venue__r.Location__c, :location, 'mi') < :radius

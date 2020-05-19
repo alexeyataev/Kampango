@@ -441,6 +441,7 @@ public without sharing class TestDataFactory {
         insert coursesToInsert;
 
         courses.addAll(coursesToInsert);
+        course = (course == null && !courses.isEmpty()) ? courses[0] : null;
         for(Integer i = 0; i < numberOfCourses; i++) {
             TestEstimatedCostsBuilder estimatedCostsBuilder = new TestEstimatedCostsBuilder();
             costsToInsert.add(estimatedCostsBuilder

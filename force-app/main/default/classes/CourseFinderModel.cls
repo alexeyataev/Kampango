@@ -5,19 +5,21 @@ public without sharing virtual class CourseFinderModel {
     @testVisible
     public String Id {get; set;}
     public transient Date StartDate {get; set;}
-    private String Reference;
-    private String Title;
     public String Summary;
-    private String Type;
-    private Boolean CouplesAllowed;
-    private Boolean WomenOnly;
     private String BranchNumber;
-    private Decimal Price;
-    private Integer PlacesAvailable;
+    private Boolean CouplesAllowed;
     private CourseOrganiser CourseOrganiser;
-    private Venue Venue;
-    private List<Session> Sessions;
     private static List<String> HowHeardTexts = getHowHeardValues(); // will run only once for any number of models
+    @testVisible
+    private Boolean Online;
+    private Integer PlacesAvailable;
+    private Decimal Price;
+    private String Reference;
+    private List<Session> Sessions;
+    private String Title;
+    private String Type;
+    private Venue Venue;
+    private Boolean WomenOnly;
 
     public CourseFinderModel(Course__c course) {
         /**
@@ -28,19 +30,20 @@ public without sharing virtual class CourseFinderModel {
          */
         final Integer DEFAULT_REMAINING_PLACES = 20;
         this.Id = course.Name;
-        this.Reference = course.PSA_Area__c + '/' + course.Name;
-        this.Title = course.Title__c;
-        this.Summary = course.Type__c == 'Drop In' ? course.Drop_In_Schedule_Information__c : course.Summary__c;
-        this.Type = course.Sub_Type__c;
-        this.CouplesAllowed = course.Couples_Allowed__c;
-        this.WomenOnly = course.Women_Only__c;
-        this.BranchNumber = course.Branch__r.Branch_Number__c;
-        this.Price = course.Fee__c;
-        this.PlacesAvailable = course.Overbooking_allowed__c ? DEFAULT_REMAINING_PLACES : Integer.valueOf(course.Remaining_Places__c);
-        this.CourseOrganiser = new CourseOrganiser(course);
-        this.Venue = new Venue(course);
-        this.Sessions = collectSessionsToList(course.Sessions__r);
         this.StartDate = course.Start_Date__c;
+        this.Summary = course.Type__c == 'Drop In' ? course.Drop_In_Schedule_Information__c : course.Summary__c;
+        this.BranchNumber = course.Branch__r.Branch_Number__c;
+        this.CouplesAllowed = course.Couples_Allowed__c;
+        this.CourseOrganiser = new CourseOrganiser(course);
+        this.Online = course.Has_Virtual_Teaching_Content__c;
+        this.PlacesAvailable = course.Overbooking_allowed__c ? DEFAULT_REMAINING_PLACES : Integer.valueOf(course.Remaining_Places__c);
+        this.Price = course.Fee__c;
+        this.Reference = course.PSA_Area__c + '/' + course.Name;
+        this.Sessions = collectSessionsToList(course.Sessions__r);
+        this.Title = course.Title__c;
+        this.Type = course.Sub_Type__c;
+        this.Venue = new Venue(course);
+        this.WomenOnly = course.Women_Only__c;
     }
 
     private without sharing class CourseOrganiser {
