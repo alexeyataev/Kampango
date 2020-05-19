@@ -64,8 +64,7 @@ export default class Sessions extends LightningElement {
                         dateFormatted: dateStr,
                         start: start,
                         end: end,
-                        deliveryType: row.Delivery_Type__c,
-                        additionalInformation: row.Additional_Information__c
+                        additionalInformationWithVenue: row.Additional_Information_with_Venue__c
                     }
                 );
 
