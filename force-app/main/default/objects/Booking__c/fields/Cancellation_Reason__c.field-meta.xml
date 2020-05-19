@@ -14,6 +14,26 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>COVID-19: Parent not willing to attend virtual course</fullName>
+                <default>false</default>
+                <label>COVID-19: Parent not willing to attend virtual course</label>
+            </value>
+            <value>
+                <fullName>COVID-19: Parent unable to attend virtual course (tech)</fullName>
+                <default>false</default>
+                <label>COVID-19: Parent unable to attend virtual course (tech)</label>
+            </value>
+            <value>
+                <fullName>COVID-19: Parent unable to attend virtual course (key worker)</fullName>
+                <default>false</default>
+                <label>COVID-19: Parent unable to attend virtual course (key worker)</label>
+            </value>
+            <value>
+                <fullName>COVID-19: Other</fullName>
+                <default>false</default>
+                <label>COVID-19: Other</label>
+            </value>
+            <value>
                 <fullName>No suitable course (location)</fullName>
                 <default>false</default>
                 <label>No suitable course (location)</label>
