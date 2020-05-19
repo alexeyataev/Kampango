@@ -6,14 +6,6 @@
     <picklistValues>
         <picklist>Delivery_Type__c</picklist>
         <values>
-            <fullName>Online</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Physical</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Virtual Support</fullName>
             <default>true</default>
         </values>
