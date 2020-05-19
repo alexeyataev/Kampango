@@ -66,7 +66,7 @@ public with sharing class ConfirmationEmailController {
 
         sessionListWrapper = new List<SessionWrapper>();
         for (Integer i = 0; i < sessions.size(); i++) {
-            if (String.isNotBlank(sessions[i].Location_Id__c)) {
+            if (String.isNotBlank(sessions[i].Location_Id__c) && sessions[i].Delivery_Type__c == 'Physical') {
                 if (!venueIdWithSessionNumbersMap.containsKey(sessions[i].Location_Id__c)) {
                     venueIdWithSessionNumbersMap.put(sessions[i].Location_Id__c, new List<Integer>());
                 }
