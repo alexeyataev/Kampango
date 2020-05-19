@@ -61,7 +61,6 @@
         <queriedFields>Start__c</queriedFields>
         <queriedFields>End__c</queriedFields>
         <queriedFields>Date__c</queriedFields>
-        <queriedFields>Additional_Information__c</queriedFields>
         <queriedFields>Location_Id__c</queriedFields>
         <queriedFields>Location_Town__c</queriedFields>
         <queriedFields>Location_County__c</queriedFields>
@@ -71,6 +70,7 @@
         <queriedFields>Location_Street__c</queriedFields>
         <queriedFields>Delivery_Type__c</queriedFields>
         <queriedFields>Contact_Hours__c</queriedFields>
+        <queriedFields>Additional_Information_with_Venue__c</queriedFields>
         <sortField>Date__c</sortField>
         <sortOrder>Asc</sortOrder>
     </recordLookups>
