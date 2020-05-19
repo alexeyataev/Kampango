@@ -13,6 +13,11 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>COVID-19</fullName>
+                <default>false</default>
+                <label>COVID-19</label>
+            </value>
+            <value>
                 <fullName>No discount given</fullName>
                 <default>false</default>
                 <label>No discount given</label>
