@@ -88,8 +88,8 @@
     Telephone: {!relatedTo.Course__r.Capacity_PSA_Phone__c}
     <br/> 
     
-    Email: Any reply to this email should be sent to <a href="{!relatedTo.Course__r.Capacity_PSA_Email__c}"> {!relatedTo.Course__r.Capacity_PSA_Email__c} </a>
-        
+    Email: Any reply to this email should be sent to {!relatedTo.Course__r.Capacity_PSA_Email__c}
+    
     </body>     
  </html>
 

@@ -9,7 +9,7 @@ I'm delighted to confirm the details for your {!Course__c.Sub_Type__c} reunion w
 
     "Due to the current social distancing restrictions in place, we’re delighted to be able to offer you the same quality, interactive and tailored NCT postnatal reunion experience but via Zoom.</br></br>" 
 
- + "Your NCT Course Leader, " + Course__c.Main_Practitioner_Name__c + " will lead the session for you. She can be contacted on " + Course__c.Main_Practitioner_Phone__c + " or at <a href=" + Course__c.Main_Practitioner_Email__c + ">" + Course__c.Main_Practitioner_Email__c + "</a>. Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.</br></br>"  
+ + "Your NCT Course Leader, " + Course__c.Main_Practitioner_Name__c + " will lead the session for you. She can be contacted on " + Course__c.Main_Practitioner_Phone__c + " or at " + Course__c.Main_Practitioner_Email__c + ". Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.</br></br>"  
 
  + "To log into Zoom please copy this link into your browser: " + "<a href=" + Session__c.Venue_Client_Link__c + ">" + Session__c.Venue_Client_Link__c + "</a></br></br>"
 
@@ -43,5 +43,5 @@ Course Organiser
 </br>
 Telephone: {!Course__c.Enquiries_PSA_Phone__c}
 </br>
-Email: Any reply to this email should be sent to <a href={!Course__c.Enquiries_PSA_Email__c}> {!Course__c.Enquiries_PSA_Email__c}  </a>     
+Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}  
 </br>
