@@ -172,6 +172,7 @@
         <name>CustomPermission</name>
     </types>
     <types>
+        <members>NCT_Templates/Reunion_Confirmed_Practitioner</members>
         <members>NCT_Templates/Reunion_Session_Attendees_Not_Client_Host_Email</members>
         <members>NCT_Templates/Reunion_Session_Attendees_Public_Venue_Email</members>
         <members>NCT_Templates/Reunion_Session_Course_Leader_Email</members>
