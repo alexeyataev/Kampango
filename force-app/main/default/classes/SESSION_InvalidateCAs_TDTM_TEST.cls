@@ -7,6 +7,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
     private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
     private static final String PRACTITIONER_EMAIL_ADDRESS = 'partnerCommunityUser@ncttest.com';
     private static final String HOST_LASTNAME = 'Black';
+    private static final String HOST_LASTNAME_TWO = 'Brown';
     private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
     private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
     private static final String COURSE_ASSIGNMENT_DRAFT_STATUS = 'Draft';
@@ -43,7 +44,9 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
                     .buildEstimatedCosts()
                     .buildSession()
                     .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
+                    .buildParentHost(HOST_LASTNAME_TWO, HOST_EMAIL_ADDRESS)
                     .buildSessionWithTypeAndStatus(SESSION_TYPE_REUNION, SESSION_TYPE_PROVISIONAL)
+                    .buildSessionWithParentHost()
                     .buildVirtualSupportSession(SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT, 2);
 
         List<Session__c> provisionalNonReunionSessions = [
@@ -192,6 +195,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
+            WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT
             LIMIT 1
         ];
 
@@ -215,6 +219,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
+            WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT
             LIMIT 1
         ];
 
@@ -238,6 +243,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
+            WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT
             LIMIT 1
         ];
 
@@ -312,6 +318,7 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Session__c session = [
             SELECT Id, Course_Assignment__c
             FROM Session__c
+            WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT
             LIMIT 1
         ];
 
@@ -337,6 +344,39 @@ private class SESSION_InvalidateCAs_TDTM_TEST {
         Test.startTest();
         session.Venue__c = venue.Id;
         session.Room__c = room.Id;
+        update session;
+        Test.stopTest();
+
+        Course_Assignment__c courseAssignmentToTest = [
+            SELECT Status__c
+            FROM Course_Assignment__c
+            WHERE Id =:session.Course_Assignment__c
+            LIMIT 1
+        ];
+
+        System.assertEquals(COURSE_ASSIGNMENT_INVALIDATED_STATUS, courseAssignmentToTest.Status__c);
+    }
+
+    @isTest
+    static void InvalidateCourseAssignmentStatus_ParentHostChangesOnNonReunionSession_CourseAssignmentStatusInvalidated() {
+        Session__c session = [
+            SELECT Id, Course_Assignment__c, Parent_Host__c, Venue__c, Room__c
+            FROM Session__c
+            WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT
+            LIMIT 1
+        ];
+
+        Contact newParentHost = [
+            SELECT Id
+            FROM Contact
+            WHERE LastName = :HOST_LASTNAME_TWO
+            LIMIT 1
+        ];
+        
+        Test.startTest();
+        session.Parent_Host__c = newParentHost.Id;
+        session.Venue__c = null;
+        session.Room__c = null;
         update session;
         Test.stopTest();
 

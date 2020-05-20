@@ -47,6 +47,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                             session.Lunch_Break_Minutes__c != oldSessionMap.get(session.Id).Lunch_Break_Minutes__c ||
                             session.Hours__c != oldSessionMap.get(session.Id).Hours__c ||
                             session.Delivery_Type__c != oldSessionMap.get(session.Id).Delivery_Type__c ||
+                            session.Parent_Host__c != oldSessionMap.get(session.Id).Parent_Host__c ||
                             session.Venue__c != oldSessionMap.get(session.Id).Venue__c ||
                             session.Status__c != oldSessionMap.get(session.Id).Status__c ||
                             session.Practitioner_Fee_Rate__c != oldSessionMap.get(session.Id).Practitioner_Fee_Rate__c);
