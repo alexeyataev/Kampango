@@ -156,6 +156,22 @@
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>COVID-19: Parent not willing to attend virtual course</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>COVID-19: Parent unable to attend virtual course (tech)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>COVID-19: Parent unable to attend virtual course (key worker)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>COVID-19: Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
             <valueName>No suitable course (location)</valueName>
         </valueSettings>
         <valueSettings>
