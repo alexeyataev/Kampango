@@ -389,6 +389,7 @@ public without sharing class TestDataFactory {
         Venue__c sessionVenue = deliveryType == SESSION_DELIVERY_TYPE_PHYSICAL ? venue : virtualVenue;
         Room__c sessionRoom = deliveryType == SESSION_DELIVERY_TYPE_PHYSICAL ? room : null;
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        course = (course == null && !courses.isEmpty()) ? courses[0] : course;
         session = sessionBuilder
             .withCourse(course)
             .withVenue(sessionVenue)
@@ -441,7 +442,6 @@ public without sharing class TestDataFactory {
         insert coursesToInsert;
 
         courses.addAll(coursesToInsert);
-        course = (course == null && !courses.isEmpty()) ? courses[0] : null;
         for(Integer i = 0; i < numberOfCourses; i++) {
             TestEstimatedCostsBuilder estimatedCostsBuilder = new TestEstimatedCostsBuilder();
             costsToInsert.add(estimatedCostsBuilder
