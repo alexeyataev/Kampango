@@ -4,7 +4,7 @@
  <html>
     <body>
     
-        <b>Course reference:</b> {!relatedTo.Course__r.Name}<br/><br/>
+        Course reference: {!relatedTo.Course__r.Name}<br/><br/>
         Dear {!relatedTo.Practitioner__r.Name} <br/><br/>
         
         <apex:outputPanel title="Course Reunion" rendered="{!relatedTo.Delivery_Type__c = 'Online'}">
@@ -76,7 +76,7 @@
     <p>If you need to make any future change to the reunion please arrange this yourself directly with the clients and advise your Capacity PSA so that Parentforce can be updated.</p>
     <br/>
 
-    <b>Kind Regards,</b> 
+    Kind Regards,
     <br/><br/>
     
     {!relatedTo.Course__r.Capacity_PSA_Name__c}
