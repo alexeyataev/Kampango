@@ -11,8 +11,8 @@
 			NOT(
 				ISBLANK(Main_Venue__r.Host__c)
 			),
-			&quot;Course Leader&#39;s Home&quot;,
-			Main_Venue__r.Name
+			&quot;at Course Leader&#39;s Home&quot;,
+			&quot;at &quot; + Main_Venue__r.Name
 		),
 		&quot;&quot;
 	)
