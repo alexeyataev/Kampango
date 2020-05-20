@@ -4,6 +4,7 @@
 private class CourseSearchUtilityTest {
 
     private static final Integer COURSES_TO_BUILD = 8;
+    private static final String SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT = 'Virtual Support';
     private static final Integer SESSIONS_TO_BUILD_PER_COURSE = 2;
 
     @TestSetup
@@ -17,7 +18,8 @@ private class CourseSearchUtilityTest {
                                 .buildVenue()
                                 .buildRoom()
                                 .buildLicenceToPractice()
-                                .buildCoursesWithSessions(COURSES_TO_BUILD, SESSIONS_TO_BUILD_PER_COURSE);
+                                .buildCoursesWithSessions(COURSES_TO_BUILD, SESSIONS_TO_BUILD_PER_COURSE)
+                                .buildVirtualSupportSession(SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT, 1);
 
         List<Course__c> courses = [
             SELECT Type__c, Sub_Type__c, Status__c, Main_Venue__c, Main_Venue__r.Location__c, Start_Date__c, End_Date__c,
@@ -455,6 +457,24 @@ private class CourseSearchUtilityTest {
         System.assertEquals(1, sortedModel.Courses[0].Rank);
         System.assertEquals(1, sortedModel.Courses[0].Order);
         System.assertEquals(5, sortedModel.Courses[4].Order);                      
+    }
+
+    @isTest
+    static void courseSearchById_WithVirtualSession_FinderCourseOnlineTrue() {
+
+        Course__c course = [
+            SELECT Name
+            FROM Course__c
+            LIMIT 1
+        ];
+
+        Test.startTest();
+        RestResponse response = new RestResponse();
+        response = CourseSearchUtility.getCourseById(course.Name);
+        Test.stopTest();
+        CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(response.responseBody.toString(), CourseFinderModel.class );
+        
+        System.assertEquals(model.Online, true);
     }
 
     private class ChangerCourse {

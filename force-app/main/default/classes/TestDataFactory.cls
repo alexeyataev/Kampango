@@ -390,6 +390,7 @@ public without sharing class TestDataFactory {
         Contact client = isParentHost ? parentHost : null;
         Room__c sessionRoom = deliveryType == SESSION_DELIVERY_TYPE_PHYSICAL ? room : null;
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        course = (course == null && !courses.isEmpty()) ? courses[0] : course;
         session = sessionBuilder
             .withCourse(course)
             .withVenue(sessionVenue)

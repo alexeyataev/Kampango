@@ -1,25 +1,25 @@
 @isTest
 public with sharing class TestSessionBuilder {
 
-	private final String SCHEDULED_SESSION = 'Scheduled_Session';
 	private final String ADHOC_SUPPORT_SESSION = 'Adhoc_Support';
-	private String type = 'Standard';
-	private Integer daysAfterToday = 5;
-	private Integer hours;
-	private Date sessionDate  = Date.today() + daysAfterToday;
-	private Time startTime = Time.newInstance(18, 30, 0, 0);
-	private Time endTime = Time.newInstance(19, 30, 0, 00);
-	private String specificAttendeeType = 'Women only';
-	private String status = 'Confirmed';
-	private String deliveryType = 'Physical';
-	private Licence_To_Practice__c practitionerLicence;
-	private Venue__c venue;
+	private final String SCHEDULED_SESSION = 'Scheduled_Session';
 	private Course__c course;
-	private Room__c room;
-	private Contact practitioner;
-	private Contact parentHost;
+	private Integer daysAfterToday = 5;
+	private String deliveryType = 'Physical';
+	private Time endTime = Time.newInstance(19, 30, 0, 00);
+	private Integer hours;
 	private Boolean insertRecord = false;
+	private Contact parentHost;
+	private Contact practitioner;
 	private Practitioner_Fee_Rate__c practitionerFeeRate;
+	private Licence_To_Practice__c practitionerLicence;
+	private Room__c room;
+	private Date sessionDate  = Date.today() + daysAfterToday;
+	private String specificAttendeeType = 'Women only';
+	private Time startTime = Time.newInstance(18, 30, 0, 0);
+	private String status = 'Confirmed';
+	private String type = 'Standard';
+	private Venue__c venue;
 
 	public TestSessionBuilder withPractitioner(Contact practitioner)
 	{
