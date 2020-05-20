@@ -1,8 +1,10 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 //Incident #69 - https://confluence.nct.org.uk:8443/x/EoSO
-global with sharing class SESSION_RevertToProvisional_TDTM extends npsp.TDTM_Runnable{
+global with sharing class SESSION_RevertToProvisional_TDTM extends npsp.TDTM_Runnable {
+    private static final String SESSION_TYPE_REUNION = 'Reunion';
     private static final String SESSION_STATUS_CONFIRMED = 'Confirmed';
     private static final String SESSION_STATUS_PROVISIONAL = 'Provisional';
+    private static final String SESSION_DELIVERY_TYPE_ONLINE = 'Online';
     @SuppressWarnings('PMD.ExcessiveParameterList')
     //Incident #80 - https://confluence.nct.org.uk:8443/x/EoSO
     global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
@@ -26,7 +28,9 @@ global with sharing class SESSION_RevertToProvisional_TDTM extends npsp.TDTM_Run
                             session.End__c != oldSessionMap.get(session.Id).End__c ||
                             session.Lunch_Break_Minutes__c != oldSessionMap.get(session.Id).Lunch_Break_Minutes__c ||
                             session.Delivery_Type__c != oldSessionMap.get(session.Id).Delivery_Type__c ||
-                            session.Venue__c != oldSessionMap.get(session.Id).Venue__c)) {
+                            (session.Venue__c != oldSessionMap.get(session.Id).Venue__c &&
+                                    session.Delivery_Type__c != SESSION_DELIVERY_TYPE_ONLINE &&
+                                    session.Type__c != SESSION_TYPE_REUNION))) {
                 session.Status__c = SESSION_STATUS_PROVISIONAL;
             }
         }
