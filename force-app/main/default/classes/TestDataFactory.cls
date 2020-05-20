@@ -379,20 +379,22 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus) {
-        return buildSessionWithTypeAndStatus(sessionType, sessionStatus, null, null);
+        return buildSessionWithTypeAndStatus(sessionType, sessionStatus, null, null, false);
     }
 
     @SuppressWarnings('PMD.ExcessiveParameterList')
     //Incident #88 - https://confluence.nct.org.uk:8443/x/EoSO
-    public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus, String deliveryType, Integer hours) {
+    public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus, String deliveryType, Integer hours, Boolean isParentHost) {
         deliveryType = deliveryType != null ? deliveryType : SESSION_DELIVERY_TYPE_PHYSICAL;
-        Venue__c sessionVenue = deliveryType == SESSION_DELIVERY_TYPE_PHYSICAL ? venue : virtualVenue;
+        Venue__c sessionVenue = !isParentHost ? deliveryType == SESSION_DELIVERY_TYPE_PHYSICAL ? venue : virtualVenue : null;
+        Contact client = isParentHost ? parentHost : null;
         Room__c sessionRoom = deliveryType == SESSION_DELIVERY_TYPE_PHYSICAL ? room : null;
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         course = (course == null && !courses.isEmpty()) ? courses[0] : course;
         session = sessionBuilder
             .withCourse(course)
             .withVenue(sessionVenue)
+            .withParentHost(client)
             .withRoom(sessionRoom)
             .withType(sessionType)
             .withStatus(sessionStatus)
@@ -407,7 +409,11 @@ public without sharing class TestDataFactory {
     }
 
     public TestDataFactory buildVirtualSupportSession(String deliveryType, Integer hours) {
-        return buildSessionWithTypeAndStatus(SESSION_STANDARD_TYPE, SESSION_PROVISIONAL_STATUS, deliveryType, hours);
+        return buildSessionWithTypeAndStatus(SESSION_STANDARD_TYPE, SESSION_PROVISIONAL_STATUS, deliveryType, hours, false);
+    }
+
+    public TestDataFactory buildSessionWithParentHost() {
+        return buildSessionWithTypeAndStatus(SESSION_STANDARD_TYPE, SESSION_PROVISIONAL_STATUS, null, null, true);
     }
 
     public TestDataFactory buildEstimatedCosts() {
