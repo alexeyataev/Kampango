@@ -100,7 +100,6 @@
         <members>Course__c.Duration__c</members>
         <members>Course__c.Duration_Formatted__c</members>
         <members>Course__c.End_Time__c</members>
-        <members>Course__c.Main_Practitioner_Name__c</members>
         <members>Course__c.Notes__c</members>
         <members>Course__c.Places__c</members>
         <members>Course__c.Postnatal_End_Date__c</members>
