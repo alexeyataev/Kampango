@@ -100,7 +100,6 @@
         <members>Course__c.Duration__c</members>
         <members>Course__c.Duration_Formatted__c</members>
         <members>Course__c.End_Time__c</members>
-        <members>Course__c.Main_Practitioner_Name__c</members>
         <members>Course__c.Notes__c</members>
         <members>Course__c.Places__c</members>
         <members>Course__c.Postnatal_End_Date__c</members>
@@ -172,6 +171,7 @@
         <name>CustomPermission</name>
     </types>
     <types>
+        <members>NCT_Templates/Reunion_Confirmed_Practitioner</members>
         <members>NCT_Templates/Reunion_Session_Attendees_Not_Client_Host_Email</members>
         <members>NCT_Templates/Reunion_Session_Attendees_Public_Venue_Email</members>
         <members>NCT_Templates/Reunion_Session_Course_Leader_Email</members>
