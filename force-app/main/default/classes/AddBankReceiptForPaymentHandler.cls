@@ -59,6 +59,7 @@ public with sharing class AddBankReceiptForPaymentHandler {
         ]) {
             for (cpm__Payment__c payment : salesInvoicesPaymentsMap.get(salesInvoice.Id)) {
                 if (!Test.isRunningTest() && processedAccounts.contains(salesInvoice.Zumzum__Account__c)) {
+                    //Due to a limitation in ZumZum API whereby it cannot process multiple payments for the same account, in a single batch, we've implemented this workaround in lieu of a fix from them.
                     continue;
                 }
                 Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper receiptWrapper = new Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper();
