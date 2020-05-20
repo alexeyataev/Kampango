@@ -72,11 +72,6 @@ public with sharing class AddBankReceiptForPaymentHandler {
                 processedAccounts.add(salesInvoice.Zumzum__Account__c);
             }
         }
-        
-        for(Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper rw : receiptWrapperList){
-            for(Zumzum.BankCustomerReceiptService.BankReceiptLine rl : rw.BankReceiptLines){
-            }
-        }
         bankReceiptCreator.createBankReceipts(receiptWrapperList);
     }
 
