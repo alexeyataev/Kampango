@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <formula>LEFT(
 	Postcode__c,
-	LEN(Postcode__c) - (FIND(&quot; &quot;, Postcode__c)-1)
+	(FIND(&quot; &quot;, Postcode__c) - 1)
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Postcode District</label>
