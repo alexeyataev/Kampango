@@ -4,7 +4,10 @@ public with sharing class AddBankReceiptForPaymentHandler {
     private static final String SALES_INVOICE_STATUS = 'Posted';
     private static final String IS_PAID = 'Y';
     private static final String BANK_ACCOUNT_NAME = Bank_Account_Settings__c.getOrgDefaults().Card_Receipt_Bank_Account_Name__c;
-
+    
+    private static Set<Id> paidMembershipLedgers = new Set<Id>();
+    private static Set<Id> processedAccounts = new Set<Id>();
+    
     public static IBankReceiptCreator bankReceiptCreator {
         get {
             if(bankReceiptCreator == null) {
@@ -55,6 +58,10 @@ public with sharing class AddBankReceiptForPaymentHandler {
                 WITH SECURITY_ENFORCED
         ]) {
             for (cpm__Payment__c payment : salesInvoicesPaymentsMap.get(salesInvoice.Id)) {
+                if (!Test.isRunningTest() && processedAccounts.contains(salesInvoice.Zumzum__Account__c)) {
+                    //Due to a limitation in ZumZum API whereby it cannot process multiple payments for the same account, in a single batch, we've implemented this workaround in lieu of a fix from them.
+                    continue;
+                }
                 Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper receiptWrapper = new Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper();
                 receiptWrapper.AccountId = salesInvoice.Zumzum__Account__c;
                 receiptWrapper.BankAccountId = bankAccountlist[0].Id;
@@ -63,6 +70,7 @@ public with sharing class AddBankReceiptForPaymentHandler {
                 receiptWrapper.WrapperAPICustomFields.add(new Zumzum.APICustomFieldWrapper('Zumzum__Bank_Receipt__c', 'Payment__c', payment.Id));
                 receiptWrapper.BankReceiptLines = createBankReceiptLines(payment, salesInvoice);
                 receiptWrapperList.add(receiptWrapper);
+                processedAccounts.add(salesInvoice.Zumzum__Account__c);
             }
         }
         bankReceiptCreator.createBankReceipts(receiptWrapperList);
@@ -72,18 +80,20 @@ public with sharing class AddBankReceiptForPaymentHandler {
         List<Zumzum.BankCustomerReceiptService.BankReceiptLine> listBankReceiptLines = new List<Zumzum.BankCustomerReceiptService.BankReceiptLine>();
         Zumzum.BankCustomerReceiptService.BankReceiptLine courseBankReceiptLine = new Zumzum.BankCustomerReceiptService.BankReceiptLine();
         if (salesInvoice.Zumzum__Ledger__r.size() > 1) {
+            Decimal membershipAmount = 0;
             Zumzum.BankCustomerReceiptService.BankReceiptLine membershipBankReceiptLine = new Zumzum.BankCustomerReceiptService.BankReceiptLine();
             for (Zumzum__Ledger__c ledger : salesInvoice.Zumzum__Ledger__r) {
-                if (ledger.Zumzum__Sales_Invoice_Line_Item__r.Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c == MEMBERSHIP_NOMINAL_CODE) {
-                    membershipBankReceiptLine.Amount = ledger.Zumzum__Debit__c;
+                if (ledger.Zumzum__Sales_Invoice_Line_Item__r.Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c == MEMBERSHIP_NOMINAL_CODE && !paidMembershipLedgers.contains(ledger.Id)) {
+                    membershipBankReceiptLine.Amount = membershipAmount = ledger.Zumzum__Debit__c;
                     membershipBankReceiptLine.LedgerName = ledger.Name;
-                } else {
+                    paidMembershipLedgers.add(ledger.Id);
+                    listBankReceiptLines.add(membershipBankReceiptLine);
+                } else if (ledger.Zumzum__Sales_Invoice_Line_Item__r.Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c != MEMBERSHIP_NOMINAL_CODE) {
                     courseBankReceiptLine.LedgerName = ledger.Name;
+                    courseBankReceiptLine.Amount = payment.cpm__Amount__c - membershipAmount;
+                    listBankReceiptLines.add(courseBankReceiptLine);
                 }
             }
-            courseBankReceiptLine.Amount = payment.cpm__Amount__c - membershipBankReceiptLine.Amount;
-            listBankReceiptLines.add(membershipBankReceiptLine);
-            listBankReceiptLines.add(courseBankReceiptLine);
         } else {
             courseBankReceiptLine.Amount = payment.cpm__Amount__c;
             courseBankReceiptLine.LedgerName = salesInvoice.Zumzum__Ledger__r[0].Name;
