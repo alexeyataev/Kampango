@@ -141,7 +141,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Reunion Message DeliveryType Is Online And Venue Not Is Blank</shortDescription>
-        <value>Thank you for agreeing to facilitate the {0} reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on &lt;b&gt; {1} {2} from {3} to {4} &lt;/b&gt; and that it you will be a live, interactive online session for which they have been sent the Zoom access details.</value>
+        <value>Thank you for agreeing to facilitate the {0} reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {1} {2} from {3} to {4} and that it you will be a live, interactive online session for which they have been sent the Zoom access details.</value>
     </labels>
     <labels>
         <fullName>Reunion_Message_DeliveryType_Is_Physical_And_Venue_Is_Blank</fullName>
@@ -149,7 +149,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Reunion Message DeliveryType Is Physical And Venue Is Blank</shortDescription>
-        <value>Thank you for agreeing to facilitate the {0} reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on &lt;b&gt; {1} {2} from {3} to {4} &lt;/b&gt; and that you will confirm the venue with them nearer the time.</value>
+        <value>Thank you for agreeing to facilitate the {0} reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {1} {2} from {3} to {4} and that you will confirm the venue with them nearer the time.</value>
     </labels>
     <labels>
         <fullName>Reunion_Message_DeliveryType_Is_Physical_And_Venue_Not_Is_Blank</fullName>
@@ -157,7 +157,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Reunion Message DeliveryType Is Physical And Venue Not Is Blank</shortDescription>
-        <value>Thank you for agreeing to facilitate the {0} reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on &lt;b&gt; {1} {2} from {3} to {4} &lt;/b&gt; at:</value>
+        <value>Thank you for agreeing to facilitate the {0} reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {1} {2} from {3} to {4} at:</value>
     </labels>
     <labels>
         <fullName>Sessions_Virtual_Support_Text</fullName>
