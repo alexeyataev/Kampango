@@ -88,6 +88,38 @@
             <label>Course Status Is Draft</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Is_Incoming_Records_Empty</name>
+        <label>Is Incoming Records Empty</label>
+        <locationX>857</locationX>
+        <locationY>304</locationY>
+        <defaultConnector>
+            <targetReference>Booking_Journey_Available_Decision</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not is Empty</defaultConnectorLabel>
+        <rules>
+            <name>One_Of_Record_Is_Empty</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>curBooking</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>curCourse</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_Handler_SubFlow</targetReference>
+            </connector>
+            <label>One Of Record Is Empty</label>
+        </rules>
+    </decisions>
     <interviewLabel>Booking Journey Available {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Journey Available</label>
     <processMetadataValues>
@@ -122,14 +154,14 @@
     <screens>
         <name>Course_Status_Is_Draft_Screen</name>
         <label>Course Status Is Draft Screen</label>
-        <locationX>1302</locationX>
-        <locationY>82</locationY>
+        <locationX>1304</locationX>
+        <locationY>56</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
             <name>Course_Status_Is_Draft_Message</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;We&#39;re sorry your booking can&#39;t be completed right now. Please contact your Course Organiser direct, or you can phone our helpline on 0300 330 0700.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;We&apos;re sorry your booking can&apos;t be completed right now. Please contact your Course Organiser direct, or you can phone our helpline on 0300 330 0700.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
@@ -139,7 +171,7 @@
         <locationX>698</locationX>
         <locationY>72</locationY>
         <connector>
-            <targetReference>Booking_Journey_Available_Decision</targetReference>
+            <targetReference>Is_Incoming_Records_Empty</targetReference>
         </connector>
     </start>
     <status>Active</status>
@@ -161,6 +193,13 @@
                 <elementReference>curCourse</elementReference>
             </value>
         </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Error_Handler_SubFlow</name>
+        <label>Error Handler SubFlow</label>
+        <locationX>1141</locationX>
+        <locationY>518</locationY>
+        <flowName>Error_Handler_Flow</flowName>
     </subflows>
     <variables>
         <name>curBooking</name>

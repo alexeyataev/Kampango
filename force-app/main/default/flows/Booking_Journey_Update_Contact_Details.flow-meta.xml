@@ -2850,7 +2850,7 @@
     <formulas>
         <name>howHeardNotSet</name>
         <dataType>Boolean</dataType>
-        <expression>ISPICKVAL({!bookingRecord.How_Heard__c}, &#39;&#39;)</expression>
+        <expression>ISPICKVAL({!bookingRecord.How_Heard__c}, &apos;&apos;)</expression>
     </formulas>
     <formulas>
         <name>isPartnerEmailRequired</name>
@@ -2901,6 +2901,9 @@
         <connector>
             <targetReference>AssignIndividualToPrimaryContact</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>FirstName</field>
             <value>
@@ -2930,6 +2933,9 @@
         <connector>
             <targetReference>Client_Details</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -2953,6 +2959,9 @@
         <connector>
             <targetReference>SetIndividual</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
         <inputReference>bookingRecord</inputReference>
     </recordUpdates>
     <screens>
@@ -3771,7 +3780,7 @@
         </fields>
         <fields>
             <name>HomeError</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);&quot;&gt;You&#39;ve selected home phone as preferred phone. Please enter the value.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);&quot;&gt;You&apos;ve selected home phone as preferred phone. Please enter the value.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -4092,7 +4101,7 @@
         </fields>
         <fields>
             <name>HomeError_0</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);&quot;&gt;You&#39;ve selected home phone as preferred phone. Please enter the value.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);&quot;&gt;You&apos;ve selected home phone as preferred phone. Please enter the value.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -5223,7 +5232,7 @@
         </fields>
         <fields>
             <name>MobileError</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;You&#39;ve selected mobile phone as preferred phone. Please enter the value.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;You&apos;ve selected mobile phone as preferred phone. Please enter the value.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -5544,7 +5553,7 @@
         </fields>
         <fields>
             <name>MobileError_0</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;You&#39;ve selected mobile phone as preferred phone. Please enter the value.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;You&apos;ve selected mobile phone as preferred phone. Please enter the value.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -6341,6 +6350,13 @@
         </connector>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Error_Handler_SubFlow</name>
+        <label>Error Handler SubFlow</label>
+        <locationX>443</locationX>
+        <locationY>1236</locationY>
+        <flowName>Error_Handler_Flow</flowName>
+    </subflows>
     <variables>
         <name>bookingId</name>
         <dataType>String</dataType>
