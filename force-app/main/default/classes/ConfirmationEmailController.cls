@@ -21,7 +21,7 @@ public with sharing class ConfirmationEmailController {
                         Start__c,
                         End__c,
                         Contact_Hours__c,
-                        Additional_Information__c,
+                        Additional_Information_with_Venue__c,
                         Status__c,
                         Type__c,
                         Delivery_Type__c,
@@ -146,7 +146,7 @@ public with sharing class ConfirmationEmailController {
             this.sessionDate = String.valueOf(Datetime.newInstance(session.Date__c.year(), session.Date__c.month(), session.Date__c.day()).format('EEE dd MMM'));
             this.sessionStart = getNewFormatSessionTime(session.Start__c);
             this.sessionEnd = getNewFormatSessionTime(session.End__c);
-            this.sessionDescription = session.Additional_Information__c;
+            this.sessionDescription = session.Additional_Information_with_Venue__c;
         }
     }
 
