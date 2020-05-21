@@ -7,5 +7,4 @@
     <description>Contains the Override Contact Validation custom permission</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Override Contact Validation</label>
-    <license>Salesforce</license>
 </PermissionSet>
