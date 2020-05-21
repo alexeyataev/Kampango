@@ -56,7 +56,7 @@
         <locationX>480</locationX>
         <locationY>283</locationY>
         <assignNextValueToReference>currentSession</assignNextValueToReference>
-        <collectionReference>sessionsWithEmptyVenue</collectionReference>
+        <collectionReference>sessions</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Update_Venue_on_Session</targetReference>
