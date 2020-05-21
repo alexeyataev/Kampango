@@ -342,7 +342,7 @@
                 <leftValueReference>curCourse</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
-                    <elementReference>$GlobalConstant.True</elementReference>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -570,7 +570,7 @@
             <targetReference>Get_SalesInvoice</targetReference>
         </connector>
     </start>
-    <status>InvalidDraft</status>
+    <status>Active</status>
     <subflows>
         <name>Booking_Journey_Success_and_Confirmed_Pages_Subflow</name>
         <label>Booking Journey Success  and Confirmed Pages Subflow</label>
