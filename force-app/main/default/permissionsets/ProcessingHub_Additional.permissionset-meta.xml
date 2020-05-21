@@ -3,6 +3,7 @@
     <description>Additional permissions for the ProcessingHub user. Recommended by FinDock 31/3/2020 until they have fixed in the package permission sets.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>ProcessingHub Additional</label>
+    <license>Salesforce</license>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
