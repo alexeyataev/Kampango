@@ -839,6 +839,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Course__c.Legacy_Reference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Course__c.Main_Online_Venue__c</field>
         <readable>true</readable>
     </fieldPermissions>

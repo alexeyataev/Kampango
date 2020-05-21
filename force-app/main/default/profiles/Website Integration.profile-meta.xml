@@ -1712,6 +1712,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Legacy_Reference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Include_Additional_Admin_Cost__c</field>
         <readable>false</readable>
     </fieldPermissions>
