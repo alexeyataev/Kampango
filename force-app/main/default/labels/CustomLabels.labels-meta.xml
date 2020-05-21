@@ -133,7 +133,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Reunion Message DeliveryType Is Online And Venue Is Blank</shortDescription>
-        <value>Thank you for agreeing to facilitate the {0} reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on &lt;b&gt; {1} {2} from {3} to {4} &lt;/b&gt; and that it will be a live, interactive online session for which they will receive Zoom access details nearer the time.</value>
+        <value>Thank you for agreeing to facilitate the {0} reunion. All the confirmed clients on the course have now received a reunion confirmation email. They have been informed that the reunion will be held on {1} {2} from {3} to {4} and that it will be a live, interactive online session for which they will receive Zoom access details nearer the time.</value>
     </labels>
     <labels>
         <fullName>Reunion_Message_DeliveryType_Is_Online_And_Venue_Not_Is_Blank</fullName>
