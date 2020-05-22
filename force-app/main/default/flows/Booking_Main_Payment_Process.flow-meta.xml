@@ -39,9 +39,6 @@
         <connector>
             <targetReference>Clear_Next_Collection_Date</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>Error_Screen</targetReference>
-        </faultConnector>
         <inputParameters>
             <name>amount</name>
             <value>
@@ -109,9 +106,6 @@
         <connector>
             <targetReference>Added_Next_Collection_Date</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>Error_Screen</targetReference>
-        </faultConnector>
         <inputParameters>
             <name>amount</name>
             <value>
@@ -190,16 +184,13 @@
     <actionCalls>
         <name>Create_SI_and_SI_Line_Items</name>
         <label>Create SI and SI Line Items</label>
-        <locationX>2178</locationX>
-        <locationY>883</locationY>
+        <locationX>2158</locationX>
+        <locationY>901</locationY>
         <actionName>ZumzumCreatePostSalesInvoice</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Assign_Sales_Invoice_to_Parameters</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>Error_Screen</targetReference>
-        </faultConnector>
         <inputParameters>
             <name>zumzumSalesInvoiceParameterList</name>
             <value>
@@ -730,8 +721,8 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
 2. Setting Product For SI Line Items to &quot;Membership - CARE/DD&quot; because the course was paid by DD;</description>
         <name>Set_Data_for_SI_Line_Items_DD</name>
         <label>Set Data for SI Line Items DD</label>
-        <locationX>1920</locationX>
-        <locationY>1563</locationY>
+        <locationX>1922</locationX>
+        <locationY>1573</locationY>
         <assignmentItems>
             <assignToReference>Membership_Sales_Invoice_Amount</assignToReference>
             <operator>Assign</operator>
@@ -1002,14 +993,14 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         <name>Credit_Card_Icon</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>&lt;img src=&#39;/resource/1571346494000/Credit_Card_Icon&#39;/&gt;</stringValue>
+            <stringValue>&lt;img src=&apos;/resource/1571346494000/Credit_Card_Icon&apos;/&gt;</stringValue>
         </value>
     </constants>
     <constants>
         <name>Debit_Credit_Icon</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>&lt;img src=&#39;/resource/1571348572000/Direct_Debit_Icon&#39;/&gt;</stringValue>
+            <stringValue>&lt;img src=&apos;/resource/1571348572000/Direct_Debit_Icon&apos;/&gt;</stringValue>
         </value>
     </constants>
     <constants>
@@ -1023,7 +1014,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
         <name>Line_Image</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>&lt;img src=&#39;/resource/line&#39;/&gt;</stringValue>
+            <stringValue>&lt;img src=&apos;/resource/line&apos;/&gt;</stringValue>
         </value>
     </constants>
     <constants>
@@ -1454,7 +1445,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <formulas>
         <name>Amount_To_Be_Paid</name>
         <dataType>String</dataType>
-        <expression>IF({!Is_Payment_Plan_True}, {!PaymentPlanOptionSelected.displayLabel}, &#39;One-off payment of £&#39; + TEXT({!Course_Fee}))</expression>
+        <expression>IF({!Is_Payment_Plan_True}, {!PaymentPlanOptionSelected.displayLabel}, &apos;One-off payment of £&apos; + TEXT({!Course_Fee}))</expression>
     </formulas>
     <formulas>
         <description>Return sum course fee for a one-off payment or payment plan + membership fee</description>
@@ -1466,7 +1457,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <formulas>
         <name>ERROR_PAGE</name>
         <dataType>String</dataType>
-        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&#39;/s/failure&#39;</expression>
+        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&apos;/s/failure&apos;</expression>
     </formulas>
     <formulas>
         <name>Get_Course_Fee</name>
@@ -1477,7 +1468,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <formulas>
         <name>SUCCESS_PAGE</name>
         <dataType>String</dataType>
-        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&#39;/s/success/?bookingId=&#39;+{!bookingId}</expression>
+        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&apos;/s/success/?bookingId=&apos;+{!bookingId}</expression>
     </formulas>
     <interviewLabel>Booking Main Payment Process {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Booking Main Payment Process</label>
@@ -1503,7 +1494,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <targetReference>Type_Of_Payment</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Error_Screen</targetReference>
+            <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
         <inputReference>Installment_For_Payment_By_DD</inputReference>
     </recordCreates>
@@ -1517,7 +1508,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <targetReference>Booking_Membership_Options_Flow</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Error_Screen</targetReference>
+            <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
         <filters>
             <field>Id</field>
@@ -1552,7 +1543,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <targetReference>Get_Course_Place</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Error_Screen</targetReference>
+            <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
         <filters>
             <field>Zumzum__Nominal_Code__c</field>
@@ -1575,7 +1566,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <targetReference>Course_ZumzumSalesInvoiceParameter_Assignment</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Error_Screen</targetReference>
+            <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
         <filters>
             <field>Name</field>
@@ -1598,7 +1589,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <targetReference>Get_Dimension2</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Error_Screen</targetReference>
+            <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
         <filters>
             <field>Name</field>
@@ -1621,7 +1612,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <targetReference>Get_No_VAT</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Error_Screen</targetReference>
+            <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
         <filters>
             <field>Name</field>
@@ -1644,7 +1635,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <targetReference>Is_Membership_Chose</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Error_Screen</targetReference>
+            <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
         <filters>
             <field>Name</field>
@@ -1660,14 +1651,14 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_Membership_Nominal_Account</name>
         <label>Get Membership Nominal Account</label>
-        <locationX>1689</locationX>
-        <locationY>1571</locationY>
+        <locationX>1691</locationX>
+        <locationY>1566</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Product_For_Membership</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Error_Screen</targetReference>
+            <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
         <filters>
             <field>Zumzum__Nominal_Code__c</field>
@@ -1690,7 +1681,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <targetReference>Get_GBP</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Error_Screen</targetReference>
+            <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
         <filters>
             <field>Zumzum__Active__c</field>
@@ -1727,7 +1718,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <targetReference>Get_Dimension1</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Error_Screen</targetReference>
+            <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
         <filters>
             <field>Id</field>
@@ -1750,6 +1741,9 @@ We check this because if Membership is with Partner we will need to add Contact 
         <connector>
             <targetReference>Membership_ZumzumSalesInvoiceParameter_Assignment</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
         <filters>
             <field>ProductCode</field>
             <operator>EqualTo</operator>
@@ -1773,6 +1767,9 @@ We check this because if Membership is with Partner we will need to add Contact 
         <connector>
             <targetReference>Set_Total_Amount</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
         <inputReference>Booking_Instance_For_Update</inputReference>
     </recordUpdates>
     <screens>
@@ -1836,7 +1833,7 @@ NOT(ISNUMBER({!Account_Name}))
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <validationRule>
-                <errorMessage>&lt;p&gt;Please make sure that the Bank Account Number consists of 8 digits and is numeric&amp;nbsp;e.g &#39;12345678&#39;.&lt;/p&gt;</errorMessage>
+                <errorMessage>&lt;p&gt;Please make sure that the Bank Account Number consists of 8 digits and is numeric&amp;nbsp;e.g &apos;12345678&apos;.&lt;/p&gt;</errorMessage>
                 <formulaExpression>AND (
  LEN({!Account_Number}) == 8, 
  ISNUMBER({!Account_Number})
@@ -1850,7 +1847,7 @@ NOT(ISNUMBER({!Account_Name}))
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <validationRule>
-                <errorMessage>&lt;p&gt;Please make sure that the Sort Code consists of 6 digits and is numeric&amp;nbsp;e.g &#39;123456&#39;.&lt;/p&gt;</errorMessage>
+                <errorMessage>&lt;p&gt;Please make sure that the Sort Code consists of 6 digits and is numeric&amp;nbsp;e.g &apos;123456&apos;.&lt;/p&gt;</errorMessage>
                 <formulaExpression>AND (
   LEN({!Sort_Code}) == 6, 
    ISNUMBER({!Sort_Code})
@@ -1869,7 +1866,7 @@ NOT(ISNUMBER({!Account_Name}))
         <fields>
             <name>Direct_Debit_Confirm_Text</name>
             <dataType>Boolean</dataType>
-            <fieldText>I confirm that I&#39;m authorised to debit from this account. I agree to NCT debiting my account as detailed above.</fieldText>
+            <fieldText>I confirm that I&apos;m authorised to debit from this account. I agree to NCT debiting my account as detailed above.</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <validationRule>
@@ -1878,22 +1875,6 @@ NOT(ISNUMBER({!Account_Name}))
             </validationRule>
         </fields>
         <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <screens>
-        <name>Error_Screen</name>
-        <label>Error Screen</label>
-        <locationX>2600</locationX>
-        <locationY>1899</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>Error_Message</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;We&#39;re sorry your booking can&#39;t be completed right now. Please contact your Course Organiser direct, or you can phone our helpline on &lt;/span&gt;&lt;b style=&quot;color: rgb(62, 62, 60); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;0300 330 0700.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(247, 122, 115); font-size: 12px; background-color: rgb(255, 255, 255);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <screens>
@@ -1906,7 +1887,7 @@ NOT(ISNUMBER({!Account_Name}))
         <allowPause>false</allowPause>
         <fields>
             <name>Payment_Details_Info</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 36px;&quot;&gt;Pay by credit/debit card&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;To pay by credit or debit card using the secure Worldpay system, please select &#39;Proceed to payment&#39;. You&#39;ll be redirected to the Worldpay site to complete your payment.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;We don&#39;t see or store any of your debit or credit card information.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Please note: Credit cards levy higher charges on us than debit cards. We&#39;d be grateful to you for supporting our charity by using a debit card if possible.&lt;/span&gt;&lt;/p&gt;&lt;h4&gt;&lt;br&gt;&lt;/h4&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 36px;&quot;&gt;Pay by credit/debit card&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;To pay by credit or debit card using the secure Worldpay system, please select &apos;Proceed to payment&apos;. You&apos;ll be redirected to the Worldpay site to complete your payment.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;We don&apos;t see or store any of your debit or credit card information.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Please note: Credit cards levy higher charges on us than debit cards. We&apos;d be grateful to you for supporting our charity by using a debit card if possible.&lt;/span&gt;&lt;/p&gt;&lt;h4&gt;&lt;br&gt;&lt;/h4&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2236,6 +2217,13 @@ NOT(ISNUMBER({!Account_Name}))
                 <elementReference>bookingRecord</elementReference>
             </value>
         </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Error_Handler_SubFlow</name>
+        <label>Error Handler SubFlow</label>
+        <locationX>2292</locationX>
+        <locationY>1430</locationY>
+        <flowName>Error_Handler_Flow</flowName>
     </subflows>
     <textTemplates>
         <name>Membership_12_Template</name>
