@@ -3,8 +3,8 @@
     <assignments>
         <name>Conditions_Assignment</name>
         <label>Conditions Assignment</label>
-        <locationX>657</locationX>
-        <locationY>435</locationY>
+        <locationX>1283</locationX>
+        <locationY>421</locationY>
         <assignmentItems>
             <assignToReference>Is_Conditions</assignToReference>
             <operator>Assign</operator>
@@ -27,8 +27,8 @@
     <decisions>
         <name>Is_Conditions_True</name>
         <label>Is Conditions True</label>
-        <locationX>450</locationX>
-        <locationY>365</locationY>
+        <locationX>1010</locationX>
+        <locationY>330</locationY>
         <defaultConnector>
             <targetReference>Conditions_Assignment</targetReference>
         </defaultConnector>
@@ -50,14 +50,53 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_Records_Empty</name>
+        <label>Is Records Empty</label>
+        <locationX>770</locationX>
+        <locationY>409</locationY>
+        <defaultConnector>
+            <targetReference>Is_Validation_Code_Correct</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Is Empty</defaultConnectorLabel>
+        <rules>
+            <name>One_Of_Records_Is_Empty</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>bookingRecord</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>courseRecord</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>PrimaryContactRecord</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_Handler_SubFlow</targetReference>
+            </connector>
+            <label>One Of Records Is Empty</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_Validation_Code_Correct</name>
         <label>Is Validation Code Correct?</label>
-        <locationX>50</locationX>
-        <locationY>266</locationY>
+        <locationX>771</locationX>
+        <locationY>666</locationY>
         <defaultConnector>
-            <targetReference>error_screen</targetReference>
+            <targetReference>Validation_Code_Error_Screen</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <defaultConnectorLabel>Is Not Correct</defaultConnectorLabel>
         <rules>
             <name>Correct</name>
             <conditionLogic>and</conditionLogic>
@@ -69,7 +108,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Course_Data</targetReference>
+                <targetReference>Booking_Journey_Available</targetReference>
             </connector>
             <label>Correct</label>
         </rules>
@@ -92,12 +131,15 @@
     <recordLookups>
         <name>Get_Booking_Data</name>
         <label>Get Booking Data</label>
-        <locationX>293</locationX>
-        <locationY>226</locationY>
+        <locationX>213</locationX>
+        <locationY>247</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Is_Validation_Code_Correct</targetReference>
+            <targetReference>Get_Course_Data</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -125,12 +167,15 @@
     <recordLookups>
         <name>Get_Course_Data</name>
         <label>Get Course Data</label>
-        <locationX>290</locationX>
-        <locationY>426</locationY>
+        <locationX>378</locationX>
+        <locationY>334</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>GetPrimaryContactData</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -162,12 +207,15 @@
     <recordLookups>
         <name>GetPrimaryContactData</name>
         <label>GetPrimaryContactData</label>
-        <locationX>290</locationX>
-        <locationY>616</locationY>
+        <locationX>569</locationX>
+        <locationY>406</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Booking_Journey_Available</targetReference>
+            <targetReference>Is_Records_Empty</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -197,8 +245,8 @@
     <screens>
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>
-        <locationX>457</locationX>
-        <locationY>484</locationY>
+        <locationX>1018</locationX>
+        <locationY>501</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -247,10 +295,10 @@
         <showHeader>false</showHeader>
     </screens>
     <screens>
-        <name>error_screen</name>
-        <label>error screen</label>
-        <locationX>55</locationX>
-        <locationY>483</locationY>
+        <name>Validation_Code_Error_Screen</name>
+        <label>Validation Code Error Screen</label>
+        <locationX>571</locationX>
+        <locationY>661</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -263,8 +311,8 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>293</locationX>
-        <locationY>106</locationY>
+        <locationX>50</locationX>
+        <locationY>122</locationY>
         <connector>
             <targetReference>Get_Booking_Data</targetReference>
         </connector>
@@ -273,8 +321,8 @@
     <subflows>
         <name>Booking_Journey_Available</name>
         <label>Booking Journey Available</label>
-        <locationX>457</locationX>
-        <locationY>616</locationY>
+        <locationX>1019</locationX>
+        <locationY>667</locationY>
         <connector>
             <targetReference>Course_Summary_Details_Screen</targetReference>
         </connector>
@@ -295,8 +343,8 @@
     <subflows>
         <name>Booking_Main_Payment_Process_Flow</name>
         <label>Booking Main Payment Process Flow</label>
-        <locationX>656</locationX>
-        <locationY>179</locationY>
+        <locationX>1281</locationX>
+        <locationY>156</locationY>
         <flowName>Booking_Main_Payment_Process</flowName>
         <inputAssignments>
             <name>bookingId</name>
@@ -308,8 +356,8 @@
     <subflows>
         <name>Contact_Details_Flow</name>
         <label>Contact Details Flow</label>
-        <locationX>461</locationX>
-        <locationY>179</locationY>
+        <locationX>1016</locationX>
+        <locationY>154</locationY>
         <connector>
             <targetReference>Booking_Main_Payment_Process_Flow</targetReference>
         </connector>
@@ -338,6 +386,13 @@
                 <elementReference>PrimaryContactRecord</elementReference>
             </value>
         </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Error_Handler_SubFlow</name>
+        <label>Error Handler SubFlow</label>
+        <locationX>701</locationX>
+        <locationY>149</locationY>
+        <flowName>Error_Handler_Flow</flowName>
     </subflows>
     <textTemplates>
         <name>Confirmation_Of_Conditions_Template</name>

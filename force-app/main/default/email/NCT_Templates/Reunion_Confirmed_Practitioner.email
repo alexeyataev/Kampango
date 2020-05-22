@@ -14,7 +14,7 @@
                 <apex:outputText escape="false" value="{!$Label.Reunion_Message_DeliveryType_Is_Online_And_Venue_Is_Blank}">
                     <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
                     <apex:param value="{!relatedTo.Day_of_Week__c}" />
-                    <apex:param value="{!TEXT(relatedTo.Date__c)}" />
+                    <apex:param value="{!DAY(relatedTo.Date__c)}/{!MONTH(relatedTo.Date__c)}/{!YEAR(relatedTo.Date__c)}" />
                     <apex:param value="{!relatedTo.Start_Text__c}" />
                     <apex:param value="{!relatedTo.End_Text__c}" />
                 </apex:outputText>
@@ -26,7 +26,7 @@
                  <apex:outputText escape="false" value="{!$Label.Reunion_Message_DeliveryType_Is_Online_And_Venue_Not_Is_Blank}">
                     <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
                     <apex:param value="{!relatedTo.Day_of_Week__c}" />
-                    <apex:param value="{!TEXT(relatedTo.Date__c)}" />
+                    <apex:param value="{!DAY(relatedTo.Date__c)}/{!MONTH(relatedTo.Date__c)}/{!YEAR(relatedTo.Date__c)}" />
                     <apex:param value="{!relatedTo.Start_Text__c}" />
                     <apex:param value="{!relatedTo.End_Text__c}" />
                 </apex:outputText>
@@ -43,7 +43,7 @@
                 <apex:outputText escape="false" value="{!$Label.Reunion_Message_DeliveryType_Is_Physical_And_Venue_Is_Blank}">
                     <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
                     <apex:param value="{!relatedTo.Day_of_Week__c}" />
-                    <apex:param value="{!TEXT(relatedTo.Date__c)}" />
+                    <apex:param value="{!DAY(relatedTo.Date__c)}/{!MONTH(relatedTo.Date__c)}/{!YEAR(relatedTo.Date__c)}" />
                     <apex:param value="{!relatedTo.Start_Text__c}" />
                     <apex:param value="{!relatedTo.End_Text__c}" />
                 </apex:outputText>
@@ -55,7 +55,7 @@
                 <apex:outputText escape="false" value="{!$Label.Reunion_Message_DeliveryType_Is_Physical_And_Venue_Not_Is_Blank}">
                    <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
                    <apex:param value="{!relatedTo.Day_of_Week__c}" />
-                   <apex:param value="{!TEXT(relatedTo.Date__c)}" />
+                   <apex:param value="{!DAY(relatedTo.Date__c)}/{!MONTH(relatedTo.Date__c)}/{!YEAR(relatedTo.Date__c)}" />
                    <apex:param value="{!relatedTo.Start_Text__c}" />
                    <apex:param value="{!relatedTo.End_Text__c}" />
                 </apex:outputText>

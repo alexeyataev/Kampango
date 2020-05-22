@@ -18,7 +18,7 @@
         </inputParameters>
     </actionCalls>
     <actionCalls>
-        <description>We create Gift Aid via apex class because we have a master-detail relationship with Contact and Contact doesn&#39;t have permission to create a record.</description>
+        <description>We create Gift Aid via apex class because we have a master-detail relationship with Contact and Contact doesn&apos;t have permission to create a record.</description>
         <name>Create_Gift_Declaration</name>
         <label>Create Gift Declaration</label>
         <locationX>1049</locationX>
@@ -279,8 +279,8 @@
     <decisions>
         <name>Is_Booking_Confirmed</name>
         <label>Is Booking Confirmed</label>
-        <locationX>1184</locationX>
-        <locationY>797</locationY>
+        <locationX>1069</locationX>
+        <locationY>746</locationY>
         <defaultConnector>
             <targetReference>Post_Sales_Invoice</targetReference>
         </defaultConnector>
@@ -299,6 +299,56 @@
                 <targetReference>Get_Course_Data</targetReference>
             </connector>
             <label>Confirmed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Records_Empty</name>
+        <label>Is Records Empty</label>
+        <locationX>816</locationX>
+        <locationY>1001</locationY>
+        <defaultConnector>
+            <targetReference>Is_Booking_Confirmed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Is Empty</defaultConnectorLabel>
+        <rules>
+            <name>One_Of_Records_Is_Empty</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>curBooking</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_Handler_SubFlow</targetReference>
+            </connector>
+            <label>One Of Records Is Empty</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Records_Empty_0</name>
+        <label>Is Records Empty</label>
+        <locationX>1366</locationX>
+        <locationY>584</locationY>
+        <defaultConnector>
+            <targetReference>Update_Booking</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Is Empty</defaultConnectorLabel>
+        <rules>
+            <name>One_Of_Records_Is_Empty_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>curCourse</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_Handler_SubFlow</targetReference>
+            </connector>
+            <label>One Of Records Is Empty</label>
         </rules>
     </decisions>
     <decisions>
@@ -351,8 +401,11 @@
         <locationY>803</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Is_Booking_Confirmed</targetReference>
+            <targetReference>Is_Records_Empty</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -380,12 +433,15 @@
     <recordLookups>
         <name>Get_Course_Data</name>
         <label>Get Course Data</label>
-        <locationX>1188</locationX>
-        <locationY>484</locationY>
+        <locationX>1199</locationX>
+        <locationY>462</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Update_Booking</targetReference>
+            <targetReference>Is_Records_Empty_0</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -462,11 +518,14 @@
     <recordUpdates>
         <name>Update_Booking</name>
         <label>Update Booking</label>
-        <locationX>1335</locationX>
-        <locationY>484</locationY>
+        <locationX>1582</locationX>
+        <locationY>467</locationY>
         <connector>
             <targetReference>Booking_Journey_Success_and_Confirmed_Pages_Subflow</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -515,8 +574,8 @@
     <subflows>
         <name>Booking_Journey_Success_and_Confirmed_Pages_Subflow</name>
         <label>Booking Journey Success  and Confirmed Pages Subflow</label>
-        <locationX>1492</locationX>
-        <locationY>484</locationY>
+        <locationX>1816</locationX>
+        <locationY>467</locationY>
         <flowName>Booking_Journey_Success_and_Confirmed_Pages_Subflow</flowName>
         <inputAssignments>
             <name>curBooking</name>
@@ -530,6 +589,13 @@
                 <elementReference>curCourse</elementReference>
             </value>
         </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Error_Handler_SubFlow</name>
+        <label>Error Handler SubFlow</label>
+        <locationX>1373</locationX>
+        <locationY>989</locationY>
+        <flowName>Error_Handler_Flow</flowName>
     </subflows>
     <variables>
         <name>bookingId</name>
