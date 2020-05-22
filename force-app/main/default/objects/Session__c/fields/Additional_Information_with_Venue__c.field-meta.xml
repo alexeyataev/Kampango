@@ -14,9 +14,9 @@ IF(ISPICKVAL(Delivery_Type__c, &quot;Online&quot;),
                   &quot;This session will be held in a private home.&quot;,
                   &quot;&quot;
                ),
-               &quot;This session will be held at the Course Leader&#39;s home&quot; &amp; &quot;, &quot; &amp; Venue__r.Town__c &amp; &quot;, &quot; &amp; LEFT(Venue__r.Postcode__c, IF(FIND(&quot; &quot;, Venue__r.Postcode__c) &lt;&gt; 0, FIND(&quot; &quot;, Venue__r.Postcode__c) - 1, LEN(Venue__r.Postcode__c))) &amp; &quot;.&quot;
+               &quot;This session will be held at the Course Leader&#39;s home&quot; &amp; &quot;, &quot; &amp; Venue__r.Town__c &amp; &quot;, &quot; &amp; Venue__r.Postcode_District__c &amp; &quot;.&quot;
             ),
-            &quot;This session will be held at &quot; &amp; Venue__r.Name &amp; &quot;, &quot; &amp; Venue__r.Town__c &amp; &quot;, &quot; &amp; LEFT(Venue__r.Postcode__c, IF(FIND(&quot; &quot;, Venue__r.Postcode__c) &lt;&gt; 0, FIND(&quot; &quot;, Venue__r.Postcode__c) - 1, LEN(Venue__r.Postcode__c))) &amp; &quot;.&quot;
+            &quot;This session will be held at &quot; &amp; Venue__r.Name &amp; &quot;, &quot; &amp; Venue__r.Town__c &amp; &quot;, &quot; &amp; Venue__r.Postcode_District__c &amp; &quot;.&quot;
          )
       ),
       &quot;&quot;
