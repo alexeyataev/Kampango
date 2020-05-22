@@ -4,20 +4,23 @@
     <externalId>false</externalId>
     <formula>Additional_Information__c &amp;
 IF(ISPICKVAL(Delivery_Type__c, &quot;Online&quot;),
-    &quot;This session will be delivered via Zoom.&quot;,
-    IF(Venue__c &lt;&gt; Course__r.Main_Venue__c,
-        IF(NOT(ISBLANK(Parent_Host__c)) || NOT(ISBLANK(Venue__r.Host__c)),
+   &quot;This session will be delivered via Zoom.&quot;,
+   IF(Venue__c &lt;&gt; Course__r.Main_Venue__c,
+      IF(ISBLANK(Venue__c) &amp;&amp; ISBLANK(Parent_Host__c),
+         &quot;&quot;,
+         IF(NOT(ISBLANK(Parent_Host__c)) || NOT(ISBLANK(Venue__r.Host__c)),
             IF(NOT(ISBLANK(Parent_Host__c)),
-                IF(ISPICKVAL(Type__c, &#39;Reunion&#39;) &amp;&amp; ISPICKVAL(Status__c, &#39;Confirmed&#39;),
-                    &quot;This session will be held in a private home.&quot;,
-                    &quot;&quot;
-                ),
-                &quot;This session will be held at the Course Leader&#39;s home&quot; &amp; &quot;, &quot; &amp; Venue__r.Town__c &amp; &quot;, &quot; &amp; LEFT(Venue__r.Postcode__c, IF(FIND(&quot; &quot;, Venue__r.Postcode__c) &lt;&gt; 0, FIND(&quot; &quot;, Venue__r.Postcode__c) - 1, LEN(Venue__r.Postcode__c))) &amp; &quot;.&quot;
+               IF(ISPICKVAL(Type__c, &#39;Reunion&#39;) &amp;&amp; ISPICKVAL(Status__c, &#39;Confirmed&#39;),
+                  &quot;This session will be held in a private home.&quot;,
+                  &quot;&quot;
+               ),
+               &quot;This session will be held at the Course Leader&#39;s home&quot; &amp; &quot;, &quot; &amp; Venue__r.Town__c &amp; &quot;, &quot; &amp; Venue__r.Postcode_District__c &amp; &quot;.&quot;
             ),
-            &quot;This session will be held at &quot; &amp; Venue__r.Name &amp; &quot;, &quot; &amp; Venue__r.Town__c &amp; &quot;, &quot; &amp; LEFT(Venue__r.Postcode__c, IF(FIND(&quot; &quot;, Venue__r.Postcode__c) &lt;&gt; 0, FIND(&quot; &quot;, Venue__r.Postcode__c) - 1, LEN(Venue__r.Postcode__c))) &amp; &quot;.&quot;
-        ),
-        &quot;&quot;
-    )
+            &quot;This session will be held at &quot; &amp; Venue__r.Name &amp; &quot;, &quot; &amp; Venue__r.Town__c &amp; &quot;, &quot; &amp; Venue__r.Postcode_District__c &amp; &quot;.&quot;
+         )
+      ),
+      &quot;&quot;
+   )
 )</formula>
     <label>Additional Information with Venue</label>
     <required>false</required>
