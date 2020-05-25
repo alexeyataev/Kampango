@@ -54,17 +54,11 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
         for (Session__c session : newSessionList) {
             Boolean condition = (session.Type__c != SESSION_TYPE_REUNION &&
                     oldSessionMap.get(session.Id).Type__c != SESSION_TYPE_REUNION) &&
-                    (session.Date__c != oldSessionMap.get(session.Id).Date__c ||
-                            session.Start__c != oldSessionMap.get(session.Id).Start__c ||
-                            session.End__c != oldSessionMap.get(session.Id).End__c ||
-                            session.Lunch_Break_Minutes__c != oldSessionMap.get(session.Id).Lunch_Break_Minutes__c ||
-                            session.Hours__c != oldSessionMap.get(session.Id).Hours__c ||
-                            session.Delivery_Type__c != oldSessionMap.get(session.Id).Delivery_Type__c ||
+                    (session.Hours__c != oldSessionMap.get(session.Id).Hours__c ||
+                            session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c ||
                             session.Practitioner_Licence__c != oldSessionMap.get(session.Id).Practitioner_Licence__c ||
-                            session.Venue__c != oldSessionMap.get(session.Id).Venue__c ||
                             session.Room__c != oldSessionMap.get(session.Id).Room__c ||
-                            session.Status__c != oldSessionMap.get(session.Id).Status__c ||
-                            session.Practitioner__c != oldSessionMap.get(session.Id).Practitioner__c);
+                            session.Status__c != oldSessionMap.get(session.Id).Status__c);
             if (condition) {
                 courseIds.add(session.Course__c);
             }
