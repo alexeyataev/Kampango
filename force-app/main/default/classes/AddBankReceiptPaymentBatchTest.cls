@@ -5,6 +5,9 @@ public class AddBankReceiptPaymentBatchTest {
     private static final String ACCOUNT_TYPE_CUSTOMER = 'Customer';
     private static final String BANK_ACCOUNT_NAME = 'Card Receipts in Transit';
     private static final String MEMBERSHIP_NOMINAL_CODE = '1003';
+    private static final String CREDIT_CARD_NUMBER = '1111-2222-3333-4444';
+    private static final String PAYMENT_PROFILE_CREDIT_CARD_RECORD_TYPE = 'Credit Card';
+
     @testSetup
     static void testSetup() {
         TestFinanceDataFactory financeDataFactory = TestFinanceDataFactory.getInstance();
@@ -40,10 +43,9 @@ public class AddBankReceiptPaymentBatchTest {
             .build();
         TestPaymentProfileBuilder paymentProfileBuilder = new TestPaymentProfileBuilder();
         cpm__Payment_Profile__c paymentProfile = paymentProfileBuilder
+            .withRecordType(PAYMENT_PROFILE_CREDIT_CARD_RECORD_TYPE)
+            .withCreditCardNumbert(CREDIT_CARD_NUMBER)
             .withContact(primaryContact)
-            .withSortCode('123456')
-            .withBankAccount('1234567890')
-            .withHolderName('John Smith')
             .insertRecord(true)
             .build();
         TestInstallmentBuilder installmentBuilder = new TestInstallmentBuilder();
