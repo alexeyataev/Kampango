@@ -192,6 +192,36 @@ public without sharing class TestFinanceDataFactory {
         dimension2.Zumzum__Active__c = true;
         dimension2.Zumzum__Type__c = 'Dimension 2';
         insert dimension2;
+
+        Zumzum__Nominal_Account__c expenseNominalAccount = new Zumzum__Nominal_Account__c();
+        expenseNominalAccount.Name = 'Test Expense Nominal Account';
+        expenseNominalAccount.Zumzum__Expense__c = true;
+        expenseNominalAccount.Zumzum__Account_Code__c = 10;
+        expenseNominalAccount.Zumzum__Sub_Category__c = zumzumCreditorsSubCategory.Id;
+        expenseNominalAccount.Zumzum__P_O__c = true;
+        expenseNominalAccount.Zumzum__Debit_Balance__c = 600;
+        insert expenseNominalAccount;
+    }
+
+    public void createExpenseDate(Id courseId, Id supplierId) {
+        Zumzum__Expense_Sheet__c expenseSheet = new Zumzum__Expense_Sheet__c();
+        expenseSheet.Zumzum__Supplier_Account__c = supplierId;
+        expenseSheet.Zumzum__Type__c = 'Cash';
+        insert expenseSheet;
+        Zumzum__Expense_Sheet_Detail__c expenseSheetDetail = new Zumzum__Expense_Sheet_Detail__c();
+        expenseSheetDetail.Zumzum__Expense_Sheet__c = expenseSheet.Id;
+        expenseSheetDetail.Zumzum__Tax_Rate__c = [SELECT Id FROM Zumzum__Tax_Rate__c WHERE Zumzum__Type__c = 'Non-Vatable' LIMIT 1].Id;
+        expenseSheetDetail.Zumzum__Nominal_Account__c = [SELECT Id FROM Zumzum__Nominal_Account__c WHERE Zumzum__Expense__c =: true LIMIT 1].Id;
+        expenseSheetDetail.Zumzum__Narrative__c = 'Item name';
+        expenseSheetDetail.Zumzum__Miles__c = 0;
+        expenseSheetDetail.Zumzum__Unit_Amount__c = 10;
+        expenseSheetDetail.Zumzum__Total_Net__c = 10;
+        expenseSheetDetail.Zumzum__Total_VAT__c = 2;
+        expenseSheetDetail.Zumzum__Total_Gross__c = 12;
+        expenseSheetDetail.Zumzum__Quantity__c = 1;
+        expenseSheetDetail.Zumzum__Date__c = Date.today();
+        expenseSheetDetail.Course__c = courseId;
+        insert expenseSheetDetail;
     }
 
     public String[] createBatchReceiptReportWithItems(Integer itemsCount) {

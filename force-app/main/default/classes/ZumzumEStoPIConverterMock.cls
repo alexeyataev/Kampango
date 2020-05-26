@@ -2,15 +2,27 @@ public with sharing class ZumzumEStoPIConverterMock implements IExpenseSheetToPu
     public void convert(Set<Id> expenseSheetIds) {
         List<Id> expenseSheetIdsList = new List<Id>();
         expenseSheetIdsList.addAll(expenseSheetIds);
-        Zumzum__Purchase_Invoice__c purchaseInvoice = new Zumzum__Purchase_Invoice__c();
-        purchaseInvoice.Zumzum__Expense_Sheet__c = expenseSheetIdsList[0];
-        insert purchaseInvoice;
-        Zumzum__Purchase_Invoice_Line_Item__c purchaseInvoiceLineItem = new Zumzum__Purchase_Invoice_Line_Item__c();
-        purchaseInvoiceLineItem.Zumzum__Purchase_Invoice__c = purchaseInvoice.Id;
-        purchaseInvoiceLineItem.Zumzum__Total_Gross__c = 10;
-        purchaseInvoiceLineItem.Zumzum__Expense_Sheet__c = expenseSheetIdsList[0];
-        purchaseInvoiceLineItem.Zumzum__Expense_Sheet_Detail__c = 
-            [SELECT Id FROM Zumzum__Expense_Sheet_Detail__c WHERE Zumzum__Expense_Sheet__c =: expenseSheetIdsList[0]].Id;
-        insert purchaseInvoiceLineItem;
+        Map<Id, Zumzum__Purchase_Invoice__c> newPurchaseInvoiceMap = new Map<Id, Zumzum__Purchase_Invoice__c>();
+        for(Id expenseSheetId : expenseSheetIdsList) {
+            Zumzum__Purchase_Invoice__c newPurchaseInvoice = new Zumzum__Purchase_Invoice__c();
+            newPurchaseInvoice.Zumzum__Expense_Sheet__c = expenseSheetId;
+            newPurchaseInvoiceMap.put(expenseSheetId, newPurchaseInvoice);
+        }
+        insert newPurchaseInvoiceMap.values();
+        List<Zumzum__Expense_Sheet_Detail__c> expenseSheetDetailList = [
+            SELECT Id, Zumzum__Expense_Sheet__c, Zumzum__Total_Gross__c
+            FROM Zumzum__Expense_Sheet_Detail__c 
+            WHERE Zumzum__Expense_Sheet__c IN : expenseSheetIds
+        ];
+        List<Zumzum__Purchase_Invoice_Line_Item__c> newPurchaseInvoiceLineItemList = new List<Zumzum__Purchase_Invoice_Line_Item__c>();
+        for(Zumzum__Expense_Sheet_Detail__c expenseSheetDetail : expenseSheetDetailList) {
+            Zumzum__Purchase_Invoice_Line_Item__c newPurchaseInvoiceLineItem = new Zumzum__Purchase_Invoice_Line_Item__c();
+            newPurchaseInvoiceLineItem.Zumzum__Purchase_Invoice__c = newPurchaseInvoiceMap.get(expenseSheetDetail.Zumzum__Expense_Sheet__c).Id;
+            newPurchaseInvoiceLineItem.Zumzum__Total_Gross__c = expenseSheetDetail.Zumzum__Total_Gross__c;
+            newPurchaseInvoiceLineItem.Zumzum__Expense_Sheet__c = expenseSheetDetail.Zumzum__Expense_Sheet__c;
+            newPurchaseInvoiceLineItem.Zumzum__Expense_Sheet_Detail__c = expenseSheetDetail.Id;
+            newPurchaseInvoiceLineItemList.add(newPurchaseInvoiceLineItem);
+        }
+        insert newPurchaseInvoiceLineItemList;
     }
 }
