@@ -1,5 +1,5 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
-@isTest(SeeAllData=false)
+@isTest
 public without sharing class ZumzumEStoPIConverterTest {
     private static final String SUPPLIER_ACCOUNT_NUMBER = '123456';
     private static final Integer EXPENSE_SHEET_DETAIL_TOTAL_GROSS = 12;
