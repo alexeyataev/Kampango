@@ -92,6 +92,22 @@
         <value>{&quot;Error&quot; : &quot;Radius is not a whole number of miles&quot;}</value>
     </labels>
     <labels>
+        <fullName>Delete_Activity_Error_Text</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Activity Error Text</shortDescription>
+        <value>You do not have permission to delete Activities. If necessary please contact your System Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>Delete_Chatter_Post_Error_Text</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Chatter Post Error Text</shortDescription>
+        <value>You do not have permission to delete Chatter Posts. If necessary please contact your System Administrator.</value>
+    </labels>
+    <labels>
         <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -199,4 +215,3 @@
         <value>https://support.zoom.us/hc/en-us</value>
     </labels>
 </CustomLabels>
-
