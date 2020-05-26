@@ -203,7 +203,7 @@ public without sharing class TestFinanceDataFactory {
         insert expenseNominalAccount;
     }
 
-    public void createExpenseDate(Id courseId, Id supplierId) {
+    public void createExpenseDate(Id courseId, Id supplierId, Integer amount) {
         Zumzum__Expense_Sheet__c expenseSheet = new Zumzum__Expense_Sheet__c();
         expenseSheet.Zumzum__Supplier_Account__c = supplierId;
         expenseSheet.Zumzum__Type__c = 'Cash';
@@ -214,10 +214,10 @@ public without sharing class TestFinanceDataFactory {
         expenseSheetDetail.Zumzum__Nominal_Account__c = [SELECT Id FROM Zumzum__Nominal_Account__c WHERE Zumzum__Expense__c =: true LIMIT 1].Id;
         expenseSheetDetail.Zumzum__Narrative__c = 'Item name';
         expenseSheetDetail.Zumzum__Miles__c = 0;
-        expenseSheetDetail.Zumzum__Unit_Amount__c = 10;
-        expenseSheetDetail.Zumzum__Total_Net__c = 10;
-        expenseSheetDetail.Zumzum__Total_VAT__c = 2;
-        expenseSheetDetail.Zumzum__Total_Gross__c = 12;
+        expenseSheetDetail.Zumzum__Unit_Amount__c = amount;
+        expenseSheetDetail.Zumzum__Total_Net__c = amount;
+        expenseSheetDetail.Zumzum__Total_VAT__c = 0;
+        expenseSheetDetail.Zumzum__Total_Gross__c = amount;
         expenseSheetDetail.Zumzum__Quantity__c = 1;
         expenseSheetDetail.Zumzum__Date__c = Date.today();
         expenseSheetDetail.Course__c = courseId;

@@ -2,6 +2,7 @@
 @isTest(SeeAllData=false)
 public without sharing class ZumzumEStoPIConverterTest {
     private static final String SUPPLIER_ACCOUNT_NUMBER = '123456';
+    private static final Integer EXPENSE_SHEET_DETAIL_TOTAL_GROSS = 12;
     @testSetup
     static void createTestData() {
         TestDataFactory.getInstance()
@@ -16,7 +17,7 @@ public without sharing class ZumzumEStoPIConverterTest {
         TestFinanceDataFactory financeDataFactory = TestFinanceDataFactory.getInstance();
         financeDataFactory.createZumzumData();
         Account supplierAccount = [SELECT Id FROM Account WHERE AccountNumber =: SUPPLIER_ACCOUNT_NUMBER];
-        financeDataFactory.createExpenseDate(TestDataFactory.courses[0].Id, supplierAccount.Id);
+        financeDataFactory.createExpenseDate(TestDataFactory.courses[0].Id, supplierAccount.Id, EXPENSE_SHEET_DETAIL_TOTAL_GROSS);
     }
     @isTest static void ConvertEStoPI_ConvertedES_CreatedPI() {
         Test.startTest();
@@ -29,7 +30,7 @@ public without sharing class ZumzumEStoPIConverterTest {
         List<Id> expenseSheetIdsList = new List<Id>();
         expenseSheetIdsList.addAll(expenseSheetIds);
         Zumzum__Purchase_Invoice__c purchaseInvoice = [SELECT Id, Zumzum__Total_Gross__c FROM Zumzum__Purchase_Invoice__c WHERE Zumzum__Expense_Sheet__c =: expenseSheetIdsList[0]];
-        System.assertEquals(purchaseInvoice.Zumzum__Total_Gross__c, 12);
+        System.assertEquals(purchaseInvoice.Zumzum__Total_Gross__c, EXPENSE_SHEET_DETAIL_TOTAL_GROSS);
         Test.stopTest();
     }
 }
