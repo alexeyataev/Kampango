@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>48.0</apiVersion>
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Adhoc Payment Notification</name>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>403</minorNumber>
+        <namespace>Zumzum</namespace>
+    </packageVersions>
     <style>none</style>
     <subject>Payment due to NCT</subject>
-    <textOnly>Dear {!Contact.FirstName}
- 
-As discussed, please find the link below to pay the balance owing to NCT.  If you have any queries or questions about this balance, please get in touch with nctcourses@nct.org.uk.
- 
-{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}/s/adhocpayment?salesInvoiceId={!Zumzum__Sales_Invoice__c.Id}
- 
-{!Zumzum__Sales_Invoice__c.Email_Signature__c}</textOnly>
-    <type>custom</type>
+    <type>visualforce</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

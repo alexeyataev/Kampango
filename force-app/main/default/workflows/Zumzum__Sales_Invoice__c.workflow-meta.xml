@@ -8,8 +8,7 @@
             <field>Zumzum__Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>nctcourses@nct.org.uk</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>NCT_Templates/Adhoc_Payment_Notification</template>
     </alerts>
 </Workflow>
