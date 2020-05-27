@@ -171,6 +171,7 @@
         <name>CustomPermission</name>
     </types>
     <types>
+        <members>NCT_Templates/Adhoc_Payment_Notification</members>
         <members>NCT_Templates/Reunion_Confirmed_Practitioner</members>
         <members>NCT_Templates/Reunion_Confirmed_Public_No_Venue</members>
         <members>NCT_Templates/Reunion_Confirmed_Public</members>
