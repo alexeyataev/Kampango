@@ -3,7 +3,7 @@
 @isTest
 private class Task_PreventDeletion_TDTM_Test {
 
-    private static final String ACCOUNT_NAME = 'Test Account';
+
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
         'triggerHandlerName' => 'Task_PreventDeletion_TDTM',
         'className' => 'Task_PreventDeletion_TDTM',
@@ -16,8 +16,9 @@ private class Task_PreventDeletion_TDTM_Test {
     
     @TestSetup
     private static void SetupTestData(){
-        Account account = new Account(Name = ACCOUNT_NAME, AccountNumber = '1234');
-        insert account;
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory .buildBranchAccount();
+        Account account = [SELECT Id FROM Account LIMIT 1];
         Task task = new task(WhatId = account.Id, Status = 'Completed', Subject = 'Text Body');
         insert task;
         TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
@@ -25,8 +26,7 @@ private class Task_PreventDeletion_TDTM_Test {
 
     @IsTest
     private static void DeleteTask_DeletionBlocked(){
-        Account account = [SELECT Id FROM Account WHERE Name = :ACCOUNT_NAME LIMIT 1];
-        Task task = [SELECT Id FROM Task WHERE WhatId = :account.Id LIMIT 1];
+        Task task = [SELECT Id FROM Task LIMIT 1];
         Boolean hasError = false;
         
         Test.startTest();

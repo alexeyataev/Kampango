@@ -16,8 +16,9 @@ private class ChatterPost_PreventDeletion_TDTM_Test {
     
     @TestSetup
     private static void SetupTestData(){
-        Account account = new Account(Name = ACCOUNT_NAME, AccountNumber = '1234');
-        insert account;
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory .buildBranchAccount();
+        Account account = [SELECT Id FROM Account LIMIT 1];
         FeedItem chatterPost = new FeedItem(ParentId = account.Id, Type = 'TextPost', Body = 'Text Body');
         insert chatterPost;
         TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
@@ -25,8 +26,7 @@ private class ChatterPost_PreventDeletion_TDTM_Test {
 
     @IsTest
     private static void DeleteChatterPost_DeletionBlocked(){
-        Account account = [SELECT Id FROM Account WHERE Name = :ACCOUNT_NAME LIMIT 1];
-        FeedItem chatterPost = [SELECT Id FROM FeedItem WHERE ParentId = :account.Id LIMIT 1];
+        FeedItem chatterPost = [SELECT Id FROM FeedItem LIMIT 1];
         Boolean hasError = false;
         
         Test.startTest();
