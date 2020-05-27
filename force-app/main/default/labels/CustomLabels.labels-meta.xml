@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>AdHoc_Payment_Notification</fullName>
+        <categories>AdHoc Payment Labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AdHoc Payment Notification</shortDescription>
+        <value>As discussed, please find the link below to pay the balance owing to NCT. If you have any queries or questions about this balance, please get in touch with nctcourses@nct.org.uk.</value>
+    </labels>
+    <labels>
         <fullName>Baby_Massage_Tips_And_Benefits_Url</fullName>
         <categories>Confirmation Notification</categories>
         <language>en_US</language>
