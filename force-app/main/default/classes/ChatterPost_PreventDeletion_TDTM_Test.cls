@@ -16,7 +16,7 @@ private class ChatterPost_PreventDeletion_TDTM_Test {
     
     @TestSetup
     private static void SetupTestData(){
-        Account account = new Account(Name = ACCOUNT_NAME);
+        Account account = new Account(Name = ACCOUNT_NAME, AccountNumber = '1234');
         insert account;
         FeedItem chatterPost = new FeedItem(ParentId = account.Id, Type = 'TextPost', Body = 'Text Body');
         insert chatterPost;

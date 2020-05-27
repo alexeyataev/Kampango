@@ -16,7 +16,7 @@ private class Task_PreventDeletion_TDTM_Test {
     
     @TestSetup
     private static void SetupTestData(){
-        Account account = new Account(Name = ACCOUNT_NAME);
+        Account account = new Account(Name = ACCOUNT_NAME, AccountNumber = '1234');
         insert account;
         Task task = new task(WhatId = account.Id, Status = 'Completed', Subject = 'Text Body');
         insert task;
