@@ -1,20 +1,20 @@
-<messaging:emailTemplate subject="Reunion Practitioner Email" recipientType="Contact" relatedToType="Session__c" Subject="NCT course reunion confirmation - {!relatedTo.Course__r.Name}">
+<messaging:emailTemplate recipientType="Contact" relatedToType="Session__c" subject="NCT course reunion confirmation - {!relatedTo.Course__r.Name}">
 
 <messaging:htmlEmailBody >
  <html>
     <body>
     
         Course reference: {!relatedTo.Course__r.Name}<br/><br/>
-        Dear {!relatedTo.Practitioner__r.Name} <br/><br/>
+        Dear {!relatedTo.Practitioner__r.FirstName} <br/><br/>
         
-        <apex:outputPanel title="Course Reunion" rendered="{!relatedTo.Delivery_Type__c = 'Online'}">
+        <apex:outputPanel title="Reunion Confirmed Practitioner" rendered="{!relatedTo.Delivery_Type__c = 'Online'}">
         
             <apex:outputPanel title="Venue is Blank" rendered="{!ISBLANK(relatedTo.Venue__c)}">
             
-                <apex:outputText escape="false" value="{!$Label.Reunion_Message_DeliveryType_Is_Online_And_Venue_Is_Blank}">
+                <apex:outputText value="{!$Label.Reunion_Message_DeliveryType_Is_Online_And_Venue_Is_Blank}" >
                     <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
                     <apex:param value="{!relatedTo.Day_of_Week__c}" />
-                    <apex:param value="{!DAY(relatedTo.Date__c)}/{!MONTH(relatedTo.Date__c)}/{!YEAR(relatedTo.Date__c)}" />
+                    <apex:param value="{!DAY(relatedTo.Date__c)}/{!MONTH(relatedTo.Date__c)}/{!YEAR(relatedTo.Date__c)} " />
                     <apex:param value="{!relatedTo.Start_Text__c}" />
                     <apex:param value="{!relatedTo.End_Text__c}" />
                 </apex:outputText>
@@ -23,7 +23,7 @@
           
             <apex:outputPanel title="Venue not is Blank" rendered="{!NOT(ISBLANK(relatedTo.Venue__c))}">
             
-                 <apex:outputText escape="false" value="{!$Label.Reunion_Message_DeliveryType_Is_Online_And_Venue_Not_Is_Blank}">
+                 <apex:outputText value="{!$Label.Reunion_Message_DeliveryType_Is_Online_And_Venue_Not_Is_Blank}">
                     <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
                     <apex:param value="{!relatedTo.Day_of_Week__c}" />
                     <apex:param value="{!DAY(relatedTo.Date__c)}/{!MONTH(relatedTo.Date__c)}/{!YEAR(relatedTo.Date__c)}" />
@@ -36,11 +36,10 @@
         </apex:outputPanel> 
         
         
-        
-        <apex:outputPanel title="Course Reunion" rendered="{!relatedTo.Delivery_Type__c = 'Physical'}">
-            <apex:outputPanel title="Course Reunion" rendered="{!ISBLANK(relatedTo.Venue__c)}">
+        <apex:outputPanel title="Reunion Confirmed Practitioner" rendered="{!relatedTo.Delivery_Type__c = 'Physical'}">
+            <apex:outputPanel title="Venue is Blank" rendered="{!ISBLANK(relatedTo.Venue__c)}">
             
-                <apex:outputText escape="false" value="{!$Label.Reunion_Message_DeliveryType_Is_Physical_And_Venue_Is_Blank}">
+                <apex:outputText value="{!$Label.Reunion_Message_DeliveryType_Is_Physical_And_Venue_Is_Blank}">
                     <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
                     <apex:param value="{!relatedTo.Day_of_Week__c}" />
                     <apex:param value="{!DAY(relatedTo.Date__c)}/{!MONTH(relatedTo.Date__c)}/{!YEAR(relatedTo.Date__c)}" />
@@ -50,9 +49,9 @@
  
             </apex:outputPanel> 
           
-            <apex:outputPanel title="Course Reunion" rendered="{!NOT(ISBLANK(relatedTo.Venue__c))}">
+            <apex:outputPanel title="Venue not is Blank" rendered="{!NOT(ISBLANK(relatedTo.Venue__c))}">
             
-                <apex:outputText escape="false" value="{!$Label.Reunion_Message_DeliveryType_Is_Physical_And_Venue_Not_Is_Blank}">
+                <apex:outputText value="{!$Label.Reunion_Message_DeliveryType_Is_Physical_And_Venue_Not_Is_Blank}">
                    <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
                    <apex:param value="{!relatedTo.Day_of_Week__c}" />
                    <apex:param value="{!DAY(relatedTo.Date__c)}/{!MONTH(relatedTo.Date__c)}/{!YEAR(relatedTo.Date__c)}" />
