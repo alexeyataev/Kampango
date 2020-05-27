@@ -5,7 +5,7 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Reunion Confirmed Practitioner</name>
     <style>none</style>
-    <subject>NCT course reunion confirmation -</subject>
+    <subject>NCT course reunion confirmation - {!Course__c.Name}</subject>
     <type>visualforce</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
