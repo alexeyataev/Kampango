@@ -1984,6 +1984,11 @@
         <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Unpaid_Amount__c</field>	
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Branch Read Only Layout</layout>
         <recordType>Account.Branch</recordType>
