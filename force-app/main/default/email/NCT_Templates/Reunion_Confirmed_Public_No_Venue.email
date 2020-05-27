@@ -1,38 +1,69 @@
-Course reference: {!Course__c.Name}<br><br>
+<messaging:emailTemplate subject="NCT course reunion confirmation - {!relatedTo.Course__r.Name}"
+                         recipientType="Contact"
+                         relatedToType="Session__c">
 
-Dear {!Contact.FirstName},<br><br>
+    <messaging:htmlEmailBody >
+        <html>
+            <body>
 
-I'm delighted to confirm the details for your {!Course__c.Sub_Type__c} reunion which will be held on {!Session__c.Day_of_Week__c} {!Session__c.Date__c} from {!Session__c.Start_Text__c} to {!Session__c.End_Text__c}.<br><br>
+                <p>Course reference: {!relatedTo.Course__r.Name}</p>
+                <p>Dear {!recipient.FirstName},</p> 
+                
+                <br/>
+                
+                 <apex:outputText value="{!$Label.Reunion_Confirmed_Public_Header}" >
+                    <apex:param value="{!relatedTo.Course__r.Sub_Type__c}" />
+                    <apex:param value="{!relatedTo.Day_of_Week__c}" />
+                    <apex:param value="{!DAY(relatedTo.Date__c)}/{!MONTH(relatedTo.Date__c)}/{!YEAR(relatedTo.Date__c)}" />
+                    <apex:param value="{!relatedTo.Start_Text__c}" />
+                    <apex:param value="{!relatedTo.End_Text__c}" />
+                </apex:outputText>
 
+               
+                <apex:outputPanel title="Reunion Online" rendered="{!relatedTo.Delivery_Type__c = 'Online'}">  
+                    <p>
+                        Due to the current social distancing restrictions in place, we’re delighted to be able to offer you the same quality, interactive and tailored NCT postnatal reunion experience but via Zoom. 
+                        We will be in touch again before your session with the Zoom access details.
+                    </p>
+               
+                    <p>
+                        Your NCT Course Leader, {!relatedTo.Course__r.Main_Practitioner_Name__c} will lead the session for you. She can be contacted on {!relatedTo.Course__r.Main_Practitioner_Phone__c} or at {!relatedTo.Course__r.Main_Practitioner_Email__c} 
+                        . Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
+                    </p>  
 
-{!IF(ISPICKVAL(Session__c.Delivery_Type__c, "Online"), 
+                    <p>We look forward to seeing you, albeit virtually, again then. </p>               
+                </apex:outputPanel>
+                
+                
+                <apex:outputPanel title="Reunion Physical" rendered="{!relatedTo.Delivery_Type__c = 'Physical'}">  
+                    <p>Venue details for your reunion will be confirmed later by your course leader.</p> 
+              
+                    <p>
+                        The reunion will be facilitated by {!relatedTo.Practitioner_Name__c} who may be contacted on {!relatedTo.Practitioner_Phone__c} or at {!relatedTo.Practitioner_Email__c} 
+                        . Should  any changes be made to the reunion your course leader will be in touch with you directly nearer the time.
+                    </p>
 
-    "Due to the current social distancing restrictions in place, we’re delighted to be able to offer you the same quality, interactive and tailored NCT postnatal reunion experience but via Zoom. We will be in touch again before your session with the Zoom access details.</br></br>" 
+                    <br/>
+    
+                </apex:outputPanel> 
+                
+                <br/>
 
- + "Your NCT Course Leader, " + Course__c.Main_Practitioner_Name__c + " will lead the session for you. She can be contacted on " + Course__c.Main_Practitioner_Phone__c + " or at  " + Course__c.Main_Practitioner_Email__c + " . Should any changes be made to the reunion your course leader will be in touch with you directly nearer the time.</br></br>"  
+                <p>We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link: </p>
 
- + "We look forward to seeing you, albeit virtually, again then. </br></br>"
+                <p> <a href="https://www.nct.org.uk">Find a postnatal course</a> </p>
 
-,
+                <br/>
+                    
+                <div>
+                    <p>Kind Regards,</p>  
+                    <p>{!relatedTo.Course__r.Enquiries_PSA_Name__c}</p>
+                    <p>Course Organiser</p>
+                    <p>Telephone: {!relatedTo.Course__r.Enquiries_PSA_Phone__c}</p>
+                    <p>Email: Any reply to this email should be sent to {!relatedTo.Course__r.Enquiries_PSA_Email__c}</p>
+                </div>
 
-    "Venue details for your reunion will be confirmed later by your course leader.<br><br>"
-
- + "The reunion will be facilitated by " + Session__c.Practitioner_Name__c + " who may be contacted on " + Session__c.Practitioner_Phone__c + " or at " + Session__c.Practitioner_Email__c + ". Should  any changes be made to the reunion your course leader will be in touch with you directly nearer the time.</br></br> "
-
-)}
-
-We have a range of Postnatal courses and workshops running in your area. For further details, please follow this link: <br><br>
-
-<a href="https://www.nct.org.uk">Find a postnatal course</a> <br><br>
-
-Kind Regards,  
-<br>
-<br>
-{!Course__c.Enquiries_PSA_Name__c}
-<br>
-Course Organiser
-<br>
-Telephone: {!Course__c.Enquiries_PSA_Phone__c}
-<br>
-Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}
-<br>
+            </body>
+        </html>
+    </messaging:htmlEmailBody>
+</messaging:emailTemplate>

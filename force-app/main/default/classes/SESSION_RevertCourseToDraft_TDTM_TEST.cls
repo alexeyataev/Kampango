@@ -85,81 +85,6 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     }
 
     @isTest
-    static void RevertCourseToDraft_DateUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c];
-        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
-        course.Status__c = COURSE_FINAL_STATUS;
-        update course;
-
-        Test.startTest();
-        for(Session__c session : sessions){
-            session.Date__c = Date.today();
-        }
-        update sessions;
-        Test.stopTest();
-
-        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
-    }
-
-
-    @isTest
-    static void RevertCourseToDraft_StartTimeUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
-        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
-        course.Status__c = COURSE_FINAL_STATUS;
-        update course;
-
-        Test.startTest();
-
-        for(Session__c session : sessions) {
-            session.Start__c = Time.newInstance(19, 00, 0, 0);
-        }
-        update sessions;
-        Test.stopTest();
-
-        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
-    }
-
-    @isTest
-    static void RevertCourseToDraft_EndTimeUpdatedOnSession_CourseStatusIsRevertedToDraft () {
-        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
-        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
-        course.Status__c = COURSE_FINAL_STATUS;
-        update course;
-
-        Test.startTest();
-        for(Session__c session : sessions) {
-            session.End__c = Time.newInstance(20, 00, 0, 0);
-        }
-        update sessions;
-        Test.stopTest();
-
-        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
-    }
-
-    @isTest
-    static void RevertCourseToDraft_LunchBreakMinutesUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c];
-        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
-        course.Status__c = COURSE_FINAL_STATUS;
-        update course;
-
-        Test.startTest();
-        for(Session__c session : sessions) {
-            session.Lunch_Break_Minutes__c = 15;
-        }
-        update sessions;
-        Test.stopTest();
-
-        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
-        System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
-
-    }
-
-    @isTest
     static void RevertCourseToDraft_HoursUpdatedOnSession_CourseStatusIsRevertedToDraft() {
         List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Delivery_Type__c = :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT];
         Course__c course = [SELECT Id FROM Course__c LIMIT 1];
@@ -352,10 +277,17 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             course.Status__c = COURSE_FINAL_STATUS;
         }
         update coursesToTest;
+        Venue__c venue = [SELECT Id FROM Venue__c LIMIT 1];
+
+        TestRoomBuilder roomBuilder = new TestRoomBuilder();
+        room = roomBuilder
+            .WithVenue(venue)
+            .InsertRecord(true)
+            .Build();
 
         Test.startTest();
-        for(Session__c session : sessions){
-            session.Start__c = Time.newInstance(12, 00, 0, 0);
+        for(Session__c session : sessions) {
+            session.Room__c = room.Id;
         }
         update sessions;
         Test.stopTest();
