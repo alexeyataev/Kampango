@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>When we click this button will execute &quot;Resent Payment Email Flow&quot; which will re-resent payment email.</description>
+    <flowDefinition>Resend_Payment_Email</flowDefinition>
+    <label>Send Payment Email</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>
