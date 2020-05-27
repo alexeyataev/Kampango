@@ -17,7 +17,7 @@ public without sharing class ZumzumEStoPIConverterTest {
         TestFinanceDataFactory financeDataFactory = TestFinanceDataFactory.getInstance();
         financeDataFactory.createZumzumData();
         Account supplierAccount = [SELECT Id FROM Account WHERE AccountNumber =: SUPPLIER_ACCOUNT_NUMBER];
-        financeDataFactory.createExpenseDate(TestDataFactory.courses[0].Id, supplierAccount.Id, EXPENSE_SHEET_DETAIL_TOTAL_GROSS);
+        financeDataFactory.createExpenseData(TestDataFactory.courses[0].Id, supplierAccount.Id, EXPENSE_SHEET_DETAIL_TOTAL_GROSS);
     }
     @isTest static void ConvertEStoPI_ConvertedES_CreatedPI() {
         Test.startTest();

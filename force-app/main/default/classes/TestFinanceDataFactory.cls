@@ -4,6 +4,8 @@ public without sharing class TestFinanceDataFactory {
     private static final String PRODUCT_NAME_COURSE_PLACE = 'Course Place';
     private static final String PRODUCT_NAME_MEMBERSHIP_18_MONTH = 'Membership - 18 month';
     private static TestFinanceDataFactory instance;
+    private Zumzum__Tax_Rate__c zumzumNoVatTaxRate;
+    private Zumzum__Nominal_Account__c expenseNominalAccount;
 
     public static TestFinanceDataFactory getInstance() {
         if (instance == NULL) {
@@ -13,14 +15,14 @@ public without sharing class TestFinanceDataFactory {
     }
 
     public void createZumzumData() {
-        Zumzum__Tax_Rate__c zumzumTaxRate = new Zumzum__Tax_Rate__c(
+        zumzumNoVatTaxRate = new Zumzum__Tax_Rate__c(
             Name = 'No VAT',
             Zumzum__Type__c = 'Non-Vatable',
             Zumzum__Active__c = true,
             Zumzum__Tax_Rate__c = 0
         );
 
-        insert zumzumTaxRate;
+        insert zumzumNoVatTaxRate;
 
         Zumzum__Invoice_Template__c zumzumInvoiceTemplate = new Zumzum__Invoice_Template__c(
             Name = 'Zumzum Sample Template',
@@ -101,7 +103,7 @@ public without sharing class TestFinanceDataFactory {
         Zumzum__Nominal_Account__c zumzumVatOnPurchaseNominalAccount = new Zumzum__Nominal_Account__c(
             Name = 'Input VAT (Sales) Control Account',
             Zumzum__Account_Code__c = 9691,
-            Zumzum__Tax_Rate__c = zumzumTaxRate.Id,
+            Zumzum__Tax_Rate__c = zumzumNoVatTaxRate.Id,
             Zumzum__Sub_Category__c = zumzumCreditorsSubCategory.Id
         );
         insert zumzumVatOnPurchaseNominalAccount;
@@ -193,7 +195,7 @@ public without sharing class TestFinanceDataFactory {
         dimension2.Zumzum__Type__c = 'Dimension 2';
         insert dimension2;
 
-        Zumzum__Nominal_Account__c expenseNominalAccount = new Zumzum__Nominal_Account__c();
+        expenseNominalAccount = new Zumzum__Nominal_Account__c();
         expenseNominalAccount.Name = 'Test Expense Nominal Account';
         expenseNominalAccount.Zumzum__Expense__c = true;
         expenseNominalAccount.Zumzum__Account_Code__c = 10;
@@ -203,15 +205,15 @@ public without sharing class TestFinanceDataFactory {
         insert expenseNominalAccount;
     }
 
-    public void createExpenseDate(Id courseId, Id supplierId, Integer amount) {
+    public void createExpenseData(Id courseId, Id supplierId, Integer amount) {
         Zumzum__Expense_Sheet__c expenseSheet = new Zumzum__Expense_Sheet__c();
         expenseSheet.Zumzum__Supplier_Account__c = supplierId;
         expenseSheet.Zumzum__Type__c = 'Cash';
         insert expenseSheet;
         Zumzum__Expense_Sheet_Detail__c expenseSheetDetail = new Zumzum__Expense_Sheet_Detail__c();
         expenseSheetDetail.Zumzum__Expense_Sheet__c = expenseSheet.Id;
-        expenseSheetDetail.Zumzum__Tax_Rate__c = [SELECT Id FROM Zumzum__Tax_Rate__c WHERE Zumzum__Type__c = 'Non-Vatable' LIMIT 1].Id;
-        expenseSheetDetail.Zumzum__Nominal_Account__c = [SELECT Id FROM Zumzum__Nominal_Account__c WHERE Zumzum__Expense__c =: true LIMIT 1].Id;
+        expenseSheetDetail.Zumzum__Tax_Rate__c = zumzumNoVatTaxRate.Id;
+        expenseSheetDetail.Zumzum__Nominal_Account__c = expenseNominalAccount.Id;
         expenseSheetDetail.Zumzum__Narrative__c = 'Item name';
         expenseSheetDetail.Zumzum__Miles__c = 0;
         expenseSheetDetail.Zumzum__Unit_Amount__c = amount;
