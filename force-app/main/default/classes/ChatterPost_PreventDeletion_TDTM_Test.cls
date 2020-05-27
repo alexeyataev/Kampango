@@ -1,13 +1,13 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #94 - https://confluence.nct.org.uk:8443/x/EoSO
+//Incident #93 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
-private class Task_PreventDelition_TDTM_Test {
+private class ChatterPost_PreventDeletion_TDTM_Test {
 
     private static final String ACCOUNT_NAME = 'Test Account';
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
-        'triggerHandlerName' => 'Task_PreventDelition_TDTM',
-        'className' => 'Task_PreventDelition_TDTM',
-        'objectAPIName' => 'Task',
+        'triggerHandlerName' => 'ChatterPost_PreventDeletion_TDTM',
+        'className' => 'ChatterPost_PreventDeletion_TDTM',
+        'objectAPIName' => 'FeedItem',
         'triggerActions' => 'BeforeDelete',
         'isActive' => 'true',
         'loadOrder' => '0',
@@ -18,20 +18,20 @@ private class Task_PreventDelition_TDTM_Test {
     private static void SetupTestData(){
         Account account = new Account(Name = ACCOUNT_NAME);
         insert account;
-        Task task = new task(WhatId = account.Id, Status = 'Completed', Subject = 'Text Body');
-        insert task;
+        FeedItem chatterPost = new FeedItem(ParentId = account.Id, Type = 'TextPost', Body = 'Text Body');
+        insert chatterPost;
         TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
     }
 
     @IsTest
-    private static void DeleteTask_DeletionBlocked(){
+    private static void DeleteChatterPost_DeletionBlocked(){
         Account account = [SELECT Id FROM Account WHERE Name = :ACCOUNT_NAME LIMIT 1];
-        Task task = [SELECT Id FROM Task WHERE WhatId = :account.Id LIMIT 1];
+        FeedItem chatterPost = [SELECT Id FROM FeedItem WHERE ParentId = :account.Id LIMIT 1];
         Boolean hasError = false;
         
         Test.startTest();
         try{
-            delete task;
+            delete chatterPost;
         }catch(Exception e){
             hasError = true;
         }

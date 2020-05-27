@@ -1,13 +1,13 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #93 - https://confluence.nct.org.uk:8443/x/EoSO
+//Incident #94 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
-private class ChatterPost_PreventDelition_TDTM_Test {
+private class Task_PreventDeletion_TDTM_Test {
 
     private static final String ACCOUNT_NAME = 'Test Account';
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
-        'triggerHandlerName' => 'ChatterPost_PreventDelition_TDTM',
-        'className' => 'ChatterPost_PreventDelition_TDTM',
-        'objectAPIName' => 'FeedItem',
+        'triggerHandlerName' => 'Task_PreventDeletion_TDTM',
+        'className' => 'Task_PreventDeletion_TDTM',
+        'objectAPIName' => 'Task',
         'triggerActions' => 'BeforeDelete',
         'isActive' => 'true',
         'loadOrder' => '0',
@@ -18,20 +18,20 @@ private class ChatterPost_PreventDelition_TDTM_Test {
     private static void SetupTestData(){
         Account account = new Account(Name = ACCOUNT_NAME);
         insert account;
-        FeedItem chatterPost = new FeedItem(ParentId = account.Id, Type = 'TextPost', Body = 'Text Body');
-        insert chatterPost;
+        Task task = new task(WhatId = account.Id, Status = 'Completed', Subject = 'Text Body');
+        insert task;
         TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
     }
 
     @IsTest
-    private static void DeleteChatterPost_DeletionBlocked(){
+    private static void DeleteTask_DeletionBlocked(){
         Account account = [SELECT Id FROM Account WHERE Name = :ACCOUNT_NAME LIMIT 1];
-        FeedItem chatterPost = [SELECT Id FROM FeedItem WHERE ParentId = :account.Id LIMIT 1];
+        Task task = [SELECT Id FROM Task WHERE WhatId = :account.Id LIMIT 1];
         Boolean hasError = false;
         
         Test.startTest();
         try{
-            delete chatterPost;
+            delete task;
         }catch(Exception e){
             hasError = true;
         }
@@ -40,4 +40,3 @@ private class ChatterPost_PreventDelition_TDTM_Test {
         System.assert(hasError);
     }
 }
-
