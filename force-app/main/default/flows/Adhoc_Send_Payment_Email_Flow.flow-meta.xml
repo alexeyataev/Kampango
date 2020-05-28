@@ -106,23 +106,6 @@
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
-    <actionCalls>
-        <name>Send_Payment_Email</name>
-        <label>Send Payment Email</label>
-        <locationX>736</locationX>
-        <locationY>814</locationY>
-        <actionName>Zumzum__Sales_Invoice__c.Adhoc_Send_Payment_Email</actionName>
-        <actionType>emailAlert</actionType>
-        <faultConnector>
-            <targetReference>Sending_not_successful</targetReference>
-        </faultConnector>
-        <inputParameters>
-            <name>SObjectRowId</name>
-            <value>
-                <elementReference>salesInvoice.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
     <assignments>
         <name>Sending_not_successful</name>
         <label>Sending not successful</label>
