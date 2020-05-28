@@ -105,10 +105,10 @@ public with sharing class AddBankReceiptForPaymentHandler {
                     listBankReceiptLines.add(membershipBankReceiptLine);
                 } else if (ledger.Zumzum__Sales_Invoice_Line_Item__r.Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c != MEMBERSHIP_NOMINAL_CODE) {
                     courseBankReceiptLine.LedgerName = ledger.Name;
-                    courseBankReceiptLine.Amount = payment.cpm__Amount__c - membershipAmount;
-                    listBankReceiptLines.add(courseBankReceiptLine);
                 }
             }
+            courseBankReceiptLine.Amount = payment.cpm__Amount__c - membershipAmount;
+            listBankReceiptLines.add(courseBankReceiptLine);
         } else {
             courseBankReceiptLine.Amount = payment.cpm__Amount__c;
             courseBankReceiptLine.LedgerName = salesInvoice.Zumzum__Ledger__r[0].Name;

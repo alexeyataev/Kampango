@@ -8,6 +8,7 @@ public with sharing class ZumzumSalesInvoiceCreatorMock implements ISalesInvoice
         salesInvoice.Zumzum__Account__c = salesInvoice.Zumzum__Account__c == null ? salesInvoiceWrapper.Customer : salesInvoice.Zumzum__Account__c;
         salesInvoice.Zumzum__Invoice_Date__c = Date.today();
         salesInvoice.Zumzum__Transaction_Currency__c = salesInvoice.Zumzum__Transaction_Currency__c == null ? salesInvoiceWrapper.TransactionCurrency : salesInvoice.Zumzum__Transaction_Currency__c;
+        salesInvoice.Zumzum__Paid_Amount__c = 0;
         for(Zumzum.SalesInvoicePostService.SalesInvoiceLineWrapper salesInvoiceLineWrapper : salesInvoiceWrapper.LineItems) {
             Zumzum__Sales_Invoice_Line_Item__c salesInvoiceLineItem = new Zumzum__Sales_Invoice_Line_Item__c();
             salesInvoiceLineItem.Zumzum__Product__c = salesInvoiceLineWrapper.Product;
