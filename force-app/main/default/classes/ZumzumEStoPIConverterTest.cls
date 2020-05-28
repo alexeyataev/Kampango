@@ -53,7 +53,7 @@ public without sharing class ZumzumEStoPIConverterTest {
     }
     @isTest 
     static void ConvertNotEStoPI_ConvertedES_CreatedPI() {
-        User financeUser = [SELECT Id FROM User WHERE Profile.Name = 'Finance' LIMIT 1];
+        User financeUser = [SELECT Id FROM User WHERE Profile.Name = 'Finance' AND IsActive = true LIMIT 1];
         Test.startTest();
         System.runAs(financeUser) {
             Set<Id> expenseSheetIds = new Set<Id>();
