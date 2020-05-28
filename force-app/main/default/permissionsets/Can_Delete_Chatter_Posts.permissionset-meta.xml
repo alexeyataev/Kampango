@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Can_Delete_Chatter_Posts</name>
+    </customPermissions>
+    <description>Contains the Can Delete Chatter Posts custom permission</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Can Delete Chatter Posts</label>
+</PermissionSet>

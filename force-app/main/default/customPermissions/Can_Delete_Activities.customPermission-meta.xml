@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Referenced by the trigger on the Tasks, in order to allow deletion of them.</description>
+    <label>Can Delete Activities</label>
+</CustomPermission>
