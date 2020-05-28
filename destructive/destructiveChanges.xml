@@ -355,7 +355,7 @@
         <members>Booking__c.Send Reservation Email</members>
         <members>Booking__c.Send Confirmation Email</members>
         <name>WorkflowRule</name>
-    </types>    
+    </types>
     <types>
         <members>Booking__c.Send_Confirmation_Email</members>
         <members>Booking__c.Send_Reservation_Email</members>
@@ -364,6 +364,7 @@
         <members>Contact.Send_reunion_session_email_to_practitioner</members>
         <members>Course_Assignment__c.SendEmailToPractitioner</members>
         <members>Venue.Send_reunion_session_email_to_host</members>
+        <members>Zumzum__Sales_Invoice__c.Adhoc_Send_Payment_Email</members>
         <name>WorkflowAlert</name>
     </types>
     <types>
