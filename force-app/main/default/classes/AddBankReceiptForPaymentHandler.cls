@@ -95,11 +95,10 @@ public with sharing class AddBankReceiptForPaymentHandler {
         List<Zumzum.BankCustomerReceiptService.BankReceiptLine> listBankReceiptLines = new List<Zumzum.BankCustomerReceiptService.BankReceiptLine>();
         Zumzum.BankCustomerReceiptService.BankReceiptLine courseBankReceiptLine = new Zumzum.BankCustomerReceiptService.BankReceiptLine();
         if (salesInvoice.Zumzum__Ledger__r.size() > 1) {
-            Decimal membershipAmount = 0;
             Zumzum.BankCustomerReceiptService.BankReceiptLine membershipBankReceiptLine = new Zumzum.BankCustomerReceiptService.BankReceiptLine();
             for (Zumzum__Ledger__c ledger : salesInvoice.Zumzum__Ledger__r) {
                 if (ledger.Zumzum__Sales_Invoice_Line_Item__r.Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c == MEMBERSHIP_NOMINAL_CODE && !paidMembershipLedgers.contains(ledger.Id)) {
-                    membershipBankReceiptLine.Amount = membershipAmount = ledger.Zumzum__Debit__c;
+                    membershipBankReceiptLine.Amount = ledger.Zumzum__Debit__c;
                     membershipBankReceiptLine.LedgerName = ledger.Name;
                     paidMembershipLedgers.add(ledger.Id);
                     listBankReceiptLines.add(membershipBankReceiptLine);
@@ -107,7 +106,7 @@ public with sharing class AddBankReceiptForPaymentHandler {
                     courseBankReceiptLine.LedgerName = ledger.Name;
                 }
             }
-            courseBankReceiptLine.Amount = payment.cpm__Amount__c - membershipAmount;
+            courseBankReceiptLine.Amount = payment.cpm__Amount__c - membershipBankReceiptLine.Amount;
             listBankReceiptLines.add(courseBankReceiptLine);
         } else {
             courseBankReceiptLine.Amount = payment.cpm__Amount__c;
