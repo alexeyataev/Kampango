@@ -27,16 +27,16 @@ private class Task_PreventDeletion_TDTM_Test {
     @IsTest
     private static void DeleteTask_DeletionBlocked(){
         Task task = [SELECT Id FROM Task LIMIT 1];
-        Boolean hasError = false;
+        String errorMessage;
         
         Test.startTest();
         try{
             delete task;
         }catch(Exception e){
-            hasError = true;
+            errorMessage = e.getMessage();
         }
         Test.stopTest();
-
-        System.assert(hasError);
+        
+        System.assertEquals(true, errorMessage.contains(System.label.Delete_Activity_Error_Text));
     }
 }

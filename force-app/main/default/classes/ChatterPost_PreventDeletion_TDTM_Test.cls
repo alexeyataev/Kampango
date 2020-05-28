@@ -27,16 +27,16 @@ private class ChatterPost_PreventDeletion_TDTM_Test {
     @IsTest
     private static void DeleteChatterPost_DeletionBlocked(){
         FeedItem chatterPost = [SELECT Id FROM FeedItem LIMIT 1];
-        Boolean hasError = false;
+        String errorMessage;
         
         Test.startTest();
         try{
             delete chatterPost;
         }catch(Exception e){
-            hasError = true;
+            errorMessage = e.getMessage();
         }
         Test.stopTest();
 
-        System.assert(hasError);
+        System.assertEquals(true, errorMessage.contains(System.label.Delete_Chatter_Post_Error_Text));
     }
 }
