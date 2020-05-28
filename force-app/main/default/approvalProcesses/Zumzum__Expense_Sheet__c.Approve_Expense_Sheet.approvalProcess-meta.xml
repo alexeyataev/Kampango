@@ -16,10 +16,6 @@
         <allowDelegate>true</allowDelegate>
         <approvalActions>
             <action>
-                <name>Approval_Status_change_to_Approved</name>
-                <type>FieldUpdate</type>
-            </action>
-            <action>
                 <name>Expense_Sheet_Approval</name>
                 <type>Alert</type>
             </action>
@@ -44,6 +40,12 @@
     </approvalStep>
     <approvalStep>
         <allowDelegate>true</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>Approval_Status_change_to_Approved</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
         <assignedApprover>
             <approver>
                 <name>Finance_Approvers</name>
@@ -56,6 +58,16 @@
         <rejectBehavior>
             <type>RejectRequest</type>
         </rejectBehavior>
+        <rejectionActions>
+            <action>
+                <name>Approval_Status_change_to_Rejected</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
+                <name>Expense_Sheet_Rejection</name>
+                <type>Alert</type>
+            </action>
+        </rejectionActions>
     </approvalStep>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
