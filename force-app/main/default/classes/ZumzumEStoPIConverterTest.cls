@@ -21,7 +21,7 @@ public without sharing class ZumzumEStoPIConverterTest {
         financeDataFactory.createExpenseData(TestDataFactory.courses[0].Id, supplierAccount.Id, EXPENSE_SHEET_DETAIL_TOTAL_GROSS);
     }
     @isTest static void ConvertEStoPI_ConvertedES_CreatedPI() {
-        User financeUser = [SELECT Id FROM User WHERE Profile.Name = 'Finance' LIMIT 1];
+        User financeUser = [SELECT Id FROM User WHERE Profile.Name = 'Finance' AND IsActive = true LIMIT 1];
         Test.startTest();
         System.runAs(financeUser) {
             Set<Id> expenseSheetIds = new Set<Id>();
