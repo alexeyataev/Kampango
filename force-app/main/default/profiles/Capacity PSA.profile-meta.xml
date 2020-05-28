@@ -2258,18 +2258,23 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Gross__c</field>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Gross__c</field>
         <readable>true</readable>	
     </fieldPermissions>	
     <fieldPermissions>	
         <editable>false</editable>
-        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Paid_Amount__c</field>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Paid_Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Unpaid_Amount__c</field>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Unpaid_Amount__c</field>
         <readable>true</readable>	
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Type__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Branch Layout</layout>
@@ -2368,6 +2373,15 @@
     <layoutAssignments>	
         <layout>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</layout>	
     </layoutAssignments>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Account</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>

@@ -1989,6 +1989,11 @@
         <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Unpaid_Amount__c</field>	
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Branch Read Only Layout</layout>
         <recordType>Account.Branch</recordType>
@@ -2068,6 +2073,15 @@
         <layout>Venue__c-Virtual Venue Page Layout</layout>
         <recordType>Venue__c.Virtual</recordType>
     </layoutAssignments>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Account</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
