@@ -4,13 +4,14 @@ public with sharing class AddBankReceiptForPaymentHandler {
     private static final String SALES_INVOICE_STATUS = 'Posted';
     private static final String IS_PAID = 'Y';
     private static final String BANK_ACCOUNT_NAME = Bank_Account_Settings__c.getOrgDefaults().Card_Receipt_Bank_Account_Name__c;
-    
+
     private static Set<Id> paidMembershipLedgers = new Set<Id>();
     private static Set<Id> processedAccounts = new Set<Id>();
-    
+    private static List<cpm__Payment__c> overpaidPayments = new List<cpm__Payment__c>();
+
     public static IBankReceiptCreator bankReceiptCreator {
         get {
-            if(bankReceiptCreator == null) {
+            if (bankReceiptCreator == null) {
                 bankReceiptCreator = new ZumzumBankReceiptCreator();
             }
             return bankReceiptCreator;
@@ -32,7 +33,7 @@ public with sharing class AddBankReceiptForPaymentHandler {
         Map<Id, List<cpm__Payment__c>> salesInvoicesPaymentsMap = new Map<Id, List<cpm__Payment__c>>();
 
         for (cpm__Payment__c payment : payments) {
-            Id  salesInvoiceId = payment.cpm__Installment__r.Sales_Invoice__c != null ? payment.cpm__Installment__r.Sales_Invoice__c : payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c;
+            Id salesInvoiceId = payment.cpm__Installment__r.Sales_Invoice__c != null ? payment.cpm__Installment__r.Sales_Invoice__c : payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c;
             if (salesInvoiceId != null) {
                 if (salesInvoicesPaymentsMap.containsKey(salesInvoiceId)) {
                     salesInvoicesPaymentsMap.get(salesInvoiceId).add(payment);
@@ -43,7 +44,9 @@ public with sharing class AddBankReceiptForPaymentHandler {
         }
 
         for (Zumzum__Sales_Invoice__c salesInvoice : [
-                SELECT Zumzum__Account__c, (
+                SELECT Name,
+                        Zumzum__Account__c,
+                        Zumzum__Total_Unpaid_Amount__c, (
                         SELECT Name,
                                 Zumzum__Debit__c,
                                 Zumzum__Sub_Account_Nominal__c,
@@ -53,13 +56,24 @@ public with sharing class AddBankReceiptForPaymentHandler {
                         WHERE Zumzum__Sub_Account_Nominal__c = :DEBTOR_NOMINAL_CODE AND Zumzum__Paid__c <> :IS_PAID
                 )
                 FROM Zumzum__Sales_Invoice__c
-                WHERE Id IN (SELECT Zumzum__Sales_Invoice__c FROM Zumzum__Ledger__c WHERE Zumzum__Sales_Invoice__c IN :salesInvoicesPaymentsMap.keySet() AND Zumzum__Sub_Account_Nominal__c = :DEBTOR_NOMINAL_CODE AND Zumzum__Paid__c <> :IS_PAID) 
-                        AND Zumzum__Status__c = :SALES_INVOICE_STATUS AND Zumzum__Paid__c <> :IS_PAID
+                WHERE Id IN (
+                        SELECT Zumzum__Sales_Invoice__c
+                        FROM Zumzum__Ledger__c
+                        WHERE Zumzum__Sales_Invoice__c IN :salesInvoicesPaymentsMap.keySet() AND Zumzum__Sub_Account_Nominal__c = :DEBTOR_NOMINAL_CODE AND Zumzum__Paid__c <> :IS_PAID
+                )
+                AND Zumzum__Status__c = :SALES_INVOICE_STATUS AND Zumzum__Paid__c <> :IS_PAID
                 WITH SECURITY_ENFORCED
         ]) {
             for (cpm__Payment__c payment : salesInvoicesPaymentsMap.get(salesInvoice.Id)) {
                 if (!Test.isRunningTest() && processedAccounts.contains(salesInvoice.Zumzum__Account__c)) {
                     //Due to a limitation in ZumZum API whereby it cannot process multiple payments for the same account, in a single batch, we've implemented this workaround in lieu of a fix from them.
+                    continue;
+                }
+                if (payment.cpm__Amount__c > salesInvoice.Zumzum__Total_Unpaid_Amount__c) {
+                    payment.Bank_Customer_Receipt_Error_Log__c = String.format(System.label.BankCustomerReceiptOverpaidErrorText, new List<String>{
+                            salesInvoice.Name, String.valueOf(salesInvoice.Zumzum__Total_Unpaid_Amount__c), String.valueOf(payment.cpm__Amount__c)
+                    });
+                    overpaidPayments.add(payment);
                     continue;
                 }
                 Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper receiptWrapper = new Zumzum.BankCustomerReceiptService.BankCustomerReceiptWrapper();
@@ -74,6 +88,7 @@ public with sharing class AddBankReceiptForPaymentHandler {
             }
         }
         bankReceiptCreator.createBankReceipts(receiptWrapperList);
+        update overpaidPayments;
     }
 
     private static List<Zumzum.BankCustomerReceiptService.BankReceiptLine> createBankReceiptLines(cpm__Payment__c payment, Zumzum__Sales_Invoice__c salesInvoice) {
