@@ -30,6 +30,7 @@
         <members>ConfirmationEmailControllerTest</members>
         <members>ContactProcessHelper</members>
         <members>ContactProcessTest</members>
+        <members>ConvertEStoPIHandler</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -62,6 +63,7 @@
         <members>HttpStatusCode</members>
         <members>IBankReceiptCreator</members>
         <members>IClock</members>
+        <members>IExpenseSheetToPurchaseInvoiceConverter</members>
         <members>IPaymentServiceProvider</members>
         <members>ISalesInvoiceCreator</members>
         <members>LightningSelfRegisterController</members>
@@ -136,8 +138,11 @@
         <members>ZumzumBankReceiptCreator</members>
         <members>ZumzumBankReceiptCreatorMock</members>
         <members>ZumzumCreatePostSalesInvoice</members>
-        <members>ZumzumPostSalesInvoiceHelperTest</members>
         <members>ZumzumCreatePostSalesInvoiceTest</members>
+        <members>ZumzumEStoPIConverter</members>
+        <members>ZumzumEStoPIConverterMock</members>
+        <members>ZumzumEStoPIConverterTest</members>
+        <members>ZumzumPostSalesInvoiceHelperTest</members>
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
         <members>ZumzumSalesInvoiceParameters</members>

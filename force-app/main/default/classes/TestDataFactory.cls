@@ -17,6 +17,8 @@ public without sharing class TestDataFactory {
     private static final String PORTAL_ACCOUNT_USER_EMAIL = 'portalAccountUserNCT@ncttest.com';
     private static final String PARTNER_COMMUNITY_USER_EMAIL = 'partnerCommunityUser@ncttest.com';
     private static final String TEST_BILLING_EMAIL = 'billingEmail@ncttest.com';
+    private static final String FINANCE_USER_EMAIL = 'finance.user@test.com';
+    private static final String FINANCE_USER_ALIAS = 'fin.user';
     private static final String COMMUNITY_NICKNAME_ONE = 'NICKNAME_ONE';
     private static final String COMMUNITY_NICKNAME_TWO = 'NICKNAME_TWO';
     private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
@@ -31,6 +33,7 @@ public without sharing class TestDataFactory {
     public static List<Session__c> sessions = new List<Session__c>();
     public static List<User> users = new List<User>();
     public static List<User> enquiryPSAUsers = new List<User>();
+    public static List<User> financeUsers = new List<User>();
     public static List<User> psaManagers = new List<User>();
     private List<Contact> practitioners = new List<Contact>();
     private Account branchAccount;
@@ -644,6 +647,17 @@ public without sharing class TestDataFactory {
             .insertRecord(true)
             .build());
         return users[0];
+    }
+
+    public TestDataFactory createFinanceUser() {
+        TestUserBuilder userBuilder = new TestUserBuilder();
+        financeUsers.add(userBuilder.withUsername(FINANCE_USER_EMAIL)
+            .withProfile([SELECT Id FROM Profile WHERE Name = 'Finance'].Id)
+            .withEmail(FINANCE_USER_EMAIL)
+            .withAlias(FINANCE_USER_ALIAS)
+            .insertRecord(true)
+            .build());
+        return this;
     }
 
     public static User convertPractitionerToPartnerCommunityUser() {
