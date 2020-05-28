@@ -219,6 +219,6 @@ public class AddBankReceiptPaymentBatchTest {
         });
         System.assertEquals(1, bankReceipts.Size());
         System.assertEquals(2, bankReceipts[0].Zumzum__Bank_Receipt_Line_Items__r.Size());
-        System.assertEquals(true, secondPayment.Bank_Customer_Receipt_Error_Log__c.contains(errorMessage));
+        System.assertEquals(errorMessage, secondPayment.Bank_Customer_Receipt_Error_Log__c);
     }
 }
