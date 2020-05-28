@@ -236,6 +236,7 @@
         <members>cpm__Installment__c.Account_Number__c</members>
         <members>cpm__Installment__c.Bank_Account__c</members>
         <members>cpm__Installment__c.Sort_Code__c</members>
+        <members>cpm__Payment__c.Bank_Customer_Receipt_Error_Log__c</members>
         <members>Zumzum__Bank_Payment_Line_Item__c.Payment_Run__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Bank_Receipt__c.Payment__c</members>
