@@ -18,6 +18,7 @@ public with sharing class ZumzumSalesInvoiceCreatorMock implements ISalesInvoice
             salesInvoiceLineItem.Zumzum__Amount__c = salesInvoiceLineWrapper.ForeignNetAmount;
             salesInvoiceLineItem.Zumzum__Foreign_Net_Total__c = salesInvoiceLineWrapper.ForeignNetAmount;
             salesInvoiceLineItem.Zumzum__Foreign_Gross__c = salesInvoiceLineWrapper.ForeignNetAmount;
+            salesInvoiceLineItem.Zumzum__Total_Gross__c = salesInvoiceLineWrapper.ForeignNetAmount;
             salesInvoiceLineItem.Zumzum__Dimension_1__c = salesInvoiceLineWrapper.Dimension1;
             salesInvoiceLineItem.Zumzum__Dimension_2__c = salesInvoiceLineWrapper.Dimension2;
             salesInvoiceLineList.add(salesInvoiceLineItem);

@@ -23,6 +23,8 @@
         <members>CardPaymentHandlerTest</members>
         <members>CardPaymentParameters</members>
         <members>CardPaymentPlanHandler</members>
+        <members>ChatterPost_PreventDeletion_TDTM</members>
+        <members>ChatterPost_PreventDeletion_TDTM_Test</members>
         <members>CardPaymentUrlResult</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
@@ -30,6 +32,7 @@
         <members>ConfirmationEmailControllerTest</members>
         <members>ContactProcessHelper</members>
         <members>ContactProcessTest</members>
+        <members>ConvertEStoPIHandler</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
         <members>CourseDetailController</members>
@@ -62,6 +65,7 @@
         <members>HttpStatusCode</members>
         <members>IBankReceiptCreator</members>
         <members>IClock</members>
+        <members>IExpenseSheetToPurchaseInvoiceConverter</members>
         <members>IPaymentServiceProvider</members>
         <members>ISalesInvoiceCreator</members>
         <members>LightningSelfRegisterController</members>
@@ -99,6 +103,8 @@
         <members>SetBookingReservationExpiryDateTest</members>
         <members>InvalidateWithdrawCADFlowTest</members>
         <members>SystemClock</members>
+        <members>Task_PreventDeletion_TDTM</members>
+        <members>Task_PreventDeletion_TDTM_Test</members>
         <members>TestAccountBuilder</members>
         <members>TestBatchReceiptReportBuilder</members>
         <members>TestBatchReceiptReportItemBuilder</members>
@@ -136,8 +142,11 @@
         <members>ZumzumBankReceiptCreator</members>
         <members>ZumzumBankReceiptCreatorMock</members>
         <members>ZumzumCreatePostSalesInvoice</members>
-        <members>ZumzumPostSalesInvoiceHelperTest</members>
         <members>ZumzumCreatePostSalesInvoiceTest</members>
+        <members>ZumzumEStoPIConverter</members>
+        <members>ZumzumEStoPIConverterMock</members>
+        <members>ZumzumEStoPIConverterTest</members>
+        <members>ZumzumPostSalesInvoiceHelperTest</members>
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
         <members>ZumzumSalesInvoiceParameters</members>
@@ -167,6 +176,7 @@
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTrigger</members>
         <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
+        <members>TDTM_FeedItem</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
     </types>
@@ -236,6 +246,7 @@
         <members>cpm__Installment__c.Account_Number__c</members>
         <members>cpm__Installment__c.Bank_Account__c</members>
         <members>cpm__Installment__c.Sort_Code__c</members>
+        <members>cpm__Payment__c.Bank_Customer_Receipt_Error_Log__c</members>
         <members>Zumzum__Bank_Payment_Line_Item__c.Payment_Run__c</members>
         <members>Zumzum__Bank_Payment__c.Zumzum__Status__c</members>
         <members>Zumzum__Bank_Receipt__c.Payment__c</members>
@@ -644,11 +655,14 @@
     </types>
     <types>
         <members>Branch_and_PSA_Management</members>
+        <members>Can_Convert_Expense_Sheet</members>
+        <members>Can_Delete_Activities</members>
+        <members>Can_Delete_Chatter_Posts</members>
         <members>Can_Reopen_Courses</members>
         <members>Create_Public_Lists</members>
-        <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
+        <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Case_Validation</members>
         <members>Override_Client_Validation</members>
         <members>Override_Contact_Validation</members>
@@ -660,7 +674,9 @@
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
         <members>Override_Venue_Validation</members>
+        <members>PaymentHub_Additional</members>
         <members>Practitioner_Management</members>
+        <members>ProcessingHub_Additional</members>
         <members>Product_Management</members>
         <name>PermissionSet</name>
     </types>
