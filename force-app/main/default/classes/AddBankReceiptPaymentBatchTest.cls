@@ -169,7 +169,7 @@ public class AddBankReceiptPaymentBatchTest {
 
     @IsTest
     static void AddBankReceiptForWorldpayPaymentBatch_SalesInvoiceOverpaid_ReceiptCreatedForFirstPayment() {
-        Zumzum__Sales_Invoice__c salesInvoiceCreated = [SELECT Id, Zumzum__Status__c, (SELECT Zumzum__Amount__c FROM Zumzum__Sales_Invoice_Line_Items__r) FROM Zumzum__Sales_Invoice__c LIMIT 1];
+        Zumzum__Sales_Invoice__c salesInvoiceCreated = [SELECT Name, Zumzum__Status__c, Zumzum__Total_Unpaid_Amount__c, (SELECT Zumzum__Amount__c FROM Zumzum__Sales_Invoice_Line_Items__r) FROM Zumzum__Sales_Invoice__c LIMIT 1];
         cpm__Installment__c firstInstallment = [SELECT cpm__Amount__c, cpm__Account__c, cpm__Contact__c, cpm__Payment_Profile__c, Sales_Invoice__c FROM cpm__Installment__c LIMIT 1];
         firstInstallment.cpm__Amount__c = salesInvoiceCreated.Zumzum__Sales_Invoice_Line_Items__r[0].Zumzum__Amount__c * 0.7 + salesInvoiceCreated.Zumzum__Sales_Invoice_Line_Items__r[1].Zumzum__Amount__c;
         update firstInstallment;
@@ -213,7 +213,12 @@ public class AddBankReceiptPaymentBatchTest {
         Test.stopTest();
 
         List<Zumzum__Bank_Receipt__c> bankReceipts = [SELECT Id, Payment__c, (SELECT Id FROM Zumzum__Bank_Receipt_Line_Items__r) FROM Zumzum__Bank_Receipt__c WHERE Id IN (SELECT Zumzum__Bank_Receipt__c FROM Zumzum__Bank_Receipt_Line_Item__c WHERE Zumzum__Sales_Invoice__c = :firstInstallment.Sales_Invoice__c)];
+        secondPayment = [SELECT cpm__Amount__c, Bank_Customer_Receipt_Error_Log__c FROM cpm__Payment__c WHERE Id = :secondPayment.Id LIMIT 1];
+        String errorMessage = String.format(System.label.BankCustomerReceiptOverpaidErrorText, new List<String>{
+            salesInvoiceCreated.Name, String.valueOf(salesInvoiceCreated.Zumzum__Total_Unpaid_Amount__c), String.valueOf(secondPayment.cpm__Amount__c)
+        });
         System.assertEquals(1, bankReceipts.Size());
         System.assertEquals(2, bankReceipts[0].Zumzum__Bank_Receipt_Line_Items__r.Size());
+        System.assertEquals(true, secondPayment.Bank_Customer_Receipt_Error_Log__c.contains(errorMessage));
     }
 }
