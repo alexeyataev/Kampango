@@ -67,7 +67,6 @@ public with sharing class ZumzumBankReceiptCreatorMock implements IBankReceiptCr
         insert bankReceiptList;
         
         List<Zumzum__Ledger__c> ledgersToUpdate = [SELECT Name, Zumzum__Debit__c, Zumzum__Paid__c, Zumzum__Sales_Invoice__c, Zumzum__Sales_Invoice_Line_Item__c FROM Zumzum__Ledger__c WHERE Name IN :legerNameBankReceiptLineItemMap.keySet() WITH SECURITY_ENFORCED];
-        Map<Id, Zumzum__Sales_Invoice__c> salesInvoicesToUpdate = new Map<Id, Zumzum__Sales_Invoice__c>([SELECT Zumzum__Paid_Amount__c FROM Zumzum__Sales_Invoice__c WHERE Id IN (SELECT Zumzum__Sales_Invoice__c FROM Zumzum__Ledger__c WHERE Name IN :legerNameBankReceiptLineItemMap.keySet()) WITH SECURITY_ENFORCED]);
         for (Zumzum__Ledger__c ledger : ledgersToUpdate) {
             if (!(legerNameBankReceiptLineItemMap.get(ledger.Name).Zumzum__Amount__c < ledger.Zumzum__Debit__c)) {
                 ledger.Zumzum__Paid__c = 'Y';
@@ -75,10 +74,8 @@ public with sharing class ZumzumBankReceiptCreatorMock implements IBankReceiptCr
             legerNameBankReceiptLineItemMap.get(ledger.Name).Zumzum__Bank_Receipt__c = legerNameBankReceiptMap.get(ledger.Name).Id;
             legerNameBankReceiptLineItemMap.get(ledger.Name).Zumzum__Sales_Invoice__c = ledger.Zumzum__Sales_Invoice__c;
             legerNameBankReceiptLineItemMap.get(ledger.Name).Zumzum__Sales_Invoice_Line_Item__c = ledger.Zumzum__Sales_Invoice_Line_Item__c;
-            salesInvoicesToUpdate.get(ledger.Zumzum__Sales_Invoice__c).Zumzum__Paid_Amount__c += legerNameBankReceiptLineItemMap.get(ledger.Name).Zumzum__Amount__c;
         }
         insert bankReceiptLineItemList;
         update ledgersToUpdate;
-        update salesInvoicesToUpdate.values();
     }
 }
