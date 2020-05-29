@@ -17,6 +17,14 @@
         <value>https://www.nct.org.uk/baby-toddler/everyday-care/baby-massage-tips-and-benefits</value>
     </labels>
     <labels>
+        <fullName>BankCustomerReceiptOverpaidErrorText</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BankCustomerReceiptOverpaidErrorText</shortDescription>
+        <value>This payment overpays Sales Invoice: {0}. The Unpaid Amount on the Sales Invoice is: {1} and the amount of the payment is {2}.</value>
+    </labels>
+    <labels>
         <fullName>Bookings_Reply_Email</fullName>
         <categories>Confirmation Notification</categories>
         <language>en_US</language>
@@ -98,6 +106,22 @@
         <protected>false</protected>
         <shortDescription>Radius is not valid response</shortDescription>
         <value>{&quot;Error&quot; : &quot;Radius is not a whole number of miles&quot;}</value>
+    </labels>
+    <labels>
+        <fullName>Delete_Activity_Error_Text</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Activity Error Text</shortDescription>
+        <value>You do not have permission to delete Activities. If necessary please contact your System Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>Delete_Chatter_Post_Error_Text</fullName>
+        <categories>Error Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Chatter Post Error Text</shortDescription>
+        <value>You do not have permission to delete Chatter Posts. If necessary please contact your System Administrator.</value>
     </labels>
     <labels>
         <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
@@ -215,4 +239,3 @@
         <value>https://support.zoom.us/hc/en-us</value>
     </labels>
 </CustomLabels>
-

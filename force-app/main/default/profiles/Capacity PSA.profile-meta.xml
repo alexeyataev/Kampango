@@ -2160,6 +2160,11 @@
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Status__c</field>	
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Payment__c.Bank_Customer_Receipt_Error_Log__c</field>
+        <readable>true</readable>
     </fieldPermissions>	
     <fieldPermissions>
         <editable>false</editable>
