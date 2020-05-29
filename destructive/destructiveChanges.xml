@@ -301,6 +301,7 @@
     </types>
     <types>
         <members>Allow_Confirmed_Bookings</members>
+        <members>Branch_and_PSA_Management</members>
         <name>PermissionSet</name>
     </types>
     <types>
