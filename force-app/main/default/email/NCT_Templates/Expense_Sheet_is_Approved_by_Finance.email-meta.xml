@@ -2,7 +2,7 @@
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>Expense Sheet is Approved by Capacity PSA</name>
+    <name>Expense Sheet is Approved by Finance</name>
     <style>none</style>
     <subject>Expense approved</subject>
     <textOnly>Dear {!Zumzum__Expense_Sheet__c.OwnerFirstName},
@@ -10,6 +10,8 @@
 The following expense has been approved by Parent services and passed to Finance for final approval prior to payment:
 
 Expense ID: {!Zumzum__Expense_Sheet__c.Name}
+
+Payment will be sent within 30 days of this approval.
 
 Please log into your portal to view any details. 
 
