@@ -1047,7 +1047,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    <editable>true</editable>
+        <editable>true</editable>
         <field>Session__c.Lunch_Break_Minutes__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1147,7 +1147,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    <editable>false</editable>
+        <editable>false</editable>
         <field>Session__c.Venue_Client_Link__c</field>
         <readable>true</readable>
     </fieldPermissions>
