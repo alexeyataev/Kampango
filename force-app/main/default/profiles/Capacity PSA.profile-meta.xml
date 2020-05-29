@@ -722,7 +722,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    <editable>false</editable>
+        <editable>false</editable>
         <field>Course__c.Main_Practitioner_Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -977,7 +977,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    <editable>true</editable>
+        <editable>true</editable>
 		<field>Session__c.Date__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
@@ -1011,7 +1011,7 @@
         <field>Session__c.Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>    
+    <fieldPermissions>  
         <editable>false</editable>
         <field>Session__c.Location_County__c</field>
         <readable>true</readable>
@@ -2160,7 +2160,7 @@
         <editable>false</editable>
         <field>cpm__Installment__c.cpm__Status__c</field>	
         <readable>true</readable>
-    </fieldPermissions>	
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>cpm__Payment__c.Bank_Customer_Receipt_Error_Log__c</field>
@@ -2258,17 +2258,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Gross__c</field>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Gross__c</field>
         <readable>true</readable>	
     </fieldPermissions>	
     <fieldPermissions>	
         <editable>false</editable>
-        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Paid_Amount__c</field>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Paid_Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Unpaid_Amount__c</field>	
+        <field>Zumzum__Sales_Invoice__c.Zumzum__Total_Unpaid_Amount__c</field>
         <readable>true</readable>	
     </fieldPermissions>
     <fieldPermissions>
@@ -2343,7 +2343,7 @@
         <layout>Room__c-Room Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-    <layout>Session__c-Adhoc Support Layout</layout>
+        <layout>Session__c-Adhoc Support Layout</layout>
         <recordType>Session__c.Adhoc_Support</recordType>
     </layoutAssignments>
     <layoutAssignments>
