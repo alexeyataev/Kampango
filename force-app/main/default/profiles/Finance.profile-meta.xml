@@ -9252,11 +9252,6 @@
         <recordType>Account.Organization</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-      <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Account.Branch</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Contact.Clients</recordType>

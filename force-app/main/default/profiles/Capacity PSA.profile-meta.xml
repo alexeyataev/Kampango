@@ -32,32 +32,32 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.Capacity_PSA__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.Capacity_PSA_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.Capacity_PSA_Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.Enquiries_PSA__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.Enquiries_PSA_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.Enquiries_PSA_Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -977,9 +977,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-		<editable>true</editable>
-		<field>Session__c.Date__c</field>
-		<readable>true</readable>
+        <editable>true</editable>
+        <field>Session__c.Date__c</field>
+        <readable>true</readable>
 	</fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
