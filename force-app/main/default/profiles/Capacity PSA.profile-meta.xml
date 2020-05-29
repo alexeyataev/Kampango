@@ -978,8 +978,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-		<field>Session__c.Date__c</field>
-		<readable>true</readable>
+        <field>Session__c.Date__c</field>
+        <readable>true</readable>
 	</fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1007,11 +1007,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    <editable>true</editable>
+        <editable>true</editable>
         <field>Session__c.Hours__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>  
+    <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Location_County__c</field>
         <readable>true</readable>
