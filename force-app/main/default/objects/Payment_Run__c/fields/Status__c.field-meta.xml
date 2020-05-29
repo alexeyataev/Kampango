@@ -35,6 +35,11 @@
                 <default>false</default>
                 <label>Closed</label>
             </value>
+            <value>
+                <fullName>Failed To Create Transactions</fullName>
+                <default>false</default>
+                <label>Failed To Create Transactions</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
