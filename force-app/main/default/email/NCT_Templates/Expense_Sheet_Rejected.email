@@ -2,7 +2,8 @@ Dear {!Zumzum__Expense_Sheet__c.OwnerFirstName},<br>
 <br>
 The following expenses have been rejected and need amending, please log into your portal to see the comments and amend as necessary:<br>
 <br>
-EXPENSE ID: {!Zumzum__Expense_Sheet__c.Name}<br>
+EXPENSE ID: {!Zumzum__Expense_Sheet__c.Name}<br><br>
+{!ApprovalRequest.Comments}<br><br>
 <br>
 Kind regards<br>
 NCT

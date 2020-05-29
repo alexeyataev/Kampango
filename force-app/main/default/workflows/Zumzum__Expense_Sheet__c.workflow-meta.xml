@@ -12,6 +12,17 @@
         <template>NCT_Templates/Expense_Sheet_is_Approved</template>
     </alerts>
     <alerts>
+        <fullName>Expense_Sheet_Approval_by_Finance</fullName>
+        <description>Expense Sheet Approval by Finance</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>nctcourses@nct.org.uk</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>NCT_Templates/Expense_Sheet_is_Approved_by_Finance</template>
+    </alerts>
+    <alerts>
         <fullName>Expense_Sheet_Rejection</fullName>
         <description>Expense Sheet Rejection</description>
         <protected>false</protected>
