@@ -45,6 +45,10 @@
                 <name>Approval_Status_change_to_Approved</name>
                 <type>FieldUpdate</type>
             </action>
+            <action>
+                <name>Expense_Sheet_Approval_by_Finance</name>
+                <type>Alert</type>
+            </action>
         </approvalActions>
         <assignedApprover>
             <approver>
