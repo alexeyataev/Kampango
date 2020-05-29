@@ -656,7 +656,6 @@
         <name>NetworkBranding</name>
     </types>
     <types>
-        <members>Branch_and_PSA_Management</members>
         <members>Can_Convert_Expense_Sheet</members>
         <members>Can_Delete_Activities</members>
         <members>Can_Delete_Chatter_Posts</members>
