@@ -9552,6 +9552,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>proh__ProcessingHub_Manager</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>standard-Case</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
