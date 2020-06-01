@@ -2370,5 +2370,9 @@
         <tab>npsp__Trigger_Handler__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabSettings>
+        <tab>proh__ProcessingHub_Manager</tab>
+        <visibility>Available</visibility>
+    </tabSettings>
     <userLicense>Salesforce</userLicense>
 </Profile>
