@@ -9551,10 +9551,10 @@
         <tab>npsp__Trigger_Handler__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
-    <tabSettings>
+    <tabVisibilities>
         <tab>proh__ProcessingHub_Manager</tab>
-        <visibility>Available</visibility>
-    </tabSettings>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Case</tab>
         <visibility>DefaultOn</visibility>
