@@ -6,6 +6,9 @@ for (Metadata.Metadata record : records) {
         if (settingRecordValue.field == 'Zumzum__Zumzum_Accounting_Customer_Value__c') {
             settingRecordValue.value = 'Customer,Household';
         }
+		if (settingRecordValue.field == 'Zumzum__Zumzum_Accounting_Customer_Field__c') {
+            settingRecordValue.value = 'Accounting_Type__c';
+        }
     }
 container.addMetadata(settingRecord);
 }
