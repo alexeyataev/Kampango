@@ -66,7 +66,7 @@ public with sharing class ZumzumBankReceiptCreatorMock implements IBankReceiptCr
         }
         insert bankReceiptList;
         
-        List<Zumzum__Ledger__c> ledgersToUpdate = [SELECT Name, Zumzum__Debit__c, Zumzum__Paid__c, Zumzum__Sales_Invoice__c, Zumzum__Sales_Invoice_Line_Item__c FROM Zumzum__Ledger__c WHERE Name IN :legerNameBankReceiptLineItemMap.Keyset() WITH SECURITY_ENFORCED];
+        List<Zumzum__Ledger__c> ledgersToUpdate = [SELECT Name, Zumzum__Debit__c, Zumzum__Paid__c, Zumzum__Sales_Invoice__c, Zumzum__Sales_Invoice_Line_Item__c FROM Zumzum__Ledger__c WHERE Name IN :legerNameBankReceiptLineItemMap.keySet() WITH SECURITY_ENFORCED];
         for (Zumzum__Ledger__c ledger : ledgersToUpdate) {
             if (!(legerNameBankReceiptLineItemMap.get(ledger.Name).Zumzum__Amount__c < ledger.Zumzum__Debit__c)) {
                 ledger.Zumzum__Paid__c = 'Y';

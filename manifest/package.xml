@@ -23,6 +23,8 @@
         <members>CardPaymentHandlerTest</members>
         <members>CardPaymentParameters</members>
         <members>CardPaymentPlanHandler</members>
+        <members>ChatterPost_PreventDeletion_TDTM</members>
+        <members>ChatterPost_PreventDeletion_TDTM_Test</members>
         <members>CardPaymentUrlResult</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
@@ -101,6 +103,8 @@
         <members>SetBookingReservationExpiryDateTest</members>
         <members>InvalidateWithdrawCADFlowTest</members>
         <members>SystemClock</members>
+        <members>Task_PreventDeletion_TDTM</members>
+        <members>Task_PreventDeletion_TDTM_Test</members>
         <members>TestAccountBuilder</members>
         <members>TestBatchReceiptReportBuilder</members>
         <members>TestBatchReceiptReportItemBuilder</members>
@@ -172,6 +176,7 @@
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTrigger</members>
         <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
+        <members>TDTM_FeedItem</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
     </types>
@@ -413,6 +418,7 @@
         <members>NCT_Templates/Course_Assignment_Rejected</members>
         <members>NCT_Templates/DropInsEnquiryNotificationToPractitioner</members>
         <members>NCT_Templates/Expense_Sheet_is_Approved</members>
+        <members>NCT_Templates/Expense_Sheet_is_Approved_by_Finance</members>
         <members>NCT_Templates/Expense_Sheet_is_Ready_for_Approval</members>
         <members>NCT_Templates/Expense_Sheet_Rejected</members>
         <members>NCT_Templates/Inform_Practitioner_When_CAD_Invalidated</members>
@@ -434,6 +440,7 @@
         <name>GlobalValueSet</name>
     </types>
     <types>
+        <members>Finance_Approvers</members>
         <members>Parent_Community_Group</members>
         <members>PSA_Payroll_Administrators</members>
         <members>X1C_PSA_Area</members>
@@ -649,12 +656,14 @@
         <name>NetworkBranding</name>
     </types>
     <types>
-        <members>Branch_and_PSA_Management</members>
+        <members>Can_Convert_Expense_Sheet</members>
+        <members>Can_Delete_Activities</members>
+        <members>Can_Delete_Chatter_Posts</members>
         <members>Can_Reopen_Courses</members>
         <members>Create_Public_Lists</members>
-        <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Booking_Status_Validation</members>
         <members>Override_Booking_Validation</members>
+        <members>Override_Branch_Weighting_Validation</members>
         <members>Override_Case_Validation</members>
         <members>Override_Client_Validation</members>
         <members>Override_Contact_Validation</members>
@@ -666,7 +675,9 @@
         <members>Override_Practitioner_Fee_Rate_Validation</members>
         <members>Override_Session_Validation</members>
         <members>Override_Venue_Validation</members>
+        <members>PaymentHub_Additional</members>
         <members>Practitioner_Management</members>
+        <members>ProcessingHub_Additional</members>
         <members>Product_Management</members>
         <name>PermissionSet</name>
     </types>
@@ -685,6 +696,7 @@
     </types>
     <types>
         <members>Course_Booking_Manual_Administration</members>
+        <members>Finance_Approvers</members>
         <members>X1C</members>
         <members>X1W</members>
         <members>X2A</members>

@@ -9257,11 +9257,6 @@
         <recordType>Account.Organization</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-      <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Account.Branch</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Contact.Clients</recordType>
@@ -9560,6 +9555,10 @@
     <tabVisibilities>
         <tab>npsp__Trigger_Handler__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>proh__ProcessingHub_Manager</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Case</tab>
