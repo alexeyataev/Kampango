@@ -242,6 +242,7 @@
         <queriedFields>AccountId</queriedFields>
         <queriedFields>RecordTypeId</queriedFields>
     </recordLookups>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Course_Summary_Details_Screen</name>
         <label>Course Summary Details Screen</label>

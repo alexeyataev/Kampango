@@ -4,7 +4,7 @@
         <description>If returned false then to Client will give the ability to chose another variant payment.</description>
         <name>Add_Bank_Details_For_Membership_Handler</name>
         <label>Add Bank Details For Membership Handler</label>
-        <locationX>1067</locationX>
+        <locationX>1188</locationX>
         <locationY>1691</locationY>
         <actionName>AddBankDetailsForMembershipHandler</actionName>
         <actionType>apex</actionType>
@@ -32,7 +32,7 @@
     <actionCalls>
         <name>Card_Payment_Handler</name>
         <label>Card Payment Handler</label>
-        <locationX>2900</locationX>
+        <locationX>3021</locationX>
         <locationY>480</locationY>
         <actionName>CardPaymentHandler</actionName>
         <actionType>apex</actionType>
@@ -99,7 +99,7 @@
     <actionCalls>
         <name>Card_Payment_Plan_Handler</name>
         <label>Card Payment Plan Handler</label>
-        <locationX>2890</locationX>
+        <locationX>3011</locationX>
         <locationY>900</locationY>
         <actionName>CardPaymentPlanHandler</actionName>
         <actionType>apex</actionType>
@@ -184,7 +184,7 @@
     <actionCalls>
         <name>Create_SI_and_SI_Line_Items</name>
         <label>Create SI and SI Line Items</label>
-        <locationX>2158</locationX>
+        <locationX>2279</locationX>
         <locationY>901</locationY>
         <actionName>ZumzumCreatePostSalesInvoice</actionName>
         <actionType>apex</actionType>
@@ -202,7 +202,7 @@
     <assignments>
         <name>Add_Amount_To_Be_Paid</name>
         <label>Add Amount To Be Paid</label>
-        <locationX>3270</locationX>
+        <locationX>3391</locationX>
         <locationY>908</locationY>
         <assignmentItems>
             <assignToReference>Booking_Instance_For_Update.Booking_Journey_Payable_Amount__c</assignToReference>
@@ -225,7 +225,7 @@
     <assignments>
         <name>Add_Cost_Membership</name>
         <label>Add Cost Membership</label>
-        <locationX>2379</locationX>
+        <locationX>2500</locationX>
         <locationY>873</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.amount</assignToReference>
@@ -241,7 +241,7 @@
     <assignments>
         <name>Add_Course_SI_Parameter</name>
         <label>Add Course SI Parameter</label>
-        <locationX>2075</locationX>
+        <locationX>2196</locationX>
         <locationY>676</locationY>
         <assignmentItems>
             <assignToReference>ZumzumSalesInvoiceParametersList</assignToReference>
@@ -257,7 +257,7 @@
     <assignments>
         <name>Add_Membership_SI_Parameter</name>
         <label>Add Membership SI Parameter</label>
-        <locationX>1772</locationX>
+        <locationX>1893</locationX>
         <locationY>1021</locationY>
         <assignmentItems>
             <assignToReference>ZumzumSalesInvoiceParametersList</assignToReference>
@@ -273,7 +273,7 @@
     <assignments>
         <name>Add_Membership_Type_and_Amount_to_Installment_1</name>
         <label>Add Membership Type and Amount to Installment_1</label>
-        <locationX>1241</locationX>
+        <locationX>1362</locationX>
         <locationY>907</locationY>
         <assignmentItems>
             <assignToReference>Membership_Amount</assignToReference>
@@ -289,7 +289,7 @@
     <assignments>
         <name>Add_Membership_Type_and_Amount_to_Installment_2</name>
         <label>Add Membership Type and Amount to Installment_2</label>
-        <locationX>1478</locationX>
+        <locationX>1599</locationX>
         <locationY>910</locationY>
         <assignmentItems>
             <assignToReference>Membership_Amount</assignToReference>
@@ -305,7 +305,7 @@
     <assignments>
         <name>Added_Course_Payment_By_Credit_Card</name>
         <label>Added Course Payment By Credit Card</label>
-        <locationX>1126</locationX>
+        <locationX>1247</locationX>
         <locationY>495</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.amount</assignToReference>
@@ -321,7 +321,7 @@
     <assignments>
         <name>Added_Next_Collection_Date</name>
         <label>Added Next Collection Date</label>
-        <locationX>3108</locationX>
+        <locationX>3229</locationX>
         <locationY>900</locationY>
         <assignmentItems>
             <assignToReference>Booking_Instance_For_Update.Next_Collection_Date__c</assignToReference>
@@ -337,7 +337,7 @@
     <assignments>
         <name>Assign_Sales_Invoice_to_Parameters</name>
         <label>Assign Sales Invoice to Parameters</label>
-        <locationX>2240</locationX>
+        <locationX>2361</locationX>
         <locationY>674</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.salesInvoiceId</assignToReference>
@@ -353,7 +353,7 @@
     <assignments>
         <name>Clear_Gift_Aid_Declaration_Filed_on_Booking_Object</name>
         <label>Clear Gift Aid Declaration Filed on Booking Object</label>
-        <locationX>1525</locationX>
+        <locationX>1646</locationX>
         <locationY>683</locationY>
         <assignmentItems>
             <assignToReference>Booking_Instance_For_Update.Gift_Aid_Declaration_Status__c</assignToReference>
@@ -366,7 +366,7 @@
     <assignments>
         <name>Clear_Next_Collection_Date</name>
         <label>Clear Next Collection Date</label>
-        <locationX>3108</locationX>
+        <locationX>3229</locationX>
         <locationY>480</locationY>
         <assignmentItems>
             <assignToReference>Booking_Instance_For_Update.Next_Collection_Date__c</assignToReference>
@@ -379,7 +379,7 @@
     <assignments>
         <name>Course_Plan_Payment_By_Credit_Card</name>
         <label>Course Plan Payment By Credit Card</label>
-        <locationX>1125</locationX>
+        <locationX>1246</locationX>
         <locationY>236</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.amountRecurring</assignToReference>
@@ -423,7 +423,7 @@
     <assignments>
         <name>Course_ZumzumSalesInvoiceParameter_Assignment</name>
         <label>Course ZumzumSalesInvoiceParameter Assignment</label>
-        <locationX>1920</locationX>
+        <locationX>2041</locationX>
         <locationY>676</locationY>
         <assignmentItems>
             <assignToReference>CourseZumzumSalesInvoiceParameter.bookingId</assignToReference>
@@ -509,7 +509,7 @@
     <assignments>
         <name>Get_Course_Fee_Assigment</name>
         <label>Get Course Fee Assigment</label>
-        <locationX>547</locationX>
+        <locationX>668</locationX>
         <locationY>177</locationY>
         <assignmentItems>
             <assignToReference>Course_Fee</assignToReference>
@@ -525,7 +525,7 @@
     <assignments>
         <name>Membership_ZumzumSalesInvoiceParameter_Assignment</name>
         <label>Membership ZumzumSalesInvoiceParameter Assignment</label>
-        <locationX>1622</locationX>
+        <locationX>1743</locationX>
         <locationY>1021</locationY>
         <assignmentItems>
             <assignToReference>MembershipZumzumSalesInvoiceParameter.bookingId</assignToReference>
@@ -613,7 +613,7 @@
 If AddBankDetails return BankNumber then this Installment will continue to populate (e.g Sales_Invoice, BankNumber will populate before payment Apex Action).</description>
         <name>Populate_Fields_of_Installment_Object_For_Membership</name>
         <label>Populate Fields  of Installment Object For Membership</label>
-        <locationX>1067</locationX>
+        <locationX>1188</locationX>
         <locationY>1473</locationY>
         <assignmentItems>
             <assignToReference>Installment_For_Payment_By_DD.cpm__Contact__c</assignToReference>
@@ -650,7 +650,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <assignments>
         <name>Populate_Fields_of_Installment_Object_With_Bank_Number</name>
         <label>Populate Fields  of Installment Object With Bank Number</label>
-        <locationX>2376</locationX>
+        <locationX>2497</locationX>
         <locationY>479</locationY>
         <assignmentItems>
             <assignToReference>Installment_For_Payment_By_DD.Bank_Details_Number__c</assignToReference>
@@ -696,7 +696,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
 2. Setting Product For SI Line Items to &quot;Membership&quot; because the course was paid by CC;</description>
         <name>Set_Data_for_SI_Line_Items_CC</name>
         <label>Set Data for SI Line Items CC</label>
-        <locationX>1525</locationX>
+        <locationX>1646</locationX>
         <locationY>1571</locationY>
         <assignmentItems>
             <assignToReference>Membership_Sales_Invoice_Amount</assignToReference>
@@ -721,7 +721,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
 2. Setting Product For SI Line Items to &quot;Membership - CARE/DD&quot; because the course was paid by DD;</description>
         <name>Set_Data_for_SI_Line_Items_DD</name>
         <label>Set Data for SI Line Items DD</label>
-        <locationX>1922</locationX>
+        <locationX>2043</locationX>
         <locationY>1573</locationY>
         <assignmentItems>
             <assignToReference>Membership_Sales_Invoice_Amount</assignToReference>
@@ -744,7 +744,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <assignments>
         <name>Set_Membership_Data_for_Installment_By_CC</name>
         <label>Set Membership Data for Installment By CC</label>
-        <locationX>1377</locationX>
+        <locationX>1498</locationX>
         <locationY>1572</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.membershipType</assignToReference>
@@ -767,7 +767,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <assignments>
         <name>Set_Partner_Contact_Id_for_Installment</name>
         <label>Set Partner Contact Id for Installment</label>
-        <locationX>2715</locationX>
+        <locationX>2836</locationX>
         <locationY>897</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.partnerContactId</assignToReference>
@@ -783,7 +783,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <assignments>
         <name>Set_Partner_Contact_Id_for_Installment_0</name>
         <label>Set Partner Contact Id for Installment</label>
-        <locationX>2717</locationX>
+        <locationX>2838</locationX>
         <locationY>318</locationY>
         <assignmentItems>
             <assignToReference>Installment_For_Payment_By_DD.Partner_Contact__c</assignToReference>
@@ -799,7 +799,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <assignments>
         <name>Set_Total_Amount</name>
         <label>Set Total Amount</label>
-        <locationX>3535</locationX>
+        <locationX>3656</locationX>
         <locationY>771</locationY>
         <assignmentItems>
             <assignToReference>Total_Fee</assignToReference>
@@ -815,7 +815,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <assignments>
         <name>Total_Payment_Course_Assignment</name>
         <label>Total Payment Course Assignment</label>
-        <locationX>1371</locationX>
+        <locationX>1492</locationX>
         <locationY>361</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.contactId</assignToReference>
@@ -1071,7 +1071,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
     <decisions>
         <name>Amount_Value</name>
         <label>Amount Value</label>
-        <locationX>1357</locationX>
+        <locationX>1478</locationX>
         <locationY>806</locationY>
         <defaultConnectorLabel>Without Membership</defaultConnectorLabel>
         <rules>
@@ -1110,7 +1110,7 @@ If AddBankDetails return BankNumber then this Installment will continue to popul
 We check this because if Membership is with Partner we will need to add Contact Partner Id to Installment record. And then formula field(ga_decl_1__c,ga_decl_2__c ) check has or not gift aid declaration via LookUp.</description>
         <name>Check_Membership_Options_CC</name>
         <label>Check Membership Options CC</label>
-        <locationX>2518</locationX>
+        <locationX>2639</locationX>
         <locationY>799</locationY>
         <defaultConnector>
             <targetReference>Type_Of_Payment</targetReference>
@@ -1137,7 +1137,7 @@ We check this because if Membership is with Partner we will need to add Contact 
 We check this because if Membership is with Partner we will need to add Contact Partner Id to Installment record. And then formula field(ga_decl_1__c,ga_decl_2__c ) check has or not gift aid declaration via LookUp.</description>
         <name>Check_Membership_Options_DD</name>
         <label>Check Membership Options DD</label>
-        <locationX>2367</locationX>
+        <locationX>2488</locationX>
         <locationY>327</locationY>
         <defaultConnector>
             <targetReference>Create_Membership_Installment</targetReference>
@@ -1162,7 +1162,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <decisions>
         <name>Is_Banks_Number_True</name>
         <label>Is Banks Number True</label>
-        <locationX>1914</locationX>
+        <locationX>2035</locationX>
         <locationY>1896</locationY>
         <defaultConnector>
             <targetReference>DD_Payment_Is_Not_Available</targetReference>
@@ -1184,7 +1184,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <decisions>
         <name>Is_Membership_Chose</name>
         <label>Is Membership Chose ?</label>
-        <locationX>1356</locationX>
+        <locationX>1477</locationX>
         <locationY>524</locationY>
         <defaultConnector>
             <targetReference>Clear_Gift_Aid_Declaration_Filed_on_Booking_Object</targetReference>
@@ -1209,7 +1209,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <decisions>
         <name>Is_Membership_Chose_0</name>
         <label>Is Membership Chose ?</label>
-        <locationX>2371</locationX>
+        <locationX>2492</locationX>
         <locationY>676</locationY>
         <defaultConnector>
             <targetReference>Type_Of_Payment</targetReference>
@@ -1263,7 +1263,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <decisions>
         <name>Payment_Link_Result</name>
         <label>Payment Link Result</label>
-        <locationX>3099</locationX>
+        <locationX>3220</locationX>
         <locationY>668</locationY>
         <defaultConnector>
             <targetReference>Payment_Error_Screen</targetReference>
@@ -1285,7 +1285,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <decisions>
         <name>Payment_Method_Decision</name>
         <label>Payment Method Decision</label>
-        <locationX>906</locationX>
+        <locationX>1027</locationX>
         <locationY>372</locationY>
         <defaultConnectorLabel>Without Membership</defaultConnectorLabel>
         <rules>
@@ -1322,7 +1322,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <decisions>
         <name>Payment_Method_Decision_0</name>
         <label>Payment Method Decision</label>
-        <locationX>1371</locationX>
+        <locationX>1492</locationX>
         <locationY>1292</locationY>
         <defaultConnectorLabel>Without Membership</defaultConnectorLabel>
         <rules>
@@ -1387,7 +1387,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <decisions>
         <name>Type_Of_Payment</name>
         <label>Type Of Payment</label>
-        <locationX>2707</locationX>
+        <locationX>2828</locationX>
         <locationY>687</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -1488,7 +1488,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordCreates>
         <name>Create_Membership_Installment</name>
         <label>Create Membership Installment</label>
-        <locationX>2620</locationX>
+        <locationX>2741</locationX>
         <locationY>516</locationY>
         <connector>
             <targetReference>Type_Of_Payment</targetReference>
@@ -1501,7 +1501,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_Booking</name>
         <label>Get Booking</label>
-        <locationX>366</locationX>
+        <locationX>487</locationX>
         <locationY>181</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1536,7 +1536,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_Course_Nominal_Account</name>
         <label>Get Course Nominal Account</label>
-        <locationX>1620</locationX>
+        <locationX>1741</locationX>
         <locationY>871</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1559,7 +1559,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_Course_Place</name>
         <label>Get Course Place</label>
-        <locationX>1730</locationX>
+        <locationX>1851</locationX>
         <locationY>676</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1582,7 +1582,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_Dimension1</name>
         <label>Get Dimension1</label>
-        <locationX>1727</locationX>
+        <locationX>1848</locationX>
         <locationY>361</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1605,7 +1605,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_Dimension2</name>
         <label>Get Dimension2</label>
-        <locationX>1923</locationX>
+        <locationX>2044</locationX>
         <locationY>361</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1628,7 +1628,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_GBP</name>
         <label>Get GBP</label>
-        <locationX>1726</locationX>
+        <locationX>1847</locationX>
         <locationY>515</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1651,7 +1651,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_Membership_Nominal_Account</name>
         <label>Get Membership Nominal Account</label>
-        <locationX>1691</locationX>
+        <locationX>1812</locationX>
         <locationY>1566</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1674,7 +1674,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_No_VAT</name>
         <label>Get No VAT</label>
-        <locationX>1915</locationX>
+        <locationX>2036</locationX>
         <locationY>515</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1711,7 +1711,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_Primary_Contact</name>
         <label>Get Primary Contact</label>
-        <locationX>1562</locationX>
+        <locationX>1683</locationX>
         <locationY>361</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1735,7 +1735,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_Product_For_Membership</name>
         <label>Get Product For Membership</label>
-        <locationX>1622</locationX>
+        <locationX>1743</locationX>
         <locationY>1273</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1762,7 +1762,7 @@ We check this because if Membership is with Partner we will need to add Contact 
 3. Gift Aid Declaration(Single or Joint Gift Aid Declaration);</description>
         <name>Update_Booking_Record</name>
         <label>Update Booking Record</label>
-        <locationX>3444</locationX>
+        <locationX>3565</locationX>
         <locationY>908</locationY>
         <connector>
             <targetReference>Set_Total_Amount</targetReference>
@@ -1772,10 +1772,11 @@ We check this because if Membership is with Partner we will need to add Contact 
         </faultConnector>
         <inputReference>Booking_Instance_For_Update</inputReference>
     </recordUpdates>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>DD_Payment_Is_Not_Available</name>
         <label>Direct Debit Not Available Screen</label>
-        <locationX>889</locationX>
+        <locationX>1010</locationX>
         <locationY>1897</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -1794,7 +1795,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <screens>
         <name>Direct_Debit_Bank_Account_Details_Screen</name>
         <label>Direct Debit Bank Account Details Screen</label>
-        <locationX>1067</locationX>
+        <locationX>1188</locationX>
         <locationY>1293</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -1880,7 +1881,7 @@ NOT(ISNUMBER({!Account_Name}))
     <screens>
         <name>Payment_Details_Screen</name>
         <label>Payment Details Screen</label>
-        <locationX>3643</locationX>
+        <locationX>3764</locationX>
         <locationY>913</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
@@ -1913,7 +1914,7 @@ NOT(ISNUMBER({!Account_Name}))
     <screens>
         <name>Payment_Error_Screen</name>
         <label>Payment Error Screen</label>
-        <locationX>3266</locationX>
+        <locationX>3387</locationX>
         <locationY>468</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -1929,7 +1930,7 @@ NOT(ISNUMBER({!Account_Name}))
     <screens>
         <name>Payment_Options_Screen</name>
         <label>Payment Options Screen</label>
-        <locationX>788</locationX>
+        <locationX>909</locationX>
         <locationY>660</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -2149,7 +2150,7 @@ NOT(ISNUMBER({!Account_Name}))
     <subflows>
         <name>Booking_Gift_Aid_Declaration_Flow</name>
         <label>Booking Gift Aid Declaration Flow</label>
-        <locationX>1929</locationX>
+        <locationX>2050</locationX>
         <locationY>879</locationY>
         <connector>
             <targetReference>Get_Course_Nominal_Account</targetReference>
@@ -2175,7 +2176,7 @@ NOT(ISNUMBER({!Account_Name}))
     <subflows>
         <name>Booking_Membership_Options_Flow</name>
         <label>Booking Membership Options Flow</label>
-        <locationX>457</locationX>
+        <locationX>578</locationX>
         <locationY>368</locationY>
         <connector>
             <targetReference>Get_Course_Fee_Assigment</targetReference>
@@ -2199,7 +2200,7 @@ NOT(ISNUMBER({!Account_Name}))
     <subflows>
         <name>Checking_NCT_Number_on_Contact</name>
         <label>Checking NCT Number on Contact</label>
-        <locationX>645</locationX>
+        <locationX>766</locationX>
         <locationY>366</locationY>
         <connector>
             <targetReference>Payment_Options_Screen</targetReference>
@@ -2221,7 +2222,7 @@ NOT(ISNUMBER({!Account_Name}))
     <subflows>
         <name>Error_Handler_SubFlow</name>
         <label>Error Handler SubFlow</label>
-        <locationX>2292</locationX>
+        <locationX>2413</locationX>
         <locationY>1430</locationY>
         <flowName>Error_Handler_Flow</flowName>
     </subflows>
