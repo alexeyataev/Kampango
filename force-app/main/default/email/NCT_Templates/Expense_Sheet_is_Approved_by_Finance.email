@@ -1,0 +1,11 @@
+Dear {!Zumzum__Expense_Sheet__c.OwnerFirstName},<br>
+<br>
+The following expense has been approved for payment by the finance team:<br>
+<br>
+Expense ID: {!Zumzum__Expense_Sheet__c.Name}<br><br>
+Payment will be sent within 30 days of this approval.<br>
+<br>
+Please log into your portal to view any details. <br>
+<br>
+Kind regards<br>
+NCT
