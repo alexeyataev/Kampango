@@ -1,8 +1,8 @@
 @SuppressWarnings('PMD.ApexCRUDViolation')
 //Incident #53 - https://confluence.nct.org.uk:8443/x/EoSO
-public with sharing class CourseDetailController {
+public without sharing class CourseDetailController {
     @AuraEnabled(cacheable=true)
-    public static List<Session__c> retrieveRelatedSessions(String courseId){
+    public static List<Session__c> retrieveRelatedSessions(String courseId) {
         List<Session__c> sessions;
         sessions = [
             SELECT  Additional_Information_with_Venue__c,
@@ -29,4 +29,29 @@ public with sharing class CourseDetailController {
 
         return sessions;
     }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Booking__c> getCourseDetailsInformation(String bookingId) {
+        return [
+            SELECT  Booking__c.Name,
+                    Booking__c.Final_Fee__c,
+                    Booking__c.First_Name__c,
+                    Booking__c.Last_Name__c,
+                    Booking__c.PSA_Office__c,
+                    Booking__c.Reservation_Expiry_Date__c,
+                    Booking__c.Course__c,
+                    Booking__c.Course__r.Name,
+                    Booking__c.Course__r.Additional_Offer_Information__c,
+                    Booking__c.Course__r.Branch__r.Name,
+                    Booking__c.Course__r.End_Date__c,
+                    Booking__c.Course__r.Main_Venue_Name__c,
+                    Booking__c.Course__r.PSA_Area__c,
+                    Booking__c.Course__r.Start_Date__c,
+                    Booking__c.Course__r.Title__c
+             FROM Booking__c
+             WHERE Id = :bookingId
+             WITH SECURITY_ENFORCED
+        ];
+    }
+
 }
