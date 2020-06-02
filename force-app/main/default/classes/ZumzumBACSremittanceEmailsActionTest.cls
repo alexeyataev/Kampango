@@ -12,6 +12,7 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
         System.runAs ( thisUser ) {
             EmailTemplate template = new EmailTemplate(
                 DeveloperName = TEMPLATE_DEV_NAME,
+                HtmlValue = '<html></html>',
                 FolderId = folderId,
                 TemplateType= 'custom', 
                 Name = TEMPLATE_NAME,
@@ -46,6 +47,18 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
             .insertRecord(true)
             .build();
 
+        Contact contactNoEmail = contactBuilder
+            .withRecordType('Client')
+            .withAccount(account)
+            .withFirstName('James')
+            .withLastName('Smith')
+            .withNctNumber('123124')
+            .insertRecord(true)
+            .build();
+        contactNoEmail.Email = null;
+        contactNoEmail.npe01__HomeEmail__c = null;
+        update contactNoEmail;
+
         TestPurchaseInvoiceBuilder purchaseInvoiceBuilder = new TestPurchaseInvoiceBuilder();
         Zumzum__Purchase_Invoice__c pi1 = purchaseInvoiceBuilder
                 .withStatus('Posted')
@@ -66,16 +79,32 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
                 .withPurchaseInvoice(pi1.Id)
                 .insertRecord(true)
                 .build();
+
+        Zumzum__Purchase_Invoice__c piContactNoEmail1 = purchaseInvoiceBuilder
+                .withStatus('Posted')
+                .withAccount(supplierAccount.Id)
+                .withContact(contactNoEmail.Id)
+                .withDueDate(Date.today().addDays(20))
+                .withInvoiceDate(Date.today())
+                .insertRecord(true)
+                .build();
+        Zumzum__Purchase_Invoice_Line_Item__c purchaseContactNoEmailInvoiceLineItems = purchaseInvoiceLineItemBuilder
+                .withAmount(120)
+                .withGross(120)
+                .withGross(120)
+                .withNet(120)
+                .withNarrative('Doll')
+                .withQuantity(1)
+                .withPurchaseInvoice(piContactNoEmail1.Id)
+                .insertRecord(true)
+                .build();
         
         TestPaymentRunBuilder paymentRunBuilder = new TestPaymentRunBuilder();
         Payment_Run__c pr1 = paymentRunBuilder
             .insertLineItem(pi1.Id, true)
             .insertLineItem(pi1.Id)
-            .build();
-
-        Payment_Run__c pr2 = paymentRunBuilder
-            .insertLineItem(pi1.Id)
-            .insertLineItem(pi1.Id)
+            .insertLineItem(piContactNoEmail1.Id, true)
+            .insertLineItem(piContactNoEmail1.Id)
             .build();
     }
 
@@ -102,7 +131,12 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
             Integer sentCount = [
                 SELECT count() 
                 FROM Payment_Run_Line_Item__c 
-                WHERE Payment_Run__c = :paymentRunId AND Is_Email_Sent__c = true
+                WHERE Payment_Run__c =: paymentRunId AND Is_Email_Sent__c = true
+            ];
+            Integer itemsToProcessCount = [
+                SELECT count() 
+                FROM Payment_Run_Line_Item__c 
+                WHERE Payment_Run__c =: paymentRunId AND Is_Email_Sent__c = false
             ];
 
             ZumzumBACSremittanceEmailsAction.Request testReq = new ZumzumBACSremittanceEmailsAction.Request();
@@ -115,6 +149,7 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
             Boolean success = true;
             Test.startTest();
             Id batchId;
+            Id batchContactNoEmailId;
             try {
                 List<ZumzumBACSremittanceEmailsAction.Response> responses = ZumzumBACSremittanceEmailsAction.sendRemittanceEmails(reqList);
                 batchId = responses[0].message;
@@ -128,7 +163,7 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
                 System.assertNotEquals(null, batchId, 'Batch was not started');
                 AsyncApexJob a = [
                     SELECT Id, Status, NumberOfErrors, JobItemsProcessed
-                    FROM AsyncApexJob WHERE Id = :batchId
+                    FROM AsyncApexJob WHERE Id =: batchId
                 ];
 
                 System.assertEquals('Completed', a.Status, 'Batch job was not completed succesfully');
@@ -138,9 +173,9 @@ public with sharing class ZumzumBACSremittanceEmailsActionTest {
                     WHERE Payment_Run__c = :paymentRunId AND Is_Email_Sent__c = true
                 ];
                 Payment_Run__c paymentRun = [
-                    SELECT Id, Status__c FROM Payment_Run__c WHERE Id = :paymentRunId
+                    SELECT Id, Status__c FROM Payment_Run__c WHERE Id =: paymentRunId
                 ];
-                System.assertEquals(itemsCount - sentCount, a.JobItemsProcessed, 'Some items were not processed by batch job');
+                System.assertEquals(itemsCount - sentCount, itemsToProcessCount, 'Some items were not processed by batch job');
                 System.assertEquals('Closed', paymentRun.Status__c, 'The status was not updated to Closed');
             } else {
                 System.assert(false, 'An exception occured. Probably Apex action was finished with error');
