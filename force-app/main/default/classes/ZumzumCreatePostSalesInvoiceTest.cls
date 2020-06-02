@@ -8,31 +8,17 @@ public class ZumzumCreatePostSalesInvoiceTest {
     static void testSetup() {
         TestFinanceDataFactory financeDataFactory = TestFinanceDataFactory.getInstance();
         financeDataFactory.createZumzumData();
-        TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory.buildOrganizationAccount('12345')
-                    .buildBranchAccount()
-                    .createEnquiryPSA()
-                    .buildBranchAccountWithEnquiryPSA()
-                    .buildPractitioner('John')
-                    .buildVenue()
-                    .buildRoom()
-                    .buildLicenceToPractice()
-                    .buildCourse()
-                    .buildConfirmedSession()
-                    .buildEstimatedCosts()
-                    .buildPractitionerFeeRate()
-                    .setCourseToFinal()
-                    .buildParentHost('Dina', 'test1@test.com');
+        TestAccountBuilder accountBuilder = new TestAccountBuilder();
+        Account customer = accountBuilder
+                                .withRecordType('Household Account')
+                                .withName('Test Customer')
+                                .withType(ACCOUNT_TYPE_CUSTOMER)
+                                .withAccountNumber('123456')
+                                .withBillingEmail('testbilling@nonsense.noemails')
+                                .insertRecord(true)
+                                .build();
         TestFinanceDataFactory.updateHouseholdAccountsToCustomerType();
         TestFinanceDataFactory.createProducts();
-    }
-    private static void updateHouseholdAccountsToCustomerType() {
-        List<Account> accList = [SELECT Id FROM Account WHERE Type = 'Household'];
-        for(Account acc : accList) {
-            acc.Type = ACCOUNT_TYPE_CUSTOMER;
-            acc.AccountNumber = acc.Id;
-        }
-        update accList;
     }
     private static void createProducts() {
         TestProductBuilder productBuilder = new TestProductBuilder();
