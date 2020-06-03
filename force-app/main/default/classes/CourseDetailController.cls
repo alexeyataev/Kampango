@@ -50,7 +50,6 @@ public without sharing class CourseDetailController {
                     Booking__c.Course__r.Title__c
              FROM Booking__c
              WHERE Id = :bookingId
-             WITH SECURITY_ENFORCED
         ];
     }
 

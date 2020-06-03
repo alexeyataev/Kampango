@@ -57,22 +57,26 @@ public with sharing class CourseDetailControllerTest {
 
     @IsTest
     private static void retriveCourseDetailsById_passValidBookingId_courseDetailsRetrieved() {
-        String bookignId = [SELECT Id FROM Booking__c][0].Id;
+        String bookingId = [SELECT Id FROM Booking__c][0].Id;
 
         Test.startTest();
-            List<Booking__c> bookingCourseInformationList = CourseDetailController.getCourseDetailsInformation(bookignId);
+            List<Booking__c> bookingCourseInformationList = CourseDetailController.getCourseDetailsInformation(bookingId);
         Test.stopTest();
 
-        System.assert(bookingCourseInformationList.size() > 0, 'Booking list should not be empty');
+        System.assert(bookingCourseInformationList.size() == 1, 'List should have one record');
+        System.assert(bookingCourseInformationList[0].Id == bookingId, 'BookingId should be equals');
+        System.assert(bookingCourseInformationList[0].Final_Fee__c == 100, 'Final Fee should be equals 100');
+        System.assert(bookingCourseInformationList[0].Last_Name__c == HOST_LASTNAME, 'LastName should be equals');
+
     }
 
     @IsTest
     private static void retriveCourseDetailsById_passInvalidBookingId_courseDetailsNotRetrieved() {
-        String bookignId = [SELECT Id FROM Booking__c][0].Id;
-        bookignId = bookignId.left(10) + '11111111';
+        String bookingId = [SELECT Id FROM Booking__c][0].Id;
+        bookingId = bookingId.left(10) + '11111111';
 
         Test.startTest();
-            List<Booking__c> bookingCourseInformationList = CourseDetailController.getCourseDetailsInformation(bookignId);
+            List<Booking__c> bookingCourseInformationList = CourseDetailController.getCourseDetailsInformation(bookingId);
         Test.stopTest();
 
         System.assert(bookingCourseInformationList.isEmpty(), 'Booking list should be empty');
