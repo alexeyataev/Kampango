@@ -91,6 +91,7 @@ Changed email alert to Booking</description>
         <outputReference>confirmationTemplate</outputReference>
         <queriedFields>Id</queriedFields>
     </recordLookups>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Success_screen</name>
         <label>Success screen</label>
