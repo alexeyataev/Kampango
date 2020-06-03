@@ -7,12 +7,6 @@
         <sharedTo>
             <guestUser>Parent_Community</guestUser>
         </sharedTo>
-        <booleanFilter>1 OR 2</booleanFilter>
-        <criteriaItems>
-            <field>RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Organization</value>
-        </criteriaItems>
         <criteriaItems>
             <field>RecordTypeId</field>
             <operation>equals</operation>
