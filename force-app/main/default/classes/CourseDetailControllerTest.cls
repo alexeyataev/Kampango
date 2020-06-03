@@ -67,7 +67,6 @@ public with sharing class CourseDetailControllerTest {
         System.assert(bookingCourseInformationList[0].Id == bookingId, 'BookingId should be equals');
         System.assert(bookingCourseInformationList[0].Final_Fee__c == 100, 'Final Fee should be equals 100');
         System.assert(bookingCourseInformationList[0].Last_Name__c == HOST_LASTNAME, 'LastName should be equals');
-
     }
 
     @IsTest
