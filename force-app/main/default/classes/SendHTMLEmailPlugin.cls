@@ -27,7 +27,7 @@ public with sharing class SendHTMLEmailPlugin {
 
             message.setTargetObjectId(targetObjId);
             if(templateId == null && templateDeveloperName != null) {
-                List<EmailTemplate> emailTemplateList = [SELECT Id FROM EmailTemplate WHERE DeveloperName =: templateDeveloperName];
+                List<EmailTemplate> emailTemplateList = [SELECT Id FROM EmailTemplate WHERE DeveloperName =: templateDeveloperName LIMIT 1];
                 templateId = emailTemplateList.isEmpty() ? templateId : emailTemplateList[0].Id;
             }
             message.setTemplateId(templateId);
