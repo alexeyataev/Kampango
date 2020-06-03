@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Send_email</name>
-        <label>Send email</label>
-        <locationX>417</locationX>
-        <locationY>413</locationY>
-        <actionName>Booking__c.Adhoc_Send_Confirmation_Email</actionName>
-        <actionType>emailAlert</actionType>
+        <name>Send_notification_email</name>
+        <label>Send notification email</label>
+        <locationX>420</locationX>
+        <locationY>120</locationY>
+        <actionName>SendHTMLEmailPlugin</actionName>
+        <actionType>apex</actionType>
         <connector>
             <targetReference>Success_screen</targetReference>
         </connector>
         <inputParameters>
-            <name>SObjectRowId</name>
+            <name>mergeObjectId</name>
             <value>
                 <elementReference>salesInvoice.Booking__c</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>replyEmailAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>templateDeveloperName</name>
+            <value>
+                <elementReference>TEMPLATE_ADHOC_CONFIRMATION_DEV_NAME</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <constants>
         <name>ORG_WIDE_ADDRESS_VALUE</name>
@@ -52,11 +77,11 @@ Changed email alert to Booking</description>
     <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
-        <locationX>50</locationX>
-        <locationY>393</locationY>
+        <locationX>241</locationX>
+        <locationY>209</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_template</targetReference>
+            <targetReference>Send_notification_email</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -71,32 +96,12 @@ Changed email alert to Booking</description>
         <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Booking__c</queriedFields>
     </recordLookups>
-    <recordLookups>
-        <name>Get_template</name>
-        <label>Get template</label>
-        <locationX>219</locationX>
-        <locationY>393</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Send_email</targetReference>
-        </connector>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>TEMPLATE_ADHOC_CONFIRMATION_DEV_NAME</elementReference>
-            </value>
-        </filters>
-        <object>EmailTemplate</object>
-        <outputReference>confirmationTemplate</outputReference>
-        <queriedFields>Id</queriedFields>
-    </recordLookups>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Success_screen</name>
         <label>Success screen</label>
-        <locationX>613</locationX>
-        <locationY>393</locationY>
+        <locationX>587</locationX>
+        <locationY>208</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
