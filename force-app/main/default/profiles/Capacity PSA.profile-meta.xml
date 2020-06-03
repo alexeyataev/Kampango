@@ -12,7 +12,7 @@
     </applicationVisibilities>
     <custom>true</custom>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.AccountNumber</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -22,7 +22,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Billing_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2277,7 +2277,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
-        <layout>Account-Branch Layout</layout>
+        <layout>Account-Branch Read Only Layout</layout>
         <recordType>Account.Branch</recordType>
     </layoutAssignments>
     <layoutAssignments>
