@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Sent_Booking_Confirmation_Email</name>
         <label>Sent Booking Confirmation Email</label>
-        <locationX>308</locationX>
+        <locationX>501</locationX>
         <locationY>362</locationY>
         <actionName>Booking__c.Sent_Booking_Confirmation_Email</actionName>
         <actionType>emailAlert</actionType>
@@ -20,7 +20,7 @@
     <actionCalls>
         <name>Sent_Booking_Payment_Details</name>
         <label>Sent Booking Payment Details</label>
-        <locationX>472</locationX>
+        <locationX>665</locationX>
         <locationY>362</locationY>
         <actionName>Booking__c.Sent_Booking_Payment_Details</actionName>
         <actionType>emailAlert</actionType>
@@ -47,6 +47,7 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <start>
         <locationX>161</locationX>
         <locationY>363</locationY>
