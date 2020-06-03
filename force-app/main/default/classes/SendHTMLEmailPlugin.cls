@@ -7,6 +7,7 @@ public with sharing class SendHTMLEmailPlugin {
         
         String targetObjId = requests[0].targetObjectId;
         String mergeObjId = requests[0].mergeObjectId;
+        String templateDeveloperName = requests[0].templateDeveloperName;
         String templateId = requests[0].templateId;
         String senderAddress = requests[0].replyEmailAddress;
         String priority = requests[0].priority;
@@ -25,6 +26,10 @@ public with sharing class SendHTMLEmailPlugin {
             setEmailCapacity(targetObjId, ccEmails, bccEmails);
 
             message.setTargetObjectId(targetObjId);
+            if(templateId == null && templateDeveloperName != null) {
+                List<EmailTemplate> emailTemplateList = [SELECT Id FROM EmailTemplate WHERE DeveloperName =: templateDeveloperName];
+                templateId = emailTemplateList.isEmpty() ? templateId : emailTemplateList[0].Id;
+            }
             message.setTemplateId(templateId);
             message.setWhatId(mergeObjId);
     
@@ -136,6 +141,9 @@ public with sharing class SendHTMLEmailPlugin {
         @invocableVariable
         public String mergeObjectId;
         
+        @invocableVariable
+        public String templateDeveloperName;
+
         @invocableVariable
         public String templateId;
         
