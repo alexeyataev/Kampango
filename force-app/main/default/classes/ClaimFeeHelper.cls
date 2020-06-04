@@ -182,7 +182,7 @@ public with sharing class ClaimFeeHelper {
                 runningTotal += partialAllocation;
                 if(invoicesCount == runningCount && runningTotal != creditAmount) {
                     amountDifference = creditAmount - runningTotal;
-					bankLineItem.Amount = partialAllocation + amountDifference;                    
+                    bankLineItem.Amount = partialAllocation + amountDifference;                    
                 }
                 paymentLines.add(bankLineItem);
             }
