@@ -1600,8 +1600,8 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_No_VAT</name>
         <label>Get No VAT</label>
-        <locationX>2036</locationX>
-        <locationY>515</locationY>
+        <locationX>2037</locationX>
+        <locationY>508</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_GBP</targetReference>
@@ -1637,9 +1637,12 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_Primary_Contact</name>
         <label>Get Primary Contact</label>
-        <locationX>1683</locationX>
+        <locationX>1847</locationX>
         <locationY>361</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_No_VAT</targetReference>
+        </connector>
         <faultConnector>
             <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
