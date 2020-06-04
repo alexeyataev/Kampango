@@ -3,7 +3,7 @@
     <decisions>
         <name>Was_sales_invoice_paid</name>
         <label>Was sales invoice paid</label>
-        <locationX>50</locationX>
+        <locationX>173</locationX>
         <locationY>454</locationY>
         <defaultConnector>
             <targetReference>Get_Sales_Invoice</targetReference>
@@ -56,7 +56,7 @@ Changed the success link (added hyphen)</description>
     <recordLookups>
         <name>Get_Installments</name>
         <label>Get collected Installments</label>
-        <locationX>239</locationX>
+        <locationX>362</locationX>
         <locationY>179</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -83,7 +83,7 @@ Changed the success link (added hyphen)</description>
     <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
-        <locationX>239</locationX>
+        <locationX>362</locationX>
         <locationY>457</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -102,10 +102,11 @@ Changed the success link (added hyphen)</description>
         <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Zumzum__Total_Unpaid_Amount__c</queriedFields>
     </recordLookups>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Payment_completed</name>
         <label>Payment completed</label>
-        <locationX>59</locationX>
+        <locationX>182</locationX>
         <locationY>692</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -121,7 +122,7 @@ Changed the success link (added hyphen)</description>
     <screens>
         <name>Payment_summary</name>
         <label>Payment summary</label>
-        <locationX>502</locationX>
+        <locationX>625</locationX>
         <locationY>504</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -145,7 +146,7 @@ Changed the success link (added hyphen)</description>
     <subflows>
         <name>Payment_Details_related_screens</name>
         <label>Payment Details related screens</label>
-        <locationX>725</locationX>
+        <locationX>848</locationX>
         <locationY>457</locationY>
         <flowName>Adhoc_Payment_Details_Subflow</flowName>
         <inputAssignments>

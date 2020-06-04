@@ -4,8 +4,10 @@ public without sharing class TestFinanceDataFactory {
     private static final String PRODUCT_NAME_COURSE_PLACE = 'Course Place';
     private static final String PRODUCT_NAME_MEMBERSHIP_18_MONTH = 'Membership - 18 month';
     private static TestFinanceDataFactory instance;
+
     private Zumzum__Tax_Rate__c zumzumNoVatTaxRate;
-    private Zumzum__Nominal_Account__c expenseNominalAccount;
+    private List<Zumzum__Nominal_Account__c> nominalAccountsList = new List<Zumzum__Nominal_Account__c>();
+    private Map<Integer, Zumzum__Nominal_Account__c> nominalAccountsByNominalCodesMap = new Map<Integer, Zumzum__Nominal_Account__c>();
 
     public static TestFinanceDataFactory getInstance() {
         if (instance == NULL) {
@@ -21,7 +23,6 @@ public without sharing class TestFinanceDataFactory {
             Zumzum__Active__c = true,
             Zumzum__Tax_Rate__c = 0
         );
-
         insert zumzumNoVatTaxRate;
 
         Zumzum__Invoice_Template__c zumzumInvoiceTemplate = new Zumzum__Invoice_Template__c(
@@ -31,7 +32,6 @@ public without sharing class TestFinanceDataFactory {
             Zumzum__Margins_left_right_Inches__c = 0.5,
             Zumzum__Margins_top_bottom__c = 0.5
         );
-
         insert zumzumInvoiceTemplate;
 
         Zumzum__Company_Setup__c zumzumCompanySetup = new Zumzum__Company_Setup__c(
@@ -50,18 +50,6 @@ public without sharing class TestFinanceDataFactory {
         );
         insert zumzumCurrency;
 
-        Zumzum__Nominal_Account__c zumzumNominalAccount = new Zumzum__Nominal_Account__c(
-            Name = 'Staff Salaries',
-            Zumzum__Account_Code__c = 7003
-        );
-        insert zumzumNominalAccount;
-
-        Zumzum__Nominal_Account__c zumzumDebtorNominalAccount = new Zumzum__Nominal_Account__c(
-            Name = 'Debtor Control Account',
-            Zumzum__Account_Code__c = 9300
-        );
-        insert zumzumDebtorNominalAccount;
-
         Zumzum__Nominal_Categories__c zumzumCreditorsNominalCategory = new Zumzum__Nominal_Categories__c(
             Name = 'Current Liabilities',
             Zumzum__Type__c = 'Current Liabilities'
@@ -75,6 +63,18 @@ public without sharing class TestFinanceDataFactory {
             Zumzum__Nominal_Categories__c = zumzumCreditorsNominalCategory.Id 
         );
         insert zumzumCreditorsSubCategory;
+
+        Zumzum__Nominal_Account__c zumzumNominalAccount = new Zumzum__Nominal_Account__c(
+            Name = 'Staff Salaries',
+            Zumzum__Account_Code__c = 7003
+        );
+        nominalAccountsByNominalCodesMap.put(7003, zumzumNominalAccount);
+
+        Zumzum__Nominal_Account__c zumzumDebtorNominalAccount = new Zumzum__Nominal_Account__c(
+            Name = 'Debtor Control Account',
+            Zumzum__Account_Code__c = 9300
+        );
+        nominalAccountsByNominalCodesMap.put(9300, zumzumDebtorNominalAccount);
         
         Zumzum__Nominal_Account__c zumzumCreditorsNominalAccount = new Zumzum__Nominal_Account__c(
             Name = 'Creditors',
@@ -82,23 +82,13 @@ public without sharing class TestFinanceDataFactory {
             Zumzum__Credit_Balance__c = 154726.04,
             Zumzum__Debit_Balance__c = 8414.14
         );
-        insert zumzumCreditorsNominalAccount; 
-
-        Zumzum__Nominal_Budget__c nominalBudget = new Zumzum__Nominal_Budget__c(
-            Name = 'Budget',
-            Zumzum__Nominal_Account__c = zumzumCreditorsNominalAccount.Id,
-            Zumzum__Month__c = 3,
-            Zumzum__Year__c = 2020,
-            Zumzum__Actuals_Credit__c = 16221.65,
-            Zumzum__Actuals_Debit__c = 300.00
-        );
-        insert nominalBudget;
+        nominalAccountsByNominalCodesMap.put(9600, zumzumCreditorsNominalAccount);
     
         Zumzum__Nominal_Account__c zumzumMembershipNominalAccount = new Zumzum__Nominal_Account__c(
             Name = 'Debtor Control Account',
             Zumzum__Account_Code__c = 1003
         );
-        insert zumzumMembershipNominalAccount;
+        nominalAccountsByNominalCodesMap.put(1003, zumzumMembershipNominalAccount);
 
         Zumzum__Nominal_Account__c zumzumVatOnPurchaseNominalAccount = new Zumzum__Nominal_Account__c(
             Name = 'Input VAT (Sales) Control Account',
@@ -106,14 +96,48 @@ public without sharing class TestFinanceDataFactory {
             Zumzum__Tax_Rate__c = zumzumNoVatTaxRate.Id,
             Zumzum__Sub_Category__c = zumzumCreditorsSubCategory.Id
         );
-        insert zumzumVatOnPurchaseNominalAccount;
+        nominalAccountsByNominalCodesMap.put(9691, zumzumVatOnPurchaseNominalAccount);
+
+        Zumzum__Nominal_Account__c zumzumCurrentNominalAccount = new Zumzum__Nominal_Account__c(
+            Name = 'Bank Current Account',
+            Zumzum__Account_Code__c = 9400
+        );
+        nominalAccountsByNominalCodesMap.put(9400, zumzumCurrentNominalAccount);
+
+        Zumzum__Nominal_Account__c zumzumReconcileNominalAccount = new Zumzum__Nominal_Account__c(
+            Name = 'Bank Reconcile Account',
+            Zumzum__Account_Code__c = 9401
+        );
+        nominalAccountsByNominalCodesMap.put(9401, zumzumReconcileNominalAccount);
+
+        Zumzum__Nominal_Account__c expenseNominalAccount = new Zumzum__Nominal_Account__c(
+            Name = 'Test Expense Nominal Account',
+            Zumzum__Expense__c = true,
+            Zumzum__Account_Code__c = 10,
+            Zumzum__Sub_Category__c = zumzumCreditorsSubCategory.Id,
+            Zumzum__P_O__c = true,
+            Zumzum__Debit_Balance__c = 600
+        );
+        nominalAccountsByNominalCodesMap.put(10, expenseNominalAccount);
+
+        insert nominalAccountsByNominalCodesMap.values();
+
+        Zumzum__Nominal_Budget__c nominalBudget = new Zumzum__Nominal_Budget__c(
+            Name = 'Budget',
+            Zumzum__Nominal_Account__c = nominalAccountsByNominalCodesMap.get(9600).Id,
+            Zumzum__Month__c = 3,
+            Zumzum__Year__c = 2020,
+            Zumzum__Actuals_Credit__c = 16221.65,
+            Zumzum__Actuals_Debit__c = 300.00
+        );
+        insert nominalBudget;
 
         Zumzum__Control_Account__c controlAccount = new Zumzum__Control_Account__c(
             Name = 'Control Accounts',
-            Zumzum__Creditors_Control__c = zumzumCreditorsNominalAccount.Id,
-            Zumzum__Debtors_Control__c = zumzumDebtorNominalAccount.Id,
-            Zumzum__Credit_Charges__c = zumzumCreditorsNominalAccount.Id,
-            Zumzum__VAT_on_Purchases__c = zumzumVatOnPurchaseNominalAccount.Id
+            Zumzum__Creditors_Control__c = nominalAccountsByNominalCodesMap.get(9600).Id,
+            Zumzum__Debtors_Control__c = nominalAccountsByNominalCodesMap.get(9300).Id,
+            Zumzum__Credit_Charges__c = nominalAccountsByNominalCodesMap.get(9600).Id,
+            Zumzum__VAT_on_Purchases__c = nominalAccountsByNominalCodesMap.get(9691).Id
         );
         insert controlAccount;
 
@@ -125,36 +149,24 @@ public without sharing class TestFinanceDataFactory {
             Zumzum__Corporate__c = true
         );
         insert zumzumCompany;
-
-        Zumzum__Nominal_Account__c zumzumCurrentNominalAccount = new Zumzum__Nominal_Account__c(
-            Name = 'Bank Current Account',
-            Zumzum__Account_Code__c = 9400
-        );
-        insert zumzumCurrentNominalAccount;
         
         Zumzum__Bank_Account__c zumzumBankAccount = new Zumzum__Bank_Account__c(
             Name = 'CARD RECEIPTS IN TRANSIT',
             Zumzum__Type__c = 'Current/Saving',
             Zumzum__Account_Number__c = '12345678',
             Zumzum__Status__c = 'Active',
-            Zumzum__Nominal_Account__c = zumzumCurrentNominalAccount.Id
+            Zumzum__Nominal_Account__c = nominalAccountsByNominalCodesMap.get(9400).Id
         );
-        insert zumzumBankAccount;
-        
-        Zumzum__Nominal_Account__c zumzumReconcileNominalAccount = new Zumzum__Nominal_Account__c(
-            Name = 'Bank Current Account',
-            Zumzum__Account_Code__c = 9401
-        );
-        insert zumzumReconcileNominalAccount;
         
         Zumzum__Bank_Account__c zumzumReconcileBankAccount = new Zumzum__Bank_Account__c(
             Name = 'Reconcile Bank',
             Zumzum__Type__c = 'Current/Saving',
             Zumzum__Account_Number__c = '3',
             Zumzum__Status__c = 'Active',
-            Zumzum__Nominal_Account__c = zumzumReconcileNominalAccount.Id
+            Zumzum__Nominal_Account__c = nominalAccountsByNominalCodesMap.get(9401).Id
         );
-        insert zumzumReconcileBankAccount;
+
+        insert new List<Zumzum__Bank_Account__c> {zumzumBankAccount, zumzumReconcileBankAccount};
 
         Zumzum__General_Setup__c zumzumGeneralSetupPurchaseInvoice = new Zumzum__General_Setup__c(
             Name = 'PI',
@@ -180,8 +192,8 @@ public without sharing class TestFinanceDataFactory {
         insert new List<Zumzum__General_Setup__c> {zumzumGeneralSetupPurchaseInvoice, zumzumGeneralSetupLedgerTransaction, zumzumGeneralSetupSalesInvoiceTransaction};
 
         insert new Financial_Settings__c(
-            PI_Nominal_Account_Id__c = zumzumNominalAccount.Id, 
-            PC_Nominal_Account_Id__c = zumzumNominalAccount.Id, 
+            PI_Nominal_Account_Id__c = nominalAccountsByNominalCodesMap.get(7003).Id, 
+            PC_Nominal_Account_Id__c = nominalAccountsByNominalCodesMap.get(7003).Id, 
             Practitioner_Registration_Capped_Fees__c = 300, 
             Practitioner_Registration_Fees_Rate__c = 0.03
         );
@@ -194,15 +206,6 @@ public without sharing class TestFinanceDataFactory {
         dimension2.Zumzum__Active__c = true;
         dimension2.Zumzum__Type__c = 'Dimension 2';
         insert dimension2;
-
-        expenseNominalAccount = new Zumzum__Nominal_Account__c();
-        expenseNominalAccount.Name = 'Test Expense Nominal Account';
-        expenseNominalAccount.Zumzum__Expense__c = true;
-        expenseNominalAccount.Zumzum__Account_Code__c = 10;
-        expenseNominalAccount.Zumzum__Sub_Category__c = zumzumCreditorsSubCategory.Id;
-        expenseNominalAccount.Zumzum__P_O__c = true;
-        expenseNominalAccount.Zumzum__Debit_Balance__c = 600;
-        insert expenseNominalAccount;
     }
 
     public void createExpenseData(Id courseId, Id supplierId, Integer amount) {
@@ -213,7 +216,7 @@ public without sharing class TestFinanceDataFactory {
         Zumzum__Expense_Sheet_Detail__c expenseSheetDetail = new Zumzum__Expense_Sheet_Detail__c();
         expenseSheetDetail.Zumzum__Expense_Sheet__c = expenseSheet.Id;
         expenseSheetDetail.Zumzum__Tax_Rate__c = zumzumNoVatTaxRate.Id;
-        expenseSheetDetail.Zumzum__Nominal_Account__c = expenseNominalAccount.Id;
+        expenseSheetDetail.Zumzum__Nominal_Account__c = nominalAccountsByNominalCodesMap.get(10).Id;
         expenseSheetDetail.Zumzum__Narrative__c = 'Item name';
         expenseSheetDetail.Zumzum__Miles__c = 0;
         expenseSheetDetail.Zumzum__Unit_Amount__c = amount;
@@ -276,7 +279,6 @@ public without sharing class TestFinanceDataFactory {
     }
 
     public static List<List<ZumzumSalesInvoiceParameters>> getZumzumSalesInvoiceParameters() {
-        // Booking__c booking = [SELECT Id FROM Booking__c LIMIT 1];
         Account customer = [SELECT Id FROM Account WHERE Type =: ACCOUNT_TYPE_CUSTOMER LIMIT 1];
         Zumzum__Currency__c transactionCurrency = [SELECT Id FROM Zumzum__Currency__c LIMIT 1];
         Product2 productCourse = [SELECT Id FROM Product2 WHERE Name =: PRODUCT_NAME_COURSE_PLACE LIMIT 1];
@@ -290,7 +292,6 @@ public without sharing class TestFinanceDataFactory {
         ZumzumSalesInvoiceParameters courseZumzumSalesInvoiceParameter =  new ZumzumSalesInvoiceParameters();
         coursezumzumSalesInvoiceParameter.customerId = customer.Id;
         coursezumzumSalesInvoiceParameter.transactionCurrencyId = transactionCurrency.Id;
-        // coursezumzumSalesInvoiceParameter.bookingId = booking.Id;
         coursezumzumSalesInvoiceParameter.productId = productCourse.Id;
         coursezumzumSalesInvoiceParameter.quantity = 1;
         coursezumzumSalesInvoiceParameter.nominalAccountId = zumzumDebtorNominalAccount.Id;
@@ -301,7 +302,6 @@ public without sharing class TestFinanceDataFactory {
         ZumzumSalesInvoiceParameters membershipZumzumSalesInvoiceParameter =  new ZumzumSalesInvoiceParameters();
         membershipZumzumSalesInvoiceParameter.customerId = customer.Id;
         membershipZumzumSalesInvoiceParameter.transactionCurrencyId = transactionCurrency.Id;
-        // membershipZumzumSalesInvoiceParameter.bookingId = booking.Id;
         membershipZumzumSalesInvoiceParameter.productId = productMembership.Id;
         membershipZumzumSalesInvoiceParameter.quantity = 1;
         membershipZumzumSalesInvoiceParameter.nominalAccountId = zumzumMembershipNominalAccount.Id;
