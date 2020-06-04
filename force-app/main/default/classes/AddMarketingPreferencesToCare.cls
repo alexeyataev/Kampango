@@ -26,7 +26,6 @@ public without sharing class AddMarketingPreferencesToCare {
                     Individual.Telephone__c != false OR
                     Individual.Post__c != false
                 )
-            WITH SECURITY_ENFORCED
             LIMIT 1
         ];
 
