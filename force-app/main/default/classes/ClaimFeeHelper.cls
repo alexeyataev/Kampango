@@ -178,7 +178,7 @@ public with sharing class ClaimFeeHelper {
                 runningCount++;
                 bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
                 bankLineItem.LedgerName = ledgerRecord.Name;
-                bankLineItem.Amount = partialAllocation;
+                bankLineItem.Amount = partialAllocation;    
                 runningTotal += partialAllocation;
                 if(invoicesCount == runningCount && runningTotal != creditAmount) {
                     amountDifference = creditAmount - runningTotal;
