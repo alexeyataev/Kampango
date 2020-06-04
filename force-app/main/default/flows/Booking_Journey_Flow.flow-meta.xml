@@ -397,7 +397,7 @@
     </subflows>
     <textTemplates>
         <name>Confirmation_Of_Conditions_Template</name>
-        <text>&lt;span style=&quot;font-size: 18px;&quot;&gt;I have read and agree to the &lt;/span&gt; &lt;span&gt;&lt;a href=&quot;https://www.nct.org.uk/sites/default/files/related_documents/Cancellation%20Policy_1.pdf&quot; target=&quot;_blank&quot; style=&quot;font-size: 18px; color: rgb(58, 164, 59);&quot;&gt;refund and cancellations terms and conditions﻿.&lt;/a&gt;&lt;/span&gt;</text>
+        <text>&lt;span style=&quot;font-size: 18px;&quot;&gt;I have read and agree to the &lt;/span&gt; &lt;a href=&quot;https://www.nct.org.uk/courses-workshops/course-details-and-prices/courses-cancellation-and-refund-policy&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(58, 164, 59); font-size: 18px;&quot;&gt;refund and cancellations terms and conditions﻿.&lt;/a&gt;</text>
     </textTemplates>
     <variables>
         <name>accountRecord</name>
