@@ -23,8 +23,6 @@ public with sharing class ZumzumCreatePostSalesInvoice {
                 salesInvoiceLine.Quantity = zumzumSalesInvoiceParameter.quantity;
                 salesInvoiceLine.TaxRate = zumzumSalesInvoiceParameter.taxRateId;
                 salesInvoiceLine.ForeignNetAmount = zumzumSalesInvoiceParameter.foreignNetAmount;
-                salesInvoiceLine.Dimension1 = zumzumSalesInvoiceParameter.dimension1Id;
-                salesInvoiceLine.Dimension2 = zumzumSalesInvoiceParameter.dimension2Id;
                 salesInvoice.LineItems.add(salesInvoiceLine);
             }
             newSalesInvoiceDataList.add(salesInvoice);
