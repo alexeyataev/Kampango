@@ -475,20 +475,6 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>CourseZumzumSalesInvoiceParameter.dimension1Id</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Dimension1.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>CourseZumzumSalesInvoiceParameter.dimension2Id</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Dimension2.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>CourseZumzumSalesInvoiceParameter.quantity</assignToReference>
             <operator>Assign</operator>
             <value>
@@ -574,20 +560,6 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>GBP.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>MembershipZumzumSalesInvoiceParameter.dimension1Id</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Dimension1.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>MembershipZumzumSalesInvoiceParameter.dimension2Id</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Dimension2.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -1580,52 +1552,6 @@ We check this because if Membership is with Partner we will need to add Contact 
         <queriedFields>Id</queriedFields>
     </recordLookups>
     <recordLookups>
-        <name>Get_Dimension1</name>
-        <label>Get Dimension1</label>
-        <locationX>1848</locationX>
-        <locationY>361</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Dimension2</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Error_Handler_SubFlow</targetReference>
-        </faultConnector>
-        <filters>
-            <field>Name</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>bookingRecord.PSA_Office__c</elementReference>
-            </value>
-        </filters>
-        <object>Zumzum__Dimension__c</object>
-        <outputReference>Dimension1</outputReference>
-        <queriedFields>Id</queriedFields>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Dimension2</name>
-        <label>Get Dimension2</label>
-        <locationX>2044</locationX>
-        <locationY>361</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_No_VAT</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Error_Handler_SubFlow</targetReference>
-        </faultConnector>
-        <filters>
-            <field>Name</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>bookingRecord.Course_Sub_Type__c</elementReference>
-            </value>
-        </filters>
-        <object>Zumzum__Dimension__c</object>
-        <outputReference>Dimension2</outputReference>
-        <queriedFields>Id</queriedFields>
-    </recordLookups>
-    <recordLookups>
         <name>Get_GBP</name>
         <label>Get GBP</label>
         <locationX>1847</locationX>
@@ -1714,9 +1640,6 @@ We check this because if Membership is with Partner we will need to add Contact 
         <locationX>1683</locationX>
         <locationY>361</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Dimension1</targetReference>
-        </connector>
         <faultConnector>
             <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
@@ -2317,22 +2240,6 @@ NOT(ISNUMBER({!Account_Name}))
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>Dimension1</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Zumzum__Dimension__c</objectType>
-    </variables>
-    <variables>
-        <name>Dimension2</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Zumzum__Dimension__c</objectType>
     </variables>
     <variables>
         <name>GBP</name>
