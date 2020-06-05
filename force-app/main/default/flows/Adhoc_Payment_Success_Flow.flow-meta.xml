@@ -1,61 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Send_notification_email</name>
-        <label>Send notification email</label>
-        <locationX>420</locationX>
-        <locationY>120</locationY>
-        <actionName>SendHTMLEmailPlugin</actionName>
-        <actionType>apex</actionType>
+        <name>Send_email</name>
+        <label>Send email</label>
+        <locationX>298</locationX>
+        <locationY>215</locationY>
+        <actionName>Booking__c.Adhoc_Send_Confirmation_Email</actionName>
+        <actionType>emailAlert</actionType>
         <connector>
             <targetReference>Success_screen</targetReference>
         </connector>
         <inputParameters>
-            <name>mergeObjectId</name>
+            <name>SObjectRowId</name>
             <value>
                 <elementReference>salesInvoice.Booking__c</elementReference>
             </value>
         </inputParameters>
-        <inputParameters>
-            <name>orgWideEmailAddress</name>
-            <value>
-                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>replyEmailAddress</name>
-            <value>
-                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>targetObjectId</name>
-            <value>
-                <elementReference>salesInvoice.Zumzum__Contact__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>templateDeveloperName</name>
-            <value>
-                <elementReference>TEMPLATE_ADHOC_CONFIRMATION_DEV_NAME</elementReference>
-            </value>
-        </inputParameters>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
-    <constants>
-        <name>ORG_WIDE_ADDRESS_VALUE</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>nctcourses@nct.org.uk</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <name>TEMPLATE_ADHOC_CONFIRMATION_DEV_NAME</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Adhoc_Payment_Confirmation</stringValue>
-        </value>
-    </constants>
     <description>Performs logic after the payment has been completed successfully
 Version changes:
 Changed email alert to Booking</description>
@@ -77,11 +38,11 @@ Changed email alert to Booking</description>
     <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
-        <locationX>241</locationX>
-        <locationY>209</locationY>
+        <locationX>176</locationX>
+        <locationY>216</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Send_notification_email</targetReference>
+            <targetReference>Send_email</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -96,12 +57,11 @@ Changed email alert to Booking</description>
         <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Booking__c</queriedFields>
     </recordLookups>
-    <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Success_screen</name>
         <label>Success screen</label>
-        <locationX>587</locationX>
-        <locationY>208</locationY>
+        <locationX>431</locationX>
+        <locationY>215</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -121,14 +81,6 @@ Changed email alert to Booking</description>
         </connector>
     </start>
     <status>Active</status>
-    <variables>
-        <name>confirmationTemplate</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>EmailTemplate</objectType>
-    </variables>
     <variables>
         <name>salesInvoice</name>
         <dataType>SObject</dataType>
