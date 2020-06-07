@@ -78,7 +78,7 @@
         <inputParameters>
             <name>salesInvoiceId</name>
             <value>
-                <elementReference>PaymentPlanParameters.salesInvoiceId</elementReference>
+                <elementReference>Create_SI_and_SI_Line_Items.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -99,7 +99,7 @@
     <actionCalls>
         <name>Card_Payment_Plan_Handler</name>
         <label>Card Payment Plan Handler</label>
-        <locationX>3011</locationX>
+        <locationX>3022</locationX>
         <locationY>900</locationY>
         <actionName>CardPaymentPlanHandler</actionName>
         <actionType>apex</actionType>
@@ -163,7 +163,7 @@
         <inputParameters>
             <name>salesInvoiceId</name>
             <value>
-                <elementReference>PaymentPlanParameters.salesInvoiceId</elementReference>
+                <elementReference>Create_SI_and_SI_Line_Items.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -184,12 +184,12 @@
     <actionCalls>
         <name>Create_SI_and_SI_Line_Items</name>
         <label>Create SI and SI Line Items</label>
-        <locationX>2279</locationX>
-        <locationY>901</locationY>
+        <locationX>2322</locationX>
+        <locationY>674</locationY>
         <actionName>ZumzumCreatePostSalesInvoice</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Assign_Sales_Invoice_to_Parameters</targetReference>
+            <targetReference>Is_Membership_Chose_0</targetReference>
         </connector>
         <inputParameters>
             <name>zumzumSalesInvoiceParameterList</name>
@@ -225,7 +225,7 @@
     <assignments>
         <name>Add_Cost_Membership</name>
         <label>Add Cost Membership</label>
-        <locationX>2500</locationX>
+        <locationX>2498</locationX>
         <locationY>873</locationY>
         <assignmentItems>
             <assignToReference>PaymentPlanParameters.amount</assignToReference>
@@ -241,8 +241,8 @@
     <assignments>
         <name>Add_Course_SI_Parameter</name>
         <label>Add Course SI Parameter</label>
-        <locationX>2196</locationX>
-        <locationY>676</locationY>
+        <locationX>2166</locationX>
+        <locationY>674</locationY>
         <assignmentItems>
             <assignToReference>ZumzumSalesInvoiceParametersList</assignToReference>
             <operator>Add</operator>
@@ -321,8 +321,8 @@
     <assignments>
         <name>Added_Next_Collection_Date</name>
         <label>Added Next Collection Date</label>
-        <locationX>3229</locationX>
-        <locationY>900</locationY>
+        <locationX>3228</locationX>
+        <locationY>901</locationY>
         <assignmentItems>
             <assignToReference>Booking_Instance_For_Update.Next_Collection_Date__c</assignToReference>
             <operator>Assign</operator>
@@ -332,22 +332,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Payment_Link_Result</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Sales_Invoice_to_Parameters</name>
-        <label>Assign Sales Invoice to Parameters</label>
-        <locationX>2361</locationX>
-        <locationY>674</locationY>
-        <assignmentItems>
-            <assignToReference>PaymentPlanParameters.salesInvoiceId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Create_SI_and_SI_Line_Items.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Is_Membership_Chose_0</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -423,8 +407,8 @@
     <assignments>
         <name>Course_ZumzumSalesInvoiceParameter_Assignment</name>
         <label>Course ZumzumSalesInvoiceParameter Assignment</label>
-        <locationX>2041</locationX>
-        <locationY>676</locationY>
+        <locationX>2010</locationX>
+        <locationY>674</locationY>
         <assignmentItems>
             <assignToReference>CourseZumzumSalesInvoiceParameter.bookingId</assignToReference>
             <operator>Assign</operator>
@@ -1181,7 +1165,7 @@ We check this because if Membership is with Partner we will need to add Contact 
     <decisions>
         <name>Is_Membership_Chose_0</name>
         <label>Is Membership Chose ?</label>
-        <locationX>2492</locationX>
+        <locationX>2490</locationX>
         <locationY>676</locationY>
         <defaultConnector>
             <targetReference>Type_Of_Payment</targetReference>
@@ -1359,8 +1343,8 @@ We check this because if Membership is with Partner we will need to add Contact 
     <decisions>
         <name>Type_Of_Payment</name>
         <label>Type Of Payment</label>
-        <locationX>2828</locationX>
-        <locationY>687</locationY>
+        <locationX>2829</locationX>
+        <locationY>688</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Payment_Only_For_Course</name>
@@ -1473,8 +1457,8 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Get_Booking</name>
         <label>Get Booking</label>
-        <locationX>487</locationX>
-        <locationY>181</locationY>
+        <locationX>510</locationX>
+        <locationY>200</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Booking_Membership_Options_Flow</targetReference>
@@ -1521,7 +1505,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <field>Zumzum__Nominal_Code__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>1400</stringValue>
+                <stringValue>1200</stringValue>
             </value>
         </filters>
         <object>Zumzum__Nominal_Account__c</object>
@@ -2076,8 +2060,8 @@ NOT(ISNUMBER({!Account_Name}))
     <subflows>
         <name>Booking_Gift_Aid_Declaration_Flow</name>
         <label>Booking Gift Aid Declaration Flow</label>
-        <locationX>2050</locationX>
-        <locationY>879</locationY>
+        <locationX>1967</locationX>
+        <locationY>863</locationY>
         <connector>
             <targetReference>Get_Course_Nominal_Account</targetReference>
         </connector>
