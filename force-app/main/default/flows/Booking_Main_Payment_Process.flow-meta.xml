@@ -1505,7 +1505,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <field>Zumzum__Nominal_Code__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>1200</stringValue>
+                <stringValue>1400</stringValue>
             </value>
         </filters>
         <object>Zumzum__Nominal_Account__c</object>
