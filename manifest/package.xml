@@ -531,6 +531,7 @@
         <members>Booking_Main_Payment_Process</members>
         <members>Booking_Send_Email_On_Enquiry_Created_Process</members>
         <members>Booking_Send_Email_On_Enquiry_Created_Flow</members>
+        <members>Booking_Set_Expiration_Status_Scheduled</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Booking_Tranfer_Flow</members>
         <members>Booking_Transfer</members>
