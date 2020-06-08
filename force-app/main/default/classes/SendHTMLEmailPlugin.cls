@@ -7,6 +7,7 @@ public with sharing class SendHTMLEmailPlugin {
         
         String targetObjId = requests[0].targetObjectId;
         String mergeObjId = requests[0].mergeObjectId;
+        String templateDeveloperName = requests[0].templateDeveloperName;
         String templateId = requests[0].templateId;
         String senderAddress = requests[0].replyEmailAddress;
         String priority = requests[0].priority;
@@ -25,6 +26,10 @@ public with sharing class SendHTMLEmailPlugin {
             setEmailCapacity(targetObjId, ccEmails, bccEmails);
 
             message.setTargetObjectId(targetObjId);
+            if(templateId == null && templateDeveloperName != null) {
+                List<EmailTemplate> emailTemplateList = [SELECT Id FROM EmailTemplate WHERE DeveloperName =: templateDeveloperName LIMIT 1];
+                templateId = emailTemplateList.isEmpty() ? templateId : emailTemplateList[0].Id;
+            }
             message.setTemplateId(templateId);
             message.setWhatId(mergeObjId);
     
@@ -33,15 +38,12 @@ public with sharing class SendHTMLEmailPlugin {
                 message.setEmailPriority(priority);
             }
             
-            // Save as activity is true by default
             Boolean isSaveAsActivityNotSet = (saveAsActivity == null || !saveAsActivity);
             if (isSaveAsActivityNotSet) {
                 message.setSaveAsActivity(false);
             }
-            
-            // Set sender address (cannot be used both)
-            Boolean isOrgWideSet = (orgWideAddress != null && String.isNotBlank(orgWideAddress));
-            if (isOrgWideSet) {
+
+            if (String.isNotBlank(orgWideAddress)) {
                 Id orgWideAddressId = [SELECT Id FROM OrgWideEmailAddress WHERE Address = :orgWideAddress].Id;
                 message.setOrgWideEmailAddressId(orgWideAddressId);
             } else if (senderDisplay != null) {
@@ -51,32 +53,24 @@ public with sharing class SendHTMLEmailPlugin {
             message.setCcAddresses(ccEmails);
             message.setBccAddresses(bccEmails);
 
-            system.debug('Email invocations before send: ' + Limits.getEmailInvocations());   
-            system.debug(message);
-            
             Response response;
             String error;
             try {
                 Messaging.SendEmailResult[] emailResponse = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { message });
-                System.debug('emailResponse is: ' + emailResponse);
                 response = createResponseAfterSending(emailResponse);
             } catch (EmailException e){
                 error = e.getMessage();
                 if (error.contains('UNVERIFIED_SENDER_ADDRESS')) {
                     throw e;
                 } else {
-                    System.debug ('exception occured: ' + e.getMessage());
                     response = createErrorResponse(error);
                 }
             }
             responseList.add(response);
-
-            system.debug('Email invocations after send: ' + Limits.getEmailInvocations());
         } else {
             Response response = createErrorResponse('Messaging is not supported or recipient is not assigned');
             responseList.add(response);
         }
-
         return responseList;
     }
 
@@ -96,7 +90,6 @@ public with sharing class SendHTMLEmailPlugin {
                 emailCount++;
             }
         }
-        system.debug('Email count : ' + emailCount);
         Messaging.reserveSingleEmailCapacity(emailCount);
     }
 
@@ -125,7 +118,6 @@ public with sharing class SendHTMLEmailPlugin {
     }
     
     public class Request {
-        
         @invocableVariable(
             label='Template Target Record Id' 
             description='If you are passing in a template Id, you need to also pass in the Id of context record. It can be a Contact, Lead, or User. It will determine which data gets merged into the template'
@@ -136,6 +128,9 @@ public with sharing class SendHTMLEmailPlugin {
         @invocableVariable
         public String mergeObjectId;
         
+        @invocableVariable
+        public String templateDeveloperName;
+
         @invocableVariable
         public String templateId;
         
@@ -167,7 +162,6 @@ public with sharing class SendHTMLEmailPlugin {
         
         @invocableVariable
         public String errors;
-
     }
     
     public class FlowEmailActionException extends Exception {}

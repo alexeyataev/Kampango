@@ -3,42 +3,81 @@
 @IsTest
 public with sharing class CourseDetailControllerTest {
 
+    private static final String PRACTITIONER_LASTNAME = 'Smith';
+    private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
+    private static final String HOST_LASTNAME = 'Black';
+
     @TestSetup
     static void createTestData(){
-        TestDataFactory testDataFactory = TestDataFactory.getInstance()
-            .buildBranchAccount()
-            .buildOrganizationAccount('acc1')
-            .buildPractitioner('Smith')
-            .buildPractitionerFeeRate()
-            .buildVenue()
-            .buildRoom()
-            .buildLicenceToPractice();
 
         Integer coursesToCreate = 4;
         Integer provisionSessionsToCreate = 5;
         Integer confirmedSessionsToCreate = 5;
 
-        testDataFactory.buildCoursesWithChoseNumberAndStatusSessions(coursesToCreate, provisionSessionsToCreate,confirmedSessionsToCreate);
+        TestDataFactory testDataFactory = TestDataFactory.getInstance()
+            .buildBranchAccount()
+            .buildOrganizationAccount('acc1')
+            .buildPractitioner(PRACTITIONER_LASTNAME)
+            .buildPractitionerFeeRate()
+            .buildVenue()
+            .buildRoom()
+            .buildLicenceToPractice()
+            .buildCoursesWithChoseNumberAndStatusSessions(coursesToCreate, provisionSessionsToCreate,confirmedSessionsToCreate)
+            .buildCourse()
+            .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
+            .buildPartnertHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
+            .buildSessionWithTypeAndStatus('Reunion', 'Confirmed')
+            .buildBooking('Enquiry');
     }
 
     @IsTest
-    private static void retrieveRelatedSessions_passValidCourseId_sessionsRetrieved(){
+    private static void retrieveRelatedSessions_passValidCourseId_sessionsRetrieved() {
         List<Session__c> sessions = new List<Session__c>();
         String courseId = [SELECT Id FROM Course__c WHERE Type__c = 'Antenatal' LIMIT 1].Id;
+
         Test.startTest();
-        sessions = CourseDetailController.retrieveRelatedSessions(courseId);
+            sessions = CourseDetailController.retrieveRelatedSessions(courseId);
         Test.stopTest();
-        System.assert(sessions.size() > 0);
+
+        System.assert(sessions.size() > 0, 'Session list should not be empty');
     }
 
     @IsTest
-    private static void retrieveRelatedSessions_passInvalidCourseId_sessionsNotRetrieved(){
+    private static void retrieveRelatedSessions_passInvalidCourseId_sessionsNotRetrieved() {
         List<Session__c> sessions = new List<Session__c>();
         String courseId = [SELECT Id FROM Course__c WHERE Type__c = 'Antenatal' LIMIT 1].Id;
         courseId = courseId.left(10) + '11111111';
+
         Test.startTest();
-        sessions = CourseDetailController.retrieveRelatedSessions(courseId);
+            sessions = CourseDetailController.retrieveRelatedSessions(courseId);
         Test.stopTest();
-        System.assert(sessions.isEmpty());
+
+        System.assert(sessions.isEmpty(), 'Session list should be empty');
+    }
+
+    @IsTest
+    private static void retriveCourseDetailsById_passValidBookingId_courseDetailsRetrieved() {
+        String bookingId = [SELECT Id FROM Booking__c][0].Id;
+
+        Test.startTest();
+            List<Booking__c> bookingCourseInformationList = CourseDetailController.getCourseDetailsInformation(bookingId);
+        Test.stopTest();
+
+        System.assert(bookingCourseInformationList.size() == 1, 'List should have one record');
+        System.assert(bookingCourseInformationList[0].Id == bookingId, 'BookingId should be equals');
+        System.assert(bookingCourseInformationList[0].Final_Fee__c == 100, 'Final Fee should be equals 100');
+        System.assert(bookingCourseInformationList[0].Last_Name__c == HOST_LASTNAME, 'LastName should be equals');
+    }
+
+    @IsTest
+    private static void retriveCourseDetailsById_passInvalidBookingId_courseDetailsNotRetrieved() {
+        String bookingId = [SELECT Id FROM Booking__c][0].Id;
+        bookingId = bookingId.left(10) + '11111111';
+
+        Test.startTest();
+            List<Booking__c> bookingCourseInformationList = CourseDetailController.getCourseDetailsInformation(bookingId);
+        Test.stopTest();
+
+        System.assert(bookingCourseInformationList.isEmpty(), 'Booking list should be empty');
     }
 }
