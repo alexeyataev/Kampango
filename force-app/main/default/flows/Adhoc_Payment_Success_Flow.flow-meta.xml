@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Send_email</name>
         <label>Send email</label>
-        <locationX>298</locationX>
-        <locationY>215</locationY>
+        <locationX>277</locationX>
+        <locationY>244</locationY>
         <actionName>Booking__c.Adhoc_Send_Confirmation_Email</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -38,8 +38,8 @@ Changed email alert to Booking</description>
     <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
-        <locationX>176</locationX>
-        <locationY>216</locationY>
+        <locationX>74</locationX>
+        <locationY>335</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Send_email</targetReference>
@@ -57,11 +57,12 @@ Changed email alert to Booking</description>
         <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Booking__c</queriedFields>
     </recordLookups>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Success_screen</name>
         <label>Success screen</label>
-        <locationX>431</locationX>
-        <locationY>215</locationY>
+        <locationX>492</locationX>
+        <locationY>337</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
