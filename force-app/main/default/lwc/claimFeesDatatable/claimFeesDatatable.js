@@ -40,9 +40,6 @@ export default class ClaimFeesDatatable extends LightningElement {
         this.checkedRows = event.target.getSelectedRows();
         this.isButtonDisabled = this.checkedRows.length === 0;
         this.calculateTotalFee();
-        this.dispatchEvent(
-            new FlowAttributeChangeEvent('totalFee', this.totalFee)
-        );
     }
 
     calculateTotalFee() {
@@ -68,5 +65,11 @@ export default class ClaimFeesDatatable extends LightningElement {
             this.registrationFee = currentRegistrationFee - delta;
             this.registrationFee = this.registrationFee < 0 ? 0 : Math.abs(this.registrationFee.toFixed(2));
         }
+        this.dispatchEventList();
+    }
+    dispatchEventList(){
+        this.dispatchEvent(new FlowAttributeChangeEvent('totalFee', this.totalFee));
+        this.dispatchEvent(new FlowAttributeChangeEvent('registrationFee', this.registrationFee));
+        this.dispatchEvent(new FlowAttributeChangeEvent('checkedRows', this.checkedRows));
     }
 }

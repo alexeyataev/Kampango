@@ -9,8 +9,8 @@
         </sharedTo>
         <criteriaItems>
             <field>Name</field>
-            <operation>notEqual</operation>
-            <value>null</value>
+            <operation>equals</operation>
+            <value>Control Accounts</value>
         </criteriaItems>
     </sharingGuestRules>
 </SharingRules>
