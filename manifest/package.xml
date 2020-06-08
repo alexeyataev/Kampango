@@ -553,7 +553,6 @@
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Booking_Contacts_Email_To_Do_Not_Contact</members>
-        <members>Set_Booking_Expiration_Status</members>
         <members>Set_CADs_to_Withdrawn</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Deactivate_Date_GAD</members>
