@@ -3,18 +3,19 @@ private class BatchOutboundBACSpaymentTest {
 
     private static final String DIMENSION1_VALUE = '3A';
     private static final String DIMENSION2_VALUE = 'NCT Essentials antenatal course';
-
+    private static final String BANK_SORT_CODE = '572899';
 
     @testSetup
-    static void setupTestData(){
+    static void setupTestData() {
         TestFinanceDataFactory.getInstance().createZumzumData();
 
         Zumzum__Nominal_Account__c zumzumCurrentNominalAccount = new Zumzum__Nominal_Account__c(
             Name = 'Bank Current Account',
             Zumzum__Account_Code__c = 9600
         );
+
         insert zumzumCurrentNominalAccount;
-        
+
         Zumzum__Bank_Account__c zumzumBankAccount = new Zumzum__Bank_Account__c(
             Name = 'BACS Payments in Transit',
             Zumzum__Type__c = 'Current/Saving',
@@ -26,44 +27,45 @@ private class BatchOutboundBACSpaymentTest {
 
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account supplierAccount = accountBuilder.WithRecordType('Organization')
-                .withName('Tom Genet')
-                .withType('Supplier')
-                .withAccountNumber('869344')
-                .withBillingEmail('tets@gmail.com')
-                .withBankSortCode('572899')
-                .withBankAccountNumber('03456123')
-                .withBankAccountName('TEST BANK ACCOUNT')
-                .insertRecord(true)
-                .build();
+            .withName('Tom Genet')
+            .withType('Supplier')
+            .withAccountNumber('869344')
+            .withBillingEmail('tets@gmail.com')
+            .withBankSortCode(BANK_SORT_CODE)
+            .withBankAccountNumber('03456123')
+            .withBankAccountName('TEST BANK ACCOUNT')
+            .insertRecord(true)
+            .build();
 
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildOrganizationAccount('acc1')
-                    .buildBranchAccount()
-                    .buildPractitioner('PRACTITIONER_LASTNAME')
-                    .buildPractitionerFeeRate()
-                    .buildVenue()
-                    .buildRoom()
-                    .buildLicenceToPractice()
-                    .buildCourseWithStatus('Draft')
-                    .buildEstimatedCosts()
-                    .buildSession();
+            .buildBranchAccount()
+            .buildPractitioner('PRACTITIONER_LASTNAME')
+            .buildPractitionerFeeRate()
+            .buildVenue()
+            .buildRoom()
+            .buildLicenceToPractice()
+            .buildCourseWithStatus('Draft')
+            .buildEstimatedCosts()
+            .buildSession();
+
         Account branch = [SELECT Id FROM Account WHERE RecordType.Name = 'Branch'];
         branch.PSA_Area__c = DIMENSION1_VALUE;
         update branch;
     }
 
     @isTest
-    static void testBatch(){
+    static void testBatch() {
         // 1. Create PI and related PILI
         Account acc = [
             SELECT Id
             FROM Account
-            WHERE Zumzum__Bank_Sort_Code__c = '572899'
+            WHERE Zumzum__Bank_Sort_Code__c = :BANK_SORT_CODE
             LIMIT 1
         ];
-        
+
         Test.startTest();
-        createPurchaseInvoice(acc.Id);
+            createPurchaseInvoice(acc.Id);
             //2. Create Payment run
             Payment_Run__c paymentRun = new Payment_Run__c();
             paymentRun.Status__c = 'Draft';
@@ -73,16 +75,17 @@ private class BatchOutboundBACSpaymentTest {
             ZumzumBACSpaymentActions.Request request = new ZumzumBACSpaymentActions.Request();
             List<ZumzumBACSpaymentActions.Request> requests = new List<ZumzumBACSpaymentActions.Request>();
             requests.add(request);
-            request.recordId =  paymentRun.Id;
+            request.recordId = paymentRun.Id;
             System.debug(JSON.serialize(ZumzumBACSpaymentActions.linkPurchaseInvoices(requests))) ;
 
             //4. Run Batch
             paymentRun.Status__c = 'Processing';
             update paymentRun;
-            List<Id> ids = new List<Id>();
-            ids.add(paymentRun.Id);
 
-            BatchOutboundBACSpayment.runBatch(ids);
+            List<Id> paymentRunIdList = new List<Id>();
+            paymentRunIdList.add(paymentRun.Id);
+
+            BatchOutboundBACSpayment.runBatch(paymentRunIdList);
         Test.stopTest();
 
         // 5. Check results
@@ -91,7 +94,7 @@ private class BatchOutboundBACSpaymentTest {
             FROM Payment_Run__c
         ];
 
-        System.assertEquals('Ready', result.Status__c);
+        System.assertEquals('Ready', result.Status__c, 'Status should be Ready');
     }
 
     @isTest
@@ -101,6 +104,7 @@ private class BatchOutboundBACSpaymentTest {
         dimension1.Zumzum__Active__c = true;
         dimension1.Zumzum__Type__c = 'Dimension 1';
         insert dimension1;
+
         Zumzum__Dimension__c dimension2 = new Zumzum__Dimension__c();
         dimension2.Name = DIMENSION2_VALUE;
         dimension2.Zumzum__Active__c = true;
@@ -110,37 +114,41 @@ private class BatchOutboundBACSpaymentTest {
         Account acc = [
             SELECT Id
             FROM Account
-            WHERE Zumzum__Bank_Sort_Code__c = '572899'
+            WHERE Zumzum__Bank_Sort_Code__c = :BANK_SORT_CODE
             LIMIT 1
         ];
+
         Test.startTest();
 
-        createPurchaseInvoice(acc.Id);
-        
-        Zumzum__Purchase_Invoice_Line_Item__c pili = [
-            SELECT Id FROM Zumzum__Purchase_Invoice_Line_Item__c LIMIT 1
-        ];
-        Session__c session = [
-            SELECT Id FROM Session__c LIMIT 1
-        ];
-        Course__c course = [
-            SELECT Id FROM Course__c LIMIT 1
-        ];
-        course.Sub_Type__c = DIMENSION2_VALUE;
-        update course;
+            createPurchaseInvoice(acc.Id);
 
-        pili.Session__c = session.Id;
-        update pili;
-        
+            Zumzum__Purchase_Invoice_Line_Item__c purchaseInvoiceLineItem = [
+                SELECT Id FROM Zumzum__Purchase_Invoice_Line_Item__c LIMIT 1
+            ];
+
+            Session__c session = [
+                SELECT Id FROM Session__c LIMIT 1
+            ];
+
+            Course__c course = [
+                SELECT Id FROM Course__c LIMIT 1
+            ];
+            course.Sub_Type__c = DIMENSION2_VALUE;
+            update course;
+
+            purchaseInvoiceLineItem.Session__c = session.Id;
+            update purchaseInvoiceLineItem;
+
         Test.stopTest();
 
-        Zumzum__Purchase_Invoice_LIne_Item__c piliUpdated = [
-            SELECT Id, Zumzum__Dimension_1__c, Zumzum__Dimension_2__c 
-            FROM Zumzum__Purchase_Invoice_LIne_Item__c 
-            WHERE Id = :pili.Id
+        Zumzum__Purchase_Invoice_Line_Item__c purchaseInvoiceLineItemAfterUpdate = [
+            SELECT Id, Zumzum__Dimension_1__c, Zumzum__Dimension_2__c
+            FROM Zumzum__Purchase_Invoice_Line_Item__c 
+            WHERE Id = :purchaseInvoiceLineItem.Id
         ];
-        System.assertEquals(dimension1.Id, piliUpdated.Zumzum__Dimension_1__c, 'Dimension 1 was not populated');
-        System.assertEquals(dimension2.Id, piliUpdated.Zumzum__Dimension_2__c, 'Dimension 2 was not populated');
+
+        System.assertEquals(dimension1.Id, purchaseInvoiceLineItemAfterUpdate.Zumzum__Dimension_1__c, 'Dimension 1 was not populated');
+        System.assertEquals(dimension2.Id, purchaseInvoiceLineItemAfterUpdate.Zumzum__Dimension_2__c, 'Dimension 2 was not populated');
     }
 
     static void createPurchaseInvoice(Id supplierAccountId){
@@ -196,11 +204,11 @@ private class BatchOutboundBACSpaymentTest {
         purchaseInvoiceLineItem.Dimension2 = null;
 
         purchaseInvoice.LineItems.add(purchaseInvoiceLineItem);
-        purchases.add(purchaseInvoice);   
+        purchases.add(purchaseInvoice);
 
         Zumzum.PurchaseInvoiceService.Response objResponse = purchaseInvoiceService.createPurchaseInvoices(purchases);
 
-        postPurchaseInvoices(objResponse.purchaseInvoices);        
+        postPurchaseInvoices(objResponse.purchaseInvoices);
     }
 
     static void postPurchaseInvoices(List<Zumzum__Purchase_Invoice__c> invoices) {
