@@ -82,13 +82,6 @@ public class PaymentApiRequest{
     }
     public class PaymentMethod {
         private String name {get;set;}
-        private String target {get;set;}
-
-        public PaymentMethod(String name, String target) {
-            this.name = name;
-            this.target = target;
-        }
-
         public PaymentMethod(String name) {
             this.name = name;
         }
