@@ -2,6 +2,12 @@
 //Incident #63 - https://confluence.nct.org.uk:8443/x/EoSO
 public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
     public Id paymentRunId;
+
+    private static Map<String, List<String>> runPaymentResponseResult;
+    private static final String PAYMENT_RUN_RESULT_STATUS_ERROR = 'Error';
+    private static final String PAYMENT_RUN_STATUS_READY = 'Ready';
+    private static final String PAYMENT_RUN_STATUS_FAILED = 'Failed To Create Transactions';
+
     public Database.QueryLocator start(Database.BatchableContext bc) {
          return Database.getQueryLocator(
             'SELECT ID, Name,' + ' ' +
@@ -15,32 +21,35 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
         );
     }
 
-    public void execute(Database.BatchableContext bc, List<Payment_Run__c> records){
-        for (Payment_Run__c p: records){
-            OutboundBACSpaymentHelper.processPaymentRun(p);
+    public void execute(Database.BatchableContext bc, List<Payment_Run__c> records) {
+        for (Payment_Run__c paymentRunRecord: records) {
+           runPaymentResponseResult = OutboundBACSpaymentHelper.processPaymentRun(paymentRunRecord);
         }
-    }
-    public void finish(Database.BatchableContext bc){
-        Payment_Run__c paymentRun = [
-            SELECT ID, Status__c
-            FROM Payment_Run__c
-            WHERE Id = :paymentRunId
-        ];
 
-        paymentRun.Status__c = 'Ready';
-        update paymentRun;
+        if (runPaymentResponseResult.get(PAYMENT_RUN_RESULT_STATUS_ERROR) != null) {
+            records[0].Status__c = PAYMENT_RUN_STATUS_FAILED;
+            records[0].Bank_Supplier_Payment_Error_Log__c = String.join(runPaymentResponseResult.get(PAYMENT_RUN_RESULT_STATUS_ERROR), '\n');
+
+        } else {
+            records[0].Status__c = PAYMENT_RUN_STATUS_READY;
+            records[0].Bank_Supplier_Payment_Error_Log__c = '';
+        }
+
+        update records;
     }
 
-    public BatchOutboundBACSpayment(Id paymentRunId){
+    public void finish(Database.BatchableContext bc) {}
+
+    public BatchOutboundBACSpayment(Id paymentRunId) {
         this.paymentRunId = paymentRunId;
     }
-    
+
     @InvocableMethod(
         label='Create Bank Supplier Payments'
         description='ZZ API is called for each Purchase Invoice Line Item'
         category='Payment_Run__c'
     )
-    public static void runBatch(List<Id> paymentRunIds){
+    public static void runBatch(List<Id> paymentRunIds) {
         BatchOutboundBACSpayment myBatchObject = new BatchOutboundBACSpayment(paymentRunIds[0]);
         Id batchId = Database.executeBatch(myBatchObject, 1);
     }

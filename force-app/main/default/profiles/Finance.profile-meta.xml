@@ -1026,6 +1026,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Payment_Run__c.Bank_Supplier_Payment_Error_Log__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Practitioner_Band__c.End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -8436,6 +8441,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Zumzum__BankReconcileDraftRecords</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Zumzum__BankReconcileComponent</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

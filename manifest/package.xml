@@ -619,6 +619,7 @@
         <members>Zumzum__Expense_Sheet_Detail__c-Expense Sheet Detail Practitioner Layout</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
         <members>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</members>
+        <members>Zumzum__Sales_Invoice_Line_Item__c-Zumzum__Sales Invoice Line Item Layout Multi Currency</members>
         <name>Layout</name>
     </types>
     <types>
