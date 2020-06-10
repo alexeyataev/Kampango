@@ -8444,6 +8444,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Zumzum__BankReconcileComponent</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Zumzum__BankReconcileRecords</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
