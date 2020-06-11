@@ -11,4 +11,9 @@
         <default>false</default>
         <label>Booking Cancellation</label>
     </standardValue>
+    <standardValue>
+        <fullName>Course Fee Changes</fullName>
+        <default>false</default>
+        <label>Course Fee Changes</label>
+    </standardValue>
 </StandardValueSet>
