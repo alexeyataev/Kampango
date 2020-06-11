@@ -25,10 +25,7 @@ public without sharing class AddMarketingPreferencesToCare {
 
         if(!contactList.isEmpty()) {
             for(String individualField : MARKETING_PREFERENCES_DOCUMENT_MAP.keySet() ) {
-                if(contactList[0].Individual.get(individualField) == true) {
-                    marketingPreferenceGranted = true;
-                }
-                CareHelper.sendMarketingPreferences(contactList[0].Nct_Number__c, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField), marketingPreferenceGranted);
+                CareHelper.sendMarketingPreferences(contactList[0].Nct_Number__c, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField), (Boolean)contactList[0].Individual.get(individualField));
             }
         }
     }
