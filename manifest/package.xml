@@ -52,12 +52,15 @@
         <members>CreateListViewUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
+        <members>DecryptBookingValidationCodeHandler</members>
         <members>dlrs_Batch_Receipt_Report_ItemTest</members>
         <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTest</members>
         <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
+        <members>EncryptBookingValidationCodeHandler</members>
+        <members>EncryptDecryptBookingValidationCodeTest</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
         <members>GeneratePaymentFilePaymentRunTest</members>
@@ -130,6 +133,7 @@
         <members>UpdateAddressInGiftAidDeclarationsTest</members>
         <members>UpdateBookingContactsEmailTest</members>
         <members>UpdateRelatedSessionsFlowTest</members>
+        <members>UserEncryptionDecryptionProvider</members>
         <members>VenueDetailsController</members>
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
@@ -540,6 +544,7 @@
         <members>Dimensions_update_on_PILI</members>
         <members>Error_Handler_Flow</members>
         <members>Fill_dimension_values_process</members>
+        <members>Generate_Encrypted_Validation_Code</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Confirmation_Email</members>
@@ -619,6 +624,7 @@
         <members>Zumzum__Expense_Sheet_Detail__c-Expense Sheet Detail Practitioner Layout</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
         <members>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</members>
+        <members>Zumzum__Sales_Invoice_Line_Item__c-Zumzum__Sales Invoice Line Item Layout Multi Currency</members>
         <name>Layout</name>
     </types>
     <types>

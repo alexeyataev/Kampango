@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>DecryptBookingValidationCodeHandler</name>
+        <label>DecryptBookingValidationCodeHandler</label>
+        <locationX>85</locationX>
+        <locationY>271</locationY>
+        <actionName>DecryptBookingValidationCodeHandler</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Booking_Data</targetReference>
+        </connector>
+        <inputParameters>
+            <name>dataToDecrypt</name>
+            <value>
+                <elementReference>validationCode</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>BookingName</assignToReference>
+            <name>bookingName</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>validationCodeDecrypted</assignToReference>
+            <name>bookingValidationCode</name>
+        </outputParameters>
+    </actionCalls>
     <assignments>
         <name>Conditions_Assignment</name>
         <label>Conditions Assignment</label>
@@ -101,7 +126,7 @@
             <name>Correct</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>validationCode</leftValueReference>
+                <leftValueReference>validationCodeDecrypted</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <elementReference>bookingRecord.Validation_Code__c</elementReference>
@@ -131,8 +156,8 @@
     <recordLookups>
         <name>Get_Booking_Data</name>
         <label>Get Booking Data</label>
-        <locationX>213</locationX>
-        <locationY>247</locationY>
+        <locationX>290</locationX>
+        <locationY>244</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Course_Data</targetReference>
@@ -141,10 +166,10 @@
             <targetReference>Error_Handler_SubFlow</targetReference>
         </faultConnector>
         <filters>
-            <field>Id</field>
+            <field>Name</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>bookingId</elementReference>
+                <elementReference>BookingName</elementReference>
             </value>
         </filters>
         <object>Booking__c</object>
@@ -161,8 +186,8 @@
         <queriedFields>Under_18__c</queriedFields>
         <queriedFields>Name</queriedFields>
         <queriedFields>Primary_Contact_Email__c</queriedFields>
-        <queriedFields>Validation_Code__c</queriedFields>
         <queriedFields>PSA_Office__c</queriedFields>
+        <queriedFields>Validation_Code__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Course_Data</name>
@@ -261,12 +286,12 @@
             <inputParameters>
                 <name>bookingId</name>
                 <value>
-                    <elementReference>bookingId</elementReference>
+                    <elementReference>bookingRecord.Id</elementReference>
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
-                <assignToReference>bookingId</assignToReference>
+                <assignToReference>bookingRecord.Id</assignToReference>
                 <name>bookingId</name>
             </outputParameters>
         </fields>
@@ -312,10 +337,10 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
-        <locationY>122</locationY>
+        <locationX>56</locationX>
+        <locationY>59</locationY>
         <connector>
-            <targetReference>Get_Booking_Data</targetReference>
+            <targetReference>DecryptBookingValidationCodeHandler</targetReference>
         </connector>
     </start>
     <status>Active</status>
@@ -350,7 +375,7 @@
         <inputAssignments>
             <name>bookingId</name>
             <value>
-                <elementReference>bookingId</elementReference>
+                <elementReference>bookingRecord.Id</elementReference>
             </value>
         </inputAssignments>
     </subflows>
@@ -366,7 +391,7 @@
         <inputAssignments>
             <name>bookingId</name>
             <value>
-                <elementReference>bookingId</elementReference>
+                <elementReference>bookingRecord.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -416,6 +441,13 @@
         <value>
             <stringValue/>
         </value>
+    </variables>
+    <variables>
+        <name>BookingName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>bookingRecord</name>
@@ -512,6 +544,13 @@
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>validationCodeDecrypted</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
 </Flow>
