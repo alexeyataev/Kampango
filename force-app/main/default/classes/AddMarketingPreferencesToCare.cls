@@ -11,7 +11,7 @@ public without sharing class AddMarketingPreferencesToCare {
 
     @InvocableMethod
     public static void addMarketingPreferences(List<Params> paramInstance) {
-
+        Boolean marketingPreferenceGranted = false;
         List<Contact> contactList = [
             SELECT  Nct_Number__c,
                     Individual.Email__c,
@@ -20,20 +20,15 @@ public without sharing class AddMarketingPreferencesToCare {
                     Individual.Post__c
             FROM Contact
             WHERE(Id =: paramInstance[0].contactId AND Nct_Number__c != null)
-            AND (
-                    Individual.Email__c != false OR
-                    Individual.SMS__c != false OR
-                    Individual.Telephone__c != false OR
-                    Individual.Post__c != false
-                )
             LIMIT 1
         ];
 
         if(!contactList.isEmpty()) {
             for(String individualField : MARKETING_PREFERENCES_DOCUMENT_MAP.keySet() ) {
                 if(contactList[0].Individual.get(individualField) == true) {
-                    CareHelper.sendMarketingPreferences(contactList[0].Nct_Number__c, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField));
+                    marketingPreferenceGranted = true;
                 }
+                CareHelper.sendMarketingPreferences(contactList[0].Nct_Number__c, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField), marketingPreferenceGranted);
             }
         }
     }
