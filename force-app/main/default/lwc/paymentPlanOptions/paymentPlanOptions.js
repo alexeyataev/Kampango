@@ -1,5 +1,6 @@
 import { LightningElement, api, wire, track} from 'lwc';
 import getOptions from '@salesforce/apex/PaymentPlanOptionsController.getOptions';
+import { FlowAttributeChangeEvent } from 'lightning/flowSupport';
 
 export default class PaymentOptionsTest extends LightningElement {
     @api paymentPlanOptionSelected;
@@ -22,7 +23,7 @@ export default class PaymentOptionsTest extends LightningElement {
         if (data) {
             data.forEach( element => {
                 this.options.push ({ label:element.displayLabel, value: element.numberOfPayments });
-                this.optionsMap.set(element.numberOfPayments, { 
+                this.optionsMap.set(element.numberOfPayments, {
                     amountFirst:element.amountFirst,
                     amountRecurring:element.amountRecurring,
                     startDate:element.startDate,
@@ -38,7 +39,7 @@ export default class PaymentOptionsTest extends LightningElement {
 
             } else {
                 this.isLabelVisible = '';
-                this.dataLoaded = true; 
+                this.dataLoaded = true;
                 this.nextCollectionDate = new Date(data[0].nextCollectionDate).toLocaleString('default', {day:'numeric', month:'long', year:'numeric'});
             }
             
@@ -49,6 +50,7 @@ export default class PaymentOptionsTest extends LightningElement {
 
     chooseOption(e) {
         this.paymentPlanOptionSelected = this.optionsMap.get(e.target.value);
+        this.dispatchEvent(new FlowAttributeChangeEvent('paymentPlanOptionSelected', this.paymentPlanOptionSelected));
     }
 
     @api validate() {

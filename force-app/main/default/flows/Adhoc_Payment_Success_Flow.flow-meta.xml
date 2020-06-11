@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Send_email</name>
         <label>Send email</label>
-        <locationX>417</locationX>
-        <locationY>413</locationY>
+        <locationX>277</locationX>
+        <locationY>244</locationY>
         <actionName>Booking__c.Adhoc_Send_Confirmation_Email</actionName>
         <actionType>emailAlert</actionType>
         <connector>
@@ -17,20 +17,6 @@
             </value>
         </inputParameters>
     </actionCalls>
-    <constants>
-        <name>ORG_WIDE_ADDRESS_VALUE</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>nctcourses@nct.org.uk</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <name>TEMPLATE_ADHOC_CONFIRMATION_DEV_NAME</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Adhoc_Payment_Confirmation</stringValue>
-        </value>
-    </constants>
     <description>Performs logic after the payment has been completed successfully
 Version changes:
 Changed email alert to Booking</description>
@@ -52,11 +38,11 @@ Changed email alert to Booking</description>
     <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
-        <locationX>50</locationX>
-        <locationY>393</locationY>
+        <locationX>74</locationX>
+        <locationY>335</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_template</targetReference>
+            <targetReference>Send_email</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -71,32 +57,12 @@ Changed email alert to Booking</description>
         <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Booking__c</queriedFields>
     </recordLookups>
-    <recordLookups>
-        <name>Get_template</name>
-        <label>Get template</label>
-        <locationX>219</locationX>
-        <locationY>393</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Send_email</targetReference>
-        </connector>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>TEMPLATE_ADHOC_CONFIRMATION_DEV_NAME</elementReference>
-            </value>
-        </filters>
-        <object>EmailTemplate</object>
-        <outputReference>confirmationTemplate</outputReference>
-        <queriedFields>Id</queriedFields>
-    </recordLookups>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Success_screen</name>
         <label>Success screen</label>
-        <locationX>613</locationX>
-        <locationY>393</locationY>
+        <locationX>492</locationX>
+        <locationY>337</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -116,14 +82,6 @@ Changed email alert to Booking</description>
         </connector>
     </start>
     <status>Active</status>
-    <variables>
-        <name>confirmationTemplate</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>EmailTemplate</objectType>
-    </variables>
     <variables>
         <name>salesInvoice</name>
         <dataType>SObject</dataType>
