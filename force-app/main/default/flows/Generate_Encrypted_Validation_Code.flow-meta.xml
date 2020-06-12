@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Encrypt</name>
-        <label>Encrypt</label>
-        <locationX>661</locationX>
-        <locationY>115</locationY>
-        <actionName>GenerateEncryptedValidationCodeHandler</actionName>
+        <name>EncryptBookingValidationCodeHandler</name>
+        <label>EncryptBookingValidationCodeHandler</label>
+        <locationX>653</locationX>
+        <locationY>135</locationY>
+        <actionName>EncryptBookingValidationCodeHandler</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Assign_Encrypted_Validation_Code_Loop</targetReference>
@@ -50,7 +50,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Encrypt</targetReference>
+            <targetReference>EncryptBookingValidationCodeHandler</targetReference>
         </connector>
     </assignments>
     <formulas>
