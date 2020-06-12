@@ -40,8 +40,8 @@ public with sharing class CareHelper {
     }
 
     @future(callout=true)
-    public static void sendMarketingPreferences(String nctNumber, String standardDocumentNumber) {
-        HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', CareRequestBodyUtil.createMarketingPreferencesBody(nctNumber, standardDocumentNumber));
+    public static void sendMarketingPreferences(String nctNumber, String standardDocumentNumber, Boolean marketingPreferenceGranted) {
+        HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', CareRequestBodyUtil.createMarketingPreferencesBody(nctNumber, standardDocumentNumber, marketingPreferenceGranted));
         MarketingPreferencesObject marketingPreferencesObject = (MarketingPreferencesObject)JSON.deserialize(res.getBody(), MarketingPreferencesObject.class);
     }
 
