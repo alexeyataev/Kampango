@@ -1,5 +1,4 @@
-import { LightningElement, api, wire } from 'lwc';
-import { getRecord } from 'lightning/uiRecordApi';
+import { LightningElement, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import retrieveRelatedSessions from '@salesforce/apex/CourseDetailController.retrieveRelatedSessions';
 import getCourseDetailsInformation from '@salesforce/apex/CourseDetailController.getCourseDetailsInformation';

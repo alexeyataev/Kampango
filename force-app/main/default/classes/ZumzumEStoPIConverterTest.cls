@@ -40,7 +40,7 @@ public without sharing class ZumzumEStoPIConverterTest {
             List<Zumzum__Expense_Sheet__c> expenseSheetList = [SELECT Id FROM Zumzum__Expense_Sheet__c];
             for(Zumzum__Expense_Sheet__c expenseSheet : expenseSheetList) {
                 expenseSheetIds.add(expenseSheet.Id);
-                expenseSheet.Zumzum__Status__c = 'Approved';
+                expenseSheet.Approval_Status__c = 'Approved';
             }
             ConvertEStoPIHandler.expenseSheetToPurchaseInvoiceConverter = new ZumzumEStoPIConverterMock();
             update expenseSheetList;
@@ -60,7 +60,7 @@ public without sharing class ZumzumEStoPIConverterTest {
             List<Zumzum__Expense_Sheet__c> expenseSheetList = [SELECT Id FROM Zumzum__Expense_Sheet__c];
             for(Zumzum__Expense_Sheet__c expenseSheet : expenseSheetList) {
                 expenseSheetIds.add(expenseSheet.Id);
-                expenseSheet.Zumzum__Status__c = 'Rejected';
+                expenseSheet.Approval_Status__c = 'Rejected';
             }
             ConvertEStoPIHandler.expenseSheetToPurchaseInvoiceConverter = new ZumzumEStoPIConverterMock();
             update expenseSheetList;

@@ -6,7 +6,7 @@ global with sharing class EXPENSESHEET_ConvertEStoPI_TDTM extends npsp.TDTM_Runn
         List<Zumzum__Expense_Sheet__c> expenseSheetNew = (List<Zumzum__Expense_Sheet__c>) triggerNew;
         if (triggerAction == npsp.TDTM_Runnable.Action.AfterUpdate) {
             for(Zumzum__Expense_Sheet__c expenseSheet : expenseSheetNew) {
-                if(expenseSheetMapOld.get(expenseSheet.Id).Zumzum__Status__c != 'Approved' && expenseSheet.Zumzum__Status__c == 'Approved') {
+                if(expenseSheetMapOld.get(expenseSheet.Id).Approval_Status__c != 'Approved' && expenseSheet.Approval_Status__c == 'Approved') {
                     expenseSheetIds.add(expenseSheet.Id);
                 }
             }

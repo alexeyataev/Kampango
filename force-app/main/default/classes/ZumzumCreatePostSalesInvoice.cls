@@ -23,8 +23,16 @@ public with sharing class ZumzumCreatePostSalesInvoice {
                 salesInvoiceLine.Quantity = zumzumSalesInvoiceParameter.quantity;
                 salesInvoiceLine.TaxRate = zumzumSalesInvoiceParameter.taxRateId;
                 salesInvoiceLine.ForeignNetAmount = zumzumSalesInvoiceParameter.foreignNetAmount;
-                salesInvoiceLine.Dimension1 = zumzumSalesInvoiceParameter.dimension1Id;
-                salesInvoiceLine.Dimension2 = zumzumSalesInvoiceParameter.dimension2Id;
+
+                salesInvoiceLine.WrapperAPICustomFields = new List<Zumzum.APICustomFieldWrapper>();
+                salesInvoiceLine.WrapperAPICustomFields.add(new Zumzum.APICustomFieldWrapper
+                        ( 
+                            'Zumzum__Sales_Invoice_Line_Item__c',
+                            'Course__c',
+                             zumzumSalesInvoiceParameter.courseId
+                        )
+                );
+
                 salesInvoice.LineItems.add(salesInvoiceLine);
             }
             newSalesInvoiceDataList.add(salesInvoice);
