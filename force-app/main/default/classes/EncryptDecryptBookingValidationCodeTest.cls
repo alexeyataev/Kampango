@@ -1,4 +1,3 @@
-@SuppressWarnings('PMD.MethodNamingConventions')
 @IsTest
 public class EncryptDecryptBookingValidationCodeTest {
     private static final String VALUE_TO_ENCRYPT_1 = 'bookingName1,28638261';
