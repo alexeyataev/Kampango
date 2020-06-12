@@ -11,7 +11,6 @@ public without sharing class AddMarketingPreferencesToCare {
 
     @InvocableMethod
     public static void addMarketingPreferences(List<Params> paramInstance) {
-        Boolean marketingPreferenceGranted = false;
         List<Contact> contactList = [
             SELECT  Nct_Number__c,
                     Individual.Email__c,
