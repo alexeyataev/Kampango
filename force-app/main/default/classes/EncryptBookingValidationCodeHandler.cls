@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #96 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class EncryptBookingValidationCodeHandler {
     private static final String PARENT_COMMUNITY_PROFILE_NAME = 'Parent Community Profile';
     @InvocableMethod

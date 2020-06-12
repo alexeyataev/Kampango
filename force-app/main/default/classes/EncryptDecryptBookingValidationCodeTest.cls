@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #95 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 public class EncryptDecryptBookingValidationCodeTest {
     private static final String VALUE_TO_ENCRYPT_1 = 'bookingName1,28638261';
