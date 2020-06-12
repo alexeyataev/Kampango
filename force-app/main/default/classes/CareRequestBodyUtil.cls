@@ -9,7 +9,8 @@ public with sharing class CareRequestBodyUtil {
     private static final String ADDR_CON_NUM = '500000';
     private static final String ADDR_ADDR_NUM = '4';
     private static final String DIRECTION  = 'I';
-    private static final String SUB_TOPIC = 'W';
+    private static final String MARKETING_PREFERENCE_WITHDRAWN = 'W';
+    private static final String MARKETING_PREFERENCE_GRANTED = 'G';
 
     public static String createSendContactBody(Contact cont) {
         AddUpdateContactRequest addUpdateContactRequest = new AddUpdateContactRequest();
@@ -69,7 +70,7 @@ public with sharing class CareRequestBodyUtil {
         return JSON.serialize(addMembership, true);
     }
 
-    public static String createMarketingPreferencesBody(String nctNumber, String standardDocumentNumber) {
+    public static String createMarketingPreferencesBody(String nctNumber, String standardDocumentNumber, Boolean marketingPreferenceGranted) {
         AddMarketingPreferencesRequest addMarketingPreferencesRequest = new AddMarketingPreferencesRequest();
         AddMarketingPreferencesRequest.authKey = AUTH_KEY;
         AddMarketingPreferencesRequest.pagename = SF_ENVIRONMENT_NAME;
@@ -81,7 +82,7 @@ public with sharing class CareRequestBodyUtil {
         AddMarketingPreferencesRequest.standardDocument = standardDocumentNumber;
         AddMarketingPreferencesRequest.sendConNum = nctNumber;
         AddMarketingPreferencesRequest.sendAddrNum = nctNumber;
-        AddMarketingPreferencesRequest.subTopic = SUB_TOPIC;
+        AddMarketingPreferencesRequest.subTopic = marketingPreferenceGranted ? MARKETING_PREFERENCE_GRANTED : MARKETING_PREFERENCE_WITHDRAWN;
         return JSON.serialize(addMarketingPreferencesRequest, true);
     }
 
