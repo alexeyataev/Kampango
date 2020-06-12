@@ -4,7 +4,7 @@ public class EncryptDecryptBookingValidationCodeTest {
     private static final String VALUE_TO_ENCRYPT_1 = 'bookingName1,28638261';
     private static final String VALUE_TO_ENCRYPT_2 = 'bookingName2,28638262';
     @IsTest
-    static void DecryptValidationCodeSuccess_ValidationCodeDecrypted_ResultEqualValueToEncrypt() {
+    static void DecryptValidationCodeSuccess_GuestUserTriesToDecrypt_ValidationCodeDecrypted() {
         List<User> uGuest = [SELECT Id FROM User WHERE Profile.Name = 'Parent Community Profile'];
         List<List<String>> dataToEncrypt = new List<List<String>> {new List<String> {VALUE_TO_ENCRYPT_1}, new List<String> {VALUE_TO_ENCRYPT_2}};
         List<DecryptBookingValidationCodeHandler.BookingValidationData> bookingValidationData1;
@@ -22,7 +22,7 @@ public class EncryptDecryptBookingValidationCodeTest {
         System.assertEquals(bookingValidationData2[0].bookingValidationCode, '28638262');
     }
     @IsTest
-    static void DecryptValidationCodeFailure_ValidationCodeNotDecrypted_ResultNotEqualValueToEncrypt() {
+    static void DecryptValidationCodeFailure_InternalUserTriesToDecrypt_ValidationCodeNotDecrypted() {
         List<List<String>> dataToEncrypt = new List<List<String>> {new List<String> {VALUE_TO_ENCRYPT_1}, new List<String> {VALUE_TO_ENCRYPT_2}};
         List<DecryptBookingValidationCodeHandler.BookingValidationData> bookingValidationData1;
         List<DecryptBookingValidationCodeHandler.BookingValidationData> bookingValidationData2;
