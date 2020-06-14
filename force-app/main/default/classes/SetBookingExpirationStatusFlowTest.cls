@@ -31,7 +31,7 @@ private class SetBookingExpirationStatusFlowTest {
             FROM Session__c 
             WHERE Status__c = 'Provisional' 
                 AND Type__c <> 'Reunion'
-            ];
+            ];    
 
         List<Course__c> listDraftCourses = [
             SELECT Id 
@@ -46,16 +46,16 @@ private class SetBookingExpirationStatusFlowTest {
     private static void SetBookingStatus_ReservationExpiryDateOverdue_BookingStatusExpired(){
 
         Course__c course = [
-            SELECT Id
-            FROM Course__c
-            LIMIT 1
+			SELECT Id
+			FROM Course__c
+			LIMIT 1
         ];
 
-        List<Booking__c> bookings = [
-            SELECT Reservation_Expiry_Date__c, Status__c
+		List<Booking__c> bookings = [
+			SELECT Reservation_Expiry_Date__c, Status__c
             FROM Booking__c 
             WHERE Course__c = :course.Id
-        ];
+		];
         
         bookings[0].Status__c = RESERVED_STATUS;
         bookings[0].Reservation_Expiry_Date__c = System.today().addDays(-5);
@@ -63,12 +63,12 @@ private class SetBookingExpirationStatusFlowTest {
 
         Test.startTest();
         Map<String, Object> params = new Map<String, Object>();
-        Flow.Interview.Booking_Set_Expiration_Status_Scheduled setBookingStatus = new Flow.Interview.Booking_Set_Expiration_Status_Scheduled(params);
+        Flow.Interview.Set_Booking_Expiration_Status setBookingStatus = new Flow.Interview.Set_Booking_Expiration_Status(params);
         setBookingStatus.start();
         Test.stopTest();
 
         List<Booking__c> bookingsToTest = [
-            SELECT Reservation_Expiry_Date__c, Status__c
+			SELECT Reservation_Expiry_Date__c, Status__c
             FROM Booking__c 
             WHERE Course__c = :course.Id
         ];
