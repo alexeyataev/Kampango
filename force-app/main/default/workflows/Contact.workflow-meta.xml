@@ -12,4 +12,41 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/Adhoc_Payment_Confirmation</template>
     </alerts>
+    <fieldUpdates>
+        <fullName>Updates_Care_Status_To_Waiting</fullName>
+        <field>Care_Status__c</field>
+        <literalValue>Waiting</literalValue>
+        <name>Updates Care Status To Waiting</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Updates Care Status To Waiting If Key Fields Change</fullName>
+        <actions>
+            <name>Updates_Care_Status_To_Waiting</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Sends updated Contact to CARE if key field(s) changes</description>
+        <formula>AND(
+    NOT(ISPICKVAL(Care_Status__c, &quot;Waiting&quot;)),
+    RecordType.DeveloperName = &quot;Clients&quot;,
+    OR(
+       ISCHANGED(Branch__c),
+       ISCHANGED(FirstName),
+       ISCHANGED(LastName),
+       ISCHANGED(Gender__c),
+       ISCHANGED(MailingPostalCode),
+       ISCHANGED(MailingCountry),
+       ISCHANGED(MailingCity),
+       ISCHANGED(MailingStreet),
+       ISCHANGED(Email),
+       ISCHANGED(Phone),
+       ISCHANGED(HomePhone),
+       ISCHANGED(MobilePhone)
+    )
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
 </Workflow>

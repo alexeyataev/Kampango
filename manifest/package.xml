@@ -897,6 +897,7 @@
         <members>Booking__c.SetExpDateToTenDays</members>
         <members>Booking__c.SetOfferEmailDate</members>
         <members>Booking__c.SetExpirationDate_Less5</members>
+        <members>Contact.Updates_Care_Status_To_Waiting</members>
         <members>Course__c.UpdateCourseClosedDate</members>
         <members>Course_Assignment__c.UpdateStatusToApproved</members>
         <members>Course_Assignment__c.UpdateStatusToSubmitted</members>
