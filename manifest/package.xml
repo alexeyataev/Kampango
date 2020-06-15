@@ -830,7 +830,6 @@
     <types>
         <members>Company</members>
         <members>EmailAdministration</members>
-        <members>Security</members>
         <name>Settings</name>
     </types>
     <types>
