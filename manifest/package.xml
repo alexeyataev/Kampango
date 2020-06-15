@@ -619,6 +619,7 @@
         <members>Zumzum__Expense_Sheet_Detail__c-Expense Sheet Detail Practitioner Layout</members>
         <members>Zumzum__Purchase_Invoice_Line_Item__c-Practitioner Purchase Invoice Line Item</members>
         <members>Zumzum__Sales_Invoice__c-Zumzum__Sales Invoice Layout Multi Currency</members>
+        <members>Zumzum__Sales_Invoice_Line_Item__c-Zumzum__Sales Invoice Line Item Layout Multi Currency</members>
         <name>Layout</name>
     </types>
     <types>
@@ -896,6 +897,7 @@
         <members>Booking__c.SetExpDateToTenDays</members>
         <members>Booking__c.SetOfferEmailDate</members>
         <members>Booking__c.SetExpirationDate_Less5</members>
+        <members>Contact.Updates_Care_Status_To_Waiting</members>
         <members>Course__c.UpdateCourseClosedDate</members>
         <members>Course_Assignment__c.UpdateStatusToApproved</members>
         <members>Course_Assignment__c.UpdateStatusToSubmitted</members>
