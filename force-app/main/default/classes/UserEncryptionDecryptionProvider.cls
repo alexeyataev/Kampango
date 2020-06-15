@@ -4,12 +4,12 @@ public with sharing class UserEncryptionDecryptionProvider {
         return strEncrypted;
     }
     public static String decrypt(String dataToDecrypt) {
-        dataToDecrypt = decryptUrl(dataToDecrypt);
         String strDecrypted = ued.UserCryptoHelper.doDecrypt(dataToDecrypt);
         return strDecrypted;
     }
-    private static String decryptUrl(String urlData) {
+    public static String decryptUrl(String urlData) {
         urlData = EncodingUtil.urlDecode(urlData, 'UTF-8').replace(' ', '+');
-        return urlData;
+        String urlDataDecrypted = decrypt(urlData);
+        return urlDataDecrypted;
     }
 }

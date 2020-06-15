@@ -5,7 +5,7 @@ public with sharing class DecryptBookingValidationCodeHandler {
             if(dataToDecrypt == null || dataToDecrypt.size() != 1 || dataToDecrypt[0] == null) {
                 throw new ListException('1 value to decrypt must be passed');
             }
-            String decryptedString = UserEncryptionDecryptionProvider.decrypt(dataToDecrypt[0]);
+            String decryptedString = UserEncryptionDecryptionProvider.decryptUrl(dataToDecrypt[0]);
             BookingValidationData bookingValidationData = parseBookingData(decryptedString);
             return new List<BookingValidationData> {bookingValidationData};
         } catch(Exception e) {
