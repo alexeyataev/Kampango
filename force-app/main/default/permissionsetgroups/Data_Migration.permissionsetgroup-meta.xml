@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Data Migration</label>
+    <permissionSets>Update_Audit_Fields</permissionSets>
+    <permissionSets>Update_Records_with_Inactive_Users</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>
