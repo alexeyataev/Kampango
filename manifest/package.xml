@@ -685,7 +685,13 @@
         <members>Practitioner_Management</members>
         <members>ProcessingHub_Additional</members>
         <members>Product_Management</members>
+        <members>Update_Audit_Fields</members>
+        <members>Update_Records_with_Inactive_Users</members>
         <name>PermissionSet</name>
+    </types>
+    <types>
+          <members>Data_Migration</members>
+          <name>PermissionSetGroup</name>
     </types>
     <types>
         <members>Admin</members>
@@ -824,6 +830,7 @@
     <types>
         <members>Company</members>
         <members>EmailAdministration</members>
+        <members>Security</members>
         <name>Settings</name>
     </types>
     <types>
