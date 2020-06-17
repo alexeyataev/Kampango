@@ -20,6 +20,9 @@
         <members>PaymentLinkGeneratorTestPageTest</members>
         <members>PaymentProviderHttpResponseMock</members>
         <members>PaymentProviderTest</members>
+        <members>ZumzumBACSremittanceEmailsAction</members>
+        <members>ZumzumBACSremittanceEmailsActionTest</members>
+        <members>ZumzumBACSremittanceEmailsBatch</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -172,6 +175,7 @@
     </types>
     <types>
         <members>NCT_Templates/Adhoc_Payment_Notification</members>
+        <members>NCT_Templates/BACS_Remittance_Email</members>
         <members>NCT_Templates/Reunion_Confirmed_Practitioner</members>
         <members>NCT_Templates/Reunion_Confirmed_Public_No_Venue</members>
         <members>NCT_Templates/Reunion_Confirmed_Public</members>
