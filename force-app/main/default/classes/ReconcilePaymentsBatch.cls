@@ -1,4 +1,4 @@
-public with sharing class ReconcilePaymentsBatch implements Database.Batchable<sObject>{
+public with sharing class ReconcilePaymentsBatch implements Database.Batchable<sObject> {
     public Id recordId;
 
     public ReconcilePaymentsBatch(Id recordId) {
@@ -7,23 +7,26 @@ public with sharing class ReconcilePaymentsBatch implements Database.Batchable<s
 
     public Database.QueryLocator start(Database.BatchableContext bc) {
         return Database.getQueryLocator([
-            SELECT Id, Status__c, Batch_Id__c, From_Date__c, To_Date__c
-            FROM Batch_Receipt_Report__c
-            WHERE Id =: recordId
+            SELECT 
+                Amount__c, 
+                Bank_Receipt__c, 
+                Bank_Payment__c, 
+                Batch_Receipt_Report__c, 
+                Payment_Id__c 
+            FROM Batch_Receipt_Report_Item__c 
+            WHERE Batch_Receipt_Report__c = :recordId
         ]);
     }
 
-    public void execute(Database.BatchableContext bc, List<Batch_Receipt_Report__c> receipts) {
-        for (Batch_Receipt_Report__c receipt : receipts) {
-            ReconcilePaymentsBatchHelper.processBatchReceiptReport(receipt);
-        }
+    public void execute(Database.BatchableContext bc, List<Batch_Receipt_Report_Item__c> receiptReportItems) {
+        ReconcilePaymentsBatchHelper.processBatchReceiptReportItems(receiptReportItems);
     }
 
     public void finish(Database.BatchableContext bc) {
         List<Batch_Receipt_Report__c> batchReceiptReports = [
-            SELECT Id, Status__c
-            FROM Batch_Receipt_Report__c
-            WHERE Id =: recordId
+            SELECT Status__c 
+            FROM Batch_Receipt_Report__c 
+            WHERE Id = :recordId
         ];
         for (Batch_Receipt_Report__c brr : batchReceiptReports) {
             brr.Status__c = ReconcilePaymentsBatchHelper.CREATED_STATUS;
@@ -31,11 +34,9 @@ public with sharing class ReconcilePaymentsBatch implements Database.Batchable<s
         update batchReceiptReports;
     }
 
-    @InvocableMethod(
-        label='Reconcile Payments'
-    )
+    @InvocableMethod(label='Reconcile Payments')
     public static void runBatch(List<Id> batchReceiptReportId) {
         ReconcilePaymentsBatch reconcileBatch = new ReconcilePaymentsBatch(batchReceiptReportId[0]);
-        Id batchId = Database.executeBatch(reconcileBatch, 1);
+        Id batchId = Database.executeBatch(reconcileBatch, 200);
     }
 }
