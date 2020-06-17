@@ -6,7 +6,7 @@ Dear {!Booking__c.First_Name__c} {!Booking__c.Email_Template_Utility_Field__c}  
 
 Thank you for enquiring about our {!Course__c.Sub_Type__c}. By joining one of our courses, you are helping to support the work of the UK’s largest charity for parents. We’re really looking forward to welcoming you, and we’re here to support you through the early years of your parenting journey. <br><br>
 
-Your place is reserved until {!Booking__c.Reservation_Expiry_Date__c}. <br><br>To review your reservation and book your place, please <a href="{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}/s/booking?bookingId={!Booking__c.Id}&validationCode={!Booking__c.Validation_Code__c}">click here</a>.<br><br>This is your secure personal booking link, which contains the personal information you supplied to us when you made your enquiry. Please do not share it with others.<br><br>
+Your place is reserved until {!Booking__c.Reservation_Expiry_Date__c}. <br><br>To review your reservation and book your place, please <a href="{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}/s/booking?validationCode={!Booking__c.Encrypted_Validation_Code__c}">click here</a>.<br><br>This is your secure personal booking link, which contains the personal information you supplied to us when you made your enquiry. Please do not share it with others.<br><br>
 
 If this course isn’t suitable, do come back to me by email or give me a call so we can look at alternatives.<br><br>
 
