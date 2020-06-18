@@ -1,5 +1,6 @@
 <messaging:emailTemplate subject="{!relatedTo.Course__r.Sub_Type__c} booking payment details" recipientType="Contact"
-    relatedToType="Booking__c" replyTo="bookings{!relatedTo.Course__r.PSA_Area__c}@nct.org.uk">
+    relatedToType="Booking__c" replyTo="{!relatedTo.Course__r.Branch__r.Enquiries_PSA_Email__c}"
+    renderUsingSystemContextWithoutSharing="True">
 
     <messaging:htmlEmailBody>
         <html>
