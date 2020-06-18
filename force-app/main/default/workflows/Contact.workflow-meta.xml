@@ -29,23 +29,21 @@
         </actions>
         <active>true</active>
         <description>Sends updated Contact to CARE if key field(s) changes</description>
-        <formula>AND(
-    NOT(ISPICKVAL(Care_Status__c, &quot;Waiting&quot;)),
-    RecordType.DeveloperName = &quot;Clients&quot;,
-    OR(
-       ISCHANGED(Branch__c),
-       ISCHANGED(FirstName),
-       ISCHANGED(LastName),
-       ISCHANGED(Gender__c),
-       ISCHANGED(MailingPostalCode),
-       ISCHANGED(MailingCountry),
-       ISCHANGED(MailingCity),
-       ISCHANGED(MailingStreet),
-       ISCHANGED(Email),
-       ISCHANGED(Phone),
-       ISCHANGED(HomePhone),
-       ISCHANGED(MobilePhone)
-    )
+        <formula>AND(     
+    NOT(ISPICKVAL(Care_Status__c, &quot;Waiting&quot;)),     
+	RecordType.DeveloperName = &quot;Clients&quot;,     
+	OR(        
+	   ISCHANGED(Branch__c),        
+	   ISCHANGED(Gender__c),        
+	   ISCHANGED(MailingPostalCode),        
+	   ISCHANGED(MailingCountry),        
+	   ISCHANGED(MailingCity),        
+	   ISCHANGED(MailingStreet),        
+	   ISCHANGED(Email),        
+	   ISCHANGED(Phone),        
+	   ISCHANGED(HomePhone),        
+	   ISCHANGED(MobilePhone)     
+	) 
 )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
