@@ -19,31 +19,31 @@ public class ReconcilePaymentsBatchHelper {
         }
 
         List<cpm__Payment__c> refundPayments = getRefundPaymentsByReference(refundReceiptReferences);
-        Map<Id, cpm__Payment__c> salesCreditRefundPaymentsMap = new Map<Id, cpm__Payment__c>();
-        Map<String, Id> refundReferenceSalesCreditIdMap = new Map<String, Id>();
+        Map<Id, cpm__Payment__c> salesInvoicesWithCreditsPayments = new Map<Id, cpm__Payment__c>();
+        Map<String, Id> refundReferenceSalesInvoiceWithCreditIds = new Map<String, Id>();
 
         for (cpm__Payment__c payment : refundPayments) {
-            salesCreditRefundPaymentsMap.put(
+            salesInvoicesWithCreditsPayments.put(
                     payment.cpm__Installment__r.Sales_Invoice__c != null
                             ? payment.cpm__Installment__r.Sales_Invoice__c
                             : payment.cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c, payment
             );
-            refundReferenceSalesCreditIdMap.put(payment.cpm__Payment_Reference__c, payment.cpm__Installment__r.Sales_Invoice__c);
+            refundReferenceSalesInvoiceWithCreditIds.put(payment.cpm__Payment_Reference__c, payment.cpm__Installment__r.Sales_Invoice__c);
         }
         
-        List<Zumzum__Bank_Payment__c> bankPaymentsForRefunds = getBankPaymentsBySalesCredits(salesCreditRefundPaymentsMap.keySet());
-        Map<Id, Id> salesCreditIdBankPaymentIdMap = new Map<Id, Id>();
+        List<Zumzum__Bank_Payment__c> bankPaymentsForRefunds = getBankPaymentsBySalesCredits(salesInvoicesWithCreditsPayments.keySet());
+        Map<Id, Id> salesCreditIdBankPaymentId = new Map<Id, Id>();
 
         for (Zumzum__Bank_Payment__c bankPayment : bankPaymentsForRefunds) {
             for (Zumzum__Ledger_Payment_History__c salesCreditAllocation : bankPayment.Zumzum__Ledger_Payment_History__r) {
-                if (salesCreditAllocation.Zumzum__Amount__c == salesCreditRefundPaymentsMap.get(salesCreditAllocation.Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c).cpm__Amount__c) {
-                    salesCreditIdBankPaymentIdMap.put(salesCreditAllocation.Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c, bankPayment.Id);
+                if (salesCreditAllocation.Zumzum__Amount__c == salesInvoicesWithCreditsPayments.get(salesCreditAllocation.Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c).cpm__Amount__c) {
+                    salesCreditIdBankPaymentId.put(salesCreditAllocation.Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c, bankPayment.Id);
                 }              
             }
         }
 
-        List<Zumzum__Ledger__c> paymentAndRefundLedgers = getLedgers(paymentReceiptReferences, new Set<Id>(salesCreditIdBankPaymentIdMap.values()));
-        Map<String, Id> paymentsBankReceiptsMap = getPaymentsBankReceiptsMap(paymentAndRefundLedgers);
+        List<Zumzum__Ledger__c> paymentAndRefundLedgers = getLedgers(paymentReceiptReferences, new Set<Id>(salesCreditIdBankPaymentId.values()));
+        Map<String, Id> paymentsBankReceipts = getPaymentsBankReceipts(paymentAndRefundLedgers);
 
         for (Zumzum__Ledger__c ledger : paymentAndRefundLedgers) {
             ledger.Zumzum__BankReconcile__c = bankReconcile.Id;
@@ -53,9 +53,9 @@ public class ReconcilePaymentsBatchHelper {
 
         for (Batch_Receipt_Report_Item__c reportItem : receiptReportItems) {
             if (reportItem.Amount__c > 0) {
-                reportItem.Bank_Receipt__c = paymentsBankReceiptsMap.get(reportItem.Payment_Id__c);
+                reportItem.Bank_Receipt__c = paymentsBankReceipts.get(reportItem.Payment_Id__c);
             } else if (reportItem.Amount__c < 0) {
-                reportItem.Bank_Payment__c = salesCreditIdBankPaymentIdMap.get(refundReferenceSalesCreditIdMap.get(reportItem.Payment_Id__c));
+                reportItem.Bank_Payment__c = salesCreditIdBankPaymentId.get(refundReferenceSalesInvoiceWithCreditIds.get(reportItem.Payment_Id__c));
             }
         }
         update receiptReportItems;
@@ -138,13 +138,13 @@ public class ReconcilePaymentsBatchHelper {
         return bankAccount.Id;
     }
 
-    private static Map<String, Id> getpaymentsBankReceiptsMap(List<Zumzum__Ledger__c> ledgers) {
-        Map<String, Id> paymentsBankReceiptsMap = new Map<String, Id>();
+    private static Map<String, Id> getPaymentsBankReceipts(List<Zumzum__Ledger__c> ledgers) {
+        Map<String, Id> paymentsBankReceipts = new Map<String, Id>();
         for (Zumzum__Ledger__c ledger : ledgers) {
             if (String.isNotBlank(ledger.Zumzum__Bank_Receipt__c)) {
-                paymentsBankReceiptsMap.put(ledger.Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c, ledger.Zumzum__Bank_Receipt__c);                
+                paymentsBankReceipts.put(ledger.Zumzum__Bank_Receipt__r.Payment__r.cpm__Payment_Reference__c, ledger.Zumzum__Bank_Receipt__c);                
             }
         }
-        return paymentsBankReceiptsMap;
+        return paymentsBankReceipts;
     }
 }
