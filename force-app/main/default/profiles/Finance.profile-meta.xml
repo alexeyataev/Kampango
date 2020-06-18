@@ -23,10 +23,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ZumzumBACSremittanceEmailsAction</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>Zumzum__DeleteSalesInvoice</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -372,6 +368,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Email_Template_Utility_Field__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Encrypted_Validation_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

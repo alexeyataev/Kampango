@@ -1,106 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Send_Remittance_Emails_Action</name>
-        <label>Send Remittance Emails Action</label>
-        <locationX>597</locationX>
-        <locationY>149</locationY>
-        <actionName>ZumzumBACSremittanceEmailsAction</actionName>
-        <actionType>apex</actionType>
+        <name>SendEmail</name>
+        <label>SendEmail</label>
+        <locationX>950</locationX>
+        <locationY>324</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
         <connector>
-            <targetReference>Check_if_success</targetReference>
+            <targetReference>Is_Email_Sent_True</targetReference>
         </connector>
         <inputParameters>
-            <name>emailTemplateId</name>
+            <name>emailBody</name>
             <value>
-                <elementReference>templateId</elementReference>
+                <elementReference>BACSRemittanceEmail</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>orgWideEmailAddress</name>
+            <name>emailAddresses</name>
             <value>
-                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+                <elementReference>Loop_For_items.Supplier_Account_Billing_Email__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>paymentRunId</name>
+            <name>emailSubject</name>
             <value>
-                <elementReference>recordId</elementReference>
+                <stringValue>BACS remittance from NCT</stringValue>
             </value>
         </inputParameters>
-        <outputParameters>
-            <assignToReference>success</assignToReference>
-            <name>isSuccess</name>
-        </outputParameters>
-        <outputParameters>
-            <assignToReference>action_result_message</assignToReference>
-            <name>message</name>
-        </outputParameters>
     </actionCalls>
     <actionCalls>
         <name>Show_status</name>
         <label>Show status</label>
-        <locationX>1199</locationX>
-        <locationY>148</locationY>
+        <locationX>1107</locationX>
+        <locationY>203</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <inputParameters>
             <name>message</name>
             <value>
-                <elementReference>output_message</elementReference>
+                <elementReference>MESSAGE_SUCCESS</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>type</name>
             <value>
-                <elementReference>output_status</elementReference>
+                <elementReference>STATUS_SUCCESS</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
     <assignments>
-        <name>Assign_error_message</name>
-        <label>Assign error message</label>
-        <locationX>1044</locationX>
-        <locationY>251</locationY>
+        <name>Assign_Line_Item_for_update</name>
+        <label>Assign Line Item for update</label>
+        <locationX>688</locationX>
+        <locationY>431</locationY>
         <assignmentItems>
-            <assignToReference>output_message</assignToReference>
-            <operator>Assign</operator>
+            <assignToReference>PaymentRunLineItemsUpdate</assignToReference>
+            <operator>Add</operator>
             <value>
-                <elementReference>action_result_message</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>output_status</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>STATUS_ERROR</elementReference>
+                <elementReference>Loop_For_items</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Show_status</targetReference>
+            <targetReference>Get_Payment_Run_Line_Items</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_success_message</name>
-        <label>Assign success message</label>
-        <locationX>1045</locationX>
-        <locationY>50</locationY>
+        <name>Is_Email_Sent_True</name>
+        <label>Is Email Sent True</label>
+        <locationX>827</locationX>
+        <locationY>402</locationY>
         <assignmentItems>
-            <assignToReference>output_message</assignToReference>
+            <assignToReference>Loop_For_items.Is_Email_Sent__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>MESSAGE_SUCCESS</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>output_status</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>STATUS_SUCCESS</elementReference>
+                <booleanValue>true</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Show_status</targetReference>
+            <targetReference>Assign_Line_Item_for_update</targetReference>
         </connector>
     </assignments>
     <constants>
@@ -114,14 +92,7 @@
         <name>MESSAGE_SUCCESS</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>The process was succesfully started</stringValue>
-        </value>
-    </constants>
-    <constants>
-        <name>ORG_WIDE_ADDRESS_VALUE</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>nctcourses@nct.org.uk</stringValue>
+            <stringValue>The emails were succesfully sent</stringValue>
         </value>
     </constants>
     <constants>
@@ -138,42 +109,10 @@
             <stringValue>success</stringValue>
         </value>
     </constants>
-    <constants>
-        <name>TEMPLATE_BACS_REMITTANCE_DEV_NAME</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>BACS_Remittance_Email</stringValue>
-        </value>
-    </constants>
-    <decisions>
-        <name>Check_if_success</name>
-        <label>Check if success</label>
-        <locationX>817</locationX>
-        <locationY>151</locationY>
-        <defaultConnector>
-            <targetReference>Assign_error_message</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Is_success</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>success</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_success_message</targetReference>
-            </connector>
-            <label>Is success?</label>
-        </rules>
-    </decisions>
     <decisions>
         <name>CheckPaymenRunStatus</name>
         <label>CheckPaymenRunStatus</label>
-        <locationX>190</locationX>
+        <locationX>362</locationX>
         <locationY>379</locationY>
         <defaultConnector>
             <targetReference>WrongStatus</targetReference>
@@ -200,6 +139,20 @@ Version changes:
 V2. Added Payment Run Status Check</description>
     <interviewLabel>BACS Send Remittance Emails {!$Flow.CurrentDateTime}</interviewLabel>
     <label>BACS Send Remittance Emails</label>
+    <loops>
+        <name>Loop_For_items</name>
+        <label>Loop For items</label>
+        <locationX>773</locationX>
+        <locationY>191</locationY>
+        <collectionReference>Get_Payment_Run_Line_Items</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>SendEmail</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Line_Item_Is_Sent_True</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -214,31 +167,48 @@ V2. Added Payment Run Status Check</description>
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
-        <name>Get_template</name>
-        <label>Get template</label>
-        <locationX>361</locationX>
-        <locationY>149</locationY>
+        <name>Get_Payment_Run_Line_Items</name>
+        <label>Get Payment Run Line Items</label>
+        <locationX>629</locationX>
+        <locationY>260</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Send_Remittance_Emails_Action</targetReference>
+            <targetReference>Loop_For_items</targetReference>
         </connector>
         <filters>
-            <field>DeveloperName</field>
+            <field>Is_Email_Sent__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>TEMPLATE_BACS_REMITTANCE_DEV_NAME</elementReference>
+                <booleanValue>false</booleanValue>
             </value>
         </filters>
-        <object>EmailTemplate</object>
-        <outputAssignments>
-            <assignToReference>templateId</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
+        <filters>
+            <field>Payment_Run__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Supplier_Account_Billing_Email__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Payment_Run_Line_Item__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Paid_Amount__c</queriedFields>
+        <queriedFields>Reference_Info__c</queriedFields>
+        <queriedFields>Supplier_Account_Billing_Email__c</queriedFields>
+        <queriedFields>Is_Email_Sent__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>GetPaymentStatus</name>
         <label>GetPaymentStatus</label>
-        <locationX>31</locationX>
+        <locationX>203</locationX>
         <locationY>377</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -257,16 +227,26 @@ V2. Added Payment Run Status Check</description>
         <queriedFields>Status__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_Line_Item_Is_Sent_True</name>
+        <label>Update Line Item Is Sent True</label>
+        <locationX>939</locationX>
+        <locationY>101</locationY>
+        <connector>
+            <targetReference>Show_status</targetReference>
+        </connector>
+        <inputReference>PaymentRunLineItemsUpdate</inputReference>
+    </recordUpdates>
     <screens>
         <name>Send_Remittance_Emails</name>
         <label>Send Remittance Emails</label>
-        <locationX>199</locationX>
+        <locationX>371</locationX>
         <locationY>149</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Get_template</targetReference>
+            <targetReference>Get_Payment_Run_Line_Items</targetReference>
         </connector>
         <fields>
             <name>Message_link_purchase_invoices</name>
@@ -279,7 +259,7 @@ V2. Added Payment Run Status Check</description>
     <screens>
         <name>WrongStatus</name>
         <label>WrongStatus</label>
-        <locationX>375</locationX>
+        <locationX>547</locationX>
         <locationY>378</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -300,6 +280,18 @@ V2. Added Payment Run Status Check</description>
         </connector>
     </start>
     <status>Active</status>
+    <textTemplates>
+        <name>BACSRemittanceEmail</name>
+        <text>Dear Sir/Madam
+
+A remittance of {!Loop_For_items.Paid_Amount__c} has been sent to your designated bank account today. If you do not receive it within 3 working days please let us know by replying to finance@nct.org.uk. The amount is payment for the following:
+
+{!Loop_For_items.Reference_Info__c}
+
+Kind regards
+
+NCT</text>
+    </textTemplates>
     <variables>
         <name>action_result_message</name>
         <dataType>String</dataType>
@@ -332,7 +324,7 @@ V2. Added Payment Run Status Check</description>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>prLineItems</name>
+        <name>PaymentRunLineItemsUpdate</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
@@ -344,23 +336,6 @@ V2. Added Payment Run Status Check</description>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>success</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <booleanValue>false</booleanValue>
-        </value>
-    </variables>
-    <variables>
-        <name>templateId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
 </Flow>

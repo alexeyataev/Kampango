@@ -140,9 +140,6 @@
         <members>ViewPortTest</members>
         <members>ZumzumBACSpaymentActions</members>
         <members>ZumzumBACSpaymentActionsTest</members>
-        <members>ZumzumBACSremittanceEmailsAction</members>
-        <members>ZumzumBACSremittanceEmailsActionTest</members>
-        <members>ZumzumBACSremittanceEmailsBatch</members>
         <members>ZumzumBankReceiptCreator</members>
         <members>ZumzumBankReceiptCreatorMock</members>
         <members>ZumzumCreatePostSalesInvoice</members>
@@ -412,7 +409,6 @@
     <types>
         <members>NCT_Templates/Adhoc_Payment_Confirmation</members>
         <members>NCT_Templates/Adhoc_Payment_Notification</members>
-        <members>NCT_Templates/BACS_Remittance_Email</members>
         <members>NCT_Templates/Booking_Confirmation_Email</members>
         <members>NCT_Templates/Booking_Created</members>
         <members>NCT_Templates/Booking_Payment_Details</members>
