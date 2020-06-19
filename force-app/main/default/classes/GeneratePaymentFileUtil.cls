@@ -44,6 +44,11 @@ public with sharing class GeneratePaymentFileUtil {
         }
     }
 
+    // Need to delete after deploy.
+    public static String generatePaymentFileContent(String batchBankPaymentId){
+        return '';
+    }
+
     public static String generatePaymentFileContent(Payment_Run__c paymentRun) {
         List<Zumzum__Bank_Payment__c> bankPayments = getPayments(paymentRun);
 
