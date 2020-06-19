@@ -1129,6 +1129,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Supplier_Account_Billing_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Payment_Run_Line_Item__c.Unpaid_Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
