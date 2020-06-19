@@ -13,6 +13,8 @@
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
         <members>GiftAidDetailController</members>
+        <members>GeneratePaymentFileExtension</members>
+        <members>GeneratePaymentFileExtensionTest</members>
         <members>FlowPaymentHandler</members>
         <members>OutboundBACSpaymentHelperTest</members>
         <members>PaymentLinkGeneratorTestPageController</members>
@@ -32,8 +34,13 @@
     </types>
     <types>
         <members>BookCourse</members>
+        <members>GeneratePaymentFile</members>
         <members>PaymentLinkGeneratorTestPage</members>
         <name>ApexPage</name>
+    </types>
+    <types>
+        <members>Zumzum__Batch_Bank_Payment__c.Generate_Payment_File</members>
+        <name>WebLink</name>
     </types>
     <types>
         <members>Account.Account_Number__c</members>
