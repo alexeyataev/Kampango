@@ -1,4 +1,4 @@
-public with sharing class BookingPaymentDetailsController {
+public without sharing class BookingPaymentDetailsController {
     public String bookingId { get; }
     public Booking__c booking { get; set; }
 
