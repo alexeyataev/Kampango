@@ -36,12 +36,12 @@ public with sharing class GeneratePaymentFilePaymentRunExtension {
 		}
 	}
 
-	public String getPageContent(){
-		return this.showError ? '' : GeneratePaymentFileUtil.generatePaymentFileContent(paymentRun);
-	}
+	// public String getPageContent(){
+	// 	return this.showError ? '' : GeneratePaymentFileUtil.generatePaymentFileContent(paymentRun);
+	// }
 
-	public String getContentType(){
-		return this.showError ? HTML_CONTENT_TYPE : TXT_CONTENT_TYPE + GeneratePaymentFileUtil.generatePaymentFileName();
-	}
+	// public String getContentType(){
+	// 	return this.showError ? HTML_CONTENT_TYPE : TXT_CONTENT_TYPE + GeneratePaymentFileUtil.generatePaymentFileName();
+	// }
 
 }
