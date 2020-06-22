@@ -43,12 +43,7 @@ public with sharing class GeneratePaymentFileUtil {
             return purchaseInvoiceName.rightPad(18, ' ');
         }
     }
-
-    //Need to deleted adter success deploy
-    public static String generatePaymentFileContent(String Id) {
-        return '';
-    }
-
+    
     public static String generatePaymentFileContent(Payment_Run__c paymentRun) {
         List<Zumzum__Bank_Payment__c> bankPayments = getPayments(paymentRun);
 
