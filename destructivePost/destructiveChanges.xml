@@ -5,6 +5,10 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>Zumzum__Batch_Bank_Payment__c.Generate_Payment_File</members>
+        <name>WebLink</name>
+    </types>
+    <types>
         <members>Account.Branch_Key__c</members>
         <name>CustomField</name>
     </types>

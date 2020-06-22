@@ -39,10 +39,6 @@
         <name>ApexPage</name>
     </types>
     <types>
-        <members>Zumzum__Batch_Bank_Payment__c.Generate_Payment_File</members>
-        <name>WebLink</name>
-    </types>
-    <types>
         <members>Account.Account_Number__c</members>
         <members>Account.Account_Key__c</members>
         <members>Account.Branch__c</members>
