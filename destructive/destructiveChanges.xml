@@ -173,6 +173,10 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>Zumzum__Batch_Bank_Payment__c.Generate_Payment_File</members>
+        <name>WebLink</name>
+    </types>
+    <types>
         <members>Ignore_Booking_Confirmation_Restriction</members>
         <name>CustomPermission</name>
     </types>
@@ -387,5 +391,5 @@
         <members>Booking__c.SetExpirationDate_Less5</members>
         <members>Booking__c.SetOfferEmailDate</members>
         <name>WorkflowFieldUpdate</name>
-    </types>
+    </types> -->
 </Package>
