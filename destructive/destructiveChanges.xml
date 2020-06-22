@@ -13,7 +13,6 @@
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
         <members>GiftAidDetailController</members>
-        <members>GeneratePaymentFileExtension</members>
         <members>GeneratePaymentFileExtensionTest</members>
         <members>FlowPaymentHandler</members>
         <members>OutboundBACSpaymentHelperTest</members>
@@ -391,5 +390,5 @@
         <members>Booking__c.SetExpirationDate_Less5</members>
         <members>Booking__c.SetOfferEmailDate</members>
         <name>WorkflowFieldUpdate</name>
-    </types> -->
+    </types>
 </Package>
