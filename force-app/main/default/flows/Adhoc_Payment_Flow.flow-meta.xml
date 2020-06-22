@@ -1,12 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>DecryptAdhocValidationCodeHandler</name>
+        <label>DecryptAdhocValidationCodeHandler</label>
+        <locationX>623</locationX>
+        <locationY>271</locationY>
+        <actionName>DecryptAdhocValidationCodeHandler</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Sales_Invoice</targetReference>
+        </connector>
+        <inputParameters>
+            <name>dataToDecrypt</name>
+            <value>
+                <elementReference>validationCode</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>SalesInvoiceCreatedDate</assignToReference>
+            <name>salesInvoiceCreatedDate</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>SalesInvoiceName</assignToReference>
+            <name>salesInvoiceName</name>
+        </outputParameters>
+    </actionCalls>
     <decisions>
         <name>Was_sales_invoice_paid</name>
         <label>Was sales invoice paid</label>
         <locationX>173</locationX>
         <locationY>454</locationY>
         <defaultConnector>
-            <targetReference>Get_Sales_Invoice</targetReference>
+            <targetReference>Payment_Details_related_screens</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -31,12 +56,12 @@ Changed the success link (added hyphen)</description>
     <formulas>
         <name>ERROR_PAGE</name>
         <dataType>String</dataType>
-        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&#39;/s/failure&#39;</expression>
+        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&apos;/s/failure&apos;</expression>
     </formulas>
     <formulas>
         <name>SUCCESS_PAGE</name>
         <dataType>String</dataType>
-        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&#39;/s/adhoc-success?salesInvoiceId=&#39;+{!salesInvoiceId}</expression>
+        <expression>{!$Setup.Parentforce_Community_Settings__c.Base_Url__c}+&apos;/s/adhoc-success?salesInvoiceId=&apos;+{!salesInvoice.Id}</expression>
     </formulas>
     <interviewLabel>Adhoc Payment Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Payment Flow</label>
@@ -56,8 +81,8 @@ Changed the success link (added hyphen)</description>
     <recordLookups>
         <name>Get_Installments</name>
         <label>Get collected Installments</label>
-        <locationX>362</locationX>
-        <locationY>179</locationY>
+        <locationX>313</locationX>
+        <locationY>299</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Was_sales_invoice_paid</targetReference>
@@ -66,7 +91,7 @@ Changed the success link (added hyphen)</description>
             <field>Sales_Invoice__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>salesInvoiceId</elementReference>
+                <elementReference>salesInvoice.Id</elementReference>
             </value>
         </filters>
         <filters>
@@ -83,17 +108,17 @@ Changed the success link (added hyphen)</description>
     <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
-        <locationX>362</locationX>
-        <locationY>457</locationY>
+        <locationX>471</locationX>
+        <locationY>356</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Payment_Details_related_screens</targetReference>
+            <targetReference>Get_Installments</targetReference>
         </connector>
         <filters>
-            <field>Id</field>
+            <field>Name</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>salesInvoiceId</elementReference>
+                <elementReference>SalesInvoiceName</elementReference>
             </value>
         </filters>
         <object>Zumzum__Sales_Invoice__c</object>
@@ -101,6 +126,7 @@ Changed the success link (added hyphen)</description>
         <queriedFields>Id</queriedFields>
         <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Zumzum__Total_Unpaid_Amount__c</queriedFields>
+        <queriedFields>Validation_Code__c</queriedFields>
     </recordLookups>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
@@ -122,24 +148,24 @@ Changed the success link (added hyphen)</description>
     <screens>
         <name>Payment_summary</name>
         <label>Payment summary</label>
-        <locationX>625</locationX>
-        <locationY>504</locationY>
+        <locationX>645</locationX>
+        <locationY>541</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <fields>
             <name>Summary_text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Hi,&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;We&#39;re holding your place on the following course until&amp;nbsp;16th January 2020. Complete your booking now to secure your place.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Your booking&lt;/span&gt;&lt;/p&gt;&lt;p&gt;NCT Essentials Antenatal course for 334 due dates&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;at&amp;nbsp;Test&amp;nbsp;(26th March&amp;nbsp;-&amp;nbsp;1st May)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 150, 50); font-size: 16px;&quot;&gt;Sessions&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Total - £999&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Hi,&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;We&apos;re holding your place on the following course until&amp;nbsp;16th January 2020. Complete your booking now to secure your place.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Your booking&lt;/span&gt;&lt;/p&gt;&lt;p&gt;NCT Essentials Antenatal course for 334 due dates&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;at&amp;nbsp;Test&amp;nbsp;(26th March&amp;nbsp;-&amp;nbsp;1st May)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 150, 50); font-size: 16px;&quot;&gt;Sessions&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Total - £999&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>236</locationX>
-        <locationY>50</locationY>
+        <locationX>229</locationX>
+        <locationY>156</locationY>
         <connector>
-            <targetReference>Get_Installments</targetReference>
+            <targetReference>DecryptAdhocValidationCodeHandler</targetReference>
         </connector>
     </start>
     <status>Active</status>
@@ -170,7 +196,7 @@ Changed the success link (added hyphen)</description>
         <inputAssignments>
             <name>paramSalesInvoiceId</name>
             <value>
-                <elementReference>salesInvoiceId</elementReference>
+                <elementReference>salesInvoice.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -197,7 +223,21 @@ Changed the success link (added hyphen)</description>
         <objectType>Zumzum__Sales_Invoice__c</objectType>
     </variables>
     <variables>
-        <name>salesInvoiceId</name>
+        <name>SalesInvoiceCreatedDate</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>SalesInvoiceName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>validationCode</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
