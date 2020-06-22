@@ -12,6 +12,7 @@
         <members>DisplayDdScheduleController</members>
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
+        <members>EncryptBookingValidationCodeHandler</members>
         <members>GiftAidDetailController</members>
         <members>FlowPaymentHandler</members>
         <members>OutboundBACSpaymentHelperTest</members>
@@ -186,6 +187,7 @@
         <name>EmailTemplate</name>
     </types>
     <types>
+        <members>Generate_Encrypted_Validation_Code</members>
         <members>Installment_Process</members>
         <members>Update_Practitioner_Licence</members>
         <name>Flow</name>

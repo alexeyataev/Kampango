@@ -59,7 +59,6 @@
         <members>dlrs_SessionTest</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTest</members>
         <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
-        <members>EncryptBookingValidationCodeHandler</members>
         <members>EncryptDecryptBookingValidationCodeTest</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
@@ -540,7 +539,6 @@
         <members>Dimensions_update_on_PILI</members>
         <members>Error_Handler_Flow</members>
         <members>Fill_dimension_values_process</members>
-        <members>Generate_Encrypted_Validation_Code</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Confirmation_Email</members>
