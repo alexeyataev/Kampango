@@ -30,12 +30,12 @@ public with sharing class GeneratePaymentFileExtension {
 		}
 	}
 
-	// public String getPageContent(){
-	// 	return this.showError ? '' : GeneratePaymentFileUtil.generatePaymentFileContent(this.recordId);
-	// }
+	public String getPageContent(){
+		return this.showError ? '' : GeneratePaymentFileUtil.generatePaymentFileContent(this.recordId);
+	}
 
-	// public String getContentType(){
-	// 	return this.showError ? HTML_CONTENT_TYPE : TXT_CONTENT_TYPE + GeneratePaymentFileUtil.generatePaymentFileName();
-	// }
+	public String getContentType(){
+		return this.showError ? HTML_CONTENT_TYPE : TXT_CONTENT_TYPE + GeneratePaymentFileUtil.generatePaymentFileName();
+	}
 
 }
