@@ -1,5 +1,3 @@
-//@SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #XX - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 private class ReconcilePaymentsBatchTest {
     private static final String ACCOUNT_TYPE_CUSTOMER = 'Customer';
@@ -10,6 +8,8 @@ private class ReconcilePaymentsBatchTest {
     private static final String SALES_INVOICE_STATUS_POSTED = 'Posted';
     private static final String PRODUCT_NAME_COURSE_PLACE = 'Course Place';
     private static final Integer BANK_NOMINAL_ACCOUNT_CODE = 9401;
+    private static final Integer LINE_ITEM_QUANTITY = 1;
+    private static final Decimal LINE_ITEM_AMOUNT = 100.00;
 
     @testSetup
     static void testSetup() {
@@ -63,26 +63,26 @@ private class ReconcilePaymentsBatchTest {
             Zumzum__Product__c = productCourse.Id,
             Zumzum__Nominal_Account__c = nominalAccount.Id,
             Zumzum__Company__c = company.Id,
-            Zumzum__Quantity__c = 1,
+            Zumzum__Quantity__c = LINE_ITEM_QUANTITY,
             Zumzum__Tax_Rate__c = taxRate.Id,
-            Zumzum__Foreign_Net_Amount__c = 100.00,
-            Zumzum__Amount__c = 100.00,
-            Zumzum__Foreign_Net_Total__c = 100.00,
-            Zumzum__Foreign_Gross__c = 100.00,
-            Zumzum__Total_Gross__c = 100.00,
+            Zumzum__Foreign_Net_Amount__c = LINE_ITEM_AMOUNT,
+            Zumzum__Amount__c = LINE_ITEM_AMOUNT,
+            Zumzum__Foreign_Net_Total__c = LINE_ITEM_AMOUNT,
+            Zumzum__Foreign_Gross__c = LINE_ITEM_AMOUNT,
+            Zumzum__Total_Gross__c = LINE_ITEM_AMOUNT,
             Zumzum__Sales_Invoice__c = salesInvoice.Id
         );
         Zumzum__Sales_Invoice_Line_Item__c salesCreditLineItem = new Zumzum__Sales_Invoice_Line_Item__c(
             Zumzum__Product__c = productCourse.Id,
             Zumzum__Nominal_Account__c = nominalAccount.Id,
             Zumzum__Company__c = company.Id,
-            Zumzum__Quantity__c = 1,
+            Zumzum__Quantity__c = LINE_ITEM_QUANTITY,
             Zumzum__Tax_Rate__c = taxRate.Id,
-            Zumzum__Foreign_Net_Amount__c = 100.00,
-            Zumzum__Amount__c = 100.00,
-            Zumzum__Foreign_Net_Total__c = 100.00,
-            Zumzum__Foreign_Gross__c = 100.00,
-            Zumzum__Total_Gross__c = 100.00,
+            Zumzum__Foreign_Net_Amount__c = LINE_ITEM_AMOUNT,
+            Zumzum__Amount__c = LINE_ITEM_AMOUNT,
+            Zumzum__Foreign_Net_Total__c = LINE_ITEM_AMOUNT,
+            Zumzum__Foreign_Gross__c = LINE_ITEM_AMOUNT,
+            Zumzum__Total_Gross__c = LINE_ITEM_AMOUNT,
             Zumzum__Sales_Invoice__c = salesCredit.Id
         );
         insert new List<Zumzum__Sales_Invoice_Line_Item__c>{salesInvoiceLineItem, salesCreditLineItem};
@@ -93,7 +93,6 @@ private class ReconcilePaymentsBatchTest {
             .withAccount(customer)
             .withFirstName('John')
             .withLastName('Smith')
-            .withRecordType('Client')
             .insertRecord(true)
             .build();
         TestPaymentProfileBuilder paymentProfileBuilder = new TestPaymentProfileBuilder();
@@ -214,6 +213,12 @@ private class ReconcilePaymentsBatchTest {
         Test.stopTest();
 
         List<Zumzum__BankReconcile__c> bankReconciles = [SELECT Id FROM Zumzum__BankReconcile__c];
+        Batch_Receipt_Report__c batchReceiptReportReconciled = [SELECT Id, BankReconcile__c FROM Batch_Receipt_Report__c LIMIT 1];
         System.assertEquals(1, bankReconciles.size());
+        System.assertEquals(bankReconciles[0].Id, batchReceiptReportReconciled.BankReconcile__c);
+        for (Zumzum__Ledger__c ledger : [SELECT Id, Zumzum__Bank_Reconcile__c, Zumzum__BankReconcile__c FROM Zumzum__Ledger__c]) {
+            System.assertEquals(bankReconciles[0].Id, ledger.Zumzum__BankReconcile__c);
+            System.assertEquals('N', ledger.Zumzum__Bank_Reconcile__c);            
+        }
     }
 }

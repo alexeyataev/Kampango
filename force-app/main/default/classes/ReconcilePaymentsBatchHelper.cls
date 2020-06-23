@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #97 - https://confluence.nct.org.uk:8443/x/EoSO
 public class ReconcilePaymentsBatchHelper {
     private static final String DRAFT_STATUS = 'Draft';
     private static final Integer BANK_NOMINAL_ACCOUNT_CODE = 9401;
@@ -73,6 +75,7 @@ public class ReconcilePaymentsBatchHelper {
                 cpm__Payment_Reference__c
             FROM cpm__Payment__c
             WHERE cpm__Payment_Reference__c IN :refundReceiptReferences
+            WITH SECURITY_ENFORCED
         ];
     }
 
@@ -88,6 +91,7 @@ public class ReconcilePaymentsBatchHelper {
                     FROM Zumzum__Ledger_Payment_History__c
                     WHERE Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c IN :salesInvoicesIds 
                 )
+            WITH SECURITY_ENFORCED
         ];
     }
 
@@ -96,6 +100,7 @@ public class ReconcilePaymentsBatchHelper {
             SELECT Id, Status__c, Batch_Id__c, From_Date__c, To_Date__c
             FROM Batch_Receipt_Report__c
             WHERE Id = :batchReceiptReportId 
+            WITH SECURITY_ENFORCED
             LIMIT 1
         ];
     }
@@ -132,6 +137,7 @@ public class ReconcilePaymentsBatchHelper {
             SELECT Name
             FROM Zumzum__Bank_Account__c
             WHERE Zumzum__Nominal_Account__r.Zumzum__Account_Code__c = :code
+            WITH SECURITY_ENFORCED
             LIMIT 1
         ];
         return bankAccount.Id;
