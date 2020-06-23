@@ -1,6 +1,6 @@
 @SuppressWarnings('PMD.ApexCRUDViolation')
 //Incident #97 - https://confluence.nct.org.uk:8443/x/EoSO
-public class ReconcilePaymentsBatchHelper {
+public with sharing class ReconcilePaymentsBatchHelper {
     private static final String DRAFT_STATUS = 'Draft';
     private static final Integer BANK_NOMINAL_ACCOUNT_CODE = 9401;
 
