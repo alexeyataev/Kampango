@@ -33,8 +33,8 @@ public with sharing class ConfirmationEmailController {
                         Location_Name__c,
                         Location_Id__c,
                         Practitioner__c,
-                        Practitioner__r.Name,
-                        Practitioner__r.Phone
+                        Practitioner_Phone__c,
+                        Practitioner_Name__c
                 FROM Session__c
                 WHERE Course__c = :courseId
                 WITH SECURITY_ENFORCED
@@ -156,9 +156,9 @@ public with sharing class ConfirmationEmailController {
         public String preferPhone { get; set; }
 
         PractitionerWrapper(Session__c session, List<Integer> sessionDays){
-        this.name = session.Practitioner__r.Name;
+        this.name = session.Practitioner_Name__c;
         this.sessions = getFormattedSessionDaysList(sessionDays);
-        this.preferPhone = session.Practitioner__r.Phone;
+        this.preferPhone = session.Practitioner_Phone__c;
         }
     }
 }
