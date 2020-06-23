@@ -109,65 +109,65 @@ private class GeneratePaymentFilePaymentRunTest {
 		
 	}
 
-	// @isTest
-	// static void generatePaymentFileFromPaymentRunGenerated() {
-	// 	PageReference paymentFileRef = Page.GeneratePaymentFilePaymentRun;
-	// 	Test.setCurrentPage(paymentFileRef);
+	@isTest
+	static void generatePaymentFileFromPaymentRunGenerated() {
+		PageReference paymentFileRef = Page.GeneratePaymentFilePaymentRun;
+		Test.setCurrentPage(paymentFileRef);
 
-	// 	Test.startTest();
+		Test.startTest();
 
-	// 	Payment_Run__c paymentRun = [
-	// 			SELECT Id, Status__c
-	// 			FROM Payment_Run__c
-	// 			LIMIT 1
-	// 	];
+		Payment_Run__c paymentRun = [
+				SELECT Id, Status__c
+				FROM Payment_Run__c
+				LIMIT 1
+		];
 
-	// 	ApexPages.StandardController standardController = new ApexPages.StandardController(paymentRun);
-	// 	GeneratePaymentFilePaymentRunExtension generatePaymentFileController = new GeneratePaymentFilePaymentRunExtension(standardController);
+		ApexPages.StandardController standardController = new ApexPages.StandardController(paymentRun);
+		GeneratePaymentFilePaymentRunExtension generatePaymentFileController = new GeneratePaymentFilePaymentRunExtension(standardController);
 
-	// 	generatePaymentFileController.init();
+		generatePaymentFileController.init();
 
-	// 	String pageContent =  generatePaymentFileController.getPageContent();
-	// 	String contentType =  generatePaymentFileController.getContentType();
+		String pageContent =  generatePaymentFileController.getPageContent();
+		String contentType =  generatePaymentFileController.getContentType();
 
-	// 	System.assert(!generatePaymentFileController.showError);
+		System.assert(!generatePaymentFileController.showError);
 
-	// 	Date todaysDate = Date.today();
-	// 	String day = String.valueOf(todaysDate.day()).leftPad(2, '0');
-	// 	String month = String.valueOf(todaysDate.month()).leftPad(2, '0');
-	// 	String fileName = GeneratePaymentFileUtil.FILE_PREFIX + day + month + todaysDate.year() + GeneratePaymentFileUtil.FILE_EXTENSION;
+		Date todaysDate = Date.today();
+		String day = String.valueOf(todaysDate.day()).leftPad(2, '0');
+		String month = String.valueOf(todaysDate.month()).leftPad(2, '0');
+		String fileName = GeneratePaymentFileUtil.FILE_PREFIX + day + month + todaysDate.year() + GeneratePaymentFileUtil.FILE_EXTENSION;
 
-	// 	System.assertEquals(contentType, 'text/plain#' + fileName);
-	// 	Test.stopTest();
-	// }
+		System.assertEquals(contentType, 'text/plain#' + fileName);
+		Test.stopTest();
+	}
 	
-	// @isTest
-	// static void generatePaymentFileFromPaymentRunError() {
-	// 	PageReference paymentFileRef = Page.GeneratePaymentFilePaymentRun;
-	// 	Test.setCurrentPage(paymentFileRef);
+	@isTest
+	static void generatePaymentFileFromPaymentRunError() {
+		PageReference paymentFileRef = Page.GeneratePaymentFilePaymentRun;
+		Test.setCurrentPage(paymentFileRef);
 
-	// 	Test.startTest();
+		Test.startTest();
 
-	// 	Payment_Run__c paymentRun = [
-	// 			SELECT Id, Status__c
-	// 			FROM Payment_Run__c
-	// 			LIMIT 1
-	// 	];
+		Payment_Run__c paymentRun = [
+				SELECT Id, Status__c
+				FROM Payment_Run__c
+				LIMIT 1
+		];
 
-	// 	paymentRun.Status__c = 'Closed';
-	// 	update paymentRun;
+		paymentRun.Status__c = 'Closed';
+		update paymentRun;
 
-	// 	ApexPages.StandardController standardController = new ApexPages.StandardController(paymentRun);
-	// 	GeneratePaymentFilePaymentRunExtension generatePaymentFileController = new GeneratePaymentFilePaymentRunExtension(standardController);
+		ApexPages.StandardController standardController = new ApexPages.StandardController(paymentRun);
+		GeneratePaymentFilePaymentRunExtension generatePaymentFileController = new GeneratePaymentFilePaymentRunExtension(standardController);
 
-	// 	generatePaymentFileController.init();
+		generatePaymentFileController.init();
 
-	// 	String pageContent =  generatePaymentFileController.getPageContent();
-	// 	String contentType =  generatePaymentFileController.getContentType();
+		String pageContent =  generatePaymentFileController.getPageContent();
+		String contentType =  generatePaymentFileController.getContentType();
 
-	// 	System.assert(generatePaymentFileController.showError);
-	// 	System.assertEquals(contentType, 'text/html');
-	// 	System.assertEquals(pageContent, '');
-	// 	Test.stopTest();
-	// }
+		System.assert(generatePaymentFileController.showError);
+		System.assertEquals(contentType, 'text/html');
+		System.assertEquals(pageContent, '');
+		Test.stopTest();
+	}
 }
