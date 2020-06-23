@@ -38,7 +38,6 @@ public class AddBankReceiptPaymentBatchTest {
             .withAccount(account)
             .withFirstName('John')
             .withLastName('Smith')
-            .withRecordType('Client')
             .insertRecord(true)
             .build();
         TestPaymentProfileBuilder paymentProfileBuilder = new TestPaymentProfileBuilder();
