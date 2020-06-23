@@ -8379,10 +8379,6 @@
     <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
-        <apexPage>GeneratePaymentFile</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>GeneratePaymentFilePaymentRun</apexPage>
         <enabled>true</enabled>
     </pageAccesses>

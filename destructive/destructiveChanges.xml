@@ -13,6 +13,7 @@
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
         <members>GiftAidDetailController</members>
+        <members>GeneratePaymentFileExtensionTest</members>
         <members>FlowPaymentHandler</members>
         <members>OutboundBACSpaymentHelperTest</members>
         <members>PaymentLinkGeneratorTestPageController</members>
@@ -32,6 +33,7 @@
     </types>
     <types>
         <members>BookCourse</members>
+        <members>GeneratePaymentFile</members>
         <members>PaymentLinkGeneratorTestPage</members>
         <name>ApexPage</name>
     </types>
@@ -168,6 +170,10 @@
         <members>Venue__c.Venue_Suitability__c</members>
         <members>Zumzum__Purchase_Invoice__c.Payment_Run__c</members>
         <name>CustomField</name>
+    </types>
+    <types>
+        <members>Zumzum__Batch_Bank_Payment__c.Generate_Payment_File</members>
+        <name>WebLink</name>
     </types>
     <types>
         <members>Ignore_Booking_Confirmation_Restriction</members>
