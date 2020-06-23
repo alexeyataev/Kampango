@@ -52,12 +52,15 @@
         <members>CreateListViewUtilityTest</members>
         <members>CourseCreateEnquiryUtility</members>
         <members>CourseCreateEnquiryUtilityTest</members>
+        <members>DecryptBookingValidationCodeHandler</members>
         <members>dlrs_Batch_Receipt_Report_ItemTest</members>
         <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTest</members>
         <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
+        <members>EncryptBookingValidationCodeHandler</members>
+        <members>EncryptDecryptBookingValidationCodeTest</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
         <members>GeneratePaymentFilePaymentRunTest</members>
@@ -130,15 +133,13 @@
         <members>UpdateAddressInGiftAidDeclarationsTest</members>
         <members>UpdateBookingContactsEmailTest</members>
         <members>UpdateRelatedSessionsFlowTest</members>
+        <members>UserEncryptionDecryptionProvider</members>
         <members>VenueDetailsController</members>
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
         <members>ZumzumBACSpaymentActions</members>
         <members>ZumzumBACSpaymentActionsTest</members>
-        <members>ZumzumBACSremittanceEmailsAction</members>
-        <members>ZumzumBACSremittanceEmailsActionTest</members>
-        <members>ZumzumBACSremittanceEmailsBatch</members>
         <members>ZumzumBankReceiptCreator</members>
         <members>ZumzumBankReceiptCreatorMock</members>
         <members>ZumzumCreatePostSalesInvoice</members>
@@ -408,7 +409,6 @@
     <types>
         <members>NCT_Templates/Adhoc_Payment_Confirmation</members>
         <members>NCT_Templates/Adhoc_Payment_Notification</members>
-        <members>NCT_Templates/BACS_Remittance_Email</members>
         <members>NCT_Templates/Booking_Confirmation_Email</members>
         <members>NCT_Templates/Booking_Created</members>
         <members>NCT_Templates/Booking_Payment_Details</members>
@@ -541,6 +541,7 @@
         <members>Dimensions_update_on_PILI</members>
         <members>Error_Handler_Flow</members>
         <members>Fill_dimension_values_process</members>
+        <members>Generate_Encrypted_Validation_Code</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Confirmation_Email</members>
@@ -680,7 +681,13 @@
         <members>Practitioner_Management</members>
         <members>ProcessingHub_Additional</members>
         <members>Product_Management</members>
+        <members>Update_Audit_Fields</members>
+        <members>Update_Records_with_Inactive_Users</members>
         <name>PermissionSet</name>
+    </types>
+    <types>
+          <members>Data_Migration</members>
+          <name>PermissionSetGroup</name>
     </types>
     <types>
         <members>Admin</members>

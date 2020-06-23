@@ -124,13 +124,6 @@
         <value>You do not have permission to delete Chatter Posts. If necessary please contact your System Administrator.</value>
     </labels>
     <labels>
-        <fullName>Generate_Payment_File_Invalid_Batch_Bank_Payment_Status_Message</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Generate Payment File Invalid Batch Bank Payment Status Message</shortDescription>
-        <value>Batch Bank Payment should be approved to generate Payment File.</value>
-    </labels>
-    <labels>
         <fullName>Nct_Pregnancy_Baby_Guide_Url</fullName>
         <categories>Confirmation Notification</categories>
         <language>en_US</language>

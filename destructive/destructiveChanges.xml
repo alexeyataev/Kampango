@@ -13,6 +13,7 @@
         <members>DisplayCourseDetailsController</members>
         <members>DisplayCourseDetailsControllerTest</members>
         <members>GiftAidDetailController</members>
+        <members>GeneratePaymentFileExtensionTest</members>
         <members>FlowPaymentHandler</members>
         <members>OutboundBACSpaymentHelperTest</members>
         <members>PaymentLinkGeneratorTestPageController</members>
@@ -20,6 +21,9 @@
         <members>PaymentLinkGeneratorTestPageTest</members>
         <members>PaymentProviderHttpResponseMock</members>
         <members>PaymentProviderTest</members>
+        <members>ZumzumBACSremittanceEmailsAction</members>
+        <members>ZumzumBACSremittanceEmailsActionTest</members>
+        <members>ZumzumBACSremittanceEmailsBatch</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -29,6 +33,7 @@
     </types>
     <types>
         <members>BookCourse</members>
+        <members>GeneratePaymentFile</members>
         <members>PaymentLinkGeneratorTestPage</members>
         <name>ApexPage</name>
     </types>
@@ -167,11 +172,16 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>Zumzum__Batch_Bank_Payment__c.Generate_Payment_File</members>
+        <name>WebLink</name>
+    </types>
+    <types>
         <members>Ignore_Booking_Confirmation_Restriction</members>
         <name>CustomPermission</name>
     </types>
     <types>
         <members>NCT_Templates/Adhoc_Payment_Notification</members>
+        <members>NCT_Templates/BACS_Remittance_Email</members>
         <members>NCT_Templates/Reunion_Confirmed_Practitioner</members>
         <members>NCT_Templates/Reunion_Confirmed_Public_No_Venue</members>
         <members>NCT_Templates/Reunion_Confirmed_Public</members>

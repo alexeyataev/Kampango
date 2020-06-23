@@ -23,10 +23,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ZumzumBACSremittanceEmailsAction</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>Zumzum__DeleteSalesInvoice</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -372,6 +368,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Email_Template_Utility_Field__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Booking__c.Encrypted_Validation_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1017,6 +1018,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Payment_Run_Line_Item__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Supplier_Account_Billing_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8367,10 +8373,6 @@
         <object>cpm__Mandate__c</object>
     <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <pageAccesses>
-        <apexPage>GeneratePaymentFile</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <pageAccesses>
         <apexPage>GeneratePaymentFilePaymentRun</apexPage>
         <enabled>true</enabled>
