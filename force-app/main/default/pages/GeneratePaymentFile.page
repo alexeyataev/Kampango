@@ -1,3 +1,0 @@
-<apex:page standardController="Zumzum__Batch_Bank_Payment__c" extensions="GeneratePaymentFileExtension" action="{!init}" contentType="{!contentType}">
-  <apex:pageMessages rendered="{!showError}" />{!pageContent}
-</apex:page>
