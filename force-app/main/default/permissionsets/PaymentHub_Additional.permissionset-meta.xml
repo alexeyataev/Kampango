@@ -8,6 +8,10 @@
         <application>proh__PaymentHub</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>proh__ProcessingHubManagerService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>Additional permission set to provide access to FinDock tabs pending update to FinDock package.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>PaymentHub Additional</label>
@@ -16,11 +20,11 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>cpm__Recurring_Payment__c</tab>
+        <tab>cpm__Recurring_Payment_Schedule__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>cpm__Recurring_Payment_Schedule__c</tab>
+        <tab>cpm__Recurring_Payment__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>

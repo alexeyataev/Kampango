@@ -831,6 +831,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Supplier_Account_Billing_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Practitioner_Band__c.End_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -947,6 +952,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Practitioner_Licence__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Practitioner_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Practitioner_Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
