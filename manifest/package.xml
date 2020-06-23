@@ -531,6 +531,7 @@
         <members>Booking_Main_Payment_Process</members>
         <members>Booking_Send_Email_On_Enquiry_Created_Process</members>
         <members>Booking_Send_Email_On_Enquiry_Created_Flow</members>
+        <members>Booking_Set_Expiration_Status_Scheduled</members>
         <members>Booking_SetExpirationStatus</members>
         <members>Booking_Tranfer_Flow</members>
         <members>Booking_Transfer</members>
@@ -553,7 +554,6 @@
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
         <members>Set_Booking_Contacts_Email_To_Do_Not_Contact</members>
-        <members>Set_Booking_Expiration_Status</members>
         <members>Set_CADs_to_Withdrawn</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
         <members>Set_Deactivate_Date_GAD</members>
