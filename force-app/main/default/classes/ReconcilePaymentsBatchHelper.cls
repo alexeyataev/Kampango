@@ -1,5 +1,4 @@
 public class ReconcilePaymentsBatchHelper {
-    public static final String CREATED_STATUS = 'Created';
     private static final String DRAFT_STATUS = 'Draft';
     private static final Integer BANK_NOMINAL_ACCOUNT_CODE = 9401;
 
@@ -33,7 +32,7 @@ public class ReconcilePaymentsBatchHelper {
         
         List<Zumzum__Bank_Payment__c> bankPaymentsForRefunds = getBankPaymentsBySalesCredits(salesInvoicesWithCreditsPayments.keySet());
         Map<Id, Id> salesCreditIdBankPaymentId = new Map<Id, Id>();
-
+        
         for (Zumzum__Bank_Payment__c bankPayment : bankPaymentsForRefunds) {
             for (Zumzum__Ledger_Payment_History__c salesCreditAllocation : bankPayment.Zumzum__Ledger_Payment_History__r) {
                 if (salesCreditAllocation.Zumzum__Amount__c == salesInvoicesWithCreditsPayments.get(salesCreditAllocation.Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c).cpm__Amount__c) {

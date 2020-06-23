@@ -1,4 +1,5 @@
 public with sharing class ReconcilePaymentsBatch implements Database.Batchable<sObject> {
+    private static final String CREATED_STATUS = 'Created';
     public Id recordId;
 
     public ReconcilePaymentsBatch(Id recordId) {
@@ -29,7 +30,7 @@ public with sharing class ReconcilePaymentsBatch implements Database.Batchable<s
             WHERE Id = :recordId
         ];
         for (Batch_Receipt_Report__c brr : batchReceiptReports) {
-            brr.Status__c = ReconcilePaymentsBatchHelper.CREATED_STATUS;
+            brr.Status__c = CREATED_STATUS;
         }
         update batchReceiptReports;
     }
