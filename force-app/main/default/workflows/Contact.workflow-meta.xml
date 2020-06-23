@@ -33,8 +33,7 @@
     NOT(ISPICKVAL(Care_Status__c, &quot;Waiting&quot;)),     
 	RecordType.DeveloperName = &quot;Clients&quot;,     
 	OR(        
-	   ISCHANGED(Branch__c),        
-	   ISCHANGED(Gender__c),        
+	   ISCHANGED(Branch__c),         
 	   ISCHANGED(MailingPostalCode),        
 	   ISCHANGED(MailingCountry),        
 	   ISCHANGED(MailingCity),        
