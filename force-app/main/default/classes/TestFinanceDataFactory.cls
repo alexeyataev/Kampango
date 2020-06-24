@@ -229,8 +229,8 @@ public without sharing class TestFinanceDataFactory {
         insert expenseSheetDetail;
     }
 
-    public String[] createBatchReceiptReportWithItems(Integer itemsCount) {
-        String[] paymentIds = new String[]{};
+    public Set<String> createBatchReceiptReportWithItems(Integer itemsCount, Decimal amount, Boolean withRefund) {
+        Set<String> paymentIds = new Set<String>();
         List<Batch_Receipt_Report_Item__c> batchReceiptReportItems = new List<Batch_Receipt_Report_Item__c>();
         TestBatchReceiptReportBuilder batchReceiptReportBulder = new TestBatchReceiptReportBuilder();
         Batch_Receipt_Report__c batchReceiptReport = batchReceiptReportBulder.withStatus('Not Created')
@@ -240,10 +240,11 @@ public without sharing class TestFinanceDataFactory {
         TestBatchReceiptReportItemBuilder batchReceiptReportItemBuilder = new TestBatchReceiptReportItemBuilder();
         for (Integer i = 0; i < itemsCount; i++) {
             paymentIds.add(String.valueOf(i));
+            Decimal paidAmount = (withRefund && Math.mod(i, 2) == 0) ? - amount : amount;
             batchReceiptReportItems.add(
                 batchReceiptReportItemBuilder.withPaymentMethod('CreditCard')
                                              .withCurrencyCode('GBP')
-                                             .withAmount(10.00)
+                                             .withAmount(paidAmount)
                                              .withBatchReceiptReport(batchReceiptReport.Id)
                                              .withPaymentId(String.valueOf(i))
                                              .withCapturedOn(Date.today())
