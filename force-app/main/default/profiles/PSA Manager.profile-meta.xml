@@ -2016,6 +2016,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Encrypted_Validation_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Account__c</field>
         <readable>true</readable>
     </fieldPermissions>

@@ -179,6 +179,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Bank_Payment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Batch_Receipt_Report_Item__c.Bank_Receipt__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1780,6 +1785,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Contact_First_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Encrypted_Validation_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

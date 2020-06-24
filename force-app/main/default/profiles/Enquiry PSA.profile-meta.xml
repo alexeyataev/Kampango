@@ -956,6 +956,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Session__c.Practitioner_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Practitioner_Phone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Session__c.PSA_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1954,6 +1964,11 @@
         <field>Zumzum__Sales_Invoice__c.Booking__c</field>	
         <readable>true</readable>	
     </fieldPermissions>	
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Encrypted_Validation_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Account__c</field>

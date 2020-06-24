@@ -252,6 +252,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Batch_Receipt_Report_Item__c.Bank_Payment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Batch_Receipt_Report_Item__c.Bank_Receipt__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5296,6 +5301,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Sales_Invoice__c.Encrypted_Validation_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Account__c</field>
         <readable>true</readable>
@@ -8373,10 +8383,6 @@
         <object>cpm__Mandate__c</object>
     <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <pageAccesses>
-        <apexPage>GeneratePaymentFile</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <pageAccesses>
         <apexPage>GeneratePaymentFilePaymentRun</apexPage>
         <enabled>true</enabled>
