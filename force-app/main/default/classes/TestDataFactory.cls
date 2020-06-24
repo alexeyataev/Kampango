@@ -2,7 +2,7 @@
 public without sharing class TestDataFactory {
 
     private static final String SYSTEM_ADMIN_PROFILE_NAME = 'System Administrator';
-    private static final String SYSTEM_ADMIN_USERNAME = 'admin@test.com' + Utils.generateSuffix();
+    private static final String SYSTEM_ADMIN_USERNAME = 'admin@test.com';
 
     private static final String COURSE_FINAL_STATUS = 'Final';
 
@@ -17,21 +17,21 @@ public without sharing class TestDataFactory {
 
     private static final String PRACTITIONER_RECORDTYPE_NAME = 'Practitioner';
     private static final String PRACTITIONER_PROFILE_NAME = 'Practitioner';
-    private static final String PRACTITIONER_USERNAME = 'practitioner@ncttest.com' + Utils.generateSuffix();
+    private static final String PRACTITIONER_USERNAME = 'practitioner@ncttest.com';
     private static final String PRACTITIONER_BAND = 'A';
     private static final Decimal BASIC_PRACTITIONER_HOURLY_RATE = 30;
     private static final Set<String> PRACTITIONER_BAND_SET = new Set<String>{'A', 'B', 'C', 'D'}; 
 
-    private static final String ENQUIRY_PSA_USERNAME = 'enquire@test.com' + Utils.generateSuffix();
+    private static final String ENQUIRY_PSA_USERNAME = 'enquire@test.com';
     private static final String ENQUIRY_PSA_PROFILE_NAME = 'Enquiry PSA';
 
-    private static final String PSA_MANAGER_USERNAME = 'psa@ncttest.com' + Utils.generateSuffix();
+    private static final String PSA_MANAGER_USERNAME = 'psa@ncttest.com';
     private static final String PSA_MANAGER_PROFILE_NAME = 'PSA Manager';
 
     private static final String PORTAL_ACCOUNT_USER_EMAIL = 'portalAccountUserNCT@ncttest.com';
-    private static final String PORTAL_ACCOUNT_OWNER_USERNAME = 'account@test.com' + Utils.generateSuffix();
+    private static final String PORTAL_ACCOUNT_OWNER_USERNAME = 'account@test.com';
 
-    private static final String FINANCE_USERNAME = 'finance@test.com' + Utils.generateSuffix();
+    private static final String FINANCE_USERNAME = 'finance@test.com';
     private static final String FINANCE_USER_EMAIL = 'finance.user@test.com';
     private static final String FINANCE_USER_ALIAS = 'fin.user';
     private static final String FINANCE_PROFILE_NAME = 'Finance';
