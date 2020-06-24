@@ -21,4 +21,16 @@
         <members>Tick</members>
         <name>StaticResource</name>
     </types>
+	<types>
+        <members>Booking__c.Confirmed_Places_OLD__c</members>
+        <name>CustomField</name>
+    </types>
+	<types>
+        <members>Booking__c.Enquiries_OLD__c</members>
+        <name>CustomField</name>
+    </types>
+	<types>
+        <members>Booking__c.Reserved_Places_OLD__c</members>
+        <name>CustomField</name>
+    </types>
 </Package> 
