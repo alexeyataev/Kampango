@@ -11,6 +11,9 @@
     </types>
     <types>
         <members>Account.Branch_Key__c</members>
+        <members>Booking__c.Confirmed_Places_OLD__c</members>
+        <members>Booking__c.Enquiries_OLD__c</members>
+        <members>Booking__c.Reserved_Places_OLD__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -20,5 +23,5 @@
     <types>
         <members>Tick</members>
         <name>StaticResource</name>
-    </types>
+    </types>	
 </Package> 
