@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Receipt_Or_Payment_Can_Be_Populated</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    NOT(ISBLANK(Bank_Payment__c)),
+    NOT(ISBLANK(Bank_Receipt__c))
+)</errorConditionFormula>
+    <errorMessage>Only Bank Receipt or Bank Payment can be entered.</errorMessage>
+</ValidationRule>
