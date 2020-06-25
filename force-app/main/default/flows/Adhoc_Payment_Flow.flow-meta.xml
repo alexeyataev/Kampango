@@ -167,7 +167,7 @@ Changed the success link (added hyphen)</description>
             <targetReference>DecryptAdhocValidationCodeHandler</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <name>Payment_Details_related_screens</name>
         <label>Payment Details related screens</label>
