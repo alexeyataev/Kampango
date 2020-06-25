@@ -6,6 +6,7 @@
     <label>Purchase Invoice</label>
     <lookupFilter>
         <active>true</active>
+        <booleanFilter>1 AND (2 OR (3 AND 4))</booleanFilter>
         <filterItems>
             <field>Zumzum__Purchase_Invoice__c.Zumzum__Status__c</field>
             <operation>equals</operation>
@@ -15,6 +16,16 @@
             <field>Zumzum__Purchase_Invoice__c.Zumzum__Paid__c</field>
             <operation>equals</operation>
             <value>N</value>
+        </filterItems>
+        <filterItems>
+            <field>Zumzum__Purchase_Invoice__c.Zumzum__Paid__c</field>
+            <operation>equals</operation>
+            <value>Y</value>
+        </filterItems>
+        <filterItems>
+            <field>$Source.Is_Email_Sent__c</field>
+            <operation>equals</operation>
+            <value>True</value>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>
