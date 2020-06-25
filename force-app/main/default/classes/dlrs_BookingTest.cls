@@ -35,25 +35,19 @@ private class dlrs_BookingTest
     private static void testTrigger()
     {
         // Force the dlrs_BookingTrigger to be invoked, fails the test if org config or other Apex code prevents this.
-            
         Course__c courseBeforeRecalculations = [
-			SELECT Id, Total_Actual_Income__c, Fee__c
-			FROM Course__c
-			LIMIT 1
-		];
-
-		List<Booking__c> bookings = [
-			SELECT Id, Status__c
-            FROM Booking__c 
-            WHERE Course__c = :courseBeforeRecalculations.Id
-		];
-
-        User user = [
-            SELECT Id 
-            FROM User
-            WHERE Profile.Name = :PROFILE_NAME
+            SELECT Id, Total_Actual_Income__c, Fee__c
+            FROM Course__c
             LIMIT 1
         ];
+
+        List<Booking__c> bookings = [
+            SELECT Id, Status__c
+            FROM Booking__c 
+            WHERE Course__c = :courseBeforeRecalculations.Id
+        ];
+
+        User user = TestDataFactory.getActiveTestUserByProfileName(PROFILE_NAME);
 
         System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
             for (Booking__c booking : bookings) {
@@ -63,17 +57,17 @@ private class dlrs_BookingTest
         }
 
         Test.startTest();
-        for (Booking__c booking : bookings) {
-            dlrs.RollupService.testHandler(booking);   
-        }
+            for (Booking__c booking : bookings) {
+                dlrs.RollupService.testHandler(booking);
+            }
         Test.stopTest();
 
         Course__c courseAfterRecalculations = [
-			SELECT Id, Total_Actual_Income__c
-			FROM Course__c
-			LIMIT 1
+            SELECT Id, Total_Actual_Income__c
+            FROM Course__c
+            LIMIT 1
         ];
-        
+
         System.assertEquals(0, courseBeforeRecalculations.Total_Actual_Income__c);
         System.assertEquals(courseBeforeRecalculations.Fee__c * bookings.size(), courseAfterRecalculations.Total_Actual_Income__c);
     }
