@@ -26,17 +26,12 @@ public with sharing class BookingPaymentDetailsControllerTest {
     @IsTest
     public static void changeBookingStatus_bookingStatus_bookingStatusIsConfirmed() {
         Booking__c bookingRecord = [
-            SELECT Id, Status__c 
+            SELECT Id, Status__c
             FROM Booking__c 
             LIMIT 1
         ];
 
-        User user = [
-            SELECT Id 
-            FROM User
-            WHERE Profile.Name = :PROFILE_NAME
-            LIMIT 1
-        ];
+        User user = TestDataFactory.getActiveTestUserByProfileName(PROFILE_NAME);
 
         System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
             bookingRecord.Status__c = BOOKING_STATUS_CONFIRMED;
@@ -50,6 +45,5 @@ public with sharing class BookingPaymentDetailsControllerTest {
 
         System.assertEquals(bookingRecord.Id, bookingPaymentDetailsControllerInstance.booking.Id);
         System.assertEquals(BOOKING_STATUS_CONFIRMED, bookingPaymentDetailsControllerInstance.booking.Status__c);
-
     }
 }

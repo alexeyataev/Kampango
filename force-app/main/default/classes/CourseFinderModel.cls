@@ -12,6 +12,8 @@ public without sharing virtual class CourseFinderModel {
     private static List<String> HowHeardTexts = getHowHeardValues(); // will run only once for any number of models
     @testVisible
     private Boolean Online;
+    @testVisible
+    private String DeliveryMethod;
     private Integer PlacesAvailable;
     private Decimal Price;
     private String Reference;
@@ -44,6 +46,7 @@ public without sharing virtual class CourseFinderModel {
         this.Type = course.Sub_Type__c;
         this.Venue = new Venue(course);
         this.WomenOnly = course.Women_Only__c;
+        this.DeliveryMethod = getDeliveryMethod(course.Sessions__r);
     }
 
     private without sharing class CourseOrganiser {
@@ -106,7 +109,7 @@ public without sharing virtual class CourseFinderModel {
         return howHeardValues;
     }
 
-    private List<Session> collectSessionsToList (List<Session__c> sessions) {
+    private List<Session> collectSessionsToList(List<Session__c> sessions) {
         List<Session> sessionsWrap = new List<Session>();
 
         for (Session__c session : sessions) {
@@ -114,5 +117,13 @@ public without sharing virtual class CourseFinderModel {
         }
 
         return sessionsWrap;
+    }
+
+    private String getDeliveryMethod(List<Session__c> sessions) {
+        String deliveryMethod ;
+        for (Session__c session : sessions) {
+            deliveryMethod = deliveryMethod != null ? session.Type__c != 'Reunion' && deliveryMethod != session.Delivery_Type__c ? 'Hybrid' : deliveryMethod : session.Delivery_Type__c;
+        }
+        return deliveryMethod;
     }
 }
