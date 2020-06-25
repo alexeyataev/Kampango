@@ -2047,11 +2047,6 @@
         <field>gaid__Gift_Aid_Declaration__c.gaid__Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>npsp__Trigger_Handler__c.Unique_Class_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Branch Layout</layout>
         <recordType>Account.Branch</recordType>
