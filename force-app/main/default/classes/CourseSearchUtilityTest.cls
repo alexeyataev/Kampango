@@ -4,8 +4,11 @@
 private class CourseSearchUtilityTest {
 
     private static final Integer COURSES_TO_BUILD = 8;
-    private static final String SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT = 'Virtual Support';
     private static final Integer SESSIONS_TO_BUILD_PER_COURSE = 2;
+    private static final String SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT = 'Virtual Support';
+    private static final String COURSE_DELIVERY_METHOD_PHYSICAL = 'Physical';
+    private static final String COURSE_DELIVERY_METHOD_HYBRID = 'Hybrid';
+    private static final String VIRTUAL_VENUE = 'Virtual';
 
     @TestSetup
     private static void setupTestDataForTestingSorting() {
@@ -17,6 +20,7 @@ private class CourseSearchUtilityTest {
                                 .buildPractitionerFeeRate()
                                 .buildVenue()
                                 .buildRoom()
+                                .buildVirtualVenue('Virtual')
                                 .buildLicenceToPractice()
                                 .buildCoursesWithSessions(COURSES_TO_BUILD, SESSIONS_TO_BUILD_PER_COURSE)
                                 .buildVirtualSupportSession(SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT, 1);
@@ -475,6 +479,60 @@ private class CourseSearchUtilityTest {
         CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(response.responseBody.toString(), CourseFinderModel.class );
         
         System.assertEquals(model.Online, true);
+    }
+
+    @isTest
+    static void courseSearchById_WithPhysicalSessions_FinderCourseDeliveryMethodPhysical() {
+
+        Course__c course = [
+            SELECT Name
+            FROM Course__c
+            LIMIT 1
+        ];
+
+        Test.startTest();
+        RestResponse response = new RestResponse();
+        response = CourseSearchUtility.getCourseById(course.Name);
+        Test.stopTest();
+        CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(response.responseBody.toString(), CourseFinderModel.class );
+        
+        System.assertEquals(model.DeliveryMethod, COURSE_DELIVERY_METHOD_PHYSICAL);
+    }
+
+    @isTest
+    static void courseSearchById_WithOnlineSession_FinderCourseDeliveryMethodHybrid() {
+
+        Venue__c virtualVenue = [
+            SELECT Id 
+            FROM Venue__c 
+            WHERE RecordTypeId = :Schema.SObjectType.Venue__c.getRecordTypeInfosByDeveloperName().get(VIRTUAL_VENUE).getRecordTypeId() 
+            LIMIT 1
+        ];
+
+        Session__c session = [
+            SELECT Id 
+            FROM Session__c 
+            WHERE Delivery_Type__c <> :SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT 
+            LIMIT 1
+        ];
+        session.Delivery_Type__c = 'Online';
+        session.Venue__c = virtualVenue.Id;
+        session.Room__c= null;
+        update session;
+
+        Course__c course = [
+            SELECT Name
+            FROM Course__c
+            LIMIT 1
+        ];
+
+        Test.startTest();
+        RestResponse response = new RestResponse();
+        response = CourseSearchUtility.getCourseById(course.Name);
+        Test.stopTest();
+        CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(response.responseBody.toString(), CourseFinderModel.class );
+        
+        System.assertEquals(model.DeliveryMethod, COURSE_DELIVERY_METHOD_HYBRID);
     }
 
     private class ChangerCourse {
