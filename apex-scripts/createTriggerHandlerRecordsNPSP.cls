@@ -94,10 +94,10 @@ private String getValidActionString(List<String> actionList) {
 }
 
 for (npsp__Trigger_Handler__c triggerRecord : triggerHandlerList) {
-    triggerRecord.Unique_Class_Name__c = triggerRecord.npsp__Class__c;
+    triggerRecord.Name = triggerRecord.npsp__Class__c;
 }
 
-upsert triggerHandlerList Unique_Class_Name__c;
+upsert triggerHandlerList Name;
 
 
 
