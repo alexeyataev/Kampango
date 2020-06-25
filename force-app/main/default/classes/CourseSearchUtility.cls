@@ -17,7 +17,7 @@ public without sharing class CourseSearchUtility {
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                         WHERE Status__c = :SESSION_STATUS_CONFIRMED
@@ -44,7 +44,7 @@ public without sharing class CourseSearchUtility {
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                         WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
@@ -88,7 +88,7 @@ public without sharing class CourseSearchUtility {
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                         WHERE Status__c = :SESSION_STATUS_CONFIRMED
@@ -115,7 +115,7 @@ public without sharing class CourseSearchUtility {
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                         WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
@@ -173,7 +173,7 @@ public without sharing class CourseSearchUtility {
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                         WHERE Status__c = :SESSION_STATUS_CONFIRMED
@@ -208,7 +208,7 @@ public without sharing class CourseSearchUtility {
                     Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
                     Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
                     (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Start__c, End__c, Type__c,
+                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
                             Specific_Attendee_Type__c, Additional_Information_with_Venue__c
                         FROM Sessions__r
                         WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
