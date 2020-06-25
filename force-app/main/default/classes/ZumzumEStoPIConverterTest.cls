@@ -1,6 +1,7 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
 @isTest
 public without sharing class ZumzumEStoPIConverterTest {
+    private static final String PROFILE_NAME = 'Finance';
     private static final Integer EXPENSE_SHEET_DETAIL_TOTAL_GROSS = 12;
     private static final String SUPPLIER_ACCOUNT_NUMBER = '123456';
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
@@ -12,6 +13,7 @@ public without sharing class ZumzumEStoPIConverterTest {
         'loadOrder' => '1',
         'isAsynchronous' => 'false'
     };
+
     @testSetup
     static void createTestData() {
         TestDataFactory.getInstance()
@@ -24,6 +26,7 @@ public without sharing class ZumzumEStoPIConverterTest {
             .buildRoom()
             .buildLicenceToPractice()
             .buildCoursesWithSessions(1, 1);
+            
         TestFinanceDataFactory financeDataFactory = TestFinanceDataFactory.getInstance();
         financeDataFactory.createZumzumData();
         Account supplierAccount = [SELECT Id FROM Account WHERE RecordType.Name = 'Organization' LIMIT 1];
@@ -33,42 +36,55 @@ public without sharing class ZumzumEStoPIConverterTest {
 
     @isTest 
     static void ConvertEStoPI_ConvertedES_CreatedPI() {
-        User financeUser = [SELECT Id FROM User WHERE Profile.Name = 'Finance' AND IsActive = true LIMIT 1];
+
+        User financeUser = TestDataFactory.getActiveTestUserByProfileName(PROFILE_NAME);
+
         Test.startTest();
-        System.runAs(financeUser) {
-            Set<Id> expenseSheetIds = new Set<Id>();
-            List<Zumzum__Expense_Sheet__c> expenseSheetList = [SELECT Id FROM Zumzum__Expense_Sheet__c];
-            for(Zumzum__Expense_Sheet__c expenseSheet : expenseSheetList) {
-                expenseSheetIds.add(expenseSheet.Id);
-                expenseSheet.Approval_Status__c = 'Approved';
+            System.runAs(financeUser) {
+                Set<Id> expenseSheetIds = new Set<Id>();
+                List<Zumzum__Expense_Sheet__c> expenseSheetList = [SELECT Id FROM Zumzum__Expense_Sheet__c];
+                
+                for(Zumzum__Expense_Sheet__c expenseSheet : expenseSheetList) {
+                    expenseSheetIds.add(expenseSheet.Id);
+                    expenseSheet.Approval_Status__c = 'Approved';
+                }
+
+                ConvertEStoPIHandler.expenseSheetToPurchaseInvoiceConverter = new ZumzumEStoPIConverterMock();
+                update expenseSheetList;
+
+                List<Id> expenseSheetIdsList = new List<Id>();
+                expenseSheetIdsList.addAll(expenseSheetIds);
+                Zumzum__Purchase_Invoice__c purchaseInvoice = [SELECT Id, Zumzum__Total_Gross__c FROM Zumzum__Purchase_Invoice__c WHERE Zumzum__Expense_Sheet__c =: expenseSheetIdsList[0]];
+
+                System.assertEquals(purchaseInvoice.Zumzum__Total_Gross__c, EXPENSE_SHEET_DETAIL_TOTAL_GROSS);
             }
-            ConvertEStoPIHandler.expenseSheetToPurchaseInvoiceConverter = new ZumzumEStoPIConverterMock();
-            update expenseSheetList;
-            List<Id> expenseSheetIdsList = new List<Id>();
-            expenseSheetIdsList.addAll(expenseSheetIds);
-            Zumzum__Purchase_Invoice__c purchaseInvoice = [SELECT Id, Zumzum__Total_Gross__c FROM Zumzum__Purchase_Invoice__c WHERE Zumzum__Expense_Sheet__c =: expenseSheetIdsList[0]];
-            System.assertEquals(purchaseInvoice.Zumzum__Total_Gross__c, EXPENSE_SHEET_DETAIL_TOTAL_GROSS);
-        }
         Test.stopTest();
     }
-    @isTest 
+
+    @isTest
     static void ConvertNotEStoPI_ConvertedES_CreatedPI() {
-        User financeUser = [SELECT Id FROM User WHERE Profile.Name = 'Finance' AND IsActive = true LIMIT 1];
+
+        User financeUser = TestDataFactory.getActiveTestUserByProfileName(PROFILE_NAME);
+
         Test.startTest();
-        System.runAs(financeUser) {
-            Set<Id> expenseSheetIds = new Set<Id>();
-            List<Zumzum__Expense_Sheet__c> expenseSheetList = [SELECT Id FROM Zumzum__Expense_Sheet__c];
-            for(Zumzum__Expense_Sheet__c expenseSheet : expenseSheetList) {
-                expenseSheetIds.add(expenseSheet.Id);
-                expenseSheet.Approval_Status__c = 'Rejected';
+            System.runAs(financeUser) {
+                Set<Id> expenseSheetIds = new Set<Id>();
+                List<Zumzum__Expense_Sheet__c> expenseSheetList = [SELECT Id FROM Zumzum__Expense_Sheet__c];
+
+                for(Zumzum__Expense_Sheet__c expenseSheet : expenseSheetList) {
+                    expenseSheetIds.add(expenseSheet.Id);
+                    expenseSheet.Approval_Status__c = 'Rejected';
+                }
+
+                ConvertEStoPIHandler.expenseSheetToPurchaseInvoiceConverter = new ZumzumEStoPIConverterMock();
+                update expenseSheetList;
+
+                List<Id> expenseSheetIdsList = new List<Id>();
+                expenseSheetIdsList.addAll(expenseSheetIds);
+                List<Zumzum__Purchase_Invoice__c> purchaseInvoiceList = [SELECT Id, Zumzum__Total_Gross__c FROM Zumzum__Purchase_Invoice__c WHERE Zumzum__Expense_Sheet__c =: expenseSheetIdsList[0]];
+
+                System.assert(purchaseInvoiceList.isEmpty());
             }
-            ConvertEStoPIHandler.expenseSheetToPurchaseInvoiceConverter = new ZumzumEStoPIConverterMock();
-            update expenseSheetList;
-            List<Id> expenseSheetIdsList = new List<Id>();
-            expenseSheetIdsList.addAll(expenseSheetIds);
-            List<Zumzum__Purchase_Invoice__c> purchaseInvoiceList = [SELECT Id, Zumzum__Total_Gross__c FROM Zumzum__Purchase_Invoice__c WHERE Zumzum__Expense_Sheet__c =: expenseSheetIdsList[0]];
-            System.assert(purchaseInvoiceList.isEmpty());
-        }
         Test.stopTest();
     }
 }

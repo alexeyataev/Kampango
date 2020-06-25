@@ -1,7 +1,10 @@
 @isTest
 public class ReunionEmailsSendTest {
 
+    private static final String BOOKING_STATUS_CONFIRMED = 'Confirmed';
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
+    private static final String SESSION_CONFIRMED_STATUS = 'Confirmed';
+    private static final String SESSION_REUNION_TYPE = 'Reunion';
     private static final String PROFILE_NAME = 'PSA Manager';
     private static final String PERMISSION_SET_NAME = 'Override_Booking_Validation';
     private static final String PRACTITIONER_LAST_NAME = 'John';
@@ -47,13 +50,16 @@ public class ReunionEmailsSendTest {
             .withEmail(PARTICIPANT_PRIMARY_EMAIL)
             .withLastName(PARTICIPANT_PRIMARY_LAST_NAME)
             .build();
+
         Contact participantPartner = primaryContactBuilder
             .withRecordType(CLIENT_RECORDTYPE_NAME)
             .withEmail(PARTICIPANT_PARTNER_EMAIL)
             .withLastName(PARTICIPANT_PARTNER_LAST_NAME)
             .build();
+
         Database.DMLOptions dmlOption = new Database.DMLOptions();
-        dmlOption.DuplicateRuleHeader.AllowSave =  true;
+        dmlOption.DuplicateRuleHeader.AllowSave = true;
+
         Database.insert(
             new List<Contact> {participantPrimary, participantPartner}, 
             dmlOption
@@ -84,35 +90,31 @@ public class ReunionEmailsSendTest {
         Licence_To_Practice__c license = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         List<Booking__c> bookings = [SELECT Id FROM Booking__c];
-        User user = [
-            SELECT Id 
-            FROM User
-            WHERE Profile.Name = :PROFILE_NAME
-            LIMIT 1
-        ];
-        Test.startTest();
         
-        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
-            for (Booking__c b : bookings) {
-                b.Status__c = 'Confirmed';
-            }
-            update bookings;
-            
-            Session__c reunion = sessionBuilder
-                .withCourse(course)
-                .withType('Reunion')
-                .withParentHost(parentHost)
-                .withStatus(SESSION_PROVISIONAL_STATUS)
-                .withPractitioner(practitioner)
-                .withPractitionerLicence(license)
-                .insertRecord(true)
-                .build();
-            reunion.Status__c = 'Confirmed';
-            update reunion;
-        }
-        Integer invocations = Limits.getEmailInvocations();
+        User user = TestDataFactory.getActiveTestUserByProfileName(PROFILE_NAME);
 
+        Test.startTest();
+            System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
+                for (Booking__c b : bookings) {
+                    b.Status__c = BOOKING_STATUS_CONFIRMED;
+                }
+                update bookings;
+                
+                Session__c reunion = sessionBuilder
+                    .withCourse(course)
+                    .withType(SESSION_REUNION_TYPE)
+                    .withParentHost(parentHost)
+                    .withStatus(SESSION_PROVISIONAL_STATUS)
+                    .withPractitioner(practitioner)
+                    .withPractitionerLicence(license)
+                    .insertRecord(true)
+                    .build();
+                reunion.Status__c = SESSION_CONFIRMED_STATUS;
+                update reunion;
+            }
+            Integer invocations = Limits.getEmailInvocations();
         Test.stopTest();
+
         if (TestEmailUtility.emailsFeatureEnabled()) {
             System.assertEquals(5, invocations, 'Emails should go to: a practitioner, a host with partner, a participant with partner');
         }
@@ -126,33 +128,29 @@ public class ReunionEmailsSendTest {
         Licence_To_Practice__c license = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         Booking__c booking = [SELECT Id FROM Booking__c LIMIT 1];
-        User user = [
-            SELECT Id 
-            FROM User
-            WHERE Profile.Name = :PROFILE_NAME
-            LIMIT 1
-        ];
+
+        User user = TestDataFactory.getActiveTestUserByProfileName(PROFILE_NAME);
+
         Test.startTest();
-
-        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
-            booking.Status__c = 'Confirmed';
-            update booking;
-            
-            Session__c reunion = sessionBuilder
-                .withCourse(course)
-                .withType('Reunion')
-                .withVenue(publicVenue)
-                .withStatus(SESSION_PROVISIONAL_STATUS)
-                .withPractitioner(practitioner)
-                .withPractitionerLicence(license)
-                .insertRecord(true)
-                .build();
-            reunion.Status__c = 'Confirmed';
-            update reunion;
-        }
-        Integer invocations = Limits.getEmailInvocations();
-
+            System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
+                booking.Status__c = BOOKING_STATUS_CONFIRMED;
+                update booking;
+                
+                Session__c reunion = sessionBuilder
+                    .withCourse(course)
+                    .withType(SESSION_REUNION_TYPE)
+                    .withVenue(publicVenue)
+                    .withStatus(SESSION_PROVISIONAL_STATUS)
+                    .withPractitioner(practitioner)
+                    .withPractitionerLicence(license)
+                    .insertRecord(true)
+                    .build();
+                reunion.Status__c = SESSION_CONFIRMED_STATUS;
+                update reunion;
+            }
+            Integer invocations = Limits.getEmailInvocations();
         Test.stopTest();
+
         if (TestEmailUtility.emailsFeatureEnabled()) {
             System.assertEquals(3, invocations, 'Emails should go to: a practitioner, a participant with partner');
         }
@@ -165,32 +163,28 @@ public class ReunionEmailsSendTest {
         Licence_To_Practice__c license = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         Booking__c booking = [SELECT Id FROM Booking__c LIMIT 1];
-        User user = [
-            SELECT Id 
-            FROM User
-            WHERE Profile.Name = :PROFILE_NAME
-            LIMIT 1
-        ];
+
+        User user = TestDataFactory.getActiveTestUserByProfileName(PROFILE_NAME);
+
         Test.startTest();
-
-        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
-            booking.Status__c = 'Confirmed';
-            update booking;
-            
-            Session__c reunion = sessionBuilder
-                .withCourse(course)
-                .withType('Reunion')
-                .withStatus(SESSION_PROVISIONAL_STATUS)
-                .withPractitioner(practitioner)
-                .withPractitionerLicence(license)
-                .insertRecord(true)
-                .build();
-            reunion.Status__c = 'Confirmed';
-            update reunion;
-        }
-        Integer invocations = Limits.getEmailInvocations();
-
+            System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
+                booking.Status__c = BOOKING_STATUS_CONFIRMED;
+                update booking;
+                
+                Session__c reunion = sessionBuilder
+                    .withCourse(course)
+                    .withType(SESSION_REUNION_TYPE)
+                    .withStatus(SESSION_PROVISIONAL_STATUS)
+                    .withPractitioner(practitioner)
+                    .withPractitionerLicence(license)
+                    .insertRecord(true)
+                    .build();
+                reunion.Status__c = SESSION_CONFIRMED_STATUS;
+                update reunion;
+            }
+            Integer invocations = Limits.getEmailInvocations();
         Test.stopTest();
+
         if (TestEmailUtility.emailsFeatureEnabled()) {
             System.assertEquals(3, invocations, 'Emails should go to: a practitioner, a participant with partner');
         }
@@ -204,30 +198,26 @@ public class ReunionEmailsSendTest {
         Licence_To_Practice__c license = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         Booking__c booking = [SELECT Id FROM Booking__c LIMIT 1];
-        User user = [
-            SELECT Id 
-            FROM User
-            WHERE Profile.Name = :PROFILE_NAME
-            LIMIT 1
-        ];
+
+        User user = TestDataFactory.getActiveTestUserByProfileName(PROFILE_NAME);
+
         Test.startTest();
-
-        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
-            Session__c reunion = sessionBuilder
-                .withCourse(course)
-                .withType('Reunion')
-                .withVenue(publicVenue)
-                .withStatus(SESSION_PROVISIONAL_STATUS)
-                .withPractitioner(practitioner)
-                .withPractitionerLicence(license)
-                .insertRecord(true)
-                .build();
-            reunion.Status__c = 'Confirmed';
-            update reunion;
-        }
-        Integer invocations = Limits.getEmailInvocations();
-
+            System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
+                Session__c reunion = sessionBuilder
+                    .withCourse(course)
+                    .withType(SESSION_REUNION_TYPE)
+                    .withVenue(publicVenue)
+                    .withStatus(SESSION_PROVISIONAL_STATUS)
+                    .withPractitioner(practitioner)
+                    .withPractitionerLicence(license)
+                    .insertRecord(true)
+                    .build();
+                reunion.Status__c = SESSION_CONFIRMED_STATUS;
+                update reunion;
+            }
+            Integer invocations = Limits.getEmailInvocations();
         Test.stopTest();
+
         if (TestEmailUtility.emailsFeatureEnabled()) {
             System.assertEquals(0, invocations, 'No emails should be sent');
         }
@@ -241,38 +231,34 @@ public class ReunionEmailsSendTest {
         Licence_To_Practice__c license = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         Booking__c booking = [SELECT Id FROM Booking__c LIMIT 1];
-        User user = [
-            SELECT Id 
-            FROM User
-            WHERE Profile.Name = :PROFILE_NAME
-            LIMIT 1
-        ];
+
+        User user = TestDataFactory.getActiveTestUserByProfileName(PROFILE_NAME);
+
         Test.startTest();
+            System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
+                Account branchAcc = [SELECT Id FROM Account WHERE RecordType.Name = 'Branch' LIMIT 1];
+                branchAcc.Capacity_PSA_Email__c = null;
+                branchAcc.Enquiries_PSA_Email__c = null;
+                update branchAcc;
 
-        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
-            Account branchAcc = [SELECT Id FROM Account WHERE RecordType.Name = 'Branch' LIMIT 1];
-            branchAcc.Capacity_PSA_Email__c = null;
-            branchAcc.Enquiries_PSA_Email__c = null;
-            update branchAcc;
+                booking.Status__c = BOOKING_STATUS_CONFIRMED;
+                update booking;
 
-            booking.Status__c = 'Confirmed';
-            update booking;
-
-            Session__c reunion = sessionBuilder
-                .withCourse(course)
-                .withType('Reunion')
-                .withPractitioner(practitioner)
-                .withPractitionerLicence(license)
-                .withVenue(publicVenue)
-                .withStatus(SESSION_PROVISIONAL_STATUS)
-                .insertRecord(true)
-                .build();
-            reunion.Status__c = 'Confirmed';
-            update reunion;
-        }
-        Integer invocations = Limits.getEmailInvocations();
-
+                Session__c reunion = sessionBuilder
+                    .withCourse(course)
+                    .withType(SESSION_REUNION_TYPE)
+                    .withPractitioner(practitioner)
+                    .withPractitionerLicence(license)
+                    .withVenue(publicVenue)
+                    .withStatus(SESSION_PROVISIONAL_STATUS)
+                    .insertRecord(true)
+                    .build();
+                reunion.Status__c = SESSION_CONFIRMED_STATUS;
+                update reunion;
+            }
+            Integer invocations = Limits.getEmailInvocations();
         Test.stopTest();
+        
         if (TestEmailUtility.emailsFeatureEnabled()) {
             System.assertEquals(0, invocations, 'No emails should be sent');
         }
@@ -285,41 +271,35 @@ public class ReunionEmailsSendTest {
         Licence_To_Practice__c license = [SELECT Id FROM Licence_To_Practice__c LIMIT 1];
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         Booking__c booking = [SELECT Id FROM Booking__c LIMIT 1];
-        Contact notPrimaryContact = [
-            SELECT Id FROM Contact WHERE LastName = :PARTNER_HOST_LAST_NAME
-        ];
-        User user = [
-            SELECT Id 
-            FROM User
-            WHERE Profile.Name = :PROFILE_NAME
-            LIMIT 1
-        ];
+        Contact notPrimaryContact = [ SELECT Id FROM Contact WHERE LastName = :PARTNER_HOST_LAST_NAME];
+
+        User user = TestDataFactory.getActiveTestUserByProfileName(PROFILE_NAME);
+
         Test.startTest();
+            System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
+                Account branchAcc = [SELECT Id FROM Account WHERE RecordType.Name = 'Branch' LIMIT 1];
+                branchAcc.Capacity_PSA_Email__c = null;
+                branchAcc.Enquiries_PSA_Email__c = null;
+                update branchAcc;
 
-        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
-            Account branchAcc = [SELECT Id FROM Account WHERE RecordType.Name = 'Branch' LIMIT 1];
-            branchAcc.Capacity_PSA_Email__c = null;
-            branchAcc.Enquiries_PSA_Email__c = null;
-            update branchAcc;
+                booking.Status__c = BOOKING_STATUS_CONFIRMED;
+                update booking;
 
-            booking.Status__c = 'Confirmed';
-            update booking;
-
-            Session__c reunion = sessionBuilder
-                .withCourse(course)
-                .withType('Reunion')
-                .withPractitioner(practitioner)
-                .withPractitionerLicence(license)
-                .withParentHost(notPrimaryContact)
-                .withStatus(SESSION_PROVISIONAL_STATUS)
-                .insertRecord(true)
-                .build();
-            reunion.Status__c = 'Confirmed';
-            update reunion;
-        }
-        Integer invocations = Limits.getEmailInvocations();
-
+                Session__c reunion = sessionBuilder
+                    .withCourse(course)
+                    .withType(SESSION_REUNION_TYPE)
+                    .withPractitioner(practitioner)
+                    .withPractitionerLicence(license)
+                    .withParentHost(notPrimaryContact)
+                    .withStatus(SESSION_PROVISIONAL_STATUS)
+                    .insertRecord(true)
+                    .build();
+                reunion.Status__c = SESSION_CONFIRMED_STATUS;
+                update reunion;
+            }
+            Integer invocations = Limits.getEmailInvocations();
         Test.stopTest();
+
         if (TestEmailUtility.emailsFeatureEnabled()) {
             System.assertEquals(0, invocations, 'No emails should be sent');
         }
