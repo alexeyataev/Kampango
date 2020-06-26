@@ -76,7 +76,6 @@
         <members>Booking__c.Partner_Membership__c</members>
         <members>Booking__c.Phone_Partner__c</members>
         <members>Booking__c.Preferred_Payment_Date__c</members>
-        <members>Booking__c.Total_Open_Bookings__c</members>
         <members>Contact.Account_Key__c</members>
         <members>Contact.Branch_Key__c</members>
         <members>Contact.Contact_Key__c</members>
@@ -90,7 +89,6 @@
         <members>Contact.Mailing_Street__c</members>
         <members>Contact.Phone_1__c</members>
         <members>Contact.Phone_2__c</members>
-        <members>Contact.Total_Open_Bookings__c</members>
         <members>Course__c.Additional_Course_Finder_Information__c</members>
         <members>Course__c.Antenatal_Sessions__c</members>
         <members>Course__c.Available_Places__c</members>
