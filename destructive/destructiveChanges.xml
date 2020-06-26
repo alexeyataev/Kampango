@@ -332,6 +332,10 @@
     </types>
     <types>
         <members>Practitioners/Registration_Fee_History</members>
+        <members>Operations_Reports/Monthly_Enquiries_By_Course_Type</members>
+        <members>Operations_Reports/Weekly_Bookings</members>
+        <members>Operations_Reports/Weekly_Enquiries</members>
+        <members>Operations_Reports/Monthly_Bookings_By_Course_Type</members>
         <name>Report</name>
     </types>
     <types>
