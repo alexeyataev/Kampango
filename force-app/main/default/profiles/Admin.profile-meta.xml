@@ -1059,6 +1059,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Individual.Has_Opted_In_Telephone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Individual.Legacy_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
