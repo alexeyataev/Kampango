@@ -117,22 +117,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Email__c</field>
+        <field>Booking__c.Has_Opted_In_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Post__c</field>
+        <field>Booking__c.Has_Opted_In_Post__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.SMS__c</field>
+        <field>Booking__c.Has_Opted_In_SMS__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Telephone__c</field>
+        <field>Booking__c.Has_Opted_In_Telephone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
