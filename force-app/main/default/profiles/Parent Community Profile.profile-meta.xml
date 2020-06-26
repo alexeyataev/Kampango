@@ -1174,13 +1174,13 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Total_Contact_Hours__c</field>
-        <readable>false</readable>
+        <field>Course__c.Total_Confirmed_Scheduled_Session_Hours__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Total_Online_Session_Hours__c</field>
-        <readable>true</readable>
+        <field>Course__c.Total_Contact_Hours__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
