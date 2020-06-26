@@ -272,6 +272,7 @@
         <members>dlrs__LookupRollupSummary2.ExpenseNumberOfInvoices</members>
         <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.TotalActualCourseIncome</members>
+        <members>dlrs__LookupRollupSummary2.TotalOpenBookings</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseOtherCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseTravelCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseVenueCosts</members>
