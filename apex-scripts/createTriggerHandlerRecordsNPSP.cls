@@ -7,9 +7,9 @@ final String AfterUpdate = 'AfterUpdate';
 final String AfterDelete = 'AfterDelete';
 final String AfterUndelete = 'AfterUndelete';
 
-Map<String, npsp__Trigger_Handler__c> triggerHandlerMap = new Map<String, npsp__Trigger_Handler__c>();
+Map<String, npsp__Trigger_Handler__c> requiredTriggerHandlersMap = new Map<String, npsp__Trigger_Handler__c>();
 
-triggerHandlerMap.put (
+requiredTriggerHandlersMap.put (
         'EXPENSESHEET_ConvertEStoPI_TDTM',
         new npsp__Trigger_Handler__c (
             npsp__Object__c = 'Zumzum__Expense_Sheet__c',
@@ -19,7 +19,7 @@ triggerHandlerMap.put (
         )
 );
 
-triggerHandlerMap.put (
+requiredTriggerHandlersMap.put (
     'SESSION_RevertCourseToDraft_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Session__c',
@@ -29,7 +29,7 @@ triggerHandlerMap.put (
     )
 );
 
-triggerHandlerMap.put (
+requiredTriggerHandlersMap.put (
     'SESSION_InvalidateCAs_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Session__c',
@@ -39,7 +39,7 @@ triggerHandlerMap.put (
     )
 );
 
-triggerHandlerMap.put (
+requiredTriggerHandlersMap.put (
     'SESSION_RevertToProvisional_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Session__c',
@@ -49,7 +49,7 @@ triggerHandlerMap.put (
     )
 );
 
-triggerHandlerMap.put (
+requiredTriggerHandlersMap.put (
     'SESSION_TrackDeletedRecord_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Session__c',
@@ -59,7 +59,7 @@ triggerHandlerMap.put (
     )
 );
 
-triggerHandlerMap.put (
+requiredTriggerHandlersMap.put (
     'Task_PreventDeletion_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Task',
@@ -69,7 +69,7 @@ triggerHandlerMap.put (
     )
 );
 
-triggerHandlerMap.put (
+requiredTriggerHandlersMap.put (
     'ChatterPost_PreventDeletion_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'FeedItem',
@@ -79,7 +79,7 @@ triggerHandlerMap.put (
     )
 );
 
-triggerHandlerMap.put (
+requiredTriggerHandlersMap.put (
     'BOOKING_EncryptValidationCode_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Booking__c',
@@ -89,27 +89,27 @@ triggerHandlerMap.put (
     )
 );
 
-List<npsp__Trigger_Handler__c> triggerHandlerList = [
+List<npsp__Trigger_Handler__c> existingTriggerHandlers = [
     SELECT npsp__Class__c
     FROM npsp__Trigger_Handler__c
-    WHERE npsp__Class__c IN :triggerHandlerMap.keySet()
+    WHERE npsp__Class__c IN :requiredTriggerHandlersMap.keySet()
 ];
 
-Set<String> uniqTriggerClassNameSet = new Set<String>();
-for (npsp__Trigger_Handler__c triggerRecord :triggerHandlerList) {
-    uniqTriggerClassNameSet.add(triggerRecord.npsp__Class__c);
+Set<String> existingTriggerHandlerClassNames = new Set<String>();
+for (npsp__Trigger_Handler__c triggerRecord :existingTriggerHandlers) {
+    existingTriggerHandlerClassNames.add(triggerRecord.npsp__Class__c);
 }
 
-List<npsp__Trigger_Handler__c> newTriggerHandlerRecordsList = new List<npsp__Trigger_Handler__c>();
- for (String triggerName : triggerHandlerMap.keySet()) {
+List<npsp__Trigger_Handler__c> triggerHandlersToInsert = new List<npsp__Trigger_Handler__c>();
+ for (String triggerName : requiredTriggerHandlersMap.keySet()) {
 
-     if (!uniqTriggerClassNameSet.contains(triggerName)) {
-        npsp__Trigger_Handler__c triggerHandlerRecord = triggerHandlerMap.get(triggerName);
+     if (!existingTriggerHandlerClassNames.contains(triggerName)) {
+        npsp__Trigger_Handler__c triggerHandlerRecord = requiredTriggerHandlersMap.get(triggerName);
 
         triggerHandlerRecord.npsp__Class__c = triggerName;
         triggerHandlerRecord.Name = triggerName;
 
-        newTriggerHandlerRecordsList.add(triggerHandlerRecord);
+        triggerHandlersToInsert.add(triggerHandlerRecord);
      }
 }
 
@@ -117,4 +117,4 @@ private String getValidActionString(List<String> actionList) {
     return String.join(actionList, ';');
 }
 
-insert newTriggerHandlerRecordsList;
+insert triggerHandlersToInsert;
