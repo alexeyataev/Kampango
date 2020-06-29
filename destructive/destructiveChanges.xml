@@ -113,6 +113,7 @@
         <members>Course__c.PSA_Branch__c</members>
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
+        <members>Course__c.Summary__c</members>
         <members>Course__c.Total_Online_Session_Hours__c</members>
         <members>Course__c.Venue__c</members>
         <members>cpm__Installment__c.Account_Key__c</members>
