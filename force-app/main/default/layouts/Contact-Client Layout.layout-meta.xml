@@ -243,11 +243,11 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Status__c</fields>
-        <fields>Course__c.NAME</fields>
-        <fields>Course__c.Start_Date__c</fields>
-        <fields>Course__c.End_Date__c</fields>
-        <fields>Course__c.Type__c</fields>
-        <fields>Course__c.Sub_Type__c</fields>
+        <fields>Course__c</fields>
+        <fields>Course_Start_Date__c</fields>
+        <fields>Course_End_Date__c</fields>
+        <fields>Course_Type__c</fields>
+        <fields>Course_Sub_Type__c</fields>
         <relatedList>Booking__c.Primary_Contact__c</relatedList>
         <sortField>NAME</sortField>
         <sortOrder>Desc</sortOrder>
