@@ -29,3 +29,4 @@ $RECYCLE.BIN/
 
 #NCT Specific
 .vscode/
+*.bak
