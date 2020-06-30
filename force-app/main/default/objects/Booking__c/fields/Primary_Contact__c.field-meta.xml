@@ -15,7 +15,7 @@
     </lookupFilter>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Bookings</relationshipLabel>
-    <relationshipName>Bookings</relationshipName>
+    <relationshipName>BookingToPrimaryContact</relationshipName>
     <required>true</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
