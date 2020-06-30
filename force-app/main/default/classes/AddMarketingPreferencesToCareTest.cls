@@ -25,9 +25,9 @@ public with sharing class AddMarketingPreferencesToCareTest {
     @isTest
     static void AddMarketingPreferences_MarketingPreferencesAdded_DocumentReturned() {
 
-        List<Individual> individualInstance = [SELECT SMS__c, Telephone__c, Post__c, Email__c FROM Individual LIMIT 1];
-        individualInstance[0].SMS__c = true;
-        individualInstance[0].Post__c = true;
+        List<Individual> individualInstance = [SELECT Has_Opted_In_SMS__c, Has_Opted_In_Telephone__c, Has_Opted_In_Post__c, Has_Opted_In_Email__c FROM Individual LIMIT 1];
+        individualInstance[0].Has_Opted_In_SMS__c = true;
+        individualInstance[0].Has_Opted_In_Post__c = true;
         update individualInstance;
 
         Test.startTest();
@@ -40,7 +40,7 @@ public with sharing class AddMarketingPreferencesToCareTest {
             Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(marketingPreferencesObject));
             AddMarketingPreferencesToCare.Params paramsInstance = new AddMarketingPreferencesToCare.Params();
             paramsInstance.contactId = [SELECT Id FROM Contact LIMIT 1].Id;
-            AddMarketingPreferencesToCare.addMarketingPreferences(new List<AddMarketingPreferencesToCare.Params>{ paramsInstance });
+            AddMarketingPreferencesToCare.addMarketingPreferencesAction(new List<AddMarketingPreferencesToCare.Params>{ paramsInstance });
 
             System.assertEquals(individualInstance.size(), 1, 'Should be returned 1 Individual record');
         Test.stopTest();
