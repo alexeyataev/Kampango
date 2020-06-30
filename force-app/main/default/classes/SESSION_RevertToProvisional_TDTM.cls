@@ -28,7 +28,8 @@ global with sharing class SESSION_RevertToProvisional_TDTM extends npsp.TDTM_Run
                             session.End__c != oldSessionMap.get(session.Id).End__c ||
                             session.Lunch_Break_Minutes__c != oldSessionMap.get(session.Id).Lunch_Break_Minutes__c ||
                             session.Delivery_Type__c != oldSessionMap.get(session.Id).Delivery_Type__c ||
-                            (session.Venue__c != oldSessionMap.get(session.Id).Venue__c &&
+                            ((session.Venue__c != oldSessionMap.get(session.Id).Venue__c ||
+                                    session.Parent_Host__c != oldSessionMap.get(session.Id).Parent_Host__c) &&
                                     (session.Delivery_Type__c == SESSION_DELIVERY_TYPE_PHYSICAL ||
                                             session.Type__c == SESSION_TYPE_REUNION)))) {
                 session.Status__c = SESSION_STATUS_PROVISIONAL;
