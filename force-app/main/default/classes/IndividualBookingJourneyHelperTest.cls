@@ -14,22 +14,22 @@ public class IndividualBookingJourneyHelperTest {
     @IsTest
     static void updateIndividual_validIndividual_recordUpdated(){
         List<Individual> record = [
-            SELECT Id, Email__c, Post__c,
-                SMS__c, Telephone__c
+            SELECT Id, Has_Opted_In_Email__c, Has_Opted_In_Post__c,
+            Has_Opted_In_SMS__c, Has_Opted_In_Telephone__c
             FROM Individual
             LIMIT 1
         ];
-        record[0].Email__c = false;
-        record[0].Post__c = false;
-        record[0].SMS__c = false;
-        record[0].Telephone__c = false;
+        record[0].Has_Opted_In_Email__c = false;
+        record[0].Has_Opted_In_Post__c = false;
+        record[0].Has_Opted_In_SMS__c = false;
+        record[0].Has_Opted_In_Telephone__c = false;
         Test.startTest();
         record = IndividualBookingJourneyHelper.updateIndividual(record);
         Test.stopTest();
-        System.assertEquals(false, record[0].Email__c);
-        System.assertEquals(false, record[0].Post__c);
-        System.assertEquals(false, record[0].SMS__c);
-        System.assertEquals(false, record[0].Telephone__c);
+        System.assertEquals(false, record[0].Has_Opted_In_Email__c);
+        System.assertEquals(false, record[0].Has_Opted_In_Post__c);
+        System.assertEquals(false, record[0].Has_Opted_In_SMS__c);
+        System.assertEquals(false, record[0].Has_Opted_In_Telephone__c);
     }
 
     @IsTest

@@ -43,10 +43,10 @@ export default class MarketingPreferencesComponent extends LightningElement {
             if (data) {
                 if (this.email === undefined && this.sms === undefined
                     && this.post === undefined && this.phone === undefined) {
-                    this.email = data.Email__c;
-                    this.sms = data.SMS__c;
-                    this.post = data.Post__c;
-                    this.phone = data.Telephone__c;
+                    this.email = data.Has_Opted_In_Email__c;
+                    this.sms = data.Has_Opted_In_SMS__c;
+                    this.post = data.Has_Opted_In_Post__c;
+                    this.phone = data.Has_Opted_In_Telephone__c;
                 }
 
                 if (this.email) {
