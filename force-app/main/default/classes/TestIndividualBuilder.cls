@@ -1,10 +1,10 @@
 @IsTest
 public class TestIndividualBuilder {
 
-    private Boolean emailOptOut = true;
-    private Boolean phoneOptOut = true;
-    private Boolean smsOptOut = true;
-    private Boolean postOptOut = true;
+    private Boolean emailOptIn = true;
+    private Boolean phoneOptIn = true;
+    private Boolean smsOptIn = true;
+    private Boolean postOptIn = true;
     private String lastName = 'LastName';
     private String firstName;
     private String salutation;
@@ -25,23 +25,23 @@ public class TestIndividualBuilder {
         return this;
     }
 
-    public TestIndividualBuilder withHasOptedOutEmail(Boolean emailOptOut){
-        this.emailOptOut = emailOptOut;
+    public TestIndividualBuilder withHasOptedInEmail(Boolean emailOptIn){
+        this.emailOptIn = emailOptIn;
         return this;
     }
 
-    public TestIndividualBuilder withHasOptedOutPost(Boolean postOptOut){
-        this.postOptOut = postOptOut;
+    public TestIndividualBuilder withHasOptedInPost(Boolean postOptIn){
+        this.postOptIn = postOptIn;
         return this;
     }
 
-    public TestIndividualBuilder withHasOptedOutSms(Boolean smsOptOut){
-        this.smsOptOut = smsOptOut;
+    public TestIndividualBuilder withHasOptedInSms(Boolean smsOptIn){
+        this.smsOptIn = smsOptIn;
         return this;
     }
 
-    public TestIndividualBuilder withHasOptedOutTelephone(Boolean phoneOptOut){
-        this.phoneOptOut = phoneOptOut;
+    public TestIndividualBuilder withHasOptedInTelephone(Boolean phoneOptIn){
+        this.phoneOptIn = phoneOptIn;
         return this;
     }
 
@@ -56,10 +56,10 @@ public class TestIndividualBuilder {
             LastName = this.lastName,
             FirstName = this.firstName,
             Salutation = this.salutation,
-            Has_Opted_In_Email__c = this.emailOptOut,
-            Has_Opted_In_Post__c = this.postOptOut,
-            Has_Opted_In_SMS__c = this.smsOptOut,
-            Has_Opted_In_Telephone__c = this.phoneOptOut
+            Has_Opted_In_Email__c = this.emailOptIn,
+            Has_Opted_In_Post__c = this.postOptIn,
+            Has_Opted_In_SMS__c = this.smsOptIn,
+            Has_Opted_In_Telephone__c = this.phoneOptIn
         );
         if(this.insertRecord){
             insert individual;
