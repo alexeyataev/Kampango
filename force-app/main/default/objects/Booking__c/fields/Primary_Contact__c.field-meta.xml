@@ -15,7 +15,7 @@
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Bookings</relationshipLabel>
     <relationshipName>BookingToPrimaryContact</relationshipName>
-    <relationshipOrder>1</relationshipOrder>
+    <relationshipOrder>0</relationshipOrder>
     <reparentableMasterDetail>true</reparentableMasterDetail>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
