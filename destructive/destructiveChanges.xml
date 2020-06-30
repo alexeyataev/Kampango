@@ -134,10 +134,14 @@
         <members>cpm__Payment__c.Mandate_Key__c</members>
         <members>cpm__Payment__c.Payment_Key__c</members>
         <members>cpm__Payment__c.Payment_Profile__c</members>
+        <members>Individual.Email__c</members>
         <members>Individual.Has_Opted_Out_Email__c</members>
         <members>Individual.Has_Opted_Out_Post__c</members>
         <members>Individual.Has_Opted_Out_SMS__c</members>
         <members>Individual.Has_Opted_Out_Telephone__c</members>
+        <members>Individual.Post__c</members>
+        <members>Individual.SMS__c</members>
+        <members>Individual.Telephone__c</members>
         <members>Licence_To_Practice__c.Practitioner_Name__c</members>
         <members>npe03__Recurring_Donation__c.Recurring_Donations_Key__c</members>
         <members>npe03__Recurring_Donation__c.Payment_profile_Key__c</members>
