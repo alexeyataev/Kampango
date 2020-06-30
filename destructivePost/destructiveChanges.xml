@@ -14,6 +14,7 @@
         <members>Course__c.Confirmed_Places_OLD__c</members>
         <members>Course__c.Enquiries_OLD__c</members>
         <members>Course__c.Reserved_Places_OLD__c</members>
+        <members>Course__c.Surplus_Defecit__c</members>
         <members>Course__c.Total_Online_Session_Hours__c</members>
         <name>CustomField</name>
     </types>
