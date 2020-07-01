@@ -502,11 +502,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>MailingState</field>
-            <table>Contact</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>MailingStreet</field>
             <table>Contact</table>
         </columns>
@@ -753,6 +748,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>npe01__Secondary_Address_Type__c</field>
+            <table>Contact</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>MailingState</field>
             <table>Contact</table>
         </columns>
         <columns>
@@ -1070,11 +1070,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Email__c</field>
-            <table>Contact.BookingToPrimaryContact__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Email_Partner__c</field>
             <table>Contact.BookingToPrimaryContact__r</table>
         </columns>
@@ -1116,6 +1111,26 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Gift_Aid_Declaration_Status__c</field>
+            <table>Contact.BookingToPrimaryContact__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Has_Opted_In_SMS__c</field>
+            <table>Contact.BookingToPrimaryContact__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Has_Opted_In_Email__c</field>
+            <table>Contact.BookingToPrimaryContact__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Has_Opted_In_Telephone__c</field>
+            <table>Contact.BookingToPrimaryContact__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Has_Opted_In_Post__c</field>
             <table>Contact.BookingToPrimaryContact__r</table>
         </columns>
         <columns>
@@ -1225,11 +1240,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Post__c</field>
-            <table>Contact.BookingToPrimaryContact__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Postcode__c</field>
             <table>Contact.BookingToPrimaryContact__r</table>
         </columns>
@@ -1265,11 +1275,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>SMS__c</field>
-            <table>Contact.BookingToPrimaryContact__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Status__c</field>
             <table>Contact.BookingToPrimaryContact__r</table>
         </columns>
@@ -1281,11 +1286,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Suggested_Cancellation_Fee__c</field>
-            <table>Contact.BookingToPrimaryContact__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Telephone__c</field>
             <table>Contact.BookingToPrimaryContact__r</table>
         </columns>
         <columns>
