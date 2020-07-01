@@ -242,7 +242,7 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('emailPreference', '1');
         CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         List<Contact> createdContact = [
-            SELECT Name, Email, Individual.Email__c
+            SELECT Name, Email, Individual.Has_Opted_In_Email__c
             FROM Contact 
             WHERE Email =: CONTACT_EMAIL
         ];
@@ -250,7 +250,7 @@ private class CourseCreateEnquiryUtilityTest {
             SELECT Name
             FROM Booking__c
         ];
-        System.assertEquals(true, createdContact[0].Individual.Email__c, 'Contact email preference should be marked as true according to test case');
+        System.assertEquals(true, createdContact[0].Individual.Has_Opted_In_Email__c, 'Contact email preference should be marked as true according to test case');
     }
 
     @isTest
@@ -279,7 +279,7 @@ private class CourseCreateEnquiryUtilityTest {
         
         Test.stopTest();
         List<Contact> partners = [
-            SELECT Name, Email, Individual.Email__c
+            SELECT Name, Email, Individual.Has_Opted_In_Email__c
             FROM Contact
             WHERE Email =: paramsMap.get('partner_email')
         ];
@@ -288,7 +288,7 @@ private class CourseCreateEnquiryUtilityTest {
             FROM Booking__c
             WHERE Partner_Contact__c != null
         ];
-        System.assertEquals(true, partners[0].Individual.Email__c);
+        System.assertEquals(true, partners[0].Individual.Has_Opted_In_Email__c);
     }
 
     @isTest
