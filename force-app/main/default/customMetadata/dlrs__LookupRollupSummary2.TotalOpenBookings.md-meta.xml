@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>dlrs__CalculationSharingMode__c</field>
-        <value xsi:type="xsd:string">User</value>
+        <value xsi:type="xsd:string">System</value>
     </values>
     <values>
         <field>dlrs__ChildObject__c</field>
