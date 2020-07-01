@@ -276,6 +276,7 @@
         <members>dlrs__LookupRollupSummary2.TotalCourseTravelCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseVenueCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalMatchedBatchReceiptReportItems</members>
+        <members>dlrs__LookupRollupSummary2.TotalOpenBookings</members>
         <name>CustomMetadata</name>
     </types>
     <types>
