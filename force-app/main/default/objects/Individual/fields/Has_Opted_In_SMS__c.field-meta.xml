@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Post__c</fullName>
+    <fullName>Has_Opted_In_SMS__c</fullName>
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
-    <label>Post</label>
+    <label>Has Opted In SMS</label>
     <trackHistory>true</trackHistory>
     <type>Checkbox</type>
 </CustomField>

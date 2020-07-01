@@ -31,7 +31,7 @@ public without sharing class BookingJourneyHelper {
         List<Individual> individuals = new List<Individual>();
         if(String.isNotBlank(individualId)){
             individuals = [
-                SELECT Email__c, Post__c, SMS__c, Telephone__c
+                SELECT Has_Opted_In_Email__c, Has_Opted_In_Post__c, Has_Opted_In_SMS__c, Has_Opted_In_Telephone__c
                 FROM Individual
                 WHERE Id = :individualId
                 WITH SECURITY_ENFORCED
