@@ -1769,6 +1769,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Legacy_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1784,17 +1789,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Zumzum__Purchase_Invoice_Line_Item__c.Legacy_Id__c</field>
-        <readable>true</readable>
-    </fieldPermissions>	
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Zumzum__Purchase_Invoice__c.Zumzum__Settlement_Due_Days__c</field>
+        <field>Zumzum__Purchase_Invoice__c.Legacy_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Zumzum__Purchase_Invoice__c.Legacy_Id__c</field>
+        <field>Zumzum__Purchase_Invoice__c.Zumzum__Settlement_Due_Days__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
