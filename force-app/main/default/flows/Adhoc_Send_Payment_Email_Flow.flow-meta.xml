@@ -276,7 +276,7 @@ Validation check for Booking, fixed Name formula</description>
     <formulas>
         <name>personName</name>
         <dataType>String</dataType>
-        <expression>IF(ISBLANK({!curBooking.Id}), &apos;&apos;, {!curBooking.First_Name__c} &amp; &apos; &apos; &amp; {!curBooking.Last_Name__c})</expression>
+        <expression>IF(ISBLANK({!curBooking.Id}), &#39;&#39;, {!curBooking.First_Name__c} &amp; &#39; &#39; &amp; {!curBooking.Last_Name__c})</expression>
     </formulas>
     <interviewLabel>Adhoc Send Payment Email Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Send Payment Email Flow</label>
