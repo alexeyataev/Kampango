@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>dlrs__CalculationSharingMode__c</field>
-        <value xsi:type="xsd:string">User</value>
+        <value xsi:type="xsd:string">System</value>
     </values>
     <values>
         <field>dlrs__ChildObject__c</field>
@@ -40,7 +40,7 @@
     </values>
     <values>
         <field>dlrs__FieldToAggregate__c</field>
-        <value xsi:type="xsd:string">Zumzum__Total_Gross__c</value>
+        <value xsi:type="xsd:string">Debit_Amount__c</value>
     </values>
     <values>
         <field>dlrs__FieldToOrderBy__c</field>
@@ -57,7 +57,7 @@ Zumzum__Nominal_Account__c</value>
     </values>
     <values>
         <field>dlrs__RelationshipCriteria__c</field>
-        <value xsi:type="xsd:string">Zumzum__Purchase_Invoice__r.Zumzum__Status__c = &#39;Posted&#39; AND Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c NOT IN (&#39;5150&#39;, &#39;5154&#39;, &#39;5155&#39;, &#39;5157&#39;)</value>
+        <value xsi:type="xsd:string">Zumzum__Purchase_Invoice__r.Zumzum__Status__c = &apos;Posted&apos; AND Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c NOT IN (&apos;5150&apos;, &apos;5154&apos;, &apos;5155&apos;, &apos;5157&apos;)</value>
     </values>
     <values>
         <field>dlrs__RelationshipField__c</field>

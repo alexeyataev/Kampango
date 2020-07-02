@@ -279,6 +279,7 @@
         <members>dlrs__LookupRollupSummary2.TotalCourseTravelCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseVenueCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalMatchedBatchReceiptReportItems</members>
+        <members>dlrs__LookupRollupSummary2.TotalOpenBookings</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -814,6 +815,8 @@
         <name>Report</name>
     </types>
     <types>
+        <members>Contacts_with_Bookings_and_Course</members>
+        <members>Courses_with_Booking_and_Contacts</members>
         <members>Ledger_Payment_History_with_PI_and_PC</members>
         <members>Sessions_with_Course_and_Course_Assignment</members>
         <members>Sessions_on_venues</members>
