@@ -35,7 +35,7 @@ public without sharing class ZumzumPurchaseInvoiceCreatorTest {
     }
 
     @isTest
-    public static void PurchaseInvoicePost_PassPIRecordWithStatusDraft_ReturnPIRecordWithSatatusPosted2() {
+    public static void PurchaseInvoicePost_PassPIRecordWithNotValidRecord_ReturnPIRecordWithSatatusDraftAndNotSuccess() {
         Zumzum__Purchase_Invoice__c purchaseInvoiceRecordBeforePost = [SELECT Id FROM Zumzum__Purchase_Invoice__c LIMIT 1];
 
         Zumzum__Purchase_Invoice_Line_Item__c purchaseInvoiceLineItemsRecord = [
