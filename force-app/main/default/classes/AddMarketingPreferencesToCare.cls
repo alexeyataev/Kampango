@@ -14,23 +14,12 @@ public without sharing class AddMarketingPreferencesToCare {
         addMarketingPreferencesFuture(paramInstance[0].contactId);
     }
 
-    public static List<MarketingPreferencesResult> addMarketingPreferencesForContactId(Id contactId) {
-        List<Contact> contactList = [
-            SELECT  Nct_Number__c,
-                    Individual.Has_Opted_In_Email__c,
-                    Individual.Has_Opted_In_Post__c,
-                    Individual.Has_Opted_In_SMS__c,
-                    Individual.Has_Opted_In_Telephone__c
-            FROM Contact
-            WHERE Id =: contactId
-        ];
+    public static List<MarketingPreferencesResult> addMarketingPreferencesForContact(Contact cont) {
         List<MarketingPreferencesResult> marketingPreferencesResultList = new List<MarketingPreferencesResult>();
-        if(!contactList.isEmpty()) {
-            for(String individualField : MARKETING_PREFERENCES_DOCUMENT_MAP.keySet()) {
-                CareHelper.MarketingPreferencesObject marketingPreferencesObject = CareHelper.sendMarketingPreferences(contactList[0].NCT_Number__c, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField), (Boolean)contactList[0].Individual.get(individualField));
-                if(marketingPreferencesObject.error != null) {
-                    marketingPreferencesResultList.add(new MarketingPreferencesResult(individualField, CareHelper.FAILURE_STATUS, marketingPreferencesObject.error[0].errorMessage));
-                }
+        for(String individualField : MARKETING_PREFERENCES_DOCUMENT_MAP.keySet()) {
+            CareHelper.MarketingPreferencesObject marketingPreferencesObject = CareHelper.sendMarketingPreferences(cont.NCT_Number__c, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField), (Boolean)cont.Individual.get(individualField));
+            if(marketingPreferencesObject.error != null) {
+                marketingPreferencesResultList.add(new MarketingPreferencesResult(individualField, CareHelper.FAILURE_STATUS, marketingPreferencesObject.error[0].errorMessage));
             }
         }
         return marketingPreferencesResultList;
@@ -48,7 +37,18 @@ public without sharing class AddMarketingPreferencesToCare {
 
     @future(callout=true)
     private static void addMarketingPreferencesFuture(Id contactId){
-        addMarketingPreferencesForContactId(contactId);
+        List<Contact> contactList = [
+            SELECT  Nct_Number__c,
+                    Individual.Has_Opted_In_Email__c,
+                    Individual.Has_Opted_In_Post__c,
+                    Individual.Has_Opted_In_SMS__c,
+                    Individual.Has_Opted_In_Telephone__c
+            FROM Contact
+            WHERE Id =: contactId
+        ];
+        if(!contactList.isEmpty()) {
+            addMarketingPreferencesForContact(contactList[0]);
+        }
     }
 
     public class Params {
