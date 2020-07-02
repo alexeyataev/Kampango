@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Error_Booking_is_blank</name>
         <label>Error Booking is blank</label>
-        <locationX>957</locationX>
+        <locationX>1091</locationX>
         <locationY>304</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
@@ -24,7 +24,7 @@
     <actionCalls>
         <name>Error_Profile_Has_No_Access</name>
         <label>Error Profile Has No Access</label>
-        <locationX>955</locationX>
+        <locationX>1089</locationX>
         <locationY>169</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
@@ -44,7 +44,7 @@
     <actionCalls>
         <name>Result_Sending_Email</name>
         <label>Result Sending Email</label>
-        <locationX>958</locationX>
+        <locationX>1092</locationX>
         <locationY>546</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
@@ -64,7 +64,7 @@
     <actionCalls>
         <name>Send_notification_email</name>
         <label>Send notification email</label>
-        <locationX>605</locationX>
+        <locationX>739</locationX>
         <locationY>550</locationY>
         <actionName>SendHTMLEmailPlugin</actionName>
         <actionType>apex</actionType>
@@ -109,7 +109,7 @@
     <assignments>
         <name>Sending_not_successful</name>
         <label>Sending not successful</label>
-        <locationX>769</locationX>
+        <locationX>903</locationX>
         <locationY>606</locationY>
         <assignmentItems>
             <assignToReference>toastMessage</assignToReference>
@@ -132,7 +132,7 @@
     <assignments>
         <name>Sending_successful</name>
         <label>Sending  successful</label>
-        <locationX>768</locationX>
+        <locationX>902</locationX>
         <locationY>485</locationY>
         <assignmentItems>
             <assignToReference>toastMessage</assignToReference>
@@ -204,7 +204,7 @@
     <decisions>
         <name>Check_Booking_blank</name>
         <label>Check Booking blank</label>
-        <locationX>173</locationX>
+        <locationX>307</locationX>
         <locationY>303</locationY>
         <defaultConnector>
             <targetReference>Get_Booking</targetReference>
@@ -229,7 +229,7 @@
     <decisions>
         <name>Check_if_Finance_profile</name>
         <label>Check if Finance profile</label>
-        <locationX>174</locationX>
+        <locationX>308</locationX>
         <locationY>167</locationY>
         <defaultConnector>
             <targetReference>Error_Profile_Has_No_Access</targetReference>
@@ -250,6 +250,13 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Finance</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>currentProfile</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Enquiry PSA</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -289,7 +296,7 @@ Validation check for Booking, fixed Name formula</description>
     <recordLookups>
         <name>Get_Booking</name>
         <label>Get Booking</label>
-        <locationX>181</locationX>
+        <locationX>315</locationX>
         <locationY>550</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -312,7 +319,7 @@ Validation check for Booking, fixed Name formula</description>
     <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
-        <locationX>50</locationX>
+        <locationX>184</locationX>
         <locationY>302</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -335,7 +342,7 @@ Validation check for Booking, fixed Name formula</description>
     <recordLookups>
         <name>Get_template</name>
         <label>Get template</label>
-        <locationX>344</locationX>
+        <locationX>478</locationX>
         <locationY>550</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -355,7 +362,7 @@ Validation check for Booking, fixed Name formula</description>
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Screen of  Confirm</label>
-        <locationX>461</locationX>
+        <locationX>595</locationX>
         <locationY>550</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
