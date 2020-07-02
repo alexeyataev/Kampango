@@ -3,13 +3,16 @@
     <actionCalls>
         <name>DecryptAdhocValidationCodeHandler</name>
         <label>DecryptAdhocValidationCodeHandler</label>
-        <locationX>623</locationX>
-        <locationY>271</locationY>
+        <locationX>646</locationX>
+        <locationY>176</locationY>
         <actionName>DecryptAdhocValidationCodeHandler</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Get_Sales_Invoice</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_Flow_SubFlow</targetReference>
+        </faultConnector>
         <inputParameters>
             <name>dataToDecrypt</name>
             <value>
@@ -26,28 +29,53 @@
         </outputParameters>
     </actionCalls>
     <decisions>
+        <name>Is_Records_Empty</name>
+        <label>Is Records Empty</label>
+        <locationX>639</locationX>
+        <locationY>502</locationY>
+        <defaultConnector>
+            <targetReference>Was_sales_invoice_paid</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Is Empty</defaultConnectorLabel>
+        <rules>
+            <name>One_Of_Records_Is_Empty</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Sales_Invoice</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_Handler_Flow_SubFlow</targetReference>
+            </connector>
+            <label>One Of Records Is Empty</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Was_sales_invoice_paid</name>
         <label>Was sales invoice paid</label>
-        <locationX>173</locationX>
-        <locationY>454</locationY>
+        <locationX>400</locationX>
+        <locationY>498</locationY>
         <defaultConnector>
             <targetReference>Payment_Details_related_screens</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <defaultConnectorLabel>Is Not Paid</defaultConnectorLabel>
         <rules>
-            <name>Check_if_paid</name>
+            <name>Is_Paid</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>collectedInstallments</leftValueReference>
-                <operator>IsNull</operator>
+                <leftValueReference>salesInvoice.Zumzum__Paid__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <stringValue>Y</stringValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>Payment_completed</targetReference>
             </connector>
-            <label>Check if paid</label>
+            <label>Is Paid</label>
         </rules>
     </decisions>
     <description>Takes the user through the payment process
@@ -79,41 +107,17 @@ Changed the success link (added hyphen)</description>
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
-        <name>Get_Installments</name>
-        <label>Get collected Installments</label>
-        <locationX>313</locationX>
-        <locationY>299</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Was_sales_invoice_paid</targetReference>
-        </connector>
-        <filters>
-            <field>Sales_Invoice__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>salesInvoice.Id</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>cpm__Status__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Collected</stringValue>
-            </value>
-        </filters>
-        <object>cpm__Installment__c</object>
-        <outputReference>collectedInstallments</outputReference>
-        <queriedFields>Id</queriedFields>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Sales_Invoice</name>
         <label>Get Sales Invoice</label>
-        <locationX>471</locationX>
-        <locationY>356</locationY>
+        <locationX>647</locationX>
+        <locationY>332</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Installments</targetReference>
+            <targetReference>Is_Records_Empty</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_Flow_SubFlow</targetReference>
+        </faultConnector>
         <filters>
             <field>Name</field>
             <operator>EqualTo</operator>
@@ -126,53 +130,45 @@ Changed the success link (added hyphen)</description>
         <queriedFields>Id</queriedFields>
         <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Zumzum__Total_Unpaid_Amount__c</queriedFields>
+        <queriedFields>Zumzum__Paid__c</queriedFields>
     </recordLookups>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Payment_completed</name>
         <label>Payment completed</label>
-        <locationX>182</locationX>
-        <locationY>692</locationY>
+        <locationX>266</locationX>
+        <locationY>756</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
             <name>Payment_completed_display</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(248, 248, 248); font-size: 15px; font-family: Slack-Lato, appleLogo, sans-serif; color: rgb(29, 28, 29);&quot;&gt;The payment is already completed. For any further queries please contact &lt;/span&gt;&lt;a href=&quot;mailto:nctcourses@nct.org.uk&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(248, 248, 248); font-size: 15px; font-family: Slack-Lato, appleLogo, sans-serif;&quot;&gt;nctcourses@nct.org.uk&lt;/a&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; background-color: rgb(248, 248, 248);&quot;&gt;The payment is already completed. For any further queries please contact &lt;/span&gt;&lt;a href=&quot;mailto:nctcourses@nct.org.uk&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; background-color: rgb(248, 248, 248);&quot;&gt;nctcourses@nct.org.uk&lt;/a&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <screens>
-        <name>Payment_summary</name>
-        <label>Payment summary</label>
-        <locationX>645</locationX>
-        <locationY>541</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <fields>
-            <name>Summary_text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Hi,&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;We&apos;re holding your place on the following course until&amp;nbsp;16th January 2020. Complete your booking now to secure your place.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 26px;&quot;&gt;Your booking&lt;/span&gt;&lt;/p&gt;&lt;p&gt;NCT Essentials Antenatal course for 334 due dates&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;at&amp;nbsp;Test&amp;nbsp;(26th March&amp;nbsp;-&amp;nbsp;1st May)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 150, 50); font-size: 16px;&quot;&gt;Sessions&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Total - £999&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
     <start>
-        <locationX>229</locationX>
-        <locationY>156</locationY>
+        <locationX>207</locationX>
+        <locationY>157</locationY>
         <connector>
             <targetReference>DecryptAdhocValidationCodeHandler</targetReference>
         </connector>
     </start>
     <status>Active</status>
     <subflows>
+        <name>Error_Handler_Flow_SubFlow</name>
+        <label>Error Handler Flow SubFlow</label>
+        <locationX>1006</locationX>
+        <locationY>337</locationY>
+        <flowName>Error_Handler_Flow</flowName>
+    </subflows>
+    <subflows>
         <name>Payment_Details_related_screens</name>
         <label>Payment Details related screens</label>
-        <locationX>848</locationX>
-        <locationY>457</locationY>
+        <locationX>558</locationX>
+        <locationY>757</locationY>
         <flowName>Adhoc_Payment_Details_Subflow</flowName>
         <inputAssignments>
             <name>paramAmount</name>
