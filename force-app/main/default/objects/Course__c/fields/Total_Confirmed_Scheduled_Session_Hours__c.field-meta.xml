@@ -3,6 +3,7 @@
     <fullName>Total_Confirmed_Scheduled_Session_Hours__c</fullName>
     <externalId>false</externalId>
     <label>Total Confirmed Scheduled Session Hours</label>
+    <summarizedField>Session__c.Contact_Hours__c</summarizedField>
     <summaryFilterItems>
         <field>Session__c.Status__c</field>
         <operation>equals</operation>
@@ -14,7 +15,7 @@
         <value>Scheduled Session</value>
     </summaryFilterItems>
     <summaryForeignKey>Session__c.Course__c</summaryForeignKey>
-    <summaryOperation>count</summaryOperation>
+    <summaryOperation>sum</summaryOperation>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Summary</type>
