@@ -154,9 +154,6 @@
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
         <members>ZumzumSalesInvoiceParameters</members>
-
-
-        
         <name>ApexClass</name>
     </types>
     <types>
