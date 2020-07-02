@@ -4,8 +4,13 @@
 public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
+    private static final String SESSION_REUNION_TYPE = 'Reunion';
     private static final String PRACTITIONER_LASTNAME_ONE = 'Smith';
+    private static final String PARENT_HOST_LASTNAME = 'Jameson';
+    private static final String PARENT_HOST_LASTNAME_TWO = 'White';
+    private static final String PARENT_HOST_EMAIL = 'test@test.com';
     private static final String VENUE_NAME = 'Public Venue';
+    private static final String CLIENT_RECORDTYPE_NAME = 'Clients';
     private static final Integer COURSES_TO_CREATE = 5;
     private static final Integer SESSIONS_TO_CREATE = 10;
     private static final String VIRTUAL_VENUE = 'Virtual';
@@ -34,7 +39,10 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
                     .buildEstimatedCosts()
                     .buildSession()
                     .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE)
-                    .buildVenueWithName(VENUE_NAME);
+                    .buildVenueWithName(VENUE_NAME)
+                    .buildParentHost(PARENT_HOST_LASTNAME, PARENT_HOST_EMAIL)
+                    .buildSessionWithParentHost()
+                    .buildParentHost(PARENT_HOST_LASTNAME_TWO, PARENT_HOST_EMAIL);
         List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
         dataFactory .setSessionsToConfirmed(sessions);
         TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
@@ -102,7 +110,7 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
     @isTest
     static void ChangeSessionToProvisional_VenueUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c];
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Parent_Host__c = null];
         Venue__c venue = [SELECT Id FROM Venue__c WHERE Name = :VENUE_NAME LIMIT 1];
         
         Test.startTest();
@@ -118,8 +126,48 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
     }
 
     @isTest
+    static void ChangeSessionToProvisional_ParentHostUpdatedOnSession_SessionStatusIsChangedToProvisional() {
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Parent_Host__c <> null];
+        Contact parentHost = [SELECT Id FROM Contact WHERE RecordTypeId = :SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CLIENT_RECORDTYPE_NAME).getRecordTypeId() AND LastName = :PARENT_HOST_LASTNAME_TWO LIMIT 1];
+        
+        Test.startTest();
+        for(Session__c session : sessions) {
+            session.Parent_Host__c = parentHost.Id;
+        }
+        update sessions;
+        Test.stopTest();
+
+        Session__c sessionToTest = [SELECT Status__c FROM Session__c WHERE Id = :sessions LIMIT 1];
+        System.assertEquals(SESSION_PROVISIONAL_STATUS, sessionToTest.Status__c);
+    }
+
+    @isTest
+    static void ChangeSessionToProvisional_ParentHostUpdatedOnOnlineReunionSession_SessionStatusIsChangedToProvisional() {
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Parent_Host__c <> null];
+        Contact parentHost = [SELECT Id FROM Contact WHERE RecordTypeId = :SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(CLIENT_RECORDTYPE_NAME).getRecordTypeId() AND LastName = :PARENT_HOST_LASTNAME_TWO LIMIT 1];
+        for(Session__c session : sessions) {
+            session.Delivery_Type__c = 'Online';
+            session.Type__c = SESSION_REUNION_TYPE;
+        }
+        update sessions;
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+        dataFactory.setSessionsToConfirmed(sessions);
+        
+        Test.startTest();
+        for(Session__c session : sessions) {
+            session.Parent_Host__c = parentHost.Id;
+        }
+        update sessions;
+        Test.stopTest();
+
+        Session__c sessionToTest = [SELECT Status__c FROM Session__c WHERE Id = :sessions LIMIT 1];
+        System.assertEquals(SESSION_PROVISIONAL_STATUS, sessionToTest.Status__c);
+    }
+
+
+    @isTest
     static void ChangeSessionToProvisional_DeliveryTypeUpdatedOnSession_SessionStatusIsChangedToProvisional() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c];
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Parent_Host__c = null];
         Venue__c virtualVenue = [SELECT Id FROM Venue__c WHERE RecordTypeId = :Schema.SObjectType.Venue__c.getRecordTypeInfosByDeveloperName().get(VIRTUAL_VENUE).getRecordTypeId() LIMIT 1];
 
         Test.startTest();

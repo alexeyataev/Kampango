@@ -155,15 +155,15 @@ public without sharing class CourseCreateEnquiryUtility {
     private static void updateContactPreferences(Id contactId, Map<String, String> requestParameters) {
         Contact contact = getContactById(contactId);
         Individual individual = [
-            SELECT Id, Email__c, Post__c, SMS__c, Telephone__c 
+            SELECT Id, Has_Opted_In_Email__c, Has_Opted_In_Post__c, Has_Opted_In_SMS__c, Has_Opted_In_Telephone__c 
             FROM Individual 
             WHERE Id =: contact.IndividualId
             LIMIT 1
         ];
-        individual.Email__c = parseParameterToBoolean(requestParameters.get('emailPreference'));
-        individual.Post__c = parseParameterToBoolean(requestParameters.get('postPreference'));
-        individual.SMS__c = parseParameterToBoolean(requestParameters.get('smstextPreference'));
-        individual.Telephone__c = parseParameterToBoolean(requestParameters.get('telephonePreference'));
+        individual.Has_Opted_In_Email__c = parseParameterToBoolean(requestParameters.get('emailPreference'));
+        individual.Has_Opted_In_Post__c = parseParameterToBoolean(requestParameters.get('postPreference'));
+        individual.Has_Opted_In_SMS__c = parseParameterToBoolean(requestParameters.get('smstextPreference'));
+        individual.Has_Opted_In_Telephone__c = parseParameterToBoolean(requestParameters.get('telephonePreference'));
 
         try {
             update individual;

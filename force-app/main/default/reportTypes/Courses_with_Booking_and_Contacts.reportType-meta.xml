@@ -387,11 +387,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Surplus_Defecit__c</field>
-            <table>Course__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Surplus_Deficit__c</field>
             <table>Course__c</table>
         </columns>
