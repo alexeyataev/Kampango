@@ -10,10 +10,7 @@
         <name>ApexPage</name>
     </types>
     <types>
-        <members>Account.Branch_Key__c</members>
-        <members>Course__c.Confirmed_Places_OLD__c</members>
-        <members>Course__c.Enquiries_OLD__c</members>
-        <members>Course__c.Reserved_Places_OLD__c</members>
+        <members>Account.Branch_Key__c</members>        
         <name>CustomField</name>
     </types>
     <types>
