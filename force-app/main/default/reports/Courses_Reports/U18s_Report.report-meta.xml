@@ -1,61 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>FK_$Course__c.PSA_Area__c</field>
+        <field>Contact.BookingToPrimaryContact__r$Course__c.PSA_Area__c</field>
     </columns>
     <columns>
-        <field>FK_NAME</field>
+        <field>Contact.BookingToPrimaryContact__r$Course__c.Name</field>
     </columns>
     <columns>
-        <field>CUST_NAME</field>
+        <field>Contact.BookingToPrimaryContact__r$Name</field>
     </columns>
     <columns>
-        <field>Account.npe01__One2OneContact__c</field>
+        <field>Contact.BookingToPrimaryContact__r$Primary_Contact__c</field>
     </columns>
     <columns>
-        <field>Booking__c.Partner_Contact__c</field>
+        <field>Contact.BookingToPrimaryContact__r$Partner_Contact__c</field>
     </columns>
     <columns>
-        <field>Booking__c.Street_Address__c</field>
+        <field>Contact.BookingToPrimaryContact__r$Street_Address__c</field>
     </columns>
     <columns>
-        <field>ADDRESS2_CITY</field>
+        <field>Contact$MailingCity</field>
     </columns>
     <columns>
-        <field>ADDRESS2_ZIP</field>
+        <field>Contact$MailingPostalCode</field>
     </columns>
     <columns>
-        <field>EMAIL</field>
+        <field>Contact$Email</field>
     </columns>
     <columns>
-        <field>PHONE3</field>
+        <field>Contact$MobilePhone</field>
     </columns>
     <columns>
-        <field>Booking__c.Birth_Due_Date__c</field>
+        <field>Contact.BookingToPrimaryContact__r$Birth_Due_Date__c</field>
     </columns>
     <columns>
-        <field>Booking__c.Post__c</field>
+        <field>Contact.BookingToPrimaryContact__r$Has_Opted_In_Post__c</field>
     </columns>
     <columns>
-        <field>Booking__c.Telephone__c</field>
+        <field>Contact.BookingToPrimaryContact__r$Has_Opted_In_Telephone__c</field>
     </columns>
     <columns>
-        <field>Booking__c.SMS__c</field>
+        <field>Contact.BookingToPrimaryContact__r$Has_Opted_In_SMS__c</field>
     </columns>
     <columns>
-        <field>Booking__c.Email__c</field>
+        <field>Contact.BookingToPrimaryContact__r$Has_Opted_In_Email__c</field>
     </columns>
     <filter>
-        <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
-            <column>Booking__c.Status__c</column>
+            <column>Contact.BookingToPrimaryContact__r$Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>Confirmed</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Booking__c.Under_18__c</column>
+            <column>Contact.BookingToPrimaryContact__r$Under_18__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
@@ -69,13 +68,13 @@
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>ContactCustomEntity$Booking__c@Booking__c.Course__c</reportType>
+    <reportType>Contacts_with_Bookings_and_Course__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
-        <dateColumn>Booking__c.Confirmed_Date__c</dateColumn>
+        <dateColumn>Contact.BookingToPrimaryContact__r$Confirmed_Date__c</dateColumn>
         <interval>INTERVAL_LASTMONTH</interval>
     </timeFrameFilter>
 </Report>
