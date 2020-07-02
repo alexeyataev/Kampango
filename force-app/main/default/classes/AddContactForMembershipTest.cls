@@ -21,7 +21,6 @@ public without sharing class AddContactForMembershipTest {
             .insertRecord(true)
             .build();
     }
-
     @isTest static void AddContact_ContactAdded_ContactNumberReturned() {
         Test.startTest();
         CareHelper.ContactObject contactObject = new CareHelper.ContactObject();
@@ -35,7 +34,6 @@ public without sharing class AddContactForMembershipTest {
         Test.stopTest();
         System.assertEquals(resultList[0].nctNumber, CONTACT_NUMBER_RETURNED);
     }
-
     @isTest static void AddContactError_ContactNotAdded_ErrorReturned() {
         Test.startTest();
         CareHelper.ContactObject contactObject = new CareHelper.ContactObject();
@@ -51,7 +49,6 @@ public without sharing class AddContactForMembershipTest {
         Test.stopTest();
         System.assertEquals(resultList[0].error, MESSAGE_TEXT_ERROR);
     }
-
     @isTest static void AddContactBatch_ContactAdded_ContactNumberReturned() {
         Test.startTest();
         CareHelper.ContactObject contactObject = new CareHelper.ContactObject();
@@ -65,5 +62,21 @@ public without sharing class AddContactForMembershipTest {
         Contact contUpdated = [SELECT Care_Status__c, NCT_Number__c FROM Contact LIMIT 1];
         System.assertEquals(contUpdated.NCT_Number__c, CONTACT_NUMBER_RETURNED);
         System.assertEquals(contUpdated.Care_Status__c, MESSAGE_TEXT_SUCCESS);
+    }
+    @isTest static void AddContactBatchError_ContactNotAdded_ErrorReturned() {
+        Test.startTest();
+        CareHelper.ContactObject contactObject = new CareHelper.ContactObject();
+        CareHelper.ErrorObject errorObject = new CareHelper.ErrorObject();
+        errorObject.errorMessage = MESSAGE_TEXT_ERROR;
+        errorObject.errorNumber = ERROR_NUMBER;
+        contactObject.error = new List<CareHelper.ErrorObject>();
+        contactObject.error.add(errorObject);
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactObject));
+        AddContactForMembershipBatch cacb = new AddContactForMembershipBatch();
+        Database.executeBatch(cacb, 10);
+        Test.stopTest();
+        Contact contUpdated = [SELECT Care_Status__c, Care_Error_Log__c FROM Contact LIMIT 1];
+        System.assertEquals(contUpdated.Care_Status__c, CareHelper.FAILURE_STATUS);
+        System.assert(contUpdated.Care_Error_Log__c.contains('failed to send to CARE: ' + MESSAGE_TEXT_ERROR));
     }
 }
