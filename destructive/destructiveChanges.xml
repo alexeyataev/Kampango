@@ -51,7 +51,6 @@
         <members>Booking__c.Client__c</members>
         <members>Booking__c.Bank_Account_Number__c</members>
         <members>Booking__c.Bank_Sort_Code__c</members>
-        <members>Booking__c.Email__c</members>
         <members>Booking__c.Enquiries_PSA_First_Name__c</members>
         <members>Booking__c.Enquiries_PSA_Email__c</members>
         <members>Booking__c.Enquiries_PSA_Phone__c</members>
@@ -77,9 +76,6 @@
         <members>Booking__c.Partner_Membership__c</members>
         <members>Booking__c.Phone_Partner__c</members>
         <members>Booking__c.Preferred_Payment_Date__c</members>
-        <members>Booking__c.Post__c</members>
-        <members>Booking__c.SMS__c</members>
-        <members>Booking__c.Telephone__c</members>
         <members>Contact.Account_Key__c</members>
         <members>Contact.Branch_Key__c</members>
         <members>Contact.Contact_Key__c</members>
@@ -138,14 +134,10 @@
         <members>cpm__Payment__c.Mandate_Key__c</members>
         <members>cpm__Payment__c.Payment_Key__c</members>
         <members>cpm__Payment__c.Payment_Profile__c</members>
-        <members>Individual.Email__c</members>
         <members>Individual.Has_Opted_Out_Email__c</members>
         <members>Individual.Has_Opted_Out_Post__c</members>
         <members>Individual.Has_Opted_Out_SMS__c</members>
         <members>Individual.Has_Opted_Out_Telephone__c</members>
-        <members>Individual.Post__c</members>
-        <members>Individual.SMS__c</members>
-        <members>Individual.Telephone__c</members>
         <members>Licence_To_Practice__c.Practitioner_Name__c</members>
         <members>npe03__Recurring_Donation__c.Recurring_Donations_Key__c</members>
         <members>npe03__Recurring_Donation__c.Payment_profile_Key__c</members>
