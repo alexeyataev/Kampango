@@ -357,9 +357,9 @@
         <name>SharingCriteriaRule</name>
     </types>
     <types>
-		<members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
-		<members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
-		<name>sharingGuestRules</name>
+        <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
+        <members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
+        <name>sharingGuestRules</name>
     </types>
     <types>
         <members>Booking__c.Course_status_can_not_be_Draft</members>
