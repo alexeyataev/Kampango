@@ -74,6 +74,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.Course_End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.Course_Fee__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -139,22 +144,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Email__c</field>
+        <field>Booking__c.Has_Opted_In_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Post__c</field>
+        <field>Booking__c.Has_Opted_In_Post__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.SMS__c</field>
+        <field>Booking__c.Has_Opted_In_SMS__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Booking__c.Telephone__c</field>
+        <field>Booking__c.Has_Opted_In_Telephone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1174,13 +1179,13 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Total_Contact_Hours__c</field>
-        <readable>false</readable>
+        <field>Course__c.Total_Confirmed_Scheduled_Session_Hours__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Total_Online_Session_Hours__c</field>
-        <readable>true</readable>
+        <field>Course__c.Total_Contact_Hours__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1199,22 +1204,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Individual.Email__c</field>
+        <field>Individual.Has_Opted_In_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Individual.Post__c</field>
+        <field>Individual.Has_Opted_In_Post__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Individual.SMS__c</field>
+        <field>Individual.Has_Opted_In_SMS__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Individual.Telephone__c</field>
+        <field>Individual.Has_Opted_In_Telephone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2035,7 +2040,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Sales_Invoice__c.Zumzum__Paid__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

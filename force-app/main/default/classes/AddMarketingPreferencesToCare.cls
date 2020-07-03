@@ -3,33 +3,66 @@
 public without sharing class AddMarketingPreferencesToCare {
 
     private static final Map<String, String> MARKETING_PREFERENCES_DOCUMENT_MAP = new Map<String, String> {
-        'Email__c' => 'GDPR007',
-        'SMS__c' => 'GDPR008',
-        'Post__c' => 'GDPR009',
-        'Telephone__c' => 'GDPR010'
+        'Has_Opted_In_Email__c' => 'GDPR007',
+        'Has_Opted_In_SMS__c' => 'GDPR008',
+        'Has_Opted_In_Post__c' => 'GDPR009',
+        'Has_Opted_In_Telephone__c' => 'GDPR010'
     };
 
     @InvocableMethod
-    public static void addMarketingPreferences(List<Params> paramInstance) {
+    public static void addMarketingPreferencesAction(List<Params> paramInstance) {
+        addMarketingPreferencesFuture(paramInstance[0].contactId);
+    }
+
+    public static List<MarketingPreferencesResult> addMarketingPreferencesForContact(Contact cont) {
+        List<MarketingPreferencesResult> marketingPreferencesResultList = new List<MarketingPreferencesResult>();
+        for(String individualField : MARKETING_PREFERENCES_DOCUMENT_MAP.keySet()) {
+            CareHelper.MarketingPreferencesObject marketingPreferencesObject = CareHelper.sendMarketingPreferences(cont.NCT_Number__c, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField), (Boolean)cont.Individual.get(individualField));
+            if(marketingPreferencesObject.error != null) {
+                marketingPreferencesResultList.add(new MarketingPreferencesResult(individualField, CareHelper.FAILURE_STATUS, marketingPreferencesObject.error[0].errorMessage));
+            }
+        }
+        return marketingPreferencesResultList;
+    }
+
+    public static String getErrorLog(List<AddMarketingPreferencesToCare.MarketingPreferencesResult> marketingPreferencesResultList) {
+        String marketingPreferencesError = '';
+        for(AddMarketingPreferencesToCare.MarketingPreferencesResult marketingPreferencesResult : marketingPreferencesResultList) {
+            if(marketingPreferencesResult.status == CareHelper.FAILURE_STATUS) {
+                marketingPreferencesError = marketingPreferencesError + marketingPreferencesResult.fieldName + ' failed to send to CARE: ' + marketingPreferencesResult.errorMessage + '\r\n';
+            }
+        }
+        return marketingPreferencesError;
+    }
+
+    @future(callout=true)
+    private static void addMarketingPreferencesFuture(Id contactId){
         List<Contact> contactList = [
             SELECT  Nct_Number__c,
-                    Individual.Email__c,
-                    Individual.SMS__c,
-                    Individual.Telephone__c,
-                    Individual.Post__c
+                    Individual.Has_Opted_In_Email__c,
+                    Individual.Has_Opted_In_Post__c,
+                    Individual.Has_Opted_In_SMS__c,
+                    Individual.Has_Opted_In_Telephone__c
             FROM Contact
-            WHERE(Id =: paramInstance[0].contactId AND Nct_Number__c != null)
-            LIMIT 1
+            WHERE Id =: contactId
         ];
-
         if(!contactList.isEmpty()) {
-            for(String individualField : MARKETING_PREFERENCES_DOCUMENT_MAP.keySet() ) {
-                CareHelper.sendMarketingPreferences(contactList[0].Nct_Number__c, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField), (Boolean)contactList[0].Individual.get(individualField));
-            }
+            addMarketingPreferencesForContact(contactList[0]);
         }
     }
 
     public class Params {
         @InvocableVariable public String contactId;
+    }
+    
+    public class MarketingPreferencesResult {
+        public String fieldName;
+        public String status;
+        public String errorMessage;
+        public MarketingPreferencesResult(String fieldName, String status, String errorMessage) {
+            this.fieldName = fieldName;
+            this.status = status;
+            this.errorMessage = errorMessage;
+        }
     }
 }

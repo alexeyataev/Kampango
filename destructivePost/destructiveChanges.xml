@@ -11,9 +11,19 @@
     </types>
     <types>
         <members>Account.Branch_Key__c</members>
+        <members>Booking__c.Email__c</members>
+        <members>Booking__c.Post__c</members>
+        <members>Booking__c.SMS__c</members>
+        <members>Booking__c.Telephone__c</members>
         <members>Course__c.Confirmed_Places_OLD__c</members>
         <members>Course__c.Enquiries_OLD__c</members>
         <members>Course__c.Reserved_Places_OLD__c</members>
+        <members>Course__c.Surplus_Defecit__c</members>
+        <members>Course__c.Total_Online_Session_Hours__c</members>
+        <members>Individual.Email__c</members>
+        <members>Individual.Post__c</members>
+        <members>Individual.SMS__c</members>
+        <members>Individual.Telephone__c</members>
         <name>CustomField</name>
     </types>
     <types>
