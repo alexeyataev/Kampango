@@ -80,7 +80,6 @@ public class OutboundBACSpaymentHelper {
         objPaymentWrapper.BankAccountId = bankAccountId;
         objPaymentWrapper.PostingDate = Date.Today();
         objPaymentWrapper.TaxRate = ledger0.Zumzum__Tax_Code_Link__c;
-        objPaymentWrapper.Amount = ledger0.Zumzum__Purchase_Invoice__r.Zumzum__Total_Gross__c;
         List<Zumzum.BankSupplierPaymentService.BankPaymentLine> listBankPaymentLines = new List<Zumzum.BankSupplierPaymentService.BankPaymentLine>();
 
         for (Zumzum__Ledger__c currentLedger: ledgers) {
