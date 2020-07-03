@@ -3881,6 +3881,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Zumzum__Purchase_Invoice_Line_Item__c.Debit_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Purchase_Invoice_Line_Item__c.Session__c</field>
         <readable>true</readable>

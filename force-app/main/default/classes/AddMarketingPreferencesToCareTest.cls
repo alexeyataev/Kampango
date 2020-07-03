@@ -40,7 +40,7 @@ public with sharing class AddMarketingPreferencesToCareTest {
             Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(marketingPreferencesObject));
             AddMarketingPreferencesToCare.Params paramsInstance = new AddMarketingPreferencesToCare.Params();
             paramsInstance.contactId = [SELECT Id FROM Contact LIMIT 1].Id;
-            AddMarketingPreferencesToCare.addMarketingPreferences(new List<AddMarketingPreferencesToCare.Params>{ paramsInstance });
+            AddMarketingPreferencesToCare.addMarketingPreferencesAction(new List<AddMarketingPreferencesToCare.Params>{ paramsInstance });
 
             System.assertEquals(individualInstance.size(), 1, 'Should be returned 1 Individual record');
         Test.stopTest();

@@ -2,6 +2,8 @@ public with sharing class CareHelper {
     private static final String BASE_URL = Care_Settings__c.getOrgDefaults().Base_Url__c;
     private static final String HTTP_STATUS_OK = 'OK';
     private final static Integer ERROR_LOG_SIZE = 30000;
+    public static final String SUCCESS_STATUS = 'Success';
+    public static final String FAILURE_STATUS = 'Failure';
     public static AddContactResult sendContact(Contact cont) {
         HttpResponse res = sendHttpRequest('SFAddUpdateContactWS.pl', CareRequestBodyUtil.createSendContactBody(cont));
         AddContactResult addContactResult = new AddContactResult();
@@ -39,13 +41,20 @@ public with sharing class CareHelper {
         return membershipObject;
     }
 
-    @future(callout=true)
-    public static void sendMarketingPreferences(String nctNumber, String standardDocumentNumber, Boolean marketingPreferenceGranted) {
+    public static MarketingPreferencesObject sendMarketingPreferences(String nctNumber, String standardDocumentNumber, Boolean marketingPreferenceGranted) {
         HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', CareRequestBodyUtil.createMarketingPreferencesBody(nctNumber, standardDocumentNumber, marketingPreferenceGranted));
-        MarketingPreferencesObject marketingPreferencesObject = (MarketingPreferencesObject)JSON.deserialize(res.getBody(), MarketingPreferencesObject.class);
+        MarketingPreferencesObject marketingPreferencesObject = new MarketingPreferencesObject();
+        if(res.getStatus() == HTTP_STATUS_OK) {
+            marketingPreferencesObject = (MarketingPreferencesObject)JSON.deserialize(res.getBody(), MarketingPreferencesObject.class);
+        } else {
+            ErrorObject errorObject = new ErrorObject();
+            errorObject.errorMessage = res.getBody();
+            marketingPreferencesObject.error = new List<ErrorObject> {errorObject};
+        }
+        return marketingPreferencesObject;
     }
 
-    private static String addErrorLog(String errorMessage, String oldLogText) {
+    public static String addErrorLog(String errorMessage, String oldLogText) {
         String newLogText = oldLogText == null ? errorMessage : errorMessage + '\r\n\r\n' + oldLogText;
         if(newLogText.length() > ERROR_LOG_SIZE) {
             newLogText = newLogText.substring(0, ERROR_LOG_SIZE);
@@ -90,7 +99,7 @@ public with sharing class CareHelper {
         @testVisible private ContactBankAccountDetails contactBankAccount {get;set;}
     }
 
-    @testVisible private class MarketingPreferencesObject extends BaseResponse {
+    public class MarketingPreferencesObject extends BaseResponse {
         @testVisible private MarketingPreferencesDetails document {get;set;}
     }
 
