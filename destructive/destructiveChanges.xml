@@ -353,10 +353,13 @@
         <members>Zumzum__Currency__c.ShareAllCurrencyWithParents</members>
         <members>Zumzum__Invoice_Template__c.ShareAllDocumentTemplateWithParents</members>
         <members>Zumzum__Nominal_Account__c.ShareAllNominalAccountWithParents</members>
-        <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
         <members>Zumzum__Tax_Rate__c.ShareAllTaxRateWithParents</members>
-        <members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
         <name>SharingCriteriaRule</name>
+    </types>
+    <types>
+	    <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
+		<members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
+		<name>sharingGuestRules</name>
     </types>
     <types>
         <members>Booking__c.Course_status_can_not_be_Draft</members>
