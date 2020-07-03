@@ -358,7 +358,7 @@
     </types>
     <types>
         <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
-		<members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
+	    <members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
 		<name>sharingGuestRules</name>
     </types>
     <types>
