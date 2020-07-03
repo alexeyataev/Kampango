@@ -344,7 +344,18 @@
         <name>Role</name>
     </types>
 	<types>
-        <members>Zumzum__Dimension__c.ShareAllDimensionWithParents</members>        
+        <members>Zumzum__Dimension__c.ShareAllDimensionWithParents</members>
+        <members>Account.ShareAllAccountsWithParents</members>
+        <members>Course__c.ShareAllCourseWithParents</members>
+        <members>Zumzum__Company_Setup__c.ShareAllCompanySetupWithParents</members>
+        <members>Zumzum__Company__c.ShareAllCompanyWithParents</members>
+        <members>Zumzum__Control_Account__c.ShareAllControlAccountWithParents</members>
+        <members>Zumzum__Currency__c.ShareAllCurrencyWithParents</members>
+        <members>Zumzum__Invoice_Template__c.ShareAllDocumentTemplateWithParents</members>
+        <members>Zumzum__Nominal_Account__c.ShareAllNominalAccountWithParents</members>
+        <members>Zumzum__Sales_Invoice__c.ShareAllInvoicesWithParents</members>
+        <members>Zumzum__Tax_Rate__c.ShareAllTaxRateWithParents</members>
+        <members>cpm__Installment__c.ShareAllInstallmentsWithParents</members>
         <name>SharingCriteriaRule</name>
     </types>
     <types>
