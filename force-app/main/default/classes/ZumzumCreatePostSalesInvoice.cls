@@ -1,4 +1,4 @@
-public with sharing class ZumzumCreatePostSalesInvoice {
+public without sharing class ZumzumCreatePostSalesInvoice {
     public static ISalesInvoiceCreator salesInvoiceCreator {
         get {
             if(salesInvoiceCreator == null) {
