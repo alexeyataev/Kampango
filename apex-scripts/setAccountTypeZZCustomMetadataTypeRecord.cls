@@ -9,6 +9,9 @@ for (Metadata.Metadata record : records) {
 		if (settingRecordValue.field == 'Zumzum__Zumzum_Accounting_Customer_Field__c') {
             settingRecordValue.value = 'Accounting_Type__c';
         }
+        if (settingRecordValue.field == 'Zumzum__Disable_Account_Number_Uniqueness_Check__c') {
+            settingRecordValue.value = true;
+        }
     }
 container.addMetadata(settingRecord);
 }
