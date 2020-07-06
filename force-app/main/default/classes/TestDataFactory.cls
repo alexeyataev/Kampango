@@ -42,7 +42,7 @@ public without sharing class TestDataFactory {
 
     private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
     private static final String ACCOUNT_ORGANIZATION_RECORDTYPE = 'Organization';
-    private static final String ACCOUNT_SUPPLIER_RECORDTYPE = 'Supplier';
+    private static final String ACCOUNT_SUPPLIER_TYPE = 'Supplier';
 
     private static final String BRANCH_WEIGHTING = 'Standard';
     private static final Set<String> BRANCH_WEIGHTING_SET = new Set<String>{'Standard', 'Fringe', 'London'};
@@ -176,7 +176,7 @@ public without sharing class TestDataFactory {
         organizationAccount = accountBranchBuilder
             .withRecordType(ACCOUNT_ORGANIZATION_RECORDTYPE)
             .withName('John Smith')
-            .withType(ACCOUNT_SUPPLIER_RECORDTYPE)
+            .withType(ACCOUNT_SUPPLIER_TYPE)
             .withAccountNumber(accountNumber)
             .withBillingEmail(TEST_BILLING_EMAIL)
             .insertRecord(true)
