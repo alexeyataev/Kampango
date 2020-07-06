@@ -2,12 +2,17 @@
 //Incident #58 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class ZumzumSalesInvoiceCreatorMock implements ISalesInvoiceCreator {
     public static List<Zumzum__Sales_Invoice__c> createSI(List<Zumzum.SalesInvoicePostService.SalesInvoiceWrapper> newSalesInvoiceDataList) {
+        return createSI(newSalesInvoiceDataList, null);
+    }
+    public static List<Zumzum__Sales_Invoice__c> createSI(List<Zumzum.SalesInvoicePostService.SalesInvoiceWrapper> newSalesInvoiceDataList, Id parentSalesInvoiceId) {
         Zumzum__Sales_Invoice__c salesInvoice = new Zumzum__Sales_Invoice__c();
         List<Zumzum__Sales_Invoice_Line_Item__c> salesInvoiceLineList = new List<Zumzum__Sales_Invoice_Line_Item__c>();
         Zumzum.SalesInvoicePostService.SalesInvoiceWrapper salesInvoiceWrapper = newSalesInvoiceDataList[0];
         salesInvoice.Zumzum__Account__c = salesInvoice.Zumzum__Account__c == null ? salesInvoiceWrapper.Customer : salesInvoice.Zumzum__Account__c;
         salesInvoice.Zumzum__Invoice_Date__c = Date.today();
         salesInvoice.Zumzum__Transaction_Currency__c = salesInvoice.Zumzum__Transaction_Currency__c == null ? salesInvoiceWrapper.TransactionCurrency : salesInvoice.Zumzum__Transaction_Currency__c;
+        salesInvoice.Zumzum__Type__c = parentSalesInvoiceId == null ? 'Sales Invoice' : 'Sales Credit';
+        salesInvoice.Zumzum__Sales_Invoice_to_Credit__c = parentSalesInvoiceId == null ? null : parentSalesInvoiceId;
         for(Zumzum.SalesInvoicePostService.SalesInvoiceLineWrapper salesInvoiceLineWrapper : salesInvoiceWrapper.LineItems) {
             Zumzum__Sales_Invoice_Line_Item__c salesInvoiceLineItem = new Zumzum__Sales_Invoice_Line_Item__c();
             salesInvoiceLineItem.Zumzum__Product__c = salesInvoiceLineWrapper.Product;
@@ -48,7 +53,7 @@ public with sharing class ZumzumSalesInvoiceCreatorMock implements ISalesInvoice
                 ledger.Zumzum__Debit__c = salesInvoiceLineItem.Zumzum__Foreign_Net_Amount__c + (salesInvoiceLineItem.Zumzum__Foreign_Tax_Total__c == null ? 0 : salesInvoiceLineItem.Zumzum__Foreign_Tax_Total__c);
                 ledger.Zumzum__Sub_Account_Nominal__c = '9300';
                 ledger.Zumzum__Sub_Account_Nominal_Link__c = salesInvoiceLineItem.Zumzum__Nominal_Account__c;
-                ledger.Zumzum__Type__c = 'SI';
+                ledger.Zumzum__Type__c = salesInvoice.Zumzum__Type__c == 'Sales Invoice' ? 'SI' : 'SC';
                 ledger.Zumzum__Paid__c = 'N';
                 ledger.Zumzum__Doc_ID__c = '000001';
                 ledger.Zumzum__Sales_Invoice__c = salesInvoice.Id;
