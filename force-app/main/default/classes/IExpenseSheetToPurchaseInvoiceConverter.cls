@@ -1,3 +1,3 @@
 public interface IExpenseSheetToPurchaseInvoiceConverter {
-    void convert(Set<Id> expenseSheetIds);
+    zumzum.ExpenseSheetService.Response convert(Set<Id> expenseSheetIds);
 }
