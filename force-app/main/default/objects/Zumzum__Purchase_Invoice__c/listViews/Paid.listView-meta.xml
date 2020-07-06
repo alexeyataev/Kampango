@@ -8,7 +8,7 @@
     <columns>Zumzum__Paid__c</columns>
     <columns>Zumzum__Status__c</columns>
     <columns>Zumzum__Type__c</columns>
-    <filterScope>Mine</filterScope>
+    <filterScope>Everything</filterScope>
     <filters>
         <field>Zumzum__Paid__c</field>
         <operation>equals</operation>
