@@ -1,5 +1,5 @@
 public with sharing class ZumzumEStoPIConverterMock implements IExpenseSheetToPurchaseInvoiceConverter {
-    public void convert(Set<Id> expenseSheetIds) {
+    public Zumzum.ExpenseSheetService.Response convert(Set<Id> expenseSheetIds) {
         List<Id> expenseSheetIdsList = new List<Id>();
         expenseSheetIdsList.addAll(expenseSheetIds);
         Map<Id, Zumzum__Purchase_Invoice__c> newPurchaseInvoiceMap = new Map<Id, Zumzum__Purchase_Invoice__c>();
@@ -23,6 +23,10 @@ public with sharing class ZumzumEStoPIConverterMock implements IExpenseSheetToPu
             newPurchaseInvoiceLineItem.Zumzum__Expense_Sheet_Detail__c = expenseSheetDetail.Id;
             newPurchaseInvoiceLineItemList.add(newPurchaseInvoiceLineItem);
         }
+
         insert newPurchaseInvoiceLineItemList;
+        Zumzum.ExpenseSheetService.Response response = new Zumzum.ExpenseSheetService.Response();
+
+        return response;
     }
 }

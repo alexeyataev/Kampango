@@ -70,6 +70,7 @@
         <members>IClock</members>
         <members>IExpenseSheetToPurchaseInvoiceConverter</members>
         <members>IPaymentServiceProvider</members>
+        <members>IPurchaseInvoiceServiceProvider</members>
         <members>ISalesInvoiceCreator</members>
         <members>LightningSelfRegisterController</members>
         <members>LightningSelfRegisterControllerTest</members>
@@ -148,6 +149,8 @@
         <members>ZumzumEStoPIConverterMock</members>
         <members>ZumzumEStoPIConverterTest</members>
         <members>ZumzumPostSalesInvoiceHelperTest</members>
+        <members>ZumzumPurchaseInvoiceCreator</members>
+        <members>ZumzumPurchaseInvoiceCreatorTest</members>
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
         <members>ZumzumSalesInvoiceParameters</members>

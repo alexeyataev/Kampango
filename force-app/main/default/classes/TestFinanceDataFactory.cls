@@ -1,8 +1,10 @@
 @isTest
 public without sharing class TestFinanceDataFactory {
     private static final String ACCOUNT_TYPE_CUSTOMER = 'Customer';
+    private static final String ACCOUNT_SUPPLIER_TYPE = 'Supplier';
     private static final String PRODUCT_NAME_COURSE_PLACE = 'Course Place';
     private static final String PRODUCT_NAME_MEMBERSHIP_18_MONTH = 'Membership - 18 month';
+    private static final String PURCHASE_INVOICE_TYPE = 'Purchase Invoice';
     private static TestFinanceDataFactory instance;
 
     private Zumzum__Tax_Rate__c zumzumNoVatTaxRate;
@@ -313,4 +315,41 @@ public without sharing class TestFinanceDataFactory {
         zumzumSalesInvoiceParameterList.add(new List<ZumzumSalesInvoiceParameters> {courseZumzumSalesInvoiceParameter, membershipZumzumSalesInvoiceParameter});
         return zumzumSalesInvoiceParameterList;
     }
+
+
+    public static void createZumzumPurchaseInvoiceWithLineItems(Integer psLineItemsCount) {
+
+        new TestFinanceDataFactory().createZumzumData();
+
+        Account accountRecord = [SELECT Id FROM Account WHERE Type =: ACCOUNT_SUPPLIER_TYPE LIMIT 1];
+        Zumzum__Nominal_Account__c zumzumMembershipNominalAccount = [SELECT Id FROM Zumzum__Nominal_Account__c WHERE Zumzum__Account_Code__c = 9600 LIMIT 1];
+        Zumzum__Currency__c transactionCurrency = [SELECT Id FROM Zumzum__Currency__c LIMIT 1];
+        Zumzum__Tax_Rate__c taxRate = [SELECT Id FROM Zumzum__Tax_Rate__c LIMIT 1];
+
+        Zumzum.PurchaseInvoiceService purchaseInvoiceService = new Zumzum.PurchaseInvoiceService();
+        
+        List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper> purchaseInvoiceList = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper >();
+        Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper purchaseInvoice = new Zumzum.PurchaseInvoiceService.PurchaseInvoiceWrapper( );
+        Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper purchaseIvoiceLineItemList = new Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper();
+
+        purchaseInvoice.InvoiceDate = Date.today();
+        purchaseInvoice.InvoiceDueDate = Date.today();
+        purchaseInvoice.SupplierAccount = accountRecord.Id;
+        purchaseInvoice.TransactionCurrency = transactionCurrency.Id;
+        purchaseInvoice.PurchaseInvoiceType = PURCHASE_INVOICE_TYPE;
+        purchaseInvoice.LineItems = new List<Zumzum.PurchaseInvoiceService.PurchaseInvoiceLineWrapper>();
+
+        for (Integer i = 0; i < psLineItemsCount; i++) {
+            purchaseIvoiceLineItemList.ForeignNetAmount = 10;
+            purchaseIvoiceLineItemList.NominalAccount = zumzumMembershipNominalAccount.Id;
+            purchaseIvoiceLineItemList.Quantity = 1;
+            purchaseIvoiceLineItemList.TaxRate = taxRate.Id;
+            purchaseIvoiceLineItemList.Narrative = 'Item_' + i;
+            purchaseInvoice.LineItems.add(purchaseIvoiceLineItemList);
+        }
+
+        purchaseInvoiceList.add(purchaseInvoice);
+        purchaseInvoiceService.createPurchaseInvoices(purchaseInvoiceList);
+    }
+
 }
