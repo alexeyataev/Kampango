@@ -12,18 +12,5 @@
             <operation>notEqual</operation>
             <value>null</value>
         </criteriaItems>
-    </sharingCriteriaRules>
-    <sharingGuestRules>
-        <fullName>ShareAllInstallmentWithParents</fullName>
-        <accessLevel>Read</accessLevel>
-        <label>ShareAllInstallmentsWithParents</label>
-        <sharedTo>
-            <guestUser>Parent_Community</guestUser>
-        </sharedTo>
-        <criteriaItems>
-            <field>Name</field>
-            <operation>notEqual</operation>
-            <value>null</value>
-        </criteriaItems>
-    </sharingGuestRules>
+    </sharingCriteriaRules>    
 </SharingRules>

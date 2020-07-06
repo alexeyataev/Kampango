@@ -18,17 +18,4 @@
             <value>Posted</value>
         </criteriaItems>
     </sharingCriteriaRules>
-    <sharingGuestRules>
-        <fullName>ShareAllSalesInvoiceWithParents</fullName>
-        <accessLevel>Read</accessLevel>
-        <label>ShareAllSalesInvoiceWithParents</label>
-        <sharedTo>
-            <guestUser>Parent_Community</guestUser>
-        </sharedTo>
-        <criteriaItems>
-            <field>Zumzum__Paid__c</field>
-            <operation>equals</operation>
-            <value>N</value>
-        </criteriaItems>
-    </sharingGuestRules>
 </SharingRules>

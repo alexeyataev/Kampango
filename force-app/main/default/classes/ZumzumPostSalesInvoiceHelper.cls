@@ -1,4 +1,4 @@
-public with sharing class ZumzumPostSalesInvoiceHelper {
+public without sharing class ZumzumPostSalesInvoiceHelper {
     @InvocableMethod
     public static void postSalesInvoice(List<Zumzum__Sales_Invoice__c> salesInvoice) {
         
