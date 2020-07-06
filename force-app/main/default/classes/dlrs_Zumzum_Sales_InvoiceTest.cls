@@ -1,8 +1,8 @@
 /**
  * Auto Generated and Deployed by the Declarative Lookup Rollup Summaries Tool package (dlrs)
  **/
-//@SuppressWarnings('PMD.ClassNamingConventions')
-//Incident #XX - https://confluence.nct.org.uk:8443/x/EoSO
+@SuppressWarnings('PMD.ClassNamingConventions')
+//Incident #98 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 private class dlrs_Zumzum_Sales_InvoiceTest {
     private static final String ACCOUNT_TYPE_CUSTOMER = 'Customer';
