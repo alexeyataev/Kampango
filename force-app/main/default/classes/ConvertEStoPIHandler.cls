@@ -10,15 +10,22 @@ public with sharing class ConvertEStoPIHandler {
         }
         public set;
     }
-    public static String convertExpenseSheetToPurchaseInvoice(Set<Id> expenseSheetIds) {
+    public static zumzum.ExpenseSheetService.Response convertExpenseSheetToPurchaseInvoice(Set<Id> expenseSheetIds) {
         try {
-            if(expenseSheetIds == null || expenseSheetIds.isEmpty()) {
+
+            if (expenseSheetIds == null || expenseSheetIds.isEmpty()) {
                 throw new ListException(CONVERSION_SUBMITTED_ERROR);
             }
-            expenseSheetToPurchaseInvoiceConverter.convert(expenseSheetIds);
-            return CONVERSION_SUBMITTED_SUCCESS;
+
+            zumzum.ExpenseSheetService.Response expenceSheetResult = expenseSheetToPurchaseInvoiceConverter.convert(expenseSheetIds);
+
+            return expenceSheetResult;
+
         } catch(Exception e) {
-            return e.getMessage();
+            zumzum.ExpenseSheetService.Response expenceSheetErrorResult = new zumzum.ExpenseSheetService.Response();
+            expenceSheetErrorResult.ResponseMessage = e.getMessage();
+
+            return expenceSheetErrorResult;
         }
     }
 }
