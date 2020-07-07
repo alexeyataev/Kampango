@@ -16,10 +16,12 @@ public without sharing class AddMarketingPreferencesToCare {
 
     public static List<MarketingPreferencesResult> addMarketingPreferencesForContact(Contact cont) {
         List<MarketingPreferencesResult> marketingPreferencesResultList = new List<MarketingPreferencesResult>();
-        for(String individualField : MARKETING_PREFERENCES_DOCUMENT_MAP.keySet()) {
-            CareHelper.MarketingPreferencesObject marketingPreferencesObject = CareHelper.sendMarketingPreferences(cont.NCT_Number__c, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField), (Boolean)cont.Individual.get(individualField));
-            if(marketingPreferencesObject.error != null) {
-                marketingPreferencesResultList.add(new MarketingPreferencesResult(individualField, CareHelper.FAILURE_STATUS, marketingPreferencesObject.error[0].errorMessage));
+        if(cont.NCT_Number__c != null && cont.Individual != null) {
+            for(String individualField : MARKETING_PREFERENCES_DOCUMENT_MAP.keySet()) {
+                CareHelper.MarketingPreferencesObject marketingPreferencesObject = CareHelper.sendMarketingPreferences(cont.NCT_Number__c, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField), (Boolean)cont.Individual.get(individualField));
+                if(marketingPreferencesObject.error != null) {
+                    marketingPreferencesResultList.add(new MarketingPreferencesResult(individualField, CareHelper.FAILURE_STATUS, marketingPreferencesObject.error[0].errorMessage));
+                }
             }
         }
         return marketingPreferencesResultList;
