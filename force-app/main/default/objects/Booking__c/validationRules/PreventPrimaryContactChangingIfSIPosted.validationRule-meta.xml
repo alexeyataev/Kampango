@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PreventPrimaryContactChangingIfSIPosted</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    IsChanged(Primary_Contact__c),
+    Count_Of_Posted_Sales_Invoices__c &gt; 0,
+    NOT($Permission.Override_Booking_Validation)
+)</errorConditionFormula>
+    <errorDisplayField>Primary_Contact__c</errorDisplayField>
+    <errorMessage>Primary Contact can&apos;t be changed once the Booking record has Posted Sales Invoice(s).</errorMessage>
+</ValidationRule>

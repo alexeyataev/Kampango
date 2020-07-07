@@ -163,6 +163,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Booking__c.Count_Of_Posted_Sales_Invoices__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Booking__c.County__c</field>
         <readable>true</readable>
     </fieldPermissions>
