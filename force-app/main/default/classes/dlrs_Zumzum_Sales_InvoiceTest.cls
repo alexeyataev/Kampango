@@ -52,13 +52,7 @@ private class dlrs_Zumzum_Sales_InvoiceTest {
         
         TestFinanceDataFactory.updateHouseholdAccountsToCustomerType();
         TestFinanceDataFactory.createProducts();
-    }
 
-    @IsTest
-    private static void testTrigger() {
-        // Force the dlrs_Zumzum_Sales_InvoiceTrigger to be invoked, fails the test if org config or other Apex code prevents this.
-
-        Account customer = [SELECT Id FROM Account WHERE Type = :ACCOUNT_TYPE_CUSTOMER LIMIT 1];
         Zumzum__Bank_Account__c bankAccount = [SELECT Id FROM Zumzum__Bank_Account__c WHERE Name = 'Reconcile Bank' LIMIT 1];
         Zumzum__Company__c company = [SELECT Id FROM Zumzum__Company__c WHERE Name = 'NCT' LIMIT 1];
         Zumzum__Currency__c transactionCurrency = [SELECT Id FROM Zumzum__Currency__c WHERE Name = 'GBP' LIMIT 1];
@@ -77,6 +71,13 @@ private class dlrs_Zumzum_Sales_InvoiceTest {
             Zumzum__Type__c = SALES_INVOICE_TYPE_SI,
             Zumzum__Status__c = SALES_INVOICE_STATUS_POSTED
         );
+        insert salesInvoice;
+    }
+
+    @IsTest
+    private static void testTrigger() {
+        // Force the dlrs_Zumzum_Sales_InvoiceTrigger to be invoked, fails the test if org config or other Apex code prevents this.
+        Zumzum__Sales_Invoice__c salesInvoice = [SELECT Id FROM Zumzum__Sales_Invoice__c LIMIT 1];
 
         Test.startTest();
         dlrs.RollupService.testHandler(salesInvoice);
