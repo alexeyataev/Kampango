@@ -27,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>Host_Password__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Venue_Schedule_Link__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
