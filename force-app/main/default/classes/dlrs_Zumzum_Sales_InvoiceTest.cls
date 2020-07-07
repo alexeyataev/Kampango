@@ -77,11 +77,9 @@ private class dlrs_Zumzum_Sales_InvoiceTest {
             Zumzum__Type__c = SALES_INVOICE_TYPE_SI,
             Zumzum__Status__c = SALES_INVOICE_STATUS_POSTED
         );
-        insert salesInvoice;
 
         Test.startTest();
         dlrs.RollupService.testHandler(salesInvoice);
-        // dlrs.RollupService.testHandler(new Zumzum__Sales_Invoice__c());
         Test.stopTest();
 
         Booking__c bookingToTest = [SELECT Count_Of_Posted_Sales_Invoices__c FROM Booking__c LIMIT 1];
