@@ -5,9 +5,9 @@
     <name>BookingNotificationEmail</name>
     <style>none</style>
     <subject>Confirm booking {!Booking__c.Name} on your {!Course__c.Sub_Type__c}</subject>
-    <textOnly>Your booking reference: {!Course__c.PSA_Area__c} / {!Booking__c.Name}
+    <textOnly>Your booking reference: {!Booking__c.PSA_Office__c} / {!Booking__c.Name}
 
-Your course reference: {!Course__c.PSA_Area__c} / {!Course__c.Name}
+Your course reference: {!Booking__c.PSA_Office__c} / {!Booking__c.Course_Name__c}
 
 Dear {!Booking__c.First_Name__c} {!Booking__c.Email_Template_Utility_Field__c}
 
@@ -23,14 +23,14 @@ If this course isn’t suitable, do come back to me by email or give me a call s
 
 Your place will be confirmed once we have received your payment. If you choose to pay for your course by instalments, please note that full payment is due 28 days before the course starts.
 
-And if you haven&#39;t joined yet, make sure you don&#39;t miss out on NCT Membership. Being the UK’s largest charity for parents also means we’re the UK’s largest community of parents. Your membership donation will support our work in your community, and in local communities across the UK, as well as helping you save money through rewards, discounts and services at a time when every penny really does count.
+And if you haven&apos;t joined yet, make sure you don&apos;t miss out on NCT Membership. Being the UK’s largest charity for parents also means we’re the UK’s largest community of parents. Your membership donation will support our work in your community, and in local communities across the UK, as well as helping you save money through rewards, discounts and services at a time when every penny really does count.
 
 Kind Regards,
 
-{!Course__c.Enquiries_PSA_Name__c}
+{!Booking__c.Enquiries_PSA_Name__c}
 Course Organiser
-Telephone: {!Course__c.Enquiries_PSA_Phone__c}
-Email: Any reply to this email should be sent to {!Course__c.Enquiries_PSA_Email__c}</textOnly>
+Telephone: {!Booking__c.Enquiries_PSA_Phone__c}
+Email: Any reply to this email should be sent to {!Booking__c.Enquiries_PSA_Email__c}</textOnly>
     <type>custom</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>
