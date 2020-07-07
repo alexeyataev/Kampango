@@ -77,6 +77,6 @@ public without sharing class AddContactForMembershipTest {
         Test.stopTest();
         Contact contUpdated = [SELECT Care_Status__c, Care_Error_Log__c FROM Contact LIMIT 1];
         System.assertEquals(contUpdated.Care_Status__c, CareHelper.FAILURE_STATUS);
-        System.assert(contUpdated.Care_Error_Log__c.contains('failed to send to CARE: ' + MESSAGE_TEXT_ERROR));
+        System.assert(contUpdated.Care_Error_Log__c.contains(MESSAGE_TEXT_ERROR));
     }
 }
