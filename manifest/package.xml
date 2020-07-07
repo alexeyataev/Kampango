@@ -383,6 +383,7 @@
         <members>Override_Licence_To_Practice_Validation</members>
         <members>Override_Practitioner_Band_Validation</members>
         <members>Override_Practitioner_Fee_Rate_Validation</members>
+        <members>Override_Purchase_Invoice_Line_Item_Validation</members>
         <members>Override_Session_Validation</members>
         <members>Override_Venue_Validation</members>
         <name>CustomPermission</name>

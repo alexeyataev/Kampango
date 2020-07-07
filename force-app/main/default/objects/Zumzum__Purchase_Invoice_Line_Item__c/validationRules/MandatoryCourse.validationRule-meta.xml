@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MandatoryCourse</fullName>
+    <active>true</active>
+    <description>Course selection should be mandatory when raising a venue hire, subcontractor fees or travel invoice</description>
+    <errorConditionFormula>AND(
+OR(
+Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c == &apos;5157&apos;,
+Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c == &apos;5130&apos;,
+Zumzum__Nominal_Account__r.Zumzum__Nominal_Code__c == &apos;5150&apos;
+),
+ISBLANK(Course__c), 
+NOT($Permission.Override_Purchase_Invoice_Line_Item_Validation)
+)</errorConditionFormula>
+    <errorMessage>Please specify a Course for any Venue, Subcontractor or Travel line items.</errorMessage>
+</ValidationRule>
