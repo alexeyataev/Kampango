@@ -1,4 +1,4 @@
-public with sharing class ConfirmationEmailController {
+public without sharing class ConfirmationEmailController {
     public List<LocationWrapper> locationListWrapper { get; set; }
     public List<SessionWrapper> sessionListWrapper { get; set; }
     public List<PractitionerWrapper> practitionerListWrapper{ get; set; }
