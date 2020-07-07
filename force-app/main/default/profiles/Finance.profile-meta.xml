@@ -140,8 +140,8 @@
         <field>Account.AccountNumber</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
+	<fieldPermissions>
+		<editable>false</editable>
         <field>Account.Accounting_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -183,6 +183,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.Zumzum__Bank_Sort_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Zumzum__Settlement_Discount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
