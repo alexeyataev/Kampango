@@ -59,6 +59,7 @@
         <members>dlrs_SessionTest</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTest</members>
         <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
+        <members>dlrs_Zumzum_Sales_InvoiceTest</members>
         <members>EncryptBookingValidationCodeHandler</members>
         <members>EncryptDecryptBookingValidationCodeTest</members>
         <members>FinDockCardPaymentProvider</members>
@@ -180,6 +181,7 @@
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTrigger</members>
         <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
+        <members>dlrs_Zumzum_Sales_InvoiceTrigger</members>
         <members>TDTM_FeedItem</members>
         <members>TDTM_Session_c</members>
         <name>ApexTrigger</name>
@@ -265,6 +267,7 @@
         <name>CustomLabels</name>
     </types>
     <types>
+        <members>dlrs__LookupRollupSummary2.CountOfPostedSalesInvoices</members>
         <members>dlrs__LookupRollupSummary2.CourseAssignmentNumberOfSessions</members>
         <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalFeesAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalHours</members>
