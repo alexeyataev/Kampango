@@ -6,6 +6,10 @@
         <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>RedirectToESeditPageController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CourseDetailController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
