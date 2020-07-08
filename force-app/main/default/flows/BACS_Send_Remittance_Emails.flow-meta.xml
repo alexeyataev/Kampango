@@ -23,6 +23,18 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>emailSubject</name>
             <value>
                 <stringValue>BACS remittance from NCT</stringValue>
@@ -93,6 +105,13 @@
         <dataType>String</dataType>
         <value>
             <stringValue>The emails were succesfully sent</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>ORG_WIDE_ADDRESS_VALUE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>noreply-parentforce@nct.org.uk</stringValue>
         </value>
     </constants>
     <constants>
