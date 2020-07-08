@@ -2,6 +2,8 @@
 //Incident #68 - https://confluence.nct.org.uk:8443/x/EoSO
 global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Runnable{
     private static final String COURSE_STATUS_DRAFT = 'Draft';
+    private static final String COURSE_STATUS_CANCELLING = 'Cancelling';
+    private static final String COURSE_STATUS_CANCELLED = 'Cancelled';
     private static final String SESSION_TYPE_REUNION = 'Reunion';
      @SuppressWarnings('PMD.ApexCRUDViolation, PMD.ExcessiveParameterList')
     //Incident #23 - https://confluence.nct.org.uk:8443/x/EoSO
@@ -33,7 +35,7 @@ global with sharing class SESSION_RevertCourseToDraft_TDTM extends npsp.TDTM_Run
             Status__c
             FROM Course__c
             WHERE Id IN :courseIds
-                AND Status__c != :COURSE_STATUS_DRAFT
+                AND Status__c NOT IN (:COURSE_STATUS_DRAFT, :COURSE_STATUS_CANCELLING, :COURSE_STATUS_CANCELLED)
             WITH SECURITY_ENFORCED
         ];
 
