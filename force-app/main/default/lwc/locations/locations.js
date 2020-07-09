@@ -12,7 +12,7 @@ export default class Locations extends LightningElement {
     @api isStatusConfirmed;
     @api venues;
     @api sessions;
-    notExcludedSessions
+    sessionsForDisplay;
 
     connectedCallback() {
         loadStyle(this, NCT_STYLES + '/coursedetail.css')
@@ -29,13 +29,13 @@ export default class Locations extends LightningElement {
                 );
             });
 
-        this.excludedSessions = this.excludeProvisionalSessions(this.sessions);
-        this.venues = this.deduplicateVenues(this.getVenues(this.excludedSessions));
+        this.sessionsForDisplay = this.removeSessionsNotForDisplay(this.sessions);
+        this.venues = this.deduplicateVenues(this.getVenues(this.sessionsForDisplay));
         this.formatVenues();
     }
 
     formatVenues() {
-        let venueIdSessionListMap = this.getVenueToSessionMap(this.excludedSessions);
+        let venueIdSessionListMap = this.getVenueToSessionMap(this.sessionsForDisplay);
         let array = this.venues, finalArray = [];
         array.forEach(
             row => {
@@ -107,7 +107,7 @@ export default class Locations extends LightningElement {
         return venueList;
     }
 
-    excludeProvisionalSessions(sessionList) {
+    removeSessionsNotForDisplay(sessionList) {
         let finalArray = [];
         sessionList.forEach(
             row => {
