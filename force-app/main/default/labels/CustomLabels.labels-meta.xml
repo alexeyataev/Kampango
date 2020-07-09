@@ -241,7 +241,7 @@ If you have any queries or questions about this payment, please get in touch wit
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Unsupported browser error message</shortDescription>
-        <value>Sorry, your current browser isn&apos;t supported. For the best experience we suggest using Chrome.</value>
+        <value>Sorry, your current browser isn't supported. For the best experience we suggest using Chrome.</value>
     </labels>
     <labels>
         <fullName>Zoom_Support_Link</fullName>
