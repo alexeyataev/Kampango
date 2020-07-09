@@ -53,7 +53,6 @@
         <members>Booking__c.Bank_Sort_Code__c</members>
         <members>Booking__c.Enquiries_PSA_First_Name__c</members>
         <members>Booking__c.Enquiries_PSA_Email__c</members>
-        <members>Booking__c.Enquiries_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_First_Name__c</members>
         <members>Booking__c.Has_Opted_Out_Email__c</members>
@@ -343,7 +342,7 @@
         <members>Enquiries_PSA</members>
         <name>Role</name>
     </types>
-	<types>
+    <types>
         <members>Zumzum__Dimension__c.ShareAllDimensionWithParents</members>
         <members>Account.ShareAllAccountsWithParents</members>
         <members>Course__c.ShareAllCourseWithParents</members>

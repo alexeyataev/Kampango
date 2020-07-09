@@ -1,17 +1,40 @@
-Dear {!Booking__c.First_Name__c}<br><br>
- 
-Thank you for making a payment to NCT. This transaction was successful.<br><br>
- 
-If you have any queries or questions about this payment, please get in touch with nctcourses@nct.org.uk<br><br><br>
- 
- 
-Kind Regards,<br>
-<br>
-<br>
-{!Booking__c.Enquiries_PSA_Name__c}<br>
-<br>
-Course Organiser<br>
-<br>
-Telephone: {!Booking__c.Enquiries_PSA_Phone__c}<br>
-<br>
-Email: Any reply to this email should be sent to {!Booking__c.Enquiries_PSA_Email__c}
+<messaging:emailTemplate subject="NCT payment success" recipientType="Contact" relatedToType="Booking__c">
+    <messaging:htmlEmailBody >
+        <html>
+            <body style="font-size: 0.9rem;">
+
+                <div style='width:100%; max-width:900px; margin:0 auto; border:2px solid #f0f0f0; padding:30px; color:black;'>
+
+                    <p style='font-size:1.5rem;'>Dear {!relatedTo.First_Name__c}</p>
+
+                    <p style='font-size:1.1rem;'>
+                        <apex:outputText escape="false" value="{!$Label.Adhoc_Payment_Confirmation}">
+                                <apex:param value="{!$Label.Courses_Reply_Email}" />
+                        </apex:outputText>
+                    </p>
+
+                    <div style='margin-top:40px;'>
+                        <p>
+                          <b>Kind Regards,</b> 
+                        </p> 
+
+                        {!relatedTo.Enquiries_PSA_Name__c} <br />
+
+                        Course Organiser <br />
+
+                        Telephone: {!relatedTo.Enquiries_PSA_Phone__c}<br />
+
+                        Email: Any reply to this email should be sent to&nbsp;
+
+                        <apex:outputText value="{!$Label.Bookings_Reply_Email}">
+                            <apex:param value="{!relatedTo.PSA_Office__c}" />
+                        </apex:outputText>
+                    </div>
+
+                </div>
+
+            </body>
+        </html>
+
+    </messaging:htmlEmailBody>
+</messaging:emailTemplate>
