@@ -55,8 +55,8 @@ public without sharing class AddMarketingPreferencesToCare {
             if(marketingPreferencesError != '') {
                 contactList[0].Care_Status__c = CareHelper.FAILURE_STATUS;
                 contactList[0].Care_Error_Log__c = CareHelper.addErrorLog(marketingPreferencesError, contactList[0].Care_Error_Log__c);
+                update contactList;
             }
-            update contactList;
         }
     }
 
