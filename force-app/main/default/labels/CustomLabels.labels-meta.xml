@@ -2,15 +2,27 @@
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>AdHoc_Payment_Notification</fullName>
-        <categories>AdHoc Payment Labels</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AdHoc Payment Notification</shortDescription>
-        <value>As discussed, please find the link below to pay the balance owing to NCT. If you have any queries or questions about this balance, please get in touch with nctcourses@nct.org.uk.</value>
+        <value>As discussed, please find the link below to pay the balance owing to NCT.
+&lt;/br&gt; 
+If you have any queries or questions about this balance, please get in touch with {0}</value>
+    </labels>
+    <labels>
+        <fullName>Adhoc_Payment_Confirmation</fullName>
+        <categories>NCT Parentforce Labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adhoc Payment Confirmation</shortDescription>
+        <value>Thank you for making a payment to NCT. This transaction was successful.
+ &lt;/br&gt;
+If you have any queries or questions about this payment, please get in touch with {0}</value>
     </labels>
     <labels>
         <fullName>Baby_Massage_Tips_And_Benefits_Url</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Baby Massage Tips And Benefits Url</shortDescription>
@@ -26,7 +38,7 @@
     </labels>
     <labels>
         <fullName>Bookings_Reply_Email</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Bookings Reply Email</shortDescription>
@@ -34,7 +46,7 @@
     </labels>
     <labels>
         <fullName>Confirmation_Notification_Course_Reunion</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Confirmation Notification Course Reunion</shortDescription>
@@ -42,7 +54,7 @@
     </labels>
     <labels>
         <fullName>Confirmed_Zoom_Details_Text</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Confirmed Zoom Details Text</shortDescription>
@@ -108,6 +120,14 @@
         <value>{&quot;Error&quot; : &quot;Radius is not a whole number of miles&quot;}</value>
     </labels>
     <labels>
+        <fullName>Courses_Reply_Email</fullName>
+        <categories>NCT Parentforce Labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Courses Reply Email</shortDescription>
+        <value>nctcourses@nct.org.uk</value>
+    </labels>
+    <labels>
         <fullName>Delete_Activity_Error_Text</fullName>
         <categories>Error Messages</categories>
         <language>en_US</language>
@@ -125,7 +145,7 @@
     </labels>
     <labels>
         <fullName>Nct_Pregnancy_Baby_Guide_Url</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Nct Pregnancy Baby Guide Url</shortDescription>
@@ -154,7 +174,7 @@
     </labels>
     <labels>
         <fullName>Reunion_Confirmed_Public_Header</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Reunion Confirmed Public Header</shortDescription>
@@ -162,7 +182,7 @@
     </labels>
     <labels>
         <fullName>Reunion_Message_DeliveryType_Is_Online_And_Venue_Is_Blank</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Reunion Message DeliveryType Is Online And Venue Is Blank</shortDescription>
@@ -170,7 +190,7 @@
     </labels>
     <labels>
         <fullName>Reunion_Message_DeliveryType_Is_Online_And_Venue_Not_Is_Blank</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Reunion Message DeliveryType Is Online And Venue Not Is Blank</shortDescription>
@@ -178,7 +198,7 @@
     </labels>
     <labels>
         <fullName>Reunion_Message_DeliveryType_Is_Physical_And_Venue_Is_Blank</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Reunion Message DeliveryType Is Physical And Venue Is Blank</shortDescription>
@@ -186,7 +206,7 @@
     </labels>
     <labels>
         <fullName>Reunion_Message_DeliveryType_Is_Physical_And_Venue_Not_Is_Blank</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Reunion Message DeliveryType Is Physical And Venue Not Is Blank</shortDescription>
@@ -194,7 +214,7 @@
     </labels>
     <labels>
         <fullName>Sessions_Virtual_Support_Text</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Sessions Virtual Support Text</shortDescription>
@@ -202,7 +222,7 @@
     </labels>
     <labels>
         <fullName>Sub_Type_Course_Baby_Massage</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Sub Type Course  Baby Massage</shortDescription>
@@ -210,7 +230,7 @@
     </labels>
     <labels>
         <fullName>Unconfirmed_Zoom_Details_Text</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Unconfirmed Zoom Details Text</shortDescription>
@@ -221,11 +241,11 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Unsupported browser error message</shortDescription>
-        <value>Sorry, your current browser isn't supported. For the best experience we suggest using Chrome.</value>
+        <value>Sorry, your current browser isn&apos;t supported. For the best experience we suggest using Chrome.</value>
     </labels>
     <labels>
         <fullName>Zoom_Support_Link</fullName>
-        <categories>Confirmation Notification</categories>
+        <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Zoom Support Link</shortDescription>
