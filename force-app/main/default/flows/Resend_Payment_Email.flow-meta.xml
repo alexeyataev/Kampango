@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Result_Sending_Email</name>
         <label>Result Sending Email</label>
-        <locationX>676</locationX>
+        <locationX>743</locationX>
         <locationY>238</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
@@ -26,7 +26,7 @@
     <actionCalls>
         <name>Sent_Booking_Payment_Details</name>
         <label>Sent Booking Payment Details</label>
-        <locationX>521</locationX>
+        <locationX>588</locationX>
         <locationY>273</locationY>
         <actionName>Booking__c.Sent_Booking_Payment_Details</actionName>
         <actionType>emailAlert</actionType>
@@ -57,7 +57,7 @@
     <decisions>
         <name>Check_Status</name>
         <label>Check Status</label>
-        <locationX>221</locationX>
+        <locationX>288</locationX>
         <locationY>244</locationY>
         <defaultConnector>
             <targetReference>Confirm_Send_Email_Screen</targetReference>
@@ -97,7 +97,7 @@
     <recordCreates>
         <name>Create_Task</name>
         <label>Create Task</label>
-        <locationX>675</locationX>
+        <locationX>742</locationX>
         <locationY>396</locationY>
         <inputAssignments>
             <field>ActivityDate</field>
@@ -144,7 +144,7 @@
         <inputAssignments>
             <field>Subject</field>
             <value>
-                <stringValue>Confirmation email resent</stringValue>
+                <stringValue>Payment confirmation email resent</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -158,7 +158,7 @@
     <recordLookups>
         <name>Get_Booking_Record</name>
         <label>Get Booking Record By Id</label>
-        <locationX>44</locationX>
+        <locationX>111</locationX>
         <locationY>241</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -182,7 +182,7 @@
     <screens>
         <name>Confirm_Send_Email_Screen</name>
         <label>Screen of  Confirm</label>
-        <locationX>313</locationX>
+        <locationX>380</locationX>
         <locationY>457</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -207,7 +207,7 @@
     <screens>
         <name>Sent_Email_Not_Availablr_Screen</name>
         <label>Screen Send Email Not Available</label>
-        <locationX>317</locationX>
+        <locationX>384</locationX>
         <locationY>41</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
