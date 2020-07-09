@@ -3,7 +3,7 @@
     <fullName>Amount__c</fullName>
     <externalId>false</externalId>
     <label>Amount</label>
-    <precision>5</precision>
+    <precision>7</precision>
     <required>true</required>
     <scale>2</scale>
     <trackTrending>false</trackTrending>

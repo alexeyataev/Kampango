@@ -23,6 +23,18 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>emailSubject</name>
             <value>
                 <stringValue>BACS remittance from NCT</stringValue>
@@ -93,6 +105,13 @@
         <dataType>String</dataType>
         <value>
             <stringValue>The emails were succesfully sent</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>ORG_WIDE_ADDRESS_VALUE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>noreply-parentforce@nct.org.uk</stringValue>
         </value>
     </constants>
     <constants>
@@ -284,7 +303,7 @@ V2. Added Payment Run Status Check</description>
         <name>BACSRemittanceEmail</name>
         <text>Dear Sir/Madam
 
-A remittance of {!Loop_For_items.Paid_Amount__c} has been sent to your designated bank account today. If you do not receive it within 3 working days please let us know by replying to finance@nct.org.uk. The amount is payment for the following:
+A remittance of £{!Loop_For_items.Paid_Amount__c} has been sent to your designated bank account today. If you do not receive it within 3 working days please let us know by replying to finance@nct.org.uk. The amount is payment for the following:
 
 {!Loop_For_items.Reference_Info__c}
 
