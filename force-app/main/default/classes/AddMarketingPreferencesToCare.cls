@@ -50,7 +50,13 @@ public without sharing class AddMarketingPreferencesToCare {
             WHERE Id =: contactId
         ];
         if(!contactList.isEmpty()) {
-            addMarketingPreferencesForContact(contactList[0]);
+            List<AddMarketingPreferencesToCare.MarketingPreferencesResult> marketingPreferencesResultList = addMarketingPreferencesForContact(contactList[0]);
+            String marketingPreferencesError = AddMarketingPreferencesToCare.getErrorLog(marketingPreferencesResultList);
+            if(marketingPreferencesError != '') {
+                contactList[0].Care_Status__c = CareHelper.FAILURE_STATUS;
+                contactList[0].Care_Error_Log__c = CareHelper.addErrorLog(marketingPreferencesError, contactList[0].Care_Error_Log__c);
+            }
+            update contactList;
         }
     }
 
