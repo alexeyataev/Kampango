@@ -179,7 +179,6 @@
         <name>CustomPermission</name>
     </types>
     <types>
-        <members>NCT_Templates/Adhoc_Payment_Confirmation</members>
         <members>NCT_Templates/Adhoc_Payment_Notification</members>
         <members>NCT_Templates/BACS_Remittance_Email</members>
         <members>NCT_Templates/Reunion_Confirmed_Practitioner</members>
