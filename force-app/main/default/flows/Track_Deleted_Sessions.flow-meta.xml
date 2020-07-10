@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Post_Deleted_Session_Details</name>
         <label>Post Deleted Session Details</label>
-        <locationX>375</locationX>
+        <locationX>568</locationX>
         <locationY>50</locationY>
         <actionName>chatterPost</actionName>
         <actionType>chatterPost</actionType>
@@ -34,6 +34,11 @@
         <expression>TODAY()</expression>
     </formulas>
     <formulas>
+        <name>sessionDate</name>
+        <dataType>String</dataType>
+        <expression>If({!currentSession.Date__c} != null, TEXT({!currentSession.Date__c}), &quot;&quot;)</expression>
+    </formulas>
+    <formulas>
         <name>timesDetails</name>
         <dataType>String</dataType>
         <expression>If(ISBLANK({!currentSession.Hours__c}), &quot;Times: &quot; + {!currentSession.Times__c},  &quot;Hours: &quot; +  TEXT({!currentSession.Hours__c}))</expression>
@@ -53,7 +58,7 @@
     <loops>
         <name>Loop_Through_Sessions</name>
         <label>Loop Through Sessions</label>
-        <locationX>197</locationX>
+        <locationX>390</locationX>
         <locationY>50</locationY>
         <assignNextValueToReference>currentSession</assignNextValueToReference>
         <collectionReference>sessionRecordsToTrack</collectionReference>
@@ -85,10 +90,10 @@
     <status>Active</status>
     <textTemplates>
         <name>SessionDetails</name>
-        <text>Session {!currentSession.Name} scheduled for {!currentSession.Fee_Rate_Date__c}
+        <text>Session {!currentSession.Name} scheduled for {!sessionDate}
 deleted on {!deletionDate}
 
-Session date: {!currentSession.Fee_Rate_Date__c}
+Session date: {!sessionDate}
 {!timesDetails}
 Delivery Type: {!currentSession.Delivery_Type__c}
 Type: {!currentSession.Type__c}
