@@ -36,18 +36,6 @@
     <columns>
         <field>Course__c.Estimated_Surplus_Deficit__c</field>
     </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Course__c.Practitioner_Fee_Difference__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Course__c.Venue_Cost_Differences__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Course__c.Travel_Cost_Differences__c</field>
-    </columns>
     <filter>
         <criteriaItems>
             <column>Course__c.Break_Even_Number_Reached__c</column>
