@@ -37,7 +37,7 @@ public with sharing class ReconcilePaymentsBatchHelper {
         
         for (Zumzum__Bank_Payment__c bankPayment : bankPaymentsForRefunds) {
             for (Zumzum__Ledger_Payment_History__c salesCreditAllocation : bankPayment.Zumzum__Ledger_Payment_History__r) {
-                if (salesCreditAllocation.Zumzum__Amount__c == math.abs(salesInvoicesWithCreditsPayments.get(salesCreditAllocation.Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c).cpm__Amount__c)) {
+                if (salesCreditAllocation.Zumzum__Amount__c == Math.abs(salesInvoicesWithCreditsPayments.get(salesCreditAllocation.Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c).cpm__Amount__c)) {
                     salesCreditIdBankPaymentId.put(salesCreditAllocation.Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c, bankPayment.Id);
                 }              
             }
