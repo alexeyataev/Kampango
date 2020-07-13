@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #103 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 public class EncryptDecryptSalesInvoiceValCodeTest {
     private static final String CREATED_DATE = String.valueOf(Date.today());
