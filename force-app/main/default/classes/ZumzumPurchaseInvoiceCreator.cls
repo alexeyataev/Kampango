@@ -1,9 +1,9 @@
 public with sharing class ZumzumPurchaseInvoiceCreator implements IPurchaseInvoiceServiceProvider {
 
     public static Zumzum.PurchaseInvoiceService.Response postPurchaseInvoice(Set<Id> setOfPurchaseInvoiceIds, Boolean executeInBatchProcessing) {
-        Zumzum.PurchaseInvoiceService PostPurchaseInvoice = new Zumzum.PurchaseInvoiceService();
+        Zumzum.PurchaseInvoiceService postPurchaseInvoice = new Zumzum.PurchaseInvoiceService();
 
-        return PostPurchaseInvoice.PostPurchaseInvoice(setOfPurchaseInvoiceIds, executeInBatchProcessing);
+        return postPurchaseInvoice.PostPurchaseInvoice(setOfPurchaseInvoiceIds, executeInBatchProcessing);
     }
 
 }
