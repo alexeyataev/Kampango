@@ -37,7 +37,7 @@ public with sharing class ReconcilePaymentsBatchHelper {
         
         for (Zumzum__Bank_Payment__c bankPayment : bankPaymentsForRefunds) {
             for (Zumzum__Ledger_Payment_History__c salesCreditAllocation : bankPayment.Zumzum__Ledger_Payment_History__r) {
-                if (salesCreditAllocation.Zumzum__Amount__c == salesInvoicesWithCreditsPayments.get(salesCreditAllocation.Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c).cpm__Amount__c) {
+                if (salesCreditAllocation.Zumzum__Amount__c == math.abs(salesInvoicesWithCreditsPayments.get(salesCreditAllocation.Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c).cpm__Amount__c)) {
                     salesCreditIdBankPaymentId.put(salesCreditAllocation.Zumzum__Sales_Credit__r.Zumzum__Sales_Invoice_to_Credit__c, bankPayment.Id);
                 }              
             }
@@ -74,7 +74,7 @@ public with sharing class ReconcilePaymentsBatchHelper {
                 cpm__Installment__r.cpm__Recurring_Payment__r.Sales_Invoice__c,
                 cpm__Payment_Reference__c
             FROM cpm__Payment__c
-            WHERE cpm__Payment_Reference__c IN :refundReceiptReferences
+            WHERE cpm__Payment_Reference__c IN :refundReceiptReferences AND cpm__Amount__c < 0
             WITH SECURITY_ENFORCED
         ];
     }
