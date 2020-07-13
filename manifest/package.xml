@@ -506,6 +506,12 @@
         <name>Group</name>
     </types>
     <types>
+        <members>Contact.CourseSummaryPractitionerFields</members>
+        <members>Zumzum__Sales_Invoice__c.Zumzum__Required_Fields_Column_1</members>
+        <name>FieldSet</name>
+    </types>
+    <types>
+        <members>Batch_Receipt_Report_Record_Page</members>
         <members>Booking_Record_Page</members>
         <members>Contact_Record_Page</members>
         <members>Course_Assignment_Record_Page</members>
@@ -516,11 +522,6 @@
         <members>Venue_Record_Page</members>
         <members>Zumzum_Purchase_Invoice_Record_Page1</members>
         <name>FlexiPage</name>
-    </types>
-    <types>
-        <members>Contact.CourseSummaryPractitionerFields</members>
-        <members>Zumzum__Sales_Invoice__c.Zumzum__Required_Fields_Column_1</members>
-        <name>FieldSet</name>
     </types>
     <types>
         <members>Adhoc_Payment_Flow</members>
