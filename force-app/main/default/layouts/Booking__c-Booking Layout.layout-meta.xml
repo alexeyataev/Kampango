@@ -346,9 +346,12 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Zumzum__Total_Paid_Amount__c</fields>
+        <fields>Zumzum__Type__c</fields>
+        <fields>Zumzum__Total_Gross__c</fields>
         <fields>Zumzum__Total_Unpaid_Amount__c</fields>
+        <fields>Zumzum__Total_Paid_Amount__c</fields>
         <fields>Zumzum__Invoice_Date__c</fields>
+        <fields>Zumzum__Customer_Order_No__c</fields>
         <relatedList>Zumzum__Sales_Invoice__c.Booking__c</relatedList>
     </relatedLists>
     <relatedLists>
