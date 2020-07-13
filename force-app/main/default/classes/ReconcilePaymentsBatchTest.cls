@@ -123,7 +123,7 @@ private class ReconcilePaymentsBatchTest {
             payments.add(paymentBuilder
                 .withPaymentReference(String.valueOf(i))
                 .withAccount(customer.Id)
-                .withAmount(100.00)
+                .withAmount((Math.mod(i, 2) == 0) ? - 100.00 : 100.00)
                 .withPrimaryContact(primaryContact.Id)
                 .withPaymentProfile(paymentProfile.Id)
                 .withInstallment(installments[i].Id)
