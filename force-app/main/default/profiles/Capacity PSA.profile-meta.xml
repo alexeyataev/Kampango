@@ -1187,7 +1187,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-    	  <editable>true</editable>
+    <editable>true</editable>
         <field>Session__c.Venue_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
