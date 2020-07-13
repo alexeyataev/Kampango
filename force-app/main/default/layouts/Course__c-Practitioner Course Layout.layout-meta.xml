@@ -346,7 +346,7 @@
         <fields>Day_of_Week__c</fields>
         <fields>Date__c</fields>
         <fields>Times__c</fields>
-        <fields>Type__c</fields>
+        <fields>Session_Type__c</fields>
         <fields>Specific_Attendee_Type__c</fields>
         <fields>Practitioner__c</fields>
         <fields>Venue__c</fields>

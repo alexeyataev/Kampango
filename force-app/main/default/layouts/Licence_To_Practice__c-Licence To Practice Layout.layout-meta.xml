@@ -72,7 +72,7 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-        <actionName>Clone</actionName>
+            <actionName>Clone</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>0</sortOrder>
         </platformActionListItems>
@@ -109,8 +109,8 @@
         <fields>Status__c</fields>
         <fields>Date__c</fields>
         <fields>Day_of_Week__c</fields>
-        <fields>Start__c</fields>
-        <fields>End__c</fields>
+        <fields>Times__c</fields>
+        <fields>Session_Type__c</fields>
         <fields>Venue__c</fields>
         <fields>Course__c</fields>
         <fields>Course_Status__c</fields>
