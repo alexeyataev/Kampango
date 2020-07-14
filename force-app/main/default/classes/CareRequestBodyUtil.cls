@@ -29,7 +29,7 @@ public with sharing class CareRequestBodyUtil {
         addUpdateContactRequest.secondaryPhoneNumber = cont.npe01__PreferredPhone__c == 'Mobile' ? cont.HomePhone : cont.MobilePhone;
         addUpdateContactRequest.address = cont.MailingStreet;
         addUpdateContactRequest.town = cont.MailingCity;
-        addUpdateContactRequest.country = cont.MailingCountry;
+        addUpdateContactRequest.country = cont.MailingCountryCode;
         return JSON.serialize(addUpdateContactRequest, true);
     }
 
