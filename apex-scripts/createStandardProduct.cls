@@ -34,13 +34,20 @@ void createProducts(Map<String, Decimal> input) {
             );           
         }
         insert newProducts;
+        
+        Pricebook2 pricebook = [
+            SELECT Id
+            FROM Pricebook2
+            WHERE isStandard = true
+        ];
 
         for(Product2 product : newProducts) {
             newPricebookEntries.add(
             new PricebookEntry(
                 isActive = true,
                 UnitPrice = listPricesByProductNames.get(product.Name),
-                Product2Id = product.Id
+                Product2Id = product.Id,
+                Pricebook2Id = pricebook.Id
                 )
             );
         }
