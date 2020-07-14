@@ -1,3 +1,4 @@
+/* initial */
 Map<String, Decimal> listPricesByProductNames = new Map<String, Decimal>{
     'Course Place' => 0,
     'Course Cancellation Fees' => 30,
