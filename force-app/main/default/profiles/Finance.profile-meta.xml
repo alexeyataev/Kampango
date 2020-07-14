@@ -907,6 +907,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Course__c.Practitioner_Fee_Difference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Course__c.Private_Course__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -993,6 +998,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Total_Venue_Costs__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Travel_Cost_Differences__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Venue_Cost_Differences__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
