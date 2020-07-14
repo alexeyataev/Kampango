@@ -27,49 +27,11 @@
         <name>CustomField</name>
     </types>
     <types>
-        <members>NCT_Templates/Adhoc_Payment_Confirmation</members>
-        <name>EmailTemplate</name>
-    </types>
-    <types>
-        <members>Adhoc_Payment_Success_Flow-1</members>
-        <members>Adhoc_Payment_Success_Flow-2</members>
-        <members>Adhoc_Payment_Success_Flow-3</members>
-        <members>Adhoc_Payment_Success_Flow-4</members>
-        <members>Adhoc_Payment_Success_Flow-5</members>
-        <members>Adhoc_Payment_Success_Flow-6</members>
-        <members>Adhoc_Payment_Success_Flow-7</members>
-        <members>Adhoc_Payment_Success_Flow-8</members>
-        <members>Adhoc_Payment_Success_Flow-9</members>
-        <members>Adhoc_Payment_Success_Flow-10</members>
-        <members>Adhoc_Payment_Success_Flow-11</members>
-        <members>Adhoc_Payment_Success_Flow-12</members>
-        <members>Adhoc_Payment_Success_Flow-13</members>
-        <members>Adhoc_Payment_Success_Flow-14</members>
-        <members>Adhoc_Payment_Success_Flow-15</members>
-        <members>Adhoc_Payment_Success_Flow-16</members>
-        <members>Adhoc_Payment_Success_Flow-17</members>
-        <members>Adhoc_Payment_Success_Flow-18</members>
-        <members>Adhoc_Payment_Success_Flow-19</members>
-        <members>Adhoc_Payment_Success_Flow-20</members>
-        <members>Adhoc_Payment_Success_Flow-21</members>
-        <members>Adhoc_Payment_Success_Flow-22</members>
-        <members>Adhoc_Payment_Success_Flow-23</members>
-        <members>Adhoc_Payment_Success_Flow-24</members>
-        <members>Adhoc_Payment_Success_Flow-25</members>
-        <name>Flow</name>
-    </types>
-    <types>
         <members>Fee_Band</members>
         <name>GlobalValueSet</name>
     </types>
     <types>
         <members>Tick</members>
         <name>StaticResource</name>
-    </types>
-    <types>
-        <members>Booking__c.Adhoc_Send_Confirmation_Email</members>
-        <members>Contact.Adhoc_Send_Confirmation_Email</members>
-        <members>Zumzum__Sales_Invoice__c.Adhoc_Send_Confirmation_Email</members>
-        <name>WorkflowAlert</name>
-    </types>
+    </types>	
 </Package> 
