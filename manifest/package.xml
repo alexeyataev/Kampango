@@ -889,7 +889,6 @@
         <members>Contact.Bank_Account_Name_Not_More_50_Symbols</members>
         <members>Contact.Bank_Account_Number_Exactly_8_numbers</members>
         <members>Contact.Bank_Sort_Code_Exactly_6_numbers</members>
-        <members>Session__c.PreventReunionSessionToConfirmed</members>
         <members>Venue__c.Delivery_Mechanism_Populating</members>
         <members>Venue__c.Postcode_Must_Contain_Space</members>
         <members>Venue__c.Zoom_Details_Populating</members>
