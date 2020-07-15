@@ -21,7 +21,7 @@ public with sharing class BookingDetailsControllerTest {
                     .buildVenue()
                     .buildRoom()
                     .buildLicenceToPractice()
-                    .buildCourseWithStatus('Final')
+                    .buildCourse()
                     .buildEstimatedCosts()
                     .buildSession()
                     .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
