@@ -219,6 +219,7 @@
         <name>ContentAsset</name>
     </types>
     <types>
+        <members>Finance</members>
         <members>NCT_Courses</members>
         <members>Zumzum__Zumzum_Financials_L</members>
         <name>CustomApplication</name>
