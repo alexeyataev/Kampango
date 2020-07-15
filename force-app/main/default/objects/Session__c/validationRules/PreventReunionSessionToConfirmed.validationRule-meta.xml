@@ -5,7 +5,8 @@
     <errorConditionFormula>AND(
 ISPICKVAL(Type__c, &apos;Reunion&apos;),
 ISPICKVAL(Status__c, &apos;Confirmed&apos;),
-NOT(ISPICKVAL(Course__r.Status__c, &apos;Final&apos;))
+NOT(ISPICKVAL(Course__r.Status__c, &apos;Final&apos;)),
+NOT($Permission.Override_Session_Validation)
 )</errorConditionFormula>
     <errorMessage>Please finalise the course before confirming the Reunion.</errorMessage>
 </ValidationRule>
