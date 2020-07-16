@@ -36,7 +36,7 @@
     <formulas>
         <name>sessionDate</name>
         <dataType>String</dataType>
-        <expression>If({!currentSession.Date__c} != null, TEXT({!currentSession.Date__c}), &quot;&quot;)</expression>
+        <expression>TEXT({!currentSession.Date__c})</expression>
     </formulas>
     <formulas>
         <name>timesDetails</name>
@@ -90,10 +90,10 @@
     <status>Active</status>
     <textTemplates>
         <name>SessionDetails</name>
-        <text>Session {!currentSession.Name} scheduled for {!sessionDate}
+        <text>Session {!currentSession.Name} scheduled for {!currentSession.Date__c}
 deleted on {!deletionDate}
 
-Session date: {!sessionDate}
+Session date: {!currentSession.Date__c}
 {!timesDetails}
 Delivery Type: {!currentSession.Delivery_Type__c}
 Type: {!currentSession.Type__c}
