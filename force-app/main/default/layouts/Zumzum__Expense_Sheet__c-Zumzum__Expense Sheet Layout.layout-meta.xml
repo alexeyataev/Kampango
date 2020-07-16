@@ -140,6 +140,14 @@
         <relatedList>Zumzum__Expense_Sheet_Detail__c.Zumzum__Expense_Sheet__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Zumzum__Purchase_Invoice__c.Zumzum__Expense_Sheet__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Expense_Sheet__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>CreatedDate</fields>
         <fields>StepStatus</fields>
         <fields>Comments</fields>
