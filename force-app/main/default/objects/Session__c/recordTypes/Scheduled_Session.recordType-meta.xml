@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Scheduled_Session</fullName>
     <active>true</active>
+    <compactLayoutAssignment>Session_Compact_Layout</compactLayoutAssignment>
     <label>Scheduled Session</label>
     <picklistValues>
         <picklist>Delivery_Type__c</picklist>
