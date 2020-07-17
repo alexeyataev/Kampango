@@ -34,7 +34,8 @@ public without sharing class ConfirmationEmailController {
                         Location_Id__c,
                         Practitioner__c,
                         Practitioner_Phone__c,
-                        Practitioner_Name__c
+                        Practitioner_Name__c,
+                        Session_Room_Name__c
                 FROM Session__c
                 WHERE Course__c = :courseId
                 WITH SECURITY_ENFORCED
