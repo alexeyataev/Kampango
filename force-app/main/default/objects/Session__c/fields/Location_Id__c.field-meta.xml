@@ -2,7 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Location_Id__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(ISBLANK(Venue__c), IF(ISBLANK(Parent_Host__c),&#39;&#39;,Parent_Host__c), Venue__c)</formula>
+    <formula>IF(ISBLANK(Venue__c),
+  IF(ISBLANK(Parent_Host__c), &apos;&apos;, Parent_Host__c),
+  IF(ISBLANK(Room__c), Venue__c, Room__c)
+)</formula>
     <label>Location Id</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
