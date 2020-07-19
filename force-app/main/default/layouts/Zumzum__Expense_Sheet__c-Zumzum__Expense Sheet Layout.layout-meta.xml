@@ -141,10 +141,16 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>Zumzum__Total_Gross__c</fields>
+        <fields>Zumzum__Paid__c</fields>
+        <fields>Zumzum__Status__c</fields>
         <relatedList>Zumzum__Purchase_Invoice__c.Zumzum__Expense_Sheet__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Zumzum__Nominal_Account__c</fields>
+        <fields>Zumzum__Total_Gross__c</fields>
         <relatedList>Zumzum__Purchase_Invoice_Line_Item__c.Zumzum__Expense_Sheet__c</relatedList>
     </relatedLists>
     <relatedLists>
