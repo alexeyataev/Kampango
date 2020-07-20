@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <formula>IF(ISBLANK(Venue__c),
   IF(ISBLANK(Parent_Host__c), &apos;&apos;, Parent_Host__c),
-  IF(ISBLANK(Room__c), Venue__c, Room__c)
+  IF(ISBLANK(Room__c), Venue__c, Venue__c + &apos;&apos; + Room__c)
 )</formula>
     <label>Location Id</label>
     <required>false</required>
