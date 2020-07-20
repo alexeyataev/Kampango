@@ -563,6 +563,7 @@
         <members>Reunion_Execute_Sending</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
+        <members>Send_email_to_all_course_attendees</members>
         <members>Set_Booking_Contacts_Email_To_Do_Not_Contact</members>
         <members>Set_CADs_to_Withdrawn</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
@@ -777,8 +778,9 @@
         <members>Booking__c.Send_Offer_Email</members>
         <members>Booking__c.Send_Payment_Email</members>
         <members>Booking__c.Transfer</members>
-        <members>Course__c.Update_Sessions_Fee_Rate</members>
+        <members>Course__c.Email_All_Attendees</members>
         <members>Course__c.Resend_Reunion_Email</members>
+        <members>Course__c.Update_Sessions_Fee_Rate</members>
         <members>Payment_Run__c.Create_transaction_records</members>
         <members>Payment_Run__c.Send_Remittance_Emails</members>
         <members>Zumzum__Expense_Sheet__c.Edit_Community</members>

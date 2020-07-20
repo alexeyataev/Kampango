@@ -67,7 +67,7 @@ public with sharing class SendHTMLEmailPluginTest {
             ].Id;
             
             SendHTMLEmailPlugin.Request testReq = new SendHTMLEmailPlugin.Request();
-            testReq.templateId = templateId;
+            testReq.templateDeveloperName = TEMPLATE_DEV_NAME;
             testReq.targetObjectId = recipient.Id;
             testReq.mergeObjectId = recipient.AccountId;
             testReq.ccEmailAddresses = new List<String>{'aaa@bbb.ccc', 'aaaa@bbbb.cccc'};
@@ -80,7 +80,9 @@ public with sharing class SendHTMLEmailPluginTest {
             reqList.add(testReq);
             
             try {
+                Test.startTest();
                 List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
+                Test.stopTest();
                 System.assertEquals(true, testResponseList[0].isSuccess, 'Email with Organization-wide address set was not sent');
             } catch (EmailException e) {
                 System.assert(false, 'Org-Wide address is not verified. Please refer to step #70 in "Manual Tasks" from Confluence (Set up Organization-Wide Email Address)');
@@ -118,7 +120,9 @@ public with sharing class SendHTMLEmailPluginTest {
             List<SendHTMLEmailPlugin.Request> reqList = new List<SendHTMLEmailPlugin.Request>();
             reqList.add(testReq);
             
+            Test.startTest();
             List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
+            Test.stopTest();
             System.assertEquals(true, testResponseList[0].isSuccess, 'Email with Sender Display Name set was not sent');
         }
     }
@@ -142,17 +146,18 @@ public with sharing class SendHTMLEmailPluginTest {
             
             SendHTMLEmailPlugin.Request testReq = new SendHTMLEmailPlugin.Request();
             testReq.templateId = templateId;
-            //testReq.targetObjectId = recipient.Id;
             testReq.mergeObjectId = recipient.AccountId;
             
             List<SendHTMLEmailPlugin.Request> reqList = new List<SendHTMLEmailPlugin.Request>();
             reqList.add(testReq);
             
+            Test.startTest();
             List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
+            Test.stopTest();
             System.assertEquals(false, testResponseList[0].isSuccess, 'Email without a recipient can not be sent');
         }
     }
-	
+
     @isTest
     public static void errorIfNoTemplate () {
 		if (TestEmailUtility.emailsFeatureEnabled()) {
@@ -162,24 +167,53 @@ public with sharing class SendHTMLEmailPluginTest {
                 WHERE Email = :CONTACT_EMAIL 
                 LIMIT 1
             ];
-            Id templateId = [
-                SELECT Id 
-                FROM EmailTemplate 
-                WHERE DeveloperName = :TEMPLATE_DEV_NAME 
-                    AND Name = :TEMPLATE_NAME
-                LIMIT 1
-            ].Id;
-            
+        
             SendHTMLEmailPlugin.Request testReq = new SendHTMLEmailPlugin.Request();
-            //testReq.templateId = templateId;
             testReq.targetObjectId = recipient.Id;
             testReq.mergeObjectId = recipient.AccountId;
             
             List<SendHTMLEmailPlugin.Request> reqList = new List<SendHTMLEmailPlugin.Request>();
             reqList.add(testReq);
             
+            Test.startTest();
             List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
+            Test.stopTest();
             System.assertEquals(false, testResponseList[0].isSuccess, 'Email without a template can not be sent');
+        }
+    }
+
+    @isTest
+    public static void emailWithAttachmentIsSent  () {
+		if (TestEmailUtility.emailsFeatureEnabled()) {
+            Contact recipient = [
+                SELECT Id, AccountId 
+                FROM Contact 
+                WHERE Email = :CONTACT_EMAIL 
+                LIMIT 1
+            ];
+
+            ContentVersion contentVersionInsert = new ContentVersion(
+                ContentDocumentId = '0696E000000kt7CQAQ',
+                Title = 'Test',
+                PathOnClient = 'Test.jpg',
+                VersionData = Blob.valueOf('Test Content Data'),
+                IsMajorVersion = true
+            );
+            insert contentVersionInsert;
+
+            SendHTMLEmailPlugin.Request testReq = new SendHTMLEmailPlugin.Request();
+            testReq.attachmentsIds = new List<String>{contentVersionInsert.ContentDocumentId};
+            testReq.emailSubject = 'Email Subject';
+            testReq.emailBodyToSend = 'Email Body';
+            testReq.emailAddresses = new List<String>{'aaa@bbb.ccc', 'aaaa@bbbb.cccc'};
+            testReq.replyEmailAddress = 'no-reply@example.com';
+            List<SendHTMLEmailPlugin.Request> reqList = new List<SendHTMLEmailPlugin.Request>();
+            reqList.add(testReq);
+            
+            Test.startTest();
+            List<SendHTMLEmailPlugin.Response> testResponseList = SendHTMLEmailPlugin.invoke(reqList);
+            Test.stopTest();
+            System.assertEquals(true, testResponseList[0].isSuccess, 'Email with Attachment was not sent');
         }
     }
 }
