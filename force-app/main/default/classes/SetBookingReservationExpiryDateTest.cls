@@ -9,35 +9,37 @@ private class SetBookingReservationExpiryDateTest {
     @TestSetup 
     private static void TestSetup() {
         TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory .buildOrganizationAccount('acc1')
-                    .createEnquiryPSA()
-                    .buildBranchAccountWithEnquiryPSA()
-                    .buildPractitioner(PRACTITIONER_LASTNAME)
-                    .buildPractitionerFeeRate()
-                    .buildVenue()
-                    .buildRoom()
-                    .buildLicenceToPractice()
-                    .buildCourse()
-                    .buildEstimatedCosts()
-                    .buildSession()
-                    .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-                    .buildPartnertHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-                    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed')
-                    .buildBookingWithoutExpiryDate('Enquiry');
+        dataFactory.buildOrganizationAccount('acc1')
+            .createEnquiryPSA()
+            .buildBranchAccountWithEnquiryPSA()
+            .buildPractitioner(PRACTITIONER_LASTNAME)
+            .buildPractitionerFeeRate()
+            .buildVenue()
+            .buildRoom()
+            .buildLicenceToPractice()
+            .buildCourse()
+            .buildEstimatedCosts()
+            .buildSession();
+        List<Session__c> sessions = [
+            SELECT Id FROM Session__c WHERE Type__c = 'Standard' AND Status__c != 'Confirmed'
+        ];
+        dataFactory.setSessionsToConfirmed(sessions)
+            .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
+            .buildPartnertHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
+            .buildReunion();
+        List<Course__c> listDraftCourses = [
+            SELECT Id 
+            FROM Course__c 
+            WHERE Status__c = 'Draft'];
+        dataFactory.setCoursesToFinal(listDraftCourses)
+            .buildBookingWithoutExpiryDate('Enquiry');
         List<Session__c> provisionalNonReunionSessions = [
             SELECT Id 
             FROM Session__c 
             WHERE Status__c = 'Provisional' 
                 AND Type__c <> 'Reunion'
-            ];    
-
-        List<Course__c> listDraftCourses = [
-            SELECT Id 
-            FROM Course__c 
-            WHERE Status__c = 'Draft'];
-
-        dataFactory .SetSessionsToConfirmed(provisionalNonReunionSessions)
-                    .SetCoursesToFinal(listDraftCourses);
+            ];
+        dataFactory.setSessionsToConfirmed(provisionalNonReunionSessions);
     }
 
     @IsTest
