@@ -44,8 +44,8 @@ public without sharing class ConfirmationEmailController {
     }
 
     private void getPractitionerWithSessionNumbers(List<Session__c> sessions){
-        Map<Id, List<Integer>>  practitionerIdWithSessionNumbersMap = new Map<Id, List<Integer>>();
-        Map<Id, Session__c> sessionMap = new Map<Id, Session__c>();
+        Map<String, List<Integer>>  practitionerIdWithSessionNumbersMap = new Map<String, List<Integer>>();
+        Map<String, Session__c> sessionMap = new Map<String, Session__c>();
    
         for(Integer i = 0; i < sessions.size(); i++) {
             if(!practitionerIdWithSessionNumbersMap.containsKey(sessions[i].Practitioner__c)) {
@@ -62,8 +62,8 @@ public without sharing class ConfirmationEmailController {
     }
 
     private void getLocationWithSessionNumbers(List<Session__c> sessions) {
-        Map<Id, List<Integer>> venueIdWithSessionNumbersMap = new Map<Id, List<Integer>>();
-        Map<Id, Session__c> sessionMap = new Map<Id, Session__c>();
+        Map<String, List<Integer>> venueIdWithSessionNumbersMap = new Map<String, List<Integer>>();
+        Map<String, Session__c> sessionMap = new Map<String, Session__c>();
 
         sessionListWrapper = new List<SessionWrapper>();
         for (Integer i = 0; i < sessions.size(); i++) {
