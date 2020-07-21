@@ -43,36 +43,36 @@ public without sharing class ConfirmationEmailController {
         ];
     }
 
-    private void getPractitionerWithSessionNumbers(List<Session__c> sessions){
-        Map<String, List<Integer>>  practitionerIdWithSessionNumbersMap = new Map<String, List<Integer>>();
+    private void getPractitionerWithSessionNumbers(List<Session__c> sessions) {
+        Map<String, List<Integer>> practitionerIdKeyWithSessionNumbersMap = new Map<String, List<Integer>>();
         Map<String, Session__c> sessionMap = new Map<String, Session__c>();
    
         for(Integer i = 0; i < sessions.size(); i++) {
-            if(!practitionerIdWithSessionNumbersMap.containsKey(sessions[i].Practitioner__c)) {
-                practitionerIdWithSessionNumbersMap.put(sessions[i].Practitioner__c, new List<Integer>());
+            if(!practitionerIdKeyWithSessionNumbersMap.containsKey(sessions[i].Practitioner__c)) {
+                practitionerIdKeyWithSessionNumbersMap.put(sessions[i].Practitioner__c, new List<Integer>());
             }
-            practitionerIdWithSessionNumbersMap.get(sessions[i].Practitioner__c).add(i + 1);
+            practitionerIdKeyWithSessionNumbersMap.get(sessions[i].Practitioner__c).add(i + 1);
             sessionMap.put(sessions[i].Practitioner__c, sessions[i]);
         }
 
         practitionerListWrapper = new List<PractitionerWrapper>();
         for (Session__c session : sessionMap.values()) {
-            practitionerListWrapper.add(new PractitionerWrapper(session, practitionerIdWithSessionNumbersMap.get(session.Practitioner__c)));
+            practitionerListWrapper.add(new PractitionerWrapper(session, practitionerIdKeyWithSessionNumbersMap.get(session.Practitioner__c)));
         }
     }
 
     private void getLocationWithSessionNumbers(List<Session__c> sessions) {
-        Map<String, List<Integer>> venueIdWithSessionNumbersMap = new Map<String, List<Integer>>();
+        Map<String, List<Integer>> venueIdKeyWithSessionNumbersMap = new Map<String, List<Integer>>();
         Map<String, Session__c> sessionMap = new Map<String, Session__c>();
 
         sessionListWrapper = new List<SessionWrapper>();
         for (Integer i = 0; i < sessions.size(); i++) {
             if (String.isNotBlank(sessions[i].Location_Id__c) && sessions[i].Delivery_Type__c == 'Physical') {
-                if (!venueIdWithSessionNumbersMap.containsKey(sessions[i].Location_Id__c)) {
-                    venueIdWithSessionNumbersMap.put(sessions[i].Location_Id__c, new List<Integer>());
+                if (!venueIdKeyWithSessionNumbersMap.containsKey(sessions[i].Location_Id__c)) {
+                    venueIdKeyWithSessionNumbersMap.put(sessions[i].Location_Id__c, new List<Integer>());
                 }
 
-                venueIdWithSessionNumbersMap.get(sessions[i].Location_Id__c).add(i + 1);
+                venueIdKeyWithSessionNumbersMap.get(sessions[i].Location_Id__c).add(i + 1);
                 sessionMap.put(sessions[i].Location_Id__c, sessions[i]);
              }
              sessionListWrapper.add(new SessionWrapper(sessions[i], i + 1));
@@ -80,7 +80,7 @@ public without sharing class ConfirmationEmailController {
 
         locationListWrapper = new List<LocationWrapper>();
         for (Session__c session : sessionMap.values()) {
-            locationListWrapper.add(new LocationWrapper(session, venueIdWithSessionNumbersMap.get(session.Location_Id__c)));
+            locationListWrapper.add(new LocationWrapper(session, venueIdKeyWithSessionNumbersMap.get(session.Location_Id__c)));
         }
     }
 
