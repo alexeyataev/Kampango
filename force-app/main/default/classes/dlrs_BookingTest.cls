@@ -14,21 +14,30 @@ private class dlrs_BookingTest
     @TestSetup 
     private static void testSetup() {
         TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory .buildOrganizationAccount('acc1')
-                    .createEnquiryPSA()
-                    .buildBranchAccountWithEnquiryPSA()
-                    .buildPractitioner(PRACTITIONER_LASTNAME)
-                    .buildPractitionerFeeRate()
-                    .buildVenue()
-                    .buildRoom()
-                    .buildLicenceToPractice()
-                    .buildCourseWithFee(FEE)
-                    .buildEstimatedCosts()
-                    .buildSession()
-                    .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-                    .buildPartnertHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-                    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed')
-                    .buildBooking('Enquiry');
+        dataFactory.buildOrganizationAccount('acc1')
+            .createEnquiryPSA()
+            .buildBranchAccountWithEnquiryPSA()
+            .buildPractitioner(PRACTITIONER_LASTNAME)
+            .buildPractitionerFeeRate()
+            .buildVenue()
+            .buildRoom()
+            .buildLicenceToPractice()
+            .buildCourseWithFee(FEE)
+            .buildEstimatedCosts()
+            .buildSession();
+        List<Session__c> sessions = [
+            SELECT Id FROM Session__c WHERE Type__c = 'Standard' AND Status__c != 'Confirmed'
+        ];
+        dataFactory.setSessionsToConfirmed(sessions)
+            .buildReunion()
+            .setCourseToFinal()
+            .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
+            .buildPartnertHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
+            .buildBooking('Enquiry');
+        List<Session__c> sessionsReunion = [
+            SELECT Id FROM Session__c WHERE Type__c = 'Reunion' AND Status__c != 'Confirmed'
+        ];
+        dataFactory.setSessionsToConfirmed(sessionsReunion);
     }
 
     @IsTest

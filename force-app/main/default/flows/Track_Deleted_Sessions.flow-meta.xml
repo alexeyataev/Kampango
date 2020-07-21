@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Post_Deleted_Session_Details</name>
-        <label>Post Deleted Session Details</label>
-        <locationX>568</locationX>
-        <locationY>50</locationY>
+        <name>Post_Deleted_Adhoc_Support_Session_Details</name>
+        <label>Post Deleted Adhoc Support Session Details</label>
+        <locationX>577</locationX>
+        <locationY>572</locationY>
         <actionName>chatterPost</actionName>
         <actionType>chatterPost</actionType>
         <connector>
@@ -13,7 +13,7 @@
         <inputParameters>
             <name>text</name>
             <value>
-                <elementReference>SessionDetails</elementReference>
+                <elementReference>AdhocSupportSessionDetails</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -23,6 +23,54 @@
             </value>
         </inputParameters>
     </actionCalls>
+    <actionCalls>
+        <name>Post_Deleted_Scheduled_Session_Details</name>
+        <label>Post Deleted Scheduled Session Details</label>
+        <locationX>575</locationX>
+        <locationY>50</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <connector>
+            <targetReference>Loop_Through_Sessions</targetReference>
+        </connector>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <elementReference>ScheduledSessionDetails</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>currentSession.Course__c</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <decisions>
+        <name>Session_Record_Type</name>
+        <label>Session Record Type</label>
+        <locationX>733</locationX>
+        <locationY>311</locationY>
+        <defaultConnector>
+            <targetReference>Post_Deleted_Scheduled_Session_Details</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Scheduled Session</defaultConnectorLabel>
+        <rules>
+            <name>Adhoc_Support_Session</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>currentSession.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Adhoc_Support</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Post_Deleted_Adhoc_Support_Session_Details</targetReference>
+            </connector>
+            <label>Adhoc Support Session</label>
+        </rules>
+    </decisions>
     <formulas>
         <name>CADreference</name>
         <dataType>String</dataType>
@@ -36,7 +84,7 @@
     <formulas>
         <name>sessionDate</name>
         <dataType>String</dataType>
-        <expression>If({!currentSession.Date__c} != null, TEXT({!currentSession.Date__c}), &quot;&quot;)</expression>
+        <expression>TEXT({!currentSession.Date__c})</expression>
     </formulas>
     <formulas>
         <name>timesDetails</name>
@@ -59,12 +107,12 @@
         <name>Loop_Through_Sessions</name>
         <label>Loop Through Sessions</label>
         <locationX>390</locationX>
-        <locationY>50</locationY>
+        <locationY>308</locationY>
         <assignNextValueToReference>currentSession</assignNextValueToReference>
         <collectionReference>sessionRecordsToTrack</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Post_Deleted_Session_Details</targetReference>
+            <targetReference>Session_Record_Type</targetReference>
         </nextValueConnector>
     </loops>
     <processMetadataValues>
@@ -82,18 +130,28 @@
     <processType>AutoLaunchedFlow</processType>
     <start>
         <locationX>50</locationX>
-        <locationY>50</locationY>
+        <locationY>308</locationY>
         <connector>
             <targetReference>Loop_Through_Sessions</targetReference>
         </connector>
     </start>
     <status>Active</status>
     <textTemplates>
-        <name>SessionDetails</name>
-        <text>Session {!currentSession.Name} scheduled for {!sessionDate}
+        <name>AdhocSupportSessionDetails</name>
+        <text>Session {!currentSession.Name}
 deleted on {!deletionDate}
 
-Session date: {!sessionDate}
+Hours: {!currentSession.Hours__c}
+Delivery Type: {!currentSession.Delivery_Type__c}
+Practitioner name: {!currentSession.Practitioner__r.FirstName} {!currentSession.Practitioner__r.LastName}
+CAD reference: {!CADreference}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ScheduledSessionDetails</name>
+        <text>Session {!currentSession.Name} scheduled for {!currentSession.Date__c}
+deleted on {!deletionDate}
+
+Session date: {!currentSession.Date__c}
 {!timesDetails}
 Delivery Type: {!currentSession.Delivery_Type__c}
 Type: {!currentSession.Type__c}
