@@ -553,6 +553,7 @@
         <members>Fill_dimension_values_process</members>
         <members>Generate_Encrypted_Validation_Code</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
+        <members>Populate_Payment_Run_Purchase_Invoice_Id</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Confirmation_Email</members>
         <members>Resend_Offer_Email</members>
