@@ -1174,6 +1174,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Payment_Run_Line_Item__c.Payment_Run_Purchase_Invoice_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Payment_Run_Line_Item__c.Purchase_Invoice__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1455,6 +1460,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Session_Info_For_Flow__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Session_Room_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
