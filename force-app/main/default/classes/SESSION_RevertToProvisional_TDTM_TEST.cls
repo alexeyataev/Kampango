@@ -3,6 +3,7 @@
 @isTest
 public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
 
+    private static final String COURSE_FINAL_STATUS = 'Final';
     private static final String SESSION_PROVISIONAL_STATUS = 'Provisional';
     private static final String SESSION_REUNION_TYPE = 'Reunion';
     private static final String PRACTITIONER_LASTNAME_ONE = 'Smith';
@@ -11,8 +12,8 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
     private static final String PARENT_HOST_EMAIL = 'test@test.com';
     private static final String VENUE_NAME = 'Public Venue';
     private static final String CLIENT_RECORDTYPE_NAME = 'Clients';
-    private static final Integer COURSES_TO_CREATE = 5;
-    private static final Integer SESSIONS_TO_CREATE = 10;
+    private static final Integer COURSES_TO_CREATE = 3;
+    private static final Integer SESSIONS_TO_CREATE = 6;
     private static final String VIRTUAL_VENUE = 'Virtual';
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
         'triggerHandlerName' => 'SESSION_RevertToProvisional_TDTM',
@@ -150,6 +151,11 @@ public with sharing class SESSION_RevertToProvisional_TDTM_TEST {
             session.Type__c = SESSION_REUNION_TYPE;
         }
         update sessions;
+        List<Course__c> courses = [SELECT Id FROM Course__c];
+        for(Course__c course : courses) {
+            course.Status__c = COURSE_FINAL_STATUS;
+        }
+        update courses;
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory.setSessionsToConfirmed(sessions);
         
