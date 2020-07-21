@@ -192,17 +192,22 @@ public with sharing class SendHTMLEmailPluginTest {
                 LIMIT 1
             ];
 
-            ContentVersion contentVersionInsert = new ContentVersion(
-                ContentDocumentId = '0696E000000kt7CQAQ',
+            ContentVersion contentVersionToInsert = new ContentVersion(
                 Title = 'Test',
                 PathOnClient = 'Test.jpg',
                 VersionData = Blob.valueOf('Test Content Data'),
                 IsMajorVersion = true
             );
-            insert contentVersionInsert;
+            insert contentVersionToInsert;
+
+            String attachmentId = [
+                SELECT Id, ContentDocumentId 
+                FROM ContentVersion 
+                WHERE Id = :contentVersionToInsert.Id LIMIT 1
+            ].ContentDocumentId;
 
             SendHTMLEmailPlugin.Request testReq = new SendHTMLEmailPlugin.Request();
-            testReq.attachmentsIds = new List<String>{contentVersionInsert.ContentDocumentId};
+            testReq.attachmentsIds = new List<String>{attachmentId};
             testReq.emailSubject = 'Email Subject';
             testReq.emailBodyToSend = 'Email Body';
             testReq.emailAddresses = new List<String>{'aaa@bbb.ccc', 'aaaa@bbbb.cccc'};

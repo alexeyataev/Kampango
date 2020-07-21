@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #108 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class SendHTMLEmailPlugin {
 
     @InvocableMethod(label='Send HTML Email Template')
@@ -38,7 +40,7 @@ public with sharing class SendHTMLEmailPlugin {
             }
 
             if(String.isBlank(templateId) && String.isNotBlank(templateDeveloperName)) {
-                List<EmailTemplate> emailTemplateList = [SELECT Id FROM EmailTemplate WHERE DeveloperName =: templateDeveloperName LIMIT 1];
+                List<EmailTemplate> emailTemplateList = [SELECT Id FROM EmailTemplate WHERE DeveloperName =: templateDeveloperName WITH SECURITY_ENFORCED LIMIT 1];
                 templateId = emailTemplateList.isEmpty() ? templateId : emailTemplateList[0].Id;
             } 
 
