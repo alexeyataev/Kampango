@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>Finance</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
     <classAccesses>
         <apexClass>SESSION_InvalidateCAs_TDTM</apexClass>
         <enabled>true</enabled>
@@ -1169,6 +1174,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Payment_Run_Line_Item__c.Payment_Run_Purchase_Invoice_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Payment_Run_Line_Item__c.Purchase_Invoice__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1450,6 +1460,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Session_Info_For_Flow__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Session__c.Session_Room_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1840,6 +1855,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Zumzum__Purchase_Invoice__c.Legacy_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice__c.Zumzum__Expense_Sheet__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
