@@ -47,11 +47,11 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
             .buildSession()
             .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE)
             .buildVirtualSupportSession(SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT, 2);
-        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Status__c != 'Confirmed' LIMIT 1000];
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Type__c = 'Standard' AND Status__c != 'Confirmed' LIMIT 1000];
         dataFactory.setSessionsToConfirmed(sessions)
             .setCourseToFinal()
             .buildReunion();
-        List<Session__c> sessionsReunion = [SELECT Id FROM Session__c WHERE Status__c != 'Confirmed' LIMIT 1000];
+        List<Session__c> sessionsReunion = [SELECT Id FROM Session__c WHERE Type__c = 'Reunion' AND Status__c != 'Confirmed' LIMIT 1000];
         dataFactory.setSessionsToConfirmed(sessionsReunion);
         TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
     }
