@@ -3,7 +3,7 @@
 public class AddContactForMembershipBatch implements Database.Batchable<sObject>, Database.AllowsCallouts{
 
     public Database.QueryLocator start(Database.BatchableContext bc){
-        return Database.getQueryLocator('SELECT Id, Branch__r.Branch_Number__c, Care_Error_Log__c, Email, FirstName, Gender__c, Individual.Has_Opted_In_Email__c, Individual.Has_Opted_In_Post__c, Individual.Has_Opted_In_SMS__c, Individual.Has_Opted_In_Telephone__c, LastName, MailingCity, MailingCountryCode, MailingPostalCode, MailingStreet, MobilePhone, NCT_Number__c, npe01__PreferredPhone__c, Phone, HomePhone FROM Contact WHERE RecordType.Name = \'Client\' AND Care_Status__c = \'Waiting\'');
+        return Database.getQueryLocator('SELECT Id, Branch__r.Branch_Number__c, Care_Error_Log__c, Email, FirstName, Gender__c, Individual.Has_Opted_In_Email__c, Individual.Has_Opted_In_Post__c, Individual.Has_Opted_In_SMS__c, Individual.Has_Opted_In_Telephone__c, LastName, MailingCity, MailingCountry, MailingPostalCode, MailingStreet, MobilePhone, NCT_Number__c, npe01__PreferredPhone__c, Phone, HomePhone FROM Contact WHERE RecordType.Name = \'Client\' AND Care_Status__c = \'Waiting\'');
     }
 
     public void execute(Database.BatchableContext bc, List<Contact> scope){
