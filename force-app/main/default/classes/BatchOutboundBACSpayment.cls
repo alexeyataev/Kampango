@@ -3,7 +3,6 @@
 public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
     public Id paymentRunId;
 
-    private static Map<String, List<String>> runPaymentResponseResult;
     private static final String PAYMENT_RUN_RESULT_STATUS_ERROR = 'Error';
     private static final String PAYMENT_RUN_STATUS_READY = 'Ready';
     private static final String PAYMENT_RUN_STATUS_FAILED = 'Failed To Create Transactions';
@@ -21,21 +20,18 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
         );
     }
 
-    public void execute(Database.BatchableContext bc, List<Payment_Run__c> records) {
-        for (Payment_Run__c paymentRunRecord: records) {
-           runPaymentResponseResult = OutboundBACSpaymentHelper.processPaymentRun(paymentRunRecord);
+    public void execute(Database.BatchableContext bc, List<Payment_Run__c> paymentRuns) {
+        for (Payment_Run__c paymentRun : paymentRuns) {
+            String runPaymentResponseResult = OutboundBACSpaymentHelper.processPaymentRun(paymentRun);
+            if (runPaymentResponseResult == PAYMENT_RUN_RESULT_STATUS_ERROR) {
+                paymentRun.Status__c = PAYMENT_RUN_STATUS_FAILED;
+                paymentRun.Bank_Supplier_Payment_Error_Log__c = runPaymentResponseResult;
+            } else {
+                paymentRun.Status__c = PAYMENT_RUN_STATUS_READY;
+                paymentRun.Bank_Supplier_Payment_Error_Log__c = '';
+            }
         }
-
-        if (runPaymentResponseResult.get(PAYMENT_RUN_RESULT_STATUS_ERROR) != null) {
-            records[0].Status__c = PAYMENT_RUN_STATUS_FAILED;
-            records[0].Bank_Supplier_Payment_Error_Log__c = String.join(runPaymentResponseResult.get(PAYMENT_RUN_RESULT_STATUS_ERROR), '\n');
-
-        } else {
-            records[0].Status__c = PAYMENT_RUN_STATUS_READY;
-            records[0].Bank_Supplier_Payment_Error_Log__c = '';
-        }
-
-        update records;
+        update paymentRuns;
     }
 
     public void finish(Database.BatchableContext bc) {}
