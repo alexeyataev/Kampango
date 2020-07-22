@@ -20,18 +20,18 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
         );
     }
 
-    public void execute(Database.BatchableContext bc, List<Payment_Run__c> records) {
-        String runPaymentResponseResult = OutboundBACSpaymentHelper.processPaymentRun(records[0]);
-
-        if (runPaymentResponseResult == PAYMENT_RUN_RESULT_STATUS_ERROR) {
-            records[0].Status__c = PAYMENT_RUN_STATUS_FAILED;
-            records[0].Bank_Supplier_Payment_Error_Log__c = runPaymentResponseResult;
-        } else {
-            records[0].Status__c = PAYMENT_RUN_STATUS_READY;
-            records[0].Bank_Supplier_Payment_Error_Log__c = '';
+    public void execute(Database.BatchableContext bc, List<Payment_Run__c> paymentRuns) {
+        for (Payment_Run__c paymentRun : paymentRuns) {
+            String runPaymentResponseResult = OutboundBACSpaymentHelper.processPaymentRun(paymentRun);
+            if (runPaymentResponseResult == PAYMENT_RUN_RESULT_STATUS_ERROR) {
+                paymentRun.Status__c = PAYMENT_RUN_STATUS_FAILED;
+                paymentRun.Bank_Supplier_Payment_Error_Log__c = runPaymentResponseResult;
+            } else {
+                paymentRun.Status__c = PAYMENT_RUN_STATUS_READY;
+                paymentRun.Bank_Supplier_Payment_Error_Log__c = '';
+            }
         }
-
-        update records;
+        update paymentRuns;
     }
 
     public void finish(Database.BatchableContext bc) {}
