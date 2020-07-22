@@ -6,6 +6,16 @@
         <members>AddBankReceiptPaymentBatchTest</members>
         <members>AddBankReceiptPaymentScheduler</members>
         <members>AddBankReceiptPaymentSchedulerTest</members>
+        <members>AddContactForMembershipBatch</members>
+        <members>AddContactForMembershipHandler</members>
+        <members>AddContactForMembershipScheduler</members>
+        <members>AddContactForMembershipTest</members>
+        <members>AddContactResult</members>
+        <members>AddMarketingPreferencesToCare</members>
+        <members>AddMarketingPreferencesToCareTest</members>
+        <members>AddMembershipBatch</members>
+        <members>AddMembershipScheduler</members>
+        <members>AddMembershipTest</members>
         <members>AssignCasetoQueueTest</members>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
@@ -23,6 +33,9 @@
         <members>CardPaymentHandlerTest</members>
         <members>CardPaymentParameters</members>
         <members>CardPaymentPlanHandler</members>
+        <members>CareCountryCodeMappingUtil</members>
+        <members>CareHelper</members>
+        <members>CareRequestBodyUtil</members>
         <members>ChatterPost_PreventDeletion_TDTM</members>
         <members>ChatterPost_PreventDeletion_TDTM_Test</members>
         <members>CardPaymentUrlResult</members>
