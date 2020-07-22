@@ -13,6 +13,15 @@
         <template>NCT_Templates/Adhoc_Payment_Confirmation</template>
     </alerts>
     <fieldUpdates>
+        <fullName>Contact_Country_Update</fullName>
+        <field>MailingCountry</field>
+        <formula>TEXT(Country__c)</formula>
+        <name>Contact Country Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Updates_Care_Status_To_Waiting</fullName>
         <field>Care_Status__c</field>
         <literalValue>Waiting</literalValue>
@@ -21,6 +30,16 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>Contact Country Updated</fullName>
+        <actions>
+            <name>Contact_Country_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED(Country__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
     <rules>
         <fullName>Updates Care Status To Waiting If Key Fields Change</fullName>
         <actions>
