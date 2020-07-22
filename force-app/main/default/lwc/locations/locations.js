@@ -93,12 +93,13 @@ export default class Locations extends LightningElement {
             if (row.Delivery_Type__c === SESSION_DELIVERY_TYPE_PHYSICAL) {
                 venueList.push (
                     Object.assign (
-                        { Street_Address__c: !this.isStatusConfirmed && row.Location_Home_Information__c ? '' : row.Location_Street__c},
-                        { Town__c: row.Location_Town__c },
-                        { County__c: row.Location_County__c },
-                        { Postcode__c: !this.isStatusConfirmed && row.Location_Home_Information__c ? row.Location_Postcode__c.split(' ')[0] : row.Location_Postcode__c },
+                        { StreetAddress: !this.isStatusConfirmed && row.Location_Home_Information__c ? '' : row.Location_Street__c},
+                        { Town: row.Location_Town__c },
+                        { County: row.Location_County__c },
+                        { Postcode: !this.isStatusConfirmed && row.Location_Home_Information__c ? row.Location_Postcode__c.split(' ')[0] : row.Location_Postcode__c },
                         { Id: row.Location_Id__c },
-                        { Name: !this.isStatusConfirmed && row.Location_Home_Information__c ? row.Location_Home_Information__c : row. Location_Name__c}
+                        { Name: !this.isStatusConfirmed && row.Location_Home_Information__c ? row.Location_Home_Information__c : row. Location_Name__c},
+                        { SessionRoomName: !this.isStatusConfirmed ? '' : row.Session_Room_Name__c }
                     )
                 );
             }
