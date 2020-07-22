@@ -828,6 +828,7 @@
     <types>
         <members>Contacts_with_Bookings_and_Course</members>
         <members>Courses_with_Booking_and_Contacts</members>
+        <members>Estimated_Costs</members>
         <members>Ledger_Payment_History_with_PI_and_PC</members>
         <members>Sessions_with_Course_and_Course_Assignment</members>
         <members>Sessions_on_venues</members>
