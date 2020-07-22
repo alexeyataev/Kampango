@@ -3,7 +3,6 @@
 public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
     public Id paymentRunId;
 
-    private static Map<String, List<String>> runPaymentResponseResult;
     private static final String PAYMENT_RUN_RESULT_STATUS_ERROR = 'Error';
     private static final String PAYMENT_RUN_STATUS_READY = 'Ready';
     private static final String PAYMENT_RUN_STATUS_FAILED = 'Failed To Create Transactions';
@@ -22,14 +21,11 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
     }
 
     public void execute(Database.BatchableContext bc, List<Payment_Run__c> records) {
-        for (Payment_Run__c paymentRunRecord: records) {
-           runPaymentResponseResult = OutboundBACSpaymentHelper.processPaymentRun(paymentRunRecord);
-        }
+        String runPaymentResponseResult = OutboundBACSpaymentHelper.processPaymentRun(records[0]);
 
-        if (runPaymentResponseResult.get(PAYMENT_RUN_RESULT_STATUS_ERROR) != null) {
+        if (runPaymentResponseResult == PAYMENT_RUN_RESULT_STATUS_ERROR) {
             records[0].Status__c = PAYMENT_RUN_STATUS_FAILED;
-            records[0].Bank_Supplier_Payment_Error_Log__c = String.join(runPaymentResponseResult.get(PAYMENT_RUN_RESULT_STATUS_ERROR), '\n');
-
+            records[0].Bank_Supplier_Payment_Error_Log__c = runPaymentResponseResult;
         } else {
             records[0].Status__c = PAYMENT_RUN_STATUS_READY;
             records[0].Bank_Supplier_Payment_Error_Log__c = '';
