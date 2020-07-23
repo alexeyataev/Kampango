@@ -1,0 +1,80 @@
+<template>
+
+    <div class='slds-box slds slds-color__background_gray-1'>
+        
+        <div style='display:flex;'>
+            <div class='slds-text-heading_large'>Internal Courses Searcher</div>
+
+            <template if:true={isLoading}>
+                <div class="slds-is-relative slds-var-m-left_xx-large" >
+                    <lightning-spinner alternative-text="Loading..." variant="brand" size="small"></lightning-spinner>
+                </div>
+            </template>
+        </div>
+        
+        <template if:true={searchOnVenueObject}>
+            <div class="slds-grid slds-gutters slds-var-p-top_large slds-var-p-bottom_large">
+
+                <div class="slds-col">
+                    <lightning-combobox value={radius}
+                                        variant='label-hidden'
+                                        options={distanceOptions}
+                                        placeholder='Distance radius'
+                                        onchange={handleChange} >
+                    </lightning-combobox>
+                </div>
+
+                <div class="slds-col">
+                    <lightning-input type="date"
+                                     variant='label-hidden'
+                                     class='birth_due_date'
+                                     placeholder='Birth/Due Date'
+                                     required >
+                    </lightning-input>
+                </div>
+
+                <div class="slds-col">
+                    <lightning-button variant="brand"
+                                      label="Search by Date"
+                                      icon-name="utility:search"
+                                      icon-position="right"
+                                      onclick={searchHandlerClick} >
+                    </lightning-button>
+                </div>
+
+            </div>
+        </template>
+
+            <template if:true={tableCourseData}>
+
+                <template if:true={courseNotFound}>
+                    <c-courses-not-found></c-courses-not-found>
+                </template>
+
+                <template if:false={courseNotFound}>
+                    <lightning-datatable data={tableCourseData}
+                                         columns={columns}
+                                         show-row-number-column
+                                         row-number-offset={rowOffset}
+                                         hide-checkbox-column
+                                         sorted-by='endDate'
+                                         default-sort-direction='asc'
+                                         key-field="id">
+                    </lightning-datatable>
+                   
+                </template>
+
+            </template>
+    </div>
+<!-- 
+    <lightning-datatable data={tableData}
+                         columns={columns}
+                         show-row-number-column
+                         row-number-offset={rowOffset}
+                         hide-checkbox-column
+                         sorted-by='endDate'
+                         default-sort-direction='asc'
+                         key-field="id">
+    </lightning-datatable> -->
+
+</template>
