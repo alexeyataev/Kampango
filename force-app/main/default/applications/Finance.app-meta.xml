@@ -11,6 +11,7 @@
     <label>Finance</label>
     <navType>Standard</navType>
     <tabs>Zumzum__Financial_Reports</tabs>
+    <tabs>standard-report</tabs>
     <tabs>Zumzum__Transactions</tabs>
     <tabs>Zumzum__Bank</tabs>
     <tabs>Batch_Receipt_Report__c</tabs>
@@ -19,6 +20,8 @@
     <tabs>Zumzum__Purchasing</tabs>
     <tabs>standard-ProcessInstanceWorkitem</tabs>
     <tabs>Payment_Run__c</tabs>
+    <tabs>Booking__c</tabs>
+    <tabs>Course__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Finance_UtilityBar</utilityBar>
 </CustomApplication>
