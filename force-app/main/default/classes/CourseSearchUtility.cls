@@ -298,7 +298,7 @@ public without sharing class CourseSearchUtility {
                             OR 
                         Type__c = 'Drop In'
                     )
-                // WITH SECURITY_ENFORCED
+                WITH SECURITY_ENFORCED
                 ORDER BY Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi'), Course__c.Sort_Date__c
             ];
         } else {
