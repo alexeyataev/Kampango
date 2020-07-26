@@ -6,6 +6,16 @@
         <members>AddBankReceiptPaymentBatchTest</members>
         <members>AddBankReceiptPaymentScheduler</members>
         <members>AddBankReceiptPaymentSchedulerTest</members>
+        <members>AddContactForMembershipBatch</members>
+        <members>AddContactForMembershipHandler</members>
+        <members>AddContactForMembershipScheduler</members>
+        <members>AddContactForMembershipTest</members>
+        <members>AddContactResult</members>
+        <members>AddMarketingPreferencesToCare</members>
+        <members>AddMarketingPreferencesToCareTest</members>
+        <members>AddMembershipBatch</members>
+        <members>AddMembershipScheduler</members>
+        <members>AddMembershipTest</members>
         <members>AssignCasetoQueueTest</members>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
@@ -23,6 +33,9 @@
         <members>CardPaymentHandlerTest</members>
         <members>CardPaymentParameters</members>
         <members>CardPaymentPlanHandler</members>
+        <members>CareCountryCodeMappingUtil</members>
+        <members>CareHelper</members>
+        <members>CareRequestBodyUtil</members>
         <members>ChatterPost_PreventDeletion_TDTM</members>
         <members>ChatterPost_PreventDeletion_TDTM_Test</members>
         <members>CardPaymentUrlResult</members>
@@ -553,6 +566,7 @@
         <members>Fill_dimension_values_process</members>
         <members>Generate_Encrypted_Validation_Code</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
+        <members>Populate_Payment_Run_Purchase_Invoice_Id</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Confirmation_Email</members>
         <members>Resend_Offer_Email</members>
@@ -563,6 +577,7 @@
         <members>Reunion_Execute_Sending</members>
         <members>Revert_Course_To_Draft_When_Key_Info_Changes</members>
         <members>Session_assignment_flow</members>
+        <members>Send_email_to_all_course_attendees</members>
         <members>Set_Booking_Contacts_Email_To_Do_Not_Contact</members>
         <members>Set_CADs_to_Withdrawn</members>
         <members>Set_Course_Assignment_to_Related_Sessions</members>
@@ -777,8 +792,9 @@
         <members>Booking__c.Send_Offer_Email</members>
         <members>Booking__c.Send_Payment_Email</members>
         <members>Booking__c.Transfer</members>
-        <members>Course__c.Update_Sessions_Fee_Rate</members>
+        <members>Course__c.Email_All_Attendees</members>
         <members>Course__c.Resend_Reunion_Email</members>
+        <members>Course__c.Update_Sessions_Fee_Rate</members>
         <members>Payment_Run__c.Create_transaction_records</members>
         <members>Payment_Run__c.Send_Remittance_Emails</members>
         <members>Zumzum__Expense_Sheet__c.Edit_Community</members>
@@ -825,6 +841,7 @@
     <types>
         <members>Contacts_with_Bookings_and_Course</members>
         <members>Courses_with_Booking_and_Contacts</members>
+        <members>Estimated_Costs</members>
         <members>Ledger_Payment_History_with_PI_and_PC</members>
         <members>Sessions_with_Course_and_Course_Assignment</members>
         <members>Sessions_on_venues</members>

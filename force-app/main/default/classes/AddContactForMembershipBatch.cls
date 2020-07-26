@@ -7,23 +7,27 @@ public class AddContactForMembershipBatch implements Database.Batchable<sObject>
     }
 
     public void execute(Database.BatchableContext bc, List<Contact> scope){
+        Integer timeoutLimit = (Integer)Care_Settings__c.getOrgDefaults().Add_Contact_Batch_Timeout_Milliseconds__c;
+        if(timeoutLimit != null) {
+            CareHelper.timeoutLimit = timeoutLimit;
+        }
         for(Contact cont : scope) {
             AddContactResult careAddContactResult = CareHelper.sendContact(cont);
             if(careAddContactResult.nctNumber != null) {
                 cont.NCT_Number__c = careAddContactResult.nctNumber;
             }
+            if(careAddContactResult.error != null) {
+                cont.Care_Error_Log__c = careAddContactResult.error;
+            }
             List<AddMarketingPreferencesToCare.MarketingPreferencesResult> marketingPreferencesResultList = AddMarketingPreferencesToCare.addMarketingPreferencesForContact(cont);
             String marketingPreferencesError = AddMarketingPreferencesToCare.getErrorLog(marketingPreferencesResultList);
+            if(marketingPreferencesError != '') {
+                cont.Care_Error_Log__c = CareHelper.addErrorLog(marketingPreferencesError, cont.Care_Error_Log__c);
+            }
             if(careAddContactResult.error == null && marketingPreferencesError == '') {
                 cont.Care_Status__c = CareHelper.SUCCESS_STATUS;
             } else {
                 cont.Care_Status__c = CareHelper.FAILURE_STATUS;
-                if(careAddContactResult.error != null) {
-                    cont.Care_Error_Log__c = careAddContactResult.error;
-                }
-                if(marketingPreferencesError != '') {
-                    cont.Care_Error_Log__c = CareHelper.addErrorLog(marketingPreferencesError, cont.Care_Error_Log__c);
-                }
             }
         }
         update scope;

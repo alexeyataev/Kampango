@@ -1,6 +1,6 @@
 @SuppressWarnings('PMD.ApexCRUDViolation')
 //Incident #14 - https://confluence.nct.org.uk:8443/x/EoSO
-public with sharing class AddContactForMembershipHandler {
+public without sharing class AddContactForMembershipHandler {
     @InvocableMethod
     public static List<AddContactResult> addContact(List<String> contactId) {
         AddContactResult addContactResult = new AddContactResult();
