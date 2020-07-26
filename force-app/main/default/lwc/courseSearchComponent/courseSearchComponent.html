@@ -11,70 +11,84 @@
                 </div>
             </template>
         </div>
-        
-        <template if:true={searchOnVenueObject}>
-            <div class="slds-grid slds-gutters slds-var-p-top_large slds-var-p-bottom_large">
+
+        <template if:true={displayHeaderMenuSearchByDistance}>
+            <div class="slds-grid slds-gutters slds-var-p-top_large slds-var-p-bottom_large slds-container_center">
 
                 <div class="slds-col">
-                    <lightning-combobox value={radius}
-                                        variant='label-hidden'
-                                        options={distanceOptions}
-                                        placeholder='Distance radius'
-                                        onchange={handleChange} >
-                    </lightning-combobox>
+                    <lightning-slider label="Distance radius" 
+                                      min='1'
+                                      max='100'
+                                      value={radius}
+                                      onchange={distanceRadiusHandleChange}>
+                    </lightning-slider>
                 </div>
 
                 <div class="slds-col">
                     <lightning-input type="date"
-                                     variant='label-hidden'
-                                     class='birth_due_date'
-                                     placeholder='Birth/Due Date'
-                                     required >
+                                     label='Birth/Due Date'
+                                     class='birth_due_date_input_field'
+                                     required>
                     </lightning-input>
                 </div>
 
-                <div class="slds-col">
+                <div class="slds-col" style='margin-top:1.35rem;'>
                     <lightning-button variant="brand"
                                       label="Search by Date"
                                       icon-name="utility:search"
                                       icon-position="right"
-                                      onclick={searchHandlerClick} >
+                                      onclick={handlerByClickSearchByDate} >
                     </lightning-button>
                 </div>
 
             </div>
         </template>
 
-            <template if:true={tableCourseData}>
+        <template if:true={displayHeaderMenuSearchByBranch}>
+            <div class="slds-grid slds-gutters slds-var-p-top_large slds-var-p-bottom_large">
 
-                <template if:true={courseNotFound}>
-                    <c-courses-not-found></c-courses-not-found>
-                </template>
+                <div class="slds-col">
+                    <lightning-input type="input"
+                                     variant='label-hidden'
+                                     class='branch_input_field'
+                                     placeholder='Branch Number'
+                                     required >
+                    </lightning-input>
+                </div>
 
-                <template if:false={courseNotFound}>
-                    <lightning-datatable data={tableCourseData}
-                                         columns={columns}
-                                         show-row-number-column
-                                         row-number-offset={rowOffset}
-                                         hide-checkbox-column
-                                         sorted-by='endDate'
-                                         default-sort-direction='asc'
-                                         key-field="id">
-                    </lightning-datatable>
-                   
-                </template>
+                <div class="slds-col">
+                    <lightning-button variant="brand"
+                                      label="Search by Branch"
+                                      icon-name="utility:search"
+                                      icon-position="right"
+                                      onclick={handlerByClickSearchByBranch} >
+                    </lightning-button>
+                </div>
 
-            </template>
+            </div>
+        </template>
+        
+        <div class='slds-var-m-top_medium slds-border_bottom'></div>
+
+        <template if:false={isCoursesFound}>
+            <c-courses-not-found></c-courses-not-found>
+        </template>
+
+        <template if:true={isCoursesFound}>
+            <c-course-search-custom-data-table  data={tableCourseData}
+                                                columns={columns}
+                                                show-row-number-column
+                                                wrap-text-max-lines="3"
+                                                row-number-offset={rowOffset}
+                                                hide-checkbox-column
+                                                default-sort-direction='desc'
+                                                sorted-by={sortBy}
+                                                sorted-direction={sortDirection}
+                                                onsort={handleSortdata}
+                                                key-field="id">
+            </c-course-search-custom-data-table>
+        </template>
+
     </div>
-<!-- 
-    <lightning-datatable data={tableData}
-                         columns={columns}
-                         show-row-number-column
-                         row-number-offset={rowOffset}
-                         hide-checkbox-column
-                         sorted-by='endDate'
-                         default-sort-direction='asc'
-                         key-field="id">
-    </lightning-datatable> -->
 
 </template>
