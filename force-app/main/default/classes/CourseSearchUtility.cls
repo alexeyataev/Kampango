@@ -302,13 +302,6 @@ public without sharing class CourseSearchUtility {
             radius = DEFAULT_RADIUS; 
         }
 
-        System.debug('RADIYS');
-        System.debug(radius);
-
-        System.debug('LOCATION');
-        System.debug(location);
-
-
         if (hideFromPublicAccess) {
             inCourses = [
                 SELECT  Branch__r.Branch_Number__c,
