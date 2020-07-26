@@ -22,11 +22,11 @@
         <members>BookingJourneyHelper</members>
         <members>BookingJourneyHelperTest</members>
         <members>BookingPaymentDetailsController</members>
-        <members>BookingPaymentDetailsController</members>
-        <members>BookingPaymentDetailsControllerTest</members>
         <members>BookingPaymentDetailsControllerTest</members>
         <members>BookingStatusFlowHelper</members>
         <members>BookingStatusFlowHelperTest</members>
+        <members>BookingPaymentDetailsController</members>
+        <members>BookingPaymentDetailsControllerTest</members>
         <members>BranchWeightingHelper</members>
         <members>BranchWeightingHelperTest</members>
         <members>CardPaymentHandler</members>
@@ -41,6 +41,8 @@
         <members>CardPaymentUrlResult</members>
         <members>ChatterPost_PreventDeletion_TDTM_Test</members>
         <members>ChatterPost_PreventDeletion_TDTM</members>
+        <members>ChatterPost_PreventDeletion_TDTM_Test</members>
+        <members>CardPaymentUrlResult</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
         <members>ConfirmationEmailController</members>
@@ -50,14 +52,12 @@
         <members>ConvertEStoPIHandler</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
-        <members>CourseCreateEnquiryUtility</members>
-        <members>CourseCreateEnquiryUtilityTest</members>
         <members>CourseDetailController</members>
         <members>CourseDetailControllerTest</members>
         <members>CourseFinderModel</members>
+        <members>CourseFinderModelTest</members>
         <members>CourseFinderModelOrdered</members>
         <members>CourseFinderModelOrderedTest</members>
-        <members>CourseFinderModelTest</members>
         <members>CoursesBranchModel</members>
         <members>CoursesDateDistanceModel</members>
         <members>CourseSearchInternalModel</members>
@@ -68,13 +68,15 @@
         <members>CreateListViewUtility</members>
         <members>CreateListViewUtilityMock</members>
         <members>CreateListViewUtilityTest</members>
+        <members>CourseCreateEnquiryUtility</members>
+        <members>CourseCreateEnquiryUtilityTest</members>
         <members>DecryptBookingValidationCodeHandler</members>
         <members>dlrs_Batch_Receipt_Report_ItemTest</members>
         <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
-        <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTest</members>
+        <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
         <members>dlrs_Zumzum_Sales_InvoiceTest</members>
         <members>EncryptBookingValidationCodeHandler</members>
         <members>EncryptDecryptBookingValidationCodeTest</members>
@@ -86,7 +88,6 @@
         <members>IBankReceiptCreator</members>
         <members>IClock</members>
         <members>IExpenseSheetToPurchaseInvoiceConverter</members>
-        <members>InvalidateWithdrawCADFlowTest</members>
         <members>IPaymentServiceProvider</members>
         <members>IPurchaseInvoiceServiceProvider</members>
         <members>ISalesInvoiceCreator</members>
@@ -111,22 +112,23 @@
         <members>ReconcilePaymentsHelperTest</members>
         <members>SendHTMLEmailPlugin</members>
         <members>SendHTMLEmailPluginTest</members>
-        <members>SESSION_InvalidateCAs_TDTM_TEST</members>
-        <members>SESSION_InvalidateCAs_TDTM</members>
-        <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
-        <members>SESSION_RevertToProvisional_TDTM_TEST</members>
+        <members>SESSION_InvalidateCAs_TDTM</members>
+        <members>SESSION_InvalidateCAs_TDTM_TEST</members>
+        <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
         <members>SESSION_RevertToProvisional_TDTM</members>
-        <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
+        <members>SESSION_RevertToProvisional_TDTM_TEST</members>
         <members>SESSION_TrackDeletedRecord_TDTM</members>
+        <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperFlowAssistant</members>
         <members>SessionFeeHelperTest</members>
         <members>SetBookingExpirationStatusFlowTest</members>
         <members>SetBookingReservationExpiryDateTest</members>
+        <members>InvalidateWithdrawCADFlowTest</members>
         <members>SystemClock</members>
-        <members>Task_PreventDeletion_TDTM_Test</members>
         <members>Task_PreventDeletion_TDTM</members>
+        <members>Task_PreventDeletion_TDTM_Test</members>
         <members>TestAccountBuilder</members>
         <members>TestBatchReceiptReportBuilder</members>
         <members>TestBatchReceiptReportItemBuilder</members>
@@ -134,9 +136,9 @@
         <members>TestBranchWeightingBuilder</members>
         <members>TestContactBuilder</members>
         <members>TestCourseAssignmentBuilder</members>
+        <members>TestEstimatedCostsBuilder</members>
         <members>TestCourseBuilder</members>
         <members>TestDataFactory</members>
-        <members>TestEstimatedCostsBuilder</members>
         <members>TestFinanceDataFactory</members>
         <members>TestInstallmentBuilder</members>
         <members>TestLicenceToPracticeBuilder</members>
@@ -146,9 +148,9 @@
         <members>TestRecurringPaymentBuilder</members>
         <members>TestRoomBuilder</members>
         <members>TestSessionBuilder</members>
-        <members>TestUserBuilder</members>
         <members>TestVenueBuilder</members>
         <members>TestVenueContactBuilder</members>
+        <members>TestUserBuilder</members>
         <members>UpdateAddressInGiftAidDeclarationsTest</members>
         <members>UpdateBookingContactsEmailTest</members>
         <members>UpdateRelatedSessionsFlowTest</members>
