@@ -60,6 +60,7 @@
         <members>CourseFinderModelOrderedTest</members>
         <members>CoursesBranchModel</members>
         <members>CoursesDateDistanceModel</members>
+        <members>CourseSearchInternalModel</members>
         <members>CourseSearchUtility</members>
         <members>CourseSearchUtilityTest</members>
         <members>CreateGiftAidDeclarationHelper</members>
@@ -154,6 +155,7 @@
         <members>UpdateBookingContactsEmailTest</members>
         <members>UpdateRelatedSessionsFlowTest</members>
         <members>UserEncryptionDecryptionProvider</members>
+        <members>Utils</members>
         <members>VenueDetailsController</members>
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
@@ -654,9 +656,14 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>bookingCourseSearch</members>
+        <members>branchCourseSearch</members>
         <members>checkBrowserCompatibility</members>
         <members>claimFeesDatatable</members>
         <members>courseDetailsComponent</members>
+        <members>courseSearchComponent</members>
+        <members>courseSearchCustomDataTable</members>
+        <members>coursesNotFound</members>
         <members>courseTransferDetails</members>
         <members>customCommunityButton</members>
         <members>failurePaymentPage</members>
@@ -665,6 +672,7 @@
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
+        <members>venueCourseSearch</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
