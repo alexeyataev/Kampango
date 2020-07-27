@@ -4,7 +4,7 @@
     <defaultValue>&quot;United Kingdom&quot;</defaultValue>
     <externalId>false</externalId>
     <label>Country</label>
-    <required>true</required>
+    <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Picklist</type>

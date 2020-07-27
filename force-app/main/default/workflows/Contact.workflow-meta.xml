@@ -37,7 +37,10 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>ISCHANGED(Country__c)</formula>
+        <formula>OR(
+ISNEW(),
+ISCHANGED(Country__c)
+)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
