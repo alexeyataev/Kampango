@@ -46,6 +46,8 @@ export default class CourseSearchComponent extends LightningElement {
     columns = columns;
     radius = RADIUS_DEFAULT;
     birthDueDateInputField;
+    birthDueDateValue;
+    branchNumber;
     isCoursesFound;
     paramsOfDistance;
 
@@ -71,6 +73,8 @@ export default class CourseSearchComponent extends LightningElement {
     getCourseByBranch(branchNumber) {
         this.displayHeaderMenuSearchByBranch = true;
         this.isLoading = true;
+        this.branchNumber = branchNumber;
+
         courseSearchiInternalByBranch({ branchId: branchNumber, hideFromPublicAccess: HIDE_FROM_PUBLIC_ACCESS_TRUE })
         .then(data => {
             this.isLoading = false;
@@ -151,6 +155,7 @@ export default class CourseSearchComponent extends LightningElement {
     }
 
     setBookingData(searchCourseParams) {
+        this.birthDueDateValue = searchCourseParams.value.birthDueDate;
         this.displayHeaderMenuSearchByDistance = true;
         this.paramsOfDistance = searchCourseParams.value;
         this.getCourseByDistanse(this.getDataForSearchByDistanse());

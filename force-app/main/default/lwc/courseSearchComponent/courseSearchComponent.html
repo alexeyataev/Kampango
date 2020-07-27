@@ -2,11 +2,9 @@
 
     <div class='slds-box slds slds-color__background_gray-1'>
         
-        <div style='display:flex;'>
-            <div class='slds-text-heading_large'>Internal Courses Searcher</div>
-
+        <div class='slds-grid slds-grid_align-end' style='height:0.5rem'>
             <template if:true={isLoading}>
-                <div class="slds-is-relative slds-var-m-left_xx-large" >
+                <div class="slds-is-relative slds-var-m-around_medium" >
                     <lightning-spinner alternative-text="Loading..." variant="brand" size="small"></lightning-spinner>
                 </div>
             </template>
@@ -28,6 +26,7 @@
                     <lightning-input type="date"
                                      label='Birth/Due Date'
                                      class='birth_due_date_input_field'
+                                     value={birthDueDateValue}
                                      required>
                     </lightning-input>
                 </div>
@@ -50,6 +49,7 @@
                 <div class="slds-col">
                     <lightning-input type="input"
                                      variant='label-hidden'
+                                     value={branchNumber}
                                      class='branch_input_field'
                                      placeholder='Branch Number'
                                      required >
