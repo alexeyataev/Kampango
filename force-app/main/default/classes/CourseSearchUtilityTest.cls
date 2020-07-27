@@ -535,6 +535,61 @@ private class CourseSearchUtilityTest {
         System.assertEquals(model.DeliveryMethod, COURSE_DELIVERY_METHOD_HYBRID);
     }
 
+    @isTest
+    static void courseInternalSearchByBrnach_WithValidBranchId_CourseCorrectlyReturned() {
+        List<CourseFinderModel> courseList;
+        Id recordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Branch').getRecordTypeId();
+      
+        Account account = [
+            SELECT Id 
+            FROM Account
+            WHERE RecordTypeId = :recordTypeId 
+            LIMIT 1
+        ];
+
+        account.Branch_Number__c = '123';
+        update account;
+
+        Test.startTest();
+            courseList = CourseSearchUtility.courseSearchiInternalByBranch(account.Branch_Number__c, true);
+        Test.stopTest();
+        
+        System.assert(courseList.size() > 0, 'List should not be empty');
+    }
+
+    @isTest
+    static void courseInternalSearchByDistance_WithValidDistance_CourseCorrectlyReturned() {
+        List<CourseFinderModel> courseList;
+        Id recordTypeId = Schema.SObjectType.Venue__c.getRecordTypeInfosByName().get('Physical').getRecordTypeId();
+        Location location = Location.newInstance(1.23, 2.3);
+
+        Venue__c mainVenue = [
+            SELECT Id, Location__Longitude__s, Location__Latitude__s FROM Venue__c WHERE RecordTypeId = :recordTypeId
+        ];
+
+        mainVenue.Location__Longitude__s = location.longitude;
+        mainVenue.Location__Latitude__s = location.latitude;
+        update mainVenue;
+
+        Course__c course = [
+            SELECT Name, Main_Venue__c
+            FROM Course__c
+            LIMIT 1
+        ];
+
+        course.Main_Venue__c = mainVenue.Id;
+        update course;
+
+        Integer radius = 100;
+        Date birthDate = Date.today().addDays(30);
+
+        Test.startTest();
+            courseList = CourseSearchUtility.courseSearchInternalByDistance(location.longitude, location.latitude, radius, birthDate, true);
+        Test.stopTest();
+       
+        System.assert(courseList.size() == 1, 'List should not be empty');
+    }
+
     private class ChangerCourse {
         private Course__c course;
         private List<Session__c> sessions = new List<Session__c>();
