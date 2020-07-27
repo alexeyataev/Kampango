@@ -4,7 +4,10 @@
 public without sharing virtual class CourseFinderModel {
     @testVisible
     public String Id {get; set;}
+
+    @AuraEnabled
     public transient Date StartDate {get; set;}
+
     public String Summary;
     private String BranchNumber;
     private Boolean CouplesAllowed;
@@ -12,16 +15,41 @@ public without sharing virtual class CourseFinderModel {
     private static List<String> HowHeardTexts = getHowHeardValues(); // will run only once for any number of models
     @testVisible
     private Boolean Online;
-    @testVisible
-    private String DeliveryMethod;
     private Integer PlacesAvailable;
     private Decimal Price;
-    private String Reference;
+    public String Reference;
     private List<Session> Sessions;
     private String Title;
-    private String Type;
     private Venue Venue;
     private Boolean WomenOnly;
+
+    @testVisible
+    @AuraEnabled
+    public String DeliveryMethod;
+
+    @AuraEnabled
+    public String Type;
+
+    @AuraEnabled
+    public Double RemainingPlaces;
+
+    @AuraEnabled
+    public Double ConfirmedPlaces;
+
+    @AuraEnabled
+    public String Status;
+
+    @AuraEnabled
+    public Date EndDate;
+
+    @AuraEnabled
+    public String PsaArea;
+
+    @AuraEnabled
+    public String CourseName;
+
+    @AuraEnabled
+    public String CourseId;
 
     public CourseFinderModel(Course__c course) {
         /**
@@ -46,7 +74,15 @@ public without sharing virtual class CourseFinderModel {
         this.Type = course.Sub_Type__c;
         this.Venue = new Venue(course);
         this.WomenOnly = course.Women_Only__c;
-        this.DeliveryMethod = getDeliveryMethod(course.Sessions__r);
+        this.DeliveryMethod = CourseSearchUtility.getDeliveryMethod(course.Sessions__r);
+
+        this.CourseName = course.Name;
+        this.CourseId = course.Id;
+        this.RemainingPlaces = course.Remaining_Places__c;
+        this.ConfirmedPlaces = course.Confirmed_Places__c;
+        this.Status = course.Status__c;
+        this.EndDate = course.End_Date__c;
+        this.PsaArea = course.PSA_Area__c;
     }
 
     private without sharing class CourseOrganiser {
@@ -67,7 +103,7 @@ public without sharing virtual class CourseFinderModel {
         private String County;
         private String PostcodeArea;
         private Location Location;
-        
+
         private Venue (Course__c course) {
             this.Name = course.Main_Venue__r.Type__c != 'Practitioner Home'
                 ? course.Main_Venue__r.Name : 'Course Leader\'s home';
@@ -117,13 +153,5 @@ public without sharing virtual class CourseFinderModel {
         }
 
         return sessionsWrap;
-    }
-
-    private String getDeliveryMethod(List<Session__c> sessions) {
-        String deliveryMethod ;
-        for (Session__c session : sessions) {
-            deliveryMethod = deliveryMethod != null ? session.Type__c != 'Reunion' && deliveryMethod != session.Delivery_Type__c ? 'Hybrid' : deliveryMethod : session.Delivery_Type__c;
-        }
-        return deliveryMethod;
     }
 }
