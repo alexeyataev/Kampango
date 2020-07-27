@@ -21,6 +21,6 @@ public with sharing class CourseSearchInternalModel {
             this.remainingPlaces = courseRecord.Remaining_Places__c;
             this.confirmedPlaces = courseRecord.Confirmed_Places__c;
             this.status = courseRecord.Status__c;
-            this.deliveryType = Utils.getDeliveryMethod(courseRecord.Sessions__r);
+            this.deliveryType = CourseSearchUtility.getDeliveryMethod(courseRecord.Sessions__r);
         }
 }
