@@ -11,7 +11,7 @@
         <senderAddress>nctcourses@nct.org.uk</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>NCT_Templates/Adhoc_Payment_Confirmation</template>
-     <alerts>
+    </alerts>
     <fieldUpdates>
         <fullName>Contact_Country_Update</fullName>
         <field>MailingCountry</field>
@@ -64,7 +64,5 @@
 	) 
 )</formula>
         <triggerType>onAllChanges</triggerType>
-    </rules>
-riggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
