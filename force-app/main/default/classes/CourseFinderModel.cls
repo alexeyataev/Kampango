@@ -46,7 +46,7 @@ public without sharing virtual class CourseFinderModel {
         this.Type = course.Sub_Type__c;
         this.Venue = new Venue(course);
         this.WomenOnly = course.Women_Only__c;
-        this.DeliveryMethod = Utils.getDeliveryMethod(course.Sessions__r);
+        this.DeliveryMethod = CourseSearchUtility.getDeliveryMethod(course.Sessions__r);
     }
 
     private without sharing class CourseOrganiser {
