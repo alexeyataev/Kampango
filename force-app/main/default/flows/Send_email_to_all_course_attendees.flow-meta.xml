@@ -358,7 +358,7 @@
         <name>acceptedFormats</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>.doc, .docx, .pdf</stringValue>
+            <stringValue>.doc, .docx, .pdf, .odt, .mp3, .mp4</stringValue>
         </value>
     </constants>
     <constants>
