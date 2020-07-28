@@ -38,7 +38,10 @@
         </actions>
         <active>true</active>
         <formula>OR(
+AND(
 ISNEW(),
+ISBLANK(MailingCountry)
+),
 ISCHANGED(Country__c)
 )</formula>
         <triggerType>onAllChanges</triggerType>
