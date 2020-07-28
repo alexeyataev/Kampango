@@ -17,6 +17,7 @@ public without sharing class CourseDetailController {
                     Location_Postcode__c,
                     Location_Street__c,
                     Location_Town__c,
+                    Session_Room_Name__c,
                     Start__c,
                     Status__c,
                     Type__c
