@@ -111,6 +111,7 @@ public without sharing class CourseCreateEnquiryUtility {
             Email = requestParameters.get('email'),
             MobilePhone = requestParameters.get('mobile'),
             MailingCity = requestParameters.get('town'),
+            MailingCountry = 'United Kingdom',
             MailingPostalCode = requestParameters.get('postcode'),
             MailingState = requestParameters.get('county'), // 'county' is not a 'countRy'
             MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
@@ -126,6 +127,7 @@ public without sharing class CourseCreateEnquiryUtility {
             RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME),
             MobilePhone = requestParameters.get('mobile'),
             MailingCity = requestParameters.get('town'),
+            MailingCountry = 'United Kingdom',
             MailingPostalCode = requestParameters.get('postcode'),
             MailingState = requestParameters.get('county'),
             MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
