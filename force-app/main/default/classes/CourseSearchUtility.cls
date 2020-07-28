@@ -2,6 +2,7 @@ public without sharing class CourseSearchUtility {
     private static final String COURSE_STATUS_FINAL = 'Final';
     private static final String SESSION_STATUS_CONFIRMED = 'Confirmed';
     private static final String SCHEDULED_SESSION_RECORD_TYPE_NAME = 'Scheduled Session';
+    private static final Boolean HIDE_FROM_PUBLIC_ACCESS = false;
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
@@ -589,23 +590,8 @@ public without sharing class CourseSearchUtility {
 
 
     @AuraEnabled
-    public static List<CourseFinderModel> courseSearchiInternalByBranch(String branchId, Boolean hideFromPublicAccess) {
-        List<Course__c> courseList= getCoursesByBranch(branchId, hideFromPublicAccess);
-
-        return getCourseInternalWrapper(courseList);
-    }
-
-    @AuraEnabled
-    public static List<CourseFinderModel> courseSearchInternalByDistance(Double longitude, Double latitude, Integer radius, Date birthDueDate, Boolean hideFromPublicAccess) {
-
-        Location location = Location.newInstance(latitude, longitude);
-        LocationRequestParameters locationParams = new LocationRequestParameters(location, radius);
-        List<Course__c> courseListByDistance = getCoursesByDateDistance(locationParams, birthDueDate, hideFromPublicAccess);
-
-        return getCourseInternalWrapper(courseListByDistance);
-    }
-
-    private static List<CourseFinderModel> getCourseInternalWrapper(List<Course__c> courseList) {
+    public static List<CourseFinderModel> courseSearchInternalByBranch(String branchId) {
+        List<Course__c> courseList= getCoursesByBranch(branchId, HIDE_FROM_PUBLIC_ACCESS);
         List<CourseFinderModel> courseToReturn = new List<CourseFinderModel>();
 
         for (Course__c courseRecord : courseList) {
@@ -613,6 +599,23 @@ public without sharing class CourseSearchUtility {
         }
 
         return courseToReturn;
+    }
+
+    @AuraEnabled
+    public static List<CourseFinderModelOrdered> courseSearchInternalByDistance(Double longitude, Double latitude, Integer radius, Date birthDueDate) {
+
+        Location location = Location.newInstance(latitude, longitude);
+        LocationRequestParameters locationParams = new LocationRequestParameters(location, radius);
+        List<CourseFinderModelOrdered> courseModelOrdered = new List<CourseFinderModelOrdered>();
+
+        for (Course__c courseRecord : getCoursesByDateDistance(locationParams, birthDueDate, HIDE_FROM_PUBLIC_ACCESS)) {
+            CourseFinderModelOrdered courseModel = new CourseFinderModelOrdered(courseRecord, birthDueDate);
+            courseModelOrdered.add(courseModel);
+        }
+
+        courseModelOrdered.sort();
+
+        return courseModelOrdered;
     }
 
     public static String getDeliveryMethod(List<Session__c> sessions) {
