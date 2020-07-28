@@ -364,6 +364,7 @@ private class CourseCreateEnquiryUtilityTest {
                 Email = 'partner@partner.partner',
                 MailingCity = 'London',
                 MailingStreet = '221B Baker Street',
+                MailingCountry = 'United Kingdom',
                 MailingPostalCode = CONTACT_POSTCODE,
                 npe01__PreferredPhone__c = 'Mobile',
                 MobilePhone = '+447911121337',
