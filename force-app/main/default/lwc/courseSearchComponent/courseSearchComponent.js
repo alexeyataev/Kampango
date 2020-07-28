@@ -1,18 +1,17 @@
 import { LightningElement, api, track } from 'lwc';
-import courseSearchiInternalByBranch from '@salesforce/apex/CourseSearchUtility.courseSearchiInternalByBranch';
+import courseSearchInternalByBranch from '@salesforce/apex/CourseSearchUtility.courseSearchInternalByBranch';
 import courseSearchInternalByDistance from '@salesforce/apex/CourseSearchUtility.courseSearchInternalByDistance';
 
 import { ACCOUNT_BRANCH_NAME,
          BOOKING_NAME,
          VENUE_NAME,
          RADIUS_DEFAULT,
-         HIDE_FROM_PUBLIC_ACCESS_TRUE,
          COURSE_URL_FIELD } from 'c/globalConstansHelper';
 
 const columns = [
     {   
         label: 'Name',
-        fieldName: 'CourseName',
+        fieldName: 'Id',
         hideDefaultActions:true,
         type:'courseNumberTmp',
         typeAttributes: {
@@ -75,7 +74,7 @@ export default class CourseSearchComponent extends LightningElement {
         this.isLoading = true;
         this.branchNumber = branchNumber;
 
-        courseSearchiInternalByBranch({ branchId: branchNumber, hideFromPublicAccess: HIDE_FROM_PUBLIC_ACCESS_TRUE })
+        courseSearchInternalByBranch({ branchId: branchNumber })
         .then(data => {
             this.isLoading = false;
             this.tableCourseData = this.getDataWithCourseUrlField(data);
@@ -100,8 +99,7 @@ export default class CourseSearchComponent extends LightningElement {
             latitude: this.paramsOfDistance.latitude || '',
             longitude: this.paramsOfDistance.longitude || '',
             birthDueDate: this.birthDueDateInputField ? this.birthDueDateInputField.value : this.paramsOfDistance.birthDueDate,
-            radius: this.radius || RADIUS_DEFAULT,
-            hideFromPublicAccess: HIDE_FROM_PUBLIC_ACCESS_TRUE
+            radius: this.radius || RADIUS_DEFAULT
          } 
      }
 
