@@ -11,6 +11,4 @@ export const VENUE_NAME = 'Venue';
 
 export const RADIUS_DEFAULT = 100;
 
-export const HIDE_FROM_PUBLIC_ACCESS_TRUE = true;
-
 export const COURSE_URL_FIELD = 'courseUrl';
