@@ -2,6 +2,7 @@
 //Incident #10 - https://confluence.nct.org.uk:8443/x/EoSO
 // This supression is needed because we need Upper case-started propoerties for serialization to JSON.
 public without sharing virtual class CourseFinderModel {
+    @AuraEnabled
     @testVisible
     public String Id {get; set;}
 
@@ -76,7 +77,6 @@ public without sharing virtual class CourseFinderModel {
         this.WomenOnly = course.Women_Only__c;
         this.DeliveryMethod = CourseSearchUtility.getDeliveryMethod(course.Sessions__r);
 
-        this.CourseName = course.Name;
         this.CourseId = course.Id;
         this.RemainingPlaces = course.Remaining_Places__c;
         this.ConfirmedPlaces = course.Confirmed_Places__c;
