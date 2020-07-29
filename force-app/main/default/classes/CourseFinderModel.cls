@@ -47,9 +47,6 @@ public without sharing virtual class CourseFinderModel {
     public String PsaArea;
 
     @AuraEnabled
-    public String CourseName;
-
-    @AuraEnabled
     public String CourseId;
 
     public CourseFinderModel(Course__c course) {

@@ -3,7 +3,10 @@
 public class CourseFinderModelOrdered extends CourseFinderModel implements Comparable {
     public static final Integer INAPPROPRIATE_RANK = 8; // correct ranks are 1-7
     public static final Integer INAPPROPRIATE_GROUP = 0; // correct groups are 1 and 2
+
+    @AuraEnabled
     public Integer Rank {get; set;}
+    
     public Integer Order {get; set;}
     private transient List<CourseTypeRank> courseTypeRanks;
     private transient Integer groupRange {get; set;}

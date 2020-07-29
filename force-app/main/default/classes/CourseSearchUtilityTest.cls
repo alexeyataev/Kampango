@@ -551,7 +551,7 @@ private class CourseSearchUtilityTest {
         update account;
 
         Test.startTest();
-            courseList = CourseSearchUtility.courseSearchiInternalByBranch(account.Branch_Number__c, true);
+            courseList = CourseSearchUtility.courseSearchInternalByBranch(account.Branch_Number__c);
         Test.stopTest();
         
         System.assert(courseList.size() > 0, 'List should not be empty');
@@ -559,7 +559,7 @@ private class CourseSearchUtilityTest {
 
     @isTest
     static void courseInternalSearchByDistance_WithValidDistance_CourseCorrectlyReturned() {
-        List<CourseFinderModel> courseList;
+        List<CourseFinderModelOrdered> courseList;
         Id recordTypeId = Schema.SObjectType.Venue__c.getRecordTypeInfosByName().get('Physical').getRecordTypeId();
         Location location = Location.newInstance(1.23, 2.3);
 
@@ -584,10 +584,10 @@ private class CourseSearchUtilityTest {
         Date birthDate = Date.today().addDays(30);
 
         Test.startTest();
-            courseList = CourseSearchUtility.courseSearchInternalByDistance(location.longitude, location.latitude, radius, birthDate, true);
+            courseList = CourseSearchUtility.courseSearchInternalByDistance(location.longitude, location.latitude, radius, birthDate);
         Test.stopTest();
        
-        System.assert(courseList.size() == 1, 'List should not be empty');
+        System.assert(courseList.size() > 0, 'List should not be empty');
     }
 
     private class ChangerCourse {

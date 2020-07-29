@@ -608,9 +608,13 @@ public without sharing class CourseSearchUtility {
         LocationRequestParameters locationParams = new LocationRequestParameters(location, radius);
         List<CourseFinderModelOrdered> courseModelOrdered = new List<CourseFinderModelOrdered>();
 
-        for (Course__c courseRecord : getCoursesByDateDistance(locationParams, birthDueDate, HIDE_FROM_PUBLIC_ACCESS)) {
-            CourseFinderModelOrdered courseModel = new CourseFinderModelOrdered(courseRecord, birthDueDate);
-            courseModelOrdered.add(courseModel);
+        final Integer LOWEST_RANK_TO_BE_DISPlAYED = 6;
+        for (Course__c course : getCoursesByDateDistance(locationParams, birthDueDate, HIDE_FROM_PUBLIC_ACCESS)) {
+
+            CourseFinderModelOrdered model = new CourseFinderModelOrdered(course, birthDueDate);
+            if (model.Rank <= LOWEST_RANK_TO_BE_DISPlAYED) {
+                courseModelOrdered.add(model);
+            }
         }
 
         courseModelOrdered.sort();
