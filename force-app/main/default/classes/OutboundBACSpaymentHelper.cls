@@ -1,4 +1,4 @@
-public class OutboundBACSpaymentHelper {
+public with sharing class OutboundBACSpaymentHelper {
 
     private static final String PAYMENT_RUN_RESULT_SUCCESS = 'Success';
     private static final String PAYMENT_RUN_RESULT_ERROR = 'Error';

@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #109 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class ContactProcessHelper {
     @InvocableMethod(label='Create Individual')
     public static void createIndividual(List<String> id) {

@@ -1,6 +1,6 @@
 @SuppressWarnings('PMD.EmptyStatementBlock')
 //Incident #63 - https://confluence.nct.org.uk:8443/x/EoSO
-public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
+public with sharing class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
     public Id paymentRunId;
 
     private static final String PAYMENT_RUN_RESULT_STATUS_ERROR = 'Error';

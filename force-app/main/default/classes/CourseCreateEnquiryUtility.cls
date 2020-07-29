@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #110 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing class CourseCreateEnquiryUtility {
     public static final String RECORDTYPE_NAME = 'Clients';
     private static final String DEFAULT_MAILING_COUNTRY = 'United Kingdom';
