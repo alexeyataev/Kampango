@@ -53,7 +53,7 @@ public class BookingJourneyHelperTest {
     @IsTest
     static void updateContact_primaryContact_contactUpdated(){
         List<Contact> primaryContact = [
-            SELECT Id, npe01__PreferredPhone__c, FirstName, LastName, Salutation
+            SELECT Id, npe01__PreferredPhone__c, FirstName, Country__c, LastName, Salutation
             FROM Contact
             WHERE LastName = :NCT_PRIMARY_LASTNAME
         ];
@@ -72,7 +72,7 @@ public class BookingJourneyHelperTest {
     @IsTest
     static void updateContact_partnerContactWithId_contactUpdated(){
         List<Contact> partnerContact = [
-            SELECT Id, npe01__PreferredPhone__c, FirstName, LastName, Salutation
+            SELECT Id, npe01__PreferredPhone__c, FirstName, Country__c, LastName, Salutation
             FROM Contact
             WHERE LastName = :NCT_PARTNER_LASTNAME
         ];
