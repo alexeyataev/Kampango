@@ -654,7 +654,7 @@
         <members>courseTransferDetails</members>
         <members>customCommunityButton</members>
         <members>failurePaymentPage</members>
-        <members>globalConstansHelper</members>
+        <members>globalConstantsHelper</members>
         <members>linkToPaymentComponent</members>
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
@@ -860,6 +860,7 @@
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
         <members>Course__c.ShareAllCourseWithParents</members>
+        <members>Payment_Run__c.SharePaymentRunWithPractitioners</members>
         <members>Zumzum__Company_Setup__c.ShareAllCompanySetupWithParents</members>
         <members>Zumzum__Company__c.ShareAllCompanyWithParents</members>
         <members>Zumzum__Control_Account__c.ShareAllControlAccountWithParents</members>
