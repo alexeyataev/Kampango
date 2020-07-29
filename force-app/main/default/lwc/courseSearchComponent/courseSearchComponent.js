@@ -27,7 +27,6 @@ const columns = [
     { label: 'Remaining Places', fieldName: 'RemainingPlaces', type: 'number', cellAttributes: { alignment: 'left' }, hideDefaultActions:true},
     { label: 'Confirmed Places', fieldName: 'ConfirmedPlaces', type: 'number', cellAttributes: { alignment: 'left' }, hideDefaultActions:true},
     { label: 'Status', fieldName: 'Status', type: 'text', hideDefaultActions:true },
-    { label: 'Rank', fieldName: 'Rank', type: 'text', hideDefaultActions:true },
 ];
 
 export default class CourseSearchComponent extends LightningElement {
