@@ -355,8 +355,6 @@
         <members>Zumzum__Journal__c</members>
         <members>Zumzum__Ledger__c</members>
         <members>Zumzum__Ledger_Payment_History__c</members>
-        <members>Zumzum__Nominal_Account__c</members>
-        <members>Zumzum__Nominal_Categories__c</members>
         <members>Zumzum__Purchase_Invoice__c</members>
         <members>Zumzum__Purchase_Order__c</members>
         <members>Zumzum__Purchase_Requisition__c</members>
