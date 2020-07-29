@@ -6,6 +6,7 @@ public without sharing class BookingJourneyHelper {
         for(Contact contact: contacts){
             contact.npe01__PreferredPhone__c = String.valueOf(contact.npe01__PreferredPhone__c);
             contact.Salutation = String.valueOf(contact.Salutation);
+            contact.Country__c = String.valueOf(contact.Country__c);
         }
         if(contacts != null && !contacts.isEmpty()){
             try{
