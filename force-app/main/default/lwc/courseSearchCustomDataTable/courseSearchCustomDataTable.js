@@ -1,7 +1,7 @@
 import LightningDatatable from 'lightning/datatable';
 import courseNumberLinkTemplate from './courseNumberLinkTemplate.html';
 
-import { COURSE_URL_FIELD } from 'c/globalConstansHelper';
+import { COURSE_URL_FIELD } from 'c/globalConstantsHelper';
 
 export default class CourseSearchCustomDataTable extends LightningDatatable {
     static customTypes = {

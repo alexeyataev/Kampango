@@ -6,7 +6,7 @@ import { ACCOUNT_BRANCH_NAME,
          BOOKING_NAME,
          VENUE_NAME,
          RADIUS_DEFAULT,
-         COURSE_URL_FIELD } from 'c/globalConstansHelper';
+         COURSE_URL_FIELD } from 'c/globalConstantsHelper';
 
 const columns = [
     {   
