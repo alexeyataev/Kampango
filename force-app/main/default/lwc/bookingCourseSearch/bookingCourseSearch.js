@@ -1,7 +1,7 @@
 import { LightningElement, api, track, wire } from 'lwc';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 
-import { BOOKING_NAME } from 'c/globalConstansHelper';
+import { BOOKING_NAME } from 'c/globalConstantsHelper';
 
 const BOOKING_BIRTH_DUE_DATE_FIELD = 'Booking__c.Birth_Due_Date__c';
 const BOOKING_COURSE_MAIN_VENUE_LATITUDE_FIELD = 'Booking__c.Course__r.Main_Venue__r.Location__Latitude__s';

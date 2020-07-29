@@ -1,6 +1,6 @@
 import { LightningElement, track, api, wire } from 'lwc';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
-import { VENUE_NAME } from 'c/globalConstansHelper';
+import { VENUE_NAME } from 'c/globalConstantsHelper';
 
 const VENUE_LATITUDE_FIELD = 'Venue__c.Location__Latitude__s';
 const VENNUE_LONGITUDE_FIELD = 'Venue__c.Location__Longitude__s';
