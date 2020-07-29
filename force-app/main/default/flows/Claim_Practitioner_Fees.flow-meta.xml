@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Create_Purchase_Invoice</name>
         <label>Create Purchase Invoice</label>
-        <locationX>1480</locationX>
-        <locationY>236</locationY>
+        <locationX>1385</locationX>
+        <locationY>57</locationY>
         <actionName>ClaimFeeHelper</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -27,7 +27,7 @@
         <name>Add_Virtual_Support_Sessions</name>
         <label>Add Virtual Support Sessions</label>
         <locationX>938</locationX>
-        <locationY>236</locationY>
+        <locationY>66</locationY>
         <assignmentItems>
             <assignToReference>listSessions</assignToReference>
             <operator>Add</operator>
@@ -43,7 +43,7 @@
         <name>Assign_Session_Course_Sub_Type</name>
         <label>Assign Session Course Sub Type</label>
         <locationX>1131</locationX>
-        <locationY>614</locationY>
+        <locationY>444</locationY>
         <assignmentItems>
             <assignToReference>tempCurrentSession.Course__c</assignToReference>
             <operator>Assign</operator>
@@ -58,8 +58,8 @@
     <assignments>
         <name>Assing_Checked_Sessions</name>
         <label>Assign Checked Sessions</label>
-        <locationX>1393</locationX>
-        <locationY>391</locationY>
+        <locationX>1293</locationX>
+        <locationY>206</locationY>
         <assignmentItems>
             <assignToReference>sessionsToClaim</assignToReference>
             <operator>Assign</operator>
@@ -74,10 +74,10 @@
     <decisions>
         <name>Check_If_Payment_Run_In_Progress</name>
         <label>Check If Payment Run In Progress</label>
-        <locationX>1385</locationX>
-        <locationY>58</locationY>
+        <locationX>355</locationX>
+        <locationY>281</locationY>
         <defaultConnector>
-            <targetReference>Create_Purchase_Invoice</targetReference>
+            <targetReference>getAccountAndContactId</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -147,7 +147,7 @@ Added course sub type assigment</description>
         <name>Loop_List_Sessions</name>
         <label>Loop List Sessions</label>
         <locationX>983</locationX>
-        <locationY>560</locationY>
+        <locationY>390</locationY>
         <assignNextValueToReference>tempCurrentSession</assignNextValueToReference>
         <collectionReference>listSessions</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -162,7 +162,7 @@ Added course sub type assigment</description>
         <name>Loop_Virtual_Support_Sessions</name>
         <label>Loop Virtual Support Sessions</label>
         <locationX>835</locationX>
-        <locationY>396</locationY>
+        <locationY>226</locationY>
         <assignNextValueToReference>tempCurrentSession</assignNextValueToReference>
         <collectionReference>listVirtualSupportSessions</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -189,8 +189,8 @@ Added course sub type assigment</description>
     <recordLookups>
         <name>Get_Payment_Runs_In_Progress</name>
         <label>Get Payment Runs In Progress</label>
-        <locationX>1243</locationX>
-        <locationY>50</locationY>
+        <locationX>229</locationX>
+        <locationY>208</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_If_Payment_Run_In_Progress</targetReference>
@@ -211,7 +211,7 @@ Added course sub type assigment</description>
         <name>Get_Practitioner</name>
         <label>Get Practitioner</label>
         <locationX>597</locationX>
-        <locationY>244</locationY>
+        <locationY>74</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Session</targetReference>
@@ -232,7 +232,7 @@ Added course sub type assigment</description>
         <name>Get_Session</name>
         <label>Get Session</label>
         <locationX>672</locationX>
-        <locationY>410</locationY>
+        <locationY>240</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Virtual_Support_Session</targetReference>
@@ -293,7 +293,7 @@ Added course sub type assigment</description>
         <name>Get_Virtual_Support_Session</name>
         <label>Get Virtual Support Session</label>
         <locationX>740</locationX>
-        <locationY>240</locationY>
+        <locationY>70</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Virtual_Support_Sessions</targetReference>
@@ -354,7 +354,7 @@ Added course sub type assigment</description>
         <name>getAccountAndContactId</name>
         <label>Get Account And Contact</label>
         <locationX>521</locationX>
-        <locationY>408</locationY>
+        <locationY>238</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Practitioner</targetReference>
@@ -380,7 +380,7 @@ Added course sub type assigment</description>
         <name>Claim_Fees_Datatable</name>
         <label>Claim Fees Datatable</label>
         <locationX>1111</locationX>
-        <locationY>365</locationY>
+        <locationY>195</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -429,8 +429,8 @@ Added course sub type assigment</description>
     <screens>
         <name>Confirmation_Message</name>
         <label>Confirmation Message</label>
-        <locationX>1581</locationX>
-        <locationY>382</locationY>
+        <locationX>1457</locationX>
+        <locationY>198</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -445,17 +445,14 @@ Added course sub type assigment</description>
     <screens>
         <name>Payment_Run_Processing</name>
         <label>Payment Run Processing</label>
-        <locationX>1319</locationX>
-        <locationY>257</locationY>
+        <locationX>402</locationX>
+        <locationY>61</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Show_Total_Fees</targetReference>
-        </connector>
         <fields>
             <name>PaymentRunProcessingMessage</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;A payment run is currently being processed, so no claims can be submitted please try again later&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;A payment run is currently being processed, so &lt;/span&gt;no claims can be submitted. Please try again later.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -464,13 +461,13 @@ Added course sub type assigment</description>
     <screens>
         <name>Show_Total_Fees</name>
         <label>Show Total Fees</label>
-        <locationX>1178</locationX>
-        <locationY>212</locationY>
+        <locationX>1203</locationX>
+        <locationY>61</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Get_Payment_Runs_In_Progress</targetReference>
+            <targetReference>Assing_Checked_Sessions</targetReference>
         </connector>
         <fields>
             <name>totalFeeScreen</name>
@@ -482,12 +479,12 @@ Added course sub type assigment</description>
     </screens>
     <start>
         <locationX>50</locationX>
-        <locationY>234</locationY>
+        <locationY>64</locationY>
         <connector>
-            <targetReference>getAccountAndContactId</targetReference>
+            <targetReference>Get_Payment_Runs_In_Progress</targetReference>
         </connector>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
     <variables>
         <name>createdLineItems</name>
         <dataType>String</dataType>
