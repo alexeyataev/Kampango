@@ -25,7 +25,7 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
                                                     FROM AsyncApexJob WHERE Id =
                                                     :BC.getJobId()];
         
-        if(batchOutboundBACSPaymentJob.NumberOfErrors>0){
+        if(batchOutboundBACSPaymentJob.NumberOfErrors > 0){
             paymentRun.Status__c = PAYMENT_RUN_STATUS_FAILED;
         }else{
             paymentRun.Status__c = PAYMENT_RUN_STATUS_READY;
@@ -44,7 +44,8 @@ public class BatchOutboundBACSpayment implements Database.Batchable<sObject>{
         category='Payment_Run__c'
     )
     public static void runBatch(List<Id> paymentRunIds) {
+        Integer batchSize = Financial_Settings__c.getInstance().Payment_Run_Line_Item_Batch_Size__c == null ? 10 : Integer.valueOf(Financial_Settings__c.getInstance().Payment_Run_Line_Item_Batch_Size__c);
         BatchOutboundBACSpayment myBatchObject = new BatchOutboundBACSpayment(paymentRunIds[0]);
-        Id batchId = Database.executeBatch(myBatchObject, 10);
+        Id batchId = Database.executeBatch(myBatchObject, batchSize);
     }
 }
