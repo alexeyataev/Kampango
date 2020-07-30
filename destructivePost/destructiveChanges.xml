@@ -24,6 +24,7 @@
         <members>Individual.Post__c</members>
         <members>Individual.SMS__c</members>
         <members>Individual.Telephone__c</members>
+        <members>Payment_Run__c.Bank_Supplier_Payment_Error_Log__c</members>
         <name>CustomField</name>
     </types>
     <types>
