@@ -4,10 +4,13 @@ public class OutboundBACSpaymentHelper {
     private static final String PAYMENT_RUN_RESULT_ERROR = 'Error';
     private static final String ZUMZUM_NOMINAL_CODE = '9600';
     private static final string BANK_ACCOUNT_NAME = 'BACS Payments in Transit';
+    private static Id paymentRunId;
 
-    public static String processPaymentRun (Payment_Run__c paymentRun) {
+    public static String processPaymentRunLineItems (List<Payment_Run_Line_Item__c> paymentRunLineItems) {
+        paymentRunId = paymentRunLineItems[0].Payment_Run__c;
+
         Set<Id> purchaseInvoiceIds = new Set<Id>();
-        for (Payment_Run_Line_Item__c paymentRunLineItem: paymentRun.Payment_Run_Line_Items__r) {
+        for (Payment_Run_Line_Item__c paymentRunLineItem : paymentRunLineItems) {
             purchaseInvoiceIds.add(paymentRunLineItem.Purchase_Invoice__c);
         }
 
@@ -25,6 +28,7 @@ public class OutboundBACSpaymentHelper {
                 AND Zumzum__Customer_Supplier_Account_Name__c <> ''
                 AND Zumzum__Sub_Account_Nominal_Link__r.Zumzum__Nominal_Code__c = :ZUMZUM_NOMINAL_CODE
                 AND Zumzum__Credit__c <> null
+                AND Zumzum__Paid__c <> 'Y'
         ];
 
         Map<Id, List<Zumzum__Ledger__c>> purchaseInvoiceToLedgerMap = new Map<Id, List<Zumzum__Ledger__c>>();
@@ -40,7 +44,7 @@ public class OutboundBACSpaymentHelper {
             }
         }
         
-        String processPaymentRunResult = initiateBankSupplierPayment(purchaseInvoiceToLedgerMap, paymentRun, getBankAccountId());
+        String processPaymentRunResult = initiateBankSupplierPayment(purchaseInvoiceToLedgerMap, getBankAccountId());
 
         return processPaymentRunResult;
     }
@@ -54,7 +58,7 @@ public class OutboundBACSpaymentHelper {
         ].Id;
     }
 
-    private static String initiateBankSupplierPayment(Map<Id, List<Zumzum__Ledger__c>> purchaseInvoiceToLedgerMap, Payment_Run__c paymentRun, Id bankAccountId) {
+    private static String initiateBankSupplierPayment(Map<Id, List<Zumzum__Ledger__c>> purchaseInvoiceToLedgerMap, Id bankAccountId) {
         Zumzum.BankSupplierPaymentService bankSupplierPaymentService = new Zumzum.BankSupplierPaymentService();
         List<Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper> listPaymentWrapper = new List<Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper>();
         for (Id purchaseInvoiceId :purchaseInvoiceToLedgerMap.keySet()) {
@@ -93,7 +97,7 @@ public class OutboundBACSpaymentHelper {
             ];
 
             for (Zumzum__Bank_Payment_Line_Item__c bankPaymentLineItem: bankPaymentLineItems) {
-                bankPaymentLineItem.Payment_Run__c = paymentRun.Id;
+                bankPaymentLineItem.Payment_Run__c = paymentRunId;
             }
 
             update bankPaymentLineItems;
