@@ -148,7 +148,6 @@
         <members>Opportunity.Recurring_Donations_Key__c</members>
         <members>Opportunity.Mandate_Key__c</members>
         <members>Opportunity.Payment_Profile_Key__c</members>
-        <members>Payment_Run__c.Bank_Supplier_Payment_Error_Log__c</members>
         <members>Room__c.Display_Name__c</members>
         <members>Session__c.Attendee_Type__c</members>
         <members>Session__c.Confirmed__c</members>
