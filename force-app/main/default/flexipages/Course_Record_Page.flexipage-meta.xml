@@ -25,6 +25,15 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>ltngsharing:lightningSharingBuilderWrapper</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-c0b096ec-bc1e-4615-97ae-63c168405ccb</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>relatedListComponentOverride</name>
                     <value>ADVGRID</value>
@@ -59,7 +68,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>height</name>
-                    <value>300</value>
+                    <value>3000</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>pageName</name>
@@ -67,15 +76,28 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showLabel</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:visualforcePage</componentName>
             </componentInstance>
         </itemInstances>
-        <name>Facet-61fa02c3-e99f-4250-941c-396dc354fe4c</name>
+        <name>Facet-f8d23129-f090-42aa-9655-89107530ac6f</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-c0b096ec-bc1e-4615-97ae-63c168405ccb</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Sharing</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -110,11 +132,11 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-61fa02c3-e99f-4250-941c-396dc354fe4c</value>
+                    <value>Facet-f8d23129-f090-42aa-9655-89107530ac6f</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
-                    <value>Standard.Tab.summary</value>
+                    <value>Summary</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
@@ -150,6 +172,15 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>runtime_sales_activities:activityPanel</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-03a60a06-c054-4372-9082-2d2de3b3aa66</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
                     <value>feedTabContent</value>
@@ -157,6 +188,19 @@
                 <componentInstanceProperties>
                     <name>title</name>
                     <value>Standard.Tab.collaborate</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-03a60a06-c054-4372-9082-2d2de3b3aa66</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Standard.Tab.activity</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
