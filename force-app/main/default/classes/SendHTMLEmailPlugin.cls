@@ -22,7 +22,7 @@ public with sharing class SendHTMLEmailPlugin {
         String orgWideAddress = requests[0].orgWideEmailAddress;
         String emailBody = requests[0].emailBodyToSend;
         String subject = requests[0].emailSubject;
-        
+
         List<Response> responseList = new List<Response>();
         Messaging.SingleEmailMessage message = new  Messaging.SingleEmailMessage();
 
@@ -36,7 +36,7 @@ public with sharing class SendHTMLEmailPlugin {
             }
 
             if (toAddresses != null) {
-                message.setToAddresses(toAddresses);                
+                message.setToAddresses(toAddresses);
             }
 
             if(String.isBlank(templateId) && String.isNotBlank(templateDeveloperName)) {
@@ -52,7 +52,7 @@ public with sharing class SendHTMLEmailPlugin {
             }
 
             message.setWhatId(mergeObjId);
-    
+
             List<String> priorities = new List<String> {'Highest', 'High', 'Low', 'Lowest'};
             if (priorities.contains(priority)) {
                 message.setEmailPriority(priority);
@@ -73,7 +73,7 @@ public with sharing class SendHTMLEmailPlugin {
             message.setCcAddresses(ccEmails);
             message.setBccAddresses(bccEmails);
 
-            if (attachments != null) {
+            if (!attachments.isEmpty()) {
                 List<String> contentVersionIds = new List<String>();
                 for (ContentVersion contVersion : [SELECT Id FROM ContentVersion WHERE ContentDocumentId IN :attachments]) {
                     contentVersionIds.add(contVersion.Id);

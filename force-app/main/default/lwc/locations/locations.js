@@ -5,7 +5,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 import { SESSION_DELIVERY_TYPE_PHYSICAL,
          SESSION_DELIVERY_TYPE_ONLINE,
-         SESSION_STATUS_CONFIRMED } from 'c/globalConstansHelper';
+         SESSION_STATUS_CONFIRMED } from 'c/globalConstantsHelper';
 
 export default class Locations extends LightningElement {
 
