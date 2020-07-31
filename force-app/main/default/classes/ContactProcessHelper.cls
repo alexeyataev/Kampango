@@ -1,27 +1,29 @@
 public with sharing class ContactProcessHelper {
     @InvocableMethod(label='Create Individual')
     public static void createIndividual(List<String> id) {
-        List<Contact> contactList = [
+        Map<Id, Contact> contactMap = new Map<Id, Contact>([
             SELECT Id, IndividualId, FirstName, LastName, Salutation 
             FROM Contact 
             WHERE Id IN : id
-        ];
-        List<Individual> individualList = new List<individual>();
-        for(Contact contact : contactList) {
-            Individual individual = new Individual(
-                FirstName = contact.FirstName,
-                LastName = contact.LastName,
-                Salutation =  contact.Salutation
+        ]);
+        Map<Id, Individual> contactIndividualMap = new Map<Id, Individual>();
+        for(Contact contact : contactMap.values()) {
+            contactIndividualMap.put(
+                contact.Id,
+                new Individual(
+                    FirstName = contact.FirstName,
+                    LastName = contact.LastName,
+                    Salutation =  contact.Salutation
+                )
             );
-            individualList.add(individual);
         }
-        insert individualList;
-        for(Integer i = 0; i < individualList.size(); i++) {
-            contactList[i].IndividualId = individualList[i].Id;
+        insert contactIndividualMap.values();
+        for(Id contactId : contactIndividualMap.keySet()) {
+            contactMap.get(contactId).IndividualId = contactIndividualMap.get(contactId).Id;
         }
         
         Database.DMLOptions dmlOption = new Database.DMLOptions();
         dmlOption.DuplicateRuleHeader.AllowSave = true;
-        Database.update(contactList, dmlOption);
+        Database.update(contactMap.values(), dmlOption);
     }
 }
