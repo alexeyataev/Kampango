@@ -11,6 +11,7 @@
     <label>Finance</label>
     <navType>Standard</navType>
     <tabs>Zumzum__Financial_Reports</tabs>
+    <tabs>Financial_Statements</tabs>
     <tabs>standard-report</tabs>
     <tabs>Zumzum__Transactions</tabs>
     <tabs>Zumzum__Bank</tabs>
