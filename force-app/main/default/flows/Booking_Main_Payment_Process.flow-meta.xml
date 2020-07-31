@@ -1881,14 +1881,14 @@ NOT(ISNUMBER({!Account_Name}))
     <screens>
         <name>Payment_Error_Screen</name>
         <label>Payment Error Screen</label>
-        <locationX>3558</locationX>
+        <locationX>3559</locationX>
         <locationY>467</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <fields>
             <name>Payment_Error_Message</name>
-            <fieldText>&lt;p&gt;{!paymentError}&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Her&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;{!paymentError}&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
