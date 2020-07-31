@@ -4,5 +4,5 @@
     <active>true</active>
     <description>Country must be updated from Country picklist</description>
     <errorConditionFormula>ISCHANGED(MailingCountry) &amp;&amp; MailingCountry != TEXT(Country__c)</errorConditionFormula>
-    <errorMessage>Please use the country picklist.</errorMessage>
+    <errorMessage>You are trying to change the country for this contact. Please use the country picklist.</errorMessage>
 </ValidationRule>
