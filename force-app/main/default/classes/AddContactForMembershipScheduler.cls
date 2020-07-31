@@ -11,7 +11,23 @@ public with sharing class AddContactForMembershipScheduler implements Schedulabl
     }
     private static void runAddMembershipJob()
     {
-        AddContactForMembershipBatch addContactForMembershipBatch = new AddContactForMembershipBatch();
-        Database.executeBatch(addContactForMembershipBatch, BATCH_SIZE);	
+        if(!isJobProcessing()) {
+            AddContactForMembershipBatch addContactForMembershipBatch = new AddContactForMembershipBatch();
+            Database.executeBatch(addContactForMembershipBatch, BATCH_SIZE);
+        }	
+    }
+    private static Boolean isJobProcessing() {
+        List<AsyncApexJob> asyncApexJobs = [
+            SELECT Id 
+            FROM AsyncApexJob 
+            WHERE ApexClassId IN
+                (
+                    SELECT Id 
+                    FROM ApexClass 
+                    WHERE Name = 'AddContactForMembershipBatch'
+                ) 
+            AND Status NOT IN ('Aborted', 'Completed', 'Failed')
+        ];
+        return asyncApexJobs.size() > 0;
     }
 }
