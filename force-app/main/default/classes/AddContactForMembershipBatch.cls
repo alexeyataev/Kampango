@@ -7,10 +7,6 @@ public class AddContactForMembershipBatch implements Database.Batchable<sObject>
     }
 
     public void execute(Database.BatchableContext bc, List<Contact> scope){
-        Integer timeoutLimit = (Integer)Care_Settings__c.getOrgDefaults().Add_Contact_Batch_Timeout_Milliseconds__c;
-        if(timeoutLimit != null) {
-            CareHelper.timeoutLimit = timeoutLimit;
-        }
         for(Contact cont : scope) {
             AddContactResult careAddContactResult = CareHelper.sendContact(cont);
             if(careAddContactResult.nctNumber != null) {
