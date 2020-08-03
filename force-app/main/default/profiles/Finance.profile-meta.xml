@@ -9392,6 +9392,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>standard-ProcessInstanceWorkitem</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>cpm__Transaction_Set__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
