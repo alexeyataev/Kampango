@@ -191,7 +191,7 @@
         <name>MESSAGE_ERROR_STATUS_DRAFT</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>Email don&#39;t be sent on a draft Sales Invoice</stringValue>
+            <stringValue>Payment email can't be sent for a draft sales invoice.</stringValue>
         </value>
     </constants>
     <constants>
