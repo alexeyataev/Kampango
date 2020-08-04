@@ -42,6 +42,27 @@
         </inputParameters>
     </actionCalls>
     <actionCalls>
+        <name>Error_Status_Is_Draft</name>
+        <label>Error Status Is Draft</label>
+        <locationX>738</locationX>
+        <locationY>393</locationY>
+        <actionName>c:showToast</actionName>
+        <actionType>component</actionType>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>MESSAGE_ERROR_STATUS_DRAFT</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>type</name>
+            <value>
+                <elementReference>TYPE_ERROR</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Result_Sending_Email</name>
         <label>Result Sending Email</label>
         <locationX>1092</locationX>
@@ -167,6 +188,13 @@
         </value>
     </constants>
     <constants>
+        <name>MESSAGE_ERROR_STATUS_DRAFT</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Email can&apos;t be sent on a draft Sales Invoice</stringValue>
+        </value>
+    </constants>
+    <constants>
         <name>MESSAGE_SUCCESS</name>
         <dataType>String</dataType>
         <value>
@@ -207,7 +235,7 @@
         <locationX>307</locationX>
         <locationY>303</locationY>
         <defaultConnector>
-            <targetReference>Get_Booking</targetReference>
+            <targetReference>Check_Status_Draft</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -265,6 +293,31 @@
             <label>Is profile Finance</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Check_Status_Draft</name>
+        <label>Check Status Draft</label>
+        <locationX>405</locationX>
+        <locationY>477</locationY>
+        <defaultConnector>
+            <targetReference>Get_Booking</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Status_Draft</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>salesInvoice.Zumzum__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Draft</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_Status_Is_Draft</targetReference>
+            </connector>
+            <label>Status Draft</label>
+        </rules>
+    </decisions>
     <description>Sends an email with a link to details and payment
 Version Changes:
 Validation check for Booking, fixed Name formula</description>
@@ -276,7 +329,7 @@ Validation check for Booking, fixed Name formula</description>
     <formulas>
         <name>personName</name>
         <dataType>String</dataType>
-        <expression>IF(ISBLANK({!curBooking.Id}), &#39;&#39;, {!curBooking.First_Name__c} &amp; &#39; &#39; &amp; {!curBooking.Last_Name__c})</expression>
+        <expression>IF(ISBLANK({!curBooking.Id}), &apos;&apos;, {!curBooking.First_Name__c} &amp; &apos; &apos; &amp; {!curBooking.Last_Name__c})</expression>
     </formulas>
     <interviewLabel>Adhoc Send Payment Email Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Adhoc Send Payment Email Flow</label>
@@ -338,6 +391,7 @@ Validation check for Booking, fixed Name formula</description>
         <queriedFields>Zumzum__Contact__c</queriedFields>
         <queriedFields>Zumzum__Total_Unpaid_Amount__c</queriedFields>
         <queriedFields>Booking__c</queriedFields>
+        <queriedFields>Zumzum__Status__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_template</name>
@@ -372,7 +426,7 @@ Validation check for Booking, fixed Name formula</description>
         </connector>
         <fields>
             <name>Confirm_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;color: rgb(47, 47, 47); font-size: 18px;&quot;&gt;{!personName}&lt;/b&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;color: rgb(47, 47, 47); font-size: 18px;&quot;&gt;{!personName}&lt;/b&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;. If you don&apos;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
