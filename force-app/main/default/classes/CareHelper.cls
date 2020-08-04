@@ -4,10 +4,12 @@ public with sharing class CareHelper {
     private final static Integer ERROR_LOG_SIZE = 30000;
     public static final String SUCCESS_STATUS = 'Success';
     public static final String FAILURE_STATUS = 'Failure';
-    public static Integer timeoutLimit = 120000;
+    public static Integer DEFAULT_TIMEOUT_LIMIT = Care_Settings__c.getOrgDefaults().Default_Timeout_Milliseconds__c != null ? (Integer)Care_Settings__c.getOrgDefaults().Default_Timeout_Milliseconds__c : 120000;
+    public static final Integer ADD_CONTACT_TIMEOUT_LIMIT = (Integer)Care_Settings__c.getOrgDefaults().Add_Contact_Batch_Timeout_Milliseconds__c;
+    public static final Integer ADD_MARKETING_PREFERENCES_TIMEOUT_LIMIT = (Integer)Care_Settings__c.getOrgDefaults().Add_Marketing_Prefs_Timeout_Milliseconds__c;
     public static AddContactResult sendContact(Contact cont) {
         String requestBody = CareRequestBodyUtil.createSendContactBody(cont);
-        HttpResponse res = sendHttpRequest('SFAddUpdateContactWS.pl', requestBody);
+        HttpResponse res = sendHttpRequest('SFAddUpdateContactWS.pl', requestBody, ADD_CONTACT_TIMEOUT_LIMIT);
         AddContactResult addContactResult = new AddContactResult();
         if(res.getStatus() == HTTP_STATUS_OK) {
             ContactObject contactObject = (ContactObject)JSON.deserialize(res.getBody(), ContactObject.class);
@@ -60,7 +62,7 @@ public with sharing class CareHelper {
 
     public static MarketingPreferencesObject sendMarketingPreferences(Contact cont, String standardDocumentNumber, Boolean marketingPreferenceGranted) {
         String requestBody = CareRequestBodyUtil.createMarketingPreferencesBody(cont.NCT_Number__c, standardDocumentNumber, marketingPreferenceGranted);
-        HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', requestBody);
+        HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', requestBody, ADD_MARKETING_PREFERENCES_TIMEOUT_LIMIT);
         MarketingPreferencesObject marketingPreferencesObject = new MarketingPreferencesObject();
         if(res.getStatus() == HTTP_STATUS_OK) {
             marketingPreferencesObject = (MarketingPreferencesObject)JSON.deserialize(res.getBody(), MarketingPreferencesObject.class);
@@ -89,7 +91,8 @@ public with sharing class CareHelper {
         return newLogText;
     }
 
-    private static HttpResponse sendHttpRequest(String methodName, String body) {
+    private static HttpResponse sendHttpRequest(String methodName, String body, Integer timeoutLimit) {
+        timeoutLimit = timeoutLimit != null ? timeoutLimit : DEFAULT_TIMEOUT_LIMIT;
         HttpRequest req = new HttpRequest();
         req.setTimeout(timeoutLimit);
         req.setHeader('Content-Type', 'application/json');
@@ -99,6 +102,10 @@ public with sharing class CareHelper {
         Http http = new Http();
         HttpResponse res = http.send(req);
         return res;
+    }
+
+    private static HttpResponse sendHttpRequest(String methodName, String body) {
+        return sendHttpRequest(methodName, body, DEFAULT_TIMEOUT_LIMIT);
     }
 
     public abstract class BaseResponse {

@@ -73,7 +73,7 @@ public with sharing class SendHTMLEmailPlugin {
             message.setCcAddresses(ccEmails);
             message.setBccAddresses(bccEmails);
 
-            if (!attachments.isEmpty()) {
+            if (attachments != null) {
                 List<String> contentVersionIds = new List<String>();
                 for (ContentVersion contVersion : [SELECT Id FROM ContentVersion WHERE ContentDocumentId IN :attachments]) {
                     contentVersionIds.add(contVersion.Id);
