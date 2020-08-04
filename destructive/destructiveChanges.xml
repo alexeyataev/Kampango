@@ -310,7 +310,8 @@
     <types>
         <members>Allow_Confirmed_Bookings</members>
         <members>Branch_and_PSA_Management</members>
-        <name>PermissionSet</name>
+        <members>Manage_Public_List_Views</members>
+	<name>PermissionSet</name>
     </types>
     <types>
         <members>Executive Management</members>
