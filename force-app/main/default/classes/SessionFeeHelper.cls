@@ -1,6 +1,6 @@
 @SuppressWarnings('PMD.ApexCRUDViolation')
 //Incident #56 - https://confluence.nct.org.uk:8443/x/EoSO
-public class SessionFeeHelper {
+public with sharing class SessionFeeHelper {
     private static Date earliestSessionDate;
     private static Date latestSessionDate;
 
