@@ -426,7 +426,7 @@ Validation check for Booking, fixed Name formula</description>
         </connector>
         <fields>
             <name>Confirm_Text</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;color: rgb(47, 47, 47); font-size: 18px;&quot;&gt;{!personName}&lt;/b&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;. If you don&apos;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;Click next to send email to &lt;/span&gt;&lt;b style=&quot;color: rgb(47, 47, 47); font-size: 18px;&quot;&gt;{!personName}&lt;/b&gt;&lt;span style=&quot;color: rgb(76, 76, 76); font-size: 18px;&quot;&gt;. If you don&#39;t want to to send email, just close the window without clicking next.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
