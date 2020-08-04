@@ -42,7 +42,10 @@ AND(
 ISNEW(),
 ISBLANK(MailingCountry)
 ),
-ISCHANGED(Country__c)
+AND(
+ISCHANGED(Country__c),
+MailingCountry != TEXT(Country__c)
+)
 )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
