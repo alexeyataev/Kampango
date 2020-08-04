@@ -1,5 +1,8 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #110 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing class CourseCreateEnquiryUtility {
     public static final String RECORDTYPE_NAME = 'Clients';
+    private static final String DEFAULT_MAILING_COUNTRY = 'United Kingdom';
 
     public static void createEnquiry(Map<String, String> requestParameters) {
         if (requestParameters.isEmpty() || String.isBlank(requestParameters.get('courseId'))) {
@@ -111,6 +114,7 @@ public without sharing class CourseCreateEnquiryUtility {
             Email = requestParameters.get('email'),
             MobilePhone = requestParameters.get('mobile'),
             MailingCity = requestParameters.get('town'),
+            MailingCountry = DEFAULT_MAILING_COUNTRY,
             MailingPostalCode = requestParameters.get('postcode'),
             MailingState = requestParameters.get('county'), // 'county' is not a 'countRy'
             MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
@@ -126,6 +130,7 @@ public without sharing class CourseCreateEnquiryUtility {
             RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME),
             MobilePhone = requestParameters.get('mobile'),
             MailingCity = requestParameters.get('town'),
+            MailingCountry = DEFAULT_MAILING_COUNTRY,
             MailingPostalCode = requestParameters.get('postcode'),
             MailingState = requestParameters.get('county'),
             MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),

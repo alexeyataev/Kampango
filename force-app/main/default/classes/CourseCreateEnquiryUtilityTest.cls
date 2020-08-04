@@ -8,7 +8,7 @@ private class CourseCreateEnquiryUtilityTest {
     private static final String PARAMS = '{"email":"' + CONTACT_EMAIL + '","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                          '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                          '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                         '"twinsexpected":"0","county":"UK","postcode":"' + CONTACT_POSTCODE + '","mobile":"+442072343456",' +
+                                         '"twinsexpected":"0","postcode":"' + CONTACT_POSTCODE + '","mobile":"+442072343456",' +
                                          '"town":"London","op":"Send enquiry"}';
     
     //@testSetup
@@ -364,6 +364,7 @@ private class CourseCreateEnquiryUtilityTest {
                 Email = 'partner@partner.partner',
                 MailingCity = 'London',
                 MailingStreet = '221B Baker Street',
+                MailingCountry = 'United Kingdom',
                 MailingPostalCode = CONTACT_POSTCODE,
                 npe01__PreferredPhone__c = 'Mobile',
                 MobilePhone = '+447911121337',

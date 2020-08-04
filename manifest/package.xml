@@ -6,6 +6,16 @@
         <members>AddBankReceiptPaymentBatchTest</members>
         <members>AddBankReceiptPaymentScheduler</members>
         <members>AddBankReceiptPaymentSchedulerTest</members>
+        <members>AddContactForMembershipBatch</members>
+        <members>AddContactForMembershipHandler</members>
+        <members>AddContactForMembershipScheduler</members>
+        <members>AddContactForMembershipTest</members>
+        <members>AddContactResult</members>
+        <members>AddMarketingPreferencesToCare</members>
+        <members>AddMarketingPreferencesToCareTest</members>
+        <members>AddMembershipBatch</members>
+        <members>AddMembershipScheduler</members>
+        <members>AddMembershipTest</members>
         <members>AssignCasetoQueueTest</members>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
@@ -23,6 +33,9 @@
         <members>CardPaymentHandlerTest</members>
         <members>CardPaymentParameters</members>
         <members>CardPaymentPlanHandler</members>
+        <members>CareCountryCodeMappingUtil</members>
+        <members>CareHelper</members>
+        <members>CareRequestBodyUtil</members>
         <members>ChatterPost_PreventDeletion_TDTM</members>
         <members>ChatterPost_PreventDeletion_TDTM_Test</members>
         <members>CardPaymentUrlResult</members>
@@ -342,8 +355,6 @@
         <members>Zumzum__Journal__c</members>
         <members>Zumzum__Ledger__c</members>
         <members>Zumzum__Ledger_Payment_History__c</members>
-        <members>Zumzum__Nominal_Account__c</members>
-        <members>Zumzum__Nominal_Categories__c</members>
         <members>Zumzum__Purchase_Invoice__c</members>
         <members>Zumzum__Purchase_Order__c</members>
         <members>Zumzum__Purchase_Requisition__c</members>
@@ -637,17 +648,23 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>bookingCourseSearch</members>
+        <members>branchCourseSearch</members>
         <members>checkBrowserCompatibility</members>
         <members>claimFeesDatatable</members>
         <members>courseDetailsComponent</members>
+        <members>courseSearchComponent</members>
+        <members>courseSearchCustomDataTable</members>
+        <members>coursesNotFound</members>
         <members>courseTransferDetails</members>
         <members>customCommunityButton</members>
         <members>failurePaymentPage</members>
-        <members>globalConstansHelper</members>
+        <members>globalConstantsHelper</members>
         <members>linkToPaymentComponent</members>
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
+        <members>venueCourseSearch</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
@@ -828,6 +845,7 @@
     <types>
         <members>Contacts_with_Bookings_and_Course</members>
         <members>Courses_with_Booking_and_Contacts</members>
+        <members>Estimated_Costs</members>
         <members>Ledger_Payment_History_with_PI_and_PC</members>
         <members>Sessions_with_Course_and_Course_Assignment</members>
         <members>Sessions_on_venues</members>
@@ -848,6 +866,7 @@
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
         <members>Course__c.ShareAllCourseWithParents</members>
+        <members>Payment_Run__c.SharePaymentRunWithPractitioners</members>
         <members>Zumzum__Company_Setup__c.ShareAllCompanySetupWithParents</members>
         <members>Zumzum__Company__c.ShareAllCompanyWithParents</members>
         <members>Zumzum__Control_Account__c.ShareAllControlAccountWithParents</members>
@@ -893,6 +912,7 @@
         <members>Contact.Bank_Account_Name_Not_More_50_Symbols</members>
         <members>Contact.Bank_Account_Number_Exactly_8_numbers</members>
         <members>Contact.Bank_Sort_Code_Exactly_6_numbers</members>
+        <members>Contact.CountryEditFromPicklistOnly</members>
         <members>Venue__c.Delivery_Mechanism_Populating</members>
         <members>Venue__c.Postcode_Must_Contain_Space</members>
         <members>Venue__c.Zoom_Details_Populating</members>

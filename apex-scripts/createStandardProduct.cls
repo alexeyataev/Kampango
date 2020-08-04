@@ -4,7 +4,8 @@ Map<String, Decimal> listPricesByProductNames = new Map<String, Decimal>{
     'Course Cancellation Fees' => 30,
     'Course Transfer Fees' => 25,
     'Membership - CARE/DD' => 0,
-    'Membership' => 0
+    'Membership' => 0,
+    'Yoga Drop-In' => 0
 };
 
 
