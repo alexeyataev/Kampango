@@ -1082,6 +1082,36 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Purchase_Invoice_Due_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Purchase_Invoice_External_Reference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Purchase_Invoice_Supplier_Ban__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Purchase_Invoice_Supplier_Billing_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Purchase_Invoice_Supplier_Sort_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Payment_Run_Line_Item__c.Purchase_Invoice_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Payment_Run_Line_Item__c.Reference_Info__c</field>
         <readable>true</readable>
     </fieldPermissions>

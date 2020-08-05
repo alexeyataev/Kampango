@@ -530,6 +530,7 @@
         <members>Course_Assignment_Record_Page</members>
         <members>Course_Record_Page</members>
         <members>NPSP_Account_Record_Page</members>
+        <members>Payment_Run_Record_Page</members>
         <members>Room_Record_Page</members>
         <members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
