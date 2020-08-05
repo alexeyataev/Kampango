@@ -180,6 +180,13 @@
                 <elementReference>Under_18_2</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary_0_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone1</targetReference>
         </connector>
@@ -294,6 +301,13 @@
                 <elementReference>mobilePhone</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone_0_0</targetReference>
         </connector>
@@ -394,6 +408,13 @@
                 <elementReference>emailPartner</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary_0_0_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone_0_0_0</targetReference>
         </connector>
@@ -471,6 +492,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>Under_18_9</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary9_picklist</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -559,6 +587,13 @@
                 <elementReference>emailPartner</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary4_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone4</targetReference>
         </connector>
@@ -645,6 +680,13 @@
                 <elementReference>emailPartner</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary5_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone5</targetReference>
         </connector>
@@ -715,6 +757,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>Under_18_3</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary_1_picklist</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -789,6 +838,13 @@
                 <elementReference>Under_18_4</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary_2_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsHowHeardSet_0_0_0</targetReference>
         </connector>
@@ -859,6 +915,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>Under_18_10</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary10_picklist</elementReference>
             </value>
         </assignmentItems>
         <connector>
