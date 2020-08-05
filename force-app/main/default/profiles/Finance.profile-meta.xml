@@ -9400,6 +9400,10 @@
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Financial_Statements</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>ear__Approval_Requests</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
