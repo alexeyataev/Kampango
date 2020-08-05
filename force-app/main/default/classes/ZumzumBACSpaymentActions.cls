@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #111 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class ZumzumBACSpaymentActions {
     @InvocableMethod(label='Link Purchase Invoices')
     public static List<Response> linkPurchaseInvoices(List<Request> requests) {
