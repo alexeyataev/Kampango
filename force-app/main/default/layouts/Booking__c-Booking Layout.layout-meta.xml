@@ -56,6 +56,10 @@
                 <behavior>Edit</behavior>
                 <field>Cancellation_Reason__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Cancelled_Date__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

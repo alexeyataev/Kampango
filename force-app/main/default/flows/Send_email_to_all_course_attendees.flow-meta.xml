@@ -769,7 +769,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Upload Attachment</stringValue>
+                    <stringValue>Upload Attachment. Email attachments cannot total more than 25MB in size.</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
