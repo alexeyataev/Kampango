@@ -476,7 +476,7 @@
             <assignToReference>CourseZumzumSalesInvoiceParameter.taxRateId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>No_VAT.Id</elementReference>
+                <elementReference>ExemptTransactions.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -571,7 +571,7 @@
             <assignToReference>MembershipZumzumSalesInvoiceParameter.taxRateId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>No_VAT.Id</elementReference>
+                <elementReference>ExemptTransactions.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -1530,6 +1530,43 @@ We check this because if Membership is with Partner we will need to add Contact 
         <inputReference>Installment_For_Payment_By_DD</inputReference>
     </recordCreates>
     <recordLookups>
+        <name>Exempt_Transactions</name>
+        <label>Exempt Transactions</label>
+        <locationX>2037</locationX>
+        <locationY>508</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_GBP</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Zumzum__Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Zumzum__Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Exempt Transactions</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Zumzum__is_no_tax__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Zumzum__Tax_Rate__c</object>
+        <outputReference>ExemptTransactions</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Booking</name>
         <label>Get Booking</label>
         <locationX>512</locationX>
@@ -1658,50 +1695,13 @@ We check this because if Membership is with Partner we will need to add Contact 
         <queriedFields>Id</queriedFields>
     </recordLookups>
     <recordLookups>
-        <name>Get_No_VAT</name>
-        <label>Get No VAT</label>
-        <locationX>2037</locationX>
-        <locationY>508</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_GBP</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Error_Handler_SubFlow</targetReference>
-        </faultConnector>
-        <filters>
-            <field>Zumzum__Active__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Zumzum__Type__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Non-Vatable</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Zumzum__is_no_tax__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <object>Zumzum__Tax_Rate__c</object>
-        <outputReference>No_VAT</outputReference>
-        <queriedFields>Id</queriedFields>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Primary_Contact</name>
         <label>Get Primary Contact</label>
         <locationX>1847</locationX>
         <locationY>361</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_No_VAT</targetReference>
+            <targetReference>Exempt_Transactions</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Error_Handler_SubFlow</targetReference>
@@ -1881,14 +1881,14 @@ NOT(ISNUMBER({!Account_Name}))
     <screens>
         <name>Payment_Error_Screen</name>
         <label>Payment Error Screen</label>
-        <locationX>3559</locationX>
+        <locationX>3558</locationX>
         <locationY>467</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <fields>
             <name>Payment_Error_Message</name>
-            <fieldText>&lt;p&gt;{!paymentError}&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;{!paymentError}&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Her&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -2286,6 +2286,14 @@ NOT(ISNUMBER({!Account_Name}))
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>ExemptTransactions</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Zumzum__Tax_Rate__c</objectType>
+    </variables>
+    <variables>
         <name>GBP</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -2384,14 +2392,6 @@ NOT(ISNUMBER({!Account_Name}))
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>No_VAT</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Zumzum__Tax_Rate__c</objectType>
     </variables>
     <variables>
         <name>Payment_Method</name>
