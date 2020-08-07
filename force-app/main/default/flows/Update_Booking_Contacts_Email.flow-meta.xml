@@ -90,13 +90,13 @@
         <description>Is Partner Contact contains Do Not Contact</description>
         <name>IsPartnerContactDNC</name>
         <dataType>Boolean</dataType>
-        <expression>IF(CONTAINS(RIGHT({!partnerContact.Email},LEN({!partnerContact.Email})-FIND(&apos;@&apos;,{!partnerContact.Email})),&quot;donotcontact&quot;),true,false)</expression>
+        <expression>IF(RIGHT({!partnerContact.Email}, (LEN(&apos;.donotcontact&apos;))) = &apos;.donotcontact&apos;,true,false)</expression>
     </formulas>
     <formulas>
         <description>Is Primary Contact Contains Do Not Contact</description>
         <name>IsPrimaryContainsDNC</name>
         <dataType>Boolean</dataType>
-        <expression>IF(CONTAINS(RIGHT({!primaryContact.Email},LEN({!primaryContact.Email})-FIND(&apos;@&apos;,{!primaryContact.Email})),&quot;donotcontact&quot;),true,false)</expression>
+        <expression>IF(RIGHT({!primaryContact.Email}, (LEN(&apos;.donotcontact&apos;))) = &apos;.donotcontact&apos;,true,false)</expression>
     </formulas>
     <formulas>
         <name>partnerContactEmail</name>
