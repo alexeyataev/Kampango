@@ -4,7 +4,7 @@ public with sharing class CareHelper {
     private final static Integer ERROR_LOG_SIZE = 30000;
     public static final String SUCCESS_STATUS = 'Success';
     public static final String FAILURE_STATUS = 'Failure';
-    public static Integer DEFAULT_TIMEOUT_LIMIT = Care_Settings__c.getOrgDefaults().Default_Timeout_Milliseconds__c != null ? (Integer)Care_Settings__c.getOrgDefaults().Default_Timeout_Milliseconds__c : 120000;
+    public static final Integer DEFAULT_TIMEOUT_LIMIT = Care_Settings__c.getOrgDefaults().Default_Timeout_Milliseconds__c != null ? (Integer)Care_Settings__c.getOrgDefaults().Default_Timeout_Milliseconds__c : 120000;
     public static final Integer ADD_CONTACT_TIMEOUT_LIMIT = (Integer)Care_Settings__c.getOrgDefaults().Add_Contact_Batch_Timeout_Milliseconds__c;
     public static final Integer ADD_MARKETING_PREFERENCES_TIMEOUT_LIMIT = (Integer)Care_Settings__c.getOrgDefaults().Add_Marketing_Prefs_Timeout_Milliseconds__c;
     public static AddContactResult sendContact(Contact cont) {
