@@ -3,8 +3,8 @@
     <assignments>
         <name>Update_Partner_Contact_Email</name>
         <label>Update Partner Contact Email</label>
-        <locationX>778</locationX>
-        <locationY>50</locationY>
+        <locationX>985</locationX>
+        <locationY>49</locationY>
         <assignmentItems>
             <assignToReference>partnerContact.Email</assignToReference>
             <operator>Assign</operator>
@@ -19,8 +19,8 @@
     <assignments>
         <name>Update_Primary_Contact_Email</name>
         <label>Update Primary Contact Email</label>
-        <locationX>787</locationX>
-        <locationY>307</locationY>
+        <locationX>999</locationX>
+        <locationY>436</locationY>
         <assignmentItems>
             <assignToReference>primaryContact.Email</assignToReference>
             <operator>Assign</operator>
@@ -33,12 +33,34 @@
         </connector>
     </assignments>
     <decisions>
+        <name>Contains_Do_Not_Contact</name>
+        <label>Contains Do Not Contact</label>
+        <locationX>820</locationX>
+        <locationY>302</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Do_not_Contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsPrimaryContainsDNC</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Primary_Contact_Email</targetReference>
+            </connector>
+            <label>Do not Contact</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Partner_Contact_Exists</name>
         <label>Partner Contact Exists</label>
-        <locationX>611</locationX>
-        <locationY>51</locationY>
+        <locationX>818</locationX>
+        <locationY>49</locationY>
         <defaultConnector>
-            <targetReference>Update_Primary_Contact_Email</targetReference>
+            <targetReference>Contains_Do_Not_Contact</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>no</defaultConnectorLabel>
         <rules>
@@ -51,6 +73,13 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>IsPartnerContactDNC</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Update_Partner_Contact_Email</targetReference>
             </connector>
@@ -58,14 +87,26 @@
         </rules>
     </decisions>
     <formulas>
+        <description>Is Partner Contact contains Do Not Contact</description>
+        <name>IsPartnerContactDNC</name>
+        <dataType>Boolean</dataType>
+        <expression>IF(CONTAINS({!partnerContact.Email},&quot;donotcontact&quot;),true,false)</expression>
+    </formulas>
+    <formulas>
+        <description>Is Primary Contact Contains Do Not Contact</description>
+        <name>IsPrimaryContainsDNC</name>
+        <dataType>Boolean</dataType>
+        <expression>IF(CONTAINS({!primaryContact.Email},&quot;donotcontact&quot;),true,false)</expression>
+    </formulas>
+    <formulas>
         <name>partnerContactEmail</name>
         <dataType>String</dataType>
-        <expression>{!partnerContact.Email} + &#39;.donotcontact&#39;</expression>
+        <expression>{!partnerContact.Email} + &apos;.donotcontact&apos;</expression>
     </formulas>
     <formulas>
         <name>primaryContactEmail</name>
         <dataType>String</dataType>
-        <expression>{!primaryContact.Email} + &#39;.donotcontact&#39;</expression>
+        <expression>{!primaryContact.Email} + &apos;.donotcontact&apos;</expression>
     </formulas>
     <interviewLabel>Update Booking Contacts Email {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Booking Contacts Email</label>
@@ -85,7 +126,7 @@
     <recordLookups>
         <name>Get_Booking_Record</name>
         <label>Get Booking Record</label>
-        <locationX>183</locationX>
+        <locationX>390</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -111,7 +152,7 @@
     <recordLookups>
         <name>Get_Partner_Contact</name>
         <label>Get Partner Contact</label>
-        <locationX>476</locationX>
+        <locationX>683</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -132,7 +173,7 @@
     <recordLookups>
         <name>Get_Primary_Contact</name>
         <label>Get Primary Contact</label>
-        <locationX>331</locationX>
+        <locationX>538</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -153,18 +194,18 @@
     <recordUpdates>
         <name>Update_Partner_Contact</name>
         <label>Update Partner Contact</label>
-        <locationX>949</locationX>
-        <locationY>50</locationY>
+        <locationX>1189</locationX>
+        <locationY>157</locationY>
         <connector>
-            <targetReference>Update_Primary_Contact_Email</targetReference>
+            <targetReference>Contains_Do_Not_Contact</targetReference>
         </connector>
         <inputReference>partnerContact</inputReference>
     </recordUpdates>
     <recordUpdates>
         <name>Update_Primary_Contact</name>
         <label>Update Primary Contact</label>
-        <locationX>957</locationX>
-        <locationY>307</locationY>
+        <locationX>1197</locationX>
+        <locationY>435</locationY>
         <inputReference>primaryContact</inputReference>
     </recordUpdates>
     <start>
