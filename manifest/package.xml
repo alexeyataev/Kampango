@@ -353,7 +353,6 @@
         <members>Zumzum__Expense_Sheet__c</members>
         <members>Zumzum__General_Setup__c</members>
         <members>Zumzum__Journal__c</members>
-        <members>Zumzum__Ledger__c</members>
         <members>Zumzum__Ledger_Payment_History__c</members>
         <members>Zumzum__Purchase_Invoice__c</members>
         <members>Zumzum__Purchase_Order__c</members>
@@ -617,12 +616,14 @@
         <members>Contact-Practitioner Community Layout</members>
         <members>Contact-Practitioner Page Layout</members>
         <members>Contact-Practitioner Read Only Layout</members>
-        <members>Course_Assignment__c-Course Assignment Layout</members>
-        <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Course__c-Practitioner Course Layout</members>
-        <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
+        <members>Course_Assignment__c-Course Assignment Layout</members>
+        <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
+        <members>cpm__Payment__c-cpm__Payment Layout</members>
+        <members>cpm__Recurring_Payment__c-cpm__Recurring Payment Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
+        <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
         <members>Payment_Run__c-Payment Run Layout</members>
         <members>Payment_Run_Line_Item__c-Payment Run Line Item Layout</members>
@@ -637,7 +638,6 @@
         <members>Venue__c-Venue Layout</members>
         <members>Venue__c-Virtual Venue Page Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
-        <members>cpm__Payment__c-cpm__Payment Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
         <members>Zumzum__Bank_Receipt__c-Zumzum__Bank Receipt Layout</members>
         <members>Zumzum__Batch_Bank_Payment__c-Zumzum__Batch Bank Payment Layout</members>
