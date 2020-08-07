@@ -36,9 +36,12 @@ for (Zumzum__Tax_Rate__c taxRate : taxRecords) {
 		taxRatesToUpdate.add(taxRate);
 	}
 	if(taxRate.Name == 'No VAT'){
+		taxRate.Zumzum__Active__c = true;
 		taxRate.Name = 'No VAT (0%)';
 		taxRate.Zumzum__Type__c = 'Zero Rated';
 		taxRate.Zumzum__Exclude_from_VAT_Return__c = false;
+		taxRate.Zumzum__is_no_tax__c = true;
+		taxRate.Zumzum__is_default__c = true;
 		taxRatesToUpdate.add(taxRate);
 	}
 }
