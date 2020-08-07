@@ -29,6 +29,7 @@ public with sharing class AddContactForMembershipScheduler implements Schedulabl
                     WHERE Name = 'AddContactForMembershipBatch'
                 ) 
             AND Status NOT IN ('Aborted', 'Completed', 'Failed')
+            WITH SECURITY_ENFORCED
         ];
         return asyncApexJobs.size() > 0;
     }
