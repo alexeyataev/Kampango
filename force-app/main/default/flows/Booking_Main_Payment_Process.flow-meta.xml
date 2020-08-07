@@ -476,7 +476,7 @@
             <assignToReference>CourseZumzumSalesInvoiceParameter.taxRateId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>ExemptTransactions.Id</elementReference>
+                <elementReference>No_VAT.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -1532,15 +1532,12 @@ We check this because if Membership is with Partner we will need to add Contact 
     <recordLookups>
         <name>Exempt_Transactions</name>
         <label>Exempt Transactions</label>
-        <locationX>2037</locationX>
-        <locationY>508</locationY>
+        <locationX>2035</locationX>
+        <locationY>366</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_GBP</targetReference>
+            <targetReference>Get_No_VAT</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>Error_Handler_SubFlow</targetReference>
-        </faultConnector>
         <filters>
             <field>Zumzum__Active__c</field>
             <operator>EqualTo</operator>
@@ -1692,6 +1689,43 @@ We check this because if Membership is with Partner we will need to add Contact 
         </filters>
         <object>Zumzum__Nominal_Account__c</object>
         <outputReference>MembershipNominalAccount</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_No_VAT</name>
+        <label>Get No VAT</label>
+        <locationX>2037</locationX>
+        <locationY>508</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_GBP</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Zumzum__Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Zumzum__Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Non-Vatable</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Zumzum__is_no_tax__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Zumzum__Tax_Rate__c</object>
+        <outputReference>No_VAT</outputReference>
         <queriedFields>Id</queriedFields>
     </recordLookups>
     <recordLookups>
@@ -2392,6 +2426,14 @@ NOT(ISNUMBER({!Account_Name}))
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>No_VAT</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Zumzum__Tax_Rate__c</objectType>
     </variables>
     <variables>
         <name>Payment_Method</name>
