@@ -1980,6 +1980,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice__c.Zumzum__Expense_Sheet__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Zumzum__Purchase_Invoice__c.Zumzum__Invoice_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
