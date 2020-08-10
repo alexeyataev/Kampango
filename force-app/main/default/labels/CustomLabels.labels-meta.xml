@@ -50,7 +50,7 @@ If you have any queries or questions about this payment, please get in touch wit
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Confirmation Notification Course Reunion</shortDescription>
-        <value>There is also a reunion for all course participants with their new baby after the births. Your course leader will agree a date and time with you for this.</value>
+        <value>Additionally there will be a reunion for all course participants with their new baby after the births, your course leader will agree a date and time with you for this.</value>
     </labels>
     <labels>
         <fullName>Confirmed_Zoom_Details_Text</fullName>

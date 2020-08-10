@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #112 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class AddContactForMembershipScheduler implements Schedulable {
     private static final Integer BATCH_SIZE = (Integer)Care_Settings__c.getOrgDefaults().Add_Contact_Batch_Size__c;
     private Integer updateIntervalHours = 1;
@@ -27,6 +29,7 @@ public with sharing class AddContactForMembershipScheduler implements Schedulabl
                     WHERE Name = 'AddContactForMembershipBatch'
                 ) 
             AND Status NOT IN ('Aborted', 'Completed', 'Failed')
+            WITH SECURITY_ENFORCED
         ];
         return asyncApexJobs.size() > 0;
     }
