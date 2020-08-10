@@ -73,10 +73,15 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Purchase_Invoice__c</fields>
         <fields>Account__c</fields>
-        <fields>Status__c</fields>
+        <fields>Purchase_Invoice__c</fields>
         <fields>Unpaid_Amount__c</fields>
+        <fields>Purchase_Invoice_Due_Date__c</fields>
+        <fields>Purchase_Invoice_External_Reference__c</fields>
+        <fields>Purchase_Invoice_Type__c</fields>
+        <fields>Purchase_Invoice_Supplier_Sort_Code__c</fields>
+        <fields>Purchase_Invoice_Supplier_Ban__c</fields>
+        <fields>Purchase_Invoice_Supplier_Billing_Email__c</fields>
         <relatedList>Payment_Run_Line_Item__c.Payment_Run__c</relatedList>
     </relatedLists>
     <relatedLists>
