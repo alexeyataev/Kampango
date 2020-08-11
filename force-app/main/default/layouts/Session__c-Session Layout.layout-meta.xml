@@ -87,6 +87,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Venue_Booking_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Venue_Invoice_Paid__c</field>
             </layoutItems>
         </layoutColumns>
