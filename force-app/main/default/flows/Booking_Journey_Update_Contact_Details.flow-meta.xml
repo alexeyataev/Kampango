@@ -3030,6 +3030,8 @@
         <queriedFields>FirstName</queriedFields>
         <queriedFields>LastName</queriedFields>
         <queriedFields>Email</queriedFields>
+        <queriedFields>Country__c</queriedFields>
+        <queriedFields>npe01__PreferredPhone__c</queriedFields>
     </recordLookups>
     <recordUpdates>
         <name>Update_Booking</name>
