@@ -1240,6 +1240,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Venue_Booking_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Venue_Client_Link__c</field>
         <readable>true</readable>
@@ -1947,6 +1952,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Zumzum__Purchase_Invoice__c.Zumzum__Foreign_Unpaid_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Zumzum__Purchase_Invoice__c.Zumzum__Expense_Sheet__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
