@@ -4,5 +4,7 @@
 trigger dlrs_BookingTrigger on Booking__c
     (before delete, before insert, before update, after delete, after insert, after undelete, after update)
 {
-    dlrs.RollupService.triggerHandler(Booking__c.SObjectType);
+    if (!Test.isRunningTest()) {
+        dlrs.RollupService.triggerHandler(Booking__c.SObjectType);
+    }
 }
