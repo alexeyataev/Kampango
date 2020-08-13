@@ -598,6 +598,7 @@
         <members>Update_Sessions_Fee_Rate.flow-meta</members>
         <members>Update_Online_Venue_on_Sessions_related_to_Course</members>
         <members>Update_Venue_on_Sessions_related_to_Course</members>
+        <members>UpdateContactMarketingPreferencesInCare</members>
         <name>Flow</name>
     </types>
     <types>
