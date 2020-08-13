@@ -61,12 +61,9 @@ public with sharing class CareHelper {
     }
 
     public static MarketingPreferencesObject sendMarketingPreferences(Contact cont, String standardDocumentNumber, Boolean marketingPreferenceGranted) {
-        System.debug(BASE_URL);
         String requestBody = CareRequestBodyUtil.createMarketingPreferencesBody(cont.NCT_Number__c, standardDocumentNumber, marketingPreferenceGranted);
         HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', requestBody, ADD_MARKETING_PREFERENCES_TIMEOUT_LIMIT);
         MarketingPreferencesObject marketingPreferencesObject = new MarketingPreferencesObject();
-        System.debug(requestBody);
-        System.debug(res);
         if(res.getStatus() == HTTP_STATUS_OK) {
             marketingPreferencesObject = (MarketingPreferencesObject)JSON.deserialize(res.getBody(), MarketingPreferencesObject.class);
             if(marketingPreferencesObject.error != null) {
