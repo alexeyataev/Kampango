@@ -23,20 +23,15 @@ for (Zumzum__Tax_Rate__c taxRate : taxRecords) {
 update taxRateDefault;
 
 for (Zumzum__Tax_Rate__c taxRate : taxRecords) {	
-	if (taxRate.Name == 'Exempt Transactions (0%)') {
-		taxRate.Zumzum__Active__c = true;
-		taxRate.Zumzum__Exclude_from_VAT_Return__c = true;
-		taxRatesToUpdate.add(taxRate);
-	}
-	if (taxRate.Name == 'Zero Rated Acquisitions of Goods From Suppliers in EC (0%)'
+	if (taxRate.Name == 'Exempt Transactions (0%)' 
+		|| taxRate.Name == 'Zero Rated Acquisitions of Goods From Suppliers in EC (0%)'
 		|| taxRate.Name == 'Standard Rated Acquisitions of Goods From Suppliers in EC (0%)'
 		|| taxRate.Name == 'Zero Rated Acquisition of Services From Suppliers in EC (0%)'
 		|| taxRate.Name == 'Standard Rated Acquisition of Services From Suppliers in EC (0%)'
 		|| taxRate.Name == 'Zero Rated Acquisition of Services From Suppliers in EC (20%)'
 		|| taxRate.Name == 'Standard Rated Acquisition of Services From Suppliers in EC (20%)'
 		|| taxRate.Name == 'Zero Rated Acquisitions of Goods From Suppliers in EC (20%)'
-		|| taxRate.Name == 'Standard Rated Acquisitions of Goods From Suppliers in EC (20%)'
-		 
+		|| taxRate.Name == 'Standard Rated Acquisitions of Goods From Suppliers in EC (20%)'		 
 	   ) {
 		taxRate.Zumzum__Active__c = false;
 		taxRatesToUpdate.add(taxRate);
@@ -47,7 +42,7 @@ for (Zumzum__Tax_Rate__c taxRate : taxRecords) {
 		taxRate.Zumzum__Type__c = 'Non-Vatable';
 		taxRate.Zumzum__Exclude_from_VAT_Return__c = true;
 		taxRate.Zumzum__is_no_tax__c = true;
-		taxRate.Zumzum__is_default__c = true;
+		taxRate.Zumzum__is_default__c = false;
 		taxRatesToUpdate.add(taxRate);
 	}
 	if(taxRate.Name == 'Zero Rated Transactions (0%)'){
@@ -55,7 +50,7 @@ for (Zumzum__Tax_Rate__c taxRate : taxRecords) {
 		taxRate.Zumzum__Type__c = 'Zero Rated';
 		taxRate.Zumzum__Exclude_from_VAT_Return__c = false;
 		taxRate.Zumzum__is_no_tax__c = false;
-		taxRate.Zumzum__is_default__c = false;
+		taxRate.Zumzum__is_default__c = true;
 		taxRatesToUpdate.add(taxRate);
 	}    
 }
