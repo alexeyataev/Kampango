@@ -155,7 +155,7 @@ private class BatchOutboundBACSpaymentTest {
         final String PURCHASE_INVOICE = 'Purchase Invoice';
         final String PURCHASE_CREDIT = 'Purchase Credit';
         final String DEFAULT_CURRENCY = 'GBP';
-        final String PRACTITIONER_TAX_RATE = 'No VAT (0%)';
+        final String PRACTITIONER_TAX_RATE = 'No VAT';
         final String API_SUCCESS_MESSAGE = 'Success';
         final String LINKING_ERROR_EMAIL_TEMPLATE = 'Practitioner_Registration_Fee_Claim_Error';
         final String TEMPLATE_PC = '{!PC}';
