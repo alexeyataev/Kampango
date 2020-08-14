@@ -1714,7 +1714,7 @@ We check this because if Membership is with Partner we will need to add Contact 
             <field>Zumzum__Type__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Zero Rated</stringValue>
+                <stringValue>Non-Vatable</stringValue>
             </value>
         </filters>
         <filters>
