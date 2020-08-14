@@ -9,7 +9,7 @@ public with sharing class ClaimFeeHelper {
     private static final String PURCHASE_INVOICE = 'Purchase Invoice';
     private static final String PURCHASE_CREDIT = 'Purchase Credit';
     private static final String DEFAULT_CURRENCY = 'GBP';
-    private static final String PRACTITIONER_TAX_RATE = 'No VAT (0%)';
+    private static final String PRACTITIONER_TAX_RATE = 'No VAT';
     private static final String API_SUCCESS_MESSAGE = 'Success';
     private static final String LINKING_ERROR_EMAIL_TEMPLATE = 'Practitioner_Registration_Fee_Claim_Error';
     private static final String TEMPLATE_PC = '{!PC}';
