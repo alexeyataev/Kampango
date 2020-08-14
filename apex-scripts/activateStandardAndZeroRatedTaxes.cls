@@ -28,15 +28,15 @@ for (Zumzum__Tax_Rate__c taxRate : taxRecords) {
 		taxRate.Zumzum__Exclude_from_VAT_Return__c = true;
 		taxRatesToUpdate.add(taxRate);
 	}	
-	if (taxRate.Name == 'Zero Rated Acquisitions of Goods From Suppliers in EC (0%)'
-		|| taxRate.Name == 'Standard Rated Acquisitions of Goods From Suppliers in EC (0%)'
-		|| taxRate.Name == 'Zero Rated Acquisition of Services From Suppliers in EC (0%)'
-		|| taxRate.Name == 'Standard Rated Acquisition of Services From Suppliers in EC (0%)'
-		|| taxRate.Name == 'Zero Rated Acquisition of Services From Suppliers in EC (20%)'
-		|| taxRate.Name == 'Standard Rated Acquisition of Services From Suppliers in EC (20%)'
-		|| taxRate.Name == 'Zero Rated Acquisitions of Goods From Suppliers in EC (20%)'
-		|| taxRate.Name == 'Standard Rated Acquisitions of Goods From Suppliers in EC (20%)'		 
-	   ) {
+    if (taxRate.Name == 'Zero Rated Acquisitions of Goods From Suppliers in EC (0%)'
+        || taxRate.Name == 'Standard Rated Acquisitions of Goods From Suppliers in EC (0%)'
+        || taxRate.Name == 'Zero Rated Acquisition of Services From Suppliers in EC (0%)'
+        || taxRate.Name == 'Standard Rated Acquisition of Services From Suppliers in EC (0%)'
+        || taxRate.Name == 'Zero Rated Acquisition of Services From Suppliers in EC (20%)'
+        || taxRate.Name == 'Standard Rated Acquisition of Services From Suppliers in EC (20%)'
+        || taxRate.Name == 'Zero Rated Acquisitions of Goods From Suppliers in EC (20%)'
+        || taxRate.Name == 'Standard Rated Acquisitions of Goods From Suppliers in EC (20%)'		 
+		) {
 		taxRate.Zumzum__Active__c = false;
 		taxRatesToUpdate.add(taxRate);
 	}
