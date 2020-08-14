@@ -16,7 +16,7 @@ private class ClaimFeeHelperTest {
     static void createZumzumSetupRecords() {
 
         Zumzum__Tax_Rate__c zumzumTaxRate = new Zumzum__Tax_Rate__c(
-            Name = 'No VAT (0%)',
+            Name = 'No VAT',
             Zumzum__Type__c = 'Non-Vatable',
             Zumzum__Active__c = true,
             Zumzum__Tax_Rate__c = 0
