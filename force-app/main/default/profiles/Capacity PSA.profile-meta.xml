@@ -1240,6 +1240,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Session__c.Venue_Booking_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Session__c.Venue_Client_Link__c</field>
         <readable>true</readable>
@@ -2266,7 +2271,32 @@
     </fieldPermissions>	
     <fieldPermissions>
         <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.Collections_Per_Year__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.Expected_Number_of_Collections__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.Expected_Total_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.Number_of_Collections_Remaining__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cpm__Recurring_Payment__c.Sales_Invoice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cpm__Recurring_Payment__c.Total_Amount_Not_Yet_Collected__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>	

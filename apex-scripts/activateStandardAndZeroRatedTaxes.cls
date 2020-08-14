@@ -12,10 +12,19 @@ update taxRates;
 List<Zumzum__Tax_Rate__c> taxRatesToUpdate = new List<Zumzum__Tax_Rate__c>();
 List<Zumzum__Tax_Rate__c> taxRecords = [
 		SELECT Id, Zumzum__Active__c,Name, Zumzum__Type__c, Zumzum__Tax_Rate__c,
-				Zumzum__Exclude_from_VAT_Return__c
+				Zumzum__Exclude_from_VAT_Return__c, Zumzum__is_default__c
 		FROM Zumzum__Tax_Rate__c
 ];
+Zumzum__Tax_Rate__c taxRateDefault = new Zumzum__Tax_Rate__c();
 for (Zumzum__Tax_Rate__c taxRate : taxRecords) {
+	if(taxRate.Name == 'Standard Rated Transactions (20%)'){
+		taxRate.Zumzum__is_default__c = false;
+		taxRateDefault = taxRate;
+	}
+}
+update taxRateDefault;
+
+for (Zumzum__Tax_Rate__c taxRate : taxRecords) {	
 	if (taxRate.Name == 'Exempt Transactions (0%)') {
 		taxRate.Zumzum__Active__c = true;
 		taxRate.Zumzum__Exclude_from_VAT_Return__c = true;
@@ -43,6 +52,6 @@ for (Zumzum__Tax_Rate__c taxRate : taxRecords) {
 		taxRate.Zumzum__is_no_tax__c = true;
 		taxRate.Zumzum__is_default__c = true;
 		taxRatesToUpdate.add(taxRate);
-	}
+	}	
 }
 update taxRatesToUpdate;
