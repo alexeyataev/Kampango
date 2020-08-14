@@ -25,7 +25,7 @@ update taxRateDefault;
 for (Zumzum__Tax_Rate__c taxRate : taxRecords) {
     if (taxRate.Name == 'Exempt Transactions (0%)') {
 		taxRate.Zumzum__Active__c = true;
-		taxRate.Zumzum__Exclude_from_VAT_Return__c = true;
+		taxRate.Zumzum__Exclude_from_VAT_Return__c = false;
 		taxRatesToUpdate.add(taxRate);
 	}	
     if (taxRate.Name == 'Zero Rated Acquisitions of Goods From Suppliers in EC (0%)'
