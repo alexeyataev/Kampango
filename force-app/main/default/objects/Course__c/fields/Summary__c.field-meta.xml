@@ -5,7 +5,7 @@
     <description>Total_Confirmed_Scheduled_Session_Hours__c can be used, because in CourseAPI we&apos;re displaying only final courses.
 Course can be final, only if all sessions except Reunion are confirmed.</description>
     <externalId>false</externalId>
-    <formula>&quot;This course consists of &quot; &amp; TEXT(Count_of_Confirmed_Scheduled_Sessions__c) &amp; &quot; session(s) totalling &quot; &amp; IF(Total_Confirmed_Scheduled_Session_Hours__c &lt; 1, &quot;0&quot;, &quot;&quot;) &amp; TEXT(Total_Confirmed_Scheduled_Session_Hours__c) &amp; &quot; hours. &quot; &amp;
+    <formula>&quot;This course consists of &quot; &amp; TEXT(Count_of_Confirmed_Scheduled_Sessions__c) &amp; &quot; session(s) totalling &quot; &amp; IF(Total_Confirmed_Scheduled_Session_Hours__c &lt; 1, &quot;0&quot;, &quot;&quot;) &amp; TEXT(Total_Confirmed_Scheduled_Session_Hours__c) &amp; &quot; hour(s). &quot; &amp;
 
 IF(Total_Virtual_Support_Hours__c &lt;= 0, &quot;&quot;, BR() &amp; &quot;You will also receive at least &quot; &amp; IF(Total_Virtual_Support_Hours__c &lt; 1, &quot;0&quot;, &quot;&quot;) &amp; TEXT(Total_Virtual_Support_Hours__c) &amp; &quot; hour(s) of enhanced personalised support from your course leader delivered via a closed messaging group. &quot;) &amp;
 
