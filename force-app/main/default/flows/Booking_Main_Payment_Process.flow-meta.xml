@@ -476,7 +476,7 @@
             <assignToReference>CourseZumzumSalesInvoiceParameter.taxRateId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>No_VAT.Id</elementReference>
+                <elementReference>ExemptTransactions.Id</elementReference> 
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -571,7 +571,7 @@
             <assignToReference>MembershipZumzumSalesInvoiceParameter.taxRateId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>ExemptTransactions.Id</elementReference>
+                <elementReference>No_VAT.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
