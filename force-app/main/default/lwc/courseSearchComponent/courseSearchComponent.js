@@ -19,6 +19,7 @@ const columns = [
         }
     },
 
+    { label: 'Rank', fieldName: 'Rank', type: 'text', hideDefaultActions:true},
     { label: 'Sub Type', fieldName: 'Type', type: 'text', wrapText:true, hideDefaultActions:false},
     { label: 'Delivery Type', fieldName: 'DeliveryMethod', type: 'text', hideDefaultActions:true},
     { label: 'Start Date', fieldName: 'StartDate', type: 'date', hideDefaultActions:true },
