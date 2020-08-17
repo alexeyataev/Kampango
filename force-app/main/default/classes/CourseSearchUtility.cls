@@ -8,10 +8,6 @@ public without sharing class CourseSearchUtility {
     private static final String COURSE_TYPE_POSTNATAL = 'Postnatal';
     private static final String COURSE_TYPE_DROP_IN = 'Drop In';
 
-    // private static final String COURSE_TYPE_FINAL = 'Final';
-
-
-
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static Course__c getCourseById(String courseName, Boolean hideFromPublicAccess) {
