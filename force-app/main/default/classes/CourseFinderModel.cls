@@ -44,7 +44,7 @@ public without sharing virtual class CourseFinderModel {
     public Date EndDate;
 
     @AuraEnabled
-    public String PsaArea;
+    public String MainVenueName;
 
     @AuraEnabled
     public String CourseId;
@@ -79,7 +79,7 @@ public without sharing virtual class CourseFinderModel {
         this.ConfirmedPlaces = course.Confirmed_Places__c;
         this.Status = course.Status__c;
         this.EndDate = course.End_Date__c;
-        this.PsaArea = course.PSA_Area__c;
+        this.MainVenueName = course.Main_Venue_Name__c;
     }
 
     private without sharing class CourseOrganiser {

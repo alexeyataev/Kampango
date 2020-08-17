@@ -1,14 +1,10 @@
 <template>
 
     <div class='slds-box slds slds-color__background_gray-1'>
-        
-        <div class='slds-grid slds-grid_align-end' style='height:0.5rem'>
-            <template if:true={isLoading}>
-                <div class="slds-is-relative slds-var-m-around_medium" >
-                    <lightning-spinner alternative-text="Loading..." variant="brand" size="small"></lightning-spinner>
-                </div>
-            </template>
-        </div>
+
+         <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading..." variant="brand" size="medium"></lightning-spinner>
+        </template>
 
         <template if:true={displayHeaderMenuSearchByDistance}>
             <div class="slds-grid slds-gutters slds-var-p-top_large slds-var-p-bottom_large slds-container_center">

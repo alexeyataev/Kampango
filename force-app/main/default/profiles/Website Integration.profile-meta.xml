@@ -10,8 +10,8 @@
         <field>Account.AccountNumber</field>
         <readable>false</readable>
     </fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Accounting_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1728,6 +1728,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Main_Venue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course__c.Main_Venue_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

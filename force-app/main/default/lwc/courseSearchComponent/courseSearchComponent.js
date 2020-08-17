@@ -19,11 +19,12 @@ const columns = [
         }
     },
 
+    { label: 'Rank', fieldName: 'Rank', type: 'text', hideDefaultActions:true},
     { label: 'Sub Type', fieldName: 'Type', type: 'text', wrapText:true, hideDefaultActions:false},
     { label: 'Delivery Type', fieldName: 'DeliveryMethod', type: 'text', hideDefaultActions:true},
     { label: 'Start Date', fieldName: 'StartDate', type: 'date', hideDefaultActions:true },
     { label: 'End Date ', fieldName: 'EndDate', type: 'date', sortable: true, hideDefaultActions:true},
-    { label: 'PSA Area', fieldName: 'PsaArea', type: 'text' , hideDefaultActions:true},
+    { label: 'Main Venue Name', fieldName: 'MainVenueName', wrapText:true, type: 'text' , hideDefaultActions:false},
     { label: 'Remaining Places', fieldName: 'RemainingPlaces', type: 'number', cellAttributes: { alignment: 'left' }, hideDefaultActions:true},
     { label: 'Confirmed Places', fieldName: 'ConfirmedPlaces', type: 'number', cellAttributes: { alignment: 'left' }, hideDefaultActions:true},
     { label: 'Status', fieldName: 'Status', type: 'text', hideDefaultActions:true },
