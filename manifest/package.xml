@@ -191,7 +191,6 @@
     </types>
     <types>
         <members>dlrs_Batch_Receipt_Report_ItemTrigger</members>
-        <members>dlrs_BookingTrigger</members>
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTrigger</members>
         <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>

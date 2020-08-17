@@ -38,6 +38,10 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>dlrs_BookingTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
         <members>Account.Account_Number__c</members>
         <members>Account.Account_Key__c</members>
         <members>Account.Branch__c</members>
