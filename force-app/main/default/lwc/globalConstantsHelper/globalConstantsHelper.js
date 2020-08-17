@@ -9,6 +9,6 @@ export const BOOKING_NAME = 'Booking';
 export const ACCOUNT_BRANCH_NAME = 'Branch';
 export const VENUE_NAME = 'Venue';
 
-export const RADIUS_DEFAULT = 100;
+export const RADIUS_DEFAULT = 10;
 
 export const COURSE_URL_FIELD = 'courseUrl';
