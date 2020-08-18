@@ -4,13 +4,14 @@
 
 public with sharing class DM_SIPIAllocation {
     public static void allocateSI(List<Zumzum__Sales_Invoice_Line_Item__c> siLineItems){
-
         Set<Id> allocateToLineItemIds = new Set<Id>();
         Set<Id> siLineItemIds = new Set<Id>();
         Set<Id> allLineItemIds = new Set<Id>();
         Map<Id,Id> siAllocateIdMap = new Map<Id,Id>();
         Map<Id,Zumzum__Ledger__c> siLedgerMap = new Map<Id,Zumzum__Ledger__c>();
         Map<Id,Zumzum__Sales_Invoice_Line_Item__c> siLineItemMap = new Map<Id,Zumzum__Sales_Invoice_Line_Item__c>();
+        List<Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper> allocatePaymentsWrapperList
+                = new List<Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper>();
         for(Zumzum__Sales_Invoice_Line_Item__c siLine : siLineItems){
             siLineItemIds.add(siLine.Id);
             allocateToLineItemIds.add(siLine.Allocate_To__c);
@@ -32,13 +33,13 @@ public with sharing class DM_SIPIAllocation {
         for(Zumzum__Ledger__c ledgerRec : ledgerRecords){
             siLedgerMap.put(ledgerRec.Zumzum__Sales_Invoice_Line_Item__c, ledgerRec);
         }
-
-        for(Zumzum__Sales_Invoice_Line_Item__c siLine : siLineItems){
+        Zumzum.BankAllocateCreditsAndPaymentsService paymentService = new Zumzum.BankAllocateCreditsAndPaymentsService();
+        for(Zumzum__Sales_Invoice_Line_Item__c siLine : siLineItems) {
             String customerAcctId = siLineItemMap.get(siLine.Id).Zumzum__Sales_Invoice__r.Zumzum__Account__c;
             Zumzum__Ledger__c LedgerAllocateFrom = siLedgerMap.get(siLine.Id);
             Zumzum__Ledger__c LedgerAllocateTo = siLedgerMap.get(siAllocateIdMap.get(siLine.Id));
 
-            Zumzum.BankAllocateCreditsAndPaymentsService paymentService = new Zumzum.BankAllocateCreditsAndPaymentsService();
+
             Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper allocatedPaymentWrapper =
                     new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper();
 
@@ -61,8 +62,11 @@ public with sharing class DM_SIPIAllocation {
             paymentLines.add(bankLineItem);
 
             allocatedPaymentWrapper.BankAllocateLines = paymentLines;
-            Zumzum.BankAllocateCreditsAndPaymentsService.Response objResponse = paymentService.BankAllocateCustomerBalance(allocatedPaymentWrapper);
+            allocatePaymentsWrapperList.add(allocatedPaymentWrapper);
         }
+        Zumzum.BankAllocateCreditsAndPaymentsService.Response objResponse
+                = paymentService.BankAllocateCustomerBalance(allocatePaymentsWrapperList);
+
     }
 
     public static void allocatePI(List<Zumzum__Purchase_Invoice_Line_Item__c> piLineItems){
@@ -72,6 +76,8 @@ public with sharing class DM_SIPIAllocation {
         Map<Id,Id> piAllocateIdMap = new Map<Id,Id>();
         Map<Id,Zumzum__Ledger__c> piLedgerMap = new Map<Id,Zumzum__Ledger__c>();
         Map<Id,Zumzum__Purchase_Invoice_Line_Item__c> piLineItemMap = new Map<Id,Zumzum__Purchase_Invoice_Line_Item__c>();
+        List<Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper> allocatePaymentsWrapperList
+                = new List<Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper>();
         for(Zumzum__Purchase_Invoice_Line_Item__c piLine : piLineItems){
             piLineItemIds.add(piLine.Id);
             allocateToLineItemIds.add(piLine.Allocate_To__c);
@@ -93,13 +99,12 @@ public with sharing class DM_SIPIAllocation {
         for(Zumzum__Ledger__c ledgerRec : ledgerRecords){
             piLedgerMap.put(ledgerRec.Zumzum__Purchase_Invoice_Line_Item__c, ledgerRec);
         }
-
-        for(Zumzum__Purchase_Invoice_Line_Item__c piLine : piLineItems){
+        Zumzum.BankAllocateCreditsAndPaymentsService paymentService = new Zumzum.BankAllocateCreditsAndPaymentsService();
+        for(Zumzum__Purchase_Invoice_Line_Item__c piLine : piLineItems) {
             String customerAcctId = piLineItemMap.get(piLine.Id).Zumzum__Purchase_Invoice__r.Zumzum__Account__c;
             Zumzum__Ledger__c LedgerAllocateFrom = piLedgerMap.get(piLine.Id);
             Zumzum__Ledger__c LedgerAllocateTo = piLedgerMap.get(piAllocateIdMap.get(piLine.Id));
 
-            Zumzum.BankAllocateCreditsAndPaymentsService paymentService = new Zumzum.BankAllocateCreditsAndPaymentsService();
             Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper allocatedPaymentWrapper =
                     new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper();
 
@@ -120,7 +125,10 @@ public with sharing class DM_SIPIAllocation {
             paymentLines.add(bankLineItem);
 
             allocatedPaymentWrapper.BankAllocateLines = paymentLines;
-            Zumzum.BankAllocateCreditsAndPaymentsService.Response objResponse = paymentService.bankAllocateSupplierBalance(allocatedPaymentWrapper);
+            allocatePaymentsWrapperList.add(allocatedPaymentWrapper);
         }
+        Zumzum.BankAllocateCreditsAndPaymentsService.Response objResponse
+                = paymentService.bankAllocateSupplierBalance(allocatePaymentsWrapperList);
+
     }
 }
