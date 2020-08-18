@@ -48,37 +48,38 @@
         <members>Account.Branch_Code__c</members>
         <members>Account.Enquiry_PSA__c</members>
         <members>Batch_Receipt_Report_Item__c.Ledger__c</members>
-        <members>Booking__c.Birth_Date__c</members>
-        <members>Booking__c.Birth_Or_Due_Date__c</members>
-        <members>Booking__c.Client_Name__c</members>
-        <members>Booking__c.Due_Date__c</members>
-        <members>Booking__c.Client__c</members>
         <members>Booking__c.Bank_Account_Number__c</members>
         <members>Booking__c.Bank_Sort_Code__c</members>
+        <members>Booking__c.Birth_Date__c</members>
+        <members>Booking__c.Birth_Or_Due_Date__c</members>
+        <members>Booking__c.Client__c</members>
+        <members>Booking__c.Client_Gift_Aid__c</members>
+        <members>Booking__c.Client_Name__c</members>
+        <members>Booking__c.Companion__c</members>
+        <members>Booking__c.Confirm_DD_Authorisation__c</members>
+        <members>Booking__c.Course_Payment_Method__c</members>
+        <members>Booking__c.Do_Not_Include_on_Class_List__c</members>
+        <members>Booking__c.Do_Not_Send_Further_Information__c</members>
+        <members>Booking__c.Due_Date__c</members>
         <members>Booking__c.Enquiries_PSA_First_Name__c</members>
         <members>Booking__c.Enquiries_PSA_Email__c</members>
         <members>Booking__c.Enquiry_PSA_Phone__c</members>
         <members>Booking__c.Enquiry_PSA_First_Name__c</members>
+        <members>Booking__c.First_Heard__c</members>
         <members>Booking__c.Has_Opted_Out_Email__c</members>
         <members>Booking__c.Has_Opted_Out_Post__c</members>
         <members>Booking__c.Has_Opted_Out_SMS__c</members>
         <members>Booking__c.Has_Opted_Out_Telephone__c</members>
-        <members>Booking__c.Twins_or_more__c</members>
-        <members>Booking__c.Confirm_DD_Authorisation__c</members>
-        <members>Booking__c.Client_Gift_Aid__c</members>
-        <members>Booking__c.Course_Payment_Method__c</members>
-        <members>Booking__c.Companion__c</members>
-        <members>Booking__c.Do_Not_Include_on_Class_List__c</members>
-        <members>Booking__c.Do_Not_Send_Further_Information__c</members>
-        <members>Booking__c.First_Heard__c</members>
         <members>Booking__c.Membership_Choice__c</members>
         <members>Booking__c.Membership_Payment_Method__c</members>
         <members>Booking__c.No_3rd_Party_Mailings__c</members>
         <members>Booking__c.Offer_Email_Sent__c</members>
         <members>Booking__c.Partner_Gift_Aid__c</members>
         <members>Booking__c.Partner_Membership__c</members>
+        <members>Booking__c.Phone__c</members>
         <members>Booking__c.Phone_Partner__c</members>
         <members>Booking__c.Preferred_Payment_Date__c</members>
+        <members>Booking__c.Twins_or_more__c</members>
         <members>Contact.Account_Key__c</members>
         <members>Contact.Branch_Key__c</members>
         <members>Contact.Contact_Key__c</members>
@@ -160,9 +161,16 @@
         <members>Session__c.Day__c</members>
         <members>Session__c.Duration__c</members>
         <members>Session__c.Duration_Formatted__c</members>
+        <members>Session__c.Is_Location_at_Home__c</members>
         <members>Session__c.IsPublicVenue__c</members>
         <members>Session__c.Notes__c</members>
         <members>Session__c.Practitoner_Name__c</members>
+        <members>Session__c.Venue_County__c</members>
+        <members>Session__c.Venue_Map_Url__c</members>
+        <members>Session__c.Venue_Name__c</members>
+        <members>Session__c.Venue_Postcode__c</members>
+        <members>Session__c.Venue_Street__c</members>
+        <members>Session__c.Venue_Town__c</members>
         <members>Session__c.Website_Text__c</members>
         <members>Session__c.Women_Only__c</members>
         <members>Venue__c.Google_Map_Link__c</members>
