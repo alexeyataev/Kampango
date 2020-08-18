@@ -132,11 +132,12 @@ private class ClaimFeeHelperTest {
         System.assertEquals(2, [
             SELECT Id
             FROM Zumzum__Purchase_Invoice__c
-        ].size()); 
+        ].size());  
         
-        System.assertEquals(zumzumExemptTransactions.Id, [
-            SELECT Zumzum__Tax_Rate__r.Name
-            FROM Zumzum__Purchase_Invoice_Line_Item__c
-        ][0].Zumzum__Tax_Rate__r.Id);    
+        for (List<Zumzum__Purchase_Invoice_Line_Item__c> purchaseInvoiceLineItems : [SELECT Zumzum__Tax_Rate__r.Name FROM Zumzum__Purchase_Invoice_Line_Item__c]) {
+            for (Zumzum__Purchase_Invoice_Line_Item__c purchaseInvoiceLineItem : purchaseInvoiceLineItems) {
+                System.assertEquals(zumzumExemptTransactions.Id, purchaseInvoiceLineItem.Zumzum__Tax_Rate__r.Id);
+            }
+        }
     }
 }
