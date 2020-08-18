@@ -4,6 +4,11 @@ public without sharing class CourseCreateEnquiryUtility {
     public static final String RECORDTYPE_NAME = 'Clients';
     private static final String DEFAULT_MAILING_COUNTRY = 'United Kingdom';
 
+    private static final String INDIVIDUAL_EMAIL_PREFERENCE = 'emailPreference';
+    private static final String INDIVIDUAL_POST_PREFERENCE = 'postPreference';
+    private static final String INDIVIDUAL_SMS_PREFERENCE = 'smstextPreference';
+    private static final String INDIVIDUAL_TELEPHONE_PREFERENCE = 'telephonePreference';
+
     public static void createEnquiry(Map<String, String> requestParameters) {
         if (requestParameters.isEmpty() || String.isBlank(requestParameters.get('courseId'))) {
             throw new CreateEnquiryException(System.Label.CourseAPIEnqueryParametersSpecifiedNotCorrectly);
@@ -153,22 +158,30 @@ public without sharing class CourseCreateEnquiryUtility {
                 Database.SaveResult duplicateInsertResult = Database.insert(partner, dmlOption);
             }
         }
+
+        requestParameters.put(INDIVIDUAL_EMAIL_PREFERENCE, '0');
+        requestParameters.put(INDIVIDUAL_POST_PREFERENCE, '0');
+        requestParameters.put(INDIVIDUAL_SMS_PREFERENCE, '0');
+        requestParameters.put(INDIVIDUAL_TELEPHONE_PREFERENCE, '0');
+
         updateContactPreferences(partner.Id, requestParameters);
         return partner.Id;
     }
 
     private static void updateContactPreferences(Id contactId, Map<String, String> requestParameters) {
         Contact contact = getContactById(contactId);
+
         Individual individual = [
             SELECT Id, Has_Opted_In_Email__c, Has_Opted_In_Post__c, Has_Opted_In_SMS__c, Has_Opted_In_Telephone__c 
             FROM Individual 
             WHERE Id =: contact.IndividualId
             LIMIT 1
         ];
-        individual.Has_Opted_In_Email__c = parseParameterToBoolean(requestParameters.get('emailPreference'));
-        individual.Has_Opted_In_Post__c = parseParameterToBoolean(requestParameters.get('postPreference'));
-        individual.Has_Opted_In_SMS__c = parseParameterToBoolean(requestParameters.get('smstextPreference'));
-        individual.Has_Opted_In_Telephone__c = parseParameterToBoolean(requestParameters.get('telephonePreference'));
+
+        individual.Has_Opted_In_Email__c = parseParameterToBoolean(requestParameters.get(INDIVIDUAL_EMAIL_PREFERENCE));
+        individual.Has_Opted_In_Post__c = parseParameterToBoolean(requestParameters.get(INDIVIDUAL_POST_PREFERENCE));
+        individual.Has_Opted_In_SMS__c = parseParameterToBoolean(requestParameters.get(INDIVIDUAL_SMS_PREFERENCE));
+        individual.Has_Opted_In_Telephone__c = parseParameterToBoolean(requestParameters.get(INDIVIDUAL_TELEPHONE_PREFERENCE));
 
         try {
             update individual;
