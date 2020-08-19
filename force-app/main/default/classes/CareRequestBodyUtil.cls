@@ -30,6 +30,8 @@ public with sharing class CareRequestBodyUtil {
         addUpdateContactRequest.address = cont.MailingStreet;
         addUpdateContactRequest.town = cont.MailingCity;
         addUpdateContactRequest.country = CareCountryCodeMappingUtil.getCountryCode(cont.MailingCountry);
+        addUpdateContactRequest.babyDueDate = cont.Expected_Due_Date__c != null ? cont.Expected_Due_Date__c.day() + '/' + cont.Expected_Due_Date__c.month() + '/' + cont.Expected_Due_Date__c.year() : '';
+
         return JSON.serialize(addUpdateContactRequest, true);
     }
 
@@ -106,6 +108,7 @@ public with sharing class CareRequestBodyUtil {
         private String address {get;set;}
         private String town {get;set;}
         private String country {get;set;}
+        private String babyDueDate{get;set;}
     }
 
     private class AddBankDetailsRequest extends BaseRequest {
