@@ -586,6 +586,7 @@
         <members>Update_Address_in_Gift_Aid_Declaration</members>
         <members>Update_Address_in_Gift_Aid_Declarations</members>
         <members>Update_Booking_Contacts_Email</members>
+        <members>Update_Contact_Expected_Due_Date</members>
         <members>Update_Marketing_Preferences_In_Care</members>
         <members>Update_Partner_Community_Contact</members>
         <members>Update_Practitioner_Licence_on_Sessions_related_to_Course</members>
