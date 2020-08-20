@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Number_of_Collections_Remaining__c</fullName>
     <externalId>false</externalId>
-    <formula>if( cpm__Active__c = true, CEILING(( cpm__End_Date__c -  cpm__Next_Collection_Date__c )/365)* Collections_Per_Year__c, 0)</formula>
+    <formula>if( cpm__Active__c = true, CEILING((cpm__End_Date__c - cpm__Next_Collection_Date__c )/365 * Collections_Per_Year__c), 0)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Number of Collections Remaining</label>
     <precision>18</precision>
