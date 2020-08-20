@@ -191,7 +191,6 @@
     </types>
     <types>
         <members>dlrs_Batch_Receipt_Report_ItemTrigger</members>
-        <members>dlrs_BookingTrigger</members>
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTrigger</members>
         <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
@@ -353,10 +352,7 @@
         <members>Zumzum__Expense_Sheet__c</members>
         <members>Zumzum__General_Setup__c</members>
         <members>Zumzum__Journal__c</members>
-        <members>Zumzum__Ledger__c</members>
         <members>Zumzum__Ledger_Payment_History__c</members>
-        <members>Zumzum__Nominal_Account__c</members>
-        <members>Zumzum__Nominal_Categories__c</members>
         <members>Zumzum__Purchase_Invoice__c</members>
         <members>Zumzum__Purchase_Order__c</members>
         <members>Zumzum__Purchase_Requisition__c</members>
@@ -532,6 +528,7 @@
         <members>Course_Assignment_Record_Page</members>
         <members>Course_Record_Page</members>
         <members>NPSP_Account_Record_Page</members>
+        <members>Payment_Run_Record_Page</members>
         <members>Room_Record_Page</members>
         <members>Session_Record_Page</members>
         <members>Venue_Record_Page</members>
@@ -566,6 +563,7 @@
         <members>Fill_dimension_values_process</members>
         <members>Generate_Encrypted_Validation_Code</members>
         <members>Invalidate_Withdraw_CA_When_Key_Information_Changes</members>
+        <members>Populate_Contact_Expected_Due_Date</members>
         <members>Populate_Payment_Run_Purchase_Invoice_Id</members>
         <members>Recalculate_Total_Practitioner_Fees</members>
         <members>Resend_Confirmation_Email</members>
@@ -588,6 +586,7 @@
         <members>Update_Address_in_Gift_Aid_Declaration</members>
         <members>Update_Address_in_Gift_Aid_Declarations</members>
         <members>Update_Booking_Contacts_Email</members>
+        <members>Update_Marketing_Preferences_In_Care</members>
         <members>Update_Partner_Community_Contact</members>
         <members>Update_Practitioner_Licence_on_Sessions_related_to_Course</members>
         <members>Update_Practitioner_on_Sessions</members>
@@ -618,12 +617,14 @@
         <members>Contact-Practitioner Community Layout</members>
         <members>Contact-Practitioner Page Layout</members>
         <members>Contact-Practitioner Read Only Layout</members>
-        <members>Course_Assignment__c-Course Assignment Layout</members>
-        <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
         <members>Course__c-Course Layout</members>
         <members>Course__c-Practitioner Course Layout</members>
-        <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
+        <members>Course_Assignment__c-Course Assignment Layout</members>
+        <members>Course_Assignment__c-Course Assignment Practitioner Layout</members>
+        <members>cpm__Payment__c-cpm__Payment Layout</members>
+        <members>cpm__Recurring_Payment__c-cpm__Recurring Payment Layout</members>
         <members>Estimated_Costs__c-Estimated Costs Layout</members>
+        <members>gaid__Gift_Aid_Declaration__c-gaid__Gift Aid Declaration Layout</members>
         <members>Licence_To_Practice__c-Licence To Practice Layout</members>
         <members>Payment_Run__c-Payment Run Layout</members>
         <members>Payment_Run_Line_Item__c-Payment Run Line Item Layout</members>
@@ -638,7 +639,6 @@
         <members>Venue__c-Venue Layout</members>
         <members>Venue__c-Virtual Venue Page Layout</members>
         <members>Venue_Contact__c-Venue Contact Layout</members>
-        <members>cpm__Payment__c-cpm__Payment Layout</members>
         <members>Zumzum__Bank_Payment__c-Zumzum__Bank Payment Layout</members>
         <members>Zumzum__Bank_Receipt__c-Zumzum__Bank Receipt Layout</members>
         <members>Zumzum__Batch_Bank_Payment__c-Zumzum__Batch Bank Payment Layout</members>
@@ -650,17 +650,23 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>bookingCourseSearch</members>
+        <members>branchCourseSearch</members>
         <members>checkBrowserCompatibility</members>
         <members>claimFeesDatatable</members>
         <members>courseDetailsComponent</members>
+        <members>courseSearchComponent</members>
+        <members>courseSearchCustomDataTable</members>
+        <members>coursesNotFound</members>
         <members>courseTransferDetails</members>
         <members>customCommunityButton</members>
         <members>failurePaymentPage</members>
-        <members>globalConstansHelper</members>
+        <members>globalConstantsHelper</members>
         <members>linkToPaymentComponent</members>
         <members>marketingPreferencesComponent</members>
         <members>parentCommunityLogoComponent</members>
         <members>successPaymentPage</members>
+        <members>venueCourseSearch</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
@@ -862,6 +868,7 @@
     <types>
         <members>Account.ShareAllAccountsWithParents</members>
         <members>Course__c.ShareAllCourseWithParents</members>
+        <members>Payment_Run__c.SharePaymentRunWithPractitioners</members>
         <members>Zumzum__Company_Setup__c.ShareAllCompanySetupWithParents</members>
         <members>Zumzum__Company__c.ShareAllCompanyWithParents</members>
         <members>Zumzum__Control_Account__c.ShareAllControlAccountWithParents</members>
@@ -907,6 +914,7 @@
         <members>Contact.Bank_Account_Name_Not_More_50_Symbols</members>
         <members>Contact.Bank_Account_Number_Exactly_8_numbers</members>
         <members>Contact.Bank_Sort_Code_Exactly_6_numbers</members>
+        <members>Contact.CountryEditFromPicklistOnly</members>
         <members>Venue__c.Delivery_Mechanism_Populating</members>
         <members>Venue__c.Postcode_Must_Contain_Space</members>
         <members>Venue__c.Zoom_Details_Populating</members>

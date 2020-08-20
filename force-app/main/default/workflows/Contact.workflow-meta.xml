@@ -37,7 +37,16 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>ISCHANGED(Country__c)</formula>
+        <formula>OR(
+AND(
+ISNEW(),
+ISBLANK(MailingCountry)
+),
+AND(
+ISCHANGED(Country__c),
+MailingCountry != TEXT(Country__c)
+)
+)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -48,20 +57,21 @@
         </actions>
         <active>true</active>
         <description>Sends updated Contact to CARE if key field(s) changes</description>
-        <formula>AND(     
-    NOT(ISPICKVAL(Care_Status__c, &quot;Waiting&quot;)),     
-	RecordType.DeveloperName = &quot;Clients&quot;,     
-	OR(        
-	   ISCHANGED(Branch__c),         
-	   ISCHANGED(MailingPostalCode),        
-	   ISCHANGED(MailingCountry),        
-	   ISCHANGED(MailingCity),        
-	   ISCHANGED(MailingStreet),        
-	   ISCHANGED(Email),        
-	   ISCHANGED(Phone),        
-	   ISCHANGED(HomePhone),        
-	   ISCHANGED(MobilePhone)     
-	) 
+        <formula>AND(
+    NOT(ISPICKVAL(Care_Status__c, &quot;Waiting&quot;)),      	 
+    RecordType.DeveloperName = &quot;Clients&quot;,
+    OR(
+       ISCHANGED(Branch__c),
+       ISCHANGED(MailingPostalCode),
+       ISCHANGED(MailingCountry),
+       ISCHANGED(MailingCity),
+       ISCHANGED(MailingStreet),
+       ISCHANGED(Email),
+       ISCHANGED(Phone),
+       ISCHANGED(HomePhone),
+       ISCHANGED(MobilePhone),
+       ISCHANGED(Expected_Due_Date__c)
+    )  
 )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

@@ -5,7 +5,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 import { SESSION_DELIVERY_TYPE_PHYSICAL,
          SESSION_DELIVERY_TYPE_ONLINE,
-         SESSION_STATUS_CONFIRMED } from 'c/globalConstansHelper';
+         SESSION_STATUS_CONFIRMED } from 'c/globalConstantsHelper';
 
 export default class Locations extends LightningElement {
 
@@ -99,7 +99,7 @@ export default class Locations extends LightningElement {
                         { Postcode: !this.isStatusConfirmed && row.Location_Home_Information__c ? row.Location_Postcode__c.split(' ')[0] : row.Location_Postcode__c },
                         { Id: row.Location_Id__c },
                         { Name: !this.isStatusConfirmed && row.Location_Home_Information__c ? row.Location_Home_Information__c : row. Location_Name__c},
-                        { SessionRoomName: !this.isStatusConfirmed ? '' : row.Session_Room_Name__c }
+                        { SessionRoomName: row.Session_Room_Name__c || ''}
                     )
                 );
             }

@@ -3,14 +3,10 @@
 public class AddContactForMembershipBatch implements Database.Batchable<sObject>, Database.AllowsCallouts{
 
     public Database.QueryLocator start(Database.BatchableContext bc){
-        return Database.getQueryLocator('SELECT Id, Branch__r.Branch_Number__c, Care_Error_Log__c, Email, FirstName, Gender__c, Individual.Has_Opted_In_Email__c, Individual.Has_Opted_In_Post__c, Individual.Has_Opted_In_SMS__c, Individual.Has_Opted_In_Telephone__c, LastName, MailingCity, MailingCountry, MailingPostalCode, MailingStreet, MobilePhone, NCT_Number__c, npe01__PreferredPhone__c, Phone, HomePhone FROM Contact WHERE RecordType.Name = \'Client\' AND Care_Status__c = \'Waiting\'');
+        return Database.getQueryLocator('SELECT Id, Branch__r.Branch_Number__c, Expected_Due_Date__c,Care_Error_Log__c, Email, FirstName, Gender__c, Individual.Has_Opted_In_Email__c, Individual.Has_Opted_In_Post__c, Individual.Has_Opted_In_SMS__c, Individual.Has_Opted_In_Telephone__c, LastName, MailingCity, MailingCountry, MailingPostalCode, MailingStreet, MobilePhone, NCT_Number__c, npe01__PreferredPhone__c, Phone, HomePhone FROM Contact WHERE RecordType.Name = \'Client\' AND Care_Status__c = \'Waiting\'');
     }
 
     public void execute(Database.BatchableContext bc, List<Contact> scope){
-        Integer timeoutLimit = (Integer)Care_Settings__c.getOrgDefaults().Add_Contact_Batch_Timeout_Milliseconds__c;
-        if(timeoutLimit != null) {
-            CareHelper.timeoutLimit = timeoutLimit;
-        }
         for(Contact cont : scope) {
             AddContactResult careAddContactResult = CareHelper.sendContact(cont);
             if(careAddContactResult.nctNumber != null) {

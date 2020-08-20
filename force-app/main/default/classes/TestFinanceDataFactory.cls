@@ -8,6 +8,7 @@ public without sharing class TestFinanceDataFactory {
     private static TestFinanceDataFactory instance;
 
     private Zumzum__Tax_Rate__c zumzumNoVatTaxRate;
+    private Zumzum__Tax_Rate__c zumzumExemptTransactionsTaxRate;
     private List<Zumzum__Nominal_Account__c> nominalAccountsList = new List<Zumzum__Nominal_Account__c>();
     private Map<Integer, Zumzum__Nominal_Account__c> nominalAccountsByNominalCodesMap = new Map<Integer, Zumzum__Nominal_Account__c>();
 
@@ -25,7 +26,15 @@ public without sharing class TestFinanceDataFactory {
             Zumzum__Active__c = true,
             Zumzum__Tax_Rate__c = 0
         );
-        insert zumzumNoVatTaxRate;
+
+        zumzumExemptTransactionsTaxRate = new Zumzum__Tax_Rate__c(
+            Name = 'Exempt Transactions (0%)',
+            Zumzum__Type__c = 'Exempt Transactions',
+            Zumzum__Active__c = true,
+            Zumzum__Tax_Rate__c = 0
+        );
+
+        insert new List<Zumzum__Tax_Rate__c>{zumzumNoVatTaxRate, zumzumExemptTransactionsTaxRate};
 
         Zumzum__Invoice_Template__c zumzumInvoiceTemplate = new Zumzum__Invoice_Template__c(
             Name = 'Zumzum Sample Template',

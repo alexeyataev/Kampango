@@ -9,7 +9,7 @@ public with sharing class ClaimFeeHelper {
     private static final String PURCHASE_INVOICE = 'Purchase Invoice';
     private static final String PURCHASE_CREDIT = 'Purchase Credit';
     private static final String DEFAULT_CURRENCY = 'GBP';
-    private static final String PRACTITIONER_TAX_RATE = 'No VAT';
+    private static final String PRACTITIONER_TAX_RATE = 'Exempt Transactions (0%)';
     private static final String API_SUCCESS_MESSAGE = 'Success';
     private static final String LINKING_ERROR_EMAIL_TEMPLATE = 'Practitioner_Registration_Fee_Claim_Error';
     private static final String TEMPLATE_PC = '{!PC}';
@@ -38,7 +38,7 @@ public with sharing class ClaimFeeHelper {
             WITH SECURITY_ENFORCED
         ];
 
-        Zumzum__Tax_Rate__c zumzumNoVAT = [
+        Zumzum__Tax_Rate__c zumzumExemptTransactions = [
             SELECT Id, Name 
             FROM Zumzum__Tax_Rate__c 
             WHERE Name =: PRACTITIONER_TAX_RATE
@@ -67,7 +67,7 @@ public with sharing class ClaimFeeHelper {
             purchaseInvoiceLineItem.NominalAccount = financialSettings.PI_Nominal_Account_Id__c;
             purchaseInvoiceLineItem.ForeignNetAmount = session.Practitioner_Fees__c;
             purchaseInvoiceLineItem.Quantity = 1;
-            purchaseInvoiceLineItem.TaxRate = zumzumNoVAT.Id;
+            purchaseInvoiceLineItem.TaxRate = zumzumExemptTransactions.Id;
             purchaseInvoiceLineItem.Narrative = PI_NARRATIVE;
             purchaseInvoiceLineItem.WrapperAPICustomFields = new Zumzum.APICustomFieldWrapper[]{
                 new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Session__c', session.Id)
@@ -98,7 +98,7 @@ public with sharing class ClaimFeeHelper {
             purchaseCreditLineItem.ForeignNetAmount = flowData[0].registrationFee;
             purchaseCreditLineItem.NominalAccount = financialSettings.PC_Nominal_Account_Id__c;
             purchaseCreditLineItem.Quantity = 1;
-            purchaseCreditLineItem.TaxRate = zumzumNoVAT.Id;
+            purchaseCreditLineItem.TaxRate = zumzumExemptTransactions.Id;
             purchaseCreditLineItem.Narrative = PC_NARRATIVE;
             purchaseCreditLineItem.WrapperAPICustomFields = new Zumzum.APICustomFieldWrapper[]{
                 new Zumzum.APICustomFieldWrapper('Zumzum__Purchase_Invoice_Line_Item__c', 'Practitioner__c', currentUser.ContactId)
