@@ -96,6 +96,7 @@ void insertSubCategories() {
         newSC('Stock', catIdByName.get('Current Assets'), 9200, 9200, false),
         newSC('Debtors', catIdByName.get('Current Assets'), 9300, 9399, false),
         newSC('Cash at bank and in hand', catIdByName.get('Current Assets'), 9400, 9499, true),
+        newSC('Intercompany', catIdByName.get('Current Assets'), 9500, 9520, false),
         newSC('Creditors', catIdByName.get('Current Liabilities'), 9600, 9799, false),
         newSC('Unrestricted', catIdByName.get('Funds'), 9800, 9800, false),
         newSC('Restricted', catIdByName.get('Funds'), 9810, 9810, false),
@@ -162,7 +163,9 @@ void insertNominalAccounts() {
         'Subsistence' => newNA('Subsistence', 5155, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
         'Printing & Copying' => newNA('Printing & Copying', 5191, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
         'Postage Costs' => newNA('Postage Costs', 5170, TRUE, false, subCatIdByName.get('Parentforce costs'), TRUE),
-        'BACS Payments in Transit' => newNA('BACS Payments in Transit', 9402, TRUE, false, subCatIdByName.get('Cash at bank and in hand'), false)
+        'BACS Payments in Transit' => newNA('BACS Payments in Transit', 9402, TRUE, false, subCatIdByName.get('Cash at bank and in hand'), false),
+        'Head office current account' => newNA('Head office current account', 9500, TRUE, false, subCatIdByName.get('Intercompany'), false),
+        'Head office transfers' => newNA('Head office transfers', 9520, TRUE, false, subCatIdByName.get('Intercompany'), false)
     };
     List<Zumzum__Nominal_Account__c> allNominalAccounts = allNominalAccountsMap.values();
     insert allNominalAccounts;
