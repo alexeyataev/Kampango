@@ -693,6 +693,7 @@
         <members>Can_Convert_Expense_Sheet</members>
         <members>Can_Delete_Activities</members>
         <members>Can_Delete_Chatter_Posts</members>
+        <members>Can_Delete_Payment_Run_Line_Items</members>
         <members>Can_Reopen_Courses</members>
         <members>Create_Public_Lists</members>
         <members>Override_Booking_Status_Validation</members>
