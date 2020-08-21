@@ -1,5 +1,5 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #114 - https://confluence.nct.org.uk:8443/x/EoSO
+//Incident #115 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 private class BOOKING_PopulateContactEDD_TDTM_Test {
     private static final String PRACTITIONER_LASTNAME = 'Smith';
@@ -37,12 +37,10 @@ private class BOOKING_PopulateContactEDD_TDTM_Test {
 
     @IsTest
     public static void bookingBirthDueDateChanged_relatedContactsExpectedDueDateUpdated() {
-
         List<Booking__c> bookings = [
             SELECT Birth_Due_Date__c, Partner_Contact__c, Primary_Contact__c
             FROM Booking__c 
         ];
-
         List<Contact> contacts = [
             SELECT Expected_Due_Date__c
             FROM Contact

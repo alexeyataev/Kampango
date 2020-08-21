@@ -1,7 +1,7 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 //Incident #113 - https://confluence.nct.org.uk:8443/x/EoSO
 global with sharing class BOOKING_PopulateContactEDD_TDTM extends npsp.TDTM_Runnable {
-    // @SuppressWarnings('PMD.ExcessiveParameterList')
+    @SuppressWarnings('PMD.ExcessiveParameterList')
     //Incident #114 - https://confluence.nct.org.uk:8443/x/EoSO
     global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         npsp.TDTM_Runnable.dmlWrapper dmlWrapper = new npsp.TDTM_Runnable.DmlWrapper();
