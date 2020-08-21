@@ -84,6 +84,16 @@ requiredTriggerHandlersMap.put (
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Booking__c',
         npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate }),
+        npsp__Load_Order__c = 0,
+        npsp__Active__c = true
+    )
+);
+
+requiredTriggerHandlersMap.put (
+    'BOOKING_PopulateContactEDD_TDTM',
+    new npsp__Trigger_Handler__c (
+        npsp__Object__c = 'Booking__c',
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate }),
         npsp__Load_Order__c = 1,
         npsp__Active__c = true
     )
