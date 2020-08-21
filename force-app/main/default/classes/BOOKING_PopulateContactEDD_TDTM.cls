@@ -19,7 +19,6 @@ global with sharing class BOOKING_PopulateContactEDD_TDTM extends npsp.TDTM_Runn
     }
 
     private List<Contact> updateContactsExpectedDueDate(List<Booking__c> newBookingList, List<Booking__c> oldBookingList) {
-        Set<Id> contactIds = new Set<Id>();
         List<Contact> contactsToUpdate = new List<Contact>();
         Map<Id, Booking__c> oldBookingMap = new Map<Id, Booking__c>(oldBookingList);
         Map<Id, Date> contactsWithExpectedDueDates = new Map<Id, Date>();
