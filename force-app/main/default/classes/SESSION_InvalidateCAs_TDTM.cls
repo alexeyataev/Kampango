@@ -161,7 +161,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #21 - https://confluence.nct.org.uk:8443/x/EoSO
-    private static setCourseAssignmentsStatusDependOnWhetherAssignedSessions(Set<Id> courseAssignmentIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
+    private static void setCourseAssignmentsStatusDependOnWhetherAssignedSessions(Set<Id> courseAssignmentIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
     
     List<Course_Assignment__c> coursesAssignmentsToChangeStatus = [
             SELECT Status__c,
