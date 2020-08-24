@@ -35,6 +35,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         Set<Id> oldPractitionerIds = new Set<Id>();
         Set<Id> courseIds = new Set<Id>();
         List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
+        List<Course_Assignment__c> courseAssignmentsToInvalidate = new List<Course_Assignment__c>();
         Map<Id, Session__c> oldSessionMap = new Map<Id, Session__c>(oldSessionList);
 
         for (Session__c session : newSessionList) {
@@ -62,16 +63,20 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(newPractitionerIds, courseIds, courseAssignmentsToUpdate);
-        setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(oldPractitionerIds, courseIds, courseAssignmentsToUpdate);
+        if(!courseIds.isEmpty()) {
+            courseAssignmentsToUpdate = setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(newPractitionerIds, courseIds, courseAssignmentsToUpdate);
+            courseAssignmentsToUpdate = setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(oldPractitionerIds, courseIds, courseAssignmentsToUpdate);
+        }
         
-        List<Course_Assignment__c> courseAssignmentsToInvalidate = [
-            SELECT Status__c
-            FROM Course_Assignment__c
-            WHERE Id IN :courseAssignmentIds
-                AND Status__c NOT IN (:COURSE_ASSIGNMENT_INVALIDATED_STATUS, :COURSE_ASSIGNMENT_WITHDRAWN_STATUS)
-            WITH SECURITY_ENFORCED
-        ];
+        if(!courseAssignmentIds.isEmpty()) {
+            courseAssignmentsToInvalidate = [
+                SELECT Status__c
+                FROM Course_Assignment__c
+                WHERE Id IN :courseAssignmentIds
+                    AND Status__c NOT IN (:COURSE_ASSIGNMENT_INVALIDATED_STATUS, :COURSE_ASSIGNMENT_WITHDRAWN_STATUS)
+                WITH SECURITY_ENFORCED
+            ];
+        }
 
         if(!courseAssignmentsToInvalidate.isEmpty()) {
             for(Course_Assignment__c assignment : courseAssignmentsToInvalidate){
@@ -93,7 +98,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             courseIds.add(session.Course__c);
         }
         
-        setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(practitionerIds, courseIds, courseAssignmentsToUpdate);
+        courseAssignmentsToUpdate = setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(practitionerIds, courseIds, courseAssignmentsToUpdate);
         return courseAssignmentsToUpdate;
     }
 
@@ -106,7 +111,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             courseAssignmentIds.add(session.Course_Assignment__c);
         }
 
-        setCourseAssignmentsStatusDependOnWhetherAssignedSessions(courseAssignmentIds, courseAssignmentsToUpdate);
+        courseAssignmentsToUpdate = setCourseAssignmentsStatusDependOnWhetherAssignedSessions(courseAssignmentIds, courseAssignmentsToUpdate);
         return courseAssignmentsToUpdate;
     }
 
