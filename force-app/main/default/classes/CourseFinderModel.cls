@@ -115,7 +115,7 @@ public without sharing virtual class CourseFinderModel {
             return !String.isEmpty(postcode) ? postcode.split(' ')[0] : 'SW1A';
         }
     }
-  
+    @testVisible
     private without sharing class Session {
         private String Session_Date;
         private String Start;

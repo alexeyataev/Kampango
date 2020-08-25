@@ -39,8 +39,16 @@ private class CourseFinderModelTest {
         Test.stopTest();
 
         System.assertNotEquals(null, courseFinderModel);
-        System.assertEquals(courseFinderModel.Sessions[0].Reunion, false);
-        System.assertEquals(courseFinderModel.Sessions[1].Reunion, false);
-        System.assertEquals(courseFinderModel.Sessions[2].Reunion, true);
+        Integer sessionNotReunionCount = 0;
+        Integer sessionReunionCount = 0;
+        for(CourseFinderModel.Session session : courseFinderModel.Sessions) {
+            if(session.Reunion) {
+                sessionReunionCount++;
+            } else {
+                sessionNotReunionCount++;
+            }
+        }
+        System.assertEquals(sessionReunionCount, 1);
+        System.assertEquals(sessionNotReunionCount, 2);
     }
 }
