@@ -19,6 +19,7 @@ public without sharing virtual class CourseFinderModel {
     private Integer PlacesAvailable;
     private Decimal Price;
     public String Reference;
+    @testVisible
     private List<Session> Sessions;
     private String Title;
     private Venue Venue;
@@ -122,14 +123,17 @@ public without sharing virtual class CourseFinderModel {
         private Boolean WomenOnly;
         private Boolean Breastfeeding;
         private String Notes;
+        @testVisible
+        private Boolean Reunion;
         
         private Session (Session__c session) {
             this.Session_Date = String.valueOf(session.Date__c);
             this.Start = String.valueOf(session.Start__c);
             this.Session_End = String.valueOf(session.End__c); 
-            this.WomenOnly = session.Specific_Attendee_Type__c == 'Women Only' ? true : false;  
+            this.WomenOnly = session.Specific_Attendee_Type__c == 'Women Only' ? true : false;
             this.Breastfeeding = session.Type__c == 'Breastfeeding' ? true : false;
-            this.Notes = session.Additional_Information_with_Venue__c;  
+            this.Notes = session.Additional_Information_with_Venue__c;
+            this.Reunion = session.Type__c == 'Reunion' ? true : false;
         }
     }
 

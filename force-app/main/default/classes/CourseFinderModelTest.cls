@@ -11,10 +11,12 @@ private class CourseFinderModelTest {
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(1, 2);
+        List<Course__c> courseList = [SELECT Id, (SELECT Id FROM Sessions__r) FROM Course__c];
+        testDataFactory.setCoursesToFinalAndSessionsToConfirmed(courseList)
+                       .buildConfirmedReunion();
     }
-
     @isTest
-    static void createInstenceCourseFinderModel() {
+    static void CreateCourseWithReunionSession_SessionTypeReunion_SessionWrapperReunionTrue() {
         Course__c course = [
             SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Confirmed_Places__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                 Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
@@ -35,5 +37,8 @@ private class CourseFinderModelTest {
         Test.stopTest();
 
         System.assertNotEquals(null, courseFinderModel);
+        System.assertEquals(courseFinderModel.Sessions[0].Reunion, false);
+        System.assertEquals(courseFinderModel.Sessions[1].Reunion, false);
+        System.assertEquals(courseFinderModel.Sessions[2].Reunion, true);
     }
 }
