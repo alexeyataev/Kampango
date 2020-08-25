@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #116 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 private class CourseFinderModelTest {
     @TestSetup
