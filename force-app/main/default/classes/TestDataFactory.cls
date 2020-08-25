@@ -429,6 +429,10 @@ public without sharing class TestDataFactory {
         return buildSessionWithTypeAndStatus(SESSION_REUNION_TYPE, SESSION_PROVISIONAL_STATUS);
     }
 
+    public TestDataFactory buildConfirmedReunion() {
+        return buildSessionWithTypeAndStatus(SESSION_REUNION_TYPE, SESSION_CONFIRMED_STATUS);
+    }
+
     public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus) {
         return buildSessionWithTypeAndStatus(sessionType, sessionStatus, null, null, false);
     }

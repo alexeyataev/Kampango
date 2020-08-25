@@ -101,8 +101,6 @@ private class CourseSearchUtilityTest {
         }
     
         testDataFactoryInstance.setCoursesToFinalAndSessionsToConfirmed(courses);
-        
-        testDataFactoryInstance.setCoursesToFinal(courses);                
     }
 
     @isTest
