@@ -10,6 +10,7 @@ public without sharing virtual class CourseFinderModel {
     public transient Date StartDate {get; set;}
 
     public String Summary;
+    private String BookingType;
     private String BranchNumber;
     private Boolean CouplesAllowed;
     private CourseOrganiser CourseOrganiser;
@@ -59,6 +60,7 @@ public without sharing virtual class CourseFinderModel {
          */
         final Integer DEFAULT_REMAINING_PLACES = 20;
         this.Id = course.Name;
+        this.BookingType = course.Booking_Type__c;
         this.StartDate = course.Start_Date__c;
         this.Summary = course.Type__c == 'Drop In' ? course.Drop_In_Schedule_Information__c : course.Summary__c;
         this.BranchNumber = course.Branch__r.Branch_Number__c;

@@ -16,7 +16,8 @@ public without sharing class CourseSearchUtility {
         List<Course__c> inCourses;
         if (hideFromPublicAccess) {
             inCourses = [
-                SELECT  Branch__r.Branch_Number__c,
+                SELECT  Booking_Type__c,
+                        Branch__r.Branch_Number__c,
                         Branch__r.Enquiries_PSA_Email__c,
                         Branch__r.Enquiries_PSA_Phone__c,
                         Branch__r.Enquiries_PSA__r.Name,
@@ -77,7 +78,8 @@ public without sharing class CourseSearchUtility {
             ];
         } else {
             inCourses = [
-                SELECT  Branch__r.Branch_Number__c,
+                SELECT  Booking_Type__c,
+                        Branch__r.Branch_Number__c,
                         Branch__r.Enquiries_PSA_Email__c,
                         Branch__r.Enquiries_PSA_Phone__c,
                         Branch__r.Enquiries_PSA__r.Name,
@@ -158,7 +160,8 @@ public without sharing class CourseSearchUtility {
         List<Course__c> inCourses;
         if (hideFromPublicAccess) {
             inCourses = [
-                SELECT  Branch__r.Branch_Number__c,
+                SELECT  Booking_Type__c,
+                        Branch__r.Branch_Number__c,
                         Branch__r.Enquiries_PSA_Email__c,
                         Branch__r.Enquiries_PSA_Phone__c,
                         Branch__r.Enquiries_PSA__r.Name,
@@ -221,7 +224,8 @@ public without sharing class CourseSearchUtility {
             ];
         } else {
             inCourses = [
-                SELECT Branch__r.Branch_Number__c,
+                SELECT Booking_Type__c,
+                       Branch__r.Branch_Number__c,
                        Branch__r.Enquiries_PSA_Email__c,
                        Branch__r.Enquiries_PSA_Phone__c,
                        Branch__r.Enquiries_PSA__r.Name,
@@ -317,7 +321,8 @@ public without sharing class CourseSearchUtility {
 
         if (hideFromPublicAccess) {
             inCourses = [
-                SELECT  Branch__r.Branch_Number__c,
+                SELECT  Booking_Type__c,
+                        Branch__r.Branch_Number__c,
                         Branch__r.Enquiries_PSA_Email__c,
                         Branch__r.Enquiries_PSA_Phone__c,
                         Branch__r.Enquiries_PSA__r.Name,
@@ -387,7 +392,8 @@ public without sharing class CourseSearchUtility {
             ];
         } else {
             inCourses = [
-                SELECT  Branch__r.Branch_Number__c,
+                SELECT  Booking_Type__c,
+                        Branch__r.Branch_Number__c,
                         Branch__r.Enquiries_PSA_Email__c,
                         Branch__r.Enquiries_PSA_Phone__c,
                         Branch__r.Enquiries_PSA__r.Name,
