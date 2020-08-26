@@ -1,47 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>SendEmail</name>
-        <label>SendEmail</label>
-        <locationX>950</locationX>
-        <locationY>324</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <connector>
-            <targetReference>Is_Email_Sent_True</targetReference>
-        </connector>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <elementReference>BACSRemittanceEmail</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailAddresses</name>
-            <value>
-                <elementReference>Loop_For_items.Supplier_Account_Billing_Email__c</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>senderAddress</name>
-            <value>
-                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>senderType</name>
-            <value>
-                <stringValue>OrgWideEmailAddress</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <stringValue>BACS remittance from NCT</stringValue>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
         <name>Show_status</name>
         <label>Show status</label>
         <locationX>1107</locationX>
@@ -61,38 +20,6 @@
             </value>
         </inputParameters>
     </actionCalls>
-    <assignments>
-        <name>Assign_Line_Item_for_update</name>
-        <label>Assign Line Item for update</label>
-        <locationX>688</locationX>
-        <locationY>431</locationY>
-        <assignmentItems>
-            <assignToReference>PaymentRunLineItemsUpdate</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Loop_For_items</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_For_items</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Is_Email_Sent_True</name>
-        <label>Is Email Sent True</label>
-        <locationX>827</locationX>
-        <locationY>402</locationY>
-        <assignmentItems>
-            <assignToReference>Loop_For_items.Is_Email_Sent__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Assign_Line_Item_for_update</targetReference>
-        </connector>
-    </assignments>
     <constants>
         <name>MESSAGE_ERROR</name>
         <dataType>String</dataType>
@@ -166,7 +93,7 @@ V2. Added Payment Run Status Check</description>
         <collectionReference>Get_Payment_Run_Line_Items</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>SendEmail</targetReference>
+            <targetReference>Process_Payment_Run_Line_Item_record</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Update_Line_Item_Is_Sent_True</targetReference>
@@ -254,7 +181,7 @@ V2. Added Payment Run Status Check</description>
         <connector>
             <targetReference>Show_status</targetReference>
         </connector>
-        <inputReference>PaymentRunLineItemsUpdate</inputReference>
+        <inputReference>paymentRunLineItemsUpdate</inputReference>
     </recordUpdates>
     <screens>
         <name>Send_Remittance_Emails</name>
@@ -299,6 +226,36 @@ V2. Added Payment Run Status Check</description>
         </connector>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Process_Payment_Run_Line_Item_record</name>
+        <label>Process Payment Run Line Item record</label>
+        <locationX>773</locationX>
+        <locationY>410</locationY>
+        <connector>
+            <targetReference>Loop_For_items</targetReference>
+        </connector>
+        <flowName>BACS_Send_Remittance_Emails_Assistant</flowName>
+        <inputAssignments>
+            <name>paymentRunLineItem</name>
+            <value>
+                <elementReference>Loop_For_items</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>paymentRunLineItemsToUpdate</name>
+            <value>
+                <elementReference>paymentRunLineItemsUpdate</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>paymentRunLineItem</assignToReference>
+            <name>paymentRunLineItem</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>paymentRunLineItemsUpdate</assignToReference>
+            <name>paymentRunLineItemsToUpdate</name>
+        </outputAssignments>
+    </subflows>
     <textTemplates>
         <name>BACSRemittanceEmail</name>
         <text>Dear Sir/Madam
@@ -343,7 +300,15 @@ NCT</text>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>PaymentRunLineItemsUpdate</name>
+        <name>paymentRunLineItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Payment_Run_Line_Item__c</objectType>
+    </variables>
+    <variables>
+        <name>paymentRunLineItemsUpdate</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
