@@ -481,6 +481,7 @@
         <name>EmailTemplate</name>
     </types>
     <types>
+        <members>Booking_Type</members>
         <members>Course_Sub_Type</members>
         <members>Geographical_Weightings</members>
         <members>Practitioner_Bands</members>
