@@ -13,7 +13,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <stringValue>Body</stringValue>
+                <elementReference>BACSRemittanceEmail</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
