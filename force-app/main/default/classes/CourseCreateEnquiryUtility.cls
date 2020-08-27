@@ -159,12 +159,13 @@ public without sharing class CourseCreateEnquiryUtility {
             }
         }
 
-        requestParameters.put(INDIVIDUAL_EMAIL_PREFERENCE, '0');
-        requestParameters.put(INDIVIDUAL_POST_PREFERENCE, '0');
-        requestParameters.put(INDIVIDUAL_SMS_PREFERENCE, '0');
-        requestParameters.put(INDIVIDUAL_TELEPHONE_PREFERENCE, '0');
+        Map<String, String> partherRequestParametersCloneMap = requestParameters.clone();
+        partherRequestParametersCloneMap.put(INDIVIDUAL_EMAIL_PREFERENCE, '0');
+        partherRequestParametersCloneMap.put(INDIVIDUAL_POST_PREFERENCE, '0');
+        partherRequestParametersCloneMap.put(INDIVIDUAL_SMS_PREFERENCE, '0');
+        partherRequestParametersCloneMap.put(INDIVIDUAL_TELEPHONE_PREFERENCE, '0');
 
-        updateContactPreferences(partner.Id, requestParameters);
+        updateContactPreferences(partner.Id, partherRequestParametersCloneMap);
         return partner.Id;
     }
 
