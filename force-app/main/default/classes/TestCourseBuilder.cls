@@ -28,7 +28,7 @@ public with sharing class TestCourseBuilder {
 
     public TestCourseBuilder withFee(Integer fee)
     {
-        if (numberOfPlaces != null) {
+        if (fee != null) {
             this.fee = fee;
         }
         return this;
