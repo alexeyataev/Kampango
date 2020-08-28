@@ -341,45 +341,36 @@ public without sharing class TestDataFactory {
         return this;
     }
 
-    public TestDataFactory buildCourse() {
-        TestCourseBuilder courseBuilder = new TestCourseBuilder();
-        course = courseBuilder
-            .withAccount(branchAccount)
-            .withPractitioner(practitioners[0])
-            .withMainVenue(venue)
-            .withLicenceToPractice(licenceToPractice)
-            .insertRecord(true)
-            .build();
-
-        return this;
-    }
-
-    public TestDataFactory buildCourseWithStatus(String status) {
+    public TestDataFactory buildCourseRecord(String status, Integer fee, Integer numberOfPlaces) {
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         course = courseBuilder
             .withAccount(branchAccount)
             .withPractitioner(practitioners[0])
             .withMainVenue(venue)
             .withStatus(status)
+            .withFee(fee)
+            .withNumberOfPlaces(numberOfPlaces)
             .withLicenceToPractice(licenceToPractice)
             .insertRecord(true)
             .build();
 
         return this;
     }
+    
+    public TestDataFactory buildCourse() {
+        return buildCourseRecord(null, null, null);
+    }
+
+    public TestDataFactory buildCourseWithStatus(String status) {
+        return buildCourseRecord(status, null, null);
+    }
 
     public TestDataFactory buildCourseWithFee(Integer fee) {
-        TestCourseBuilder courseBuilder = new TestCourseBuilder();
-        course = courseBuilder
-            .withAccount(branchAccount)
-            .withPractitioner(practitioners[0])
-            .withMainVenue(venue)
-            .withFee(fee)
-            .withLicenceToPractice(licenceToPractice)
-            .insertRecord(true)
-            .build();
+        return buildCourseRecord(null, fee, null);
+    }
 
-        return this;
+    public TestDataFactory buildCourseWithNumberOfPlaces(Integer numberOfPlaces) {
+        return buildCourseRecord(null, null, numberOfPlaces);
     }
 
     public TestDataFactory buildGiftAidDeclaration() {

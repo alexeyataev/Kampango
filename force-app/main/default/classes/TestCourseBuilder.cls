@@ -28,18 +28,24 @@ public with sharing class TestCourseBuilder {
 
     public TestCourseBuilder withFee(Integer fee)
     {
-        this.fee = fee;
+        if (numberOfPlaces != null) {
+            this.fee = fee;
+        }
         return this;
     }
     public TestCourseBuilder withNumberOfPlaces(Integer numberOfPlaces)
     {
-        this.numberOfPlaces = numberOfPlaces;
+        if (numberOfPlaces != null) {
+            this.numberOfPlaces = numberOfPlaces;            
+        }
         return this;
     }
 
     public TestCourseBuilder withStatus(String status)
     {
-        this.status = status;
+        if (String.isNotBlank(status)) {
+            this.status = status;            
+        }
         return this;
     }
     public TestCourseBuilder withAccount(Account account)

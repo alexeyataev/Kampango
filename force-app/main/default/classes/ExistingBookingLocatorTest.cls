@@ -8,6 +8,7 @@ private class ExistingBookingLocatorTest {
     private static final String HOST_LASTNAME_TWO = 'Brown';
     private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
     private static final String BOOKING_STATUS = 'Enquiry';
+    private static final Integer NUMBER_OF_PLACES = 5;
 
     @TestSetup
     private static void SetupTestData() {
@@ -19,7 +20,7 @@ private class ExistingBookingLocatorTest {
                     .buildVenue()
                     .buildRoom()
                     .buildLicenceToPractice()
-                    .buildCourse()
+                    .buildCourseWithNumberOfPlaces(NUMBER_OF_PLACES)
                     .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
                     .buildPartnertHost(HOST_LASTNAME_TWO, HOST_EMAIL_ADDRESS)
                     .buildBooking(BOOKING_STATUS);
