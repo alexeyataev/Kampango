@@ -1,5 +1,5 @@
-//@SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #xxx - https://confluence.nct.org.uk:8443/x/EoSO
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #117 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 private class ExistingBookingLocatorTest {
     private static final String PRACTITIONER_LASTNAME = 'Smith';
