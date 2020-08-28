@@ -13,6 +13,7 @@ public class TestBookingBuilder {
     private Decimal feeOverride;
     private String feeOverrideReason;
     private String infoForPractitioner = 'Test info';
+    private String source = 'Enquiry';
     private Boolean under18 = false;
     private Boolean insertRecord = true;
     private Boolean ignoreDuplicateRules =  false;
@@ -91,7 +92,12 @@ public class TestBookingBuilder {
     public TestBookingBuilder ignoreDuplicateRules(Boolean ignoreDuplicateRules) {
 		this.ignoreDuplicateRules = true;
 		return this;
-	}
+    }
+    
+    public TestBookingBuilder withSource(String source){
+        this.source = source;
+        return this;
+    }
 
     public Booking__c build(){
         Booking__c booking = new Booking__c(
@@ -107,7 +113,8 @@ public class TestBookingBuilder {
             Fee_Override__c = this.feeOverride,
             Fee_Override_Reason__c = this.feeOverrideReason,
             Info_for_Practitioner__c = this.infoForPractitioner,
-            Under_18__c = this.under18
+            Under_18__c = this.under18,
+            Source__c = this.source
         );
         if(ignoreDuplicateRules && insertRecord){
 			Database.DMLOptions dmlOption = new Database.DMLOptions();
