@@ -2595,6 +2595,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Financial_Statements</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Licence_To_Practice__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
