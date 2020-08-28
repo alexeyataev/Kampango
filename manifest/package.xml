@@ -86,6 +86,8 @@
         <members>EncryptBookingValidationCodeHandler</members>
         <members>EncryptDecryptBookingValidationCodeTest</members>
         <members>EncryptDecryptSalesInvoiceValCodeTest</members>
+        <members>ExistingBookingLocator</members>
+        <members>ExistingBookingLocatorTest</members>
         <members>EXPENSESHEET_ConvertEStoPI_TDTM</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
