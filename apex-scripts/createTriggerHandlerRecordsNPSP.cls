@@ -99,6 +99,56 @@ requiredTriggerHandlersMap.put (
     )
 );
 
+requiredTriggerHandlersMap.put (
+    'BatchReceiptReportItem_TDTM',
+    new npsp__Trigger_Handler__c (
+        npsp__Object__c = 'Batch_Receipt_Report_Item__c',
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete }),
+        npsp__Load_Order__c = 0,
+        npsp__Active__c = true
+    )
+);
+
+requiredTriggerHandlersMap.put (
+    'Estimated_Costs_TDTM',
+    new npsp__Trigger_Handler__c (
+        npsp__Object__c = 'Estimated_Costs__c',
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete }),
+        npsp__Load_Order__c = 0,
+        npsp__Active__c = true
+    )
+);
+
+requiredTriggerHandlersMap.put (
+    'ZumzumPurchaseInvoice_TDTM',
+    new npsp__Trigger_Handler__c (
+        npsp__Object__c = 'Zumzum__Purchase_Invoice__c',
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete }),
+        npsp__Load_Order__c = 0,
+        npsp__Active__c = true
+    )
+);
+
+requiredTriggerHandlersMap.put (
+    'ZumzumPurchaseInvoiceLa4V_TDTM',
+    new npsp__Trigger_Handler__c (
+        npsp__Object__c = 'Zumzum__Purchase_Invoice_Line_Item__c',
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete }),
+        npsp__Load_Order__c = 0,
+        npsp__Active__c = true
+    )
+);
+
+requiredTriggerHandlersMap.put (
+    'ZumzumSalesInvoice_TDTM',
+    new npsp__Trigger_Handler__c (
+        npsp__Object__c = 'Zumzum__Sales_Invoice__c',
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete }),
+        npsp__Load_Order__c = 0,
+        npsp__Active__c = true
+    )
+);
+
 List<npsp__Trigger_Handler__c> existingTriggerHandlers = [
     SELECT npsp__Class__c
     FROM npsp__Trigger_Handler__c
