@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>SendEmail</name>
+        <label>SendEmail</label>
+        <locationX>290</locationX>
+        <locationY>260</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Is_Email_Sent_set_to_True</targetReference>
+        </connector>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>BACSRemittanceEmail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>paymentRunLineItem.Supplier_Account_Billing_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>ORG_WIDE_ADDRESS_VALUE</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>BACS remittance from NCT</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Assign_Line_Item_for_update</name>
+        <label>Assign Line Item for update</label>
+        <locationX>685</locationX>
+        <locationY>260</locationY>
+        <assignmentItems>
+            <assignToReference>paymentRunLineItemsToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>paymentRunLineItem</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Is_Email_Sent_set_to_True</name>
+        <label>Is Email Sent set to True</label>
+        <locationX>490</locationX>
+        <locationY>164</locationY>
+        <assignmentItems>
+            <assignToReference>paymentRunLineItem.Is_Email_Sent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Line_Item_for_update</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>ORG_WIDE_ADDRESS_VALUE</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>noreply-parentforce@nct.org.uk</stringValue>
+        </value>
+    </constants>
+    <interviewLabel>BACS Send Remittance Emails Assistant {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>BACS Send Remittance Emails Assistant</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>SendEmail</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>BACSRemittanceEmail</name>
+        <text>Dear Sir/Madam
+
+A remittance of £{!paymentRunLineItem.Paid_Amount__c} has been sent to your designated bank account today. If you do not receive it within 3 working days please let us know by replying to finance@nct.org.uk. The amount is payment for the following:
+
+{!paymentRunLineItem.Reference_Info__c}
+
+Kind regards
+
+NCT</text>
+    </textTemplates>
+    <variables>
+        <name>paymentRunLineItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Payment_Run_Line_Item__c</objectType>
+    </variables>
+    <variables>
+        <name>paymentRunLineItemsToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Payment_Run_Line_Item__c</objectType>
+    </variables>
+</Flow>

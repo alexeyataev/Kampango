@@ -3,9 +3,8 @@
     <fullName>Cancellation_Terms__c</fullName>
     <externalId>false</externalId>
     <label>Cancellation Terms</label>
-    <length>255</length>
-    <required>false</required>
+    <length>1500</length>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
 </CustomField>
