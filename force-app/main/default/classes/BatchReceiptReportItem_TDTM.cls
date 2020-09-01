@@ -10,7 +10,7 @@ global with sharing class BatchReceiptReportItem_TDTM extends npsp.TDTM_Runnable
                                                triggerAction == npsp.TDTM_Runnable.Action.AfterUpdate ||
                                                triggerAction == npsp.TDTM_Runnable.Action.AfterDelete;
 
-        if ( doNeedToExecuteRollupService == true) {
+        if ( doNeedToExecuteRollupService == true ) {
             dlrs.RollupService.triggerHandler(objResult.getSObjectType());
         }
 
