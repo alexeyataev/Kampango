@@ -139,16 +139,6 @@ requiredTriggerHandlersMap.put (
     )
 );
 
-requiredTriggerHandlersMap.put (
-    'ZumzumSalesInvoice_TDTM',
-    new npsp__Trigger_Handler__c (
-        npsp__Object__c = 'Zumzum__Sales_Invoice__c',
-        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete }),
-        npsp__Load_Order__c = 0,
-        npsp__Active__c = true
-    )
-);
-
 List<npsp__Trigger_Handler__c> existingTriggerHandlers = [
     SELECT npsp__Class__c
     FROM npsp__Trigger_Handler__c
