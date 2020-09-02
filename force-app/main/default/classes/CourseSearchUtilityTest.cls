@@ -479,7 +479,6 @@ private class CourseSearchUtilityTest {
         CourseFinderModel model = (CourseFinderModel)System.JSON.deserialize(response.responseBody.toString(), CourseFinderModel.class );
         
         System.assertEquals(model.Online, true);
-        system.debug(model.Sessions);
     }
 
     @isTest

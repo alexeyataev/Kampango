@@ -30,10 +30,6 @@
                 <behavior>Readonly</behavior>
                 <field>Branch_Number__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Booking_Type__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
