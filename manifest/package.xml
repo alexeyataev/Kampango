@@ -200,7 +200,6 @@
         <members>ZumzumPurchaseInvoiceCreator</members>
         <members>ZumzumPurchaseInvoiceCreatorTest</members>
         <members>ZumzumPurchaseInvoiceLa4V_TDTM</members>
-        <members>ZumzumSalesInvoice_TDTM</members>
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
         <members>ZumzumSalesInvoiceParameters</members>
@@ -232,7 +231,6 @@
         <members>TDTM_Session_c</members>
         <members>TDTM_ZumzumPurchaseInvoice_La4V</members>
         <members>TDTM_ZumzumPurchaseInvoice</members>
-        <members>TDTM_ZumzumSalesInvoice</members>
         <name>ApexTrigger</name>
     </types>
     <types>
