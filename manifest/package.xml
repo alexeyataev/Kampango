@@ -226,7 +226,6 @@
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTrigger</members>
         <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
-        <members>dlrs_Zumzum_Sales_InvoiceTrigger</members>
         <members>TDTM_Booking</members>
         <members>TDTM_FeedItem</members>
         <members>TDTM_SalesInvoice</members>

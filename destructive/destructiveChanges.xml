@@ -39,6 +39,7 @@
     </types>
     <types>
         <members>dlrs_BookingTrigger</members>
+        <members>dlrs_Zumzum_Sales_InvoiceTrigger</members>
         <name>ApexTrigger</name>
     </types>
     <types>
