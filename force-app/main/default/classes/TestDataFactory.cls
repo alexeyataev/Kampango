@@ -341,36 +341,45 @@ public without sharing class TestDataFactory {
         return this;
     }
 
-    public TestDataFactory buildCourseRecord(String status, Integer fee, Integer numberOfPlaces) {
+    public TestDataFactory buildCourse() {
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         course = courseBuilder
             .withAccount(branchAccount)
             .withPractitioner(practitioners[0])
             .withMainVenue(venue)
-            .withStatus(status)
-            .withFee(fee)
-            .withNumberOfPlaces(numberOfPlaces)
             .withLicenceToPractice(licenceToPractice)
             .insertRecord(true)
             .build();
 
         return this;
     }
-    
-    public TestDataFactory buildCourse() {
-        return buildCourseRecord(null, null, null);
-    }
 
     public TestDataFactory buildCourseWithStatus(String status) {
-        return buildCourseRecord(status, null, null);
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        course = courseBuilder
+            .withAccount(branchAccount)
+            .withPractitioner(practitioners[0])
+            .withMainVenue(venue)
+            .withStatus(status)
+            .withLicenceToPractice(licenceToPractice)
+            .insertRecord(true)
+            .build();
+
+        return this;
     }
 
     public TestDataFactory buildCourseWithFee(Integer fee) {
-        return buildCourseRecord(null, fee, null);
-    }
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        course = courseBuilder
+            .withAccount(branchAccount)
+            .withPractitioner(practitioners[0])
+            .withMainVenue(venue)
+            .withFee(fee)
+            .withLicenceToPractice(licenceToPractice)
+            .insertRecord(true)
+            .build();
 
-    public TestDataFactory buildCourseWithNumberOfPlaces(Integer numberOfPlaces) {
-        return buildCourseRecord(null, null, numberOfPlaces);
+        return this;
     }
 
     public TestDataFactory buildGiftAidDeclaration() {
@@ -418,10 +427,6 @@ public without sharing class TestDataFactory {
 
     public TestDataFactory buildReunion() {
         return buildSessionWithTypeAndStatus(SESSION_REUNION_TYPE, SESSION_PROVISIONAL_STATUS);
-    }
-
-    public TestDataFactory buildConfirmedReunion() {
-        return buildSessionWithTypeAndStatus(SESSION_REUNION_TYPE, SESSION_CONFIRMED_STATUS);
     }
 
     public TestDataFactory buildSessionWithTypeAndStatus(String sessionType, String sessionStatus) {

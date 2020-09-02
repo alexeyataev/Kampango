@@ -86,8 +86,6 @@
         <members>EncryptBookingValidationCodeHandler</members>
         <members>EncryptDecryptBookingValidationCodeTest</members>
         <members>EncryptDecryptSalesInvoiceValCodeTest</members>
-        <members>ExistingBookingLocator</members>
-        <members>ExistingBookingLocatorTest</members>
         <members>EXPENSESHEET_ConvertEStoPI_TDTM</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
@@ -489,7 +487,6 @@
         <name>EmailTemplate</name>
     </types>
     <types>
-        <members>Booking_Type</members>
         <members>Course_Sub_Type</members>
         <members>Geographical_Weightings</members>
         <members>Practitioner_Bands</members>

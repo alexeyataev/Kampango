@@ -1637,11 +1637,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Course__c.Booking_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Course__c.Break_Even_Number_Of_Places__c</field>
         <readable>false</readable>
     </fieldPermissions>

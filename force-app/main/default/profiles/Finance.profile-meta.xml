@@ -156,11 +156,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Booking_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Account.Branch_Number__c</field>
         <readable>true</readable>
@@ -581,11 +576,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Booking__c.Source__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Booking__c.Street_Address__c</field>
         <readable>true</readable>
@@ -748,16 +738,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course__c.Additional_Offer_Information__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Booking_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Course__c.Booking_Type_Override__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

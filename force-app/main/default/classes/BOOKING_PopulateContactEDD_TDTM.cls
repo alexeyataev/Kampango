@@ -20,7 +20,7 @@ global with sharing class BOOKING_PopulateContactEDD_TDTM extends npsp.TDTM_Runn
 
     private List<Contact> updateContactsExpectedDueDate(List<Booking__c> newBookingList, List<Booking__c> oldBookingList) {
         List<Contact> contactsToUpdate = new List<Contact>();
-        Map<Id, Booking__c> oldBookingMap = oldBookingList != null ? new Map<Id, Booking__c>(oldBookingList) : new Map<Id, Booking__c>();
+        Map<Id, Booking__c> oldBookingMap = new Map<Id, Booking__c>(oldBookingList);
         Map<Id, Date> contactsWithExpectedDueDates = new Map<Id, Date>();
         for (Booking__c booking : newBookingList) {
             if (!oldBookingMap.containsKey(booking.Id) || oldBookingMap.get(booking.Id).Birth_Due_Date__c != booking.Birth_Due_Date__c) {
@@ -38,4 +38,4 @@ global with sharing class BOOKING_PopulateContactEDD_TDTM extends npsp.TDTM_Runn
 
         return contactsToUpdate;
     }
-}
+} 

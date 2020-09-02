@@ -10,7 +10,6 @@ public without sharing virtual class CourseFinderModel {
     public transient Date StartDate {get; set;}
 
     public String Summary;
-    private String BookingType;
     private String BranchNumber;
     private Boolean CouplesAllowed;
     private CourseOrganiser CourseOrganiser;
@@ -20,7 +19,6 @@ public without sharing virtual class CourseFinderModel {
     private Integer PlacesAvailable;
     private Decimal Price;
     public String Reference;
-    @testVisible
     private List<Session> Sessions;
     private String Title;
     private Venue Venue;
@@ -60,7 +58,6 @@ public without sharing virtual class CourseFinderModel {
          */
         final Integer DEFAULT_REMAINING_PLACES = 20;
         this.Id = course.Name;
-        this.BookingType = course.Booking_Type__c;
         this.StartDate = course.Start_Date__c;
         this.Summary = course.Type__c == 'Drop In' ? course.Drop_In_Schedule_Information__c : course.Summary__c;
         this.BranchNumber = course.Branch__r.Branch_Number__c;
@@ -117,7 +114,7 @@ public without sharing virtual class CourseFinderModel {
             return !String.isEmpty(postcode) ? postcode.split(' ')[0] : 'SW1A';
         }
     }
-    @testVisible
+  
     private without sharing class Session {
         private String Session_Date;
         private String Start;
@@ -125,17 +122,14 @@ public without sharing virtual class CourseFinderModel {
         private Boolean WomenOnly;
         private Boolean Breastfeeding;
         private String Notes;
-        @testVisible
-        private Boolean Reunion;
         
         private Session (Session__c session) {
             this.Session_Date = String.valueOf(session.Date__c);
             this.Start = String.valueOf(session.Start__c);
             this.Session_End = String.valueOf(session.End__c); 
-            this.WomenOnly = session.Specific_Attendee_Type__c == 'Women Only' ? true : false;
+            this.WomenOnly = session.Specific_Attendee_Type__c == 'Women Only' ? true : false;  
             this.Breastfeeding = session.Type__c == 'Breastfeeding' ? true : false;
-            this.Notes = session.Additional_Information_with_Venue__c;
-            this.Reunion = session.Type__c == 'Reunion' ? true : false;
+            this.Notes = session.Additional_Information_with_Venue__c;  
         }
     }
 

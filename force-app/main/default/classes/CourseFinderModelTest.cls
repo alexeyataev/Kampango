@@ -1,5 +1,3 @@
-@SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #116 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 private class CourseFinderModelTest {
     @TestSetup
@@ -13,14 +11,12 @@ private class CourseFinderModelTest {
                        .buildRoom()
                        .buildLicenceToPractice()
                        .buildCoursesWithSessions(1, 2);
-        List<Course__c> courseList = [SELECT Id, (SELECT Id FROM Sessions__r) FROM Course__c];
-        testDataFactory.setCoursesToFinalAndSessionsToConfirmed(courseList)
-                       .buildConfirmedReunion();
     }
+
     @isTest
-    static void CreateCourseWithReunionSession_SessionTypeReunion_SessionWrapperReunionTrue() {
+    static void createInstenceCourseFinderModel() {
         Course__c course = [
-            SELECT Name, Booking_Type__c, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Confirmed_Places__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
+            SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Confirmed_Places__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
                 Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
                 Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
                 Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
@@ -39,16 +35,5 @@ private class CourseFinderModelTest {
         Test.stopTest();
 
         System.assertNotEquals(null, courseFinderModel);
-        Integer sessionNotReunionCount = 0;
-        Integer sessionReunionCount = 0;
-        for(CourseFinderModel.Session session : courseFinderModel.Sessions) {
-            if(session.Reunion) {
-                sessionReunionCount++;
-            } else {
-                sessionNotReunionCount++;
-            }
-        }
-        System.assertEquals(sessionReunionCount, 1);
-        System.assertEquals(sessionNotReunionCount, 2);
     }
 }
