@@ -6,6 +6,7 @@ public with sharing class ZumzumPurchaseInvoice_TDTM_Test {
 
     private static final Integer EXPENSE_SHEET_DETAIL_TOTAL_GROSS = 12;
     private static final String SUPPLIER_ACCOUNT_NUMBER = '123456';
+    private static final String PROFILE_NAME = 'Finance';
 
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String> {
         'triggerHandlerName' => 'ZumzumPurchaseInvoice_TDTM',
@@ -51,8 +52,11 @@ public with sharing class ZumzumPurchaseInvoice_TDTM_Test {
         System.assertEquals(expenseSheetBeforeUpdated.Number_of_Purchase_Invoices__c, 0, 'Shoud be equals 0');
         purchaseInvoice.Zumzum__Expense_Sheet__c = expenseSheetBeforeUpdated.Id;
 
+        User financeUser = TestDataFactory.getActiveTestUserByProfileName(PROFILE_NAME);
         Test.startTest();
-            update purchaseInvoice;
+            System.runAs(financeUser) {
+                update purchaseInvoice;
+            }
         Test.stopTest();
 
         Zumzum__Expense_Sheet__c expenseSheetAfterUpdated = [SELECT Id, Number_of_Purchase_Invoices__c FROM Zumzum__Expense_Sheet__c LIMIT 1];
