@@ -74,6 +74,10 @@
                 <field>Cancellation_Reason__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Cancellation_Date__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Fee__c</field>
             </layoutItems>
