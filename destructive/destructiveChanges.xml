@@ -24,6 +24,10 @@
         <members>ZumzumBACSremittanceEmailsAction</members>
         <members>ZumzumBACSremittanceEmailsActionTest</members>
         <members>ZumzumBACSremittanceEmailsBatch</members>
+        <members>dlrs_Batch_Receipt_Report_ItemTest</members>
+        <members>dlrs_Estimated_CostsTest</members>
+        <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
+        <members>dlrs_Zumzum_Purchase_InvoiceTest</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -43,7 +47,6 @@
         <members>dlrs_Estimated_CostsTrigger</members>
         <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTrigger</members>
-        <members>dlrs_Zumzum_Sales_InvoiceTrigger</members>
         <name>ApexTrigger</name>
     </types>
     <types>

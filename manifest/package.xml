@@ -23,6 +23,7 @@
         <members>BatchOutboundBACSpayment</members>
         <members>BatchOutboundBACSpaymentTest</members>
         <members>BatchReceiptReportItem_TDTM</members>
+        <members>BatchReceiptReportItem_Test</members>
         <members>BOOKING_EncryptValidationCode_TDTM</members>
         <members>BOOKING_PopulateContactEDD_TDTM_Test</members>
         <members>BOOKING_PopulateContactEDD_TDTM</members>
@@ -77,17 +78,13 @@
         <members>CreateListViewUtilityTest</members>
         <members>DecryptAdhocValidationCodeHandler</members>
         <members>DecryptBookingValidationCodeHandler</members>
-        <members>dlrs_Batch_Receipt_Report_ItemTest</members>
-        <members>dlrs_BookingTest</members>
-        <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
-        <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
-        <members>dlrs_Zumzum_Purchase_InvoiceTest</members>
         <members>dlrs_Zumzum_Sales_InvoiceTest</members>
         <members>EncryptBookingValidationCodeHandler</members>
         <members>EncryptDecryptBookingValidationCodeTest</members>
         <members>EncryptDecryptSalesInvoiceValCodeTest</members>
         <members>Estimated_Costs_TDTM</members>
+        <members>Estimated_Costs_TDTM_Test</members>
         <members>EXPENSESHEET_ConvertEStoPI_TDTM</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
@@ -197,9 +194,11 @@
         <members>ZumzumPostSalesInvoiceHelper</members>
         <members>ZumzumPostSalesInvoiceHelperTest</members>
         <members>ZumzumPurchaseInvoice_TDTM</members>
+        <members>ZumzumPurchaseInvoice_TDTM_Test</members>
         <members>ZumzumPurchaseInvoiceCreator</members>
         <members>ZumzumPurchaseInvoiceCreatorTest</members>
         <members>ZumzumPurchaseInvoiceLa4V_TDTM</members>
+        <members>ZumzumPurchaseInvoiceLa4V_TDTM_Test</members>
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
         <members>ZumzumSalesInvoiceParameters</members>
