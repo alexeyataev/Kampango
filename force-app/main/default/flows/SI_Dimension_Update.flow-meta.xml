@@ -95,15 +95,14 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>ISNEW() || ISCHANGED( [Zumzum__Sales_Invoice_Line_Item__c].Course__c ) 
-</stringValue>
+                <stringValue>NOT(ISBLANK([Zumzum__Sales_Invoice_Line_Item__c].Course__c )) &amp;&amp; (ISNEW() || ISCHANGED( [Zumzum__Sales_Invoice_Line_Item__c].Course__c))</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>ISNEW() || ISCHANGED( {!myVariable_current.Course__c} )</expression>
+        <expression>NOT(ISBLANK({!myVariable_current.Course__c} )) &amp;&amp; (ISNEW() || ISCHANGED( {!myVariable_current.Course__c}))</expression>
     </formulas>
-    <interviewLabel>SI_Dimension_Update-1_InterviewLabel</interviewLabel>
+    <interviewLabel>SI_Dimension_Update-6_InterviewLabel</interviewLabel>
     <label>SI - Dimension Update</label>
     <processMetadataValues>
         <name>ObjectType</name>

@@ -25,7 +25,7 @@ private class dlrs_SessionTest
                     .buildCourse()
                     .buildEstimatedCosts()
                     .buildSession()
-                    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed');
+                    .buildReunion();
 
 
         List<Session__c> sessions = [

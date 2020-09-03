@@ -266,6 +266,7 @@
         <queriedFields>IndividualId</queriedFields>
         <queriedFields>AccountId</queriedFields>
         <queriedFields>RecordTypeId</queriedFields>
+        <queriedFields>Country__c</queriedFields>
     </recordLookups>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>

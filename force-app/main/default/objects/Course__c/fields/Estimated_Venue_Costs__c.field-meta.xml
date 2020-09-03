@@ -4,7 +4,7 @@
     <description>Sum of  Estimated Costs with type Venue</description>
     <externalId>false</externalId>
     <label>Estimated Venue Costs</label>
-    <precision>6</precision>
+    <precision>7</precision>
     <required>false</required>
     <scale>2</scale>
     <trackFeedHistory>false</trackFeedHistory>

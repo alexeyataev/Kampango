@@ -2,9 +2,9 @@
 @isTest
 public without sharing class AddContactForMembershipTest {
     private static final String CONTACT_NUMBER_RETURNED = '3325461';
+    private static final String ERROR_NUMBER = '400';
     private static final String MESSAGE_TEXT_ERROR = 'Error';
     private static final String MESSAGE_TEXT_SUCCESS = 'Success';
-    private static final String ERROR_NUMBER = '400';
     @testSetup static void createTestData() {
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account account =  accountBuilder
@@ -47,7 +47,7 @@ public without sharing class AddContactForMembershipTest {
         List<String> contactIds = new List<String> {testContact.Id};
         List<AddContactResult> resultList = AddContactForMembershipHandler.addContact(contactIds);
         Test.stopTest();
-        System.assertEquals(resultList[0].error, MESSAGE_TEXT_ERROR);
+        System.assert(resultList[0].error.contains('Response:\r\n' + MESSAGE_TEXT_ERROR));
     }
     @isTest static void AddContactBatch_ContactAdded_ContactNumberReturned() {
         Test.startTest();
@@ -77,6 +77,6 @@ public without sharing class AddContactForMembershipTest {
         Test.stopTest();
         Contact contUpdated = [SELECT Care_Status__c, Care_Error_Log__c FROM Contact LIMIT 1];
         System.assertEquals(contUpdated.Care_Status__c, CareHelper.FAILURE_STATUS);
-        System.assert(contUpdated.Care_Error_Log__c.contains(MESSAGE_TEXT_ERROR));
+        System.assert(contUpdated.Care_Error_Log__c.contains('Response:\r\n' + MESSAGE_TEXT_ERROR));
     }
 }

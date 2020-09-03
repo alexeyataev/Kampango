@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Assign_Fee_Rates_To_Sessions</name>
+        <label>Assign Fee Rates To Sessions</label>
+        <locationX>508</locationX>
+        <locationY>258</locationY>
+        <actionName>SessionFeeHelperFlowAssistant</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Recalculate_Practitioner_Fees</targetReference>
+        </connector>
+        <inputParameters>
+            <name>sessionsToProcess</name>
+            <value>
+                <elementReference>sessionsToProcess</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <interviewLabel>Update Sessions Fee Rate {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Sessions Fee Rate</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Course_Sessions</name>
+        <label>Get Course Sessions</label>
+        <locationX>211</locationX>
+        <locationY>330</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Fee_Rates_To_Sessions</targetReference>
+        </connector>
+        <filters>
+            <field>Course__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Session__c</object>
+        <outputReference>sessionsToProcess</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <screens>
+        <name>Recalculate_Practitioner_Fees</name>
+        <label>Recalculate Practitioner Fees</label>
+        <locationX>680</locationX>
+        <locationY>113</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>RecalculatePractitionerFeesScreenText</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 20px; background-color: rgb(255, 255, 255); color: rgb(29, 28, 29);&quot;&gt;Practitioner Fees have been &lt;/span&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;recalculated&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>186</locationX>
+        <locationY>76</locationY>
+        <connector>
+            <targetReference>Get_Course_Sessions</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>sessionsToProcess</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Session__c</objectType>
+    </variables>
+</Flow>

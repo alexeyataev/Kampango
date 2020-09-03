@@ -16,7 +16,7 @@ public with sharing class TestContactBuilder {
 	private String mailingStreet = 'Test street';
 	private String mailingCity = 'Test city';
 	private String mailingPostalCode = 'Test code';
-	private String mailingCountry = 'Test country';
+	private String mailingCountry = 'United Kingdom';
 	private String nctNumber;
 
 	public TestContactBuilder withRecordType(string recordTypeName) {

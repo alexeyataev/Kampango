@@ -1,27 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>48.0</apiVersion>
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Adhoc Payment Confirmation</name>
     <style>none</style>
     <subject>NCT payment success</subject>
-    <textOnly>Dear {!Booking__c.First_Name__c}
-
-Thank you for making a payment to NCT. This transaction was successful.
-
-If you have any queries or questions about this payment, please get in touch with nctcourses@nct.org.uk
-
-
-Kind Regards,
-
-
-{!Booking__c.Enquiries_PSA_Name__c}
-
-Course Organiser
-
-Telephone: {!Booking__c.Enquiries_PSA_Phone__c}
-
-Email: Any reply to this email should be sent to {!Booking__c.Enquiries_PSA_Email__c}</textOnly>
-    <type>custom</type>
+    <type>visualforce</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

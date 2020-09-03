@@ -145,7 +145,7 @@ public with sharing class SessionFeeHelperTest {
         delete branchWeightings;
 
         Test.startTest();
-        SessionFeeHelper.assignFeeRatesToSessions(sessionsToTest);
+        SessionFeeHelperFlowAssistant.assignFeeRatesToSessions(new List<List<Session__c>>{sessionsToTest});
         Test.stopTest();
 
         List<Session__c> sessionsTestResult = [SELECT Id, Practitioner_Fee_Rate__c FROM Session__c];

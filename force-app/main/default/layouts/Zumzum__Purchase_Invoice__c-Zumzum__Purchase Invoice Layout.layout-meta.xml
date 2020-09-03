@@ -72,6 +72,10 @@
                 <behavior>Readonly</behavior>
                 <field>Zumzum__Total_Gross__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Zumzum__Expense_Sheet__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

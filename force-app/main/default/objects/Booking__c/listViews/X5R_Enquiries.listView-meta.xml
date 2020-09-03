@@ -4,7 +4,6 @@
     <columns>NAME</columns>
     <columns>CREATED_DATE</columns>
     <columns>Primary_Contact__c</columns>
-    <columns>PSA_Office__c</columns>
     <columns>Course__c</columns>
     <columns>Course_Sub_Type__c</columns>
     <columns>Course_Start_Date__c</columns>

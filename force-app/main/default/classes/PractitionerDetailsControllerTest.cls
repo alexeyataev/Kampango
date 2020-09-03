@@ -10,18 +10,27 @@ public with sharing class PractitionerDetailsControllerTest {
     @TestSetup 
     private static void SetupTestData() {
     TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory .buildOrganizationAccount('acc1')
-                    .buildBranchAccount()
-                    .buildPractitioner(PRACTITIONER_LASTNAME)
-                    .buildPractitionerFeeRate()
-                    .buildVenue()
-                    .buildRoom()
-                    .buildLicenceToPractice()
-                    .buildCourse()
-                    .buildEstimatedCosts()
-                    .buildSession()
-                    .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-		    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed');
+        dataFactory.buildOrganizationAccount('acc1')
+			.buildBranchAccount()
+			.buildPractitioner(PRACTITIONER_LASTNAME)
+			.buildPractitionerFeeRate()
+			.buildVenue()
+			.buildRoom()
+			.buildLicenceToPractice()
+			.buildCourseWithTypeAndSubType('Antenatal', 'One to One')
+			.buildEstimatedCosts()
+			.buildSession();
+		List<Session__c> sessions = [
+			SELECT Id FROM Session__c WHERE Type__c = 'Standard' AND Status__c != 'Confirmed'
+		];
+		dataFactory.setSessionsToConfirmed(sessions)
+			.buildReunion()
+            .setCourseToFinal()
+			.buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS);
+		List<Session__c> sessionsReunion = [
+			SELECT Id FROM Session__c WHERE Type__c = 'Reunion' AND Status__c != 'Confirmed'
+		];
+		dataFactory.setSessionsToConfirmed(sessionsReunion);
     }
 
     @IsTest

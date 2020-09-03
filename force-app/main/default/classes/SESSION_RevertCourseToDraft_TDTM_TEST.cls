@@ -12,8 +12,8 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     private static final String PRACTITIONER_RECORDTYPE_NAME  = 'Practitioner';
     private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
     private static final String VIRTUAL_VENUE = 'Virtual';
-    private static final Integer COURSES_TO_CREATE = 5;
-    private static final Integer SESSIONS_TO_CREATE = 10;
+    private static final Integer COURSES_TO_CREATE = 3;
+    private static final Integer SESSIONS_TO_CREATE = 6;
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
         'triggerHandlerName' => 'SESSION_RevertCourseToDraft_TDTM',
         'className' => 'SESSION_RevertCourseToDraft_TDTM',
@@ -33,24 +33,26 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
     private static void SetupTestData() {
         TestDataFactory dataFactory = TestDataFactory.getInstance();
         dataFactory .buildBranchAccount()
-                    .buildOrganizationAccount('acc1')
-                    .buildOrganizationAccount('acc2')
-                    .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
-                    .buildPractitioner(PRACTITIONER_LASTNAME_TWO)
-                    .buildPractitionerFeeRate()
-                    .buildVenue()
-                    .buildVirtualVenue('Virtual')
-                    .buildRoom()
-                    .buildLicenceToPractice()
-                    .buildCourse()
-                    .buildEstimatedCosts()
-                    .buildSession()
-                    .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE)
-                    .buildReunion()
-                    .buildVirtualSupportSession(SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT, 2);
-        List<Session__c> sessions = [SELECT Id FROM Session__c LIMIT 1000];
-        dataFactory .setSessionsToConfirmed(sessions)
-                    .setCourseToFinal();
+            .buildOrganizationAccount('acc1')
+            .buildOrganizationAccount('acc2')
+            .buildPractitioner(PRACTITIONER_LASTNAME_ONE)
+            .buildPractitioner(PRACTITIONER_LASTNAME_TWO)
+            .buildPractitionerFeeRate()
+            .buildVenue()
+            .buildVirtualVenue('Virtual')
+            .buildRoom()
+            .buildLicenceToPractice()
+            .buildCourse()
+            .buildEstimatedCosts()
+            .buildSession()
+            .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE)
+            .buildVirtualSupportSession(SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT, 2);
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Type__c = 'Standard' AND Status__c != 'Confirmed' LIMIT 1000];
+        dataFactory.setSessionsToConfirmed(sessions)
+            .setCourseToFinal()
+            .buildReunion();
+        List<Session__c> sessionsReunion = [SELECT Id FROM Session__c WHERE Type__c = 'Reunion' AND Status__c != 'Confirmed' LIMIT 1000];
+        dataFactory.setSessionsToConfirmed(sessionsReunion);
         TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
     }
 
@@ -127,10 +129,12 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
 
     @isTest
     static void RevertCourseToDraft_PractitionerLicenceUpdatedOnSession_CourseStatusIsRevertedToDraft() {
-        List<Session__c> sessions = [SELECT Id FROM Session__c];
-        Course__c course = [SELECT Id FROM Course__c LIMIT 1];
-        course.Status__c = COURSE_FINAL_STATUS;
-        update course;
+        List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Type__c = 'Standard'];
+        List<Course__c> courses = [SELECT Id FROM Course__c];
+        for(Course__c course : courses) {
+            course.Status__c = COURSE_FINAL_STATUS;
+        }
+        update courses;
 
         Contact practitioner = [SELECT LastName FROM Contact WHERE LastName = :PRACTITIONER_LASTNAME_ONE LIMIT 1];
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
@@ -146,7 +150,7 @@ public class SESSION_RevertCourseToDraft_TDTM_TEST {
         update sessions;
         Test.stopTest();
 
-        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :course.Id LIMIT 1];
+        Course__c courseToTest = [SELECT Status__c FROM Course__c WHERE Id = :courses[0].Id LIMIT 1];
         System.assertEquals(COURSE_DRAFT_STATUS, courseToTest.Status__c);
     }
 

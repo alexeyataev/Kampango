@@ -2,7 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Contact_Hours__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(ISBLANK(Hours__c), ((End__c-Start__c)/60000 - Lunch_Break_Minutes__c)/60, (Hours__c - Lunch_Break_Minutes__c/60))</formula>
+    <formula>IF(Hours__c = 0, ((End__c-Start__c)/60000 - Lunch_Break_Minutes__c)/60, (Hours__c - Lunch_Break_Minutes__c/60))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Contact Hours</label>
     <precision>18</precision>
     <required>false</required>

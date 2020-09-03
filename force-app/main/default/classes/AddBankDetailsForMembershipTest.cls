@@ -1,20 +1,17 @@
 @SuppressWarnings('PMD.MethodNamingConventions')
 @isTest
 public without sharing class AddBankDetailsForMembershipTest {
-
     private static final String MESSAGE_TEXT_ERROR = 'Error';
     private static final String ERROR_NUMBER = '400';
     private static final String BANK_DETAILS_NUMBER = '331257';
-
+    private static final String MESSAGE_TEXT_HTTP_ERROR = 'HTTP Error Reason Message';
     @testSetup static void createTestData() {
-
         TestAccountBuilder accountBuilder = new TestAccountBuilder();
         Account account =  accountBuilder
             .withRecordType('Household Account')
             .withBranchNumber('777')
             .insertRecord(true)
             .build();
-
         TestContactBuilder contactBuilder = new TestContactBuilder();
         Contact primaryContact = contactBuilder
             .withRecordType('Client')
@@ -25,7 +22,6 @@ public without sharing class AddBankDetailsForMembershipTest {
             .insertRecord(true)
             .build();
     }
-
     @isTest static void AddBankDetails_BankDetailsAdded_BankDetailNumberReturned() {
         Test.startTest();
         CareHelper.ContactBankAccountObject contactBankAccountObject = new CareHelper.ContactBankAccountObject();
@@ -40,7 +36,6 @@ public without sharing class AddBankDetailsForMembershipTest {
 
         System.assertEquals(resultList[0].bankDetailsNumber, BANK_DETAILS_NUMBER, 'Will return Bank Detail Number');
     }
-
     @isTest static void AddBankDetailsNull_NotNctNumber_NullReturned() {
         Test.startTest();
         CareHelper.ContactBankAccountObject contactBankAccountObject = new CareHelper.ContactBankAccountObject();
@@ -52,23 +47,23 @@ public without sharing class AddBankDetailsForMembershipTest {
         Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(contactBankAccountObject));
         List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails( getInstallmentList() );
         Test.stopTest();
-        System.assertEquals(resultList[0].error, MESSAGE_TEXT_ERROR, 'Will return message error');
+        System.assert(resultList[0].error.contains('Response:\r\n' + MESSAGE_TEXT_ERROR), 'Will return message error');
     }
-
-    @isTest static void AddBankDetailsException_NctNumberIsNotAdded_ExceptionReturned() {
+    @isTest static void AddBankDetailsNullParameterException_NctNumberIsNotAdded_ExceptionReturned() {
         Test.startTest();
-        cpm__Installment__c isntallmentInstance = new cpm__Installment__c();
-
-        Contact cnt = [SELECT Id, NCT_Number__c FROM Contact LIMIT 1];
-        cnt.NCT_Number__c = null;
-        update cnt;
-
-        isntallmentInstance.cpm__Contact__c = cnt.Id;
-        List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails( new List<cpm__Installment__c> {isntallmentInstance} );
+        List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails( new List<cpm__Installment__c> {null} );
         System.assertEquals(resultList[0].bankDetailsNumber, null, 'Will return Bank Detail Number');
+        System.assertEquals(resultList[0].error, '1 installment parameter must be passed');
         Test.stopTest();
     }
-
+    @isTest static void AddBankDetailsHttpError_NctNumberIsNotAdded_ErrorReturned() {
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new SendMembershipHttpResponseMock(MESSAGE_TEXT_HTTP_ERROR, false));
+        List<AddBankDetailsResult> resultList = AddBankDetailsForMembershipHandler.addBankDetails( getInstallmentList() );
+        System.assertEquals(resultList[0].bankDetailsNumber, null);
+        System.assert(resultList[0].error.contains('Response:\r\n' + MESSAGE_TEXT_HTTP_ERROR));
+        Test.stopTest();
+    }
     private static List<cpm__Installment__c> getInstallmentList() {
         cpm__Installment__c isntallmentInstance = new cpm__Installment__c();
         isntallmentInstance.cpm__Contact__c = [SELECT Id FROM Contact LIMIT 1].Id;

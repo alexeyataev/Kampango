@@ -3,7 +3,7 @@
     <decisions>
         <name>Is_Records_Empty</name>
         <label>Is Records Empty</label>
-        <locationX>1266</locationX>
+        <locationX>1443</locationX>
         <locationY>263</locationY>
         <defaultConnector>
             <targetReference>Confirmed_Booking_Screen</targetReference>
@@ -50,7 +50,7 @@
     <recordLookups>
         <name>Get_Main_Practitioner</name>
         <label>Get Main Practitioner</label>
-        <locationX>911</locationX>
+        <locationX>1088</locationX>
         <locationY>268</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -75,7 +75,7 @@
     <recordLookups>
         <name>Get_Sessions</name>
         <label>Get Sessions</label>
-        <locationX>1064</locationX>
+        <locationX>1241</locationX>
         <locationY>268</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -109,13 +109,14 @@
         <queriedFields>Delivery_Type__c</queriedFields>
         <queriedFields>Contact_Hours__c</queriedFields>
         <queriedFields>Additional_Information_with_Venue__c</queriedFields>
+        <queriedFields>Session_Room_Name__c</queriedFields>
         <sortField>Date__c</sortField>
         <sortOrder>Asc</sortOrder>
     </recordLookups>
     <screens>
         <name>Confirmed_Booking_Screen</name>
         <label>Confirmed Booking Screen</label>
-        <locationX>1276</locationX>
+        <locationX>1453</locationX>
         <locationY>453</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -206,7 +207,7 @@
     <subflows>
         <name>Error_Handler_SubFlow</name>
         <label>Error Handler SubFlow</label>
-        <locationX>986</locationX>
+        <locationX>1163</locationX>
         <locationY>50</locationY>
         <flowName>Error_Handler_Flow</flowName>
     </subflows>

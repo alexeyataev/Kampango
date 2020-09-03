@@ -25,8 +25,7 @@ private class dlrs_Estimated_CostsTest
                     .buildLicenceToPractice()
                     .buildCourse()
                     .buildEstimatedCosts()
-                    .buildSession()
-                    .buildSessionWithTypeAndStatus('Reunion', 'Confirmed');
+                    .buildSession();
 
          List<Estimated_Costs__c> estimatedCosts = [
             SELECT Id 

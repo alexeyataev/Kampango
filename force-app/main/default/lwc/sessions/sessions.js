@@ -7,7 +7,7 @@ import sessionsVirtualSupportTextLable from '@salesforce/label/c.Sessions_Virtua
 
 import { SESSION_DELIVERY_TYPE_VIRTUAL_SUPPORT,
          SESSION_STATUS_CONFIRMED,
-         SESSION_TYPE_REUNION } from 'c/globalConstansHelper';
+         SESSION_TYPE_REUNION } from 'c/globalConstantsHelper';
 
 export default class Sessions extends LightningElement {
     provisionCourseReunionText = provisionCourseReunionTextLable;

@@ -199,7 +199,7 @@ public without sharing class CourseApiTest {
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                             '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"twinsexpected":"0","postcode":"533537","mobile":"+442072343456",' +
                                             '"town":"London","op":"Send enquiry"}';
 
         String avaliableCourse = [
@@ -240,7 +240,7 @@ public without sharing class CourseApiTest {
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                             '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"twinsexpected":"0","postcode":"533537","mobile":"+442072343456",' +
                                             '"town":"London","op":"Send enquiry"}';
 
         String avaliableCourse = ''; // missed course name 
@@ -281,7 +281,7 @@ public without sharing class CourseApiTest {
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                             '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"twinsexpected":"0","postcode":"533537","mobile":"+442072343456",' +
                                             '"town":"London","op":"Send enquiry"}';
 
         String avaliableCourse = [
@@ -328,7 +328,7 @@ public without sharing class CourseApiTest {
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                             '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"twinsexpected":"0","postcode":"533537","mobile":"+442072343456",' +
                                             '"town":"London","op":"Send enquiry"}';
 
         String avaliableCourse = 'NotValidCourseName'; // not valid course name 
@@ -369,7 +369,7 @@ public without sharing class CourseApiTest {
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                             '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"twinsexpected":"0","postcode":"533537","mobile":"+442072343456",' +
                                             '"town":"London","op":"Send enquiry"}';
 
         String avaliableCourse = [
@@ -413,7 +413,7 @@ public without sharing class CourseApiTest {
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                             '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"twinsexpected":"0","postcode":"533537","mobile":"+442072343456",' +
                                             '"town":"London","op":"Send enquiry"}';
 
         String avaliableCourse = [
@@ -462,7 +462,7 @@ public without sharing class CourseApiTest {
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/09/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                             '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"twinsexpected":"0","postcode":"533537","mobile":"+442072343456",' +
                                             '"town":"London","op":"Send enquiry"}';
 
         String avaliableCourse = [
@@ -534,7 +534,7 @@ public without sharing class CourseApiTest {
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"2019-09-30","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                             '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"twinsexpected":"0","postcode":"533537","mobile":"+442072343456",' +
                                             '"town":"London","op":"Send enquiry"}';
 
         String avaliableCourse = [
@@ -576,7 +576,7 @@ public without sharing class CourseApiTest {
         final String PARAMS = '{"email":"test@test.test","hearaboutus":"NCT website or event","first_name":"Test",' + 
                                             '"duedate":"30/30/2019","firstbaby":"1","address_line1":"Test","address_line2":"",' +
                                             '"additioninfo":"","title":"Mr","last_name":"Test","form_id":"course_enquiry_form",' +
-                                            '"twinsexpected":"0","county":"UK","postcode":"533537","mobile":"+442072343456",' +
+                                            '"twinsexpected":"0","postcode":"533537","mobile":"+442072343456",' +
                                             '"town":"London","op":"Send enquiry"}';
 
         String avaliableCourse = [

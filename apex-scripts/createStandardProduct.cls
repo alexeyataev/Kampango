@@ -4,7 +4,8 @@ Map<String, Decimal> listPricesByProductNames = new Map<String, Decimal>{
     'Course Cancellation Fees' => 30,
     'Course Transfer Fees' => 25,
     'Membership - CARE/DD' => 0,
-    'Membership' => 0
+    'Membership' => 0,
+    'Yoga Drop-In' => 0
 };
 
 
@@ -34,13 +35,20 @@ void createProducts(Map<String, Decimal> input) {
             );           
         }
         insert newProducts;
+        
+        Pricebook2 pricebook = [
+            SELECT Id
+            FROM Pricebook2
+            WHERE isStandard = true
+        ];
 
         for(Product2 product : newProducts) {
             newPricebookEntries.add(
             new PricebookEntry(
                 isActive = true,
                 UnitPrice = listPricesByProductNames.get(product.Name),
-                Product2Id = product.Id
+                Product2Id = product.Id,
+                Pricebook2Id = pricebook.Id
                 )
             );
         }

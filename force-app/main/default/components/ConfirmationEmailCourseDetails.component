@@ -36,6 +36,7 @@
                     <td style="vertical-align: baseline;">
                         <div style='margin-right:2rem;'>
                             <b>{!location.locationOfSession.Location_Name__c}</b> {!location.sessionDays}</div>
+                        <div>{!location.locationOfSession.Session_Room_Name__c}</div>
                         <div>{!location.locationOfSession.Location_Street__c}</div>
                         <div>{!location.locationOfSession.Location_County__c}</div>
                         <div>{!location.locationOfSession.Location_Town__c}</div>

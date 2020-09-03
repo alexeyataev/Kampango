@@ -1,16 +1,16 @@
-public class OutboundBACSpaymentHelper {
+public with sharing class OutboundBACSpaymentHelper {
 
     private static final String PAYMENT_RUN_RESULT_SUCCESS = 'Success';
     private static final String PAYMENT_RUN_RESULT_ERROR = 'Error';
-    private static String processPaymentRunResult;
+    private static final String ZUMZUM_NOMINAL_CODE = '9600';
+    private static final string BANK_ACCOUNT_NAME = 'BACS Payments in Transit';
+    private static Id paymentRunId;
 
-    public static Map<String, List<String>> processPaymentRun (Payment_Run__c paymentRun) {
-
-        final String ZUMZUM_NOMINAL_CODE = '9600';
-        Map<String, List<String>> paymentRunResultMap = new Map<String, List<String>>();
+    public static String processPaymentRunLineItems (List<Payment_Run_Line_Item__c> paymentRunLineItems) {
+        paymentRunId = paymentRunLineItems[0].Payment_Run__c;
 
         Set<Id> purchaseInvoiceIds = new Set<Id>();
-        for (Payment_Run_Line_Item__c paymentRunLineItem: paymentRun.Payment_Run_Line_Items__r) {
+        for (Payment_Run_Line_Item__c paymentRunLineItem : paymentRunLineItems) {
             purchaseInvoiceIds.add(paymentRunLineItem.Purchase_Invoice__c);
         }
 
@@ -28,40 +28,28 @@ public class OutboundBACSpaymentHelper {
                 AND Zumzum__Customer_Supplier_Account_Name__c <> ''
                 AND Zumzum__Sub_Account_Nominal_Link__r.Zumzum__Nominal_Code__c = :ZUMZUM_NOMINAL_CODE
                 AND Zumzum__Credit__c <> null
+                AND Zumzum__Paid__c <> 'Y'
         ];
 
         Map<Id, List<Zumzum__Ledger__c>> purchaseInvoiceToLedgerMap = new Map<Id, List<Zumzum__Ledger__c>>();
 
         for (Zumzum__Ledger__c ledger: ledgers) {
 
-            List<Zumzum__Ledger__c> currentLegers = purchaseInvoiceToLedgerMap.get(ledger.Zumzum__Purchase_Invoice__r.Id);
-            if (currentLegers == null) {
-                currentLegers = new List<Zumzum__Ledger__c>();
+            if (purchaseInvoiceToLedgerMap.containsKey(ledger.Zumzum__Purchase_Invoice__r.Id)) {
+                purchaseInvoiceToLedgerMap.get(ledger.Zumzum__Purchase_Invoice__r.Id).add(ledger);                
+            } else {
+                List<Zumzum__Ledger__c> currentLegers = new List<Zumzum__Ledger__c>();
+                currentLegers.add(ledger);
+                purchaseInvoiceToLedgerMap.put(ledger.Zumzum__Purchase_Invoice__r.Id, currentLegers);
             }
-
-            currentLegers.add(ledger);
-            purchaseInvoiceToLedgerMap.put(ledger.Zumzum__Purchase_Invoice__r.Id, currentLegers);
         }
+        
+        String processPaymentRunResult = initiateBankSupplierPayment(purchaseInvoiceToLedgerMap, getBankAccountId());
 
-        Id bankAccountId = getBankAccountId();
-        for (Id purchaseInvoiceId :purchaseInvoiceToLedgerMap.keySet()) {
-            processPaymentRunResult = initiateBankSupplierPayment(purchaseInvoiceToLedgerMap.get(purchaseInvoiceId), paymentRun, bankAccountId);
-
-            if (processPaymentRunResult != PAYMENT_RUN_RESULT_SUCCESS) {
-                if (!paymentRunResultMap.containsKey(PAYMENT_RUN_RESULT_ERROR)) {
-                    paymentRunResultMap.put(PAYMENT_RUN_RESULT_ERROR, new List<String>());
-                }
-
-                 paymentRunResultMap.get(PAYMENT_RUN_RESULT_ERROR).add(processPaymentRunResult);
-            }
-
-        }
-
-        return paymentRunResultMap;
+        return processPaymentRunResult;
     }
 
     private static Id getBankAccountId() {
-        final string BANK_ACCOUNT_NAME = 'BACS Payments in Transit';
         return [
             SELECT Id
             FROM Zumzum__Bank_Account__c
@@ -70,51 +58,51 @@ public class OutboundBACSpaymentHelper {
         ].Id;
     }
 
-    private static String initiateBankSupplierPayment(List<Zumzum__Ledger__c> ledgers, Payment_Run__c paymentRun, Id bankAccountId) {
-        Zumzum__Ledger__c ledger0 = ledgers[0];
+    private static String initiateBankSupplierPayment(Map<Id, List<Zumzum__Ledger__c>> purchaseInvoiceToLedgerMap, Id bankAccountId) {
+        Zumzum.BankSupplierPaymentService bankSupplierPaymentService = new Zumzum.BankSupplierPaymentService();
+        List<Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper> listPaymentWrapper = new List<Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper>();
+        for (Id purchaseInvoiceId :purchaseInvoiceToLedgerMap.keySet()) {
+            Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper paymentWrapper = new Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper();
+            paymentWrapper.AccountId = purchaseInvoiceToLedgerMap.get(purchaseInvoiceId)[0].Zumzum__Customer_Supplier_Account_Name__c;
+            paymentWrapper.BankAccountId = bankAccountId;
+            paymentWrapper.PostingDate = Date.Today();
+            paymentWrapper.TaxRate = purchaseInvoiceToLedgerMap.get(purchaseInvoiceId)[0].Zumzum__Tax_Code_Link__c;
 
-        Zumzum.BankSupplierPaymentService objBankSupplierPaymentService = new Zumzum.BankSupplierPaymentService();
-        Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper objPaymentWrapper = new Zumzum.BankSupplierPaymentService.BankSupplierPaymentWrapper();
-        
-        objPaymentWrapper.AccountId = ledger0.Zumzum__Customer_Supplier_Account_Name__c;
-        objPaymentWrapper.BankAccountId = bankAccountId;
-        objPaymentWrapper.PostingDate = Date.Today();
-        objPaymentWrapper.TaxRate = ledger0.Zumzum__Tax_Code_Link__c;
-        List<Zumzum.BankSupplierPaymentService.BankPaymentLine> listBankPaymentLines = new List<Zumzum.BankSupplierPaymentService.BankPaymentLine>();
+            List<Zumzum.BankSupplierPaymentService.BankPaymentLine> listBankPaymentLines = new List<Zumzum.BankSupplierPaymentService.BankPaymentLine>();
+            for (Zumzum__Ledger__c currentLedger: purchaseInvoiceToLedgerMap.get(purchaseInvoiceId)) {
+                ZumZum.BankSupplierPaymentService.BankPaymentLine bankPaymentLine = new ZumZum.BankSupplierPaymentService.BankPaymentLine();
+                bankPaymentLine.LedgerName = currentLedger.Name;
+                bankPaymentLine.Amount = currentLedger.Zumzum__Amount__c != null ? currentLedger.Zumzum__Credit__c - currentLedger.Zumzum__Amount__c : currentLedger.Zumzum__Credit__c;
+                listBankPaymentLines.add(bankPaymentLine);
+            }
 
-        for (Zumzum__Ledger__c currentLedger: ledgers) {
-
-            ZumZum.BankSupplierPaymentService.BankPaymentLine obPBankPaymentLine = new ZumZum.BankSupplierPaymentService.BankPaymentLine();
-            obPBankPaymentLine.LedgerName = currentLedger.Name;
-
-            obPBankPaymentLine.Amount = currentLedger.Zumzum__Amount__c != null ?
-                 currentLedger.Zumzum__Credit__c - currentLedger.Zumzum__Amount__c :
-                 currentLedger.Zumzum__Credit__c;
-
-            listBankPaymentLines.add(obPBankPaymentLine);
+            paymentWrapper.BankPaymentLines = listBankPaymentLines;
+            listPaymentWrapper.add(paymentWrapper);
         }
 
-        objPaymentWrapper.BankPaymentLines = listBankPaymentLines;
-        ZumZum.BankSupplierPaymentService.Response objResponse = objBankSupplierPaymentService.CreateBankSupplierPayment(objPaymentWrapper);
+        ZumZum.BankSupplierPaymentService.Response response = bankSupplierPaymentService.CreateBankSupplierPayment(listPaymentWrapper);
 
-        if (objResponse.ResponseMessage != PAYMENT_RUN_RESULT_SUCCESS) {
-            return objResponse.ResponseMessage;
+        Set<Id> bankPaymentIds = new Set<Id>();
+
+        for (Zumzum__Bank_Payment__c bankPayment : response.BankPayments.values()) {
+            bankPaymentIds.add(bankPayment.Id);
         }
 
-        Zumzum__Bank_Payment__c bankPayment = objResponse.BankPayment;
+        if (response.ResponseMessage == PAYMENT_RUN_RESULT_SUCCESS) {
+            Zumzum__Bank_Payment__c bankPayment = response.BankPayment;
+            List<Zumzum__Bank_Payment_Line_Item__c> bankPaymentLineItems = [
+                SELECT Id, Zumzum__Bank_Payment__c, Payment_Run__c 
+                FROM Zumzum__Bank_Payment_Line_Item__c
+                WHERE Zumzum__Bank_Payment__c = :bankPaymentIds
+            ];
 
-        List<Zumzum__Bank_Payment_Line_Item__c> bankPaymentLineItems = [
-            SELECT Id, Zumzum__Bank_Payment__c, Payment_Run__c 
-            FROM Zumzum__Bank_Payment_Line_Item__c
-            WHERE Zumzum__Bank_Payment__c = :bankPayment.Id
-        ];
+            for (Zumzum__Bank_Payment_Line_Item__c bankPaymentLineItem: bankPaymentLineItems) {
+                bankPaymentLineItem.Payment_Run__c = paymentRunId;
+            }
 
-        for (Zumzum__Bank_Payment_Line_Item__c bankPaymentLineItem: bankPaymentLineItems) {
-            bankPaymentLineItem.Payment_Run__c = paymentRun.Id;
+            update bankPaymentLineItems;
         }
 
-        update bankPaymentLineItems;
-
-        return objResponse.ResponseMessage;
+        return response.ResponseMessage;
     }
 }

@@ -4,67 +4,97 @@ public with sharing class CareHelper {
     private final static Integer ERROR_LOG_SIZE = 30000;
     public static final String SUCCESS_STATUS = 'Success';
     public static final String FAILURE_STATUS = 'Failure';
+    public static final Integer DEFAULT_TIMEOUT_LIMIT = Care_Settings__c.getOrgDefaults().Default_Timeout_Milliseconds__c != null ? (Integer)Care_Settings__c.getOrgDefaults().Default_Timeout_Milliseconds__c : 120000;
+    public static final Integer ADD_CONTACT_TIMEOUT_LIMIT = (Integer)Care_Settings__c.getOrgDefaults().Add_Contact_Batch_Timeout_Milliseconds__c;
+    public static final Integer ADD_MARKETING_PREFERENCES_TIMEOUT_LIMIT = (Integer)Care_Settings__c.getOrgDefaults().Add_Marketing_Prefs_Timeout_Milliseconds__c;
     public static AddContactResult sendContact(Contact cont) {
-        HttpResponse res = sendHttpRequest('SFAddUpdateContactWS.pl', CareRequestBodyUtil.createSendContactBody(cont));
+        String requestBody = CareRequestBodyUtil.createSendContactBody(cont);
+        HttpResponse res = sendHttpRequest('SFAddUpdateContactWS.pl', requestBody, ADD_CONTACT_TIMEOUT_LIMIT);
         AddContactResult addContactResult = new AddContactResult();
         if(res.getStatus() == HTTP_STATUS_OK) {
             ContactObject contactObject = (ContactObject)JSON.deserialize(res.getBody(), ContactObject.class);
-            addContactResult.error = contactObject.error != null ? addErrorLog(contactObject.error[0].errorMessage, cont.Care_Error_Log__c) : null;
+            if(contactObject.error != null) {
+                String errorLog = createErrorLog(BASE_URL + 'SFAddUpdateContactWS.pl', requestBody, contactObject.error[0].errorMessage);
+                addContactResult.error = addErrorLog(errorLog, cont.Care_Error_Log__c);
+            }
             addContactResult.nctNumber = contactObject.contact != null ? contactObject.contact.contactNumber : null;
         } else {
-            addContactResult.error = addErrorLog(res.getBody(), cont.Care_Error_Log__c);
+            String errorLog = createErrorLog(BASE_URL + 'SFAddUpdateContactWS.pl', requestBody, res.getBody());
+            addContactResult.error = addErrorLog(errorLog, cont.Care_Error_Log__c);
         }
         return addContactResult;
     }
     public static AddBankDetailsResult sendBankDetails(cpm__Installment__c installment, Contact cont) {
-        HttpResponse res = sendHttpRequest('SFAddBankDetailsWS.pl', CareRequestBodyUtil.createSendBankDetailsBody(installment, cont));
+        String requestBody = CareRequestBodyUtil.createSendBankDetailsBody(installment, cont);
+        HttpResponse res = sendHttpRequest('SFAddBankDetailsWS.pl', requestBody);
         AddBankDetailsResult addBankDetailsResult = new AddBankDetailsResult();
         if(res.getStatus() == HTTP_STATUS_OK) {
             ContactBankAccountObject contactBankAccountObject = (ContactBankAccountObject)JSON.deserialize(res.getBody(), ContactBankAccountObject.class);
-            addBankDetailsResult.error = contactBankAccountObject.error != null ? addErrorLog(contactBankAccountObject.error[0].errorMessage, installment.Care_Error_Log__c) : null;
+            if(contactBankAccountObject.error != null) {
+                String errorLog = createErrorLog(BASE_URL + 'SFAddBankDetailsWS.pl', requestBody, contactBankAccountObject.error[0].errorMessage);
+                addBankDetailsResult.error = addErrorLog(errorLog, installment.Care_Error_Log__c);
+            }
             addBankDetailsResult.bankDetailsNumber = contactBankAccountObject.contactBankAccount != null ? contactBankAccountObject.contactBankAccount.bankDetailNumber : null;
         } else {
-            addBankDetailsResult.error = addErrorLog(res.getBody(), installment.Care_Error_Log__c);
+            String errorLog = createErrorLog(BASE_URL + 'SFAddBankDetailsWS.pl', requestBody, res.getBody());
+            addBankDetailsResult.error = addErrorLog(errorLog, installment.Care_Error_Log__c);
         }
         return addBankDetailsResult;
     }
     public static MembershipObject addMembership(cpm__Installment__c installment) {
-        HttpResponse res = sendHttpRequest('SFAddMembershipWS.pl', CareRequestBodyUtil.createAddMembershipBody(installment));
+        String requestBody = CareRequestBodyUtil.createAddMembershipBody(installment);
+        HttpResponse res = sendHttpRequest('SFAddMembershipWS.pl', requestBody);
         MembershipObject membershipObject = new MembershipObject();
         if(res.getStatus() == HTTP_STATUS_OK) {
             membershipObject = (MembershipObject)JSON.deserialize(res.getBody(), MembershipObject.class);
+            if(membershipObject.error != null) {
+                String errorLog = createErrorLog(BASE_URL + 'SFAddMembershipWS.pl', requestBody, membershipObject.error[0].errorMessage);
+                membershipObject.error[0].errorMessage = addErrorLog(errorLog, installment.Care_Error_Log__c);
+            }
         } else {
             ErrorObject errorObject = new ErrorObject();
-            errorObject.errorMessage = addErrorLog(res.getBody(), installment.Care_Error_Log__c);
+            String errorLog = createErrorLog(BASE_URL + 'SFAddMembershipWS.pl', requestBody, res.getBody());
+            errorObject.errorMessage = addErrorLog(errorLog, installment.Care_Error_Log__c);
             membershipObject.error = new List<ErrorObject> {errorObject};
         }
         return membershipObject;
     }
 
-    public static MarketingPreferencesObject sendMarketingPreferences(String nctNumber, String standardDocumentNumber, Boolean marketingPreferenceGranted) {
-        HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', CareRequestBodyUtil.createMarketingPreferencesBody(nctNumber, standardDocumentNumber, marketingPreferenceGranted));
+    public static MarketingPreferencesObject sendMarketingPreferences(Contact cont, String standardDocumentNumber, Boolean marketingPreferenceGranted) {
+        String requestBody = CareRequestBodyUtil.createMarketingPreferencesBody(cont.NCT_Number__c, standardDocumentNumber, marketingPreferenceGranted);
+        HttpResponse res = sendHttpRequest('SFAddDocumentFileWS.pl', requestBody, ADD_MARKETING_PREFERENCES_TIMEOUT_LIMIT);
         MarketingPreferencesObject marketingPreferencesObject = new MarketingPreferencesObject();
         if(res.getStatus() == HTTP_STATUS_OK) {
             marketingPreferencesObject = (MarketingPreferencesObject)JSON.deserialize(res.getBody(), MarketingPreferencesObject.class);
+            if(marketingPreferencesObject.error != null) {
+                String errorLog = createErrorLog(BASE_URL + 'SFAddDocumentFileWS.pl', requestBody, marketingPreferencesObject.error[0].errorMessage);
+                marketingPreferencesObject.error[0].errorMessage = errorLog;
+            }
         } else {
             ErrorObject errorObject = new ErrorObject();
-            errorObject.errorMessage = res.getBody();
+            errorObject.errorMessage = createErrorLog(BASE_URL + 'SFAddDocumentFileWS.pl', requestBody, res.getBody());
             marketingPreferencesObject.error = new List<ErrorObject> {errorObject};
         }
         return marketingPreferencesObject;
     }
 
-    public static String addErrorLog(String errorMessage, String oldLogText) {
-        String newLogText = oldLogText == null ? errorMessage : errorMessage + '\r\n\r\n' + oldLogText;
+    private static String createErrorLog(String requestUrl, String requestBody, String errorMessage) {
+        String textToAdd = 'Time: ' + Datetime.now() + '\r\nURL: ' + requestUrl + '\r\nBody:\r\n' + requestBody + '\r\nResponse:\r\n' + errorMessage;
+        return textToAdd;
+    }
+
+    public static String addErrorLog(String textToAdd, String oldLogText) {
+        String newLogText = oldLogText == null ? textToAdd : textToAdd + '\r\n\r\n' + oldLogText;
         if(newLogText.length() > ERROR_LOG_SIZE) {
             newLogText = newLogText.substring(0, ERROR_LOG_SIZE);
         }
         return newLogText;
     }
 
-    private static HttpResponse sendHttpRequest(String methodName, String body) {
+    private static HttpResponse sendHttpRequest(String methodName, String body, Integer timeoutLimit) {
+        timeoutLimit = timeoutLimit != null ? timeoutLimit : DEFAULT_TIMEOUT_LIMIT;
         HttpRequest req = new HttpRequest();
-        req.setTimeout(120000);
+        req.setTimeout(timeoutLimit);
         req.setHeader('Content-Type', 'application/json');
         req.setEndpoint(BASE_URL + methodName);
         req.setMethod('POST');
@@ -72,6 +102,10 @@ public with sharing class CareHelper {
         Http http = new Http();
         HttpResponse res = http.send(req);
         return res;
+    }
+
+    private static HttpResponse sendHttpRequest(String methodName, String body) {
+        return sendHttpRequest(methodName, body, DEFAULT_TIMEOUT_LIMIT);
     }
 
     public abstract class BaseResponse {

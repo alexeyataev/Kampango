@@ -1,6 +1,6 @@
 @SuppressWarnings('PMD.ApexCRUDViolation')
 //Incident #13 - https://confluence.nct.org.uk:8443/x/EoSO
-public with sharing class AddBankDetailsForMembershipHandler {
+public without sharing class AddBankDetailsForMembershipHandler {
     @InvocableMethod
     public static List<AddBankDetailsResult> addBankDetails(List<cpm__Installment__c> installment) {
         AddBankDetailsResult addBankDetailsResult = new AddBankDetailsResult();

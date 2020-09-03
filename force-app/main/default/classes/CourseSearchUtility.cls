@@ -2,28 +2,67 @@ public without sharing class CourseSearchUtility {
     private static final String COURSE_STATUS_FINAL = 'Final';
     private static final String SESSION_STATUS_CONFIRMED = 'Confirmed';
     private static final String SCHEDULED_SESSION_RECORD_TYPE_NAME = 'Scheduled Session';
+    private static final Boolean HIDE_FROM_PUBLIC_ACCESS = false;
+
+    private static final String COURSE_TYPE_ANTENATAL = 'Antenatal';
+    private static final String COURSE_TYPE_POSTNATAL = 'Postnatal';
+    private static final String COURSE_TYPE_DROP_IN = 'Drop In';
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
-    public static Course__c getCourseById(String courseName, Boolean hideFromPublicAccess){
+    public static Course__c getCourseById(String courseName, Boolean hideFromPublicAccess) {
         Course__c result = null;
-        
+  
         List<Course__c> inCourses;
         if (hideFromPublicAccess) {
             inCourses = [
-                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
-                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
-                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
-                    (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
-                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
-                        FROM Sessions__r
-                        WHERE Status__c = :SESSION_STATUS_CONFIRMED
-                            AND RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
-                        ORDER BY Date__c, Start__c
-                    )
+                SELECT  Branch__r.Branch_Number__c,
+                        Branch__r.Enquiries_PSA_Email__c,
+                        Branch__r.Enquiries_PSA_Phone__c,
+                        Branch__r.Enquiries_PSA__r.Name,
+                        Branch__r.Name,
+                        Confirmed_Places__c,
+                        Couples_Allowed__c,
+                        Drop_In_Schedule_Information__c,
+                        End_Date__c,
+                        Fee__c,
+                        Has_Virtual_Teaching_Content__c,
+                        Hide_From_Course_Finder__c,
+                        Main_Venue__r.County__c,
+                        Main_Venue__r.Location__c,
+                        Main_Venue__r.Name,
+                        Main_Venue__r.Postcode__c,
+                        Main_Venue__r.Town__c,
+                        Main_Venue__r.Type__c,
+                        Main_Venue_Name__c,
+                        Name,
+                        Number_of_places__c,
+                        Overbooking_allowed__c,
+                        PSA_Area__c,
+                        Remaining_Places__c,
+                        Start_Date__c,
+                        Status__c,
+                        Sub_Type__c,
+                        Summary__c,
+                        Title__c,
+                        Type__c,
+                        Women_Only__c,
+                            (
+                                SELECT  Additional_Information_with_Venue__c,
+                                        Contact_Hours__c,
+                                        Date__c,
+                                        Day_of_Week__c,
+                                        Delivery_Type__c,
+                                        End__c,
+                                        Name,
+                                        Specific_Attendee_Type__c,
+                                        Start__c,
+                                        Type__c
+                                FROM Sessions__r
+                                WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                                    AND RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
+                                ORDER BY Date__c, Start__c
+                            )
                 FROM Course__c
                 WHERE Name = :courseName
                     AND Status__c = :COURSE_STATUS_FINAL
@@ -31,24 +70,60 @@ public without sharing class CourseSearchUtility {
                     AND (
                         Start_Date__c > TODAY 
                             OR 
-                        Type__c = 'Drop In'
+                        Type__c = :COURSE_TYPE_DROP_IN
                     )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                 WITH SECURITY_ENFORCED
             ];
         } else {
             inCourses = [
-                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
-                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
-                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
-                    (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
-                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
-                        FROM Sessions__r
-                        WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
-                    )
+                SELECT  Branch__r.Branch_Number__c,
+                        Branch__r.Enquiries_PSA_Email__c,
+                        Branch__r.Enquiries_PSA_Phone__c,
+                        Branch__r.Enquiries_PSA__r.Name,
+                        Branch__r.Name,
+                        Confirmed_Places__c,
+                        Couples_Allowed__c,
+                        Drop_In_Schedule_Information__c,
+                        End_Date__c,
+                        Fee__c,
+                        Has_Virtual_Teaching_Content__c,
+                        Hide_From_Course_Finder__c,
+                        Main_Venue__r.County__c,
+                        Main_Venue__r.Location__c,
+                        Main_Venue__r.Name,
+                        Main_Venue__r.Postcode__c,
+                        Main_Venue__r.Town__c,
+                        Main_Venue__r.Type__c,
+                        Main_Venue_Name__c,
+                        Name,
+                        Number_of_places__c,
+                        Overbooking_allowed__c,
+                        PSA_Area__c,
+                        Remaining_Places__c,
+                        Start_Date__c,
+                        Status__c,
+                        Sub_Type__c,
+                        Summary__c,
+                        Title__c,
+                        Type__c,
+                        Women_Only__c,
+
+                            (
+                                SELECT Additional_Information_with_Venue__c,
+                                    Contact_Hours__c,
+                                    Date__c,
+                                    Day_of_Week__c,
+                                    Delivery_Type__c,
+                                    End__c,
+                                    Name,
+                                    Specific_Attendee_Type__c,
+                                    Start__c,
+                                    Type__c
+                                FROM Sessions__r
+                                WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
+                            )
+
                 FROM Course__c
                 WHERE Name = :courseName
                 WITH SECURITY_ENFORCED
@@ -62,7 +137,7 @@ public without sharing class CourseSearchUtility {
         return result;
     }
     
-    public static RestResponse getCourseById(String courseName){
+    public static RestResponse getCourseById(String courseName) {
         RestResponse response = new RestResponse();
         Course__c course = getCourseById(courseName, true);
         if (course != null) {
@@ -72,29 +147,66 @@ public without sharing class CourseSearchUtility {
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPIcourseNotExists);
-        }       
+        }
+
         return response;
     }
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
-    public static List<Course__c> getCoursesByBranch(String branchId, Boolean hideFromPublicAccess){
+    public static List<Course__c> getCoursesByBranch(String branchId, Boolean hideFromPublicAccess) {
         List<Course__c> inCourses;
         if (hideFromPublicAccess) {
             inCourses = [
-                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
-                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
-                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
-                    (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
-                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
-                        FROM Sessions__r
-                        WHERE Status__c = :SESSION_STATUS_CONFIRMED
-                            AND RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
-                        ORDER BY Date__c, Start__c
-                    )
+                SELECT  Branch__r.Branch_Number__c,
+                        Branch__r.Enquiries_PSA_Email__c,
+                        Branch__r.Enquiries_PSA_Phone__c,
+                        Branch__r.Enquiries_PSA__r.Name,
+                        Branch__r.Name,
+                        Confirmed_Places__c,
+                        Couples_Allowed__c,
+                        Drop_In_Schedule_Information__c,
+                        End_Date__c,
+                        Fee__c,
+                        Has_Virtual_Teaching_Content__c,
+                        Hide_From_Course_Finder__c,
+                        Main_Venue__r.County__c,
+                        Main_Venue__r.Location__c,
+                        Main_Venue__r.Name,
+                        Main_Venue__r.Postcode__c,
+                        Main_Venue__r.Town__c,
+                        Main_Venue__r.Type__c,
+                        Main_Venue_Name__c,
+                        Name,
+                        Number_of_places__c,
+                        Overbooking_allowed__c,
+                        PSA_Area__c,
+                        Remaining_Places__c,
+                        Start_Date__c,
+                        Status__c,
+                        Sub_Type__c,
+                        Summary__c,
+                        Title__c,
+                        Type__c,
+                        Women_Only__c,
+
+                            (
+                                SELECT  Additional_Information_with_Venue__c,
+                                        Contact_Hours__c,
+                                        Date__c,
+                                        Day_of_Week__c,
+                                        Delivery_Type__c,
+                                        End__c,
+                                        Name,
+                                        Specific_Attendee_Type__c,
+                                        Start__c,
+                                        Type__c
+                                FROM Sessions__r
+                                WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                                AND RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
+                                ORDER BY Date__c, Start__c
+                            )
+
                 FROM Course__c
                 WHERE Branch__r.Branch_Number__c = :branchId
                     AND Status__c = :COURSE_STATUS_FINAL
@@ -102,24 +214,60 @@ public without sharing class CourseSearchUtility {
                     AND (
                         Start_Date__c > TODAY 
                             OR 
-                        Type__c = 'Drop In'
+                        Type__c = :COURSE_TYPE_DROP_IN
                     )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                 WITH SECURITY_ENFORCED
             ];
         } else {
             inCourses = [
-                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
-                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
-                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
-                    (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
-                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
-                        FROM Sessions__r
-                        WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
-                    )
+                SELECT Branch__r.Branch_Number__c,
+                       Branch__r.Enquiries_PSA_Email__c,
+                       Branch__r.Enquiries_PSA_Phone__c,
+                       Branch__r.Enquiries_PSA__r.Name,
+                       Branch__r.Name,
+                       Confirmed_Places__c,
+                       Couples_Allowed__c,
+                       Drop_In_Schedule_Information__c,
+                       End_Date__c,
+                       Fee__c,
+                       Has_Virtual_Teaching_Content__c,
+                       Hide_From_Course_Finder__c,
+                       Main_Venue__r.County__c,
+                       Main_Venue__r.Location__c,
+                       Main_Venue__r.Name,
+                       Main_Venue__r.Postcode__c,
+                       Main_Venue__r.Town__c,
+                       Main_Venue__r.Type__c,
+                       Main_Venue_Name__c,
+                       Name,
+                       Number_of_places__c,
+                       Overbooking_allowed__c,
+                       PSA_Area__c,
+                       Remaining_Places__c,
+                       Start_Date__c,
+                       Status__c,
+                       Sub_Type__c,
+                       Summary__c,
+                       Title__c,
+                       Type__c,
+                       Women_Only__c,
+
+                            (
+                                SELECT  Additional_Information_with_Venue__c,
+                                        Contact_Hours__c,
+                                        Date__c,
+                                        Day_of_Week__c,
+                                        Delivery_Type__c,
+                                        End__c,
+                                        Name,
+                                        Specific_Attendee_Type__c,
+                                        Start__c,
+                                        Type__c
+                                FROM Sessions__r
+                                WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
+                            )
+
                 FROM Course__c
                 WHERE Branch__r.Branch_Number__c = :branchId
                 WITH SECURITY_ENFORCED
@@ -128,16 +276,17 @@ public without sharing class CourseSearchUtility {
 
         return inCourses;
     }
-    
+
     public static RestResponse getCoursesByBranch(String branchId) {
         RestResponse response = new RestResponse();
         List<Course__c> courses = getCoursesByBranch(branchId, true);
-        
         if (!courses.isEmpty()) {
             List<CourseFinderModel> models = new List<CourseFinderModel>();
+
             for (Course__c course : courses) {
                 models.add(new CourseFinderModel(course));
             }
+
             CoursesBranchModel branchModel = new CoursesBranchModel();
             branchModel.Courses = models;
             response.statusCode = HttpStatusCode.OK;
@@ -145,19 +294,20 @@ public without sharing class CourseSearchUtility {
         } else {
             response.statusCode = HttpStatusCode.NOT_FOUND;
             response.responseBody = Blob.valueOf(System.Label.CourseAPInoResultsFound);
-        }        
+        }
+
         return response;
     }
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
-    public static List<Course__c> getCoursesByDateDistance(LocationRequestParameters locationRequestParameters, Date birthDueDate, Boolean hideFromPublicAccess){
+    public static List<Course__c> getCoursesByDateDistance(LocationRequestParameters locationRequestParameters, Date birthDueDate, Boolean hideFromPublicAccess) {
         final Integer DEFAULT_RADIUS = 100; // from Intrabiz API
         Location location = locationRequestParameters.location;
         Integer radius = locationRequestParameters.radius;
         List<Course__c> inCourses = new List<Course__c>(); // to return empty list of courses if nothing were found.
 
-        if (location == null){
+        if (location == null) {
             return inCourses;
         }
         
@@ -167,19 +317,54 @@ public without sharing class CourseSearchUtility {
 
         if (hideFromPublicAccess) {
             inCourses = [
-                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
-                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
-                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
-                    (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
-                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
-                        FROM Sessions__r
-                        WHERE Status__c = :SESSION_STATUS_CONFIRMED
-                            AND RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
-                        ORDER BY Date__c, Start__c
-                    )
+                SELECT  Branch__r.Branch_Number__c,
+                        Branch__r.Enquiries_PSA_Email__c,
+                        Branch__r.Enquiries_PSA_Phone__c,
+                        Branch__r.Enquiries_PSA__r.Name,
+                        Branch__r.Name,
+                        Confirmed_Places__c,
+                        Couples_Allowed__c,
+                        Drop_In_Schedule_Information__c,
+                        End_Date__c,Fee__c,
+                        Has_Virtual_Teaching_Content__c,
+                        Hide_From_Course_Finder__c,
+                        Main_Venue__r.County__c,
+                        Main_Venue__r.Location__c,
+                        Main_Venue__r.Name,
+                        Main_Venue__r.Postcode__c,
+                        Main_Venue__r.Town__c,
+                        Main_Venue__r.Type__c,
+                        Main_Venue_Name__c,
+                        Name,
+                        Number_of_places__c,
+                        Overbooking_allowed__c,
+                        PSA_Area__c,
+                        Remaining_Places__c,
+                        Start_Date__c,
+                        Sub_Type__c,
+                        Status__c,
+                        Summary__c,
+                        Title__c,
+                        Type__c,
+                        Women_Only__c,
+
+                            (
+                                SELECT Name,
+                                       Contact_Hours__c,
+                                       Day_of_Week__c,
+                                       Date__c,
+                                       Delivery_Type__c,
+                                       Start__c,
+                                       End__c,
+                                       Type__c,
+                                       Specific_Attendee_Type__c,
+                                       Additional_Information_with_Venue__c
+                                FROM Sessions__r
+                                WHERE Status__c = :SESSION_STATUS_CONFIRMED
+                                AND RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
+                                ORDER BY Date__c, Start__c
+                            )
+
                 FROM Course__c
                 WHERE Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi') < :radius
                     AND Status__c = :COURSE_STATUS_FINAL
@@ -187,43 +372,93 @@ public without sharing class CourseSearchUtility {
                     AND (
                         Start_Date__c > TODAY 
                             OR 
-                        Type__c = 'Drop In'
+                        Type__c = :COURSE_TYPE_DROP_IN
                     )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                     AND (
-                        (Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) 
+                        (Type__c = :COURSE_TYPE_ANTENATAL AND End_Date__c < :birthDueDate) 
                             OR 
-                        (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate)
+                        (Type__c = :COURSE_TYPE_POSTNATAL AND Start_Date__c > :birthDueDate)
                             OR 
-                        Type__c = 'Drop In'
+                        Type__c = :COURSE_TYPE_DROP_IN
                     )
                 WITH SECURITY_ENFORCED
                 ORDER BY Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi'), Course__c.Sort_Date__c
             ];
         } else {
             inCourses = [
-                SELECT Name, Has_Virtual_Teaching_Content__c, Sub_Type__c, PSA_Area__c, Type__c, Couples_Allowed__c, Women_Only__c, Number_of_places__c,
-                    Branch__r.Name, Branch__r.Enquiries_PSA__r.Name, Branch__r.Enquiries_PSA_Email__c, Overbooking_allowed__c,
-                    Fee__c, Remaining_Places__c, Branch__r.Enquiries_PSA_Phone__c, Start_Date__c, End_Date__c,
-                    Main_Venue__r.Name, Main_Venue__r.Type__c, Main_Venue__r.Town__c, Hide_From_Course_Finder__c, Main_Venue__r.Postcode__c,
-                    Main_Venue__r.County__c, Main_Venue__r.Location__c, Branch__r.Branch_Number__c, Title__c, Summary__c, Drop_In_Schedule_Information__c,
-                    (
-                        SELECT Name, Contact_Hours__c, Day_of_Week__c, Date__c, Delivery_Type__c, Start__c, End__c, Type__c,
-                            Specific_Attendee_Type__c, Additional_Information_with_Venue__c
-                        FROM Sessions__r
-                        WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
-                    )
+                SELECT  Branch__r.Branch_Number__c,
+                        Branch__r.Enquiries_PSA_Email__c,
+                        Branch__r.Enquiries_PSA_Phone__c,
+                        Branch__r.Enquiries_PSA__r.Name,
+                        Branch__r.Name,
+                        Confirmed_Places__c,
+                        Couples_Allowed__c,
+                        Drop_In_Schedule_Information__c,
+                        End_Date__c,
+                        Fee__c,
+                        Has_Virtual_Teaching_Content__c,
+                        Hide_From_Course_Finder__c,
+                        Main_Venue__r.County__c,
+                        Main_Venue__r.Location__c,
+                        Main_Venue__r.Name,
+                        Main_Venue__r.Postcode__c,
+                        Main_Venue__r.Town__c,
+                        Main_Venue__r.Type__c,
+                        Main_Venue_Name__c,
+                        Name,
+                        Number_of_places__c,
+                        Overbooking_allowed__c,
+                        PSA_Area__c,
+                        Remaining_Places__c,
+                        Start_Date__c,
+                        Sub_Type__c,
+                        Status__c,
+                        Summary__c,
+                        Title__c,
+                        Type__c,
+                        Women_Only__c,
+
+                            (
+                                SELECT  Name,
+                                        Contact_Hours__c,
+                                        Day_of_Week__c,
+                                        Date__c,
+                                        Delivery_Type__c,
+                                        Start__c,
+                                        End__c,
+                                        Type__c,
+                                        Specific_Attendee_Type__c,
+                                        Additional_Information_with_Venue__c
+                                FROM Sessions__r
+                                WHERE RecordType.Name = : SCHEDULED_SESSION_RECORD_TYPE_NAME
+                            )
+
                 FROM Course__c
                 WHERE Distance(Main_Venue__r.Location__c, :location, 'mi') < :radius
+                    AND (
+
+                        (Type__c = :COURSE_TYPE_ANTENATAL AND End_Date__c < :birthDueDate) 
+
+                            OR 
+
+                        (Type__c = :COURSE_TYPE_POSTNATAL AND Start_Date__c > :birthDueDate)
+
+                            OR 
+
+                        Type__c = :COURSE_TYPE_DROP_IN
+
+                    )
                 WITH SECURITY_ENFORCED
                 ORDER BY Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi'), Course__c.Sort_Date__c
             ];
         }
+
         return inCourses;
     }
 
-    public static RestResponse getCoursesByDateDistance(Map <String, String> params){
-        if (params == null){
+    public static RestResponse getCoursesByDateDistance(Map <String, String> params) {
+        if (params == null) {
             return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
         }
 
@@ -234,15 +469,18 @@ public without sharing class CourseSearchUtility {
             birthDueDate = validateBirthDueDate(params.get('birth'));
             location = validateLocation(params.get('location'));
             radius = validateRadius(params.get('radius'));
-        } catch (RadiusTypeException rte){
+
+        } catch (RadiusTypeException rte) {
             return createResponse(HttpStatusCode.SERVER_ERROR, Label.CourseAPIradiusIsNotValid);
-        } catch (DateTypeException dte){
+
+        } catch (DateTypeException dte) {
             return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
+
         } catch (LocationTypeException lte) {
             return createResponse(HttpStatusCode.NOT_FOUND, Label.CourseAPInoResultsFound);
         }
-        
-        List<Course__c> courses = getCoursesByDateDistance(new LocationRequestParameters(location, radius), birthDueDate, true);        
+
+        List<Course__c> courses = getCoursesByDateDistance(new LocationRequestParameters(location, radius), birthDueDate, true);
         if (courses.isEmpty()) {
             return createResponse(HttpStatusCode.NOT_FOUND, System.Label.CourseAPInoResultsFound);
         }
@@ -255,98 +493,99 @@ public without sharing class CourseSearchUtility {
                 models.add(model);
             }
         }
-        if(models.isEmpty()){
+
+        if (models.isEmpty()) {
             return createResponse(HttpStatusCode.NOT_FOUND, System.Label.CourseAPInoResultsFound);
         }
-        
+
         models.sort(); // Sort models according rank, group rank and date;
         Integer lowestRankIncluded = updateModelsOrders(models);
         
         CoursesDateDistanceModel sortedModel = new CoursesDateDistanceModel(models, lowestRankIncluded, radius);
         sortedModel.viewPort = new ViewPort(params.get('viewports')).getViewport();
-        
+
         return createResponse(HttpStatusCode.OK, replaceModelFields(JSON.serializePretty(sortedModel)));
     }
 
-    public class LocationRequestParameters{
+    public class LocationRequestParameters {
         Location location {get; set;}
         Integer radius {get; set;}
 
-        public LocationRequestParameters(Location location, Integer radius){
+        public LocationRequestParameters(Location location, Integer radius) {
             this.location = location;
             this.radius = radius;
         }
     }
 
-    private static Integer updateModelsOrders(List<CourseFinderModelOrdered> models){
+    private static Integer updateModelsOrders(List<CourseFinderModelOrdered> models) {
         Integer i = 0;
         Integer lowestRankIncluded = 1;
-        for (CourseFinderModelOrdered model : models){
+        for (CourseFinderModelOrdered model : models) {
             i++;
             model.Order = i;
 
-            if (lowestRankIncluded < model.Rank){
+            if (lowestRankIncluded < model.Rank) {
                 lowestRankIncluded = model.Rank;
             }
         }
         return lowestRankIncluded;
     }
 
-    private static Location validateLocation(String strLocation){
+    private static Location validateLocation(String strLocation) {
         Location result;
-        if (String.isEmpty(strLocation)){
+        if (String.isEmpty(strLocation)) {
             return null;
         }
-            
+
         List<String> latLong = strLocation.split(',');
-        
-        if (latLong.size() == 2){
+
+        if (latLong.size() == 2) {
             try {
                 Double latitude = Double.valueOf(latLong[0]);
                 Double longitude = Double.valueOf(latLong[1]);
                 result = Location.newInstance(latitude, longitude);
-            } catch (Exception e){
+            } catch (Exception e) {
                 throw new LocationTypeException(e);
             }
         }
-        
+
         return result;
     }
-    
-    private static Integer validateRadius(String strRadius){
+
+    private static Integer validateRadius(String strRadius) {
         Integer result;
-        if (String.isEmpty(strRadius)){
+        if (String.isEmpty(strRadius)) {
             return null;
         }
-        
+
         try {
             result = Integer.valueOf(strRadius);
             if (result <= 0) {
                 throw new RadiusTypeException();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new RadiusTypeException(e);
         }
-        
+
         return result;
     }
 
     private static Date validateBirthDueDate(String strBirthDueDate) {
         Date result;
-        if (String.isEmpty(strBirthDueDate)){
+        if (String.isEmpty(strBirthDueDate)) {
             return getDefaultBirthDueDate();
         }
 
         try {
             result = Date.valueOf(strBirthDueDate);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DateTypeException(e);
         }
 
         return result;
     }
 
-    private static Date getDefaultBirthDueDate(){
+    private static Date getDefaultBirthDueDate() {
         final Integer DIFFERENCE_FROM_TODAY = 30;
         return Date.today() + DIFFERENCE_FROM_TODAY;
     }
@@ -358,10 +597,11 @@ public without sharing class CourseSearchUtility {
         return model.replace('Session_Date', 'Date').replace('Session_End', 'End');
     }
    
-    private static RestResponse createResponse(Integer statusCode, String responseBody){
+    private static RestResponse createResponse(Integer statusCode, String responseBody) {
         RestResponse response = new RestResponse();
         response.statusCode = statusCode;
         response.responseBody = Blob.valueOf(responseBody);
+
         return response;
     }
 
@@ -370,4 +610,48 @@ public without sharing class CourseSearchUtility {
     public class LocationTypeException extends Exception {}
 
     public class RadiusTypeException extends Exception {}
+
+
+    @AuraEnabled
+    public static List<CourseFinderModel> courseSearchInternalByBranch(String branchId) {
+        List<Course__c> courseList= getCoursesByBranch(branchId, HIDE_FROM_PUBLIC_ACCESS);
+        List<CourseFinderModel> courseToReturn = new List<CourseFinderModel>();
+
+        for (Course__c courseRecord : courseList) {
+            courseToReturn.add(new CourseFinderModel(courseRecord));
+        }
+
+        return courseToReturn;
+    }
+
+    @AuraEnabled
+    public static List<CourseFinderModelOrdered> courseSearchInternalByDistance(Double longitude, Double latitude, Integer radius, Date birthDueDate) {
+
+        Location location = Location.newInstance(latitude, longitude);
+        LocationRequestParameters locationParams = new LocationRequestParameters(location, radius);
+        List<CourseFinderModelOrdered> courseModelOrdered = new List<CourseFinderModelOrdered>();
+
+        final Integer LOWEST_RANK_TO_BE_DISPlAYED = 6;
+        for (Course__c course : getCoursesByDateDistance(locationParams, birthDueDate, HIDE_FROM_PUBLIC_ACCESS)) {
+
+            CourseFinderModelOrdered model = new CourseFinderModelOrdered(course, birthDueDate);
+            if (model.Rank <= LOWEST_RANK_TO_BE_DISPlAYED) {
+                courseModelOrdered.add(model);
+            }
+        }
+
+        courseModelOrdered.sort();
+
+        return courseModelOrdered;
+    }
+
+    public static String getDeliveryMethod(List<Session__c> sessions) {
+        String deliveryMethod ;
+        for (Session__c session : sessions) {
+            deliveryMethod = deliveryMethod != null ? session.Type__c != 'Reunion' && deliveryMethod != session.Delivery_Type__c ? 'Hybrid' : deliveryMethod : session.Delivery_Type__c;
+        }
+
+        return deliveryMethod;
+    }
+
 }

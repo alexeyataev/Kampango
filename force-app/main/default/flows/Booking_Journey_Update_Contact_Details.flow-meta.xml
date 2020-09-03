@@ -132,10 +132,10 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <assignToReference>PrimaryContactRecord.Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country_primary_0</elementReference>
+                <elementReference>Country_primary_0_picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -180,6 +180,13 @@
                 <elementReference>Under_18_2</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary_0_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone1</targetReference>
         </connector>
@@ -204,10 +211,10 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <assignToReference>PrimaryContactRecord.Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country_primary</elementReference>
+                <elementReference>Country_primary_picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -294,6 +301,13 @@
                 <elementReference>mobilePhone</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone_0_0</targetReference>
         </connector>
@@ -314,35 +328,35 @@
             <assignToReference>PrimaryContactRecord.MailingCity</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>City_primary</elementReference>
+                <elementReference>City_primary_0_0</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <assignToReference>PrimaryContactRecord.Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country_primary</elementReference>
+                <elementReference>Country_primary_0_0_picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>PrimaryContactRecord.MailingState</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>State_Province</elementReference>
+                <elementReference>State_Province_0_0</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>PrimaryContactRecord.MailingPostalCode</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Zip_Postalcode</elementReference>
+                <elementReference>Zip_Postalcode_0_0</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>PrimaryContactRecord.MailingStreet</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Street_primary</elementReference>
+                <elementReference>Street_primary_0_0</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -394,6 +408,13 @@
                 <elementReference>emailPartner</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary_0_0_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone_0_0_0</targetReference>
         </connector>
@@ -418,10 +439,10 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <assignToReference>PrimaryContactRecord.Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country_primary9</elementReference>
+                <elementReference>Country_primary9_picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -473,6 +494,13 @@
                 <elementReference>Under_18_9</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary9_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone_0_0_0_0</targetReference>
         </connector>
@@ -497,10 +525,10 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <assignToReference>PrimaryContactRecord.Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country_primary4</elementReference>
+                <elementReference>Country_primary4_picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -559,6 +587,13 @@
                 <elementReference>emailPartner</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary4_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone4</targetReference>
         </connector>
@@ -583,10 +618,10 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <assignToReference>PrimaryContactRecord.Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country_primary5</elementReference>
+                <elementReference>Country_primary5_picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -645,6 +680,13 @@
                 <elementReference>emailPartner</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary5_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsPreferredPhoneNone5</targetReference>
         </connector>
@@ -669,10 +711,10 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <assignToReference>PrimaryContactRecord.Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country_primary_1</elementReference>
+                <elementReference>Country_primary_1_picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -717,6 +759,13 @@
                 <elementReference>Under_18_3</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary_1_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsHowHeardSet_0_0_0_0</targetReference>
         </connector>
@@ -741,10 +790,10 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <assignToReference>PrimaryContactRecord.Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country_primary_2</elementReference>
+                <elementReference>Country_primary_2_picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -789,6 +838,13 @@
                 <elementReference>Under_18_4</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary_2_picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>IsHowHeardSet_0_0_0</targetReference>
         </connector>
@@ -813,10 +869,10 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <assignToReference>PrimaryContactRecord.Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country_primary10</elementReference>
+                <elementReference>Country_primary10_picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -859,6 +915,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>Under_18_10</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PrimaryContactRecord.MailingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Country_primary10_picklist</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -1381,6 +1444,14 @@
         <name>none</name>
         <choiceText>--None--</choiceText>
         <dataType>String</dataType>
+    </choices>
+    <choices>
+        <name>PrimaryContactCountryPreselected</name>
+        <choiceText>{!PrimaryContactRecord.Country__c}</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <elementReference>PrimaryContactRecord.Country__c</elementReference>
+        </value>
     </choices>
     <decisions>
         <name>AreCouplesAllowed</name>
@@ -2842,6 +2913,15 @@
             <field>npe01__PreferredPhone__c</field>
         </outputAssignments>
     </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>PrimaryContactCountries</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Country__c</picklistField>
+        <picklistObject>Contact</picklistObject>
+        <sortOrder>Asc</sortOrder>
+    </dynamicChoiceSets>
     <formulas>
         <name>emailFinal</name>
         <dataType>Boolean</dataType>
@@ -2950,6 +3030,8 @@
         <queriedFields>FirstName</queriedFields>
         <queriedFields>LastName</queriedFields>
         <queriedFields>Email</queriedFields>
+        <queriedFields>Country__c</queriedFields>
+        <queriedFields>npe01__PreferredPhone__c</queriedFields>
     </recordLookups>
     <recordUpdates>
         <name>Update_Booking</name>
@@ -3163,14 +3245,14 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Country_primary</name>
+            <name>Country_primary_picklist</name>
+            <choiceReferences>PrimaryContactCountryPreselected</choiceReferences>
+            <choiceReferences>PrimaryContactCountries</choiceReferences>
             <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>PrimaryContactRecord.MailingCountry</elementReference>
-            </defaultValue>
+            <defaultSelectedChoiceReference>PrimaryContactCountryPreselected</defaultSelectedChoiceReference>
             <fieldText>Country</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>under_18_help</name>
@@ -3547,14 +3629,14 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Country_primary_0</name>
+            <name>Country_primary_0_picklist</name>
+            <choiceReferences>PrimaryContactCountryPreselected</choiceReferences>
+            <choiceReferences>PrimaryContactCountries</choiceReferences>
             <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>PrimaryContactRecord.MailingCountry</elementReference>
-            </defaultValue>
+            <defaultSelectedChoiceReference>PrimaryContactCountryPreselected</defaultSelectedChoiceReference>
             <fieldText>Country</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>under_18_help2</name>
@@ -3853,14 +3935,14 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Country_primary_2</name>
+            <name>Country_primary_2_picklist</name>
+            <choiceReferences>PrimaryContactCountryPreselected</choiceReferences>
+            <choiceReferences>PrimaryContactCountries</choiceReferences>
             <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>PrimaryContactRecord.MailingCountry</elementReference>
-            </defaultValue>
+            <defaultSelectedChoiceReference>PrimaryContactCountryPreselected</defaultSelectedChoiceReference>
             <fieldText>Country</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>under_18_help4</name>
@@ -4174,14 +4256,14 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Country_primary5</name>
+            <name>Country_primary5_picklist</name>
+            <choiceReferences>PrimaryContactCountryPreselected</choiceReferences>
+            <choiceReferences>PrimaryContactCountries</choiceReferences>
             <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>PrimaryContactRecord.MailingCountry</elementReference>
-            </defaultValue>
+            <defaultSelectedChoiceReference>PrimaryContactCountryPreselected</defaultSelectedChoiceReference>
             <fieldText>Country</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>under_18_help6</name>
@@ -4627,14 +4709,14 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Country_primary9</name>
+            <name>Country_primary9_picklist</name>
+            <choiceReferences>PrimaryContactCountryPreselected</choiceReferences>
+            <choiceReferences>PrimaryContactCountries</choiceReferences>
             <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>PrimaryContactRecord.MailingCountry</elementReference>
-            </defaultValue>
+            <defaultSelectedChoiceReference>PrimaryContactCountryPreselected</defaultSelectedChoiceReference>
             <fieldText>Country</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>under_18_help_0_0</name>
@@ -5012,14 +5094,14 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Country_primary10</name>
+            <name>Country_primary10_picklist</name>
+            <choiceReferences>PrimaryContactCountryPreselected</choiceReferences>
+            <choiceReferences>PrimaryContactCountries</choiceReferences>
             <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>PrimaryContactRecord.MailingCountry</elementReference>
-            </defaultValue>
+            <defaultSelectedChoiceReference>PrimaryContactCountryPreselected</defaultSelectedChoiceReference>
             <fieldText>Country</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>under_18_help4_0</name>
@@ -5333,14 +5415,14 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Country_primary_1</name>
+            <name>Country_primary_1_picklist</name>
+            <choiceReferences>PrimaryContactCountryPreselected</choiceReferences>
+            <choiceReferences>PrimaryContactCountries</choiceReferences>
             <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>PrimaryContactRecord.MailingCountry</elementReference>
-            </defaultValue>
+            <defaultSelectedChoiceReference>PrimaryContactCountryPreselected</defaultSelectedChoiceReference>
             <fieldText>Country</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>under_18_help3</name>
@@ -5654,14 +5736,14 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Country_primary4</name>
+            <name>Country_primary4_picklist</name>
+            <choiceReferences>PrimaryContactCountryPreselected</choiceReferences>
+            <choiceReferences>PrimaryContactCountries</choiceReferences>
             <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>PrimaryContactRecord.MailingCountry</elementReference>
-            </defaultValue>
+            <defaultSelectedChoiceReference>PrimaryContactCountryPreselected</defaultSelectedChoiceReference>
             <fieldText>Country</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>under_18_help5</name>
@@ -6113,14 +6195,14 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Country_primary_0_0</name>
+            <name>Country_primary_0_0_picklist</name>
+            <choiceReferences>PrimaryContactCountryPreselected</choiceReferences>
+            <choiceReferences>PrimaryContactCountries</choiceReferences>
             <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>PrimaryContactRecord.MailingCountry</elementReference>
-            </defaultValue>
+            <defaultSelectedChoiceReference>PrimaryContactCountryPreselected</defaultSelectedChoiceReference>
             <fieldText>Country</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>under_18_help_0</name>

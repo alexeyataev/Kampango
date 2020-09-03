@@ -22,12 +22,22 @@ public with sharing class CourseDetailControllerTest {
             .buildVenue()
             .buildRoom()
             .buildLicenceToPractice()
-            .buildCoursesWithChoseNumberAndStatusSessions(coursesToCreate, provisionSessionsToCreate,confirmedSessionsToCreate)
-            .buildCourse()
+            .buildCourseWithTypeAndSubType('Antenatal', 'One to One')
+            .buildEstimatedCosts()
+            .buildSession();
+        List<Session__c> sessions = [
+            SELECT Id FROM Session__c WHERE Type__c = 'Standard' AND Status__c != 'Confirmed'
+        ];
+        testDataFactory.setSessionsToConfirmed(sessions)
+            .buildReunion()
+            .setCourseToFinal()
             .buildParentHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
             .buildPartnertHost(HOST_LASTNAME, HOST_EMAIL_ADDRESS)
-            .buildSessionWithTypeAndStatus('Reunion', 'Confirmed')
             .buildBooking('Enquiry');
+        List<Session__c> sessionsReunion = [
+            SELECT Id FROM Session__c WHERE Type__c = 'Reunion' AND Status__c != 'Confirmed'
+        ];
+        testDataFactory.setSessionsToConfirmed(sessionsReunion);
     }
 
     @IsTest

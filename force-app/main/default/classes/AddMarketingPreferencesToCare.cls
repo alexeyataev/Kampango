@@ -18,7 +18,7 @@ public without sharing class AddMarketingPreferencesToCare {
         List<MarketingPreferencesResult> marketingPreferencesResultList = new List<MarketingPreferencesResult>();
         if(cont.NCT_Number__c != null && cont.Individual != null) {
             for(String individualField : MARKETING_PREFERENCES_DOCUMENT_MAP.keySet()) {
-                CareHelper.MarketingPreferencesObject marketingPreferencesObject = CareHelper.sendMarketingPreferences(cont.NCT_Number__c, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField), (Boolean)cont.Individual.get(individualField));
+                CareHelper.MarketingPreferencesObject marketingPreferencesObject = CareHelper.sendMarketingPreferences(cont, MARKETING_PREFERENCES_DOCUMENT_MAP.get(individualField), (Boolean)cont.Individual.get(individualField));
                 if(marketingPreferencesObject.error != null) {
                     marketingPreferencesResultList.add(new MarketingPreferencesResult(individualField, CareHelper.FAILURE_STATUS, marketingPreferencesObject.error[0].errorMessage));
                 }
@@ -31,7 +31,7 @@ public without sharing class AddMarketingPreferencesToCare {
         String marketingPreferencesError = '';
         for(AddMarketingPreferencesToCare.MarketingPreferencesResult marketingPreferencesResult : marketingPreferencesResultList) {
             if(marketingPreferencesResult.status == CareHelper.FAILURE_STATUS) {
-                marketingPreferencesError = marketingPreferencesError + marketingPreferencesResult.fieldName + ' failed to send to CARE: ' + marketingPreferencesResult.errorMessage + '\r\n';
+                marketingPreferencesError = marketingPreferencesError + marketingPreferencesResult.errorMessage + '\r\n\r\n';
             }
         }
         return marketingPreferencesError;
@@ -40,16 +40,23 @@ public without sharing class AddMarketingPreferencesToCare {
     @future(callout=true)
     private static void addMarketingPreferencesFuture(Id contactId){
         List<Contact> contactList = [
-            SELECT  Nct_Number__c,
+            SELECT  Care_Error_Log__c,
                     Individual.Has_Opted_In_Email__c,
                     Individual.Has_Opted_In_Post__c,
                     Individual.Has_Opted_In_SMS__c,
-                    Individual.Has_Opted_In_Telephone__c
+                    Individual.Has_Opted_In_Telephone__c,
+                    Nct_Number__c
             FROM Contact
             WHERE Id =: contactId
         ];
         if(!contactList.isEmpty()) {
-            addMarketingPreferencesForContact(contactList[0]);
+            List<AddMarketingPreferencesToCare.MarketingPreferencesResult> marketingPreferencesResultList = addMarketingPreferencesForContact(contactList[0]);
+            String marketingPreferencesError = AddMarketingPreferencesToCare.getErrorLog(marketingPreferencesResultList);
+            if(marketingPreferencesError != '') {
+                contactList[0].Care_Status__c = CareHelper.FAILURE_STATUS;
+                contactList[0].Care_Error_Log__c = CareHelper.addErrorLog(marketingPreferencesError, contactList[0].Care_Error_Log__c);
+                update contactList;
+            }
         }
     }
 

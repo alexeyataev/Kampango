@@ -4,11 +4,6 @@
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Adhoc Payment Notification</name>
-    <packageVersions>
-        <majorNumber>1</majorNumber>
-        <minorNumber>403</minorNumber>
-        <namespace>Zumzum</namespace>
-    </packageVersions>
     <style>none</style>
     <subject>Payment due to NCT</subject>
     <type>visualforce</type>

@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Adhoc_Support</fullName>
     <active>true</active>
+    <compactLayoutAssignment>Adhoc_Support_Compact_Layout</compactLayoutAssignment>
     <label>Adhoc Support</label>
     <picklistValues>
         <picklist>Delivery_Type__c</picklist>

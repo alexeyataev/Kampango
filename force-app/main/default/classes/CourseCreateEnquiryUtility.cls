@@ -1,5 +1,13 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #110 - https://confluence.nct.org.uk:8443/x/EoSO
 public without sharing class CourseCreateEnquiryUtility {
     public static final String RECORDTYPE_NAME = 'Clients';
+    private static final String DEFAULT_MAILING_COUNTRY = 'United Kingdom';
+
+    private static final String INDIVIDUAL_EMAIL_PREFERENCE = 'emailPreference';
+    private static final String INDIVIDUAL_POST_PREFERENCE = 'postPreference';
+    private static final String INDIVIDUAL_SMS_PREFERENCE = 'smstextPreference';
+    private static final String INDIVIDUAL_TELEPHONE_PREFERENCE = 'telephonePreference';
 
     public static void createEnquiry(Map<String, String> requestParameters) {
         if (requestParameters.isEmpty() || String.isBlank(requestParameters.get('courseId'))) {
@@ -111,6 +119,7 @@ public without sharing class CourseCreateEnquiryUtility {
             Email = requestParameters.get('email'),
             MobilePhone = requestParameters.get('mobile'),
             MailingCity = requestParameters.get('town'),
+            MailingCountry = DEFAULT_MAILING_COUNTRY,
             MailingPostalCode = requestParameters.get('postcode'),
             MailingState = requestParameters.get('county'), // 'county' is not a 'countRy'
             MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
@@ -126,6 +135,7 @@ public without sharing class CourseCreateEnquiryUtility {
             RecordTypeId = getContactRecordTypeByAPIName(RECORDTYPE_NAME),
             MobilePhone = requestParameters.get('mobile'),
             MailingCity = requestParameters.get('town'),
+            MailingCountry = DEFAULT_MAILING_COUNTRY,
             MailingPostalCode = requestParameters.get('postcode'),
             MailingState = requestParameters.get('county'),
             MailingStreet = requestParameters.get('address_line1') + ' ' + requestParameters.get('address_line2'),
@@ -148,22 +158,31 @@ public without sharing class CourseCreateEnquiryUtility {
                 Database.SaveResult duplicateInsertResult = Database.insert(partner, dmlOption);
             }
         }
-        updateContactPreferences(partner.Id, requestParameters);
+
+        Map<String, String> partherRequestParametersCloneMap = requestParameters.clone();
+        partherRequestParametersCloneMap.put(INDIVIDUAL_EMAIL_PREFERENCE, '0');
+        partherRequestParametersCloneMap.put(INDIVIDUAL_POST_PREFERENCE, '0');
+        partherRequestParametersCloneMap.put(INDIVIDUAL_SMS_PREFERENCE, '0');
+        partherRequestParametersCloneMap.put(INDIVIDUAL_TELEPHONE_PREFERENCE, '0');
+
+        updateContactPreferences(partner.Id, partherRequestParametersCloneMap);
         return partner.Id;
     }
 
     private static void updateContactPreferences(Id contactId, Map<String, String> requestParameters) {
         Contact contact = getContactById(contactId);
+
         Individual individual = [
             SELECT Id, Has_Opted_In_Email__c, Has_Opted_In_Post__c, Has_Opted_In_SMS__c, Has_Opted_In_Telephone__c 
             FROM Individual 
             WHERE Id =: contact.IndividualId
             LIMIT 1
         ];
-        individual.Has_Opted_In_Email__c = parseParameterToBoolean(requestParameters.get('emailPreference'));
-        individual.Has_Opted_In_Post__c = parseParameterToBoolean(requestParameters.get('postPreference'));
-        individual.Has_Opted_In_SMS__c = parseParameterToBoolean(requestParameters.get('smstextPreference'));
-        individual.Has_Opted_In_Telephone__c = parseParameterToBoolean(requestParameters.get('telephonePreference'));
+
+        individual.Has_Opted_In_Email__c = parseParameterToBoolean(requestParameters.get(INDIVIDUAL_EMAIL_PREFERENCE));
+        individual.Has_Opted_In_Post__c = parseParameterToBoolean(requestParameters.get(INDIVIDUAL_POST_PREFERENCE));
+        individual.Has_Opted_In_SMS__c = parseParameterToBoolean(requestParameters.get(INDIVIDUAL_SMS_PREFERENCE));
+        individual.Has_Opted_In_Telephone__c = parseParameterToBoolean(requestParameters.get(INDIVIDUAL_TELEPHONE_PREFERENCE));
 
         try {
             update individual;

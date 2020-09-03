@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ApexCRUDViolation')
+//Incident #107 - https://confluence.nct.org.uk:8443/x/EoSO
 public with sharing class ZumzumEStoPIConverterMock implements IExpenseSheetToPurchaseInvoiceConverter {
     public Zumzum.ExpenseSheetService.Response convert(Set<Id> expenseSheetIds) {
         List<Id> expenseSheetIdsList = new List<Id>();
