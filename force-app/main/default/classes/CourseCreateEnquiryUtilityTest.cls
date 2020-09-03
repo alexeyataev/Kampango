@@ -260,12 +260,15 @@ private class CourseCreateEnquiryUtilityTest {
             RecordTypeId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId(),
             Name = 'Test Household'
         );
+
         insert account;
+
         Contact existingContact = createExistingContact(account.Id);
         String avaliableCourse = [
             SELECT Id, Name 
             FROM Course__c 
         ][0].Name;
+
         Map<String, String> paramsMap = (Map<String, String>)JSON.deserialize(PARAMS, Map<String, String>.class);
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('partner_first_name', 'Partner');
@@ -273,22 +276,29 @@ private class CourseCreateEnquiryUtilityTest {
         paramsMap.put('partner_email', 'partner@partner.partner');
         paramsMap.put('courseId', avaliableCourse);
         paramsMap.put('emailPreference', '1');
-        Test.startTest();
+        paramsMap.put('postPreference', '1');
+        paramsMap.put('smstextPreference', '0');
+        paramsMap.put('telephonePreference', '0');
 
-        CourseCreateEnquiryUtility.createEnquiry(paramsMap);
-        
+        Test.startTest();
+            CourseCreateEnquiryUtility.createEnquiry(paramsMap);
         Test.stopTest();
+
         List<Contact> partners = [
-            SELECT Name, Email, Individual.Has_Opted_In_Email__c
+            SELECT  Name,
+                    Email,
+                    Individual.Has_Opted_In_Email__c,
+                    Individual.Has_Opted_In_Post__c,
+                    Individual.Has_Opted_In_SMS__c,
+                    Individual.Has_Opted_In_Telephone__c
             FROM Contact
             WHERE Email =: paramsMap.get('partner_email')
         ];
-        List<Booking__c> bookings = [
-            SELECT Name
-            FROM Booking__c
-            WHERE Partner_Contact__c != null
-        ];
-        System.assertEquals(true, partners[0].Individual.Has_Opted_In_Email__c);
+
+        System.assertEquals(false, partners[0].Individual.Has_Opted_In_Email__c, 'Should be False');
+        System.assertEquals(false, partners[0].Individual.Has_Opted_In_Post__c, 'Should be False');
+        System.assertEquals(false, partners[0].Individual.Has_Opted_In_SMS__c, 'Should be False');
+        System.assertEquals(false, partners[0].Individual.Has_Opted_In_Telephone__c, 'Should be False');
     }
 
     @isTest

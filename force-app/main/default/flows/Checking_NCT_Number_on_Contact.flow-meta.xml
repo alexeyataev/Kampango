@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Add_Partner_Contact_For_Membership</name>
         <label>Add Partner Contact For Membership</label>
-        <locationX>299</locationX>
+        <locationX>502</locationX>
         <locationY>513</locationY>
         <actionName>AddContactForMembershipHandler</actionName>
         <actionType>apex</actionType>
@@ -28,7 +28,7 @@
     <actionCalls>
         <name>Add_Primary_Contact_For_Membership</name>
         <label>Add Primary Contact For Membership</label>
-        <locationX>662</locationX>
+        <locationX>865</locationX>
         <locationY>321</locationY>
         <actionName>AddContactForMembershipHandler</actionName>
         <actionType>apex</actionType>
@@ -53,7 +53,7 @@
     <actionCalls>
         <name>Update_Contact_Nct_Number</name>
         <label>Update Contact Nct Number</label>
-        <locationX>744</locationX>
+        <locationX>947</locationX>
         <locationY>805</locationY>
         <actionName>BookingFlowUpdateNctNumber</actionName>
         <actionType>apex</actionType>
@@ -67,7 +67,7 @@
     <assignments>
         <name>Add_Parent_To_Contact_List</name>
         <label>Add Parent To Contact List</label>
-        <locationX>959</locationX>
+        <locationX>1162</locationX>
         <locationY>707</locationY>
         <assignmentItems>
             <assignToReference>Contact_List</assignToReference>
@@ -83,7 +83,7 @@
     <assignments>
         <name>Add_Partner_Contact_And_Number</name>
         <label>Add Partner Contact And Number</label>
-        <locationX>428</locationX>
+        <locationX>631</locationX>
         <locationY>802</locationY>
         <assignmentItems>
             <assignToReference>PartnerContact.Id</assignToReference>
@@ -117,7 +117,7 @@
     <assignments>
         <name>Add_Partner_Contact_Error</name>
         <label>Add Partner Contact Error</label>
-        <locationX>158</locationX>
+        <locationX>361</locationX>
         <locationY>879</locationY>
         <assignmentItems>
             <assignToReference>PartnerContact.Id</assignToReference>
@@ -147,7 +147,7 @@
     <assignments>
         <name>Add_Primary_Contact_And_Number</name>
         <label>Add Primary Contact And Number</label>
-        <locationX>883</locationX>
+        <locationX>1086</locationX>
         <locationY>498</locationY>
         <assignmentItems>
             <assignToReference>PrimaryContact.Id</assignToReference>
@@ -181,7 +181,7 @@
     <assignments>
         <name>Add_Primary_Contact_Error</name>
         <label>Add Primary Contact Error</label>
-        <locationX>1107</locationX>
+        <locationX>1310</locationX>
         <locationY>510</locationY>
         <assignmentItems>
             <assignToReference>PrimaryContact.Id</assignToReference>
@@ -211,7 +211,7 @@
     <assignments>
         <name>Add_To_Partner_Contact_List</name>
         <label>Add To Partner Contact List</label>
-        <locationX>299</locationX>
+        <locationX>502</locationX>
         <locationY>980</locationY>
         <assignmentItems>
             <assignToReference>Contact_List</assignToReference>
@@ -241,7 +241,7 @@
     <decisions>
         <name>Check_Partner_Nct_Number</name>
         <label>Check Partner Nct Number</label>
-        <locationX>417</locationX>
+        <locationX>620</locationX>
         <locationY>524</locationY>
         <defaultConnector>
             <targetReference>Add_Partner_Contact_For_Membership</targetReference>
@@ -260,7 +260,7 @@
     <decisions>
         <name>Check_Primary_Nct_Number</name>
         <label>Check Primary Nct Number</label>
-        <locationX>421</locationX>
+        <locationX>624</locationX>
         <locationY>323</locationY>
         <defaultConnector>
             <targetReference>Add_Primary_Contact_For_Membership</targetReference>
@@ -282,18 +282,15 @@
     <decisions>
         <name>Is_Included_Partner_Contact</name>
         <label>Is Included Partner Contact</label>
-        <locationX>657</locationX>
+        <locationX>860</locationX>
         <locationY>511</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Partner_is_Include</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Membership_With_Partner</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
+                <leftValueReference>Booking_Record.Partner_Contact__c</leftValueReference>
+                <operator>NotEqualTo</operator>
             </conditions>
             <connector>
                 <targetReference>Check_Partner_Nct_Number</targetReference>
@@ -323,7 +320,7 @@
     <decisions>
         <name>Is_List_Not_Empty</name>
         <label>Is List Not Empty</label>
-        <locationX>635</locationX>
+        <locationX>838</locationX>
         <locationY>952</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -342,7 +339,7 @@
     <decisions>
         <name>Is_Number_for_Parent_Contact_Valid</name>
         <label>Is Number for Parent Contact Valid</label>
-        <locationX>1002</locationX>
+        <locationX>1205</locationX>
         <locationY>364</locationY>
         <defaultConnector>
             <targetReference>Add_Primary_Contact_Error</targetReference>
@@ -364,7 +361,7 @@
     <decisions>
         <name>Is_Number_For_Partner_Contact_Valid</name>
         <label>Is Number For Partner Contact Valid</label>
-        <locationX>291</locationX>
+        <locationX>494</locationX>
         <locationY>699</locationY>
         <defaultConnector>
             <targetReference>Add_Partner_Contact_Error</targetReference>

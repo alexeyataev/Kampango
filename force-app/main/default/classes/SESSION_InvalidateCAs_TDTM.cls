@@ -35,6 +35,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
         Set<Id> oldPractitionerIds = new Set<Id>();
         Set<Id> courseIds = new Set<Id>();
         List<Course_Assignment__c> courseAssignmentsToUpdate = new List<Course_Assignment__c>();
+        List<Course_Assignment__c> courseAssignmentsToInvalidate = new List<Course_Assignment__c>();
         Map<Id, Session__c> oldSessionMap = new Map<Id, Session__c>(oldSessionList);
 
         for (Session__c session : newSessionList) {
@@ -62,16 +63,20 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
             }
         }
 
-        setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(newPractitionerIds, courseIds, courseAssignmentsToUpdate);
-        setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(oldPractitionerIds, courseIds, courseAssignmentsToUpdate);
+        if(!courseIds.isEmpty()) {
+            setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(newPractitionerIds, courseIds, courseAssignmentsToUpdate);
+            setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(oldPractitionerIds, courseIds, courseAssignmentsToUpdate);
+        }
         
-        List<Course_Assignment__c> courseAssignmentsToInvalidate = [
-            SELECT Status__c
-            FROM Course_Assignment__c
-            WHERE Id IN :courseAssignmentIds
-                AND Status__c NOT IN (:COURSE_ASSIGNMENT_INVALIDATED_STATUS, :COURSE_ASSIGNMENT_WITHDRAWN_STATUS)
-            WITH SECURITY_ENFORCED
-        ];
+        if(!courseAssignmentIds.isEmpty()) {
+            courseAssignmentsToInvalidate = [
+                SELECT Status__c
+                FROM Course_Assignment__c
+                WHERE Id IN :courseAssignmentIds
+                    AND Status__c NOT IN (:COURSE_ASSIGNMENT_INVALIDATED_STATUS, :COURSE_ASSIGNMENT_WITHDRAWN_STATUS)
+                WITH SECURITY_ENFORCED
+            ];
+        }
 
         if(!courseAssignmentsToInvalidate.isEmpty()) {
             for(Course_Assignment__c assignment : courseAssignmentsToInvalidate){
@@ -113,7 +118,7 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
  
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #19, 20 - https://confluence.nct.org.uk:8443/x/EoSO
-    private static List<Course_Assignment__c> setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(Set<Id> practitionerIds, Set<Id> courseIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
+    private static void setCourseAssignmentsStatusDependOnWhetherPractitionerHasSessions(Set<Id> practitionerIds, Set<Id> courseIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
     
     List<User> partnerCommunityUsers = [
             SELECT Id
@@ -151,13 +156,12 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                 }
             }
         }
-        return courseAssignmentsToUpdate;
 	}
 
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #21 - https://confluence.nct.org.uk:8443/x/EoSO
-    private static List<Course_Assignment__c> setCourseAssignmentsStatusDependOnWhetherAssignedSessions(Set<Id> courseAssignmentIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
+    private static void setCourseAssignmentsStatusDependOnWhetherAssignedSessions(Set<Id> courseAssignmentIds, List<Course_Assignment__c> courseAssignmentsToUpdate) {
     
     List<Course_Assignment__c> coursesAssignmentsToChangeStatus = [
             SELECT Status__c,
@@ -180,6 +184,5 @@ global with sharing class SESSION_InvalidateCAs_TDTM extends npsp.TDTM_Runnable{
                 courseAssignmentsToUpdate.add(courseAssignment);
             }                 
         }
-        return courseAssignmentsToUpdate;
 	}
 }

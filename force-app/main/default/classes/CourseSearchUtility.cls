@@ -4,6 +4,10 @@ public without sharing class CourseSearchUtility {
     private static final String SCHEDULED_SESSION_RECORD_TYPE_NAME = 'Scheduled Session';
     private static final Boolean HIDE_FROM_PUBLIC_ACCESS = false;
 
+    private static final String COURSE_TYPE_ANTENATAL = 'Antenatal';
+    private static final String COURSE_TYPE_POSTNATAL = 'Postnatal';
+    private static final String COURSE_TYPE_DROP_IN = 'Drop In';
+
     @SuppressWarnings('PMD.ApexCRUDViolation')
     //Incident #1 - https://confluence.nct.org.uk:8443/x/EoSO
     public static Course__c getCourseById(String courseName, Boolean hideFromPublicAccess) {
@@ -30,6 +34,7 @@ public without sharing class CourseSearchUtility {
                         Main_Venue__r.Postcode__c,
                         Main_Venue__r.Town__c,
                         Main_Venue__r.Type__c,
+                        Main_Venue_Name__c,
                         Name,
                         Number_of_places__c,
                         Overbooking_allowed__c,
@@ -65,7 +70,7 @@ public without sharing class CourseSearchUtility {
                     AND (
                         Start_Date__c > TODAY 
                             OR 
-                        Type__c = 'Drop In'
+                        Type__c = :COURSE_TYPE_DROP_IN
                     )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                 WITH SECURITY_ENFORCED
@@ -90,6 +95,7 @@ public without sharing class CourseSearchUtility {
                         Main_Venue__r.Postcode__c,
                         Main_Venue__r.Town__c,
                         Main_Venue__r.Type__c,
+                        Main_Venue_Name__c,
                         Name,
                         Number_of_places__c,
                         Overbooking_allowed__c,
@@ -170,6 +176,7 @@ public without sharing class CourseSearchUtility {
                         Main_Venue__r.Postcode__c,
                         Main_Venue__r.Town__c,
                         Main_Venue__r.Type__c,
+                        Main_Venue_Name__c,
                         Name,
                         Number_of_places__c,
                         Overbooking_allowed__c,
@@ -207,7 +214,7 @@ public without sharing class CourseSearchUtility {
                     AND (
                         Start_Date__c > TODAY 
                             OR 
-                        Type__c = 'Drop In'
+                        Type__c = :COURSE_TYPE_DROP_IN
                     )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                 WITH SECURITY_ENFORCED
@@ -232,6 +239,7 @@ public without sharing class CourseSearchUtility {
                        Main_Venue__r.Postcode__c,
                        Main_Venue__r.Town__c,
                        Main_Venue__r.Type__c,
+                       Main_Venue_Name__c,
                        Name,
                        Number_of_places__c,
                        Overbooking_allowed__c,
@@ -326,6 +334,7 @@ public without sharing class CourseSearchUtility {
                         Main_Venue__r.Postcode__c,
                         Main_Venue__r.Town__c,
                         Main_Venue__r.Type__c,
+                        Main_Venue_Name__c,
                         Name,
                         Number_of_places__c,
                         Overbooking_allowed__c,
@@ -363,15 +372,15 @@ public without sharing class CourseSearchUtility {
                     AND (
                         Start_Date__c > TODAY 
                             OR 
-                        Type__c = 'Drop In'
+                        Type__c = :COURSE_TYPE_DROP_IN
                     )
                     AND (Remaining_Places__c > 0 OR Overbooking_allowed__c = true)
                     AND (
-                        (Type__c = 'Antenatal' AND End_Date__c < :birthDueDate) 
+                        (Type__c = :COURSE_TYPE_ANTENATAL AND End_Date__c < :birthDueDate) 
                             OR 
-                        (Type__c = 'Postnatal' AND Start_Date__c > :birthDueDate)
+                        (Type__c = :COURSE_TYPE_POSTNATAL AND Start_Date__c > :birthDueDate)
                             OR 
-                        Type__c = 'Drop In'
+                        Type__c = :COURSE_TYPE_DROP_IN
                     )
                 WITH SECURITY_ENFORCED
                 ORDER BY Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi'), Course__c.Sort_Date__c
@@ -396,6 +405,7 @@ public without sharing class CourseSearchUtility {
                         Main_Venue__r.Postcode__c,
                         Main_Venue__r.Town__c,
                         Main_Venue__r.Type__c,
+                        Main_Venue_Name__c,
                         Name,
                         Number_of_places__c,
                         Overbooking_allowed__c,
@@ -426,6 +436,19 @@ public without sharing class CourseSearchUtility {
 
                 FROM Course__c
                 WHERE Distance(Main_Venue__r.Location__c, :location, 'mi') < :radius
+                    AND (
+
+                        (Type__c = :COURSE_TYPE_ANTENATAL AND End_Date__c < :birthDueDate) 
+
+                            OR 
+
+                        (Type__c = :COURSE_TYPE_POSTNATAL AND Start_Date__c > :birthDueDate)
+
+                            OR 
+
+                        Type__c = :COURSE_TYPE_DROP_IN
+
+                    )
                 WITH SECURITY_ENFORCED
                 ORDER BY Distance(Course__c.Main_Venue__r.Location__c, :location, 'mi'), Course__c.Sort_Date__c
             ];
