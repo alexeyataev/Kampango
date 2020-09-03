@@ -223,6 +223,7 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>dlrs_Zumzum_Sales_InvoiceTrigger</members>
         <members>TDTM_BatchReceiptReportItem</members>
         <members>TDTM_Booking</members>
         <members>TDTM_Estimated_Costs</members>
