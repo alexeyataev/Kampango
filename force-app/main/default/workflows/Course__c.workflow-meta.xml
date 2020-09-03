@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
+        <fullName>Set_Cancellation_Date</fullName>
+        <field>Cancellation_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Set Cancellation Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Set_Hide_From_Course_Finder</fullName>
         <field>Hide_From_Course_Finder__c</field>
         <literalValue>1</literalValue>
@@ -18,6 +27,21 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>Course Set Cancellation Date</fullName>
+        <actions>
+            <name>Set_Cancellation_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Course__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Cancelling</value>
+        </criteriaItems>
+        <description>Will trigger when course status is &quot;Cancelling&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>Course Status Closed</fullName>
         <actions>
