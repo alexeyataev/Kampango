@@ -1,4 +1,3 @@
-
 final String BeforeInsert = 'BeforeInsert';
 final String BeforeUpdate = 'BeforeUpdate';
 final String BeforeDelete = 'BeforeDelete';
@@ -100,33 +99,41 @@ requiredTriggerHandlersMap.put (
 );
 
 requiredTriggerHandlersMap.put (
-    'SI_CalculateCoursePlaceCost_TDTM',
+    'PRLineItem_PreventDeletion_TDTM',
     new npsp__Trigger_Handler__c (
-        npsp__Object__c = 'Zumzum__Sales_Invoice__c',
-        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate }),
-        npsp__Load_Order__c = 1,
+        npsp__Object__c = 'Payment_Run_Line_Item__c',
+        npsp__Trigger_Action__c = getValidActionString(new String[] { BeforeDelete }),
+        npsp__Load_Order__c = 0,
         npsp__Active__c = true
     )
 );
 
-requiredTriggerHandlersMap.put (
-    'SILI_CalculateCoursePlaceTotal_TDTM',
-    new npsp__Trigger_Handler__c (
-        npsp__Object__c = 'Zumzum__Sales_Invoice_Line_Item__c',
-        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate }),
-        npsp__Load_Order__c = 1,
-        npsp__Active__c = true
-    )
-);
-
-requiredTriggerHandlersMap.put (
-    'Case_OpenCasesTotal_TDTM',
-    new npsp__Trigger_Handler__c (
-        npsp__Object__c = 'Case',
-        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate }),
-        npsp__Load_Order__c = 1,
-        npsp__Active__c = true
-    )
+requiredTriggerHandlersMap.put (	
+    'SI_CalculateCoursePlaceCost_TDTM',	
+    new npsp__Trigger_Handler__c (	
+        npsp__Object__c = 'Zumzum__Sales_Invoice__c',	
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate }),	
+        npsp__Load_Order__c = 1,	
+        npsp__Active__c = true	
+    )	
+);	
+requiredTriggerHandlersMap.put (	
+    'SILI_CalculateCoursePlaceTotal_TDTM',	
+    new npsp__Trigger_Handler__c (	
+        npsp__Object__c = 'Zumzum__Sales_Invoice_Line_Item__c',	
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate }),	
+        npsp__Load_Order__c = 1,	
+        npsp__Active__c = true	
+    )	
+);	
+requiredTriggerHandlersMap.put (	
+    'Case_OpenCasesTotal_TDTM',	
+    new npsp__Trigger_Handler__c (	
+        npsp__Object__c = 'Case',	
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate }),	
+        npsp__Load_Order__c = 1,	
+        npsp__Active__c = true	
+    )	
 );
 
 List<npsp__Trigger_Handler__c> existingTriggerHandlers = [
