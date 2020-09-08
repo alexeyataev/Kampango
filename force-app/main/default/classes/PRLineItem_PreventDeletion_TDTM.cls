@@ -24,7 +24,7 @@ global with sharing class PRLineItem_PreventDeletion_TDTM extends npsp.TDTM_Runn
 
         for (Payment_Run_Line_Item__c paymentRunLineItem : oldPaymentRunLineItemList) {
 
-            if (paymentRunLineItemPreventDeleteIds.contains(paymentRunLineItem.Id)) {
+            if (!paymentRunLineItemPreventDeleteIds.contains(paymentRunLineItem.Id)) {
                 paymentRunLineItem.addError(System.Label.Delete_Payment_Run_Line_Item_Error_Text);
             }
 

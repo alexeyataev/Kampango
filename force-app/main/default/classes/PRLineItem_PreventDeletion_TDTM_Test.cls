@@ -3,11 +3,11 @@
 
 @IsTest
 public with sharing class PRLineItem_PreventDeletion_TDTM_Test {
-    private static final String PAYMENT_RUN_STATUS_DRAFT = 'Draft';
-    private static final String PAYMENT_RUN_STATUS_FAILED = 'Failed To Create Transactions';
+    private static final String PAYMENT_RUN_STATUS_READY = 'Ready';
+    private static final String PAYMENT_RUN_STATUS_CLOSED = 'Closed';
     private static final Integer COUNT_RECORDS = 2;
 
-    private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String>{
+    private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String> {
         'triggerHandlerName' => 'PRLineItem_PreventDeletion_TDTM',
         'className' => 'PRLineItem_PreventDeletion_TDTM',
         'objectAPIName' => 'Payment_Run_Line_Item__c',
@@ -25,9 +25,9 @@ public with sharing class PRLineItem_PreventDeletion_TDTM_Test {
             Payment_Run__c paymentRun = new Payment_Run__c();
 
             if (i > 0) {
-                paymentRun.Status__c = PAYMENT_RUN_STATUS_DRAFT;
+                paymentRun.Status__c = PAYMENT_RUN_STATUS_READY;
             } else {
-                paymentRun.Status__c = PAYMENT_RUN_STATUS_FAILED;
+                paymentRun.Status__c = PAYMENT_RUN_STATUS_CLOSED;
             }
 
             paymentRunList.add(paymentRun);
@@ -54,8 +54,8 @@ public with sharing class PRLineItem_PreventDeletion_TDTM_Test {
     }
 
     @IsTest
-    public static void PreventDeletePRLineItems_SetRunPaymentStatusToDraft_PreventedDeletingPRLineItemsRecord() {
-        Payment_Run_Line_Item__c paymentRunLineItem = [SELECT Id, Payment_Run__r.Status__c FROM Payment_Run_Line_Item__c WHERE Payment_Run__r.Status__c = :PAYMENT_RUN_STATUS_DRAFT LIMIT 1];
+    public static void PreventDeletePRLineItems_SetRunPaymentStatusToReady_PreventedDeletingPRLineItemsRecord() {
+        Payment_Run_Line_Item__c paymentRunLineItem = [SELECT Id, Payment_Run__r.Status__c FROM Payment_Run_Line_Item__c WHERE Payment_Run__r.Status__c = :PAYMENT_RUN_STATUS_READY LIMIT 1];
         Database.DeleteResult dataBaseResult;
 
         Test.startTest();
@@ -66,8 +66,8 @@ public with sharing class PRLineItem_PreventDeletion_TDTM_Test {
     }
 
     @IsTest
-    public static void PreventDeletePRLineItems_SetRunPaymentStatusToFailed_PreventedDeletingPRLineItemsRecord() {
-        Payment_Run_Line_Item__c paymentRunLineItem = [SELECT Id, Payment_Run__r.Status__c FROM Payment_Run_Line_Item__c WHERE Payment_Run__r.Status__c = :PAYMENT_RUN_STATUS_FAILED LIMIT 1];
+    public static void PreventDeletePRLineItems_SetRunPaymentStatusToClosed_PreventedDeletingPRLineItemsRecord() {
+        Payment_Run_Line_Item__c paymentRunLineItem = [SELECT Id, Payment_Run__r.Status__c FROM Payment_Run_Line_Item__c WHERE Payment_Run__r.Status__c = :PAYMENT_RUN_STATUS_CLOSED LIMIT 1];
         Database.DeleteResult dataBaseResult;
 
         Test.startTest();
