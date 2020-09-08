@@ -23,7 +23,9 @@ global class BacsSendRemittanceEmailsBatch implements Database.Batchable<Payment
             singleEmailMessageList.add(singleEmailMessage);
             prli.Is_Email_Sent__c = true;
         }
-        Messaging.sendEmail(singleEmailMessageList);
+        if (TestEmailUtility.emailsFeatureEnabled()) {
+            Messaging.sendEmail(singleEmailMessageList);
+        }
         update scope;
     }
 
