@@ -49,7 +49,7 @@
         <name>MESSAGE_SUCCESS</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>The emails were succesfully sent</stringValue>
+            <stringValue>Email sending has started</stringValue>
         </value>
     </constants>
     <constants>
@@ -219,7 +219,7 @@ V2. Added Payment Run Status Check</description>
             <targetReference>GetPaymentStatus</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>action_result_message</name>
         <dataType>String</dataType>
