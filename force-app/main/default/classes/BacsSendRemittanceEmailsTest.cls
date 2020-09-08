@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.MethodNamingConventions')
+//Incident #135 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 private class BacsSendRemittanceEmailsTest {
     private final static String TYPE_PURCHASE_INVOICE = 'Purchase Invoice';
