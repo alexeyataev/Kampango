@@ -20,8 +20,17 @@
                 <behavior>Edit</behavior>
                 <field>Reference__c</field>
             </layoutItems>
+  
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Number_Of_Line_Items__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Number_Of_Remittance_Emails_Sent__c</field>
+            </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -98,6 +107,10 @@
         <masterLabel>00h4E0000010fm8</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
+        <summaryLayoutStyle>Default</summaryLayoutStyle>
+    </summaryLayout>
+</Layout>
+Y>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
     </summaryLayout>
 </Layout>
