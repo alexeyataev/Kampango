@@ -46,7 +46,7 @@
         <members>CareCountryCodeMappingUtil</members>
         <members>CareHelper</members>
         <members>CareRequestBodyUtil</members>
-        <members>Case_OpenCasesTotal_TDTM</members>
+        <members>Case_CasesInProgress_TDTM</members>
         <members>ChatterPost_PreventDeletion_TDTM</members>
         <members>ChatterPost_PreventDeletion_TDTM_Test</members>
         <members>ClaimFeeHelper</members>
