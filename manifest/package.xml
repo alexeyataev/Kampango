@@ -20,6 +20,8 @@
         <members>AddMembershipScheduler</members>
         <members>AddMembershipTest</members>
         <members>AssignCasetoQueueTest</members>
+        <members>BacsSendRemittanceEmailsBatch</members>
+        <members>BacsSendRemittanceEmailsTest</members>
         <members>BatchOutboundBACSpayment</members>
         <members>BatchOutboundBACSpaymentTest</members>
         <members>BatchReceiptReportItem_Rollups_TDTM</members>
