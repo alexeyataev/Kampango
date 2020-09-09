@@ -27,6 +27,7 @@
         <members>BOOKING_PopulateContactEDD_TDTM_Test</members>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
+        <members>BookingFlowContactDetailsParams</members>
         <members>BookingFlowUpdateNctNumber</members>
         <members>BookingFlowUpdateNctNumberTest</members>
         <members>BookingJourneyHelper</members>
@@ -574,6 +575,7 @@
         <members>Adhoc_Send_Payment_Email_Flow</members>
         <members>Assign_Practitioner_Fee_Rate_to_Session</members>
         <members>Bacs_Create_transaction_records</members>
+        <members>Booking_Contact_Details_Flow</members>
         <members>Booking_Gift_Aid_Declaration</members>
         <members>Booking_Journey_Available</members>
         <members>Booking_Journey_Success_Page</members>
