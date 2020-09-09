@@ -24,102 +24,103 @@ export default class MarketingPreferencesComponent extends LightningElement {
 
     connectedCallback() {
         loadStyle(this, NCT_STYLES + '/coursedetail.css')
-        .then(() => {
-            this.stylesLoaded = true;
-        })
-        .catch(error => {
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Error loading styles',
-                    message: error.message,
-                    variant: 'error',
-                }),
-            );
-        });
-    }
-
-    @wire (retrieveMarketingPreferences, {individualId: '$individualId'})
-        getPreferences({error, data}) {
-            if (data) {
-                if (this.email === undefined && this.sms === undefined
-                    && this.post === undefined && this.phone === undefined) {
-                    this.email = data.Has_Opted_In_Email__c;
-                    this.sms = data.Has_Opted_In_SMS__c;
-                    this.post = data.Has_Opted_In_Post__c;
-                    this.phone = data.Has_Opted_In_Telephone__c;
-                }
-
-                if (this.email) {
-                    this.marketingValues.push('email');
-                }
-
-                if (this.sms) {
-                    this.marketingValues.push('sms');
-                }
-
-                if (this.post) {
-                    this.marketingValues.push('post')
-                }
-
-                if (this.phone) {
-                    this.marketingValues.push('phone');
-                }
-
-                this.dispatchEventList();
-                this.optionsLoaded = true;
-
-            } else if (error) {
-                let message = 'Unknown error';
-
-                if (Array.isArray(error.body)) {
-                    message = error.body.map(e => e.message).join(', ');
-
-                } else if (typeof error.body.message === 'string'){
-                    message = error.body.message;
-                }
-
+            .then(() => {
+                this.stylesLoaded = true;
+            })
+            .catch(error => {
                 this.dispatchEvent(
                     new ShowToastEvent({
-                        title: 'Error occured while loading marketing preferences',
-                        message,
-                        variant: 'error'
-                    })
+                        title: 'Error loading styles',
+                        message: error.message,
+                        variant: 'error',
+                    }),
                 );
-                
-            }
+            });
+
+        if (this.individualId) {
+            this.getIndividualOptionById(this.individualId);
+
+        } else {
+            this.optionsLoaded = true;
         }
+    }
 
-        handleChange(event){
-            this.email = false;
-            this.post = false;
-            this.sms = false;
-            this.phone = false;
-            this.marketingValues = event.detail.value;
-            if (this.marketingValues.includes('email')) {
-                this.email = true;
+    async getIndividualOptionById() {
+        let data = await retrieveMarketingPreferences({
+            individualId: this.individualId
+        })
+
+        if (data) {
+            if (this.email === undefined && this.sms === undefined &&
+                this.post === undefined && this.phone === undefined) {
+                this.email = data.Has_Opted_In_Email__c;
+                this.sms = data.Has_Opted_In_SMS__c;
+                this.post = data.Has_Opted_In_Post__c;
+                this.phone = data.Has_Opted_In_Telephone__c;
             }
 
-            if (this.marketingValues.includes('post')) {
-                this.post = true;
+            if (this.email) {
+                this.marketingValues.push('email');
             }
 
-            if (this.marketingValues.includes('sms')){
-                this.sms = true;
+            if (this.sms) {
+                this.marketingValues.push('sms');
             }
 
-            if (this.marketingValues.includes('phone')) {
-                this.phone = true;
+            if (this.post) {
+                this.marketingValues.push('post')
             }
 
+            if (this.phone) {
+                this.marketingValues.push('phone');
+            }
+
+            this.optionsLoaded = true;
             this.dispatchEventList();
+        } else {
+
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error occured while loading marketing preferences',
+                    message: result,
+                    variant: 'error'
+                })
+            );
         }
 
-        dispatchEventList() {
-            this.dispatchEvent(new FlowAttributeChangeEvent('email', this.email));
-            this.dispatchEvent(new FlowAttributeChangeEvent('sms', this.sms));
-            this.dispatchEvent(new FlowAttributeChangeEvent('post', this.post));
-            this.dispatchEvent(new FlowAttributeChangeEvent('phone', this.phone));
+    }
+
+    handleChange(event) {
+        this.email = false;
+        this.post = false;
+        this.sms = false;
+        this.phone = false;
+        this.marketingValues = event.detail.value;
+        console.log(event.detail.value);
+        if (this.marketingValues.includes('email')) {
+            this.email = true;
         }
 
+        if (this.marketingValues.includes('post')) {
+            this.post = true;
+        }
+
+        if (this.marketingValues.includes('sms')) {
+            this.sms = true;
+        }
+
+        if (this.marketingValues.includes('phone')) {
+            this.phone = true;
+        }
+
+        this.dispatchEventList();
+    }
+
+    dispatchEventList() {
+        this.dispatchEvent(new FlowAttributeChangeEvent('email', this.email));
+        this.dispatchEvent(new FlowAttributeChangeEvent('sms', this.sms));
+        this.dispatchEvent(new FlowAttributeChangeEvent('post', this.post));
+        this.dispatchEvent(new FlowAttributeChangeEvent('phone', this.phone));
+    }
 
 }
