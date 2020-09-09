@@ -20,7 +20,7 @@
                 <behavior>Edit</behavior>
                 <field>Reference__c</field>
             </layoutItems>
-  
+        </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -104,13 +104,9 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h4E0000010fm8</masterLabel>
+        <masterLabel>00h4E0000016r7k</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
-        <summaryLayoutStyle>Default</summaryLayoutStyle>
-    </summaryLayout>
-</Layout>
-Y>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
     </summaryLayout>
 </Layout>
