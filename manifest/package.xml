@@ -184,7 +184,7 @@
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
-        <members>ZumPurchaseInvoiceLa4V_Rollups_TDTM_Test</members>
+        <members>ZumPurchaseInvoiceLine_Rollups_TDTM_Test</members>
         <members>ZumzumBACSpaymentActions</members>
         <members>ZumzumBACSpaymentActionsTest</members>
         <members>ZumzumBankReceiptCreator</members>
@@ -200,7 +200,7 @@
         <members>ZumzumPurchaseInvoice_Rollups_TDTM_Test</members>
         <members>ZumzumPurchaseInvoiceCreator</members>
         <members>ZumzumPurchaseInvoiceCreatorTest</members>
-        <members>ZumzumPurchaseInvoiceLa4V_Rollups_TDTM</members>
+        <members>ZumzumPurchaseInvoiceLine_Rollups_TDTM</members>
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
         <members>ZumzumSalesInvoiceParameters</members>
@@ -232,7 +232,7 @@
         <members>TDTM_FeedItem</members>
         <members>TDTM_PaymentRunLineItem</members>
         <members>TDTM_Session_c</members>
-        <members>TDTM_ZumzumPurchaseInvoice_La4V</members>
+        <members>TDTM_ZumzumPurchaseInvoiceLineItem</members>
         <members>TDTM_ZumzumPurchaseInvoice</members>
         <name>ApexTrigger</name>
     </types>
