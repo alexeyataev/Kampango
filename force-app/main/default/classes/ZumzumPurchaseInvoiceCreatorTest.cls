@@ -15,7 +15,9 @@ public without sharing class ZumzumPurchaseInvoiceCreatorTest {
         .buildBranchAccount()
         .buildOrganizationAccount('acc5');
 
-    TestFinanceDataFactory.createZumzumPurchaseInvoiceWithLineItems(2);
+        TestFinanceDataFactory financeDataFactory = TestFinanceDataFactory.getInstance();
+        financeDataFactory.createZumzumData();
+        financeDataFactory.createZumzumPurchaseInvoiceWithLineItems(2);
     }
 
     @isTest
