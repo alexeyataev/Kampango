@@ -109,6 +109,16 @@ requiredTriggerHandlersMap.put (
     )
 );
 
+requiredTriggerHandlersMap.put (
+    'Case_CasesInProgress_TDTM',
+    new npsp__Trigger_Handler__c (
+        npsp__Object__c = 'Case',
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate }),
+        npsp__Load_Order__c = 1,
+        npsp__Active__c = true
+    )
+);
+
 List<npsp__Trigger_Handler__c> existingTriggerHandlers = [
     SELECT npsp__Class__c
     FROM npsp__Trigger_Handler__c

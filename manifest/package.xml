@@ -46,6 +46,7 @@
         <members>CareCountryCodeMappingUtil</members>
         <members>CareHelper</members>
         <members>CareRequestBodyUtil</members>
+        <members>Case_OpenCasesTotal_TDTM</members>
         <members>ChatterPost_PreventDeletion_TDTM</members>
         <members>ChatterPost_PreventDeletion_TDTM_Test</members>
         <members>ClaimFeeHelper</members>
@@ -78,6 +79,7 @@
         <members>DecryptBookingValidationCodeHandler</members>
         <members>dlrs_Batch_Receipt_Report_ItemTest</members>
         <members>dlrs_BookingTest</members>
+        <members>dlrs_CaseTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTest</members>
@@ -228,6 +230,7 @@
         <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
         <members>dlrs_Zumzum_Sales_InvoiceTrigger</members>
         <members>TDTM_Booking</members>
+        <members>TDTM_Case</members>
         <members>TDTM_FeedItem</members>
         <members>TDTM_PaymentRunLineItem</members>
         <members>TDTM_Session_c</members>
@@ -315,6 +318,7 @@
         <name>CustomLabels</name>
     </types>
     <types>
+        <members>dlrs__LookupRollupSummary2.CasesInProgress</members>
         <members>dlrs__LookupRollupSummary2.CountOfPostedSalesInvoices</members>
         <members>dlrs__LookupRollupSummary2.CourseAssignmentNumberOfSessions</members>
         <members>dlrs__LookupRollupSummary2.CourseAssignmentTotalFeesAmount</members>

@@ -49,6 +49,10 @@
                 <field>Booking_Journey_Payable_Amount__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CasesInProgress__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Suggested_Cancellation_Fee__c</field>
             </layoutItems>
