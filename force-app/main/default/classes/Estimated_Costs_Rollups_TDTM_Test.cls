@@ -2,15 +2,15 @@
 //Incident #133 - https://confluence.nct.org.uk:8443/x/EoSO
 
 @IsTest
-public with sharing class Estimated_Costs_TDTM_Test {
+public with sharing class Estimated_Costs_Rollups_TDTM_Test {
 
     private static final String PRACTITIONER_LASTNAME = 'Smith';
 
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String> {
-        'triggerHandlerName' => 'Estimated_Costs_TDTM',
-        'className' => 'Estimated_Costs_TDTM',
+        'triggerHandlerName' => 'Estimated_Costs_Rollups_TDTM',
+        'className' => 'Estimated_Costs_Rollups_TDTM',
         'objectAPIName' => 'Estimated_Costs__c',
-        'triggerActions' => 'AfterInsert;AfterUpdate;AfterDelete',
+        'triggerActions' => 'AfterInsert;AfterUpdate;AfterDelete;AfterUndelete',
         'isActive' => 'true',
         'loadOrder' => '0',
         'isAsynchronous' => 'false'

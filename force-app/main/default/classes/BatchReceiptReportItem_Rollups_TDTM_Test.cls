@@ -2,15 +2,15 @@
 //Incident #134 - https://confluence.nct.org.uk:8443/x/EoSO
 
 @IsTest
-public with sharing class BatchReceiptReportItem_TDTM_Test {
+public with sharing class BatchReceiptReportItem_Rollups_TDTM_Test {
 
     private static final String STATUS_DRAFT = 'Draft';
 
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String> {
-        'triggerHandlerName' => 'BatchReceiptReportItem_TDTM',
-        'className' => 'BatchReceiptReportItem_TDTM',
+        'triggerHandlerName' => 'BatchReceiptReportItem_Rollups_TDTM',
+        'className' => 'BatchReceiptReportItem_Rollups_TDTM',
         'objectAPIName' => 'Batch_Receipt_Report_Item__c',
-        'triggerActions' => 'AfterInsert;AfterUpdate;AfterDelete',
+        'triggerActions' => 'AfterInsert;AfterUpdate;AfterDelete;AfterUndelete',
         'isActive' => 'true',
         'loadOrder' => '0',
         'isAsynchronous' => 'false'

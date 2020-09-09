@@ -2,17 +2,16 @@
 //Incident #132 - https://confluence.nct.org.uk:8443/x/EoSO
 
 @IsTest
-public with sharing class ZumzumPurchaseInvoice_TDTM_Test {
-
+public with sharing class ZumzumPurchaseInvoice_Rollups_TDTM_Test {
     private static final Integer EXPENSE_SHEET_DETAIL_TOTAL_GROSS = 12;
     private static final String SUPPLIER_ACCOUNT_NUMBER = '123456';
     private static final String PROFILE_NAME = 'Finance';
 
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String> {
-        'triggerHandlerName' => 'ZumzumPurchaseInvoice_TDTM',
-        'className' => 'ZumzumPurchaseInvoice_TDTM',
+        'triggerHandlerName' => 'ZumzumPurchaseInvoice_Rollups_TDTM',
+        'className' => 'ZumzumPurchaseInvoice_Rollups_TDTM',
         'objectAPIName' => 'Zumzum__Purchase_Invoice__c',
-        'triggerActions' => 'AfterInsert;AfterUpdate;AfterDelete',
+        'triggerActions' => 'AfterInsert;AfterUpdate;AfterDelete;AfterUndelete',
         'isActive' => 'true',
         'loadOrder' => '0',
         'isAsynchronous' => 'false'

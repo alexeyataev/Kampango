@@ -2,24 +2,23 @@
 //Incident #131 - https://confluence.nct.org.uk:8443/x/EoSO
 
 @IsTest
-public with sharing class ZumzumPurchaseInvoiceLa4V_TDTM_Test {
-
+public with sharing class ZumPurchaseInvoiceLa4V_Rollups_TDTM_Test {
     private static final String SUPPLIER_ACCOUNT_NUMBER = '123456';
     private static final String PURCHASE_INVOICE_STATUS = 'Posted';
     private static final String PURCHASE_INVOICE_TYPE = 'Purchase Credit';
 
     private static final Map<String, String> TRIGGER_PARAMS = new Map<String, String> {
-        'triggerHandlerName' => 'ZumzumPurchaseInvoiceLa4V_TDTM',
-        'className' => 'ZumzumPurchaseInvoiceLa4V_TDTM',
+        'triggerHandlerName' => 'ZumzumPurchaseInvoiceLa4V_Rollups_TDTM',
+        'className' => 'ZumzumPurchaseInvoiceLa4V_Rollups_TDTM',
         'objectAPIName' => 'Zumzum__Purchase_Invoice_Line_Item__c',
-        'triggerActions' => 'AfterInsert;AfterUpdate;AfterDelete',
+        'triggerActions' => 'AfterInsert;AfterUpdate;AfterDelete;AfterUndelete',
         'isActive' => 'true',
         'loadOrder' => '0',
         'isAsynchronous' => 'false'
     };
 
     @TestSetup
-    private static void testSetup() {
+    private static void TestSetup() {
 
         TestDataFactory dataFactory = TestDataFactory.getInstance();
             TestDataFactory.getInstance()
@@ -75,5 +74,7 @@ public with sharing class ZumzumPurchaseInvoiceLa4V_TDTM_Test {
         Course__c courseRecordAfterUpdated = [SELECT Id, Total_Venue_Costs__c FROM Course__c];
 
         System.assertEquals(-10, courseRecordAfterUpdated.Total_Venue_Costs__c, 'Should be equals');
+
     }
 }
+

@@ -22,8 +22,8 @@
         <members>AssignCasetoQueueTest</members>
         <members>BatchOutboundBACSpayment</members>
         <members>BatchOutboundBACSpaymentTest</members>
-        <members>BatchReceiptReportItem_TDTM</members>
-        <members>BatchReceiptReportItem_Test</members>
+        <members>BatchReceiptReportItem_Rollups_TDTM</members>
+        <members>BatchReceiptReportItem_Rollups_TDTM_Test</members>
         <members>BOOKING_EncryptValidationCode_TDTM</members>
         <members>BOOKING_PopulateContactEDD_TDTM_Test</members>
         <members>BOOKING_PopulateContactEDD_TDTM</members>
@@ -83,8 +83,8 @@
         <members>EncryptBookingValidationCodeHandler</members>
         <members>EncryptDecryptBookingValidationCodeTest</members>
         <members>EncryptDecryptSalesInvoiceValCodeTest</members>
-        <members>Estimated_Costs_TDTM</members>
-        <members>Estimated_Costs_TDTM_Test</members>
+        <members>Estimated_Costs_Rollups_TDTM</members>
+        <members>Estimated_Costs_Rollups_TDTM_Test</members>
         <members>EXPENSESHEET_ConvertEStoPI_TDTM</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
@@ -182,6 +182,7 @@
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
+        <members>ZumPurchaseInvoiceLa4V_Rollups_TDTM_Test</members>
         <members>ZumzumBACSpaymentActions</members>
         <members>ZumzumBACSpaymentActionsTest</members>
         <members>ZumzumBankReceiptCreator</members>
@@ -193,12 +194,11 @@
         <members>ZumzumEStoPIConverterTest</members>
         <members>ZumzumPostSalesInvoiceHelper</members>
         <members>ZumzumPostSalesInvoiceHelperTest</members>
-        <members>ZumzumPurchaseInvoice_TDTM</members>
-        <members>ZumzumPurchaseInvoice_TDTM_Test</members>
+        <members>ZumzumPurchaseInvoice_Rollups_TDTM</members>
+        <members>ZumzumPurchaseInvoice_Rollups_TDTM_Test</members>
         <members>ZumzumPurchaseInvoiceCreator</members>
         <members>ZumzumPurchaseInvoiceCreatorTest</members>
-        <members>ZumzumPurchaseInvoiceLa4V_TDTM</members>
-        <members>ZumzumPurchaseInvoiceLa4V_TDTM_Test</members>
+        <members>ZumzumPurchaseInvoiceLa4V_Rollups_TDTM</members>
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
         <members>ZumzumSalesInvoiceParameters</members>
