@@ -144,6 +144,14 @@ If you have any queries or questions about this payment, please get in touch wit
         <value>You do not have permission to delete Chatter Posts. If necessary please contact your System Administrator.</value>
     </labels>
     <labels>
+        <fullName>Delete_Payment_Run_Line_Item_Error_Text</fullName>
+        <categories>Payment Run Line Item</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Payment Run Line Item Error Text</shortDescription>
+        <value>You cannot delete a Line Item from a Payment Run that is not in Draft or Failed status.</value>
+    </labels>
+    <labels>
         <fullName>Nct_Pregnancy_Baby_Guide_Url</fullName>
         <categories>NCT Parentforce Labels</categories>
         <language>en_US</language>
