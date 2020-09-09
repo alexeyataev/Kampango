@@ -1,3 +1,5 @@
+@SuppressWarnings('PMD.ClassNamingConventions')
+//Incident #136 - https://confluence.nct.org.uk:8443/x/EoSO
 @IsTest
 private class dlrs_CaseTest
 {
