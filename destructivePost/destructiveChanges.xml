@@ -28,11 +28,15 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>Can_Delete_Payment_Run_Line_Items</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
         <members>Fee_Band</members>
         <name>GlobalValueSet</name>
     </types>
     <types>
         <members>Tick</members>
         <name>StaticResource</name>
-    </types>	
+    </types>
 </Package> 

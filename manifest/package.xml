@@ -116,6 +116,8 @@
         <members>PractitionerDetailsControllerTest</members>
         <members>PractitionerFeeRateHelper</members>
         <members>PractitionerFeeRateHelperTest</members>
+        <members>PRLineItem_PreventDeletion_TDTM_Test</members>
+        <members>PRLineItem_PreventDeletion_TDTM</members>
         <members>ReconcilePaymentsBatch</members>
         <members>ReconcilePaymentsBatchTest</members>
         <members>ReconcilePaymentsHelper</members>
@@ -228,6 +230,7 @@
         <members>TDTM_Booking</members>
         <members>TDTM_Estimated_Costs</members>
         <members>TDTM_FeedItem</members>
+        <members>TDTM_PaymentRunLineItem</members>
         <members>TDTM_Session_c</members>
         <members>TDTM_ZumzumPurchaseInvoice_La4V</members>
         <members>TDTM_ZumzumPurchaseInvoice</members>
@@ -739,7 +742,6 @@
         <members>Can_Convert_Expense_Sheet</members>
         <members>Can_Delete_Activities</members>
         <members>Can_Delete_Chatter_Posts</members>
-        <members>Can_Delete_Payment_Run_Line_Items</members>
         <members>Can_Reopen_Courses</members>
         <members>Create_Public_Lists</members>
         <members>Override_Booking_Status_Validation</members>

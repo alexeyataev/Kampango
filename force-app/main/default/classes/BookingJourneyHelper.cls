@@ -9,19 +9,21 @@ public without sharing class BookingJourneyHelper {
             contact.Country__c = String.valueOf(contact.Country__c);
         }
         if(contacts != null && !contacts.isEmpty()){
-            try{
-                if (Test.isRunningTest()) {
-                    upsertContactTestUtility(contacts);
-                } else {
-                    upsert contacts Id;
+            Database.UpsertResult result = Database.upsert(contacts[0], Contact.Fields.Id, false);
+            Database.DMLOptions dmlOption = new Database.DMLOptions();
+            if (!result.isSuccess()) {
+                Boolean isDuplicateError = checkForDuplicateError(result.errors);
+                if (!isDuplicateError) {
+                    throw new BookingJourneyException(JSON.serialize(result.getErrors()));
                 }
-            } catch(DmlException ex){
-                System.debug(
-                    Label.ContactUpdateException + ' ' +
-                    ex.getTypeName() + ' ' +
-                    ex.getStackTraceString() + ' ' +
-                    ex.getMessage()
-                );
+                List<sObject> duplicates = getDuplicateRecords(result.errors);
+                if (duplicates.size() == 1) {
+                    contacts[0].Id = duplicates[0].Id;
+                    Database.update(contacts[0], false);
+                }
+                if (duplicates.size() > 1) {
+                    Database.insert(contacts[0], dmlOption);
+                }
             }
         }
         return contacts;
@@ -45,20 +47,33 @@ public without sharing class BookingJourneyHelper {
         }
     }
 
-    private static void upsertContactTestUtility(List<Contact> contacts){
-        Database.DMLOptions dmlOption = new Database.DMLOptions();
-        dmlOption.DuplicateRuleHeader.AllowSave = true;
-        List<Contact> contactsToInsert = new List<Contact>();
-        List<Contact> contactsToUpdate = new List<Contact>();
-        Map<Id, Contact> existingContactsMap = new Map<Id, Contact>([SELECT Id FROM Contact WHERE Id IN :contacts WITH SECURITY_ENFORCED]);
-        for (Contact cont : contacts){
-            if (existingContactsMap.containsKey(cont.Id)){
-                contactsToUpdate.add(cont);
-            } else {
-                contactsToInsert.add(cont);
+    private static List<sObject> getDuplicateRecords(List<Database.Error> errors) {
+        List<sObject> duplicateRecords = new List<sObject>();
+        for (Database.Error  error : errors) {
+            Database.DuplicateError duplicateError = (Database.DuplicateError)error;
+            Datacloud.DuplicateResult duplicateResult = duplicateError.getDuplicateResult();
+            Datacloud.MatchResult[] matchResults = duplicateResult.getMatchResults();
+            Datacloud.MatchRecord[] matchRecords;
+
+            for (Datacloud.MatchResult match : matchResults) {
+                matchRecords = match.getMatchRecords();
+                for (Datacloud.MatchRecord matchRecord : matchRecords) {
+                    duplicateRecords.add(matchRecord.getRecord());
+                }
             }
         }
-        Database.insert(contactsToInsert, dmlOption);
-        Database.update(contactsToUpdate, dmlOption);
+        return duplicateRecords;
     }
+
+    private static Boolean checkForDuplicateError(List<Database.Error> errors) {
+        Boolean result = true;
+        for (Database.Error error : errors) {
+            if (error.getStatusCode() != StatusCode.DUPLICATES_DETECTED) {
+                result = false;
+            }
+        }
+        return result;
+    }
+
+    public class BookingJourneyException extends Exception {}
 }
