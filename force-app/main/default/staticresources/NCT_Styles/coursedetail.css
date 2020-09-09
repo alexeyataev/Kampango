@@ -39,7 +39,7 @@ div.marginVertical {
     color: #000000; 
 }
 .regular-text{
-    font-family : 'Raleway', arial, sans-serif;
+    font-family : 'Lato, Raleway', arial, sans-serif;
     font-size : 1.1rem; 
     font-weight : 300; 
     line-height : 1.5rem;
@@ -118,7 +118,7 @@ th, td {
 }
 .nct-page-text{
     font-family: 'Lato', arial, sans-serif;
-    font-size: 1.13rem;
+    font-size: 1rem;
     font-weight: 300;
     line-height: 1.6;
     margin-top: 0;
@@ -126,8 +126,8 @@ th, td {
 }
 .nct-header-text {
     color: #00886a;
-    font-family: 'Raleway', arial, sans-serif;
-    font-size: 1.3125rem;
+    font-family: 'Lato, Raleway', arial, sans-serif;
+    font-size: 1.2125rem;
     font-weight: 300;
     line-height: 1.2;
 }
@@ -147,7 +147,7 @@ th, td {
 .container {
     width: 100%;
     padding-right: 15px;
-    padding-left: 15px;
+    padding-left: 0;
     margin-right: auto;
     margin-left: auto;
 }
