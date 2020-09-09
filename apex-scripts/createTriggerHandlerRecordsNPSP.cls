@@ -100,40 +100,40 @@ requiredTriggerHandlersMap.put (
 );
 
 requiredTriggerHandlersMap.put (
-    'BatchReceiptReportItem_TDTM',
+    'BatchReceiptReportItem_Rollups_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Batch_Receipt_Report_Item__c',
-        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete }),
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete, AfterUndelete }),
         npsp__Load_Order__c = 0,
         npsp__Active__c = true
     )
 );
 
 requiredTriggerHandlersMap.put (
-    'Estimated_Costs_TDTM',
+    'Estimated_Costs_Rollups_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Estimated_Costs__c',
-        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete }),
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete, AfterUndelete }),
         npsp__Load_Order__c = 0,
         npsp__Active__c = true
     )
 );
 
 requiredTriggerHandlersMap.put (
-    'ZumzumPurchaseInvoice_TDTM',
+    'ZumzumPurchaseInvoice_Rollups_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Zumzum__Purchase_Invoice__c',
-        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete }),
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete, AfterUndelete }),
         npsp__Load_Order__c = 0,
         npsp__Active__c = true
     )
 );
 
 requiredTriggerHandlersMap.put (
-    'ZumzumPurchaseInvoiceLa4V_TDTM',
+    'ZumzumPurchaseInvoiceLa4V_Rollups_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Zumzum__Purchase_Invoice_Line_Item__c',
-        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete }),
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete, AfterUndelete }),
         npsp__Load_Order__c = 0,
         npsp__Active__c = true
     )
