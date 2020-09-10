@@ -314,10 +314,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>dlrs_Estimated_CostsTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>dlrs_SessionTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
