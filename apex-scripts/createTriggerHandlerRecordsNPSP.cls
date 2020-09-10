@@ -110,7 +110,7 @@ requiredTriggerHandlersMap.put (
 );
 
 requiredTriggerHandlersMap.put (
-    'Case_CasesInProgress_TDTM',
+    'Case_Rollups_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Case',
         npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate }),
