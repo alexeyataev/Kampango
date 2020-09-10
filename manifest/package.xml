@@ -22,9 +22,11 @@
         <members>AssignCasetoQueueTest</members>
         <members>BatchOutboundBACSpayment</members>
         <members>BatchOutboundBACSpaymentTest</members>
+        <members>BatchReceiptReportItem_Rollups_TDTM</members>
+        <members>BatchReceiptReportItem_Rollups_TDTM_Test</members>
         <members>BOOKING_EncryptValidationCode_TDTM</members>
-        <members>BOOKING_PopulateContactEDD_TDTM</members>
         <members>BOOKING_PopulateContactEDD_TDTM_Test</members>
+        <members>BOOKING_PopulateContactEDD_TDTM</members>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
         <members>BookingFlowUpdateNctNumber</members>
@@ -49,6 +51,7 @@
         <members>Case_Rollups_TDTM</members>
         <members>ChatterPost_PreventDeletion_TDTM</members>
         <members>ChatterPost_PreventDeletion_TDTM_Test</members>
+        <members>ChatterPost_PreventDeletion_TDTM</members>
         <members>ClaimFeeHelper</members>
         <members>ClaimFeeHelperTest</members>
         <members>ConfirmationEmailController</members>
@@ -58,12 +61,14 @@
         <members>ConvertEStoPIHandler</members>
         <members>CourseApi</members>
         <members>CourseApiTest</members>
+        <members>CourseCreateEnquiryUtility</members>
+        <members>CourseCreateEnquiryUtilityTest</members>
         <members>CourseDetailController</members>
         <members>CourseDetailControllerTest</members>
         <members>CourseFinderModel</members>
-        <members>CourseFinderModelTest</members>
         <members>CourseFinderModelOrdered</members>
         <members>CourseFinderModelOrderedTest</members>
+        <members>CourseFinderModelTest</members>
         <members>CoursesBranchModel</members>
         <members>CoursesDateDistanceModel</members>
         <members>CourseSearchUtility</members>
@@ -73,8 +78,6 @@
         <members>CreateListViewUtility</members>
         <members>CreateListViewUtilityMock</members>
         <members>CreateListViewUtilityTest</members>
-        <members>CourseCreateEnquiryUtility</members>
-        <members>CourseCreateEnquiryUtilityTest</members>
         <members>DecryptAdhocValidationCodeHandler</members>
         <members>DecryptBookingValidationCodeHandler</members>
         <members>dlrs_Batch_Receipt_Report_ItemTest</members>
@@ -82,12 +85,12 @@
         <members>dlrs_CaseTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
-        <members>dlrs_Zumzum_Purchase_InvoiceTest</members>
-        <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
         <members>dlrs_Zumzum_Sales_InvoiceTest</members>
         <members>EncryptBookingValidationCodeHandler</members>
         <members>EncryptDecryptBookingValidationCodeTest</members>
         <members>EncryptDecryptSalesInvoiceValCodeTest</members>
+        <members>Estimated_Costs_Rollups_TDTM</members>
+        <members>Estimated_Costs_Rollups_TDTM_Test</members>
         <members>EXPENSESHEET_ConvertEStoPI_TDTM</members>
         <members>FinDockCardPaymentProvider</members>
         <members>GeneratePaymentFilePaymentRunExtension</members>
@@ -129,22 +132,22 @@
         <members>SendHTMLEmailPlugin</members>
         <members>SendHTMLEmailPluginTest</members>
         <members>SendMembershipHttpResponseMock</members>
-        <members>SESSION_InvalidateCAs_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM_TEST</members>
-        <members>SESSION_RevertCourseToDraft_TDTM</members>
+        <members>SESSION_InvalidateCAs_TDTM</members>
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
-        <members>SESSION_RevertToProvisional_TDTM</members>
+        <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_RevertToProvisional_TDTM_TEST</members>
-        <members>SESSION_TrackDeletedRecord_TDTM</members>
+        <members>SESSION_RevertToProvisional_TDTM</members>
         <members>SESSION_TrackDeletedRecord_TDTM_Test</members>
+        <members>SESSION_TrackDeletedRecord_TDTM</members>
         <members>SessionFeeHelper</members>
         <members>SessionFeeHelperFlowAssistant</members>
         <members>SessionFeeHelperTest</members>
         <members>SetBookingExpirationStatusFlowTest</members>
         <members>SetBookingReservationExpiryDateTest</members>
         <members>SystemClock</members>
-        <members>Task_PreventDeletion_TDTM</members>
         <members>Task_PreventDeletion_TDTM_Test</members>
+        <members>Task_PreventDeletion_TDTM</members>
         <members>TestAccountBuilder</members>
         <members>TestBankPaymentBuilder</members>
         <members>TestBatchBankPaymentBuilder</members>
@@ -187,6 +190,7 @@
         <members>VenueDetailsControllerTest</members>
         <members>ViewPort</members>
         <members>ViewPortTest</members>
+        <members>ZumPurchaseInvoiceLine_Rollups_TDTM_Test</members>
         <members>ZumzumBACSpaymentActions</members>
         <members>ZumzumBACSpaymentActionsTest</members>
         <members>ZumzumBankReceiptCreator</members>
@@ -198,8 +202,11 @@
         <members>ZumzumEStoPIConverterTest</members>
         <members>ZumzumPostSalesInvoiceHelper</members>
         <members>ZumzumPostSalesInvoiceHelperTest</members>
+        <members>ZumzumPurchaseInvoice_Rollups_TDTM</members>
+        <members>ZumzumPurchaseInvoice_Rollups_TDTM_Test</members>
         <members>ZumzumPurchaseInvoiceCreator</members>
         <members>ZumzumPurchaseInvoiceCreatorTest</members>
+        <members>ZumzumPurchaseInvoiceLine_Rollups_TDTM</members>
         <members>ZumzumSalesInvoiceCreator</members>
         <members>ZumzumSalesInvoiceCreatorMock</members>
         <members>ZumzumSalesInvoiceParameters</members>
@@ -224,16 +231,16 @@
         <name>ApexPage</name>
     </types>
     <types>
-        <members>dlrs_Batch_Receipt_Report_ItemTrigger</members>
-        <members>dlrs_Estimated_CostsTrigger</members>
-        <members>dlrs_Zumzum_Purchase_InvoiceTrigger</members>
-        <members>dlrs_Zumzum_Purchase_Invoice_La4VTrigger</members>
         <members>dlrs_Zumzum_Sales_InvoiceTrigger</members>
+        <members>TDTM_BatchReceiptReportItem</members>
         <members>TDTM_Booking</members>
         <members>TDTM_Case</members>
+        <members>TDTM_Estimated_Costs</members>
         <members>TDTM_FeedItem</members>
         <members>TDTM_PaymentRunLineItem</members>
         <members>TDTM_Session_c</members>
+        <members>TDTM_ZumzumPurchaseInvoiceLineItem</members>
+        <members>TDTM_ZumzumPurchaseInvoice</members>
         <name>ApexTrigger</name>
     </types>
     <types>
