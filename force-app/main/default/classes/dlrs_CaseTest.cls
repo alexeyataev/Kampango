@@ -9,8 +9,8 @@ private class dlrs_CaseTest
     private static final String HOST_LASTNAME_TWO = 'Brown';
     private static final String HOST_EMAIL_ADDRESS = 'User@ncttest.com';
     private static final Map<String, String> CASE_TRIGGER_PARAMS = new Map<String, String>{
-        'triggerHandlerName' => 'Case_CasesInProgress_TDTM',
-        'className' => 'Case_CasesInProgress_TDTM',
+        'triggerHandlerName' => 'Case_Rollups_TDTM',
+        'className' => 'Case_Rollups_TDTM',
         'objectAPIName' => 'Case',
         'triggerActions' => 'AfterInsert;AfterUpdate',
         'isActive' => 'true',
