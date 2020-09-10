@@ -49,7 +49,6 @@
         <members>CareHelper</members>
         <members>CareRequestBodyUtil</members>
         <members>Case_Rollups_TDTM</members>
-        <members>ChatterPost_PreventDeletion_TDTM</members>
         <members>ChatterPost_PreventDeletion_TDTM_Test</members>
         <members>ChatterPost_PreventDeletion_TDTM</members>
         <members>ClaimFeeHelper</members>
@@ -80,10 +79,7 @@
         <members>CreateListViewUtilityTest</members>
         <members>DecryptAdhocValidationCodeHandler</members>
         <members>DecryptBookingValidationCodeHandler</members>
-        <members>dlrs_Batch_Receipt_Report_ItemTest</members>
-        <members>dlrs_BookingTest</members>
         <members>dlrs_CaseTest</members>
-        <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_SessionTest</members>
         <members>dlrs_Zumzum_Sales_InvoiceTest</members>
         <members>EncryptBookingValidationCodeHandler</members>
