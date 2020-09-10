@@ -115,6 +115,12 @@ public without sharing class TestFinanceDataFactory {
         );
         nominalAccountsByNominalCodesMap.put(9400, zumzumCurrentNominalAccount);
 
+        Zumzum__Nominal_Account__c zumzumVenueHireAccount = new Zumzum__Nominal_Account__c(
+            Name = 'Venue Hire',
+            Zumzum__Account_Code__c = 5157
+        );
+        nominalAccountsByNominalCodesMap.put(5157, zumzumVenueHireAccount);
+
         Zumzum__Nominal_Account__c zumzumReconcileNominalAccount = new Zumzum__Nominal_Account__c(
             Name = 'Bank Reconcile Account',
             Zumzum__Account_Code__c = 9401
@@ -326,10 +332,7 @@ public without sharing class TestFinanceDataFactory {
     }
 
 
-    public static void createZumzumPurchaseInvoiceWithLineItems(Integer psLineItemsCount) {
-
-        new TestFinanceDataFactory().createZumzumData();
-
+    public void createZumzumPurchaseInvoiceWithLineItems(Integer psLineItemsCount) {
         Account accountRecord = [SELECT Id FROM Account WHERE Type =: ACCOUNT_SUPPLIER_TYPE LIMIT 1];
         Zumzum__Nominal_Account__c zumzumMembershipNominalAccount = [SELECT Id FROM Zumzum__Nominal_Account__c WHERE Zumzum__Account_Code__c = 9600 LIMIT 1];
         Zumzum__Currency__c transactionCurrency = [SELECT Id FROM Zumzum__Currency__c LIMIT 1];
