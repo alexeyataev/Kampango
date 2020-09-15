@@ -33,9 +33,10 @@ public with sharing class ZumzumPostSalesInvoiceHelperTest {
         System.assertEquals('Draft', salesInvoiceRecordBefore.Zumzum__Status__c, 'return SI with status Draft');
 
         Test.startTest();
+            ZumzumPostSalesInvoiceHelper.salesInvoiceCreator = new ZumzumSalesInvoiceCreatorMock();
             ZumzumPostSalesInvoiceHelper.postSalesInvoice(new List<Zumzum__Sales_Invoice__c> { salesInvoiceRecordBefore });
         Test.stopTest();
-
+        
         Zumzum__Sales_Invoice__c salesInvoiceRecordAfter = [select Zumzum__Status__c from Zumzum__Sales_Invoice__c LIMIT 1];
         System.assertEquals('Posted', salesInvoiceRecordAfter.Zumzum__Status__c, 'return SI with status Posted');
     }
