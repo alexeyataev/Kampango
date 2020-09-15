@@ -1,5 +1,6 @@
-// @SuppressWarnings('PMD.MethodNamingConventions')
-//Incident #XXX - https://confluence.nct.org.uk:8443/x/EoSO
+@SuppressWarnings('PMD.ClassNamingConventions, PMD.MethodNamingConventions')
+//Incident #147 - https://confluence.nct.org.uk:8443/x/EoSO
+//Incident #148 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 public class cpm_Recurring_Payment_Rollups_TDTM_Test {
     private static final String ACCOUNT_TYPE_CUSTOMER = 'Customer';

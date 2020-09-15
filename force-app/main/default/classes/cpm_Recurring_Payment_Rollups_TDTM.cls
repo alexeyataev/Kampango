@@ -1,9 +1,9 @@
-// @SuppressWarnings('PMD.AvoidGlobalModifier, PMD.ClassNamingConventions')
-//Incident #XXX - https://confluence.nct.org.uk:8443/x/EoSO
-//Incident #XXX - https://confluence.nct.org.uk:8443/x/EoSO
+@SuppressWarnings('PMD.AvoidGlobalModifier, PMD.ClassNamingConventions')
+//Incident #144 - https://confluence.nct.org.uk:8443/x/EoSO
+//Incident #145 - https://confluence.nct.org.uk:8443/x/EoSO
 global with sharing class cpm_Recurring_Payment_Rollups_TDTM extends npsp.TDTM_Runnable {
-    //@SuppressWarnings('PMD.ExcessiveParameterList')
-    //Incident #XXX - https://confluence.nct.org.uk:8443/x/EoSO
+    @SuppressWarnings('PMD.ExcessiveParameterList')
+    //Incident #146 - https://confluence.nct.org.uk:8443/x/EoSO
     global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         npsp.TDTM_Runnable.dmlWrapper dmlWrapper = new npsp.TDTM_Runnable.DmlWrapper();
         if (
