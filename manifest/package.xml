@@ -27,6 +27,7 @@
         <members>BOOKING_EncryptValidationCode_TDTM</members>
         <members>BOOKING_PopulateContactEDD_TDTM_Test</members>
         <members>BOOKING_PopulateContactEDD_TDTM</members>
+        <members>Booking_Rollups_TDTM</members>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
         <members>BookingFlowUpdateNctNumber</members>
@@ -332,12 +333,13 @@
         <members>dlrs__LookupRollupSummary2.CreditLineItemsAmount</members>
         <members>dlrs__LookupRollupSummary2.ExpenseNumberOfInvoices</members>
         <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
-        <members>dlrs__LookupRollupSummary2.TotalActualCourseIncome</members>
+        <members>dlrs__LookupRollupSummary2.TotalCourseFeeIncome</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseOtherCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseTravelCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseVenueCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalMatchedBatchReceiptReportItems</members>
         <members>dlrs__LookupRollupSummary2.TotalOpenBookings</members>
+        <members>dlrs__LookupRollupSummary2.TotalOtherIncome</members>
         <name>CustomMetadata</name>
     </types>
     <types>

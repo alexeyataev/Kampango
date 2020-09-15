@@ -125,6 +125,7 @@
         <members>Course__c.PSA_Branch__c</members>
         <members>Course__c.PSA_Office__c</members>
         <members>Course__c.Start_Time__c</members>
+        <members>Course__c.Total_Actual_Income__c</members>
         <members>Course__c.Venue__c</members>
         <members>cpm__Installment__c.Account_Key__c</members>
         <members>cpm__Installment__c.Contact_Key__c</members>
@@ -188,6 +189,10 @@
         <members>Venue__c.Venue_Suitability__c</members>
         <members>Zumzum__Purchase_Invoice__c.Payment_Run__c</members>
         <name>CustomField</name>
+    </types>
+    <types>
+        <members>dlrs__LookupRollupSummary2.TotalActualCourseIncome</members>
+        <name>CustomMetadata</name>
     </types>
     <types>
         <members>Zumzum__Batch_Bank_Payment__c.Generate_Payment_File</members>

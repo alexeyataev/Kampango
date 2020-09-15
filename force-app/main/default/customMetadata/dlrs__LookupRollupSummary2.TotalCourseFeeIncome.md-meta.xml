@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>TotalActualCourseIncome</label>
+    <label>TotalCourseFeeIncome</label>
     <protected>false</protected>
     <values>
         <field>dlrs__Active__c</field>
@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>dlrs__AggregateResultField__c</field>
-        <value xsi:type="xsd:string">Total_Actual_Income__c</value>
+        <value xsi:type="xsd:string">TotalCourseFeeIncome__c</value>
     </values>
     <values>
         <field>dlrs__CalculationMode__c</field>
@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>dlrs__CalculationSharingMode__c</field>
-        <value xsi:type="xsd:string">User</value>
+        <value xsi:type="xsd:string">System</value>
     </values>
     <values>
         <field>dlrs__ChildObject__c</field>
@@ -40,7 +40,7 @@
     </values>
     <values>
         <field>dlrs__FieldToAggregate__c</field>
-        <value xsi:type="xsd:string">Final_Fee__c</value>
+        <value xsi:type="xsd:string">ActualFeeCharged__c</value>
     </values>
     <values>
         <field>dlrs__FieldToOrderBy__c</field>
@@ -56,7 +56,7 @@
     </values>
     <values>
         <field>dlrs__RelationshipCriteria__c</field>
-        <value xsi:type="xsd:string">Status__c = &#39;Confirmed&#39;</value>
+        <value xsi:type="xsd:string">Status__c = &apos;Confirmed&apos;</value>
     </values>
     <values>
         <field>dlrs__RelationshipField__c</field>

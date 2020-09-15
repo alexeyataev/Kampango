@@ -180,8 +180,16 @@
                 <field>Total_Income_Excluding_Fee_Overrides__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TotalActualIncome__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Total_Actual_Income__c</field>
+                <field>TotalCourseFeeIncome__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>TotalOtherIncome__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
