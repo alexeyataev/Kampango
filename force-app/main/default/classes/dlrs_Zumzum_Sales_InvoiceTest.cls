@@ -148,12 +148,12 @@ private class dlrs_Zumzum_Sales_InvoiceTest {
     @IsTest
     private static void testTrigger() {
         Test.startTest();
-        Zumzum__Sales_Invoice__c salesInvoicePosted = [SELECT Id, CoursePlaceTotal__c FROM Zumzum__Sales_Invoice__c WHERE Zumzum__Status__c =: SALES_INVOICE_STATUS_POSTED LIMIT 1];
-        Zumzum__Sales_Invoice__c salesInvoice = [SELECT Id, CoursePlaceTotal__c FROM Zumzum__Sales_Invoice__c WHERE Zumzum__Status__c !=: SALES_INVOICE_STATUS_POSTED LIMIT 1];
-        Booking__c booking = [SELECT Id, ActualFeeCharged__c FROM Booking__c LIMIT 1];
-        System.assertEquals(salesInvoicePosted.CoursePlaceTotal__c, 30);
-        System.assertEquals(salesInvoice.CoursePlaceTotal__c, 50);
-        System.assertEquals(booking.ActualFeeCharged__c, 30);
+        Zumzum__Sales_Invoice__c salesInvoicePosted = [SELECT Id, Course_Place_Total__c FROM Zumzum__Sales_Invoice__c WHERE Zumzum__Status__c =: SALES_INVOICE_STATUS_POSTED LIMIT 1];
+        Zumzum__Sales_Invoice__c salesInvoice = [SELECT Id, Course_Place_Total__c FROM Zumzum__Sales_Invoice__c WHERE Zumzum__Status__c !=: SALES_INVOICE_STATUS_POSTED LIMIT 1];
+        Booking__c booking = [SELECT Id, Actual_Fee_Charged__c FROM Booking__c LIMIT 1];
+        System.assertEquals(salesInvoicePosted.Course_Place_Total__c, 30);
+        System.assertEquals(salesInvoice.Course_Place_Total__c, 50);
+        System.assertEquals(booking.Actual_Fee_Charged__c, 30);
         Test.stopTest();
     }
 }

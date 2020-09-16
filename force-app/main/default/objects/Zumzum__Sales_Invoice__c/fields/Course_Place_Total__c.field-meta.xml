@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>OtherCharges__c</fullName>
+    <fullName>Course_Place_Total__c</fullName>
     <externalId>false</externalId>
-    <label>Other Charges</label>
+    <label>Course Place Total</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

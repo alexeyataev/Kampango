@@ -50,11 +50,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>ActualFeeCharged__c</field>
+                <field>Actual_Fee_Charged__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>OtherCharges__c</field>
+                <field>Other_Charges__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>dlrs__AggregateResultField__c</field>
-        <value xsi:type="xsd:string">CourseOtherCharges__c</value>
+        <value xsi:type="xsd:string">Course_Other_Charges__c</value>
     </values>
     <values>
         <field>dlrs__CalculationMode__c</field>
