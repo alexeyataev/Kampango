@@ -131,6 +131,8 @@
         <members>SendMembershipHttpResponseMock</members>
         <members>SESSION_InvalidateCAs_TDTM</members>
         <members>SESSION_InvalidateCAs_TDTM_TEST</members>
+        <members>SESSION_ParentCourseSharing_TDTM</members>
+        <members>SESSION_ParentCourseSharing_TDTM_Test</members>
         <members>SESSION_RevertCourseToDraft_TDTM</members>
         <members>SESSION_RevertCourseToDraft_TDTM_TEST</members>
         <members>SESSION_RevertToProvisional_TDTM</members>
