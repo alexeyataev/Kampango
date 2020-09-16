@@ -129,6 +129,8 @@
         <members>ReconcilePaymentsHelper</members>
         <members>RedirectToESeditPageController</members>
         <members>ReunionEmailsSendTest</members>
+        <members>SalesInvoice_Rollups_TDTM</members>
+        <members>SalesInvoiceLineItem_Rollups_TDTM</members>
         <members>SendHTMLEmailPlugin</members>
         <members>SendHTMLEmailPluginTest</members>
         <members>SendMembershipHttpResponseMock</members>
@@ -239,6 +241,8 @@
         <members>TDTM_Estimated_Costs</members>
         <members>TDTM_FeedItem</members>
         <members>TDTM_PaymentRunLineItem</members>
+        <members>TDTM_SalesInvoice</members>
+        <members>TDTM_SalesInvoiceLineItem</members>
         <members>TDTM_Session_c</members>
         <members>TDTM_ZumzumPurchaseInvoiceLineItem</members>
         <members>TDTM_ZumzumPurchaseInvoice</members>
@@ -326,6 +330,7 @@
         <name>CustomLabels</name>
     </types>
     <types>
+        <members>dlrs__LookupRollupSummary2.ActualFeeCharged</members>
         <members>dlrs__LookupRollupSummary2.BookingRecurPaymentAmountNotYetCollected</members>
         <members>dlrs__LookupRollupSummary2.CasesInProgress</members>
         <members>dlrs__LookupRollupSummary2.CountOfPostedSalesInvoices</members>
@@ -335,9 +340,12 @@
         <members>dlrs__LookupRollupSummary2.CourseEstimatedTravelCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseEstimatedVenueCostsTotalAmount</members>
         <members>dlrs__LookupRollupSummary2.CourseNumberOfSessionsWithoutFeeRates</members>
+        <members>dlrs__LookupRollupSummary2.CourseOtherCharges</members>
+        <members>dlrs__LookupRollupSummary2.CoursePlaceTotal</members>
         <members>dlrs__LookupRollupSummary2.CreditLineItemsAmount</members>
         <members>dlrs__LookupRollupSummary2.ExpenseNumberOfInvoices</members>
         <members>dlrs__LookupRollupSummary2.LineItemsTotalAmount</members>
+        <members>dlrs__LookupRollupSummary2.OtherCharges</members>
         <members>dlrs__LookupRollupSummary2.OutstandingAmountUnpaidSalesInvoices</members>
         <members>dlrs__LookupRollupSummary2.SIRecurPaymentAmountNotYetCollected</members>
         <members>dlrs__LookupRollupSummary2.TotalActualCourseIncome</members>
