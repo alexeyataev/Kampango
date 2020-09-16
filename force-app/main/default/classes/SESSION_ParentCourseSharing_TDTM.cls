@@ -67,8 +67,6 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
     }
 
 
-    // @SuppressWarnings('PMD.ApexCRUDViolation')
-    //Incident #XXX - https://confluence.nct.org.uk:8443/x/EoSO
     private Map<Id, Set<Id>> getCoursesToShareWithUsers(List<Session__c> sessionsToCheck) {
         Map<Id, Set<Id>> userIdsByCourseIds = new Map<Id, Set<Id>>();
         Set<Id> courseIds = new Set<Id>();
@@ -105,8 +103,6 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
     }
 
 
-    // @SuppressWarnings('PMD.ApexCRUDViolation')
-    //Incident #XXX - https://confluence.nct.org.uk:8443/x/EoSO
     private Map<Id, Id> getPractitionersWithUserIds(Set<Id> practitionerIds) {
         Map<Id, Id> userIdsByPractitionerIds = new Map<Id, Id>();
 
@@ -122,8 +118,6 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
     }
 
 
-    // @SuppressWarnings('PMD.ApexCRUDViolation')
-    //Incident #XXX - https://confluence.nct.org.uk:8443/x/EoSO
     private Map<Id, Set<Id>> removeUsersWithExistingCourseSharing(Map<Id, Set<Id>> userIdsByCourseIds) {
         Set<Id> userIds = new Set<Id>();
 
@@ -173,12 +167,11 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
     }
 
 
-    // @SuppressWarnings('PMD.ApexCRUDViolation')
-    //Incident #XXX - https://confluence.nct.org.uk:8443/x/EoSO
+    @SuppressWarnings('PMD.ApexCRUDViolation')
+    //Incident #152 - https://confluence.nct.org.uk:8443/x/EoSO
     private List<Course__Share> getCourseSharesToDelete(Map<Id, Set<Id>> userIdsByCourseIds, List<Session__c> sessionsToCheck) {
         Map<Id, Set<Id>> practitionerIdsByCourseIds = new Map<Id,Set<Id>>();
-        List<Course__Share> courseSharesToDelete = new List<Course__Share>();
-
+        
         for (Session__c session : sessionsToCheck) {
             if (practitionerIdsByCourseIds.containsKey(session.Course__c)) {
                 practitionerIdsByCourseIds.get(session.Course__c).add(session.Practitioner__c);        
@@ -197,7 +190,7 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
             }
         }
 
-        courseSharesToDelete = [
+        return [
             SELECT ParentId, UserOrGroupId 
             FROM Course__Share
             WHERE ParentId IN :practitionerIdsByCourseIds.keySet() 
@@ -205,6 +198,5 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
                 AND RowCause != :GUEST_RULE_REASON
             WITH SECURITY_ENFORCED
         ];
-        return courseSharesToDelete;
     }    
 }
