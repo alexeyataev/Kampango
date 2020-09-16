@@ -1,13 +1,13 @@
-//@SuppressWarnings('PMD.AvoidGlobalModifier')
-//Incident #XXX - https://confluence.nct.org.uk:8443/x/EoSO
+@SuppressWarnings('PMD.AvoidGlobalModifier')
+//Incident #150 - https://confluence.nct.org.uk:8443/x/EoSO
 global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Runnable {
     private static final String GUEST_RULE_REASON = 'GuestRule';    
     private static final String APEX_SHARING_REASON_SESSION_PRACTITIONER = 'Session_Practitioner__c';
     private static final String ACCESS_LEVEL_READ = 'Read';
     private Map<Id, Id> userIdsByPractitionerIds = new Map<Id,Id>();
 
-    //@SuppressWarnings('PMD.ExcessiveParameterList')
-    //Incident #XXX - https://confluence.nct.org.uk:8443/x/EoSO
+    @SuppressWarnings('PMD.ExcessiveParameterList')
+    //Incident #151 - https://confluence.nct.org.uk:8443/x/EoSO
     global override npsp.TDTM_Runnable.DmlWrapper Run(List<SObject> triggerNew, List<SObject> triggerOld, npsp.TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
         npsp.TDTM_Runnable.dmlWrapper dmlWrapper = new npsp.TDTM_Runnable.DmlWrapper();
 
@@ -18,13 +18,13 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
         Map<String, List<Session__c>> changedSessions = new Map<String, List<Session__c>>();
 
         if (triggerAction == npsp.TDTM_Runnable.Action.AfterInsert) {
-            courseSharesToInsert.addAll(insertCourseShares_SessionInserted(newSessions));
+            courseSharesToInsert.addAll(insertCourseSharesSessionInserted(newSessions));
         } else if (triggerAction == npsp.TDTM_Runnable.Action.AfterUpdate) {
-            changedSessions = getChangedSessions_SessionUpdated(newSessions, oldSessions);
-            courseSharesToInsert.addAll(insertCourseShares_SessionInserted(changedSessions.get('NewSessions')));
-            courseSharesToDelete.addAll(deleteCourseShares_SessionDeleted(changedSessions.get('OldSessions')));
+            changedSessions = getChangedSessionsSessionUpdated(newSessions, oldSessions);
+            courseSharesToInsert.addAll(insertCourseSharesSessionInserted(changedSessions.get('NewSessions')));
+            courseSharesToDelete.addAll(deleteCourseSharesSessionDeleted(changedSessions.get('OldSessions')));
         } else if (triggerAction == npsp.TDTM_Runnable.Action.AfterDelete) {
-            courseSharesToDelete.addAll(deleteCourseShares_SessionDeleted(oldSessions));
+            courseSharesToDelete.addAll(deleteCourseSharesSessionDeleted(oldSessions));
         }
 
         dmlWrapper.objectsToInsert.addAll(courseSharesToInsert);
@@ -33,7 +33,7 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
     }
 
 
-    private List<Course__Share> insertCourseShares_SessionInserted(List<Session__c> newSessions) {
+    private List<Course__Share> insertCourseSharesSessionInserted(List<Session__c> newSessions) {
         List<Course__Share> courseSharesToInsert = new List<Course__Share>();
         Map<Id, Set<Id>> userIdsByCourseIds = getCoursesToShareWithUsers(newSessions);
         userIdsByCourseIds = removeUsersWithExistingCourseSharing(userIdsByCourseIds);
@@ -42,7 +42,7 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
     }
 
 
-    private List<Course__Share> deleteCourseShares_SessionDeleted(List<Session__c> oldSessions) {
+    private List<Course__Share> deleteCourseSharesSessionDeleted(List<Session__c> oldSessions) {
         List<Course__Share> courseSharesToDelete = new List<Course__Share>();
         Map<Id, Set<Id>> userIdsByCourseIds = getCoursesToShareWithUsers(oldSessions);
         courseSharesToDelete = getCourseSharesToDelete(userIdsByCourseIds, oldSessions);
@@ -50,7 +50,7 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
     }
 
 
-    private  Map<String, List<Session__c>> getChangedSessions_SessionUpdated(List<Session__c> newSessions, List<Session__c> oldSessions) {
+    private  Map<String, List<Session__c>> getChangedSessionsSessionUpdated(List<Session__c> newSessions, List<Session__c> oldSessions) {
         Map<String, List<Session__c>> changedSessions = new Map<String, List<Session__c>>{
             'NewSessions' => new List<Session__c>(),
             'OldSessions' => new List<Session__c>()
@@ -177,6 +177,7 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
     //Incident #XXX - https://confluence.nct.org.uk:8443/x/EoSO
     private List<Course__Share> getCourseSharesToDelete(Map<Id, Set<Id>> userIdsByCourseIds, List<Session__c> sessionsToCheck) {
         Map<Id, Set<Id>> practitionerIdsByCourseIds = new Map<Id,Set<Id>>();
+        List<Course__Share> courseSharesToDelete = new List<Course__Share>();
 
         for (Session__c session : sessionsToCheck) {
             if (practitionerIdsByCourseIds.containsKey(session.Course__c)) {
@@ -196,7 +197,7 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
             }
         }
 
-        return [
+        courseSharesToDelete = [
             SELECT ParentId, UserOrGroupId 
             FROM Course__Share
             WHERE ParentId IN :practitionerIdsByCourseIds.keySet() 
@@ -204,5 +205,6 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
                 AND RowCause != :GUEST_RULE_REASON
             WITH SECURITY_ENFORCED
         ];
+        return courseSharesToDelete;
     }    
 }
