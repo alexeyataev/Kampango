@@ -49,6 +49,14 @@
                 <field>Booking_Journey_Payable_Amount__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Actual_Fee_Charged__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Other_Charges__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Outstanding_Amount__c</field>
             </layoutItems>
