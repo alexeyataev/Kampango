@@ -350,6 +350,7 @@
     </types>
     <types>
         <members>Account</members>
+        <members>Bacs_Send_Remittance_Emails_Settings__c</members>
         <members>Batch_Receipt_Report__c</members>
         <members>Batch_Receipt_Report_Item__c</members>
         <members>Bank_Account_Settings__c</members>
