@@ -1,7 +1,14 @@
 global class BacsSendRemittanceEmailsBatch implements Database.Batchable<Payment_Run_Line_Item__c>, Database.AllowsCallouts {
-    private final String EMAIL_ADDRESS = 'noreply-parentforce@nct.org.uk';
-    private OrgWideEmailAddress orgWideEmailAddress = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: EMAIL_ADDRESS LIMIT 1];
-    private EmailTemplate emailTemplate = [SELECT Id, Body, Subject FROM EmailTemplate WHERE DeveloperName = 'BACSRemittanceEmail'];
+    private OrgWideEmailAddress orgWideEmailAddress = [
+        SELECT Id 
+        FROM OrgWideEmailAddress 
+        WHERE Address =: Bacs_Send_Remittance_Emails_Settings__c.getOrgDefaults().Org_Wide_Email_Address__c LIMIT 1
+    ];
+    private EmailTemplate emailTemplate = [
+        SELECT Id, Body, Subject 
+        FROM EmailTemplate 
+        WHERE DeveloperName =: Bacs_Send_Remittance_Emails_Settings__c.getOrgDefaults().Email_Template_Developer_Name__c
+    ];
     private List<Payment_Run_Line_Item__c> prliList;
 
     global BacsSendRemittanceEmailsBatch(List<Payment_Run_Line_Item__c> prliList) {
