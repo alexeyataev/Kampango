@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>dlrs__AggregateResultField__c</field>
-        <value xsi:type="xsd:string">CoursePlaceTotal__c</value>
+        <value xsi:type="xsd:string">Course_Place_Total__c</value>
     </values>
     <values>
         <field>dlrs__CalculationMode__c</field>
